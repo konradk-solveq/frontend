@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Dimensions, View, Animated, SafeAreaView, Text, Alert } from 'react-native';
 
 
@@ -41,12 +41,7 @@ const Onboarding = () => {
             <View style={styles.screen}>
                 <Screen_1></Screen_1>
             </View>
-
-
-
-
-
-
+            
         </View>
     )
 }
