@@ -9,6 +9,7 @@ import {
 import SplashScreen from './splashScreen/splashScreen';
 import Screen_1 from './turtorialFirstRun/screen_1/screen_1';
 import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn'
+import RadioBtn from '../../sharedComponents/radio/radiBtn'
 
 const Onboarding = () => {
 
@@ -56,6 +57,12 @@ const Onboarding = () => {
             </View>
 
             <View style={[styles.screen, styles.static]}>
+                <View>
+                    <RadioBtn
+                        cheched='true'
+                    ></RadioBtn>
+                </View>
+
                 <View style={styles.redBtn}>
                     <BigRedBtn title='DALEJ'></BigRedBtn>
                 </View>

@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, Button, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet,  TouchableOpacity, Text } from 'react-native';
 
 interface BtnProps {
-    title: string
+    title: string,
+    onpress: Function
 }
 
 
@@ -27,11 +28,9 @@ const BigRedBtn: React.FC<BtnProps> = (props: BtnProps) => {
     })
 
     return (
-
-
         <TouchableOpacity
             style={styles.btn}
-            onPress={() => { }}
+            onPress={props.onpress}
         >
             <Text style={styles.text}>{props.title}</Text>
         </TouchableOpacity>
