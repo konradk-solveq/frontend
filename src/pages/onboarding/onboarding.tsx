@@ -10,6 +10,7 @@ import SplashScreen from './splashScreen/splashScreen';
 import Screen_1 from './turtorialFirstRun/screen_1/screen_1';
 import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn'
 import RadioBtn from '../../sharedComponents/radio/radiBtn'
+import PanelProps from '../../sharedComponents/radio/panel'
 
 const Onboarding = () => {
 
@@ -41,6 +42,13 @@ const Onboarding = () => {
         redBtn: getStandard(334, 50, 781),
     })
 
+    const list: Array<Function> = [
+        () => { },
+        () => { },
+        () => { }
+    ]
+
+
 
     return (
         <>
@@ -57,11 +65,11 @@ const Onboarding = () => {
             </View>
 
             <View style={[styles.screen, styles.static]}>
-                <View>
-                    <RadioBtn
-                        cheched='true'
-                    ></RadioBtn>
-                </View>
+
+                <PanelProps
+                    active='1'
+                    listBtn={list}
+                ></PanelProps>
 
                 <View style={styles.redBtn}>
                     <BigRedBtn title='DALEJ'></BigRedBtn>
