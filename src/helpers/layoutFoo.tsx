@@ -107,11 +107,41 @@ const getStandard = (w: number, h: number, t: number) => {
     return res;
 }
 
+const getOnlyPos = (w: number, h: number, t: number) => {
+    setObjSize(w, h);
+    let res: {
+        position: string,
+        left: string,
+        top: string
+    } = {
+        position: 'absolute',
+        left: getCenterLeft(),
+        top: getTop(t)
+    }
+    return res;
+}
+
+const getPosAndWid = (w: number, h: number, t: number) => {
+    setObjSize(w, h);
+    let res: {
+        position: string,
+        width: string,
+        left: string,
+        top: string
+    } = {
+        position: 'absolute',
+        width: getWidth(),
+        left: getCenterLeft(),
+        top: getTop(t)
+    }
+    return res;
+}
+
 export {
     setAppSize, initAppSize, setObjSize,
     getCenterLeft, getCenterTop,
     getLeft, getTop,
     getWidth, getHeight,
     getRelativeWidth, getRelativeHeight,
-    getStandard
+    getStandard, getOnlyPos,getPosAndWid
 }

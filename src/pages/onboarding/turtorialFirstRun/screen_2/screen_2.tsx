@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { StyleSheet, Dimensions, View, Animated, SafeAreaView, Text, Alert } from 'react-native';
+import I18n from 'react-native-i18n';
 
 import {
     initAppSize,
@@ -21,12 +22,12 @@ const Screen_2 = () => {
     return (
         <>
             <View style={styles.bigText}>
-                <DinReg inner='Poznaj swój rower!'></DinReg>
+                <DinReg inner={ I18n.t('Screen_2-title') }></DinReg>
             </View>
 
             <View style={styles.regText}>
                 <Dinight18
-                    inner='Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. '
+                    inner={ I18n.t('Screen_2-text') }
                 ></Dinight18>
             </View>
         </>

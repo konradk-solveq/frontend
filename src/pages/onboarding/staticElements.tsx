@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Dimensions, View, Animated, Easing, Text, Alert } from 'react-native';
+import I18n from 'react-native-i18n';
 
 import {
     setObjSize,
@@ -26,8 +27,6 @@ const StaticElements: React.FC<BtnProps> = (props: BtnProps) => {
     setObjSize(41, 23);
     const skip = {
         position: 'absolute',
-        width: getWidth(),
-        height: getHeight(),
         left: getLeft(333),
         top: getTop(67),
     }
@@ -45,12 +44,12 @@ const StaticElements: React.FC<BtnProps> = (props: BtnProps) => {
             ></PanelProps>
 
             <View style={styles.skip}>
-                <TranspLightBtn title='pomiń' />
+                <TranspLightBtn title={ I18n.t('Onboarding-pomin') } />
             </View>
 
             <View style={styles.redBtn}>
                 <BigRedBtn
-                    title='DALEJ'
+                    title={ I18n.t('Onboarding-dalej') }
                     onpress={() => { if (props.board < props.list.length) props.setBoard(props.board + 1) }}
                 />
             </View>

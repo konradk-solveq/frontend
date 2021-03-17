@@ -1,5 +1,16 @@
 {
 
+    "Screen_1-title": "Jesteś gotowy, poznaj Świat Kross",
+    "Screen_1-text": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+
+    "Screen_2-title": "Poznaj swój rower!",
+    "Screen_2-text": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+
+    "Screen_3-title": "Mapa zawsze pod ręką.",
+    "Screen_3-text": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+
+    "Onboarding-dalej": "DALEJ",
+    "Onboarding-pomin": "pomiń",
     "GetToKnowEachOther-text": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
     "GetToKnowEachOther-placeholder": "Podaj imię lub pseudonim",
 }

@@ -1,9 +1,11 @@
 import React, { useRef, useEffect } from "react";
 import { StyleSheet, Dimensions, View, Animated, SafeAreaView, Text, Alert } from 'react-native';
+import I18n from 'react-native-i18n';
 
 import {
     initAppSize,
-    getStandard
+    getStandard,
+    getPosAndWid
 } from '../../../../helpers/layoutFoo';
 
 import DinReg from '../../../../sharedComponents/text/dinReg40'
@@ -16,7 +18,7 @@ const Screen_1 = () => {
     initAppSize();
 
     let styles = StyleSheet.create({
-        bigText: getStandard(334, 102, 138),
+        bigText: getPosAndWid(334, 102, 138),
         bikeImg: getStandard(310, 172, 325),
         regText: getStandard(334, 115, 596)
     })
@@ -24,7 +26,7 @@ const Screen_1 = () => {
     return (
         <>
             <View style={styles.bigText}>
-                <DinReg inner='Jesteś gotowy, poznaj Świat Kross'></DinReg>
+                <DinReg inner={ I18n.t('Screen_1-title') }></DinReg>
             </View>
 
             <View style={styles.bikeImg}>
@@ -33,7 +35,7 @@ const Screen_1 = () => {
 
             <View style={styles.regText}>
                 <Dinight18
-                    inner='Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. '
+                    inner={ I18n.t('Screen_1-text') }
                 ></Dinight18>
             </View>
         </>
