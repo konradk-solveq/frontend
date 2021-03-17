@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Dimensions, View, Animated, Easing, Text, Alert } from 'react-native';
+import { StyleSheet, Dimensions, View, Animated, Easing } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import {
     setAppSize,
     setObjSize,
-    getStandard,
     getWidth,
-    getHeight,
-    getLeft,
     getTop,
     getRelativeHeight,
     getCenterLeft
@@ -18,10 +15,8 @@ import SplashScreen from './splashScreen/splashScreen';
 import Screen_1 from './turtorialFirstRun/screen_1/screen_1';
 import Screen_2 from './turtorialFirstRun/screen_2/screen_2';
 import Screen_3 from './turtorialFirstRun/screen_3/screen_3';
-import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn'
-import PanelProps from '../../sharedComponents/radio/panel'
-import TranspLightBtn from '../../sharedComponents/buttons/transpLightBtn'
 import DashLine from './dashLine';
+import StaticElements from './staticElements';
 
 const Onboarding = () => {
 
@@ -38,16 +33,20 @@ const Onboarding = () => {
     const [coverOpa, setCoverOpa] = useState(true);
 
     setObjSize(ww * 4.35, 0.19 * ww * 4.35);
-    // setObjSize(ww, 0.18880 * ww);
     const line = {
         position: 'absolute',
         width: getWidth(),
         height: getRelativeHeight(),
         left: -ww * .05,
         top: getTop(400),
-        // backgroundColor: 'khaki'
     }
     const lineMove = -wh * .2;
+
+    const list: Array<Function> = [
+        () => { setBoard(1) },
+        () => { setBoard(2) },
+        () => { setBoard(3) }
+    ]
 
     useEffect(() => {
         if (board == 0) {
@@ -99,17 +98,6 @@ const Onboarding = () => {
         }
     }, [board])
 
-
-
-    setObjSize(41, 23);
-    const skip = {
-        position: 'absolute',
-        width: getWidth(),
-        height: getHeight(),
-        left: getLeft(333),
-        top: getTop(67),
-    }
-
     setObjSize(414, 175);
     const cover = {
         position: 'absolute',
@@ -117,11 +105,7 @@ const Onboarding = () => {
         height: getRelativeHeight(),
         left: getCenterLeft(),
         top: getTop(560),
-        // backgroundColor: 'khaki'
     }
-
-
-
 
     let styles = StyleSheet.create({
         static: {
@@ -146,24 +130,16 @@ const Onboarding = () => {
             width: '100%',
             height: '100%'
         },
-        redBtn: getStandard(334, 50, 781),
-        skip,
         cover,
         line
     })
 
-    const list: Array<Function> = [
-        () => { setBoard(1) },
-        () => { setBoard(2) },
-        () => { setBoard(3) }
-    ]
 
     return (
         <>
             <Animated.View style={[styles.container, {
                 transform: [{ translateX: position }]
             }]}>
-
                 <View style={styles.screen}>
                     <SplashScreen></SplashScreen>
                 </View>
@@ -179,35 +155,19 @@ const Onboarding = () => {
                 <View style={styles.screen}>
                     <Screen_3></Screen_3>
                 </View>
-
-
-
-
-
-
-
             </Animated.View>
+
 
             <Animated.View style={[styles.screen, styles.static, {
                 opacity: opacity
             }]}>
-
-                <PanelProps
-                    active={board - 1}
-                    listBtn={list}
-                ></PanelProps>
-
-                <View style={styles.skip}>
-                    <TranspLightBtn title='pomiń' />
-                </View>
-
-                <View style={styles.redBtn}>
-                    <BigRedBtn
-                        title='DALEJ'
-                        onpress={() => { if (board < list.length) setBoard(board + 1) }}
-                    />
-                </View>
+                <StaticElements
+                    board={board}
+                    list={list}
+                    setBoard={setBoard}
+                ></StaticElements>
             </Animated.View>
+
 
             <Animated.View style={[styles.line, {
                 transform: [{ translateX: position, translateY: linePos }]
@@ -216,16 +176,16 @@ const Onboarding = () => {
             </Animated.View>
 
             {coverOpa ? <Animated.View style={[styles.cover, {
-                    transform: [{ translateX: coverPos }]
-                }]}>
-                    <LinearGradient
-                        colors={['#ffffff00', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']}
-                        // colors={['red', 'yellow', 'green']}
-                        style={styles.coverFill}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 0 }}
-                    />
-                </Animated.View> : null}
+                transform: [{ translateX: coverPos }]
+            }]}>
+                <LinearGradient
+                    colors={['#ffffff00', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']}
+                    // colors={['red', 'yellow', 'green']}
+                    style={styles.coverFill}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                />
+            </Animated.View> : null}
 
         </>
     )
