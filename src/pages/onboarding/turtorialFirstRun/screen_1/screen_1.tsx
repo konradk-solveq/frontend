@@ -2,28 +2,20 @@ import React, { useRef, useEffect } from "react";
 import { StyleSheet, Dimensions, View, Animated, SafeAreaView, Text, Alert } from 'react-native';
 
 import {
-    setAppSize,
+    initAppSize,
     getStandard
 } from '../../../../helpers/layoutFoo';
 
 import DinReg from '../../../../sharedComponents/text/dinReg40'
-import Dinight18 from '../../../../sharedComponents/text/dinight18'
+import Dinight18 from '../../../../sharedComponents/text/dinLight18'
 import BikeImg from './bikeImg';
 
 
 
 const Screen_1 = () => {
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
+    initAppSize();
 
     let styles = StyleSheet.create({
-        container: {
-            width: ww,
-            height: '100%',
-            backgroundColor: 'white',
-            // backgroundColor: 'red'
-        },
         bigText: getStandard(334, 102, 138),
         bikeImg: getStandard(310, 172, 325),
         regText: getStandard(334, 115, 596)
