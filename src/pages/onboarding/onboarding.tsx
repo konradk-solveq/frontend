@@ -170,9 +170,13 @@ const Onboarding = () => {
 
 
             <Animated.View style={[styles.line, {
-                transform: [{ translateX: position, translateY: linePos }]
+                transform: [{ translateX: position }]
             }]}>
-                <DashLine ></DashLine>
+                <Animated.View style={[styles.coverFill, {
+                    transform: [{ translateY: linePos }]
+                }]}>
+                    <DashLine ></DashLine>
+                </Animated.View>
             </Animated.View>
 
             {coverOpa ? <Animated.View style={[styles.cover, {
