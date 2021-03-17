@@ -74,9 +74,9 @@ const SplashScreen = () => {
                 <LogoPionowe ></LogoPionowe>
             </Animated.View>
 
-            <View style={styles.dline}>
+            {/* <View style={styles.dline}>
                 <DashLine></DashLine>
-            </View>
+            </View> */}
 
             <Animated.View style={[
                 styles.claim,
