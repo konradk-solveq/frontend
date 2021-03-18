@@ -1,40 +1,26 @@
 import React from 'react';
 import type { Node } from 'react';
-import {	SafeAreaView} from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { Provider } from "react-redux";
+import store from './src/store/store';
+import { I18n_init } from './I18n/I18n'
 
-import SplashScreen from './src/pages/onboarding/splashScreen/splashScreen';
 import Onboarding from './src/pages/onboarding/onboarding';
 import GetToKnowEachOther from './src/pages/onboarding/getToKnowEachOther/getToKnowEachOther';
 
 
-import I18n from 'react-native-i18n';
-
-I18n.fallbacks = true;
-I18n.locale = 'pl';
-
-
-let languageCode = I18n.locale.substr(0, 2);
-
-I18n.translations = {
-    pl: require('./I18n/pl.json')
-}
-
-switch (languageCode) {
-    case 'en':
-        I18n.translations.af = require('./I18n/pl.json');
-        break;
-}
-
-
 const App: () => Node = () => {
+	I18n_init();
 
 	return (
-		<SafeAreaView>
+		<Provider store={store}>
+			<SafeAreaView>
 
-			{/* <Onboarding></Onboarding> */}
-			<GetToKnowEachOther></GetToKnowEachOther>
+				{/* <Onboarding></Onboarding> */}
+				<GetToKnowEachOther></GetToKnowEachOther>
 
-		</SafeAreaView>
+			</SafeAreaView>
+		</Provider >
 	);
 };
 

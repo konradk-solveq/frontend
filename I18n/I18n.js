@@ -1,15 +1,25 @@
 import I18n from 'react-native-i18n';
 
-I18n.fallbacks = true;
+const I18n_init = () => {
+    I18n.fallbacks = true;
+    I18n.locale = 'pl';
 
-let languageCode = I18n.locale.substr(0, 2);
-
-I18n.translations = {
-    pl: require('./pl.json')
+    I18n.translations = {
+        pl: require('./pl.json')
+    }
 }
 
-switch (languageCode) {
-    case 'en':
-        I18n.translations.af = require('./english.json');
-        break;
+const I18n_change = (languageCode) => {
+    // let languageCode = I18n.locale.substr(0, 2);
+
+    switch (languageCode) {
+        case 'en':
+            I18n.translations.en = require('./en.json');
+            break;
+        case 'pl':
+            I18n.translations.pl = require('./pl.json');
+            break;
+    }
 }
+
+export { I18n_init, I18n_change }

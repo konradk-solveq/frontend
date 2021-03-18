@@ -1,20 +1,18 @@
 //getToKnowEachOther
-import React, { useRef, useEffect } from "react";
-import { StyleSheet, Dimensions, View, Animated, SafeAreaView, Text, Alert } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Dimensions, View } from 'react-native';
+import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
+import { setUserName, getUserName } from '../../../store/actions/index';
 
 import {
     setAppSize,
     setObjSize,
     getWidth,
-    getWidthOf,
     getWidthPxOf,
     getHeightPx,
-    getTop,
     getTopPx,
-    getRelativeHeight,
     getCenterLeft,
-    getStandard,
     getPosAndWid,
     getPosWithMinHeight,
     getPosStaticHeight
@@ -22,13 +20,24 @@ import {
 
 import KroosLogo from './krossLogo';
 import DinLight30 from '../../../sharedComponents/text/dinLight30';
-import DinLight18 from '../../../sharedComponents/text/dinLight18';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 
-const GetToKnowEachOther = () => {
+
+
+
+const GetToKnowEachOther = (props: any) => {
+
+
+    const [inputName, setInputName] = useState(props.name);
+
+
+    useEffect(() => {
+        props.getName();
+    }, [])
+
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
@@ -62,8 +71,6 @@ const GetToKnowEachOther = () => {
         btn: {
             width: getWidthPxOf(157),
         }
-
-
     })
 
     return (
@@ -83,6 +90,8 @@ const GetToKnowEachOther = () => {
                 <View style={styles.input}>
                     <OneLineTekst
                         placeholder={I18n.t('GetToKnowEachOther-placeholder')}
+                        onChangeText={setInputName}
+                        value={inputName}
                     />
                 </View>
             </View>
@@ -91,12 +100,14 @@ const GetToKnowEachOther = () => {
                 <View style={styles.btn}>
                     <BigWhiteBtn
                         title={I18n.t('GetToKnowEachOther-pomin')}
+                        onpress={() => getUserName()}
                     ></BigWhiteBtn>
                 </View>
 
                 <View style={styles.btn}>
                     <BigRedBtn
                         title={I18n.t('GetToKnowEachOther-dalej')}
+                        onpress={() => props.setName(inputName)}
                     ></BigRedBtn>
                 </View>
             </View>
@@ -105,4 +116,16 @@ const GetToKnowEachOther = () => {
     )
 }
 
-export default GetToKnowEachOther;
+
+const mapStateToProps = (state: any) => {
+    return {
+        name: state.user.userName
+    }
+}
+
+const mapDispatchToProps = (dispatch: any) => ({
+    setName: (name: string) => dispatch(setUserName(name)),
+    getName: async () => dispatch(await getUserName()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(GetToKnowEachOther)
