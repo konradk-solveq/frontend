@@ -1,9 +1,12 @@
 import React from "react";
-import { StyleSheet, TextInput, Text } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
+
+import DinLight18 from '../text/dinLight18';
 
 interface BtnProps {
     onChangeText: Function,
-    text: string
+    placeholder: string,
+    value: string
 }
 
 
@@ -15,26 +18,35 @@ const OneLineTekst: React.FC<BtnProps> = (props: BtnProps) => {
             alignItems: 'center',
             justifyContent: 'center',
             width: '100%',
-            height: '100%',
-            borderRadius: 50,
+            // height: '100%',
+            borderRadius: 150,
             fontFamily: "DIN2014Narrow-Bold",
             fontSize: 20,
             textAlign: 'center',
             color: 'black',
             borderWidth: 2,
             borderColor: "#80555555",
+            height: 50,
+            marginTop: 6,
         },
         text: {
         }
     })
 
     return (
-        <TextInput
-            style={styles.input}
-            onChangeText={props.onChangeText}
-            value={props.text}
-        >
-        </TextInput>
+        <>
+            <DinLight18
+                algin='left'
+                inner={props.placeholder}
+            ></DinLight18>
+
+            <TextInput
+                style={styles.input}
+                onChangeText={props.onChangeText}
+                value={props.value}
+            >
+            </TextInput>
+        </>
     )
 }
 

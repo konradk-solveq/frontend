@@ -7,17 +7,25 @@ import {
     setAppSize,
     setObjSize,
     getWidth,
+    getWidthOf,
+    getWidthPxOf,
+    getHeightPx,
     getTop,
+    getTopPx,
     getRelativeHeight,
     getCenterLeft,
-    getStandard
+    getStandard,
+    getPosAndWid,
+    getPosWithMinHeight,
+    getPosStaticHeight
 } from '../../../helpers/layoutFoo';
 
 import KroosLogo from './krossLogo';
 import DinLight30 from '../../../sharedComponents/text/dinLight30';
 import DinLight18 from '../../../sharedComponents/text/dinLight18';
-import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst'
-
+import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
+import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 
 const GetToKnowEachOther = () => {
@@ -25,17 +33,37 @@ const GetToKnowEachOther = () => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
+    setObjSize(334, 50);
+    let bottons = {
+        position: 'absolute',
+        width: getWidth(),
+        height: getHeightPx() < 50 ? 50 : getHeightPx(),
+        left: getCenterLeft(),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        bottom: getTopPx(60)
+    }
 
     let styles = StyleSheet.create({
         container: {
             width: ww,
-            height: wh,
+            height: '100%',
             backgroundColor: 'white'
         },
-        logo: getStandard(110, 20, 66),
-        text: getStandard(334, 78, 138),
-        placholder: getStandard(334, 23, 351),
-        input: getStandard(334, 50, 380),
+        logo: getPosStaticHeight(110, 20, 66),
+        text: getPosAndWid(334, 78, 138),
+        inputAndPlaceholder: getPosWithMinHeight(334, 80, 380, 80),
+        input: {
+            height: 50,
+            marginTop: 6,
+        },
+        bottons,
+        btn: {
+            width: getWidthPxOf(157),
+        }
+
+
     })
 
     return (
@@ -51,16 +79,28 @@ const GetToKnowEachOther = () => {
                 />
             </View>
 
-            <View style={styles.placholder}>
-                <DinLight18
-                    algin='left'
-                    inner={I18n.t('GetToKnowEachOther-placeholder')}
-                ></DinLight18>
+            <View style={styles.inputAndPlaceholder}>
+                <View style={styles.input}>
+                    <OneLineTekst
+                        placeholder={I18n.t('GetToKnowEachOther-placeholder')}
+                    />
+                </View>
             </View>
 
-            <View style={styles.input}>
-                <OneLineTekst />
+            <View style={styles.bottons}>
+                <View style={styles.btn}>
+                    <BigWhiteBtn
+                        title={I18n.t('GetToKnowEachOther-pomin')}
+                    ></BigWhiteBtn>
+                </View>
+
+                <View style={styles.btn}>
+                    <BigRedBtn
+                        title={I18n.t('GetToKnowEachOther-dalej')}
+                    ></BigRedBtn>
+                </View>
             </View>
+
         </View>
     )
 }

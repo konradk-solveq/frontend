@@ -65,6 +65,10 @@ const getTop = (top: number) => {
     let res: number = ((top) / layout.height) * 100;
     return res.toFixed(3) + '%'
 }
+const getTopPx = (top: number) => {
+    let res: number = ((top) / layout.height) * appSize.height;
+    return res
+}
 
 
 
@@ -72,9 +76,26 @@ const getWidth = () => {
     let res: number = (objSize.width / layout.width) * 100;
     return res.toFixed(3) + '%';
 }
+const getWidthPx = () => {
+    let res: number = (objSize.width / layout.width) * appSize.width;
+    return res;
+}
+const getWidthOf = (num: number) => {
+    let res: number = (num / layout.width) * 100;
+    return res.toFixed(3) + '%';
+}
+const getWidthPxOf = (num: number) => {
+    let res: number = (num / layout.width) * appSize.width;
+    return res;
+}
+
 const getHeight = () => {
     let res: number = (objSize.height / layout.height) * 100;
     return res.toFixed(3) + '%';
+}
+const getHeightPx = () => {
+    let res: number = (objSize.height / layout.height) * appSize.height;
+    return res;
 }
 
 
@@ -101,6 +122,25 @@ const getStandard = (w: number, h: number, t: number) => {
         position: 'absolute',
         width: getWidth(),
         height: getHeight(),
+        left: getCenterLeft(),
+        top: getTop(t)
+    }
+    return res;
+}
+
+const getPosStaticHeight = (w: number, h: number, t: number) => {
+    setObjSize(w, h);
+    let width = getWidthPx();
+    let res: {
+        position: string,
+        width: number,
+        height: number,
+        left: string,
+        top: string
+    } = {
+        position: 'absolute',
+        width,
+        height: (h / w) * width,
         left: getCenterLeft(),
         top: getTop(t)
     }
@@ -137,11 +177,36 @@ const getPosAndWid = (w: number, h: number, t: number) => {
     return res;
 }
 
+const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
+    setObjSize(w, h);
+    let height = getHeightPx();
+    let res: {
+        position: string,
+        width: string,
+        height: number,
+        left: string,
+        top: string
+    } = {
+        position: 'absolute',
+        width: getWidth(),
+        height: height < min ? min : height,
+        left: getCenterLeft(),
+        top: getTop(t)
+    }
+    return res;
+}
+
 export {
     setAppSize, initAppSize, setObjSize,
     getCenterLeft, getCenterTop,
-    getLeft, getTop,
-    getWidth, getHeight,
+    getLeft, getTop, getTopPx,
+    getWidth, getWidthOf, getWidthPxOf,
+    getHeight, getHeightPx,
     getRelativeWidth, getRelativeHeight,
-    getStandard, getOnlyPos,getPosAndWid
+
+    getStandard,
+    getPosStaticHeight,
+    getOnlyPos,
+    getPosAndWid,
+    getPosWithMinHeight
 }

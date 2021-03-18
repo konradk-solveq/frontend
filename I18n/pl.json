@@ -11,6 +11,9 @@
 
     "Onboarding-dalej": "DALEJ",
     "Onboarding-pomin": "pomiń",
+
     "GetToKnowEachOther-text": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
     "GetToKnowEachOther-placeholder": "Podaj imię lub pseudonim",
+    "GetToKnowEachOther-pomin": "POMIŃ",
+    "GetToKnowEachOther-dalej": "DALEJ"
 }
