@@ -13,6 +13,8 @@ import Onboarding from './src/pages/onboarding/onboarding';
 import GetToKnowEachOther from './src/pages/onboarding/getToKnowEachOther/getToKnowEachOther';
 
 
+const RootStack = createStackNavigator();
+
 const App: () => Node = () => {
 	I18n_init();
 
@@ -23,9 +25,8 @@ const App: () => Node = () => {
 		<Provider store={store}>
 			<NavigationContainer >
 				<Stack.Navigator>
-					{/* <Stack.Screen name="Onboarding" component={Onboarding}
-						options={{ headerShown: false }} /> */}
-
+					<Stack.Screen name="Onboarding" component={Onboarding}
+						options={{ headerShown: false }} />
 
 					<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther}
 						options={{
