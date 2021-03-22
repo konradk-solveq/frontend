@@ -30,13 +30,19 @@ import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 const GetToKnowEachOther = (props: any) => {
 
-
-    const [inputName, setInputName] = useState(props.name);
-
+    const [inputName, setInputName] = useState('');
 
     useEffect(() => {
         props.getName();
-    }, [])
+        if (typeof props.name == 'string') setInputName(props.name);
+    }, [props.name])
+
+    const hendleValidationOk = (value: string) => {
+        if (value.length > 2) return true;
+        return false
+    }
+
+
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
@@ -62,7 +68,7 @@ const GetToKnowEachOther = (props: any) => {
         },
         logo: getPosStaticHeight(110, 20, 66),
         text: getPosAndWid(334, 78, 138),
-        inputAndPlaceholder: getPosWithMinHeight(334, 80, 380, 80),
+        inputAndPlaceholder: getPosWithMinHeight(334, 90, 380, 90),
         input: {
             height: 50,
             marginTop: 6,
@@ -91,6 +97,7 @@ const GetToKnowEachOther = (props: any) => {
                     <OneLineTekst
                         placeholder={I18n.t('GetToKnowEachOther-placeholder')}
                         onChangeText={setInputName}
+                        validationOk={hendleValidationOk}
                         value={inputName}
                     />
                 </View>

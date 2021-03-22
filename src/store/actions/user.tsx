@@ -6,7 +6,7 @@ import { AsyncStorage } from "react-native-async-storage/async-storage";
 
 export const getUserName = async () => {
     let name = await getStorageUserName()
-    console.log('%c name():', name)
+    console.log('name: ', name)
     return {
         type: actionTypes.GET_USER_NAME,
         userName: name

@@ -4,7 +4,8 @@ import { StyleSheet, Text } from 'react-native';
 
 interface TextProps {
     inner: string,
-    algin?: string
+    algin?: string,
+    color?: string
 }
 
 
@@ -14,7 +15,8 @@ const DinLight18: React.FC<TextProps> = (props: TextProps) => {
         text: {
             fontFamily: "DIN2014Narrow-Light",
             fontSize: 18,
-            textAlign: props.algin ? props.algin : 'center'
+            textAlign: props.algin ? props.algin : 'center',
+            color: props.color ? props.color : '#555555'
         }
     })
 

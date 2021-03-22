@@ -15,5 +15,7 @@
     "GetToKnowEachOther-text": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
     "GetToKnowEachOther-placeholder": "Podaj imię lub pseudonim",
     "GetToKnowEachOther-pomin": "POMIŃ",
-    "GetToKnowEachOther-dalej": "DALEJ"
+    "GetToKnowEachOther-dalej": "DALEJ",
+
+    "OneLineTekst-error-null": "Wartość nie może być null-em"
 }
