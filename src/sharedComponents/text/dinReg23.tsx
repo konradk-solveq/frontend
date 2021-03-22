@@ -10,12 +10,12 @@ interface TextProps {
 }
 
 
-const DinReg40: React.FC<TextProps> = (props: TextProps) => {
+const DinReg23: React.FC<TextProps> = (props: TextProps) => {
 
     let styles = StyleSheet.create({
         text: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 40,
+            fontSize: 23,
             textAlign: props.algin ? props.algin : 'center',
             color: props.color ? props.color : '#313131'
         }
@@ -26,4 +26,4 @@ const DinReg40: React.FC<TextProps> = (props: TextProps) => {
     )
 }
 
-export default DinReg40;
+export default DinReg23;

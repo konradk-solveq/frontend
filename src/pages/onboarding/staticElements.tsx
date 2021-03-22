@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Dimensions, View, Animated, Easing, Text, Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import I18n from 'react-native-i18n';
 
 import {
@@ -54,7 +52,13 @@ const StaticElements: React.FC<BtnProps> = (props: BtnProps) => {
             <View style={styles.redBtn}>
                 <BigRedBtn
                     title={I18n.t('Onboarding-dalej')}
-                    onpress={() => { if (props.board < props.list.length) props.setBoard(props.board + 1) }}
+                    onpress={() => {
+                        if (props.board < props.list.length) {
+                            props.setBoard(props.board + 1)
+                        } else {
+                            props.goFoward()
+                        }
+                    }}
                 />
             </View>
         </>

@@ -28,7 +28,7 @@ const BigRedBtn: React.FC<BtnProps> = (props: BtnProps) => {
     })
 
     return (
-        <TouchableOpacity
+        <TouchableOpacity 
             style={styles.btn}
             onPress={props.onpress}
         >

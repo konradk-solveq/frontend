@@ -11,7 +11,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Onboarding from './src/pages/onboarding/onboarding';
 import GetToKnowEachOther from './src/pages/onboarding/getToKnowEachOther/getToKnowEachOther';
-
+import TurtorialNFC from './src/pages/onboarding/bikeAdding/turtorialNFC/turtorialNFC';
+import WrongScan from './src/pages/onboarding/bikeAdding/wrongScan/wrongScan';
 
 const RootStack = createStackNavigator();
 
@@ -23,25 +24,34 @@ const App: () => Node = () => {
 
 	return (
 		<Provider store={store}>
-			<NavigationContainer >
-				<Stack.Navigator>
-					<Stack.Screen name="Onboarding" component={Onboarding}
+			{/* <SafeAreaView> */}
+				<NavigationContainer >
+					<Stack.Navigator>
+
+						 {/* <Stack.Screen name="Onboarding" component={Onboarding}
+							options={{ headerShown: false }} />
+
+						<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther}
+							options={{
+								// title: 'My home',
+								// headerStyle: {
+								// 	backgroundColor: '#f4511e',
+								// },
+								// headerTintColor: '#fff',
+								// headerTitleStyle: {
+								// 	fontWeight: 'bold',
+								// },
+								headerShown: false
+							}} /> 
+
+					<Stack.Screen name="TurtorialNFC" component={TurtorialNFC}
+						options={{ headerShown: false }} /> */}
+
+					<Stack.Screen name="WrongScan" component={WrongScan}
 						options={{ headerShown: false }} />
 
-					<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther}
-						options={{
-							// title: 'My home',
-							// headerStyle: {
-							// 	backgroundColor: '#f4511e',
-							// },
-							// headerTintColor: '#fff',
-							// headerTitleStyle: {
-							// 	fontWeight: 'bold',
-							// },
-							headerShown: false
-						}} />
-				</Stack.Navigator>
-			</NavigationContainer>
+					</Stack.Navigator>
+				</NavigationContainer>
 			{/* </SafeAreaView> */}
 		</Provider >
 	);

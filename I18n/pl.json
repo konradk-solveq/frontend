@@ -17,5 +17,17 @@
     "GetToKnowEachOther-pomin": "POMIŃ",
     "GetToKnowEachOther-dalej": "DALEJ",
 
-    "OneLineTekst-error-null": "Wartość nie może być null-em"
+    "OneLineTekst-error-null": "Wartość nie może być null-em",
+
+    "TurtorialNFC-title": "Identyfikacja roweru",
+    "TurtorialNFC-title-1": "Witaj",
+    "TurtorialNFC-title-2": ", mam pierwsze zadanie dla Ciebie :)",
+    "TurtorialNFC-tekst": "Włącz NFC w telefonie i zbliż go do naklejki umieszczonej na ramie roweru KROSS.\n\nJeśli nie widzisz naklejki lub nie obsługujesz NFC, wprowadź ręcznie numer ramy.",
+    "TurtorialNFC-btn-nfc": "SKANUJ NAKLEJKĘ NFC",
+    "TurtorialNFC-btn-hand": "CHCĘ WPROWADZIĆ RĘCZNIE",
+
+    "WrongScan-title": "Coś poszło nie tak!",
+    "WrongScan-tekst-1": "Rama o numerze ",
+    "WrongScan-tekst-2": " została już wcześniej dodana.\n\nSprawdź czy numer ramy jest poprawny. W przypadku dalszych problemów skontaktuj się z nami 29 752 11 00.",
+    "WrongScan-btn-again": "SPRÓBUJ JESZCZE RAZ"
 }

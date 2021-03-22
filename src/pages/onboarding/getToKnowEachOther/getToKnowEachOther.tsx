@@ -25,9 +25,6 @@ import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 
-
-
-
 const GetToKnowEachOther = (props: any) => {
 
     const [inputName, setInputName] = useState('');
@@ -41,7 +38,6 @@ const GetToKnowEachOther = (props: any) => {
         if (value.length > 2) return true;
         return false
     }
-
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;

@@ -48,6 +48,10 @@ const getCenterLeft = () => {
     let res: number = (((layout.width - objSize.width) / 2) / layout.width) * 100;
     return res.toFixed(3) + '%';
 }
+const getCenterLeftPx = () => {
+    let res: number = (((layout.width - objSize.width) / 2) / layout.width) * appSize.width;
+    return res;
+}
 
 const getCenterTop = () => {
     let res: number = (((layout.height - objSize.height) / 2) / layout.height) * 100;
@@ -128,6 +132,59 @@ const getStandard = (w: number, h: number, t: number) => {
     return res;
 }
 
+const getStandardPx = (w: number, h: number, t: number) => {
+    setObjSize(w, h);
+    let res: {
+        position: string,
+        width: number,
+        height: number,
+        left: number,
+        top: number
+    } = {
+        position: 'absolute',
+        width: getWidthPx(),
+        height: getHeightPx(),
+        left: getCenterLeftPx(),
+        top: getTopPx(t)
+    }
+    return res;
+}
+
+const getPerfect = (w: number, h: number, l: number, t: number) => {
+    setObjSize(w, h);
+    let res: {
+        position: string,
+        width: string,
+        height: string,
+        left: string,
+        top: string
+    } = {
+        position: 'absolute',
+        width: getWidth(),
+        height: getHeight(),
+        left: getLeft(l),
+        top: getTop(t)
+    }
+    return res;
+}
+const getPerfectPX = (w: number, h: number, l: number, t: number) => {
+    setObjSize(w, h);
+    let res: {
+        position: string,
+        width: number,
+        height: number,
+        left: number,
+        top: number
+    } = {
+        position: 'absolute',
+        width: getWidthPx(),
+        height: getHeightPx(),
+        left: getTopPx(l),
+        top: getTopPx(t)
+    }
+    return res;
+}
+
 const getPosStaticHeight = (w: number, h: number, t: number) => {
     setObjSize(w, h);
     let width = getWidthPx();
@@ -204,7 +261,8 @@ export {
     getHeight, getHeightPx,
     getRelativeWidth, getRelativeHeight,
 
-    getStandard,
+    getStandard,getStandardPx,
+    getPerfect,getPerfectPX,
     getPosStaticHeight,
     getOnlyPos,
     getPosAndWid,
