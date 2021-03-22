@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Dimensions, View, Animated, Easing, Text, Alert } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import I18n from 'react-native-i18n';
 
 import {
@@ -19,7 +21,8 @@ import TranspLightBtn from '../../sharedComponents/buttons/transpLightBtn'
 interface BtnProps {
     board: number,
     list: Array<Function>,
-    setBoard: Function
+    setBoard: Function,
+    goFoward: Function
 }
 
 const StaticElements: React.FC<BtnProps> = (props: BtnProps) => {
@@ -44,12 +47,13 @@ const StaticElements: React.FC<BtnProps> = (props: BtnProps) => {
             ></PanelProps>
 
             <View style={styles.skip}>
-                <TranspLightBtn title={ I18n.t('Onboarding-pomin') } />
+                <TranspLightBtn title={I18n.t('Onboarding-pomin')}
+                    onpress={() => props.goFoward()} />
             </View>
 
             <View style={styles.redBtn}>
                 <BigRedBtn
-                    title={ I18n.t('Onboarding-dalej') }
+                    title={I18n.t('Onboarding-dalej')}
                     onpress={() => { if (props.board < props.list.length) props.setBoard(props.board + 1) }}
                 />
             </View>

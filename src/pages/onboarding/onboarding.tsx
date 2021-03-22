@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Dimensions, View, Animated, Easing } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
 import {
     setAppSize,
@@ -18,7 +22,12 @@ import Screen_3 from './turtorialFirstRun/screen_3/screen_3';
 import DashLine from './dashLine';
 import StaticElements from './staticElements';
 
-const Onboarding = () => {
+
+interface OnboardingProps {
+    navigation: any;
+};
+
+const Onboarding: React.FC<OnboardingProps> = (props: OnboardingProps) => {
 
     const [board, setBoard] = useState(0);
     const position = useRef(new Animated.Value(0)).current;
@@ -55,7 +64,7 @@ const Onboarding = () => {
                 setCoverOpa(false)
             }, 3500)
         }
-        setBoard(0);
+        setBoard(1);
 
         Animated.timing(coverPos, {
             toValue: ww,
@@ -162,6 +171,8 @@ const Onboarding = () => {
                 opacity: opacity
             }]}>
                 <StaticElements
+                    // goFoward={() => {navigation.navigate('GetToKnowEachOther'})}
+                    goFoward={() => props.navigation.navigate('GetToKnowEachOther')}
                     board={board}
                     list={list}
                     setBoard={setBoard}

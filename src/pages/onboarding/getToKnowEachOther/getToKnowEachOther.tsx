@@ -43,7 +43,6 @@ const GetToKnowEachOther = (props: any) => {
     }
 
 
-
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
