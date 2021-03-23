@@ -52,7 +52,7 @@ const GetToKnowEachOther = (props: any) => {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        bottom: getTopPx(60)
+        bottom: getTopPx(65)
     }
 
     let styles = StyleSheet.create({

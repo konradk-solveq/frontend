@@ -19,6 +19,18 @@ const userReducer = (state = initialState, action:any) => {
                 userName: action.userName,
             }
         }
+        case actionTypes.GET_FRAME_NUMBER: {
+            return {
+                ...state,
+                frameNumber: action.frameNumber,
+            }
+        }
+        case actionTypes.SET_FRAME_NUMBER: {
+            return {
+                ...state,
+                frameNumber: action.frameNumber,
+            }
+        }
     }
 
     return state;

@@ -29,5 +29,12 @@
     "WrongScan-title": "Coś poszło nie tak!",
     "WrongScan-tekst-1": "Rama o numerze ",
     "WrongScan-tekst-2": " została już wcześniej dodana.\n\nSprawdź czy numer ramy jest poprawny. W przypadku dalszych problemów skontaktuj się z nami 29 752 11 00.",
-    "WrongScan-btn-again": "SPRÓBUJ JESZCZE RAZ"
+    "WrongScan-btn-again": "SPRÓBUJ JESZCZE RAZ",
+
+    "AddingByNumber-title": "Identyfikacja roweru",
+    "AddingByNumber-text": "Podaj numer ramy Twojego roweru.",
+    "AddingByNumber-placeholder": "Numer ramy",
+    "AddingByNumber-message-wrong": "Nieprawidłowe znaki",
+    "AddingByNumber-info-btn": "Gdzie znajdę numer ramy?",
+    "AddingByNumber-btn": "DALEJ"
 }

@@ -13,6 +13,7 @@ import Onboarding from './src/pages/onboarding/onboarding';
 import GetToKnowEachOther from './src/pages/onboarding/getToKnowEachOther/getToKnowEachOther';
 import TurtorialNFC from './src/pages/onboarding/bikeAdding/turtorialNFC/turtorialNFC';
 import WrongScan from './src/pages/onboarding/bikeAdding/wrongScan/wrongScan';
+import AddingByNumber from './src/pages/onboarding/bikeAdding/addingByNumber/addingByNumber';
 
 const RootStack = createStackNavigator();
 
@@ -47,7 +48,10 @@ const App: () => Node = () => {
 					<Stack.Screen name="TurtorialNFC" component={TurtorialNFC}
 						options={{ headerShown: false }} /> */}
 
-					<Stack.Screen name="WrongScan" component={WrongScan}
+					{/* <Stack.Screen name="WrongScan" component={WrongScan}
+						options={{ headerShown: false }} /> */}
+
+					<Stack.Screen name="AddingByNumber" component={AddingByNumber}
 						options={{ headerShown: false }} />
 
 					</Stack.Navigator>

@@ -3,7 +3,9 @@ import { StyleSheet,  TouchableOpacity, Text } from 'react-native';
 
 interface BtnProps {
     title: string,
-    onpress: Function
+    onpress: Function,
+    algin: string,
+    color: string
 }
 
 
@@ -18,10 +20,11 @@ const TranspLightBtn: React.FC<BtnProps> = (props: BtnProps) => {
             height: '100%'
         },
         text: {
+            width: '100%',
             fontFamily: "DIN2014Narrow-Regular",
             fontSize: 18,
-            textAlign: 'center',
-            color: '#d8232a'
+            textAlign: props.algin ? props.algin : 'center',
+            color: props.color ? props.color : '#d8232a'
         }
     })
 

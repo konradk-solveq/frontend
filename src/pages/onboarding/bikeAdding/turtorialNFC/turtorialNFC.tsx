@@ -7,7 +7,6 @@ import I18n from 'react-native-i18n';
 import { setUserName, getUserName } from '../../../../store/actions/index';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader';
-import TopBackBtn from '../../../../sharedComponents/buttons/topBackBtn';
 import DinLight18 from '../../../../sharedComponents/text/dinLight18';
 import DinLight30 from '../../../../sharedComponents/text/dinLight30';
 import B_ike from './b_ike';

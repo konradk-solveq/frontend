@@ -8,6 +8,7 @@ interface BtnProps {
     onChangeText: Function,
     validationOk: Function,
     validationWrong: Function,
+    messageWrong: string,
     placeholder: string,
     value: string
 }
@@ -19,20 +20,36 @@ const OneLineTekst: React.FC<BtnProps> = (props: BtnProps) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
+        let validation = '';
+        let message = '';
+
         if (props.validationOk && props.validationOk(props.value)) {
-            if (props.value == 'null' || props.value == 'NULL') {
-                setBorderColor('#d8232a');
-                setErrorMessage(I18n.t('OneLineTekst-error-null'));
-            } else if (props.validationWrong && props.validationWrong(props.value)) {
-                setBorderColor('#d8232a');
-            } else {
-                setBorderColor('#2cba3f');
-                setErrorMessage('');
-            }
-        } else {
-            setBorderColor('#80555555'),
-                setErrorMessage('');
+            validation = 'ok';
         }
+
+        if (props.value == 'null' || props.value == 'NULL') {
+            validation = 'bad';
+            message = I18n.t('OneLineTekst-error-null')
+        }
+
+        if (props.validationWrong && props.validationWrong(props.value)) {
+            validation = 'bad';
+            message = props.messageWrong ? props.messageWrong : ''
+        }
+
+
+        switch (validation) {
+            case 'ok': setBorderColor('#2cba3f');
+                break;
+            case 'bad': setBorderColor('#d8232a');
+                break;
+            default:
+                setBorderColor('#80555555');
+                break;
+        }
+
+        setErrorMessage(message);
+
     }, [props.value])
 
 
@@ -56,6 +73,7 @@ const OneLineTekst: React.FC<BtnProps> = (props: BtnProps) => {
         error: {
             position: 'relative',
             marginTop: 6,
+            height: 23
         }
     })
 

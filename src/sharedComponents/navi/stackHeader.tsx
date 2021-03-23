@@ -8,8 +8,10 @@ import DinLight18 from '../text/dinLight18';
 
 import {
     initAppSize,
+    setObjSize,
     getPerfectPX,
-    getStandardPx
+    getStandardPx,
+    getHeightPx
 } from '../../helpers/layoutFoo';
 
 interface StackHeaderProps {
@@ -20,8 +22,17 @@ interface StackHeaderProps {
 
 const StackHeader: React.FC<StackHeaderProps> = (props: StackHeaderProps) => {
     initAppSize();
-    
-    let styles = StyleSheet.create({
+
+    setObjSize(414, 34);
+    const wrap = {
+        position: 'absolute',
+        left: 0,
+        top: '52%',
+        width: '100%',
+        height: getHeightPx(),
+    }
+
+    const styles = StyleSheet.create({
         container: {
             position: 'absolute',
             left: 0,
@@ -29,24 +40,27 @@ const StackHeader: React.FC<StackHeaderProps> = (props: StackHeaderProps) => {
             width: '100%',
             height: '13%',
         },
-        topBtn: getPerfectPX(40, 34, 30, 62),
-        title: getStandardPx(226, 23, 65),
+        wrap,
+        topBtn: getPerfectPX(40, 34, 30, 0),
+        title: getStandardPx(226, 23, 3),
     })
 
 
     return (
         <View style={styles.container}>
-            <View style={styles.topBtn}>
-                <TopBackBtn
-                    onpres={() => props.onpres()}
-                ></TopBackBtn>
-            </View>
+            <View style={styles.wrap}>
+                <View style={styles.topBtn}>
+                    <TopBackBtn
+                        onpres={() => props.onpres()}
+                    ></TopBackBtn>
+                </View>
 
-            <View style={styles.title}>
-                <DinLight18
-                    inner={props.inner}
-                    color={'#313131'}
-                ></DinLight18>
+                <View style={styles.title}>
+                    <DinLight18
+                        inner={props.inner}
+                        color={'#313131'}
+                    ></DinLight18>
+                </View>
             </View>
         </View>
     )

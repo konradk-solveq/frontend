@@ -1,4 +1,6 @@
 export {
     getUserName,
-    setUserName
+    setUserName,
+    getFrameNumber,
+    setFrameNumber,
 } from './user';
