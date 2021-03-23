@@ -6,7 +6,7 @@ import I18n from 'react-native-i18n';
 import { setUserName, getUserName } from '../../../store/actions/index';
 
 import {
-    setAppSize,
+    initAppSize,
     setObjSize,
     getWidth,
     getWidthPxOf,
@@ -45,9 +45,7 @@ const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => 
         return false
     }
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
+    initAppSize();
 
     setObjSize(334, 50);
     let bottons = {
@@ -62,11 +60,6 @@ const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => 
     }
 
     let styles = StyleSheet.create({
-        container: {
-            width: ww,
-            height: '100%',
-            backgroundColor: 'white'
-        },
         logo: getPosStaticHeight(110, 20, 66),
         text: getPosAndWid(334, 78, 138),
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 380, 90),
@@ -81,7 +74,7 @@ const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => 
     })
 
     return (
-        <View style={styles.container}>
+        <>
             <View style={styles.logo}>
                 <KroosLogo />
             </View>
@@ -108,7 +101,10 @@ const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => 
                 <View style={styles.btn}>
                     <BigWhiteBtn
                         title={I18n.t('GetToKnowEachOther-pomin')}
-                        onpress={() => props.navigation.navigate('TurtorialNFC')}
+                        onpress={() => {
+                            props.setName('');
+                            props.navigation.navigate('TurtorialNFC')
+                        }}
                     ></BigWhiteBtn>
                 </View>
 
@@ -123,7 +119,7 @@ const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => 
                 </View>
             </View>
 
-        </View>
+        </>
     )
 }
 

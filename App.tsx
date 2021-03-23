@@ -15,6 +15,7 @@ import TurtorialNFC from './src/pages/onboarding/bikeAdding/turtorialNFC/turtori
 import WrongScan from './src/pages/onboarding/bikeAdding/wrongScan/wrongScan';
 import AddingByNumber from './src/pages/onboarding/bikeAdding/addingByNumber/addingByNumber';
 import AddingInfo from './src/pages/onboarding/bikeAdding/info/info';
+import Loader from './src/pages/onboarding/bikeAdding/loader/loader';
 
 
 const App: () => Node = () => {
@@ -50,13 +51,14 @@ const App: () => Node = () => {
 					mode="modal"
 					screenOptions={horizontalAnim}
 				>
-					
-					{/* <Stack.Screen name="Onboarding" component={Onboarding}/> */}
+
+					<Stack.Screen name="Onboarding" component={Onboarding}/>
 					<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} />
 					<Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/>
-					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 					<Stack.Screen name="AddingByNumber" component={AddingByNumber} />
 					<Stack.Screen name="AddingInfo" component={AddingInfo} />
+					<Stack.Screen name="Loader" component={Loader} />
+					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
 				</Stack.Navigator>
 			</NavigationContainer>

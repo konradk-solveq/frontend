@@ -33,7 +33,13 @@ const TurtorialNFC: React.FC<TurtorialNFCProps> = (props: TurtorialNFCProps) => 
 
     useEffect(() => {
         props.getName();
-        if (typeof props.name == 'string') setUserName(' ' + props.name);
+        if (typeof props.name == 'string') {
+            if (props.name == '') {
+                setUserName(' ' + I18n.t('TurtorialNFC-deafult-name') );
+            }else {
+                setUserName(' ' + props.name);
+            }
+        }
     }, [props.name])
 
 
