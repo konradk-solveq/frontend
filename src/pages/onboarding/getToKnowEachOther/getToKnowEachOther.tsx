@@ -24,8 +24,14 @@ import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
+interface GetToKnowProps {
+    navigation: any,
+    name: string,
+    setName: Function,
+    getName: Function
+};
 
-const GetToKnowEachOther = (props: any) => {
+const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => {
 
     const [inputName, setInputName] = useState('');
 
@@ -102,14 +108,17 @@ const GetToKnowEachOther = (props: any) => {
                 <View style={styles.btn}>
                     <BigWhiteBtn
                         title={I18n.t('GetToKnowEachOther-pomin')}
-                        onpress={() => getUserName()}
+                        onpress={() => props.navigation.navigate('TurtorialNFC')}
                     ></BigWhiteBtn>
                 </View>
 
                 <View style={styles.btn}>
                     <BigRedBtn
                         title={I18n.t('GetToKnowEachOther-dalej')}
-                        onpress={() => props.setName(inputName)}
+                        onpress={() => {
+                            props.setName(inputName);
+                            props.navigation.navigate('TurtorialNFC');
+                        }}
                     ></BigRedBtn>
                 </View>
             </View>

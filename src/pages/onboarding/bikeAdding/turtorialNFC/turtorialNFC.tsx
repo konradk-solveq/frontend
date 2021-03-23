@@ -9,7 +9,7 @@ import { setUserName, getUserName } from '../../../../store/actions/index';
 import StackHeader from '../../../../sharedComponents/navi/stackHeader';
 import DinLight18 from '../../../../sharedComponents/text/dinLight18';
 import DinLight30 from '../../../../sharedComponents/text/dinLight30';
-import B_ike from './b_ike';
+import B_ike from './imgBike';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
@@ -48,7 +48,7 @@ const TurtorialNFC: React.FC<TurtorialNFCProps> = (props: TurtorialNFCProps) => 
     return (
         <>
             <StackHeader
-                onpress={() => { }}
+                onpress={() => props.navigation.navigate('GetToKnowEachOther')}
                 inner={I18n.t('TurtorialNFC-title')}
             ></StackHeader>
 
@@ -79,6 +79,7 @@ const TurtorialNFC: React.FC<TurtorialNFCProps> = (props: TurtorialNFCProps) => 
             <View style={styles.btnHand}>
                 <BigWhiteBtn
                     title={I18n.t('TurtorialNFC-btn-hand')}
+                    onpress={() => props.navigation.navigate('AddingByNumber')}
                 ></BigWhiteBtn>
             </View>
 

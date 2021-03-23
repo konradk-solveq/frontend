@@ -14,48 +14,52 @@ import GetToKnowEachOther from './src/pages/onboarding/getToKnowEachOther/getToK
 import TurtorialNFC from './src/pages/onboarding/bikeAdding/turtorialNFC/turtorialNFC';
 import WrongScan from './src/pages/onboarding/bikeAdding/wrongScan/wrongScan';
 import AddingByNumber from './src/pages/onboarding/bikeAdding/addingByNumber/addingByNumber';
+import AddingInfo from './src/pages/onboarding/bikeAdding/info/info';
 
-const RootStack = createStackNavigator();
 
 const App: () => Node = () => {
 	I18n_init();
 
 	const Stack = createStackNavigator();
 
+	const horizontalAnim = {
+		// gestureDirection: 'horizontal',
+		cardStyleInterpolator: ({ current, layouts }) => {
+			return {
+				cardStyle: {
+					transform: [
+						{
+							translateX: current.progress.interpolate({
+								inputRange: [0, 1],
+								outputRange: [layouts.screen.width, 0],
+							}),
+						},
+					],
+				},
+			};
+		},
+	};
 
 	return (
 		<Provider store={store}>
 			{/* <SafeAreaView> */}
-				<NavigationContainer >
-					<Stack.Navigator>
+			<NavigationContainer >
+				<Stack.Navigator
+					headerMode="none"
+					// initialRouteName="TurtorialNFC" 
+					mode="modal"
+					screenOptions={horizontalAnim}
+				>
+					
+					{/* <Stack.Screen name="Onboarding" component={Onboarding}/> */}
+					<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} />
+					<Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/>
+					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
+					<Stack.Screen name="AddingByNumber" component={AddingByNumber} />
+					<Stack.Screen name="AddingInfo" component={AddingInfo} />
 
-						 {/* <Stack.Screen name="Onboarding" component={Onboarding}
-							options={{ headerShown: false }} />
-
-						<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther}
-							options={{
-								// title: 'My home',
-								// headerStyle: {
-								// 	backgroundColor: '#f4511e',
-								// },
-								// headerTintColor: '#fff',
-								// headerTitleStyle: {
-								// 	fontWeight: 'bold',
-								// },
-								headerShown: false
-							}} /> 
-
-					<Stack.Screen name="TurtorialNFC" component={TurtorialNFC}
-						options={{ headerShown: false }} /> */}
-
-					{/* <Stack.Screen name="WrongScan" component={WrongScan}
-						options={{ headerShown: false }} /> */}
-
-					<Stack.Screen name="AddingByNumber" component={AddingByNumber}
-						options={{ headerShown: false }} />
-
-					</Stack.Navigator>
-				</NavigationContainer>
+				</Stack.Navigator>
+			</NavigationContainer>
 			{/* </SafeAreaView> */}
 		</Provider >
 	);

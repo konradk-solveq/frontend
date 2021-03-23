@@ -85,7 +85,7 @@ const AddingByNumber: React.FC<WrongScanProps> = (props: WrongScanProps) => {
     return (
         <>
             <StackHeader
-                onpress={() => { }}
+                onpress={() => props.navigation.navigate('TurtorialNFC')}
                 inner={I18n.t('AddingByNumber-title')}
             ></StackHeader>
 
@@ -110,6 +110,7 @@ const AddingByNumber: React.FC<WrongScanProps> = (props: WrongScanProps) => {
                         title={I18n.t('AddingByNumber-info-btn')}
                         algin='right'
                         color='#3587ea'
+                        onpress={() => props.navigation.navigate('AddingInfo')}
                     ></TranspLightBtn>
                 </View>
             </View>

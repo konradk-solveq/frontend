@@ -64,7 +64,7 @@ const Onboarding: React.FC<OnboardingProps> = (props: OnboardingProps) => {
                 setCoverOpa(false)
             }, 3500)
         }
-        setBoard(1);
+        // setBoard(0);
 
         Animated.timing(coverPos, {
             toValue: ww,

@@ -36,5 +36,11 @@
     "AddingByNumber-placeholder": "Numer ramy",
     "AddingByNumber-message-wrong": "Nieprawidłowe znaki",
     "AddingByNumber-info-btn": "Gdzie znajdę numer ramy?",
-    "AddingByNumber-btn": "DALEJ"
+    "AddingByNumber-btn": "DALEJ",
+
+    "AddingInfo-title": "Gdzie jest numer ramy?",
+    "AddingInfo-btn-kross": "Kross",
+    "AddingInfo-btn-other": "Inny producent",
+    "AddingInfo-text-kross": "Numer ramy (numer seryjny) znajduje się na małej naklejce w okolicach suportu - dużego koła zębatego.\n\nNumer ramy można znaleźć również na e-gwarancji pod datą sprzedaży.",
+    "AddingInfo-text-other": "Numer ramy (numer seryjny) u innych producentów znajdziesz:\n- w okolicach korby,\n- na dolnej rurze ramy,\n- na dolnej rurze trójkąta tylnego,\n- na wsporniku kierownicy."
 }

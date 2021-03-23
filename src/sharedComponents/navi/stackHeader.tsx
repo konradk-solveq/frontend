@@ -15,7 +15,7 @@ import {
 } from '../../helpers/layoutFoo';
 
 interface StackHeaderProps {
-    onpres: Function,
+    onpress: Function,
     inner: string
 }
 
@@ -51,7 +51,7 @@ const StackHeader: React.FC<StackHeaderProps> = (props: StackHeaderProps) => {
             <View style={styles.wrap}>
                 <View style={styles.topBtn}>
                     <TopBackBtn
-                        onpres={() => props.onpres()}
+                        onpress={() => props.onpress()}
                     ></TopBackBtn>
                 </View>
 
