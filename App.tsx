@@ -16,7 +16,7 @@ import WrongScan from './src/pages/onboarding/bikeAdding/wrongScan/wrongScan';
 import AddingByNumber from './src/pages/onboarding/bikeAdding/addingByNumber/addingByNumber';
 import AddingInfo from './src/pages/onboarding/bikeAdding/info/info';
 import Loader from './src/pages/onboarding/bikeAdding/loader/loader';
-
+import PermitsDeclarations from './src/pages/onboarding/permitsDeclarations/permitsDeclarations';
 
 const App: () => Node = () => {
 	I18n_init();
@@ -52,12 +52,15 @@ const App: () => Node = () => {
 					screenOptions={horizontalAnim}
 				>
 
-					<Stack.Screen name="Onboarding" component={Onboarding}/>
+					{/* <Stack.Screen name="Onboarding" component={Onboarding}/>
 					<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} />
 					<Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/>
 					<Stack.Screen name="AddingByNumber" component={AddingByNumber} />
-					<Stack.Screen name="AddingInfo" component={AddingInfo} />
-					<Stack.Screen name="Loader" component={Loader} />
+					<Stack.Screen name="AddingInfo" component={AddingInfo} /> */}
+
+					{/* <Stack.Screen name="Loader" component={Loader} /> */}
+					<Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} />
+
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
 				</Stack.Navigator>

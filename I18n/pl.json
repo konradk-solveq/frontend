@@ -43,5 +43,18 @@
     "AddingInfo-btn-kross": "Kross",
     "AddingInfo-btn-other": "Inny producent",
     "AddingInfo-text-kross": "Numer ramy (numer seryjny) znajduje się na małej naklejce w okolicach suportu - dużego koła zębatego.\n\nNumer ramy można znaleźć również na e-gwarancji pod datą sprzedaży.",
-    "AddingInfo-text-other": "Numer ramy (numer seryjny) u innych producentów znajdziesz:\n- w okolicach korby,\n- na dolnej rurze ramy,\n- na dolnej rurze trójkąta tylnego,\n- na wsporniku kierownicy."
+    "AddingInfo-text-other": "Numer ramy (numer seryjny) u innych producentów znajdziesz:\n- w okolicach korby,\n- na dolnej rurze ramy,\n- na dolnej rurze trójkąta tylnego,\n- na wsporniku kierownicy.",
+
+    "Permits-title": "Zgody i oświadczenia",
+    "Permits-text": "Potrzebujemy wymaganych zgód, aby zarejestrować konto w Kross S.A.",
+    "Permits-url-regulations": "https://www.kross.pl.rgulamn",
+    "Permits-hiper-regulations": "Regulaminem Sklepu Internetowego www.kross.pl",
+    "Permits-url-privacy-policy": "https://www.kross.pl.polityka",
+    "Permits-hiper-privacy-policy": "Polityce prywatności",
+    "Permits-check-all": "Zaznacz wszystkie",
+    "Permits-1": "Oświadczam, że zapoznałem się z https://www.kross.pl.rgulamn i akceptuję wszystkie zawarte w nim warunki. Więcej informacji odnośnie przetwarzania danych osobowych przez KROSS S.A. można znaleźć w https://www.kross.pl.polityka.*",
+    "Permits-2": "Wyrażam zgodę na przesyłanie informacji handlowych za pomocą środków komunikacji elektronicznej w rozumieniu ustawy z dnia 18 lipca 2002 roku o świadczenie usług drogą elektroniczną (Dz.U. 2019 poz. 123 tj.) w celu prowadzenia działań marketingowych na podany numer telefonu na temat usług oferowanych przez KROSS S.A. przy ul. Leszno 46 z siedzibą w Przasnyszu.\nZgoda jest dobrowolna i może być w każdej chwili wycofana przez oświadczenie przesłane drogą elektroniczną. Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania, którego dokonano na podstawie zgody przed jej wycofaniem.Zasady ochrony danych osobowych w https://www.kross.pl.polityka.",
+    "Permits-3": "Wyrażam zgodę na przesyłanie informacji handlowych za pomocą środków komunikacji elektronicznej w rozumieniu ustawy z dnia 18 lipca 2002 roku o świadczenie usług drogą elektroniczną (Dz.U. 2019 poz. 123 tj. ) na podany adres e-mail na temat usług oferowanych przez KROSS S.A. przy ul. Leszno 46 z siedzibą w Przasnyszu.Zgoda jest dobrowolna i może być w każdej chwili wycofana, klikając w odpowiedni link na końcu wiadomości e-mail. Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania, którego dokonano na podstawie zgody przed jej wycofaniem.Zasady ochrony danych osobowych w https://www.kross.pl.polityka.",
+
+    "Permits-1-e": ".*"
 }

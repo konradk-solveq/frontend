@@ -167,7 +167,7 @@ const getPerfect = (w: number, h: number, l: number, t: number) => {
     }
     return res;
 }
-const getPerfectPX = (w: number, h: number, l: number, t: number) => {
+const getPerfectPx = (w: number, h: number, l: number, t: number) => {
     setObjSize(w, h);
     let res: {
         position: string,
@@ -262,7 +262,7 @@ export {
     getRelativeWidth, getRelativeHeight,
 
     getStandard, getStandardPx,
-    getPerfect, getPerfectPX,
+    getPerfect, getPerfectPx,
     getPosStaticHeight,
     getOnlyPos,
     getPosAndWid,

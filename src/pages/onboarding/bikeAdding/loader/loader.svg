@@ -6,10 +6,10 @@
             </polygon>
         </clipPath>
     </defs>
-    <circle id="c1" cx="95" cy="95" r="93" fill="none"
+    <circle id="c1" cx="95" cy="95" r="93" fill="none" stroke-dashoffset="10.25"
      stroke="#66555555" stroke-width="3" stroke-linecap="round" stroke-linejoin="miter" stroke-dasharray="9, 6">
     </circle>
-    <circle id="c2" cx="95" cy="95" r="93" clip-path="url(#clipPath)"  fill="none"
+    <circle id="c2" cx="95" cy="95" r="93" clip-path="url(#clipPath)"  fill="none" stroke-dashoffset="10.25"
        stroke= "#D8232A" stroke-width="3" stroke-linecap="round" stroke-linejoin="miter" stroke-dasharray="9, 6" >
     </circle>
 </svg>

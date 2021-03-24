@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, Dimensions, View, Animated, Easing } from 'react-native';
 import Svg, { G, Path, Circle, Defs, ClipPath } from 'react-native-svg';
-import { AnimatedSVGPath } from 'react-native-svg-animations'
 import ImageSvg from 'react-native-remote-svg';
 
 import {
