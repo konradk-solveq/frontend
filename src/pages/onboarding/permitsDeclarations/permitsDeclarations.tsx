@@ -31,7 +31,6 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
     const permitStatus: Array<staus> = [];
 
     permits.forEach(() => { permitStatus.push({ checked: false, wrong: false }) });
-    console.log('%c permitStatus:', 'background: #ffcc00; color: #003300', permitStatus)
 
     const [status, setStatus] = useState(permitStatus);
     const [allPerm, setAllPerm] = useState(false);

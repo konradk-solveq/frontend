@@ -54,16 +54,16 @@ const App: () => Node = () => {
 				>
 
 					{/* <Stack.Screen name="Onboarding" component={Onboarding}/> */}
-					<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} />
+					{/* <Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} /> */}
 					{/* <Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/> */}
 					{/* <Stack.Screen name="AddingByNumber" component={AddingByNumber} /> */}
 					{/* <Stack.Screen name="AddingInfo" component={AddingInfo} /> */}
 
 					{/* <Stack.Screen name="Loader" component={Loader} /> */}
 
-					{/* <Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} /> */}
-					{/* <Stack.Screen name="Regulations" component={Regulations} /> */}
-					{/* <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} /> */}
+					<Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} />
+					<Stack.Screen name="Regulations" component={Regulations} />
+					<Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
 
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 

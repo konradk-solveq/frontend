@@ -1,48 +1,62 @@
-CheckBox
-
-
-import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Dimensions, View, Animated, Easing, TouchableWithoutFeedback } from 'react-native';
-import Svg, { G, Path, Circle, Defs, ClipPath } from 'react-native-svg';
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import ImageSvg from 'react-native-remote-svg';
 
 
-
-interface CheckBoxProps {
+interface Props {
     checked: boolean,
-    getCheck: Function,
-    onpress: Function
+    wrong: boolean,
+    getCheck: Function
 };
 
-const CheckBox: React.FC<CheckBoxProps> = (props: CheckBoxProps) => {
+const CheckBoxx: React.FC<Props> = (props: Props) => {
 
     const [checked, setChecked] = useState(props.checked);
 
-    useEffect(() => {
-        setChecked(props.checked);
-        if (props.getCheck) props.getCheck(props.checked);
-    }, [props.checked])
+    const hendlePress = () => {
+        let res: boolean = !checked;
+        setChecked(res);
+        if (props.getCheck) props.getCheck(res)
+    }
+
+    useEffect(() => { setChecked(props.checked) }, [props.checked])
+
+    const styles = StyleSheet.create({
+        stretch: {
+            width: "100%",
+            height: "100%"
+        }
+    })
 
     return (
         <TouchableWithoutFeedback
-            style={{ width: "100%", height: "100%" }}
-            onPress={props.onpress}
+            style={styles.stretch}
+            onPress={() => hendlePress()}
         >
-            {checked ?
-                <ImageSvg>
-                    source={require('./loader.svg')}
-                    style={{ width: "100%", height: "100%" }}
-                </ImageSvg>
-                :
-                <ImageSvg>
-                    source={require('./loader.svg')}
-                    style={{ width: "100%", height: "100%" }}
-                </ImageSvg>
-            }
+            <View style={styles.stretch}>
+
+                <View style={[styles.stretch, {
+                    position: 'absolute'
+                }]}>
+                    {props.wrong ? <ImageSvg
+                        source={require('./checbox_wrong.svg')}
+                        style={styles.stretch}
+                    /> : <ImageSvg
+                        source={require('./checbox_off.svg')}
+                        style={styles.stretch}
+                    />}
+                </View>
+
+                <View style={styles.stretch}>
+                    {checked ? <ImageSvg
+                        source={require('./checbox_on.svg')}
+                        style={styles.stretch}
+                    /> : null}
+                </View>
+            </View>
 
         </TouchableWithoutFeedback>
     )
 }
 
-
-export default CheckBoxProps
+export default CheckBoxx
