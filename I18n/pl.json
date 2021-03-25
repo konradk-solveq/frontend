@@ -45,8 +45,9 @@
     "AddingInfo-text-kross": "Numer ramy (numer seryjny) znajduje się na małej naklejce w okolicach suportu - dużego koła zębatego.\n\nNumer ramy można znaleźć również na e-gwarancji pod datą sprzedaży.",
     "AddingInfo-text-other": "Numer ramy (numer seryjny) u innych producentów znajdziesz:\n- w okolicach korby,\n- na dolnej rurze ramy,\n- na dolnej rurze trójkąta tylnego,\n- na wsporniku kierownicy.",
 
-    "Permits-title": "Zgody i oświadczenia",
-    "Permits-text": "Potrzebujemy wymaganych zgód, aby zarejestrować konto w Kross S.A.",
+    "Permits-header": "Zgody i oświadczenia",
+    "Permits-title": "Potrzebujemy wymaganych zgód, aby zarejestrować konto w Kross S.A.",
+    "Permits-text": "* pola obowiązkowe",
     "Permits-url-regulations": "https://www.kross.pl.rgulamn",
     "Permits-hiper-regulations": "Regulaminem Sklepu Internetowego www.kross.pl",
     "Permits-url-privacy-policy": "https://www.kross.pl.polityka",
@@ -55,6 +56,19 @@
     "Permits-1": "Oświadczam, że zapoznałem się z https://www.kross.pl.rgulamn i akceptuję wszystkie zawarte w nim warunki. Więcej informacji odnośnie przetwarzania danych osobowych przez KROSS S.A. można znaleźć w https://www.kross.pl.polityka.*",
     "Permits-2": "Wyrażam zgodę na przesyłanie informacji handlowych za pomocą środków komunikacji elektronicznej w rozumieniu ustawy z dnia 18 lipca 2002 roku o świadczenie usług drogą elektroniczną (Dz.U. 2019 poz. 123 tj.) w celu prowadzenia działań marketingowych na podany numer telefonu na temat usług oferowanych przez KROSS S.A. przy ul. Leszno 46 z siedzibą w Przasnyszu.\nZgoda jest dobrowolna i może być w każdej chwili wycofana przez oświadczenie przesłane drogą elektroniczną. Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania, którego dokonano na podstawie zgody przed jej wycofaniem.Zasady ochrony danych osobowych w https://www.kross.pl.polityka.",
     "Permits-3": "Wyrażam zgodę na przesyłanie informacji handlowych za pomocą środków komunikacji elektronicznej w rozumieniu ustawy z dnia 18 lipca 2002 roku o świadczenie usług drogą elektroniczną (Dz.U. 2019 poz. 123 tj. ) na podany adres e-mail na temat usług oferowanych przez KROSS S.A. przy ul. Leszno 46 z siedzibą w Przasnyszu.Zgoda jest dobrowolna i może być w każdej chwili wycofana, klikając w odpowiedni link na końcu wiadomości e-mail. Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania, którego dokonano na podstawie zgody przed jej wycofaniem.Zasady ochrony danych osobowych w https://www.kross.pl.polityka.",
+    "Permits-btn": "DALEJ",
+
+    "PrivacyPolicy-header": "Regulamin",
+    "PrivacyPolicy-tilte": "Dbamy o to aby Twoje dane były bezpieczne",
+    "PrivacyPolicy-text": "1. Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych pozyskanych za pośrednictwem sklepu internetowego kross.eu (zwanego dalej: „Sklepem Internetowym”).\n\n2. Właścicielem Sklepu Internetowego i jednocześnie administratorem danych jest KROSS S.A. z siedzibą w Przasnyszu (06-300), ul. Leszno 46, wpisana do rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w Białymstoku, XII Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS 0000223853, o kapitale zakładowym 45.000.000 PLN, NIP: 7611402748, REGON: 550749108, zwana dalej KROSS S.A..\n\n3. Dane osobowe zbierane przez KROSS S.A. za pośrednictwem Sklepu Internetowego są przetwarzane zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o ochronie danych), zwane również RODO.\n\n4. KROSS S.A. dokłada szczególnej staranności do poszanowania prywatności Klientów odwiedzających Sklep Internetowy.",
+
+    "Regulations-header": "Regulamin",
+    "Regulations-title": "Sprawdź aktualne zapisy regulaminu dotyczącego aplikacji myKROSS oraz Sklepu internetowego kross.eu",
+    "Regulations-teks-1": "Sprawdź aktualne zapisy regulaminu dotyczącego aplikacji myKROSS oraz Sklepu internetowego kross.eu",
+    "Regulations-paragraph-2": "REGULAMIN myKROSS",
+    "Regulations-teks-2": "1. Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób sprzedaży prowadzonej przez KROSS S.A. z siedzibą w Przasnyszu, za pośrednictwem sklepu internetowegokross.eu (zwanego dalej: „Sklepem Internetowym”) oraz określa zasady i warunki świadczenia przez KROSS S.A. z siedzibą w Przasnyszu usług nieodpłatnych drogą elektroniczną",
+    "Regulations-paragraph-3": "Definicje",
+    "Regulations-teks-3": "1. Dni robocze - oznacza dni tygodnia od poniedziałku do piątku z wyłączeniem dni ustawowo wolnych od pracy.\n\n2. Dostawa - oznacza czynność faktyczną polegającą na dostarczeniu Klientowi przez Sprzedawcę, za pośrednictwem Dostawcy, Towaru określonego w zamówieniu.\n\n3. Dostawca - oznacza podmiot, z którym współpracuje Sprzedawca w zakresie dokonywania Dostawy Towarów:\n\na) Autoryzowane Punkty Sprzedaży, których lista dostępna jest na Stronie Internetowej Sklepu;\n\nb) firmę kurierską;\n\nc) InPost Paczkomaty Sp. z o.o. z siedzibą w Krakowie, świadcząca usługi Dostawy i obsługi systemu skrytek pocztowych (Paczkomat).\n\n4. Hasło - oznacza ciąg znaków literowych, cyfrowych lub innych wybranych przez Klienta podczas Rejestracji w Sklepie Internetowym, wykorzystywanych w celu zabezpieczenia dostępu do Konta Klienta w Sklepie Internetowym.",
 
     "Permits-1-e": ".*"
 }

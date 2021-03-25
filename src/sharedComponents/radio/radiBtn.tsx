@@ -7,7 +7,6 @@ interface BtnProps {
     onpress: Function
 }
 
-
 const RadioBtn: React.FC<BtnProps> = (props: BtnProps) => {
 
     let styles = StyleSheet.create({

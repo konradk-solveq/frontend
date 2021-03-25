@@ -1,13 +1,12 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import Svg, { G, Path } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-interface BtnProps {
+interface Props {
     onpress: Function
 }
 
-
-const TopBackBtn: React.FC<BtnProps> = (props: BtnProps) => {
+const TopBackBtn: React.FC<Props> = (props: Props) => {
 
     let styles = StyleSheet.create({
         btn: {

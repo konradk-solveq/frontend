@@ -1,14 +1,13 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-interface BtnProps {
+interface Props {
     title: string,
     onpress: Function,
     active: boolean
 }
 
-
-const TypicalRedBtn: React.FC<BtnProps> = (props: BtnProps) => {
+const TypicalRedBtn: React.FC<Props> = (props: Props) => {
 
     let styles = StyleSheet.create({
         btn: {

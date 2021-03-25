@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Dimensions, View, Animated, Easing } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/native';
 
 import {
     setAppSize,
@@ -23,11 +19,11 @@ import DashLine from './dashLine';
 import StaticElements from './staticElements';
 
 
-interface OnboardingProps {
+interface Props {
     navigation: any;
 };
 
-const Onboarding: React.FC<OnboardingProps> = (props: OnboardingProps) => {
+const Onboarding: React.FC<Props> = (props: Props) => {
 
     const [board, setBoard] = useState(0);
     const position = useRef(new Animated.Value(0)).current;
@@ -142,7 +138,6 @@ const Onboarding: React.FC<OnboardingProps> = (props: OnboardingProps) => {
         cover,
         line
     })
-
 
     return (
         <>

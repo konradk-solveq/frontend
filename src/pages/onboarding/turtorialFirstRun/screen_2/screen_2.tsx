@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import { StyleSheet, Dimensions, View, Animated, SafeAreaView, Text, Alert } from 'react-native';
+import React from "react";
+import { StyleSheet, SafeAreaView, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
@@ -7,30 +7,42 @@ import {
     getStandard
 } from '../../../../helpers/layoutFoo';
 
-import DinReg from '../../../../sharedComponents/text/dinReg40'
-import Dinight18 from '../../../../sharedComponents/text/dinLight18'
-
-
 const Screen_2 = () => {
     initAppSize();
 
-    let styles = StyleSheet.create({
+    const styles = StyleSheet.create({
+        container: {
+            width: '100%',
+            height: '100%',
+        },
         bigText: getStandard(334, 102, 138),
-        regText: getStandard(334, 115, 596)
+        reg40: {
+            fontFamily: "DIN2014Narrow-Regular",
+            fontSize: 40,
+            textAlign: 'center',
+            color: '#313131'
+        },
+        regText: getStandard(334, 115, 596),
+        light18: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 18,
+            textAlign: 'center',
+            color: '#555555'
+        }
     })
 
     return (
-        <>
-            <View style={styles.bigText}>
-                <DinReg inner={ I18n.t('Screen_2-title') }></DinReg>
-            </View>
+        <SafeAreaView style={styles.container}>
 
-            <View style={styles.regText}>
-                <Dinight18
-                    inner={ I18n.t('Screen_2-text') }
-                ></Dinight18>
-            </View>
-        </>
+            <Text style={[styles.bigText, styles.reg40]}>
+                {I18n.t('Screen_2-title')}
+            </Text>
+
+            <Text style={[styles.regText, styles.light18]}>
+                {I18n.t('Screen_2-text')}
+            </Text>
+
+        </SafeAreaView>
     )
 }
 

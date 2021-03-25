@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, TextInput, View } from 'react-native';
-
-import DinLight18 from '../text/dinLight18';
+import { StyleSheet, TextInput, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 
-interface BtnProps {
+interface Props {
     onChangeText: Function,
     validationOk: Function,
     validationWrong: Function,
@@ -13,8 +11,7 @@ interface BtnProps {
     value: string
 }
 
-
-const OneLineTekst: React.FC<BtnProps> = (props: BtnProps) => {
+const OneLineTekst: React.FC<Props> = (props: Props) => {
 
     const [borderColor, setBorderColor] = useState('#80555555');
     const [errorMessage, setErrorMessage] = useState('');
@@ -37,7 +34,6 @@ const OneLineTekst: React.FC<BtnProps> = (props: BtnProps) => {
             message = props.messageWrong ? props.messageWrong : ''
         }
 
-
         switch (validation) {
             case 'ok': setBorderColor('#2cba3f');
                 break;
@@ -54,6 +50,12 @@ const OneLineTekst: React.FC<BtnProps> = (props: BtnProps) => {
 
 
     let styles = StyleSheet.create({
+        light18: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 18,
+            textAlign: 'left',
+            color: '#555555'
+        },
         input: {
             display: 'flex',
             alignItems: 'center',
@@ -71,6 +73,10 @@ const OneLineTekst: React.FC<BtnProps> = (props: BtnProps) => {
             paddingLeft: 30
         },
         error: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 18,
+            textAlign: 'left',
+            color: '#d8232a',
             position: 'relative',
             marginTop: 6,
             height: 23
@@ -79,26 +85,19 @@ const OneLineTekst: React.FC<BtnProps> = (props: BtnProps) => {
 
     return (
         <>
-            <DinLight18
-                algin='left'
-                inner={props.placeholder}
-            ></DinLight18>
+            <Text style={styles.light18}>
+                {props.placeholder}
+            </Text>
 
             <TextInput
                 style={styles.input}
                 onChangeText={props.onChangeText}
                 value={props.value}
-            >
-            </TextInput>
+            />
 
-            <View style={styles.error}>
-                <DinLight18
-
-                    color='#d8232a'
-                    algin='left'
-                    inner={errorMessage}
-                ></DinLight18>
-            </View>
+            <Text style={styles.error}>
+                {errorMessage}
+            </Text>
         </>
     )
 }

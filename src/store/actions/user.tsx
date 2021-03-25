@@ -42,3 +42,25 @@ export const setFrameNumber = (num: string) => {
         userName: num
     }
 };
+
+
+// var axios = require('axios');
+
+// var config = {
+//     method: 'get',
+//     url: 'https://api-kross.adafir.eu/api/product-offers/identifiers/erp_id?filter=%7B%22identifiers%22%3A%5B%22KRERTE29X16M003392%22%5D%7D',
+//     headers: {
+//         'Accept': 'application/vnd.enp.api+json;version=v1',
+//         'Content-Website': '4',
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer N2ViYWI4OTY1OWU5YWYyY2U0NjhmM2U1OTg3MWFhYmMwMjFlYmM0YzZhNWVmMjliMTJjOWQwZWY2ZjQ1MjRiNQ'
+//     }
+// };
+
+// axios(config)
+//     .then(function (response) {
+//         console.log(JSON.stringify(response.data));
+//     })
+//     .catch(function (error) {
+//         console.log(error);
+//     });

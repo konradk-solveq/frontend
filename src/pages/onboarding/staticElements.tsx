@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Dimensions, View, Animated, Easing, Text, Alert } from 'react-native';
+import React from "react";
+import { StyleSheet, SafeAreaView, View } from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
     setObjSize,
     getStandard,
-    getWidth,
-    getHeight,
     getLeft,
     getTop,
     initAppSize
@@ -16,14 +14,14 @@ import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn'
 import PanelProps from '../../sharedComponents/radio/panel'
 import TranspLightBtn from '../../sharedComponents/buttons/transpLightBtn'
 
-interface BtnProps {
+interface Props {
     board: number,
     list: Array<Function>,
     setBoard: Function,
     goFoward: Function
 }
 
-const StaticElements: React.FC<BtnProps> = (props: BtnProps) => {
+const StaticElements: React.FC<Props> = (props: v) => {
     initAppSize()
     setObjSize(41, 23);
     const skip = {
@@ -33,12 +31,17 @@ const StaticElements: React.FC<BtnProps> = (props: BtnProps) => {
     }
 
     let styles = StyleSheet.create({
+        container: {
+            width: '100%',
+            height: '100%',
+        },
         redBtn: getStandard(334, 50, 781),
         skip
     })
 
     return (
-        <>
+        <SafeAreaView style={styles.container}>
+
             <PanelProps
                 active={props.board - 1}
                 listBtn={props.list}
@@ -61,7 +64,8 @@ const StaticElements: React.FC<BtnProps> = (props: BtnProps) => {
                     }}
                 />
             </View>
-        </>
+
+        </SafeAreaView>
     )
 }
 

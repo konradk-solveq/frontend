@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { getWidth } from '../../helpers/layoutFoo';
 import RadioBtn from './radiBtn';
 
 import {
@@ -8,13 +7,12 @@ import {
     getStandard
 } from '../../helpers/layoutFoo';
 
-
-interface PanelProps {
+interface Props {
     active: number,
     listBtn: Array<Function>
 }
 
-const RadioPanel: React.FC<PanelProps> = (props: PanelProps) => {
+const RadioPanel: React.FC<Props> = (props: Props) => {
     initAppSize();
 
     let styles = StyleSheet.create({

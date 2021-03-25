@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Dimensions, View, Text } from 'react-native';
+import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
 import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
-
 
 import { setUserName, getUserName } from '../../../../store/actions/index';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader';
-import DinLight18 from '../../../../sharedComponents/text/dinLight18';
-import DinLight30 from '../../../../sharedComponents/text/dinLight30';
-import B_ike from './imgBike';
+import ImgBike from './imgBike';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
@@ -19,13 +16,13 @@ import {
     getStandard
 } from '../../../../helpers/layoutFoo';
 
-interface TurtorialNFCProps {
+interface Props {
     navigation: any,
     name: string,
     getName: Function
 };
 
-const TurtorialNFC: React.FC<TurtorialNFCProps> = (props: TurtorialNFCProps) => {
+const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
     initAppSize();
 
@@ -35,8 +32,8 @@ const TurtorialNFC: React.FC<TurtorialNFCProps> = (props: TurtorialNFCProps) => 
         props.getName();
         if (typeof props.name == 'string') {
             if (props.name == '') {
-                setUserName(' ' + I18n.t('TurtorialNFC-deafult-name') );
-            }else {
+                setUserName(' ' + I18n.t('TurtorialNFC-deafult-name'));
+            } else {
                 setUserName(' ' + props.name);
             }
         }
@@ -44,7 +41,23 @@ const TurtorialNFC: React.FC<TurtorialNFCProps> = (props: TurtorialNFCProps) => 
 
 
     let styles = StyleSheet.create({
+        container: {
+            width: '100%',
+            height: '100%',
+        },
         title: getPosAndWid(334, 78, 138),
+        light30: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 30,
+            color: '#313131',
+            textAlign: 'left'
+        },
+        light18: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 18,
+            color: '#555555',
+            textAlign: 'left'
+        },
         b_ike: getStandard(334, 268, 246),
         text: getStandard(334, 115, 534),
         btnNfc: getStandard(334, 50, 701),
@@ -52,29 +65,19 @@ const TurtorialNFC: React.FC<TurtorialNFCProps> = (props: TurtorialNFCProps) => 
     })
 
     return (
-        <>
-            <StackHeader
-                onpress={() => props.navigation.navigate('GetToKnowEachOther')}
-                inner={I18n.t('TurtorialNFC-title')}
-            ></StackHeader>
+        <SafeAreaView style={styles.container}>
 
-            <View style={styles.title}>
-                <DinLight30
-                    algin='left'
-                    inner={I18n.t('TurtorialNFC-title-1') + userName + I18n.t('TurtorialNFC-title-2')}
-                />
-            </View>
+            <Text style={[styles.title, styles.light30]}>
+                {I18n.t('TurtorialNFC-title-1') + userName + I18n.t('TurtorialNFC-title-2')}
+            </Text>
 
             <View style={styles.b_ike}>
-                <B_ike></B_ike>
+                <ImgBike></ImgBike>
             </View>
 
-            <View style={styles.text}>
-                <DinLight18
-                    algin='left'
-                    inner={I18n.t('TurtorialNFC-tekst')}
-                ></DinLight18>
-            </View>
+            <Text style={[styles.text, styles.light18]}>
+                {I18n.t('TurtorialNFC-tekst')}
+            </Text>
 
             <View style={styles.btnNfc}>
                 <BigRedBtn
@@ -89,8 +92,12 @@ const TurtorialNFC: React.FC<TurtorialNFCProps> = (props: TurtorialNFCProps) => 
                 ></BigWhiteBtn>
             </View>
 
-        </>
+            <StackHeader
+                onpress={() => props.navigation.navigate('GetToKnowEachOther')}
+                inner={I18n.t('TurtorialNFC-title')}
+            ></StackHeader>
 
+        </SafeAreaView>
     )
 }
 

@@ -1,34 +1,22 @@
 
 
-import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Dimensions, View, Animated, Easing } from 'react-native';
-import Svg, { G, Path, Circle, Defs, ClipPath } from 'react-native-svg';
+import React from "react";
+import { StyleSheet, Dimensions, View, SafeAreaView } from 'react-native';
+import Svg, { G, Path } from 'react-native-svg';
 import ImageSvg from 'react-native-remote-svg';
 
 import {
     setAppSize,
-    initAppSize,
     setObjSize,
-    getWidth,
     getWidthPx,
-    getHeight,
     getHeightPx,
-    getTop,
-    getTopPx,
-    getCenterLeft,
-    getPosAndWid,
-    getPosWithMinHeight,
-    getStandard,
 } from '../../../../helpers/layoutFoo';
 
-
-
-interface LoaderProps {
+interface Props {
     navigation: any
 };
 
-const Loader: React.FC<LoaderProps> = (props: LoaderProps) => {
-
+const Loader: React.FC<Props> = (props: Props) => {
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
@@ -53,7 +41,6 @@ const Loader: React.FC<LoaderProps> = (props: LoaderProps) => {
         height: lh,
         left: (ww - lw) / 2,
         top: ((wh - lh) / 2) - (wh * .03)
-
     }
 
     const styles = StyleSheet.create({
@@ -62,7 +49,7 @@ const Loader: React.FC<LoaderProps> = (props: LoaderProps) => {
     })
 
     return (
-        <>
+        <SafeAreaView>
             <View style={styles.circle}>
                 <ImageSvg
                     source={require('./loader.svg')}
@@ -78,11 +65,10 @@ const Loader: React.FC<LoaderProps> = (props: LoaderProps) => {
                         <Path d="M12.095 21.304L28.589 0H21.56c-1.125 0-2.054.104-2.78.306-.727.202-1.342.46-1.852.758-.503.306-.936.64-1.3 1.016C15.295 2.428.29 21.29.276 21.31l10.06 7.536c.363.194.726.41 1.09.626.362.222.796.424 1.299.605.502.18 1.124.334 1.85.452.72.119 1.656.181 2.781.181h7.028l-12.288-9.406z"
                             transform="translate(-185 -431) translate(185 431)" />
                     </G>
-
                 </Svg>
             </View>
 
-        </>
+        </SafeAreaView>
     )
 }
 

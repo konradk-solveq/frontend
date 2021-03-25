@@ -255,7 +255,8 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
 
 export {
     setAppSize, initAppSize, setObjSize,
-    getCenterLeft, getCenterTop,
+    getCenterLeft, getCenterLeftPx,
+    getCenterTop,
     getLeft, getTop, getTopPx,
     getWidth, getWidthOf, getWidthPx, getWidthPxOf,
     getHeight, getHeightPx,

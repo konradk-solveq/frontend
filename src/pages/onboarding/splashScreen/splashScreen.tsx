@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { StyleSheet, Dimensions, View, Animated, SafeAreaView, Text, Alert } from 'react-native';
+import { StyleSheet, Dimensions, View, Animated } from 'react-native';
 
 import {
     setObjSize,
@@ -13,7 +13,6 @@ import {
 
 import LogoPionowe from './logoPionowe';
 import Claim from './claim';
-import DashLine from './dashLine';
 
 
 const SplashScreen = () => {
@@ -62,7 +61,6 @@ const SplashScreen = () => {
         }).start();
     }, [])
 
-
     return (
         <View style={styles.container}>
             <Animated.View style={[
@@ -74,10 +72,6 @@ const SplashScreen = () => {
                 <LogoPionowe ></LogoPionowe>
             </Animated.View>
 
-            {/* <View style={styles.dline}>
-                <DashLine></DashLine>
-            </View> */}
-
             <Animated.View style={[
                 styles.claim,
                 {
@@ -87,7 +81,6 @@ const SplashScreen = () => {
                 <Claim></Claim>
             </Animated.View>
         </View>
-
     )
 }
 

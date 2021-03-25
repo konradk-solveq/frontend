@@ -1,6 +1,6 @@
 //getToKnowEachOther
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Dimensions, View } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
 import { setUserName, getUserName } from '../../../store/actions/index';
@@ -19,19 +19,18 @@ import {
 } from '../../../helpers/layoutFoo';
 
 import KroosLogo from './krossLogo';
-import DinLight30 from '../../../sharedComponents/text/dinLight30';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
-interface GetToKnowProps {
+interface Props {
     navigation: any,
     name: string,
     setName: Function,
     getName: Function
 };
 
-const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => {
+const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
 
     const [inputName, setInputName] = useState('');
 
@@ -60,8 +59,17 @@ const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => 
     }
 
     let styles = StyleSheet.create({
+        container: {
+            width: '100%',
+            height: '100%',
+        },
         logo: getPosStaticHeight(110, 20, 66),
         text: getPosAndWid(334, 78, 138),
+        light30: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 30,
+            color: '#313131'
+        },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 380, 90),
         input: {
             height: 50,
@@ -74,17 +82,15 @@ const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => 
     })
 
     return (
-        <>
+        <SafeAreaView style={styles.container}>
+
             <View style={styles.logo}>
                 <KroosLogo />
             </View>
 
-            <View style={styles.text}>
-                <DinLight30
-                    algin='left'
-                    inner={I18n.t('GetToKnowEachOther-text')}
-                />
-            </View>
+            <Text style={[styles.text, styles.light30]}>
+                {I18n.t('GetToKnowEachOther-text')}
+            </Text>
 
             <View style={styles.inputAndPlaceholder}>
                 <View style={styles.input}>
@@ -119,7 +125,7 @@ const GetToKnowEachOther: React.FC<GetToKnowProps> = (props: GetToKnowProps) => 
                 </View>
             </View>
 
-        </>
+        </SafeAreaView>
     )
 }
 

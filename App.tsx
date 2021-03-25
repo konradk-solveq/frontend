@@ -17,6 +17,8 @@ import AddingByNumber from './src/pages/onboarding/bikeAdding/addingByNumber/add
 import AddingInfo from './src/pages/onboarding/bikeAdding/info/info';
 import Loader from './src/pages/onboarding/bikeAdding/loader/loader';
 import PermitsDeclarations from './src/pages/onboarding/permitsDeclarations/permitsDeclarations';
+import Regulations from './src/pages/onboarding/permitsDeclarations/regulations';
+import PrivacyPolicy from './src/pages/onboarding/permitsDeclarations/privacyPolicy';
 
 const App: () => Node = () => {
 	I18n_init();
@@ -43,7 +45,6 @@ const App: () => Node = () => {
 
 	return (
 		<Provider store={store}>
-			{/* <SafeAreaView> */}
 			<NavigationContainer >
 				<Stack.Navigator
 					headerMode="none"
@@ -52,20 +53,22 @@ const App: () => Node = () => {
 					screenOptions={horizontalAnim}
 				>
 
-					{/* <Stack.Screen name="Onboarding" component={Onboarding}/>
+					{/* <Stack.Screen name="Onboarding" component={Onboarding}/> */}
 					<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} />
-					<Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/>
-					<Stack.Screen name="AddingByNumber" component={AddingByNumber} />
-					<Stack.Screen name="AddingInfo" component={AddingInfo} /> */}
+					{/* <Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/> */}
+					{/* <Stack.Screen name="AddingByNumber" component={AddingByNumber} /> */}
+					{/* <Stack.Screen name="AddingInfo" component={AddingInfo} /> */}
 
 					{/* <Stack.Screen name="Loader" component={Loader} /> */}
-					<Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} />
+
+					{/* <Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} /> */}
+					{/* <Stack.Screen name="Regulations" component={Regulations} /> */}
+					{/* <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} /> */}
 
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
 				</Stack.Navigator>
 			</NavigationContainer>
-			{/* </SafeAreaView> */}
 		</Provider >
 	);
 };

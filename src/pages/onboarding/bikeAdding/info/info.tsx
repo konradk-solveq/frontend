@@ -1,17 +1,10 @@
 
 
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Dimensions, View, Text } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
-import { connect } from "react-redux";
-
-import { setFrameNumber, getFrameNumber } from '../../../../store/actions/index';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader';
-import DinLight30 from '../../../../sharedComponents/text/dinLight30';
-import DinLight18 from '../../../../sharedComponents/text/dinLight18';
-import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
-import TranspLightBtn from '../../../../sharedComponents/buttons/transpLightBtn';
 import TypicalRedBtn from '../../../../sharedComponents/buttons/typicalRed';
 import ImgKross from './imgKross';
 import ImgOther from './imgOther';
@@ -20,27 +13,21 @@ import {
     initAppSize,
     setObjSize,
     getWidth,
-    getHeight,
     getHeightPx,
     getTop,
     getTopPx,
     getCenterLeft,
     getPosAndWid,
-    getPosWithMinHeight,
     getStandard,
 } from '../../../../helpers/layoutFoo';
 
-
-
-interface InfoProps {
+interface Props {
     navigation: any
 };
 
-const Info: React.FC<InfoProps> = (props: InfoProps) => {
+const Info: React.FC<Props> = (props: Props) => {
 
     const [krossBike, setKrossBike] = useState(true);
-
-
 
     initAppSize();
 
@@ -57,20 +44,26 @@ const Info: React.FC<InfoProps> = (props: InfoProps) => {
         top: getTop(138),
     }
 
-
     const styles = StyleSheet.create({
+        container: {
+            width: '100%',
+            height: '100%',
+        },
         bottons,
         title: getPosAndWid(334, 51, 138),
         svg: getStandard(334, 268, 209),
         text: getStandard(334, 200, 497),
+        light18: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 18,
+            marginTop: getTop(44),
+            marginBottom: getTopPx(100),
+            color: '#555555'
+        }
     })
 
     return (
-        <>
-            <StackHeader
-                onpress={() => props.navigation.navigate('AddingByNumber')}
-                inner={I18n.t('AddingInfo-title')}
-            ></StackHeader>
+        <SafeAreaView style={styles.container}>
 
             <View style={styles.bottons}>
                 <TypicalRedBtn
@@ -90,15 +83,17 @@ const Info: React.FC<InfoProps> = (props: InfoProps) => {
                 {krossBike ? <ImgKross></ImgKross> : <ImgOther></ImgOther>}
             </View>
 
-            <View style={styles.text}>
-                <DinLight18
-                    algin='left'
-                    inner={krossBike ? I18n.t('AddingInfo-text-kross')
-                        : I18n.t('AddingInfo-text-other')}
-                ></DinLight18>
-            </View>
+            <Text style={[styles.text, styles.light18]}>
+                {krossBike ? I18n.t('AddingInfo-text-kross')
+                    : I18n.t('AddingInfo-text-other')}
+            </Text>
 
-        </>
+            <StackHeader
+                onpress={() => props.navigation.navigate('AddingByNumber')}
+                inner={I18n.t('AddingInfo-title')}
+            ></StackHeader>
+
+        </SafeAreaView>
     )
 }
 

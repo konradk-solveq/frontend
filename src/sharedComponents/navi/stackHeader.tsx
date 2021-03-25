@@ -1,43 +1,52 @@
-
-
-//getToKnowEachOther
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, View } from 'react-native';
+import { StyleSheet, Dimensions, Text, View } from 'react-native';
 import TopBackBtn from '../buttons/topBackBtn';
-import DinLight18 from '../text/dinLight18';
 
 import {
     initAppSize,
     setObjSize,
     getPerfectPx,
-    getStandardPx,
     getHeightPx,
-    getTopPx
+    getTopPx,
+    getWidthPx,
+    getCenterLeftPx
 } from '../../helpers/layoutFoo';
 
-interface StackHeaderProps {
+interface Props {
     onpress: Function,
     inner: string,
     getHeight: Function,
 }
 
-
-const StackHeader: React.FC<StackHeaderProps> = (props: StackHeaderProps) => {
+const StackHeader: React.FC<Props> = (props: Props) => {
 
     initAppSize();
-    const [height, setHeight] = useState(getTopPx(117));
+    
+    const [height, setHeight] = useState(getTopPx(100));
     useEffect(() => {
         if (props.getHeight) props.getHeight(height)
     }, [height])
-    
 
     setObjSize(414, 34);
     const wrap = {
         position: 'absolute',
         left: 0,
-        top: '52%',
+        top: '61%',
         width: '100%',
         height: getHeightPx(),
+        // backgroundColor: 'red',
+    }
+
+    setObjSize(226, 23);
+    const title = {
+        position: 'absolute',
+        width: getWidthPx(),
+        left: getCenterLeftPx(),
+        top: getTopPx(3),
+        fontFamily: "DIN2014Narrow-Light",
+        textAlign: 'center',
+        fontSize: 18,
+        color: '#313131'
     }
 
     const styles = StyleSheet.create({
@@ -51,26 +60,26 @@ const StackHeader: React.FC<StackHeaderProps> = (props: StackHeaderProps) => {
         },
         wrap,
         topBtn: getPerfectPx(40, 34, 30, 0),
-        title: getStandardPx(226, 23, 3),
+        title
     })
-
 
     return (
         <View style={styles.container}>
+
             <View style={styles.wrap}>
+
                 <View style={styles.topBtn}>
                     <TopBackBtn
                         onpress={() => props.onpress()}
                     ></TopBackBtn>
                 </View>
 
-                <View style={styles.title}>
-                    <DinLight18
-                        inner={props.inner}
-                        color={'#313131'}
-                    ></DinLight18>
-                </View>
+                <Text style={styles.title}>
+                    {props.inner}
+                </Text>
+
             </View>
+
         </View>
     )
 }

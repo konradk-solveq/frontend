@@ -1,14 +1,13 @@
 
 
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Dimensions, View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
 
 import { setFrameNumber, getFrameNumber } from '../../../../store/actions/index';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader';
-import DinLight30 from '../../../../sharedComponents/text/dinLight30';
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
 import TranspLightBtn from '../../../../sharedComponents/buttons/transpLightBtn';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
@@ -25,15 +24,14 @@ import {
 } from '../../../../helpers/layoutFoo';
 
 
-
-interface WrongScanProps {
+interface Props {
     navigation: any,
     setFrame: Function,
     getFrame: Function,
     frame: string
 };
 
-const AddingByNumber: React.FC<WrongScanProps> = (props: WrongScanProps) => {
+const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     const [inputFrame, setInputFrame] = useState('');
 
@@ -78,6 +76,12 @@ const AddingByNumber: React.FC<WrongScanProps> = (props: WrongScanProps) => {
     const styles = StyleSheet.create({
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351, 100),
         title: getPosAndWid(334, 51, 138),
+        light30: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 30,
+            color: '#555555',
+            textAlign: 'left'
+        },
         infoBtn,
         botton,
     })
@@ -89,12 +93,9 @@ const AddingByNumber: React.FC<WrongScanProps> = (props: WrongScanProps) => {
                 inner={I18n.t('AddingByNumber-title')}
             ></StackHeader>
 
-            <View style={styles.title}>
-                <DinLight30
-                    algin='left'
-                    inner={I18n.t('AddingByNumber-text')}
-                />
-            </View>
+            <Text style={[styles.title, styles.light30]}>
+                {I18n.t('AddingByNumber-text')}
+            </Text>
 
             <View style={styles.inputAndPlaceholder}>
                 <OneLineTekst

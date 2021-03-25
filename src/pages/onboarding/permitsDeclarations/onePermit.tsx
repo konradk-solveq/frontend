@@ -1,38 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Dimensions, View, Text, Image } from 'react-native';
+import React, { useEffect,  useState } from "react";
+import { StyleSheet, Dimensions, View, Text } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import Hyperlink from 'react-native-hyperlink'
 import I18n from 'react-native-i18n';
-import ImageSvg from 'react-native-remote-svg';
-
 
 import {
     setAppSize,
-    initAppSize,
     setObjSize,
-    getWidth,
     getWidthPx,
-    getHeight,
-    getHeightPx,
     getTop,
-    getTopPx,
-    getCenterLeft,
-    getPosAndWid,
-    getPosWithMinHeight,
-    getStandard,
     getLeft,
     getWidthOf,
 } from '../../../helpers/layoutFoo';
 
-
-interface PermitProps {
+interface Props {
     check: boolean,
     getCheck: Function,
-    text: string
+    text: string,
+    marginTop: number,
+    navigation: any
 };
 
-const OnePermit: React.FC<PermitProps> = (props: PermitProps) => {
-
+const OnePermit: React.FC<Props> = (props: Props) => {
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
@@ -56,11 +45,12 @@ const OnePermit: React.FC<PermitProps> = (props: PermitProps) => {
         marginLeft: getLeft(40),
     }
 
-    const text = {
+    const hyper = {
         position: 'relative',
         width: getWidthOf(283),
         marginLeft: getLeft(25),
         marginTop: getTop(3),
+
     }
 
     const styles = StyleSheet.create({
@@ -70,13 +60,19 @@ const OnePermit: React.FC<PermitProps> = (props: PermitProps) => {
             flexDirection: 'row',
             position: 'relative',
             width: '100%',
-            marginTop: getTop(31),
+            marginTop: props.marginTop,
             marginBottom: getTop(13),
+
         },
         checkbox,
-        text
+        hyper,
+        text:{
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 18,
+            textAlign: 'left',
+            color: '#555555'
+        }
     })
-
 
     return (
         <View style={styles.container}>
@@ -87,19 +83,19 @@ const OnePermit: React.FC<PermitProps> = (props: PermitProps) => {
                 tintColors={{ true: '#d8232a', false: '#313131' }}
             />
 
-            <Hyperlink style={styles.text}
+            <Hyperlink style={styles.hyper}
                 linkStyle={{ color: '#3587ea' }}
-                linkText={(url:string) => {
+                linkText={(url: string) => {
                     if (url == I18n.t('Permits-url-regulations')) return I18n.t('Permits-hiper-regulations');
                     if (url == I18n.t('Permits-url-privacy-policy')) return I18n.t('Permits-hiper-privacy-policy');
                     return url
                 }}
-                onPress={(e:string) => {
-                    console.log(' e:', e)
-
+                onPress={(e: string) => {
+                    if (e == I18n.t('Permits-url-regulations')) props.navigation.navigate('Regulations');
+                    if (e == I18n.t('Permits-url-privacy-policy')) props.navigation.navigate('PrivacyPolicy');
                 }}
             >
-                <Text style={{ fontSize: 15 }}>
+                <Text style={styles.text}>
                     {props.text}
                 </Text>
             </Hyperlink>
