@@ -71,7 +71,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
     const styles = StyleSheet.create({
         scroll: {
             width: '100%',
-            height: wh - headHeight,
+            height: '100%',// wh - headHeight,
             top: headHeight,
         },
         text: {
@@ -84,8 +84,12 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             width: getWidth(),
             height: getHeightPx() < 50 ? 50 : getHeightPx(),
             left: getCenterLeft(),
-            top: getTop(30),
-            marginBottom: headHeight + getTopPx(56)
+            top: getTopPx(11),
+            marginBottom: headHeight
+        },
+        spaceOnEnd: {
+            width: '100%',
+            height: getTopPx(69)
         }
     })
 
@@ -129,6 +133,8 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                             onpress={() => hendlerGoFoward()}
                         />
                     </View>
+
+                    <View style={styles.spaceOnEnd}></View>
 
                 </ScrollView>
             </View>
