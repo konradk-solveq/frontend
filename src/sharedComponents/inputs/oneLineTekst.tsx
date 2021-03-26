@@ -8,7 +8,9 @@ interface Props {
     validationWrong: Function,
     messageWrong: string,
     placeholder: string,
-    value: string
+    value: string,
+    validationStatus: Function,
+    forceMessageWrong: string
 }
 
 const OneLineTekst: React.FC<Props> = (props: Props) => {
@@ -34,19 +36,33 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             message = props.messageWrong ? props.messageWrong : ''
         }
 
+        if (props.forceMessageWrong && props.forceMessageWrong != '') {
+            validation = 'bad';
+            message = props.forceMessageWrong
+        }
+
         switch (validation) {
-            case 'ok': setBorderColor('#2cba3f');
+            case 'ok': {
+                setBorderColor('#2cba3f');
+                if (props.validationStatus) props.validationStatus(true)
+            }
                 break;
-            case 'bad': setBorderColor('#d8232a');
+            case 'bad': {
+                setBorderColor('#d8232a');
+                if (props.validationStatus) props.validationStatus(false)
+            }
                 break;
             default:
-                setBorderColor('#80555555');
+                {
+                    setBorderColor('#80555555');
+                    if (props.validationStatus) props.validationStatus(false)
+                }
                 break;
         }
 
         setErrorMessage(message);
 
-    }, [props.value])
+    }, [props.value, props.forceMessageWrong])
 
 
     let styles = StyleSheet.create({

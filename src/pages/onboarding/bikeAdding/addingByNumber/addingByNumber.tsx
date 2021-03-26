@@ -34,11 +34,18 @@ interface Props {
 const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     const [inputFrame, setInputFrame] = useState('');
+    const [canGoFoward, setCanGoFoward] = useState(false);
+    const [forceMessageWrong, setForceMessageWrong] = useState('');
 
     useEffect(() => {
         props.getFrame();
         if (typeof props.frame == 'string') setInputFrame(props.frame);
     }, [props.frame])
+
+    const hendleInputFrame = (value: string) => {
+        setInputFrame(value);
+        setForceMessageWrong('')
+    }
 
     const hendleValidationOk = (value: string) => {
         if (value.length > 8) return true;
@@ -49,6 +56,15 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         const reg = new RegExp('^[0-9]+$');
         if (value.length > 0 && !reg.test(value)) return true;
         return false
+    }
+
+    const hendleGoFoward = () => {
+        console.log('%c canGoFoward:', 'background: #ffcc00; color: #003300', canGoFoward)
+        if (canGoFoward) {
+            props.navigation.navigate('BikeData')
+        } else {
+            setForceMessageWrong('Pole wymagane')
+        }
     }
 
     initAppSize();
@@ -93,40 +109,42 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     return (
         <SafeAreaView style={styles.container}>
 
-                <StackHeader
-                    onpress={() => props.navigation.navigate('TurtorialNFC')}
-                    inner={I18n.t('AddingByNumber-title')}
-                ></StackHeader>
+            <StackHeader
+                onpress={() => props.navigation.navigate('TurtorialNFC')}
+                inner={I18n.t('AddingByNumber-title')}
+            ></StackHeader>
 
-                <Text style={[styles.title, styles.light30]}>
-                    {I18n.t('AddingByNumber-text')}
-                </Text>
+            <Text style={[styles.title, styles.light30]}>
+                {I18n.t('AddingByNumber-text')}
+            </Text>
 
-                <View style={styles.inputAndPlaceholder}>
-                    <OneLineTekst
-                        placeholder={I18n.t('AddingByNumber-placeholder')}
-                        onChangeText={setInputFrame}
-                        validationOk={hendleValidationOk}
-                        validationWrong={hendleValidationWrong}
-                        messageWrong={I18n.t('AddingByNumber-message-wrong')}
-                        value={inputFrame}
-                    />
-                    <View style={styles.infoBtn}>
-                        <TranspLightBtn
-                            title={I18n.t('AddingByNumber-info-btn')}
-                            algin='right'
-                            color='#3587ea'
-                            onpress={() => props.navigation.navigate('AddingInfo')}
-                        ></TranspLightBtn>
-                    </View>
+            <View style={styles.inputAndPlaceholder}>
+                <OneLineTekst
+                    placeholder={I18n.t('AddingByNumber-placeholder')}
+                    onChangeText={hendleInputFrame}
+                    validationOk={hendleValidationOk}
+                    validationWrong={hendleValidationWrong}
+                    messageWrong={I18n.t('AddingByNumber-message-wrong')}
+                    value={inputFrame}
+                    validationStatus={setCanGoFoward}
+                    forceMessageWrong={forceMessageWrong}
+                />
+                <View style={styles.infoBtn}>
+                    <TranspLightBtn
+                        title={I18n.t('AddingByNumber-info-btn')}
+                        algin='right'
+                        color='#3587ea'
+                        onpress={() => props.navigation.navigate('AddingInfo')}
+                    ></TranspLightBtn>
                 </View>
+            </View>
 
-                <View style={styles.botton}>
-                    <BigRedBtn
-                        title={I18n.t('AddingByNumber-btn')}
-                        onpress={() => props.navigation.navigate('BikeData')}
-                    ></BigRedBtn>
-                </View>
+            <View style={styles.botton}>
+                <BigRedBtn
+                    title={I18n.t('AddingByNumber-btn')}
+                    onpress={() => hendleGoFoward()}
+                ></BigRedBtn>
+            </View>
 
         </SafeAreaView>
     )

@@ -50,6 +50,13 @@ const BikeData: React.FC<Props> = (props: Props) => {
     }
 
     const [data, setData] = useState(startData);
+    const [messages, setMessages] = useState({
+        frameNumber: '',
+        producer: '',
+        model: '',
+        size: '',
+        color: ''
+    });
 
     const hendleChangeDataValue = (key: string, value: string) => {
         let newData = deepCopy(data);
@@ -58,11 +65,27 @@ const BikeData: React.FC<Props> = (props: Props) => {
         console.log('%c newData:', newData)
     }
 
-    useEffect(()=>{
-        console.log('%c props.route:', props.route.params)
+    const hendleGoFoward = () => {
+        let canGoFoward = true;
+        let newMessages = deepCopy(messages);
+
+        for (let key in data) {
+            if (data[key] == '') {
+                newMessages[key] = 'Pole wymagane';
+                canGoFoward = false;
+            } else {
+                newMessages[key] = 'Pole wymagane';
+            }
+        }
+        setMessages(newMessages);
+
+        if (canGoFoward) { }
+    }
+
+    useEffect(() => {
         if (props.route.params && props.route.params.key && props.route.params.value)
-        hendleChangeDataValue(props.route.params.key, props.route.params.value)
-    },[props.route.params])
+            hendleChangeDataValue(props.route.params.key, props.route.params.value)
+    }, [props.route.params])
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -126,6 +149,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
                             // validationWrong={hendleValidationWrong}
                             messageWrong={I18n.t('BikeData-input-wrong')}
                             value={data.frameNumber}
+                            forceMessageWrong={messages.frameNumber}
                         />
                     </View>
 
@@ -148,6 +172,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
                             messageWrong={I18n.t('BikeData-input-wrong')}
                             value={data.producer}
                             valueName={I18n.t('BikeData-input-producer-list')}
+                            forceMessageWrong={messages.producer}
                         />
                     </View>
 
@@ -159,6 +184,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
                             // validationWrong={hendleValidationWrong}
                             messageWrong={I18n.t('BikeData-input-wrong')}
                             value={data.model}
+                            forceMessageWrong={messages.model}
                         />
                     </View>
 
@@ -215,10 +241,10 @@ const BikeData: React.FC<Props> = (props: Props) => {
                         />
                     </View>
 
-
                     <View style={styles.botton}>
                         <BigRedBtn
                             title={I18n.t('AddingByNumber-btn')}
+                            onpress={() => hendleGoFoward()}
                         ></BigRedBtn>
                     </View>
 
