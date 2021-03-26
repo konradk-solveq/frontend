@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
 
@@ -74,6 +74,10 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     }
 
     const styles = StyleSheet.create({
+        container: {
+            width: '100%',
+            height: '100%',
+        },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351, 100),
         title: getPosAndWid(334, 51, 138),
         light30: {
@@ -87,41 +91,44 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     })
 
     return (
-        <>
-            <StackHeader
-                onpress={() => props.navigation.navigate('TurtorialNFC')}
-                inner={I18n.t('AddingByNumber-title')}
-            ></StackHeader>
+        <SafeAreaView style={styles.container}>
 
-            <Text style={[styles.title, styles.light30]}>
-                {I18n.t('AddingByNumber-text')}
-            </Text>
+                <StackHeader
+                    onpress={() => props.navigation.navigate('TurtorialNFC')}
+                    inner={I18n.t('AddingByNumber-title')}
+                ></StackHeader>
 
-            <View style={styles.inputAndPlaceholder}>
-                <OneLineTekst
-                    placeholder={I18n.t('AddingByNumber-placeholder')}
-                    onChangeText={setInputFrame}
-                    validationOk={hendleValidationOk}
-                    validationWrong={hendleValidationWrong}
-                    messageWrong={I18n.t('AddingByNumber-message-wrong')}
-                    value={inputFrame}
-                />
-                <View style={styles.infoBtn}>
-                    <TranspLightBtn
-                        title={I18n.t('AddingByNumber-info-btn')}
-                        algin='right'
-                        color='#3587ea'
-                        onpress={() => props.navigation.navigate('AddingInfo')}
-                    ></TranspLightBtn>
+                <Text style={[styles.title, styles.light30]}>
+                    {I18n.t('AddingByNumber-text')}
+                </Text>
+
+                <View style={styles.inputAndPlaceholder}>
+                    <OneLineTekst
+                        placeholder={I18n.t('AddingByNumber-placeholder')}
+                        onChangeText={setInputFrame}
+                        validationOk={hendleValidationOk}
+                        validationWrong={hendleValidationWrong}
+                        messageWrong={I18n.t('AddingByNumber-message-wrong')}
+                        value={inputFrame}
+                    />
+                    <View style={styles.infoBtn}>
+                        <TranspLightBtn
+                            title={I18n.t('AddingByNumber-info-btn')}
+                            algin='right'
+                            color='#3587ea'
+                            onpress={() => props.navigation.navigate('AddingInfo')}
+                        ></TranspLightBtn>
+                    </View>
                 </View>
-            </View>
 
-            <View style={styles.botton}>
-                <BigRedBtn
-                    title={I18n.t('AddingByNumber-btn')}
-                ></BigRedBtn>
-            </View>
-        </>
+                <View style={styles.botton}>
+                    <BigRedBtn
+                        title={I18n.t('AddingByNumber-btn')}
+                        onpress={() => props.navigation.navigate('BikeData')}
+                    ></BigRedBtn>
+                </View>
+
+        </SafeAreaView>
     )
 }
 

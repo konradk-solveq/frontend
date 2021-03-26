@@ -20,6 +20,7 @@ import PermitsDeclarations from './src/pages/onboarding/permitsDeclarations/perm
 import Regulations from './src/pages/onboarding/permitsDeclarations/regulations';
 import PrivacyPolicy from './src/pages/onboarding/permitsDeclarations/privacyPolicy';
 import BikeData from './src/pages/onboarding/bikeData/bikeData';
+import ListBikeData from './src/pages/onboarding/bikeData/listBikeData';
 
 const App: () => Node = () => {
 	I18n_init();
@@ -57,8 +58,11 @@ const App: () => Node = () => {
 					{/* <Stack.Screen name="Onboarding" component={Onboarding}/> */}
 					{/* <Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} /> */}
 					{/* <Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/> */}
-					{/* <Stack.Screen name="AddingByNumber" component={AddingByNumber} /> */}
+					<Stack.Screen name="AddingByNumber" component={AddingByNumber} />
 					{/* <Stack.Screen name="AddingInfo" component={AddingInfo} /> */}
+
+					<Stack.Screen name="BikeData" component={BikeData}/>
+					<Stack.Screen name="ListBikeData" component={ListBikeData}/>
 
 					{/* <Stack.Screen name="Loader" component={Loader} /> */}
 
@@ -66,7 +70,6 @@ const App: () => Node = () => {
 					<Stack.Screen name="Regulations" component={Regulations} />
 					<Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} /> */}
 
-					<Stack.Screen name="BikeData" component={BikeData}/>
 
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 

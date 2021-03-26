@@ -33,6 +33,7 @@ interface Data {
 
 interface Props {
     navigation: any,
+    route: any,
     setBikeData: Function,
     getBikeData: Function,
     bikeData: Data,
@@ -51,13 +52,17 @@ const BikeData: React.FC<Props> = (props: Props) => {
     const [data, setData] = useState(startData);
 
     const hendleChangeDataValue = (key: string, value: string) => {
-        console.log(' key: ', key)
         let newData = deepCopy(data);
         newData[key] = value;
         setData(newData);
+        console.log('%c newData:', newData)
     }
 
-
+    useEffect(()=>{
+        console.log('%c props.route:', props.route.params)
+        if (props.route.params && props.route.params.key && props.route.params.value)
+        hendleChangeDataValue(props.route.params.key, props.route.params.value)
+    },[props.route.params])
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -99,7 +104,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
             marginBottom: headHeight
         },
         spaceOnEnd: {
-            width:'100%',
+            width: '100%',
             height: getTopPx(65)
         }
     })
@@ -127,9 +132,19 @@ const BikeData: React.FC<Props> = (props: Props) => {
                     <View style={styles.inputAndPlaceholder}>
                         <ListInputBtn
                             placeholder={I18n.t('BikeData-input-producer')}
-                            onChangeText={(value: string) => hendleChangeDataValue('producer', value)}
-                            // validationOk={hendleValidationOk}
-                            // validationWrong={hendleValidationWrong}
+                            onpress={() => props.navigation.navigate('ListBikeData', {
+                                header: I18n.t('BikeData-input-producer-list-header'),
+                                list: [
+                                    'Romet',
+                                    'Trek',
+                                    'Scott',
+                                    'Giant',
+                                    'Cannondale',
+                                    'Pamir'
+                                ],
+                                navigation: props.navigation,
+                                key: 'producer'
+                            })}
                             messageWrong={I18n.t('BikeData-input-wrong')}
                             value={data.producer}
                             valueName={I18n.t('BikeData-input-producer-list')}
@@ -143,7 +158,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
                             // validationOk={hendleValidationOk}
                             // validationWrong={hendleValidationWrong}
                             messageWrong={I18n.t('BikeData-input-wrong')}
-                            value={data.frameNumber}
+                            value={data.model}
                         />
                     </View>
 
@@ -151,10 +166,18 @@ const BikeData: React.FC<Props> = (props: Props) => {
                         <ListInputBtn
                             placeholder={I18n.t('BikeData-input-size')}
                             onChangeText={(value: string) => hendleChangeDataValue('size', value)}
-                            // validationOk={hendleValidationOk}
-                            // validationWrong={hendleValidationWrong}
+                            onpress={() => props.navigation.navigate('ListBikeData', {
+                                header: I18n.t('BikeData-input-size-list-header'),
+                                list: [
+                                    'wzrost 163 cm - S (17”) 26’',
+                                    'wzrost 173 cm - M (18”) 26’',
+                                    'wzrost 182 cm - XL (19”) 26’'
+                                ],
+                                navigation: props.navigation,
+                                key: 'size'
+                            })}
                             messageWrong={I18n.t('BikeData-input-wrong')}
-                            value={data.producer}
+                            value={data.size}
                             valueName={I18n.t('BikeData-input-size-list')}
                         />
                     </View>
@@ -163,10 +186,31 @@ const BikeData: React.FC<Props> = (props: Props) => {
                         <ListInputBtn
                             placeholder={I18n.t('BikeData-input-color')}
                             onChangeText={(value: string) => hendleChangeDataValue('color', value)}
-                            // validationOk={hendleValidationOk}
-                            // validationWrong={hendleValidationWrong}
+                            onpress={() => props.navigation.navigate('ListBikeData', {
+                                header: I18n.t('BikeData-input-color-list-header'),
+                                list: [
+                                    'biały',
+                                    'czarny',
+                                    'niebieski',
+                                    'zielony',
+                                    'czerwony',
+                                    'brązowy',
+                                    'żółty',
+                                    'różowy',
+                                    'grantowy',
+                                    'bordowy',
+                                    'kahki',
+                                    'turkusowy',
+                                    'błękitny',
+                                    'srebrny',
+                                    'złoty',
+                                    'magenda',
+                                ],
+                                navigation: props.navigation,
+                                key: 'color'
+                            })}
                             messageWrong={I18n.t('BikeData-input-wrong')}
-                            value={data.producer}
+                            value={data.color}
                             valueName={I18n.t('BikeData-input-color-list')}
                         />
                     </View>
@@ -184,7 +228,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('TurtorialNFC')}
+                onpress={() => props.navigation.goBack()}
                 inner={I18n.t('BikeData-header')}
                 getHeight={setHeadHeightt}
             ></StackHeader>

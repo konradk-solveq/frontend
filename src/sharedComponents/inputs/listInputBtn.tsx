@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
-import ImageSvg from 'react-native-remote-svg';
 import Svg, { Path } from "react-native-svg";
 
 interface Props {
@@ -10,7 +9,8 @@ interface Props {
     messageWrong: string,
     placeholder: string,
     value: string,
-    valueName: string
+    valueName: string,
+    onpress: Function
 }
 
 const ListInputBtn: React.FC<Props> = (props: Props) => {
@@ -47,9 +47,7 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
         }
 
         setErrorMessage(message);
-
     }, [props.value])
-
 
     let styles = StyleSheet.create({
         light18: {
@@ -65,7 +63,6 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
             borderColor: borderColor,
             height: 50,
             marginTop: 6,
-            // backgroundColor: 'red'
         },
         title: {
             fontFamily: "DIN2014Narrow-Regular",
@@ -80,7 +77,6 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             right: 30,
             top: 15,
-            // backgroundColor: 'red',
             width: 20,
             height: 15
         },
@@ -102,7 +98,7 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
             </Text>
 
             <TouchableWithoutFeedback
-                onPress={() => { }}
+                onPress={() => props.onpress()}
             >
                 <View style={styles.input}>
                     <Text style={styles.title}>
