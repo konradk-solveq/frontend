@@ -2,8 +2,6 @@ import React from 'react';
 import Svg from 'react-native-svg';
 import { AnimatedSVGPath } from 'react-native-svg-animations'
 
-
-
 const DashLine = () => (
     <Svg viewBox="0 0 780.48265 147.35643" >
         <AnimatedSVGPath

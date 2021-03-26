@@ -67,5 +67,21 @@
     "Regulations-teks-2": "1. Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób sprzedaży prowadzonej przez KROSS S.A. z siedzibą w Przasnyszu, za pośrednictwem sklepu internetowegokross.eu (zwanego dalej: „Sklepem Internetowym”) oraz określa zasady i warunki świadczenia przez KROSS S.A. z siedzibą w Przasnyszu usług nieodpłatnych drogą elektroniczną",
     "Regulations-paragraph-3": "Definicje",
     "Regulations-teks-3": "1. Dni robocze - oznacza dni tygodnia od poniedziałku do piątku z wyłączeniem dni ustawowo wolnych od pracy.\n\n2. Dostawa - oznacza czynność faktyczną polegającą na dostarczeniu Klientowi przez Sprzedawcę, za pośrednictwem Dostawcy, Towaru określonego w zamówieniu.\n\n3. Dostawca - oznacza podmiot, z którym współpracuje Sprzedawca w zakresie dokonywania Dostawy Towarów:\n\na) Autoryzowane Punkty Sprzedaży, których lista dostępna jest na Stronie Internetowej Sklepu;\n\nb) firmę kurierską;\n\nc) InPost Paczkomaty Sp. z o.o. z siedzibą w Krakowie, świadcząca usługi Dostawy i obsługi systemu skrytek pocztowych (Paczkomat).\n\n4. Hasło - oznacza ciąg znaków literowych, cyfrowych lub innych wybranych przez Klienta podczas Rejestracji w Sklepie Internetowym, wykorzystywanych w celu zabezpieczenia dostępu do Konta Klienta w Sklepie Internetowym.",
-    "Permits-1-e": ".*"
+
+    "BikeData-header": "Identyfikacja roweru",
+    "BikeData-title": "Hej, to nie jest rower Kross.\nNic nie szkodzi, podaj dane swojego roweru.",
+    "BikeData-input-frame-num": "Numer ramy",
+    "BikeData-input-producer": "Producent",
+    "BikeData-input-producer-list": "Wybierz producenta",
+    "BikeData-input-model": "Model",
+    "BikeData-input-size": "Rozmiar",
+    "BikeData-input-size-list": "Wybierz rozmiar",
+    "BikeData-input-color": "Kolor",
+    "BikeData-input-color-list": "Wybierz kolor",
+    "BikeData-input-wrong": "Musisz wybrać",
+    "BikeData-btn": "DALEJ",
+
+    "BikeData-aaaaaa": "_____"
+
+
 }

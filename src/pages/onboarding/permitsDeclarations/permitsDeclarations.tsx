@@ -26,29 +26,25 @@ interface Props {
 const PermitsDeclarations: React.FC<Props> = (props: Props) => {
 
     const permits = I18n.t('Permits');
-
     interface staus { checked: boolean, wrong: boolean };
-    const permitStatus: Array<staus> = [];
+    let permitStatus: Array<staus> = [];
 
     permits.forEach(() => { permitStatus.push({ checked: false, wrong: false }) });
 
     const [status, setStatus] = useState(permitStatus);
     const [allPerm, setAllPerm] = useState(false);
-    const [changeAll, setChangeAll] = useState(false);
 
-    useEffect(() => {
-        if (!changeAll) return;
+    const handleChangeAllStatus = (val: boolean) => {
+        setAllPerm(val)
         let newStatus = deepCopy(status);
-        newStatus.forEach(e => e.checked = allPerm);
+        newStatus.forEach(e => e.checked = val);
         setStatus(newStatus);
-    }, [allPerm])
+    }
 
     const handleChangeStatus = (num: number, val: boolean) => {
         let newStatus = deepCopy(status);
         newStatus[num].checked = val;
-        console.log('%c newStatus:', newStatus)
 
-        setChangeAll(false);
         if (newStatus.some(e => !e.checked)) setAllPerm(false)
         if (newStatus.every(e => e.checked)) setAllPerm(true)
 
@@ -109,8 +105,8 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
 
                     <OnePermit
                         checked={allPerm}
-                        getCheck={(val: boolean) => { setAllPerm(val); setChangeAll(true) }}
-                        text='Zaznacz wszystkie'
+                        getCheck={(val: boolean) => handleChangeAllStatus(val)}
+                        text={I18n.t('Permits-check-all')}
                         marginTop={getTopPx(31)}
                         navigation={props.navigation}
                     ></OnePermit>

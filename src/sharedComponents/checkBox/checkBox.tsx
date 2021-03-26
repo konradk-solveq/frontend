@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
-import ImageSvg from 'react-native-remote-svg';
 
+import ChecboxOn from './checboxOn';
+import ChecboxOff from './checboxOff';
+import ChecboxWrong from './checboxWrong';
 
 interface Props {
     checked: boolean,
@@ -38,20 +40,11 @@ const CheckBoxx: React.FC<Props> = (props: Props) => {
                 <View style={[styles.stretch, {
                     position: 'absolute'
                 }]}>
-                    {props.wrong ? <ImageSvg
-                        source={require('./checbox_wrong.svg')}
-                        style={styles.stretch}
-                    /> : <ImageSvg
-                        source={require('./checbox_off.svg')}
-                        style={styles.stretch}
-                    />}
+                    {props.wrong ? <ChecboxWrong/> : <ChecboxOff/>}
                 </View>
 
                 <View style={styles.stretch}>
-                    {checked ? <ImageSvg
-                        source={require('./checbox_on.svg')}
-                        style={styles.stretch}
-                    /> : null}
+                    {checked && <ChecboxOn/>}
                 </View>
             </View>
 

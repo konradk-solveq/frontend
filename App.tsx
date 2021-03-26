@@ -19,6 +19,7 @@ import Loader from './src/pages/onboarding/bikeAdding/loader/loader';
 import PermitsDeclarations from './src/pages/onboarding/permitsDeclarations/permitsDeclarations';
 import Regulations from './src/pages/onboarding/permitsDeclarations/regulations';
 import PrivacyPolicy from './src/pages/onboarding/permitsDeclarations/privacyPolicy';
+import BikeData from './src/pages/onboarding/bikeData/bikeData';
 
 const App: () => Node = () => {
 	I18n_init();
@@ -66,6 +67,7 @@ const App: () => Node = () => {
 					<Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
 
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
+					{/* <Stack.Screen name="BikeData" component={BikeData}/> */}
 
 				</Stack.Navigator>
 			</NavigationContainer>

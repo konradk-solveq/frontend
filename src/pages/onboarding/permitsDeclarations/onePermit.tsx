@@ -13,7 +13,7 @@ import {
     getWidthOf,
 } from '../../../helpers/layoutFoo';
 
-import CheckBoxx from '../../../sharedComponents/checkBox/checkBox';
+import CheckBox from '../../../sharedComponents/checkBox/checkBox';
 
 
 interface Props {
@@ -30,13 +30,6 @@ const OnePermit: React.FC<Props> = (props: Props) => {
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
-
-    // const hendleChecked = () => {
-    //     let newCheck = !checked;
-    //     setChecked(newCheck)
-    //     if (props.getCheck) props.getCheck(newCheck)
-    // }
-
 
     setObjSize(26, 26);
     const cbw = getWidthPx();
@@ -88,7 +81,7 @@ const OnePermit: React.FC<Props> = (props: Props) => {
         <View style={styles.container}>
 
             <View style={styles.checkbox}>
-                <CheckBoxx
+                <CheckBox
                     checked={props.checked}
                     wrong={props.wrong}
                     getCheck={props.getCheck}
