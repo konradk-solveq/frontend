@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Dimensions, View, Animated, Easing } from 'react-native';
 import Image from 'react-native-remote-svg';
-import SvgImage from '../../helpers/SvgImage'
 
 
 import {
