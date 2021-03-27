@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
 import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
+import Image from 'react-native-remote-svg';
 
 import { setUserName, getUserName } from '../../../../store/actions/index';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader';
-import ImgBike from './imgBike';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
@@ -44,6 +44,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         container: {
             width: '100%',
             height: '100%',
+            backgroundColor: "white" 
         },
         title: getPosAndWid(334, 78, 138),
         light30: {
@@ -58,7 +59,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             color: '#555555',
             textAlign: 'left'
         },
-        b_ike: getStandard(334, 268, 246),
+        nfc_bike: getStandard(334, 268, 246),
         text: getStandard(334, 115, 534),
         btnNfc: getStandard(334, 50, 701),
         btnHand: getStandard(334, 50, 781),
@@ -71,8 +72,11 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                 {I18n.t('TurtorialNFC-title-1') + userName + I18n.t('TurtorialNFC-title-2')}
             </Text>
 
-            <View style={styles.b_ike}>
-                <ImgBike></ImgBike>
+            <View style={styles.nfc_bike}>
+                <Image
+                    source={require('./nfc_bike.svg')}
+                    style={{ width: "100%", height: "100%" }}
+                />
             </View>
 
             <Text style={[styles.text, styles.light18]}>
