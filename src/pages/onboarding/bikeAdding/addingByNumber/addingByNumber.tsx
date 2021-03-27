@@ -59,7 +59,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     }
 
     const hendleGoFoward = () => {
-        console.log('%c canGoFoward:', 'background: #ffcc00; color: #003300', canGoFoward)
         if (canGoFoward) {
             props.navigation.navigate('BikeData')
         } else {

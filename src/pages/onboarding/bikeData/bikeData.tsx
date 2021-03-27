@@ -32,7 +32,7 @@ interface Data {
 };
 
 interface Props {
-    navigation: any,
+    navigation: any, // <<--- ask: Bartosz ? nie mam pojęcia ajk to typować, da się wogóle ?
     route: any,
     setBikeData: Function,
     getBikeData: Function,
@@ -49,42 +49,72 @@ const BikeData: React.FC<Props> = (props: Props) => {
         color: ''
     }
 
-    const [data, setData] = useState(startData);
-    const [messages, setMessages] = useState({
-        frameNumber: '',
-        producer: '',
-        model: '',
-        size: '',
-        color: ''
+    const [data, setData] = useState(startData); // dane poszczególnych pól
+    const [messages, setMessages] = useState(startData); // widomości przy wilidaci po wciśnięciu 'DALEJ'
+    const [canGoFoward, setCanGoFoward] = useState({ // sant poprawności danych w komponencie
+        frameNumber: false,
+        producer: false,
+        model: false, // <<--- ask: Bartosz ? czy lepeiej ten stan przechowywać w komponencie i odpytywać go callbackiem ?
+        size: false,
+        color: false
     });
 
+    // zmiana danych w State po zmiane wartości w komponencie
     const hendleChangeDataValue = (key: string, value: string) => {
         let newData = deepCopy(data);
         newData[key] = value;
         setData(newData);
-        console.log('%c newData:', newData)
+
+        let newMessages = deepCopy(messages);
+        newMessages[key] = '';
+        setMessages(newMessages);
     }
 
-    const hendleGoFoward = () => {
-        let canGoFoward = true;
+    // zmiana statusu poprawności komponentu do walidacji dla przycisku 'DALEJ'
+    const handleSetCanGoFoard = (key: string, value: boolean) => {
+        let newCanGoFoward = deepCopy(canGoFoward);
+        newCanGoFoward[key] = value;
+        setCanGoFoward(newCanGoFoward);
+    }
+
+    const hendleGoFoward = () => { // validacja przycisku 'DALEJ'
+        let goFoward = true;
+
         let newMessages = deepCopy(messages);
 
-        for (let key in data) {
-            if (data[key] == '') {
-                newMessages[key] = 'Pole wymagane';
-                canGoFoward = false;
+        for (let key in canGoFoward) {
+            if (canGoFoward[key]) {
+                newMessages[key] = '';
             } else {
-                newMessages[key] = 'Pole wymagane';
+                newMessages[key] = I18n.t('BikeData-btn-wrong'),
+                goFoward = false;
             }
         }
         setMessages(newMessages);
 
-        if (canGoFoward) { }
+        if (goFoward) { }
     }
 
-    useEffect(() => {
-        if (props.route.params && props.route.params.key && props.route.params.value)
-            hendleChangeDataValue(props.route.params.key, props.route.params.value)
+    const hendleValidationOk = (value: string) => {
+        if (value.length > 2) return true;
+        return false
+    }
+
+    const hendleValidationWrong = (value: string) => {
+        const reg = new RegExp('^[0-9]+$');
+        if (value.length > 0 && !reg.test(value)) return true;
+        return false
+    }
+
+    useEffect(() => { // do bsługi listy
+        if (props.route.params) {
+            let params = props.route.params;
+
+            if (params.key) {
+                if (params.value) hendleChangeDataValue(params.key, params.value);
+                if (params.status) handleSetCanGoFoard(params.key, params.status)
+            }
+        }
     }, [props.route.params])
 
     const [headHeight, setHeadHeightt] = useState(0);
@@ -145,10 +175,11 @@ const BikeData: React.FC<Props> = (props: Props) => {
                         <OneLineTekst
                             placeholder={I18n.t('BikeData-input-frame-num')}
                             onChangeText={(value: string) => hendleChangeDataValue('frameNumber', value)}
-                            // validationOk={hendleValidationOk}
+                            validationOk={hendleValidationOk}
                             // validationWrong={hendleValidationWrong}
                             messageWrong={I18n.t('BikeData-input-wrong')}
                             value={data.frameNumber}
+                            validationStatus={(value: boolean) => handleSetCanGoFoard('frameNumber', value)}
                             forceMessageWrong={messages.frameNumber}
                         />
                     </View>
@@ -158,20 +189,17 @@ const BikeData: React.FC<Props> = (props: Props) => {
                             placeholder={I18n.t('BikeData-input-producer')}
                             onpress={() => props.navigation.navigate('ListBikeData', {
                                 header: I18n.t('BikeData-input-producer-list-header'),
-                                list: [
-                                    'Romet',
-                                    'Trek',
-                                    'Scott',
-                                    'Giant',
-                                    'Cannondale',
-                                    'Pamir'
-                                ],
-                                navigation: props.navigation,
-                                key: 'producer'
+                                list: I18n.t('BikeData-input-producer-list-data'),
+                                last: I18n.t('BikeData-input-producer-list-data-last'),
+                                key: 'producer',
+                                backTo: 'BikeData'
                             })}
+                            validationOk={hendleValidationOk}
                             messageWrong={I18n.t('BikeData-input-wrong')}
                             value={data.producer}
                             valueName={I18n.t('BikeData-input-producer-list')}
+
+                            validationStatus={(value: boolean) => handleSetCanGoFoard('model', value)}
                             forceMessageWrong={messages.producer}
                         />
                     </View>
@@ -180,15 +208,16 @@ const BikeData: React.FC<Props> = (props: Props) => {
                         <OneLineTekst
                             placeholder={I18n.t('BikeData-input-model')}
                             onChangeText={(value: string) => hendleChangeDataValue('model', value)}
-                            // validationOk={hendleValidationOk}
+                            validationOk={hendleValidationOk}
                             // validationWrong={hendleValidationWrong}
                             messageWrong={I18n.t('BikeData-input-wrong')}
                             value={data.model}
+                            validationStatus={(value: boolean) => handleSetCanGoFoard('model', value)}
                             forceMessageWrong={messages.model}
                         />
                     </View>
 
-                    <View style={styles.inputAndPlaceholder}>
+                    {/* <View style={styles.inputAndPlaceholder}>
                         <ListInputBtn
                             placeholder={I18n.t('BikeData-input-size')}
                             onChangeText={(value: string) => hendleChangeDataValue('size', value)}
@@ -206,9 +235,9 @@ const BikeData: React.FC<Props> = (props: Props) => {
                             value={data.size}
                             valueName={I18n.t('BikeData-input-size-list')}
                         />
-                    </View>
+                    </View> */}
 
-                    <View style={styles.inputAndPlaceholder}>
+                    {/* <View style={styles.inputAndPlaceholder}>
                         <ListInputBtn
                             placeholder={I18n.t('BikeData-input-color')}
                             onChangeText={(value: string) => hendleChangeDataValue('color', value)}
@@ -239,7 +268,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
                             value={data.color}
                             valueName={I18n.t('BikeData-input-color-list')}
                         />
-                    </View>
+                    </View> */}
 
                     <View style={styles.botton}>
                         <BigRedBtn

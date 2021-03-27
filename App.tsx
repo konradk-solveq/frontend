@@ -50,7 +50,7 @@ const App: () => Node = () => {
 			<NavigationContainer >
 				<Stack.Navigator
 					headerMode="none"
-					// initialRouteName="TurtorialNFC" 
+					initialRouteName="Onboarding" 
 					mode="modal"
 					screenOptions={horizontalAnim}
 				>
@@ -58,7 +58,7 @@ const App: () => Node = () => {
 					{/* <Stack.Screen name="Onboarding" component={Onboarding}/> */}
 					{/* <Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} /> */}
 					{/* <Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/> */}
-					<Stack.Screen name="AddingByNumber" component={AddingByNumber} />
+					{/* <Stack.Screen name="AddingByNumber" component={AddingByNumber} /> */}
 					{/* <Stack.Screen name="AddingInfo" component={AddingInfo} /> */}
 
 					<Stack.Screen name="BikeData" component={BikeData}/>
@@ -69,7 +69,6 @@ const App: () => Node = () => {
 					{/* <Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} />
 					<Stack.Screen name="Regulations" component={Regulations} />
 					<Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} /> */}
-
 
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 

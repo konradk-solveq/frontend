@@ -178,11 +178,11 @@ const Onboarding: React.FC<Props> = (props: Props) => {
             <Animated.View style={[styles.line, {
                 transform: [{ translateX: position }]
             }]}>
-                <Animated.View style={[styles.coverFill, {
+                {/* <Animated.View style={[styles.coverFill, {
                     transform: [{ translateY: linePos }]
                 }]}>
                     <DashLine ></DashLine>
-                </Animated.View>
+                </Animated.View> */}
             </Animated.View>
 
             {coverOpa ? <Animated.View style={[styles.cover, {

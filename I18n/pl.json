@@ -74,6 +74,25 @@
     "BikeData-input-producer": "Producent",
     "BikeData-input-producer-list": "Wybierz producenta",
     "BikeData-input-producer-list-header": "Producent ramy",
+    "BikeData-input-producer-list-data": [
+        "BTWIN",
+        "Cannondale",
+        "Canyon",
+        "Cube",
+        "Fuji",
+        "Giant",
+        "Kellys",
+        "Merida",
+        "Rockiders",
+        "Romet",
+        "Santa Cruz",
+        "Scott",
+        "Specialized",
+        "Trek",
+        "Triban",
+        "Woom"
+    ],
+    "BikeData-input-producer-list-data-last": "Inny",
     "BikeData-input-model": "Model",
     "BikeData-input-size": "Rozmiar",
     "BikeData-input-size-list": "Wybierz rozmiar",
@@ -82,6 +101,7 @@
     "BikeData-input-color-list": "Wybierz kolor",
     "BikeData-input-color-list-header": "Kolor ramy",
     "BikeData-input-wrong": "Musisz wybrać",
+    "BikeData-btn-wrong": "Pole wymagane",
     "BikeData-btn": "DALEJ",
 
     "BikeData-aaaaaa": "_____"

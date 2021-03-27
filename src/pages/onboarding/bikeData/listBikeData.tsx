@@ -22,17 +22,12 @@ interface Props {
 
 const ListBikeData: React.FC<Props> = (props: Props) => {
 
-    // console.log('%c navigation:', props.navigation)
-    // console.log('%c route:', props.route.params.list)
-    // const list = [
-    //     'wzrost 163 cm - S (17”) 26’',
-    //     'wzrost 173 cm - M (18”) 26’',
-    //     'wzrost 182 cm - XL (19”) 26’'
-    // ];
-
+    // alias-y
     const list = props.route.params.list;
+    const last = props.route.params.last ? props.route.params.last : null; // ostatni na liście do własnej modyfikacji
     const key = props.route.params.key;
-    const header = props.route.params.header;
+    const header = props.route.params.header; // <<--- ask: Bartosz ? czy wiesz może jak to się skompiluje, tz. czy przy przypisaniu do typu prostego powstanie referemcja czy kompilator potrafi zkojażyć bezpośrenio przypisanie ? bo przy obiekcie spodziewam się, że stwrzył by eferencję.
+    const backTo = props.route.params.backTo;
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -74,6 +69,19 @@ const ListBikeData: React.FC<Props> = (props: Props) => {
         }
     })
 
+    // dosnie elementu last do listy
+    useEffect(() => { if (last) list.push(last); }, [])
+
+    // dla sprawdzenia czy kliknięto w ostatni, bo ostani otwiera możliwośś wpisania własnej wartości
+    const hendleOnpress = (value: string) => {
+        if (last && value == last) {
+            console.log('%c last:', 'background: #ffcc00; color: #003300', last)
+
+        } else {
+            props.navigation.navigate(backTo, { key, value })
+        }
+    }
+
     return (
         <SafeAreaView>
             <View style={styles.scroll}>
@@ -81,11 +89,11 @@ const ListBikeData: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.list}>
 
-                        {list.map((e, i) => {
+                        {list.map((e: string, i: number) => {
                             return (
                                 <TouchableOpacity
                                     key={'row_' + i}
-                                    onPress={() => props.navigation.navigate('BikeData', { value: e, key: key })}
+                                    onPress={() => hendleOnpress(e)}
                                 >
                                     <Text
                                         style={styles.light30}
