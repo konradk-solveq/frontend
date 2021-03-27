@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import { getStorageUserName } from '../storage';
+import { getStorageUserName } from '../localStorage';
 
 const initialState = {
     userName:  getStorageUserName()

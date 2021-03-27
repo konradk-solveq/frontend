@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 import {
     getStorageUserName, setStorageUserName,
     getStorageFrameNumber, setStorageFrameNumber
-} from '../storage';
+} from '../localStorage';
 import { AsyncStorage } from "react-native-async-storage/async-storage";
 
 
