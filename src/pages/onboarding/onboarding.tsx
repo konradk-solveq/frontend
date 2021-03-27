@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Dimensions, View, Animated, Easing } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import ImageSvg from 'react-native-remote-svg';
+import Image from 'react-native-remote-svg';
+import SvgImage from '../../helpers/SvgImage'
 
 
 import {
@@ -34,13 +34,13 @@ const Onboarding: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
-    setObjSize(ww * 4, 0.257 * ww * 4.35);
+    setObjSize(ww * 4.27, 0.4 * ww * 4.35);
     const line = {
         position: 'absolute',
         width: getWidth(),
         height: getRelativeHeight(),
         left: -ww * .05,
-        top: getTop(280),
+        top: getTop(90),
     }
 
     const list: Array<Function> = [
@@ -138,8 +138,6 @@ const Onboarding: React.FC<Props> = (props: Props) => {
                     <Screen_3></Screen_3>
                 </View>
 
-
-
             </Animated.View>
 
 
@@ -155,38 +153,14 @@ const Onboarding: React.FC<Props> = (props: Props) => {
                 ></StaticElements>
             </Animated.View>
 
-            <View style={styles.line}>
-                <ImageSvg
+            <Animated.View style={[styles.line, {
+                transform: [{ translateX: position }]
+            }]}>
+                <Image
                     source={require('./dashLine.svg')}
                     style={{ width: "100%", height: "100%" }}
                 />
-            </View>
-
-
-            {/* <Animated.View style={[styles.line, {
-                transform: [{ translateX: position }]
-            }]}>
-                <Animated.View style={[styles.coverFill, {
-                    transform: [{ translateY: linePos }]
-                }]}>
-                    <DashLine ></DashLine>
-                </Animated.View>
-            </Animated.View> */}
-
-
-
-            {/* {coverOpa ? <Animated.View style={[styles.cover, {
-                transform: [{ translateX: coverPos }]
-            }]}>
-                <LinearGradient
-                    colors={['#ffffff00', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff']}
-                    // colors={['red', 'yellow', 'green']}
-                    style={styles.coverFill}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                />
-            </Animated.View> : null} */}
-
+            </Animated.View>
         </>
     )
 }
