@@ -62,6 +62,7 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
         container: {
             width: '100%',
             height: '100%',
+            backgroundColor: "white" 
         },
         logo: getPosStaticHeight(110, 20, 66),
         text: getPosAndWid(334, 78, 138),

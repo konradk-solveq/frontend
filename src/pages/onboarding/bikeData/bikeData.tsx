@@ -163,7 +163,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
     })
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{ backgroundColor: "white" }}>
             <View style={styles.scroll}>
                 <ScrollView>
 

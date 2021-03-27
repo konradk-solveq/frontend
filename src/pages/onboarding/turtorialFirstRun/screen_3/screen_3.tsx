@@ -15,6 +15,7 @@ const Screen_2 = () => {
         container: {
             width: '100%',
             height: '100%',
+            backgroundColor: "white" 
         },
         bigText: getStandard(334, 102, 138),
         reg40: {

@@ -92,6 +92,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         container: {
             width: '100%',
             height: '100%',
+            backgroundColor: "white" 
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351, 100),
         title: getPosAndWid(334, 51, 138),

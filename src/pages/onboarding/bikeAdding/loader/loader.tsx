@@ -49,7 +49,7 @@ const Loader: React.FC<Props> = (props: Props) => {
     })
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{ backgroundColor: "white" }}>
             <View style={styles.circle}>
                 <ImageSvg
                     source={require('./loader.svg')}

@@ -17,6 +17,7 @@ const Screen_1 = () => {
         container: {
             width: '100%',
             height: '100%',
+            backgroundColor: "white" 
         },
         bigText: getPosAndWid(334, 102, 138),
         reg40: {
