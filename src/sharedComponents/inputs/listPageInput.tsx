@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, Dimensions, ScrollView, TouchableOpacity, View, Text } from 'react-native';
-import I18n from 'react-native-i18n';
 
-import StackHeader from '../../../sharedComponents/navi/stackHeader';
+import StackHeader from '../navi/stackHeader';
 
 import {
-    initAppSize,
     setAppSize,
     setObjSize,
     getCenterLeft,
-    getTop,
     getTopPx,
     getWidth,
-    getHeightPx,
-} from '../../../helpers/layoutFoo';
+} from '../../helpers/layoutFoo';
 
 interface Props {
-    navigation: any,
+    navigation: any, // <<--- #askBartosz ? jak otypowywać takie zmienne ? gdybyś miał jakis przykład byłbym wdzięczny :)
     route: any,
 };
 
-const ListBikeData: React.FC<Props> = (props: Props) => {
+const ListPageInput: React.FC<Props> = (props: Props) => {
 
-    // alias-y
-    const list = props.route.params.list;
-    const last = props.route.params.last ? props.route.params.last : null; // ostatni na liście do własnej modyfikacji
-    const key = props.route.params.key;
-    const header = props.route.params.header; // <<--- ask: Bartosz ? czy wiesz może jak to się skompiluje, tz. czy przy przypisaniu do typu prostego powstanie referemcja czy kompilator potrafi zkojażyć bezpośrenio przypisanie ? bo przy obiekcie spodziewam się, że stwrzył by eferencję.
-    const backTo = props.route.params.backTo;
+    // alias-y // <<--- #askBartosz ? czy wiesz może jak to się skompiluje, tz. czy przy przypisaniu do typu prostego powstanie referemcja czy kompilator potrafi zkojażyć bezpośrenio przypisanie ? bo przy obiekcie spodziewam się, że stwrzył by eferencję.
+    // * wartości wymagane
+    const list = props.route.params.list; // * lista itemów z listy
+    const last = props.route.params.last ? props.route.params.last : null; // ostatni na liście do własnej modyfikacji, odyła do UnivesalInputPage
+    const key = props.route.params.key; // * nazwa inputu (obiektu rodzica) do idntyfikacji zrotki z listy
+    const header = props.route.params.header; // * nazwa strony w hederze
+    const backTo = props.route.params.backTo; // * nazwa strony navigatora, do której wracamy po wyborze itemu z listy
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -84,6 +81,7 @@ const ListBikeData: React.FC<Props> = (props: Props) => {
 
     return (
         <SafeAreaView>
+
             <View style={styles.scroll}>
                 <ScrollView>
 
@@ -123,8 +121,9 @@ const ListBikeData: React.FC<Props> = (props: Props) => {
                 inner={header}
                 getHeight={setHeadHeightt}
             ></StackHeader>
+
         </SafeAreaView>
     )
 }
 
-export default ListBikeData
+export default ListPageInput

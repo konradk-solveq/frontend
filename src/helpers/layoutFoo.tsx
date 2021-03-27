@@ -1,11 +1,14 @@
 import { Dimensions } from 'react-native';
 
+// funkcje wiliczające położenie elementów proporcje wg layoutu 
+// https://app.zeplin.io/project/5fbf658b936bbbb842e3c43c/dashboard?sid=60397836dc2eff2bfdde033a
+
 let layout: {
     width: number;
     height: number;
     ratio: number;
 } = {
-    width: 414,
+    width: 414, // wartości pełnego ekranu wg designu
     height: 896,
     ratio: 414 / 896
 }
@@ -114,7 +117,7 @@ const getRelativeHeight = () => {
     return res.toFixed(3) + '%';
 }
 
-const getStandard = (w: number, h: number, t: number) => {
+const getStandard = (w: number, h: number, t: number) => { // nazwy pełnych kompozycji bez kontestu, abstrakcujne, nie miałęm pomysłu na okeślniki
     setObjSize(w, h);
     let res: {
         position: string,

@@ -29,11 +29,13 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
     interface staus { checked: boolean, wrong: boolean };
     let permitStatus: Array<staus> = [];
 
+    // stworzenie tablicy ustawień początkowych dla dowolnej ilości zgód
     permits.forEach(() => { permitStatus.push({ checked: false, wrong: false }) });
 
     const [status, setStatus] = useState(permitStatus);
     const [allPerm, setAllPerm] = useState(false);
 
+    // gdy klikniemy zaznacz wszystkie, ponowne odznacza wsszystkie
     const handleChangeAllStatus = (val: boolean) => {
         setAllPerm(val)
         let newStatus = deepCopy(status);
@@ -41,6 +43,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
         setStatus(newStatus);
     }
 
+    // gdy zaznaczymy którąś ze zgód, wyłącza lub włącza zaznacz wszystkie jeśli jest taki snan wszystkich checków
     const handleChangeStatus = (num: number, val: boolean) => {
         let newStatus = deepCopy(status);
         newStatus[num].checked = val;
@@ -51,6 +54,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
         setStatus(newStatus);
     }
 
+    // po kliknięciu 'DALEJ', walidacja i przejście dalej
     const hendlerGoFoward = () => {
         // if (perm_1 && perm_2 && perm_3) {
 
@@ -92,7 +96,6 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             height: getTopPx(69)
         }
     })
-
 
     return (
         <SafeAreaView>

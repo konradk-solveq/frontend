@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import RadioBtn from './radiBtn';
+import RadioBtn from './radioBtn';
 
 import {
     initAppSize,
@@ -8,8 +8,8 @@ import {
 } from '../../helpers/layoutFoo';
 
 interface Props {
-    active: number,
-    listBtn: Array<Function>
+    active: number, // który w kolejości radiobuton jest aktywny
+    listBtn: Array<Function> // lista funkcji wukonywanych po wciśnięciu butona
 }
 
 const RadioPanel: React.FC<Props> = (props: Props) => {

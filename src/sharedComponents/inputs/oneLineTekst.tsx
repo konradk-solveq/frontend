@@ -3,14 +3,15 @@ import { StyleSheet, TextInput, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 
 interface Props {
-    onChangeText: Function,
-    validationOk: Function,
-    validationWrong: Function,
-    messageWrong: string,
-    placeholder: string,
-    value: string,
-    validationStatus: Function,
-    forceMessageWrong: string
+    // * wartości wymagane
+    onChangeText: Function, // * zrtorka do rodzica wartości inputu
+    validationOk: Function, // funkcja validujaca popraność value w inpucie, zwraca true/false, zmienia border na zielono przy true
+    validationWrong: Function, // waliująca błędny value w inpucie (bo to nie zawsze jest owrotność warunku popraności), ture/false, zmienia border na czerwno przy true
+    messageWrong: string, // * informacja pod imputem jeśli validationWrong zwraca true
+    placeholder: string, // * npis na inputem
+    value: string, // * zmienia value w inpucie
+    validationStatus: Function, // zwrotka dla obiektu rodzica: poprawna gdy validationOk zwraca true, inaczej false
+    forceMessageWrong: string // informacja o błędnej validacji przez rodica, wg validationStatus, nadrzędna nad messageWrong
 }
 
 const OneLineTekst: React.FC<Props> = (props: Props) => {

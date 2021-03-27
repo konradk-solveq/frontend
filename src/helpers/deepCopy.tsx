@@ -1,6 +1,9 @@
 // ***************************
 // https://github.com/MichalAniol/deepCopy/blob/master/index.js
 // MIT
+//
+// zamiast ... (destrukturyzacji) i składania arraja spowrotem.
+// unika błedów płykiej kopi na zanieżdżeniach arraya
 // ***************************
 
 const deepCopy = (obj) => {

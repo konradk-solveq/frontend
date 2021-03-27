@@ -32,7 +32,7 @@ interface Data {
 };
 
 interface Props {
-    navigation: any, // <<--- ask: Bartosz ? nie mam pojęcia ajk to typować, da się wogóle ?
+    navigation: any, // <<--- #askBartosz ? nie mam pojęcia ajk to typować, da się wogóle ?
     route: any,
     setBikeData: Function,
     getBikeData: Function,
@@ -54,7 +54,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
     const [canGoFoward, setCanGoFoward] = useState({ // sant poprawności danych w komponencie
         frameNumber: false,
         producer: false,
-        model: false, // <<--- ask: Bartosz ? czy lepeiej ten stan przechowywać w komponencie i odpytywać go callbackiem ?
+        model: false, // <<--- #askBartosz ? czy lepeiej ten stan przechowywać w komponencie i odpytywać go callbackiem ?
         size: false,
         color: false
     });
@@ -187,7 +187,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
                     <View style={styles.inputAndPlaceholder}>
                         <ListInputBtn
                             placeholder={I18n.t('BikeData-input-producer')}
-                            onpress={() => props.navigation.navigate('ListBikeData', {
+                            onpress={() => props.navigation.navigate('ListPageInput', {
                                 header: I18n.t('BikeData-input-producer-list-header'),
                                 list: I18n.t('BikeData-input-producer-list-data'),
                                 last: I18n.t('BikeData-input-producer-list-data-last'),
@@ -217,58 +217,31 @@ const BikeData: React.FC<Props> = (props: Props) => {
                         />
                     </View>
 
-                    {/* <View style={styles.inputAndPlaceholder}>
-                        <ListInputBtn
+                    <View style={styles.inputAndPlaceholder}>
+                        <OneLineTekst
                             placeholder={I18n.t('BikeData-input-size')}
                             onChangeText={(value: string) => hendleChangeDataValue('size', value)}
-                            onpress={() => props.navigation.navigate('ListBikeData', {
-                                header: I18n.t('BikeData-input-size-list-header'),
-                                list: [
-                                    'wzrost 163 cm - S (17”) 26’',
-                                    'wzrost 173 cm - M (18”) 26’',
-                                    'wzrost 182 cm - XL (19”) 26’'
-                                ],
-                                navigation: props.navigation,
-                                key: 'size'
-                            })}
+                            validationOk={hendleValidationOk}
+                            // validationWrong={hendleValidationWrong}
                             messageWrong={I18n.t('BikeData-input-wrong')}
                             value={data.size}
-                            valueName={I18n.t('BikeData-input-size-list')}
+                            validationStatus={(value: boolean) => handleSetCanGoFoard('size', value)}
+                            forceMessageWrong={messages.size}
                         />
-                    </View> */}
+                    </View>
 
-                    {/* <View style={styles.inputAndPlaceholder}>
-                        <ListInputBtn
+                    <View style={styles.inputAndPlaceholder}>
+                        <OneLineTekst
                             placeholder={I18n.t('BikeData-input-color')}
                             onChangeText={(value: string) => hendleChangeDataValue('color', value)}
-                            onpress={() => props.navigation.navigate('ListBikeData', {
-                                header: I18n.t('BikeData-input-color-list-header'),
-                                list: [
-                                    'biały',
-                                    'czarny',
-                                    'niebieski',
-                                    'zielony',
-                                    'czerwony',
-                                    'brązowy',
-                                    'żółty',
-                                    'różowy',
-                                    'grantowy',
-                                    'bordowy',
-                                    'kahki',
-                                    'turkusowy',
-                                    'błękitny',
-                                    'srebrny',
-                                    'złoty',
-                                    'magenda',
-                                ],
-                                navigation: props.navigation,
-                                key: 'color'
-                            })}
+                            validationOk={hendleValidationOk}
+                            // validationWrong={hendleValidationWrong}
                             messageWrong={I18n.t('BikeData-input-wrong')}
                             value={data.color}
-                            valueName={I18n.t('BikeData-input-color-list')}
+                            validationStatus={(value: boolean) => handleSetCanGoFoard('color', value)}
+                            forceMessageWrong={messages.color}
                         />
-                    </View> */}
+                    </View>
 
                     <View style={styles.botton}>
                         <BigRedBtn

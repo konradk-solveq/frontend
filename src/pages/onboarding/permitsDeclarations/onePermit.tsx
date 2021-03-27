@@ -17,11 +17,12 @@ import CheckBox from '../../../sharedComponents/checkBox/checkBox';
 
 
 interface Props {
-    checked: boolean,
-    wrong: boolean,
-    getCheck: Function,
-    text: string,
-    marginTop: number,
+    // * wartości wymagane
+    checked: boolean, // * zmiana wymsza zaznaczenie przez rodzica
+    wrong: boolean, // * walidacja prze rodzica wyśle true wyświetli się wiadomość pod spodem, widomość pobierana z tłuaczeń
+    getCheck: Function, // * zwrotka o zaznaczeiu dla rodzica
+    text: string, // * tekst zgody
+    marginTop: number, // *
     navigation: any
 };
 

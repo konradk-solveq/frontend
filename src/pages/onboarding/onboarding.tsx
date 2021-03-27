@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Dimensions, View, Animated, Easing } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import ImageSvg from 'react-native-remote-svg';
+
 
 import {
     setAppSize,
@@ -15,7 +17,6 @@ import SplashScreen from './splashScreen/splashScreen';
 import Screen_1 from './turtorialFirstRun/screen_1/screen_1';
 import Screen_2 from './turtorialFirstRun/screen_2/screen_2';
 import Screen_3 from './turtorialFirstRun/screen_3/screen_3';
-import DashLine from './dashLine';
 import StaticElements from './staticElements';
 
 
@@ -33,19 +34,14 @@ const Onboarding: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
-    const coverPos = useRef(new Animated.Value(-(ww / 5))).current;
-    const linePos = useRef(new Animated.Value(0)).current;
-    const [coverOpa, setCoverOpa] = useState(true);
-
-    setObjSize(ww * 4.35, 0.19 * ww * 4.35);
+    setObjSize(ww * 4, 0.257 * ww * 4.35);
     const line = {
         position: 'absolute',
         width: getWidth(),
         height: getRelativeHeight(),
         left: -ww * .05,
-        top: getTop(400),
+        top: getTop(280),
     }
-    const lineMove = -wh * .2;
 
     const list: Array<Function> = [
         () => { setBoard(1) },
@@ -55,27 +51,8 @@ const Onboarding: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         if (board == 0) {
-            setTimeout(() => {
-                setBoard(1);
-                setCoverOpa(false)
-            }, 3500)
+            setTimeout(() => { setBoard(1); }, 3500)
         }
-        // setBoard(0);
-
-        Animated.timing(coverPos, {
-            toValue: ww,
-            duration: 3000,
-            easing: Easing.linear,
-            useNativeDriver: true
-        }).start();
-
-        Animated.timing(linePos, {
-            toValue: lineMove,
-            duration: 2000,
-            delay: 2800,
-            easing: Easing.linear,
-            useNativeDriver: true
-        }).start();
     }, []);
 
     useEffect(() => {
@@ -144,6 +121,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
             <Animated.View style={[styles.container, {
                 transform: [{ translateX: position }]
             }]}>
+
                 <View style={styles.screen}>
                     <SplashScreen></SplashScreen>
                 </View>
@@ -159,6 +137,9 @@ const Onboarding: React.FC<Props> = (props: Props) => {
                 <View style={styles.screen}>
                     <Screen_3></Screen_3>
                 </View>
+
+
+
             </Animated.View>
 
 
@@ -174,18 +155,27 @@ const Onboarding: React.FC<Props> = (props: Props) => {
                 ></StaticElements>
             </Animated.View>
 
+            <View style={styles.line}>
+                <ImageSvg
+                    source={require('./dashLine.svg')}
+                    style={{ width: "100%", height: "100%" }}
+                />
+            </View>
 
-            <Animated.View style={[styles.line, {
+
+            {/* <Animated.View style={[styles.line, {
                 transform: [{ translateX: position }]
             }]}>
-                {/* <Animated.View style={[styles.coverFill, {
+                <Animated.View style={[styles.coverFill, {
                     transform: [{ translateY: linePos }]
                 }]}>
                     <DashLine ></DashLine>
-                </Animated.View> */}
-            </Animated.View>
+                </Animated.View>
+            </Animated.View> */}
 
-            {coverOpa ? <Animated.View style={[styles.cover, {
+
+
+            {/* {coverOpa ? <Animated.View style={[styles.cover, {
                 transform: [{ translateX: coverPos }]
             }]}>
                 <LinearGradient
@@ -195,7 +185,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
                 />
-            </Animated.View> : null}
+            </Animated.View> : null} */}
 
         </>
     )
