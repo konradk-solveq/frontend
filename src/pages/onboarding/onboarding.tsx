@@ -33,21 +33,16 @@ const Onboarding: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
-    setObjSize(ww * 4.27, 0.4 * ww * 4.35);
-    const line = {
-        position: 'absolute',
-        width: getWidth(),
-        height: getRelativeHeight(),
-        left: -ww * .05,
-        top: getTop(90),
-    }
 
+
+    // list funcji na przycisków radio panelu
     const list: Array<Function> = [
         () => { setBoard(1) },
         () => { setBoard(2) },
         () => { setBoard(3) }
     ]
 
+    // przewinięcie ekranu startowego
     useEffect(() => {
         if (board == 0) {
             setTimeout(() => { setBoard(1); }, 3500)
@@ -55,7 +50,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
     }, []);
 
     useEffect(() => {
-        Animated.timing(position, {
+        Animated.timing(position, { // animacja przewijania
             toValue: -ww * board,
             duration: 500,
             easing: Easing.quad,
@@ -63,7 +58,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
         }).start();
 
         if (board > 0) {
-            Animated.timing(opacity, {
+            Animated.timing(opacity, { // animacje pojawiania sie klawiszy w turtorialu poza ekranem startowym
                 toValue: 1,
                 duration: 500,
                 easing: Easing.cubic,
@@ -78,6 +73,15 @@ const Onboarding: React.FC<Props> = (props: Props) => {
             }).start();
         }
     }, [board])
+
+    setObjSize(ww * 4.27, 0.4 * ww * 4.35);
+    const line = {
+        position: 'absolute',
+        width: getWidth(),
+        height: getRelativeHeight(),
+        left: -ww * .05,
+        top: getTop(90),
+    }
 
     setObjSize(414, 175);
     const cover = {
@@ -139,6 +143,14 @@ const Onboarding: React.FC<Props> = (props: Props) => {
 
             </Animated.View>
 
+            <Animated.View style={[styles.line, {
+                transform: [{ translateX: position }]
+            }]}>
+                <Image
+                    source={require('./dashLine.svg')}
+                    style={{ width: "100%", height: "100%" }}
+                />
+            </Animated.View>
 
             <Animated.View style={[styles.screen, styles.static, {
                 opacity: opacity
@@ -150,15 +162,6 @@ const Onboarding: React.FC<Props> = (props: Props) => {
                     list={list}
                     setBoard={setBoard}
                 ></StaticElements>
-            </Animated.View>
-
-            <Animated.View style={[styles.line, {
-                transform: [{ translateX: position }]
-            }]}>
-                <Image
-                    source={require('./dashLine.svg')}
-                    style={{ width: "100%", height: "100%" }}
-                />
             </Animated.View>
         </>
     )

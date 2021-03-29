@@ -58,8 +58,10 @@ const StaticElements: React.FC<Props> = (props: v) => {
                     onpress={() => {
                         if (props.board < props.list.length) {
                             props.setBoard(props.board + 1)
+                            console.log('%c props.board:', props.board)
                         } else {
                             props.goFoward()
+                            console.log('%c goFoward')
                         }
                     }}
                 />

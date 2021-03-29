@@ -35,7 +35,7 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
     const [inputName, setInputName] = useState('');
 
     useEffect(() => {
-        props.getName();
+        props.getName();  // <<--- #askBartosz ? to jest myk na nieupdatujący sie props. Szukałem rozwiazania i nie tylko ja miałem problem z połączeniem localstorage z reduxem. A to jest najsprytniejsze obejcie tego problemu. Ale może masz pomysł co tu moż być nie tak?
         if (typeof props.name == 'string') setInputName(props.name);
     }, [props.name])
 
