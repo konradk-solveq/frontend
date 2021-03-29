@@ -75,7 +75,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
     }, [board])
 
     setObjSize(ww * 4.27, 0.4 * ww * 4.35);
-    const line = {
+    const line:any = {
         position: 'absolute',
         width: getWidth(),
         height: getRelativeHeight(),
@@ -84,7 +84,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
     }
 
     setObjSize(414, 175);
-    const cover = {
+    const cover:any = {
         position: 'absolute',
         width: ww * 1.2,
         height: getRelativeHeight(),
