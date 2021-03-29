@@ -11,6 +11,9 @@ import {
 import BikeImg from './bikeImg';
 
 const Screen_1 = () => {
+
+    const trans = I18n.t('Onboarding');
+
     initAppSize();
 
     let styles = StyleSheet.create({
@@ -40,7 +43,7 @@ const Screen_1 = () => {
         <SafeAreaView style={styles.container}>
 
             <Text style={[styles.bigText, styles.reg40]}>
-                {I18n.t('Screen_1-title')}
+                {trans.title_1}
             </Text>
 
             <View style={styles.bikeImg}>
@@ -48,7 +51,7 @@ const Screen_1 = () => {
             </View>
 
             <Text style={[styles.regText, styles.light18]}>
-                {I18n.t('Screen_1-text')}
+                {trans.text_1}
             </Text>
 
         </SafeAreaView>

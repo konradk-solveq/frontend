@@ -21,7 +21,10 @@ interface Props {
     goFoward: Function
 }
 
-const StaticElements: React.FC<Props> = (props: v) => {
+const StaticElements: React.FC<Props> = (props: Props) => {
+
+    const trans = I18n.t('Onboarding');
+
     initAppSize()
     setObjSize(41, 23);
     const skip = {
@@ -48,20 +51,18 @@ const StaticElements: React.FC<Props> = (props: v) => {
             ></PanelProps>
 
             <View style={styles.skip}>
-                <TranspLightBtn title={I18n.t('Onboarding-pomin')}
+                <TranspLightBtn title={trans.skip}
                     onpress={() => props.goFoward()} />
             </View>
 
             <View style={styles.redBtn}>
                 <BigRedBtn
-                    title={I18n.t('Onboarding-dalej')}
+                    title={trans.goFoward}
                     onpress={() => {
                         if (props.board < props.list.length) {
                             props.setBoard(props.board + 1)
-                            console.log('%c props.board:', props.board)
                         } else {
                             props.goFoward()
-                            console.log('%c goFoward')
                         }
                     }}
                 />

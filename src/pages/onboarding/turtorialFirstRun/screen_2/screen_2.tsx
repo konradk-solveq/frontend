@@ -8,6 +8,9 @@ import {
 } from '../../../../helpers/layoutFoo';
 
 const Screen_2 = () => {
+
+    const trans = I18n.t('Onboarding');
+
     initAppSize();
 
     const styles = StyleSheet.create({
@@ -36,11 +39,11 @@ const Screen_2 = () => {
         <SafeAreaView style={styles.container}>
 
             <Text style={[styles.bigText, styles.reg40]}>
-                {I18n.t('Screen_2-title')}
+                {trans.title_2}
             </Text>
 
             <Text style={[styles.regText, styles.light18]}>
-                {I18n.t('Screen_2-text')}
+                {trans.text_2}
             </Text>
 
         </SafeAreaView>

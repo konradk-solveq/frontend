@@ -32,6 +32,8 @@ interface Props {
 
 const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
 
+    const trans = I18n.t('GetToKnowEachOther');
+
     const [inputName, setInputName] = useState('');
 
     useEffect(() => {
@@ -90,13 +92,13 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
             </View>
 
             <Text style={[styles.text, styles.light30]}>
-                {I18n.t('GetToKnowEachOther-text')}
+                {trans.title}
             </Text>
 
             <View style={styles.inputAndPlaceholder}>
                 <View style={styles.input}>
                     <OneLineTekst
-                        placeholder={I18n.t('GetToKnowEachOther-placeholder')}
+                        placeholder={trans.placeholder}
                         onChangeText={setInputName}
                         validationOk={hendleValidationOk}
                         value={inputName}
@@ -107,7 +109,7 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
             <View style={styles.bottons}>
                 <View style={styles.btn}>
                     <BigWhiteBtn
-                        title={I18n.t('GetToKnowEachOther-pomin')}
+                        title={trans.skip}
                         onpress={() => {
                             props.setName('');
                             props.navigation.navigate('TurtorialNFC')
@@ -117,7 +119,7 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
 
                 <View style={styles.btn}>
                     <BigRedBtn
-                        title={I18n.t('GetToKnowEachOther-dalej')}
+                        title={trans.goFoward}
                         onpress={() => {
                             props.setName(inputName);
                             props.navigation.navigate('TurtorialNFC');

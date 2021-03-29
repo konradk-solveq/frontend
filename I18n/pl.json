@@ -1,17 +1,30 @@
 {
-    "Screen_1-title": "Jesteś gotowy, poznaj Świat Kross",
-    "Screen_1-text": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-    "Screen_2-title": "Poznaj swój rower!",
-    "Screen_2-text": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-    "Screen_3-title": "Mapa zawsze pod ręką.",
-    "Screen_3-text": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-    "Onboarding-dalej": "DALEJ",
-    "Onboarding-pomin": "pomiń",
-    "GetToKnowEachOther-text": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
-    "GetToKnowEachOther-placeholder": "Podaj imię lub pseudonim",
-    "GetToKnowEachOther-pomin": "POMIŃ",
-    "GetToKnowEachOther-dalej": "DALEJ",
+    "Onboarding": {
+        "goFoward": "DALEJ",
+        "skip": "pomiń",
+        "title_1": "Jesteś gotowy, poznaj Świat Kross",
+        "text_1": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+        "title_2": "Poznaj swój rower!",
+        "text_2": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+        "title_3": "Mapa zawsze pod ręką.",
+        "text_3": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+    },
+    "GetToKnowEachOther": {
+        "title": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
+        "placeholder": "Podaj imię lub pseudonim",
+        "skip": "POMIŃ",
+        "goFoward": "DALEJ"
+    },
     "OneLineTekst-error-null": "Wartość nie może być null-em",
+    "TurtorialNFC": {
+        "header": "Identyfikacja roweru",
+        "defaultName": "rowerzysto",
+        "title_1": "Witaj",
+        "title_2": ", mam pierwsze zadanie dla Ciebie :)",
+        "tekst": "Włącz NFC w telefonie i zbliż go do naklejki umieszczonej na ramie roweru KROSS.\n\nJeśli nie widzisz naklejki lub nie obsługujesz NFC, wprowadź ręcznie numer ramy.",
+        "btnNfc": "SKANUJ NAKLEJKĘ NFC",
+        "btnHand": "CHCĘ WPROWADZIĆ RĘCZNIE"
+    },
     "TurtorialNFC-title": "Identyfikacja roweru",
     "TurtorialNFC-deafult-name": "rowerzysto",
     "TurtorialNFC-title-1": "Witaj",
@@ -23,17 +36,21 @@
     "WrongScan-tekst-1": "Rama o numerze ",
     "WrongScan-tekst-2": " została już wcześniej dodana.\n\nSprawdź czy numer ramy jest poprawny. W przypadku dalszych problemów skontaktuj się z nami 29 752 11 00.",
     "WrongScan-btn-again": "SPRÓBUJ JESZCZE RAZ",
-    "AddingByNumber-title": "Identyfikacja roweru",
-    "AddingByNumber-text": "Podaj numer ramy Twojego roweru.",
-    "AddingByNumber-placeholder": "Numer ramy",
-    "AddingByNumber-message-wrong": "Nieprawidłowe znaki",
-    "AddingByNumber-info-btn": "Gdzie znajdę numer ramy?",
-    "AddingByNumber-btn": "DALEJ",
-    "AddingInfo-title": "Gdzie jest numer ramy?",
-    "AddingInfo-btn-kross": "Kross",
-    "AddingInfo-btn-other": "Inny producent",
-    "AddingInfo-text-kross": "Numer ramy (numer seryjny) znajduje się na małej naklejce w okolicach suportu - dużego koła zębatego.\n\nNumer ramy można znaleźć również na e-gwarancji pod datą sprzedaży.",
-    "AddingInfo-text-other": "Numer ramy (numer seryjny) u innych producentów znajdziesz:\n- w okolicach korby,\n- na dolnej rurze ramy,\n- na dolnej rurze trójkąta tylnego,\n- na wsporniku kierownicy.",
+    "AddingByNumber": {
+        "head": "Identyfikacja roweru",
+        "text": "Podaj numer ramy Twojego roweru.",
+        "placeholder": "Numer ramy",
+        "messageWrong": "Nieprawidłowe znaki",
+        "infoBtn": "Gdzie znajdę numer ramy?",
+        "btn": "DALEJ"
+    },
+    "AddingInfo": {
+        "head": "Gdzie jest numer ramy?",
+        "btnKross": "Kross",
+        "btnOther": "Inny producent",
+        "textKross": "Numer ramy (numer seryjny) znajduje się na małej naklejce w okolicach suportu - dużego koła zębatego.\n\nNumer ramy można znaleźć również na e-gwarancji pod datą sprzedaży.",
+        "textOther": "Numer ramy (numer seryjny) u innych producentów znajdziesz:\n- w okolicach korby,\n- na dolnej rurze ramy,\n- na dolnej rurze trójkąta tylnego,\n- na wsporniku kierownicy."
+    },
     "Permits-header": "Zgody i oświadczenia",
     "Permits-title": "Potrzebujemy wymaganych zgód, aby zarejestrować konto w Kross S.A.",
     "Permits-text": "* pola obowiązkowe",
@@ -67,7 +84,6 @@
     "Regulations-teks-2": "1. Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób sprzedaży prowadzonej przez KROSS S.A. z siedzibą w Przasnyszu, za pośrednictwem sklepu internetowegokross.eu (zwanego dalej: „Sklepem Internetowym”) oraz określa zasady i warunki świadczenia przez KROSS S.A. z siedzibą w Przasnyszu usług nieodpłatnych drogą elektroniczną",
     "Regulations-paragraph-3": "Definicje",
     "Regulations-teks-3": "1. Dni robocze - oznacza dni tygodnia od poniedziałku do piątku z wyłączeniem dni ustawowo wolnych od pracy.\n\n2. Dostawa - oznacza czynność faktyczną polegającą na dostarczeniu Klientowi przez Sprzedawcę, za pośrednictwem Dostawcy, Towaru określonego w zamówieniu.\n\n3. Dostawca - oznacza podmiot, z którym współpracuje Sprzedawca w zakresie dokonywania Dostawy Towarów:\n\na) Autoryzowane Punkty Sprzedaży, których lista dostępna jest na Stronie Internetowej Sklepu;\n\nb) firmę kurierską;\n\nc) InPost Paczkomaty Sp. z o.o. z siedzibą w Krakowie, świadcząca usługi Dostawy i obsługi systemu skrytek pocztowych (Paczkomat).\n\n4. Hasło - oznacza ciąg znaków literowych, cyfrowych lub innych wybranych przez Klienta podczas Rejestracji w Sklepie Internetowym, wykorzystywanych w celu zabezpieczenia dostępu do Konta Klienta w Sklepie Internetowym.",
-
     "BikeData-header": "Identyfikacja roweru",
     "BikeData-title": "Hej, to nie jest rower Kross.\nNic nie szkodzi, podaj dane swojego roweru.",
     "BikeData-input-frame-num": "Numer ramy",
@@ -103,8 +119,5 @@
     "BikeData-input-wrong": "Musisz wybrać",
     "BikeData-btn-wrong": "Pole wymagane",
     "BikeData-btn": "DALEJ",
-
     "BikeData-aaaaaa": "_____"
-
-
 }

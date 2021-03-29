@@ -9,6 +9,8 @@ import {
 
 const Screen_2 = () => {
 
+    const trans = I18n.t('Onboarding');
+
     initAppSize();
 
     const styles = StyleSheet.create({
@@ -37,11 +39,11 @@ const Screen_2 = () => {
         <SafeAreaView style={styles.container}>
 
             <Text style={[styles.bigText, styles.reg40]}>
-                {I18n.t('Screen_3-title')}
+                {trans.title_3}
             </Text>
 
             <Text style={[styles.regText, styles.light18]}>
-                {I18n.t('Screen_3-text')}
+                {trans.text_3}
             </Text>
 
         </SafeAreaView>

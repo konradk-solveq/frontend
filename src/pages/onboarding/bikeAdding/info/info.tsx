@@ -27,6 +27,8 @@ interface Props {
 
 const Info: React.FC<Props> = (props: Props) => {
 
+    const trans = I18n.t('AddingInfo')
+
     const [krossBike, setKrossBike] = useState(true);
 
     initAppSize();
@@ -68,13 +70,13 @@ const Info: React.FC<Props> = (props: Props) => {
 
             <View style={styles.bottons}>
                 <TypicalRedBtn
-                    title={I18n.t('AddingInfo-btn-kross')}
+                    title={trans.btnKross}
                     active={krossBike}
                     onpress={() => setKrossBike(true)}
                 ></TypicalRedBtn>
 
                 <TypicalRedBtn
-                    title={I18n.t('AddingInfo-btn-other')}
+                    title={trans.btnOther}
                     active={!krossBike}
                     onpress={() => setKrossBike(false)}
                 ></TypicalRedBtn>
@@ -85,13 +87,13 @@ const Info: React.FC<Props> = (props: Props) => {
             </View>
 
             <Text style={[styles.text, styles.light18]}>
-                {krossBike ? I18n.t('AddingInfo-text-kross')
-                    : I18n.t('AddingInfo-text-other')}
+                {krossBike ? trans.textKross
+                    : trans.textOther}
             </Text>
 
             <StackHeader
                 onpress={() => props.navigation.navigate('AddingByNumber')}
-                inner={I18n.t('AddingInfo-title')}
+                inner={trans.head}
             ></StackHeader>
 
         </SafeAreaView>

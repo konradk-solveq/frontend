@@ -199,7 +199,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
                             value={data.producer}
                             valueName={I18n.t('BikeData-input-producer-list')}
 
-                            validationStatus={(value: boolean) => handleSetCanGoFoard('model', value)}
+                            validationStatus={(value: boolean) => handleSetCanGoFoard('producer', value)}
                             forceMessageWrong={messages.producer}
                         />
                     </View>
@@ -245,7 +245,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.botton}>
                         <BigRedBtn
-                            title={I18n.t('AddingByNumber-btn')}
+                            title={I18n.t('BikeData-btn')}
                             onpress={() => hendleGoFoward()}
                         ></BigRedBtn>
                     </View>

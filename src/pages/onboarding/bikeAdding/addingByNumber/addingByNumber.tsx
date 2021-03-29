@@ -33,31 +33,38 @@ interface Props {
 
 const AddingByNumber: React.FC<Props> = (props: Props) => {
 
+    const trans = I18n.t('AddingByNumber')
+
     const [inputFrame, setInputFrame] = useState('');
     const [canGoFoward, setCanGoFoward] = useState(false);
     const [forceMessageWrong, setForceMessageWrong] = useState('');
 
+    // do pobrania nazwy użytkownika zz local sorage
     useEffect(() => {
         props.getFrame();
         if (typeof props.frame == 'string') setInputFrame(props.frame);
     }, [props.frame])
 
+    // do wstawiania wartości do inputa i reset powiadomień o błdnym wypełnieniu
     const hendleInputFrame = (value: string) => {
         setInputFrame(value);
         setForceMessageWrong('')
     }
 
+    // valizadja poprawności inputa
     const hendleValidationOk = (value: string) => {
-        if (value.length > 8) return true;
+        if (value.length > 4) return true;
         return false
     }
 
+    // validacja błędów, tu: czy wszystkie znaki są cyframi
     const hendleValidationWrong = (value: string) => {
         const reg = new RegExp('^[0-9]+$');
         if (value.length > 0 && !reg.test(value)) return true;
         return false
     }
 
+    // walidacja po naciśnięciu przyciku 'Dalej'
     const hendleGoFoward = () => {
         if (canGoFoward) {
             props.navigation.navigate('BikeData')
@@ -92,7 +99,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: "white" 
+            backgroundColor: "white"
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351, 100),
         title: getPosAndWid(334, 51, 138),
@@ -111,27 +118,27 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.navigate('TurtorialNFC')}
-                inner={I18n.t('AddingByNumber-title')}
+                inner={trans.head}
             ></StackHeader>
 
             <Text style={[styles.title, styles.light30]}>
-                {I18n.t('AddingByNumber-text')}
+                {trans.text}
             </Text>
 
             <View style={styles.inputAndPlaceholder}>
                 <OneLineTekst
-                    placeholder={I18n.t('AddingByNumber-placeholder')}
+                    placeholder={trans.placeholder}
                     onChangeText={hendleInputFrame}
                     validationOk={hendleValidationOk}
                     validationWrong={hendleValidationWrong}
-                    messageWrong={I18n.t('AddingByNumber-message-wrong')}
+                    messageWrong={trans.messageWrong}
                     value={inputFrame}
                     validationStatus={setCanGoFoward}
                     forceMessageWrong={forceMessageWrong}
                 />
                 <View style={styles.infoBtn}>
                     <TranspLightBtn
-                        title={I18n.t('AddingByNumber-info-btn')}
+                        title={TranspLightBtn.infoBtn}
                         algin='right'
                         color='#3587ea'
                         onpress={() => props.navigation.navigate('AddingInfo')}
@@ -141,7 +148,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
             <View style={styles.botton}>
                 <BigRedBtn
-                    title={I18n.t('AddingByNumber-btn')}
+                    title={trans.btn}
                     onpress={() => hendleGoFoward()}
                 ></BigRedBtn>
             </View>
