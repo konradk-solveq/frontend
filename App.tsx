@@ -3,7 +3,7 @@ import type { Node } from 'react';
 import { SafeAreaView } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from "react-redux";
-import store from './src/store/store';
+import storage from './src/storage/storage';
 import { I18n_init } from './I18n/I18n'
 import startAplication from './src/pages/startAplication/'
 import { NavigationContainer } from '@react-navigation/native';
@@ -46,7 +46,7 @@ const App: () => Node = () => {
 	};
 
 	return (
-		<Provider store={store}>
+		<Provider store={storage}>
 			<NavigationContainer >
 				<Stack.Navigator
 					headerMode="none"
