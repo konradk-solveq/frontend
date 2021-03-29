@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
 import Image from 'react-native-remote-svg';
 
-import { setUserName, getUserName } from '../../../../store/actions/index';
+import { setUserName, getUserName } from '../../../../storage/actions/index';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';

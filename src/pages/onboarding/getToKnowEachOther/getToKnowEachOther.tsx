@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
-import { setUserName, getUserName } from '../../../store/actions/index';
+import { setUserName, getUserName } from '../../../storage/actions/index';
 
 import {
     initAppSize,

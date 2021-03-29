@@ -5,7 +5,7 @@ import { StyleSheet, Dimensions, SafeAreaView, ScrollView, View, Text } from 're
 import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
 
-import { setFrameNumber, getFrameNumber } from '../../../store/actions/index';
+import { setFrameNumber, getFrameNumber } from '../../../storage/actions/index';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
