@@ -13,7 +13,7 @@ znajdują się w katalogu: __I18n__
 ### Wświetlanie SVG
 
 w bilbjotece: __node_modules\react-native-remote-svg__ w pliku __SvgImage.js__ zmieniono:
-w linii 40: __componentWillReceiveProps__ na __UNSAFE_componentWillReceiveProps__. Jesli okaże się to problemem, przepiszę ten dodatek na hooki.
+w linii 40: __componentWillReceiveProps__ na __UNSAFE_componentWillReceiveProps__. Jesli okaże się to problemem, przepiszę tą bibjotekę na hooki.
 
 
 ### Instalacja dependencji

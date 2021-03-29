@@ -28,6 +28,8 @@ interface Props {
 
 const OnePermit: React.FC<Props> = (props: Props) => {
 
+   const trans = I18n.t('Permits');
+
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
@@ -93,13 +95,13 @@ const OnePermit: React.FC<Props> = (props: Props) => {
                 <Hyperlink 
                     linkStyle={{ color: '#3587ea' }}
                     linkText={(url: string) => {
-                        if (url == I18n.t('Permits-url-regulations')) return I18n.t('Permits-hiper-regulations');
-                        if (url == I18n.t('Permits-url-privacy-policy')) return I18n.t('Permits-hiper-privacy-policy');
+                        if (url == trans.urlRegulations) return trans.hiperRegulations;
+                        if (url ==trans.urlPrivacyPolicy) return trans.hiperPrivacyPolicy;
                         return url
                     }}
-                    onPress={(e: string) => {
-                        if (e == I18n.t('Permits-url-regulations')) props.navigation.navigate('Regulations');
-                        if (e == I18n.t('Permits-url-privacy-policy')) props.navigation.navigate('PrivacyPolicy');
+                    onPress={(url: string) => {
+                        if (url == trans.urlRegulations) props.navigation.navigate('Regulations');
+                        if (url == trans.urlPrivacyPolicy) props.navigation.navigate('PrivacyPolicy');
                     }}
                 >
                     <Text style={styles.text}>
@@ -108,7 +110,7 @@ const OnePermit: React.FC<Props> = (props: Props) => {
                 </Hyperlink>
 
                 <Text style={styles.wrong}>
-                    {props.wrong ? I18n.t('Permits-wrong') : ''}
+                    {props.wrong ? trans.wrong : ''}
                 </Text>
 
             </View>

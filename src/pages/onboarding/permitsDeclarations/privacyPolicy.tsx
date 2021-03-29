@@ -20,6 +20,8 @@ interface Props {
 
 const PrivacyPolicy: React.FC<Props> = (props: Props) => {
 
+    const trans = I18n.t('PrivacyPolicy')
+
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
@@ -61,11 +63,11 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
                 <ScrollView>
 
                     <Text style={[styles.text, styles.reg23]}>
-                        {I18n.t('PrivacyPolicy-tilte')}
+                        {trans.title}
                     </Text>
 
                     <Text style={[styles.text, styles.light18]}>
-                        {I18n.t('PrivacyPolicy-text')}
+                        {trans.text}
                     </Text>
 
                 </ScrollView>
@@ -73,7 +75,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.navigate('PermitsDeclarations')}
-                inner={I18n.t('PrivacyPolicy-header')}
+                inner={trans.header}
                 getHeight={setheadHeightt}
             ></StackHeader>
 

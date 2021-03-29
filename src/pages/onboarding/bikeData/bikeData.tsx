@@ -41,6 +41,8 @@ interface Props {
 
 const BikeData: React.FC<Props> = (props: Props) => {
 
+    const trans = I18n.t('BikeData');
+
     let startData: Data = {
         frameNumber: '',
         producer: '',
@@ -86,7 +88,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
             if (canGoFoward[key]) {
                 newMessages[key] = '';
             } else {
-                newMessages[key] = I18n.t('BikeData-btn-wrong'),
+                newMessages[key] = trans.btnWrong,
                 goFoward = false;
             }
         }
@@ -168,16 +170,16 @@ const BikeData: React.FC<Props> = (props: Props) => {
                 <ScrollView>
 
                     <Text style={[styles.title, styles.light30]}>
-                        {I18n.t('BikeData-title')}
+                        {trans.title}
                     </Text>
 
                     <View style={styles.inputAndPlaceholder}>
                         <OneLineTekst
-                            placeholder={I18n.t('BikeData-input-frame-num')}
+                            placeholder={trans.frameNum}
                             onChangeText={(value: string) => hendleChangeDataValue('frameNumber', value)}
                             validationOk={hendleValidationOk}
                             // validationWrong={hendleValidationWrong}
-                            messageWrong={I18n.t('BikeData-input-wrong')}
+                            messageWrong={trans.wrong}
                             value={data.frameNumber}
                             validationStatus={(value: boolean) => handleSetCanGoFoard('frameNumber', value)}
                             forceMessageWrong={messages.frameNumber}
@@ -186,18 +188,18 @@ const BikeData: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.inputAndPlaceholder}>
                         <ListInputBtn
-                            placeholder={I18n.t('BikeData-input-producer')}
+                            placeholder={trans.producer.title}
                             onpress={() => props.navigation.navigate('ListPageInput', {
-                                header: I18n.t('BikeData-input-producer-list-header'),
-                                list: I18n.t('BikeData-input-producer-list-data'),
-                                last: I18n.t('BikeData-input-producer-list-data-last'),
+                                header: trans.producer.listHeader,
+                                list: trans.producer.listData,
+                                last: trans.producer.listDataLast,
                                 key: 'producer',
                                 backTo: 'BikeData'
                             })}
                             validationOk={hendleValidationOk}
-                            messageWrong={I18n.t('BikeData-input-wrong')}
+                            messageWrong={trans.wrong}
                             value={data.producer}
-                            valueName={I18n.t('BikeData-input-producer-list')}
+                            valueName={trans.producer.list}
 
                             validationStatus={(value: boolean) => handleSetCanGoFoard('producer', value)}
                             forceMessageWrong={messages.producer}
@@ -206,11 +208,11 @@ const BikeData: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.inputAndPlaceholder}>
                         <OneLineTekst
-                            placeholder={I18n.t('BikeData-input-model')}
+                            placeholder={trans.model}
                             onChangeText={(value: string) => hendleChangeDataValue('model', value)}
                             validationOk={hendleValidationOk}
                             // validationWrong={hendleValidationWrong}
-                            messageWrong={I18n.t('BikeData-input-wrong')}
+                            messageWrong={trans.wrong}
                             value={data.model}
                             validationStatus={(value: boolean) => handleSetCanGoFoard('model', value)}
                             forceMessageWrong={messages.model}
@@ -219,11 +221,11 @@ const BikeData: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.inputAndPlaceholder}>
                         <OneLineTekst
-                            placeholder={I18n.t('BikeData-input-size')}
+                            placeholder={trans.size}
                             onChangeText={(value: string) => hendleChangeDataValue('size', value)}
                             validationOk={hendleValidationOk}
                             // validationWrong={hendleValidationWrong}
-                            messageWrong={I18n.t('BikeData-input-wrong')}
+                            messageWrong={trans.wrong}
                             value={data.size}
                             validationStatus={(value: boolean) => handleSetCanGoFoard('size', value)}
                             forceMessageWrong={messages.size}
@@ -232,11 +234,11 @@ const BikeData: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.inputAndPlaceholder}>
                         <OneLineTekst
-                            placeholder={I18n.t('BikeData-input-color')}
+                            placeholder={trans.color}
                             onChangeText={(value: string) => hendleChangeDataValue('color', value)}
                             validationOk={hendleValidationOk}
                             // validationWrong={hendleValidationWrong}
-                            messageWrong={I18n.t('BikeData-input-wrong')}
+                            messageWrong={trans.wrong}
                             value={data.color}
                             validationStatus={(value: boolean) => handleSetCanGoFoard('color', value)}
                             forceMessageWrong={messages.color}
@@ -245,7 +247,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.botton}>
                         <BigRedBtn
-                            title={I18n.t('BikeData-btn')}
+                            title={trans.btn}
                             onpress={() => hendleGoFoward()}
                         ></BigRedBtn>
                     </View>
@@ -257,7 +259,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.goBack()}
-                inner={I18n.t('BikeData-header')}
+                inner={trans.header}
                 getHeight={setHeadHeightt}
             ></StackHeader>
         </SafeAreaView>

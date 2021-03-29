@@ -19,6 +19,8 @@ interface Props {
 
 const Regulations: React.FC<Props> = (props: Props) => {
 
+    const trans = I18n.t('Regulations');
+
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
@@ -61,27 +63,27 @@ const Regulations: React.FC<Props> = (props: Props) => {
                 <ScrollView>
 
                     <Text style={[styles.text, styles.reg23, { marginTop: getTop(50) }]}>
-                        {I18n.t('Regulations-title')}
+                        {trans.title}
                     </Text>
 
                     <Text style={[styles.text,styles.light18, { marginTop: getTop(15) }]}>
-                        {I18n.t('Regulations-teks-1')}
+                        {trans.text_1}
                     </Text>
 
                     <Text style={[styles.text, styles.reg18, { marginTop: getTop(30) }]}>
-                        {I18n.t('Regulations-paragraph-2')}
+                        {trans.paragraph_2}
                     </Text>
 
                     <Text style={[styles.text,styles.light18, { marginTop: getTop(15) }]}>
-                        {I18n.t('Regulations-teks-2')}
+                        {trans.text_3}
                     </Text>
 
                     <Text style={[styles.text, styles.reg18, { marginTop: getTop(53) }]}>
-                        {I18n.t('Regulations-paragraph-3')}
+                        {trans.paragraph_3}
                     </Text>
 
                     <Text style={[styles.text, styles.light18, { marginTop: getTop(15), marginBottom: getTopPx(100) }]}>
-                        {I18n.t('Regulations-teks-3')}
+                        {trans.text_3}
                     </Text>
 
                 </ScrollView>
@@ -89,7 +91,7 @@ const Regulations: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.navigate('PermitsDeclarations')}
-                inner={I18n.t('Regulations-header')}
+                inner={trans.header}
                 getHeight={setheadHeightt}
             ></StackHeader>
 

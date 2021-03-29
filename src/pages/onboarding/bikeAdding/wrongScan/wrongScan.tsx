@@ -1,14 +1,36 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, Dimensions, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import Image from './image';
 
 import {
+    setAppSize,
     initAppSize,
-    getPosAndWid,
+    setObjSize,
+    getCenterLeft,
+    getCenterLeftPx,
+    getCenterTop,
+    getLeft,
+    getTop,
+    getTopPx,
+    getWidth,
+    getWidthOf,
+    getWidthPx,
+    getWidthPxOf,
+    getHeight,
+    getHeightPx,
+    getRelativeWidth,
+    getRelativeHeight,
     getStandard,
+    getStandardPx,
+    getPerfect,
+    getPerfectPx,
+    getPosStaticHeight,
+    getOnlyPos,
+    getPosAndWid,
+    getPosWithMinHeight
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -17,15 +39,26 @@ interface Props {
 
 const WrongScan: React.FC<Props> = (props: Props) => {
 
-    initAppSize();
+    const trans = I18n.t('WrongScan');
 
+    const ww = Dimensions.get('window').width;
+    const wh = Dimensions.get('window').height;
+    setAppSize(ww, wh);
+
+    const imgH = ww * (296 / 414);
+    setObjSize(334, 51);
     let styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: "white" 
+            backgroundColor: "white"
         },
-        title: getPosAndWid(334, 51, 138),
+        title: {
+            position: 'absolute',
+            width: getWidth(),
+            left: getCenterLeft(),
+            bottom: getTopPx(381 + 30) + imgH
+        },
         reg40: {
             fontFamily: "DIN2014Narrow-Regular",
             fontSize: 40,
@@ -38,30 +71,37 @@ const WrongScan: React.FC<Props> = (props: Props) => {
             textAlign: 'left',
             color: '#555555',
         },
-        image: getStandard(414, 296, 219),
+        image: {
+            position: 'absolute',
+            width: ww,
+            height: imgH,
+            bottom: getTopPx(381),
+        },
         text: getStandard(334, 174, 535),
         btnAgain: getStandard(334, 50, 781),
     })
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={[styles.title, styles.reg40]}>
-                {I18n.t('WrongScan-title')}
-            </Text>
 
             <View style={styles.image}>
                 <Image></Image>
             </View>
 
+            <Text style={[styles.title, styles.reg40]}>
+                {trans.title}
+            </Text>
+
             <Text style={[styles.text, styles.light18]}>
-                {I18n.t('WrongScan-tekst-1') + '4444444444' + I18n.t('WrongScan-tekst-2')}
+                {trans.text_1 + '4444444444' + trans.text_2}
             </Text>
 
             <View style={styles.btnAgain}>
                 <BigRedBtn
-                    title={I18n.t('WrongScan-btn-again')}
+                    title={trans.btnAgain}
                 ></BigRedBtn>
             </View>
+
         </SafeAreaView>
     )
 }

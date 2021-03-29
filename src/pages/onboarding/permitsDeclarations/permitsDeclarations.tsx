@@ -25,12 +25,13 @@ interface Props {
 
 const PermitsDeclarations: React.FC<Props> = (props: Props) => {
 
-    const permits = I18n.t('Permits');
+    const trans = I18n.t('Permits');
+
     interface staus { checked: boolean, wrong: boolean };
     let permitStatus: Array<staus> = [];
 
     // stworzenie tablicy ustawień początkowych dla dowolnej ilości zgód
-    permits.forEach(() => { permitStatus.push({ checked: false, wrong: false }) });
+    trans.paragraph.forEach(() => { permitStatus.push({ checked: false, wrong: false }) });
 
     const [status, setStatus] = useState(permitStatus);
     const [allPerm, setAllPerm] = useState(false);
@@ -103,17 +104,17 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                 <ScrollView>
 
                     <Text style={[styles.text, { marginTop: getTop(50), fontSize: 30, color: '#313131' }]}>
-                        {I18n.t('Permits-title')}
+                        {trans.title}
                     </Text>
 
                     <Text style={[styles.text, { marginTop: getTop(6), fontSize: 18, color: '#555555' }]}>
-                        {I18n.t('Permits-text')}
+                        {trans.text}
                     </Text>
 
                     <OnePermit
                         checked={allPerm}
                         getCheck={(val: boolean) => handleChangeAllStatus(val)}
-                        text={I18n.t('Permits-check-all')}
+                        text={trans.checkAll}
                         marginTop={getTopPx(31)}
                         navigation={props.navigation}
                     ></OnePermit>
@@ -121,9 +122,9 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                     {status.map((e: any, i: number) => (
                         <OnePermit
                             checked={e.checked}
-                            wrong={permits[i].required && e.wrong}
+                            wrong={trans.paragraph[i].required && e.wrong}
                             getCheck={(val: boolean) => handleChangeStatus(i, val)}
-                            text={permits[i].text}
+                            text={trans.paragraph[i].text}
                             marginTop={getTopPx(11)}
                             navigation={props.navigation}
                             key={'per_' + i}
@@ -132,7 +133,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.btn}>
                         <BigRedBtn
-                            title={I18n.t('Permits-btn')}
+                            title={trans.btn}
                             onpress={() => hendlerGoFoward()}
                         />
                     </View>
@@ -144,7 +145,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.navigate('TurtorialNFC')}
-                inner={I18n.t('Permits-header')}
+                inner={trans.header}
                 getHeight={setHeadHeightt}
             ></StackHeader>
         </SafeAreaView>

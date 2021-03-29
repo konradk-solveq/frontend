@@ -24,6 +24,8 @@ interface Props {
 
 const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
+    const trans = I18n.t('TurtorialNFC');
+
     initAppSize();
 
     const [userName, setUserName] = useState('');
@@ -32,7 +34,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         props.getName();
         if (typeof props.name == 'string') {
             if (props.name == '') {
-                setUserName(' ' + I18n.t('TurtorialNFC-deafult-name'));
+                setUserName(' ' + trans.defaultName);
             } else {
                 setUserName(' ' + props.name);
             }
@@ -69,7 +71,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         <SafeAreaView style={styles.container}>
 
             <Text style={[styles.title, styles.light30]}>
-                {I18n.t('TurtorialNFC-title-1') + userName + I18n.t('TurtorialNFC-title-2')}
+                {trans.title_1 + userName + trans.title_2}
             </Text>
 
             <View style={styles.nfc_bike}>
@@ -80,25 +82,25 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             </View>
 
             <Text style={[styles.text, styles.light18]}>
-                {I18n.t('TurtorialNFC-tekst')}
+                {trans.tekst}
             </Text>
 
             <View style={styles.btnNfc}>
                 <BigRedBtn
-                    title={I18n.t('TurtorialNFC-btn-nfc')}
+                    title={trans.btnNfc}
                 ></BigRedBtn>
             </View>
 
             <View style={styles.btnHand}>
                 <BigWhiteBtn
-                    title={I18n.t('TurtorialNFC-btn-hand')}
+                    title={trans.btnHand}
                     onpress={() => props.navigation.navigate('AddingByNumber')}
                 ></BigWhiteBtn>
             </View>
 
             <StackHeader
                 onpress={() => props.navigation.navigate('GetToKnowEachOther')}
-                inner={I18n.t('TurtorialNFC-title')}
+                inner={trans.header}
             ></StackHeader>
 
         </SafeAreaView>
