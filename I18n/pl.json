@@ -122,7 +122,6 @@
     },
     "Profile": {
         "settings": {
-            "header": "Zmiana profilu",
             "title": "Dostosuj profil",
             "text": "Określ kilka parametrów, a wskażemy Ci rekomendowany profil w aplikacji.",
             "lists": {

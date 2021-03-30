@@ -1,48 +1,28 @@
 
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView, TouchableWithoutFeedback, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
 import Svg, { G, Path, Circle } from 'react-native-svg';
 
-
 import { setFrameNumber, getFrameNumber } from '../../../storage/actions/index';
 
-import StackHeader from '../../../sharedComponents/navi/stackHeader';
-import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
-import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
-
 import RadioLine from './radioLine';
 
 import {
     setAppSize,
-    initAppSize,
     setObjSize,
     getCenterLeft,
     getCenterLeftPx,
-    getCenterTop,
-    getLeft,
     getTop,
     getTopPx,
     getWidth,
-    getWidthOf,
     getWidthPx,
     getWidthPxOf,
-    getHeight,
     getHeightPx,
-    getRelativeWidth,
-    getRelativeHeight,
-    getStandard,
-    getStandardPx,
-    getPerfect,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight
 } from '../../../helpers/layoutFoo';
 import deepCopy from "../../../helpers/deepCopy";
 
@@ -68,8 +48,7 @@ const ProfileSettings: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('Profile').settings;
 
     const lists = Object.keys(trans.lists);
-    console.log('%c lists:', 'background: #ffcc00; color: #003300', lists)
-    let startData: Data = {
+    const startData: Data = {
         cyclingStyle: 0,
         tours: 0,
         whereDoYouGo: 0,
@@ -134,13 +113,20 @@ const ProfileSettings: React.FC<Props> = (props: Props) => {
             fontSize: 23,
             color: '#313131',
             textAlign: 'left',
-        },
-        title: {
             position: 'relative',
             width: getWidth(),
             left: getCenterLeft(),
-            marginTop: getTop(45),
-            marginBottom: getTop(30)
+            marginBottom: getTopPx(8)
+        },
+        light18: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 18,
+            color: '#555555',
+            textAlign: 'left',
+            position: 'relative',
+            width: getWidth(),
+            left: getCenterLeft(),
+            marginBottom: getTopPx(30)
         },
         list: {
             width: getWidth(),
@@ -169,8 +155,8 @@ const ProfileSettings: React.FC<Props> = (props: Props) => {
                     </Svg>
 
                     <View style={styles.headerBtn}>
-                        <TouchableWithoutFeedback 
-                            onPress={() =>props.navigation.navigate('ViewSettings')}
+                        <TouchableWithoutFeedback
+                            onPress={() => props.navigation.navigate('ViewSettings')}
                         >
                             <Svg viewBox="0 0 15.4 15.4" style={{ width: '100%', height: '100%' }}>
                                 <G transform="translate(-107.1 -21.8)">
@@ -181,11 +167,13 @@ const ProfileSettings: React.FC<Props> = (props: Props) => {
                         </TouchableWithoutFeedback>
                     </View>
 
-                    <View style={styles.title}>
-                        <Text style={styles.reg23}>
-                            {trans.title}
-                        </Text>
-                    </View>
+                    <Text style={styles.reg23}>
+                        {trans.title}
+                    </Text>
+
+                    <Text style={styles.light18}>
+                        {trans.text}
+                    </Text>
 
                     {lists.map((e, i) => (
                         <RadioLine

@@ -1,11 +1,9 @@
 
 
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView, View, Text } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Dimensions, SafeAreaView,  View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import Image from 'react-native-remote-svg';
 
 
@@ -18,30 +16,14 @@ import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {
     setAppSize,
-    initAppSize,
     setObjSize,
     getCenterLeft,
     getCenterLeftPx,
-    getCenterTop,
-    getLeft,
-    getTop,
     getTopPx,
     getWidth,
-    getWidthOf,
     getWidthPx,
     getWidthPxOf,
-    getHeight,
     getHeightPx,
-    getRelativeWidth,
-    getRelativeHeight,
-    getStandard,
-    getStandardPx,
-    getPerfect,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight
 } from '../../../helpers/layoutFoo';
 import deepCopy from "../../../helpers/deepCopy";
 
@@ -171,7 +153,6 @@ const ProfileView: React.FC<Props> = (props: Props) => {
                     source={require('./advanced_biker.svg')}
                     style={{ width: "100%", height: "100%" }}
                 />}
-
             </View>
 
             <View style={styles.bottons}>
@@ -196,6 +177,7 @@ const ProfileView: React.FC<Props> = (props: Props) => {
                 onpress={() => props.navigation.navigate('ProfileSettings')}
                 inner={trans.header}
             ></StackHeader>
+
         </SafeAreaView>
     )
 }
