@@ -31,10 +31,6 @@
         "text_2": " została już wcześniej dodana.\n\nSprawdź czy numer ramy jest poprawny. W przypadku dalszych problemów skontaktuj się z nami 29 752 11 00.",
         "btnAgain": "SPRÓBUJ JESZCZE RAZ"
     },
-    "WrongScan-title": "Coś poszło nie tak!",
-    "WrongScan-tekst-1": "Rama o numerze ",
-    "WrongScan-tekst-2": " została już wcześniej dodana.\n\nSprawdź czy numer ramy jest poprawny. W przypadku dalszych problemów skontaktuj się z nami 29 752 11 00.",
-    "WrongScan-btn-again": "SPRÓBUJ JESZCZE RAZ",
     "AddingByNumber": {
         "head": "Identyfikacja roweru",
         "text": "Podaj numer ramy Twojego roweru.",
@@ -124,5 +120,83 @@
         "btnWrong": "Pole wymagane",
         "btn": "DALEJ"
     },
-    "BikeData-aaaaaa": "_____"
+    "Profile": {
+        "settings": {
+            "head": "",
+            "title": "Dostosuj profil",
+            "text": "Określ kilka parametrów, a wskażemy Ci rekomendowany profil w aplikacji.",
+            "cyclingStyle": {
+                "name": "Styl jazdy",
+                "values": [
+                    "Rekreacyjny",
+                    "Dojazd do pracy",
+                    "Sportowy"
+                ]
+            },
+            "tours": {
+                "name": "Wycieczki",
+                "values": [
+                    "Krótkie",
+                    "Umiarkowane",
+                    "Długie"
+                ]
+            },
+            "whereYouGo": {
+                "name": "Gdzie jedziesz?",
+                "values": [
+                    "Okolice domu",
+                    "Miasto",
+                    "Góry i bezdroża"
+                ]
+            },
+            "drivingSpeed": {
+                "name": "Szybkość jazdy",
+                "values": [
+                    "Bez pośpiechu",
+                    "Optymalnie",
+                    "Optymalnie"
+                ]
+            },
+            "distancePerMonth": {
+                "name": "W miesiącu przejeżdżasz",
+                "values": [
+                    "do 20 km",
+                    "do 100 km",
+                    "powyżej 100 km"
+                ]
+            },
+            "whoAreYou": {
+                "name": "Kim jesteś?",
+                "values": [
+                    "Mężczyzna",
+                    "Kobieta"
+                ]
+            }
+        },
+        "view": {
+            "head": "Rekomendowany profil",
+            "title": "Przypisaliśmy Ci\nnastępujący profil.",
+            "types": {
+                "amateur ": {
+                    "name": "Jazda amatorska",
+                    "description": "Będę korzystał z roweru okazjonalnie z rodziną w celach rekreacyjnych."
+                },
+                "city": {
+                    "name": "Jazda w mieście",
+                    "description": "Będę korzystał z roweru w miejskiej dżungli, - ścieżki i chodniki to mój świat."
+                },
+                "professional ": {
+                    "name": "Jazda wyczynowa",
+                    "description": "Będę korzystał z roweru na bezdrożach i w terenach górskich."
+                },
+                "child": {
+                    "name": "",
+                    "description": ""
+                }
+            },
+            "btnChange": "ZMIEŃ",
+            "btnSave": "ZAPISZ"
+        }
+    },
+    "aaaaaaa-aaaaaa": "_____"
 }
