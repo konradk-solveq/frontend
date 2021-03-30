@@ -7,6 +7,7 @@ import storage from './src/storage/storage';
 import { I18n_init } from './I18n/I18n'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Stack from './src/navigation/stack';
 
 import Onboarding from './src/pages/onboarding/onboarding';
 import GetToKnowEachOther from './src/pages/onboarding/getToKnowEachOther/getToKnowEachOther';
@@ -20,11 +21,12 @@ import Regulations from './src/pages/onboarding/permitsDeclarations/regulations'
 import PrivacyPolicy from './src/pages/onboarding/permitsDeclarations/privacyPolicy';
 import BikeData from './src/pages/onboarding/bikeData/bikeData';
 import ListPageInput from './src/sharedComponents/inputs/listPageInput';
+import Profile from './src/pages/onboarding/profile/profile';
 
 const App: () => Node = () => {
 	I18n_init();
 
-	const Stack = createStackNavigator();
+	// const Stack = createStackNavigator();
 
 	const horizontalAnim = {
 		// gestureDirection: 'horizontal',
@@ -68,7 +70,9 @@ const App: () => Node = () => {
 					<Stack.Screen name="Regulations" component={Regulations} />
 					<Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} /> */}
 
-					<Stack.Screen name="WrongScan" component={WrongScan}/>
+					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
+
+					<Stack.Screen name="Profile" component={Profile}/>
 
 					{/* univesal/generic pages */}
 					{/* <Stack.Screen name="ListPageInput" component={ListPageInput} /> */}

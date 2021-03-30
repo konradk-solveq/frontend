@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';

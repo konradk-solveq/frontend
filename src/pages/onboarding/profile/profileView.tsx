@@ -13,17 +13,36 @@ import { setFrameNumber, getFrameNumber } from '../../../storage/actions/index';
 import StackHeader from '../../../sharedComponents/navi/stackHeader';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
+import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 
 import {
     setAppSize,
+    initAppSize,
     setObjSize,
     getCenterLeft,
+    getCenterLeftPx,
+    getCenterTop,
+    getLeft,
     getTop,
     getTopPx,
     getWidth,
+    getWidthOf,
+    getWidthPx,
+    getWidthPxOf,
+    getHeight,
     getHeightPx,
+    getRelativeWidth,
+    getRelativeHeight,
+    getStandard,
+    getStandardPx,
+    getPerfect,
+    getPerfectPx,
+    getPosStaticHeight,
+    getOnlyPos,
+    getPosAndWid,
+    getPosWithMinHeight
 } from '../../../helpers/layoutFoo';
 import deepCopy from "../../../helpers/deepCopy";
 
@@ -45,28 +64,10 @@ interface Props {
 
 const ProfileView: React.FC<Props> = (props: Props) => {
 
-    const trans = I18n.t('BikeData');
+    const trans = I18n.t('Profile').view;
+    console.log('%c trans:', trans.types['amateur'])
 
-    let startData: Data = {
-        frameNumber: '',
-        producer: '',
-        model: '',
-        size: '',
-        color: ''
-    }
-
-    const [data, setData] = useState(startData); // dane poszczególnych pól
-    const [messages, setMessages] = useState(startData); // widomości przy wilidaci po wciśnięciu 'DALEJ'
-    const [canGoFoward, setCanGoFoward] = useState({ // sant poprawności danych w komponencie
-        frameNumber: false,
-        producer: false,
-        model: false,
-        size: false,
-        color: false
-    });
-
-
-
+    const [profilType, setProfilType] = useState('amateur'); // dane poszczególnych pól
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -74,38 +75,69 @@ const ProfileView: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
+    setObjSize(315, 50);
+    const w = getWidthPx();
+    const h = w * (296 / 315);
+    const image = {
+        position: 'absolute',
+        width: w,
+        height: h,
+        left: getCenterLeftPx(),
+        top: getTopPx(253),
+        backgroundColor: 'khaki'
+    }
+
     setObjSize(334, 50);
+    let bottons = {
+        position: 'absolute',
+        width: getWidth(),
+        height: getHeightPx() < 50 ? 50 : getHeightPx(),
+        left: getCenterLeftPx(),
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        bottom: getTopPx(65)
+    }
+
     const styles = StyleSheet.create({
-        scroll: {
+        container: {
             width: '100%',
-            height: '100%',//wh - headHeight,
-            top: headHeight,
+            height: '100%',
+            backgroundColor: "white"
         },
+
         light30: {
             fontFamily: "DIN2014Narrow-Light",
             fontSize: 30,
-            color: '#555555',
+            color: '#313131',
             textAlign: 'left',
-        },
-        title: {
-            position: 'relative',
             width: getWidth(),
             left: getCenterLeft(),
-            marginTop: getTop(45),
-            marginBottom: getTop(30)
+            top: getTopPx(138),
+
         },
-        inputAndPlaceholder: {
-            position: 'relative',
-            width: getWidth(),
-            left: getCenterLeft(),
-            marginTop: getTop(10)
+        image,
+        reg40: {
+            position: 'absolute',
+            fontFamily: "DIN2014Narrow-Regular",
+            fontSize: 40,
+            color: '#313131',
+            textAlign: 'center',
+            width: '100%',
+            top: getTopPx(253 + 20) + h,
         },
-        botton: {
-            width: getWidth(),
-            height: getHeightPx() < 50 ? 50 : getHeightPx(),
-            left: getCenterLeft(),
-            marginTop: getTopPx(10) < 10 ? 10 : getTopPx(10),
-            marginBottom: headHeight
+        light18: {
+            position: 'absolute',
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 18,
+            color: '#555555',
+            textAlign: 'center',
+            width: '100%',
+            top: getTopPx(253 + 76) + h,
+        },
+        bottons,
+        btn: {
+            width: getWidthPxOf(157),
         },
         spaceOnEnd: {
             width: '100%',
@@ -114,29 +146,44 @@ const ProfileView: React.FC<Props> = (props: Props) => {
     })
 
     return (
-        <SafeAreaView style={{ backgroundColor: "white" }}>
-            <View style={styles.scroll}>
-                <ScrollView>
+        <SafeAreaView style={styles.container}>
 
-                    <Text style={[styles.title, styles.light30]}>
-                        {trans.title}
-                    </Text>
+            <Text style={styles.light30}>
+                {trans.title}
+            </Text>
 
+            <Text style={styles.reg40}>
+                {trans.types[profilType].name}
+            </Text>
 
-                    <View style={styles.botton}>
-                        <BigRedBtn
-                            title={trans.btn}
-                            onpress={() => hendleGoFoward()}
-                        ></BigRedBtn>
-                    </View>
+            <Text style={styles.light18}>
+                {trans.types[profilType].description}
+            </Text>
 
-                    <View style={styles.spaceOnEnd}></View>
+            <View style={styles.image}>
 
-                </ScrollView>
+            </View>
+
+            <View style={styles.bottons}>
+                <View style={styles.btn}>
+                    <BigWhiteBtn
+                        title={trans.btnChange}
+                        onpress={() => props.navigation.navigate('ProfileSettings')}
+                    ></BigWhiteBtn>
+                </View>
+
+                <View style={styles.btn}>
+                    <BigRedBtn
+                        title={trans.btnSave}
+                        onpress={() => {
+                            // props.navigation.navigate('TurtorialNFC');
+                        }}
+                    ></BigRedBtn>
+                </View>
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.goBack()}
+                onpress={() => props.navigation.navigate('ProfileSettings')}
                 inner={trans.header}
                 getHeight={setHeadHeightt}
             ></StackHeader>

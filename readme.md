@@ -4,6 +4,7 @@
 2. __src\pages__ - Poszczególne strony aplikacji, ułorzenie katalogów odpowiada schematowi may palikacji. Komponenty niepowtarzające się i potrzebne do wyświetania danej strony znajdują się bezpośrednio w kalalogu danej strony.
 3. __src\sharedComponents__ - Komponenty współdzielone, które są używane na różnych miejsach aplikacji.
 4. __src\store__ - Redux i Local Storage.
+5. __src\naviation__ - do przekazywania navigacji.
 
 ### Translacje
 

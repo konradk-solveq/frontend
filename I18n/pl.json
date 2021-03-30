@@ -122,62 +122,66 @@
     },
     "Profile": {
         "settings": {
-            "head": "",
+            "header": "Zmiana profilu",
             "title": "Dostosuj profil",
             "text": "Określ kilka parametrów, a wskażemy Ci rekomendowany profil w aplikacji.",
-            "cyclingStyle": {
-                "name": "Styl jazdy",
-                "values": [
-                    "Rekreacyjny",
-                    "Dojazd do pracy",
-                    "Sportowy"
-                ]
+            "lists": {
+                "cyclingStyle": {
+                    "name": "Styl jazdy",
+                    "values": [
+                        "Rekreacyjny",
+                        "Dojazd do pracy",
+                        "Sportowy"
+                    ]
+                },
+                "tours": {
+                    "name": "Wycieczki",
+                    "values": [
+                        "Krótkie",
+                        "Umiarkowane",
+                        "Długie"
+                    ]
+                },
+                "whereDoYouGo": {
+                    "name": "Gdzie jedziesz?",
+                    "values": [
+                        "Okolice domu",
+                        "Miejska dżungla",
+                        "Góry i bezdroża"
+                    ]
+                },
+                "drivingSpeed": {
+                    "name": "Szybkość jazdy",
+                    "values": [
+                        "Bez pośpiechu",
+                        "Optymalnie",
+                        "Szybko"
+                    ]
+                },
+                "distancePerMonth": {
+                    "name": "W miesiącu przejeżdżasz",
+                    "values": [
+                        "do 20 km",
+                        "do 100 km",
+                        "powyżej 100 km"
+                    ]
+                },
+                "whoAreYou": {
+                    "name": "Kim jesteś?",
+                    "values": [
+                        "Mężczyzna",
+                        "Kobieta"
+                    ]
+                }
             },
-            "tours": {
-                "name": "Wycieczki",
-                "values": [
-                    "Krótkie",
-                    "Umiarkowane",
-                    "Długie"
-                ]
-            },
-            "whereYouGo": {
-                "name": "Gdzie jedziesz?",
-                "values": [
-                    "Okolice domu",
-                    "Miasto",
-                    "Góry i bezdroża"
-                ]
-            },
-            "drivingSpeed": {
-                "name": "Szybkość jazdy",
-                "values": [
-                    "Bez pośpiechu",
-                    "Optymalnie",
-                    "Optymalnie"
-                ]
-            },
-            "distancePerMonth": {
-                "name": "W miesiącu przejeżdżasz",
-                "values": [
-                    "do 20 km",
-                    "do 100 km",
-                    "powyżej 100 km"
-                ]
-            },
-            "whoAreYou": {
-                "name": "Kim jesteś?",
-                "values": [
-                    "Mężczyzna",
-                    "Kobieta"
-                ]
-            }
+            "btnRestore": "PRZYWRÓĆ",
+            "btnChange": "ZMIEŃ"
         },
         "view": {
-            "head": "Rekomendowany profil",
+            "header": "Rekomendowany profil",
             "title": "Przypisaliśmy Ci\nnastępujący profil.",
             "types": {
-                "amateur ": {
+                "amateur": {
                     "name": "Jazda amatorska",
                     "description": "Będę korzystał z roweru okazjonalnie z rodziną w celach rekreacyjnych."
                 },
@@ -185,7 +189,7 @@
                     "name": "Jazda w mieście",
                     "description": "Będę korzystał z roweru w miejskiej dżungli, - ścieżki i chodniki to mój świat."
                 },
-                "professional ": {
+                "professional": {
                     "name": "Jazda wyczynowa",
                     "description": "Będę korzystał z roweru na bezdrożach i w terenach górskich."
                 },

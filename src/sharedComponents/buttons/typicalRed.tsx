@@ -2,9 +2,10 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 interface Props {
-    title: string,
-    onpress: Function,
-    active: boolean
+    title: string, // *
+    onpress: Function, // *
+    active: boolean, // *
+    height: number
 }
 
 const TypicalRedBtn: React.FC<Props> = (props: Props) => {
@@ -14,13 +15,14 @@ const TypicalRedBtn: React.FC<Props> = (props: Props) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            alignSelf: 'center',
+            // alignSelf: 'center',
             backgroundColor: props.active ? '#d8232a' : '#f0f0f0',
             paddingLeft: 10,
             paddingRight: 10,
-            height: '100%',
+            height: props.height ? props.height : '100%',
             borderRadius: 13,
-            marginRight: 5
+            marginRight: 5,
+            marginBottom: 5
         },
         text: {
             fontFamily: "DIN2014Narrow-Bold",
