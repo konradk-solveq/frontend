@@ -6,13 +6,12 @@ import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Image from 'react-native-remote-svg';
 
 
 import { setFrameNumber, getFrameNumber } from '../../../storage/actions/index';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader';
-import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
-import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
@@ -65,11 +64,8 @@ interface Props {
 const ProfileView: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Profile').view;
-    console.log('%c trans:', trans.types['amateur'])
 
     const [profilType, setProfilType] = useState('amateur'); // dane poszczególnych pól
-
-    const [headHeight, setHeadHeightt] = useState(0);
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
@@ -84,7 +80,7 @@ const ProfileView: React.FC<Props> = (props: Props) => {
         height: h,
         left: getCenterLeftPx(),
         top: getTopPx(253),
-        backgroundColor: 'khaki'
+        // backgroundColor: 'khaki'
     }
 
     setObjSize(334, 50);
@@ -123,7 +119,8 @@ const ProfileView: React.FC<Props> = (props: Props) => {
             fontSize: 40,
             color: '#313131',
             textAlign: 'center',
-            width: '100%',
+            width: getWidthPx(),
+            left:getCenterLeftPx(),
             top: getTopPx(253 + 20) + h,
         },
         light18: {
@@ -132,7 +129,8 @@ const ProfileView: React.FC<Props> = (props: Props) => {
             fontSize: 18,
             color: '#555555',
             textAlign: 'center',
-            width: '100%',
+            width: getWidthPx(),
+            left:getCenterLeftPx(),
             top: getTopPx(253 + 76) + h,
         },
         bottons,
@@ -161,6 +159,18 @@ const ProfileView: React.FC<Props> = (props: Props) => {
             </Text>
 
             <View style={styles.image}>
+                {profilType == 'amateur' && <Image
+                    source={require('./amatour_biker.svg')}
+                    style={{ width: "100%", height: "100%" }}
+                />}
+                {profilType == 'city' && <Image
+                    source={require('./city_biker.svg')}
+                    style={{ width: "100%", height: "100%" }}
+                />}
+                {profilType == 'professional' && <Image
+                    source={require('./advanced_biker.svg')}
+                    style={{ width: "100%", height: "100%" }}
+                />}
 
             </View>
 
@@ -185,7 +195,6 @@ const ProfileView: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.navigate('ProfileSettings')}
                 inner={trans.header}
-                getHeight={setHeadHeightt}
             ></StackHeader>
         </SafeAreaView>
     )

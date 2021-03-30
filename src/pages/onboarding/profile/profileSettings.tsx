@@ -5,7 +5,6 @@ import { StyleSheet, Dimensions, SafeAreaView, ScrollView, TouchableWithoutFeedb
 import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
 import Svg, { G, Path, Circle } from 'react-native-svg';
-import Image from 'react-native-remote-svg';
 
 
 import { setFrameNumber, getFrameNumber } from '../../../storage/actions/index';
