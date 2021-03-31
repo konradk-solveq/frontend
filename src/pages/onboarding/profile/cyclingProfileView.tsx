@@ -1,7 +1,7 @@
 
 
-import React, { useState } from "react";
-import { StyleSheet, Dimensions, SafeAreaView,  View, Text } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
 import Image from 'react-native-remote-svg';
@@ -47,7 +47,12 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Profile').view;
 
-    const [profilType, setProfilType] = useState('amateur'); // dane poszczególnych pól
+    const profiles = Object.keys(trans.types); // lista nazw profili
+    const [profilType, setProfilType] = useState(profiles[0]); // dane poszczególnych pól
+
+    useEffect(() => { // zmiana profilu po ustawieniach w settingsach
+        props.route.params && props.route.params.profile && setProfilType(profiles[props.route.params.profile])
+    }, [props.route.params])
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
@@ -102,7 +107,7 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             color: '#313131',
             textAlign: 'center',
             width: getWidthPx(),
-            left:getCenterLeftPx(),
+            left: getCenterLeftPx(),
             top: getTopPx(253 + 20) + h,
         },
         light18: {
@@ -112,7 +117,7 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             color: '#555555',
             textAlign: 'center',
             width: getWidthPx(),
-            left:getCenterLeftPx(),
+            left: getCenterLeftPx(),
             top: getTopPx(253 + 76) + h,
         },
         bottons,
@@ -159,22 +164,20 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
                 <View style={styles.btn}>
                     <BigWhiteBtn
                         title={trans.btnChange}
-                        onpress={() => props.navigation.navigate('ProfileSettings')}
+                        onpress={() => props.navigation.navigate('CyclingProfileSettings')}
                     ></BigWhiteBtn>
                 </View>
 
                 <View style={styles.btn}>
                     <BigRedBtn
                         title={trans.btnSave}
-                        onpress={() => {
-                            // props.navigation.navigate('TurtorialNFC');
-                        }}
+                        onpress={() => props.navigation.navigate('CyclingProfileSettings')}
                     ></BigRedBtn>
                 </View>
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('ProfileSettings')}
+                // onpress={() => props.navigation.navigate('ProfileSettings')}
                 inner={trans.header}
             ></StackHeader>
 
