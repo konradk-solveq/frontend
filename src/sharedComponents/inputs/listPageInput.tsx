@@ -12,13 +12,13 @@ import {
 } from '../../helpers/layoutFoo';
 
 interface Props {
-    navigation: any, // <<--- #askBartosz ? jak otypowywać takie zmienne ? gdybyś miał jakis przykład byłbym wdzięczny :)
+    navigation: any, // <<--- #askBartosz (4) ? jak otypowywać takie zmienne ? gdybyś miał jakis przykład byłbym wdzięczny :)
     route: any,
 };
 
 const ListPageInput: React.FC<Props> = (props: Props) => {
 
-    // alias-y // <<--- #askBartosz ? czy wiesz może jak to się skompiluje, tz. czy przy przypisaniu do typu prostego powstanie referemcja czy kompilator potrafi zkojażyć bezpośrenio przypisanie ? bo przy obiekcie spodziewam się, że stwrzył by eferencję.
+    // alias-y // <<--- #askBartosz (5) ? czy wiesz może jak to się skompiluje, tz. czy przy przypisaniu do typu prostego powstanie referemcja czy kompilator potrafi zkojażyć bezpośrenio przypisanie ? bo przy obiekcie spodziewam się, że stwrzył by eferencję.
     // * wartości wymagane
     const list = props.route.params.list; // * lista itemów z listy
     const last = props.route.params.last ? props.route.params.last : null; // ostatni na liście do własnej modyfikacji, odyła do UnivesalInputPage

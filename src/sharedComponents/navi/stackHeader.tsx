@@ -18,7 +18,7 @@ interface Props {
     getHeight: Function, // dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
 }
 
-// <<--- #askBartosz ? wiesz może czy da się podmienić strałkę goBack w headerze?
+// <<--- #askBartosz (6) ? wiesz może czy da się podmienić strałkę goBack w headerze?
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = (props: Props) => {
 

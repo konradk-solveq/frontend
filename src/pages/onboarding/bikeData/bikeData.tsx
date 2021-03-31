@@ -30,7 +30,7 @@ interface Data {
 };
 
 interface Props {
-    navigation: any, // <<--- #askBartosz ? nie mam pojęcia ajk to typować, da się wogóle ?
+    navigation: any, // <<--- #askBartosz (1) ? nie mam pojęcia ajk to typować, da się wogóle ?
     route: any,
     setBikeData: Function,
     getBikeData: Function,
@@ -54,7 +54,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
     const [canGoFoward, setCanGoFoward] = useState({ // sant poprawności danych w komponencie
         frameNumber: false,
         producer: false,
-        model: false, // <<--- #askBartosz ? czy lepeiej ten stan przechowywać w komponencie i odpytywać go callbackiem ?
+        model: false, // <<--- #askBartosz (2) ? czy lepeiej ten stan przechowywać w komponencie i odpytywać go callbackiem ?
         size: false,
         color: false
     });
