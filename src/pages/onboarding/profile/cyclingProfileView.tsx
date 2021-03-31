@@ -51,7 +51,7 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
     const [profilType, setProfilType] = useState(profiles[0]); // dane poszczególnych pól
 
     useEffect(() => { // zmiana profilu po ustawieniach w settingsach
-        props.route.params && props.route.params.profile && setProfilType(profiles[props.route.params.profile])
+        props.route.params && (typeof props.route.params.profile != 'undefined') && setProfilType(profiles[props.route.params.profile])
     }, [props.route.params])
 
     const ww = Dimensions.get('window').width;

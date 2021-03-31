@@ -58,12 +58,40 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
     }
 
     const [data, setData] = useState(startData); // dane poszczególnych pól
+    const [profile, setProfile] = useState(0); // profil wyliczony na podstawie zaznaczonych elementów na listach
 
     const handleChangeData = (key: string, value: number) => {
         let newData = deepCopy(data);
         newData[key] = value;
         setData(newData);
-        console.log('%c newData:', newData)
+        // console.log('%c newData:', newData)
+
+        let countProfiles = [0, 0, 0];
+        for (let i = 0; i < lists.length - 1; i++) { // zlicza które profile na listach zostały wybrane, poza ostatnią (mężczyna/kobieta)
+            let key = lists[i];
+            let profile = newData[key];
+            countProfiles[profile]++
+        }
+
+        // rozwiązanie przygotowane dla więszej ilości profili
+        let moreThanOneSameValue = false; // sprawdzenie czy kilka profili nie ma tej samej ilości wyborów
+        let maxVal = Math.max(...countProfiles);
+        let countMaxies = 0;
+        countProfiles.forEach(e => { if (e == maxVal) countMaxies++ })
+        if (countMaxies > 1) moreThanOneSameValue = true;
+
+        let profNum: number = -1;
+        if (moreThanOneSameValue) {
+            let profiles: Array<number> = [];
+            countProfiles.forEach((e, i) => { if (e == maxVal) profiles.push(i) })
+            profNum = Math.floor(profiles.reduce((a, b) => a + b) / profiles.length);
+            console.log('%c profiles:', profiles)
+        } else {
+            countProfiles.forEach((e, i) => { if (e == maxVal) profNum = i })
+        }
+        setProfile(profNum);
+
+        console.log(' count:', countProfiles, moreThanOneSameValue, profNum)
     }
 
 
@@ -156,7 +184,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.headerBtn}>
                         <TouchableWithoutFeedback
-                            onPress={() => props.navigation.navigate('ViewSettings')}
+                            onPress={() => props.navigation.navigate('CyclingProfileView')}
                         >
                             <Svg viewBox="0 0 15.4 15.4" style={{ width: '100%', height: '100%' }}>
                                 <G transform="translate(-107.1 -21.8)">
@@ -188,18 +216,14 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
                         <View style={styles.btn}>
                             <BigWhiteBtn
                                 title={trans.btnRestore}
-                                onpress={() => {
-                                    // props.navigation.navigate('TurtorialNFC')
-                                }}
+                                onpress={() => props.navigation.navigate('CyclingProfileView', { profile })}
                             ></BigWhiteBtn>
                         </View>
 
                         <View style={styles.btn}>
                             <BigRedBtn
                                 title={trans.btnChange}
-                                onpress={() => {
-                                    // props.navigation.navigate('TurtorialNFC');
-                                }}
+                                onpress={() => props.navigation.navigate('CyclingProfileView', { profile })}
                             ></BigRedBtn>
                         </View>
                     </View>
