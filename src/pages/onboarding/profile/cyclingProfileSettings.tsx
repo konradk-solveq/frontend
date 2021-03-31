@@ -43,7 +43,7 @@ interface Props {
     profileData: Data,
 };
 
-const ProfileSettings: React.FC<Props> = (props: Props) => {
+const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Profile').settings;
 
@@ -225,4 +225,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileSettings)
+export default connect(mapStateToProps, mapDispatchToProps)(CyclingProfileSettings)

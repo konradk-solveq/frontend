@@ -21,7 +21,7 @@ import Regulations from './src/pages/onboarding/permitsDeclarations/regulations'
 import PrivacyPolicy from './src/pages/onboarding/permitsDeclarations/privacyPolicy';
 import BikeData from './src/pages/onboarding/bikeData/bikeData';
 import ListPageInput from './src/sharedComponents/inputs/listPageInput';
-import Profile from './src/pages/onboarding/profile/profile';
+import CyclingProfile from './src/pages/onboarding/profile/cyclingProfile';
 
 const App: () => Node = () => {
 	I18n_init();
@@ -72,7 +72,7 @@ const App: () => Node = () => {
 
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
-					<Stack.Screen name="Profile" component={Profile}/>
+					<Stack.Screen name="CyclingProfile" component={CyclingProfile}/>
 
 					{/* univesal/generic pages */}
 					{/* <Stack.Screen name="ListPageInput" component={ListPageInput} /> */}

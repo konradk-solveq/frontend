@@ -3,15 +3,15 @@
 import React from "react";
 import Stack from '../../../navigation/stack';
 
-import ProfileSettings from './profileSettings';
-import ViewSettings from './profileView';
+import CyclingProfileView from './cyclingProfileView';
+import CyclingProfileSettings from './cyclingProfileSettings';
 
 interface Props {
     navigation: any,
     route: any,
 };
 
-const Profile: React.FC<Props> = (props: Props) => {
+const CyclingProfile: React.FC<Props> = (props: Props) => {
 
 
     const verticalAnim = {
@@ -35,16 +35,16 @@ const Profile: React.FC<Props> = (props: Props) => {
     return (
             <Stack.Navigator
                 headerMode="none"
-                initialRouteName="ViewSettings"
+                initialRouteName="CyclingProfileView"
                 mode="modal"
                 screenOptions={verticalAnim}
             >
 
-                <Stack.Screen name="ViewSettings" component={ViewSettings} />
-                <Stack.Screen name="ProfileSettings" component={ProfileSettings} />
+                <Stack.Screen name="CyclingProfileView" component={CyclingProfileView} />
+                <Stack.Screen name="CyclingProfileSettings" component={CyclingProfileSettings} />
 
             </Stack.Navigator>
     )
 }
 
-export default Profile
+export default CyclingProfile

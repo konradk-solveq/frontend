@@ -43,7 +43,7 @@ interface Props {
     profileData: Data,
 };
 
-const ProfileView: React.FC<Props> = (props: Props) => {
+const CyclingProfileView: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Profile').view;
 
@@ -193,4 +193,4 @@ const mapDispatchToProps = (dispatch: any) => ({
     getFrame: async () => dispatch(await getFrameNumber()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileView)
+export default connect(mapStateToProps, mapDispatchToProps)(CyclingProfileView)
