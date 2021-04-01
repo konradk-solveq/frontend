@@ -7,7 +7,7 @@ import storage from './src/storage/storage';
 import { I18n_init } from './I18n/I18n'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Stack from './src/navigation/stack';
+import { Stack } from './src/navigation/stack';
 
 import Onboarding from './src/pages/onboarding/onboarding';
 import GetToKnowEachOther from './src/pages/onboarding/getToKnowEachOther/getToKnowEachOther';
@@ -22,6 +22,7 @@ import PrivacyPolicy from './src/pages/onboarding/permitsDeclarations/privacyPol
 import BikeData from './src/pages/onboarding/bikeData/bikeData';
 import ListPageInput from './src/sharedComponents/inputs/listPageInput';
 import CyclingProfile from './src/pages/onboarding/profile/cyclingProfile';
+import MineMenu from './src/pages/main/mainMenu';
 
 const App: () => Node = () => {
 	I18n_init();
@@ -72,7 +73,8 @@ const App: () => Node = () => {
 
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
-					<Stack.Screen name="CyclingProfile" component={CyclingProfile}/>
+					{/* <Stack.Screen name="CyclingProfile" component={CyclingProfile} /> */}
+					<Stack.Screen name="MineMenu" component={MineMenu} />
 
 					{/* univesal/generic pages */}
 					{/* <Stack.Screen name="ListPageInput" component={ListPageInput} /> */}
