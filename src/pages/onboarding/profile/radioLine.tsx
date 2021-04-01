@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text } from 'react-native';
 
 import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
@@ -36,11 +36,16 @@ interface Props {
     name: string,
     list: Array<string>,
     getReult: Function,
+    active: number
 };
 
 const RadioLine: React.FC<Props> = (props: Props) => {
 
-    const [active, setActive] = useState(0);
+    const [active, setActive] = useState(props.active);
+    useEffect(() => {
+        setActive(props.active)
+        console.log('%c props.active:', props.active)
+    }, [props.active])
 
     const hendleOnpress = (value: number) => {
         props.getReult && props.getReult(value);

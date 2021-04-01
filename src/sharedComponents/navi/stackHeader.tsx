@@ -13,9 +13,10 @@ import {
 } from '../../helpers/layoutFoo';
 
 interface Props {
+    // * wartości wymagane
     onpress: Function, // po naciśnięciu strzałki
     inner: string, // nazwa headera
-    getHeight: Function, // dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
+    getHeight: Function, // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
 }
 
 // <<--- #askBartosz (6) ? wiesz może czy da się podmienić strałkę goBack w headerze?

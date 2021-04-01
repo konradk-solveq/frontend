@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import Image from 'react-native-remote-svg';
 
 
-import { setFrameNumber, getFrameNumber } from '../../../storage/actions/index';
+import { getProfileName, setProfileName } from '../../../storage/actions/index';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
@@ -25,22 +25,12 @@ import {
     getWidthPxOf,
     getHeightPx,
 } from '../../../helpers/layoutFoo';
-import deepCopy from "../../../helpers/deepCopy";
-
-interface Data {
-    frameNumber: string,
-    producer: string,
-    model: string,
-    size: string,
-    color: string
-};
 
 interface Props {
     navigation: any,
     route: any,
-    setProfileData: Function,
-    getProfileData: Function,
-    profileData: Data,
+    getProfileName: Function,
+    setProfileName: Function,
 };
 
 const CyclingProfileView: React.FC<Props> = (props: Props) => {
@@ -187,13 +177,13 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
 
 const mapStateToProps = (state: any) => {
     return {
-        frame: state.user.frameNumber
+        frame: state.user.profileName
     }
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-    setFrame: (num: string) => dispatch(setFrameNumber(num)),
-    getFrame: async () => dispatch(await getFrameNumber()),
+    setProfileName: (name: string) => dispatch(setProfileName(name)),
+    getProfileName: async () => dispatch(await getProfileName()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CyclingProfileView)

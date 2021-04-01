@@ -1,12 +1,11 @@
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView, TouchableWithoutFeedback, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
-import { connect } from "react-redux";
 import Svg, { G, Path, Circle } from 'react-native-svg';
 
-import { setFrameNumber, getFrameNumber } from '../../../storage/actions/index';
+import { getStorageProfileSettings, setStorageProfileSettings } from '../../../storage/localStorage';
 
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
@@ -17,7 +16,6 @@ import {
     setObjSize,
     getCenterLeft,
     getCenterLeftPx,
-    getTop,
     getTopPx,
     getWidth,
     getWidthPx,
@@ -26,45 +24,68 @@ import {
 } from '../../../helpers/layoutFoo';
 import deepCopy from "../../../helpers/deepCopy";
 
-interface Data {
-    cyclingStyle: number,
-    tours: number,
-    whereDoYouGo: number,
-    drivingSpeed: number,
-    distancePerMonth: number
-    whoAreYou: number
-};
 
 interface Props {
     navigation: any,
-    route: any,
-    setProfileData: Function,
-    getProfileData: Function,
-    profileData: Data,
+    // route: any,
 };
 
 const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Profile').settings;
-
     const lists = Object.keys(trans.lists);
-    const startData: Data = {
-        cyclingStyle: 0,
-        tours: 0,
-        whereDoYouGo: 0,
-        drivingSpeed: 0,
-        distancePerMonth: 0,
-        whoAreYou: 0
+
+    const view = I18n.t('Profile').view;
+    const types = Object.keys(view.types);
+
+    const initialData = () => { // dla pierwszego uruchomienia, gdy local storage jeśzcze nie ma tej zmiennej
+        const profileData: any = {};
+
+        lists.forEach((e: string) => profileData[e] = 0);
+
+        const firtsProfileNumber = 0;
+        profileData.profileNumber = firtsProfileNumber;
+        profileData.name = types[firtsProfileNumber];
+
+        return profileData;
     }
 
-    const [data, setData] = useState(startData); // dane poszczególnych pól
-    const [profile, setProfile] = useState(0); // profil wyliczony na podstawie zaznaczonych elementów na listach
+    const [dataSetting, setDataSetting] = useState({}); // dane poszczególnych pól
 
-    const handleChangeData = (key: string, value: number) => {
-        let newData = deepCopy(data);
+    const initActive = lists.map(() => -1); // aby nic nie było zaznaczoe zanim nie wczytają się dane
+    const [active, setActive] = useState(initActive); // który element z listy jest aktywny
+
+    const [memo, setMemo] = useState({}); // dla przycisku przywróć
+
+    useEffect(() => { // pobranie danych z localsorage i zapamiętanie stanu dla opcji przywrócenia
+        getStorageProfileSettings(initialData()).then(res => {
+            setDataSetting(res)
+            setMemo(res);
+
+            const newActive = lists.map(e => res[e]);
+            setActive(newActive);
+        })
+    }, [])
+
+    const handleChangeData = (key: string, value: number) => { // dla zmiany wyboru na liscie
+        let newData = deepCopy(dataSetting); 
         newData[key] = value;
-        setData(newData);
-        // console.log('%c newData:', newData)
+        setDataSetting(newData)
+
+        let newActive = [...active];
+        let index = lists.indexOf(key);
+        newActive[index] = value;
+        setActive(newActive);
+    }
+
+    const handleGetDataBack = () => { // dla przycisku przywróć
+        setDataSetting(memo);
+        let newActive = lists.map(e => memo[e]);
+        setActive(newActive);
+    }
+
+    const handleGoBackWithMemeo = () => {
+        let newData = deepCopy(dataSetting);
 
         let countProfiles = [0, 0, 0];
         for (let i = 0; i < lists.length - 1; i++) { // zlicza które profile na listach zostały wybrane, poza ostatnią (mężczyna/kobieta)
@@ -85,15 +106,15 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
             let profiles: Array<number> = [];
             countProfiles.forEach((e, i) => { if (e == maxVal) profiles.push(i) })
             profNum = Math.floor(profiles.reduce((a, b) => a + b) / profiles.length);
-            console.log('%c profiles:', profiles)
         } else {
             countProfiles.forEach((e, i) => { if (e == maxVal) profNum = i })
         }
-        setProfile(profNum);
+        newData.profileNumber = profNum;
+        newData.name = types[profNum];
 
-        console.log(' count:', countProfiles, moreThanOneSameValue, profNum)
+        setStorageProfileSettings(newData);
+        props.navigation.navigate('CyclingProfileView', { profile: profNum })
     }
-
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
@@ -209,6 +230,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
                             list={trans.lists[e].values}
                             getReult={(val: number) => { handleChangeData(e, val) }}
                             key={'list_' + i}
+                            active={active[i]}
                         ></RadioLine>
                     ))}
 
@@ -216,14 +238,14 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
                         <View style={styles.btn}>
                             <BigWhiteBtn
                                 title={trans.btnRestore}
-                                onpress={() => props.navigation.navigate('CyclingProfileView', { profile })}
+                                onpress={() => handleGetDataBack()}
                             ></BigWhiteBtn>
                         </View>
 
                         <View style={styles.btn}>
                             <BigRedBtn
                                 title={trans.btnChange}
-                                onpress={() => props.navigation.navigate('CyclingProfileView', { profile })}
+                                onpress={() => handleGoBackWithMemeo()}
                             ></BigRedBtn>
                         </View>
                     </View>
@@ -237,16 +259,4 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
     )
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-        frame: state.user.frameNumber
-    }
-}
-
-const mapDispatchToProps = (dispatch: any) => ({
-    setFrame: (num: string) => dispatch(setFrameNumber(num)),
-    getFrame: async () => dispatch(await getFrameNumber()),
-})
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(CyclingProfileSettings)
+export default CyclingProfileSettings

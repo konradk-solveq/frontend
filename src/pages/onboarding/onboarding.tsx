@@ -33,8 +33,6 @@ const Onboarding: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
-
-
     // list funcji na przycisków radio panelu
     const list: Array<Function> = [
         () => { setBoard(1) },

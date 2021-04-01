@@ -30,7 +30,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
     const [userName, setUserName] = useState('');
 
-    useEffect(() => {
+    useEffect(() => { // do załadowania imienia z local storage przez reduxa
         props.getName();
         if (typeof props.name == 'string') {
             if (props.name == '') {

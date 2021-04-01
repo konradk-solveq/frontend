@@ -106,7 +106,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
         return false
     }
 
-    useEffect(() => { // do bsługi listy
+    useEffect(() => { // do obsługi listy
         if (props.route.params) {
             let params = props.route.params;
 

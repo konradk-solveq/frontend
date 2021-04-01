@@ -21,6 +21,7 @@ interface Props {
     goFoward: Function
 }
 
+// elementy ekranu, które nie przesówają się w czasie przewijania ekranu na turtorialu first run
 const StaticElements: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Onboarding');
