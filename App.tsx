@@ -21,7 +21,7 @@ import Regulations from './src/pages/onboarding/permitsDeclarations/regulations'
 import PrivacyPolicy from './src/pages/onboarding/permitsDeclarations/privacyPolicy';
 import BikeData from './src/pages/onboarding/bikeData/bikeData';
 import ListPageInput from './src/sharedComponents/inputs/listPageInput';
-import CyclingProfile from './src/pages/onboarding/profile/cyclingProfile';
+import CyclingProfile from './src/pages/onboarding/cyclingProfile/cyclingProfile';
 import MineMenu from './src/pages/main/mainMenu';
 
 const App: () => Node = () => {

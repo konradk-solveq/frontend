@@ -30,7 +30,7 @@ interface Props {
     route: any,
 };
 
-const Home: React.FC<Props> = (props: Props) => {
+const Profile: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Profile').view;
 
@@ -45,7 +45,7 @@ const Home: React.FC<Props> = (props: Props) => {
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: "#aaffff"
+            backgroundColor: "#eeeeee"
         }
     })
 
@@ -60,4 +60,4 @@ const Home: React.FC<Props> = (props: Props) => {
     )
 }
 
-export default Home
+export default Profile
