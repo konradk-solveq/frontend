@@ -59,8 +59,8 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     // validacja błędów, tu: czy wszystkie znaki są cyframi
     const hendleValidationWrong = (value: string) => {
-        const reg = new RegExp('^[0-9]+$');
-        if (value.length > 0 && !reg.test(value)) return true;
+        // const reg = new RegExp('^[0-9]+$');
+        // if (value.length > 0 && !reg.test(value)) return true;
         return false
     }
 

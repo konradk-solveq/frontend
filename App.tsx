@@ -60,8 +60,8 @@ const App: () => Node = () => {
 					{/* <Stack.Screen name="Onboarding" component={Onboarding} /> */}
 					{/* <Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} /> */}
 					{/* <Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/> */}
-					{/* <Stack.Screen name="AddingByNumber" component={AddingByNumber} /> */}
-					{/* <Stack.Screen name="AddingInfo" component={AddingInfo} /> */}
+					<Stack.Screen name="AddingByNumber" component={AddingByNumber} />
+					<Stack.Screen name="AddingInfo" component={AddingInfo} />
 
 					{/* <Stack.Screen name="BikeData" component={BikeData} /> */}
 
@@ -74,7 +74,7 @@ const App: () => Node = () => {
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
 					{/* <Stack.Screen name="CyclingProfile" component={CyclingProfile} /> */}
-					<Stack.Screen name="MineMenu" component={MineMenu} />
+					{/* <Stack.Screen name="MineMenu" component={MineMenu} /> */}
 
 					{/* univesal/generic pages */}
 					{/* <Stack.Screen name="ListPageInput" component={ListPageInput} /> */}
