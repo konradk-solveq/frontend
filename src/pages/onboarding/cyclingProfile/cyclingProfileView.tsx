@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import Image from 'react-native-remote-svg';
 
 
-import { getProfileName, setProfileName } from '../../../storage/actions/index';
+import { getStorageProfileSettings, setStorageProfileSettings } from '../../../storage/localStorage';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
@@ -29,13 +29,15 @@ import {
 interface Props {
     navigation: any,
     route: any,
-    getProfileName: Function,
-    setProfileName: Function,
 };
 
 const CyclingProfileView: React.FC<Props> = (props: Props) => {
 
+    const settings = I18n.t('Profile').settings;
+    const lists = Object.keys(settings.lists);
+
     const trans = I18n.t('Profile').view;
+    const types = Object.keys(trans.types);
 
     const profiles = Object.keys(trans.types); // lista nazw profili
     const [profilType, setProfilType] = useState(profiles[0]); // dane poszczególnych pól
@@ -43,6 +45,24 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
     useEffect(() => { // zmiana profilu po ustawieniach w settingsach
         props.route.params && (typeof props.route.params.profile != 'undefined') && setProfilType(profiles[props.route.params.profile])
     }, [props.route.params])
+
+    const initialData = () => { // dla pierwszego uruchomienia, gdy local storage jeśzcze nie ma tej zmiennej
+        const profileData: any = {};
+
+        lists.forEach((e: string) => profileData[e] = 0);
+
+        const firtsProfileNumber = 0;
+        profileData.profileNumber = firtsProfileNumber;
+        profileData.name = types[firtsProfileNumber];
+
+        return profileData;
+    }
+
+    useEffect(() => { // pobranie danych z localsorage i zapamiętanie stanu dla opcji przywrócenia
+        getStorageProfileSettings(initialData()).then(res => {
+          if (res && res.name && typeof res.name == 'string')  setProfilType(res.name);
+        })
+    }, [])
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
@@ -161,13 +181,13 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
                 <View style={styles.btn}>
                     <BigRedBtn
                         title={trans.btnSave}
-                        onpress={() => props.navigation.navigate('CyclingProfileSettings')}
+                        onpress={() => props.navigation.navigate('MineMenu')}
                     ></BigRedBtn>
                 </View>
             </View>
 
             <StackHeader
-                // onpress={() => props.navigation.navigate('ProfileSettings')}
+                onpress={() => props.navigation.navigate('PermitsDeclarations')}
                 inner={trans.header}
             ></StackHeader>
 
@@ -175,15 +195,4 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
     )
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-        frame: state.user.profileName
-    }
-}
-
-const mapDispatchToProps = (dispatch: any) => ({
-    setProfileName: (name: string) => dispatch(setProfileName(name)),
-    getProfileName: async () => dispatch(await getProfileName()),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CyclingProfileView)
+export default CyclingProfileView

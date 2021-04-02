@@ -57,13 +57,16 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
 
     // po kliknięciu 'DALEJ', walidacja i przejście dalej
     const hendlerGoFoward = () => {
-        // if (perm_1 && perm_2 && perm_3) {
+        let canGo = true;
+        status.forEach((e, i) => { if (trans.paragraph[i].required && !e.checked) canGo = false; })
 
-        // } else {
-        let newStatus = deepCopy(status);
-        newStatus.map(e => e.wrong = !e.checked);
-        setStatus(newStatus);
-        // }
+        if (canGo) {
+            props.navigation.navigate('CyclingProfile')
+        } else {
+            let newStatus = deepCopy(status);
+            newStatus.map(e => e.wrong = !e.checked);
+            setStatus(newStatus);
+        }
     }
 
     const ww = Dimensions.get('window').width;
@@ -144,7 +147,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('TurtorialNFC')}
+                onpress={() => props.navigation.navigate('AddingByNumber')}
                 inner={trans.header}
                 getHeight={setHeadHeightt}
             ></StackHeader>

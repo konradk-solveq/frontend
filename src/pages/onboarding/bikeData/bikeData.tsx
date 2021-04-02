@@ -87,12 +87,14 @@ const BikeData: React.FC<Props> = (props: Props) => {
                 newMessages[key] = '';
             } else {
                 newMessages[key] = trans.btnWrong,
-                goFoward = false;
+                    goFoward = false;
             }
         }
         setMessages(newMessages);
 
-        if (goFoward) { }
+        if (goFoward) {
+            props.navigation.navigate('PermitsDeclarations')
+        }
     }
 
     const hendleValidationOk = (value: string) => {

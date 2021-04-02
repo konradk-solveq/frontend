@@ -44,7 +44,6 @@ const RadioLine: React.FC<Props> = (props: Props) => {
     const [active, setActive] = useState(props.active);
     useEffect(() => {
         setActive(props.active)
-        console.log('%c props.active:', props.active)
     }, [props.active])
 
     const hendleOnpress = (value: number) => {
