@@ -1,17 +1,7 @@
-
-
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
-import { connect } from "react-redux";
-import Image from 'react-native-remote-svg';
-
-
-
-import StackHeader from '../../../sharedComponents/navi/stackHeader';
-import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
-import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
-
+import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 
 import {
     setAppSize,
@@ -32,10 +22,7 @@ interface Props {
 
 const Bike: React.FC<Props> = (props: Props) => {
 
-    const trans = I18n.t('Profile').view;
-
-    const [profilType, setProfilType] = useState(0); // dane poszczególnych pól
-
+    // const trans = I18n.t('Profile').view;
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
@@ -43,18 +30,28 @@ const Bike: React.FC<Props> = (props: Props) => {
 
     const styles = StyleSheet.create({
         container: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             width: '100%',
             height: '100%',
-            backgroundColor: "#bbbbbb"
+            backgroundColor: "#fdf5f5"
+        },
+        text: {
+            top: -30,
+            fontFamily: "DIN2014Narrow-Regular",
+            fontSize: 40,
+            color: '#313131',
+            textAlign: 'center',
         }
     })
 
     return (
         <SafeAreaView style={styles.container}>
 
-            <Text>bike</Text>
+            <Text style={styles.text}>Bike</Text>
 
-
+            <TabBackGround></TabBackGround>
 
         </SafeAreaView>
     )
