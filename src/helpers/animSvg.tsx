@@ -3,8 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 interface Props {
-    style: any,
-    source: string
+    source: string,
+    style?: any,
 };
 
 const AnimSvg: React.FC<Props> = (props: Props) => {

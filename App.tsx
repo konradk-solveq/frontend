@@ -65,7 +65,7 @@ const App: () => Node = () => {
 
 					{/* <Stack.Screen name="BikeData" component={BikeData} /> */}
 
-					<Stack.Screen name="Loader" component={Loader} />
+					{/* <Stack.Screen name="Loader" component={Loader} /> */}
 
 					{/* <Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} />
 					<Stack.Screen name="Regulations" component={Regulations} />
@@ -74,7 +74,7 @@ const App: () => Node = () => {
 					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
 					{/* <Stack.Screen name="CyclingProfile" component={CyclingProfile} /> */}
-					{/* <Stack.Screen name="MineMenu" component={MineMenu} /> */}
+					<Stack.Screen name="MineMenu" component={MineMenu} />
 
 					{/* univesal/generic pages */}
 					{/* <Stack.Screen name="ListPageInput" component={ListPageInput} /> */}
