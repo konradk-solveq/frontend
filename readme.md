@@ -33,7 +33,6 @@ yarn add react-native-gesture-handler
 yarn add react-native-hyperlink
 yarn add react-native-i18n
 yarn add react-native-reanimated
-yarn add react-native-remote-svg
 yarn add react-native-safe-area-context
 yarn add react-native-safe-area-view
 yarn add react-native-screens
