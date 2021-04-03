@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import storage from './src/storage/storage';
 import { I18n_init } from './I18n/I18n'
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { Stack } from './src/navigation/stack';
 
 import Onboarding from './src/pages/onboarding/onboarding';
@@ -25,9 +24,8 @@ import CyclingProfile from './src/pages/onboarding/cyclingProfile/cyclingProfile
 import MineMenu from './src/pages/main/mainMenu';
 
 const App: () => Node = () => {
-	I18n_init();
 
-	// const Stack = createStackNavigator();
+	I18n_init();
 
 	const horizontalAnim = {
 		// gestureDirection: 'horizontal',

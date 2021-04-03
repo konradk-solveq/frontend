@@ -1,4 +1,6 @@
 .history
+App.tsx
+index.js
 
 # OSX
 #
@@ -61,4 +63,3 @@ buck-out/
 /ios/Pods/
 
 
-App.tsx
