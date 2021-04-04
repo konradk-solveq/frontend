@@ -201,5 +201,12 @@
             "btnSave": "ZAPISZ"
         }
     },
+    "MainHome": {},
+    "MainWorld": {},
+    "MainBike": {
+        "header": "Twój rower",
+        "details": ["od ", " / nr ramy "]
+    },
+    "MainProfile": {},
     "aaaaaaa-aaaaaa": "_____"
 }
