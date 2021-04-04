@@ -67,6 +67,10 @@ const getLeft = (left: number) => {
     let res: number = (left / layout.width) * 100;
     return res.toFixed(3) + '%';
 }
+const getLeftPx = (left: number) => {
+    let res: number = (left / layout.width) * appSize.width;
+    return res;
+}
 
 const getTop = (top: number) => {
     let res: number = ((top) / layout.height) * 100;
@@ -264,6 +268,7 @@ export {
     getCenterLeftPx,
     getCenterTop,
     getLeft,
+    getLeftPx,
     getTop,
     getTopPx,
     getWidth,

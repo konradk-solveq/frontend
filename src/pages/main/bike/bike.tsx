@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import { getBikesData, setBikesData } from '../../../storage/actions/index';
+import { ScrollView } from 'react-native-gesture-handler';
 
+import Warranty from './warranty';
 
 import {
     setAppSize,
@@ -17,7 +19,6 @@ import {
     getWidthPxOf,
     getHeightPx,
 } from '../../../helpers/layoutFoo';
-import { ScrollView } from 'react-native-gesture-handler';
 
 interface Props {
     navigation: any,
@@ -79,6 +80,9 @@ const Bike: React.FC<Props> = (props: Props) => {
             textAlign: 'center',
             fontSize: 15,
             color: '#555555',
+        },
+        warranty: {
+            marginTop: getTopPx(76),
         }
     })
 
@@ -93,6 +97,13 @@ const Bike: React.FC<Props> = (props: Props) => {
                 <Text style={styles.bikeDetails}>
                     {trans.details[0] + bike.description.producer + trans.details[1] + bike.description.frame}
                 </Text>
+
+                <Warranty
+                    style={styles.warranty}
+                    type={bike.warranty.type}
+                    toEnd={bike.warranty.toEnd}
+                    description={trans.warranty}
+                />
 
             </ScrollView>
 

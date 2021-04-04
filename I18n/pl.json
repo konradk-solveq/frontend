@@ -205,7 +205,12 @@
     "MainWorld": {},
     "MainBike": {
         "header": "Twój rower",
-        "details": ["od ", " / nr ramy "]
+        "details": ["od ", " / nr ramy "],
+        "warranty": {
+            "state": "status gwarancji",
+            "toEnd": "do końca gwarancji",
+            "days": "dni"
+        }
     },
     "MainProfile": {},
     "aaaaaaa-aaaaaa": "_____"
