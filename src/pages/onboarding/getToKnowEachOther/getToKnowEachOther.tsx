@@ -18,7 +18,7 @@ import {
     getPosStaticHeight
 } from '../../../helpers/layoutFoo';
 
-import KroosLogo from './krossLogo';
+import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';

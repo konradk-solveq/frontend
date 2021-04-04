@@ -1,8 +1,5 @@
 import React from 'react';
 import Svg, {G, Path } from 'react-native-svg';
-import { AnimatedSVGPath } from 'react-native-svg-animations'
-
-
 
 const KroosLogo = () => {
 

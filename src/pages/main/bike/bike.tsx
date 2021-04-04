@@ -28,6 +28,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
+    setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
             display: 'flex',
@@ -36,6 +37,16 @@ const Bike: React.FC<Props> = (props: Props) => {
             width: '100%',
             height: '100%',
             backgroundColor: "#fdf5f5"
+        },
+        header: {
+            position: 'absolute',
+            width: getWidthPx(),
+            left: getCenterLeftPx(),
+            top: getTopPx(65),
+            fontFamily: "DIN2014Narrow-Light",
+            textAlign: 'center',
+            fontSize: 18,
+            color: '#313131'
         },
         text: {
             top: -30,
@@ -48,6 +59,9 @@ const Bike: React.FC<Props> = (props: Props) => {
 
     return (
         <SafeAreaView style={styles.container}>
+
+            <Text style={styles.header}>Twój rower</Text>
+
 
             <Text style={styles.text}>Bike</Text>
 

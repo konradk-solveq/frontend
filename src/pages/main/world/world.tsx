@@ -38,7 +38,7 @@ const World: React.FC<Props> = (props: Props) => {
     </path>
 </svg>`;
 
-    const piont2 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416 202"/>'
+    const piontEmpty = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416 202"/>'
 
     const [showImg, setShowImg] = useState(false); // do odpalania animacji svg
     const [refresh, setRefresh] = useState(0); // do odpalania animacji svg
@@ -118,7 +118,7 @@ const World: React.FC<Props> = (props: Props) => {
 
             {showImg && <AnimSvg
                 style={styles.image}
-                source={showImg ? piont : piont2}
+                source={showImg ? piont : piontEmpty}
             />}
 
             <Text style={styles.title}>Już niedługo zapraszamy na wspólną wycieczkę</Text>

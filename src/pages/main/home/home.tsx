@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import AnimSvg from '../../../helpers/animSvg';
+
+import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 
 import {
     setAppSize,
@@ -28,6 +31,7 @@ const Home: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
+    setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
             display: 'flex',
@@ -36,6 +40,14 @@ const Home: React.FC<Props> = (props: Props) => {
             width: '100%',
             height: '100%',
             backgroundColor: "#fdf5f5"
+        },
+        header: {
+            position: 'absolute',
+            width: getWidthPx(),
+            height: getTopPx(20),
+            left: getCenterLeftPx(),
+            top: getTopPx(65),
+            alignItems: 'center',
         },
         text: {
             top: -30,
@@ -48,6 +60,10 @@ const Home: React.FC<Props> = (props: Props) => {
 
     return (
         <SafeAreaView style={styles.container}>
+
+            <View style={styles.header}>
+                <KroosLogo></KroosLogo>
+            </View>
 
             <Text style={styles.text}>Home</Text>
 
