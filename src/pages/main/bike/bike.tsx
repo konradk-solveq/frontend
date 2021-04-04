@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import { getBikesData, setBikesData } from '../../../storage/actions/index';
+
 
 import {
     setAppSize,
@@ -18,6 +21,9 @@ import {
 interface Props {
     navigation: any,
     route: any,
+    bikesData: any
+    getBikesData: Function,
+    setBikesData: Function,
 };
 
 const Bike: React.FC<Props> = (props: Props) => {
@@ -44,6 +50,26 @@ const Bike: React.FC<Props> = (props: Props) => {
                             lon: 18.600669860839844
                         }
                     },
+                    services: [ // najbliższe servisy w olejności od nabliższego
+                        {
+                            shopName: 'All for Bike',
+                            street: 'ul. 11-go Listopada 7a paw 3',
+                            city: '62-510 Konin',
+                            email: 'info.allforbike@gmail.com',
+                            phone: '+48 665 362 280',
+                            lat: 54.338890075683594,
+                            lon: 18.600669860839844
+                        },
+                        {
+                            shopName: 'All for Bike',
+                            street: 'ul. 11-go Listopada 7a paw 3',
+                            city: '62-510 Konin',
+                            email: 'info.allforbike@gmail.com',
+                            phone: '+48 665 362 280',
+                            lat: 54.338890075683594,
+                            lon: 18.600669860839844
+                        }
+                    ],
                     params: [
                         {
                             name: 'Rama i widelec',
@@ -139,7 +165,8 @@ const Bike: React.FC<Props> = (props: Props) => {
                             typ: 'okresowy',
                             data: '2021-04-30 12:00:00'
                         },
-                    ]
+                    ],
+                    info: 'W ramach pierwszego przeglądu powinny być wykonane następujące czynności:\n\n- regulacje układu napędowego\n- dokręcenie śrub i nakrętek\n- sprawdzenie i regulacja luzów części łożyskowanych\n- sprawdzenie naciągu szprych\n- kontrola mechanizmu korbowego i elementów układu napędu\n- kontrola stanu mocowania kół\n- kontrola stanu ogumienia\n- sprawdzenie stanu hamulców i regulacja\n- sprawdzenie sprawności i skuteczności działania pozostałych podzespołów roweru'
                 },
                 complaintsRepairs: [
                     {
@@ -147,20 +174,28 @@ const Bike: React.FC<Props> = (props: Props) => {
                         name: 'Reklamacja roweru',
                         date: '2021-03-20 12:00:00',
                         description: 'Dźwignia przerzutki - pęknięcie',
-                        staus: 'w takcie'
+                        staus: {
+                            type: 0, // stan wpływa na kolor wyświtlania, mżliwe że jest więcej niż 2 dlaego są określone przez numer
+                            name: 'w takcie'
+                        }
                     },
                     {
                         id: '102345566',
                         name: 'Reklamacja akcesorium',
                         date: '2021-03-20 12:00:00',
                         description: 'Niezgodność w dostawie - Uszkodzenie kartonu w dostawie w przypadku części opakowania zbiorczego.',
-                        staus: 'zakończona'
+                        staus: {
+                            type: 1,
+                            name: 'zakończona'
+                        }
                     }
                 ]
             }
         ]
     }
 
+    // props.bikesData
+    console.log(' props.bikesData:', props.bikesData)
 
     // const trans = I18n.t('Profile').view;
 
@@ -202,7 +237,6 @@ const Bike: React.FC<Props> = (props: Props) => {
 
             <Text style={styles.header}>Twój rower</Text>
 
-
             <Text style={styles.text}>Bike</Text>
 
             <TabBackGround></TabBackGround>
@@ -211,4 +245,15 @@ const Bike: React.FC<Props> = (props: Props) => {
     )
 }
 
-export default Bike
+const mapStateToProps = (state: any) => {
+    return {
+        bikesData: state.bikes.list
+    }
+}
+
+const mapDispatchToProps = (dispatch: any) => ({
+    setBikesData: (name: string) => dispatch(setBikesData(name)),
+    getBikesData: async () => dispatch(await getBikesData()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bike)
