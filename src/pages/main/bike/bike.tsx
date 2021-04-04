@@ -42,7 +42,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                             phone: '+48 665 362 280',
                             lat: 54.338890075683594,
                             lon: 18.600669860839844
-                        }s
+                        }
                     },
                     params: [
                         {
