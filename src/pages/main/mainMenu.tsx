@@ -8,6 +8,7 @@ import { Stack } from '../../navigation/stack';
 
 import TabMenu from './tabMenu';
 import BikeParams from './bike/bikeParams/bikeParams';
+import WarrantyDetails from './bike/warrantyDetails/warrantyDetails';
 
 import {
     setAppSize,
@@ -74,6 +75,7 @@ const MineMenu: React.FC<Props> = (props: Props) => {
 
             <Stack.Screen name="TabMenu" component={TabMenu} />
             <Stack.Screen name="BikeParams" component={BikeParams} options={verticalAnim} />
+            <Stack.Screen name="WarrantyDetails" component={WarrantyDetails} />
 
         </Stack.Navigator>
     )

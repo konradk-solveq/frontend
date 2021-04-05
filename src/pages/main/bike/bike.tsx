@@ -117,7 +117,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     })
 
     const heandleParams = () => {
-        props.navigation.navigate('BikeParams', { description: bike.description })
+        props.navigation.navigate('BikeParams', { description: bike.description, params: bike.params })
     }
 
     return (
@@ -144,9 +144,11 @@ const Bike: React.FC<Props> = (props: Props) => {
 
                 <Warranty
                     style={styles.warranty}
+                    navigation={props.navigation}
                     type={bike.warranty.type}
                     toEnd={bike.warranty.toEnd}
-                    description={trans.warranty}
+                    warranty={trans.warranty}
+                    details={{description: bike.description, warranty: bike.warranty}}
                 />
 
                 <Reviews

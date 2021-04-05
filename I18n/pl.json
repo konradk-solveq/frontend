@@ -240,5 +240,20 @@
         "remove": "Usuń",
         "btnAddStuff": "DODAJ WYPOSAŻENIE"
     },
+    "WarrantyDetails": {
+        "header": "Szczegóły gwarancji",
+        "title": "Gwarancja nr\n",
+        "details": [
+            "do",
+            "(pozostało",
+            "dni)"
+        ],
+        "bike": "Rower",
+        "bikeDescription": "| nr ramy",
+        "id": "Kod roweru",
+        "date": "Data zakupu",
+        "place": "Miejsce zakupu",
+        "btn": "POBIERZ GWARANCJĘ"
+    },
     "aaaaaaa-aaaaaa": "_____"
 }

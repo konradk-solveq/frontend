@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView, TouchableWithoutFeedback, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
-s
 import { getStorageProfileSettings, setStorageProfileSettings } from '../../../storage/localStorage';
 
 import VerticalHeader from './../../../sharedComponents/navi/verticalHeader/verticalHeader';

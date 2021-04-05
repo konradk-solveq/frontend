@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
@@ -28,6 +26,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('MainProfile');
     const description = props.route.params.description;
+    const params = props.route.params.params;
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
@@ -155,7 +154,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                         <Text style={styles.sizeText}>{description.size}</Text>
                     </View>
 
-                    {description.params.map((e, i) => (
+                    {params.map((e, i) => (
                         <View style={styles.list} key={'list_' + i}>
 
                             <Text style={styles.name}>{e.name}</Text>

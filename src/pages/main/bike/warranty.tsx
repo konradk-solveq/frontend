@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+import { StyleSheet, Dimensions, SafeAreaView, TouchableWithoutFeedback, View, Text } from 'react-native';
 
 import AnimSvg from '../../../helpers/animSvg';
 
@@ -36,10 +36,13 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 
 interface Props {
+    navigation: any,
+    // route: any,
     style?: any
     type: string,
     toEnd: number,
-    description: any
+    warranty: any,
+    details: any
 };
 
 const Warranty: React.FC<Props> = (props: Props) => {
@@ -60,13 +63,11 @@ const Warranty: React.FC<Props> = (props: Props) => {
         let w = layout.width - 1;
         let h = layout.height - 1;
 
-
         // let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
         // svg += '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' + (b * .4) + '"/></filter>'
         // svg += '<rect filter="url(#filter)" opacity=".09" fill="#000" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="24"/>';
         // svg += '<rect fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getLeftPx(32) + '"/>';
         // svg += '</svg>';
-
 
         // #best
         let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
@@ -91,11 +92,9 @@ const Warranty: React.FC<Props> = (props: Props) => {
 
     const styles = StyleSheet.create({
         container: {
-            // alignItems: 'center',
             left: l,
             width: w,
             borderRadius: getLeftPx(32),
-            // height: '100%',
             backgroundColor: 'transparent' // '#f0f0f0',
         },
 
@@ -138,6 +137,10 @@ const Warranty: React.FC<Props> = (props: Props) => {
         }
     })
 
+    const heandleWarrantyDetails = () => {
+        props.navigation.navigate('WarrantyDetails', { details: props.details })
+    }
+
     return (
         <View
             style={[styles.container, props.style]}
@@ -148,16 +151,23 @@ const Warranty: React.FC<Props> = (props: Props) => {
                 style={boxStyle}
             />
 
-            <View style={[styles.textLine, styles.line]}>
-                <Text style={styles.leftText}>{props.description.state}</Text>
-                <Text style={styles.rightText}>{props.type}</Text>
-            </View>
+            <TouchableWithoutFeedback
+                onPress={() => heandleWarrantyDetails()}
+            >
+                <View>
+                    <View style={[styles.textLine, styles.line]}>
+                        <Text style={styles.leftText}>{props.warranty.state}</Text>
+                        <Text style={styles.rightText}>{props.type}</Text>
+                    </View>
 
-            <View style={styles.textLine}>
-                <Text style={styles.leftText}>{props.description.toEnd}</Text>
-                <Text style={styles.rightText}>{'' + props.toEnd + ' ' + props.description.days}</Text>
-                <Text style={styles.dots}>. . .</Text>
-            </View>
+                    <View style={styles.textLine}>
+                        <Text style={styles.leftText}>{props.warranty.toEnd}</Text>
+                        <Text style={styles.rightText}>{'' + props.toEnd + ' ' + props.warranty.days}</Text>
+                        <Text style={styles.dots}>. . .</Text>
+                    </View>
+                </View>
+
+            </TouchableWithoutFeedback>
 
         </View>
     )

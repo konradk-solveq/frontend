@@ -73,10 +73,6 @@ const VerticalHeader: React.FC<Props> = (props: Props) => {
     return (
         <View style={[styles.container, props.style]}>
 
-            {/* <Svg style={styles.headerBack} viewBox="0 0 120.8 18.4">
-                <Path fill="#f2eaeb" d="M0 0h120.8v12s-25 6.3-59.7 6.3A287 287 0 010 12z" />
-            </Svg> */}
-
             <AnimSvg
                 style={styles.headerBack}
                 source={background}

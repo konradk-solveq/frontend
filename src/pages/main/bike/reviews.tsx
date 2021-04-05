@@ -162,7 +162,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                 <Text style={[styles.light, styles.year]}>{hendleYear(e.date)}</Text>
 
                                 {e.state == 1 && <Svg style={styles.mark} viewBox="0 0 20 20">
-                                    <Circle cx="10.01" cy="10" r="9.96" fill="#39b54a" paint-order="markers fill stroke"/>
+                                    <Circle cx="10.01" cy="10" r="9.96" fill="#39b54a" paint-order="markers fill stroke" />
                                     <Path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.11" d="M7.18 10.19l2.03 2 4.34-4.42" />
                                 </Svg>}
 
@@ -174,8 +174,6 @@ const Reviews: React.FC<Props> = (props: Props) => {
 
                 </View>
             </ScrollView >
-
-
 
         </View >
     )

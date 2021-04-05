@@ -5,31 +5,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
 
 import {
-    setAppSize,
-    initAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
-    getCenterTop,
-    getLeft,
-    getTop,
     getTopPx,
-    getWidth,
-    getWidthOf,
     getWidthPx,
-    getWidthPxOf,
-    getHeight,
-    getHeightPx,
-    getRelativeWidth,
-    getRelativeHeight,
-    getStandard,
-    getStandardPx,
-    getPerfect,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight
 } from '../../../helpers/layoutFoo';
 
 interface Props {
