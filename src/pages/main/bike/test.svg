@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -30 376.0909118652344 419.25649489365617" width="376.0909118652344" height="419.25649489365617">
-    <filter id="filter" x="-1" width="3" y="-1" height="3">
-        <feGaussianBlur stdDeviation="12"/>
-    </filter>
-    <rect fill="red" stroke="none" width="316.0909118652344" height="172.09091186523438" x="0" y="0" ry="24.664031620553363"/>
-    <rect fill="red" stroke="none" width="316.0909118652344" height="172.4545440673828" x="0" y="0" ry="24.664031620553363"/>
-</svg>

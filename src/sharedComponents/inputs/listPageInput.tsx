@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, Dimensions, ScrollView, TouchableOpacity, View, Text } from 'react-native';
 
-import StackHeader from '../navi/stackHeader';
+import StackHeader from '../navi/stackHeader/stackHeader';
 
 import {
     setAppSize,

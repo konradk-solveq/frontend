@@ -6,7 +6,7 @@ import AnimSvg from '../../../../helpers/animSvg';
 
 import { setUserName, getUserName } from '../../../../storage/actions/index';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader';
+import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 

@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 
 import { setFrameNumber, getFrameNumber } from '../../../../storage/actions/index';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader';
+import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
 import TranspLightBtn from '../../../../sharedComponents/buttons/transpLightBtn';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';

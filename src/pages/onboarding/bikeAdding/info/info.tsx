@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader';
+import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import TypicalRedBtn from '../../../../sharedComponents/buttons/typicalRed';
 import ImgKross from './imgKross';
 import ImgOther from './imgOther';

@@ -11,7 +11,7 @@ import {
     getLeft
 } from '../../../helpers/layoutFoo';
 
-import StackHeader from '../../../sharedComponents/navi/stackHeader';
+import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 
 
 interface Props {

@@ -7,6 +7,7 @@ import Svg, { G, Path, Circle } from 'react-native-svg';
 
 import { getStorageProfileSettings, setStorageProfileSettings } from '../../../storage/localStorage';
 
+import VerticalHeader from './../../../sharedComponents/navi/verticalHeader/verticalHeader';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import RadioLine from './radioLine';
@@ -199,7 +200,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
 
-                    <Svg style={styles.headerBack} viewBox="0 0 120.8 18.4">
+                    {/* <Svg style={styles.headerBack} viewBox="0 0 120.8 18.4">
                         <Path fill="#f2eaeb" d="M0 0h120.8v12s-25 6.3-59.7 6.3A287 287 0 010 12z" paint-order="markers fill stroke" />
                     </Svg>
 
@@ -214,7 +215,11 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
                                 </G>
                             </Svg>
                         </TouchableWithoutFeedback>
-                    </View>
+                    </View> */}
+
+                    <VerticalHeader
+                        onpress={() => props.navigation.navigate('CyclingProfileView')}
+                    />
 
                     <Text style={styles.reg23}>
                         {trans.title}

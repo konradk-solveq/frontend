@@ -7,7 +7,7 @@ import AnimSvg from '../../../helpers/animSvg';
 
 import { getStorageProfileSettings } from '../../../storage/localStorage';
 
-import StackHeader from '../../../sharedComponents/navi/stackHeader';
+import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 

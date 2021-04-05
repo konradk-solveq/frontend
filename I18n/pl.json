@@ -231,6 +231,14 @@
             }
         }
     },
-    "MainProfile": {},
+    "MainProfile": {
+        "header": "Rower",
+        "details": [
+            "od ",
+            " / nr ramy "
+        ],
+        "remove": "Usuń",
+        "btnAddStuff": "DODAJ WYPOSAŻENIE"
+    },
     "aaaaaaa-aaaaaa": "_____"
 }

@@ -15,7 +15,7 @@ import {
     getCenterLeft
 } from '../../../helpers/layoutFoo';
 
-import StackHeader from '../../../sharedComponents/navi/stackHeader';
+import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OnePermit from './onePermit';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 

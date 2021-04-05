@@ -10,7 +10,7 @@ import {
     getTopPx,
     getWidthPx,
     getCenterLeftPx
-} from '../../helpers/layoutFoo';
+} from '../../../helpers/layoutFoo';
 
 interface Props {
     // * wartości wymagane
