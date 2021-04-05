@@ -205,11 +205,30 @@
     "MainWorld": {},
     "MainBike": {
         "header": "Twój rower",
-        "details": ["od ", " / nr ramy "],
+        "details": [
+            "od ",
+            " / nr ramy "
+        ],
         "warranty": {
             "state": "status gwarancji",
             "toEnd": "do końca gwarancji",
-            "days": "dni"
+            "days": "dni",
+            "reviews": {
+                "name": "Przeglądy",
+                "type": {
+                    "warranty": "gwarancyjny",
+                    "periodic": "okresowy"
+                }
+            },
+            "complaintsRepairs": {
+                "name": "Reklamacje naprawy",
+                "of": "z dnia",
+                "state": [
+                    "w takcie",
+                    "zakończona"
+                ],
+                "number": "nr"
+            }
         }
     },
     "MainProfile": {},

@@ -7,6 +7,8 @@ import { getBikesData, setBikesData } from '../../../storage/actions/index';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import Warranty from './warranty';
+import Reviews from './reviews';
+import ComplaintsRepairs from './complaintsRepairs';
 
 import {
     setAppSize,
@@ -47,11 +49,10 @@ const Bike: React.FC<Props> = (props: Props) => {
             // alignItems: 'center',
             width: '100%',
             height: '100%',
-            backgroundColor: '#fdf5f5'
         },
         scroll: {
-            backgroundColor: 'green'
-
+            // backgroundColor: '#ffffff'  
+            backgroundColor: '#f0f0f0' // #best
         },
         header: {
             marginTop: getTopPx(65),
@@ -75,14 +76,24 @@ const Bike: React.FC<Props> = (props: Props) => {
             marginTop: getTopPx(5),
             left: l,
             width: w,
-            backgroundColor: 'khaki',
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
             fontSize: 15,
             color: '#555555',
+            // backgroundColor: 'khaki'
         },
         warranty: {
             marginTop: getTopPx(76),
+        },
+        reviews: {
+            marginTop: getTopPx(45),
+        },
+        complaintsRepairs: {
+            marginTop: getTopPx(30),
+        },
+        separator: {
+            width: '100%',
+            height: getTopPx(200)
         }
     })
 
@@ -104,6 +115,20 @@ const Bike: React.FC<Props> = (props: Props) => {
                     toEnd={bike.warranty.toEnd}
                     description={trans.warranty}
                 />
+
+                <Reviews
+                    style={styles.reviews}
+                    list={bike.warranty.reviews}
+                    description={trans.warranty.reviews}
+                />
+
+                <ComplaintsRepairs
+                    style={styles.complaintsRepairs}
+                    list={bike.complaintsRepairs}
+                    description={trans.warranty.complaintsRepairs}
+                />
+
+                <View style={styles.separator} />
 
             </ScrollView>
 

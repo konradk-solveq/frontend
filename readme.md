@@ -36,6 +36,7 @@ yarn add react-native-reanimated
 yarn add react-native-safe-area-context
 yarn add react-native-safe-area-view
 yarn add react-native-screens
+yarn add react-native-shadow
 yarn add react-native-svg
 yarn add react-native-webview
 yarn add react-redux

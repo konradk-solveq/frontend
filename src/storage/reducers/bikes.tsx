@@ -4,6 +4,7 @@ import { getStorageUserName } from '../localStorage';
 const initialStateList = {
     list: [
         {
+            images: [],
             description: {
                 name: 'Evado 2.0',
                 id: 'KRTR3Z28X17W040003',
@@ -127,16 +128,19 @@ const initialStateList = {
                 toEnd: 35,
                 reviews: [
                     {
-                        typ: 'gwarancyjny',
-                        data: '2020-11-30 12:00:00'
+                        type: 'gwarancyjny',
+                        date: '2020-11-30 12:00:00',
+                        state: 1
                     },
                     {
-                        typ: 'gwarancyjny',
-                        data: '2021-03-15 12:00:00'
+                        type: 'gwarancyjny',
+                        date: '2021-03-15 12:00:00',
+                        state: 0
                     },
                     {
-                        typ: 'okresowy',
-                        data: '2021-04-30 12:00:00'
+                        type: 'okresowy',
+                        date: '2021-04-30 12:00:00',
+                        state: 0
                     },
                 ],
                 info: 'W ramach pierwszego przeglądu powinny być wykonane następujące czynności:\n\n- regulacje układu napędowego\n- dokręcenie śrub i nakrętek\n- sprawdzenie i regulacja luzów części łożyskowanych\n- sprawdzenie naciągu szprych\n- kontrola mechanizmu korbowego i elementów układu napędu\n- kontrola stanu mocowania kół\n- kontrola stanu ogumienia\n- sprawdzenie stanu hamulców i regulacja\n- sprawdzenie sprawności i skuteczności działania pozostałych podzespołów roweru'
@@ -147,7 +151,7 @@ const initialStateList = {
                     name: 'Reklamacja roweru',
                     date: '2021-03-20 12:00:00',
                     description: 'Dźwignia przerzutki - pęknięcie',
-                    staus: {
+                    state: {
                         type: 0, // stan wpływa na kolor wyświtlania, mżliwe że jest więcej niż 2 dlaego są określone przez numer
                         name: 'w takcie'
                     }
@@ -157,7 +161,17 @@ const initialStateList = {
                     name: 'Reklamacja akcesorium',
                     date: '2021-03-20 12:00:00',
                     description: 'Niezgodność w dostawie - Uszkodzenie kartonu w dostawie w przypadku części opakowania zbiorczego.',
-                    staus: {
+                    state: {
+                        type: 1,
+                        name: 'zakończona'
+                    }
+                },
+                {
+                    id: '102345566',
+                    name: 'Reklamacja akcesorium',
+                    date: '2021-03-20 12:00:00',
+                    description: 'Niezgodność w dostawie - Uszkodzenie kartonu w dostawie w przypadku części opakowania zbiorczego.\nbardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo bardzo długi opis',
+                    state: {
                         type: 1,
                         name: 'zakończona'
                     }

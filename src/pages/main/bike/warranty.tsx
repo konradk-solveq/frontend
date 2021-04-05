@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+
+import AnimSvg from '../../../helpers/animSvg';
+
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 
 import {
@@ -48,21 +51,59 @@ const Warranty: React.FC<Props> = (props: Props) => {
     setObjSize(334, 50);
     const w = getWidthPx();
     const l = getCenterLeftPx();
+
+    const [source, setSource] = useState('<svg xmlns="http://www.w3.org/2000/svg"/>'); // do odpalania animacji svg
+    const [boxStyle, setBoxStyle] = useState({}); // do odpalania animacji svg
+
+    const handleShadowBox = (layout: any) => {
+        let b = 30;
+        let w = layout.width - 1;
+        let h = layout.height - 1;
+
+
+        // let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
+        // svg += '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' + (b * .4) + '"/></filter>'
+        // svg += '<rect filter="url(#filter)" opacity=".09" fill="#000" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="24"/>';
+        // svg += '<rect fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getLeftPx(32) + '"/>';
+        // svg += '</svg>';
+
+
+        // #best
+        let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
+        svg += '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' + (b * .4) + '"/></filter>'
+        svg += '<rect filter="url(#filter)" opacity=".15" fill="#000" stroke="none" width="' + w + '" height="' + h + '" x="' + (b * .2) + '" y="' + (b * .2) + '" ry="24"/>';
+        svg += '<rect filter="url(#filter)" opacity="1" fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + (-b * .35) + '" y="' + (-b * .35) + '" ry="24"/>';
+        svg += '<rect fill="#f0f0f0" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getLeftPx(32) + '"/>';
+        svg += '</svg>';
+
+        setSource(svg);
+        // console.log('%c svg:', svg)
+
+        setBoxStyle({
+            position: 'absolute',
+            left: -b,
+            top: -b,
+            width: w + (b * 2),
+            height: h + (b * 2),
+            // backgroundColor: 'green'
+        })
+    }
+
     const styles = StyleSheet.create({
         container: {
             // alignItems: 'center',
             left: l,
             width: w,
-            borderRadius: 24,
+            borderRadius: getLeftPx(32),
             // height: '100%',
-            backgroundColor: 'red'// '#fdf5f5'
+            backgroundColor: 'transparent' // '#f0f0f0',
         },
+
         textLine: {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
             // backgroundColor: 'green'
-
         },
         leftText: {
             marginTop: getTopPx(22),
@@ -84,18 +125,28 @@ const Warranty: React.FC<Props> = (props: Props) => {
             textAlign: 'left',
         },
         line: {
-            borderBottomColor: 'green',
+            borderBottomColor: '#ebebeb',
             borderBottomWidth: 2
         },
         dots: {
             position: 'absolute',
             right: getLeftPx(17),
-            bottom: getTopPx(14),
+            bottom: getTopPx(17),
+            fontFamily: 'DIN2014Narrow-Regular',
+            fontSize: 20,
+            color: '#313131',
         }
     })
 
     return (
-        <View style={[styles.container, props.style]}>
+        <View
+            style={[styles.container, props.style]}
+            onLayout={e => handleShadowBox(e.nativeEvent.layout)}
+        >
+            <AnimSvg
+                source={source}
+                style={boxStyle}
+            />
 
             <View style={[styles.textLine, styles.line]}>
                 <Text style={styles.leftText}>{props.description.state}</Text>
@@ -105,9 +156,8 @@ const Warranty: React.FC<Props> = (props: Props) => {
             <View style={styles.textLine}>
                 <Text style={styles.leftText}>{props.description.toEnd}</Text>
                 <Text style={styles.rightText}>{'' + props.toEnd + ' ' + props.description.days}</Text>
+                <Text style={styles.dots}>. . .</Text>
             </View>
-
-            <Text style={styles.dots}>. . .</Text>
 
         </View>
     )

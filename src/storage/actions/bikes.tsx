@@ -5,6 +5,7 @@ import * as actionTypes from './actionTypes';
 export const getBikesData = async () => {
     const list = [
         {
+            images: [],
             description: {
                 name: 'Evado 2.0',
                 id: 'KRTR3Z28X17W040003',
@@ -128,16 +129,19 @@ export const getBikesData = async () => {
                 toEnd: 35,
                 reviews: [
                     {
-                        typ: 'gwarancyjny',
-                        data: '2020-11-30 12:00:00'
+                        type: 'gwarancyjny',
+                        date: '2020-11-30 12:00:00',
+                        state: 1
                     },
                     {
-                        typ: 'gwarancyjny',
-                        data: '2021-03-15 12:00:00'
+                        type: 'gwarancyjny',
+                        date: '2021-03-15 12:00:00',
+                        state: 0
                     },
                     {
-                        typ: 'okresowy',
-                        data: '2021-04-30 12:00:00'
+                        type: 'okresowy',
+                        date: '2021-04-30 12:00:00',
+                        state: 0
                     },
                 ],
                 info: 'W ramach pierwszego przeglądu powinny być wykonane następujące czynności:\n\n- regulacje układu napędowego\n- dokręcenie śrub i nakrętek\n- sprawdzenie i regulacja luzów części łożyskowanych\n- sprawdzenie naciągu szprych\n- kontrola mechanizmu korbowego i elementów układu napędu\n- kontrola stanu mocowania kół\n- kontrola stanu ogumienia\n- sprawdzenie stanu hamulców i regulacja\n- sprawdzenie sprawności i skuteczności działania pozostałych podzespołów roweru'

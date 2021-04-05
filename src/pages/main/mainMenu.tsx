@@ -6,7 +6,7 @@ import Svg, { G, Path, Circle } from 'react-native-svg';
 
 import { Stack } from '../../navigation/stack';
 
-import TabMenu from '../main/tabManu';
+import TabMenu from './tabMenu';
 
 
 import {
@@ -29,23 +29,40 @@ interface Props {
 const MineMenu: React.FC<Props> = (props: Props) => {
 
     const horizontalAnim = {
-		// gestureDirection: 'horizontal',
-		cardStyleInterpolator: ({ current, layouts }) => {
-			return {
-				cardStyle: {
-					transform: [
-						{
-							translateX: current.progress.interpolate({
-								inputRange: [0, 1],
-								outputRange: [layouts.screen.width, 0],
-							}),
-						},
-					],
-				},
-			};
-		},
-	};
+        // gestureDirection: 'horizontal',
+        cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+                cardStyle: {
+                    transform: [
+                        {
+                            translateX: current.progress.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [layouts.screen.width, 0],
+                            }),
+                        },
+                    ],
+                },
+            };
+        },
+    };
 
+    const verticalAnim = {
+        // gestureDirection: 'vertical',
+        cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+                cardStyle: {
+                    transform: [
+                        {
+                            translateY: current.progress.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [layouts.screen.height, 0],
+                            }),
+                        },
+                    ],
+                },
+            };
+        },
+    };
 
     return (
         <Stack.Navigator
@@ -55,9 +72,7 @@ const MineMenu: React.FC<Props> = (props: Props) => {
             screenOptions={horizontalAnim}
         >
 
-
             <Stack.Screen name="TabMenu" component={TabMenu} />
-
 
         </Stack.Navigator>
     )

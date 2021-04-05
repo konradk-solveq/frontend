@@ -6,10 +6,10 @@ import Svg, { G, Path, Circle } from 'react-native-svg';
 
 import { Tab } from '../../navigation/stack';
 
-import Home from '../main/home/home';
-import World from '../main/world/world';
-import Bike from '../main/bike/bike';
-import Profile from '../main/profile/profile';
+import Home from './home/home';
+import World from './world/world';
+import Bike from './bike/bike';
+import Profile from './profile/profile';
 
 import {
     setAppSize,
