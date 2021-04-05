@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, ScrollView, TouchableWithoutFeedback, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
-import Svg, { G, Path, Circle } from 'react-native-svg';
-
+s
 import { getStorageProfileSettings, setStorageProfileSettings } from '../../../storage/localStorage';
 
 import VerticalHeader from './../../../sharedComponents/navi/verticalHeader/verticalHeader';
@@ -69,7 +68,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
     }, [])
 
     const handleChangeData = (key: string, value: number) => { // dla zmiany wyboru na liscie
-        let newData = deepCopy(dataSetting); 
+        let newData = deepCopy(dataSetting);
         newData[key] = value;
         setDataSetting(newData)
 
@@ -121,17 +120,6 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
-    setObjSize(51, 51);
-    const h = ww * (18.4 / 120.8);
-    const w = getWidthPx();
-    const headerBtn = {
-        position: 'absolute',
-        width: w,
-        height: w,
-        left: getCenterLeftPx(),
-        top: h - (w / 2)
-    };
-
     setObjSize(334, 50);
     const bottons = {
         position: 'relative',
@@ -152,12 +140,6 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
             top: 0,
             backgroundColor: "#fdfdfd"
         },
-        headerBack: {
-            width: ww,
-            height: h,
-            marginBottom: getTopPx(30)
-        },
-        headerBtn,
         reg23: {
             fontFamily: "DIN2014Narrow-Regular",
             fontSize: 23,
@@ -199,23 +181,6 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         <SafeAreaView style={{ backgroundColor: "white" }}>
             <View style={styles.scroll}>
                 <ScrollView>
-
-                    {/* <Svg style={styles.headerBack} viewBox="0 0 120.8 18.4">
-                        <Path fill="#f2eaeb" d="M0 0h120.8v12s-25 6.3-59.7 6.3A287 287 0 010 12z" paint-order="markers fill stroke" />
-                    </Svg>
-
-                    <View style={styles.headerBtn}>
-                        <TouchableWithoutFeedback
-                            onPress={() => props.navigation.navigate('CyclingProfileView')}
-                        >
-                            <Svg viewBox="0 0 15.4 15.4" style={{ width: '100%', height: '100%' }}>
-                                <G transform="translate(-107.1 -21.8)">
-                                    <Circle cx="114.8" cy="29.5" r="7.6" fill="#fdfdfd" paint-order="markers fill stroke" />
-                                    <Path fill="#313131" fill-rule="nonzero" d="M116.7 28.7a.3.3 0 00-.4 0l-1.5 1.5-1.4-1.5a.3.3 0 00-.5.4l1.7 1.7c.2.1.3.1.4 0l1.7-1.7c.1-.1.1-.3 0-.4z" />
-                                </G>
-                            </Svg>
-                        </TouchableWithoutFeedback>
-                    </View> */}
 
                     <VerticalHeader
                         onpress={() => props.navigation.navigate('CyclingProfileView')}

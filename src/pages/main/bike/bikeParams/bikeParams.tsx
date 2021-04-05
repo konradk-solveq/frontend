@@ -1,26 +1,22 @@
 
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import AnimSvg from '../../../../helpers/animSvg';
-
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
+import VerticalHeader from '../../../../sharedComponents/navi/verticalHeader/verticalHeader';
+// import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 
 import {
     setAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
+    getLeftPx,
     getTopPx,
-    getWidth,
     getWidthPx,
-    getWidthPxOf,
-    getHeightPx,
+ 
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -31,105 +27,160 @@ interface Props {
 const BikeParams: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('MainProfile');
-    const params = props.route.params.description;
-    console.log('%c params:', 'background: #ffcc00; color: #003300', params)
+    const description = props.route.params.description;
 
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
-    setObjSize(315, 50);
-    const w = getWidthPx();
-    const h = w * (296 / 315);
-    const image = {
-        position: 'absolute',
-        width: w,
-        height: h,
-        left: getCenterLeftPx(),
-        top: getTopPx(253),
-        // backgroundColor: 'khaki'
-    }
-
     setObjSize(334, 50);
-    let bottons = {
-        position: 'absolute',
-        width: getWidth(),
-        height: getHeightPx() < 50 ? 50 : getHeightPx(),
-        left: getCenterLeftPx(),
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        bottom: getTopPx(65)
-    }
-
     const styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: "white"
         },
-
-        light30: {
-            fontFamily: "DIN2014Narrow-Light",
-            fontSize: 30,
-            color: '#313131',
-            textAlign: 'left',
-            width: getWidth(),
-            left: getCenterLeft(),
-            top: getTopPx(138),
-
+        scroll: {
+            backgroundColor: '#ffffff'
         },
-        image,
-        reg40: {
-            position: 'absolute',
-            fontFamily: "DIN2014Narrow-Regular",
+        bikeName: {
+            fontFamily: 'DIN2014Narrow-Regular',
             fontSize: 40,
+            width: '100%',
             color: '#313131',
-            textAlign: 'center',
-            width: getWidthPx(),
-            left: getCenterLeftPx(),
-            top: getTopPx(253 + 20) + h,
+            textAlign: 'center'
         },
-        light18: {
-            position: 'absolute',
-            fontFamily: "DIN2014Narrow-Light",
+        bikeDetails: {
+            marginTop: getTopPx(5),
+            fontFamily: 'DIN2014Narrow-Light',
+            textAlign: 'center',
+            fontSize: 15,
+            color: '#555555',
+            // backgroundColor: 'khaki'
+        },
+        color: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            marginTop: getTopPx(39)
+        },
+        colorBall: {
+            width: getLeftPx(24),
+            height: getLeftPx(24),
+            borderRadius: getLeftPx(12),
+            backgroundColor: 'khaki',
+            marginRight: getLeftPx(22)
+        },
+        colorText: {
+            fontFamily: 'DIN2014Narrow-Regular',
+            fontSize: 18,
+            color: '#555555'
+        },
+        size: {
+            marginTop: getTopPx(20),
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            height: getLeftPx(29),
+            borderRadius: getLeftPx(15),
+            borderColor: '#33555555',
+            borderWidth: 1,
+            alignSelf: "flex-start"
+        },
+        sizeText: {
+            fontFamily: 'DIN2014Narrow-Regular',
             fontSize: 18,
             color: '#555555',
-            textAlign: 'center',
-            width: getWidthPx(),
+            paddingLeft: getLeftPx(15),
+            paddingRight: getLeftPx(15),
+        },
+        lists: {
+            marginTop: getTopPx(12),
             left: getCenterLeftPx(),
-            top: getTopPx(253 + 76) + h,
+            width: getWidthPx()
         },
-        bottons,
+        list: {
+            marginTop: getTopPx(30)
+        },
+        name: {
+            fontFamily: "DIN2014Narrow-Regular",
+            fontSize: 26,
+            color: '#313131',
+            textAlign: 'left',
+            marginBottom: getTopPx(11)
+        },
+        valLine: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+        },
+        val: {
+            fontFamily: "DIN2014Narrow-Light",
+            fontSize: 16,
+            lineHeight: 26,
+            color: '#313131'
+
+        },
         btn: {
-            width: getWidthPxOf(157),
-        },
-        spaceOnEnd: {
-            width: '100%',
-            height: getTopPx(65)
+            width: getWidthPx(),
+            height: getTopPx(50) < 50 ? 50 : getTopPx(50),
+            left: getCenterLeftPx(),
+            marginTop: getTopPx(31),
+            marginBottom: getTopPx(80)
         }
     })
 
     return (
         <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.scroll}>
 
-            <Text style={styles.light30}>
-                {trans.title}
-            </Text>
+                <VerticalHeader
+                    onpress={() => props.navigation.navigate('TabMenu')}
+                />
 
-            <View style={styles.btn}>
+                <View style={styles.lists}>
+
+                    <Text style={styles.bikeName}>{description.name}</Text>
+
+                    <Text style={styles.bikeDetails}>
+                        {trans.details[0] + description.producer + trans.details[1] + description.frame}
+                    </Text>
+
+                    <View style={styles.color}>
+                        <View style={styles.colorBall} />
+                        <Text style={styles.colorText}>{description.color}</Text>
+                    </View>
+
+                    <View style={styles.size}>
+                        <Text style={styles.sizeText}>{description.size}</Text>
+                    </View>
+
+                    {description.params.map((e, i) => (
+                        <View style={styles.list} key={'list_' + i}>
+
+                            <Text style={styles.name}>{e.name}</Text>
+
+                            {e.list.map((ee, ii) => (
+                                <View style={styles.valLine} key={'val_' + i + '_' + ii}>
+
+                                    <Text style={styles.val}>{ee.name}</Text>
+                                    <Text style={styles.val}>{ee.val}</Text>
+
+                                </View>
+                            ))}
+
+                        </View>
+                    ))}
+
+                </View>
+
                 <BigRedBtn
+                    style={styles.btn}
                     title={trans.btnAddStuff}
                     onpress={() => props.navigation.navigate('TabMenu')}
-                ></BigRedBtn>
-            </View>
+                />
 
-
-            <StackHeader
-                onpress={() => props.navigation.navigate('TabMenu')}
-                inner={trans.header}
-            ></StackHeader>
-
+            </ScrollView>
         </SafeAreaView>
     )
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet,  TouchableOpacity, Text } from 'react-native';
 
 interface Props {
+    style?: any,
     title: string,
     onpress: Function
 }
@@ -31,7 +32,7 @@ const BigWhiteBtn: React.FC<Props> = (props: Props) => {
 
     return (
         <TouchableOpacity
-            style={styles.btn}
+            style={[styles.btn, props.style]}
             onPress={props.onpress}
         >
             <Text style={styles.text}>{props.title}</Text>

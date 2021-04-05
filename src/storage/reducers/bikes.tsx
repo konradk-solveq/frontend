@@ -48,7 +48,7 @@ const initialStateList = {
                     {
                         name: 'Rama i widelec',
                         list: [
-                            { name: 'Kaseta/wolnobieg', val: 'MATOWY' },
+                            { name: 'Wykończenie lakieru', val: 'MATOWY' },
                             { name: 'Materiał ramy', val: 'ALUMINIUM PERFORMANCE' },
                             { name: 'Widelec', val: 'SR SUNTOUR XCE28' },
                             { name: 'Skok widelca', val: '80MM' },
