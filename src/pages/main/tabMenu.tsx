@@ -12,8 +12,9 @@ import Bike from './bike/bike';
 import Profile from './profile/profile';
 
 import {
-    setAppSize,
+    initAppSize,
     getTopPx,
+    getLeftPx
 } from '../../helpers/layoutFoo';
 
 interface Props {
@@ -23,18 +24,16 @@ interface Props {
 
 const TabMenu: React.FC<Props> = (props: Props) => {
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
+    initAppSize();
 
-    const iconSize = ww * (34 / 414);
-    const iconMargin = ww * (7 / 414);
+    const iconSize = getLeftPx(34);
+    const iconMargin = getLeftPx(10);
     const styles = StyleSheet.create({
         icon: {
             width: iconSize,
             height: iconSize,
-            marginTop: getTopPx(30),
-            marginBottom: getTopPx(31)
+            marginTop: getLeftPx(36),
+            marginBottom: getLeftPx(20)
         }
     })
 
@@ -49,7 +48,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
             left: 0,
             right: 0,
             bottom: 0,
-            height: getTopPx(95),
+            height: getLeftPx(95),
             elevation: 0,
             // backgroundColor: 'khaki'
         },

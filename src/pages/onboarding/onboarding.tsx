@@ -8,6 +8,7 @@ import {
     setAppSize,
     setObjSize,
     getWidth,
+    getWidthPx,
     getTop,
     getRelativeHeight,
     getCenterLeftPx
@@ -95,7 +96,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
     setObjSize(ww * 4.27, 0.4 * ww * 4.35);
     const line:any = {
         position: 'absolute',
-        width: getWidth(),
+        width: getWidthPx(),
         height: getRelativeHeight(),
         left: -ww * .05,
         top: getTop(90),
