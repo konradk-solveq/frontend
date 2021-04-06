@@ -4,7 +4,7 @@ import AnimSvg from '../../../helpers/animSvg';
 
 import {
     setAppSize,
-    getStandard
+    getStandardPx
 } from '../../../helpers/layoutFoo';
 
 const SplashScreen = () => {
@@ -59,8 +59,8 @@ const SplashScreen = () => {
             height: '100%',
             backgroundColor: 'white'
         },
-        krossLogo: getStandard(242, 130, 226),
-        krossYouCan: getStandard(118, 52, 767),
+        krossLogo: getStandardPx(242, 130, 226),
+        krossYouCan: getStandardPx(118, 52, 767),
         khaki: {
             backgroundColor: 'khaki'
         },
