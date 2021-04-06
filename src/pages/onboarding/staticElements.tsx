@@ -4,9 +4,12 @@ import I18n from 'react-native-i18n';
 
 import {
     setObjSize,
-    getStandard,
     getLeftPx,
-    initAppSize
+    initAppSize,
+    getCenterLeftPx,
+    getTopPx,
+    getHeightPx,
+    getWidthPx
 } from '../../helpers/layoutFoo';
 
 import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn'
@@ -26,34 +29,43 @@ const StaticElements: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('Onboarding');
 
     initAppSize()
-    setObjSize(41, 23);
-    const skip = {
-        position: 'absolute',
-        left: getLeftPx(333),
-        top: getLeftPx(67),
-    }
-
+    setObjSize(334, 50);
     let styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
         },
-        redBtn: getStandard(334, 50, 781),
-        skip
+        panel: {
+            top: getLeftPx(67),
+        },
+        skip: {
+            position: 'absolute',
+            left: getLeftPx(333),
+            top: getLeftPx(60),
+        },
+        redBtn: {
+            position: 'absolute',
+            width: getWidthPx(),
+            height: getHeightPx(),
+            left: getCenterLeftPx(),
+            bottom: getTopPx(65)
+        }
     })
 
     return (
         <SafeAreaView style={styles.container}>
 
             <PanelProps
+                style={styles.panel}
                 active={props.board - 1}
                 listBtn={props.list}
             ></PanelProps>
 
-            <View style={styles.skip}>
-                <TranspLightBtn title={trans.skip}
-                    onpress={() => props.goFoward()} />
-            </View>
+            <TranspLightBtn
+                style={styles.skip}
+                title={trans.skip}
+                onpress={() => props.goFoward()}
+            />
 
             <View style={styles.redBtn}>
                 <BigRedBtn

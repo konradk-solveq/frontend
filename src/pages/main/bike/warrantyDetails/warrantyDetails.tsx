@@ -59,7 +59,7 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
             paddingBottom: getTopPx(20),
             paddingLeft: getLeftPx(10),
             backgroundColor: 'khaki',
-            borderRadius: 20
+            borderRadius: getLeftPx(20)
         },
         title: {
             fontFamily: 'DIN2014Narrow-Regular',
@@ -71,7 +71,7 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
             marginTop: getTopPx(5),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
         },
         place: {
@@ -84,27 +84,27 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
             marginTop: getTopPx(30),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
         },
         value: {
             marginTop: getTopPx(6),
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555',
         },
         shopName: {
             marginTop: getTopPx(6),
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: 23,
+            fontSize: getLeftPx(23),
             color: '#313131',
         },
         adress: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
         },
         contact: {
@@ -119,15 +119,12 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
             width: '50%',
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
         },
-
-
         btn: {
             marginTop: getTopPx(92),
-            height: getHeightPx() < 50 ? 50 : getHeightPx(),
-
+            height: getHeightPx(),
             marginBottom: headHeight
         },
         spaceOnEnd: {

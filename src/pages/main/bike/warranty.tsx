@@ -91,7 +91,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
             width: '50%',
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
         },
         rightText: {
@@ -99,7 +99,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
             left: getLeftPx(28.5),
             width: '50%',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 23,
+            fontSize: getLeftPx(23),
             color: '#313131',
             textAlign: 'left',
         },
@@ -112,7 +112,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
             right: getLeftPx(17),
             bottom: getTopPx(17),
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 20,
+            fontSize: getLeftPx(20),
             color: '#313131',
         }
     })
@@ -133,6 +133,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
 
             <TouchableWithoutFeedback
                 onPress={() => heandleWarrantyDetails()}
+                // onPress={() => { }}
             >
                 <View>
                     <View style={[styles.textLine, styles.line]}>

@@ -5,10 +5,10 @@ import Hyperlink from 'react-native-hyperlink'
 import I18n from 'react-native-i18n';
 
 import {
-    setAppSize,
+    initAppSize,
     setObjSize,
     getWidthPx,
-    getTop,
+    getTopPx,
     getLeftPx,
     getWidthOf,
 } from '../../../helpers/layoutFoo';
@@ -28,29 +28,12 @@ interface Props {
 
 const OnePermit: React.FC<Props> = (props: Props) => {
 
-   const trans = I18n.t('Permits');
+    const trans = I18n.t('Permits');
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
+    initAppSize();
 
     setObjSize(26, 26);
     const cbw = getWidthPx();
-    const checkbox = {
-        position: 'relative',
-        width: cbw,
-        height: cbw,
-        marginLeft: getLeftPx(40),
-    }
-
-    const hyper = {
-        position: 'relative',
-        width: getWidthOf(283),
-        marginLeft: getLeftPx(25),
-        marginTop: getTop(3),
-
-    }
-
     const styles = StyleSheet.create({
         container: {
             display: 'flex',
@@ -59,24 +42,33 @@ const OnePermit: React.FC<Props> = (props: Props) => {
             position: 'relative',
             width: '100%',
             marginTop: props.marginTop,
-            marginBottom: getTop(11),
+            marginBottom: getTopPx(11),
 
         },
-        checkbox,
-        hyper,
+        checkbox: {
+            position: 'relative',
+            width: cbw,
+            height: cbw,
+            marginLeft: getLeftPx(40),
+        },
+        hyper: {
+            position: 'relative',
+            width: getWidthOf(283),
+            marginLeft: getLeftPx(25),
+            marginTop: getTopPx(3),
+        },
         text: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             textAlign: 'left',
             color: '#555555'
         },
         wrong: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             textAlign: 'left',
             color: '#d8232a',
-            marginTop: getTop(11),
-
+            marginTop: getTopPx(11),
         }
     })
 
@@ -92,11 +84,11 @@ const OnePermit: React.FC<Props> = (props: Props) => {
             </View>
 
             <View style={styles.hyper}>
-                <Hyperlink 
+                <Hyperlink
                     linkStyle={{ color: '#3587ea' }}
                     linkText={(url: string) => {
                         if (url == trans.urlRegulations) return trans.hiperRegulations;
-                        if (url ==trans.urlPrivacyPolicy) return trans.hiperPrivacyPolicy;
+                        if (url == trans.urlPrivacyPolicy) return trans.hiperPrivacyPolicy;
                         return url
                     }}
                     onPress={(url: string) => {

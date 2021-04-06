@@ -4,7 +4,8 @@ import I18n from 'react-native-i18n';
 
 import {
     initAppSize,
-    getStandard
+    getStandardPx,
+    getLeftPx
 } from '../../../../helpers/layoutFoo';
 
 const Screen_2 = () => {
@@ -19,17 +20,17 @@ const Screen_2 = () => {
             height: '100%',
             backgroundColor: "white" 
         },
-        bigText: getStandard(334, 102, 138),
+        bigText: getStandardPx(334, 102, 138),
         reg40: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 40,
+            fontSize: getLeftPx(40),
             textAlign: 'center',
             color: '#313131'
         },
-        regText: getStandard(334, 115, 596),
+        regText: getStandardPx(334, 115, 596),
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             textAlign: 'center',
             color: '#555555'
         }

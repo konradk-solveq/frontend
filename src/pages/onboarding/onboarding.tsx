@@ -7,9 +7,8 @@ import AnimSvg from '../../helpers/animSvg';
 import {
     setAppSize,
     setObjSize,
-    getWidth,
     getWidthPx,
-    getTop,
+    getTopPx,
     getRelativeHeight,
     getCenterLeftPx
 } from '../../helpers/layoutFoo';
@@ -99,7 +98,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
         width: getWidthPx(),
         height: getRelativeHeight(),
         left: -ww * .05,
-        top: getTop(90),
+        top: getTopPx(90),
     }
 
     setObjSize(414, 175);
@@ -108,7 +107,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
         width: ww * 1.2,
         height: getRelativeHeight(),
         left: getCenterLeftPx(),
-        top: getTop(560),
+        top: getTopPx(560),
     }
 
     let styles = StyleSheet.create({

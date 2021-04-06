@@ -12,13 +12,13 @@ import ImgOther from './imgOther';
 import {
     initAppSize,
     setObjSize,
-    getWidth,
+    getWidthPx,
     getHeightPx,
-    getTop,
     getTopPx,
     getCenterLeftPx,
     getPosAndWid,
-    getStandard,
+    getStandardPx,
+    getLeftPx
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -34,32 +34,33 @@ const Info: React.FC<Props> = (props: Props) => {
     initAppSize();
 
     setObjSize(334, 41);
-    const h = getHeightPx();
-    const bottons = {
-        position: 'absolute',
-        display: 'flex',
-        alignItems: 'flex-start',
-        flexDirection: 'row',
-        width: getWidth(),
-        height: h < 41 ? 41 : h,
-        left: getCenterLeftPx(),
-        top: getTop(138),
-    }
-
+    const h = (410 * (270 / 334));
     const styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: "white" 
+            backgroundColor: "white"
         },
-        bottons,
-        title: getPosAndWid(334, 51, 138),
-        svg: getStandard(334, 268, 209),
-        text: getStandard(334, 200, 497),
+        bottons: {
+            display: 'flex',
+            alignItems: 'flex-start',
+            flexDirection: 'row',
+            width: getWidthPx(),
+            height: getTopPx(41),
+            left: getCenterLeftPx(),
+            marginTop: getTopPx(138),
+        },
+        // svg: getStandardPx(410, h, 209),
+        svg: {
+            width: getWidthPx(),
+            left: getCenterLeftPx(),
+            height: getWidthPx(334 * (270 / 334))
+        },
+        text: getStandardPx(334, 200, 497),
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
-            marginTop: getTop(44),
+            fontSize: getLeftPx(18),
+            marginTop: getTopPx(44),
             marginBottom: getTopPx(100),
             color: '#555555'
         }

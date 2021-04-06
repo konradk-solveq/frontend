@@ -3,33 +3,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
 import {
-    setAppSize,
-    initAppSize,
-    setObjSize,
-    getCenterLeft,
-    getCenterLeftPx,
-    getCenterTop,
-    getLeft,
-    getLeftPx,
-    getTop,
-    getTopPx,
-    getWidth,
-    getWidthOf,
-    getWidthPx,
     getWidthPxOf,
-    getHeight,
-    getHeightPx,
-    getHeightOfPx,
-    getRelativeWidth,
-    getRelativeHeight,
-    getStandard,
-    getStandardPx,
-    getPerfect,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight
 } from '../../../helpers/layoutFoo';
 
 interface Props {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
 
@@ -11,12 +11,12 @@ import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {
-    setAppSize,
+    initAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTop,
     getTopPx,
-    getWidth,
+    getLeftPx,
+    getWidthPx,
     getHeightPx,
 } from '../../../helpers/layoutFoo';
 import deepCopy from "../../../helpers/deepCopy";
@@ -121,9 +121,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
 
     const [headHeight, setHeadHeightt] = useState(0);
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
+    initAppSize();
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -134,33 +132,29 @@ const BikeData: React.FC<Props> = (props: Props) => {
         },
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 30,
+            fontSize: getLeftPx(30),
             color: '#555555',
             textAlign: 'left',
         },
         title: {
             position: 'relative',
-            width: getWidth(),
+            width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginTop: getTop(45),
-            marginBottom: getTop(30)
+            marginTop: getTopPx(45),
+            marginBottom: getTopPx(30)
         },
         inputAndPlaceholder: {
             position: 'relative',
-            width: getWidth(),
+            width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginTop: getTop(10)
+            marginTop: getTopPx(10)
         },
         botton: {
-            width: getWidth(),
-            height: getHeightPx() < 50 ? 50 : getHeightPx(),
+            width: getWidthPx(),
+            height: getHeightPx(),
             left: getCenterLeftPx(),
-            marginTop: getTopPx(10) < 10 ? 10 : getTopPx(10),
-            marginBottom: headHeight
-        },
-        spaceOnEnd: {
-            width: '100%',
-            height: getTopPx(65)
+            marginTop: getTopPx(10),
+            marginBottom: headHeight + getTopPx(65)
         }
     })
 
@@ -173,86 +167,78 @@ const BikeData: React.FC<Props> = (props: Props) => {
                         {trans.title}
                     </Text>
 
-                    <View style={styles.inputAndPlaceholder}>
-                        <OneLineTekst
-                            placeholder={trans.frameNum}
-                            onChangeText={(value: string) => hendleChangeDataValue('frameNumber', value)}
-                            validationOk={hendleValidationOk}
-                            // validationWrong={hendleValidationWrong}
-                            messageWrong={trans.wrong}
-                            value={data.frameNumber}
-                            validationStatus={(value: boolean) => handleSetCanGoFoard('frameNumber', value)}
-                            forceMessageWrong={messages.frameNumber}
-                        />
-                    </View>
+                    <OneLineTekst
+                        style={styles.inputAndPlaceholder}
+                        placeholder={trans.frameNum}
+                        onChangeText={(value: string) => hendleChangeDataValue('frameNumber', value)}
+                        validationOk={hendleValidationOk}
+                        // validationWrong={hendleValidationWrong}
+                        messageWrong={trans.wrong}
+                        value={data.frameNumber}
+                        validationStatus={(value: boolean) => handleSetCanGoFoard('frameNumber', value)}
+                        forceMessageWrong={messages.frameNumber}
+                    />
 
-                    <View style={styles.inputAndPlaceholder}>
-                        <ListInputBtn
-                            placeholder={trans.producer.title}
-                            onpress={() => props.navigation.navigate('ListPageInput', {
-                                header: trans.producer.listHeader,
-                                list: trans.producer.listData,
-                                last: trans.producer.listDataLast,
-                                key: 'producer',
-                                backTo: 'BikeData'
-                            })}
-                            validationOk={hendleValidationOk}
-                            messageWrong={trans.wrong}
-                            value={data.producer}
-                            valueName={trans.producer.list}
+                    <ListInputBtn
+                        style={styles.inputAndPlaceholder}
+                        placeholder={trans.producer.title}
+                        onpress={() => props.navigation.navigate('ListPageInput', {
+                            header: trans.producer.listHeader,
+                            list: trans.producer.listData,
+                            last: trans.producer.listDataLast,
+                            key: 'producer',
+                            backTo: 'BikeData'
+                        })}
+                        validationOk={hendleValidationOk}
+                        messageWrong={trans.wrong}
+                        value={data.producer}
+                        valueName={trans.producer.list}
 
-                            validationStatus={(value: boolean) => handleSetCanGoFoard('producer', value)}
-                            forceMessageWrong={messages.producer}
-                        />
-                    </View>
+                        validationStatus={(value: boolean) => handleSetCanGoFoard('producer', value)}
+                        forceMessageWrong={messages.producer}
+                    />
 
-                    <View style={styles.inputAndPlaceholder}>
-                        <OneLineTekst
-                            placeholder={trans.model}
-                            onChangeText={(value: string) => hendleChangeDataValue('model', value)}
-                            validationOk={hendleValidationOk}
-                            // validationWrong={hendleValidationWrong}
-                            messageWrong={trans.wrong}
-                            value={data.model}
-                            validationStatus={(value: boolean) => handleSetCanGoFoard('model', value)}
-                            forceMessageWrong={messages.model}
-                        />
-                    </View>
+                    <OneLineTekst
+                        style={styles.inputAndPlaceholder}
+                        placeholder={trans.model}
+                        onChangeText={(value: string) => hendleChangeDataValue('model', value)}
+                        validationOk={hendleValidationOk}
+                        // validationWrong={hendleValidationWrong}
+                        messageWrong={trans.wrong}
+                        value={data.model}
+                        validationStatus={(value: boolean) => handleSetCanGoFoard('model', value)}
+                        forceMessageWrong={messages.model}
+                    />
 
-                    <View style={styles.inputAndPlaceholder}>
-                        <OneLineTekst
-                            placeholder={trans.size}
-                            onChangeText={(value: string) => hendleChangeDataValue('size', value)}
-                            validationOk={hendleValidationOk}
-                            // validationWrong={hendleValidationWrong}
-                            messageWrong={trans.wrong}
-                            value={data.size}
-                            validationStatus={(value: boolean) => handleSetCanGoFoard('size', value)}
-                            forceMessageWrong={messages.size}
-                        />
-                    </View>
+                    <OneLineTekst
+                        style={styles.inputAndPlaceholder}
+                        placeholder={trans.size}
+                        onChangeText={(value: string) => hendleChangeDataValue('size', value)}
+                        validationOk={hendleValidationOk}
+                        // validationWrong={hendleValidationWrong}
+                        messageWrong={trans.wrong}
+                        value={data.size}
+                        validationStatus={(value: boolean) => handleSetCanGoFoard('size', value)}
+                        forceMessageWrong={messages.size}
+                    />
 
-                    <View style={styles.inputAndPlaceholder}>
-                        <OneLineTekst
-                            placeholder={trans.color}
-                            onChangeText={(value: string) => hendleChangeDataValue('color', value)}
-                            validationOk={hendleValidationOk}
-                            // validationWrong={hendleValidationWrong}
-                            messageWrong={trans.wrong}
-                            value={data.color}
-                            validationStatus={(value: boolean) => handleSetCanGoFoard('color', value)}
-                            forceMessageWrong={messages.color}
-                        />
-                    </View>
+                    <OneLineTekst
+                        style={styles.inputAndPlaceholder}
+                        placeholder={trans.color}
+                        onChangeText={(value: string) => hendleChangeDataValue('color', value)}
+                        validationOk={hendleValidationOk}
+                        // validationWrong={hendleValidationWrong}
+                        messageWrong={trans.wrong}
+                        value={data.color}
+                        validationStatus={(value: boolean) => handleSetCanGoFoard('color', value)}
+                        forceMessageWrong={messages.color}
+                    />
 
-                    <View style={styles.botton}>
-                        <BigRedBtn
-                            title={trans.btn}
-                            onpress={() => hendleGoFoward()}
-                        ></BigRedBtn>
-                    </View>
-
-                    <View style={styles.spaceOnEnd}></View>
+                    <BigRedBtn
+                        style={styles.botton}
+                        title={trans.btn}
+                        onpress={() => hendleGoFoward()}
+                    ></BigRedBtn>
 
                 </ScrollView>
             </View>

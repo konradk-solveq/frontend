@@ -13,7 +13,8 @@ import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 import {
     initAppSize,
     getPosAndWid,
-    getStandard
+    getStandardPx,
+    getLeftPx
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -87,20 +88,20 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         title: getPosAndWid(334, 78, 138),
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 30,
+            fontSize: getLeftPx(30),
             color: '#313131',
             textAlign: 'left'
         },
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555',
             textAlign: 'left'
         },
-        nfc_bike: getStandard(334, 268, 246),
-        text: getStandard(334, 115, 534),
-        btnNfc: getStandard(334, 50, 701),
-        btnHand: getStandard(334, 50, 781),
+        nfc_bike: getStandardPx(334, 268, 246),
+        text: getStandardPx(334, 115, 534),
+        btnNfc: getStandardPx(334, 50, 701),
+        btnHand: getStandardPx(334, 50, 781),
     })
 
     return (

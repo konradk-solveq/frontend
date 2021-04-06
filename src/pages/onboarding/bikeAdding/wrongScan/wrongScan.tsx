@@ -10,7 +10,7 @@ import {
     setObjSize,
     getCenterLeftPx,
     getTopPx,
-    getWidth,
+    getWidthPx,
     getStandard,
 } from '../../../../helpers/layoutFoo';
 
@@ -36,7 +36,7 @@ const WrongScan: React.FC<Props> = (props: Props) => {
         },
         title: {
             position: 'absolute',
-            width: getWidth(),
+            width: getWidthPx(),
             left: getCenterLeftPx(),
             bottom: getTopPx(381 + 30) + imgH
         },

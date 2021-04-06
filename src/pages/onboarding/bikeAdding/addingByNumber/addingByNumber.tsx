@@ -15,12 +15,13 @@ import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import {
     initAppSize,
     setObjSize,
-    getWidth,
+    getWidthPx,
     getHeightPx,
     getTopPx,
     getCenterLeftPx,
     getPosAndWid,
     getPosWithMinHeight,
+    getLeftPx
 } from '../../../../helpers/layoutFoo';
 
 
@@ -76,25 +77,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     initAppSize();
 
     setObjSize(334, 50);
-    const botton = {
-        position: 'absolute',
-        width: getWidth(),
-        height: getHeightPx() < 50 ? 50 : getHeightPx(),
-        left: getCenterLeftPx(),
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        bottom: getTopPx(65)
-    }
-
-    setObjSize(334, 29);
-    const h = getHeightPx();
-    const infoBtn = {
-        position: 'relative',
-        height: h > 29 ? h : 29,
-        marginTop: 3
-    }
-
     const styles = StyleSheet.create({
         container: {
             width: '100%',
@@ -102,15 +84,32 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             backgroundColor: "white"
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351, 100),
-        title: getPosAndWid(334, 51, 138),
+        // title: getPosAndWid(334, 51, 138),
+        title: {
+            position: 'absolute',
+            width: getWidthPx(),
+            left: getCenterLeftPx(),
+            top: getTopPx(138)
+        },
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 30,
+            fontSize: getLeftPx(30),
             color: '#555555',
             textAlign: 'left'
         },
-        infoBtn,
-        botton,
+        infoBtn:{
+            position: 'relative',
+            height: getLeftPx(29),
+            marginTop: getLeftPx(3),
+            width: getWidthPx(),
+        },
+        botton:{
+            position: 'absolute',
+            width: getWidthPx(),
+            height: getTopPx(50),
+            left: getCenterLeftPx(),
+            bottom: getTopPx(65)
+        }
     })
 
     return (
@@ -136,22 +135,21 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                     validationStatus={setCanGoFoward}
                     forceMessageWrong={forceMessageWrong}
                 />
-                <View style={styles.infoBtn}>
-                    <TranspLightBtn
-                        title={trans.infoBtn}
-                        algin='right'
-                        color='#3587ea'
-                        onpress={() => props.navigation.navigate('AddingInfo')}
-                    ></TranspLightBtn>
-                </View>
+
+                <TranspLightBtn
+                    style={styles.infoBtn}
+                    title={trans.infoBtn}
+                    algin='right'
+                    color='#3587ea'
+                    onpress={() => props.navigation.navigate('AddingInfo')}
+                />
             </View>
 
-            <View style={styles.botton}>
-                <BigRedBtn
-                    title={trans.btn}
-                    onpress={() => hendleGoFoward()}
-                ></BigRedBtn>
-            </View>
+            <BigRedBtn
+                style={styles.botton}
+                title={trans.btn}
+                onpress={() => hendleGoFoward()}
+            ></BigRedBtn>
 
         </SafeAreaView>
     )

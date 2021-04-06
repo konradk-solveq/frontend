@@ -10,6 +10,7 @@ import {
     getCenterLeftPx,
     getTopPx,
     getWidthPx,
+    getLeftPx
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -44,7 +45,7 @@ const World: React.FC<Props> = (props: Props) => {
             setShowImg(false)
             setTimeout(() => { setShowImg(true); setRefresh(props.route.params.refresh) }, 60);
         }
-        return () => { setShowImg(false) }
+        return setShowImg(false)
     }, [props.route.params])
 
     const ww = Dimensions.get('window').width;
@@ -61,6 +62,7 @@ const World: React.FC<Props> = (props: Props) => {
         // backgroundColor: "khaki",
         top: t
     };
+    const tt = t - (th - getTopPx(21));
 
     setObjSize(334, 23);
     const styles = StyleSheet.create({
@@ -80,26 +82,26 @@ const World: React.FC<Props> = (props: Props) => {
             top: getTopPx(65),
             fontFamily: "DIN2014Narrow-Light",
             textAlign: 'center',
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#313131'
         },
         title: {
             position: 'absolute',
-            top: t - th + getTopPx(21),
+            width: getWidthPx(),
+            height: th,
+            top: tt,
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 40,
+            fontSize: getLeftPx(40),
             color: '#d8232a',
             textAlign: 'center',
             textAlignVertical: 'bottom',
-            width: getWidthPx(),
-            height: th,
             left: getCenterLeftPx()
         },
         text: {
             position: 'absolute',
             top: t + h + getTopPx(20),
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 23,
+            fontSize: getLeftPx(23),
             color: '#313131',
             textAlign: 'left',
             width: getWidthPx(),

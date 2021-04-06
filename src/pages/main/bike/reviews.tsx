@@ -39,7 +39,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
             left: getCenterLeftPx(),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555',
         },
         scroll: {
@@ -58,7 +58,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
         box: {
             width: w,
             height: w,
-            borderRadius: 16,
+            borderRadius: getLeftPx(16),
             backgroundColor: '#fdf5f5',
         },
         fitstItem: {
@@ -71,14 +71,14 @@ const Reviews: React.FC<Props> = (props: Props) => {
             marginTop: getLeftPx(16),
             width: '100%',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 57,
+            fontSize: getLeftPx(57),
             color: '#313131',
             textAlign: 'center',
         },
         light: {
             width: '100%',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555',
             textAlign: 'center',
         },

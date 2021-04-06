@@ -9,6 +9,7 @@ import {
     getCenterLeftPx,
     getTopPx,
     getWidthPx,
+    getLeftPx
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -40,7 +41,7 @@ const RadioLine: React.FC<Props> = (props: Props) => {
         reg18: {
             width: '100%',
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#313131',
             textAlign: 'left',
             marginBottom: getTopPx(5),
@@ -48,11 +49,8 @@ const RadioLine: React.FC<Props> = (props: Props) => {
         list: {
             width: '100%',
             display: 'flex',
-            // alignItems: 'flex-start',
-            // justifyContent: 'flex-start',
             flexDirection: 'row',
             flexWrap: 'wrap',
-            // backgroundColor: 'khaki'
         }
     })
 

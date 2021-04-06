@@ -91,16 +91,14 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
         title: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555',
             left: getCenterLeftPx(),
             width: getWidthPx(),
-
         },
         complaints: {
             left: getCenterLeftPx(),
             width: getWidthPx(),
-
         },
         container: {
             // alignItems: 'center',
@@ -115,12 +113,11 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
             left: getLeftPx(20),
             // width: '50%',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 23,
+            fontSize: getLeftPx(23),
             color: '#313131',
             textAlign: 'left',
         },
         line: {
-
             width: getLeftPx(294),
             display: 'flex',
             alignItems: 'center',
@@ -132,7 +129,7 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
             position: 'relative',
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
         },
         state: {
@@ -140,7 +137,7 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
         },
         description: {
@@ -148,7 +145,7 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
             left: getLeftPx(20),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555',
             width: getLeftPx(294),
             minHeight: getTopPx(69)
@@ -158,18 +155,16 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
             marginBottom: getTopPx(20),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
             left: getLeftPx(20),
         },
-
-
         dots: {
             position: 'absolute',
             right: getLeftPx(17),
             bottom: getTopPx(20),
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 20,
+            fontSize: getLeftPx(20),
             color: '#313131',
         }
     })

@@ -8,7 +8,7 @@ import VerticalHeader from '../../../../sharedComponents/navi/verticalHeader/ver
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 
 import {
-    setAppSize,
+    initAppSize,
     setObjSize,
     getCenterLeftPx,
     getLeftPx,
@@ -28,9 +28,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
     const description = props.route.params.description;
     const params = props.route.params.params;
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
+    initAppSize();
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -43,7 +41,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
         },
         bikeName: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getLeftPx(40),
             width: '100%',
             color: '#313131',
             textAlign: 'center'
@@ -52,7 +50,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
             marginTop: getTopPx(5),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
             // backgroundColor: 'khaki'
         },
@@ -71,7 +69,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
         },
         colorText: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555'
         },
         size: {
@@ -88,7 +86,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
         },
         sizeText: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555',
             paddingLeft: getLeftPx(15),
             paddingRight: getLeftPx(15),
@@ -103,7 +101,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
         },
         name: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 26,
+            fontSize: getLeftPx(26),
             color: '#313131',
             textAlign: 'left',
             marginBottom: getTopPx(11)
@@ -115,14 +113,14 @@ const BikeParams: React.FC<Props> = (props: Props) => {
         },
         value: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 16,
-            lineHeight: 26,
+            fontSize: getLeftPx(16),
+            lineHeight: getLeftPx(26),
             color: '#313131'
 
         },
         btn: {
             width: getWidthPx(),
-            height: getTopPx(50) < 50 ? 50 : getTopPx(50),
+            height: getLeftPx(50),
             left: getCenterLeftPx(),
             marginTop: getTopPx(31),
             marginBottom: getTopPx(80)

@@ -5,7 +5,7 @@ import I18n from 'react-native-i18n';
 import {
     setAppSize,
     setObjSize,
-    getWidth,
+    getWidthPx,
     getTopPx,
     getLeftPx,
 } from '../../../helpers/layoutFoo';
@@ -34,23 +34,23 @@ const Regulations: React.FC<Props> = (props: Props) => {
             top: headHeight,
         },
         text: {
-            width: getWidth(),
+            width: getWidthPx(),
             left: getLeftPx(40),
             textAlign: 'left',
         },
         reg23: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 23,
+            fontSize: getLeftPx(23),
             color: '#313131'
         },
         reg18: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555'
         },
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555'
         }
     })

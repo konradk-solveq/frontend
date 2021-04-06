@@ -3,8 +3,13 @@ import { StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import Svg, { Path } from "react-native-svg";
 
+import {
+    getLeftPx,
+} from '../../helpers/layoutFoo';
+
 interface Props {
     // * wartości wymagane
+    style?: any,
     validationOk: Function, // funkcja validujaca popraność value w inpucie, zwraca true/false, zmienia border na zielono przy true
     validationWrong: Function, // waliująca błędny value w inpucie (bo to nie zawsze jest owrotność warunku popraności), ture/false, zmienia border na czerwno przy true
     messageWrong: string, // * informacja pod imputem jeśli validationWrong zwraca true
@@ -70,47 +75,48 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
     let styles = StyleSheet.create({
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             textAlign: 'left',
             color: '#555555'
         },
         input: {
             width: '100%',
-            borderRadius: 150,
-            borderWidth: 2,
+            borderRadius: getLeftPx(150),
+            borderWidth: getLeftPx(2),
             borderColor: borderColor,
-            height: 50,
-            marginTop: 6,
+            height: getLeftPx(50),
+            marginTop: getLeftPx(6),
         },
         title: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 20,
+            fontSize: getLeftPx(20),
             textAlign: 'left',
             color: '#555555',
             // position: 'absolute',
-            marginTop: 10,
-            left: 30
+            marginTop: getLeftPx(10),
+            left: getLeftPx(30)
         },
         arrow: {
             position: 'absolute',
-            right: 30,
-            top: 15,
-            width: 20,
-            height: 15
+            right: getLeftPx(30),
+            top: getLeftPx(15),
+            width: getLeftPx(20),
+            height: getLeftPx(15)
         },
         error: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             textAlign: 'left',
             color: '#d8232a',
             position: 'relative',
-            marginTop: 6,
-            height: 23
+            marginTop: getLeftPx(6),
+            height: getLeftPx(23)
         }
     })
 
     return (
-        <>
+        <View style={props.style}>
+
             <Text style={styles.light18}>
                 {props.placeholder}
             </Text>
@@ -138,7 +144,8 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
             <Text style={styles.error}>
                 {errorMessage}
             </Text>
-        </>
+
+        </View>
     )
 }
 

@@ -58,7 +58,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#313131',
         },
         params: {
@@ -79,7 +79,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getLeftPx(40),
             color: '#313131',
             textAlign: 'center',
         },
@@ -89,7 +89,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 15,
+            fontSize: getLeftPx(15),
             color: '#555555',
             // backgroundColor: 'khaki'
         },
@@ -123,6 +123,7 @@ const Bike: React.FC<Props> = (props: Props) => {
 
                 <TouchableWithoutFeedback
                     onPress={() => heandleParams()}
+                    // onPress={() => {}}
                 >
                     <View style={styles.params}>
                         <Svg viewBox="0 0 20 20" style={styles.paramIcon}>

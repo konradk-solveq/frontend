@@ -12,15 +12,14 @@ import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {
-    setAppSize,
+    initAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
     getTopPx,
-    getWidth,
     getWidthPx,
     getWidthPxOf,
     getHeightPx,
+    getLeftPx
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -57,7 +56,7 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
 
     useEffect(() => { // pobranie danych z localsorage i zapamiętanie stanu dla opcji przywrócenia
         getStorageProfileSettings(initialData()).then(res => {
-          if (res && res.name && typeof res.name == 'string')  setProfilType(res.name);
+            if (res && res.name && typeof res.name == 'string') setProfilType(res.name);
         })
     }, [])
 
@@ -204,9 +203,7 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
     </g>
 </svg>`;
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
+    initAppSize();
 
     setObjSize(315, 50);
     const w = getWidthPx();
@@ -221,17 +218,6 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
     }
 
     setObjSize(334, 50);
-    let bottons = {
-        position: 'absolute',
-        width: getWidth(),
-        height: getHeightPx() < 50 ? 50 : getHeightPx(),
-        left: getCenterLeftPx(),
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        bottom: getTopPx(65)
-    }
-
     const styles = StyleSheet.create({
         container: {
             width: '100%',
@@ -241,19 +227,18 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
 
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 30,
+            fontSize: getLeftPx(30),
             color: '#313131',
             textAlign: 'left',
             width: getWidthPx(),
             left: getCenterLeftPx(),
             top: getTopPx(138),
-
         },
         image,
         reg40: {
             position: 'absolute',
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 40,
+            fontSize: getLeftPx(40),
             color: '#313131',
             textAlign: 'center',
             width: getWidthPx(),
@@ -263,14 +248,23 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
         light18: {
             position: 'absolute',
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555',
             textAlign: 'center',
             width: getWidthPx(),
             left: getCenterLeftPx(),
             top: getTopPx(253 + 76) + h,
         },
-        bottons,
+        bottons: {
+            position: 'absolute',
+            width: getWidthPx(),
+            height: getHeightPx(),
+            left: getCenterLeftPx(),
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            bottom: getTopPx(65)
+        },
         btn: {
             width: getWidthPxOf(157),
         },
@@ -296,18 +290,18 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             </Text>
 
             {/* <View style={styles.image}> */}
-                {profilType == 'amateur' && <AnimSvg
-                    source={amatour_biker}
-                    style={styles.image}
-                />}
-                {profilType == 'city' && <AnimSvg
-                    source={city_biker}
-                    style={styles.image}
-                />}
-                {profilType == 'professional' && <AnimSvg
-                    source={advanced_biker}
-                    style={styles.image}
-                />}
+            {profilType == 'amateur' && <AnimSvg
+                source={amatour_biker}
+                style={styles.image}
+            />}
+            {profilType == 'city' && <AnimSvg
+                source={city_biker}
+                style={styles.image}
+            />}
+            {profilType == 'professional' && <AnimSvg
+                source={advanced_biker}
+                style={styles.image}
+            />}
             {/* </View> */}
 
             <View style={styles.bottons}>

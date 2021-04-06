@@ -4,10 +4,13 @@ import RadioBtn from './radioBtn';
 
 import {
     initAppSize,
-    getStandard
+    setObjSize,
+    getWidthPxOf,
+    getCenterLeftPx
 } from '../../helpers/layoutFoo';
 
 interface Props {
+    style?: any,
     active: number, // który w kolejości radiobuton jest aktywny
     listBtn: Array<Function> // lista funkcji wukonywanych po wciśnięciu butona
 }
@@ -15,20 +18,25 @@ interface Props {
 const RadioPanel: React.FC<Props> = (props: Props) => {
     initAppSize();
 
-    let styles = StyleSheet.create({
+    const h = getWidthPxOf(13);
+    const w = (h * props.listBtn.length) + (getWidthPxOf(15.5) * (props.listBtn.length - 1))
+    setObjSize(w, h);
+    const styles = StyleSheet.create({
         pannel: {
             display: 'flex',
             flexDirection: 'row',
             position: 'relative',
             justifyContent: 'space-between',
             alignItems: 'center',
+            width: w,
+            height: h,
+            left: getCenterLeftPx()
         },
-        wrap : getStandard(70, 13, 70)
     })
 
     return (
 
-        <View style={[styles.pannel, styles.wrap]}>
+        <View style={[styles.pannel, props.style]}>
             {props.listBtn.map((e, i) => (
                 <RadioBtn
                     cheched={props.active == i}

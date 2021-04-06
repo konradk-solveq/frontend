@@ -2,6 +2,10 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import Svg, { Path, Circle } from 'react-native-svg';
 
+import {
+    getWidthPxOf
+} from '../../helpers/layoutFoo';
+
 interface BtnProps {
     cheched: boolean
     onpress: Function
@@ -13,8 +17,8 @@ const RadioBtn: React.FC<BtnProps> = (props: BtnProps) => {
         btn: {
             backgroundColor: 'white',
             borderRadius: 10,
-            width: 13,
-            height: 13,
+            width: getWidthPxOf(13),
+            height: getWidthPxOf(13),
         },
         btnOff: {
 

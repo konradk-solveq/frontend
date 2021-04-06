@@ -2,7 +2,7 @@ import React from "react";
 import Svg, { G, Path, Circle } from 'react-native-svg';
 
 const ImgKross = () => (
-    <Svg viewBox="0 0 334 268">
+    <Svg viewBox="0 0 334 270">
         <G fill="none" fillRule="evenodd">
             <Path fill="#F0F0F0" d="M162.186 0h9.628C243.162 0 301 59.994 301 134s-57.838 134-129.186 134h-9.628C90.838 268 33 208.006 33 134S90.838 0 162.186 0z" opacity=".5" transform="translate(-40 -209) translate(40 209)" />
             <G transform="translate(-40 -209) translate(40 209) translate(0 31.045)">

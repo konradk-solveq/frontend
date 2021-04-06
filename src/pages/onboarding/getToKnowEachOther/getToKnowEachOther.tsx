@@ -8,14 +8,15 @@ import { setUserName, getUserName } from '../../../storage/actions/index';
 import {
     initAppSize,
     setObjSize,
-    getWidth,
+    getWidthPx,
     getWidthPxOf,
     getHeightPx,
+    getLeftPx,
     getTopPx,
     getCenterLeftPx,
     getPosAndWid,
     getPosWithMinHeight,
-    getPosStaticHeight
+    getPosStaticHeight,
 } from '../../../helpers/layoutFoo';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
@@ -51,8 +52,8 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
     setObjSize(334, 50);
     let bottons = {
         position: 'absolute',
-        width: getWidth(),
-        height: getHeightPx() < 50 ? 50 : getHeightPx(),
+        width: getWidthPx(),
+        height: getLeftPx(50),
         left: getCenterLeftPx(),
         display: 'flex',
         flexDirection: 'row',
@@ -70,13 +71,13 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
         text: getPosAndWid(334, 78, 138),
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 30,
+            fontSize: getLeftPx(30),
             color: '#313131'
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 380, 90),
         input: {
-            height: 50,
-            marginTop: 6,
+            height: getLeftPx(50),
+            marginTop: getLeftPx(6),
         },
         bottons,
         btn: {

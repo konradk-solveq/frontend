@@ -5,7 +5,7 @@ import I18n from 'react-native-i18n';
 import {
     setAppSize,
     setObjSize,
-    getWidth,
+    getWidthPx,
     getTopPx,
     getLeftPx
 } from '../../../helpers/layoutFoo';
@@ -35,20 +35,20 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
             top: headHeight,
         },
         text: {
-            width: getWidth(),
+            width: getWidthPx(),
             left: getLeftPx(40),
             textAlign: 'left'
 
         },
         reg23: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 23,
+            fontSize: getLeftPx(23),
             marginTop: getTopPx(50),
             color: '#313131'
         },
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             marginTop: getTopPx(44),
             marginBottom: getTopPx(100),
             color: '#555555'

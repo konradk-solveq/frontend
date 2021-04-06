@@ -7,7 +7,7 @@ import deepCopy from '../../../helpers/deepCopy';
 import {
     setAppSize,
     setObjSize,
-    getWidth,
+    getWidthPx,
     getLeftPx,
     getTopPx,
     getHeightPx,
@@ -82,14 +82,14 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             top: headHeight,
         },
         text: {
-            width: getWidth(),
+            width: getWidthPx(),
             left: getLeftPx(40),
             fontFamily: "DIN2014Narrow-Light",
             textAlign: 'left'
         },
         btn: {
-            width: getWidth(),
-            height: getHeightPx() < 50 ? 50 : getHeightPx(),
+            width: getWidthPx(),
+            height: getHeightPx(),
             left: getCenterLeftPx(),
             top: getTopPx(11),
             marginBottom: headHeight

@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, TextInput, Text } from 'react-native';
+import { StyleSheet, TextInput, Text, View } from 'react-native';
 import I18n from 'react-native-i18n';
+
+import {
+    getLeftPx,
+} from '../../helpers/layoutFoo';
 
 interface Props {
     // * wartości wymagane
+    style?: any,
     onChangeText: Function, // * zrtorka do rodzica wartości inputu
     validationOk: Function, // funkcja validujaca popraność value w inpucie, zwraca true/false, zmienia border na zielono przy true
     validationWrong: Function, // waliująca błędny value w inpucie (bo to nie zawsze jest owrotność warunku popraności), ture/false, zmienia border na czerwno przy true
@@ -69,7 +74,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
     let styles = StyleSheet.create({
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             textAlign: 'left',
             color: '#555555'
         },
@@ -78,30 +83,31 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             alignItems: 'center',
             justifyContent: 'center',
             width: '100%',
-            borderRadius: 150,
+            borderRadius: getLeftPx(150),
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 20,
+            fontSize: getLeftPx(20),
             textAlign: 'left',
             color: 'black',
-            borderWidth: 2,
+            borderWidth: getLeftPx(2),
             borderColor: borderColor,
-            height: 50,
-            marginTop: 6,
-            paddingLeft: 30
+            height: getLeftPx(50),
+            marginTop: getLeftPx(6),
+            paddingLeft: getLeftPx(30)
         },
         error: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             textAlign: 'left',
             color: '#d8232a',
             position: 'relative',
-            marginTop: 6,
-            height: 23
+            marginTop: (6),
+            height: getLeftPx(23)
         }
     })
 
     return (
-        <>
+        <View style={props.style}>
+
             <Text style={styles.light18}>
                 {props.placeholder}
             </Text>
@@ -115,7 +121,8 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             <Text style={styles.error}>
                 {errorMessage}
             </Text>
-        </>
+
+        </View>
     )
 }
 

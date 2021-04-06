@@ -11,14 +11,14 @@ import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import RadioLine from './radioLine';
 
 import {
-    setAppSize,
+    initAppSize,
     setObjSize,
     getCenterLeftPx,
     getTopPx,
-    getWidth,
     getWidthPx,
     getWidthPxOf,
     getHeightPx,
+    getLeftPx
 } from '../../../helpers/layoutFoo';
 import deepCopy from "../../../helpers/deepCopy";
 
@@ -114,21 +114,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         props.navigation.navigate('CyclingProfileView', { profile: profNum })
     }
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
-
-    setObjSize(334, 50);
-    const bottons = {
-        position: 'relative',
-        width: getWidth(),
-        height: getHeightPx() < 50 ? 50 : getHeightPx(),
-        left: getCenterLeftPx(),
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: getTopPx(29)
-    }
+    initAppSize()
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -140,32 +126,41 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         },
         reg23: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 23,
+            fontSize: getLeftPx(23),
             color: '#313131',
             textAlign: 'left',
             position: 'relative',
-            width: getWidth(),
+            width: getWidthPx(),
             left: getCenterLeftPx(),
             marginBottom: getTopPx(8)
         },
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: 18,
+            fontSize: getLeftPx(18),
             color: '#555555',
             textAlign: 'left',
             position: 'relative',
-            width: getWidth(),
+            width: getWidthPx(),
             left: getCenterLeftPx(),
             marginBottom: getTopPx(30)
         },
         list: {
-            width: getWidth(),
+            width: getWidthPx(),
             display: 'flex',
             alignItems: 'flex-start',
             flexDirection: 'row',
 
         },
-        bottons,
+        bottons: {
+            position: 'relative',
+            width: getWidthPx(),
+            height: getHeightPx(),
+            left: getCenterLeftPx(),
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: getTopPx(29)
+        },
         btn: {
             width: getWidthPxOf(157),
         },
