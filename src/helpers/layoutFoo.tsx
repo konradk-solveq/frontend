@@ -108,6 +108,10 @@ const getHeightPx = () => {
     let res: number = (objSize.height / layout.height) * appSize.height;
     return res;
 }
+const getHeightOfPx = (num: number) => {
+    let res: number = (num / layout.height) * appSize.height;
+    return res;
+}
 
 
 
@@ -264,6 +268,7 @@ export {
     setAppSize,
     initAppSize,
     setObjSize,
+    getCenterLeft,
     getCenterLeftPx,
     getCenterTop,
     getLeft,
@@ -276,6 +281,7 @@ export {
     getWidthPxOf,
     getHeight,
     getHeightPx,
+    getHeightOfPx,
     getRelativeWidth,
     getRelativeHeight,
     getStandard,

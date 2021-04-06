@@ -27,17 +27,16 @@ const StackHeader: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
-    // const [height, setHeight] = useState(getTopPx(100));
-    // useEffect(() => {
-    //     if (props.getHeight) props.getHeight(height)
-    // }, [height])
+    const [height, setHeight] = useState(getTopPx(100));
+    useEffect(() => {
+        if (props.getHeight) props.getHeight(height)
+    }, [height])
 
     setObjSize(414, 34);
-    const h = getTopPx(100);
     const wrap = {
         position: 'absolute',
         left: 0,
-        top: h * .61,
+        top: height * .61,
         width: ww,
         height: getHeightPx(),
     }
@@ -60,10 +59,9 @@ const StackHeader: React.FC<Props> = (props: Props) => {
             left: 0,
             top: 0,
             width: '100%',
-            height: h,
+            height: height,
         },
         wrap,
-        topBtn: getPerfectPx(40, 34, 30, 0),
         title
     })
 
@@ -71,11 +69,10 @@ const StackHeader: React.FC<Props> = (props: Props) => {
         <View style={styles.container}>
             <View style={styles.wrap}>
 
-                <View style={styles.topBtn}>
-                    <TopBackBtn
-                        onpress={() => props.onpress()}
-                    ></TopBackBtn>
-                </View>
+                <TopBackBtn
+                    // style={styles.topBtn}
+                    onpress={() => props.onpress()}
+                ></TopBackBtn>
 
                 <Text style={styles.title}>
                     {props.inner}
