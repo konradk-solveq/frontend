@@ -113,7 +113,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
             flexDirection: 'row',
             justifyContent: 'space-between'
         },
-        val: {
+        value: {
             fontFamily: "DIN2014Narrow-Light",
             fontSize: 16,
             lineHeight: 26,
@@ -162,8 +162,8 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                             {e.list.map((ee, ii) => (
                                 <View style={styles.valLine} key={'val_' + i + '_' + ii}>
 
-                                    <Text style={styles.val}>{ee.name}</Text>
-                                    <Text style={styles.val}>{ee.val}</Text>
+                                    <Text style={styles.value}>{ee.name}</Text>
+                                    <Text style={styles.value}>{ee.value}</Text>
 
                                 </View>
                             ))}

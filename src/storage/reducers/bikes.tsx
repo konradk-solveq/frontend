@@ -49,76 +49,76 @@ const initialStateList = {
                 {
                     name: 'Rama i widelec',
                     list: [
-                        { name: 'Wykończenie lakieru', val: 'MATOWY' },
-                        { name: 'Materiał ramy', val: 'ALUMINIUM PERFORMANCE' },
-                        { name: 'Widelec', val: 'SR SUNTOUR XCE28' },
-                        { name: 'Skok widelca', val: '80MM' },
-                        { name: 'Tylny amrtyzator', val: 'BRAK' },
-                        { name: 'Skok tylnego amortyzatora', val: 'BRAK' },
+                        { name: 'Wykończenie lakieru', value: 'MATOWY' },
+                        { name: 'Materiał ramy', value: 'ALUMINIUM PERFORMANCE' },
+                        { name: 'Widelec', value: 'SR SUNTOUR XCE28' },
+                        { name: 'Skok widelca', value: '80MM' },
+                        { name: 'Tylny amrtyzator', value: 'BRAK' },
+                        { name: 'Skok tylnego amortyzatora', value: 'BRAK' },
                     ]
                 },
                 {
                     name: 'Napęd',
                     list: [
-                        { name: 'Przerzutka przód', val: 'SHIMANO TOURNEY TY700' },
-                        { name: 'Przerzutka typ', val: 'SHIMANO ACERA M360' },
-                        { name: 'Manetki', val: 'SHIMANO EF505' },
-                        { name: 'Koronki', val: '42T-34T-24T/175MM' },
-                        { name: 'Kaseta/wolnobieg', val: 'SHIMANO HG200' },
-                        { name: 'Zakres kasety/wolnobieg', val: '12-32T' },
-                        { name: 'Ilość przełożeń', val: '24' },
-                        { name: 'Suport', val: 'FP-B902' },
-                        { name: 'Łańcuch', val: 'YBN S8' }
+                        { name: 'Przerzutka przód', value: 'SHIMANO TOURNEY TY700' },
+                        { name: 'Przerzutka typ', value: 'SHIMANO ACERA M360' },
+                        { name: 'Manetki', value: 'SHIMANO EF505' },
+                        { name: 'Koronki', value: '42T-34T-24T/175MM' },
+                        { name: 'Kaseta/wolnobieg', value: 'SHIMANO HG200' },
+                        { name: 'Zakres kasety/wolnobieg', value: '12-32T' },
+                        { name: 'Ilość przełożeń', value: '24' },
+                        { name: 'Suport', value: 'FP-B902' },
+                        { name: 'Łańcuch', value: 'YBN S8' }
                     ]
                 },
                 {
                     name: 'Koła',
                     list: [
-                        { name: 'Pisata przód', val: 'GL-B43F-DS' },
-                        { name: 'Piasta tył', val: 'GL-B43F-DS' },
-                        { name: 'Obręcze', val: 'KROSS' },
-                        { name: 'Opony', val: 'MITAS OCELOT V85 29X2.1' }
+                        { name: 'Pisata przód', value: 'GL-B43F-DS' },
+                        { name: 'Piasta tył', value: 'GL-B43F-DS' },
+                        { name: 'Obręcze', value: 'KROSS' },
+                        { name: 'Opony', value: 'MITAS OCELOT V85 29X2.1' }
                     ]
                 },
                 {
                     name: 'Hamulec',
                     list: [
-                        { name: 'Hamulec przód', val: 'SHIMANO MT200' },
-                        { name: 'Hamulec tył', val: 'SHIMANO MT200' },
-                        { name: 'Dźwignie hamulcowe', val: 'SHIMANO EF505' },
-                        { name: 'Tarcze hamulcowe', val: 'DISC (160MM)' }
+                        { name: 'Hamulec przód', value: 'SHIMANO MT200' },
+                        { name: 'Hamulec tył', value: 'SHIMANO MT200' },
+                        { name: 'Dźwignie hamulcowe', value: 'SHIMANO EF505' },
+                        { name: 'Tarcze hamulcowe', value: 'DISC (160MM)' }
                     ]
                 },
                 {
                     name: 'Komponenty',
                     list: [
-                        { name: 'Kierownica', val: 'ALUMINIUM 680 MM 31.8' },
-                        { name: 'Wspornik kierownicy', val: 'ALUMINIUM 90MM/31,8/7°' },
-                        { name: 'Siodłlo', val: 'KROSS D5311' },
-                        { name: 'Wspormnik siodła', val: 'ALUMINIUM 27,2X350' },
-                        { name: 'Stery', val: 'FP-H863 O1-1/8"' },
-                        { name: 'Chwyty', val: 'KROSS HANDY' },
-                        { name: 'Pedały', val: 'FP-804' }
+                        { name: 'Kierownica', value: 'ALUMINIUM 680 MM 31.8' },
+                        { name: 'Wspornik kierownicy', value: 'ALUMINIUM 90MM/31,8/7°' },
+                        { name: 'Siodłlo', value: 'KROSS D5311' },
+                        { name: 'Wspormnik siodła', value: 'ALUMINIUM 27,2X350' },
+                        { name: 'Stery', value: 'FP-H863 O1-1/8"' },
+                        { name: 'Chwyty', value: 'KROSS HANDY' },
+                        { name: 'Pedały', value: 'FP-804' }
                     ]
                 },
                 {
                     name: 'System e-bike',
                     list: [
-                        { name: 'Silnik', val: 'BRAK' },
-                        { name: 'Bateria', val: 'BRAK' },
-                        { name: 'Bateria', val: 'BRAK' }
+                        { name: 'Silnik', value: 'BRAK' },
+                        { name: 'Bateria', value: 'BRAK' },
+                        { name: 'Bateria', value: 'BRAK' }
                     ]
                 },
                 {
                     name: 'Informacje dodatkowe',
                     list: [
-                        { name: 'Waga [kg]', val: '15' }
+                        { name: 'Waga [kg]', value: '15' }
                     ]
                 },
                 {
                     name: 'Akcesoria',
                     list: [
-                        { name: 'Lampka', val: 'ECLIPSE LED' }
+                        { name: 'Lampka', value: 'ECLIPSE LED' }
                     ]
                 },
             ],
