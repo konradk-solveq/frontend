@@ -14,11 +14,11 @@ import {
     setObjSize,
     getWidthPx,
     getHeightPx,
-    getTopPx,
+    getVerticalPx,
     getCenterLeftPx,
     getPosAndWid,
     getStandardPx,
-    getLeftPx
+    getHorizontalPx
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -46,9 +46,9 @@ const Info: React.FC<Props> = (props: Props) => {
             alignItems: 'flex-start',
             flexDirection: 'row',
             width: getWidthPx(),
-            height: getTopPx(41),
+            height: getVerticalPx(41),
             left: getCenterLeftPx(),
-            marginTop: getTopPx(138),
+            marginTop: getVerticalPx(138),
         },
         // svg: getStandardPx(410, h, 209),
         svg: {
@@ -59,9 +59,9 @@ const Info: React.FC<Props> = (props: Props) => {
         text: getStandardPx(334, 200, 497),
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
-            marginTop: getTopPx(44),
-            marginBottom: getTopPx(100),
+            fontSize: getHorizontalPx(18),
+            marginTop: getVerticalPx(44),
+            marginBottom: getVerticalPx(100),
             color: '#555555'
         }
     })

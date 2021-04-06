@@ -4,10 +4,10 @@ import I18n from 'react-native-i18n';
 
 import {
     setObjSize,
-    getLeftPx,
+    getHorizontalPx,
     initAppSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getHeightPx,
     getWidthPx
 } from '../../helpers/layoutFoo';
@@ -36,19 +36,19 @@ const StaticElements: React.FC<Props> = (props: Props) => {
             height: '100%',
         },
         panel: {
-            top: getLeftPx(67),
+            top: getHorizontalPx(67),
         },
         skip: {
             position: 'absolute',
-            left: getLeftPx(333),
-            top: getLeftPx(60),
+            left: getHorizontalPx(333),
+            top: getHorizontalPx(60),
         },
         redBtn: {
             position: 'absolute',
             width: getWidthPx(),
             height: getHeightPx(),
             left: getCenterLeftPx(),
-            bottom: getTopPx(65)
+            bottom: getVerticalPx(65)
         }
     })
 

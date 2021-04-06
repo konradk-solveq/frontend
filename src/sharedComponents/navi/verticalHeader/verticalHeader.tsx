@@ -10,7 +10,7 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 
@@ -55,7 +55,7 @@ const VerticalHeader: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             width: ww,
             height: h,
-            marginBottom: getTopPx(40)
+            marginBottom: getVerticalPx(40)
         },
         headerBtn: {
             position: 'absolute',

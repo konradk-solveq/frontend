@@ -8,7 +8,7 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 
@@ -38,9 +38,9 @@ const Home: React.FC<Props> = (props: Props) => {
         header: {
             position: 'absolute',
             width: getWidthPx(),
-            height: getTopPx(20),
+            height: getVerticalPx(20),
             left: getCenterLeftPx(),
-            top: getTopPx(65),
+            top: getVerticalPx(65),
             alignItems: 'center',
         },
         text: {

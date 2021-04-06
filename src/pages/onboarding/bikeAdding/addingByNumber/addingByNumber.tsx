@@ -17,11 +17,11 @@ import {
     setObjSize,
     getWidthPx,
     getHeightPx,
-    getTopPx,
+    getVerticalPx,
     getCenterLeftPx,
     getPosAndWid,
     getPosWithMinHeight,
-    getLeftPx
+    getHorizontalPx
 } from '../../../../helpers/layoutFoo';
 
 
@@ -89,26 +89,26 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            top: getTopPx(138)
+            top: getVerticalPx(138)
         },
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(30),
+            fontSize: getHorizontalPx(30),
             color: '#555555',
             textAlign: 'left'
         },
         infoBtn:{
             position: 'relative',
-            height: getLeftPx(29),
-            marginTop: getLeftPx(3),
+            height: getHorizontalPx(29),
+            marginTop: getHorizontalPx(3),
             width: getWidthPx(),
         },
         botton:{
             position: 'absolute',
             width: getWidthPx(),
-            height: getTopPx(50),
+            height: getVerticalPx(50),
             left: getCenterLeftPx(),
-            bottom: getTopPx(65)
+            bottom: getVerticalPx(65)
         }
     })
 

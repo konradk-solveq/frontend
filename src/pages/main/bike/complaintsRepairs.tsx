@@ -9,8 +9,8 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getLeftPx,
-    getTopPx,
+    getHorizontalPx,
+    getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -47,7 +47,7 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
 
             for (let i = 0; i < areas.length; i++) {
                 h += areas[i].height;
-                h += (i == areas.length - 1 ? 0 : getTopPx(15));
+                h += (i == areas.length - 1 ? 0 : getVerticalPx(15));
             }
             let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
 
@@ -58,17 +58,17 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
             let y = 0;
             for (let i = 0; i < areas.length; i++) {
                 let hh = areas[i].height - 1;
-                svg += '<rect filter="url(#filter)" opacity=".15" fill="#000" stroke="none" width="' + w + '" height="' + hh + '" x="' + (b * .2) + '" y="' + (y + (b * .2)) + '" ry="' + getLeftPx(26) + '"/>';
-                svg += '<rect filter="url(#filter)" opacity="1" fill="#fff" stroke="none" width="' + w + '" height="' + hh + '" x="' + (-b * .35) + '" y="' + (y + (-b * .35)) + '" ry="' + getLeftPx(26) + '"/>';
+                svg += '<rect filter="url(#filter)" opacity=".15" fill="#000" stroke="none" width="' + w + '" height="' + hh + '" x="' + (b * .2) + '" y="' + (y + (b * .2)) + '" ry="' + getHorizontalPx(26) + '"/>';
+                svg += '<rect filter="url(#filter)" opacity="1" fill="#fff" stroke="none" width="' + w + '" height="' + hh + '" x="' + (-b * .35) + '" y="' + (y + (-b * .35)) + '" ry="' + getHorizontalPx(26) + '"/>';
 
-                y += hh + 1 + getTopPx(15);
+                y += hh + 1 + getVerticalPx(15);
             }
 
             y = 0;
             for (let i = 0; i < areas.length; i++) {
                 let hh = areas[i].height - 1;
-                svg += '<rect fill="#f0f0f0" stroke="none" width="' + w + '" height="' + hh + '" x="' + 0 + '" y="' + y + '" ry="' + getLeftPx(26) + '"/>';
-                y += hh + 1 + getTopPx(15);
+                svg += '<rect fill="#f0f0f0" stroke="none" width="' + w + '" height="' + hh + '" x="' + 0 + '" y="' + y + '" ry="' + getHorizontalPx(26) + '"/>';
+                y += hh + 1 + getVerticalPx(15);
             }
 
             svg += '</svg>';
@@ -79,7 +79,7 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
             setBoxStyle({
                 position: 'absolute',
                 left: -b,
-                top: -b + getTopPx(15),
+                top: -b + getVerticalPx(15),
                 width: w + (b * 2),
                 height: h + (b * 2),
                 // backgroundColor: 'green'
@@ -91,7 +91,7 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
         title: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555',
             left: getCenterLeftPx(),
             width: getWidthPx(),
@@ -103,68 +103,68 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
         container: {
             // alignItems: 'center',
             width: '100%',
-            marginTop: getTopPx(15),
-            borderRadius: getLeftPx(26),
+            marginTop: getVerticalPx(15),
+            borderRadius: getHorizontalPx(26),
             // height: '100%',
             // backgroundColor: '#f0f0f0',
         },
         name: {
-            marginTop: getTopPx(20),
-            left: getLeftPx(20),
+            marginTop: getVerticalPx(20),
+            left: getHorizontalPx(20),
             // width: '50%',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(23),
+            fontSize: getHorizontalPx(23),
             color: '#313131',
             textAlign: 'left',
         },
         line: {
-            width: getLeftPx(294),
+            width: getHorizontalPx(294),
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: 'khaki',
         },
         dayOf: {
-            left: getLeftPx(20),
+            left: getHorizontalPx(20),
             position: 'relative',
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
         },
         state: {
-            left: getLeftPx(259),
+            left: getHorizontalPx(259),
             position: 'absolute',
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
         },
         description: {
-            marginTop: getTopPx(8),
-            left: getLeftPx(20),
+            marginTop: getVerticalPx(8),
+            left: getHorizontalPx(20),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555',
-            width: getLeftPx(294),
-            minHeight: getTopPx(69)
+            width: getHorizontalPx(294),
+            minHeight: getVerticalPx(69)
         },
         number: {
-            marginTop: getTopPx(7),
-            marginBottom: getTopPx(20),
+            marginTop: getVerticalPx(7),
+            marginBottom: getVerticalPx(20),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
-            left: getLeftPx(20),
+            left: getHorizontalPx(20),
         },
         dots: {
             position: 'absolute',
-            right: getLeftPx(17),
-            bottom: getTopPx(20),
+            right: getHorizontalPx(17),
+            bottom: getVerticalPx(20),
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(20),
+            fontSize: getHorizontalPx(20),
             color: '#313131',
         }
     })

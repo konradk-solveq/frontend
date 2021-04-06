@@ -15,11 +15,11 @@ import {
     initAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
     getWidthPxOf,
     getHeightPx,
-    getLeftPx
+    getHorizontalPx
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -213,7 +213,7 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
         width: w,
         height: h,
         left: getCenterLeftPx(),
-        top: getTopPx(253),
+        top: getVerticalPx(253),
         // backgroundColor: 'khaki'
     }
 
@@ -227,33 +227,33 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
 
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(30),
+            fontSize: getHorizontalPx(30),
             color: '#313131',
             textAlign: 'left',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            top: getTopPx(138),
+            top: getVerticalPx(138),
         },
         image,
         reg40: {
             position: 'absolute',
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(40),
+            fontSize: getHorizontalPx(40),
             color: '#313131',
             textAlign: 'center',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            top: getTopPx(253 + 20) + h,
+            top: getVerticalPx(253 + 20) + h,
         },
         light18: {
             position: 'absolute',
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555',
             textAlign: 'center',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            top: getTopPx(253 + 76) + h,
+            top: getVerticalPx(253 + 76) + h,
         },
         bottons: {
             position: 'absolute',
@@ -263,14 +263,14 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            bottom: getTopPx(65)
+            bottom: getVerticalPx(65)
         },
         btn: {
             width: getWidthPxOf(157),
         },
         spaceOnEnd: {
             width: '100%',
-            height: getTopPx(65)
+            height: getVerticalPx(65)
         }
     })
 

@@ -8,8 +8,8 @@ import {
     setAppSize,
     setObjSize,
     getWidthPx,
-    getLeftPx,
-    getTopPx,
+    getHorizontalPx,
+    getVerticalPx,
     getHeightPx,
     getCenterLeftPx
 } from '../../../helpers/layoutFoo';
@@ -83,7 +83,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
         },
         text: {
             width: getWidthPx(),
-            left: getLeftPx(40),
+            left: getHorizontalPx(40),
             fontFamily: "DIN2014Narrow-Light",
             textAlign: 'left'
         },
@@ -91,12 +91,12 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             width: getWidthPx(),
             height: getHeightPx(),
             left: getCenterLeftPx(),
-            top: getTopPx(11),
+            top: getVerticalPx(11),
             marginBottom: headHeight
         },
         spaceOnEnd: {
             width: '100%',
-            height: getTopPx(69)
+            height: getVerticalPx(69)
         }
     })
 
@@ -105,11 +105,11 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
 
-                    <Text style={[styles.text, { marginTop: getTopPx(50), fontSize: 30, color: '#313131' }]}>
+                    <Text style={[styles.text, { marginTop: getVerticalPx(50), fontSize: 30, color: '#313131' }]}>
                         {trans.title}
                     </Text>
 
-                    <Text style={[styles.text, { marginTop: getTopPx(6), fontSize: 18, color: '#555555' }]}>
+                    <Text style={[styles.text, { marginTop: getVerticalPx(6), fontSize: 18, color: '#555555' }]}>
                         {trans.text}
                     </Text>
 
@@ -117,7 +117,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                         checked={allPerm}
                         getCheck={(val: boolean) => handleChangeAllStatus(val)}
                         text={trans.checkAll}
-                        marginTop={getTopPx(31)}
+                        marginTop={getVerticalPx(31)}
                         navigation={props.navigation}
                     ></OnePermit>
 
@@ -127,7 +127,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                             wrong={trans.paragraph[i].required && e.wrong}
                             getCheck={(val: boolean) => handleChangeStatus(i, val)}
                             text={trans.paragraph[i].text}
-                            marginTop={getTopPx(11)}
+                            marginTop={getVerticalPx(11)}
                             navigation={props.navigation}
                             key={'per_' + i}
                         ></OnePermit>

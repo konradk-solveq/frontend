@@ -14,11 +14,11 @@ import {
     initAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
     getWidthPxOf,
     getHeightPx,
-    getLeftPx
+    getHorizontalPx
 } from '../../../helpers/layoutFoo';
 import deepCopy from "../../../helpers/deepCopy";
 
@@ -126,23 +126,23 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         },
         reg23: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(23),
+            fontSize: getHorizontalPx(23),
             color: '#313131',
             textAlign: 'left',
             position: 'relative',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginBottom: getTopPx(8)
+            marginBottom: getVerticalPx(8)
         },
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555',
             textAlign: 'left',
             position: 'relative',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginBottom: getTopPx(30)
+            marginBottom: getVerticalPx(30)
         },
         list: {
             width: getWidthPx(),
@@ -159,14 +159,14 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginTop: getTopPx(29)
+            marginTop: getVerticalPx(29)
         },
         btn: {
             width: getWidthPxOf(157),
         },
         spaceOnEnd: {
             width: '100%',
-            height: getTopPx(65)
+            height: getVerticalPx(65)
         },
     })
 

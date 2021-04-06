@@ -7,9 +7,9 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
-    getLeftPx
+    getHorizontalPx
 } from '../../helpers/layoutFoo';
 
 interface Props {
@@ -41,18 +41,18 @@ const ListPageInput: React.FC<Props> = (props: Props) => {
             top: headHeight,
         },
         list: {
-            marginTop: getTopPx(30),
+            marginTop: getVerticalPx(30),
         },
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(23),
+            fontSize: getHorizontalPx(23),
             color: '#3587ea',
             textAlign: 'left',
             position: 'relative',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginTop: getTopPx(22),
-            marginBottom: getTopPx(22)
+            marginTop: getVerticalPx(22),
+            marginBottom: getVerticalPx(22)
         },
         line: {
             width: getWidthPx(),
@@ -63,7 +63,7 @@ const ListPageInput: React.FC<Props> = (props: Props) => {
         },
         spaceOnEnd: {
             width: '100%',
-            height: getTopPx(30) + headHeight
+            height: getVerticalPx(30) + headHeight
         }
     })
 

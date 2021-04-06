@@ -4,7 +4,8 @@ import I18n from 'react-native-i18n';
 import Svg, { Path } from "react-native-svg";
 
 import {
-    getLeftPx,
+    getHorizontalPx,
+    getVerticalPx
 } from '../../helpers/layoutFoo';
 
 interface Props {
@@ -75,42 +76,43 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
     let styles = StyleSheet.create({
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             textAlign: 'left',
             color: '#555555'
         },
         input: {
             width: '100%',
-            borderRadius: getLeftPx(150),
-            borderWidth: getLeftPx(2),
+            borderRadius: getHorizontalPx(150),
+            borderWidth: getHorizontalPx(2),
             borderColor: borderColor,
-            height: getLeftPx(50),
-            marginTop: getLeftPx(6),
+            height: getVerticalPx(50),
+            marginTop: getHorizontalPx(6),
         },
         title: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(20),
+            fontSize: getHorizontalPx(20),
             textAlign: 'left',
             color: '#555555',
             // position: 'absolute',
-            marginTop: getLeftPx(10),
-            left: getLeftPx(30)
+            // marginTop: getHorizontalPx(10),
+            left: getHorizontalPx(30),
+            paddingTop: getHorizontalPx(7),
         },
         arrow: {
             position: 'absolute',
-            right: getLeftPx(30),
-            top: getLeftPx(15),
-            width: getLeftPx(20),
-            height: getLeftPx(15)
+            right: getHorizontalPx(30),
+            top: getHorizontalPx(15),
+            width: getHorizontalPx(20),
+            height: getHorizontalPx(15)
         },
         error: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             textAlign: 'left',
             color: '#d8232a',
             position: 'relative',
-            marginTop: getLeftPx(6),
-            height: getLeftPx(23)
+            marginTop: getHorizontalPx(6),
+            height: getHorizontalPx(23)
         }
     })
 

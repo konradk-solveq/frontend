@@ -11,8 +11,8 @@ import {
     initAppSize,
     setObjSize,
     getCenterLeftPx,
-    getLeftPx,
-    getTopPx,
+    getHorizontalPx,
+    getVerticalPx,
     getWidthPx,
  
 } from '../../../../helpers/layoutFoo';
@@ -41,16 +41,16 @@ const BikeParams: React.FC<Props> = (props: Props) => {
         },
         bikeName: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(40),
+            fontSize: getHorizontalPx(40),
             width: '100%',
             color: '#313131',
             textAlign: 'center'
         },
         bikeDetails: {
-            marginTop: getTopPx(5),
+            marginTop: getVerticalPx(5),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
             // backgroundColor: 'khaki'
         },
@@ -58,53 +58,53 @@ const BikeParams: React.FC<Props> = (props: Props) => {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
-            marginTop: getTopPx(39)
+            marginTop: getVerticalPx(39)
         },
         colorBall: {
-            width: getLeftPx(24),
-            height: getLeftPx(24),
-            borderRadius: getLeftPx(12),
+            width: getHorizontalPx(24),
+            height: getHorizontalPx(24),
+            borderRadius: getHorizontalPx(12),
             backgroundColor: 'khaki',
-            marginRight: getLeftPx(22)
+            marginRight: getHorizontalPx(22)
         },
         colorText: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555'
         },
         size: {
-            marginTop: getTopPx(20),
+            marginTop: getVerticalPx(20),
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: 'column',
-            height: getLeftPx(29),
-            borderRadius: getLeftPx(15),
+            height: getHorizontalPx(29),
+            borderRadius: getHorizontalPx(15),
             borderColor: '#33555555',
             borderWidth: 1,
             alignSelf: "flex-start"
         },
         sizeText: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555',
-            paddingLeft: getLeftPx(15),
-            paddingRight: getLeftPx(15),
+            paddingLeft: getHorizontalPx(15),
+            paddingRight: getHorizontalPx(15),
         },
         lists: {
-            marginTop: getTopPx(12),
+            marginTop: getVerticalPx(12),
             left: getCenterLeftPx(),
             width: getWidthPx()
         },
         list: {
-            marginTop: getTopPx(30)
+            marginTop: getVerticalPx(30)
         },
         name: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(26),
+            fontSize: getHorizontalPx(26),
             color: '#313131',
             textAlign: 'left',
-            marginBottom: getTopPx(11)
+            marginBottom: getVerticalPx(11)
         },
         valLine: {
             display: 'flex',
@@ -113,17 +113,17 @@ const BikeParams: React.FC<Props> = (props: Props) => {
         },
         value: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(16),
-            lineHeight: getLeftPx(26),
+            fontSize: getHorizontalPx(16),
+            lineHeight: getHorizontalPx(26),
             color: '#313131'
 
         },
         btn: {
             width: getWidthPx(),
-            height: getLeftPx(50),
+            height: getHorizontalPx(50),
             left: getCenterLeftPx(),
-            marginTop: getTopPx(31),
-            marginBottom: getTopPx(80)
+            marginTop: getVerticalPx(31),
+            marginBottom: getVerticalPx(80)
         }
     })
 

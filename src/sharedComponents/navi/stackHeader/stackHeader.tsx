@@ -6,7 +6,7 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
     getHeightPx,
     getPerfectPx,
@@ -27,7 +27,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
-    const [height, setHeight] = useState(getTopPx(100));
+    const [height, setHeight] = useState(getVerticalPx(100));
     useEffect(() => {
         if (props.getHeight) props.getHeight(height)
     }, [height])
@@ -46,7 +46,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
         position: 'absolute',
         width: getWidthPx(),
         left: getCenterLeftPx(),
-        top: getTopPx(3),
+        top: getVerticalPx(3),
         fontFamily: "DIN2014Narrow-Light",
         textAlign: 'center',
         fontSize: 18,

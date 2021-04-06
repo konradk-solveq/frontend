@@ -7,9 +7,9 @@ import deepCopy from '../../../../helpers/deepCopy';
 import {
     setAppSize,
     setObjSize,
-    getTopPx,
+    getVerticalPx,
     getHeightPx,
-    getLeftPx,
+    getHorizontalPx,
     getWidthPx,
     getCenterLeftPx
 } from '../../../../helpers/layoutFoo';
@@ -53,13 +53,13 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
             left: getCenterLeftPx()
         },
         titleBox: {
-            marginTop: getTopPx(40),
-            paddingTop: getTopPx(20),
-            paddingRight: getLeftPx(10),
-            paddingBottom: getTopPx(20),
-            paddingLeft: getLeftPx(10),
+            marginTop: getVerticalPx(40),
+            paddingTop: getVerticalPx(20),
+            paddingRight: getHorizontalPx(10),
+            paddingBottom: getVerticalPx(20),
+            paddingLeft: getHorizontalPx(10),
             backgroundColor: 'khaki',
-            borderRadius: getLeftPx(20)
+            borderRadius: getHorizontalPx(20)
         },
         title: {
             fontFamily: 'DIN2014Narrow-Regular',
@@ -68,47 +68,47 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
             textAlign: 'center',
         },
         details: {
-            marginTop: getTopPx(5),
+            marginTop: getVerticalPx(5),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
         },
         place: {
-            width: getLeftPx(36),
-            height: getLeftPx(36),
+            width: getHorizontalPx(36),
+            height: getHorizontalPx(36),
             position: 'absolute',
             right: 0
         },
         name: {
-            marginTop: getTopPx(30),
+            marginTop: getVerticalPx(30),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
         },
         value: {
-            marginTop: getTopPx(6),
+            marginTop: getVerticalPx(6),
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555',
         },
         shopName: {
-            marginTop: getTopPx(6),
+            marginTop: getVerticalPx(6),
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: getLeftPx(23),
+            fontSize: getHorizontalPx(23),
             color: '#313131',
         },
         adress: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
         },
         contact: {
-            marginTop: getTopPx(12),
+            marginTop: getVerticalPx(12),
             width: '100%',
             display: 'flex',
             flexDirection: 'row',
@@ -119,17 +119,17 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
             width: '50%',
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
         },
         btn: {
-            marginTop: getTopPx(92),
+            marginTop: getVerticalPx(92),
             height: getHeightPx(),
             marginBottom: headHeight
         },
         spaceOnEnd: {
             width: '100%',
-            height: getTopPx(69)
+            height: getVerticalPx(69)
         }
     })
 

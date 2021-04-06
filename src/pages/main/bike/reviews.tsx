@@ -7,8 +7,8 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getLeftPx,
-    getTopPx,
+    getHorizontalPx,
+    getVerticalPx,
 } from '../../../helpers/layoutFoo';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -35,11 +35,11 @@ const Reviews: React.FC<Props> = (props: Props) => {
             width: ww
         },
         title: {
-            marginBottom: getTopPx(15),
+            marginBottom: getVerticalPx(15),
             left: getCenterLeftPx(),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555',
         },
         scroll: {
@@ -53,12 +53,12 @@ const Reviews: React.FC<Props> = (props: Props) => {
         },
         item: {
             width: w,
-            marginLeft: getLeftPx(15)
+            marginLeft: getHorizontalPx(15)
         },
         box: {
             width: w,
             height: w,
-            borderRadius: getLeftPx(16),
+            borderRadius: getHorizontalPx(16),
             backgroundColor: '#fdf5f5',
         },
         fitstItem: {
@@ -68,17 +68,17 @@ const Reviews: React.FC<Props> = (props: Props) => {
             marginRight: getCenterLeftPx(),
         },
         day: {
-            marginTop: getLeftPx(16),
+            marginTop: getHorizontalPx(16),
             width: '100%',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(57),
+            fontSize: getHorizontalPx(57),
             color: '#313131',
             textAlign: 'center',
         },
         light: {
             width: '100%',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555',
             textAlign: 'center',
         },
@@ -89,11 +89,11 @@ const Reviews: React.FC<Props> = (props: Props) => {
             marginTop: ww * (6 / 414),
         },
         mark: {
-            width: getLeftPx(20),
-            height: getLeftPx(20),
+            width: getHorizontalPx(20),
+            height: getHorizontalPx(20),
             position: 'absolute',
-            right: getLeftPx(8),
-            top: getLeftPx(4),
+            right: getHorizontalPx(8),
+            top: getHorizontalPx(4),
         }
     })
 

@@ -9,8 +9,8 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getLeftPx,
-    getTopPx,
+    getHorizontalPx,
+    getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -46,7 +46,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
         // let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
         // svg += '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' + (b * .4) + '"/></filter>'
         // svg += '<rect filter="url(#filter)" opacity=".09" fill="#000" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="24"/>';
-        // svg += '<rect fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getLeftPx(32) + '"/>';
+        // svg += '<rect fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getHorizontalPx(32) + '"/>';
         // svg += '</svg>';
 
         // #best
@@ -54,7 +54,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
         svg += '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' + (b * .4) + '"/></filter>'
         svg += '<rect filter="url(#filter)" opacity=".15" fill="#000" stroke="none" width="' + w + '" height="' + h + '" x="' + (b * .2) + '" y="' + (b * .2) + '" ry="24"/>';
         svg += '<rect filter="url(#filter)" opacity="1" fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + (-b * .35) + '" y="' + (-b * .35) + '" ry="24"/>';
-        svg += '<rect fill="#f0f0f0" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getLeftPx(32) + '"/>';
+        svg += '<rect fill="#f0f0f0" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getHorizontalPx(32) + '"/>';
         svg += '</svg>';
 
         setSource(svg);
@@ -74,7 +74,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
         container: {
             left: l,
             width: w,
-            borderRadius: getLeftPx(32),
+            borderRadius: getHorizontalPx(32),
             backgroundColor: 'transparent' // '#f0f0f0',
         },
 
@@ -85,21 +85,21 @@ const Warranty: React.FC<Props> = (props: Props) => {
             // backgroundColor: 'green'
         },
         leftText: {
-            marginTop: getTopPx(22),
-            marginBottom: getTopPx(22),
-            left: getLeftPx(30.5),
+            marginTop: getVerticalPx(22),
+            marginBottom: getVerticalPx(22),
+            left: getHorizontalPx(30.5),
             width: '50%',
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
         },
         rightText: {
-            marginTop: getTopPx(15),
-            left: getLeftPx(28.5),
+            marginTop: getVerticalPx(15),
+            left: getHorizontalPx(28.5),
             width: '50%',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(23),
+            fontSize: getHorizontalPx(23),
             color: '#313131',
             textAlign: 'left',
         },
@@ -109,10 +109,10 @@ const Warranty: React.FC<Props> = (props: Props) => {
         },
         dots: {
             position: 'absolute',
-            right: getLeftPx(17),
-            bottom: getTopPx(17),
+            right: getHorizontalPx(17),
+            bottom: getVerticalPx(17),
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(20),
+            fontSize: getHorizontalPx(20),
             color: '#313131',
         }
     })

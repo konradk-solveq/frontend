@@ -8,8 +8,8 @@ import {
     initAppSize,
     setObjSize,
     getWidthPx,
-    getTopPx,
-    getLeftPx,
+    getVerticalPx,
+    getHorizontalPx,
     getWidthOf,
 } from '../../../helpers/layoutFoo';
 
@@ -42,33 +42,33 @@ const OnePermit: React.FC<Props> = (props: Props) => {
             position: 'relative',
             width: '100%',
             marginTop: props.marginTop,
-            marginBottom: getTopPx(11),
+            marginBottom: getVerticalPx(11),
 
         },
         checkbox: {
             position: 'relative',
             width: cbw,
             height: cbw,
-            marginLeft: getLeftPx(40),
+            marginLeft: getHorizontalPx(40),
         },
         hyper: {
             position: 'relative',
             width: getWidthOf(283),
-            marginLeft: getLeftPx(25),
-            marginTop: getTopPx(3),
+            marginLeft: getHorizontalPx(25),
+            marginTop: getVerticalPx(3),
         },
         text: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             textAlign: 'left',
             color: '#555555'
         },
         wrong: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             textAlign: 'left',
             color: '#d8232a',
-            marginTop: getTopPx(11),
+            marginTop: getVerticalPx(11),
         }
     })
 

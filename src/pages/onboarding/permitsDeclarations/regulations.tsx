@@ -6,8 +6,8 @@ import {
     setAppSize,
     setObjSize,
     getWidthPx,
-    getTopPx,
-    getLeftPx,
+    getVerticalPx,
+    getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -35,22 +35,22 @@ const Regulations: React.FC<Props> = (props: Props) => {
         },
         text: {
             width: getWidthPx(),
-            left: getLeftPx(40),
+            left: getHorizontalPx(40),
             textAlign: 'left',
         },
         reg23: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(23),
+            fontSize: getHorizontalPx(23),
             color: '#313131'
         },
         reg18: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555'
         },
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555'
         }
     })
@@ -61,27 +61,27 @@ const Regulations: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
 
-                    <Text style={[styles.text, styles.reg23, { marginTop: getTopPx(50) }]}>
+                    <Text style={[styles.text, styles.reg23, { marginTop: getVerticalPx(50) }]}>
                         {trans.title}
                     </Text>
 
-                    <Text style={[styles.text,styles.light18, { marginTop: getTopPx(15) }]}>
+                    <Text style={[styles.text,styles.light18, { marginTop: getVerticalPx(15) }]}>
                         {trans.text_1}
                     </Text>
 
-                    <Text style={[styles.text, styles.reg18, { marginTop: getTopPx(30) }]}>
+                    <Text style={[styles.text, styles.reg18, { marginTop: getVerticalPx(30) }]}>
                         {trans.paragraph_2}
                     </Text>
 
-                    <Text style={[styles.text,styles.light18, { marginTop: getTopPx(15) }]}>
+                    <Text style={[styles.text,styles.light18, { marginTop: getVerticalPx(15) }]}>
                         {trans.text_3}
                     </Text>
 
-                    <Text style={[styles.text, styles.reg18, { marginTop: getTopPx(53) }]}>
+                    <Text style={[styles.text, styles.reg18, { marginTop: getVerticalPx(53) }]}>
                         {trans.paragraph_3}
                     </Text>
 
-                    <Text style={[styles.text, styles.light18, { marginTop: getTopPx(15), marginBottom: getTopPx(100) }]}>
+                    <Text style={[styles.text, styles.light18, { marginTop: getVerticalPx(15), marginBottom: getVerticalPx(100) }]}>
                         {trans.text_3}
                     </Text>
 

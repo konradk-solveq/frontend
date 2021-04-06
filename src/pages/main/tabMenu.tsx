@@ -13,8 +13,8 @@ import Profile from './profile/profile';
 
 import {
     initAppSize,
-    getTopPx,
-    getLeftPx
+    getVerticalPx,
+    getHorizontalPx
 } from '../../helpers/layoutFoo';
 
 interface Props {
@@ -26,14 +26,14 @@ const TabMenu: React.FC<Props> = (props: Props) => {
 
     initAppSize();
 
-    const iconSize = getLeftPx(34);
-    const iconMargin = getLeftPx(10);
+    const iconSize = getHorizontalPx(34);
+    const iconMargin = getHorizontalPx(10);
     const styles = StyleSheet.create({
         icon: {
             width: iconSize,
             height: iconSize,
-            marginTop: getLeftPx(36),
-            marginBottom: getLeftPx(20)
+            marginTop: getHorizontalPx(36),
+            marginBottom: getHorizontalPx(20)
         }
     })
 
@@ -48,7 +48,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
             left: 0,
             right: 0,
             bottom: 0,
-            height: getLeftPx(95),
+            height: getHorizontalPx(95),
             elevation: 0,
             // backgroundColor: 'khaki'
         },

@@ -14,8 +14,8 @@ import {
     initAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
-    getLeftPx,
+    getVerticalPx,
+    getHorizontalPx,
     getWidthPx,
     getHeightPx,
 } from '../../../helpers/layoutFoo';
@@ -132,7 +132,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
         },
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(30),
+            fontSize: getHorizontalPx(30),
             color: '#555555',
             textAlign: 'left',
         },
@@ -140,21 +140,21 @@ const BikeData: React.FC<Props> = (props: Props) => {
             position: 'relative',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginTop: getTopPx(45),
-            marginBottom: getTopPx(30)
+            marginTop: getVerticalPx(45),
+            marginBottom: getVerticalPx(30)
         },
         inputAndPlaceholder: {
             position: 'relative',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginTop: getTopPx(10)
+            marginTop: getVerticalPx(10)
         },
         botton: {
             width: getWidthPx(),
             height: getHeightPx(),
             left: getCenterLeftPx(),
-            marginTop: getTopPx(10),
-            marginBottom: headHeight + getTopPx(65)
+            marginTop: getVerticalPx(10),
+            marginBottom: headHeight + getVerticalPx(65)
         }
     })
 

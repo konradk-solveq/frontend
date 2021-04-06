@@ -8,7 +8,7 @@ import {
     setAppSize,
     setObjSize,
     getWidthPx,
-    getTopPx,
+    getVerticalPx,
     getRelativeHeight,
     getCenterLeftPx
 } from '../../helpers/layoutFoo';
@@ -98,7 +98,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
         width: getWidthPx(),
         height: getRelativeHeight(),
         left: -ww * .05,
-        top: getTopPx(90),
+        top: getVerticalPx(90),
     }
 
     setObjSize(414, 175);
@@ -107,7 +107,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
         width: ww * 1.2,
         height: getRelativeHeight(),
         left: getCenterLeftPx(),
-        top: getTopPx(560),
+        top: getVerticalPx(560),
     }
 
     let styles = StyleSheet.create({

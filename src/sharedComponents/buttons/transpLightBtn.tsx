@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 import {
-    getLeftPx,
+    getHorizontalPx,
 } from '../../helpers/layoutFoo';
 
 interface Props {
@@ -23,7 +23,7 @@ const TranspLightBtn: React.FC<Props> = (props: Props) => {
         text: {
             width: '100%',
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             textAlign: props.algin ? props.algin : 'center',
             color: props.color ? props.color : '#d8232a'
         }

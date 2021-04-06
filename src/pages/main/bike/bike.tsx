@@ -15,9 +15,9 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
-    getLeftPx,
+    getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -53,58 +53,58 @@ const Bike: React.FC<Props> = (props: Props) => {
             backgroundColor: '#f0f0f0' // #best
         },
         header: {
-            marginTop: getTopPx(65),
+            marginTop: getVerticalPx(65),
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#313131',
         },
         params: {
             position: 'absolute',
-            top: getTopPx(65 - 13),
-            right: getLeftPx(40 - 13),
-            width: getLeftPx(13 + 20 + 13),
-            height: getLeftPx(13 + 20 + 13),
+            top: getVerticalPx(65 - 13),
+            right: getHorizontalPx(40 - 13),
+            width: getHorizontalPx(13 + 20 + 13),
+            height: getHorizontalPx(13 + 20 + 13),
             backgroundColor: 'khaki'
         },
         paramIcon: {
-            margin: getLeftPx(13),
-            width: getLeftPx(20),
-            height: getLeftPx(20),
+            margin: getHorizontalPx(13),
+            width: getHorizontalPx(20),
+            height: getHorizontalPx(20),
         },
         bikeName: {
-            marginTop: getTopPx(48),
+            marginTop: getVerticalPx(48),
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getLeftPx(40),
+            fontSize: getHorizontalPx(40),
             color: '#313131',
             textAlign: 'center',
         },
         bikeDetails: {
-            marginTop: getTopPx(5),
+            marginTop: getVerticalPx(5),
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getLeftPx(15),
+            fontSize: getHorizontalPx(15),
             color: '#555555',
             // backgroundColor: 'khaki'
         },
         warranty: {
-            marginTop: getTopPx(76),
+            marginTop: getVerticalPx(76),
         },
         reviews: {
-            marginTop: getTopPx(45),
+            marginTop: getVerticalPx(45),
         },
         complaintsRepairs: {
-            marginTop: getTopPx(30),
+            marginTop: getVerticalPx(30),
         },
         separator: {
             width: '100%',
-            height: getTopPx(200)
+            height: getVerticalPx(200)
         },
         test: {
             backgroundColor: 'khaki'

@@ -11,8 +11,8 @@ import {
     getWidthPx,
     getWidthPxOf,
     getHeightPx,
-    getLeftPx,
-    getTopPx,
+    getHorizontalPx,
+    getVerticalPx,
     getCenterLeftPx,
     getPosAndWid,
     getPosWithMinHeight,
@@ -53,12 +53,12 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
     let bottons = {
         position: 'absolute',
         width: getWidthPx(),
-        height: getLeftPx(50),
+        height: getHorizontalPx(50),
         left: getCenterLeftPx(),
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        bottom: getTopPx(65)
+        bottom: getVerticalPx(65)
     }
 
     let styles = StyleSheet.create({
@@ -71,13 +71,13 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
         text: getPosAndWid(334, 78, 138),
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(30),
+            fontSize: getHorizontalPx(30),
             color: '#313131'
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 380, 90),
         input: {
-            height: getLeftPx(50),
-            marginTop: getLeftPx(6),
+            height: getHorizontalPx(50),
+            marginTop: getHorizontalPx(6),
         },
         bottons,
         btn: {

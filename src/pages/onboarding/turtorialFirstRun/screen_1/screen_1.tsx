@@ -6,7 +6,7 @@ import {
     initAppSize,
     getStandardPx,
     getPosAndWid,
-    getLeftPx
+    getHorizontalPx
 } from '../../../../helpers/layoutFoo';
 
 import BikeImg from './bikeImg';
@@ -26,7 +26,7 @@ const Screen_1 = () => {
         bigText: getPosAndWid(334, 102, 138),
         reg40: {
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(40),
+            fontSize: getHorizontalPx(40),
             textAlign: 'center',
             color: '#313131'
         },
@@ -34,7 +34,7 @@ const Screen_1 = () => {
         regText: getStandardPx(334, 115, 596),
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             textAlign: 'center',
             color: '#555555'
         }

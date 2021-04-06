@@ -7,9 +7,9 @@ import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
 import {
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
-    getLeftPx
+    getHorizontalPx
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -36,15 +36,15 @@ const RadioLine: React.FC<Props> = (props: Props) => {
         conainer: {
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginBottom: getTopPx(15),
+            marginBottom: getVerticalPx(15),
         },
         reg18: {
             width: '100%',
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#313131',
             textAlign: 'left',
-            marginBottom: getTopPx(5),
+            marginBottom: getVerticalPx(5),
         },
         list: {
             width: '100%',

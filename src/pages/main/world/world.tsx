@@ -8,9 +8,9 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
-    getLeftPx
+    getHorizontalPx
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -52,9 +52,9 @@ const World: React.FC<Props> = (props: Props) => {
     const wh = Dimensions.get('window').height;
     setAppSize(ww, wh);
 
-    const t = getTopPx(348);
+    const t = getVerticalPx(348);
     const h = ww * (202 / 416);
-    const th = getTopPx(300);
+    const th = getVerticalPx(300);
     const image = {
         position: 'absolute',
         width: ww,
@@ -62,7 +62,7 @@ const World: React.FC<Props> = (props: Props) => {
         // backgroundColor: "khaki",
         top: t
     };
-    const tt = t - (th - getTopPx(21));
+    const tt = t - (th - getVerticalPx(21));
 
     setObjSize(334, 23);
     const styles = StyleSheet.create({
@@ -79,10 +79,10 @@ const World: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            top: getTopPx(65),
+            top: getVerticalPx(65),
             fontFamily: "DIN2014Narrow-Light",
             textAlign: 'center',
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#313131'
         },
         title: {
@@ -91,7 +91,7 @@ const World: React.FC<Props> = (props: Props) => {
             height: th,
             top: tt,
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(40),
+            fontSize: getHorizontalPx(40),
             color: '#d8232a',
             textAlign: 'center',
             textAlignVertical: 'bottom',
@@ -99,9 +99,9 @@ const World: React.FC<Props> = (props: Props) => {
         },
         text: {
             position: 'absolute',
-            top: t + h + getTopPx(20),
+            top: t + h + getVerticalPx(20),
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(23),
+            fontSize: getHorizontalPx(23),
             color: '#313131',
             textAlign: 'left',
             width: getWidthPx(),

@@ -14,7 +14,7 @@ import {
     initAppSize,
     getPosAndWid,
     getStandardPx,
-    getLeftPx
+    getHorizontalPx
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -88,13 +88,13 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         title: getPosAndWid(334, 78, 138),
         light30: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(30),
+            fontSize: getHorizontalPx(30),
             color: '#313131',
             textAlign: 'left'
         },
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             color: '#555555',
             textAlign: 'left'
         },

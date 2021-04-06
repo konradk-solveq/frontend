@@ -9,7 +9,7 @@ import {
     setAppSize,
     setObjSize,
     getCenterLeftPx,
-    getTopPx,
+    getVerticalPx,
     getWidthPx,
     getStandard,
 } from '../../../../helpers/layoutFoo';
@@ -38,7 +38,7 @@ const WrongScan: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            bottom: getTopPx(381 + 30) + imgH
+            bottom: getVerticalPx(381 + 30) + imgH
         },
         reg40: {
             fontFamily: "DIN2014Narrow-Regular",
@@ -56,7 +56,7 @@ const WrongScan: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             width: ww,
             height: imgH,
-            bottom: getTopPx(381),
+            bottom: getVerticalPx(381),
         },
         text: getStandard(334, 174, 535),
         btnAgain: getStandard(334, 50, 781),

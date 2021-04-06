@@ -3,7 +3,8 @@ import { StyleSheet, TextInput, Text, View } from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
-    getLeftPx,
+    getHorizontalPx,
+    getVerticalPx
 } from '../../helpers/layoutFoo';
 
 interface Props {
@@ -74,34 +75,36 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
     let styles = StyleSheet.create({
         light18: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             textAlign: 'left',
             color: '#555555'
         },
         input: {
             display: 'flex',
-            alignItems: 'center',
+            // alignItems: 'center',
             justifyContent: 'center',
             width: '100%',
-            borderRadius: getLeftPx(150),
+            borderRadius: getHorizontalPx(150),
             fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getLeftPx(20),
+            fontSize: getHorizontalPx(20),
             textAlign: 'left',
             color: 'black',
-            borderWidth: getLeftPx(2),
+            borderWidth: getHorizontalPx(2),
             borderColor: borderColor,
-            height: getLeftPx(50),
-            marginTop: getLeftPx(6),
-            paddingLeft: getLeftPx(30)
+            height: getVerticalPx(50),
+            marginTop: getHorizontalPx(6),
+            paddingLeft: getHorizontalPx(30),
+            paddingTop: getHorizontalPx(10),
+            paddingBottom: getHorizontalPx(10)
         },
         error: {
             fontFamily: "DIN2014Narrow-Light",
-            fontSize: getLeftPx(18),
+            fontSize: getHorizontalPx(18),
             textAlign: 'left',
             color: '#d8232a',
             position: 'relative',
             marginTop: (6),
-            height: getLeftPx(23)
+            height: getHorizontalPx(23)
         }
     })
 
