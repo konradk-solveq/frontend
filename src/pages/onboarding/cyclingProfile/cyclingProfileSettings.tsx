@@ -13,7 +13,6 @@ import RadioLine from './radioLine';
 import {
     setAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
     getTopPx,
     getWidth,
@@ -146,7 +145,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
             textAlign: 'left',
             position: 'relative',
             width: getWidth(),
-            left: getCenterLeft(),
+            left: getCenterLeftPx(),
             marginBottom: getTopPx(8)
         },
         light18: {
@@ -156,7 +155,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
             textAlign: 'left',
             position: 'relative',
             width: getWidth(),
-            left: getCenterLeft(),
+            left: getCenterLeftPx(),
             marginBottom: getTopPx(30)
         },
         list: {

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, Dimensions, SafeAreaView, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import { getBikesData, setBikesData } from '../../../storage/actions/index';
 import { ScrollView } from 'react-native-gesture-handler';
-import Svg, { G, Path } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
 import Warranty from './warranty';
 import Reviews from './reviews';
@@ -14,14 +14,9 @@ import ComplaintsRepairs from './complaintsRepairs';
 import {
     setAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
     getTopPx,
-    getWidth,
     getWidthPx,
-    getWidthPxOf,
-    getHeightPx,
-    getLeft,
     getLeftPx,
 } from '../../../helpers/layoutFoo';
 
@@ -148,7 +143,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                     type={bike.warranty.type}
                     toEnd={bike.warranty.toEnd}
                     warranty={trans.warranty}
-                    details={{description: bike.description, warranty: bike.warranty}}
+                    details={{ description: bike.description, warranty: bike.warranty }}
                 />
 
                 <Reviews

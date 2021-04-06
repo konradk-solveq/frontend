@@ -7,31 +7,11 @@ import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 
 import {
     setAppSize,
-    initAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
-    getCenterTop,
-    getLeft,
     getLeftPx,
-    getTop,
     getTopPx,
-    getWidth,
-    getWidthOf,
     getWidthPx,
-    getWidthPxOf,
-    getHeight,
-    getHeightPx,
-    getRelativeWidth,
-    getRelativeHeight,
-    getStandard,
-    getStandardPx,
-    getPerfect,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight
 } from '../../../helpers/layoutFoo';
 import { ScrollView } from 'react-native-gesture-handler';
 

@@ -18,7 +18,7 @@ import {
     getWidth,
     getHeightPx,
     getTopPx,
-    getCenterLeft,
+    getCenterLeftPx,
     getPosAndWid,
     getPosWithMinHeight,
 } from '../../../../helpers/layoutFoo';
@@ -80,7 +80,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         position: 'absolute',
         width: getWidth(),
         height: getHeightPx() < 50 ? 50 : getHeightPx(),
-        left: getCenterLeft(),
+        left: getCenterLeftPx(),
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -138,7 +138,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 />
                 <View style={styles.infoBtn}>
                     <TranspLightBtn
-                        title={TranspLightBtn.infoBtn}
+                        title={trans.infoBtn}
                         algin='right'
                         color='#3587ea'
                         onpress={() => props.navigation.navigate('AddingInfo')}

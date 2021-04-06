@@ -244,8 +244,8 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             fontSize: 30,
             color: '#313131',
             textAlign: 'left',
-            width: getWidth(),
-            left: getCenterLeft(),
+            width: getWidthPx(),
+            left: getCenterLeftPx(),
             top: getTopPx(138),
 
         },

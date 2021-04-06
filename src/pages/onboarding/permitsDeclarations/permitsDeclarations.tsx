@@ -8,11 +8,10 @@ import {
     setAppSize,
     setObjSize,
     getWidth,
-    getLeft,
-    getTop,
+    getLeftPx,
     getTopPx,
     getHeightPx,
-    getCenterLeft
+    getCenterLeftPx
 } from '../../../helpers/layoutFoo';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -84,14 +83,14 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
         },
         text: {
             width: getWidth(),
-            left: getLeft(40),
+            left: getLeftPx(40),
             fontFamily: "DIN2014Narrow-Light",
             textAlign: 'left'
         },
         btn: {
             width: getWidth(),
             height: getHeightPx() < 50 ? 50 : getHeightPx(),
-            left: getCenterLeft(),
+            left: getCenterLeftPx(),
             top: getTopPx(11),
             marginBottom: headHeight
         },
@@ -106,11 +105,11 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
 
-                    <Text style={[styles.text, { marginTop: getTop(50), fontSize: 30, color: '#313131' }]}>
+                    <Text style={[styles.text, { marginTop: getTopPx(50), fontSize: 30, color: '#313131' }]}>
                         {trans.title}
                     </Text>
 
-                    <Text style={[styles.text, { marginTop: getTop(6), fontSize: 18, color: '#555555' }]}>
+                    <Text style={[styles.text, { marginTop: getTopPx(6), fontSize: 18, color: '#555555' }]}>
                         {trans.text}
                     </Text>
 

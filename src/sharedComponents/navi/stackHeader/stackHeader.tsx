@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
-    initAppSize,
+    setAppSize,
     setObjSize,
-    getPerfectPx,
-    getHeightPx,
+    getCenterLeftPx,
     getTopPx,
     getWidthPx,
-    getCenterLeftPx
+    getHeightPx,
+    getPerfectPx,
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -23,19 +23,22 @@ interface Props {
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = (props: Props) => {
 
-    initAppSize();
+    const ww = Dimensions.get('window').width;
+    const wh = Dimensions.get('window').height;
+    setAppSize(ww, wh);
 
-    const [height, setHeight] = useState(getTopPx(100));
-    useEffect(() => {
-        if (props.getHeight) props.getHeight(height)
-    }, [height])
+    // const [height, setHeight] = useState(getTopPx(100));
+    // useEffect(() => {
+    //     if (props.getHeight) props.getHeight(height)
+    // }, [height])
 
     setObjSize(414, 34);
+    const h = getTopPx(100);
     const wrap = {
         position: 'absolute',
         left: 0,
-        top: '61%',
-        width: '100%',
+        top: h * .61,
+        width: ww,
         height: getHeightPx(),
     }
 
@@ -57,7 +60,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
             left: 0,
             top: 0,
             width: '100%',
-            height: height,
+            height: h,
         },
         wrap,
         topBtn: getPerfectPx(40, 34, 30, 0),
@@ -66,7 +69,6 @@ const StackHeader: React.FC<Props> = (props: Props) => {
 
     return (
         <View style={styles.container}>
-
             <View style={styles.wrap}>
 
                 <View style={styles.topBtn}>
@@ -80,7 +82,6 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                 </Text>
 
             </View>
-
         </View>
     )
 }

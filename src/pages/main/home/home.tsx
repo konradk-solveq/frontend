@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
-import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import AnimSvg from '../../../helpers/animSvg';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 
 import {
     setAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
     getTopPx,
-    getWidth,
     getWidthPx,
-    getWidthPxOf,
-    getHeightPx,
 } from '../../../helpers/layoutFoo';
 
 interface Props {

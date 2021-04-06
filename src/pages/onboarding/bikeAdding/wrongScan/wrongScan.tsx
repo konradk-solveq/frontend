@@ -7,30 +7,11 @@ import Image from './image';
 
 import {
     setAppSize,
-    initAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
-    getCenterTop,
-    getLeft,
-    getTop,
     getTopPx,
     getWidth,
-    getWidthOf,
-    getWidthPx,
-    getWidthPxOf,
-    getHeight,
-    getHeightPx,
-    getRelativeWidth,
-    getRelativeHeight,
     getStandard,
-    getStandardPx,
-    getPerfect,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -56,7 +37,7 @@ const WrongScan: React.FC<Props> = (props: Props) => {
         title: {
             position: 'absolute',
             width: getWidth(),
-            left: getCenterLeft(),
+            left: getCenterLeftPx(),
             bottom: getTopPx(381 + 30) + imgH
         },
         reg40: {

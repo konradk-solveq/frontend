@@ -13,7 +13,7 @@ import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import {
     setAppSize,
     setObjSize,
-    getCenterLeft,
+    getCenterLeftPx,
     getTop,
     getTopPx,
     getWidth,
@@ -141,20 +141,20 @@ const BikeData: React.FC<Props> = (props: Props) => {
         title: {
             position: 'relative',
             width: getWidth(),
-            left: getCenterLeft(),
+            left: getCenterLeftPx(),
             marginTop: getTop(45),
             marginBottom: getTop(30)
         },
         inputAndPlaceholder: {
             position: 'relative',
             width: getWidth(),
-            left: getCenterLeft(),
+            left: getCenterLeftPx(),
             marginTop: getTop(10)
         },
         botton: {
             width: getWidth(),
             height: getHeightPx() < 50 ? 50 : getHeightPx(),
-            left: getCenterLeft(),
+            left: getCenterLeftPx(),
             marginTop: getTopPx(10) < 10 ? 10 : getTopPx(10),
             marginBottom: headHeight
         },

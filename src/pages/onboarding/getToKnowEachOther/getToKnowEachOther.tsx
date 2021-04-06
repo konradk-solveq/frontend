@@ -12,7 +12,7 @@ import {
     getWidthPxOf,
     getHeightPx,
     getTopPx,
-    getCenterLeft,
+    getCenterLeftPx,
     getPosAndWid,
     getPosWithMinHeight,
     getPosStaticHeight
@@ -53,7 +53,7 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
         position: 'absolute',
         width: getWidth(),
         height: getHeightPx() < 50 ? 50 : getHeightPx(),
-        left: getCenterLeft(),
+        left: getCenterLeftPx(),
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',

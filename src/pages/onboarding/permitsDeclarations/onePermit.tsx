@@ -9,7 +9,7 @@ import {
     setObjSize,
     getWidthPx,
     getTop,
-    getLeft,
+    getLeftPx,
     getWidthOf,
 } from '../../../helpers/layoutFoo';
 
@@ -40,13 +40,13 @@ const OnePermit: React.FC<Props> = (props: Props) => {
         position: 'relative',
         width: cbw,
         height: cbw,
-        marginLeft: getLeft(40),
+        marginLeft: getLeftPx(40),
     }
 
     const hyper = {
         position: 'relative',
         width: getWidthOf(283),
-        marginLeft: getLeft(25),
+        marginLeft: getLeftPx(25),
         marginTop: getTop(3),
 
     }

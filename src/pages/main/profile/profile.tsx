@@ -5,15 +5,7 @@ import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 
 
 import {
-    setAppSize,
-    setObjSize,
-    getCenterLeft,
-    getCenterLeftPx,
-    getTopPx,
-    getWidth,
-    getWidthPx,
-    getWidthPxOf,
-    getHeightPx,
+    initAppSize,
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -25,9 +17,7 @@ const Profile: React.FC<Props> = (props: Props) => {
 
     // const trans = I18n.t('Profile').view;
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
+    initAppSize();
 
     const styles = StyleSheet.create({
         container: {

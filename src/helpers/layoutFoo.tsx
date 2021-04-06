@@ -264,7 +264,6 @@ export {
     setAppSize,
     initAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
     getCenterTop,
     getLeft,

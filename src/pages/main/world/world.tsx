@@ -7,13 +7,9 @@ import AnimSvg from '../../../helpers/animSvg';
 import {
     setAppSize,
     setObjSize,
-    getCenterLeft,
     getCenterLeftPx,
     getTopPx,
-    getWidth,
     getWidthPx,
-    getWidthPxOf,
-    getHeightPx,
 } from '../../../helpers/layoutFoo';
 
 interface Props {

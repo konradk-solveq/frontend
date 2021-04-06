@@ -10,7 +10,7 @@ import {
     getWidth,
     getTop,
     getRelativeHeight,
-    getCenterLeft
+    getCenterLeftPx
 } from '../../helpers/layoutFoo';
 
 import SplashScreen from './splashScreen/splashScreen';
@@ -106,7 +106,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
         position: 'absolute',
         width: ww * 1.2,
         height: getRelativeHeight(),
-        left: getCenterLeft(),
+        left: getCenterLeftPx(),
         top: getTop(560),
     }
 

@@ -5,8 +5,7 @@ import I18n from 'react-native-i18n';
 import {
     setObjSize,
     getStandard,
-    getLeft,
-    getTop,
+    getLeftPx,
     initAppSize
 } from '../../helpers/layoutFoo';
 
@@ -30,8 +29,8 @@ const StaticElements: React.FC<Props> = (props: Props) => {
     setObjSize(41, 23);
     const skip = {
         position: 'absolute',
-        left: getLeft(333),
-        top: getTop(67),
+        left: getLeftPx(333),
+        top: getLeftPx(67),
     }
 
     let styles = StyleSheet.create({

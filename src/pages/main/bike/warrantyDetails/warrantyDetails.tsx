@@ -7,12 +7,8 @@ import deepCopy from '../../../../helpers/deepCopy';
 import {
     setAppSize,
     setObjSize,
-    getWidth,
-    getLeft,
-    getTop,
     getTopPx,
     getHeightPx,
-    getCenterLeft,
     getLeftPx,
     getWidthPx,
     getCenterLeftPx

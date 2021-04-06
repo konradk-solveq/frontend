@@ -6,9 +6,8 @@ import {
     setAppSize,
     setObjSize,
     getWidth,
-    getTop,
     getTopPx,
-    getLeft
+    getLeftPx
 } from '../../../helpers/layoutFoo';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -37,20 +36,20 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
         },
         text: {
             width: getWidth(),
-            left: getLeft(40),
+            left: getLeftPx(40),
             textAlign: 'left'
 
         },
         reg23: {
             fontFamily: "DIN2014Narrow-Regular",
             fontSize: 23,
-            marginTop: getTop(50),
+            marginTop: getTopPx(50),
             color: '#313131'
         },
         light18: {
             fontFamily: "DIN2014Narrow-Light",
             fontSize: 18,
-            marginTop: getTop(44),
+            marginTop: getTopPx(44),
             marginBottom: getTopPx(100),
             color: '#555555'
         }

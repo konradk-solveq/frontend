@@ -6,7 +6,7 @@ import StackHeader from '../navi/stackHeader/stackHeader';
 import {
     setAppSize,
     setObjSize,
-    getCenterLeft,
+    getCenterLeftPx,
     getTopPx,
     getWidth,
 } from '../../helpers/layoutFoo';
@@ -49,13 +49,13 @@ const ListPageInput: React.FC<Props> = (props: Props) => {
             textAlign: 'left',
             position: 'relative',
             width: getWidth(),
-            left: getCenterLeft(),
+            left: getCenterLeftPx(),
             marginTop: getTopPx(22),
             marginBottom: getTopPx(22)
         },
         line: {
             width: getWidth(),
-            left: getCenterLeft(),
+            left: getCenterLeftPx(),
             height: 1,
             backgroundColor: '#dddddd'
 

@@ -6,9 +6,8 @@ import {
     setAppSize,
     setObjSize,
     getWidth,
-    getTop,
     getTopPx,
-    getLeft,
+    getLeftPx,
 } from '../../../helpers/layoutFoo';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -36,7 +35,7 @@ const Regulations: React.FC<Props> = (props: Props) => {
         },
         text: {
             width: getWidth(),
-            left: getLeft(40),
+            left: getLeftPx(40),
             textAlign: 'left',
         },
         reg23: {
@@ -62,27 +61,27 @@ const Regulations: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
 
-                    <Text style={[styles.text, styles.reg23, { marginTop: getTop(50) }]}>
+                    <Text style={[styles.text, styles.reg23, { marginTop: getTopPx(50) }]}>
                         {trans.title}
                     </Text>
 
-                    <Text style={[styles.text,styles.light18, { marginTop: getTop(15) }]}>
+                    <Text style={[styles.text,styles.light18, { marginTop: getTopPx(15) }]}>
                         {trans.text_1}
                     </Text>
 
-                    <Text style={[styles.text, styles.reg18, { marginTop: getTop(30) }]}>
+                    <Text style={[styles.text, styles.reg18, { marginTop: getTopPx(30) }]}>
                         {trans.paragraph_2}
                     </Text>
 
-                    <Text style={[styles.text,styles.light18, { marginTop: getTop(15) }]}>
+                    <Text style={[styles.text,styles.light18, { marginTop: getTopPx(15) }]}>
                         {trans.text_3}
                     </Text>
 
-                    <Text style={[styles.text, styles.reg18, { marginTop: getTop(53) }]}>
+                    <Text style={[styles.text, styles.reg18, { marginTop: getTopPx(53) }]}>
                         {trans.paragraph_3}
                     </Text>
 
-                    <Text style={[styles.text, styles.light18, { marginTop: getTop(15), marginBottom: getTopPx(100) }]}>
+                    <Text style={[styles.text, styles.light18, { marginTop: getTopPx(15), marginBottom: getTopPx(100) }]}>
                         {trans.text_3}
                     </Text>
 

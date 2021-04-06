@@ -10,18 +10,6 @@ import TabMenu from './tabMenu';
 import BikeParams from './bike/bikeParams/bikeParams';
 import WarrantyDetails from './bike/warrantyDetails/warrantyDetails';
 
-import {
-    setAppSize,
-    setObjSize,
-    getCenterLeft,
-    getCenterLeftPx,
-    getTopPx,
-    getWidth,
-    getWidthPx,
-    getWidthPxOf,
-    getHeightPx,
-} from '../../helpers/layoutFoo';
-
 interface Props {
     navigation: any,
     route: any,

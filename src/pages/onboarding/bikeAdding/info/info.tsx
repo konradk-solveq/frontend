@@ -16,7 +16,7 @@ import {
     getHeightPx,
     getTop,
     getTopPx,
-    getCenterLeft,
+    getCenterLeftPx,
     getPosAndWid,
     getStandard,
 } from '../../../../helpers/layoutFoo';
@@ -42,7 +42,7 @@ const Info: React.FC<Props> = (props: Props) => {
         flexDirection: 'row',
         width: getWidth(),
         height: h < 41 ? 41 : h,
-        left: getCenterLeft(),
+        left: getCenterLeftPx(),
         top: getTop(138),
     }
 
