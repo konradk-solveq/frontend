@@ -87,8 +87,8 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
             fontSize: 20,
             textAlign: 'left',
             color: '#555555',
-            position: 'absolute',
-            top: 8,
+            // position: 'absolute',
+            marginTop: 10,
             left: 30
         },
         arrow: {
