@@ -53,7 +53,7 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
     let bottons = {
         position: 'absolute',
         width: getWidthPx(),
-        height: getHorizontalPx(50),
+        height: getVerticalPx(50),
         left: getCenterLeftPx(),
         display: 'flex',
         flexDirection: 'row',
