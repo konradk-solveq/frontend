@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
 import AnimSvg from '../../../../helpers/animSvg';
 
-import { setUserName, getUserName } from '../../../../storage/actions/index';
+import { setUserName } from '../../../../storage/actions/index';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
@@ -68,7 +68,6 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const [userName, setUserName] = useState('');
 
     useEffect(() => { // do załadowania imienia z local storage przez reduxa
-        props.getName();
         if (typeof props.name == 'string') {
             if (props.name == '') {
                 setUserName(' ' + trans.defaultName);
@@ -143,14 +142,13 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 }
 
 const mapStateToProps = (state: any) => {
-    return {
+  return {
         name: state.user.userName
     }
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
     setName: (name: string) => dispatch(setUserName(name)),
-    getName: async () => dispatch(await getUserName()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TurtorialNFC)

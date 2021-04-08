@@ -1,4 +1,3 @@
-
 // user
 export const GET_USER_NAME = 'GET_USER_NAME';
 export const SET_USER_NAME = 'SET_USER_NAME';
@@ -11,3 +10,5 @@ export const SET_PROFILE_SETTINGS = 'SET_PROFILE_SETTINGS';
 
 export const GET_BIKES_DATA = 'GET_BIKES_DATA';
 export const SET_BIKES_DATA = 'SET_BIKES_DATA';
+
+export const SET_USER_BIKE = 'SET_USER_BIKE';

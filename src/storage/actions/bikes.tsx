@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-
+import {UserBike} from '../../models/userBike.model';
 
 // lista rowerów
 export const getBikesData = async () => {
@@ -183,4 +183,19 @@ export const setBikesData = (list: string) => {
         type: actionTypes.SET_BIKES_DATA,
         list: list
     }
+};
+
+export const setBikeData = (
+  frameNumber: string,
+  producer: string,
+  model: string,
+  size: string,
+  color: string,
+) => {
+  /* TODO: handle errors on t{}c */
+  const data = new UserBike(frameNumber, producer, model, size, color);
+  return {
+    type: actionTypes.SET_USER_BIKE,
+    userBike: data,
+  };
 };

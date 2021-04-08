@@ -1,13 +1,11 @@
 export {
-    getUserName,
     setUserName,
-    getFrameNumber,
     setFrameNumber,
-    getProfileSettings,
     setProfileSettings,
 } from './user';
 
 export {
     getBikesData,
-    setBikesData
+    setBikesData,
+    setBikeData,
 } from './bikes';

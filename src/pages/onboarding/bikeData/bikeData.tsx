@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, ScrollView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
-import { connect } from "react-redux";
+import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
 
-import { setFrameNumber, getFrameNumber } from '../../../storage/actions/index';
+import { setFrameNumber, setBikeData } from '../../../storage/actions/index';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+
+import {Bike} from '../../../models/userBike.model';
 
 import {
     initAppSize,
@@ -19,38 +21,43 @@ import {
     getWidthPx,
     getHeightPx,
 } from '../../../helpers/layoutFoo';
-import deepCopy from "../../../helpers/deepCopy";
+import deepCopy from '../../../helpers/deepCopy';
 
-interface Data {
-    frameNumber: string,
-    producer: string,
-    model: string,
-    size: string,
-    color: string
-};
+interface Message {
+  frameNumber: string;
+  producer: string;
+  model: string;
+  size: string;
+  color: string;
+}
 
 interface Props {
     navigation: any, // <<--- #askBartosz (1) ? nie mam pojęcia ajk to typować, da się wogóle ?
     route: any,
-    setBikeData: Function,
-    getBikeData: Function,
-    bikeData: Data,
 };
 
-const BikeData: React.FC<Props> = (props: Props) => {
-
+const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
+    const dispatch = useAppDispatch();
     const trans = I18n.t('BikeData');
 
-    let startData: Data = {
+    const frame: string = useAppSelector(state => state.user.frame);
+    const userBike: Bike = useAppSelector(state => state.bikes.userBike);
+
+    const frameNumber = route?.params?.frameNumber || frame;
+    const [data, setData] = useState<Bike>({
+        frameNumber: frameNumber,
+        producer: userBike.producer || '',
+        model: userBike.model || '',
+        size: userBike.size || '',
+        color: userBike.color || '',
+    }); // dane poszczególnych pól
+    const [messages, setMessages] = useState<Message>({
         frameNumber: '',
         producer: '',
         model: '',
         size: '',
         color: ''
-    }
-
-    const [data, setData] = useState(startData); // dane poszczególnych pól
-    const [messages, setMessages] = useState(startData); // widomości przy wilidaci po wciśnięciu 'DALEJ'
+    }); // widomości przy wilidaci po wciśnięciu 'DALEJ'
     const [canGoFoward, setCanGoFoward] = useState({ // sant poprawności danych w komponencie
         frameNumber: false,
         producer: false,
@@ -77,6 +84,17 @@ const BikeData: React.FC<Props> = (props: Props) => {
         setCanGoFoward(newCanGoFoward);
     }
 
+  useEffect(() => {
+    let canGoForw = {...canGoFoward};
+    Object.keys(data).forEach(k => {
+      const key = k as keyof Bike;
+      const canGo = data[key] ? true : false;
+      canGoForw[key] = canGo;
+    });
+    setCanGoFoward(canGoForw);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
     const hendleGoFoward = () => { // validacja przycisku 'DALEJ'
         let goFoward = true;
 
@@ -93,7 +111,16 @@ const BikeData: React.FC<Props> = (props: Props) => {
         setMessages(newMessages);
 
         if (goFoward) {
-            props.navigation.navigate('PermitsDeclarations')
+            dispatch(
+                setBikeData(
+                data.frameNumber,
+                data.producer,
+                data.model,
+                data.size,
+                data.color,
+                ),
+            );
+            navigation.navigate('PermitsDeclarations')
         }
     }
 
@@ -109,15 +136,15 @@ const BikeData: React.FC<Props> = (props: Props) => {
     }
 
     useEffect(() => { // do obsługi listy
-        if (props.route.params) {
-            let params = props.route.params;
+        if (route.params) {
+            let params = route.params;
 
             if (params.key) {
                 if (params.value) hendleChangeDataValue(params.key, params.value);
                 if (params.status) handleSetCanGoFoard(params.key, params.status)
             }
         }
-    }, [props.route.params])
+    }, [route.params])
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -182,7 +209,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
                     <ListInputBtn
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.producer.title}
-                        onpress={() => props.navigation.navigate('ListPageInput', {
+                        onpress={() => navigation.navigate('ListPageInput', {
                             header: trans.producer.listHeader,
                             list: trans.producer.listData,
                             last: trans.producer.listDataLast,
@@ -244,7 +271,7 @@ const BikeData: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.goBack()}
+                onpress={() => navigation.goBack()}
                 inner={trans.header}
                 getHeight={setHeadHeightt}
             ></StackHeader>
@@ -252,15 +279,4 @@ const BikeData: React.FC<Props> = (props: Props) => {
     )
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-        frame: state.user.frameNumber
-    }
-}
-
-const mapDispatchToProps = (dispatch: any) => ({
-    setFrame: (num: string) => dispatch(setFrameNumber(num)),
-    getFrame: async () => dispatch(await getFrameNumber()),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(BikeData)
+export default BikeData;
