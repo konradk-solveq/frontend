@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, ScrollView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
+
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
 
-import { setFrameNumber, setBikeData } from '../../../storage/actions/index';
+import { setBikeData } from '../../../storage/actions/index';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
@@ -13,7 +14,6 @@ import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import {Bike} from '../../../models/userBike.model';
 
 import {
-    initAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -66,6 +66,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         color: false
     });
 
+
     // zmiana danych w State po zmiane wartości w komponencie
     const hendleChangeDataValue = (key: string, value: string) => {
         let newData = deepCopy(data);
@@ -96,16 +97,22 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
   }, []);
 
     const hendleGoFoward = () => { // validacja przycisku 'DALEJ'
-        let goFoward = true;
 
+        let keys = Object.keys(data); // pomowne sprawdzenie dala zapamiętanych danych
+        let newCanGoFoward = deepCopy(canGoFoward);
+        for (let key of keys) {
+            newCanGoFoward[key] = hendleValidationOk(data[key]);
+        }
+
+        let goFoward = true;
         let newMessages = deepCopy(messages);
 
-        for (let key in canGoFoward) {
-            if (canGoFoward[key]) {
+        for (let key in newCanGoFoward) {
+            if (newCanGoFoward[key]) {
                 newMessages[key] = '';
             } else {
-                newMessages[key] = trans.btnWrong,
-                    goFoward = false;
+                newMessages[key] = trans.btnWrong;
+                goFoward = false;
             }
         }
         setMessages(newMessages);
@@ -120,7 +127,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                 data.color,
                 ),
             );
-            navigation.navigate('PermitsDeclarations')
+            navigation.navigate('CyclingProfile')
         }
     }
 
@@ -147,8 +154,6 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     }, [route.params])
 
     const [headHeight, setHeadHeightt] = useState(0);
-
-    initAppSize();
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({

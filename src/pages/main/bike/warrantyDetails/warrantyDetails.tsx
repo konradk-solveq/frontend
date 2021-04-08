@@ -1,11 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Dimensions, View, Text, ScrollView, SafeAreaView } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, View, Text, ScrollView, SafeAreaView } from 'react-native';
 import I18n from 'react-native-i18n';
 
-import deepCopy from '../../../../helpers/deepCopy';
-
 import {
-    setAppSize,
     setObjSize,
     getVerticalPx,
     getHeightPx,
@@ -34,10 +31,6 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
        d="M 17.500434,0 A 17.500033,17.500033 0 0 0 0,17.499565 17.500033,17.500033 0 0 0 17.500434,35 17.500033,17.500033 0 0 0 34.999998,17.499565 17.500033,17.500033 0 0 0 17.500434,0 Z m 0,7.284816 a 7.5885871,7.5885871 0 0 1 7.588423,7.589293 7.5885871,7.5885871 0 0 1 -1.508464,4.524519 l 0.01216,-8.91e-4 -0.08787,0.101782 a 7.5885871,7.5885871 0 0 1 -0.626352,0.720305 l -4.171325,4.797678 v 8.91e-4 l -1.206599,1.387543 -1.205726,-1.387543 -4.161757,-4.78637 a 7.5885871,7.5885871 0 0 1 -0.666369,-0.76641 l -0.05916,-0.06785 0.01131,8.91e-4 A 7.5885871,7.5885871 0 0 1 9.912004,14.874113 7.5885871,7.5885871 0 0 1 17.500426,7.28482 Z m 0,4.704596 a 3.2906114,3.2906114 0 0 0 -3.290954,3.290955 3.2906114,3.2906114 0 0 0 3.290954,3.290085 3.2906114,3.2906114 0 0 0 3.290086,-3.290085 3.2906114,3.2906114 0 0 0 -3.290086,-3.290955 z"
         />
   </svg>`;
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     const [headHeight, setHeadHeightt] = useState(0);
 

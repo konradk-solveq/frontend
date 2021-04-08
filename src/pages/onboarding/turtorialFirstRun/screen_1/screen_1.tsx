@@ -3,7 +3,6 @@ import { StyleSheet,  View,  SafeAreaView, Text,  } from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
-    initAppSize,
     getStandardPx,
     getPosAndWid,
     getHorizontalPx
@@ -14,8 +13,6 @@ import BikeImg from './bikeImg';
 const Screen_1 = () => {
 
     const trans = I18n.t('Onboarding');
-
-    initAppSize();
 
     let styles = StyleSheet.create({
         container: {

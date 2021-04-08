@@ -15,7 +15,7 @@ const CyclingProfile: React.FC<Props> = (props: Props) => {
 
 
     const verticalAnim = {
-        // gestureDirection: 'vertical',
+        gestureDirection: 'vertical',
         cardStyleInterpolator: ({ current, layouts }) => {
             return {
                 cardStyle: {

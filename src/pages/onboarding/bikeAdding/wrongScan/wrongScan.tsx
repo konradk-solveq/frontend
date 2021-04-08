@@ -6,7 +6,6 @@ import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import Image from './image';
 
 import {
-    setAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -18,13 +17,11 @@ interface Props {
     navigation: any,
 };
 
+const ww = Dimensions.get('window').width;
+
 const WrongScan: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('WrongScan');
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     const imgH = ww * (296 / 414);
     setObjSize(334, 51);

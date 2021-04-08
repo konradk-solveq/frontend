@@ -10,6 +10,8 @@ import { I18n_init } from './I18n/I18n'
 import { NavigationContainer } from '@react-navigation/native';
 import { Stack } from './src/navigation/stack';
 
+import {initAppSize} from './src/helpers/layoutFoo';
+
 import Onboarding from './src/pages/onboarding/onboarding';
 import GetToKnowEachOther from './src/pages/onboarding/getToKnowEachOther/getToKnowEachOther';
 import TurtorialNFC from './src/pages/onboarding/bikeAdding/turtorialNFC/turtorialNFC';
@@ -26,68 +28,68 @@ import CyclingProfile from './src/pages/onboarding/cyclingProfile/cyclingProfile
 import MineMenu from './src/pages/main/mainMenu';
 
 const App: () => Node = () => {
+    I18n_init();
 
-	I18n_init();
+    const horizontalAnim = {
+        gestureDirection: 'horizontal',
+        cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+                cardStyle: {
+                    transform: [
+                        {
+                            translateX: current.progress.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [layouts.screen.width, 0],
+                            }),
+                        },
+                    ],
+                },
+            };
+        },
+    };
 
-	const horizontalAnim = {
-		// gestureDirection: 'horizontal',
-		cardStyleInterpolator: ({ current, layouts }) => {
-			return {
-				cardStyle: {
-					transform: [
-						{
-							translateX: current.progress.interpolate({
-								inputRange: [0, 1],
-								outputRange: [layouts.screen.width, 0],
-							}),
-						},
-					],
-				},
-			};
-		},
-	};
+    const persistor = persistStore(storage);
 
-  const persistore = persistStore(storage);
+    initAppSize();
 
-	return (
-		<Provider store={storage}>
-            <PersistGate persistor={persistore}>
-			<NavigationContainer >
-				<Stack.Navigator
-					headerMode="none"
-					initialRouteName="Onboarding"
-					mode="modal"
-					screenOptions={horizontalAnim}
-				>
+    return (
+        <Provider store={storage}>
+            <PersistGate persistor={persistor}>
+            <NavigationContainer >
+                <Stack.Navigator
+                    headerMode="none"
+                    initialRouteName="Onboarding"
+                    mode="modal"
+                    screenOptions={horizontalAnim}>
 
-					<Stack.Screen name="Onboarding" component={Onboarding} />
-					<Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} />
-					<Stack.Screen name="TurtorialNFC" component={TurtorialNFC}/>
-					<Stack.Screen name="AddingByNumber" component={AddingByNumber} />
-					<Stack.Screen name="AddingInfo" component={AddingInfo} />
+                    <Stack.Screen name="Onboarding" component={Onboarding} />
 
-					<Stack.Screen name="BikeData" component={BikeData} />
+                    <Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} />
+                    <Stack.Screen name="Regulations" component={Regulations} />
+                    <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
 
-					{/* <Stack.Screen name="Loader" component={Loader} /> */}
+                    <Stack.Screen name="GetToKnowEachOther" component={GetToKnowEachOther} />
+                    {/* <Stack.Screen name="TurtorialNFC" component={TurtorialNFC} /> */}
+                    <Stack.Screen name="AddingByNumber" component={AddingByNumber} />
+                    <Stack.Screen name="AddingInfo" component={AddingInfo} />
 
-					<Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} />
-					<Stack.Screen name="Regulations" component={Regulations} />
-					<Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+                    <Stack.Screen name="BikeData" component={BikeData} />
 
-					{/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
+                    {/* <Stack.Screen name="Loader" component={Loader} /> */}
 
-					<Stack.Screen name="CyclingProfile" component={CyclingProfile} />
-					<Stack.Screen name="MineMenu" component={MineMenu} />
+                    {/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
-					{/* univesal/generic pages */}
-					<Stack.Screen name="ListPageInput" component={ListPageInput} />
+                    <Stack.Screen name="CyclingProfile" component={CyclingProfile} />
+                    <Stack.Screen name="MineMenu" component={MineMenu} />
 
-				</Stack.Navigator>
-			</NavigationContainer>
-        </PersistGate>
-		</Provider >
-	);
+                    {/* univesal/generic pages */}
+                    <Stack.Screen name="ListPageInput" component={ListPageInput} />
+
+                </Stack.Navigator>
+            </NavigationContainer>
+            </PersistGate>
+        </Provider>
+    );
 };
 
 export default App;
-

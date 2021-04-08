@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Dimensions } from 'react-native';
 import AnimSvg from '../../helpers/animSvg';
 
 import {
-    setAppSize,
     setObjSize,
 } from '../../helpers/layoutFoo';
+
+const ww = Dimensions.get('window').width;
 
 
 // <<--- #askBartosz (6) ? wiesz może czy da się podmienić strałkę goBack w headerze?
@@ -27,10 +28,6 @@ const TabBackGround = () => {
     </g>
   </svg>
   `;
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     setObjSize(414, 107);
     const styles = StyleSheet.create({

@@ -1,20 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import VerticalHeader from '../../../../sharedComponents/navi/verticalHeader/verticalHeader';
-// import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
+import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 
 import {
-    initAppSize,
     setObjSize,
     getCenterLeftPx,
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
- 
+
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -22,22 +20,26 @@ interface Props {
     route: any,
 };
 
+const wh = Dimensions.get('window').height;
+
 const BikeParams: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('MainProfile');
     const description = props.route.params.description;
     const params = props.route.params.params;
 
-    initAppSize();
+    const [headHeight, setHeadHeightt] = useState(0);
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
+            backgroundColor: '#ffffff',
         },
         scroll: {
-            backgroundColor: '#ffffff'
+            height: wh - headHeight,
+            marginTop: headHeight
         },
         bikeName: {
             fontFamily: 'DIN2014Narrow-Regular',
@@ -118,6 +120,9 @@ const BikeParams: React.FC<Props> = (props: Props) => {
             color: '#313131'
 
         },
+        lastOne: {
+            marginBottom: getHorizontalPx(65)
+        },
         btn: {
             width: getWidthPx(),
             height: getHorizontalPx(50),
@@ -130,10 +135,6 @@ const BikeParams: React.FC<Props> = (props: Props) => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scroll}>
-
-                <VerticalHeader
-                    onpress={() => props.navigation.navigate('TabMenu')}
-                />
 
                 <View style={styles.lists}>
 
@@ -153,7 +154,10 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                     </View>
 
                     {params.map((e, i) => (
-                        <View style={styles.list} key={'list_' + i}>
+                        <View
+                            style={[styles.list, (i == params.length - 1 && styles.lastOne)]}
+                            key={'list_' + i}
+                        >
 
                             <Text style={styles.name}>{e.name}</Text>
 
@@ -171,13 +175,19 @@ const BikeParams: React.FC<Props> = (props: Props) => {
 
                 </View>
 
-                <BigRedBtn
+                {/* <BigRedBtn
                     style={styles.btn}
                     title={trans.btnAddStuff}
                     onpress={() => props.navigation.navigate('TabMenu')}
-                />
-
+                /> */}
             </ScrollView>
+
+            <StackHeader
+                onpress={() => props.navigation.navigate('TabMenu')}
+                inner={trans.header}
+                getHeight={setHeadHeightt}
+            ></StackHeader>
+
         </SafeAreaView>
     )
 }

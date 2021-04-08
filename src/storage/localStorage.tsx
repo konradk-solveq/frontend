@@ -49,12 +49,16 @@ const setStorageUserName = async (name: string) => await storeData('user_name', 
 const getStorageFrameNumber = async () => await getData('frame_number');
 const setStorageFrameNumber = async (num: string) => await storeData('frame_number', num);
 
+const getStorageBikeData = async (settings: any = '{}') => await getJsonData('bike_data', settings);
+const setStorageBikeData = async (settings: any) => await storeJsonData('bike_data', settings);
+
 const getStorageProfileSettings = async (settings: any = '{}') => await getJsonData('profile_settings', settings);
 const setStorageProfileSettings = async (settings: any) => await storeJsonData('profile_settings', settings);
 
 export {
     getStorageUserName, setStorageUserName,
     getStorageFrameNumber, setStorageFrameNumber,
+    getStorageBikeData, setStorageBikeData,
     getStorageProfileSettings, setStorageProfileSettings
 }
 

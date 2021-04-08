@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, SafeAreaView, Dimensions, ScrollView, TouchableOpacity, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, TouchableOpacity, View, Text } from 'react-native';
 
 import StackHeader from '../navi/stackHeader/stackHeader';
 
 import {
-    setAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -28,10 +27,6 @@ const ListPageInput: React.FC<Props> = (props: Props) => {
     const backTo = props.route.params.backTo; // * nazwa strony navigatora, do której wracamy po wyborze itemu z listy
 
     const [headHeight, setHeadHeightt] = useState(0);
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+import { StyleSheet, Dimensions, SafeAreaView, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import AnimSvg from '../../../helpers/animSvg';
 
 import {
-    setAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -17,6 +16,8 @@ interface Props {
     navigation: any,
     route: any,
 };
+
+const ww = Dimensions.get('window').width;
 
 const World: React.FC<Props> = (props: Props) => {
 
@@ -47,10 +48,6 @@ const World: React.FC<Props> = (props: Props) => {
         }
         return setShowImg(false)
     }, [props.route.params])
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     const t = getVerticalPx(348);
     const h = ww * (202 / 416);

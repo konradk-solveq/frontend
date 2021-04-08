@@ -18,7 +18,7 @@ interface Props {
 const MineMenu: React.FC<Props> = (props: Props) => {
 
     const horizontalAnim = {
-        // gestureDirection: 'horizontal',
+        gestureDirection: 'horizontal',
         cardStyleInterpolator: ({ current, layouts }) => {
             return {
                 cardStyle: {
@@ -36,7 +36,7 @@ const MineMenu: React.FC<Props> = (props: Props) => {
     };
 
     const verticalAnim = {
-        // gestureDirection: 'vertical',
+        gestureDirection: 'vertical',
         cardStyleInterpolator: ({ current, layouts }) => {
             return {
                 cardStyle: {
@@ -62,7 +62,7 @@ const MineMenu: React.FC<Props> = (props: Props) => {
         >
 
             <Stack.Screen name="TabMenu" component={TabMenu} />
-            <Stack.Screen name="BikeParams" component={BikeParams} options={verticalAnim} />
+            <Stack.Screen name="BikeParams" component={BikeParams} />
             <Stack.Screen name="WarrantyDetails" component={WarrantyDetails} />
 
         </Stack.Navigator>

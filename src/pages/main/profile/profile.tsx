@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+import React from "react";
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-
-
-import {
-    initAppSize,
-} from '../../../helpers/layoutFoo';
 
 interface Props {
     navigation: any,
@@ -16,8 +11,6 @@ interface Props {
 const Profile: React.FC<Props> = (props: Props) => {
 
     // const trans = I18n.t('Profile').view;
-
-    initAppSize();
 
     const styles = StyleSheet.create({
         container: {

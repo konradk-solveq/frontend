@@ -3,7 +3,6 @@ import { StyleSheet, SafeAreaView, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
-    initAppSize,
     getStandardPx,
     getHorizontalPx
 } from '../../../../helpers/layoutFoo';
@@ -11,8 +10,6 @@ import {
 const Screen_2 = () => {
 
     const trans = I18n.t('Onboarding');
-
-    initAppSize();
 
     const styles = StyleSheet.create({
         container: {

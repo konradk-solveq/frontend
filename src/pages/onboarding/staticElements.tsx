@@ -5,7 +5,6 @@ import I18n from 'react-native-i18n';
 import {
     setObjSize,
     getHorizontalPx,
-    initAppSize,
     getCenterLeftPx,
     getVerticalPx,
     getHeightPx,
@@ -28,7 +27,6 @@ const StaticElements: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Onboarding');
 
-    initAppSize()
     setObjSize(334, 50);
     let styles = StyleSheet.create({
         container: {

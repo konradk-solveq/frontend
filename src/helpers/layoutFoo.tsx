@@ -182,11 +182,11 @@ const getPosStaticHeight = (w: number, h: number, t: number) => {
         position: string,
         width: number,
         height: number,
-        left: string,
+        left: number,
         top: string
     } = {
         position: 'absolute',
-        width,
+        width: getWidthPx(),
         height: (h / w) * width,
         left: getCenterLeftPx(),
         top: getVertical(t)

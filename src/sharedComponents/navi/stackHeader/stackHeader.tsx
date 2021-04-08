@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
-    setAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -19,14 +18,11 @@ interface Props {
     getHeight: Function, // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
 }
 
+const ww = Dimensions.get('window').width;
+
 // <<--- #askBartosz (6) ? wiesz może czy da się podmienić strałkę goBack w headerze?
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = (props: Props) => {
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
-
     const [height, setHeight] = useState(getVerticalPx(100));
     useEffect(() => {
         if (props.getHeight) props.getHeight(height)
