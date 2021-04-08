@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
-import { setUserName, getUserName } from '../../../storage/actions/index';
+import { setUserName } from '../../../storage/actions/index';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 
 import {
     initAppSize,
@@ -26,21 +27,19 @@ import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 interface Props {
     navigation: any,
-    name: string,
-    setName: Function,
-    getName: Function
 };
 
-const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
-
+const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
+    const dispatch = useAppDispatch();
     const trans = I18n.t('GetToKnowEachOther');
+
+  const name: string = useAppSelector(state => state.user.userName);
 
     const [inputName, setInputName] = useState('');
 
     useEffect(() => {
-        props.getName();  // <<--- #askBartosz (3) ? już znalazłem rozwiązanie, chodzi o nie zefiniowany obiekt w local storage
-        if (typeof props.name == 'string') setInputName(props.name);
-    }, [props.name])
+        if (typeof name == 'string') setInputName(name);
+    }, [name])
 
     const hendleValidationOk = (value: string) => {
         if (value.length > 2) return true;
@@ -112,8 +111,8 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
                     <BigWhiteBtn
                         title={trans.skip}
                         onpress={() => {
-                            props.setName('');
-                            props.navigation.navigate('TurtorialNFC')
+                            dispatch(setUserName(''));
+                            navigation.navigate('TurtorialNFC');
                         }}
                     ></BigWhiteBtn>
                 </View>
@@ -122,8 +121,8 @@ const GetToKnowEachOther: React.FC<Props> = (props: Props) => {
                     <BigRedBtn
                         title={trans.goFoward}
                         onpress={() => {
-                            props.setName(inputName);
-                            props.navigation.navigate('TurtorialNFC');
+                            dispatch(setUserName(inputName));
+                            navigation.navigate('TurtorialNFC');
                         }}
                     ></BigRedBtn>
                 </View>
@@ -140,9 +139,4 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-    setName: (name: string) => dispatch(setUserName(name)),
-    getName: async () => dispatch(await getUserName()),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(GetToKnowEachOther)
+export default GetToKnowEachOther;

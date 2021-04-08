@@ -1,7 +1,15 @@
-import * as actionTypes from '../actions/actionTypes';
-import { getStorageUserName } from '../localStorage';
+import {persistReducer} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const initialStateList = {
+import * as actionTypes from '../actions/actionTypes';
+import {UserBike} from '../../models/userBike.model';
+
+interface BikesState {
+  list: any[];
+  userBike: UserBike;
+}
+
+const initialStateList: BikesState = {
     list: [
         {
             images: [],
@@ -179,7 +187,14 @@ const initialStateList = {
                 }
             ]
         }
-    ]
+    ],
+  userBike: {
+    frameNumber: '',
+    producer: '',
+    model: '',
+    size: '',
+    color: '',
+  },
 };
 
 const bikesReducer = (state = initialStateList, action: any) => {
@@ -196,9 +211,21 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 list: action.list,
             }
         }
+    case actionTypes.SET_USER_BIKE: {
+      return {
+        ...state,
+        userBike: action.userBike,
+      };
+    }
     }
 
     return state;
 };
 
-export default bikesReducer;
+const persistConfig = {
+  key: 'bikes',
+  storage: AsyncStorage,
+  whitelist: ['userBike'],
+};
+
+export default persistReducer(persistConfig, bikesReducer);

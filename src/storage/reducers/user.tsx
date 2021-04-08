@@ -1,28 +1,23 @@
 import * as actionTypes from '../actions/actionTypes';
-import { getStorageUserName } from '../localStorage';
+import {persistReducer} from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const initialState = {
-    userName:  getStorageUserName()
+interface UserState {
+  userName: string;
+  frameNumber: string;
 }
 
-const userReducer = (state = initialState, action:any) => {
+const initialState: UserState = {
+  userName: '',
+  frameNumber: '',
+};
+
+const userReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case actionTypes.GET_USER_NAME: {
-            return {
-                ...state,
-                userName: action.userName,
-            }
-        }
         case actionTypes.SET_USER_NAME: {
             return {
                 ...state,
                 userName: action.userName,
-            }
-        }
-        case actionTypes.GET_FRAME_NUMBER: {
-            return {
-                ...state,
-                frameNumber: action.frameNumber,
             }
         }
         case actionTypes.SET_FRAME_NUMBER: {
@@ -36,6 +31,10 @@ const userReducer = (state = initialState, action:any) => {
     return state;
 };
 
+const persistConfig = {
+  key: 'user',
+  storage: AsyncStorage,
+  whitelist: ['user', 'frameNumber'],
+};
 
-
-export default userReducer;
+export default persistReducer(persistConfig, userReducer);

@@ -5,7 +5,7 @@ import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { connect } from "react-redux";
 
-import { setFrameNumber, getFrameNumber } from '../../../../storage/actions/index';
+import { setFrameNumber } from '../../../../storage/actions/index';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
@@ -28,7 +28,6 @@ import {
 interface Props {
     navigation: any,
     setFrame: Function,
-    getFrame: Function,
     frame: string
 };
 
@@ -42,7 +41,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     // do pobrania nazwy użytkownika zz local sorage
     useEffect(() => {
-        props.getFrame();
         if (typeof props.frame == 'string') setInputFrame(props.frame);
     }, [props.frame])
 
@@ -68,7 +66,11 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     // walidacja po naciśnięciu przyciku 'Dalej'
     const hendleGoFoward = () => {
         if (canGoFoward) {
-            props.navigation.navigate('BikeData')
+            props.setFrame(inputFrame);
+            props.navigation.navigate({
+                name: 'BikeData',
+                params: {frameNumber: inputFrame},
+            });
         } else {
             setForceMessageWrong('Pole wymagane')
         }
@@ -152,8 +154,8 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             ></BigRedBtn>
 
         </SafeAreaView>
-    )
-}
+  );
+};
 
 const mapStateToProps = (state: any) => {
     return {
@@ -163,7 +165,6 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => ({
     setFrame: (num: string) => dispatch(setFrameNumber(num)),
-    getFrame: async () => dispatch(await getFrameNumber()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddingByNumber)

@@ -3,6 +3,8 @@ import type { Node } from 'react';
 // import { SafeAreaView } from 'react-native';
 // import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from "react-redux";
+import {PersistGate} from 'redux-persist/integration/react';
+import {persistStore} from 'redux-persist';
 import storage from './src/storage/storage';
 import { I18n_init } from './I18n/I18n'
 import { NavigationContainer } from '@react-navigation/native';
@@ -45,8 +47,11 @@ const App: () => Node = () => {
 		},
 	};
 
+  const persistore = persistStore(storage);
+
 	return (
 		<Provider store={storage}>
+            <PersistGate persistor={persistore}>
 			<NavigationContainer >
 				<Stack.Navigator
 					headerMode="none"
@@ -79,6 +84,7 @@ const App: () => Node = () => {
 
 				</Stack.Navigator>
 			</NavigationContainer>
+        </PersistGate>
 		</Provider >
 	);
 };
