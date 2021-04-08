@@ -13,7 +13,6 @@ import TranspLightBtn from '../../../../sharedComponents/buttons/transpLightBtn'
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 
 import {
-    initAppSize,
     setObjSize,
     getWidthPx,
     getHeightPx,
@@ -76,8 +75,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         }
     }
 
-    initAppSize();
-
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
@@ -118,7 +115,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         <SafeAreaView style={styles.container}>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('TurtorialNFC')}
+                onpress={() => props.navigation.navigate('GetToKnowEachOther')}
                 inner={trans.head}
             ></StackHeader>
 

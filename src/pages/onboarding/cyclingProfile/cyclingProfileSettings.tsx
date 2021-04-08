@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView, TouchableWithoutFeedback, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, ScrollView, TouchableWithoutFeedback, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import { getStorageProfileSettings, setStorageProfileSettings } from '../../../storage/localStorage';
 
@@ -11,7 +11,6 @@ import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import RadioLine from './radioLine';
 
 import {
-    initAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -113,8 +112,6 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         setStorageProfileSettings(newData);
         props.navigation.navigate('CyclingProfileView', { profile: profNum })
     }
-
-    initAppSize()
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({

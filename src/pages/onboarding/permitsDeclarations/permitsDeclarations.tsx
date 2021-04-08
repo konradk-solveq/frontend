@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import { StyleSheet, Dimensions, View, Text, ScrollView, SafeAreaView } from 'react-native';
+import React, {  useState } from "react";
+import { StyleSheet, View, Text, ScrollView, SafeAreaView } from 'react-native';
 import I18n from 'react-native-i18n';
 
 import deepCopy from '../../../helpers/deepCopy';
 
 import {
-    setAppSize,
     setObjSize,
     getWidthPx,
     getHorizontalPx,
@@ -60,17 +59,13 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
         status.forEach((e, i) => { if (trans.paragraph[i].required && !e.checked) canGo = false; })
 
         if (canGo) {
-            props.navigation.navigate('CyclingProfile')
+            props.navigation.navigate('GetToKnowEachOther')
         } else {
             let newStatus = deepCopy(status);
             newStatus.map(e => e.wrong = !e.checked);
             setStatus(newStatus);
         }
     }
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -92,11 +87,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             height: getHeightPx(),
             left: getCenterLeftPx(),
             top: getVerticalPx(11),
-            marginBottom: headHeight
-        },
-        spaceOnEnd: {
-            width: '100%',
-            height: getVerticalPx(69)
+            marginBottom: headHeight+getVerticalPx(69)
         }
     })
 
@@ -133,20 +124,17 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                         ></OnePermit>
                     ))}
 
-                    <View style={styles.btn}>
-                        <BigRedBtn
-                            title={trans.btn}
-                            onpress={() => hendlerGoFoward()}
-                        />
-                    </View>
-
-                    <View style={styles.spaceOnEnd}></View>
+                    <BigRedBtn
+                        style={styles.btn}
+                        title={trans.btn}
+                        onpress={() => hendlerGoFoward()}
+                    />
 
                 </ScrollView>
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('AddingByNumber')}
+                onpress={() => props.navigation.navigate('Onboarding')}
                 inner={trans.header}
                 getHeight={setHeadHeightt}
             ></StackHeader>

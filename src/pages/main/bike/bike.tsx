@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, View, Text, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
@@ -12,7 +12,6 @@ import Reviews from './reviews';
 import ComplaintsRepairs from './complaintsRepairs';
 
 import {
-    setAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -33,10 +32,6 @@ const Bike: React.FC<Props> = (props: Props) => {
     const bike = props.bikesData[0];
     const trans = I18n.t('MainBike');
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
-
     setObjSize(334, 50);
     const w = getWidthPx();
     const l = getCenterLeftPx();
@@ -49,8 +44,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             height: '100%',
         },
         scroll: {
-            // backgroundColor: '#ffffff'  
-            backgroundColor: '#f0f0f0' // #best
+            backgroundColor: '#ffffff'  
         },
         header: {
             marginTop: getVerticalPx(65),
@@ -67,7 +61,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             right: getHorizontalPx(40 - 13),
             width: getHorizontalPx(13 + 20 + 13),
             height: getHorizontalPx(13 + 20 + 13),
-            backgroundColor: 'khaki'
+            // backgroundColor: 'khaki'
         },
         paramIcon: {
             margin: getHorizontalPx(13),
@@ -123,7 +117,6 @@ const Bike: React.FC<Props> = (props: Props) => {
 
                 <TouchableWithoutFeedback
                     onPress={() => heandleParams()}
-                    // onPress={() => {}}
                 >
                     <View style={styles.params}>
                         <Svg viewBox="0 0 20 20" style={styles.paramIcon}>

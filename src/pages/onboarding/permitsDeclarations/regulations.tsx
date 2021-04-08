@@ -3,7 +3,6 @@ import { StyleSheet, Dimensions, View, Text, ScrollView, SafeAreaView } from 're
 import I18n from 'react-native-i18n';
 
 import {
-    setAppSize,
     setObjSize,
     getWidthPx,
     getVerticalPx,
@@ -16,13 +15,11 @@ interface Props {
     navigation: any
 };
 
+const wh = Dimensions.get('window').height;
+
 const Regulations: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Regulations');
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     const [headHeight, setheadHeightt] = useState(0);
 

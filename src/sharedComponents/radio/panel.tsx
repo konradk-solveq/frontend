@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native';
 import RadioBtn from './radioBtn';
 
 import {
-    initAppSize,
     setObjSize,
     getWidthPxOf,
     getCenterLeftPx
@@ -16,7 +15,6 @@ interface Props {
 }
 
 const RadioPanel: React.FC<Props> = (props: Props) => {
-    initAppSize();
 
     const h = getWidthPxOf(13);
     const w = (h * props.listBtn.length) + (getWidthPxOf(15.5) * (props.listBtn.length - 1))

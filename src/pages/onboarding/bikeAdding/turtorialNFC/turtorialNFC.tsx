@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
 import AnimSvg from '../../../../helpers/animSvg';
@@ -11,7 +11,6 @@ import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
 import {
-    initAppSize,
     getPosAndWid,
     getStandardPx,
     getHorizontalPx
@@ -62,8 +61,6 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         </g>
     </g>
 </svg>`;
-
-    initAppSize();
 
     const [userName, setUserName] = useState('');
 

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Dimensions, View, Text } from 'react-native';
+import React from "react";
+import { StyleSheet, View, Text } from 'react-native';
 // import CheckBox from '@react-native-community/checkbox';
 import Hyperlink from 'react-native-hyperlink'
 import I18n from 'react-native-i18n';
 
 import {
-    initAppSize,
     setObjSize,
     getWidthPx,
     getVerticalPx,
@@ -29,8 +28,6 @@ interface Props {
 const OnePermit: React.FC<Props> = (props: Props) => {
 
     const trans = I18n.t('Permits');
-
-    initAppSize();
 
     setObjSize(26, 26);
     const cbw = getWidthPx();

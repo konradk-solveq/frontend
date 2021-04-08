@@ -1,19 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, TouchableWithoutFeedback, View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
 
 import AnimSvg from '../../../helpers/animSvg';
 
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-
 import {
-    setAppSize,
     setObjSize,
     getCenterLeftPx,
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
-import { ScrollView } from 'react-native-gesture-handler';
 
 interface Props {
     navigation: any,
@@ -26,11 +22,6 @@ interface Props {
 };
 
 const Warranty: React.FC<Props> = (props: Props) => {
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
-
     setObjSize(334, 50);
     const w = getWidthPx();
     const l = getCenterLeftPx();
@@ -43,22 +34,13 @@ const Warranty: React.FC<Props> = (props: Props) => {
         let w = layout.width - 1;
         let h = layout.height - 1;
 
-        // let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
-        // svg += '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' + (b * .4) + '"/></filter>'
-        // svg += '<rect filter="url(#filter)" opacity=".09" fill="#000" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="24"/>';
-        // svg += '<rect fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getHorizontalPx(32) + '"/>';
-        // svg += '</svg>';
-
-        // #best
         let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
         svg += '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' + (b * .4) + '"/></filter>'
-        svg += '<rect filter="url(#filter)" opacity=".15" fill="#000" stroke="none" width="' + w + '" height="' + h + '" x="' + (b * .2) + '" y="' + (b * .2) + '" ry="24"/>';
-        svg += '<rect filter="url(#filter)" opacity="1" fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + (-b * .35) + '" y="' + (-b * .35) + '" ry="24"/>';
-        svg += '<rect fill="#f0f0f0" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getHorizontalPx(32) + '"/>';
+        svg += '<rect filter="url(#filter)" opacity=".12" fill="#000" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="24"/>';
+        svg += '<rect fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getHorizontalPx(32) + '"/>';
         svg += '</svg>';
 
         setSource(svg);
-        // console.log('%c svg:', svg)
 
         setBoxStyle({
             position: 'absolute',
@@ -66,7 +48,6 @@ const Warranty: React.FC<Props> = (props: Props) => {
             top: -b,
             width: w + (b * 2),
             height: h + (b * 2),
-            // backgroundColor: 'green'
         })
     }
 
@@ -75,14 +56,12 @@ const Warranty: React.FC<Props> = (props: Props) => {
             left: l,
             width: w,
             borderRadius: getHorizontalPx(32),
-            backgroundColor: 'transparent' // '#f0f0f0',
+            backgroundColor: 'transparent'
         },
-
         textLine: {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
-            // backgroundColor: 'green'
         },
         leftText: {
             marginTop: getVerticalPx(22),
@@ -133,7 +112,6 @@ const Warranty: React.FC<Props> = (props: Props) => {
 
             <TouchableWithoutFeedback
                 onPress={() => heandleWarrantyDetails()}
-                // onPress={() => { }}
             >
                 <View>
                     <View style={[styles.textLine, styles.line]}>

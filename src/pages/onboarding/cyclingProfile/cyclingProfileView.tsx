@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import AnimSvg from '../../../helpers/animSvg';
 
@@ -12,7 +12,6 @@ import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {
-    initAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -203,8 +202,6 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
     </g>
 </svg>`;
 
-    initAppSize();
-
     setObjSize(315, 50);
     const w = getWidthPx();
     const h = w * (296 / 315);
@@ -225,7 +222,7 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             backgroundColor: "white"
         },
 
-        light30: {
+        title: {
             fontFamily: "DIN2014Narrow-Light",
             fontSize: getHorizontalPx(30),
             color: '#313131',
@@ -233,9 +230,10 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             width: getWidthPx(),
             left: getCenterLeftPx(),
             top: getVerticalPx(138),
+            // backgroundColor: 'khaki'
         },
         image,
-        reg40: {
+        name: {
             position: 'absolute',
             fontFamily: "DIN2014Narrow-Regular",
             fontSize: getHorizontalPx(40),
@@ -244,8 +242,9 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             width: getWidthPx(),
             left: getCenterLeftPx(),
             top: getVerticalPx(253 + 20) + h,
+            // backgroundColor: 'khaki'
         },
-        light18: {
+        description: {
             position: 'absolute',
             fontFamily: "DIN2014Narrow-Light",
             fontSize: getHorizontalPx(18),
@@ -254,6 +253,7 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             width: getWidthPx(),
             left: getCenterLeftPx(),
             top: getVerticalPx(253 + 76) + h,
+            // backgroundColor: 'green'
         },
         bottons: {
             position: 'absolute',
@@ -277,19 +277,11 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
     return (
         <SafeAreaView style={styles.container}>
 
-            <Text style={styles.light30}>
+            <Text style={styles.title}>
                 {trans.title}
             </Text>
 
-            <Text style={styles.reg40}>
-                {trans.types[profilType].name}
-            </Text>
 
-            <Text style={styles.light18}>
-                {trans.types[profilType].description}
-            </Text>
-
-            {/* <View style={styles.image}> */}
             {profilType == 'amateur' && <AnimSvg
                 source={amatour_biker}
                 style={styles.image}
@@ -302,26 +294,33 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
                 source={advanced_biker}
                 style={styles.image}
             />}
-            {/* </View> */}
+
+
+            <Text style={styles.name}>
+                {trans.types[profilType].name}
+            </Text>
+
+            <Text style={styles.description}>
+                {trans.types[profilType].description}
+            </Text>
+
 
             <View style={styles.bottons}>
-                <View style={styles.btn}>
-                    <BigWhiteBtn
-                        title={trans.btnChange}
-                        onpress={() => props.navigation.navigate('CyclingProfileSettings')}
-                    ></BigWhiteBtn>
-                </View>
+                <BigWhiteBtn
+                    style={styles.btn}
+                    title={trans.btnChange}
+                    onpress={() => props.navigation.navigate('CyclingProfileSettings')}
+                ></BigWhiteBtn>
 
-                <View style={styles.btn}>
-                    <BigRedBtn
-                        title={trans.btnSave}
-                        onpress={() => props.navigation.navigate('MineMenu')}
-                    ></BigRedBtn>
-                </View>
+                <BigRedBtn
+                    style={styles.btn}
+                    title={trans.btnSave}
+                    onpress={() => props.navigation.navigate('MineMenu')}
+                ></BigRedBtn>
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('PermitsDeclarations')}
+                onpress={() => props.navigation.navigate('AddingByNumber')}
                 inner={trans.header}
             ></StackHeader>
 

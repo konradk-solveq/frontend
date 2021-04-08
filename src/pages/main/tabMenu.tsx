@@ -12,8 +12,6 @@ import Bike from './bike/bike';
 import Profile from './profile/profile';
 
 import {
-    initAppSize,
-    getVerticalPx,
     getHorizontalPx
 } from '../../helpers/layoutFoo';
 
@@ -23,8 +21,6 @@ interface Props {
 };
 
 const TabMenu: React.FC<Props> = (props: Props) => {
-
-    initAppSize();
 
     const iconSize = getHorizontalPx(34);
     const iconMargin = getHorizontalPx(10);

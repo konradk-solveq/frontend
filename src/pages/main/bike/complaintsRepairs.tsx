@@ -1,19 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
 import AnimSvg from '../../../helpers/animSvg';
 
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 
 import {
-    setAppSize,
     setObjSize,
     getCenterLeftPx,
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
-import { ScrollView } from 'react-native-gesture-handler';
 
 interface Props {
     style?: any
@@ -24,10 +22,6 @@ interface Props {
 const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
 
     let comp = props.list[0];
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     setObjSize(334, 50);
     const w = getWidthPx();
@@ -58,8 +52,7 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
             let y = 0;
             for (let i = 0; i < areas.length; i++) {
                 let hh = areas[i].height - 1;
-                svg += '<rect filter="url(#filter)" opacity=".15" fill="#000" stroke="none" width="' + w + '" height="' + hh + '" x="' + (b * .2) + '" y="' + (y + (b * .2)) + '" ry="' + getHorizontalPx(26) + '"/>';
-                svg += '<rect filter="url(#filter)" opacity="1" fill="#fff" stroke="none" width="' + w + '" height="' + hh + '" x="' + (-b * .35) + '" y="' + (y + (-b * .35)) + '" ry="' + getHorizontalPx(26) + '"/>';
+                svg += '<rect filter="url(#filter)" opacity=".3" fill="#888" stroke="none" width="' + w + '" height="' + hh + '" x="' + 0 + '" y="' + y + '" ry="' + getHorizontalPx(26) + '"/>';
 
                 y += hh + 1 + getVerticalPx(15);
             }
@@ -67,7 +60,7 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
             y = 0;
             for (let i = 0; i < areas.length; i++) {
                 let hh = areas[i].height - 1;
-                svg += '<rect fill="#f0f0f0" stroke="none" width="' + w + '" height="' + hh + '" x="' + 0 + '" y="' + y + '" ry="' + getHorizontalPx(26) + '"/>';
+                svg += '<rect fill="#fff" stroke="none" width="' + w + '" height="' + hh + '" x="' + 0 + '" y="' + y + '" ry="' + getHorizontalPx(26) + '"/>';
                 y += hh + 1 + getVerticalPx(15);
             }
 

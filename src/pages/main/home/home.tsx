@@ -1,11 +1,10 @@
 import React from "react";
-import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 
 import {
-    setAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -18,13 +17,6 @@ interface Props {
 };
 
 const Home: React.FC<Props> = (props: Props) => {
-
-    // const trans = I18n.t('Profile').view;
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
-
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {

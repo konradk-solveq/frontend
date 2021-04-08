@@ -1,13 +1,11 @@
 //getToKnowEachOther
 import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
-import { connect } from "react-redux";
 import I18n from 'react-native-i18n';
 import { setUserName } from '../../../storage/actions/index';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 
 import {
-    initAppSize,
     setObjSize,
     getWidthPx,
     getWidthPxOf,
@@ -24,6 +22,7 @@ import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 
 interface Props {
     navigation: any,
@@ -46,8 +45,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         return false
     }
 
-    initAppSize();
-
     setObjSize(334, 50);
     let bottons = {
         position: 'absolute',
@@ -60,11 +57,19 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         bottom: getVerticalPx(65)
     }
 
+    interface Logo {
+        position: string,
+        width: number,
+        height: number,
+        left: number,
+        top: string
+    };
+
     let styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: "white" 
+            backgroundColor: "white"
         },
         logo: getPosStaticHeight(110, 20, 66),
         text: getPosAndWid(334, 78, 138),
@@ -87,9 +92,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     return (
         <SafeAreaView style={styles.container}>
 
-            <View style={styles.logo}>
-                <KroosLogo />
-            </View>
 
             <Text style={[styles.text, styles.light30]}>
                 {trans.title}
@@ -112,7 +114,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
                         title={trans.skip}
                         onpress={() => {
                             dispatch(setUserName(''));
-                            navigation.navigate('TurtorialNFC');
+                            navigation.navigate('AddingByNumber');
                         }}
                     ></BigWhiteBtn>
                 </View>
@@ -122,21 +124,25 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
                         title={trans.goFoward}
                         onpress={() => {
                             dispatch(setUserName(inputName));
-                            navigation.navigate('TurtorialNFC');
+                            navigation.navigate('AddingByNumber');
                         }}
                     ></BigRedBtn>
                 </View>
             </View>
 
+            <StackHeader
+                onpress={() => props.navigation.navigate('PermitsDeclarations')}
+                getHeight={() => { }}
+                inner={''}
+            ></StackHeader>
+
+            <View style={styles.logo}>
+                <KroosLogo />
+            </View>
+
+
         </SafeAreaView>
     )
-}
-
-
-const mapStateToProps = (state: any) => {
-    return {
-        name: state.user.userName
-    }
 }
 
 export default GetToKnowEachOther;

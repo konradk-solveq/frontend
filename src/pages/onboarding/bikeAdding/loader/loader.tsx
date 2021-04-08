@@ -1,12 +1,11 @@
 
 
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, View, SafeAreaView, Image } from 'react-native';
+import React from "react";
+import { StyleSheet, Dimensions, View, SafeAreaView } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
 import AnimSvg from '../../../../helpers/animSvg';
 
 import {
-    setAppSize,
     setObjSize,
     getWidthPx,
     getHeightPx,
@@ -15,6 +14,9 @@ import {
 interface Props {
     navigation: any
 };
+
+const ww = Dimensions.get('window').width;
+const wh = Dimensions.get('window').height;
 
 const Loader: React.FC<Props> = (props: Props) => {
 
@@ -33,10 +35,6 @@ const Loader: React.FC<Props> = (props: Props) => {
     stroke= "#D8232A" stroke-width="3" stroke-linecap="round" stroke-linejoin="miter" stroke-dasharray="9, 6" >
     </circle>
 </svg>`;
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     setObjSize(192, 192);
     const cw = getWidthPx();

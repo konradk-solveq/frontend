@@ -1,13 +1,12 @@
 
 
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Dimensions, SafeAreaView, ScrollView, TouchableWithoutFeedback, View, Text } from 'react-native';
+import React from "react";
+import { StyleSheet, Dimensions, TouchableWithoutFeedback, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import Svg, { G, Path, Circle } from 'react-native-svg';
 
 import AnimSvg from '../../../helpers/animSvg';
 import {
-    setAppSize,
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
@@ -19,6 +18,8 @@ interface Props {
     style?: any,
     onpress: Function
 };
+
+const ww = Dimensions.get('window').width;
 
 const VerticalHeader: React.FC<Props> = (props: Props) => {
 
@@ -37,10 +38,6 @@ const VerticalHeader: React.FC<Props> = (props: Props) => {
     <ellipse clip-path="url(#clip)" cx="60.4" cy="23.7" rx="59.2" ry="12.9" fill="#e8e8e8" stroke="none" filter="url(#f1)" transform="matrix(1.2848232,0,0,1.5017734,-16.467777,-12.342751)"/>
     <circle opacity=".3" cx="60.4" cy="17" r="9" fill="#c0c0c0" stroke="none" filter="url(#f2)" transform="matrix(1.5944672,0,0,1.5944672,-35.51012,-10.478387)" />
 </svg>`;
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     setObjSize(51, 51);
     const h = ww * (40 / 120.8);

@@ -5,7 +5,6 @@ import AnimSvg from '../../helpers/animSvg';
 
 
 import {
-    setAppSize,
     setObjSize,
     getWidthPx,
     getVerticalPx,
@@ -24,15 +23,13 @@ interface Props {
     navigation: any;
 };
 
+const ww = Dimensions.get('window').width;
+
 const Onboarding: React.FC<Props> = (props: Props) => {
 
     const [board, setBoard] = useState(0);
     const position = useRef(new Animated.Value(0)).current;
     const opacity = useRef(new Animated.Value(0)).current;
-
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
 
     // list funcji na przycisków radio panelu
     const list: Array<Function> = [
@@ -171,8 +168,7 @@ const Onboarding: React.FC<Props> = (props: Props) => {
                 opacity: opacity
             }]}>
                 <StaticElements
-                    // goFoward={() => {navigation.navigate('GetToKnowEachOther'})}
-                    goFoward={() => props.navigation.navigate('GetToKnowEachOther')}
+                    goFoward={() => props.navigation.navigate('PermitsDeclarations')}
                     board={board}
                     list={list}
                     setBoard={setBoard}

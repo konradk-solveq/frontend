@@ -10,7 +10,6 @@ import ImgKross from './imgKross';
 import ImgOther from './imgOther';
 
 import {
-    initAppSize,
     setObjSize,
     getWidthPx,
     getHeightPx,
@@ -30,8 +29,6 @@ const Info: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('AddingInfo')
 
     const [krossBike, setKrossBike] = useState(true);
-
-    initAppSize();
 
     setObjSize(334, 41);
     const h = (410 * (270 / 334));
