@@ -26,7 +26,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
     const l = getCenterLeftPx();
 
     const [source, setSource] = useState('<svg xmlns="http://www.w3.org/2000/svg"/>'); // do odpalania animacji svg
-    const [boxStyle, setBoxStyle] = useState({}); // do odpalania animacji svg
+    const [animSvgStyle, setAnimSvgStyle] = useState({}); // do odpalania animacji svg
 
     const areas: Array<any> = [];
     const handleShadowBox = (layout: any) => {
@@ -56,13 +56,12 @@ const Reviews: React.FC<Props> = (props: Props) => {
             svg += '</svg>';
 
             setSource(svg);
-            // console.log('%c svg:', svg)
 
-            setBoxStyle({
+            setAnimSvgStyle({
                 position: 'absolute',
                 // marginTop: getVerticalPx(10),
 
-                marginLeft: getCenterLeftPx(),
+
                 left: -b,
                 top: -b,
                 width: w + (b * 2),
@@ -72,15 +71,12 @@ const Reviews: React.FC<Props> = (props: Props) => {
         }
     }
 
-
-
     const styles = StyleSheet.create({
         container: {
             left: 0,
             width: ww
         },
         title: {
-
             marginBottom: getVerticalPx(5),
             left: getCenterLeftPx(),
             fontFamily: 'DIN2014Narrow-Light',
@@ -91,6 +87,9 @@ const Reviews: React.FC<Props> = (props: Props) => {
         scroll: {
             width: ww,
         },
+        animSvg: {
+            marginLeft: getCenterLeftPx(),
+        },
         list: {
             paddingTop: getVerticalPx(10),
             left: 0,
@@ -100,7 +99,6 @@ const Reviews: React.FC<Props> = (props: Props) => {
         },
         item: {
             width: w,
-
             marginLeft: getHorizontalPx(15)
         },
         box: {
@@ -117,25 +115,28 @@ const Reviews: React.FC<Props> = (props: Props) => {
             marginRight: getCenterLeftPx(),
         },
         day: {
-            marginTop: getHorizontalPx(16),
-            width: '100%',
+            marginTop: getHorizontalPx(18),
+            width: w,
             fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(57),
             color: '#313131',
             textAlign: 'center',
         },
-        light: {
-            width: '100%',
+        year: {
+            marginTop: -getHorizontalPx(8),
+            width: w,
             fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(18),
             color: '#555555',
             textAlign: 'center',
         },
-        year: {
-            marginTop: -ww * (8 / 414),
-        },
         type: {
-            marginTop: ww * (6 / 414),
+            marginTop: getHorizontalPx(6),
+            width: w,
+            fontFamily: 'DIN2014Narrow-Regular',
+            fontSize: getHorizontalPx(18),
+            color: '#555555',
+            textAlign: 'center',
         },
         mark: {
             width: getHorizontalPx(20),
@@ -174,7 +175,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
             >
                 <AnimSvg
                     source={source}
-                    style={boxStyle}
+                    style={[styles.animSvg, animSvgStyle]}
                 />
 
                 <View style={styles.list}>
@@ -194,7 +195,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                 onLayout={e => handleShadowBox(e.nativeEvent.layout)}
                             >
                                 <Text style={styles.day}>{hendleDay(e.date)}</Text>
-                                <Text style={[styles.light, styles.year]}>{hendleYear(e.date)}</Text>
+                                <Text style={styles.year}>{hendleYear(e.date)}</Text>
 
                                 {e.state == 1 && <Svg style={styles.mark} viewBox="0 0 20 20">
                                     <Circle cx="10.01" cy="10" r="9.96" fill="#39b54a" paint-order="markers fill stroke" />
@@ -202,7 +203,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                 </Svg>}
 
                             </View>
-                            <Text style={[styles.light, styles.type]}>{e.type}</Text>
+                            <Text style={styles.type}>{e.type}</Text>
 
                         </View>
                     ))}
