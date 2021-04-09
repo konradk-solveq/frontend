@@ -1,15 +1,30 @@
 import * as actionTypes from '../actions/actionTypes';
 import {persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {RiderProfile} from '../../models/userRideProfile.model';
+import {riderProfiles} from '../../utils/constants';
 
 interface UserState {
   userName: string;
   frameNumber: string;
+  riderProfile: RiderProfile;
+  onboardingFinisehd: boolean;
 }
 
 const initialState: UserState = {
   userName: '',
   frameNumber: '',
+  riderProfile: {
+    cyclingStyle: 0,
+    tours: 0,
+    whereDoYouGo: 0,
+    drivingSpeed: 0,
+    distancePerMonth: 0,
+    whoAreYou: 0,
+    profileNumber: 0,
+    name: riderProfiles.AMATEUR,
+  },
+  onboardingFinisehd: false,
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -24,6 +39,18 @@ const userReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 frameNumber: action.frameNumber,
+            }
+        }
+        case actionTypes.SET_PROFILE_SETTINGS: {
+            return {
+                ...state,
+                riderProfile: action.riderProfile,
+            }
+        }
+        case actionTypes.SET_ONBOARDING_FINISHED: {
+            return {
+                ...state,
+                onboardingFinisehd: action.onboarding,
             }
         }
     }

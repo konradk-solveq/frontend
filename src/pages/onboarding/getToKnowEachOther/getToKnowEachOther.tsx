@@ -131,7 +131,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('PermitsDeclarations')}
+                onpress={() => navigation.navigate('PermitsDeclarations')}
                 getHeight={() => { }}
                 inner={''}
             ></StackHeader>

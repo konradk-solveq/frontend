@@ -211,12 +211,12 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 list: action.list,
             }
         }
-    case actionTypes.SET_USER_BIKE: {
-      return {
-        ...state,
-        userBike: action.userBike,
-      };
-    }
+        case actionTypes.SET_USER_BIKE: {
+            return {
+                ...state,
+                userBike: action.userBike,
+            };
+        }
     }
 
     return state;
