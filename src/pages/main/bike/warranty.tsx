@@ -103,7 +103,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
     return (
         <View
             style={[styles.container, props.style]}
-            onLayout={e => handleShadowBox(e.nativeEvent.layout)}
+            onLayout={({ nativeEvent }) => handleShadowBox(nativeEvent.layout)}
         >
             <AnimSvg
                 source={source}
