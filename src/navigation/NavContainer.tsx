@@ -6,7 +6,7 @@ import OnboardingStackNavigator from './stacks/OnboardingStackNavigator';
 import RegularStackNavigator from './stacks/RegularStackNavigator';
 
 const NavContainer: React.FC = () => {
-    const isOnboardingFinished: boolean = useAppSelector(state => state.user.onboardingFinisehd)
+    const isOnboardingFinished: boolean = useAppSelector(state => state.user.onboardingFinished)
     return(
         <NavigationContainer >
                 {!isOnboardingFinished ? (
