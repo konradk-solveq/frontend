@@ -4,8 +4,10 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import AnimSvg from '../../../helpers/animSvg';
-
-import { getStorageProfileSettings } from '../../../storage/localStorage';
+import {setOnboardingFinished} from '../../../storage/actions';
+import {RiderProfile} from '../../../models/userRideProfile.model';
+import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
+import {riderProfiles} from '../../../utils/constants';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
@@ -26,38 +28,18 @@ interface Props {
     route: any,
 };
 
-const CyclingProfileView: React.FC<Props> = (props: Props) => {
-
-    const settings = I18n.t('Profile').settings;
-    const lists = Object.keys(settings.lists);
+const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
+    const dispatch = useAppDispatch();
+    const cyclingProfile = useAppSelector<RiderProfile>(state => state.user.riderProfile);
 
     const trans = I18n.t('Profile').view;
-    const types = Object.keys(trans.types);
 
     const profiles = Object.keys(trans.types); // lista nazw profili
-    const [profilType, setProfilType] = useState(profiles[0]); // dane poszczególnych pól
+    const [profilType, setProfilType] = useState(cyclingProfile.name); // dane poszczególnych pól
 
     useEffect(() => { // zmiana profilu po ustawieniach w settingsach
-        props.route.params && (typeof props.route.params.profile != 'undefined') && setProfilType(profiles[props.route.params.profile])
-    }, [props.route.params])
-
-    const initialData = () => { // dla pierwszego uruchomienia, gdy local storage jeśzcze nie ma tej zmiennej
-        const profileData: any = {};
-
-        lists.forEach((e: string) => profileData[e] = 0);
-
-        const firtsProfileNumber = 0;
-        profileData.profileNumber = firtsProfileNumber;
-        profileData.name = types[firtsProfileNumber];
-
-        return profileData;
-    }
-
-    useEffect(() => { // pobranie danych z localsorage i zapamiętanie stanu dla opcji przywrócenia
-        getStorageProfileSettings(initialData()).then(res => {
-            if (res && res.name && typeof res.name == 'string') setProfilType(res.name);
-        })
-    }, [])
+        route.params && (typeof route.params.profile != 'undefined') && setProfilType(profiles[route.params.profile])
+    }, [route.params])
 
     const amatour_biker = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315 296">
     <defs/>
@@ -274,6 +256,11 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
         }
     })
 
+    const handleSaveOnboarding = () => {
+        dispatch(setOnboardingFinished(true));
+        navigation.navigate('MineMenu')
+    }
+
     return (
         <SafeAreaView style={styles.container}>
 
@@ -282,15 +269,15 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
             </Text>
 
 
-            {profilType == 'amateur' && <AnimSvg
+            {profilType == riderProfiles.AMATEUR && <AnimSvg
                 source={amatour_biker}
                 style={styles.image}
             />}
-            {profilType == 'city' && <AnimSvg
+            {profilType == riderProfiles.CITY && <AnimSvg
                 source={city_biker}
                 style={styles.image}
             />}
-            {profilType == 'professional' && <AnimSvg
+            {profilType == riderProfiles.PROFESSIONAL && <AnimSvg
                 source={advanced_biker}
                 style={styles.image}
             />}
@@ -309,18 +296,18 @@ const CyclingProfileView: React.FC<Props> = (props: Props) => {
                 <BigWhiteBtn
                     style={styles.btn}
                     title={trans.btnChange}
-                    onpress={() => props.navigation.navigate('CyclingProfileSettings')}
+                    onpress={() => navigation.navigate('CyclingProfileSettings')}
                 ></BigWhiteBtn>
 
                 <BigRedBtn
                     style={styles.btn}
                     title={trans.btnSave}
-                    onpress={() => props.navigation.navigate('MineMenu')}
+                    onpress={handleSaveOnboarding}
                 ></BigRedBtn>
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('AddingByNumber')}
+                onpress={() => navigation.navigate('AddingByNumber')}
                 inner={trans.header}
             ></StackHeader>
 

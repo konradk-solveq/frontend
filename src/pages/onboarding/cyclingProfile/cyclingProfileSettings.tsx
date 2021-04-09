@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, SafeAreaView, ScrollView, TouchableWithoutFeedback, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
-import { getStorageProfileSettings, setStorageProfileSettings } from '../../../storage/localStorage';
+import {RiderProfile} from '../../../models/userRideProfile.model';
+import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
+import { setProfileSettings } from '../../../storage/actions';
 
 import VerticalHeader from './../../../sharedComponents/navi/verticalHeader/verticalHeader';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
@@ -24,10 +26,15 @@ import deepCopy from "../../../helpers/deepCopy";
 
 interface Props {
     navigation: any,
-    // route: any,
 };
 
+const initActiveState = (states: string[], data: any) => {
+    return states.map(e => data[e]);
+}
+
 const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
+    const dispatch = useAppDispatch();
+    const riderProfileData = useAppSelector<RiderProfile>(state => state.user.riderProfile);
 
     const trans = I18n.t('Profile').settings;
     const lists = Object.keys(trans.lists);
@@ -35,34 +42,10 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
     const view = I18n.t('Profile').view;
     const types = Object.keys(view.types);
 
-    const initialData = () => { // dla pierwszego uruchomienia, gdy local storage jeśzcze nie ma tej zmiennej
-        const profileData: any = {};
+    const [dataSetting, setDataSetting] = useState<RiderProfile>(riderProfileData); // dane poszczególnych pól
+    const [active, setActive] = useState(initActiveState(lists, riderProfileData)); // który element z listy jest aktywny
 
-        lists.forEach((e: string) => profileData[e] = 0);
-
-        const firtsProfileNumber = 0;
-        profileData.profileNumber = firtsProfileNumber;
-        profileData.name = types[firtsProfileNumber];
-
-        return profileData;
-    }
-
-    const [dataSetting, setDataSetting] = useState({}); // dane poszczególnych pól
-
-    const initActive = lists.map(() => -1); // aby nic nie było zaznaczoe zanim nie wczytają się dane
-    const [active, setActive] = useState(initActive); // który element z listy jest aktywny
-
-    const [memo, setMemo] = useState({}); // dla przycisku przywróć
-
-    useEffect(() => { // pobranie danych z localsorage i zapamiętanie stanu dla opcji przywrócenia
-        getStorageProfileSettings(initialData()).then(res => {
-            setDataSetting(res)
-            setMemo(res);
-
-            const newActive = lists.map(e => res[e]);
-            setActive(newActive);
-        })
-    }, [])
+    const [memo] = useState(riderProfileData); // dla przycisku przywróć
 
     const handleChangeData = (key: string, value: number) => { // dla zmiany wyboru na liscie
         let newData = deepCopy(dataSetting);
@@ -77,7 +60,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
 
     const handleGetDataBack = () => { // dla przycisku przywróć
         setDataSetting(memo);
-        let newActive = lists.map(e => memo[e]);
+        const newActive = lists.map(e => memo[e as keyof RiderProfile]);
         setActive(newActive);
     }
 
@@ -109,7 +92,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         newData.profileNumber = profNum;
         newData.name = types[profNum];
 
-        setStorageProfileSettings(newData);
+        dispatch(setProfileSettings(newData));
         props.navigation.navigate('CyclingProfileView', { profile: profNum })
     }
 
