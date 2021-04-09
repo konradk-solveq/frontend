@@ -26,7 +26,6 @@ const OnboardingStackNavigator: React.FC = () => {
             screenOptions={horizontalAnim}>
 
             <Stack.Screen name="Onboarding" component={Onboarding} />
-            <Stack.Screen name="Onboarding" component={Onboarding} />
 
             <Stack.Screen name="PermitsDeclarations" component={PermitsDeclarations} />
             <Stack.Screen name="Regulations" component={Regulations} />

@@ -9,7 +9,7 @@ const RegularStackNavigator: React.FC = () => {
     return(
         <Stack.Navigator
             headerMode="none"
-            initialRouteName="Onboarding"
+            initialRouteName="MineMenu"
             mode="modal"
             screenOptions={horizontalAnim}>
 

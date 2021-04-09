@@ -8,7 +8,7 @@ interface UserState {
   userName: string;
   frameNumber: string;
   riderProfile: RiderProfile;
-  onboardingFinisehd: boolean;
+  onboardingFinished: boolean;
 }
 
 const initialState: UserState = {
@@ -24,7 +24,7 @@ const initialState: UserState = {
     profileNumber: 0,
     name: riderProfiles.AMATEUR,
   },
-  onboardingFinisehd: false,
+  onboardingFinished: false,
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -50,7 +50,7 @@ const userReducer = (state = initialState, action: any) => {
         case actionTypes.SET_ONBOARDING_FINISHED: {
             return {
                 ...state,
-                onboardingFinisehd: action.onboarding,
+                onboardingFinished: action.onboarding,
             }
         }
     }
@@ -61,7 +61,7 @@ const userReducer = (state = initialState, action: any) => {
 const persistConfig = {
   key: 'user',
   storage: AsyncStorage,
-  whitelist: ['user', 'frameNumber'],
+  whitelist: ['user', 'frameNumber', 'riderProfile', 'onboardingFinished'],
 };
 
 export default persistReducer(persistConfig, userReducer);
