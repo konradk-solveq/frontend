@@ -188,7 +188,7 @@ const ComplaintsRepairs: React.FC<Props> = (props: Props) => {
                     <View
                         style={styles.container}
                         key={'comp_' + i}
-                        onLayout={e => handleShadowBox(e.nativeEvent.layout)}
+                        onLayout={({ nativeEvent }) => handleShadowBox(nativeEvent.layout)}
                     >
                         <Text style={styles.name}>{e.name}</Text>
                         <View>

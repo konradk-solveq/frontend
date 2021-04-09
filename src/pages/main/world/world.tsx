@@ -36,19 +36,6 @@ const World: React.FC<Props> = (props: Props) => {
     </path>
 </svg>`;
 
-    const piontEmpty = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416 202"/>'
-
-    const [showImg, setShowImg] = useState(false); // do odpalania animacji svg
-    const [refresh, setRefresh] = useState(0); // do odpalania animacji svg
-
-    useEffect(() => {
-        if (props.route && props.route.params && props.route.params.refresh && refresh != props.route.params.refresh) {
-            setShowImg(false)
-            setTimeout(() => { setShowImg(true); setRefresh(props.route.params.refresh) }, 60);
-        }
-        return setShowImg(false)
-    }, [props.route.params])
-
     const t = getVerticalPx(348);
     const h = ww * (202 / 416);
     const th = getVerticalPx(300);
@@ -69,7 +56,7 @@ const World: React.FC<Props> = (props: Props) => {
             alignItems: 'center',
             width: '100%',
             height: '100%',
-            backgroundColor: "#fdf5f5"
+            backgroundColor: "#fff"
         },
         image,
         header: {
@@ -111,10 +98,10 @@ const World: React.FC<Props> = (props: Props) => {
 
             <Text style={styles.header}>Świat Kross</Text>
 
-            {showImg && <AnimSvg
+            <AnimSvg
                 style={styles.image}
-                source={showImg ? piont : piontEmpty}
-            />}
+                source={piont}
+            />
 
             <Text style={styles.title}>Już niedługo zapraszamy na wspólną wycieczkę</Text>
 

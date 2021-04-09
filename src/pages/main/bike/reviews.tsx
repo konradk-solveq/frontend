@@ -192,7 +192,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
                             <View
                                 style={styles.box}
                                 key={'box_' + i}
-                                onLayout={e => handleShadowBox(e.nativeEvent.layout)}
+                                onLayout={({ nativeEvent }) => handleShadowBox(nativeEvent.layout)}
                             >
                                 <Text style={styles.day}>{hendleDay(e.date)}</Text>
                                 <Text style={styles.year}>{hendleYear(e.date)}</Text>

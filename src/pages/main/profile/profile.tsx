@@ -19,7 +19,7 @@ const Profile: React.FC<Props> = (props: Props) => {
             alignItems: 'center',
             width: '100%',
             height: '100%',
-            backgroundColor: "#fdf5f5"
+            backgroundColor: "#fff"
         },
         text: {
             top: -30,
