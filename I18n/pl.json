@@ -255,5 +255,25 @@
         "place": "Miejsce zakupu",
         "btn": "POBIERZ GWARANCJĘ"
     },
+    "validation": {
+        "isEmpty": "Pole {{property}} nie jest puste",
+        "isNotEmpty": "Pole {{property}} jest puste",
+        "isNumber": "{{value}} nie jest numerem",
+        "isInt": "{{value}} nie jest liczbą całkowitą",
+        "isString": "{{value}} nie jest ciągiem znaków",
+        "fields": {
+            "userBike": {
+                "frameNumber": "numer ramy",
+                "producer": "producent",
+                "model": "model",
+                "size": "rozmiar",
+                "color": "kolor"
+            }
+        }
+    },
+    "dataAction": {
+        "validationError": "Sprawdź błędy w formularzu",
+        "apiError": "Wystąpił błąd, spróbuj ponownie"
+    },
     "aaaaaaa-aaaaaa": "_____"
 }

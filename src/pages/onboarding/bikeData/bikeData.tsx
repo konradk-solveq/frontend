@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, SafeAreaView, ScrollView, View, Text } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, SafeAreaView, ScrollView, View, Text, Alert} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
 
-import { setBikeData } from '../../../storage/actions/index';
+import {setUserBike} from '../../../storage/actions/index';
+import {validateData} from '../../../utils/validation/validation';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
-import {Bike} from '../../../models/userBike.model';
+import {Bike, userBikeValidationRules} from '../../../models/userBike.model';
 
 import {
     setObjSize,
@@ -24,17 +25,17 @@ import {
 import deepCopy from '../../../helpers/deepCopy';
 
 interface Message {
-  frameNumber: string;
-  producer: string;
-  model: string;
-  size: string;
-  color: string;
+    frameNumber: string;
+    producer: string;
+    model: string;
+    size: string;
+    color: string;
 }
 
 interface Props {
-    navigation: any, // <<--- #askBartosz (1) ? nie mam pojęcia ajk to typować, da się wogóle ?
-    route: any,
-};
+    navigation: any; // <<--- #askBartosz (1) ? nie mam pojęcia ajk to typować, da się wogóle ?
+    route: any;
+}
 
 const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
@@ -96,12 +97,15 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-    const hendleGoFoward = () => { // validacja przycisku 'DALEJ'
+    const hendleGoFoward = async () => { // validacja przycisku 'DALEJ'
 
         let keys = Object.keys(data); // pomowne sprawdzenie dala zapamiętanych danych
         let newCanGoFoward = deepCopy(canGoFoward);
         for (let key of keys) {
-            newCanGoFoward[key] = hendleValidationOk(data[key]);
+            newCanGoFoward[key] = hendleValidationOk(
+                data[key as keyof Bike],
+                key,
+            );
         }
 
         let goFoward = true;
@@ -118,22 +122,28 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         setMessages(newMessages);
 
         if (goFoward) {
-            dispatch(
-                setBikeData(
-                data.frameNumber,
-                data.producer,
-                data.model,
-                data.size,
-                data.color,
-                ),
-            );
-            navigation.navigate('CyclingProfile')
+            try {
+                await dispatch(
+                    setUserBike(
+                        data.frameNumber,
+                        data.producer,
+                        data.model,
+                        data.size,
+                        data.color,
+                    ),
+                );
+                navigation.navigate('CyclingProfile');
+            } catch (error) {
+                /* TODO: show toast/alert */
+                console.log('[error -- bikeData]', error);
+                const errorMessage = error?.errorMessage || error;
+                Alert.alert('Error', errorMessage);
+            }
         }
-    }
+    };
 
-    const hendleValidationOk = (value: string) => {
-        if (value.length > 2) return true;
-        return false
+    const hendleValidationOk = (value: string, fieldName: string) => {
+        return validateData(userBikeValidationRules[fieldName as keyof Bike], value);
     }
 
     const hendleValidationWrong = (value: string) => {
@@ -203,9 +213,9 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.frameNum}
                         onChangeText={(value: string) => hendleChangeDataValue('frameNumber', value)}
-                        validationOk={hendleValidationOk}
+                        validationOk={(value: string) => hendleValidationOk(value, 'frameNumber')}
                         // validationWrong={hendleValidationWrong}
-                        messageWrong={trans.wrong}
+                        messageWrong={trans.wrong}//TODO: add bether form messages
                         value={data.frameNumber}
                         validationStatus={(value: boolean) => handleSetCanGoFoard('frameNumber', value)}
                         forceMessageWrong={messages.frameNumber}
@@ -221,7 +231,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                             key: 'producer',
                             backTo: 'BikeData'
                         })}
-                        validationOk={hendleValidationOk}
+                        validationOk={(value: string) => hendleValidationOk(value, 'producer')}
                         messageWrong={trans.wrong}
                         value={data.producer}
                         valueName={trans.producer.list}
@@ -234,7 +244,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.model}
                         onChangeText={(value: string) => hendleChangeDataValue('model', value)}
-                        validationOk={hendleValidationOk}
+                        validationOk={(value: string) => hendleValidationOk(value, 'model')}
                         // validationWrong={hendleValidationWrong}
                         messageWrong={trans.wrong}
                         value={data.model}
@@ -246,7 +256,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.size}
                         onChangeText={(value: string) => hendleChangeDataValue('size', value)}
-                        validationOk={hendleValidationOk}
+                        validationOk={(value: string) => hendleValidationOk(value, 'size')}
                         // validationWrong={hendleValidationWrong}
                         messageWrong={trans.wrong}
                         value={data.size}
@@ -258,7 +268,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.color}
                         onChangeText={(value: string) => hendleChangeDataValue('color', value)}
-                        validationOk={hendleValidationOk}
+                        validationOk={(value: string) => hendleValidationOk(value, 'color')}
                         // validationWrong={hendleValidationWrong}
                         messageWrong={trans.wrong}
                         value={data.color}

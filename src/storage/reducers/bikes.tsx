@@ -5,8 +5,10 @@ import * as actionTypes from '../actions/actionTypes';
 import {UserBike} from '../../models/userBike.model';
 
 interface BikesState {
-  list: any[];
-  userBike: UserBike;
+    list: any[];
+    userBike: UserBike;
+    error: string;
+    loading: boolean;
 }
 
 const initialStateList: BikesState = {
@@ -188,13 +190,15 @@ const initialStateList: BikesState = {
             ]
         }
     ],
-  userBike: {
-    frameNumber: '',
-    producer: '',
-    model: '',
-    size: '',
-    color: '',
-  },
+    userBike: {
+        frameNumber: '',
+        producer: '',
+        model: '',
+        size: '',
+        color: '',
+    },
+    error: '',
+    loading: false,
 };
 
 const bikesReducer = (state = initialStateList, action: any) => {
@@ -203,18 +207,28 @@ const bikesReducer = (state = initialStateList, action: any) => {
             return {
                 ...state,
                 list: action.list,
-            }
+            };
         }
         case actionTypes.SET_BIKES_DATA: {
             return {
                 ...state,
+                error: '',
+                loading: false,
                 list: action.list,
-            }
+            };
         }
         case actionTypes.SET_USER_BIKE: {
             return {
                 ...state,
+                error: '',
+                loading: false,
                 userBike: action.userBike,
+            };
+        }
+        case actionTypes.SET_USER_BIKE_ERROR: {
+            return {
+                ...state,
+                error: action.error,
             };
         }
     }
@@ -223,9 +237,9 @@ const bikesReducer = (state = initialStateList, action: any) => {
 };
 
 const persistConfig = {
-  key: 'bikes',
-  storage: AsyncStorage,
-  whitelist: ['userBike'],
+    key: 'bikes',
+    storage: AsyncStorage,
+    whitelist: ['userBike'],
 };
 
 export default persistReducer(persistConfig, bikesReducer);

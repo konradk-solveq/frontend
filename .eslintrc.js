@@ -1,5 +1,7 @@
 module.exports = {
     root: true,
     extends: '@react-native-community',
-    indent: 2,
+    rules: {
+        indent: ['error', 4, {SwitchCase: 1}],
+    },
 };
