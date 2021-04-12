@@ -22,4 +22,4 @@ const I18n_change = (languageCode) => {
     }
 }
 
-export { I18n_init, I18n_change }
+export { I18n_init, I18n_change, I18n }

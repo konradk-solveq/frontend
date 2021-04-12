@@ -1,11 +1,11 @@
 
 
-import React, { useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView, ScrollView, TouchableWithoutFeedback, View, Text } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, SafeAreaView, ScrollView, View, Text, Alert} from 'react-native';
 import I18n from 'react-native-i18n';
 import {RiderProfile} from '../../../models/userRideProfile.model';
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
-import { setProfileSettings } from '../../../storage/actions';
+import {setProfileSettings} from '../../../storage/actions';
 
 import VerticalHeader from './../../../sharedComponents/navi/verticalHeader/verticalHeader';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
@@ -19,9 +19,9 @@ import {
     getWidthPx,
     getWidthPxOf,
     getHeightPx,
-    getHorizontalPx
+    getHorizontalPx,
 } from '../../../helpers/layoutFoo';
-import deepCopy from "../../../helpers/deepCopy";
+import deepCopy from '../../../helpers/deepCopy';
 
 
 interface Props {
@@ -64,7 +64,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         setActive(newActive);
     }
 
-    const handleGoBackWithMemeo = () => {
+    const handleGoBackWithMemeo = async () => {
         let newData = deepCopy(dataSetting);
 
         let countProfiles = [0, 0, 0];
@@ -92,8 +92,15 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         newData.profileNumber = profNum;
         newData.name = types[profNum];
 
-        dispatch(setProfileSettings(newData));
-        props.navigation.navigate('CyclingProfileView', { profile: profNum })
+        try {
+            await dispatch(setProfileSettings(newData));
+            props.navigation.navigate('CyclingProfileView', {profile: profNum});
+        } catch (error) {
+            /* TODO: show toast/alert */
+            console.log('[error -- cyclingProfileSettings]', error);
+            const errorMessage = error?.errorMessage || error;
+            Alert.alert('Error', errorMessage);
+        }
     }
 
     setObjSize(334, 50);

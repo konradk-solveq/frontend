@@ -5,8 +5,4 @@ export {
     setOnboardingFinished,
 } from './user';
 
-export {
-    getBikesData,
-    setBikesData,
-    setBikeData,
-} from './bikes';
+export {getBikesData, setBikesData, setBikeData, setUserBike} from './bikes';

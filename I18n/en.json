@@ -1,3 +1,23 @@
 {
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "validation": {
+    "isEmpty": "Field {{property}} is not empty",
+    "isNotEmpty": "Field {{property}} is empty",
+    "isNumber": "{{value}} is not a number",
+    "isInt": "{{value}} is not a integer",
+    "isString": "{{value}} is not a string",
+    "fields": {
+        "userBike": {
+            "frameNumber": "frame number",
+            "producer": "producer",
+            "model": "model",
+            "size": "size",
+            "color": "color"
+        }
+    }
+  },
+  "dataAction": {
+    "validationError": "Check your form",
+    "apiErro": "There was an error, please try again"
+  }
 }

@@ -5,26 +5,28 @@ import {RiderProfile} from '../../models/userRideProfile.model';
 import {riderProfiles} from '../../utils/constants';
 
 interface UserState {
-  userName: string;
-  frameNumber: string;
-  riderProfile: RiderProfile;
-  onboardingFinished: boolean;
+    userName: string;
+    frameNumber: string;
+    riderProfile: RiderProfile;
+    onboardingFinished: boolean;
+    error: string;
 }
 
 const initialState: UserState = {
-  userName: '',
-  frameNumber: '',
-  riderProfile: {
-    cyclingStyle: 0,
-    tours: 0,
-    whereDoYouGo: 0,
-    drivingSpeed: 0,
-    distancePerMonth: 0,
-    whoAreYou: 0,
-    profileNumber: 0,
-    name: riderProfiles.AMATEUR,
-  },
-  onboardingFinished: false,
+    userName: '',
+    frameNumber: '',
+    riderProfile: {
+        cyclingStyle: 0,
+        tours: 0,
+        whereDoYouGo: 0,
+        drivingSpeed: 0,
+        distancePerMonth: 0,
+        whoAreYou: 0,
+        profileNumber: 0,
+        name: riderProfiles.AMATEUR,
+    },
+    onboardingFinished: false,
+    error: '',
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -33,25 +35,31 @@ const userReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 userName: action.userName,
-            }
+            };
         }
         case actionTypes.SET_FRAME_NUMBER: {
             return {
                 ...state,
                 frameNumber: action.frameNumber,
-            }
+            };
         }
         case actionTypes.SET_PROFILE_SETTINGS: {
             return {
                 ...state,
                 riderProfile: action.riderProfile,
-            }
+            };
         }
         case actionTypes.SET_ONBOARDING_FINISHED: {
             return {
                 ...state,
                 onboardingFinished: action.onboarding,
-            }
+            };
+        }
+        case actionTypes.SET_PROFILE_SETTINGS_ERROR: {
+            return {
+                ...state,
+                errror: action.errror,
+            };
         }
     }
 
@@ -59,9 +67,9 @@ const userReducer = (state = initialState, action: any) => {
 };
 
 const persistConfig = {
-  key: 'user',
-  storage: AsyncStorage,
-  whitelist: ['user', 'frameNumber', 'riderProfile', 'onboardingFinished'],
+    key: 'user',
+    storage: AsyncStorage,
+    whitelist: ['user', 'frameNumber', 'riderProfile', 'onboardingFinished'],
 };
 
 export default persistReducer(persistConfig, userReducer);
