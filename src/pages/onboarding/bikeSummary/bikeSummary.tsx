@@ -1,7 +1,8 @@
 import React from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 import I18n from 'react-native-i18n';
-import {useAppSelector} from '../../../hooks/redux';
+import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
+import {setOnboardingFinished} from '../../../storage/actions';
 
 import {UserBike} from '../../../models/userBike.model';
 import {getBike} from '../../../helpers/transformUserBikeData';
@@ -27,6 +28,7 @@ interface IProps {
 
 const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const trans: any = I18n.t('BikeSummary');
+    const dispatch = useAppDispatch();
 
     const frameNumber = route.params.frameNumber;
     const bikeData = useAppSelector<UserBike | null>(state =>
@@ -120,7 +122,14 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                 <View style={styles.btn}>
                     <BigRedBtn
                         title={trans.goForward}
-                        onpress={() => navigation.navigate('CyclingProfile')}
+                        onpress={() => {
+                            /* TODO: this change is temporary - business  decision */
+                            // navigation.navigate('CyclingProfile')
+                            /* start to delete */
+                            dispatch(setOnboardingFinished(true));
+                            navigation.navigate('MineMenu');
+                            /* end to delete */
+                        }}
                     />
                 </View>
             </View>
