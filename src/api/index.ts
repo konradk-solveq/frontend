@@ -1,0 +1,1 @@
+export {getBike} from './bikes';

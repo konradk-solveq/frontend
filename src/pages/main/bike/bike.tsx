@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, View, Text, TouchableWithoutFeedback } from 'react-native';
-import { connect } from 'react-redux';
+import {StyleSheet, SafeAreaView, View, Text, TouchableWithoutFeedback} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import { getBikesData, setBikesData } from '../../../storage/actions/index';
-import { ScrollView } from 'react-native-gesture-handler';
-import Svg, { Path } from 'react-native-svg';
+import {ScrollView} from 'react-native-gesture-handler';
+import Svg, {Path} from 'react-native-svg';
+
+import {useAppSelector} from '../../../hooks/redux';
+import {getBike} from '../../../helpers/transformUserBikeData';
 
 import Warranty from './warranty';
 import Reviews from './reviews';
@@ -22,14 +23,12 @@ import {
 interface Props {
     navigation: any,
     route: any,
-    bikesData: any
-    getBikesData: Function,
-    setBikesData: Function,
 };
 
 const Bike: React.FC<Props> = (props: Props) => {
+    const frameNumber = useAppSelector<string>(state => state.user.frameNumber);
+    const bike = useAppSelector(state => getBike(state.bikes.list, frameNumber));
 
-    const bike = props.bikesData[0];
     const trans = I18n.t('MainBike');
 
     setObjSize(334, 50);
@@ -128,29 +127,33 @@ const Bike: React.FC<Props> = (props: Props) => {
                 <Text style={styles.bikeName}>{bike.description.name}</Text>
 
                 <Text style={styles.bikeDetails}>
-                    {trans.details[0] + bike.description.producer + trans.details[1] + bike.description.frame}
+                    {trans.details[0] + bike.description.producer + trans.details[1] + bike.description.serial_number}
                 </Text>
 
                 <Warranty
                     style={styles.warranty}
                     navigation={props.navigation}
-                    type={bike.warranty.type}
-                    toEnd={bike.warranty.toEnd}
+                    type={bike?.warranty?.type}
+                    toEnd={bike?.warranty?.toEnd || ''}
                     warranty={trans.warranty}
-                    details={{ description: bike.description, warranty: bike.warranty }}
+                    details={{ description: bike.description, warranty: bike?.warranty }}
                 />
 
-                <Reviews
-                    style={styles.reviews}
-                    list={bike.warranty.reviews}
-                    description={trans.warranty.reviews}
-                />
+                {bike?.warranty?.reviews && (
+                    <Reviews
+                        style={styles.reviews}
+                        list={bike.warranty.reviews}
+                        description={trans.warranty.reviews}
+                    />
+                )}
 
-                <ComplaintsRepairs
-                    style={styles.complaintsRepairs}
-                    list={bike.complaintsRepairs}
-                    description={trans.warranty.complaintsRepairs}
-                />
+                {bike?.complaintsRepairs && (
+                    <ComplaintsRepairs
+                        style={styles.complaintsRepairs}
+                        list={bike.complaintsRepairs}
+                        description={trans.warranty.complaintsRepairs}
+                    />
+                )}
 
                 <View style={styles.separator} />
 
@@ -162,15 +165,4 @@ const Bike: React.FC<Props> = (props: Props) => {
     )
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-        bikesData: state.bikes.list
-    }
-}
-
-const mapDispatchToProps = (dispatch: any) => ({
-    setBikesData: (name: string) => dispatch(setBikesData(name)),
-    getBikesData: async () => dispatch(await getBikesData()),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Bike)
+export default Bike;

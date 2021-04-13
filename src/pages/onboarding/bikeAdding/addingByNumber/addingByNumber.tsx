@@ -1,11 +1,9 @@
-
-
-import React, { useEffect, useState } from "react";
-import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
+import React, {useEffect, useState} from "react";
+import {StyleSheet, SafeAreaView, View, Text, Alert} from 'react-native';
 import I18n from 'react-native-i18n';
-import { connect } from "react-redux";
 
-import { setFrameNumber } from '../../../../storage/actions/index';
+import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
+import {setBikesListByFrameNumber} from '../../../../storage/actions';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
@@ -15,22 +13,21 @@ import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import {
     setObjSize,
     getWidthPx,
-    getHeightPx,
     getVerticalPx,
     getCenterLeftPx,
-    getPosAndWid,
     getPosWithMinHeight,
-    getHorizontalPx
+    getHorizontalPx,
 } from '../../../../helpers/layoutFoo';
-
+import Loader from '../loader/loader';
 
 interface Props {
-    navigation: any,
-    setFrame: Function,
-    frame: string
-};
+    navigation: any;
+}
 
 const AddingByNumber: React.FC<Props> = (props: Props) => {
+    const dispatch = useAppDispatch();
+    const frame: string = useAppSelector(state => state.user.frameNumber);
+    const isLoading: boolean = useAppSelector(state => state.bikes.loading);
 
     const trans = I18n.t('AddingByNumber')
 
@@ -40,8 +37,8 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     // do pobrania nazwy użytkownika zz local sorage
     useEffect(() => {
-        if (typeof props.frame == 'string') setInputFrame(props.frame);
-    }, [props.frame])
+        if (typeof frame == 'string') setInputFrame(frame);
+    }, [frame])
 
     // do wstawiania wartości do inputa i reset powiadomień o błdnym wypełnieniu
     const hendleInputFrame = (value: string) => {
@@ -63,13 +60,26 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     }
 
     // walidacja po naciśnięciu przyciku 'Dalej'
-    const hendleGoFoward = () => {
+    const hendleGoFoward = async () => {
         if (canGoFoward) {
-            props.setFrame(inputFrame);
-            props.navigation.navigate({
-                name: 'BikeData',
-                params: {frameNumber: inputFrame},
-            });
+            try {
+                await dispatch(setBikesListByFrameNumber(inputFrame));
+                props.navigation.navigate({
+                    name: 'BikeSummary',
+                    params: {frameNumber: inputFrame},
+                });
+                return;
+            } catch (error) {
+                if (error.notFound) {
+                    props.navigation.navigate({
+                        name: 'BikeData',
+                        params: {frameNumber: inputFrame},
+                    });
+                    return;
+                }
+                const errorMessage = error?.errorMessage || 'Error';
+                Alert.alert('Error', errorMessage);
+            }
         } else {
             setForceMessageWrong('Pole wymagane')
         }
@@ -110,6 +120,14 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             bottom: getVerticalPx(65)
         }
     })
+
+    if (isLoading){
+        return (
+            <SafeAreaView style={styles.container}>
+                <Loader />
+            </SafeAreaView>
+        );
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -154,14 +172,4 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-    return {
-        frame: state.user.frameNumber
-    }
-}
-
-const mapDispatchToProps = (dispatch: any) => ({
-    setFrame: (num: string) => dispatch(setFrameNumber(num)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddingByNumber)
+export default AddingByNumber;

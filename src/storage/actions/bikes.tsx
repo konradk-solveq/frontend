@@ -1,8 +1,12 @@
+import {validateOrReject, ValidationError} from 'class-validator';
 import {I18n} from '../../../I18n/I18n';
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
 import {UserBike} from '../../models/userBike.model';
-import {validateOrReject, ValidationError} from 'class-validator';
+import {Parameters, BikeDescription} from '../../models/bike.model';
+import {Bike} from '../../models/bike.model';
+import {getBikeByFrameNr} from '../../services';
+import {setFrameNumber} from './index';
 
 interface actionAsyncResponse {
     success: boolean;
@@ -196,42 +200,84 @@ export const getBikesData = async () => {
     };
 };
 
-export const setBikesData = (list: string) => {
-    // miejse na akcję
+export const setBikesData = (data: Bike) => {
     return {
         type: actionTypes.SET_BIKES_DATA,
-        list: list,
+        bikeData: data,
     };
 };
 
+const setLoadingState = (state: boolean) => ({
+    type: actionTypes.LOADING_BIKE_DATA_STATUS,
+    state: state,
+});
+
 export const setError = (error: string) => ({
-    type: actionTypes.SET_USER_BIKE_ERROR,
+    type: actionTypes.SET_BIKES_ERROR,
     error: error,
 });
 
-export const setBikeData = (data: UserBike) => ({
-    type: actionTypes.SET_USER_BIKE,
-    userBike: data,
-});
-
-export const setUserBike = (
-    frameNumber: string,
-    producer: string,
-    model: string,
-    size: string,
-    color: string,
+export const setBikesListByFrameNumber = (
+    num: string,
 ): AppThunk<Promise<actionAsyncResponse>> => async dispatch => {
+    dispatch(setLoadingState(true));
     try {
-        /* TODO: http request */
-        const data = new UserBike(frameNumber, producer, model, size, color);
+        const response = await getBikeByFrameNr(num);
 
-        await validateOrReject(data);
+        dispatch(setFrameNumber(num));
 
-        dispatch(setBikeData(data));
+        if (response.error || !response.data?.description) {
+            dispatch(setError(response.error));
 
-        return Promise.resolve({success: true, errorMessage: '', data: data});
+            return Promise.reject({
+                success: false,
+                errorMessage: response.error,
+                notFound: true,
+                data: null,
+            });
+        } else {
+            /* TODO: fix class-transformer */
+            // const newData = plainToClass(UserBike, response.data);
+
+            const desc = response.data.description;
+            const {name, id, sku, producer, serial_number} = desc;
+
+            const description = new BikeDescription(
+                name,
+                id,
+                sku,
+                producer,
+                serial_number,
+            );
+            description.color = desc?.color || '';
+            description.bought = desc?.bought || '';
+            description.colorCodes = desc?.colorCodes || '';
+            description.purpose = desc?.purpose || '';
+            description.size = desc?.size?.replace('"', '') || '';
+            await validateOrReject(description);
+
+            const newData = new UserBike(description);
+            if (response.data?.images) {
+                newData.images = response.data?.images;
+            }
+            if (response.data?.params && Array.isArray(response.data.params)) {
+                newData.params = response.data.params.map((el: Parameters) => {
+                    return new Parameters(el.name, el.customizable, el?.list);
+                });
+            }
+            if (response.data?.complaintsRepairs) {
+                newData.complaintsRepairs = response.data?.complaintsRepairs;
+            }
+
+            dispatch(setBikesData(newData));
+
+            return Promise.resolve({
+                success: true,
+                errorMessage: '',
+                data: newData,
+            });
+        }
     } catch (error) {
-        console.log(error);
         if (error?.[0] instanceof ValidationError) {
             const errorMessage = I18n.t('dataAction.validationError');
             dispatch(setError(errorMessage));

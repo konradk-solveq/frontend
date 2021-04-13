@@ -15,7 +15,7 @@ interface Props {
     // * wartości wymagane
     onpress: Function, // po naciśnięciu strzałki
     inner: string, // nazwa headera
-    getHeight: Function, // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
+    getHeight?: Function, // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
 }
 
 const ww = Dimensions.get('window').width;
