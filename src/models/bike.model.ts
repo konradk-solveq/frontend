@@ -142,11 +142,14 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
     @MinLength(3)
     color?: string;
 
+    /**
+     *  TODO: sould be validated as regex. Cannot be number because
+     * API reponse is a string with letter and specical cahr
+     * */
     @IsOptional()
     @IsNotEmpty()
-    @IsNumberString()
     @MinLength(2)
-    @MaxLength(4)
+    @MaxLength(10)
     size?: string;
 
     @IsOptional()

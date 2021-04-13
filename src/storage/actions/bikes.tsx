@@ -253,7 +253,7 @@ export const setBikesListByFrameNumber = (
             description.bought = desc?.bought || '';
             description.colorCodes = desc?.colorCodes || '';
             description.purpose = desc?.purpose || '';
-            description.size = desc?.size?.replace('"', '') || '';
+            description.size = desc?.size || '';
             await validateOrReject(description);
 
             const newData = new UserBike(description);
