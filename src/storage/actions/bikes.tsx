@@ -249,11 +249,24 @@ export const setBikesListByFrameNumber = (
                 producer,
                 serial_number,
             );
-            description.color = desc?.color || '';
-            description.bought = desc?.bought || '';
-            description.colorCodes = desc?.colorCodes || '';
-            description.purpose = desc?.purpose || '';
-            description.size = desc?.size || '';
+            if (desc?.color) {
+                description.color = desc?.color;
+            }
+            if (desc?.bought) {
+                description.bought = desc?.bought;
+            }
+            if (desc?.bought) {
+                description.bought = desc?.bought;
+            }
+            if (desc?.colorCodes) {
+                description.colorCodes = desc?.colorCodes;
+            }
+            if (desc?.purpose) {
+                description.purpose = desc?.purpose;
+            }
+            if (desc?.size) {
+                description.size = desc?.size;
+            }
             await validateOrReject(description);
 
             const newData = new UserBike(description);
