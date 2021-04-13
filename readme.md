@@ -14,6 +14,11 @@ znajdują się w katalogu: __I18n__
 
 ### Instalacja dependencji
 
+```
+cp .env.example .env
+```
+replace `API_URL`
+
 gdyby nie zadziałało:
 ```html
 yarn install

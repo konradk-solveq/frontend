@@ -1,0 +1,1 @@
+export {getBikeByFrameNr} from './bikesService';

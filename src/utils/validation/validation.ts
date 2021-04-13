@@ -22,6 +22,10 @@ export const validateData = (rules: any[], value: any) => {
     let isValid = true;
 
     rules.forEach(el => {
+        if (!isValid) {
+            return;
+        }
+
         if (typeof el === 'object') {
             if (el?.min) {
                 isValid = minLength(value, el.min);

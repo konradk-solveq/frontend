@@ -120,6 +120,15 @@
         "btnWrong": "Pole wymagane",
         "btn": "DALEJ"
     },
+    "BikeSummary": {
+        "header": "Twój rower",
+        "details": [
+            "od ",
+            " / nr ramy "
+        ],
+        "goForward": "DALEJ",
+        "btnChange": "ZMIEŃ"
+    },
     "Profile": {
         "settings": {
             "title": "Dostosuj profil",

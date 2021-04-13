@@ -1,10 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, SafeAreaView, ScrollView, View, Text, Alert} from 'react-native';
+import {
+    StyleSheet,
+    SafeAreaView,
+    ScrollView,
+    View,
+    Text,
+    Alert,
+} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
 
-import {setUserBike} from '../../../storage/actions/index';
+import {setBikesData} from '../../../storage/actions';
 import {validateData} from '../../../utils/validation/validation';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -12,7 +19,10 @@ import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
-import {Bike, userBikeValidationRules} from '../../../models/userBike.model';
+import {UserBike} from '../../../models/userBike.model';
+import {userBikeValidationRules} from '../../../models/bike.model';
+import {BikeBaseData} from '../../../models/bike.model';
+import {getBike} from '../../../helpers/transformUserBikeData';
 
 import {
     setObjSize,
@@ -25,9 +35,9 @@ import {
 import deepCopy from '../../../helpers/deepCopy';
 
 interface Message {
-    frameNumber: string;
+    serial_number: string;
     producer: string;
-    model: string;
+    name: string;
     size: string;
     color: string;
 }
@@ -39,34 +49,38 @@ interface Props {
 
 const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
-    const trans = I18n.t('BikeData');
+    const trans: any = I18n.t('BikeData');
 
-    const frame: string = useAppSelector(state => state.user.frame);
-    const userBike: Bike = useAppSelector(state => state.bikes.userBike);
+    const frame: string = useAppSelector(state => state.user.frameNumber);
+    const userBike = useAppSelector<UserBike | null>(state =>
+        getBike(state.bikes.list, frame),
+    );
 
-    const frameNumber = route?.params?.frameNumber || frame;
-    const [data, setData] = useState<Bike>({
-        frameNumber: frameNumber,
-        producer: userBike.producer || '',
-        model: userBike.model || '',
-        size: userBike.size || '',
-        color: userBike.color || '',
+    const frameNumber: string = route?.params?.serial_number || frame;
+    const [data, setData] = useState<BikeBaseData>({
+        id: userBike?.description?.id || null,
+        sku: '',
+        serial_number: frameNumber,
+        producer: userBike?.description?.producer || '',
+        name: userBike?.description?.name || '',
+        size: userBike?.description?.size || '',
+        color: userBike?.description?.color || '',
     }); // dane poszczególnych pól
     const [messages, setMessages] = useState<Message>({
-        frameNumber: '',
+        serial_number: '',
         producer: '',
-        model: '',
+        name: '',
         size: '',
-        color: ''
+        color: '',
     }); // widomości przy wilidaci po wciśnięciu 'DALEJ'
-    const [canGoFoward, setCanGoFoward] = useState({ // sant poprawności danych w komponencie
-        frameNumber: false,
+    const [canGoFoward, setCanGoFoward] = useState({
+        // sant poprawności danych w komponencie
+        serial_number: false,
         producer: false,
-        model: false, // <<--- #askBartosz (2) ? czy lepeiej ten stan przechowywać w komponencie i odpytywać go callbackiem ?
+        name: false, // <<--- #askBartosz (2) ? czy lepeiej ten stan przechowywać w komponencie i odpytywać go callbackiem ?
         size: false,
-        color: false
+        color: false,
     });
-
 
     // zmiana danych w State po zmiane wartości w komponencie
     const hendleChangeDataValue = (key: string, value: string) => {
@@ -77,33 +91,34 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         let newMessages = deepCopy(messages);
         newMessages[key] = '';
         setMessages(newMessages);
-    }
+    };
 
     // zmiana statusu poprawności komponentu do walidacji dla przycisku 'DALEJ'
     const handleSetCanGoFoard = (key: string, value: boolean) => {
         let newCanGoFoward = deepCopy(canGoFoward);
         newCanGoFoward[key] = value;
         setCanGoFoward(newCanGoFoward);
-    }
+    };
 
-  useEffect(() => {
-    let canGoForw = {...canGoFoward};
-    Object.keys(data).forEach(k => {
-      const key = k as keyof Bike;
-      const canGo = data[key] ? true : false;
-      canGoForw[key] = canGo;
-    });
-    setCanGoFoward(canGoForw);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    useEffect(() => {
+        let canGoForw = {...canGoFoward};
+        Object.keys(data).forEach(k => {
+            const key = k as keyof BikeBaseData;
+            const canGo = data[key] ? true : false;
+            canGoForw[key] = canGo;
+        });
+        setCanGoFoward(canGoForw);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    const hendleGoFoward = async () => { // validacja przycisku 'DALEJ'
+    const hendleGoFoward = async () => {
+        // validacja przycisku 'DALEJ'
 
         let keys = Object.keys(data); // pomowne sprawdzenie dala zapamiętanych danych
         let newCanGoFoward = deepCopy(canGoFoward);
         for (let key of keys) {
             newCanGoFoward[key] = hendleValidationOk(
-                data[key as keyof Bike],
+                data[key as keyof BikeBaseData],
                 key,
             );
         }
@@ -124,44 +139,56 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         if (goFoward) {
             try {
                 await dispatch(
-                    setUserBike(
-                        data.frameNumber,
-                        data.producer,
-                        data.model,
-                        data.size,
-                        data.color,
-                    ),
+                    setBikesData({
+                        description: {
+                            name: data.name,
+                            id: null,
+                            sku: '',
+                            producer: data.producer,
+                            serial_number: data.serial_number,
+                            size: data.size,
+                            color: data.color,
+                        },
+                    }),
                 );
                 navigation.navigate('CyclingProfile');
             } catch (error) {
-                /* TODO: show toast/alert */
-                console.log('[error -- bikeData]', error);
-                const errorMessage = error?.errorMessage || error;
+                const errorMessage = error?.errorMessage || 'Error';
                 Alert.alert('Error', errorMessage);
             }
         }
     };
 
     const hendleValidationOk = (value: string, fieldName: string) => {
-        return validateData(userBikeValidationRules[fieldName as keyof Bike], value);
-    }
+        return validateData(
+            userBikeValidationRules[fieldName as keyof BikeBaseData],
+            value,
+        );
+    };
 
     const hendleValidationWrong = (value: string) => {
         const reg = new RegExp('^[0-9]+$');
-        if (value.length > 0 && !reg.test(value)) return true;
-        return false
-    }
+        if (value.length > 0 && !reg.test(value)) {
+            return true;
+        }
+        return false;
+    };
 
-    useEffect(() => { // do obsługi listy
+    useEffect(() => {
+        // do obsługi listy
         if (route.params) {
             let params = route.params;
 
             if (params.key) {
-                if (params.value) hendleChangeDataValue(params.key, params.value);
-                if (params.status) handleSetCanGoFoard(params.key, params.status)
+                if (params.value) {
+                    hendleChangeDataValue(params.key, params.value);
+                }
+                if (params.status) {
+                    handleSetCanGoFoard(params.key, params.status);
+                }
             }
         }
-    }, [route.params])
+    }, [route.params]);
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -169,11 +196,11 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     const styles = StyleSheet.create({
         scroll: {
             width: '100%',
-            height: '100%',//wh - headHeight,
+            height: '100%', //wh - headHeight,
             top: headHeight,
         },
         light30: {
-            fontFamily: "DIN2014Narrow-Light",
+            fontFamily: 'DIN2014Narrow-Light',
             fontSize: getHorizontalPx(30),
             color: '#555555',
             textAlign: 'left',
@@ -183,28 +210,27 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
             width: getWidthPx(),
             left: getCenterLeftPx(),
             marginTop: getVerticalPx(45),
-            marginBottom: getVerticalPx(30)
+            marginBottom: getVerticalPx(30),
         },
         inputAndPlaceholder: {
             position: 'relative',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginTop: getVerticalPx(10)
+            marginTop: getVerticalPx(10),
         },
         botton: {
             width: getWidthPx(),
             height: getHeightPx(),
             left: getCenterLeftPx(),
             marginTop: getVerticalPx(10),
-            marginBottom: headHeight + getVerticalPx(65)
-        }
-    })
+            marginBottom: headHeight + getVerticalPx(65),
+        },
+    });
 
     return (
-        <SafeAreaView style={{ backgroundColor: "white" }}>
+        <SafeAreaView style={{backgroundColor: 'white'}}>
             <View style={styles.scroll}>
                 <ScrollView>
-
                     <Text style={[styles.title, styles.light30]}>
                         {trans.title}
                     </Text>
@@ -212,76 +238,103 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                     <OneLineTekst
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.frameNum}
-                        onChangeText={(value: string) => hendleChangeDataValue('frameNumber', value)}
-                        validationOk={(value: string) => hendleValidationOk(value, 'frameNumber')}
+                        onChangeText={(value: string) =>
+                            hendleChangeDataValue('serial_number', value)
+                        }
+                        validationOk={(value: string) =>
+                            hendleValidationOk(value, 'serial_number')
+                        }
                         // validationWrong={hendleValidationWrong}
-                        messageWrong={trans.wrong}//TODO: add bether form messages
-                        value={data.frameNumber}
-                        validationStatus={(value: boolean) => handleSetCanGoFoard('frameNumber', value)}
-                        forceMessageWrong={messages.frameNumber}
+                        messageWrong={trans.wrong} //TODO: add bether form messages
+                        value={data.serial_number}
+                        validationStatus={(value: boolean) =>
+                            handleSetCanGoFoard('frameNumber', value)
+                        }
+                        forceMessageWrong={messages.serial_number}
                     />
 
                     <ListInputBtn
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.producer.title}
-                        onpress={() => navigation.navigate('ListPageInput', {
-                            header: trans.producer.listHeader,
-                            list: trans.producer.listData,
-                            last: trans.producer.listDataLast,
-                            key: 'producer',
-                            backTo: 'BikeData'
-                        })}
-                        validationOk={(value: string) => hendleValidationOk(value, 'producer')}
+                        onpress={() =>
+                            navigation.navigate('ListPageInput', {
+                                header: trans.producer.listHeader,
+                                list: trans.producer.listData,
+                                last: trans.producer.listDataLast,
+                                key: 'producer',
+                                backTo: 'BikeData',
+                            })
+                        }
+                        validationOk={(value: string) =>
+                            hendleValidationOk(value, 'producer')
+                        }
                         messageWrong={trans.wrong}
                         value={data.producer}
                         valueName={trans.producer.list}
-
-                        validationStatus={(value: boolean) => handleSetCanGoFoard('producer', value)}
+                        validationStatus={(value: boolean) =>
+                            handleSetCanGoFoard('producer', value)
+                        }
                         forceMessageWrong={messages.producer}
                     />
 
                     <OneLineTekst
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.model}
-                        onChangeText={(value: string) => hendleChangeDataValue('model', value)}
-                        validationOk={(value: string) => hendleValidationOk(value, 'model')}
+                        onChangeText={(value: string) =>
+                            hendleChangeDataValue('name', value)
+                        }
+                        validationOk={(value: string) =>
+                            hendleValidationOk(value, 'name')
+                        }
                         // validationWrong={hendleValidationWrong}
                         messageWrong={trans.wrong}
-                        value={data.model}
-                        validationStatus={(value: boolean) => handleSetCanGoFoard('model', value)}
-                        forceMessageWrong={messages.model}
+                        value={data.name}
+                        validationStatus={(value: boolean) =>
+                            handleSetCanGoFoard('name', value)
+                        }
+                        forceMessageWrong={messages.name}
                     />
 
                     <OneLineTekst
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.size}
-                        onChangeText={(value: string) => hendleChangeDataValue('size', value)}
-                        validationOk={(value: string) => hendleValidationOk(value, 'size')}
+                        onChangeText={(value: string) =>
+                            hendleChangeDataValue('size', value)
+                        }
+                        validationOk={(value: string) =>
+                            hendleValidationOk(value, 'size')
+                        }
                         // validationWrong={hendleValidationWrong}
                         messageWrong={trans.wrong}
                         value={data.size}
-                        validationStatus={(value: boolean) => handleSetCanGoFoard('size', value)}
+                        validationStatus={(value: boolean) =>
+                            handleSetCanGoFoard('size', value)
+                        }
                         forceMessageWrong={messages.size}
                     />
 
                     <OneLineTekst
                         style={styles.inputAndPlaceholder}
                         placeholder={trans.color}
-                        onChangeText={(value: string) => hendleChangeDataValue('color', value)}
-                        validationOk={(value: string) => hendleValidationOk(value, 'color')}
+                        onChangeText={(value: string) =>
+                            hendleChangeDataValue('color', value)
+                        }
+                        validationOk={(value: string) =>
+                            hendleValidationOk(value, 'color')
+                        }
                         // validationWrong={hendleValidationWrong}
                         messageWrong={trans.wrong}
                         value={data.color}
-                        validationStatus={(value: boolean) => handleSetCanGoFoard('color', value)}
+                        validationStatus={(value: boolean) =>
+                            handleSetCanGoFoard('color', value)
+                        }
                         forceMessageWrong={messages.color}
                     />
 
                     <BigRedBtn
                         style={styles.botton}
                         title={trans.btn}
-                        onpress={() => hendleGoFoward()}
-                    ></BigRedBtn>
-
+                        onpress={() => hendleGoFoward()} />
                 </ScrollView>
             </View>
 
@@ -289,9 +342,9 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                 onpress={() => navigation.goBack()}
                 inner={trans.header}
                 getHeight={setHeadHeightt}
-            ></StackHeader>
+            />
         </SafeAreaView>
-    )
-}
+    );
+};
 
 export default BikeData;

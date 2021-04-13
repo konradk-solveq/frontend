@@ -12,7 +12,7 @@ import {
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
-    navigation: any
+    navigation?: any
 };
 
 const ww = Dimensions.get('window').width;

@@ -1,72 +1,33 @@
+import {IsNotEmpty, IsOptional, IsArray, IsUrl} from 'class-validator';
+
 import {
-    IsNotEmpty,
-    IsString,
-    IsNumberString,
-    MinLength,
-    MaxLength,
-} from 'class-validator';
-import validationRules from '../utils/validation/validationRules';
-
-export interface Bike {
-    frameNumber: string;
-    producer: string;
-    model: string;
-    size: string;
-    color: string;
-}
-
-export const userBikeValidationRules = {
-    frameNumber: [validationRules.required, validationRules.notEmpty, {min: 3}],
-    producer: [validationRules.required, validationRules.string, {min: 3}],
-    model: [validationRules.required, validationRules.string, {min: 3}],
-    size: [
-        validationRules.required,
-        validationRules.string,
-        validationRules.numberString,
-        {min: 2},
-        {max: 4},
-    ],
-    color: [validationRules.required, validationRules.string, {min: 3}],
-};
+    Bike,
+    BikeDescription,
+    Parameters,
+    Warranty,
+    ComplaintStateType,
+} from './bike.model';
 
 export class UserBike implements Bike {
     @IsNotEmpty()
-    @IsString()
-    @MinLength(3)
-    public frameNumber: string;
+    // @Type(() => BikeDescription)
+    public description: BikeDescription;
 
-    @IsNotEmpty()
-    @IsString()
-    @MinLength(3)
-    public producer: string;
+    @IsOptional()
+    @IsArray()
+    @IsUrl()
+    public images?: string[] /* urls */;
 
-    @IsNotEmpty()
-    @IsString()
-    @MinLength(3)
-    public model: string;
+    @IsOptional()
+    public params?: Parameters[];
 
-    @IsNotEmpty()
-    @IsNumberString()
-    @MinLength(2)
-    @MaxLength(4)
-    public size: string;
+    @IsOptional()
+    public warranty?: Warranty;
 
-    @IsNotEmpty()
-    @IsString()
-    @MinLength(3)
-    public color: string;
+    @IsOptional()
+    public complaintsRepairs?: ComplaintStateType;
 
-    constructor(
-        frameNumber: string,
-        producer: string,
-        model: string,
-        size: string,
-        color: string,
-    ) {
-        this.frameNumber = frameNumber;
-        this.producer = producer;
-        this.model = model;
-        this.size = size;
-        this.color = color;
+    constructor(description: BikeDescription) {
+        this.description = description;
     }
 }

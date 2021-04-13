@@ -23,14 +23,19 @@ export const setFrameNumber = (num: string) => ({
     frameNumber: num,
 });
 
-export const setRiderProfile = (data: RiderProfile) => ({
-    type: actionTypes.SET_PROFILE_SETTINGS,
-    riderProfile: data,
-});
-
 export const setError = (error: string) => ({
     type: actionTypes.SET_PROFILE_SETTINGS_ERROR,
     error: error,
+});
+
+export const setLoadingState = (state: boolean) => ({
+    type: actionTypes.LOADING_USER_STATUS,
+    state: state,
+});
+
+export const setRiderProfile = (data: RiderProfile) => ({
+    type: actionTypes.SET_PROFILE_SETTINGS,
+    riderProfile: data,
 });
 
 export const setProfileSettings = (
