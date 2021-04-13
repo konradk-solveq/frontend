@@ -50,7 +50,8 @@ const OnboardingStackNavigator: React.FC = () => {
 
             {/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
-            <Stack.Screen name="CyclingProfile" component={CyclingProfile} />
+            {/* TODO: this change is temporary - business  decision */}
+            {/* <Stack.Screen name="CyclingProfile" component={CyclingProfile} /> */}
 
             <Stack.Screen name="MineMenu" component={MineMenu} />
 

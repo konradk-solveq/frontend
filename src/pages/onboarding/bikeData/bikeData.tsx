@@ -11,7 +11,7 @@ import I18n from 'react-native-i18n';
 
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
 
-import {setBikesData} from '../../../storage/actions';
+import {setBikesData, setOnboardingFinished} from '../../../storage/actions';
 import {validateData} from '../../../utils/validation/validation';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -151,7 +151,12 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                         },
                     }),
                 );
-                navigation.navigate('CyclingProfile');
+                /* TODO: this change is temporary - business  decision */
+                // navigation.navigate('CyclingProfile');
+                /* start to delete */
+                dispatch(setOnboardingFinished(true));
+                navigation.navigate('MineMenu');
+                /* end to delete */
             } catch (error) {
                 const errorMessage = error?.errorMessage || 'Error';
                 Alert.alert('Error', errorMessage);
