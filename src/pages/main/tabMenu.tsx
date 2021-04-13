@@ -107,8 +107,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
 
             />
 
-            {/* TODO: this change is temporary - business  decision */}
-            {/* <Tab.Screen name="Profile" component={Profile}
+            <Tab.Screen name="Profile" component={Profile}
                 options={{
                     tabBarLabel: '',
                     tabBarIcon: ({ focused }) => (
@@ -120,7 +119,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
                         </Svg>),
                 }}
 
-            /> */}
+            />
 
         </Tab.Navigator>
     )
