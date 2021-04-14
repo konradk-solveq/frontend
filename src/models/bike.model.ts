@@ -140,6 +140,7 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
     @IsNotEmpty()
     @IsString()
     @MinLength(3)
+    @MaxLength(30)
     color?: string;
 
     /**
@@ -148,8 +149,9 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
      * */
     @IsOptional()
     @IsNotEmpty()
+    // @IsStringNumber()
     @MinLength(2)
-    @MaxLength(10)
+    @MaxLength(20)
     size?: string;
 
     @IsOptional()
