@@ -1,20 +1,17 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import React from 'react';
+import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 
-import {
-    getHorizontalPx,
-} from '../../helpers/layoutFoo';
+import {getHorizontalPx} from '../../helpers/layoutFoo';
 
 interface Props {
-    style?: any,
-    title: string,
-    onpress: Function,
-    algin?: string,
-    color?: string
+    style?: any;
+    title: string;
+    onpress: Function;
+    algin?: string;
+    color?: string;
 }
 
 const TranspLightBtn: React.FC<Props> = (props: Props) => {
-
     let styles = StyleSheet.create({
         btn: {
             display: 'flex',
@@ -22,24 +19,20 @@ const TranspLightBtn: React.FC<Props> = (props: Props) => {
         },
         text: {
             width: '100%',
-            fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getHorizontalPx(18),
+            fontFamily: 'DIN2014Narrow-Regular',
+            fontSize: 18,
             textAlign: props.algin ? props.algin : 'center',
-            color: props.color ? props.color : '#d8232a'
-        }
-    })
+            color: props.color ? props.color : '#d8232a',
+        },
+    });
 
     return (
-        <View
-            style={[styles.btn, props.style]}
-        >
-            <TouchableOpacity
-                onPress={props.onpress}
-            >
+        <View style={[styles.btn, props.style]}>
+            <TouchableOpacity onPress={props.onpress}>
                 <Text style={styles.text}>{props.title}</Text>
             </TouchableOpacity>
         </View>
-    )
-}
+    );
+};
 
 export default TranspLightBtn;

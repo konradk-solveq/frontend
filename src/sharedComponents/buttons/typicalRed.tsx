@@ -1,20 +1,17 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import React from 'react';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
-import {
-    getHorizontalPx,
-} from '../../helpers/layoutFoo';
+import {getHorizontalPx} from '../../helpers/layoutFoo';
 
 interface Props {
-    style?: any,
-    title: string, // *
-    onpress: Function, // *
-    active: boolean, // *
-    height: number
+    style?: any;
+    title: string; // *
+    onpress: Function; // *
+    active: boolean; // *
+    height: number;
 }
 
 const TypicalRedBtn: React.FC<Props> = (props: Props) => {
-
     let styles = StyleSheet.create({
         btn: {
             display: 'flex',
@@ -22,29 +19,28 @@ const TypicalRedBtn: React.FC<Props> = (props: Props) => {
             justifyContent: 'center',
             // alignSelf: 'center',
             backgroundColor: props.active ? '#d8232a' : '#f0f0f0',
-            paddingLeft: getHorizontalPx(10),
-            paddingRight: getHorizontalPx(10),
+            paddingLeft: 10,
+            paddingRight: 10,
             height: props.height ? getHorizontalPx(props.height) : '100%',
-            borderRadius: getHorizontalPx(13),
-            marginRight: getHorizontalPx(5),
-            marginBottom: getHorizontalPx(5)
+            borderRadius: 12,
+            marginRight: 5,
+            marginBottom: 5,
         },
         text: {
-            fontFamily: "DIN2014Narrow-Bold",
-            fontSize: getHorizontalPx(16),
+            fontFamily: 'DIN2014Narrow-Bold',
+            fontSize: 16,
             textAlign: 'center',
-            color: props.active ? 'white' : '#313131'
-        }
-    })
+            color: props.active ? 'white' : '#313131',
+        },
+    });
 
     return (
         <TouchableOpacity
             style={[styles.btn, props.style]}
-            onPress={props.onpress}
-        >
+            onPress={props.onpress}>
             <Text style={styles.text}>{props.title}</Text>
         </TouchableOpacity>
-    )
-}
+    );
+};
 
 export default TypicalRedBtn;

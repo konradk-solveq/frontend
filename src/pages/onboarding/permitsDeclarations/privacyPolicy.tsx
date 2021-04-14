@@ -22,7 +22,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
 
     const trans: any = I18n.t('PrivacyPolicy')
 
-    const [headHeight, setheadHeightt] = useState(0);
+    const [headHeight, setheadHeight] = useState(0);
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -74,7 +74,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.navigate('PermitsDeclarations')}
                 inner={trans.header}
-                getHeight={setheadHeightt}
+                getHeight={setheadHeight}
             ></StackHeader>
 
         </SafeAreaView>

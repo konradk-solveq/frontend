@@ -9,7 +9,6 @@ import {
     getWidthPx,
     getHorizontalPx,
     getVerticalPx,
-    getHeightPx,
     getCenterLeftPx,
 } from '../../../helpers/layoutFoo';
 
