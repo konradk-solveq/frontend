@@ -85,13 +85,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             color: '#313131',
         },
         logo: getPosStaticHeight(110, 20, 66),
-
-        text: getPosAndWid(334, 78, 138),
-        light30: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(30),
-            color: '#313131',
-        },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 380, 90),
         input: {
             height: 50,
