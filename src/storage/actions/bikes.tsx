@@ -1,4 +1,3 @@
-import {validateOrReject, ValidationError} from 'class-validator';
 import {I18n} from '../../../I18n/I18n';
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
@@ -236,7 +235,10 @@ export const setBikesListByFrameNumber = (
                 data: null,
             });
         } else {
-            /* TODO: fix class-transformer */
+            /**
+             * TODO: fix class-transformer => external data has no standarization,
+             * maybe it should stay in loose comparison
+             * */
             // const newData = plainToClass(UserBike, response.data);
 
             const desc = response.data.description;
@@ -267,7 +269,6 @@ export const setBikesListByFrameNumber = (
             if (desc?.size) {
                 description.size = desc?.size;
             }
-            await validateOrReject(description);
 
             const newData = new UserBike(description);
             if (response.data?.images) {
@@ -291,16 +292,6 @@ export const setBikesListByFrameNumber = (
             });
         }
     } catch (error) {
-        if (error?.[0] instanceof ValidationError) {
-            const errorMessage = I18n.t('dataAction.validationError');
-            dispatch(setError(errorMessage));
-
-            return Promise.reject({
-                success: false,
-                errorMessage: errorMessage,
-                data: null,
-            });
-        }
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage));
 
