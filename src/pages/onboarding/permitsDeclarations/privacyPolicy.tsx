@@ -20,7 +20,7 @@ const wh = Dimensions.get('window').height;
 
 const PrivacyPolicy: React.FC<Props> = (props: Props) => {
 
-    const trans = I18n.t('PrivacyPolicy')
+    const trans: any = I18n.t('PrivacyPolicy')
 
     const [headHeight, setheadHeightt] = useState(0);
 
@@ -31,24 +31,26 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
             height: wh - headHeight,
             top: headHeight,
         },
+        title: {
+            width: getWidthPx(),
+            left: getHorizontalPx(40),
+            textAlign: 'left',
+            fontFamily: "DIN2014Narrow-Regular",
+            fontSize: getHorizontalPx(23),
+            lineHeight: getHorizontalPx(30),
+            marginTop: getVerticalPx(50),
+            color: '#313131',
+        },
         text: {
             width: getWidthPx(),
             left: getHorizontalPx(40),
-            textAlign: 'left'
-
-        },
-        reg23: {
-            fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getHorizontalPx(23),
-            marginTop: getVerticalPx(50),
-            color: '#313131'
-        },
-        light18: {
+            textAlign: 'left',
             fontFamily: "DIN2014Narrow-Light",
             fontSize: getHorizontalPx(18),
+            lineHeight: getHorizontalPx(24),
             marginTop: getVerticalPx(44),
             marginBottom: getVerticalPx(100),
-            color: '#555555'
+            color: '#555555',
         }
     })
 
@@ -58,11 +60,11 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
 
-                    <Text style={[styles.text, styles.reg23]}>
+                    <Text style={styles.title}>
                         {trans.title}
                     </Text>
 
-                    <Text style={[styles.text, styles.light18]}>
+                    <Text style={styles.text}>
                         {trans.text}
                     </Text>
 
