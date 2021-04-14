@@ -44,11 +44,11 @@ const OnboardingStackNavigator: React.FC = () => {
             {/* <Stack.Screen name="AddingByNumber" component={AddingByNumber} /> */}
             {/* <Stack.Screen name="AddingInfo" component={AddingInfo} /> */}
 
-            <Stack.Screen name="BikeData" component={BikeData} />
+            {/* <Stack.Screen name="BikeData" component={BikeData} /> */}
 
-            <Stack.Screen name="BikeSummary" component={BikeSummary} />
+            {/* <Stack.Screen name="BikeSummary" component={BikeSummary} /> */}
 
-            {/* <Stack.Screen name="Loader" component={Loader} /> */}
+            <Stack.Screen name="Loader" component={Loader} />
 
             {/* <Stack.Screen name="WrongScan" component={WrongScan}/> */}
 
