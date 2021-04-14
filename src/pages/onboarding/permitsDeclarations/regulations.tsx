@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, Dimensions, View, Text, ScrollView, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import {
+    StyleSheet,
+    Dimensions,
+    View,
+    Text,
+    ScrollView,
+    SafeAreaView,
+} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
@@ -12,13 +19,12 @@ import {
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 
 interface Props {
-    navigation: any
-};
+    navigation: any;
+}
 
 const wh = Dimensions.get('window').height;
 
 const Regulations: React.FC<Props> = (props: Props) => {
-
     const trans = I18n.t('Regulations');
 
     const [headHeight, setheadHeightt] = useState(0);
@@ -30,58 +36,55 @@ const Regulations: React.FC<Props> = (props: Props) => {
             height: wh - headHeight,
             top: headHeight,
         },
-        text: {
+        wrap: {
+            marginTop: getVerticalPx(50),
             width: getWidthPx(),
             left: getHorizontalPx(40),
+        },
+        title: {
             textAlign: 'left',
-        },
-        reg23: {
-            fontFamily: "DIN2014Narrow-Regular",
+            fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(23),
-            color: '#313131'
+            lineHeight: getHorizontalPx(30),
+            color: '#313131',
         },
-        reg18: {
-            fontFamily: "DIN2014Narrow-Regular",
+        paragraph: {
+            textAlign: 'left',
             fontSize: getHorizontalPx(18),
-            color: '#555555'
+            lineHeight: getHorizontalPx(24),
+            color: '#555555',
         },
-        light18: {
-            fontFamily: "DIN2014Narrow-Light",
-            fontSize: getHorizontalPx(18),
-            color: '#555555'
+        regular: {
+            fontFamily: 'DIN2014Narrow-Regular',
+        },
+        light: {
+            fontFamily: 'DIN2014Narrow-Light',
         }
-    })
+    });
 
     return (
         <SafeAreaView>
-
             <View style={styles.scroll}>
                 <ScrollView>
+                    <View style={styles.wrap}>
 
-                    <Text style={[styles.text, styles.reg23, { marginTop: getVerticalPx(50) }]}>
-                        {trans.title}
-                    </Text>
+                        <Text style={styles.title}>{trans.title}</Text>
 
-                    <Text style={[styles.text,styles.light18, { marginTop: getVerticalPx(15) }]}>
-                        {trans.text_1}
-                    </Text>
+                        {trans.paragraph.map((e, i) => {
+                            <Text
+                                style={[
+                                    styles.paragraph,
+                                    e.font == 'regular' && styles.regular,
+                                    e.font == 'light' && styles.light,
+                                    { marginTop: getVerticalPx(e.marginTop) },
+                                ]}
+                                key={'prgph_' + i}
+                            >
+                                {e.text}
+                            </Text>
+                        })}
 
-                    <Text style={[styles.text, styles.reg18, { marginTop: getVerticalPx(30) }]}>
-                        {trans.paragraph_2}
-                    </Text>
-
-                    <Text style={[styles.text,styles.light18, { marginTop: getVerticalPx(15) }]}>
-                        {trans.text_3}
-                    </Text>
-
-                    <Text style={[styles.text, styles.reg18, { marginTop: getVerticalPx(53) }]}>
-                        {trans.paragraph_3}
-                    </Text>
-
-                    <Text style={[styles.text, styles.light18, { marginTop: getVerticalPx(15), marginBottom: getVerticalPx(100) }]}>
-                        {trans.text_3}
-                    </Text>
-
+                    </View>
                 </ScrollView>
             </View>
 
@@ -89,10 +92,9 @@ const Regulations: React.FC<Props> = (props: Props) => {
                 onpress={() => props.navigation.navigate('PermitsDeclarations')}
                 inner={trans.header}
                 getHeight={setheadHeightt}
-            ></StackHeader>
-
+            />
         </SafeAreaView>
-    )
-}
+    );
+};
 
-export default Regulations
+export default Regulations;

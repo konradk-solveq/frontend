@@ -79,11 +79,32 @@
     "Regulations": {
         "header": "Regulamin",
         "title": "Sprawdź aktualne zapisy regulaminu dotyczącego aplikacji myKROSS oraz Sklepu internetowego kross.eu",
-        "text_1": "Sprawdź aktualne zapisy regulaminu dotyczącego aplikacji myKROSS oraz Sklepu internetowego kross.eu",
-        "paragraph_2": "REGULAMIN myKROSS",
-        "text_2": "1. Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób sprzedaży prowadzonej przez KROSS S.A. z siedzibą w Przasnyszu, za pośrednictwem sklepu internetowegokross.eu (zwanego dalej: „Sklepem Internetowym”) oraz określa zasady i warunki świadczenia przez KROSS S.A. z siedzibą w Przasnyszu usług nieodpłatnych drogą elektroniczną",
-        "paragraph_3": "Definicje",
-        "text_3": "1. Dni robocze - oznacza dni tygodnia od poniedziałku do piątku z wyłączeniem dni ustawowo wolnych od pracy.\n\n2. Dostawa - oznacza czynność faktyczną polegającą na dostarczeniu Klientowi przez Sprzedawcę, za pośrednictwem Dostawcy, Towaru określonego w zamówieniu.\n\n3. Dostawca - oznacza podmiot, z którym współpracuje Sprzedawca w zakresie dokonywania Dostawy Towarów:\n\na) Autoryzowane Punkty Sprzedaży, których lista dostępna jest na Stronie Internetowej Sklepu;\n\nb) firmę kurierską;\n\nc) InPost Paczkomaty Sp. z o.o. z siedzibą w Krakowie, świadcząca usługi Dostawy i obsługi systemu skrytek pocztowych (Paczkomat).\n\n4. Hasło - oznacza ciąg znaków literowych, cyfrowych lub innych wybranych przez Klienta podczas Rejestracji w Sklepie Internetowym, wykorzystywanych w celu zabezpieczenia dostępu do Konta Klienta w Sklepie Internetowym."
+        "paragraph": [{
+                "marginTop": 15,
+                "font": "light",
+                "text": "Sprawdź aktualne zapisy regulaminu dotyczącego aplikacji myKROSS oraz Sklepu internetowego kross.eu"
+            },
+            {
+                "marginTop": 30,
+                "font": "regular",
+                "text": "REGULAMIN myKROSS"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "1. Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób sprzedaży prowadzonej przez KROSS S.A. z siedzibą w Przasnyszu, za pośrednictwem sklepu internetowegokross.eu (zwanego dalej: „Sklepem Internetowym”) oraz określa zasady i warunki świadczenia przez KROSS S.A. z siedzibą w Przasnyszu usług nieodpłatnych drogą elektroniczną"
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "Definicje"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "1. Dni robocze - oznacza dni tygodnia od poniedziałku do piątku z wyłączeniem dni ustawowo wolnych od pracy.\n\n2. Dostawa - oznacza czynność faktyczną polegającą na dostarczeniu Klientowi przez Sprzedawcę, za pośrednictwem Dostawcy, Towaru określonego w zamówieniu.\n\n3. Dostawca - oznacza podmiot, z którym współpracuje Sprzedawca w zakresie dokonywania Dostawy Towarów:\n\na) Autoryzowane Punkty Sprzedaży, których lista dostępna jest na Stronie Internetowej Sklepu;\n\nb) firmę kurierską;\n\nc) InPost Paczkomaty Sp. z o.o. z siedzibą w Krakowie, świadcząca usługi Dostawy i obsługi systemu skrytek pocztowych (Paczkomat).\n\n4. Hasło - oznacza ciąg znaków literowych, cyfrowych lub innych wybranych przez Klienta podczas Rejestracji w Sklepie Internetowym, wykorzystywanych w celu zabezpieczenia dostępu do Konta Klienta w Sklepie Internetowym."
+            }
+        ]
     },
     "BikeData": {
         "header": "Identyfikacja roweru",
