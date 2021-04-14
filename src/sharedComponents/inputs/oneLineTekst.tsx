@@ -75,7 +75,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
     }, [props.value, props.forceMessageWrong]);
 
     let styles = StyleSheet.create({
-        light18: {
+        placeholder: {
             fontFamily: 'DIN2014Narrow-Light',
             fontSize: 18,
             textAlign: 'left',
@@ -112,7 +112,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
 
     return (
         <View style={props.style}>
-            <Text style={styles.light18}>{props.placeholder}</Text>
+            <Text style={styles.placeholder}>{props.placeholder}</Text>
 
             <TextInput
                 style={styles.input}
