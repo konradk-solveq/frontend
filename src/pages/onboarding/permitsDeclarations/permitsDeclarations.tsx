@@ -96,7 +96,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
         },
         btn: {
             width: getWidthPx(),
-            height: getHeightPx(),
+            height: 50,
             left: getCenterLeftPx(),
             top: getVerticalPx(11),
             marginBottom: headHeight + getVerticalPx(69),

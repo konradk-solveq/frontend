@@ -1,18 +1,13 @@
-import React from "react";
-import { StyleSheet,  TouchableOpacity, Text } from 'react-native';
-
-import {
-    getHorizontalPx,
-} from '../../helpers/layoutFoo';
+import React from 'react';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
 interface Props {
-    style?: any,
-    title: string,
-    onpress: Function
+    style?: any;
+    title: string;
+    onpress: Function;
 }
 
 const BigRedBtn: React.FC<Props> = (props: Props) => {
-
     let styles = StyleSheet.create({
         btn: {
             display: 'flex',
@@ -21,24 +16,23 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
             backgroundColor: '#d8232a',
             width: '100%',
             height: '100%',
-            borderRadius: getHorizontalPx(50)
+            borderRadius: 50,
         },
         text: {
-            fontFamily: "DIN2014Narrow-Bold",
-            fontSize: getHorizontalPx(20),
+            fontFamily: 'DIN2014Narrow-Bold',
+            fontSize: 20,
             textAlign: 'center',
-            color: 'white'
-        }
-    })
+            color: 'white',
+        },
+    });
 
     return (
-        <TouchableOpacity 
+        <TouchableOpacity
             style={[styles.btn, props.style]}
-            onPress={props.onpress}
-        >
+            onPress={props.onpress}>
             <Text style={styles.text}>{props.title}</Text>
         </TouchableOpacity>
-    )
-}
+    );
+};
 
 export default BigRedBtn;

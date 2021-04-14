@@ -27,7 +27,7 @@ const OnboardingStackNavigator: React.FC = () => {
             mode="modal"
             screenOptions={horizontalAnim}>
 
-            <Stack.Screen name="Beginning" component={Beginning} />
+            {/* <Stack.Screen name="Beginning" component={Beginning} /> */}
 
             <Stack.Screen
                 name="PermitsDeclarations"

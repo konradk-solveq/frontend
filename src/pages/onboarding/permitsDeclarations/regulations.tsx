@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
     StyleSheet,
     Dimensions,
@@ -18,6 +18,7 @@ import {
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 
+
 interface Props {
     navigation: any;
 }
@@ -26,6 +27,11 @@ const wh = Dimensions.get('window').height;
 
 const Regulations: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('Regulations');
+    const list = trans.paragraph;
+
+    list.map((e, i) => {
+        console.log(' e:', i, e.text);
+    });
 
     const [headHeight, setheadHeightt] = useState(0);
 
@@ -40,18 +46,19 @@ const Regulations: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(50),
             width: getWidthPx(),
             left: getHorizontalPx(40),
+            marginBottom: getVerticalPx(100),
         },
         title: {
             textAlign: 'left',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(23),
-            lineHeight: getHorizontalPx(30),
+            fontSize: 23,
+            lineHeight: 30,
             color: '#313131',
         },
         paragraph: {
             textAlign: 'left',
-            fontSize: getHorizontalPx(18),
-            lineHeight: getHorizontalPx(24),
+            fontSize: 18,
+            lineHeight: 24,
             color: '#555555',
         },
         regular: {
@@ -59,7 +66,12 @@ const Regulations: React.FC<Props> = (props: Props) => {
         },
         light: {
             fontFamily: 'DIN2014Narrow-Light',
-        }
+        },
+        test: {
+            width: 100,
+            height: 20,
+            marginEnd: 5,
+        },
     });
 
     return (
@@ -67,23 +79,21 @@ const Regulations: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
-
                         <Text style={styles.title}>{trans.title}</Text>
 
-                        {trans.paragraph.map((e, i) => {
+                        {list.map((e, i) => (
                             <Text
                                 style={[
+                                    // styles.title,
                                     styles.paragraph,
                                     e.font == 'regular' && styles.regular,
                                     e.font == 'light' && styles.light,
                                     { marginTop: getVerticalPx(e.marginTop) },
                                 ]}
-                                key={'prgph_' + i}
-                            >
+                                key={'pgraph_' + i}>
                                 {e.text}
                             </Text>
-                        })}
-
+                        ))}
                     </View>
                 </ScrollView>
             </View>
