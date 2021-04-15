@@ -39,7 +39,7 @@ const background = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.8 4
 <circle opacity=".3" cx="60.4" cy="17" r="9" fill="#c0c0c0" stroke="none" filter="url(#f2)" transform="matrix(1.5944672,0,0,1.5944672,-35.51012,-10.478387)" />
 </svg>`;
 
-const ShowMoreArrowBtn: React.FC<Props> = (props: Props) => {
+const ShowMoreArrowBtn: React.FC<Props> = ({onPress, style, up}: Props) => {
     setObjSize(51, 51);
     const h = width * (40 / 120.8);
     const w = getWidthPx();
@@ -68,11 +68,11 @@ const ShowMoreArrowBtn: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <View style={[styles.container, props.style]}>
+        <View style={[styles.container, style]}>
             <AnimSvg style={styles.background} source={background} />
 
             <View style={styles.button}>
-                <TouchableWithoutFeedback onPress={() => props.onPress()}>
+                <TouchableWithoutFeedback onPress={() => onPress()}>
                     <Svg viewBox="0 0 15.4 15.4" style={styles.btnContainer}>
                         <G transform="translate(-107.1 -21.8)">
                             <Circle
@@ -86,8 +86,8 @@ const ShowMoreArrowBtn: React.FC<Props> = (props: Props) => {
                                 fill-rule="nonzero"
                                 d={
                                     typeof up !== 'undefined' && up
-                                        ? 'M116.7 28.7a.3.3 0 00-.4 0l-1.5 1.5-1.4-1.5a.3.3 0 00-.5.4l1.7 1.7c.2.1.3.1.4 0l1.7-1.7c.1-.1.1-.3 0-.4z'
-                                        : 'm 116.7,30.754844 a 0.3,0.3 0 0 1 -0.4,0 l -1.5,-1.5 -1.4,1.5 a 0.32015621,0.32015621 0 0 1 -0.5,-0.4 l 1.7,-1.7 c 0.2,-0.1 0.3,-0.1 0.4,0 l 1.7,1.7 c 0.1,0.1 0.1,0.3 0,0.4 z'
+                                        ? 'm 116.7,30.754844 a 0.3,0.3 0 0 1 -0.4,0 l -1.5,-1.5 -1.4,1.5 a 0.32015621,0.32015621 0 0 1 -0.5,-0.4 l 1.7,-1.7 c 0.2,-0.1 0.3,-0.1 0.4,0 l 1.7,1.7 c 0.1,0.1 0.1,0.3 0,0.4 z'
+                                        : 'M116.7 28.7a.3.3 0 00-.4 0l-1.5 1.5-1.4-1.5a.3.3 0 00-.5.4l1.7 1.7c.2.1.3.1.4 0l1.7-1.7c.1-.1.1-.3 0-.4z'
                                 }
                             />
                         </G>

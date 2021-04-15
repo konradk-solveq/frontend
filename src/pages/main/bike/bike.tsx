@@ -154,7 +154,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                     <BikeImage />
                 )}
 
-                <ShowMoreArrowBtn onPress={() => {}} />
+                <ShowMoreArrowBtn onPress={() => {}} up={true} />
 
                 <Text style={styles.bikeName}>{bike?.description.name}</Text>
 
