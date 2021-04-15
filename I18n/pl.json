@@ -122,6 +122,8 @@
     },
     "BikeSummary": {
         "header": "Twój rower",
+        "title": ", jest moc!",
+        "anonim": "Nieznajomy",
         "details": [
             "od ",
             " / nr ramy "
@@ -213,7 +215,7 @@
     "MainHome": {},
     "MainWorld": {},
     "MainBike": {
-        "header": "Twój rower",
+        "header": "Rower",
         "details": [
             "od ",
             " / nr ramy "
