@@ -29,7 +29,7 @@ const AnimSvg: React.FC<Props> = (props: Props) => {
                     showsVerticalScrollIndicator={false}
                     source={{
                         html:
-                            '<html><head><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
+                            '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
                             props.source +
                             '</body></html>',
                     }}
