@@ -177,8 +177,8 @@
             left: 13.772%;
         }
         /* .img svg {
-    background-color: cornflowerblue;
-} */
+            background-color: cornflowerblue;
+        } */
         
         .btn {
             position: absolute;
@@ -485,7 +485,7 @@
         const panel = document.getElementById('panel')
         const radio = [];
         const numItem = 3;
-        let current = 0;
+        let current = 0; // <--
 
         const getSVGelem = type => document.createElementNS('http://www.w3.org/2000/svg', type);
         for (let i = 0; i < numItem; i++) {
@@ -577,8 +577,18 @@
                 imgs[i].style.height = newImgH + 'px';
                 imgs[i].style.marginTop = corect + 'px';
 
-                let svgH = svgs[i].getBoundingClientRect().height;
-                if (svgH > newImgH) {
+                let reSvg = svgs[i].getBoundingClientRect();
+                let svgH = reSvg.height;
+                let svgW = reSvg.width;
+                let svgProp = svgH / svgW;
+                // console.log('%c svgProp:', 'background: #ffcc00; color: #003300', svgProp, svgH, svgW)
+
+                let imgW = imgs[i].getBoundingClientRect().width;
+                let imgProp = imgH / imgW;
+                // console.log('%c imgProp:', 'background: #ffcc00; color: #003300', imgProp, imgH, imgW)
+
+
+                if (imgProp < svgProp) {
                     svgs[i].style.height = '100%';
                     svgs[i].style.width = 'auto';
                 } else {
@@ -686,7 +696,6 @@
         })
 
         const clickBtn = () => {
-            console.log('%c current:', 'background: #ffcc00; color: #003300', current)
             if (current > 2) {
                 // miejsce na powrót
                 window.ReactNativeWebView && window.ReactNativeWebView.postMessage("Hello!")
