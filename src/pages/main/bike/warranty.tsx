@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, TouchableWithoutFeedback, View, Text} from 'react-native';
 
 import AnimSvg from '../../../helpers/animSvg';
 
@@ -12,21 +12,23 @@ import {
 } from '../../../helpers/layoutFoo';
 
 interface Props {
-    navigation: any,
+    navigation: any;
     // route: any,
-    style?: any
-    type: string,
-    toEnd: number,
-    warranty: any,
-    details: any
-};
+    style?: any;
+    type: string;
+    toEnd: number;
+    warranty: any;
+    details: any;
+}
 
 const Warranty: React.FC<Props> = (props: Props) => {
     setObjSize(334, 50);
     const w = getWidthPx();
     const l = getCenterLeftPx();
 
-    const [source, setSource] = useState('<svg xmlns="http://www.w3.org/2000/svg"/>'); // do odpalania animacji svg
+    const [source, setSource] = useState(
+        '<svg xmlns="http://www.w3.org/2000/svg"/>',
+    ); // do odpalania animacji svg
     const [boxStyle, setBoxStyle] = useState({}); // do odpalania animacji svg
 
     const handleShadowBox = (layout: any) => {
@@ -34,10 +36,46 @@ const Warranty: React.FC<Props> = (props: Props) => {
         let w = layout.width - 1;
         let h = layout.height - 1;
 
-        let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
-        svg += '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' + (b * .4) + '"/></filter>'
-        svg += '<rect filter="url(#filter)" opacity=".12" fill="#000" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="24"/>';
-        svg += '<rect fill="#fff" stroke="none" width="' + w + '" height="' + h + '" x="' + 0 + '" y="' + 0 + '" ry="' + getHorizontalPx(32) + '"/>';
+        let svg =
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' +
+            -b +
+            ' ' +
+            -b +
+            ' ' +
+            (w + b * 2) +
+            ' ' +
+            (h + b * 2) +
+            '" width="' +
+            (w + b + b) +
+            '" height="' +
+            (h + b + b) +
+            '">';
+        svg +=
+            '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' +
+            b * 0.4 +
+            '"/></filter>';
+        svg +=
+            '<rect filter="url(#filter)" opacity=".12" fill="#000" stroke="none" width="' +
+            w +
+            '" height="' +
+            h +
+            '" x="' +
+            0 +
+            '" y="' +
+            0 +
+            '" ry="24"/>';
+        svg +=
+            '<rect fill="#fff" stroke="none" width="' +
+            w +
+            '" height="' +
+            h +
+            '" x="' +
+            0 +
+            '" y="' +
+            0 +
+            '" ry="' +
+            getHorizontalPx(32) +
+            '"/>';
         svg += '</svg>';
 
         setSource(svg);
@@ -46,17 +84,17 @@ const Warranty: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             left: -b,
             top: -b,
-            width: w + (b * 2),
-            height: h + (b * 2),
-        })
-    }
+            width: w + b * 2,
+            height: h + b * 2,
+        });
+    };
 
     const styles = StyleSheet.create({
         container: {
             left: l,
             width: w,
             borderRadius: getHorizontalPx(32),
-            backgroundColor: 'transparent'
+            backgroundColor: 'transparent',
         },
         textLine: {
             display: 'flex',
@@ -84,7 +122,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
         },
         line: {
             borderBottomColor: '#ebebeb',
-            borderBottomWidth: 2
+            borderBottomWidth: 2,
         },
         dots: {
             position: 'absolute',
@@ -93,43 +131,41 @@ const Warranty: React.FC<Props> = (props: Props) => {
             fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(20),
             color: '#313131',
-        }
-    })
+        },
+    });
 
     const heandleWarrantyDetails = () => {
-        props.navigation.navigate('WarrantyDetails', { details: props.details })
-    }
+        props.navigation.navigate('WarrantyDetails', {details: props.details});
+    };
 
     return (
         <View
             style={[styles.container, props.style]}
-            onLayout={({ nativeEvent }) => handleShadowBox(nativeEvent.layout)}
-        >
-            <AnimSvg
-                source={source}
-                style={boxStyle}
-            />
+            onLayout={({nativeEvent}) => handleShadowBox(nativeEvent.layout)}>
+            <AnimSvg source={source} style={boxStyle} />
 
-            <TouchableWithoutFeedback
+            {/* TODO: temporary disabled details view */}
+            {/* <TouchableWithoutFeedback
                 onPress={() => heandleWarrantyDetails()}
-            >
-                <View>
-                    <View style={[styles.textLine, styles.line]}>
-                        <Text style={styles.leftText}>{props.warranty.state}</Text>
-                        <Text style={styles.rightText}>{props.type}</Text>
-                    </View>
-
-                    <View style={styles.textLine}>
-                        <Text style={styles.leftText}>{props.warranty.toEnd}</Text>
-                        <Text style={styles.rightText}>{'' + props.toEnd + ' ' + props.warranty.days}</Text>
-                        <Text style={styles.dots}>. . .</Text>
-                    </View>
+            > */}
+            <View>
+                <View style={[styles.textLine, styles.line]}>
+                    <Text style={styles.leftText}>{props.warranty.state}</Text>
+                    <Text style={styles.rightText}>{props.type}</Text>
                 </View>
 
-            </TouchableWithoutFeedback>
+                <View style={styles.textLine}>
+                    <Text style={styles.leftText}>{props.warranty.toEnd}</Text>
+                    <Text style={styles.rightText}>
+                        {'' + props.toEnd + ' ' + props.warranty.days}
+                    </Text>
+                    {/* <Text style={styles.dots}>. . .</Text> */}
+                </View>
+            </View>
 
+            {/* </TouchableWithoutFeedback> */}
         </View>
-    )
-}
+    );
+};
 
-export default Warranty
+export default Warranty;

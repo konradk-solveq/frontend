@@ -62,18 +62,19 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     // walidacja po naciśnięciu przyciku 'Dalej'
     const hendleGoFoward = async () => {
         if (canGoFoward) {
+            const trimmedInputFrame = inputFrame?.trim();
             try {
-                await dispatch(setBikesListByFrameNumber(inputFrame));
+                await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
                 props.navigation.navigate({
                     name: 'BikeSummary',
-                    params: {frameNumber: inputFrame},
+                    params: {frameNumber: trimmedInputFrame},
                 });
                 return;
             } catch (error) {
                 if (error.notFound) {
                     props.navigation.navigate({
                         name: 'BikeData',
-                        params: {frameNumber: inputFrame},
+                        params: {frameNumber: trimmedInputFrame},
                     });
                     return;
                 }
@@ -133,7 +134,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         <SafeAreaView style={styles.container}>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('GetToKnowEachOther')}
+                onpress={() => props.navigation.pop()}
                 inner={trans.head}
             ></StackHeader>
 

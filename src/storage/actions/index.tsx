@@ -5,4 +5,8 @@ export {
     setOnboardingFinished,
 } from './user';
 
-export {getBikesData, setBikesData, setBikesListByFrameNumber} from './bikes';
+export {
+    setBikesData,
+    setBikesListByFrameNumber,
+    removeBikeByNumber,
+} from './bikes';

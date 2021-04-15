@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { StyleSheet, Dimensions, View, Text } from 'react-native';
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import Svg, { G, Path, Circle } from 'react-native-svg';
+import React, {useState} from 'react';
+import {StyleSheet, Dimensions, View, Text} from 'react-native';
+import Svg, {Path, Circle} from 'react-native-svg';
 import AnimSvg from '../../../helpers/animSvg';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import {
     setObjSize,
@@ -10,22 +10,23 @@ import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../../helpers/layoutFoo';
-import { ScrollView } from 'react-native-gesture-handler';
+import {getDay, getYear} from '../../../helpers/overviews';
 
 interface Props {
-    style?: any
-    list: any,
-    description: any
-};
+    style?: any;
+    list: any;
+    description: any;
+}
 
 const ww = Dimensions.get('window').width;
 
 const Reviews: React.FC<Props> = (props: Props) => {
     setObjSize(334, 50);
     const w = ww * (125 / 414);
-    const l = getCenterLeftPx();
 
-    const [source, setSource] = useState('<svg xmlns="http://www.w3.org/2000/svg"/>'); // do odpalania animacji svg
+    const [source, setSource] = useState(
+        '<svg xmlns="http://www.w3.org/2000/svg"/>',
+    ); // do odpalania animacji svg
     const [animSvgStyle, setAnimSvgStyle] = useState({}); // do odpalania animacji svg
 
     const areas: Array<any> = [];
@@ -39,16 +40,39 @@ const Reviews: React.FC<Props> = (props: Props) => {
 
             for (let i = 0; i < areas.length; i++) {
                 w += areas[i].width;
-                w += (i == areas.length - 1 ? 0 : getVerticalPx(15));
+                w += i == areas.length - 1 ? 0 : getVerticalPx(15);
             }
-            let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + (-b) + ' ' + (-b) + ' ' + (w + (b * 2)) + ' ' + (h + (b * 2)) + '" width="' + (w + b + b) + '" height="' + (h + b + b) + '">';
-
+            let svg =
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' +
+                -b +
+                ' ' +
+                -b +
+                ' ' +
+                (w + b * 2) +
+                ' ' +
+                (h + b * 2) +
+                '" width="' +
+                (w + b + b) +
+                '" height="' +
+                (h + b + b) +
+                '">';
 
             let x = 0;
             let y = getVerticalPx(5);
             for (let i = 0; i < areas.length; i++) {
                 let ww = areas[i].width;
-                svg += '<rect fill="#fdf5f5" stroke="#313131" stroke-width="1.2" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' + ww + '" height="' + h + '" x="' + x + '" y="' + y + '" ry="' + getHorizontalPx(16) + '"/>';
+                svg +=
+                    '<rect fill="#fdf5f5" stroke="#313131" stroke-width="1.2" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
+                    ww +
+                    '" height="' +
+                    h +
+                    '" x="' +
+                    x +
+                    '" y="' +
+                    y +
+                    '" ry="' +
+                    getHorizontalPx(16) +
+                    '"/>';
 
                 x += ww + getVerticalPx(15) + 1;
             }
@@ -61,20 +85,19 @@ const Reviews: React.FC<Props> = (props: Props) => {
                 position: 'absolute',
                 // marginTop: getVerticalPx(10),
 
-
                 left: -b,
                 top: -b,
-                width: w + (b * 2),
-                height: h + (b * 2) + getVerticalPx(10),
+                width: w + b * 2,
+                height: h + b * 2 + getVerticalPx(10),
                 // backgroundColor: 'grey'
-            })
+            });
         }
-    }
+    };
 
     const styles = StyleSheet.create({
         container: {
             left: 0,
-            width: ww
+            width: ww,
         },
         title: {
             marginBottom: getVerticalPx(5),
@@ -99,7 +122,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
         },
         item: {
             width: w,
-            marginLeft: getHorizontalPx(15)
+            marginLeft: getHorizontalPx(15),
         },
         box: {
             width: w,
@@ -144,75 +167,72 @@ const Reviews: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             right: getHorizontalPx(8),
             top: getHorizontalPx(4),
-        }
-    })
-
-    const getDate = (d: string) => {
-        let values = d.replace(/-|\s|:/g, '#').split('#').map(e => Number(e));
-        return new Date(...values);
-    }
-
-    const hendleDay = (d: string) => {
-        let date = getDate(d);
-        return '' + date.getDate() + '.' + date.getMonth();
-    }
-
-    const hendleYear = (d: string) => {
-        let date = getDate(d);
-        return '' + date.getFullYear();
-    }
+        },
+    });
 
     return (
         <View style={[styles.container, props.style]}>
-
             <Text style={styles.title}>{props.description.name}</Text>
 
             <ScrollView
                 horizontal={true}
                 style={styles.scroll}
                 showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-            >
+                showsHorizontalScrollIndicator={false}>
                 <AnimSvg
                     source={source}
                     style={[styles.animSvg, animSvgStyle]}
                 />
 
                 <View style={styles.list}>
-
                     {props.list.map((e, i) => (
                         <View
                             style={[
                                 styles.item,
                                 i == 0 && styles.fitstItem,
-                                i == props.list.length - 1 && styles.latItem
+                                i == props.list.length - 1 && styles.latItem,
                             ]}
-                            key={'item_' + i}
-                        >
+                            key={'item_' + i}>
                             <View
                                 style={styles.box}
                                 key={'box_' + i}
-                                onLayout={({ nativeEvent }) => handleShadowBox(nativeEvent.layout)}
-                            >
-                                <Text style={styles.day}>{hendleDay(e.date)}</Text>
-                                <Text style={styles.year}>{hendleYear(e.date)}</Text>
+                                onLayout={({nativeEvent}) =>
+                                    handleShadowBox(nativeEvent.layout)
+                                }>
+                                <Text style={styles.day}>{getDay(e.date)}</Text>
+                                <Text style={styles.year}>
+                                    {getYear(e.date)}
+                                </Text>
 
-                                {e.state == 1 && <Svg style={styles.mark} viewBox="0 0 20 20">
-                                    <Circle cx="10.01" cy="10" r="9.96" fill="#39b54a" paint-order="markers fill stroke" />
-                                    <Path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.11" d="M7.18 10.19l2.03 2 4.34-4.42" />
-                                </Svg>}
-
+                                {e.state == 1 && (
+                                    <Svg
+                                        style={styles.mark}
+                                        viewBox="0 0 20 20">
+                                        <Circle
+                                            cx="10.01"
+                                            cy="10"
+                                            r="9.96"
+                                            fill="#39b54a"
+                                            paint-order="markers fill stroke"
+                                        />
+                                        <Path
+                                            fill="none"
+                                            stroke="#fff"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2.11"
+                                            d="M7.18 10.19l2.03 2 4.34-4.42"
+                                        />
+                                    </Svg>
+                                )}
                             </View>
-                            <Text style={styles.type}>{e.type}</Text>
-
+                            <Text style={styles.type}>{e.info}</Text>
                         </View>
                     ))}
-
                 </View>
-            </ScrollView >
+            </ScrollView>
+        </View>
+    );
+};
 
-        </View >
-    )
-}
-
-export default Reviews
+export default Reviews;

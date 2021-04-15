@@ -59,6 +59,16 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 error: action.error,
             };
         }
+        case actionTypes.REMOVE_BIKE_BY_NUMBER: {
+            const filteredList = [...state.list].filter(el => {
+                return el.description.serial_number !== action.frameNr;
+            }, []);
+
+            return {
+                ...state,
+                list: filteredList,
+            };
+        }
     }
 
     return state;

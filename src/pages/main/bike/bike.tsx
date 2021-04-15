@@ -1,15 +1,8 @@
-import React from 'react';
-import {
-    StyleSheet,
-    SafeAreaView,
-    View,
-    Text,
-    TouchableWithoutFeedback,
-} from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {ScrollView} from 'react-native-gesture-handler';
-import Svg, {Path} from 'react-native-svg';
 
 import {useAppSelector} from '../../../hooks/redux';
 import {getBike} from '../../../helpers/transformUserBikeData';
@@ -17,6 +10,8 @@ import {getBike} from '../../../helpers/transformUserBikeData';
 import Warranty from './warranty';
 import Reviews from './reviews';
 import ComplaintsRepairs from './complaintsRepairs';
+import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
+import {countDaysToEnd} from '../../../helpers/warranty';
 
 import {
     setObjSize,
@@ -27,91 +22,103 @@ import {
 } from '../../../helpers/layoutFoo';
 import {UserBike} from '../../../models/userBike.model';
 
+import BikeImage from '../../../sharedComponents/images/bikeImage';
+import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
+import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
+
 interface Props {
     navigation: any;
     route: any;
 }
 
 const Bike: React.FC<Props> = (props: Props) => {
-    const frameNumber = useAppSelector<string>(state => state.user.frameNumber);
-    const bike = useAppSelector<UserBike | null>(state =>
-        getBike(state.bikes.list, frameNumber),
-    );
+    // const frameNumber = useAppSelector<string>(state => state.user.frameNumber);
+    const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
+
+    const [bike, setBike] = useState(bikes?.[0]);
+
+    const onChangeBikeHandler = (frameNumber: string) => {
+        if (frameNumber === bike.description.serial_number) {
+            return;
+        }
+        const newBike = getBike(bikes, frameNumber);
+        if (newBike) {
+            setBike(newBike);
+        }
+    };
 
     const trans: any = I18n.t('MainBike');
 
     setObjSize(334, 50);
     const w = getWidthPx();
     const l = getCenterLeftPx();
-    const styles = StyleSheet.create({
-        container: {
-            // display: 'flex',
-            // justifyContent: 'center',
-            // alignItems: 'center',
-            width: '100%',
-            height: '100%',
-        },
-        scroll: {
-            backgroundColor: '#ffffff',
-        },
-        header: {
-            marginTop: getVerticalPx(65),
-            left: l,
-            width: w,
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'center',
-            fontSize: getHorizontalPx(18),
-            color: '#313131',
-        },
-        params: {
-            position: 'absolute',
-            top: getVerticalPx(65 - 13),
-            right: getHorizontalPx(40 - 13),
-            width: getHorizontalPx(13 + 20 + 13),
-            height: getHorizontalPx(13 + 20 + 13),
-            // backgroundColor: 'khaki'
-        },
-        paramIcon: {
-            margin: getHorizontalPx(13),
-            width: getHorizontalPx(20),
-            height: getHorizontalPx(20),
-        },
-        bikeName: {
-            marginTop: getVerticalPx(48),
-            left: l,
-            width: w,
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(40),
-            color: '#313131',
-            textAlign: 'center',
-        },
-        bikeDetails: {
-            marginTop: getVerticalPx(5),
-            left: l,
-            width: w,
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'center',
-            fontSize: getHorizontalPx(15),
-            color: '#555555',
-            // backgroundColor: 'khaki'
-        },
-        warranty: {
-            marginTop: getVerticalPx(76),
-        },
-        reviews: {
-            marginTop: getVerticalPx(45),
-        },
-        complaintsRepairs: {
-            marginTop: getVerticalPx(30),
-        },
-        separator: {
-            width: '100%',
-            height: getVerticalPx(200),
-        },
-        test: {
-            backgroundColor: 'khaki',
-        },
-    });
+    const styles = useMemo(
+        () =>
+            StyleSheet.create({
+                container: {
+                    width: '100%',
+                    height: '100%',
+                },
+                scroll: {
+                    backgroundColor: '#ffffff',
+                },
+                header: {
+                    marginTop: getVerticalPx(65),
+                    left: l,
+                    width: w,
+                    fontFamily: 'DIN2014Narrow-Light',
+                    textAlign: 'center',
+                    fontSize: getHorizontalPx(18),
+                    color: '#313131',
+                },
+                params: {
+                    position: 'absolute',
+                    top: getVerticalPx(65 - 13),
+                    right: getHorizontalPx(40 - 13),
+                    width: getHorizontalPx(13 + 20 + 13),
+                    height: getHorizontalPx(13 + 20 + 13),
+                },
+                paramIcon: {
+                    margin: getHorizontalPx(13),
+                    width: getHorizontalPx(20),
+                    height: getHorizontalPx(20),
+                },
+                bikeName: {
+                    left: l,
+                    width: w,
+                    fontFamily: 'DIN2014Narrow-Regular',
+                    fontSize: getHorizontalPx(40),
+                    color: '#313131',
+                    textAlign: 'center',
+                },
+                bikeDetails: {
+                    marginTop: getVerticalPx(5),
+                    left: l,
+                    width: w,
+                    fontFamily: 'DIN2014Narrow-Light',
+                    textAlign: 'center',
+                    fontSize: getHorizontalPx(15),
+                    color: '#555555',
+                },
+                warranty: {
+                    marginTop: getVerticalPx(76),
+                },
+                reviews: {
+                    marginTop: getVerticalPx(45),
+                },
+                complaintsRepairs: {
+                    marginTop: getVerticalPx(30),
+                },
+                separator: {
+                    width: '100%',
+                    height: getVerticalPx(200),
+                },
+                test: {
+                    backgroundColor: 'khaki',
+                },
+            }),
+        [l, w],
+    );
 
     const heandleParams = () => {
         props.navigation.navigate('BikeParams', {
@@ -126,18 +133,28 @@ const Bike: React.FC<Props> = (props: Props) => {
                 <Text style={styles.header}>{trans.header}</Text>
 
                 {bike?.params && (
-                    <TouchableWithoutFeedback onPress={() => heandleParams()}>
-                        <View style={styles.params}>
-                            <Svg viewBox="0 0 20 20" style={styles.paramIcon}>
-                                <Path
-                                    fill="#313131"
-                                    fill-rule="nonzero"
-                                    d="M11.376 0l.348 1.6c.054.247.239.443.48.51.632.176 1.242.43 1.815.752.219.124.488.116.7-.02l1.379-.886 1.946 1.946-.886 1.379c-.137.212-.144.481-.02.7.323.573.575 1.183.752 1.814.067.242.263.427.509.481L20 8.624v2.752l-1.6.348c-.247.054-.443.239-.51.48-.176.632-.43 1.242-.752 1.815-.124.219-.117.488.02.7l.886 1.379-1.946 1.946-1.379-.886c-.212-.137-.481-.144-.7-.02-.573.323-1.183.576-1.814.752-.242.067-.427.263-.481.51l-.348 1.6H8.624l-.348-1.6c-.054-.247-.239-.443-.48-.51-.632-.176-1.242-.43-1.815-.752-.219-.124-.488-.116-.7.02l-1.379.886-1.946-1.946.886-1.379c.137-.212.144-.481.02-.7-.322-.573-.575-1.183-.752-1.814-.067-.242-.263-.427-.509-.481L0 11.376V8.624l1.6-.348c.247-.054.443-.239.51-.48.176-.632.43-1.242.752-1.815.124-.219.117-.488-.02-.7l-.886-1.379 1.946-1.946 1.379.886c.212.137.481.144.7.02.573-.323 1.183-.576 1.814-.752.242-.067.427-.263.481-.51L8.624 0h2.752zM10 2.669l-.02.043c-.34.64-.93 1.125-1.648 1.325-.475.132-.936.323-1.367.567-.635.358-1.376.437-2.056.242l-.093-.03.03.092c.178.619.128 1.288-.151 1.88l-.09.176c-.196.346-.357.71-.482 1.085l-.086.284c-.2.717-.686 1.307-1.325 1.646l-.043.02.043.022c.586.311 1.043.833 1.269 1.47l.056.176c.133.476.324.937.567 1.368.358.635.437 1.377.242 2.057l-.03.091.093-.03c.618-.176 1.287-.127 1.88.152l.175.09c.346.196.71.357 1.085.482l.284.086c.717.2 1.307.686 1.646 1.325l.02.042.022-.042c.311-.586.833-1.043 1.47-1.27l.177-.055c.475-.132.936-.323 1.367-.567.635-.358 1.376-.437 2.056-.242l.092.029-.03-.091c-.177-.619-.127-1.288.152-1.88l.09-.176c.196-.346.357-.71.482-1.085l.086-.284c.2-.717.686-1.307 1.325-1.646L17.33 10l-.042-.021c-.586-.311-1.043-.833-1.269-1.47l-.056-.176c-.133-.476-.324-.937-.567-1.368-.358-.635-.437-1.377-.242-2.057l.029-.092-.092.03c-.618.177-1.287.128-1.88-.151l-.175-.09c-.346-.196-.71-.357-1.085-.482l-.284-.086c-.717-.2-1.307-.686-1.646-1.325L10 2.669zM10 6c2.206 0 4 1.794 4 4s-1.794 4-4 4-4-1.794-4-4 1.794-4 4-4zm0 2c-1.101 0-2 .899-2 2s.899 2 2 2 2-.899 2-2-.899-2-2-2z"
-                                />
-                            </Svg>
-                        </View>
-                    </TouchableWithoutFeedback>
+                    <CogBtn
+                        callback={heandleParams}
+                        containerStyle={styles.params}
+                        iconStyle={styles.paramIcon}
+                    />
                 )}
+
+                <BikeSelectorList
+                    style={styles.reviews}
+                    list={bikes}
+                    description={trans.warranty.reviews}
+                    callback={onChangeBikeHandler}
+                    currentBike={bike.description.serial_number}
+                />
+
+                {bike?.images && bike.images.length > 0 ? (
+                    <BikeImage imgUrl={bike.images[0]} />
+                ) : (
+                    <BikeImage />
+                )}
+
+                <ShowMoreArrowBtn onPress={() => {}} />
 
                 <Text style={styles.bikeName}>{bike?.description.name}</Text>
 
@@ -152,8 +169,12 @@ const Bike: React.FC<Props> = (props: Props) => {
                     <Warranty
                         style={styles.warranty}
                         navigation={props.navigation}
-                        type={bike.warranty?.type}
-                        toEnd={bike.warranty?.end || null}/* TODO: Should be tranformed inside component? */
+                        type={bike.warranty.info}
+                        toEnd={
+                            bike.warranty?.end
+                                ? countDaysToEnd(bike.warranty.end)
+                                : 0
+                        }
                         warranty={trans.warranty}
                         details={{
                             description: bike?.description,
@@ -170,11 +191,26 @@ const Bike: React.FC<Props> = (props: Props) => {
                     />
                 )}
 
-                {bike?.complaintsRepairs && (
-                    <ComplaintsRepairs
-                        style={styles.complaintsRepairs}
-                        list={bike.complaintsRepairs}
-                        description={trans.warranty.complaintsRepairs}
+                {bike?.complaintsRepairs &&
+                    bike.complaintsRepairs.length > 0 && (
+                        <ComplaintsRepairs
+                            style={styles.complaintsRepairs}
+                            list={bike.complaintsRepairs}
+                            description={trans.warranty.complaintsRepairs}
+                        />
+                    )}
+
+                {bike?.description?.color && (
+                    <ColorLabel
+                        text={bike.description.color}
+                        containerStyle={{marginLeft: getCenterLeftPx()}}
+                    />
+                )}
+
+                {bike?.description?.size && (
+                    <SizeLabel
+                        text={bike.description.size}
+                        containerStyle={{marginLeft: getCenterLeftPx()}}
                     />
                 )}
 

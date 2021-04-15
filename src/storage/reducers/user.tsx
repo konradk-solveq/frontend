@@ -82,7 +82,12 @@ const userReducer = (state = initialState, action: any) => {
 const persistConfig = {
     key: 'user',
     storage: AsyncStorage,
-    whitelist: ['user', 'frameNumber', 'riderProfile', 'onboardingFinished'],
+    whitelist: [
+        'userName',
+        'frameNumber',
+        'riderProfile',
+        'onboardingFinished',
+    ],
 };
 
 export default persistReducer(persistConfig, userReducer);
