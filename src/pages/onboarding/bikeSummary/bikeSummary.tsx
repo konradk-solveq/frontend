@@ -2,7 +2,10 @@ import React from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 import I18n from 'react-native-i18n';
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
-import {setOnboardingFinished} from '../../../storage/actions';
+import {
+    setOnboardingFinished,
+    removeBikeByNumber,
+} from '../../../storage/actions';
 
 import {UserBike} from '../../../models/userBike.model';
 import {getBike} from '../../../helpers/transformUserBikeData';
@@ -20,6 +23,9 @@ import {
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
+import BikeImage from '../../../sharedComponents/images/bikeImage';
+import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
+import Curve from '../../../sharedComponents/svg/curve';
 
 interface IProps {
     navigation: any;
@@ -30,6 +36,8 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const trans: any = I18n.t('BikeSummary');
     const dispatch = useAppDispatch();
 
+    const userName =
+        useAppSelector<string>(state => state.user.userName) || trans.anonim;
     const frameNumber = route.params.frameNumber;
     const bikeData = useAppSelector<UserBike | null>(state =>
         getBike(state.bikes.list, frameNumber),
@@ -41,22 +49,16 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const l = getCenterLeftPx();
     const styles = StyleSheet.create({
         container: {
-            width: '100%',
-            height: '100%',
+            flex: 1,
             backgroundColor: 'white',
         },
-        list: {
-            width: getWidthPx(),
-            display: 'flex',
-            alignItems: 'flex-start',
-            flexDirection: 'row',
+        contentContainer: {
+            marginTop: getVerticalPx(148),
         },
         bottons: {
-            position: 'relative',
             width: getWidthPx(),
             height: getHeightPx(),
             left: getCenterLeftPx(),
-            display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
             marginTop: getVerticalPx(29),
@@ -68,15 +70,15 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             width: '100%',
             height: getVerticalPx(65),
         },
-        params: {
-            position: 'absolute',
-            top: getVerticalPx(65 - 13),
-            right: getHorizontalPx(40 - 13),
-            width: getHorizontalPx(13 + 20 + 13),
-            height: getHorizontalPx(13 + 20 + 13),
+        userName: {
+            left: l,
+            width: w,
+            fontFamily: 'DIN2014Narrow-Light',
+            fontSize: getHorizontalPx(30),
+            color: '#313131',
         },
         bikeName: {
-            marginTop: getVerticalPx(148),
+            marginTop: getVerticalPx(-20),
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Regular',
@@ -102,39 +104,71 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                 inner={trans.header}
             />
 
-            <Text style={styles.bikeName}>{bikeData?.description.name}</Text>
+            <View style={styles.contentContainer}>
+                <Text style={styles.userName}>
+                    {`${userName} ${trans.title}`}
+                </Text>
 
-            <Text style={styles.bikeDetails}>
-                {trans.details[0] +
-                    bikeData?.description.producer +
-                    trans.details[1] +
-                    bikeData?.description.serial_number}
-            </Text>
+                {bikeData?.images && bikeData.images.length > 0 ? (
+                    <BikeImage imgUrl={bikeData.images[0]} />
+                ) : (
+                    <BikeImage />
+                )}
 
-            <View style={styles.bottons}>
-                <View style={styles.btn}>
-                    <BigWhiteBtn
-                        title={trans.btnChange}
-                        onpress={() => navigation.navigate('AddingByNumber')}
+                <Curve />
+
+                <Text style={styles.bikeName}>
+                    {bikeData?.description.name}
+                </Text>
+
+                <Text style={styles.bikeDetails}>
+                    {trans.details[0] +
+                        bikeData?.description.producer +
+                        trans.details[1] +
+                        bikeData?.description.serial_number}
+                </Text>
+
+                {bikeData?.description?.color && (
+                    <ColorLabel
+                        text={bikeData.description.color}
+                        containerStyle={{marginLeft: getCenterLeftPx()}}
                     />
-                </View>
+                )}
 
-                <View style={styles.btn}>
-                    <BigRedBtn
-                        title={trans.goForward}
-                        onpress={() => {
-                            /* TODO: this change is temporary - business  decision */
-                            // navigation.navigate('CyclingProfile')
-                            /* start to delete */
-                            dispatch(setOnboardingFinished(true));
-                            navigation.navigate('MineMenu');
-                            /* end to delete */
-                        }}
+                {bikeData?.description?.size && (
+                    <SizeLabel
+                        text={bikeData.description.size}
+                        containerStyle={{marginLeft: getCenterLeftPx()}}
                     />
+                )}
+
+                <View style={styles.bottons}>
+                    <View style={styles.btn}>
+                        <BigWhiteBtn
+                            title={trans.btnChange}
+                            onpress={() => {
+                                dispatch(removeBikeByNumber(frameNumber));
+                                navigation.navigate('AddingByNumber');
+                            }}
+                        />
+                    </View>
+
+                    <View style={styles.btn}>
+                        <BigRedBtn
+                            title={trans.goForward}
+                            onpress={() => {
+                                /* TODO: this change is temporary - business  decision */
+                                // navigation.navigate('CyclingProfile')
+                                /* start to delete */
+                                dispatch(setOnboardingFinished(true));
+                                navigation.navigate('MineMenu');
+                                /* end to delete */
+                            }}
+                        />
+                    </View>
                 </View>
+                <View style={styles.spaceOnEnd} />
             </View>
-
-            <View style={styles.spaceOnEnd} />
         </SafeAreaView>
     );
 };

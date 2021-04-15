@@ -8,6 +8,7 @@ export const validationRules = {
     email: 'email',
     int: 'int',
     min: 'min',
+    max: 'max',
 };
 
 export default validationRules;

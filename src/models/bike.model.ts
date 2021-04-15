@@ -27,8 +27,15 @@ export const userBikeValidationRules = {
     color: [validationRules.required, validationRules.string, {min: 3}],
 };
 
+enum WarrantyOverviewType {
+    WARRANTY = 'warranty',
+    SELF_OVERVIEW = 'self-overview',
+    PLANNED_WARRANTY = 'planned-warranty',
+    PLANNED_PERIODIC = 'planned-periodic',
+}
+
 export interface Warranty {
-    id: string;
+    id?: string;
     type: string;
     end: Date;
     overviews: {
@@ -39,14 +46,42 @@ export interface Warranty {
     info: string;
 }
 
-enum WarrantyOverviewType {
-    PERIODICAL = 'periodical',
-    WARRANTY = 'warranty',
-}
-
 export enum ComplaintStateType {
     ONGOING = 0,
     FINISHED = 1,
+}
+
+export interface CompaintState {
+    type: ComplaintStateType;
+    description: string;
+}
+
+export class Complaint {
+    public id: string;
+    public name: string;
+    public date: Date;
+    public description: Date;
+    public state: {
+        type: ComplaintStateType;
+        description: string;
+    };
+
+    constructor(
+        id: string,
+        name: string,
+        date: Date,
+        description: Date,
+        state: {
+            type: ComplaintStateType;
+            description: string;
+        },
+    ) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.description = description;
+        this.state = state;
+    }
 }
 
 export interface BikeDescriptionDetails {
@@ -91,7 +126,7 @@ export interface Bike {
     description: BikeDescription;
     params?: Parameters[];
     warranty?: Warranty;
-    complaintsRepairs?: ComplaintStateType;
+    complaintsRepairs?: Complaint[];
 }
 
 export class Parameters {
@@ -140,6 +175,7 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
     @IsNotEmpty()
     @IsString()
     @MinLength(3)
+    @MaxLength(30)
     color?: string;
 
     /**
@@ -148,16 +184,19 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
      * */
     @IsOptional()
     @IsNotEmpty()
+    // @IsStringNumber()
     @MinLength(2)
-    @MaxLength(10)
+    @MaxLength(20)
     size?: string;
 
+    /* TODO: probably shoudln't be validated => only for internal purpose*/
     @IsOptional()
     purpose?: {
         name: string;
         code: string;
     };
 
+    /* TODO: probably shoudln't be validated => only for internal purpose */
     @IsOptional()
     bought?: {
         date: Date;

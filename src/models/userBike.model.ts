@@ -5,7 +5,7 @@ import {
     BikeDescription,
     Parameters,
     Warranty,
-    ComplaintStateType,
+    Complaint,
 } from './bike.model';
 
 export class UserBike implements Bike {
@@ -25,7 +25,7 @@ export class UserBike implements Bike {
     public warranty?: Warranty;
 
     @IsOptional()
-    public complaintsRepairs?: ComplaintStateType;
+    public complaintsRepairs?: Complaint[];
 
     constructor(description: BikeDescription) {
         this.description = description;
