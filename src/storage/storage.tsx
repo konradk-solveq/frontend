@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import ReduxThunk from 'redux-thunk';
-import { persistReducer } from 'redux-persist';
+import {persistReducer} from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import reducer from './reducer';
@@ -11,8 +11,6 @@ const buildStore = () => {
         storage: AsyncStorage,
         stateReconciler: autoMergeLevel2,
     };
-
-    AsyncStorage.clear();
 
     const persistedReducer = persistReducer<any, any>(persistConfig, reducer);
 
