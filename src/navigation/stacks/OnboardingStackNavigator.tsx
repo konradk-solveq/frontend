@@ -2,6 +2,7 @@ import React from 'react';
 import {Stack} from './../stack';
 import {horizontalAnim} from '../../helpers/positioning';
 
+import Beginning from '../../pages/onboarding/beginning/beginning';
 import Onboarding from '../../pages/onboarding/onboarding';
 import GetToKnowEachOther from '../../pages/onboarding/getToKnowEachOther/getToKnowEachOther';
 import TurtorialNFC from '../../pages/onboarding/bikeAdding/turtorialNFC/turtorialNFC';
@@ -25,7 +26,7 @@ const OnboardingStackNavigator: React.FC = () => {
             initialRouteName="Onboarding"
             mode="modal"
             screenOptions={horizontalAnim}>
-            <Stack.Screen name="Onboarding" component={Onboarding} />
+            <Stack.Screen name="Beginning" component={Beginning} />
 
             <Stack.Screen
                 name="PermitsDeclarations"
@@ -38,7 +39,7 @@ const OnboardingStackNavigator: React.FC = () => {
                 name="GetToKnowEachOther"
                 component={GetToKnowEachOther}
             />
-            {/* <Stack.Screen name="TurtorialNFC" component={TurtorialNFC} /> */}
+            <Stack.Screen name="TurtorialNFC" component={TurtorialNFC} />
             <Stack.Screen name="AddingByNumber" component={AddingByNumber} />
             <Stack.Screen name="AddingInfo" component={AddingInfo} />
 

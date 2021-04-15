@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {StyleSheet, SafeAreaView, View, Text, Alert} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, SafeAreaView, View, Text, Alert } from 'react-native';
 import I18n from 'react-native-i18n';
 
-import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
-import {setBikesListByFrameNumber} from '../../../../storage/actions';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/redux';
+import { setBikesListByFrameNumber } from '../../../../storage/actions';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
@@ -29,7 +29,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     const frame: string = useAppSelector(state => state.user.frameNumber);
     const isLoading: boolean = useAppSelector(state => state.bikes.loading);
 
-    const trans = I18n.t('AddingByNumber')
+    const trans = I18n.t('AddingByNumber');
 
     const [inputFrame, setInputFrame] = useState('');
     const [canGoFoward, setCanGoFoward] = useState(false);
@@ -37,27 +37,31 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     // do pobrania nazwy użytkownika zz local sorage
     useEffect(() => {
-        if (typeof frame == 'string') setInputFrame(frame);
-    }, [frame])
+        if (typeof frame === 'string') {
+            setInputFrame(frame);
+        }
+    }, [frame]);
 
     // do wstawiania wartości do inputa i reset powiadomień o błdnym wypełnieniu
     const hendleInputFrame = (value: string) => {
         setInputFrame(value);
-        setForceMessageWrong('')
-    }
+        setForceMessageWrong('');
+    };
 
     // valizadja poprawności inputa
     const hendleValidationOk = (value: string) => {
-        if (value.length > 4) return true;
-        return false
-    }
+        if (value.length > 4) {
+            return true;
+        }
+        return false;
+    };
 
     // validacja błędów, tu: czy wszystkie znaki są cyframi
     const hendleValidationWrong = (value: string) => {
         // const reg = new RegExp('^[0-9]+$');
         // if (value.length > 0 && !reg.test(value)) return true;
-        return false
-    }
+        return false;
+    };
 
     // walidacja po naciśnięciu przyciku 'Dalej'
     const hendleGoFoward = async () => {
@@ -82,47 +86,45 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 Alert.alert('Error', errorMessage);
             }
         } else {
-            setForceMessageWrong('Pole wymagane')
+            setForceMessageWrong('Pole wymagane');
         }
-    }
+    };
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: "white"
+            backgroundColor: 'white',
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351, 100),
-        // title: getPosAndWid(334, 51, 138),
         title: {
             position: 'absolute',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            top: getVerticalPx(138)
-        },
-        light30: {
-            fontFamily: "DIN2014Narrow-Light",
-            fontSize: getHorizontalPx(30),
+            top: getVerticalPx(138),
+            fontFamily: 'DIN2014Narrow-Light',
+            fontSize: 30,
+            lineHeight:38,
             color: '#555555',
-            textAlign: 'left'
+            textAlign: 'left',
         },
-        infoBtn:{
+        infoBtn: {
             position: 'relative',
             height: getHorizontalPx(29),
-            marginTop: getHorizontalPx(3),
+            marginTop: 3,
             width: getWidthPx(),
         },
-        botton:{
+        botton: {
             position: 'absolute',
             width: getWidthPx(),
-            height: getVerticalPx(50),
+            height: 50,
             left: getCenterLeftPx(),
-            bottom: getVerticalPx(65)
-        }
-    })
+            bottom: getVerticalPx(65),
+        },
+    });
 
-    if (isLoading){
+    if (isLoading) {
         return (
             <SafeAreaView style={styles.container}>
                 <Loader />
@@ -132,15 +134,12 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     return (
         <SafeAreaView style={styles.container}>
-
             <StackHeader
                 onpress={() => props.navigation.pop()}
                 inner={trans.head}
-            ></StackHeader>
+            />
 
-            <Text style={[styles.title, styles.light30]}>
-                {trans.text}
-            </Text>
+            <Text style={styles.title}>{trans.text}</Text>
 
             <View style={styles.inputAndPlaceholder}>
                 <OneLineTekst
@@ -157,8 +156,8 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 <TranspLightBtn
                     style={styles.infoBtn}
                     title={trans.infoBtn}
-                    algin='right'
-                    color='#3587ea'
+                    algin="right"
+                    color="#3587ea"
                     onpress={() => props.navigation.navigate('AddingInfo')}
                 />
             </View>
@@ -167,10 +166,9 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 style={styles.botton}
                 title={trans.btn}
                 onpress={() => hendleGoFoward()}
-            ></BigRedBtn>
-
+            />
         </SafeAreaView>
-  );
+    );
 };
 
 export default AddingByNumber;

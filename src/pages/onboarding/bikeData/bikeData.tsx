@@ -28,9 +28,7 @@ import {
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
-    getHorizontalPx,
     getWidthPx,
-    getHeightPx,
 } from '../../../helpers/layoutFoo';
 import deepCopy from '../../../helpers/deepCopy';
 
@@ -208,7 +206,8 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         },
         light30: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(30),
+            fontSize: 30,
+            lineHeight: 38,
             color: '#555555',
             textAlign: 'left',
         },
@@ -227,7 +226,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         },
         botton: {
             width: getWidthPx(),
-            height: getHeightPx(),
+            height: 50,
             left: getCenterLeftPx(),
             marginTop: getVerticalPx(10),
             marginBottom: headHeight + getVerticalPx(65),
@@ -341,7 +340,8 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                     <BigRedBtn
                         style={styles.botton}
                         title={trans.btn}
-                        onpress={() => hendleGoFoward()} />
+                        onpress={() => hendleGoFoward()}
+                    />
                 </ScrollView>
             </View>
 

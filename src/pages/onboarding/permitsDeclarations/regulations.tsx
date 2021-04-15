@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, Dimensions, View, Text, ScrollView, SafeAreaView } from 'react-native';
+import React, {useState} from 'react';
+import {
+    StyleSheet,
+    Dimensions,
+    View,
+    Text,
+    ScrollView,
+    SafeAreaView,
+} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
@@ -11,15 +18,20 @@ import {
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 
+
 interface Props {
-    navigation: any
-};
+    navigation: any;
+}
 
 const wh = Dimensions.get('window').height;
 
 const Regulations: React.FC<Props> = (props: Props) => {
-
     const trans = I18n.t('Regulations');
+    const list = trans.paragraph;
+
+    list.map((e, i) => {
+        console.log(' e:', i, e.text);
+    });
 
     const [headHeight, setheadHeightt] = useState(0);
 
@@ -30,58 +42,59 @@ const Regulations: React.FC<Props> = (props: Props) => {
             height: wh - headHeight,
             top: headHeight,
         },
-        text: {
+        wrap: {
+            marginTop: getVerticalPx(50),
             width: getWidthPx(),
             left: getHorizontalPx(40),
+            marginBottom: getVerticalPx(100),
+        },
+        title: {
             textAlign: 'left',
+            fontFamily: 'DIN2014Narrow-Regular',
+            fontSize: 23,
+            lineHeight: 30,
+            color: '#313131',
         },
-        reg23: {
-            fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getHorizontalPx(23),
-            color: '#313131'
+        paragraph: {
+            textAlign: 'left',
+            fontSize: 18,
+            lineHeight: 24,
+            color: '#555555',
         },
-        reg18: {
-            fontFamily: "DIN2014Narrow-Regular",
-            fontSize: getHorizontalPx(18),
-            color: '#555555'
+        regular: {
+            fontFamily: 'DIN2014Narrow-Regular',
         },
-        light18: {
-            fontFamily: "DIN2014Narrow-Light",
-            fontSize: getHorizontalPx(18),
-            color: '#555555'
-        }
-    })
+        light: {
+            fontFamily: 'DIN2014Narrow-Light',
+        },
+        test: {
+            width: 100,
+            height: 20,
+            marginEnd: 5,
+        },
+    });
 
     return (
         <SafeAreaView>
-
             <View style={styles.scroll}>
                 <ScrollView>
+                    <View style={styles.wrap}>
+                        <Text style={styles.title}>{trans.title}</Text>
 
-                    <Text style={[styles.text, styles.reg23, { marginTop: getVerticalPx(50) }]}>
-                        {trans.title}
-                    </Text>
-
-                    <Text style={[styles.text,styles.light18, { marginTop: getVerticalPx(15) }]}>
-                        {trans.text_1}
-                    </Text>
-
-                    <Text style={[styles.text, styles.reg18, { marginTop: getVerticalPx(30) }]}>
-                        {trans.paragraph_2}
-                    </Text>
-
-                    <Text style={[styles.text,styles.light18, { marginTop: getVerticalPx(15) }]}>
-                        {trans.text_3}
-                    </Text>
-
-                    <Text style={[styles.text, styles.reg18, { marginTop: getVerticalPx(53) }]}>
-                        {trans.paragraph_3}
-                    </Text>
-
-                    <Text style={[styles.text, styles.light18, { marginTop: getVerticalPx(15), marginBottom: getVerticalPx(100) }]}>
-                        {trans.text_3}
-                    </Text>
-
+                        {list.map((e, i) => (
+                            <Text
+                                style={[
+                                    // styles.title,
+                                    styles.paragraph,
+                                    e.font == 'regular' && styles.regular,
+                                    e.font == 'light' && styles.light,
+                                    { marginTop: getVerticalPx(e.marginTop) },
+                                ]}
+                                key={'pgraph_' + i}>
+                                {e.text}
+                            </Text>
+                        ))}
+                    </View>
                 </ScrollView>
             </View>
 
@@ -89,10 +102,9 @@ const Regulations: React.FC<Props> = (props: Props) => {
                 onpress={() => props.navigation.navigate('PermitsDeclarations')}
                 inner={trans.header}
                 getHeight={setheadHeightt}
-            ></StackHeader>
-
+            />
         </SafeAreaView>
-    )
-}
+    );
+};
 
-export default Regulations
+export default Regulations;
