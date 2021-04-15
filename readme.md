@@ -39,6 +39,7 @@ yarn add class-validator
 yarn add fetch
 yarn add react-devtools
 yarn add react-native-dotenv
+yarn add react-native-device-info
 yarn add react-native-gesture-handler
 yarn add react-native-hyperlink
 yarn add react-native-i18n
