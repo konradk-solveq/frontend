@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Dimensions, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, StackActions} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {UserBike} from '../../../../models/userBike.model';
@@ -19,6 +19,7 @@ interface Props {
     list: UserBike[];
     callback: Function;
     currentBike: string;
+    buttonText: string;
 }
 
 const {width} = Dimensions.get('window');
@@ -28,6 +29,7 @@ const BikeSelectorList: React.FC<Props> = ({
     list,
     callback,
     currentBike,
+    buttonText,
 }: Props) => {
     const navigation = useNavigation();
 
@@ -89,8 +91,14 @@ const BikeSelectorList: React.FC<Props> = ({
                 style={[styles.item, styles.lastItem]}
                 key={`${list.length}_add`}>
                 <Button
-                    text="+ add"
-                    onPress={() => navigation.navigate('AddingByNumber')}
+                    text={`+ ${buttonText}`}
+                    onPress={() => {
+                        const pushAction = StackActions.push('AddingByNumber', {
+                            emptyFrame: true,
+                        });
+
+                        navigation.dispatch(pushAction);
+                    }}
                     buttonStyle={styles.button}
                     textStyle={styles.text}
                 />

@@ -1,10 +1,18 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {
+    StyleSheet,
+    TouchableOpacity,
+    Text,
+    GestureResponderEvent,
+    TextStyle,
+    ViewStyle,
+} from 'react-native';
 
 interface Props {
-    style?: any;
     title: string;
-    onpress: Function;
+    onpress: (event: GestureResponderEvent) => void;
+    style?: ViewStyle;
+    textStyle?: TextStyle;
 }
 
 const BigRedBtn: React.FC<Props> = (props: Props) => {
@@ -30,7 +38,7 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
         <TouchableOpacity
             style={[styles.btn, props.style]}
             onPress={props.onpress}>
-            <Text style={styles.text}>{props.title}</Text>
+            <Text style={[styles.text, props.textStyle]}>{props.title}</Text>
         </TouchableOpacity>
     );
 };

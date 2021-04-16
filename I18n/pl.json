@@ -234,13 +234,17 @@
         }
     },
     "MainHome": {},
-    "MainWorld": {},
+    "MainWorld": {
+        "title": "Już niedługo dołącz do drużyny KROSS",
+        "footer": "Zacznij z nami wspólnie budować Rowerową Mapę Polski"
+    },
     "MainBike": {
         "header": "Rower",
         "details": [
             "od ",
             " / nr ramy "
         ],
+        "add": "Dodaj",
         "warranty": {
             "state": "status gwarancji",
             "toEnd": "do końca gwarancji",

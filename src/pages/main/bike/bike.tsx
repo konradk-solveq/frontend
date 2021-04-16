@@ -25,6 +25,7 @@ import {UserBike} from '../../../models/userBike.model';
 import BikeImage from '../../../sharedComponents/images/bikeImage';
 import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
 import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
+import Carousel from '../../../sharedComponents/carousel/carousel';
 
 interface Props {
     navigation: any;
@@ -146,15 +147,19 @@ const Bike: React.FC<Props> = (props: Props) => {
                     description={trans.warranty.reviews}
                     callback={onChangeBikeHandler}
                     currentBike={bike.description.serial_number}
+                    buttonText={trans.add}
                 />
 
                 {bike?.images && bike.images.length > 0 ? (
-                    <BikeImage imgUrl={bike.images[0]} />
+                    <Carousel
+                        images={bike.images}
+                        containerStyle={{height: 210}}
+                    />
                 ) : (
                     <BikeImage />
                 )}
 
-                <ShowMoreArrowBtn onPress={() => {}} />
+                <ShowMoreArrowBtn onPress={() => {}} up={true} />
 
                 <Text style={styles.bikeName}>{bike?.description.name}</Text>
 

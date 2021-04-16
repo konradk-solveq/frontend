@@ -141,7 +141,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                     <Text style={styles.bikeName}>{description.name}</Text>
 
                     <Text style={styles.bikeDetails}>
-                        {trans.details[0] + description.producer + trans.details[1] + description.frame}
+                        {trans.details[0] + description.producer + trans.details[1] + description.serial_number}
                     </Text>
 
                     <View style={styles.color}>
