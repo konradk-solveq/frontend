@@ -96,7 +96,7 @@
         "hiperWithdrawalForm": "Formularz odstąpienia",
 
         "urlUOKik": "https://www.uokik.gov.pl/pozasadowe_rozwiazywanie_sporow_konsumenckich.php",
-        "hiperUOKik": "Urzędu Ochrony Konkurencji i Konsumentów",
+        "hiperUOKik": "Urzędu Ochrony Konkurencji i\u00a0Konsumentów",
 
         "urlDispute": "https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home.chooseLanguage",
         "hiperDispute": "ec.europa.eu/consumers/odr/",
@@ -114,7 +114,7 @@
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób świadczenia usług drogą elektroniczną przez KROSS\u00a0S.A. z\u00a0siedzibą w\u00a0Przasnyszu za pośrednictwem aplikacji mobilnej myKROSS (zwanej dalej: ",
+                        "phrase": "Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób świadczenia usług drogą elektroniczną przez KROSS\u00a0S.A. z\u00a0siedzibą w\u00a0Przasnyszu za\u00a0pośrednictwem aplikacji mobilnej myKROSS (zwanej dalej: ",
                         "bold": false
                     },
                     {
@@ -271,7 +271,7 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "4. Użytkownik może utworzyć swoje Konto Użytkownika, podając imię lubpseudonim lub może pominąć ten krok."
+                "text": "4. Użytkownik może utworzyć swoje Konto Użytkownika, podając imię lub pseudonim lub może pominąć ten krok."
             },
             {
                 "marginTop": 15,
