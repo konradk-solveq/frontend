@@ -85,7 +85,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
     const [linePosX, setH] = useState(0);
     const [lineSvg, setLineSvg] = useState('');
 
-    const wrapH = wh - getVerticalPx(138) - getVerticalPx(65) * 2 - 50- 100;
+    const wrapH = wh - getVerticalPx(138) - getVerticalPx(65) * 2 - 50;
 
     let numTitle = 0;
     let numText = 0;
