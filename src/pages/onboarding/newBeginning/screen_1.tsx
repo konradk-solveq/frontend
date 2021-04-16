@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Text, Dimensions } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View, SafeAreaView, Text, Dimensions} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
@@ -34,10 +34,11 @@ import Bike_1 from './bike_1';
 
 interface Props {
     handleMeasurement: Function;
-    wrapH: any,
-    imgH: any,
-    titleH: any,
-    textH: any,
+    wrapH: any;
+    imgH: any;
+    titleH: any;
+    textH: any;
+    linePosX: any;
 }
 
 const Screen_1: React.FC<Props> = (props: Props) => {
@@ -47,7 +48,7 @@ const Screen_1: React.FC<Props> = (props: Props) => {
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: 'white',
+            // backgroundColor: 'white',
         },
         wrap: {
             position: 'absolute',
@@ -58,7 +59,6 @@ const Screen_1: React.FC<Props> = (props: Props) => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            // backgroundColor: 'khaki',
         },
         titleWrap: {
             width: '100%',
@@ -91,11 +91,10 @@ const Screen_1: React.FC<Props> = (props: Props) => {
             marginTop: '5.622%',
             width: '100%',
             height: '94.378%',
-            // backgroundColor: '#ff6600',
+            // backgroundColor: '#00ccff',
         },
         svg: {
             // backgroundColor: '#ffcc66',
-
         },
         textWrap: {
             width: '100%',
@@ -115,6 +114,7 @@ const Screen_1: React.FC<Props> = (props: Props) => {
             color: '#555555',
             // backgroundColor: '#0099ff',
         },
+
     });
 
     return (
@@ -123,23 +123,23 @@ const Screen_1: React.FC<Props> = (props: Props) => {
                 <View style={styles.titleWrap}>
                     <Text
                         style={styles.title}
-                        onLayout={({ nativeEvent }) =>
+                        onLayout={({nativeEvent}) =>
                             props.handleMeasurement(nativeEvent.layout, 'title')
                         }>
                         {trans.title_1}
                     </Text>
                 </View>
 
-                <View style={styles.image} >
+                <View style={styles.image}>
                     <View style={styles.svgWrap}>
-                        <Bike_1 style={styles.svg}></Bike_1>
+                        <Bike_1 style={styles.svg} />
                     </View>
                 </View>
 
                 <View style={styles.textWrap}>
                     <Text
                         style={styles.text}
-                        onLayout={({ nativeEvent }) =>
+                        onLayout={({nativeEvent}) =>
                             props.handleMeasurement(nativeEvent.layout, 'text')
                         }>
                         {trans.text_1}

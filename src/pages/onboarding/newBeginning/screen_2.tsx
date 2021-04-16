@@ -49,7 +49,6 @@ const Screen_2: React.FC<Props> = (props: Props) => {
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: 'white',
         },
         wrap: {
             position: 'absolute',
@@ -95,7 +94,7 @@ const Screen_2: React.FC<Props> = (props: Props) => {
             // backgroundColor: '#ff6600',
         },
         svg: {
-            // backgroundColor: '#ffcc66',
+            // backgroundColor: '#00ccff',
 
         },
         textWrap: {

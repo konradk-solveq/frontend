@@ -49,7 +49,6 @@ const Screen_3: React.FC<Props> = (props: Props) => {
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: 'white',
         },
         wrap: {
             position: 'absolute',
@@ -93,7 +92,7 @@ const Screen_3: React.FC<Props> = (props: Props) => {
             marginTop: '9.244%',
             width: '100%',
             height: '90.756%',
-            // backgroundColor: '#ff6600',
+            // backgroundColor: '#00ccff',
         },
         svg: {
             // backgroundColor: '#ffcc66',

@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, SafeAreaView, View } from 'react-native';
+import React from 'react';
+import {StyleSheet, SafeAreaView, View} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
@@ -8,23 +8,22 @@ import {
     getCenterLeftPx,
     getVerticalPx,
     getHeightPx,
-    getWidthPx
+    getWidthPx,
 } from '../../helpers/layoutFoo';
 
-import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn'
-import PanelProps from '../../sharedComponents/radio/panel'
-import TranspLightBtn from '../../sharedComponents/buttons/transpLightBtn'
+import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn';
+import PanelProps from '../../sharedComponents/radio/panel';
+import TranspLightBtn from '../../sharedComponents/buttons/transpLightBtn';
 
 interface Props {
-    board: number,
-    list: Array<Function>,
-    setBoard: Function,
-    goFoward: Function
+    board: number;
+    list: Array<Function>;
+    setBoard: Function;
+    goFoward: Function;
 }
 
 // elementy ekranu, które nie przesówają się w czasie przewijania ekranu na turtorialu first run
 const StaticElements: React.FC<Props> = (props: Props) => {
-
     const trans = I18n.t('Onboarding');
 
     setObjSize(334, 50);
@@ -35,7 +34,7 @@ const StaticElements: React.FC<Props> = (props: Props) => {
         },
         panel: {
             position: 'absolute',
-            top: getHorizontalPx(67)-8,
+            top: getHorizontalPx(67) - 8,
         },
         skip: {
             position: 'absolute',
@@ -47,18 +46,17 @@ const StaticElements: React.FC<Props> = (props: Props) => {
             width: getWidthPx(),
             height: getHeightPx(),
             left: getCenterLeftPx(),
-            bottom: getVerticalPx(65)
-        }
-    })
+            bottom: getVerticalPx(65),
+        },
+    });
 
     return (
         <SafeAreaView style={styles.container}>
-
             <PanelProps
                 style={styles.panel}
                 active={props.board - 1}
                 listBtn={props.list}
-            ></PanelProps>
+            />
 
             <TranspLightBtn
                 style={styles.skip}
@@ -71,16 +69,15 @@ const StaticElements: React.FC<Props> = (props: Props) => {
                     title={trans.goFoward}
                     onpress={() => {
                         if (props.board < props.list.length) {
-                            props.setBoard(props.board + 1)
+                            props.setBoard(props.board + 1);
                         } else {
-                            props.goFoward()
+                            props.goFoward();
                         }
                     }}
                 />
             </View>
-
         </SafeAreaView>
-    )
-}
+    );
+};
 
 export default StaticElements;
