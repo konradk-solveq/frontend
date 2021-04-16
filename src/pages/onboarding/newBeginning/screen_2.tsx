@@ -1,45 +1,17 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Text, Dimensions } from 'react-native';
+import React from 'react';
+import {StyleSheet, View, SafeAreaView, Text, Dimensions} from 'react-native';
 import I18n from 'react-native-i18n';
 
-import {
-    setAppSize,
-    initAppSize,
-    setObjSize,
-    getCenterLeftPx,
-    getCenterTopPx,
-    getHorizontal,
-    getHorizontalPx,
-    getVertical,
-    getVerticalPx,
-    getWidth,
-    getWidthOf,
-    getWidthPx,
-    getWidthPxOf,
-    getHeight,
-    getHeightPx,
-    getHeightOfPx,
-    getRelativeWidth,
-    getRelativeHeight,
-    getStandard,
-    getStandardPx,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight,
-} from '../../../helpers/layoutFoo';
+import {getHorizontalPx, getVerticalPx} from '../../../helpers/layoutFoo';
 
 import Bike_2 from './bike_2';
 
-const wh = Dimensions.get('window').height;
-
 interface Props {
     handleMeasurement: Function;
-    wrapH: any,
-    imgH: any,
-    titleH: any,
-    textH: any,
+    wrapH: any;
+    imgH: any;
+    titleH: any;
+    textH: any;
 }
 
 const Screen_2: React.FC<Props> = (props: Props) => {
@@ -95,7 +67,6 @@ const Screen_2: React.FC<Props> = (props: Props) => {
         },
         svg: {
             // backgroundColor: '#00ccff',
-
         },
         textWrap: {
             width: '100%',
@@ -123,23 +94,23 @@ const Screen_2: React.FC<Props> = (props: Props) => {
                 <View style={styles.titleWrap}>
                     <Text
                         style={styles.title}
-                        onLayout={({ nativeEvent }) =>
+                        onLayout={({nativeEvent}) =>
                             props.handleMeasurement(nativeEvent.layout, 'title')
                         }>
                         {trans.title_2}
                     </Text>
                 </View>
 
-                <View style={styles.image} >
+                <View style={styles.image}>
                     <View style={styles.svgWrap}>
-                        <Bike_2 style={styles.svg}></Bike_2>
+                        <Bike_2 style={styles.svg} />
                     </View>
                 </View>
 
                 <View style={styles.textWrap}>
                     <Text
                         style={styles.text}
-                        onLayout={({ nativeEvent }) =>
+                        onLayout={({nativeEvent}) =>
                             props.handleMeasurement(nativeEvent.layout, 'text')
                         }>
                         {trans.text_2}

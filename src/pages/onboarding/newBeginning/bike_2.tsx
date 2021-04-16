@@ -1,6 +1,5 @@
 import React from 'react';
-import {baseProps} from 'react-native-gesture-handler/lib/typescript/handlers/gestureHandlers';
-import Svg, {G, Path, Circle, Ellipse} from 'react-native-svg';
+import Svg, {G, Path, Circle} from 'react-native-svg';
 
 interface Props {
     style: any;
