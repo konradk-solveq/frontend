@@ -24,7 +24,7 @@ const OnboardingStackNavigator: React.FC = () => {
     return (
         <Stack.Navigator
             headerMode="none"
-            initialRouteName="Onboarding"
+            initialRouteName="NewBeginning"
             mode="modal"
             screenOptions={horizontalAnim}>
             <Stack.Screen name="NewBeginning" component={NewBeginning} />
