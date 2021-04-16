@@ -60,12 +60,12 @@ const Screen_2: React.FC<Props> = (props: Props) => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            backgroundColor: 'khaki',
+            // backgroundColor: 'khaki',
         },
         titleWrap: {
             width: '100%',
             height: props.titleH == 0 ? 'auto' : props.titleH,
-            backgroundColor: '#00ccff',
+            // backgroundColor: '#00ccff',
             marginBottom: getVerticalPx(30),
         },
         title: {
@@ -76,7 +76,7 @@ const Screen_2: React.FC<Props> = (props: Props) => {
             lineHeight: 46,
             textAlign: 'center',
             color: '#313131',
-            backgroundColor: '#0099ff',
+            // backgroundColor: '#0099ff',
         },
         image: {
             position: 'relative',
@@ -86,22 +86,22 @@ const Screen_2: React.FC<Props> = (props: Props) => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: '#00cc00',
+            // backgroundColor: '#00cc00',
         },
         svgWrap: {
             position: 'relative',
             width: '100%',
             height: '100%',
-            backgroundColor: '#ff6600',
+            // backgroundColor: '#ff6600',
         },
         svg: {
-            backgroundColor: '#ffcc66',
+            // backgroundColor: '#ffcc66',
 
         },
         textWrap: {
             width: '100%',
             height: props.textH == 0 ? 'auto' : props.textH,
-            backgroundColor: '#00ccff',
+            // backgroundColor: '#00ccff',
             marginTop: getVerticalPx(10),
             display: 'flex',
             flexDirection: 'column',
@@ -114,7 +114,7 @@ const Screen_2: React.FC<Props> = (props: Props) => {
             lineHeight: 20,
             textAlign: 'center',
             color: '#555555',
-            backgroundColor: '#0099ff',
+            // backgroundColor: '#0099ff',
         },
     });
 
