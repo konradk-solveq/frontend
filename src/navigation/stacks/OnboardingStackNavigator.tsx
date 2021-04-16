@@ -2,6 +2,7 @@ import React from 'react';
 import {Stack} from './../stack';
 import {horizontalAnim} from '../../helpers/positioning';
 
+import NewBeginning from '../../pages/onboarding/newBeginning/newBeginning';
 import Beginning from '../../pages/onboarding/beginning/beginning';
 import Onboarding from '../../pages/onboarding/onboarding';
 import GetToKnowEachOther from '../../pages/onboarding/getToKnowEachOther/getToKnowEachOther';
@@ -23,10 +24,11 @@ const OnboardingStackNavigator: React.FC = () => {
     return (
         <Stack.Navigator
             headerMode="none"
-            initialRouteName="Onboarding"
+            initialRouteName="NewBeginning"
             mode="modal"
             screenOptions={horizontalAnim}>
-            <Stack.Screen name="Beginning" component={Beginning} />
+            <Stack.Screen name="NewBeginning" component={NewBeginning} />
+            {/* <Stack.Screen name="Beginning" component={Beginning} /> */}
 
             <Stack.Screen
                 name="PermitsDeclarations"

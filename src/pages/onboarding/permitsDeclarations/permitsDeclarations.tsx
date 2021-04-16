@@ -161,7 +161,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('Beginning')}
+                onpress={() => props.navigation.navigate('NewBeginning')}
                 inner={trans.header}
                 getHeight={setHeadHeightt}
             />

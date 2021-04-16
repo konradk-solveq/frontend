@@ -2,12 +2,12 @@
     "Onboarding": {
         "goFoward": "DALEJ",
         "skip": "pomiń",
-        "title_1": "Jesteś gotowy, poznaj Świat Kross",
-        "text_1": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-        "title_2": "Poznaj swój rower!",
-        "text_2": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
-        "title_3": "Mapa zawsze pod ręką.",
-        "text_3": "Sed aliquam convallis scelerisque. Integer vitae ligula tempor, cursus odio in, hendrerit orci. Proin a scelerisque libero. Vestibulum nec scelerisque nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+        "title_1": "Poznaj swój rower!",
+        "text_1": "Podaj numer ramy roweru. Jeśli jest to rower KROSS otrzymasz szczegółowe informacje o rowerze, np. kolor, rozmiar czy dokładną specyfikację. Dla rowerów innych producentów zakres informacji będzie mniejszy.",
+        "title_2": "Sprawdź najbliższy przegląd",
+        "text_2": "Od dziś nie zapomnisz o przeglądach gwarancyjnych i okresowych. Podpowiemy Ci kiedy udać się do serwisu oraz jaki zakres czynności powinien zostać wykonywany w ramach każdego z przeglądów.",
+        "title_3": "Znajdź najbliższy punkt serwisowy",
+        "text_3": "Jeśli Twój rower nie jest w pełni sprawny lub wymaga okresowego przeglądu nie zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od rowerów.",
     },
     "GetToKnowEachOther": {
         "title": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
