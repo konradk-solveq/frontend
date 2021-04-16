@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Dimensions, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, StackActions} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {UserBike} from '../../../../models/userBike.model';
@@ -92,12 +92,13 @@ const BikeSelectorList: React.FC<Props> = ({
                 key={`${list.length}_add`}>
                 <Button
                     text={`+ ${buttonText}`}
-                    onPress={() =>
-                        navigation.navigate({
-                            name: 'AddingByNumber',
-                            params: {emptyFrame: true},
-                        })
-                    }
+                    onPress={() => {
+                        const pushAction = StackActions.push('AddingByNumber', {
+                            emptyFrame: true,
+                        });
+
+                        navigation.dispatch(pushAction);
+                    }}
                     buttonStyle={styles.button}
                     textStyle={styles.text}
                 />
