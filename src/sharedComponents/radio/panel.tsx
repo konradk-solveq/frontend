@@ -16,8 +16,8 @@ interface Props {
 
 const RadioPanel: React.FC<Props> = (props: Props) => {
 
-    const h = getWidthPxOf(13);
-    const w = (h * props.listBtn.length) + (getWidthPxOf(15.5) * (props.listBtn.length - 1))
+    const h = 7 + 13 + 7;
+    const w = ((h + 2) * props.listBtn.length);
     setObjSize(w, h);
     const styles = StyleSheet.create({
         pannel: {
@@ -28,7 +28,9 @@ const RadioPanel: React.FC<Props> = (props: Props) => {
             alignItems: 'center',
             width: w,
             height: h,
-            left: getCenterLeftPx()
+            // top: -8,
+            left: getCenterLeftPx(),
+            // backgroundColor: 'khaki'
         },
     })
 

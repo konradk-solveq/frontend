@@ -16,9 +16,10 @@ const RadioBtn: React.FC<BtnProps> = (props: BtnProps) => {
     let styles = StyleSheet.create({
         btn: {
             backgroundColor: 'white',
-            borderRadius: 10,
-            width: getWidthPxOf(13),
-            height: getWidthPxOf(13),
+            borderRadius: 8+7,
+            width: 8 + 13 + 8,
+            height: 8 + 13 + 8,
+            padding: 8,
         },
         btnOff: {
 

@@ -34,7 +34,8 @@ const StaticElements: React.FC<Props> = (props: Props) => {
             height: '100%',
         },
         panel: {
-            top: getHorizontalPx(67),
+            position: 'absolute',
+            top: getHorizontalPx(67)-8,
         },
         skip: {
             position: 'absolute',
