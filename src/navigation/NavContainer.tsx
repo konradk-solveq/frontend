@@ -11,8 +11,11 @@ const NavContainer: React.FC = () => {
     );
     return (
         <NavigationContainer>
-            {/* {!isOnboardingFinished ? ( */}
-            {true ? <OnboardingStackNavigator /> : <RegularStackNavigator />}
+            {!isOnboardingFinished ? (
+                <OnboardingStackNavigator />
+            ) : (
+                <RegularStackNavigator />
+            )}
         </NavigationContainer>
     );
 };
