@@ -136,7 +136,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     return (
         <SafeAreaView style={styles.container}>
             <StackHeader
-                onpress={() => props.navigation.pop()}
+                onpress={() => props.navigation.goBack()}
                 inner={trans.head}
             />
 
