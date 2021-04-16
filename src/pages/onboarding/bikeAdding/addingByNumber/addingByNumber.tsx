@@ -22,6 +22,7 @@ import Loader from '../loader/loader';
 
 interface Props {
     navigation: any;
+    route: any;
 }
 
 const AddingByNumber: React.FC<Props> = (props: Props) => {
@@ -37,10 +38,10 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     // do pobrania nazwy użytkownika zz local sorage
     useEffect(() => {
-        if (typeof frame === 'string') {
+        if (typeof frame === 'string' && !props.route?.params?.emptyFrame) {
             setInputFrame(frame);
         }
-    }, [frame]);
+    }, [frame, props.route?.params?.emptyFrame]);
 
     // do wstawiania wartości do inputa i reset powiadomień o błdnym wypełnieniu
     const hendleInputFrame = (value: string) => {

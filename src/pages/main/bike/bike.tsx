@@ -146,6 +146,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                     description={trans.warranty.reviews}
                     callback={onChangeBikeHandler}
                     currentBike={bike.description.serial_number}
+                    buttonText={trans.add}
                 />
 
                 {bike?.images && bike.images.length > 0 ? (

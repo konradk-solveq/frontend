@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
+import React from 'react';
+import {StyleSheet, SafeAreaView, View} from 'react-native';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
@@ -10,22 +10,20 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
+import AddBike from './addBike';
 
-interface Props {
-    navigation: any,
-    route: any,
-};
-
-const Home: React.FC<Props> = (props: Props) => {
+const Home: React.FC = () => {
     setObjSize(334, 50);
     const styles = StyleSheet.create({
+        container1: {
+            flex: 1,
+        },
         container: {
-            display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%',
             height: '100%',
-            backgroundColor: "#fff"
+            backgroundColor: '#fff',
         },
         header: {
             position: 'absolute',
@@ -33,31 +31,29 @@ const Home: React.FC<Props> = (props: Props) => {
             height: getVerticalPx(20),
             left: getCenterLeftPx(),
             top: getVerticalPx(65),
+            zIndex: 1,
             alignItems: 'center',
         },
-        text: {
-            top: -30,
-            fontFamily: "DIN2014Narrow-Regular",
-            fontSize: 40,
-            color: '#313131',
-            textAlign: 'center',
-        }
-    })
+        tileWrapper: {
+            top: getVerticalPx(138),
+        },
+    });
 
     return (
-        <SafeAreaView style={styles.container}>
-
+        <SafeAreaView style={styles.container1}>
             <View style={styles.header}>
-                <KroosLogo></KroosLogo>
+                <KroosLogo />
             </View>
 
-            <Text style={styles.text}>Home</Text>
+            <View style={styles.container}>
+                <View style={styles.tileWrapper}>
+                    <AddBike />
+                </View>
+            </View>
 
-            <TabBackGround></TabBackGround>
-
+            <TabBackGround />
         </SafeAreaView>
-    )
-}
+    );
+};
 
-
-export default Home
+export default Home;

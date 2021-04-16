@@ -241,6 +241,7 @@
             "od ",
             " / nr ramy "
         ],
+        "add": "Dodaj",
         "warranty": {
             "state": "status gwarancji",
             "toEnd": "do końca gwarancji",
