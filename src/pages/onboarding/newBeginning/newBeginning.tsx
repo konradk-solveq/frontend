@@ -165,7 +165,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
         position: 'absolute',
         width: getWidthPx(),
         height: getRelativeHeight(),
-        left: -ww * 0.05,
+        left: -ww * 0.01,
         top: linePosX,
         // backgroundColor: '#00ff9933',
     };
