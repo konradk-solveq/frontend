@@ -1,23 +1,21 @@
 import React from 'react';
-import {StyleSheet, Dimensions, SafeAreaView, Text, Platform} from 'react-native';
+import {
+    StyleSheet,
+    Dimensions,
+    SafeAreaView,
+    Text,
+    Platform,
+} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import AnimSvg from '../../../helpers/animSvg';
 
 import {
-    setAppSize,
-    initAppSize,
     setObjSize,
     getCenterLeftPx,
-    getCenterTopPx,
-    getHorizontal,
     getHorizontalPx,
-    getVertical,
     getVerticalPx,
-    getWidth,
-    getWidthOf,
     getWidthPx,
-    getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 import MapSvg from './mapSvg';
 
@@ -35,7 +33,10 @@ const World: React.FC = () => {
     const t = getVerticalPx(348);
     const h = ww * (202 / 400);
     const th = getVerticalPx(300);
-    const tt = Platform.OS === 'ios' ? getVerticalPx(138) :  t - (th + getVerticalPx(138));
+    const tt =
+        Platform.OS === 'ios'
+            ? getVerticalPx(138)
+            : t - (th + getVerticalPx(138));
 
     setObjSize(350, 23);
     const styles = StyleSheet.create({
