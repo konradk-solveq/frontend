@@ -5,7 +5,7 @@ import {
     View,
     Animated,
     Easing,
-    Text,
+    SafeAreaView,
 } from 'react-native';
 import AnimSvg from '../../../helpers/animSvg';
 
@@ -90,7 +90,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
     const [titleH, setTitleH] = useState(0);
     const [imgH, setImgH] = useState(0);
     const [textH, setTextH] = useState(0);
-    const [linePosX, setH] = useState(0);
+    const [linePosX, setLinePosX] = useState(0);
     const [lineSvg, setLineSvg] = useState('');
 
     const wrapH = wh - getVerticalPx(138) - getVerticalPx(65) * 2 - 50;
@@ -140,7 +140,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
             } else {
                 linePosX += ((path_propo - 1) / 2) * (img_h * 0.9) * 0.7;
             }
-            setH(linePosX);
+            setLinePosX(linePosX);
 
             let allLine = (ww / 780.5) * 1394.3299560546875;
 
@@ -205,7 +205,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <>
+        <SafeAreaView>
             <Animated.View
                 style={[
                     styles.container,
@@ -275,7 +275,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
                     setBoard={setBoard}
                 />
             </Animated.View>
-        </>
+        </SafeAreaView>
     );
 };
 

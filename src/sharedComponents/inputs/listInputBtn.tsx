@@ -21,6 +21,7 @@ interface Props {
 
 const ListInputBtn: React.FC<Props> = (props: Props) => {
     const [borderColor, setBorderColor] = useState('#80555555');
+    const [borderWidth, setBorderrWidth] = useState(1);
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
@@ -50,6 +51,7 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
             case 'ok':
                 {
                     setBorderColor('#2cba3f');
+                    setBorderrWidth(2);
                     if (props.validationStatus) {
                         props.validationStatus(true);
                     }
@@ -58,6 +60,7 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
             case 'bad':
                 {
                     setBorderColor('#d8232a');
+                    setBorderrWidth(2);
                     if (props.validationStatus) {
                         props.validationStatus(false);
                     }
@@ -66,6 +69,7 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
             default:
                 {
                     setBorderColor('#80555555');
+                    setBorderrWidth(1);
                     if (props.validationStatus) {
                         props.validationStatus(false);
                     }
@@ -86,7 +90,7 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
         input: {
             width: '100%',
             borderRadius: getHorizontalPx(150),
-            borderWidth: 1,
+            borderWidth: borderWidth,
             borderColor: borderColor,
             height: 50,
             marginTop: getHorizontalPx(6),

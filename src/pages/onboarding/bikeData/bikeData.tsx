@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
     StyleSheet,
     SafeAreaView,
@@ -195,28 +196,26 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         }
     }, [route.params]);
 
-    const [headHeight, setHeadHeightt] = useState(0);
+    const [headHeight, setHeadHeight] = useState(0);
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         scroll: {
             width: '100%',
-            height: '100%', //wh - headHeight,
-            top: headHeight,
-        },
-        light30: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
-            lineHeight: 38,
-            color: '#555555',
-            textAlign: 'left',
+            height: '100%',
+            top: getVerticalPx(-20), // dla lepszego auto scrolingu przy wyborze inputa i pojawieniu się klawiatury
         },
         title: {
             position: 'relative',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            marginTop: getVerticalPx(45),
+            marginTop: getVerticalPx(45 + 20) + headHeight,
             marginBottom: getVerticalPx(30),
+            fontFamily: 'DIN2014Narrow-Light',
+            fontSize: 30,
+            lineHeight: 38,
+            color: '#555555',
+            textAlign: 'left',
         },
         inputAndPlaceholder: {
             position: 'relative',
@@ -224,12 +223,12 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
             left: getCenterLeftPx(),
             marginTop: getVerticalPx(10),
         },
-        botton: {
+        button: {
             width: getWidthPx(),
             height: 50,
             left: getCenterLeftPx(),
             marginTop: getVerticalPx(10),
-            marginBottom: headHeight + getVerticalPx(65),
+            marginBottom: getVerticalPx(65),
         },
     });
 
@@ -237,108 +236,116 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         <SafeAreaView style={{backgroundColor: 'white'}}>
             <View style={styles.scroll}>
                 <ScrollView>
-                    <Text style={[styles.title, styles.light30]}>
-                        {trans.title}
-                    </Text>
+                    <Text style={styles.title}>{trans.title}</Text>
 
-                    <OneLineTekst
-                        style={styles.inputAndPlaceholder}
-                        placeholder={trans.frameNum}
-                        onChangeText={(value: string) =>
-                            hendleChangeDataValue('serial_number', value)
-                        }
-                        validationOk={(value: string) =>
-                            hendleValidationOk(value, 'serial_number')
-                        }
-                        // validationWrong={hendleValidationWrong}
-                        messageWrong={trans.wrong} //TODO: add bether form messages
-                        value={data.serial_number}
-                        validationStatus={(value: boolean) =>
-                            handleSetCanGoFoard('frameNumber', value)
-                        }
-                        forceMessageWrong={messages.serial_number}
-                    />
+                    <KeyboardAwareScrollView>
+                        <OneLineTekst
+                            style={styles.inputAndPlaceholder}
+                            placeholder={trans.frameNum}
+                            onChangeText={(value: string) =>
+                                hendleChangeDataValue('serial_number', value)
+                            }
+                            validationOk={(value: string) =>
+                                hendleValidationOk(value, 'serial_number')
+                            }
+                            // validationWrong={hendleValidationWrong}
+                            messageWrong={trans.wrong} //TODO: add bether form messages
+                            value={data.serial_number}
+                            validationStatus={(value: boolean) =>
+                                handleSetCanGoFoard('frameNumber', value)
+                            }
+                            forceMessageWrong={messages.serial_number}
+                        />
+                    </KeyboardAwareScrollView>
 
-                    <ListInputBtn
-                        style={styles.inputAndPlaceholder}
-                        placeholder={trans.producer.title}
-                        onpress={() =>
-                            navigation.navigate('ListPageInput', {
-                                header: trans.producer.listHeader,
-                                list: trans.producer.listData,
-                                last: trans.producer.listDataLast,
-                                key: 'producer',
-                                backTo: 'BikeData',
-                            })
-                        }
-                        validationOk={(value: string) =>
-                            hendleValidationOk(value, 'producer')
-                        }
-                        messageWrong={trans.wrong}
-                        value={data.producer}
-                        valueName={trans.producer.list}
-                        validationStatus={(value: boolean) =>
-                            handleSetCanGoFoard('producer', value)
-                        }
-                        forceMessageWrong={messages.producer}
-                    />
+                    <KeyboardAwareScrollView>
+                        <ListInputBtn
+                            style={styles.inputAndPlaceholder}
+                            placeholder={trans.producer.title}
+                            onpress={() =>
+                                navigation.navigate('ListPageInput', {
+                                    header: trans.producer.listHeader,
+                                    list: trans.producer.listData,
+                                    last: trans.producer.listDataLast,
+                                    key: 'producer',
+                                    backTo: 'BikeData',
+                                })
+                            }
+                            validationOk={(value: string) =>
+                                hendleValidationOk(value, 'producer')
+                            }
+                            messageWrong={trans.wrong}
+                            value={data.producer}
+                            valueName={trans.producer.list}
+                            validationStatus={(value: boolean) =>
+                                handleSetCanGoFoard('producer', value)
+                            }
+                            forceMessageWrong={messages.producer}
+                        />
+                    </KeyboardAwareScrollView>
 
-                    <OneLineTekst
-                        style={styles.inputAndPlaceholder}
-                        placeholder={trans.model}
-                        onChangeText={(value: string) =>
-                            hendleChangeDataValue('name', value)
-                        }
-                        validationOk={(value: string) =>
-                            hendleValidationOk(value, 'name')
-                        }
-                        // validationWrong={hendleValidationWrong}
-                        messageWrong={trans.wrong}
-                        value={data.name}
-                        validationStatus={(value: boolean) =>
-                            handleSetCanGoFoard('name', value)
-                        }
-                        forceMessageWrong={messages.name}
-                    />
+                    <KeyboardAwareScrollView>
+                        <OneLineTekst
+                            style={styles.inputAndPlaceholder}
+                            placeholder={trans.model}
+                            onChangeText={(value: string) =>
+                                hendleChangeDataValue('name', value)
+                            }
+                            validationOk={(value: string) =>
+                                hendleValidationOk(value, 'name')
+                            }
+                            // validationWrong={hendleValidationWrong}
+                            messageWrong={trans.wrong}
+                            value={data.name}
+                            validationStatus={(value: boolean) =>
+                                handleSetCanGoFoard('name', value)
+                            }
+                            forceMessageWrong={messages.name}
+                        />
+                    </KeyboardAwareScrollView>
 
-                    <OneLineTekst
-                        style={styles.inputAndPlaceholder}
-                        placeholder={trans.size}
-                        onChangeText={(value: string) =>
-                            hendleChangeDataValue('size', value)
-                        }
-                        validationOk={(value: string) =>
-                            hendleValidationOk(value, 'size')
-                        }
-                        // validationWrong={hendleValidationWrong}
-                        messageWrong={trans.wrong}
-                        value={data.size}
-                        validationStatus={(value: boolean) =>
-                            handleSetCanGoFoard('size', value)
-                        }
-                        forceMessageWrong={messages.size}
-                    />
+                    <KeyboardAwareScrollView>
+                        <OneLineTekst
+                            style={styles.inputAndPlaceholder}
+                            placeholder={trans.size}
+                            onChangeText={(value: string) =>
+                                hendleChangeDataValue('size', value)
+                            }
+                            validationOk={(value: string) =>
+                                hendleValidationOk(value, 'size')
+                            }
+                            // validationWrong={hendleValidationWrong}
+                            messageWrong={trans.wrong}
+                            value={data.size}
+                            validationStatus={(value: boolean) =>
+                                handleSetCanGoFoard('size', value)
+                            }
+                            forceMessageWrong={messages.size}
+                        />
+                    </KeyboardAwareScrollView>
 
-                    <OneLineTekst
-                        style={styles.inputAndPlaceholder}
-                        placeholder={trans.color}
-                        onChangeText={(value: string) =>
-                            hendleChangeDataValue('color', value)
-                        }
-                        validationOk={(value: string) =>
-                            hendleValidationOk(value, 'color')
-                        }
-                        // validationWrong={hendleValidationWrong}
-                        messageWrong={trans.wrong}
-                        value={data.color}
-                        validationStatus={(value: boolean) =>
-                            handleSetCanGoFoard('color', value)
-                        }
-                        forceMessageWrong={messages.color}
-                    />
+                    <KeyboardAwareScrollView extraScrollHeight={100}>
+                        <OneLineTekst
+                            style={styles.inputAndPlaceholder}
+                            placeholder={trans.color}
+                            onChangeText={(value: string) =>
+                                hendleChangeDataValue('color', value)
+                            }
+                            validationOk={(value: string) =>
+                                hendleValidationOk(value, 'color')
+                            }
+                            // validationWrong={hendleValidationWrong}
+                            messageWrong={trans.wrong}
+                            value={data.color}
+                            validationStatus={(value: boolean) =>
+                                handleSetCanGoFoard('color', value)
+                            }
+                            forceMessageWrong={messages.color}
+                        />
+                    </KeyboardAwareScrollView>
 
                     <BigRedBtn
-                        style={styles.botton}
+                        style={styles.button}
                         title={trans.btn}
                         onpress={() => hendleGoFoward()}
                     />
@@ -348,7 +355,8 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
             <StackHeader
                 onpress={() => navigation.goBack()}
                 inner={trans.header}
-                getHeight={setHeadHeightt}
+                getHeight={setHeadHeight}
+                style={{backgroundColor: '#fff'}}
             />
         </SafeAreaView>
     );

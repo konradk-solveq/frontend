@@ -1,6 +1,6 @@
 import React from 'react';
-import {Stack} from './../stack';
-import {horizontalAnim} from '../../helpers/positioning';
+import { Stack } from './../stack';
+import { horizontalAnim } from '../../helpers/positioning';
 
 import NewBeginning from '../../pages/onboarding/newBeginning/newBeginning';
 import Beginning from '../../pages/onboarding/beginning/beginning';
@@ -23,8 +23,9 @@ import MineMenu from '../../pages/main/mainMenu';
 const OnboardingStackNavigator: React.FC = () => {
     return (
         <Stack.Navigator
+            gesturesEnabled="true"
             headerMode="none"
-            initialRouteName="NewBeginning"
+            initialRouteName="PermitsDeclarations"
             mode="modal"
             screenOptions={horizontalAnim}>
             <Stack.Screen name="NewBeginning" component={NewBeginning} />

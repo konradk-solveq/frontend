@@ -27,7 +27,9 @@ const TypicalRedBtn: React.FC<Props> = (props: Props) => {
             marginBottom: 5,
         },
         text: {
-            fontFamily: 'DIN2014Narrow-Bold',
+            fontFamily: props.active
+                ? 'DIN2014Narrow-Bold'
+                : 'DIN2014Narrow-Regular',
             fontSize: 16,
             textAlign: 'center',
             color: props.active ? 'white' : '#313131',

@@ -2,6 +2,7 @@ import React from 'react';
 import {Stack} from './../stack';
 import {horizontalAnim} from '../../helpers/positioning';
 
+import SplashScreen from '../../pages/main/splashScreen/splashScreen';
 import ListPageInput from '../../sharedComponents/inputs/listPageInput';
 import MineMenu from '../../pages/main/mainMenu';
 
@@ -14,9 +15,10 @@ const RegularStackNavigator: React.FC = () => {
     return (
         <Stack.Navigator
             headerMode="none"
-            initialRouteName="MineMenu"
+            initialRouteName="SplashScreen"
             mode="modal"
             screenOptions={horizontalAnim}>
+            <Stack.Screen name="SplashScreen" component={SplashScreen} />
             <Stack.Screen name="MineMenu" component={MineMenu} />
 
             {/* univesal/generic pages */}
@@ -28,6 +30,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen name="BikeData" component={BikeData} />
             <Stack.Screen name="BikeSummary" component={BikeSummary} />
             {/* End add bike */}
+
         </Stack.Navigator>
     );
 };

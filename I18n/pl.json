@@ -79,35 +79,22 @@
     "Regulations": {
         "header": "Regulamin",
         "title": "Sprawdź aktualne zapisy regulaminu dotyczącego aplikacji myKROSS oraz Sklepu internetowego kross.eu",
-
         "urlKross": "http://kross.eu",
         "hiperKross": "kross.eu",
-
         "urlKrossEmail": "mailto:kross@kross.pl",
         "hiperKrossEmail": "kross@kross.pl",
-
         "urlGoogle": "http://www.google.com",
         "hiperGoogle": "www.google.com",
-
         "urlAppstore": "http://www.appstore.com",
         "hiperAppstore": "www.appstore.com",
-
         "urlWithdrawalForm": "https://www.rzetelnyregulamin.pl/pl/d/f-5896287c1423e63def4155ee5f3e0a85",
         "hiperWithdrawalForm": "Formularz odstąpienia",
-
         "urlUOKik": "https://www.uokik.gov.pl/pozasadowe_rozwiazywanie_sporow_konsumenckich.php",
         "hiperUOKik": "Urzędu Ochrony Konkurencji i\u00a0Konsumentów",
-
         "urlDispute": "https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home.chooseLanguage",
         "hiperDispute": "ec.europa.eu/consumers/odr/",
-
         "paragraph": [{
-                "marginTop": 15,
-                "font": "light",
-                "text": "Sprawdź aktualne zapisy regulaminu dotyczącego aplikacji myKROSS oraz Sklepu internetowego kross.eu"
-            },
-            {
-                "marginTop": 30,
+                "marginTop": 53,
                 "font": "regular",
                 "text": "REGULAMIN APLIKACJI MOBILNEJ myKROSS"
             },
@@ -626,6 +613,7 @@
                 "Fuji",
                 "Giant",
                 "Kellys",
+                "Kross",
                 "Merida",
                 "Rockiders",
                 "Romet",
@@ -737,7 +725,10 @@
             "btnSave": "ZAPISZ"
         }
     },
-    "MainHome": {},
+    "MainHome": {
+        "text": "Jeżeli chcesz w jednym miejscu zarządzać Twoimi rowerami KROSS oraz rowerami innych producentów, dodaj je do aplikacji.",
+        "btn": "DODAJ ROWER"
+    },
     "MainWorld": {
         "title": "Już niedługo dołącz do\u00a0drużyny KROSS",
         "footer": "Zacznij z\u00a0nami wspólnie budować Rowerową Mapę Polski"
