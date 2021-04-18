@@ -16,6 +16,7 @@ interface Props {
     validationStatus: Function; // zwrotka dla obiektu rodzica: poprawna gdy validationOk zwraca true, inaczej false
     forceMessageWrong: string; // informacja o błędnej validacji przez rodica, wg validationStatus, nadrzędna nad messageWrong
     maxLength?: number;
+    keyboardType?: string;
 }
 
 const OneLineTekst: React.FC<Props> = (props: Props) => {
@@ -124,6 +125,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
                 onChangeText={props.onChangeText}
                 value={props.value}
                 maxLength={props.maxLength}
+                keyboardType={props.keyboardType}
             />
 
             <Text style={styles.error}>{errorMessage}</Text>

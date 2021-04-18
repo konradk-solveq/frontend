@@ -92,7 +92,7 @@ const Regulations: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('PermitsDeclarations')}
+                onpress={() => props.navigation.goBack()}
                 inner={trans.header}
                 getHeight={setheadHeightt}
             />

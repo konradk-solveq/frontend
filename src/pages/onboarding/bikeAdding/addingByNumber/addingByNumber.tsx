@@ -176,6 +176,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                             value={inputFrame}
                             validationStatus={setCanGoFoward}
                             forceMessageWrong={forceMessageWrong}
+                            keyboardType={"numeric"}
                         />
 
                         <TranspLightBtn

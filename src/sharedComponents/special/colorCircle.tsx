@@ -3,16 +3,16 @@ import {ViewStyle} from 'react-native';
 import Svg, {Path, Circle} from 'react-native-svg';
 
 interface Props {
-    colors: Array<string>;
+    colors?: Array<string>;
     style?: ViewStyle;
 }
 
 const ColorCircle: React.FC<IProps> = ({colors, style}: Props) => (
     <Svg style={style} viewBox="0 0 24 24">
-        {colors.length == 1 && (
+        {colors && colors.length == 1 && (
             <Circle cx="12" cy="12" r="12" fill={colors[0]} />
         )}
-        {colors.length == 2 && (
+        {colors && colors.length == 2 && (
             <>
                 <Path
                     fill={colors[0]}
@@ -24,7 +24,7 @@ const ColorCircle: React.FC<IProps> = ({colors, style}: Props) => (
                 />
             </>
         )}
-        {colors.length == 3 && (
+        {colors && colors.length == 3 && (
             <>
                 <Path
                     fill={colors[0]}
@@ -40,7 +40,7 @@ const ColorCircle: React.FC<IProps> = ({colors, style}: Props) => (
                 />
             </>
         )}
-        {colors.length > 3 && (
+        {colors && colors.length > 3 && (
             <>
                 <Path
                     d="M11.12.03A12 12 0 00.04 11.11L11.12.03z"
