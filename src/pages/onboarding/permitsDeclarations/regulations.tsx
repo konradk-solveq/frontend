@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
     StyleSheet,
     Dimensions,
@@ -78,7 +78,6 @@ const Regulations: React.FC<Props> = (props: Props) => {
                     <View style={styles.wrap}>
                         <Text style={styles.title}>{trans.title}</Text>
 
-
                         {list.map((e, i) => (
                             <Paragraph
                                 marginTop={e.marginTop}
@@ -88,7 +87,6 @@ const Regulations: React.FC<Props> = (props: Props) => {
                                 key={'pgraph_' + i}
                             />
                         ))}
-
                     </View>
                 </ScrollView>
             </View>

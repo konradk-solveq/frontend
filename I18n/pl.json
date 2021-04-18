@@ -72,28 +72,296 @@
         "wrong": "Pole obowiązkowe",
         "btn": "DALEJ"
     },
+    "Urls": [{
+            "url": "http://kross.eu",
+            "hyper": "kross.eu"
+        },
+        {
+            "url": "mailto:kross@kross.pl",
+            "hyper": "kross@kross.pl"
+        },
+        {
+            "url": "http://www.google.com",
+            "hyper": "www.google.com"
+        },
+        {
+            "url": "http://www.appstore.com",
+            "hyper": "www.appstore.com"
+        },
+        {
+            "url": "https://www.rzetelnyregulamin.pl/pl/d/f-5896287c1423e63def4155ee5f3e0a85",
+            "hyper": "Formularz odstąpienia"
+        },
+        {
+            "url": "https://www.uokik.gov.pl/pozasadowe_rozwiazywanie_sporow_konsumenckich.php",
+            "hyper": "Urzędu Ochrony Konkurencji i\u00a0Konsumentów"
+        },
+        {
+            "url": "https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home.chooseLanguage",
+            "hyper": "ec.europa.eu/consumers/odr/"
+        },
+        {
+            "url": "https://kross.eu/pl/kontakt",
+            "hyper": "kross.eu/pl/kontakt"
+        },
+        {
+            "url": "mailto:rodo@kross.pl",
+            "hyper": "rodo@kross.pl"
+        },
+        {
+            "url": "",
+            "hyper": ""
+        },
+        {
+            "url": "",
+            "hyper": ""
+        },
+    ],
     "PrivacyPolicy": {
         "header": "Polityka prywatności",
         "title": "Dbamy o\u00a0to aby Twoje dane były bezpieczne",
-        "text": "1. Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych pozyskanych za\u00a0pośrednictwem sklepu internetowego kross.eu (zwanego dalej: „Sklepem Internetowym”).\n\n2. Właścicielem Sklepu Internetowego i\u00a0jednocześnie administratorem danych jest KROSS\u00a0S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046, wpisana do\u00a0rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w\u00a0Białymstoku, XII\u00a0Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS\u00a00000223853, o\u00a0kapitale zakładowym 45.000.000 PLN, NIP:\u00a07611402748, REGON:\u00a0550749108, zwana dalej KROSS\u00a0S.A..\n\n3. Dane osobowe zbierane przez KROSS\u00a0S.A. za\u00a0pośrednictwem Sklepu Internetowego są\u00a0przetwarzane zgodnie z\u00a0Rozporządzeniem Parlamentu Europejskiego i\u00a0Rady (UE) 2016/679 z\u00a0dnia 27\u00a0kwietnia\u00a02016\u00a0r. w\u00a0sprawie ochrony osób fizycznych w\u00a0związku z\u00a0przetwarzaniem danych osobowych i\u00a0w\u00a0sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o\u00a0ochronie danych), zwane również RODO.\n\n4. KROSS\u00a0S.A. dokłada szczególnej staranności do\u00a0poszanowania prywatności Klientów odwiedzających Sklep Internetowy."
+        "text": "1. Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych pozyskanych za\u00a0pośrednictwem sklepu internetowego kross.eu (zwanego dalej: „Sklepem Internetowym”).\n\n2. Właścicielem Sklepu Internetowego i\u00a0jednocześnie administratorem danych jest KROSS\u00a0S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046, wpisana do\u00a0rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w\u00a0Białymstoku, XII\u00a0Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS\u00a00000223853, o\u00a0kapitale zakładowym 45.000.000 PLN, NIP:\u00a07611402748, REGON:\u00a0550749108, zwana dalej KROSS\u00a0S.A..\n\n3. Dane osobowe zbierane przez KROSS\u00a0S.A. za\u00a0pośrednictwem Sklepu Internetowego są\u00a0przetwarzane zgodnie z\u00a0Rozporządzeniem Parlamentu Europejskiego i\u00a0Rady (UE) 2016/679 z\u00a0dnia 27\u00a0kwietnia\u00a02016\u00a0r. w\u00a0sprawie ochrony osób fizycznych w\u00a0związku z\u00a0przetwarzaniem danych osobowych i\u00a0w\u00a0sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o\u00a0ochronie danych), zwane również RODO.\n\n4. KROSS\u00a0S.A. dokłada szczególnej staranności do\u00a0poszanowania prywatności Klientów odwiedzających Sklep Internetowy.",
+        "paragraph": [{
+                "marginTop": 53,
+                "font": "regular",
+                "text": "Polityka Prywatności Aplikacji Mobilnej myKROSS"
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "I. Wstęp"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Niniejsza Polityka Prywatności reguluje zasady przetwarzania danych osobowych w\u00a0Aplikacji Mobilnej myKROSS (dalej „Aplikacja Mobilna”)."
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Ochrona danych osobowych naszych Klientów i\u00a0Użytkowników jest dla naszej firmy ważnym priorytetem. Stale pracujemy nad rozwojem oraz dokładamy najwyższej staranności, aby Państwa dane osobowe były bezpieczne oraz aby były przetwarzane z\u00a0poszanowaniem wszystkich zasad określonych przez RODO takich jak: zgodność z\u00a0prawem, rzetelność i\u00a0przejrzystość, zasada ograniczonego celu, minimalizacja danych, prawidłowość danych, zasada ograniczenia przechowywania oraz integralność i\u00a0poufność."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "II. Zakres danych i\u00a0źródło ich pozyskania"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "1. W\u00a0Aplikacji Mobilnej przetwarzamy Pani\\Pana następujące dane: imię lub pseudonim (nick) - opcjonalnie, numer ramy roweru, nazwa producenta roweru, model roweru, kolor roweru,  szczegółowe dane roweru wg specyfikacji roweru oraz terminy przeglądów roweru."
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "2. Podczas korzystania z\u00a0 Mobilnej mogą być pobierane dodatkowe informacje, w\u00a0szczególności: adres IP\u00a0przypisany do\u00a0urządzenia mobilnego Użytkownika lub zewnętrzny adres IP\u00a0dostawcy Internetu, nazwa domeny, czas dostępu, typ systemu operacyjnego."
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Państwa dane uzyskujemy bezpośrednio od Pani\\Pana. W\u00a0przypadku, gdy w\u00a0aplikacji przechowuje Pani\\Pan rower (rowery) firmy KROSS część informacji takich jak model roweru pochodzi z\u00a0naszego systemu. Wystarczy, że\u00a0wprowadzi Pani\\Pan numer ramy a\u00a0pozostałe informacje o\u00a0rowerze firmy KROSS zostaną automatycznie wyświetlone i\u00a0zapisane w\u00a0Aplikacji Mobilnej. Nasza Aplikacja daje Państwu możliwość przechowywania w\u00a0niej również informacji o\u00a0rowerach innych producentów. Dzięki czemu informacje o\u00a0wszystkich swoich rowerach mogą Państwo przechowywać w\u00a0jednym miejscu. W odniesieniu do\u00a0rowerów innych producentów na\u00a0początku korzystania z\u00a0Aplikacji Mobilnej będą Państwo poproszeni o\u00a0podanie imienia lub pseudonimu (nick) - opcjonalnie, numeru ramy, producenta, modelu, koloru i\u00a0rozmiaru ramy."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "III. Kto jest administratorem Twoich danych osobowych"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Administratorem danych osobowych przetwarzanych w\u00a0ramach Aplikacji Mobilnej jest KROSS\u00a0S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046 (dalej „KROSS”)."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "IV. W\u00a0jaki sposób mogą Państwo skontaktować się z\u00a0nami w\u00a0sprawie ochrony danych osobowych"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Z Administratorem danych mogą Państwo skontaktować się pod jego adresem wskazanym w\u00a0pkt\u00a0III powyżej, a\u00a0także poprzez formularz kontaktowy na\u00a0stronie https://kross.eu/pl/kontakt,  telefonicznie (29)\u00a0752\u00a011\u00a000 lub mailowo kross@kross.pl."
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "W\u00a0sprawach z\u00a0zakresu ochrony Pani\\Pana danych osobowych, w\u00a0tym realizacji praw, o\u00a0których mowa w\u00a0pkt.\u00a0X poniżej najlepiej skontaktować się wysyłając maila na\u00a0mailto:rodo@kross.pl. "
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "V. Cele i\u00a0podstawy prawne przewarzania danych "
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Dane osobowe Użytkowników są\u00a0przetwarzane w\u00a0następujących celach oraz na\u00a0podstawie następujących przepisów:"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• w\u00a0celu utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim -\u00a0podstawa prawna -\u00a0niezbędność do\u00a0wykonania umowy o\u00a0świadczenie usługi do\u00a0konta Użytkownika (art.\u00a06 ust.\u00a01 lit.\u00a0b\u00a0RODO);"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• w\u00a0celu wyświetlenia informacji dotyczącej obsługi gwarancyjnej –\u00a0podstawa prawna –\u00a0niezbędność w\u00a0celu do\u00a0wykonania umowy (usługi Aplikacji Mobilnej), której stroną jest osoba, której dane dotyczą (art.\u00a06 ust.\u00a01 lit.\u00a0b\u00a0RODO);"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• w\u00a0celach statystycznych (tracking), tj.\u00a0analiz i\u00a0badań oraz audytu oglądalności, a\u00a0w\u00a0szczególności do\u00a0tworzenia anonimowych statystyk, które pomagają zrozumieć, w\u00a0jaki sposób Użytkownicy korzystają z\u00a0Aplikacji Mobilnej, co\u00a0umożliwia ulepszanie jej struktury i\u00a0zawartości. Analizy będą robione w\u00a0oparciu o\u00a0ogólne i\u00a0anonimowe dane statyczne przetwarzane za\u00a0pośrednictwem narzędzi analitycznych Google Analytics –\u00a0podstawa prawna –\u00a0prawnie uzasadniony interes Administratora danych (art.\u00a06 ust.\u00a01 lit.\u00a0b\u00a0RODO) polegający na\u00a0ułatwieniu i\u00a0ulepszaniu korzystania z\u00a0funkcjonalności Aplikacji Mobilnej;"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• w\u00a0celu ustalania, dochodzenia i\u00a0egzekucji ewentualnych roszczeń wynikających z\u00a0korzystania z\u00a0Aplikacji Mobilnej -\u00a0podstawa prawna -\u00a0prawnie uzasadniony interes (art.\u00a06 ust.\u00a01 lit.\u00a0f\u00a0RODO), polegający na\u00a0ustaleniu, dochodzeniu i\u00a0egzekucji roszczeń oraz na\u00a0obronie przed roszczeniami w\u00a0postępowaniu przed sądami i\u00a0innymi organami państwowymi."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "VI. Dobrowolność podania danych osobowych"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Podanie danych osobowych jest dobrowolne, w\u00a0związku ze\u00a0świadczeniem usług za\u00a0pośrednictwem Aplikacji Mobilnej. Jedynie niepodanie numeru ramy roweru uniemożliwia skorzystanie z\u00a0usług świadczonych drogą elektroniczną."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "VII. Odbiorcy danych osobowych"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Dane osobowe Użytkownika przekazywane będą następującym podmiotom:"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• dostawcom usług, z\u00a0których korzysta KROSS przy prowadzeniu Aplikacji Mobilnej, m.\u00a0in. dostawcom świadczącym usługi hostingu, dostawcom świadczącym usługę wykonania Aplikacji Mobilnej, dostawcom systemów informatycznych KROSS, systemy do\u00a0analizy ruchu, firmie Google jako dostawcy narzędzia Google Analytics. Tacy dostawcy usług mogą przetwarzać dane osobowe wyłącznie na\u00a0polecenie KROSS w\u00a0granicach zawartych umów o\u00a0powierzeniu przetwarzania danych osobowych, które zobowiązują te\u00a0podmioty do\u00a0pełnej poufności i\u00a0odpowiedniego zabezpieczenia Pani\\Pana danych;"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• podmioty z\u00a0grupy kapitałowej KROSS, tylko w\u00a0zakresie w\u00a0jakim jest to\u00a0niezbędne do\u00a0prawidłowego wykonania usług zapewniających prawidłowe funkcjonowanie Aplikacji Mobilnej. Spółki z\u00a0grupy KROSS stosują jednolity, wysoki standard ochrony danych osobowych, w\u00a0tym zabezpieczenia odpowiednie do\u00a0potencjalnych ryzyka naruszenia ochrony danych osobowych;"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• uprawnione organy państwowe, w\u00a0szczególności takie jak: jednostki organizacyjne Prokuratury, Policji, Prezes Urzędu Ochrony Danych Osobowych, Prezes Urzędu Ochrony Konkurencji i\u00a0Konsumentów lub Prezes Urzędu Komunikacji Elektronicznej, w\u00a0przypadku skierowania przez ww\u00a0organy żądania o\u00a0udostępnienie danych. Organy te\u00a0mają na\u00a0celu ochronę praw Użytkowników."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "VIII. Jak długo będziemy przetwarzać dane "
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Dane osobowe Użytkowników przechowywane są\u00a0w\u00a0następującym okresie:"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• w\u00a0przypadku, gdy podstawą przetwarzania danych jest wykonanie umowy, wówczas dane osobowe Użytkownika przetwarzane są\u00a0przez KROSS tak długo, jak jest to\u00a0niezbędne do\u00a0świadczenia usługi, a\u00a0po\u00a0tym czasie przez okres przedawnienia roszczeń;"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• w\u00a0przypadku gdy podstawą przewarzania danych jest prawnie uzasadniony interes, wówczas dane osobowe Użytkownika przetwarzane są\u00a0przez okres korzystania z\u00a0Aplikacji Mobilnej. Jeśli w\u00a0tym czasie Użytkownik złoży sprzeciw wobec przewarzania danych i\u00a0sprzeciw ten okaże się zasadny przetwarzanie danych w\u00a0tych celach zostanie zaprzestane wcześniej."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "IX. Profilowanie"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Dane Użytkowników Aplikacji Mobilnej nie są\u00a0profilowane."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "X. Jakie prawa przysługują w\u00a0świetle RODO"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "1. Na\u00a0zasadach określonych w\u00a0RODO przysługują Państwu następujące prawa:"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• prawo żądania dostępu do\u00a0danych oraz uzyskania ich kopii;"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• prawo żądania sprostowania danych;"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• prawo żądania usunięcia lub ograniczenia przetwarzania danych. Prawo do\u00a0usunięcia danych (prawo do\u00a0bycia zapomnianym) podlega pewnym ograniczeniem np.\u00a0jeśli administrator wykaże niezbędność przetwarzania danych dla określonych celów np.\u00a0dochodzenia roszczeń;"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• prawo do\u00a0wniesienia sprzeciwu wobec przewarzania danych w\u00a0sytuacji gdy dane przewarzane są\u00a0na\u00a0podstawie prawnie uzasadnionego interesu;"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• prawo do\u00a0przenoszenia danych;"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "• prawo do\u00a0cofnięcia zgody w\u00a0dowolnym momencie przewarzania bez wpływu na\u00a0zgodność z\u00a0prawem przetwarzania, którego dokonano na\u00a0podstawie zgody przed jej cofnięciem. Prawo to\u00a0przysługuje w\u00a0sytuacji, gdy przetwarzanie danych oparto na\u00a0zgodzie."
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "2. W przypadku chęci zrealizowania któregoś z\u00a0wyżej wymienionych praw prosimy o\u00a0kontakt na\u00a0rodo@kross.pl. Nasz zespół Ochrony Danych Osobowych udzieli odpowiedzi."
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "3. Jeśli uznają Państwo, że\u00a0Państwa prawa lub wolności w\u00a0zakresie ochrony danych osobowych zostały naruszone przysługuje Państwu także prawo wniesienia skargi do\u00a0organu nadzorczego, tj.\u00a0Prezesa Urzędu Ochrony Danych Osobowych."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "XI. Transfer danych poza Europejski Obszar Gospodarczy"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Obecnie nie ma\u00a0miejsca przekazywanie danych osobowych poza Europejski Obszar Gospodarczy."
+            },
+            {
+                "marginTop": 53,
+                "font": "regular",
+                "text": "XII. Pliki cookies (ciasteczka)"
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
+                "text": "Obecnie Aplikacja Mobilna nie używa plików cookies."
+            },
+            {
+                "marginTop": 53,
+                "font": "light",
+                "text": "Wersja z\u00a0dnia 15\u00a0kwietnia\u00a02021\u00a0r."
+            },
+        ]
     },
     "Regulations": {
         "header": "Regulamin",
         "title": "Sprawdź aktualne zapisy regulaminu dotyczącego aplikacji myKROSS oraz Sklepu internetowego kross.eu",
-        "urlKross": "http://kross.eu",
-        "hiperKross": "kross.eu",
-        "urlKrossEmail": "mailto:kross@kross.pl",
-        "hiperKrossEmail": "kross@kross.pl",
-        "urlGoogle": "http://www.google.com",
-        "hiperGoogle": "www.google.com",
-        "urlAppstore": "http://www.appstore.com",
-        "hiperAppstore": "www.appstore.com",
-        "urlWithdrawalForm": "https://www.rzetelnyregulamin.pl/pl/d/f-5896287c1423e63def4155ee5f3e0a85",
-        "hiperWithdrawalForm": "Formularz odstąpienia",
-        "urlUOKik": "https://www.uokik.gov.pl/pozasadowe_rozwiazywanie_sporow_konsumenckich.php",
-        "hiperUOKik": "Urzędu Ochrony Konkurencji i\u00a0Konsumentów",
-        "urlDispute": "https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home.chooseLanguage",
-        "hiperDispute": "ec.europa.eu/consumers/odr/",
+
         "paragraph": [{
                 "marginTop": 53,
                 "font": "regular",
@@ -212,7 +480,7 @@
                         "bold": false
                     },
                     {
-                        "phrase": "Użytkownik/Konsument ",
+                        "phrase": "Użytkownik\\Konsument ",
                         "bold": true
                     },
                     {

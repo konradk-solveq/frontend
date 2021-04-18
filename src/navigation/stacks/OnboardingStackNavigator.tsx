@@ -25,10 +25,10 @@ const OnboardingStackNavigator: React.FC = () => {
         <Stack.Navigator
             gesturesEnabled="true"
             headerMode="none"
-            initialRouteName="NewBeginning"
+            initialRouteName="PermitsDeclarations"
             mode="modal"
             screenOptions={horizontalAnim}>
-            <Stack.Screen name="NewBeginning" component={NewBeginning} />
+            {/* <Stack.Screen name="NewBeginning" component={NewBeginning} /> */}
 
             <Stack.Screen
                 name="PermitsDeclarations"

@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-    StyleSheet,
-    Text,
-    Linking,
-} from 'react-native';
+import {StyleSheet, Text, Linking} from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 
-import {
-    getVerticalPx,
-} from '../../../helpers/layoutFoo';
+import {getVerticalPx} from '../../../helpers/layoutFoo';
 
 interface Props {
     marginTop: any;
@@ -19,7 +13,7 @@ interface Props {
 }
 
 const Paragraph: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('Regulations');
+    const trans = I18n.t('Urls');
 
     const styles = StyleSheet.create({
         paragraph: {
@@ -38,30 +32,14 @@ const Paragraph: React.FC<Props> = (props: Props) => {
 
     return (
         <Hyperlink
-            linkStyle={{ color: '#3587ea' }}
+            linkStyle={{color: '#3587ea'}}
             linkText={(url: string) => {
-                if (url == trans.urlKross) {
-                    return trans.hiperKross;
+                let link = trans.find(e => e.url == url);
+                if (link) {
+                    return link.hyper;
+                } else {
+                    return url;
                 }
-                if (url == trans.urlKrossEmail) {
-                    return trans.hiperKrossEmail;
-                }
-                if (url == trans.urlGoogle) {
-                    return trans.hiperGoogle;
-                }
-                if (url == trans.urlAppstore) {
-                    return trans.hiperAppstore;
-                }
-                if (url == trans.urlWithdrawalForm) {
-                    return trans.hiperWithdrawalForm;
-                }
-                if (url == trans.urlUOKik) {
-                    return trans.hiperUOKik;
-                }
-                if (url == trans.urlDispute) {
-                    return trans.hiperDispute;
-                }
-                return url;
             }}
             onPress={(url: string) => {
                 Linking.openURL(url);
@@ -72,7 +50,7 @@ const Paragraph: React.FC<Props> = (props: Props) => {
                         styles.paragraph,
                         props.font == 'regular' && styles.regular,
                         props.font == 'light' && styles.light,
-                        { marginTop: getVerticalPx(props.marginTop) },
+                        {marginTop: getVerticalPx(props.marginTop)},
                     ]}>
                     {props.text}
                 </Text>
@@ -81,12 +59,12 @@ const Paragraph: React.FC<Props> = (props: Props) => {
                     style={[
                         styles.paragraph,
                         styles.light,
-                        { marginTop: getVerticalPx(props.marginTop) },
+                        {marginTop: getVerticalPx(props.marginTop)},
                     ]}>
                     {props.text.map((e, i) => (
                         <Text
                             style={
-                                e.bold && { fontFamily: 'DIN2014Narrow-Regular' }
+                                e.bold && {fontFamily: 'DIN2014Narrow-Regular'}
                             }
                             key={'p_' + props.num + '_' + i}>
                             {e.phrase}
