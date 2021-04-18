@@ -20,6 +20,7 @@ interface Props {
     wrong: boolean; // * walidacja prze rodzica wyśle true wyświetli się wiadomość pod spodem, widomość pobierana z tłuaczeń
     getCheck: Function; // * zwrotka o zaznaczeiu dla rodzica
     text: string; // * tekst zgody
+    info?: string; // dodatkowe informacje
     marginTop: number; // *
     navigation: any;
 }
@@ -53,15 +54,18 @@ const OnePermit: React.FC<Props> = (props: Props) => {
         },
         text: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(18),
-            lineHeight: getHorizontalPx(24),
+            fontSize: 18,
+            lineHeight: 24,
             textAlign: 'left',
             color: '#555555',
         },
+        info: {
+            marginTop: getVerticalPx(25),
+        },
         wrong: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(18),
-            lineHeight: getHorizontalPx(24),
+            fontSize: 18,
+            lineHeight: 24,
             textAlign: 'left',
             color: '#d8232a',
             marginTop: getVerticalPx(11),
@@ -101,9 +105,37 @@ const OnePermit: React.FC<Props> = (props: Props) => {
                     <Text style={styles.text}>{props.text}</Text>
                 </Hyperlink>
 
-                <Text style={styles.wrong}>
-                    {props.wrong ? trans.wrong : ''}
-                </Text>
+                {props.wrong && (
+                    <Text style={styles.wrong}>
+                        {props.wrong ? trans.wrong : ''}
+                    </Text>
+                )}
+
+                {props.info && (
+                    <Hyperlink
+                        linkStyle={{color: '#3587ea'}}
+                        linkText={(url: string) => {
+                            if (url == trans.urlRegulations) {
+                                return trans.hiperRegulations;
+                            }
+                            if (url == trans.urlPrivacyPolicy) {
+                                return trans.hiperPrivacyPolicy;
+                            }
+                            return url;
+                        }}
+                        onPress={(url: string) => {
+                            if (url == trans.urlRegulations) {
+                                props.navigation.navigate('Regulations');
+                            }
+                            if (url == trans.urlPrivacyPolicy) {
+                                props.navigation.navigate('PrivacyPolicy');
+                            }
+                        }}>
+                        <Text style={[styles.text, styles.info]}>
+                            {props.info}
+                        </Text>
+                    </Hyperlink>
+                )}
             </View>
         </View>
     );

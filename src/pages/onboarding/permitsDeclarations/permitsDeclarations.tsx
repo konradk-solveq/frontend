@@ -146,6 +146,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                                 handleChangeStatus(i, val)
                             }
                             text={trans.paragraph[i].text}
+                            info={trans.paragraph[i].info}
                             marginTop={getVerticalPx(11)}
                             navigation={props.navigation}
                             key={'per_' + i}
