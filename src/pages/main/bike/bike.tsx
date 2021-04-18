@@ -37,6 +37,11 @@ const Bike: React.FC<Props> = (props: Props) => {
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
 
     const [bike, setBike] = useState(bikes?.[0]);
+    console.log(
+        '%c bikes:',
+        'background: #ffcc00; color: #003300',
+        bike.description.colorCodes,
+    );
 
     const onChangeBikeHandler = (frameNumber: string) => {
         if (frameNumber === bike.description.serial_number) {
@@ -205,9 +210,10 @@ const Bike: React.FC<Props> = (props: Props) => {
                         />
                     )}
 
-                {bike?.description?.color && (
+                {bike?.description?.color && bike?.description?.colorCodes && (
                     <ColorLabel
                         text={bike.description.color}
+                        colors={bike.description.colorCodes}
                         containerStyle={{marginLeft: getCenterLeftPx()}}
                     />
                 )}
