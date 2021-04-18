@@ -235,7 +235,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     return (
         <SafeAreaView style={{backgroundColor: 'white'}}>
             <View style={styles.scroll}>
-                <ScrollView>
+                <ScrollView keyboardShouldPersistTaps={'always'}>
                     <Text style={styles.title}>{trans.title}</Text>
 
                     <KeyboardAwareScrollView>

@@ -160,7 +160,9 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         <SafeAreaView
             style={styles.container}
             onLayout={({nativeEvent}) => handleAreaHeight(nativeEvent.layout)}>
-            <ScrollView style={styles.scroll}>
+            <ScrollView
+                keyboardShouldPersistTaps={'always'}
+                style={styles.scroll}>
                 <View style={styles.area}>
                     <Text style={styles.title}>{trans.text}</Text>
 

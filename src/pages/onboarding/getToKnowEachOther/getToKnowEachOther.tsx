@@ -1,9 +1,16 @@
 //getToKnowEachOther
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, ScrollView, Dimensions } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    Text,
+    ScrollView,
+    Dimensions,
+} from 'react-native';
 import I18n from 'react-native-i18n';
-import { setUserName } from '../../../storage/actions/index';
-import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import {setUserName} from '../../../storage/actions/index';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 
 import {
     setObjSize,
@@ -29,7 +36,7 @@ interface Props {
     navigation: any;
 }
 
-const GetToKnowEachOther: React.FC<Props> = ({ navigation }: Props) => {
+const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     const dispatch = useAppDispatch();
     const trans = I18n.t('GetToKnowEachOther');
 
@@ -54,6 +61,16 @@ const GetToKnowEachOther: React.FC<Props> = ({ navigation }: Props) => {
 
     const handleAreaHeight = (layout: any) => {
         setAreaHeigh(layout.height);
+    };
+
+    const hadleOnpress = (inputName: string) => {
+        dispatch(setUserName(inputName));
+        console.log(
+            '%c inputName:',
+            'background: #ffcc00; color: #003300',
+            inputName,
+        );
+        navigation.navigate('AddingByNumber');
     };
 
     const [headHeight, setHeadHeight] = useState(0);
@@ -100,7 +117,7 @@ const GetToKnowEachOther: React.FC<Props> = ({ navigation }: Props) => {
             width: getHorizontalPx(110),
             height: getHorizontalPx(20),
         },
-        inputAndPlaceholder: getPosWithMinHeight(334, 90, (380 - 100), 90),
+        inputAndPlaceholder: getPosWithMinHeight(334, 90, 380 - 100, 90),
         input: {
             height: 50,
             marginTop: getHorizontalPx(6),
@@ -114,8 +131,10 @@ const GetToKnowEachOther: React.FC<Props> = ({ navigation }: Props) => {
     return (
         <SafeAreaView
             style={styles.container}
-            onLayout={({ nativeEvent }) => handleAreaHeight(nativeEvent.layout)}>
-            <ScrollView style={styles.scroll}>
+            onLayout={({nativeEvent}) => handleAreaHeight(nativeEvent.layout)}>
+            <ScrollView
+                keyboardShouldPersistTaps={'always'}
+                style={styles.scroll}>
                 <View style={styles.area}>
                     <Text style={styles.title}>{trans.title}</Text>
 
@@ -133,20 +152,14 @@ const GetToKnowEachOther: React.FC<Props> = ({ navigation }: Props) => {
                         <View style={styles.btn}>
                             <BigWhiteBtn
                                 title={trans.skip}
-                                onpress={() => {
-                                    dispatch(setUserName(''));
-                                    navigation.navigate('AddingByNumber');
-                                }}
+                                onpress={() => hadleOnpress('')}
                             />
                         </View>
 
                         <View style={styles.btn}>
                             <BigRedBtn
                                 title={trans.goFoward}
-                                onpress={() => {
-                                    dispatch(setUserName(inputName));
-                                    navigation.navigate('AddingByNumber');
-                                }}
+                                onpress={() => hadleOnpress(inputName)}
                             />
                         </View>
                     </View>
