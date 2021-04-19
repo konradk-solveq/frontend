@@ -20,7 +20,7 @@ export const userBikeValidationRules = {
     name: [validationRules.required, validationRules.string, {min: 3}],
     size: [
         validationRules.required,
-        {match: /^([a-zA-Z]?)+[0-9]+"?$/i},
+        {match: /^([a-zA-Z]?)+[0-9]+("?)+(”?)$/i},
         {min: 2},
         {max: 12},
     ],
@@ -180,7 +180,7 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
 
     @IsOptional()
     @IsNotEmpty()
-    @Matches(new RegExp(/^([a-zA-Z]?)+[0-9]+"?$/i))
+    @Matches(new RegExp(/^([a-zA-Z]?)+[0-9]+("?)+(”?)$/i))
     @MinLength(2)
     @MaxLength(20)
     size?: string;
