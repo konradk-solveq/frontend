@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Dimensions, SafeAreaView} from 'react-native';
+import {StyleSheet, Dimensions, View} from 'react-native';
 import AnimSvg from '../../../helpers/animSvg';
 
 import {
@@ -113,13 +113,13 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <AnimSvg style={styles.krossLogo} source={krossLogo} />
 
             <AnimSvg style={styles.line} source={linePath} />
 
             <AnimSvg style={styles.krossYouCan} source={krossYouCan} />
-        </SafeAreaView>
+        </View>
     );
 };
 
