@@ -19,6 +19,7 @@ import BikeSummary from '../../pages/onboarding/bikeSummary/bikeSummary';
 import ListPageInput from '../../sharedComponents/inputs/listPageInput';
 import CyclingProfile from '../../pages/onboarding/cyclingProfile/cyclingProfile';
 import MineMenu from '../../pages/main/mainMenu';
+import InputPage from '../../sharedComponents/inputs/inputPage';
 
 const OnboardingStackNavigator: React.FC = () => {
     return (
@@ -60,6 +61,7 @@ const OnboardingStackNavigator: React.FC = () => {
 
             {/* univesal/generic pages */}
             <Stack.Screen name="ListPageInput" component={ListPageInput} />
+            <Stack.Screen name="InputPage" component={InputPage} />
         </Stack.Navigator>
     );
 };

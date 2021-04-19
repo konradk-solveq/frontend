@@ -361,7 +361,6 @@
     "Regulations": {
         "header": "Regulamin",
         "title": "Sprawdź aktualne zapisy regulaminu dotyczącego aplikacji myKROSS oraz Sklepu internetowego kross.eu",
-
         "paragraph": [{
                 "marginTop": 53,
                 "font": "regular",
@@ -893,7 +892,14 @@
                 "Triban",
                 "Woom"
             ],
-            "listDataLast": "Inny"
+            "listDataLast": "Inny",
+            "other": {
+                "header": "Nazwa producenta",
+                "text": "Podaj nazwę producenta",
+                "placeholder": "Producent:",
+                "messageWrong": "Nazwa jest za krótka",
+                "btn": "DODAJ",
+            }
         },
         "model": "Model",
         "size": "Rozmiar",
@@ -1045,9 +1051,7 @@
         "privacyPolicy": "Polityka prywatności",
         "contact": "Kontakt",
     },
-    "AppInfo": {
-
-    },
+    "AppInfo": {},
     "Contact": {
         "header": "Kontakt",
         "anonim": "Rowerzysto",

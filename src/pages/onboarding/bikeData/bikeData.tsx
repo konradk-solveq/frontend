@@ -42,7 +42,7 @@ interface Message {
 }
 
 interface Props {
-    navigation: any; // <<--- #askBartosz (1) ? nie mam pojęcia ajk to typować, da się wogóle ?
+    navigation: any;
     route: any;
 }
 
@@ -76,7 +76,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         // sant poprawności danych w komponencie
         serial_number: false,
         producer: false,
-        name: false, // <<--- #askBartosz (2) ? czy lepeiej ten stan przechowywać w komponencie i odpytywać go callbackiem ?
+        name: false,
         size: false,
         color: false,
     });
@@ -269,6 +269,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                                     last: trans.producer.listDataLast,
                                     key: 'producer',
                                     backTo: 'BikeData',
+                                    other: trans.producer.other,
                                 })
                             }
                             validationOk={(value: string) =>

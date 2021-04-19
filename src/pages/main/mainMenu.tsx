@@ -7,6 +7,8 @@ import WarrantyDetails from './bike/warrantyDetails/warrantyDetails';
 import Regulations from '../../pages/onboarding/permitsDeclarations/regulations';
 import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
 import Contact from '../main/profile/contact/contact';
+import ListPageInput from '../../sharedComponents/inputs/listPageInput';
+import InputPage from '../../sharedComponents/inputs/inputPage';
 
 interface Props {
     navigation: any;
@@ -62,6 +64,8 @@ const MineMenu: React.FC<Props> = (props: Props) => {
             <Stack.Screen name="Regulations" component={Regulations} />
             <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
             <Stack.Screen name="Contact" component={Contact} />
+            <Stack.Screen name="ListPageInput" component={ListPageInput} />
+            <Stack.Screen name="InputPage" component={InputPage} />
         </Stack.Navigator>
     );
 };
