@@ -35,7 +35,6 @@ export const validateData = (rules: any[], value: any) => {
                 isValid = maxLength(value, el.max);
             }
             if (el?.match) {
-                console.log(el.match)
                 isValid = matches(value, new RegExp(el.match));
             }
         }
