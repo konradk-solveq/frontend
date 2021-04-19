@@ -72,7 +72,7 @@ const Regulations: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{backgroundColor: '#fff'}}>
             <View style={styles.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>

@@ -37,7 +37,7 @@ const App: () => Node = () => {
             <PersistGate persistor={persistor}>
                 <NavContainer />
 
-                <Text style={styles.varsion}>v.1.01</Text>
+                <Text style={styles.varsion}>z dnia: 19.04.2021</Text>
             </PersistGate>
         </Provider>
     );
