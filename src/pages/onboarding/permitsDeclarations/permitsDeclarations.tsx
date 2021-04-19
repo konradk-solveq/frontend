@@ -86,6 +86,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
             width: '100%',
             height: '100%', // wh - headHeight,
             top: headHeight,
+            backgroundColor: 'white',
         },
         text: {
             width: getWidthPx(),
@@ -165,6 +166,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                 onpress={() => props.navigation.navigate('NewBeginning')}
                 inner={trans.header}
                 getHeight={setHeadHeightt}
+                style={{backgroundColor: '#fff'}}
             />
         </SafeAreaView>
     );

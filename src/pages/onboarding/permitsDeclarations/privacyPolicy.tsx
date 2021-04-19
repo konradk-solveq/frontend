@@ -37,6 +37,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
             width: '100%',
             height: wh - headHeight,
             top: headHeight,
+            backgroundColor: 'white',
         },
         wrap: {
             marginTop: getVerticalPx(50),
@@ -93,6 +94,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
                 onpress={() => props.navigation.goBack()}
                 inner={trans.header}
                 getHeight={setheadHeight}
+                style={{backgroundColor: '#fff'}}
             />
         </SafeAreaView>
     );
