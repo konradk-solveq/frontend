@@ -1,12 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {
-    StyleSheet,
-    Dimensions,
-    View,
-    Animated,
-    Easing,
-    SafeAreaView,
-} from 'react-native';
+import {StyleSheet, Dimensions, View, Animated, Easing} from 'react-native';
 import AnimSvg from '../../../helpers/animSvg';
 
 import {
@@ -183,10 +176,6 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
 
     setObjSize(414, 175);
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-        },
         static: {
             position: 'absolute',
             left: 0,
@@ -209,7 +198,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={styles.container}>
+        <>
             <Animated.View
                 style={[
                     styles.wrap,
@@ -279,7 +268,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
                     setBoard={setBoard}
                 />
             </Animated.View>
-        </SafeAreaView>
+        </>
     );
 };
 
