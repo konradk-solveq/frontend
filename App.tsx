@@ -27,7 +27,7 @@ const App: () => Node = () => {
             textAlign: 'left',
             color: '#555555',
             position: 'absolute',
-            top: 3,
+            bottom: 3,
             left: 10,
         },
     });
