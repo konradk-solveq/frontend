@@ -8,6 +8,8 @@ import {
     Linking,
 } from 'react-native';
 import I18n from 'react-native-i18n';
+import { useAppSelector } from '../../../../hooks/redux';
+
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 
@@ -46,6 +48,8 @@ interface Props {
 
 const Contact: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('Contact');
+    const userName =
+        useAppSelector<string>(state => state.user.userName) || trans.anonim;
 
     // const [headHeight, setheadHeight] = useState(0);
 
@@ -109,7 +113,7 @@ const Contact: React.FC<Props> = (props: Props) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.wrap}>
-                <Text style={styles.title}>{trans.title}</Text>
+                <Text style={styles.title}>{userName + ' ' + trans.title}</Text>
                 <View style={styles.poneEmail}>
                     <Text style={styles.phone}>{trans.phone}</Text>
 
@@ -132,7 +136,7 @@ const Contact: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.goBack()}
                 inner={trans.header}
-                // getHeight={setheadHeight}
+            // getHeight={setheadHeight}
             />
         </SafeAreaView>
     );

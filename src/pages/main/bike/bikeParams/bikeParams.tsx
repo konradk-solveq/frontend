@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { StyleSheet, Dimensions, SafeAreaView, View, Text } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Dimensions, SafeAreaView, View, Text} from 'react-native';
 import I18n from 'react-native-i18n';
-import { ScrollView } from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
+import {ColorLabel} from '../../../../sharedComponents/labels';
 
 import {
     setObjSize,
@@ -12,18 +13,16 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
-
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
-    navigation: any,
-    route: any,
-};
+    navigation: any;
+    route: any;
+}
 
 const wh = Dimensions.get('window').height;
 
 const BikeParams: React.FC<Props> = (props: Props) => {
-
     const trans = I18n.t('MainProfile');
     const description = props.route.params.description;
     const params = props.route.params.params;
@@ -39,14 +38,14 @@ const BikeParams: React.FC<Props> = (props: Props) => {
         },
         scroll: {
             height: wh - headHeight,
-            marginTop: headHeight
+            marginTop: headHeight,
         },
         bikeName: {
             fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(40),
             width: '100%',
             color: '#313131',
-            textAlign: 'center'
+            textAlign: 'center',
         },
         bikeDetails: {
             marginTop: getVerticalPx(5),
@@ -60,19 +59,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
-            marginTop: getVerticalPx(39)
-        },
-        colorBall: {
-            width: getHorizontalPx(24),
-            height: getHorizontalPx(24),
-            borderRadius: getHorizontalPx(12),
-            backgroundColor: 'khaki',
-            marginRight: getHorizontalPx(22)
-        },
-        colorText: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(18),
-            color: '#555555'
+            marginTop: getVerticalPx(39),
         },
         size: {
             marginTop: getVerticalPx(20),
@@ -84,7 +71,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
             borderRadius: getHorizontalPx(15),
             borderColor: '#33555555',
             borderWidth: 1,
-            alignSelf: "flex-start"
+            alignSelf: 'flex-start',
         },
         sizeText: {
             fontFamily: 'DIN2014Narrow-Regular',
@@ -96,58 +83,61 @@ const BikeParams: React.FC<Props> = (props: Props) => {
         lists: {
             marginTop: getVerticalPx(12),
             left: getCenterLeftPx(),
-            width: getWidthPx()
+            width: getWidthPx(),
         },
         list: {
-            marginTop: getVerticalPx(30)
+            marginTop: getVerticalPx(30),
         },
         name: {
-            fontFamily: "DIN2014Narrow-Regular",
+            fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(26),
             color: '#313131',
             textAlign: 'left',
-            marginBottom: getVerticalPx(11)
+            marginBottom: getVerticalPx(11),
         },
         valLine: {
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
         },
         value: {
-            fontFamily: "DIN2014Narrow-Light",
+            fontFamily: 'DIN2014Narrow-Light',
             fontSize: getHorizontalPx(16),
             lineHeight: getHorizontalPx(26),
-            color: '#313131'
-
+            color: '#313131',
         },
         lastOne: {
-            marginBottom: getHorizontalPx(65)
+            marginBottom: getHorizontalPx(65),
         },
         btn: {
             width: getWidthPx(),
             height: getHorizontalPx(50),
             left: getCenterLeftPx(),
             marginTop: getVerticalPx(31),
-            marginBottom: getVerticalPx(80)
-        }
-    })
+            marginBottom: getVerticalPx(80),
+        },
+    });
 
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scroll}>
-
                 <View style={styles.lists}>
-
                     <Text style={styles.bikeName}>{description.name}</Text>
 
                     <Text style={styles.bikeDetails}>
-                        {trans.details[0] + description.producer + trans.details[1] + description.serial_number}
+                        {trans.details[0] +
+                            description.producer +
+                            trans.details[1] +
+                            description.serial_number}
                     </Text>
 
-                    <View style={styles.color}>
-                        <View style={styles.colorBall} />
-                        <Text style={styles.colorText}>{description.color}</Text>
-                    </View>
+                    {description?.color && description?.colorCodes && (
+                        <ColorLabel
+                            text={description.color}
+                            colors={description.colorCodes}
+                            containerStyle={styles.color}
+                        />
+                    )}
 
                     <View style={styles.size}>
                         <Text style={styles.sizeText}>{description.size}</Text>
@@ -155,24 +145,23 @@ const BikeParams: React.FC<Props> = (props: Props) => {
 
                     {params.map((e, i) => (
                         <View
-                            style={[styles.list, (i == params.length - 1 && styles.lastOne)]}
-                            key={'list_' + i}
-                        >
-
+                            style={[
+                                styles.list,
+                                i == params.length - 1 && styles.lastOne,
+                            ]}
+                            key={'list_' + i}>
                             <Text style={styles.name}>{e.name}</Text>
 
                             {e.list.map((ee, ii) => (
-                                <View style={styles.valLine} key={'val_' + i + '_' + ii}>
-
+                                <View
+                                    style={styles.valLine}
+                                    key={'val_' + i + '_' + ii}>
                                     <Text style={styles.value}>{ee.name}</Text>
                                     <Text style={styles.value}>{ee.value}</Text>
-
                                 </View>
                             ))}
-
                         </View>
                     ))}
-
                 </View>
 
                 {/* <BigRedBtn
@@ -186,10 +175,9 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                 onpress={() => props.navigation.navigate('TabMenu')}
                 inner={trans.header}
                 getHeight={setHeadHeightt}
-            ></StackHeader>
-
+            />
         </SafeAreaView>
-    )
-}
+    );
+};
 
-export default BikeParams
+export default BikeParams;

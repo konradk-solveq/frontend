@@ -5,31 +5,11 @@ import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import BlueButton from './blueButton';
 
 import {
-    setAppSize,
-    initAppSize,
     setObjSize,
     getCenterLeftPx,
-    getCenterTopPx,
-    getHorizontal,
     getHorizontalPx,
-    getVertical,
     getVerticalPx,
-    getWidth,
-    getWidthOf,
     getWidthPx,
-    getWidthPxOf,
-    getHeight,
-    getHeightPx,
-    getHeightOfPx,
-    getRelativeWidth,
-    getRelativeHeight,
-    getStandard,
-    getStandardPx,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight,
 } from '../../../helpers/layoutFoo';
 
 interface Props {
