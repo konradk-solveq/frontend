@@ -65,11 +65,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
 
     const hadleOnpress = (inputName: string) => {
         dispatch(setUserName(inputName));
-        console.log(
-            '%c inputName:',
-            'background: #ffcc00; color: #003300',
-            inputName,
-        );
         navigation.navigate('AddingByNumber');
     };
 
