@@ -1040,6 +1040,13 @@
             }
         }
     },
+    "MainBikeParams": {
+        "header": " Rower",
+        "details": [
+            "od ",
+            " / nr ramy "
+        ],
+    },
     "MainProfile": {
         "header": " Konto",
         "details": [

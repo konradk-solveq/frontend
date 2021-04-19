@@ -23,7 +23,7 @@ interface Props {
 const wh = Dimensions.get('window').height;
 
 const BikeParams: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('MainProfile');
+    const trans = I18n.t('MainBikeParams');
     const description = props.route.params.description;
     const params = props.route.params.params;
 
