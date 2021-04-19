@@ -6,13 +6,19 @@ import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../helpers/layoutFoo';
+import ColorCircle from '../special/colorCircle';
 
 interface IProps {
     text: string;
+    colors: Array<string>;
     containerStyle?: ViewStyle;
 }
 
-const ColorLabel: React.FC<IProps> = ({text, containerStyle}: IProps) => {
+const ColorLabel: React.FC<IProps> = ({
+    text,
+    colors,
+    containerStyle,
+}: IProps) => {
     setObjSize(334, 50);
     const styles = useMemo(
         () =>
@@ -30,12 +36,11 @@ const ColorLabel: React.FC<IProps> = ({text, containerStyle}: IProps) => {
                     height: getHorizontalPx(24),
                     paddingLeft: getHorizontalPx(15),
                     borderRadius: getHorizontalPx(12),
-                    backgroundColor: 'khaki',
                     marginRight: getHorizontalPx(22),
                 },
                 text: {
                     fontFamily: 'DIN2014Narrow-Regular',
-                    fontSize: getHorizontalPx(18),
+                    fontSize: 18,
                     color: '#555555',
                     paddingRight: getHorizontalPx(15),
                 },
@@ -45,7 +50,7 @@ const ColorLabel: React.FC<IProps> = ({text, containerStyle}: IProps) => {
 
     return (
         <View style={[styles.container, containerStyle]}>
-            <View style={styles.colorBall} />
+            <ColorCircle style={styles.colorBall} colors={colors} />
             <Text style={styles.text}>{text}</Text>
         </View>
     );

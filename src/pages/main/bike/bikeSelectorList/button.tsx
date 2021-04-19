@@ -34,8 +34,8 @@ const Button: React.FC<IProps> = ({
             fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(16),
             color: '#555555',
-            paddingLeft: getHorizontalPx(5),
-            paddingRight: getHorizontalPx(15),
+            marginLeft: getHorizontalPx(5),
+            marginRight: getHorizontalPx(15),
         },
         button: {
             marginTop: getVerticalPx(20),
@@ -48,6 +48,7 @@ const Button: React.FC<IProps> = ({
             height: getHorizontalPx(29),
             borderRadius: getHorizontalPx(15),
             backgroundColor: '#f0f0f0',
+            width: 'auto',
         },
     });
 

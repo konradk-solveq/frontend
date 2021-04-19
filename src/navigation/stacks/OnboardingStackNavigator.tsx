@@ -1,6 +1,6 @@
 import React from 'react';
-import {Stack} from './../stack';
-import {horizontalAnim} from '../../helpers/positioning';
+import { Stack } from './../stack';
+import { horizontalAnim } from '../../helpers/positioning';
 
 import NewBeginning from '../../pages/onboarding/newBeginning/newBeginning';
 import Beginning from '../../pages/onboarding/beginning/beginning';
@@ -19,16 +19,17 @@ import BikeSummary from '../../pages/onboarding/bikeSummary/bikeSummary';
 import ListPageInput from '../../sharedComponents/inputs/listPageInput';
 import CyclingProfile from '../../pages/onboarding/cyclingProfile/cyclingProfile';
 import MineMenu from '../../pages/main/mainMenu';
+import InputPage from '../../sharedComponents/inputs/inputPage';
 
 const OnboardingStackNavigator: React.FC = () => {
     return (
         <Stack.Navigator
+            gesturesEnabled="true"
             headerMode="none"
             initialRouteName="NewBeginning"
             mode="modal"
             screenOptions={horizontalAnim}>
             <Stack.Screen name="NewBeginning" component={NewBeginning} />
-            {/* <Stack.Screen name="Beginning" component={Beginning} /> */}
 
             <Stack.Screen
                 name="PermitsDeclarations"
@@ -60,6 +61,7 @@ const OnboardingStackNavigator: React.FC = () => {
 
             {/* univesal/generic pages */}
             <Stack.Screen name="ListPageInput" component={ListPageInput} />
+            <Stack.Screen name="InputPage" component={InputPage} />
         </Stack.Navigator>
     );
 };

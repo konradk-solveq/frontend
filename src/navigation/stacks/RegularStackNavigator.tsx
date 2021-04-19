@@ -1,8 +1,10 @@
 import React from 'react';
-import {Stack} from './../stack';
-import {horizontalAnim} from '../../helpers/positioning';
+import { Stack } from './../stack';
+import { horizontalAnim } from '../../helpers/positioning';
 
+import SplashScreen from '../../pages/main/splashScreen/splashScreen';
 import ListPageInput from '../../sharedComponents/inputs/listPageInput';
+import InputPage from '../../sharedComponents/inputs/inputPage';
 import MineMenu from '../../pages/main/mainMenu';
 
 import AddingByNumber from '../../pages/onboarding/bikeAdding/addingByNumber/addingByNumber';
@@ -14,13 +16,11 @@ const RegularStackNavigator: React.FC = () => {
     return (
         <Stack.Navigator
             headerMode="none"
-            initialRouteName="MineMenu"
+            initialRouteName="SplashScreen"
             mode="modal"
             screenOptions={horizontalAnim}>
+            <Stack.Screen name="SplashScreen" component={SplashScreen} />
             <Stack.Screen name="MineMenu" component={MineMenu} />
-
-            {/* univesal/generic pages */}
-            <Stack.Screen name="ListPageInput" component={ListPageInput} />
 
             {/* Start add bike */}
             <Stack.Screen name="AddingByNumber" component={AddingByNumber} />
@@ -28,6 +28,12 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen name="BikeData" component={BikeData} />
             <Stack.Screen name="BikeSummary" component={BikeSummary} />
             {/* End add bike */}
+
+            {/* univesal/generic pages */}
+            <Stack.Screen name="ListPageInput" component={ListPageInput} />
+            <Stack.Screen name="InputPage" component={InputPage} />
+
+
         </Stack.Navigator>
     );
 };

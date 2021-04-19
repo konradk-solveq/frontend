@@ -6,6 +6,7 @@ import {
     Text,
     ScrollView,
     SafeAreaView,
+    Linking,
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
@@ -17,7 +18,7 @@ import {
 } from '../../../helpers/layoutFoo';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
-
+import Paragraph from './paragraph';
 
 interface Props {
     navigation: any;
@@ -29,10 +30,6 @@ const Regulations: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('Regulations');
     const list = trans.paragraph;
 
-    list.map((e, i) => {
-        console.log(' e:', i, e.text);
-    });
-
     const [headHeight, setheadHeightt] = useState(0);
 
     setObjSize(334, 50);
@@ -41,6 +38,7 @@ const Regulations: React.FC<Props> = (props: Props) => {
             width: '100%',
             height: wh - headHeight,
             top: headHeight,
+            backgroundColor: '#fff',
         },
         wrap: {
             marginTop: getVerticalPx(50),
@@ -75,33 +73,30 @@ const Regulations: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView>
+        <SafeAreaView >
             <View style={styles.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         <Text style={styles.title}>{trans.title}</Text>
 
                         {list.map((e, i) => (
-                            <Text
-                                style={[
-                                    // styles.title,
-                                    styles.paragraph,
-                                    e.font == 'regular' && styles.regular,
-                                    e.font == 'light' && styles.light,
-                                    { marginTop: getVerticalPx(e.marginTop) },
-                                ]}
-                                key={'pgraph_' + i}>
-                                {e.text}
-                            </Text>
+                            <Paragraph
+                                marginTop={e.marginTop}
+                                font={e.font}
+                                text={e.text}
+                                num={i}
+                                key={'pgraph_' + i}
+                            />
                         ))}
                     </View>
                 </ScrollView>
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('PermitsDeclarations')}
+                onpress={() => props.navigation.goBack()}
                 inner={trans.header}
                 getHeight={setheadHeightt}
+                style={{backgroundColor: '#fff'}}
             />
         </SafeAreaView>
     );

@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, ScrollView, SafeAreaView} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, ScrollView, SafeAreaView, Dimensions } from 'react-native';
 import I18n from 'react-native-i18n';
 
 import deepCopy from '../../../helpers/deepCopy';
@@ -20,6 +20,8 @@ interface Props {
     navigation: any;
 }
 
+const wh = Dimensions.get('window').height;
+
 const PermitsDeclarations: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('Permits');
 
@@ -31,7 +33,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
 
     // stworzenie tablicy ustawień początkowych dla dowolnej ilości zgód
     trans.paragraph.forEach(() => {
-        permitStatus.push({checked: false, wrong: false});
+        permitStatus.push({ checked: false, wrong: false });
     });
 
     const [status, setStatus] = useState(permitStatus);
@@ -84,8 +86,9 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
     const styles = StyleSheet.create({
         scroll: {
             width: '100%',
-            height: '100%', // wh - headHeight,
+            height: wh,
             top: headHeight,
+            backgroundColor: 'white',
         },
         text: {
             width: getWidthPx(),
@@ -103,7 +106,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={{backgroundColor: 'white'}}>
+        <SafeAreaView style={{ backgroundColor: 'white' }}>
             <View style={styles.scroll}>
                 <ScrollView>
                     <Text
@@ -146,6 +149,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                                 handleChangeStatus(i, val)
                             }
                             text={trans.paragraph[i].text}
+                            info={trans.paragraph[i].info}
                             marginTop={getVerticalPx(11)}
                             navigation={props.navigation}
                             key={'per_' + i}
@@ -164,6 +168,7 @@ const PermitsDeclarations: React.FC<Props> = (props: Props) => {
                 onpress={() => props.navigation.navigate('NewBeginning')}
                 inner={trans.header}
                 getHeight={setHeadHeightt}
+                style={{ backgroundColor: '#fff' }}
             />
         </SafeAreaView>
     );

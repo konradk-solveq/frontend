@@ -1,21 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
     View,
     Text,
-    Alert,
     ScrollView,
 } from 'react-native';
-import I18n from 'react-native-i18n';
 
-import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
-import {setBikesListByFrameNumber} from '../../../../storage/actions';
-
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
-import TranspLightBtn from '../../../../sharedComponents/buttons/transpLightBtn';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
+import StackHeader from '../../sharedComponents/navi/stackHeader/stackHeader';
+import OneLineTekst from '../../sharedComponents/inputs/oneLineTekst';
+import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn';
 
 import {
     setObjSize,
@@ -25,42 +19,33 @@ import {
     getCenterLeftPx,
     getPosWithMinHeight,
     getHorizontalPx,
-} from '../../../../helpers/layoutFoo';
-import Loader from '../loader/loader';
+} from '../../helpers/layoutFoo';
 
 interface Props {
     navigation: any;
     route: any;
 }
 
-const AddingByNumber: React.FC<Props> = (props: Props) => {
-    const dispatch = useAppDispatch();
-    const frame: string = useAppSelector(state => state.user.frameNumber);
-    const isLoading: boolean = useAppSelector(state => state.bikes.loading);
+const InputPage: React.FC<Props> = (props: Props) => {
+    const param: {
+        header: string;
+        btn: string;
+        hendleGoFoward: Function;
+        goBack: string;
+        text: string;
+        placeholder: string;
+        messageWrong: string;
+    } = props.route.params;
 
-    const trans = I18n.t('AddingByNumber');
-
-    const [inputFrame, setInputFrame] = useState('');
+    const [inputValue, setInputValue] = useState('');
     const [canGoFoward, setCanGoFoward] = useState(false);
     const [forceMessageWrong, setForceMessageWrong] = useState('');
     const [areaHeigh, setAreaHeigh] = useState(0);
 
-    // do pobrania nazwy użytkownika zz local sorage
-    useEffect(() => {
-        if (typeof frame === 'string' && !props.route?.params?.emptyFrame) {
-            setInputFrame(frame);
-        }
-    }, [frame, props.route?.params?.emptyFrame]);
-
-    // do wstawiania wartości do inputa i reset powiadomień o błdnym wypełnieniu
-    const hendleInputFrame = (value: string) => {
-        setInputFrame(value);
-        setForceMessageWrong('');
-    };
-
     // valizadja poprawności inputa
     const hendleValidationOk = (value: string) => {
-        if (value.length > 4) {
+        if (value.length > 3) {
+            setForceMessageWrong('');
             return true;
         }
         return false;
@@ -74,29 +59,11 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     };
 
     // walidacja po naciśnięciu przyciku 'Dalej'
-    const hendleGoFoward = async () => {
+    const hendleGoFoward = () => {
         if (canGoFoward) {
-            const trimmedInputFrame = inputFrame?.trim();
-            try {
-                await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
-                props.navigation.navigate({
-                    name: 'BikeSummary',
-                    params: {frameNumber: trimmedInputFrame},
-                });
-                return;
-            } catch (error) {
-                if (error.notFound) {
-                    props.navigation.navigate({
-                        name: 'BikeData',
-                        params: {frameNumber: trimmedInputFrame},
-                    });
-                    return;
-                }
-                const errorMessage = error?.errorMessage || 'Error';
-                Alert.alert('Error', errorMessage);
-            }
+            param.hendleGoFoward(inputValue);
         } else {
-            setForceMessageWrong('Pole wymagane');
+            setForceMessageWrong(param.messageWrong);
         }
     };
 
@@ -148,14 +115,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         },
     });
 
-    if (isLoading) {
-        return (
-            <SafeAreaView style={styles.container}>
-                <Loader />
-            </SafeAreaView>
-        );
-    }
-
     return (
         <SafeAreaView
             style={styles.container}
@@ -164,35 +123,24 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 keyboardShouldPersistTaps={'always'}
                 style={styles.scroll}>
                 <View style={styles.area}>
-                    <Text style={styles.title}>{trans.text}</Text>
+                    <Text style={styles.title}>{param.text}</Text>
 
                     <View style={styles.inputAndPlaceholder}>
                         <OneLineTekst
-                            placeholder={trans.placeholder}
-                            onChangeText={hendleInputFrame}
+                            placeholder={param.placeholder}
+                            onChangeText={setInputValue}
                             validationOk={hendleValidationOk}
                             validationWrong={hendleValidationWrong}
-                            messageWrong={trans.messageWrong}
-                            value={inputFrame}
+                            messageWrong={param.messageWrong}
+                            value={inputValue}
                             validationStatus={setCanGoFoward}
                             forceMessageWrong={forceMessageWrong}
-                            // keyboardType={"numeric"}
-                        />
-
-                        <TranspLightBtn
-                            style={styles.infoBtn}
-                            title={trans.infoBtn}
-                            algin="right"
-                            color="#3587ea"
-                            onpress={() =>
-                                props.navigation.navigate('AddingInfo')
-                            }
                         />
                     </View>
 
                     <BigRedBtn
                         style={styles.botton}
-                        title={trans.btn}
+                        title={param.btn}
                         onpress={() => hendleGoFoward()}
                     />
                 </View>
@@ -201,10 +149,10 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.goBack()}
                 getHeight={setHeadHeight}
-                inner={trans.head}
+                inner={param.header}
             />
         </SafeAreaView>
     );
 };
 
-export default AddingByNumber;
+export default InputPage;

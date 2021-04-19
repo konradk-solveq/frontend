@@ -1,6 +1,8 @@
 export const horizontalAnim = {
     gestureDirection: 'horizontal',
-    cardStyleInterpolator: ({ current, layouts }) => {
+    gesturesEnabled: true,
+    gestureResponseDistance: {horizontal: 20},
+    cardStyleInterpolator: ({current, layouts}) => {
         return {
             cardStyle: {
                 transform: [

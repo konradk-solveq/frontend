@@ -205,9 +205,10 @@ const Bike: React.FC<Props> = (props: Props) => {
                         />
                     )}
 
-                {bike?.description?.color && (
+                {bike?.description?.color && bike?.description?.colorCodes && (
                     <ColorLabel
                         text={bike.description.color}
+                        colors={bike.description.colorCodes}
                         containerStyle={{marginLeft: getCenterLeftPx()}}
                     />
                 )}

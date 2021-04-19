@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import I18n from 'react-native-i18n';
 
 import AnimSvg from '../../../helpers/animSvg';
 
@@ -10,13 +11,15 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
-import {BigRedBtn} from '../../../sharedComponents/buttons';
+import SmallRedBtn from '../../../sharedComponents/buttons/smallRedBtn';
 
 interface Props {
     style?: any;
 }
 
-const AddBike: React.FC<Props> = ({style}: Props) => {
+const AddBike: React.FC<Props> = ({ style }: Props) => {
+    const trans = I18n.t('MainHome');
+
     const navigation = useNavigation();
     setObjSize(334, 50);
     const width = getWidthPx();
@@ -47,10 +50,10 @@ const AddBike: React.FC<Props> = ({style}: Props) => {
             '">';
         svg +=
             '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' +
-            b * 0.4 +
+            b * .6 +
             '"/></filter>';
         svg +=
-            '<rect filter="url(#filter)" opacity=".8" fill="#f5e6e7" stroke="none" width="' +
+            '<rect filter="url(#filter)" opacity=".3" fill="#aaaaaa" stroke="none" width="' +
             w +
             '" height="' +
             h +
@@ -87,7 +90,7 @@ const AddBike: React.FC<Props> = ({style}: Props) => {
     const styles = StyleSheet.create({
         container: {
             width: width,
-            height: getVerticalPx(264),
+            // height: getVerticalPx(264),
             borderRadius: getHorizontalPx(32),
             backgroundColor: 'transparent',
         },
@@ -96,32 +99,32 @@ const AddBike: React.FC<Props> = ({style}: Props) => {
             flexDirection: 'column',
             justifyContent: 'flex-start',
         },
-        content: {
-            marginTop: getVerticalPx(8),
-            marginBottom: getVerticalPx(22),
-            left: getHorizontalPx(30.5),
-            width: '80%',
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'left',
-            letterSpacing: 0.5,
-            fontSize: getHorizontalPx(18),
-            color: '#555555',
-        },
         title: {
             marginTop: getVerticalPx(30),
-            left: getHorizontalPx(28.5),
+            left: getHorizontalPx(20),
             width: '50%',
             fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(23),
             color: '#313131',
             textAlign: 'left',
         },
+        content: {
+            marginTop: getVerticalPx(8),
+            marginBottom: getVerticalPx(20),
+            left: getHorizontalPx(20),
+            width: getHorizontalPx(280),
+            fontFamily: 'DIN2014Narrow-Light',
+            textAlign: 'left',
+            letterSpacing: 0.5,
+            fontSize: 18,
+            lineHeight: 22,
+            color: '#555555',
+        },
         button: {
             height: 35,
-            width: 120,
             alignSelf: 'flex-end',
-            marginRight: 35,
-            marginTop: getVerticalPx(8),
+            marginRight:  getHorizontalPx(34),
+            marginBottom: getVerticalPx(30),
         },
         buttonText: {
             fontFamily: 'DIN2014Narrow-Light',
@@ -133,28 +136,23 @@ const AddBike: React.FC<Props> = ({style}: Props) => {
     return (
         <View
             style={[styles.container, style]}
-            onLayout={({nativeEvent}) => handleShadowBox(nativeEvent.layout)}>
+            onLayout={({ nativeEvent }) => handleShadowBox(nativeEvent.layout)}>
             <AnimSvg source={source} style={boxStyle} />
 
             <View>
                 <View style={[styles.column]}>
                     <Text style={styles.title}>Dodaj kolejny rower</Text>
-                    <Text style={styles.content}>
-                        Jeżeli chcesz w jednym miejscu zarządzać Twoimi rowerami
-                        KROSS oraz rowerami innych producentów, dodaj je do
-                        aplikacji.
-                    </Text>
+                    <Text style={styles.content}>{trans.text}</Text>
                 </View>
-                <BigRedBtn
+                <SmallRedBtn
                     style={styles.button}
-                    textStyle={styles.buttonText}
                     onpress={() => {
                         navigation.navigate({
                             name: 'AddingByNumber',
-                            params: {emptyFrame: true},
+                            params: { emptyFrame: true },
                         });
                     }}
-                    title="Dodaj kolejny"
+                    title={trans.btn}
                 />
             </View>
         </View>

@@ -15,10 +15,13 @@ interface Props {
     value: string; // * zmienia value w inpucie
     validationStatus: Function; // zwrotka dla obiektu rodzica: poprawna gdy validationOk zwraca true, inaczej false
     forceMessageWrong: string; // informacja o błędnej validacji przez rodica, wg validationStatus, nadrzędna nad messageWrong
+    maxLength?: number;
+    keyboardType?: string;
 }
 
 const OneLineTekst: React.FC<Props> = (props: Props) => {
     const [borderColor, setBorderColor] = useState('#80555555');
+    const [borderWidth, setBorderrWidth] = useState(1);
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
@@ -48,6 +51,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             case 'ok':
                 {
                     setBorderColor('#2cba3f');
+                    setBorderrWidth(2);
                     if (props.validationStatus) {
                         props.validationStatus(true);
                     }
@@ -56,6 +60,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             case 'bad':
                 {
                     setBorderColor('#d8232a');
+                    setBorderrWidth(2);
                     if (props.validationStatus) {
                         props.validationStatus(false);
                     }
@@ -64,6 +69,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             default:
                 {
                     setBorderColor('#80555555');
+                    setBorderrWidth(1);
                     if (props.validationStatus) {
                         props.validationStatus(false);
                     }
@@ -91,7 +97,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             fontSize: 20,
             textAlign: 'left',
             color: 'black',
-            borderWidth: 1,
+            borderWidth: borderWidth,
             borderColor: borderColor,
             height: 50,
             marginTop: 6,
@@ -118,6 +124,8 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
                 style={styles.input}
                 onChangeText={props.onChangeText}
                 value={props.value}
+                maxLength={props.maxLength}
+                keyboardType={props.keyboardType}
             />
 
             <Text style={styles.error}>{errorMessage}</Text>

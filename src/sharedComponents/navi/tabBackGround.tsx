@@ -1,18 +1,13 @@
-import React from "react";
-import { StyleSheet, Dimensions } from 'react-native';
+import React from 'react';
+import {StyleSheet, Dimensions} from 'react-native';
 import AnimSvg from '../../helpers/animSvg';
 
-import {
-    setObjSize,
-} from '../../helpers/layoutFoo';
+import {setObjSize} from '../../helpers/layoutFoo';
 
 const ww = Dimensions.get('window').width;
 
-
-// <<--- #askBartosz (6) ? wiesz może czy da się podmienić strałkę goBack w headerze?
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const TabBackGround = () => {
-
     const tabBackGround = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 414 170">
     <defs>
       <filter id="a" width="151%" height="297.2%" x="-25.5%" y="-97.7%" filterUnits="objectBoundingBox">
@@ -38,15 +33,10 @@ const TabBackGround = () => {
             width: ww,
             height: ww * (170 / 414),
             // backgroundColor: 'khaki'
-        }
-    })
+        },
+    });
 
-    return (
-        <AnimSvg
-            source={tabBackGround}
-            style={styles.container}
-        />
-    )
-}
+    return <AnimSvg source={tabBackGround} style={styles.container} />;
+};
 
 export default TabBackGround;
