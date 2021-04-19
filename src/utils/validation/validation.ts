@@ -7,6 +7,7 @@ import {
     isEmail,
     minLength,
     maxLength,
+    matches,
 } from 'class-validator';
 import validationRules from './validationRules';
 
@@ -32,6 +33,9 @@ export const validateData = (rules: any[], value: any) => {
             }
             if (el?.max) {
                 isValid = maxLength(value, el.max);
+            }
+            if (el?.match) {
+                isValid = matches(value, new RegExp(el.match));
             }
         }
 

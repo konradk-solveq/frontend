@@ -1,10 +1,10 @@
 import {
     IsNotEmpty,
     IsString,
-    IsNumberString,
     MinLength,
     MaxLength,
     IsOptional,
+    Matches,
 } from 'class-validator';
 import validationRules from '../utils/validation/validationRules';
 
@@ -20,9 +20,9 @@ export const userBikeValidationRules = {
     name: [validationRules.required, validationRules.string, {min: 3}],
     size: [
         validationRules.required,
-        validationRules.numberString,
+        {match: /^([a-zA-Z]{3}?)+[0-9]+"?$/i},
         {min: 2},
-        {max: 4},
+        {max: 12},
     ],
     color: [validationRules.required, validationRules.string, {min: 3}],
 };
@@ -178,13 +178,9 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
     @MaxLength(30)
     color?: string;
 
-    /**
-     *  TODO: sould be validated as regex. Cannot be number because
-     * API reponse is a string with letter and specical cahr
-     * */
     @IsOptional()
     @IsNotEmpty()
-    // @IsStringNumber()
+    @Matches(new RegExp(/^([a-zA-Z]{3}?)+[0-9]+"?$/i))
     @MinLength(2)
     @MaxLength(20)
     size?: string;
