@@ -124,7 +124,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
                 style={styles.input}
                 onChangeText={props.onChangeText}
                 value={props.value}
-                maxLength={props.maxLength}
+                maxLength={props.maxLength ? props.maxLength : 20}
                 keyboardType={props.keyboardType}
             />
 
