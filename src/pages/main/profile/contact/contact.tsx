@@ -14,31 +14,10 @@ import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHead
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 
 import {
-    setAppSize,
-    initAppSize,
     setObjSize,
     getCenterLeftPx,
-    getCenterTopPx,
-    getHorizontal,
-    getHorizontalPx,
-    getVertical,
     getVerticalPx,
-    getWidth,
-    getWidthOf,
     getWidthPx,
-    getWidthPxOf,
-    getHeight,
-    getHeightPx,
-    getHeightOfPx,
-    getRelativeWidth,
-    getRelativeHeight,
-    getStandard,
-    getStandardPx,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight,
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -113,7 +92,7 @@ const Contact: React.FC<Props> = (props: Props) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.wrap}>
-                <Text style={styles.title}>{userName + ' ' + trans.title}</Text>
+                <Text style={styles.title}>{userName + trans.title}</Text>
                 <View style={styles.poneEmail}>
                     <Text style={styles.phone}>{trans.phone}</Text>
 
