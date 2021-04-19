@@ -48,17 +48,15 @@ const BikeSelectorList: React.FC<Props> = ({
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
-            alignItems: 'stretch',
         },
         item: {
-            width: w,
             marginLeft: 15,
         },
         fitstItem: {
             marginLeft: getCenterLeftPx(),
         },
         lastItem: {
-            marginLeft: -20,
+            marginLeft: 0,
             marginRight: getCenterLeftPx(),
         },
         button: {
