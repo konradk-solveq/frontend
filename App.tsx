@@ -1,21 +1,23 @@
 import React from 'react';
-import type { Node } from 'react';
-import { StyleSheet, TextInput, Text, View } from 'react-native';
+import type {Node} from 'react';
+import {StyleSheet, TextInput, Text, View} from 'react-native';
 // import { SafeAreaView } from 'react-native';
 // import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider } from "react-redux";
-import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
+import {persistStore} from 'redux-persist';
 import storage from './src/storage/storage';
-import { I18n_init } from './I18n/I18n'
+import {I18n_init} from './I18n/I18n';
 
-import { initAppSize } from './src/helpers/layoutFoo';
+import {initAppSize} from './src/helpers/layoutFoo';
+import {version} from './package.json';
 
 import NavContainer from './src/navigation/NavContainer';
 
+const now = new Date().toLocaleDateString();
+
 const App: () => Node = () => {
     I18n_init();
-
     const persistor = persistStore(storage);
 
     initAppSize();
@@ -37,7 +39,7 @@ const App: () => Node = () => {
             <PersistGate persistor={persistor}>
                 <NavContainer />
 
-                <Text style={styles.varsion}>z dnia: 19.04.2021</Text>
+                <Text style={styles.varsion}>{`${version} (${now})`}</Text>
             </PersistGate>
         </Provider>
     );
