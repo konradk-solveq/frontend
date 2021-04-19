@@ -183,12 +183,16 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
 
     setObjSize(414, 175);
     const styles = StyleSheet.create({
+        container: {
+            width: '100%',
+            height: '100%',
+        },
         static: {
             position: 'absolute',
             left: 0,
             top: 0,
         },
-        container: {
+        wrap: {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
@@ -205,10 +209,10 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
             <Animated.View
                 style={[
-                    styles.container,
+                    styles.wrap,
                     {
                         transform: [{translateX: position}],
                     },
