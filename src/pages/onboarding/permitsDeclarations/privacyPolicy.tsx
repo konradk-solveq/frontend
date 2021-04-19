@@ -72,7 +72,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={{backgroundColor: '#fff'}}>
+        <SafeAreaView>
             <View style={styles.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>

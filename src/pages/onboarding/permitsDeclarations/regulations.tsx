@@ -38,6 +38,7 @@ const Regulations: React.FC<Props> = (props: Props) => {
             width: '100%',
             height: wh - headHeight,
             top: headHeight,
+            backgroundColor: '#fff',
         },
         wrap: {
             marginTop: getVerticalPx(50),
@@ -72,7 +73,7 @@ const Regulations: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={{backgroundColor: '#fff'}}>
+        <SafeAreaView >
             <View style={styles.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
@@ -95,6 +96,7 @@ const Regulations: React.FC<Props> = (props: Props) => {
                 onpress={() => props.navigation.goBack()}
                 inner={trans.header}
                 getHeight={setheadHeightt}
+                style={{backgroundColor: '#fff'}}
             />
         </SafeAreaView>
     );
