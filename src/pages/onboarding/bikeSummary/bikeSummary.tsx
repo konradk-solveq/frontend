@@ -51,24 +51,22 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
         container: {
             flex: 1,
             backgroundColor: 'white',
+            height: getVerticalPx(896),
         },
         contentContainer: {
             marginTop: getVerticalPx(148),
         },
         bottons: {
+            position: 'absolute',
             width: getWidthPx(),
-            height: getHeightPx(),
+            height: 50,
             left: getCenterLeftPx(),
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginTop: getVerticalPx(29),
+            bottom: getVerticalPx(65),
         },
         btn: {
             width: getWidthPxOf(157),
-        },
-        spaceOnEnd: {
-            width: '100%',
-            height: getVerticalPx(65),
         },
         userName: {
             left: l,
@@ -141,33 +139,32 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                         containerStyle={{marginLeft: getCenterLeftPx()}}
                     />
                 )}
+            </View>
 
-                <View style={styles.bottons}>
-                    <View style={styles.btn}>
-                        <BigWhiteBtn
-                            title={trans.btnChange}
-                            onpress={() => {
-                                dispatch(removeBikeByNumber(frameNumber));
-                                navigation.navigate('AddingByNumber');
-                            }}
-                        />
-                    </View>
-
-                    <View style={styles.btn}>
-                        <BigRedBtn
-                            title={trans.goForward}
-                            onpress={() => {
-                                /* TODO: this change is temporary - business  decision */
-                                // navigation.navigate('CyclingProfile')
-                                /* start to delete */
-                                dispatch(setOnboardingFinished(true));
-                                navigation.navigate('MineMenu');
-                                /* end to delete */
-                            }}
-                        />
-                    </View>
+            <View style={styles.bottons}>
+                <View style={styles.btn}>
+                    <BigWhiteBtn
+                        title={trans.btnChange}
+                        onpress={() => {
+                            dispatch(removeBikeByNumber(frameNumber));
+                            navigation.navigate('AddingByNumber');
+                        }}
+                    />
                 </View>
-                <View style={styles.spaceOnEnd} />
+
+                <View style={styles.btn}>
+                    <BigRedBtn
+                        title={trans.goForward}
+                        onpress={() => {
+                            /* TODO: this change is temporary - business  decision */
+                            // navigation.navigate('CyclingProfile')
+                            /* start to delete */
+                            dispatch(setOnboardingFinished(true));
+                            navigation.navigate('MineMenu');
+                            /* end to delete */
+                        }}
+                    />
+                </View>
             </View>
         </SafeAreaView>
     );
