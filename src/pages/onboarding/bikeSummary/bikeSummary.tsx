@@ -38,6 +38,9 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
 
     const userName =
         useAppSelector<string>(state => state.user.userName) || trans.anonim;
+    const onboardingFinished = useAppSelector<boolean>(
+        state => state.user.onboardingFinished,
+    );
     const frameNumber = route.params.frameNumber;
     const bikeData = useAppSelector<UserBike | null>(state =>
         getBike(state.bikes.list, frameNumber),
@@ -94,6 +97,16 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             color: '#555555',
         },
     });
+
+    const onGoForwrdHandle = () => {
+        if (!onboardingFinished) {
+            dispatch(setOnboardingFinished(true));
+        }
+        navigation.reset({
+            index: 0,
+            routes: [{name: 'MineMenu'}],
+        });
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -159,8 +172,8 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                             /* TODO: this change is temporary - business  decision */
                             // navigation.navigate('CyclingProfile')
                             /* start to delete */
-                            dispatch(setOnboardingFinished(true));
-                            navigation.navigate('MineMenu');
+                            onGoForwrdHandle();
+                            // navigation.replace('MineMenu');
                             /* end to delete */
                         }}
                     />
