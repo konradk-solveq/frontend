@@ -1,1 +1,1 @@
-export {getBike} from './bikes';
+export {getBike, getBikesList} from './bikes';

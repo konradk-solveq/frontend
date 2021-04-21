@@ -12,7 +12,7 @@ import I18n from 'react-native-i18n';
 
 import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
 
-import { setBikesData } from '../../../storage/actions';
+import { setBikeData } from '../../../storage/actions';
 import { validateData } from '../../../utils/validation/validation';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -138,7 +138,7 @@ const BikeData: React.FC<Props> = ({ navigation, route }: Props) => {
         if (goFoward) {
             try {
                 await dispatch(
-                    setBikesData({
+                    setBikeData({
                         description: {
                             name: data.name,
                             id: null,

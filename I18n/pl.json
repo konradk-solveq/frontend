@@ -1104,7 +1104,8 @@
     },
     "dataAction": {
         "validationError": "Sprawdź błędy w\u00a0formularzu",
-        "apiError": "Wystąpił błąd, spróbuj ponownie"
+        "apiError": "Wystąpił błąd, spróbuj ponownie",
+        "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem"
     },
     "aaaaaaa-aaaaaa": "_____"
 }

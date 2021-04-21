@@ -18,6 +18,7 @@
   },
   "dataAction": {
     "validationError": "Check your form",
-    "apiErro": "There was an error, please try again"
+    "apiError": "There was an error, please try again",
+    "dataSyncError": "An error occurred while synchronizing data"
   }
 }

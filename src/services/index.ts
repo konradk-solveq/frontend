@@ -1,1 +1,1 @@
-export {getBikeByFrameNr} from './bikesService';
+export {getBikeByFrameNr, getBikesListByFrameNrs} from './bikesService';
