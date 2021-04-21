@@ -60,7 +60,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     // valizadja poprawności inputa
     const hendleValidationOk = (value: string) => {
-        if (value.length > 4) {
+        if (value.length > 0) {
             return true;
         }
         return false;
@@ -176,6 +176,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                             value={inputFrame}
                             validationStatus={setCanGoFoward}
                             forceMessageWrong={forceMessageWrong}
+                            maxLength={10}
                             // keyboardType={"numeric"}
                         />
 
