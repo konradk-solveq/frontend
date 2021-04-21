@@ -63,8 +63,8 @@ buck-out/
 /ios/Pods/
 .env
 
-android/app/build.gradle
 android/gradle.properties
 android/app/release/app-release.aab
 android/app/release/app-release.apk
 android/app/release/output-metadata.json
+android/key2.jks

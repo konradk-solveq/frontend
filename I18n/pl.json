@@ -914,7 +914,7 @@
     "BikeSummary": {
         "header": "Twój rower",
         "title": ", jest moc!",
-        "anonim": "Nieznajomy",
+        "anonim": "Rowerzysto",
         "details": [
             "od ",
             " / nr ramy "
@@ -1055,7 +1055,7 @@
         ],
         "remove": "Usuń",
         "btnAddStuff": "DODAJ WYPOSAŻENIE",
-        "title": "O MyKROSS",
+        "title": "O myKROSS",
         "app": "O aplikacji",
         "regulations": "Regulamin",
         "privacyPolicy": "Polityka prywatności",
