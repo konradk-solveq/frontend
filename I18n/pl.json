@@ -64,33 +64,6 @@
         "wrong": "Zgoda jest wymagana",
         "btn": "DALEJ"
     },
-    "PermitsDeclarations": {
-        "version": "1.01",
-        "header": "Zgody i oświadczenia",
-        "title": "Potrzebujemy wymaganych zgód, aby zarejestrować konto w\u00a0Kross\u00a0S.A.",
-        "text": "* pola obowiązkowe",
-        "urlRegulations": "https://www.kross.pl.rgulamn",
-        "hiperRegulations": "Regulaminem Sklepu Internetowego www.kross.pl",
-        "urlPrivacyPolicy": "https://www.kross.pl.polityka",
-        "hiperPrivacyPolicy": "Polityce prywatności",
-        "checkAll": "Zaznacz wszystkie",
-        "paragraph": [{
-                "required": true,
-                "text": "Oświadczam, że zapoznałem się z https://www.kross.pl.rgulamn i\u00a0akceptuję wszystkie zawarte w\u00a0nim warunki.\u00a0*",
-                "info": "Administratorem danych jest KROSSS.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046. Dane osobowe będą przetwarzane dla celów utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim, w\u00a0celu realizacji obsługi gwarancyjnej, w\u00a0celach analiz statystycznych oraz w\u00a0celu ustalania, dochodzenia i\u00a0egzekucji ewentualnych roszczeń. Na\u00a0zasadach określonych w\u00a0RODO przysługuje Pani\\Panu prawo dostępu do danych, prawo żądania ich sprostowania, usunięcia lub ograniczenia ich przetwarzania, wniesienia sprzeciwu wobec ich przetwarzania, prawo żądania ich przenoszenia, a\u00a0także prawo wniesienia skargi do\u00a0Prezesa UODO. Podanie danych osobowych jest dobrowolne, jednak odmowa ich podania uniemożliwia korzystanie z\u00a0Aplikacji Mobilnej. Więcej informacji na\u00a0temat przetwarzania danych osobowych znajduje się w\u00a0https://www.kross.pl.polityka."
-            },
-            {
-                "required": false,
-                "text": "Wyrażam zgodę na\u00a0przesyłanie informacji handlowych za\u00a0pomocą środków komunikacji elektronicznej w\u00a0rozumieniu ustawy z\u00a0dnia 18\u00a0lipca\u00a02002\u00a0roku o\u00a0świadczenie usług drogą elektroniczną (Dz.U. 2019 poz. 123 tj.) w\u00a0celu prowadzenia działań marketingowych na\u00a0podany numer telefonu na\u00a0temat usług oferowanych przez KROSS\u00a0S.A. przy ul.\u00a0Leszno\u00a046 z\u00a0siedzibą w\u00a0Przasnyszu.\nZgoda jest dobrowolna i\u00a0może być w\u00a0każdej chwili wycofana przez oświadczenie przesłane drogą elektroniczną. Wycofanie zgody nie wpływa na\u00a0zgodność z\u00a0prawem przetwarzania, którego dokonano na\u00a0podstawie zgody przed jej wycofaniem.Zasady ochrony danych osobowych w\u00a0https://www.kross.pl.polityka."
-            },
-            {
-                "required": false,
-                "text": "Wyrażam zgodę na\u00a0przesyłanie informacji handlowych za\u00a0pomocą środków komunikacji elektronicznej w\u00a0rozumieniu ustawy z\u00a0dnia 18\u00a0lipca\u00a02002 roku\u00a0o świadczenie usług drogą elektroniczną (Dz.U. 2019 poz. 123 tj.) na\u00a0podany adres e-mail na\u00a0temat usług oferowanych przez KROSS\u00a0S.A. przy ul.\u00a0Leszno\u00a046 z\u00a0siedzibą w\u00a0Przasnyszu. Zgoda jest dobrowolna i\u00a0może być w\u00a0każdej chwili wycofana, klikając w\u00a0odpowiedni link na\u00a0końcu wiadomości e-mail. Wycofanie zgody nie wpływa na\u00a0zgodność z prawem przetwarzania, którego dokonano na\u00a0podstawie zgody przed jej wycofaniem. Zasady ochrony danych osobowych w\u00a0https://www.kross.pl.polityka."
-            }
-        ],
-        "wrong": "Pole obowiązkowe",
-        "btn": "DALEJ"
-    },
     "Urls": [{
             "url": "http://kross.eu",
             "hyper": "kross.eu"
