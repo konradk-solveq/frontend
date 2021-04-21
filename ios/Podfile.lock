@@ -252,6 +252,8 @@ PODS:
     - React-jsi (= 0.64.0)
     - React-perflogger (= 0.64.0)
   - React-jsinspector (0.64.0)
+  - react-native-netinfo (6.0.0):
+    - React-Core
   - react-native-safe-area-context (3.2.0):
     - React-Core
   - react-native-webview (11.4.0):
@@ -404,6 +406,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -474,6 +477,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-netinfo:
+    :path: "../node_modules/@react-native-community/netinfo"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-webview:
@@ -548,6 +553,7 @@ SPEC CHECKSUMS:
   React-jsi: 74341196d9547cbcbcfa4b3bbbf03af56431d5a1
   React-jsiexecutor: 06a9c77b56902ae7ffcdd7a4905f664adc5d237b
   React-jsinspector: 0ae35a37b20d5e031eb020a69cc5afdbd6406301
+  react-native-netinfo: 34f4d7a42f49157f3b45c14217d256bce7dc9682
   react-native-safe-area-context: e471852c5ed67eea4b10c5d9d43c1cebae3b231d
   react-native-webview: fdd3c7c2ad173e8ca8c82729ed05f3fda2491a82
   React-perflogger: 9c547d8f06b9bf00cb447f2b75e8d7f19b7e02af
@@ -573,6 +579,6 @@ SPEC CHECKSUMS:
   Yoga: 8c8436d4171c87504c648ae23b1d81242bdf3bbf
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: a8f534ca9cd158e78d84cbfabb39b326e04b5733
+PODFILE CHECKSUM: 491b09c9154e817e376ce65cea86f317b57179bc
 
 COCOAPODS: 1.10.1

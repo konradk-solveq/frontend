@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "kross_app.app"
-               BlueprintName = "kross_app"
-               ReferencedContainer = "container:kross_app.xcodeproj">
+               BuildableName = "myKROSS.app"
+               BlueprintName = "myKROSS"
+               ReferencedContainer = "container:myKROSS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "kross_appTests.xctest"
-               BlueprintName = "kross_appTests"
-               ReferencedContainer = "container:kross_app.xcodeproj">
+               BuildableName = "myKROSSTests.xctest"
+               BlueprintName = "myKROSSTests"
+               ReferencedContainer = "container:myKROSS.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "kross_app.app"
-            BlueprintName = "kross_app"
-            ReferencedContainer = "container:kross_app.xcodeproj">
+            BuildableName = "myKROSS.app"
+            BlueprintName = "myKROSS"
+            ReferencedContainer = "container:myKROSS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "kross_app.app"
-            BlueprintName = "kross_app"
-            ReferencedContainer = "container:kross_app.xcodeproj">
+            BuildableName = "myKROSS.app"
+            BlueprintName = "myKROSS"
+            ReferencedContainer = "container:myKROSS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
