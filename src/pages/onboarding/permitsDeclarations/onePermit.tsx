@@ -44,7 +44,7 @@ const OnePermit: React.FC<Props> = (props: Props) => {
             position: 'relative',
             width: cbw,
             height: cbw,
-            marginLeft: getHorizontalPx(40),
+            // marginLeft: getHorizontalPx(40),
         },
         hyper: {
             position: 'relative',

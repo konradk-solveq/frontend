@@ -68,7 +68,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         dispatch(setUserName(inputName));
         navigation.navigate('AddingByNumber');
     };
-    
+
     const hadleOnpressWithName = (inputName: string) => {
         dispatch(setUserName(inputName));
         navigation.navigate('AddingByNumber');
@@ -169,7 +169,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             </ScrollView>
 
             <StackHeader
-                onpress={() => navigation.navigate('PermitsDeclarations')}
+                onpress={() => navigation.navigate('Permits')}
                 getHeight={setHeadHeight}
                 inner={''}
             />

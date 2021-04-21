@@ -48,6 +48,24 @@
     },
     "Permits": {
         "version": "1.01",
+        "header": "Zgody",
+        "title": "Zaakceptuj zgody, aby mieć dostęp do aplikacji.",
+        "text": "* pola obowiązkowe",
+        "urlRegulations": "https://www.kross.pl.rgulamn",
+        "hiperRegulations": "Regulaminem Aplikacji Mobilnej",
+        "urlPrivacyPolicy": "https://www.kross.pl.polityka",
+        "hiperPrivacyPolicy": "Polityce prywatności",
+        "permit": {
+            "required": true,
+            "text": "Oświadczam, że\u00a0zapoznałem się z\u00a0https://www.kross.pl.rgulamn i\u00a0akceptuję wszystkie zawarte w\u00a0nim warunki.\u00a0*"
+        },
+        "clauseTitle": "Klauzula informacyjna",
+        "clause": "Administratorem danych jest KROSSS.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046. Dane osobowe będą przetwarzane dla celów utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim, w\u00a0celu realizacji obsługi gwarancyjnej, w\u00a0celach analiz statystycznych oraz w\u00a0celu ustalania, dochodzenia i\u00a0egzekucji ewentualnych roszczeń. Na\u00a0zasadach określonych w\u00a0RODO przysługuje Pani\\Panu prawo dostępu do danych, prawo żądania ich sprostowania, usunięcia lub ograniczenia ich przetwarzania, wniesienia sprzeciwu wobec ich przetwarzania, prawo żądania ich przenoszenia, a\u00a0także prawo wniesienia skargi do\u00a0Prezesa UODO. Podanie danych osobowych jest dobrowolne, jednak odmowa ich podania uniemożliwia korzystanie z\u00a0Aplikacji Mobilnej. Więcej informacji na\u00a0temat przetwarzania danych osobowych znajduje się w\u00a0https://www.kross.pl.polityka.",
+        "wrong": "Zgoda jest wymagana",
+        "btn": "DALEJ"
+    },
+    "PermitsDeclarations": {
+        "version": "1.01",
         "header": "Zgody i oświadczenia",
         "title": "Potrzebujemy wymaganych zgód, aby zarejestrować konto w\u00a0Kross\u00a0S.A.",
         "text": "* pola obowiązkowe",
