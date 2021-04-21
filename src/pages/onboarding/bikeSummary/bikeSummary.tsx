@@ -104,7 +104,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
 
             <View style={styles.contentContainer}>
                 <Text style={styles.userName}>
-                    {`${userName} ${trans.title}`}
+                    {`${userName}${trans.title}`}
                 </Text>
 
                 {bikeData?.images && bikeData.images.length > 0 ? (
@@ -129,6 +129,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                 {bikeData?.description?.color && (
                     <ColorLabel
                         text={bikeData.description.color}
+                        colors={bikeData.description.colorCodes}
                         containerStyle={{marginLeft: getCenterLeftPx()}}
                     />
                 )}

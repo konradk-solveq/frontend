@@ -44,6 +44,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
 
     const [inputName, setInputName] = useState('');
     const [areaHeigh, setAreaHeigh] = useState(0);
+    const [validationStatus, setValidationStatus] = useState(false);
 
     useEffect(() => {
         if (typeof name === 'string') {
@@ -67,11 +68,16 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         dispatch(setUserName(inputName));
         navigation.navigate('AddingByNumber');
     };
+    
+    const hadleOnpressWithName = (inputName: string) => {
+        dispatch(setUserName(inputName));
+        navigation.navigate('AddingByNumber');
+    };
 
     const [headHeight, setHeadHeight] = useState(0);
 
     setObjSize(334, 50);
-    let bottons = {
+    const bottons = {
         position: 'absolute',
         width: getWidthPx(),
         height: 50,
@@ -82,7 +88,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         bottom: getVerticalPx(65 + 100), // 100 - przesunięcie dla scroll o headera
     };
 
-    let styles = StyleSheet.create({
+    const styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
@@ -140,6 +146,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
                             validationOk={hendleValidationOk}
                             value={inputName}
                             maxLength={20}
+                            validationStatus={setValidationStatus}
                         />
                     </View>
 
@@ -154,7 +161,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
                         <View style={styles.btn}>
                             <BigRedBtn
                                 title={trans.goFoward}
-                                onpress={() => hadleOnpress(inputName)}
+                                onpress={() => hadleOnpressWithName(inputName)}
                             />
                         </View>
                     </View>
