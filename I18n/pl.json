@@ -41,7 +41,7 @@
     },
     "AddingInfo": {
         "head": "Gdzie jest numer ramy?",
-        "btnKross": "Kross",
+        "btnKross": "KROSS",
         "btnOther": "Inny producent",
         "textKross": "Numer ramy (numer seryjny) znajduje się na\u00a0małej naklejce w\u00a0okolicach suportu - dużego koła zębatego.\n\nNumer ramy można znaleźć również na\u00a0e-gwarancji pod datą sprzedaży.",
         "textOther": "Numer ramy (numer seryjny) u\u00a0innych producentów znajdziesz:\n- w okolicach korby,\n- na dolnej rurze ramy,\n- na dolnej rurze trójkąta tylnego,\n- na wsporniku kierownicy."
@@ -861,7 +861,7 @@
     },
     "BikeData": {
         "header": "Identyfikacja roweru",
-        "title": "Hej, to nie jest rower Kross.\nNic nie szkodzi, podaj dane swojego roweru.",
+        "title": "Hej, to nie jest rower KROSS.\nNic nie szkodzi, podaj dane swojego roweru.",
         "frameNum": "Numer ramy",
         "producer": {
             "title": "Producent",
@@ -875,7 +875,7 @@
                 "Fuji",
                 "Giant",
                 "Kellys",
-                "Kross",
+                "KROSS",
                 "Merida",
                 "Rockiders",
                 "Romet",

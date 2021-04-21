@@ -205,21 +205,6 @@ const Bike: React.FC<Props> = (props: Props) => {
                         />
                     )}
 
-                {bike?.description?.color && bike?.description?.colorCodes && (
-                    <ColorLabel
-                        text={bike.description.color}
-                        colors={bike.description.colorCodes}
-                        containerStyle={{marginLeft: getCenterLeftPx()}}
-                    />
-                )}
-
-                {bike?.description?.size && (
-                    <SizeLabel
-                        text={bike.description.size}
-                        containerStyle={{marginLeft: getCenterLeftPx()}}
-                    />
-                )}
-
                 <View style={styles.separator} />
             </ScrollView>
 
