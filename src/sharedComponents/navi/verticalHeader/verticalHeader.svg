@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.8 40">
+    <defs>
+        <filter id="f1" x="-1" width="3" y="-1" height="3">
+            <feGaussianBlur stdDeviation="10.752114"/>
+        </filter>
+        <filter id="f2" x="-1" width="3" y="-1" height="3">
+            <feGaussianBlur stdDeviation="3.9484803"/>
+        </filter>
+        <clipPath id="clip">
+            <path d="M0 0h120.8v12s-25 6.3-59.7 6.3A287 287 0 010 12z"/>
+        </clipPath>
+    </defs>
+    <ellipse clip-path="url(#clip)" cx="60.4" cy="23.7" rx="59.2" ry="12.9" fill="#e8e8e8" stroke="none" filter="url(#f1)" transform="matrix(1.2848232,0,0,1.5017734,-16.467777,-12.342751)"/>
+    <circle opacity=".3" cx="60.4" cy="17" r="9" fill="#c0c0c0" stroke="none" filter="url(#f2)" transform="matrix(1.5944672,0,0,1.5944672,-35.51012,-10.478387)" />
+</svg>

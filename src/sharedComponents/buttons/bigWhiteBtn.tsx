@@ -1,14 +1,15 @@
-import React from "react";
-import { StyleSheet,  TouchableOpacity, Text } from 'react-native';
+import React from 'react';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
-interface BtnProps {
-    title: string,
-    onpress: Function
+import {getHorizontalPx} from '../../helpers/layoutFoo';
+
+interface Props {
+    style?: any;
+    title: string;
+    onpress: Function;
 }
 
-
-const BigWhiteBtn: React.FC<BtnProps> = (props: BtnProps) => {
-
+const BigWhiteBtn: React.FC<Props> = (props: Props) => {
     let styles = StyleSheet.create({
         btn: {
             display: 'flex',
@@ -16,28 +17,27 @@ const BigWhiteBtn: React.FC<BtnProps> = (props: BtnProps) => {
             justifyContent: 'center',
             width: '100%',
             height: '100%',
-            borderRadius: 50,
+            borderRadius: getHorizontalPx(50),
             textAlign: 'center',
             color: 'black',
-            borderWidth: 2,
-            borderColor: "#33555555",
+            borderWidth: 1,
+            borderColor: '#33555555',
         },
         text: {
-            fontFamily: "DIN2014Narrow-Bold",
-            fontSize: 20,
+            fontFamily: 'DIN2014Narrow-Bold',
+            fontSize: getHorizontalPx(20),
             textAlign: 'center',
-            color: '#313131'
-        }
-    })
+            color: '#313131',
+        },
+    });
 
     return (
         <TouchableOpacity
-            style={styles.btn}
-            onPress={props.onpress}
-        >
+            style={[styles.btn, props.style]}
+            onPress={props.onpress}>
             <Text style={styles.text}>{props.title}</Text>
         </TouchableOpacity>
-    )
-}
+    );
+};
 
 export default BigWhiteBtn;

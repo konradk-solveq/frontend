@@ -1,60 +1,83 @@
-import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Dimensions, View, Animated, Easing, Text, Alert } from 'react-native';
+import React from 'react';
+import {StyleSheet, SafeAreaView, View} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
     setObjSize,
-    getStandard,
-    getWidth,
-    getHeight,
-    getLeft,
-    getTop,
-    initAppSize
+    getHorizontalPx,
+    getCenterLeftPx,
+    getVerticalPx,
+    getHeightPx,
+    getWidthPx,
 } from '../../helpers/layoutFoo';
 
-import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn'
-import PanelProps from '../../sharedComponents/radio/panel'
-import TranspLightBtn from '../../sharedComponents/buttons/transpLightBtn'
+import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn';
+import PanelProps from '../../sharedComponents/radio/panel';
+import TranspLightBtn from '../../sharedComponents/buttons/transpLightBtn';
 
-interface BtnProps {
-    board: number,
-    list: Array<Function>,
-    setBoard: Function
+interface Props {
+    board: number;
+    list: Array<Function>;
+    setBoard: Function;
+    goFoward: Function;
 }
 
-const StaticElements: React.FC<BtnProps> = (props: BtnProps) => {
-    initAppSize()
-    setObjSize(41, 23);
-    const skip = {
-        position: 'absolute',
-        left: getLeft(333),
-        top: getTop(67),
-    }
+// elementy ekranu, które nie przesówają się w czasie przewijania ekranu na turtorialu first run
+const StaticElements: React.FC<Props> = (props: Props) => {
+    const trans = I18n.t('Onboarding');
 
+    setObjSize(334, 50);
     let styles = StyleSheet.create({
-        redBtn: getStandard(334, 50, 781),
-        skip
-    })
+        container: {
+            width: '100%',
+            height: '100%',
+        },
+        panel: {
+            position: 'absolute',
+            top: getHorizontalPx(67) - 8,
+        },
+        skip: {
+            position: 'absolute',
+            left: getHorizontalPx(333),
+            top: getHorizontalPx(60),
+        },
+        redBtn: {
+            position: 'absolute',
+            width: getWidthPx(),
+            height: getHeightPx(),
+            left: getCenterLeftPx(),
+            bottom: getVerticalPx(65),
+        },
+    });
 
     return (
-        <>
+        <SafeAreaView style={styles.container}>
             <PanelProps
+                style={styles.panel}
                 active={props.board - 1}
                 listBtn={props.list}
-            ></PanelProps>
+            />
 
-            <View style={styles.skip}>
-                <TranspLightBtn title={ I18n.t('Onboarding-pomin') } />
-            </View>
+            <TranspLightBtn
+                style={styles.skip}
+                title={trans.skip}
+                onpress={() => props.goFoward()}
+            />
 
             <View style={styles.redBtn}>
                 <BigRedBtn
-                    title={ I18n.t('Onboarding-dalej') }
-                    onpress={() => { if (props.board < props.list.length) props.setBoard(props.board + 1) }}
+                    title={trans.goFoward}
+                    onpress={() => {
+                        if (props.board < props.list.length) {
+                            props.setBoard(props.board + 1);
+                        } else {
+                            props.goFoward();
+                        }
+                    }}
                 />
             </View>
-        </>
-    )
-}
+        </SafeAreaView>
+    );
+};
 
 export default StaticElements;

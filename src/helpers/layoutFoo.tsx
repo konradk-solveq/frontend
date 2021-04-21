@@ -1,11 +1,14 @@
 import { Dimensions } from 'react-native';
 
+// funkcje wiliczające położenie elementów proporcje wg layoutu 
+// https://app.zeplin.io/project/5fbf658b936bbbb842e3c43c/dashboard?sid=60397836dc2eff2bfdde033a
+
 let layout: {
     width: number;
     height: number;
     ratio: number;
 } = {
-    width: 414,
+    width: 414, // wartości pełnego ekranu wg designu
     height: 896,
     ratio: 414 / 896
 }
@@ -44,28 +47,32 @@ const setObjSize = (w: number, h: number) => {
     }
 }
 
-const getCenterLeft = () => {
-    let res: number = (((layout.width - objSize.width) / 2) / layout.width) * 100;
-    return res.toFixed(3) + '%';
+const getCenterLeftPx = () => {
+    let res: number = (((layout.width - objSize.width) / 2) / layout.width) * appSize.width;
+    return res;
 }
 
-const getCenterTop = () => {
-    let res: number = (((layout.height - objSize.height) / 2) / layout.height) * 100;
-    return res.toFixed(3) + '%'
+const getCenterTopPx = () => {
+    let res: number = (((layout.height - objSize.height) / 2) / layout.height) * appSize.height;
+    return res;
 }
 
 
 
-const getLeft = (left: number) => {
+const getHorizontal = (left: number) => {
     let res: number = (left / layout.width) * 100;
     return res.toFixed(3) + '%';
 }
+const getHorizontalPx = (left: number) => {
+    let res: number = (left / layout.width) * appSize.width;
+    return res;
+}
 
-const getTop = (top: number) => {
+const getVertical = (top: number) => {
     let res: number = ((top) / layout.height) * 100;
     return res.toFixed(3) + '%'
 }
-const getTopPx = (top: number) => {
+const getVerticalPx = (top: number) => {
     let res: number = ((top) / layout.height) * appSize.height;
     return res
 }
@@ -97,6 +104,10 @@ const getHeightPx = () => {
     let res: number = (objSize.height / layout.height) * appSize.height;
     return res;
 }
+const getHeightOfPx = (num: number) => {
+    let res: number = (num / layout.height) * appSize.height;
+    return res;
+}
 
 
 
@@ -110,20 +121,56 @@ const getRelativeHeight = () => {
     return res.toFixed(3) + '%';
 }
 
-const getStandard = (w: number, h: number, t: number) => {
+const getStandard = (w: number, h: number, t: number) => { // nazwy pełnych kompozycji bez kontestu, abstrakcujne, nie miałęm pomysłu na okeślniki
     setObjSize(w, h);
     let res: {
         position: string,
         width: string,
         height: string,
-        left: string,
-        top: string
+        left: number,
+        top: number
     } = {
         position: 'absolute',
         width: getWidth(),
         height: getHeight(),
-        left: getCenterLeft(),
-        top: getTop(t)
+        left: getCenterLeftPx(),
+        top: getVerticalPx(t)
+    }
+    return res;
+}
+
+const getStandardPx = (w: number, h: number, t: number) => {
+    setObjSize(w, h);
+    let res: {
+        position: string,
+        width: number,
+        height: number,
+        left: number,
+        top: number
+    } = {
+        position: 'absolute',
+        width: getWidthPx(),
+        height: getHeightPx(),
+        left: getCenterLeftPx(),
+        top: getVerticalPx(t)
+    }
+    return res;
+}
+
+const getPerfectPx = (w: number, h: number, l: number, t: number) => {
+    setObjSize(w, h);
+    let res: {
+        position: string,
+        width: number,
+        height: number,
+        left: number,
+        top: number
+    } = {
+        position: 'absolute',
+        width: getWidthPx(),
+        height: getHeightPx(),
+        left: getVerticalPx(l),
+        top: getVerticalPx(t)
     }
     return res;
 }
@@ -135,14 +182,14 @@ const getPosStaticHeight = (w: number, h: number, t: number) => {
         position: string,
         width: number,
         height: number,
-        left: string,
+        left: number,
         top: string
     } = {
         position: 'absolute',
-        width,
+        width: getWidthPx(),
         height: (h / w) * width,
-        left: getCenterLeft(),
-        top: getTop(t)
+        left: getCenterLeftPx(),
+        top: getVertical(t)
     }
     return res;
 }
@@ -155,8 +202,8 @@ const getOnlyPos = (w: number, h: number, t: number) => {
         top: string
     } = {
         position: 'absolute',
-        left: getCenterLeft(),
-        top: getTop(t)
+        left: getCenterLeftPx(),
+        top: getVertical(t)
     }
     return res;
 }
@@ -166,13 +213,13 @@ const getPosAndWid = (w: number, h: number, t: number) => {
     let res: {
         position: string,
         width: string,
-        left: string,
+        left: number,
         top: string
     } = {
         position: 'absolute',
         width: getWidth(),
-        left: getCenterLeft(),
-        top: getTop(t)
+        left: getCenterLeftPx(),
+        top: getVertical(t)
     }
     return res;
 }
@@ -188,23 +235,36 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
         top: string
     } = {
         position: 'absolute',
-        width: getWidth(),
+        width: getWidthPx(),
         height: height < min ? min : height,
-        left: getCenterLeft(),
-        top: getTop(t)
+        left: getCenterLeftPx(),
+        top: getVertical(t)
     }
     return res;
 }
 
 export {
-    setAppSize, initAppSize, setObjSize,
-    getCenterLeft, getCenterTop,
-    getLeft, getTop, getTopPx,
-    getWidth, getWidthOf, getWidthPxOf,
-    getHeight, getHeightPx,
-    getRelativeWidth, getRelativeHeight,
-
+    setAppSize,
+    initAppSize,
+    setObjSize,
+    getCenterLeftPx,
+    getCenterTopPx,
+    getHorizontal,
+    getHorizontalPx,
+    getVertical,
+    getVerticalPx,
+    getWidth,
+    getWidthOf,
+    getWidthPx,
+    getWidthPxOf,
+    getHeight,
+    getHeightPx,
+    getHeightOfPx,
+    getRelativeWidth,
+    getRelativeHeight,
     getStandard,
+    getStandardPx,
+    getPerfectPx,
     getPosStaticHeight,
     getOnlyPos,
     getPosAndWid,

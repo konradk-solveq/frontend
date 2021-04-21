@@ -1,131 +1,177 @@
 //getToKnowEachOther
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Dimensions, View } from 'react-native';
-import { connect } from "react-redux";
+import React, {useEffect, useState} from 'react';
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    Text,
+    ScrollView,
+    Dimensions,
+} from 'react-native';
 import I18n from 'react-native-i18n';
-import { setUserName, getUserName } from '../../../store/actions/index';
+import {setUserName} from '../../../storage/actions/index';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 
 import {
-    setAppSize,
     setObjSize,
-    getWidth,
+    getWidthPx,
     getWidthPxOf,
-    getHeightPx,
-    getTopPx,
-    getCenterLeft,
-    getPosAndWid,
+    getHorizontalPx,
+    getVerticalPx,
+    getVertical,
+    getCenterLeftPx,
     getPosWithMinHeight,
-    getPosStaticHeight
+    getPosStaticHeight,
 } from '../../../helpers/layoutFoo';
 
-import KroosLogo from './krossLogo';
-import DinLight30 from '../../../sharedComponents/text/dinLight30';
+import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 
+const wh = Dimensions.get('window').height;
 
+interface Props {
+    navigation: any;
+}
 
+const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
+    const dispatch = useAppDispatch();
+    const trans = I18n.t('GetToKnowEachOther');
 
+    const name: string = useAppSelector(state => state.user.userName);
 
-const GetToKnowEachOther = (props: any) => {
-
-
-    const [inputName, setInputName] = useState(props.name);
-
+    const [inputName, setInputName] = useState('');
+    const [areaHeigh, setAreaHeigh] = useState(0);
 
     useEffect(() => {
-        props.getName();
-    }, [])
+        if (typeof name === 'string') {
+            setInputName(name);
+        }
+    }, [name]);
 
-    const ww = Dimensions.get('window').width;
-    const wh = Dimensions.get('window').height;
-    setAppSize(ww, wh);
+    const hendleValidationOk = (value: string) => {
+        if (value.length > 2) {
+            return true;
+        }
+
+        return false;
+    };
+
+    const handleAreaHeight = (layout: any) => {
+        setAreaHeigh(layout.height);
+    };
+
+    const hadleOnpress = (inputName: string) => {
+        dispatch(setUserName(inputName));
+        navigation.navigate('AddingByNumber');
+    };
+
+    const [headHeight, setHeadHeight] = useState(0);
 
     setObjSize(334, 50);
     let bottons = {
         position: 'absolute',
-        width: getWidth(),
-        height: getHeightPx() < 50 ? 50 : getHeightPx(),
-        left: getCenterLeft(),
+        width: getWidthPx(),
+        height: 50,
+        left: getCenterLeftPx(),
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        bottom: getTopPx(60)
-    }
+        bottom: getVerticalPx(65 + 100), // 100 - przesunięcie dla scroll o headera
+    };
 
     let styles = StyleSheet.create({
         container: {
-            width: ww,
+            width: '100%',
             height: '100%',
-            backgroundColor: 'white'
+            backgroundColor: 'white',
         },
-        logo: getPosStaticHeight(110, 20, 66),
-        text: getPosAndWid(334, 78, 138),
-        inputAndPlaceholder: getPosWithMinHeight(334, 80, 380, 80),
+        scroll: {
+            top: headHeight,
+        },
+        area: {
+            width: '100%',
+            height: areaHeigh,
+            minHeight: getVertical(414),
+        },
+        title: {
+            width: getWidthPx(),
+            left: getCenterLeftPx(),
+            top: getVertical(138 - 100),
+            fontFamily: 'DIN2014Narrow-Light',
+            fontSize: 30,
+            lineHeight: 38,
+            color: '#313131',
+        },
+        logo: {
+            position: 'absolute',
+            left: getHorizontalPx(152),
+            top: getVerticalPx(66),
+            width: getHorizontalPx(110),
+            height: getHorizontalPx(20),
+        },
+        inputAndPlaceholder: getPosWithMinHeight(334, 90, 380 - 100, 90),
         input: {
             height: 50,
-            marginTop: 6,
+            marginTop: getHorizontalPx(6),
         },
         bottons,
         btn: {
             width: getWidthPxOf(157),
-        }
-    })
+        },
+    });
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView
+            style={styles.container}
+            onLayout={({nativeEvent}) => handleAreaHeight(nativeEvent.layout)}>
+            <ScrollView
+                keyboardShouldPersistTaps={'always'}
+                style={styles.scroll}>
+                <View style={styles.area}>
+                    <Text style={styles.title}>{trans.title}</Text>
+
+                    <View style={[styles.inputAndPlaceholder, styles.input]}>
+                        <OneLineTekst
+                            placeholder={trans.placeholder}
+                            onChangeText={setInputName}
+                            validationOk={hendleValidationOk}
+                            value={inputName}
+                            maxLength={20}
+                        />
+                    </View>
+
+                    <View style={styles.bottons}>
+                        <View style={styles.btn}>
+                            <BigWhiteBtn
+                                title={trans.skip}
+                                onpress={() => hadleOnpress('')}
+                            />
+                        </View>
+
+                        <View style={styles.btn}>
+                            <BigRedBtn
+                                title={trans.goFoward}
+                                onpress={() => hadleOnpress(inputName)}
+                            />
+                        </View>
+                    </View>
+                </View>
+            </ScrollView>
+
+            <StackHeader
+                onpress={() => navigation.navigate('PermitsDeclarations')}
+                getHeight={setHeadHeight}
+                inner={''}
+            />
+
             <View style={styles.logo}>
                 <KroosLogo />
             </View>
+        </SafeAreaView>
+    );
+};
 
-            <View style={styles.text}>
-                <DinLight30
-                    algin='left'
-                    inner={I18n.t('GetToKnowEachOther-text')}
-                />
-            </View>
-
-            <View style={styles.inputAndPlaceholder}>
-                <View style={styles.input}>
-                    <OneLineTekst
-                        placeholder={I18n.t('GetToKnowEachOther-placeholder')}
-                        onChangeText={setInputName}
-                        value={inputName}
-                    />
-                </View>
-            </View>
-
-            <View style={styles.bottons}>
-                <View style={styles.btn}>
-                    <BigWhiteBtn
-                        title={I18n.t('GetToKnowEachOther-pomin')}
-                        onpress={() => getUserName()}
-                    ></BigWhiteBtn>
-                </View>
-
-                <View style={styles.btn}>
-                    <BigRedBtn
-                        title={I18n.t('GetToKnowEachOther-dalej')}
-                        onpress={() => props.setName(inputName)}
-                    ></BigRedBtn>
-                </View>
-            </View>
-
-        </View>
-    )
-}
-
-
-const mapStateToProps = (state: any) => {
-    return {
-        name: state.user.userName
-    }
-}
-
-const mapDispatchToProps = (dispatch: any) => ({
-    setName: (name: string) => dispatch(setUserName(name)),
-    getName: async () => dispatch(await getUserName()),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(GetToKnowEachOther)
+export default GetToKnowEachOther;

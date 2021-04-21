@@ -1,45 +1,49 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { getWidth } from '../../helpers/layoutFoo';
-import RadioBtn from './radiBtn';
+import {StyleSheet, View} from 'react-native';
+import RadioBtn from './radioBtn';
 
 import {
-    initAppSize,
-    getStandard
+    setObjSize,
+    getWidthPxOf,
+    getCenterLeftPx,
 } from '../../helpers/layoutFoo';
 
-
-interface PanelProps {
-    active: number,
-    listBtn: Array<Function>
+interface Props {
+    style?: any;
+    active: number; // który w kolejości radiobuton jest aktywny
+    listBtn: Array<Function>; // lista funkcji wukonywanych po wciśnięciu butona
 }
 
-const RadioPanel: React.FC<PanelProps> = (props: PanelProps) => {
-    initAppSize();
-
-    let styles = StyleSheet.create({
+const RadioPanel: React.FC<Props> = (props: Props) => {
+    const h = 7 + 13 + 7;
+    const w = (h + 2) * props.listBtn.length;
+    setObjSize(w, h);
+    const styles = StyleSheet.create({
         pannel: {
             display: 'flex',
             flexDirection: 'row',
             position: 'relative',
             justifyContent: 'space-between',
             alignItems: 'center',
+            width: w,
+            height: h,
+            // top: -8,
+            left: getCenterLeftPx(),
+            // backgroundColor: 'khaki'
         },
-        wrap : getStandard(70, 13, 70)
-    })
+    });
 
     return (
-
-        <View style={[styles.pannel, styles.wrap]}>
+        <View style={[styles.pannel, props.style]}>
             {props.listBtn.map((e, i) => (
                 <RadioBtn
                     cheched={props.active == i}
                     onpress={e}
                     key={'radioBtn' + i}
-                ></RadioBtn>
+                />
             ))}
         </View>
-    )
-}
+    );
+};
 
 export default RadioPanel;
