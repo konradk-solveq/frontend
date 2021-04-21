@@ -27,23 +27,17 @@ export const userBikeValidationRules = {
     color: [validationRules.required, validationRules.string, {min: 3}],
 };
 
-enum WarrantyOverviewType {
-    WARRANTY = 'warranty',
-    SELF_OVERVIEW = 'self-overview',
-    PLANNED_WARRANTY = 'planned-warranty',
-    PLANNED_PERIODIC = 'planned-periodic',
-}
-
 export interface Warranty {
     id?: string;
     type: string;
     end: Date;
     overviews: {
-        type: WarrantyOverviewType[];
+        type: string;
         date: Date;
-        state: 0;
+        info: string;
     }[];
     info: string;
+    warning: string;
 }
 
 export enum ComplaintStateType {
@@ -209,7 +203,7 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
 
     constructor(
         name: string,
-        id: string,
+        id: string | null,
         sku: string,
         producer: string,
         serial_number: string,

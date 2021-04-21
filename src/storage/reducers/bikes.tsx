@@ -31,7 +31,7 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 list: action.list,
             };
         }
-        case actionTypes.SET_BIKES_DATA: {
+        case actionTypes.SET_BIKE_DATA: {
             const newBikeToAdd = action.bikeData;
             const removedExisted = [...state.list].filter(el => {
                 const frameNrExists =
@@ -50,6 +50,21 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 error: '',
                 loading: false,
                 list: removedExisted,
+            };
+        }
+        case actionTypes.SET_BIKES_DATA: {
+            const newBikesToAdd = action.bikeData;
+            const bikesToRemove = action.numbersToUpdate;
+
+            const removedExisted: UserBike[] = [...state.list].filter(
+                el => !bikesToRemove.includes(el.description.serial_number),
+            );
+
+            return {
+                ...state,
+                error: '',
+                loading: false,
+                list: [...newBikesToAdd, ...removedExisted],
             };
         }
         case actionTypes.SET_BIKES_ERROR: {

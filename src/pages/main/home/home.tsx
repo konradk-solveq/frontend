@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 
@@ -11,8 +11,30 @@ import {
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 import AddBike from './addBike';
+import {setBikesListByFrameNumbers} from '../../../storage/actions/bikes';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 
 const Home: React.FC = () => {
+    const dispatch = useAppDispatch();
+    const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
+
+    useEffect(() => {
+        if (isOnline) {
+            synchData();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const synchData = async () => {
+        try {
+            /* TODO: add some sync/info loader */
+            const res = await dispatch(setBikesListByFrameNumbers());
+        } catch (error) {
+            /* TODO: add some UI information */
+            console.log('[Sync Error]', error);
+        }
+    };
+
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container1: {
