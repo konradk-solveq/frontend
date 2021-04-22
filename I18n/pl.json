@@ -1029,7 +1029,9 @@
                 ],
                 "number": "nr"
             }
-        }
+        },
+        "servisMap": "Najbliższy serwis",
+        "btn": "USUŃ ROWER"
     },
     "MainBikeParams": {
         "header": " Rower",
@@ -1037,6 +1039,10 @@
             "od ",
             " / nr ramy "
         ],
+    },
+    "ServicesMap": {
+        "services": "Servisy",
+        "shops": "Sklepy"
     },
     "MainProfile": {
         "header": " Konto",

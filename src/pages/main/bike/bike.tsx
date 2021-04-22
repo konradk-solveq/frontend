@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
-import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import {ScrollView} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 
-import {useAppSelector} from '../../../hooks/redux';
-import {getBike} from '../../../helpers/transformUserBikeData';
+import { useAppSelector } from '../../../hooks/redux';
+import { getBike } from '../../../helpers/transformUserBikeData';
 
 import Warranty from './warranty';
 import Reviews from './reviews';
 import ComplaintsRepairs from './complaintsRepairs';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
-import {countDaysToEnd} from '../../../helpers/warranty';
+import { countDaysToEnd } from '../../../helpers/warranty';
+import ServiceMapBtn from '../../../sharedComponents/buttons/serviceMap';
+import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {
     setObjSize,
@@ -20,12 +22,13 @@ import {
     getWidthPx,
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
-import {UserBike} from '../../../models/userBike.model';
+import { UserBike } from '../../../models/userBike.model';
 
 import BikeImage from '../../../sharedComponents/images/bikeImage';
-import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
-import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
+import { SizeLabel, ColorLabel } from '../../../sharedComponents/labels';
+import { CogBtn, ShowMoreArrowBtn } from '../../../sharedComponents/buttons';
 import Carousel from '../../../sharedComponents/carousel/carousel';
+import { Transition } from 'react-native-reanimated';
 
 interface Props {
     navigation: any;
@@ -67,7 +70,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getHorizontalPx(18),
+            fontSize: 18,
             color: '#313131',
         },
         params: {
@@ -86,7 +89,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(40),
+            fontSize: 40,
             color: '#313131',
             textAlign: 'center',
         },
@@ -96,7 +99,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getHorizontalPx(15),
+            fontSize: 15,
             color: '#555555',
         },
         warranty: {
@@ -112,15 +115,38 @@ const Bike: React.FC<Props> = (props: Props) => {
             width: '100%',
             height: getVerticalPx(200),
         },
+        map: {
+            left: l,
+            width: w,
+        },
+        btn: {
+            left: l,
+            width: w,
+            height: 50,
+            marginTop: getVerticalPx(72),
+        },
         test: {
             backgroundColor: 'khaki',
         },
     });
 
+    const region = {
+        latitude: 52.1588812,
+        longitude: 16.85517745,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
+    };
+
     const heandleParams = () => {
         props.navigation.navigate('BikeParams', {
             description: bike?.description,
             params: bike?.params,
+        });
+    };
+
+    const heandleServicesMap = () => {
+        props.navigation.navigate('ServicesMap', {
+            region: region,
         });
     };
 
@@ -149,13 +175,13 @@ const Bike: React.FC<Props> = (props: Props) => {
                 {bike?.images && bike.images.length > 0 ? (
                     <Carousel
                         images={bike.images}
-                        containerStyle={{height: 210}}
+                        containerStyle={{ height: 210 }}
                     />
                 ) : (
                     <BikeImage />
                 )}
 
-                <ShowMoreArrowBtn onPress={() => {}} up={true} />
+                <ShowMoreArrowBtn onPress={() => { }} up={true} />
 
                 <Text style={styles.bikeName}>{bike?.description.name}</Text>
 
@@ -200,6 +226,20 @@ const Bike: React.FC<Props> = (props: Props) => {
                             description={trans.warranty.complaintsRepairs}
                         />
                     )}
+
+                <ServiceMapBtn
+                    style={styles.map}
+                    title={trans.servisMap}
+                    height={102}
+                    region={region}
+                    onpress={() => heandleServicesMap()}
+                />
+
+                <BigRedBtn
+                    style={styles.btn}
+                    onpress={() => console.log('%c pressed: BigRedBtn')}
+                    title={trans.btn}
+                />
 
                 <View style={styles.separator} />
             </ScrollView>
