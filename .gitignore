@@ -66,3 +66,6 @@ buck-out/
 android/gradle.properties
 android/key2.jks
 android/app/release/
+android/app/src/main/res/values/google_maps_api.xml
+android/app/src/main/res/values/strings.xml
+

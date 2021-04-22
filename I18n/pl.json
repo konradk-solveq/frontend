@@ -1029,7 +1029,8 @@
                 ],
                 "number": "nr"
             }
-        }
+        },
+        "servisMap": "Najbliższy serwis"
     },
     "MainBikeParams": {
         "header": " Rower",
