@@ -1040,6 +1040,10 @@
             " / nr ramy "
         ],
     },
+    "ServicesMap": {
+        "services": "Servisy",
+        "shops": "Sklepy"
+    },
     "MainProfile": {
         "header": " Konto",
         "details": [
