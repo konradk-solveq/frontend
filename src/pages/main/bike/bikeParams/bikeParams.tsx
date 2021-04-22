@@ -4,7 +4,6 @@ import I18n from 'react-native-i18n';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import {ColorLabel} from '../../../../sharedComponents/labels';
 
 import {
@@ -131,10 +130,10 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                             description.serial_number}
                     </Text>
 
-                    {description?.color && description?.colorCodes && (
+                    {description?.color && (
                         <ColorLabel
                             text={description.color}
-                            colors={description.colorCodes}
+                            colors={description?.colorCodes}
                             containerStyle={styles.color}
                         />
                     )}
@@ -143,7 +142,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                         <Text style={styles.sizeText}>{description.size}</Text>
                     </View>
 
-                    {params.map((e, i) => (
+                    {params?.map((e, i) => (
                         <View
                             style={[
                                 styles.list,
@@ -163,12 +162,6 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                         </View>
                     ))}
                 </View>
-
-                {/* <BigRedBtn
-                    style={styles.btn}
-                    title={trans.btnAddStuff}
-                    onpress={() => props.navigation.navigate('TabMenu')}
-                /> */}
             </ScrollView>
 
             <StackHeader

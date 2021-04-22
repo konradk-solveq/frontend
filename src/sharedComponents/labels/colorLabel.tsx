@@ -46,7 +46,7 @@ const ColorLabel: React.FC<IProps> = ({
 
     return (
         <View style={[styles.container, containerStyle]}>
-            <ColorCircle style={styles.colorBall} colors={colors} />
+            {colors && <ColorCircle style={styles.colorBall} colors={colors} />}
             <Text style={styles.text}>{text}</Text>
         </View>
     );
