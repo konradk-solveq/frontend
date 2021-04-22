@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
@@ -53,73 +53,69 @@ const Bike: React.FC<Props> = (props: Props) => {
     setObjSize(334, 50);
     const w = getWidthPx();
     const l = getCenterLeftPx();
-    const styles = useMemo(
-        () =>
-            StyleSheet.create({
-                container: {
-                    width: '100%',
-                    height: '100%',
-                },
-                scroll: {
-                    backgroundColor: '#ffffff',
-                },
-                header: {
-                    marginTop: getVerticalPx(65),
-                    left: l,
-                    width: w,
-                    fontFamily: 'DIN2014Narrow-Light',
-                    textAlign: 'center',
-                    fontSize: getHorizontalPx(18),
-                    color: '#313131',
-                },
-                params: {
-                    position: 'absolute',
-                    top: getVerticalPx(65 - 13),
-                    right: getHorizontalPx(40 - 13),
-                    width: getHorizontalPx(13 + 20 + 13),
-                    height: getHorizontalPx(13 + 20 + 13),
-                },
-                paramIcon: {
-                    margin: getHorizontalPx(13),
-                    width: getHorizontalPx(20),
-                    height: getHorizontalPx(20),
-                },
-                bikeName: {
-                    left: l,
-                    width: w,
-                    fontFamily: 'DIN2014Narrow-Regular',
-                    fontSize: getHorizontalPx(40),
-                    color: '#313131',
-                    textAlign: 'center',
-                },
-                bikeDetails: {
-                    marginTop: getVerticalPx(5),
-                    left: l,
-                    width: w,
-                    fontFamily: 'DIN2014Narrow-Light',
-                    textAlign: 'center',
-                    fontSize: getHorizontalPx(15),
-                    color: '#555555',
-                },
-                warranty: {
-                    marginTop: getVerticalPx(76),
-                },
-                reviews: {
-                    marginTop: getVerticalPx(45),
-                },
-                complaintsRepairs: {
-                    marginTop: getVerticalPx(30),
-                },
-                separator: {
-                    width: '100%',
-                    height: getVerticalPx(200),
-                },
-                test: {
-                    backgroundColor: 'khaki',
-                },
-            }),
-        [l, w],
-    );
+    const styles = StyleSheet.create({
+        container: {
+            width: '100%',
+            height: '100%',
+        },
+        scroll: {
+            backgroundColor: '#ffffff',
+        },
+        header: {
+            marginTop: getVerticalPx(65),
+            left: l,
+            width: w,
+            fontFamily: 'DIN2014Narrow-Light',
+            textAlign: 'center',
+            fontSize: getHorizontalPx(18),
+            color: '#313131',
+        },
+        params: {
+            position: 'absolute',
+            top: getVerticalPx(65 - 13),
+            right: getHorizontalPx(40 - 13),
+            width: getHorizontalPx(13 + 20 + 13),
+            height: getHorizontalPx(13 + 20 + 13),
+        },
+        paramIcon: {
+            margin: getHorizontalPx(13),
+            width: getHorizontalPx(20),
+            height: getHorizontalPx(20),
+        },
+        bikeName: {
+            left: l,
+            width: w,
+            fontFamily: 'DIN2014Narrow-Regular',
+            fontSize: getHorizontalPx(40),
+            color: '#313131',
+            textAlign: 'center',
+        },
+        bikeDetails: {
+            marginTop: getVerticalPx(5),
+            left: l,
+            width: w,
+            fontFamily: 'DIN2014Narrow-Light',
+            textAlign: 'center',
+            fontSize: getHorizontalPx(15),
+            color: '#555555',
+        },
+        warranty: {
+            marginTop: getVerticalPx(76),
+        },
+        reviews: {
+            marginTop: getVerticalPx(45),
+        },
+        complaintsRepairs: {
+            marginTop: getVerticalPx(30),
+        },
+        separator: {
+            width: '100%',
+            height: getVerticalPx(200),
+        },
+        test: {
+            backgroundColor: 'khaki',
+        },
+    });
 
     const heandleParams = () => {
         props.navigation.navigate('BikeParams', {
