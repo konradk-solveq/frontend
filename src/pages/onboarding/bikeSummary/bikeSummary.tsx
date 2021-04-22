@@ -57,7 +57,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             height: getVerticalPx(896),
         },
         contentContainer: {
-            marginTop: getVerticalPx(148),
+            marginTop: getVerticalPx(88),
         },
         bottons: {
             position: 'absolute',
