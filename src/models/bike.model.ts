@@ -14,7 +14,8 @@ export const userBikeValidationRules = {
     serial_number: [
         validationRules.required,
         validationRules.notEmpty,
-        {min: 3},
+        {[validationRules.min]: 3},
+        {[validationRules.max]: 20},
     ],
     producer: [validationRules.required, validationRules.string, {min: 3}],
     name: [validationRules.required, validationRules.string, {min: 3}],
@@ -155,6 +156,7 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
     @IsNotEmpty()
     @IsString()
     @MinLength(3)
+    @MaxLength(20)
     serial_number: string;
 
     @IsOptional()
