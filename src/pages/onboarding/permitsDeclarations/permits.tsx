@@ -49,7 +49,7 @@ const Permits: React.FC<Props> = (props: Props) => {
     const styles = StyleSheet.create({
         scroll: {
             width: '100%',
-            height: wh,
+            height: '100%',
             top: headHeight,
             backgroundColor: 'white',
         },
