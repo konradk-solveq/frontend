@@ -23,9 +23,7 @@ import {
 import {UserBike} from '../../../models/userBike.model';
 
 import BikeImage from '../../../sharedComponents/images/bikeImage';
-import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
 import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
-import Carousel from '../../../sharedComponents/carousel/carousel';
 
 interface Props {
     navigation: any;
@@ -129,13 +127,11 @@ const Bike: React.FC<Props> = (props: Props) => {
             <ScrollView style={styles.scroll}>
                 <Text style={styles.header}>{trans.header}</Text>
 
-                {bike?.params && (
-                    <CogBtn
-                        callback={heandleParams}
-                        containerStyle={styles.params}
-                        iconStyle={styles.paramIcon}
-                    />
-                )}
+                <CogBtn
+                    callback={heandleParams}
+                    containerStyle={styles.params}
+                    iconStyle={styles.paramIcon}
+                />
 
                 <BikeSelectorList
                     style={styles.reviews}

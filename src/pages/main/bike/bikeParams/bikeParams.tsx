@@ -136,10 +136,10 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                             description.serial_number}
                     </Text>
 
-                    {description?.color && description?.colorCodes && (
+                    {description?.color && (
                         <ColorLabel
                             text={description.color}
-                            colors={description.colorCodes}
+                            colors={description?.colorCodes}
                             containerStyle={styles.color}
                         />
                     )}
@@ -148,7 +148,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                         <Text style={styles.sizeText}>{description.size}</Text>
                     </View>
 
-                    {params.map((e, i) => (
+                    {params?.map((e, i) => (
                         <View
                             style={[
                                 styles.list,
