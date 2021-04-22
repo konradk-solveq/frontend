@@ -119,7 +119,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         area: {
             width: '100%',
             height: areaHeigh,
-            minHeight: getVertical(414),
+            minHeight: getVerticalPx(450) + headHeight,
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351 - 100, 100),
         title: {

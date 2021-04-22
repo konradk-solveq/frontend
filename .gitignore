@@ -64,7 +64,5 @@ buck-out/
 .env
 
 android/gradle.properties
-android/app/release/app-release.aab
-android/app/release/app-release.apk
-android/app/release/output-metadata.json
 android/key2.jks
+android/app/release/
