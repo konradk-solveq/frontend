@@ -78,7 +78,7 @@ const World: React.FC = () => {
         },
         footer: {
             position: 'absolute',
-            bottom: t - getVerticalPx(173),
+            bottom: t - getVerticalPx(193),
             fontFamily: 'DIN2014Narrow-Light',
             fontSize: getHorizontalPx(18),
             letterSpacing: 0.5,
