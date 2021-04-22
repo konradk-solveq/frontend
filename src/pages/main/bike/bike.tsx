@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import { ScrollView } from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 
-import { useAppSelector } from '../../../hooks/redux';
-import { getBike } from '../../../helpers/transformUserBikeData';
+import {useAppSelector} from '../../../hooks/redux';
+import {getBike} from '../../../helpers/transformUserBikeData';
 
 import Warranty from './warranty';
 import Reviews from './reviews';
 import ComplaintsRepairs from './complaintsRepairs';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
-import { countDaysToEnd } from '../../../helpers/warranty';
+import {countDaysToEnd} from '../../../helpers/warranty';
 import ServiceMapBtn from '../../../sharedComponents/buttons/serviceMap';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
@@ -22,13 +22,13 @@ import {
     getWidthPx,
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
-import { UserBike } from '../../../models/userBike.model';
+import {UserBike} from '../../../models/userBike.model';
 
 import BikeImage from '../../../sharedComponents/images/bikeImage';
-import { SizeLabel, ColorLabel } from '../../../sharedComponents/labels';
-import { CogBtn, ShowMoreArrowBtn } from '../../../sharedComponents/buttons';
+import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
+import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
 import Carousel from '../../../sharedComponents/carousel/carousel';
-import { Transition } from 'react-native-reanimated';
+import {Transition} from 'react-native-reanimated';
 
 interface Props {
     navigation: any;
@@ -155,13 +155,11 @@ const Bike: React.FC<Props> = (props: Props) => {
             <ScrollView style={styles.scroll}>
                 <Text style={styles.header}>{trans.header}</Text>
 
-                {bike?.params && (
-                    <CogBtn
-                        callback={heandleParams}
-                        containerStyle={styles.params}
-                        iconStyle={styles.paramIcon}
-                    />
-                )}
+                <CogBtn
+                    callback={heandleParams}
+                    containerStyle={styles.params}
+                    iconStyle={styles.paramIcon}
+                />
 
                 <BikeSelectorList
                     style={styles.reviews}
@@ -175,13 +173,13 @@ const Bike: React.FC<Props> = (props: Props) => {
                 {bike?.images && bike.images.length > 0 ? (
                     <Carousel
                         images={bike.images}
-                        containerStyle={{ height: 210 }}
+                        containerStyle={{height: 210}}
                     />
                 ) : (
                     <BikeImage />
                 )}
 
-                <ShowMoreArrowBtn onPress={() => { }} up={true} />
+                <ShowMoreArrowBtn onPress={() => {}} up={true} />
 
                 <Text style={styles.bikeName}>{bike?.description.name}</Text>
 

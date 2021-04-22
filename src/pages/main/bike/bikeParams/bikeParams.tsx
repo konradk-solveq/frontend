@@ -4,7 +4,6 @@ import I18n from 'react-native-i18n';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import {ColorLabel} from '../../../../sharedComponents/labels';
 
 import {
@@ -23,7 +22,7 @@ interface Props {
 const wh = Dimensions.get('window').height;
 
 const BikeParams: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('MainBikeParams');
+    const trans: any = I18n.t('MainBikeParams');
     const description = props.route.params.description;
     const params = props.route.params.params;
 
@@ -106,6 +105,12 @@ const BikeParams: React.FC<Props> = (props: Props) => {
             lineHeight: getHorizontalPx(26),
             color: '#313131',
         },
+        longerValue: {
+            flex: 1,
+            flexWrap: 'wrap',
+            textAlign: 'right',
+            paddingLeft: 10,
+        },
         lastOne: {
             marginBottom: getHorizontalPx(65),
         },
@@ -131,10 +136,10 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                             description.serial_number}
                     </Text>
 
-                    {description?.color && description?.colorCodes && (
+                    {description?.color && (
                         <ColorLabel
                             text={description.color}
-                            colors={description.colorCodes}
+                            colors={description?.colorCodes}
                             containerStyle={styles.color}
                         />
                     )}
@@ -143,7 +148,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                         <Text style={styles.sizeText}>{description.size}</Text>
                     </View>
 
-                    {params.map((e, i) => (
+                    {params?.map((e, i) => (
                         <View
                             style={[
                                 styles.list,
@@ -157,18 +162,18 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                                     style={styles.valLine}
                                     key={'val_' + i + '_' + ii}>
                                     <Text style={styles.value}>{ee.name}</Text>
-                                    <Text style={styles.value}>{ee.value}</Text>
+                                    <Text
+                                        style={[
+                                            styles.value,
+                                            styles.longerValue,
+                                        ]}>
+                                        {ee.value}
+                                    </Text>
                                 </View>
                             ))}
                         </View>
                     ))}
                 </View>
-
-                {/* <BigRedBtn
-                    style={styles.btn}
-                    title={trans.btnAddStuff}
-                    onpress={() => props.navigation.navigate('TabMenu')}
-                /> */}
             </ScrollView>
 
             <StackHeader

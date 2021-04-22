@@ -1,13 +1,6 @@
 //getToKnowEachOther
 import React, {useEffect, useState} from 'react';
-import {
-    StyleSheet,
-    SafeAreaView,
-    View,
-    Text,
-    ScrollView,
-    Dimensions,
-} from 'react-native';
+import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
 import I18n from 'react-native-i18n';
 import {setUserName} from '../../../storage/actions/index';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
@@ -21,16 +14,15 @@ import {
     getVertical,
     getCenterLeftPx,
     getPosWithMinHeight,
-    getPosStaticHeight,
 } from '../../../helpers/layoutFoo';
+import {validateData} from '../../../utils/validation/validation';
+import {userUserValidationRules} from '../../../models/user.model';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
-
-const wh = Dimensions.get('window').height;
 
 interface Props {
     navigation: any;
@@ -53,11 +45,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     }, [name]);
 
     const hendleValidationOk = (value: string) => {
-        if (value.length > 2) {
-            return true;
-        }
-
-        return false;
+        return validateData(userUserValidationRules.userName, value);
     };
 
     const handleAreaHeight = (layout: any) => {
@@ -70,6 +58,9 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     };
 
     const hadleOnpressWithName = (inputName: string) => {
+        if (!validationStatus) {
+            return;
+        }
         dispatch(setUserName(inputName));
         navigation.navigate('AddingByNumber');
     };

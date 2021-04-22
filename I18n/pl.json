@@ -49,8 +49,8 @@
     "Permits": {
         "version": "1.01",
         "header": "Zgody",
-        "title": "Zaakceptuj zgody, aby mieć dostęp do aplikacji.",
-        "text": "* pola obowiązkowe",
+        "title": "Zaakceptuj regulamin, aby móc korzystać z aplikacji.",
+        "text": "* pole obowiązkowe",
         "urlRegulations": "https://www.kross.pl.rgulamn",
         "hiperRegulations": "Regulaminem Aplikacji Mobilnej",
         "urlPrivacyPolicy": "https://www.kross.pl.polityka",
@@ -1038,7 +1038,7 @@
         "details": [
             "od ",
             " / nr ramy "
-        ],
+        ]
     },
     "ServicesMap": {
         "services": "Servisy",
