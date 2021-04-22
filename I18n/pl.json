@@ -7,7 +7,7 @@
         "title_2": "Sprawdź najbliższy przegląd",
         "text_2": "Od dziś nie zapomnisz o\u00a0przeglądach gwarancyjnych i\u00a0okresowych. Podpowiemy Ci\u00a0kiedy udać się do\u00a0serwisu oraz jaki zakres czynności powinien zostać wykonywany w\u00a0ramach każdego z\u00a0przeglądów.",
         "title_3": "Znajdź najbliższy punkt serwisowy",
-        "text_3": "Jeśli Twój rower nie jest w pełni sprawny lub wymaga okresowego przeglądu nie zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów.",
+        "text_3": "Jeśli Twój rower nie jest w pełni sprawny lub wymaga okresowego przeglądu nie zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów."
     },
     "GetToKnowEachOther": {
         "title": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
@@ -107,7 +107,7 @@
         {
             "url": "",
             "hyper": ""
-        },
+        }
     ],
     "PrivacyPolicy": {
         "version": "1.01",
@@ -892,7 +892,7 @@
                 "text": "Podaj nazwę producenta",
                 "placeholder": "Producent:",
                 "messageWrong": "Nazwa jest za krótka",
-                "btn": "DODAJ",
+                "btn": "DODAJ"
             }
         },
         "model": "Model",
@@ -999,8 +999,8 @@
         "btn": "DODAJ ROWER"
     },
     "MainWorld": {
-        "title": "Już niedługo dołącz do\u00a0drużyny KROSS",
-        "footer": "Zacznij z\u00a0nami wspólnie budować Mapę Rowerową."
+        "title": "Dołącz do drużyny \n KROSS",
+        "footer": "Już wkrótce razem z nami będziesz mógł ruszyć \n w trasę by odkrywać nowe ścieżki rowerowe \n i budować Rowerowa Mapę Polski."
     },
     "MainBike": {
         "header": "Rower",
@@ -1056,7 +1056,7 @@
         "app": "O aplikacji",
         "regulations": "Regulamin",
         "privacyPolicy": "Polityka prywatności",
-        "contact": "Kontakt",
+        "contact": "Kontakt"
     },
     "AppInfo": {},
     "Contact": {
