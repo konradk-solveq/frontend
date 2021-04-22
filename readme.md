@@ -19,6 +19,8 @@ cp .env.example .env
 ```
 replace `API_URL`
 
+---
+
 gdyby nie zadziałało:
 ```html
 yarn install
@@ -81,3 +83,7 @@ gdyby okazało się, że coś nie działa to usunąć w __android/app/build.grad
         checkReleaseBuilds false
     }
 ```
+
+### IOS - Google Maps
+
+Go to `AppDelegate.m` file and replace `_YOUR_API_KEY_` with valid one.
