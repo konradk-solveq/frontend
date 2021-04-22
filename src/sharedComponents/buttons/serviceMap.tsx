@@ -1,28 +1,28 @@
 import React from 'react';
-import { StyleSheet, ViewStyle, View, Text } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-
+import {
+    StyleSheet,
+    ViewStyle,
+    View,
+    Text,
+    TouchableOpacity,
+} from 'react-native';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import {
-    setObjSize,
-    getCenterLeftPx,
     getVerticalPx,
-    getWidthPx,
-    getHorizontalPx,
 } from '../../helpers/layoutFoo';
-
 
 interface Props {
     style?: ViewStyle;
-    height: number,
-    title: string,
-    onpress: Function,
-    region:{
-        latitude: number,
-        longitude: number,
-        latitudeDelta: number,
-        longitudeDelta: number,
-    }
+    height: number;
+    title: string;
+    onpress: Function;
+    region: {
+        latitude: number;
+        longitude: number;
+        latitudeDelta: number;
+        longitudeDelta: number;
+    };
 }
 
 const ServiceMapBtn: React.FC<Props> = (props: Props) => {
@@ -48,6 +48,13 @@ const ServiceMapBtn: React.FC<Props> = (props: Props) => {
         map: {
             ...StyleSheet.absoluteFillObject,
         },
+        click: {
+            width: '100%',
+            height: '100%',
+            position: 'absolute',
+            left: 0,
+            top: 0,
+        },
     });
 
     return (
@@ -57,12 +64,12 @@ const ServiceMapBtn: React.FC<Props> = (props: Props) => {
                 <MapView
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                     style={styles.map}
-                    region={{
-                        latitude: 52.1588812,
-                        longitude: 16.85517745,
-                        latitudeDelta: 0.1,
-                        longitudeDelta: 0.1,
-                    }}
+                    region={props.region}
+                />
+
+                <TouchableOpacity
+                    style={styles.click}
+                    onPress={props.onpress}
                 />
             </View>
         </View>

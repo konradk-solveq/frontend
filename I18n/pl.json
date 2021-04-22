@@ -1030,7 +1030,8 @@
                 "number": "nr"
             }
         },
-        "servisMap": "Najbliższy serwis"
+        "servisMap": "Najbliższy serwis",
+        "btn": "USUŃ ROWER"
     },
     "MainBikeParams": {
         "header": " Rower",

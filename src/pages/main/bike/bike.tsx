@@ -12,7 +12,8 @@ import Reviews from './reviews';
 import ComplaintsRepairs from './complaintsRepairs';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import { countDaysToEnd } from '../../../helpers/warranty';
-import ServiceMapBtn from '../../../sharedComponents/maps/serviceMap';
+import ServiceMapBtn from '../../../sharedComponents/buttons/serviceMap';
+import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {
     setObjSize,
@@ -27,6 +28,7 @@ import BikeImage from '../../../sharedComponents/images/bikeImage';
 import { SizeLabel, ColorLabel } from '../../../sharedComponents/labels';
 import { CogBtn, ShowMoreArrowBtn } from '../../../sharedComponents/buttons';
 import Carousel from '../../../sharedComponents/carousel/carousel';
+import { Transition } from 'react-native-reanimated';
 
 interface Props {
     navigation: any;
@@ -117,15 +119,34 @@ const Bike: React.FC<Props> = (props: Props) => {
             left: l,
             width: w,
         },
+        btn: {
+            left: l,
+            width: w,
+            height: 50,
+            marginTop: getVerticalPx(72),
+        },
         test: {
             backgroundColor: 'khaki',
         },
     });
 
+    const region = {
+        latitude: 52.1588812,
+        longitude: 16.85517745,
+        latitudeDelta: 0.1,
+        longitudeDelta: 0.1,
+    };
+
     const heandleParams = () => {
         props.navigation.navigate('BikeParams', {
             description: bike?.description,
             params: bike?.params,
+        });
+    };
+
+    const heandleServicesMap = () => {
+        props.navigation.navigate('ServicesMap', {
+            region: region,
         });
     };
 
@@ -210,7 +231,15 @@ const Bike: React.FC<Props> = (props: Props) => {
                     style={styles.map}
                     title={trans.servisMap}
                     height={102}
-                ></ServiceMapBtn>
+                    region={region}
+                    onpress={() => heandleServicesMap()}
+                />
+
+                <BigRedBtn
+                    style={styles.btn}
+                    onpress={() => console.log('%c pressed: BigRedBtn')}
+                    title={trans.btn}
+                />
 
                 <View style={styles.separator} />
             </ScrollView>
