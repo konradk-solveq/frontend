@@ -171,10 +171,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                 />
 
                 {bike?.images && bike.images.length > 0 ? (
-                    <Carousel
-                        images={bike.images}
-                        containerStyle={{height: 210}}
-                    />
+                    <BikeImage imgUrl={bike.images[0]} />
                 ) : (
                     <BikeImage />
                 )}
