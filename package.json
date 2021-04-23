@@ -1,6 +1,6 @@
 {
     "name": "kross_app",
-    "version": "1.1.0",
+    "version": "1.0.3",
     "private": true,
     "scripts": {
         "android": "react-native run-android",
@@ -30,7 +30,6 @@
         "react-native-hyperlink": "^0.0.19",
         "react-native-i18n": "^2.0.15",
         "react-native-keyboard-aware-scroll-view": "^0.9.3",
-        "react-native-maps": "^0.28.0",
         "react-native-reanimated": "^2.0.1",
         "react-native-safe-area-context": "^3.2.0",
         "react-native-safe-area-view": "^1.1.1",
