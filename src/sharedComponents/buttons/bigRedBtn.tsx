@@ -38,7 +38,9 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
         <TouchableOpacity
             style={[styles.btn, props.style]}
             onPress={props.onpress}>
-            <Text style={[styles.text, props.textStyle]}>{props.title}</Text>
+            <Text style={[styles.text, props.textStyle]}>
+                {props.title.toUpperCase()}
+            </Text>
         </TouchableOpacity>
     );
 };
