@@ -17,7 +17,7 @@ znajdują się w katalogu: __I18n__
 ```
 cp .env.example .env
 ```
-replace `API_URL`
+replace `API_URL` and `GOOGLE_MAPS_API_KEY` values
 
 ---
 
@@ -83,7 +83,3 @@ gdyby okazało się, że coś nie działa to usunąć w __android/app/build.grad
         checkReleaseBuilds false
     }
 ```
-
-### IOS - Google Maps
-
-Go to `AppDelegate.m` file and replace `_YOUR_API_KEY_` with valid one.
