@@ -995,8 +995,12 @@
         }
     },
     "MainHome": {
-        "text": "Jeżeli chcesz w jednym miejscu zarządzać Twoimi rowerami KROSS oraz rowerami innych producentów, dodaj je do aplikacji.",
-        "btn": "DODAJ ROWER"
+        "firstTitle": "Czas ruszyć w drogę",
+        "firstText": "Sezon rozpoczęty, ale czy Twój rower o tym wie? Zadbaj o niego i sprawdź czy jest gotowy do jazdy.",
+        "firstBtn": "Sprawdź",
+        "secondTitle": "Dodaj kolejny rower",
+        "secondText": "Jeżeli chcesz w jednym miejscu zarządzać Twoimi rowerami KROSS oraz rowerami innych producentów, dodaj je do aplikacji.",
+        "secondBtn": "DODAJ ROWER"
     },
     "MainWorld": {
         "title": "Dołącz do drużyny \n KROSS",
