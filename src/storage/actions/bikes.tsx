@@ -96,6 +96,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<
         const numbers: string[] = [];
 
         if (list?.length < 1) {
+            dispatch(setLoadingState(false));
             return Promise.resolve({
                 success: true,
                 errorMessage: '',
@@ -159,6 +160,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<
                 dispatch(setBikesData(dataToUpdate, numbersToUpdate));
             }
 
+            dispatch(setError(errorMessage));
             return Promise.resolve({
                 success: !errorMessage,
                 errorMessage: errorMessage,

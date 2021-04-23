@@ -1031,7 +1031,10 @@
             }
         },
         "servisMap": "Najbliższy serwis",
-        "btn": "USUŃ ROWER"
+        "btn": "USUŃ ROWER",
+        "removeAlert": "Czy chcesz usunąć rower z aplikacji?",
+        "removveAction": "Usuń",
+        "cancelAction": "Anuluj"
     },
     "MainBikeParams": {
         "header": " Rower",

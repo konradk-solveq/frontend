@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
+import {StyleSheet, SafeAreaView, View, Text, Alert} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {ScrollView} from 'react-native-gesture-handler';
 
-import {useAppSelector} from '../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {getBike} from '../../../helpers/transformUserBikeData';
+import {removeBikeByNumber} from '../../../storage/actions';
 
 import Warranty from './warranty';
 import Reviews from './reviews';
@@ -25,10 +26,7 @@ import {
 import {UserBike} from '../../../models/userBike.model';
 
 import BikeImage from '../../../sharedComponents/images/bikeImage';
-import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
 import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
-import Carousel from '../../../sharedComponents/carousel/carousel';
-import {Transition} from 'react-native-reanimated';
 
 interface Props {
     navigation: any;
@@ -36,13 +34,14 @@ interface Props {
 }
 
 const Bike: React.FC<Props> = (props: Props) => {
+    const dispatch = useAppDispatch();
     // const frameNumber = useAppSelector<string>(state => state.user.frameNumber);
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
 
-    const [bike, setBike] = useState(bikes?.[0]);
+    const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
 
     const onChangeBikeHandler = (frameNumber: string) => {
-        if (frameNumber === bike.description.serial_number) {
+        if (frameNumber === bike?.description.serial_number) {
             return;
         }
         const newBike = getBike(bikes, frameNumber);
@@ -150,91 +149,122 @@ const Bike: React.FC<Props> = (props: Props) => {
         });
     };
 
+    const onRemoveBikeHandler = () => {
+        Alert.alert('', trans.removeAlert, [
+            {
+                text: trans.cancelAction,
+            },
+            {
+                text: trans.removveAction,
+                onPress: () => {
+                    if (bike?.description) {
+                        dispatch(
+                            removeBikeByNumber(bike.description.serial_number),
+                        );
+                    }
+                    if (bikes.length === 1) {
+                        setBike(null);
+                    }
+                },
+            },
+        ]);
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scroll}>
                 <Text style={styles.header}>{trans.header}</Text>
 
-                <CogBtn
-                    callback={heandleParams}
-                    containerStyle={styles.params}
-                    iconStyle={styles.paramIcon}
-                />
+                {bike?.description && (
+                    <CogBtn
+                        callback={heandleParams}
+                        containerStyle={styles.params}
+                        iconStyle={styles.paramIcon}
+                    />
+                )}
 
                 <BikeSelectorList
                     style={styles.reviews}
                     list={bikes}
                     description={trans.warranty.reviews}
                     callback={onChangeBikeHandler}
-                    currentBike={bike.description.serial_number}
+                    currentBike={bike?.description?.serial_number}
                     buttonText={trans.add}
                 />
 
-                {bike?.images && bike.images.length > 0 ? (
-                    <BikeImage imgUrl={bike.images[0]} />
-                ) : (
-                    <BikeImage />
-                )}
+                {bike?.description && (
+                    <>
+                        {bike?.images && bike.images.length > 0 ? (
+                            <BikeImage imgUrl={bike.images[0]} />
+                        ) : (
+                            <BikeImage />
+                        )}
 
-                <ShowMoreArrowBtn onPress={() => {}} up={true} />
+                        <ShowMoreArrowBtn onPress={() => {}} up={true} />
 
-                <Text style={styles.bikeName}>{bike?.description.name}</Text>
+                        <Text style={styles.bikeName}>
+                            {bike?.description.name}
+                        </Text>
 
-                <Text style={styles.bikeDetails}>
-                    {trans.details[0] +
-                        bike?.description.producer +
-                        trans.details[1] +
-                        bike?.description.serial_number}
-                </Text>
+                        <Text style={styles.bikeDetails}>
+                            {trans.details[0] +
+                                bike?.description.producer +
+                                trans.details[1] +
+                                bike?.description.serial_number}
+                        </Text>
 
-                {bike?.warranty && (
-                    <Warranty
-                        style={styles.warranty}
-                        navigation={props.navigation}
-                        type={bike.warranty.info}
-                        toEnd={
-                            bike.warranty?.end
-                                ? countDaysToEnd(bike.warranty.end)
-                                : 0
-                        }
-                        warranty={trans.warranty}
-                        details={{
-                            description: bike?.description,
-                            warranty: bike.warranty,
-                        }}
-                    />
-                )}
+                        {bike?.warranty && (
+                            <Warranty
+                                style={styles.warranty}
+                                navigation={props.navigation}
+                                type={bike.warranty.info}
+                                toEnd={
+                                    bike.warranty?.end
+                                        ? countDaysToEnd(bike.warranty.end)
+                                        : 0
+                                }
+                                warranty={trans.warranty}
+                                details={{
+                                    description: bike?.description,
+                                    warranty: bike.warranty,
+                                }}
+                            />
+                        )}
 
-                {bike?.warranty?.overviews && (
-                    <Reviews
-                        style={styles.reviews}
-                        list={bike.warranty.overviews}
-                        description={trans.warranty.reviews}
-                    />
-                )}
+                        {bike?.warranty?.overviews && (
+                            <Reviews
+                                style={styles.reviews}
+                                list={bike.warranty.overviews}
+                                description={trans.warranty.reviews}
+                            />
+                        )}
 
-                {bike?.complaintsRepairs &&
-                    bike.complaintsRepairs.length > 0 && (
-                        <ComplaintsRepairs
-                            style={styles.complaintsRepairs}
-                            list={bike.complaintsRepairs}
-                            description={trans.warranty.complaintsRepairs}
+                        {bike?.complaintsRepairs &&
+                            bike.complaintsRepairs.length > 0 && (
+                                <ComplaintsRepairs
+                                    style={styles.complaintsRepairs}
+                                    list={bike.complaintsRepairs}
+                                    description={
+                                        trans.warranty.complaintsRepairs
+                                    }
+                                />
+                            )}
+
+                        <ServiceMapBtn
+                            style={styles.map}
+                            title={trans.servisMap}
+                            height={102}
+                            region={region}
+                            onpress={() => heandleServicesMap()}
                         />
-                    )}
 
-                <ServiceMapBtn
-                    style={styles.map}
-                    title={trans.servisMap}
-                    height={102}
-                    region={region}
-                    onpress={() => heandleServicesMap()}
-                />
-
-                <BigRedBtn
-                    style={styles.btn}
-                    onpress={() => console.log('%c pressed: BigRedBtn')}
-                    title={trans.btn}
-                />
+                        <BigRedBtn
+                            style={styles.btn}
+                            onpress={onRemoveBikeHandler}
+                            title={trans.btn}
+                        />
+                    </>
+                )}
 
                 <View style={styles.separator} />
             </ScrollView>
