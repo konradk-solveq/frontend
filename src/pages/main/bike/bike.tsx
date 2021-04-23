@@ -250,13 +250,13 @@ const Bike: React.FC<Props> = (props: Props) => {
                                 />
                             )}
 
-                        <ServiceMapBtn
+                        {/* <ServiceMapBtn
                             style={styles.map}
                             title={trans.servisMap}
                             height={102}
                             region={region}
                             onpress={() => heandleServicesMap()}
-                        />
+                        /> */}
 
                         <BigRedBtn
                             style={styles.btn}

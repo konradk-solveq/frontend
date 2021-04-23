@@ -11,7 +11,6 @@ import AddingByNumber from '../../pages/onboarding/bikeAdding/addingByNumber/add
 import AddingInfo from '../../pages/onboarding/bikeAdding/info/info';
 import BikeData from '../../pages/onboarding/bikeData/bikeData';
 import BikeSummary from '../../pages/onboarding/bikeSummary/bikeSummary';
-import ServicesMap from '../../pages/main/bike/servicesMap/servicesMap';
 
 const RegularStackNavigator: React.FC = () => {
     return (
@@ -28,7 +27,6 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen name="AddingInfo" component={AddingInfo} />
             <Stack.Screen name="BikeData" component={BikeData} />
             <Stack.Screen name="BikeSummary" component={BikeSummary} />
-            <Stack.Screen name="ServicesMap" component={ServicesMap} />
             {/* End add bike */}
 
             {/* univesal/generic pages */}
