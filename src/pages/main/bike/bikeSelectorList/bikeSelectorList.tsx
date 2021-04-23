@@ -18,7 +18,7 @@ interface Props {
     description: any;
     list: UserBike[];
     callback: Function;
-    currentBike: string;
+    currentBike: string | undefined;
     buttonText: string;
 }
 

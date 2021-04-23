@@ -81,6 +81,7 @@ const bikesReducer = (state = initialStateList, action: any) => {
 
             return {
                 ...state,
+                loading: false,
                 list: filteredList,
             };
         }
