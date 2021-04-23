@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import I18n from 'react-native-i18n';
+import React, {useState} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 
 import AnimSvg from '../../../helpers/animSvg';
 
@@ -14,13 +12,20 @@ import {
 import SmallRedBtn from '../../../sharedComponents/buttons/smallRedBtn';
 
 interface Props {
+    title: string;
+    description: string;
+    btnText: string;
+    onPress: () => void;
     style?: any;
 }
 
-const AddBike: React.FC<Props> = ({ style }: Props) => {
-    const trans = I18n.t('MainHome');
-
-    const navigation = useNavigation();
+const AddBike: React.FC<Props> = ({
+    title,
+    description,
+    btnText,
+    onPress,
+    style,
+}: Props) => {
     setObjSize(334, 50);
     const width = getWidthPx();
 
@@ -50,7 +55,7 @@ const AddBike: React.FC<Props> = ({ style }: Props) => {
             '">';
         svg +=
             '<filter id="filter" x="-1" width="3" y="-1" height="3"><feGaussianBlur stdDeviation="' +
-            b * .6 +
+            b * 0.6 +
             '"/></filter>';
         svg +=
             '<rect filter="url(#filter)" opacity=".3" fill="#aaaaaa" stroke="none" width="' +
@@ -123,7 +128,7 @@ const AddBike: React.FC<Props> = ({ style }: Props) => {
         button: {
             height: 35,
             alignSelf: 'flex-end',
-            marginRight:  getHorizontalPx(34),
+            marginRight: getHorizontalPx(34),
             marginBottom: getVerticalPx(30),
         },
         buttonText: {
@@ -136,23 +141,18 @@ const AddBike: React.FC<Props> = ({ style }: Props) => {
     return (
         <View
             style={[styles.container, style]}
-            onLayout={({ nativeEvent }) => handleShadowBox(nativeEvent.layout)}>
+            onLayout={({nativeEvent}) => handleShadowBox(nativeEvent.layout)}>
             <AnimSvg source={source} style={boxStyle} />
 
             <View>
                 <View style={[styles.column]}>
-                    <Text style={styles.title}>Dodaj kolejny rower</Text>
-                    <Text style={styles.content}>{trans.text}</Text>
+                    <Text style={styles.title}>{title}</Text>
+                    <Text style={styles.content}>{description}</Text>
                 </View>
                 <SmallRedBtn
                     style={styles.button}
-                    onpress={() => {
-                        navigation.navigate({
-                            name: 'AddingByNumber',
-                            params: { emptyFrame: true },
-                        });
-                    }}
-                    title={trans.btn}
+                    onpress={onPress}
+                    title={btnText}
                 />
             </View>
         </View>

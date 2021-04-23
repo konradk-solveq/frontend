@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 
@@ -13,10 +14,13 @@ import {
 import AddBike from './addBike';
 import {setBikesListByFrameNumbers} from '../../../storage/actions/bikes';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
+import {I18n} from '../../../../I18n/I18n';
 
 const Home: React.FC = () => {
     const dispatch = useAppDispatch();
+    const navigation = useNavigation();
     const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
+    const trans: any = I18n.t('MainHome');
 
     useEffect(() => {
         if (isOnline) {
@@ -28,7 +32,7 @@ const Home: React.FC = () => {
     const synchData = async () => {
         try {
             /* TODO: add some sync/info loader */
-            const res = await dispatch(setBikesListByFrameNumbers());
+            await dispatch(setBikesListByFrameNumbers());
         } catch (error) {
             /* TODO: add some UI information */
             console.log('[Sync Error]', error);
@@ -59,7 +63,21 @@ const Home: React.FC = () => {
         tileWrapper: {
             top: getVerticalPx(138),
         },
+        tileSpace: {
+            marginBottom: 25,
+        },
     });
+
+    const onAddActionHandler = () => {
+        navigation.navigate({
+            name: 'AddingByNumber',
+            params: {emptyFrame: true},
+        });
+    };
+
+    const onCheckActionHandler = () => {
+        navigation.navigate('Bike');
+    };
 
     return (
         <SafeAreaView style={styles.container1}>
@@ -69,7 +87,19 @@ const Home: React.FC = () => {
 
             <View style={styles.container}>
                 <View style={styles.tileWrapper}>
-                    <AddBike />
+                    <AddBike
+                        title={trans.firstTitle}
+                        description={trans.firstText}
+                        btnText={trans.firstBtn}
+                        style={styles.tileSpace}
+                        onPress={onCheckActionHandler}
+                    />
+                    <AddBike
+                        title={trans.secondTitle}
+                        description={trans.secondText}
+                        btnText={trans.secondBtn}
+                        onPress={onAddActionHandler}
+                    />
                 </View>
             </View>
 
