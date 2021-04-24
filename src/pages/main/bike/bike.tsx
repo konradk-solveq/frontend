@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, SafeAreaView, View, Text, Alert} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
@@ -13,7 +13,6 @@ import Reviews from './reviews';
 import ComplaintsRepairs from './complaintsRepairs';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import {countDaysToEnd} from '../../../helpers/warranty';
-import ServiceMapBtn from '../../../sharedComponents/buttons/serviceMap';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {
@@ -38,7 +37,11 @@ const Bike: React.FC<Props> = (props: Props) => {
     // const frameNumber = useAppSelector<string>(state => state.user.frameNumber);
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
 
-    const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
+    const [bike, setBike] = useState<UserBike | null>(null);
+
+    useEffect(() => {
+        setBike(bikes?.[0] || null);
+    }, [bikes]);
 
     const onChangeBikeHandler = (frameNumber: string) => {
         if (frameNumber === bike?.description.serial_number) {
@@ -129,23 +132,10 @@ const Bike: React.FC<Props> = (props: Props) => {
         },
     });
 
-    const region = {
-        latitude: 52.1588812,
-        longitude: 16.85517745,
-        latitudeDelta: 0.1,
-        longitudeDelta: 0.1,
-    };
-
     const heandleParams = () => {
         props.navigation.navigate('BikeParams', {
             description: bike?.description,
             params: bike?.params,
-        });
-    };
-
-    const heandleServicesMap = () => {
-        props.navigation.navigate('ServicesMap', {
-            region: region,
         });
     };
 
@@ -161,9 +151,6 @@ const Bike: React.FC<Props> = (props: Props) => {
                         dispatch(
                             removeBikeByNumber(bike.description.serial_number),
                         );
-                    }
-                    if (bikes.length === 1) {
-                        setBike(null);
                     }
                 },
             },

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React, {useEffect, useState} from 'react';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
     StyleSheet,
     SafeAreaView,
@@ -10,20 +10,20 @@ import {
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
-import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
+import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
 
-import { setBikeData } from '../../../storage/actions';
-import { validateData } from '../../../utils/validation/validation';
+import {setBikeData} from '../../../storage/actions';
+import {validateData} from '../../../utils/validation/validation';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
-import { UserBike } from '../../../models/userBike.model';
-import { userBikeValidationRules } from '../../../models/bike.model';
-import { BikeBaseData } from '../../../models/bike.model';
-import { getBike } from '../../../helpers/transformUserBikeData';
+import {UserBike} from '../../../models/userBike.model';
+import {userBikeValidationRules} from '../../../models/bike.model';
+import {BikeBaseData} from '../../../models/bike.model';
+import {getBike} from '../../../helpers/transformUserBikeData';
 
 import {
     setObjSize,
@@ -46,7 +46,7 @@ interface Props {
     route: any;
 }
 
-const BikeData: React.FC<Props> = ({ navigation, route }: Props) => {
+const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
     const trans: any = I18n.t('BikeData');
 
@@ -100,7 +100,7 @@ const BikeData: React.FC<Props> = ({ navigation, route }: Props) => {
     };
 
     useEffect(() => {
-        let canGoForw = { ...canGoFoward };
+        let canGoForw = {...canGoFoward};
         Object.keys(data).forEach(k => {
             const key = k as keyof BikeBaseData;
             const canGo = data[key] ? true : false;
@@ -155,7 +155,7 @@ const BikeData: React.FC<Props> = ({ navigation, route }: Props) => {
                 /* start to delete */
                 navigation.navigate({
                     name: 'BikeSummary',
-                    params: { frameNumber: data.serial_number },
+                    params: {frameNumber: data.serial_number},
                 });
                 /* end to delete */
             } catch (error) {
@@ -166,6 +166,13 @@ const BikeData: React.FC<Props> = ({ navigation, route }: Props) => {
     };
 
     const hendleValidationOk = (value: string, fieldName: string) => {
+        console.log(
+            userBikeValidationRules[fieldName as keyof BikeBaseData],
+            validateData(
+                userBikeValidationRules[fieldName as keyof BikeBaseData],
+                value,
+            ),
+        );
         return validateData(
             userBikeValidationRules[fieldName as keyof BikeBaseData],
             value,
@@ -233,7 +240,7 @@ const BikeData: React.FC<Props> = ({ navigation, route }: Props) => {
     });
 
     return (
-        <SafeAreaView style={{ backgroundColor: 'white' }}>
+        <SafeAreaView style={{backgroundColor: 'white'}}>
             <View style={styles.scroll}>
                 <ScrollView keyboardShouldPersistTaps={'always'}>
                     <KeyboardAwareScrollView>
@@ -316,6 +323,9 @@ const BikeData: React.FC<Props> = ({ navigation, route }: Props) => {
                                 handleSetCanGoFoard('size', value)
                             }
                             forceMessageWrong={messages.size}
+                            maxLength={
+                                10
+                            } /* TODO: sync with validation rules */
                         />
 
                         <OneLineTekst
@@ -349,7 +359,7 @@ const BikeData: React.FC<Props> = ({ navigation, route }: Props) => {
                 onpress={() => navigation.goBack()}
                 inner={trans.header}
                 getHeight={setHeadHeight}
-                style={{ backgroundColor: '#fff' }}
+                style={{backgroundColor: '#fff'}}
             />
         </SafeAreaView>
     );
