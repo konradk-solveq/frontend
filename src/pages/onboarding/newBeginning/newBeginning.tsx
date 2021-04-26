@@ -261,7 +261,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
                 ]}>
                 <StaticElements
                     goFoward={() =>
-                        props.navigation.navigate('PermitsDeclarations')
+                        props.navigation.navigate('Permits')
                     }
                     board={board}
                     list={list}

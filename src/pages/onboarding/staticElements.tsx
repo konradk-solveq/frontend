@@ -44,7 +44,7 @@ const StaticElements: React.FC<Props> = (props: Props) => {
         redBtn: {
             position: 'absolute',
             width: getWidthPx(),
-            height: getHeightPx(),
+            height: 50,
             left: getCenterLeftPx(),
             bottom: getVerticalPx(65),
         },

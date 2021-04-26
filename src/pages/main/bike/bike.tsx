@@ -1,17 +1,19 @@
-import React, {useMemo, useState} from 'react';
-import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, SafeAreaView, View, Text, Alert} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {ScrollView} from 'react-native-gesture-handler';
 
-import {useAppSelector} from '../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {getBike} from '../../../helpers/transformUserBikeData';
+import {removeBikeByNumber} from '../../../storage/actions';
 
 import Warranty from './warranty';
 import Reviews from './reviews';
 import ComplaintsRepairs from './complaintsRepairs';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import {countDaysToEnd} from '../../../helpers/warranty';
+import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {
     setObjSize,
@@ -23,9 +25,7 @@ import {
 import {UserBike} from '../../../models/userBike.model';
 
 import BikeImage from '../../../sharedComponents/images/bikeImage';
-import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
 import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
-import Carousel from '../../../sharedComponents/carousel/carousel';
 
 interface Props {
     navigation: any;
@@ -33,13 +33,18 @@ interface Props {
 }
 
 const Bike: React.FC<Props> = (props: Props) => {
+    const dispatch = useAppDispatch();
     // const frameNumber = useAppSelector<string>(state => state.user.frameNumber);
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
 
-    const [bike, setBike] = useState(bikes?.[0]);
+    const [bike, setBike] = useState<UserBike | null>(null);
+
+    useEffect(() => {
+        setBike(bikes?.[0] || null);
+    }, [bikes]);
 
     const onChangeBikeHandler = (frameNumber: string) => {
-        if (frameNumber === bike.description.serial_number) {
+        if (frameNumber === bike?.description.serial_number) {
             return;
         }
         const newBike = getBike(bikes, frameNumber);
@@ -53,73 +58,79 @@ const Bike: React.FC<Props> = (props: Props) => {
     setObjSize(334, 50);
     const w = getWidthPx();
     const l = getCenterLeftPx();
-    const styles = useMemo(
-        () =>
-            StyleSheet.create({
-                container: {
-                    width: '100%',
-                    height: '100%',
-                },
-                scroll: {
-                    backgroundColor: '#ffffff',
-                },
-                header: {
-                    marginTop: getVerticalPx(65),
-                    left: l,
-                    width: w,
-                    fontFamily: 'DIN2014Narrow-Light',
-                    textAlign: 'center',
-                    fontSize: getHorizontalPx(18),
-                    color: '#313131',
-                },
-                params: {
-                    position: 'absolute',
-                    top: getVerticalPx(65 - 13),
-                    right: getHorizontalPx(40 - 13),
-                    width: getHorizontalPx(13 + 20 + 13),
-                    height: getHorizontalPx(13 + 20 + 13),
-                },
-                paramIcon: {
-                    margin: getHorizontalPx(13),
-                    width: getHorizontalPx(20),
-                    height: getHorizontalPx(20),
-                },
-                bikeName: {
-                    left: l,
-                    width: w,
-                    fontFamily: 'DIN2014Narrow-Regular',
-                    fontSize: getHorizontalPx(40),
-                    color: '#313131',
-                    textAlign: 'center',
-                },
-                bikeDetails: {
-                    marginTop: getVerticalPx(5),
-                    left: l,
-                    width: w,
-                    fontFamily: 'DIN2014Narrow-Light',
-                    textAlign: 'center',
-                    fontSize: getHorizontalPx(15),
-                    color: '#555555',
-                },
-                warranty: {
-                    marginTop: getVerticalPx(76),
-                },
-                reviews: {
-                    marginTop: getVerticalPx(45),
-                },
-                complaintsRepairs: {
-                    marginTop: getVerticalPx(30),
-                },
-                separator: {
-                    width: '100%',
-                    height: getVerticalPx(200),
-                },
-                test: {
-                    backgroundColor: 'khaki',
-                },
-            }),
-        [l, w],
-    );
+    const styles = StyleSheet.create({
+        container: {
+            width: '100%',
+            height: '100%',
+        },
+        scroll: {
+            backgroundColor: '#ffffff',
+        },
+        header: {
+            marginTop: getVerticalPx(65),
+            left: l,
+            width: w,
+            fontFamily: 'DIN2014Narrow-Light',
+            textAlign: 'center',
+            fontSize: 18,
+            color: '#313131',
+        },
+        params: {
+            position: 'absolute',
+            top: getVerticalPx(65 - 13),
+            right: getHorizontalPx(40 - 13),
+            width: getHorizontalPx(13 + 20 + 13),
+            height: getHorizontalPx(13 + 20 + 13),
+        },
+        paramIcon: {
+            margin: getHorizontalPx(13),
+            width: getHorizontalPx(20),
+            height: getHorizontalPx(20),
+        },
+        bikeName: {
+            left: l,
+            width: w,
+            fontFamily: 'DIN2014Narrow-Regular',
+            fontSize: 40,
+            color: '#313131',
+            textAlign: 'center',
+        },
+        bikeDetails: {
+            marginTop: getVerticalPx(5),
+            left: l,
+            width: w,
+            fontFamily: 'DIN2014Narrow-Light',
+            textAlign: 'center',
+            fontSize: 15,
+            color: '#555555',
+        },
+        warranty: {
+            marginTop: getVerticalPx(76),
+        },
+        reviews: {
+            marginTop: getVerticalPx(45),
+        },
+        complaintsRepairs: {
+            marginTop: getVerticalPx(30),
+        },
+        separator: {
+            width: '100%',
+            height: getVerticalPx(200),
+        },
+        map: {
+            left: l,
+            width: w,
+        },
+        btn: {
+            left: l,
+            width: w,
+            height: 50,
+            marginTop: getVerticalPx(72),
+        },
+        test: {
+            backgroundColor: 'khaki',
+        },
+    });
 
     const heandleParams = () => {
         props.navigation.navigate('BikeParams', {
@@ -128,12 +139,30 @@ const Bike: React.FC<Props> = (props: Props) => {
         });
     };
 
+    const onRemoveBikeHandler = () => {
+        Alert.alert('', trans.removeAlert, [
+            {
+                text: trans.cancelAction,
+            },
+            {
+                text: trans.removveAction,
+                onPress: () => {
+                    if (bike?.description) {
+                        dispatch(
+                            removeBikeByNumber(bike.description.serial_number),
+                        );
+                    }
+                },
+            },
+        ]);
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scroll}>
                 <Text style={styles.header}>{trans.header}</Text>
 
-                {bike?.params && (
+                {bike?.description && (
                     <CogBtn
                         callback={heandleParams}
                         containerStyle={styles.params}
@@ -146,78 +175,82 @@ const Bike: React.FC<Props> = (props: Props) => {
                     list={bikes}
                     description={trans.warranty.reviews}
                     callback={onChangeBikeHandler}
-                    currentBike={bike.description.serial_number}
+                    currentBike={bike?.description?.serial_number}
                     buttonText={trans.add}
                 />
 
-                {bike?.images && bike.images.length > 0 ? (
-                    <Carousel
-                        images={bike.images}
-                        containerStyle={{height: 210}}
-                    />
-                ) : (
-                    <BikeImage />
-                )}
+                {bike?.description && (
+                    <>
+                        {bike?.images && bike.images.length > 0 ? (
+                            <BikeImage imgUrl={bike.images[0]} />
+                        ) : (
+                            <BikeImage />
+                        )}
 
-                <ShowMoreArrowBtn onPress={() => {}} up={true} />
+                        <ShowMoreArrowBtn onPress={() => {}} up={true} />
 
-                <Text style={styles.bikeName}>{bike?.description.name}</Text>
+                        <Text style={styles.bikeName}>
+                            {bike?.description.name}
+                        </Text>
 
-                <Text style={styles.bikeDetails}>
-                    {trans.details[0] +
-                        bike?.description.producer +
-                        trans.details[1] +
-                        bike?.description.serial_number}
-                </Text>
+                        <Text style={styles.bikeDetails}>
+                            {trans.details[0] +
+                                bike?.description.producer +
+                                trans.details[1] +
+                                bike?.description.serial_number}
+                        </Text>
 
-                {bike?.warranty && (
-                    <Warranty
-                        style={styles.warranty}
-                        navigation={props.navigation}
-                        type={bike.warranty.info}
-                        toEnd={
-                            bike.warranty?.end
-                                ? countDaysToEnd(bike.warranty.end)
-                                : 0
-                        }
-                        warranty={trans.warranty}
-                        details={{
-                            description: bike?.description,
-                            warranty: bike.warranty,
-                        }}
-                    />
-                )}
+                        {bike?.warranty && (
+                            <Warranty
+                                style={styles.warranty}
+                                navigation={props.navigation}
+                                type={bike.warranty.info}
+                                toEnd={
+                                    bike.warranty?.end
+                                        ? countDaysToEnd(bike.warranty.end)
+                                        : 0
+                                }
+                                warranty={trans.warranty}
+                                details={{
+                                    description: bike?.description,
+                                    warranty: bike.warranty,
+                                }}
+                            />
+                        )}
 
-                {bike?.warranty?.overviews && (
-                    <Reviews
-                        style={styles.reviews}
-                        list={bike.warranty.overviews}
-                        description={trans.warranty.reviews}
-                    />
-                )}
+                        {bike?.warranty?.overviews && (
+                            <Reviews
+                                style={styles.reviews}
+                                list={bike.warranty.overviews}
+                                description={trans.warranty.reviews}
+                            />
+                        )}
 
-                {bike?.complaintsRepairs &&
-                    bike.complaintsRepairs.length > 0 && (
-                        <ComplaintsRepairs
-                            style={styles.complaintsRepairs}
-                            list={bike.complaintsRepairs}
-                            description={trans.warranty.complaintsRepairs}
+                        {bike?.complaintsRepairs &&
+                            bike.complaintsRepairs.length > 0 && (
+                                <ComplaintsRepairs
+                                    style={styles.complaintsRepairs}
+                                    list={bike.complaintsRepairs}
+                                    description={
+                                        trans.warranty.complaintsRepairs
+                                    }
+                                />
+                            )}
+
+                        {/* <ServiceMapBtn
+                            style={styles.map}
+                            title={trans.servisMap}
+                            height={102}
+                            region={region}
+                            onpress={() => heandleServicesMap()}
+                        /> */}
+
+                        <BigRedBtn
+                            style={styles.btn}
+                            onpress={onRemoveBikeHandler}
+                            title={trans.btn}
                         />
-                    )}
-
-                {bike?.description?.color && bike?.description?.colorCodes && (
-                    <ColorLabel
-                        text={bike.description.color}
-                        colors={bike.description.colorCodes}
-                        containerStyle={{marginLeft: getCenterLeftPx()}}
-                    />
-                )}
-
-                {bike?.description?.size && (
-                    <SizeLabel
-                        text={bike.description.size}
-                        containerStyle={{marginLeft: getCenterLeftPx()}}
-                    />
+                    </>
                 )}
 
                 <View style={styles.separator} />

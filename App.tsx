@@ -13,6 +13,7 @@ import {initAppSize} from './src/helpers/layoutFoo';
 import {version} from './package.json';
 
 import NavContainer from './src/navigation/NavContainer';
+import NetworkStatus from './src/sharedComponents/networkStatus/networkStatus';
 
 const now = new Date().toLocaleDateString();
 
@@ -37,6 +38,7 @@ const App: () => Node = () => {
     return (
         <Provider store={storage}>
             <PersistGate persistor={persistor}>
+                <NetworkStatus />
                 <NavContainer />
 
                 <Text style={styles.varsion}>{`${version} (${now})`}</Text>
