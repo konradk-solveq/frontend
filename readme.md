@@ -17,7 +17,9 @@ znajdują się w katalogu: __I18n__
 ```
 cp .env.example .env
 ```
-replace `API_URL`
+replace `API_URL` and `GOOGLE_MAPS_API_KEY` values
+
+---
 
 gdyby nie zadziałało:
 ```html
@@ -28,8 +30,10 @@ to:
 ```html
 react-native init kross_app --variant=0.59.9 
 yarn add -D typescript @types/jest @types/react @types/react-native @types/react-test-renderer
+
 yarn add @react-native-async-storage/async-storage
 yarn add @react-native-community/masked-view
+yarn add @react-native-community/netinfo
 yarn add @react-navigation/bottom-tabs
 yarn add @react-navigation/native
 yarn add @react-navigation/stack
@@ -38,11 +42,13 @@ yarn add class-transformer
 yarn add class-validator
 yarn add fetch
 yarn add react-devtools
-yarn add react-native-dotenv
 yarn add react-native-device-info
+yarn add react-native-dotenv
 yarn add react-native-gesture-handler
 yarn add react-native-hyperlink
 yarn add react-native-i18n
+yarn add react-native-keyboard-aware-scroll-view
+yarn add react-native-maps
 yarn add react-native-reanimated
 yarn add react-native-safe-area-context
 yarn add react-native-safe-area-view
@@ -53,8 +59,6 @@ yarn add react-redux
 yarn add redux
 yarn add redux-persist
 yarn add redux-thunk
-
-yarn add react-native-keyboard-aware-scroll-view
 ```
 
 

@@ -11,7 +11,7 @@ const STATUSBAR_DEFAULT_HEIGHT = 20;
 
 export const deviceId = DeviceInfo.getDeviceId();
 
-export const getStatusBarHeightAsync = () => {
+export const getStatusBarHeightAsync = (): Promise<number | undefined> => {
     return new Promise(resolve => {
         if (StatusBarManager && StatusBarManager.getHeight) {
             StatusBarManager.getHeight(({height}) => {
@@ -53,13 +53,13 @@ export const isIphone12 =
     deviceId === 'iPhone13,4';
 export const isFutureIphone = getPureDeviceId() >= 13.3;
 
-// iPhone 11 has strange behaviuor with its margin
-const negativeMargin = isIphone11 ? 44 : STATUSBAR_DEFAULT_HEIGHT;
+// iPhone 11 has strange behaviuor with its margin -> seems to be fixed
+// const negativeMargin = isIphone11 ? 44 : STATUSBAR_DEFAULT_HEIGHT;
 
 export const getStatusBarHeight = async (skipAndroid: boolean) => {
     const nativeDeviceHeight = await getStatusBarHeightAsync();
     return Platform.select({
-        ios: nativeDeviceHeight + negativeMargin,
+        ios: typeof nativeDeviceHeight !== 'undefined' ? nativeDeviceHeight : 0,
         android: skipAndroid ? 0 : StatusBar.currentHeight,
         default: 0,
     });

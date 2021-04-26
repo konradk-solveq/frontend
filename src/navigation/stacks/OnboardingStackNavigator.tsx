@@ -1,6 +1,6 @@
 import React from 'react';
-import { Stack } from './../stack';
-import { horizontalAnim } from '../../helpers/positioning';
+import {Stack} from './../stack';
+import {horizontalAnim} from '../../helpers/positioning';
 
 import NewBeginning from '../../pages/onboarding/newBeginning/newBeginning';
 import Beginning from '../../pages/onboarding/beginning/beginning';
@@ -11,7 +11,7 @@ import WrongScan from '../../pages/onboarding/bikeAdding/wrongScan/wrongScan';
 import AddingByNumber from '../../pages/onboarding/bikeAdding/addingByNumber/addingByNumber';
 import AddingInfo from '../../pages/onboarding/bikeAdding/info/info';
 import Loader from '../../pages/onboarding/bikeAdding/loader/loader';
-import PermitsDeclarations from '../../pages/onboarding/permitsDeclarations/permitsDeclarations';
+import Permits from '../../pages/onboarding/permitsDeclarations/permits';
 import Regulations from '../../pages/onboarding/permitsDeclarations/regulations';
 import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
 import BikeData from '../../pages/onboarding/bikeData/bikeData';
@@ -31,10 +31,7 @@ const OnboardingStackNavigator: React.FC = () => {
             screenOptions={horizontalAnim}>
             <Stack.Screen name="NewBeginning" component={NewBeginning} />
 
-            <Stack.Screen
-                name="PermitsDeclarations"
-                component={PermitsDeclarations}
-            />
+            <Stack.Screen name="Permits" component={Permits} />
             <Stack.Screen name="Regulations" component={Regulations} />
             <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
 

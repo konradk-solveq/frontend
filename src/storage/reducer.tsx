@@ -1,14 +1,13 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
-import userReducer from './reducers/user'
-import bikesReducer from './reducers/bikes'
-
+import appReducer from './reducers/app';
+import userReducer from './reducers/user';
+import bikesReducer from './reducers/bikes';
 
 const reducer = combineReducers({
+    app: appReducer,
     user: userReducer,
     bikes: bikesReducer,
-    // errors: errorReducer
-
- });
+});
 
 export default reducer;

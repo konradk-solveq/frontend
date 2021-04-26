@@ -14,36 +14,26 @@ export const userBikeValidationRules = {
     serial_number: [
         validationRules.required,
         validationRules.notEmpty,
-        {min: 3},
+        {[validationRules.min]: 3},
+        {[validationRules.max]: 20},
     ],
     producer: [validationRules.required, validationRules.string, {min: 3}],
     name: [validationRules.required, validationRules.string, {min: 3}],
-    size: [
-        validationRules.required,
-        {match: /^([a-zA-Z]?)+[0-9]+("?)+(”?)$/i},
-        {min: 2},
-        {max: 12},
-    ],
+    size: [validationRules.required, {min: 1}, {max: 10}],
     color: [validationRules.required, validationRules.string, {min: 3}],
 };
-
-enum WarrantyOverviewType {
-    WARRANTY = 'warranty',
-    SELF_OVERVIEW = 'self-overview',
-    PLANNED_WARRANTY = 'planned-warranty',
-    PLANNED_PERIODIC = 'planned-periodic',
-}
 
 export interface Warranty {
     id?: string;
     type: string;
     end: Date;
     overviews: {
-        type: WarrantyOverviewType[];
+        type: string;
         date: Date;
-        state: 0;
+        info: string;
     }[];
     info: string;
+    warning: string;
 }
 
 export enum ComplaintStateType {
@@ -166,6 +156,7 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
     @IsNotEmpty()
     @IsString()
     @MinLength(3)
+    @MaxLength(20)
     serial_number: string;
 
     @IsOptional()
@@ -180,8 +171,7 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
 
     @IsOptional()
     @IsNotEmpty()
-    @Matches(new RegExp(/^([a-zA-Z]?)+[0-9]+("?)+(”?)$/i))
-    @MinLength(2)
+    @MinLength(1)
     @MaxLength(20)
     size?: string;
 
@@ -209,7 +199,7 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
 
     constructor(
         name: string,
-        id: string,
+        id: string | null,
         sku: string,
         producer: string,
         serial_number: string,

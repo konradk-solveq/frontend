@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import React, {useState, useEffect, useCallback} from 'react';
+import {StyleSheet, Text, View, Dimensions, Platform} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -9,13 +9,14 @@ import {
     getWidthPx,
     getHeightPx,
 } from '../../../helpers/layoutFoo';
+import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
 
 interface Props {
     // * wartości wymagane
     style?: any;
     onpress: Function; // po naciśnięciu strzałki
     inner: string; // nazwa headera
-    getHeight?: Function; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
+    getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
 }
 
 const ww = Dimensions.get('window').width;
@@ -23,11 +24,19 @@ const ww = Dimensions.get('window').width;
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = (props: Props) => {
     const [height, setHeight] = useState(getVerticalPx(100));
-    useEffect(() => {
+
+    const getHeight = useCallback(async () => {
         if (props.getHeight) {
-            props.getHeight(height);
+            const statusBarHeight = await getStatusBarHeight(
+                Platform.OS === 'android',
+            );
+            props.getHeight(height - statusBarHeight);
         }
-    }, [height]);
+    }, []);
+
+    useEffect(() => {
+        getHeight();
+    }, [getHeight]);
 
     setObjSize(414, 34);
     const wrap = {

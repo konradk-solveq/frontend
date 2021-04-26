@@ -11,6 +11,8 @@ import I18n from 'react-native-i18n';
 
 import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
 import {setBikesListByFrameNumber} from '../../../../storage/actions';
+import {validateData} from '../../../../utils/validation/validation';
+import {userBikeValidationRules} from '../../../../models/bike.model';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
@@ -60,10 +62,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     // valizadja poprawności inputa
     const hendleValidationOk = (value: string) => {
-        if (value.length > 4) {
-            return true;
-        }
-        return false;
+        return validateData(userBikeValidationRules.serial_number, value);
     };
 
     // validacja błędów, tu: czy wszystkie znaki są cyframi
@@ -119,7 +118,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         area: {
             width: '100%',
             height: areaHeigh,
-            minHeight: getVertical(414),
+            minHeight: getVerticalPx(450) + headHeight,
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351 - 100, 100),
         title: {
@@ -176,7 +175,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                             value={inputFrame}
                             validationStatus={setCanGoFoward}
                             forceMessageWrong={forceMessageWrong}
-                            // keyboardType={"numeric"}
                         />
 
                         <TranspLightBtn

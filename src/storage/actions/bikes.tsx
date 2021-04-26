@@ -2,10 +2,10 @@ import {I18n} from '../../../I18n/I18n';
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
 import {UserBike} from '../../models/userBike.model';
-import {Parameters, BikeDescription, Complaint} from '../../models/bike.model';
 import {Bike} from '../../models/bike.model';
-import {getBikeByFrameNr} from '../../services';
+import {getBikeByFrameNr, getBikesListByFrameNrs} from '../../services';
 import {setFrameNumber} from './index';
+import {transformToUserBikeType} from '../../utils/transformData';
 
 interface actionAsyncResponse {
     success: boolean;
@@ -13,10 +13,18 @@ interface actionAsyncResponse {
     data: any;
 }
 
-export const setBikesData = (data: Bike) => {
+export const setBikeData = (data: Bike) => {
+    return {
+        type: actionTypes.SET_BIKE_DATA,
+        bikeData: data,
+    };
+};
+
+export const setBikesData = (data: Bike[], numbers: string[]) => {
     return {
         type: actionTypes.SET_BIKES_DATA,
         bikeData: data,
+        numbersToUpdate: numbers,
     };
 };
 
@@ -55,76 +63,108 @@ export const setBikesListByFrameNumber = (
             });
         } else {
             /**
-             * TODO: fix class-transformer => external data has no standarization,
-             * maybe it should stay in loose comparison
+             * TODO: fix class-transformer
              * */
-            // const newData = plainToClass(UserBike, response.data);
+            const newData = transformToUserBikeType(response.data);
 
-            const desc = response.data.description;
-            const {name, id, sku, producer, serial_number} = desc;
-
-            const description = new BikeDescription(
-                name,
-                id,
-                sku,
-                producer,
-                serial_number,
-            );
-            if (desc?.color) {
-                description.color = desc.color;
-            }
-            if (desc?.bought) {
-                description.bought = desc.bought;
-            }
-            if (desc?.bought) {
-                description.bought = desc.bought;
-            }
-            if (desc?.colorCodes) {
-                description.colorCodes = desc.colorCodes;
-            }
-            if (desc?.purpose) {
-                description.purpose = desc.purpose;
-            }
-            if (desc?.size) {
-                description.size = desc.size;
-            }
-
-            const newData = new UserBike(description);
-            if (response.data?.images) {
-                newData.images = response.data.images;
-            }
-            if (response.data?.warranty) {
-                newData.warranty = response.data.warranty;
-            }
-            if (response.data?.params && Array.isArray(response.data.params)) {
-                newData.params = response.data.params.map((el: Parameters) => {
-                    return new Parameters(el.name, el.customizable, el?.list);
-                });
-            }
-
-            if (
-                response.data?.complaintsRepairs &&
-                Array.isArray(response.data.complaintsRepairs)
-            ) {
-                newData.complaintsRepairs = response.data.complaintsRepairs.map(
-                    (el: Complaint) => {
-                        return new Complaint(
-                            el.id,
-                            el.name,
-                            el.date,
-                            el.description,
-                            el.state,
-                        );
-                    },
-                );
-            }
-
-            dispatch(setBikesData(newData));
+            dispatch(setBikeData(newData));
 
             return Promise.resolve({
                 success: true,
                 errorMessage: '',
                 data: newData,
+            });
+        }
+    } catch (error) {
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage));
+
+        return Promise.reject({
+            success: false,
+            errorMessage: errorMessage,
+            data: null,
+        });
+    }
+};
+
+export const setBikesListByFrameNumbers = (): AppThunk<
+    Promise<actionAsyncResponse>
+> => async (dispatch, getState) => {
+    dispatch(setLoadingState(true));
+    try {
+        const {list} = getState().bikes;
+        const numbers: string[] = [];
+
+        if (list?.length < 1) {
+            dispatch(setLoadingState(false));
+            return Promise.resolve({
+                success: true,
+                errorMessage: '',
+                data: null,
+            });
+        }
+
+        list.forEach((el: UserBike) => {
+            numbers.push(el.description.serial_number);
+        });
+        const response = await getBikesListByFrameNrs(numbers);
+
+        if (response.error || !response.data) {
+            dispatch(setError(response.error));
+
+            return Promise.reject({
+                success: false,
+                errorMessage: response.error,
+                notFound: true,
+                data: null,
+            });
+        } else {
+            /**
+             * TODO: fix class-transformer => external data has no standarization,
+             * maybe it should stay in loose comparison
+             * */
+            // const newData = plainToClass(UserBike, response.data);
+            const notFound: string[] = [];
+            const bikesData = response.data;
+            const dataToUpdate: UserBike[] = [];
+            if (numbers?.length < 1) {
+                return Promise.resolve({
+                    success: true,
+                    errorMessage: '',
+                    data: null,
+                });
+            }
+
+            numbers.forEach(nr => {
+                if (!bikesData[nr]) {
+                    notFound.push(nr);
+                    return;
+                }
+
+                const newData = transformToUserBikeType(bikesData[nr]);
+
+                dataToUpdate.push(newData);
+            });
+
+            let errorMessage = '';
+            if (notFound.length > 0) {
+                const prefix = I18n.t('dataAction.dataSyncError');
+                errorMessage = `${prefix}: ${notFound.join(', ')}`;
+            }
+
+            const numbersToUpdate: string[] = numbers.filter(
+                el => !notFound.includes(el),
+            );
+
+            if (numbersToUpdate.length > 0) {
+                dispatch(setBikesData(dataToUpdate, numbersToUpdate));
+            }
+
+            dispatch(setError(errorMessage));
+            return Promise.resolve({
+                success: !errorMessage,
+                errorMessage: errorMessage,
+                data: dataToUpdate,
             });
         }
     } catch (error) {

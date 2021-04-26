@@ -36,11 +36,11 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
         scroll: {
             width: '100%',
             height: wh - headHeight,
-            top: headHeight,
+            top: headHeight + 20,
             backgroundColor: 'white',
         },
         wrap: {
-            marginTop: getVerticalPx(50),
+            marginTop: getVerticalPx(30),
             width: getWidthPx(),
             left: getHorizontalPx(40),
             marginBottom: getVerticalPx(100),
@@ -76,7 +76,6 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
-                        <Text style={styles.title}>{trans.title}</Text>
                         {list.map((e: any, i: number) => (
                             <Paragraph
                                 marginTop={e.marginTop}

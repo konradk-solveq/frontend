@@ -19,7 +19,7 @@ interface Props {
 
 const SplashScreen: React.FC<Props> = (props: Props) => {
     setTimeout(() => {
-        props.navigation.navigate('MineMenu');
+        props.navigation.replace('MineMenu');
     }, 3000);
 
     const krossLogo = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 130">
