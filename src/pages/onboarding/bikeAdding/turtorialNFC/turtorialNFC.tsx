@@ -1,30 +1,44 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
-import { connect } from "react-redux";
+import React, {useEffect, useState} from 'react';
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    Text,
+    ScrollView,
+    Alert,
+} from 'react-native';
+import {connect} from 'react-redux';
 import I18n from 'react-native-i18n';
 import AnimSvg from '../../../../helpers/animSvg';
+import {
+    initNfc,
+    nfcIsEnabled,
+    readNdef,
+    cleanUp,
+} from '../../../../helpers/nfc';
 
-import { setUserName } from '../../../../storage/actions/index';
+import {setUserName} from '../../../../storage/actions/index';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
-import {
-    getPosAndWid,
-    getStandardPx,
-    getHorizontalPx
-} from '../../../../helpers/layoutFoo';
+import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
+import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
+import {setBikesListByFrameNumber} from '../../../../storage/actions';
+import Loader from '../loader/loader';
 
 interface Props {
-    navigation: any,
-    name: string,
-    getName: Function
-};
+    navigation: any;
+    name: string;
+    getName: Function;
+}
 
 const TurtorialNFC: React.FC<Props> = (props: Props) => {
-
     const trans = I18n.t('TurtorialNFC');
+    const dispatch = useAppDispatch();
+    // const frame: string = useAppSelector(state => state.user.frameNumber);
+    const isLoading: boolean = useAppSelector(state => state.bikes.loading);
 
     const nfcBikeSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 334 268">
     <g fill="none" fill-rule="evenodd">
@@ -63,89 +77,179 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 </svg>`;
 
     const [userName, setUserName] = useState('');
+    const [inputFrame, setInputFrame] = useState('');
+    const [nfcIsOn, setNfcIsoOn] = useState(false);
 
-    useEffect(() => { // do załadowania imienia z local storage przez reduxa
-        if (typeof props.name == 'string') {
+    useEffect(() => {
+        // do załadowania imienia z local storage przez reduxa
+        if (typeof props.name === 'string') {
             if (props.name == '') {
                 setUserName(' ' + trans.defaultName);
             } else {
                 setUserName(' ' + props.name);
             }
         }
-    }, [props.name])
+    }, [props.name]);
 
+    useEffect(() => {
+        nfcIsEnabled().then(r => {
+            if (r) {
+                initNfc().then(() => {
+                    setNfcIsoOn(true);
+                });
+            } else {
+                Alert.alert('', 'Prozę włączyć NFC');
+            }
+        });
+        return () => cleanUp();
+    }, []);
 
-    let styles = StyleSheet.create({
+    useEffect(() => {
+        readNdef().then(res => {
+            res.forEach(e => {
+                if (e[0] == 'text') {
+                    setInputFrame(e[1]);
+                    hendleGoFoward(e[1]);
+                }
+            });
+        });
+    }, [nfcIsOn, inputFrame]);
+
+    const [headHeight, setHeadHeightt] = useState(0);
+
+    const styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: "white"
+            backgroundColor: 'white',
         },
-        title: getPosAndWid(334, 78, 138),
-        light30: {
-            fontFamily: "DIN2014Narrow-Light",
-            fontSize: getHorizontalPx(30),
+        scroll: {
+            width: '100%',
+            height: '100%',
+            top: headHeight,
+        },
+        title: {
+            width: getHorizontalPx(334),
+            left: getHorizontalPx(40),
+            marginTop: getVerticalPx(30),
+            fontFamily: 'DIN2014Narrow-Light',
+            fontSize: 30,
+            lineHeight: 40,
             color: '#313131',
-            textAlign: 'left'
+            textAlign: 'left',
         },
-        light18: {
-            fontFamily: "DIN2014Narrow-Light",
-            fontSize: getHorizontalPx(18),
+        nfc_bike: {
+            width: getHorizontalPx(334),
+            height: getHorizontalPx(268),
+            left: getHorizontalPx(40),
+            marginTop: getVerticalPx(30),
+        },
+        text: {
+            width: getHorizontalPx(334),
+            left: getHorizontalPx(40),
+            marginTop: getVerticalPx(20),
+            fontFamily: 'DIN2014Narrow-Light',
+            fontSize: 18,
+            lineHeight: 22,
             color: '#555555',
-            textAlign: 'left'
+            textAlign: 'left',
         },
-        nfc_bike: getStandardPx(334, 268, 246),
-        text: getStandardPx(334, 115, 534),
-        btnNfc: getStandardPx(334, 50, 701),
-        btnHand: getStandardPx(334, 50, 781),
-    })
+        btnNfc: {
+            width: getHorizontalPx(334),
+            left: getHorizontalPx(40),
+            height: 50,
+            marginTop: getVerticalPx(52),
+        },
+        btnHand: {
+            width: getHorizontalPx(334),
+            height: 50,
+            left: getHorizontalPx(40),
+            // marginTop: getVerticalPx(30),
+            marginTop: getVerticalPx(52),
+            marginBottom: getVerticalPx(65) + headHeight,
+        },
+    });
+
+    const hendleGoFoward = async (frame: string) => {
+        const trimmedInputFrame = frame?.trim();
+        try {
+            await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
+            // cleanUp();
+            props.navigation.navigate({
+                name: 'BikeSummary',
+                params: {frameNumber: trimmedInputFrame},
+            });
+            return;
+        } catch (error) {
+            if (error.notFound) {
+                // cleanUp();
+                props.navigation.navigate({
+                    name: 'BikeData',
+                    params: {frameNumber: trimmedInputFrame},
+                });
+                return;
+            }
+            const errorMessage = error?.errorMessage || 'Error';
+            Alert.alert('Error', errorMessage);
+        }
+    };
+
+    if (isLoading) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <Loader />
+            </SafeAreaView>
+        );
+    }
 
     return (
         <SafeAreaView style={styles.container}>
+            <View style={styles.scroll}>
+                <ScrollView>
+                    <Text style={styles.title}>
+                        {trans.title_1 + userName + trans.title_2}
+                    </Text>
 
-            <Text style={[styles.title, styles.light30]}>
-                {trans.title_1 + userName + trans.title_2}
-            </Text>
+                    <AnimSvg style={styles.nfc_bike} source={nfcBikeSvg} />
 
-            <AnimSvg
-                style={styles.nfc_bike}
-                source={nfcBikeSvg}
-            />
+                    <Text style={styles.text}>{trans.tekst}</Text>
 
-            <Text style={[styles.text, styles.light18]}>
-                {trans.tekst}
-            </Text>
+                    {/* <View style={styles.btnNfc}>
+                        <BigRedBtn
+                            title={trans.btnNfc}
+                            onpress={() => heandleScanByNfc()}
+                        />
+                    </View> */}
 
-            <View style={styles.btnNfc}>
-                <BigRedBtn
-                    title={trans.btnNfc}
-                ></BigRedBtn>
-            </View>
-
-            <View style={styles.btnHand}>
-                <BigWhiteBtn
-                    title={trans.btnHand}
-                    onpress={() => props.navigation.navigate('AddingByNumber')}
-                ></BigWhiteBtn>
+                    <View style={styles.btnHand}>
+                        <BigWhiteBtn
+                            title={trans.btnHand}
+                            onpress={() =>
+                                props.navigation.navigate('AddingByNumber')
+                            }
+                        />
+                    </View>
+                </ScrollView>
             </View>
 
             <StackHeader
                 onpress={() => props.navigation.navigate('GetToKnowEachOther')}
                 inner={trans.header}
-            ></StackHeader>
-
+                getHeight={setHeadHeightt}
+                style={{backgroundColor: '#fff'}}
+            />
         </SafeAreaView>
-    )
-}
+    );
+};
 
 const mapStateToProps = (state: any) => {
-  return {
-        name: state.user.userName
-    }
-}
+    return {
+        name: state.user.userName,
+    };
+};
 
 const mapDispatchToProps = (dispatch: any) => ({
     setName: (name: string) => dispatch(setUserName(name)),
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(TurtorialNFC)
+export default connect(mapStateToProps, mapDispatchToProps)(TurtorialNFC);

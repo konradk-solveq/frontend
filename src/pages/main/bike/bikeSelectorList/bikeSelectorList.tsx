@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Dimensions, View} from 'react-native';
 import {useNavigation, StackActions} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -9,6 +9,7 @@ import {
     getCenterLeftPx,
     getVerticalPx,
 } from '../../../../helpers/layoutFoo';
+import {nfcIsSupported} from '../../../../helpers/nfc';
 
 import Button from './button';
 import BikeIcon from './bikeIcon';
@@ -32,6 +33,12 @@ const BikeSelectorList: React.FC<Props> = ({
     buttonText,
 }: Props) => {
     const navigation = useNavigation();
+
+    const [nfc, setNfc] = useState();
+
+    nfcIsSupported().then(r => {
+        setNfc(r);
+    });
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -84,16 +91,24 @@ const BikeSelectorList: React.FC<Props> = ({
                 </View>
             );
         });
+
         buttons.push(
             <View
-                style={[styles.item, styles.lastItem]}
+                style={[
+                    styles.item,
+                    styles.lastItem,
+                    list.length == 0 && styles.fitstItem,
+                ]}
                 key={`${list.length}_add`}>
                 <Button
                     text={`+ ${buttonText}`}
                     onPress={() => {
-                        const pushAction = StackActions.push('AddingByNumber', {
-                            emptyFrame: true,
-                        });
+                        const pushAction = StackActions.push(
+                            nfc ? 'TurtorialNFC' : 'AddingByNumber',
+                            {
+                                emptyFrame: true,
+                            },
+                        );
 
                         navigation.dispatch(pushAction);
                     }}

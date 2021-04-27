@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
-import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
-import {setBikesListByFrameNumber} from '../../../../storage/actions';
-import {validateData} from '../../../../utils/validation/validation';
-import {userBikeValidationRules} from '../../../../models/bike.model';
+import { useAppSelector, useAppDispatch } from '../../../../hooks/redux';
+import { setBikesListByFrameNumber } from '../../../../storage/actions';
+import { validateData } from '../../../../utils/validation/validation';
+import { userBikeValidationRules } from '../../../../models/bike.model';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
@@ -29,6 +29,8 @@ import {
     getHorizontalPx,
 } from '../../../../helpers/layoutFoo';
 import Loader from '../loader/loader';
+
+import { initNfc, cleanUp, readNdef } from '../../../../helpers/nfc';
 
 interface Props {
     navigation: any;
@@ -80,14 +82,14 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
                 props.navigation.navigate({
                     name: 'BikeSummary',
-                    params: {frameNumber: trimmedInputFrame},
+                    params: { frameNumber: trimmedInputFrame },
                 });
                 return;
             } catch (error) {
                 if (error.notFound) {
                     props.navigation.navigate({
                         name: 'BikeData',
-                        params: {frameNumber: trimmedInputFrame},
+                        params: { frameNumber: trimmedInputFrame },
                     });
                     return;
                 }
@@ -158,7 +160,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     return (
         <SafeAreaView
             style={styles.container}
-            onLayout={({nativeEvent}) => handleAreaHeight(nativeEvent.layout)}>
+            onLayout={({ nativeEvent }) => handleAreaHeight(nativeEvent.layout)}>
             <ScrollView
                 keyboardShouldPersistTaps={'always'}
                 style={styles.scroll}>

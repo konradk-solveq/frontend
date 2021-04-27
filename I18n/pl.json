@@ -1080,7 +1080,14 @@
         "privacyPolicy": "Polityka prywatności",
         "contact": "Kontakt"
     },
-    "AppInfo": {},
+    "AboutApp": {
+        "header": "O aplikacji",
+        "title": "myKROSS to aplikacja dla wszystkich pasjonatów jazdy rowerem.",
+        "text_1": "Aplikacja myKROSS powstała z myślą o rowerzystach przemierzających kilkanaście, kilkadziesiąt, a nawet kilkaset kilometrów miesięcznie, poszukujących rzetelnej informacji o swoim rowerze oraz informacji jak zadbać o jego stan.",
+        "text_2": "Wystarczy podać numer ramy swojego roweru, a aplikacja sprawdzi czy jest to rower marki KROSS czy też innego producenta i umożliwi dodanie go do listy rowerów.\n\nW aplikacji prezentowane są podstawowe dane zarejestrowanego roweru, np. informacje o numerze ramy, modelu czy producencie. Dodatkowo dla rowerów KROSS można podejrzeć pełną specyfikację ze szczegółowymi informacjami o ramie i widelcu, elementach napędu, kołach, hamulcach, itp.",
+        "text_3": "W zależności od producenta roweru aplikacja umożliwia też dostęp do informacji o najbliższych przeglądach gwarancyjnych, okresowych czy sezonowych. Co więcej, każdy typ przeglądu zawiera szczegółowy wykaz czynności jakie powinny zostać podczas niego wykonane.\n\nmyKROSS pomaga również w zlokalizowaniu najbliższego punktu serwisowego lub sklepu rowerowego rekomendowanego przez KROSS, gdzie można wykonać wymagane przeglądy lub przygotować rower do sezonu rowerowego.\n\nŻyczymy udanej jazdy!",
+        "signature": "Zespół KROSS",
+    },
     "Contact": {
         "header": "Kontakt",
         "anonim": "Rowerzysto",
@@ -1104,6 +1111,12 @@
         "date": "Data zakupu",
         "place": "Miejsce zakupu",
         "btn": "POBIERZ GWARANCJĘ"
+    },
+    "RewiewsDetails": {
+        "header": "Przegląd",
+        "daysLeft": ["pozostało", "dni"],
+        "servisMap": "Najbliższy servis",
+        "warning": "Warunkiem ważności Gwarancji jest posiadanie dowodu zakupu i Oświadczenia Gwarancyjnego lub konta gwarancyjnego na platformie kross.eu/pl, założonego zgodnie z regulaminem tej platformy."
     },
     "validation": {
         "isEmpty": "Pole {{property}} nie jest puste",
