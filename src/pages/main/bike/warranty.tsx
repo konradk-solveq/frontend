@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, TouchableWithoutFeedback, View, Text} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
+import {I18n} from '../../../../I18n/I18n'
 
 import AnimSvg from '../../../helpers/animSvg';
 
@@ -16,7 +17,7 @@ interface Props {
     // route: any,
     style?: any;
     type: string;
-    toEnd: number;
+    toEnd: number | null;
     warranty: any;
     details: any;
 }
@@ -138,6 +139,9 @@ const Warranty: React.FC<Props> = (props: Props) => {
         props.navigation.navigate('WarrantyDetails', {details: props.details});
     };
 
+    const warrantyText = !props.toEnd
+        ? I18n.t('MainBike.warranty.lifetime')
+        : `${props.toEnd} ' ' ${props.warranty.days}`;
     return (
         <View
             style={[styles.container, props.style]}
@@ -156,9 +160,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
 
                 <View style={styles.textLine}>
                     <Text style={styles.leftText}>{props.warranty.toEnd}</Text>
-                    <Text style={styles.rightText}>
-                        {'' + props.toEnd + ' ' + props.warranty.days}
-                    </Text>
+                    <Text style={styles.rightText}>{warrantyText}</Text>
                     {/* <Text style={styles.dots}>. . .</Text> */}
                 </View>
             </View>
