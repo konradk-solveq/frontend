@@ -1,18 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, SafeAreaView, View, Text, Alert} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    Text,
+    Alert,
+    Platform,
+} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {ScrollView} from 'react-native-gesture-handler';
+import GetLocation from 'react-native-get-location';
 
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {getBike} from '../../../helpers/transformUserBikeData';
 import {removeBikeByNumber} from '../../../storage/actions';
+import {PERMISSIONS, request} from 'react-native-permissions';
+import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 
 import Warranty from './warranty';
 import Reviews from './reviews';
 import ComplaintsRepairs from './complaintsRepairs';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import {countDaysToEnd} from '../../../helpers/warranty';
+import ServiceMapBtn from '../../../sharedComponents/buttons/serviceMap';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {
@@ -22,10 +33,16 @@ import {
     getWidthPx,
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
+import geoBox from '../../../helpers/geoBox';
+
 import {UserBike} from '../../../models/userBike.model';
 
 import BikeImage from '../../../sharedComponents/images/bikeImage';
 import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
+
+import {Place} from '../../../models/places.model';
+import {fetchPlacesData} from '../../../storage/actions';
+
 
 interface Props {
     navigation: any;
@@ -34,10 +51,106 @@ interface Props {
 
 const Bike: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
-    // const frameNumber = useAppSelector<string>(state => state.user.frameNumber);
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
 
-    const [bike, setBike] = useState<UserBike | null>(null);
+    const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
+    const [box, serBox] = useState(null);
+    const [region, serRegion] = useState(null);
+    const [location, serLocation] = useState({
+        longitude: 19.1632083,
+        latitude: 53.6686313,
+    });
+
+    const [hasPermissions, setHasPermission] = useState(false);
+
+    const places = useAppSelector<Place[]>(state => state.places.places);
+    const [allPaces, setAllPlaces] = useState<Place>(places); // <<-- #ask_Sebastian: czy ja to dobrze zaimplementowałem?
+
+    let newBox;
+    const getCurrentLocationPositionHandler = useCallback(() => {
+        if (!hasPermissions && Platform.OS === 'android') {
+            askLocationPermissionOnAndroid();
+            return;
+        }
+        GetLocation.getCurrentPosition({
+            enableHighAccuracy: true,
+            timeout: 15000,
+        })
+            .then(location => {
+                serLocation(location);
+                 newBox = geoBox(
+                    {
+                        lon: location.longitude,
+                        lat: location.latitude,
+                    },
+                    50,
+                );
+                serBox(newBox);
+                serRegion({
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                    latitudeDelta: Math.abs((newBox.left - newBox.right) / 2),
+                    longitudeDelta: Math.abs((newBox.top - newBox.bottom) / 2),
+                });
+            })
+            .then(() => {
+                dispatch(
+                    fetchPlacesData({
+                        bbox: [
+                            {lat: newBox.left, lng: newBox.top},
+                            {lat: newBox.right, lng: newBox.bottom},
+                        ],
+                        width: 300,
+                    }),
+                );
+            })
+            .catch(error => {
+                const {code, message} = error;
+                if (code === 'UNAVAILABLE' && Platform.OS === 'android') {
+                    openLocationSettings();
+                }
+                console.warn(code, message);
+            });
+    }, [hasPermissions]);
+
+    /* TODO: extract location methods to helper/custom hook */
+    const openLocationSettings = () => {
+        RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
+            interval: 10000,
+            fastInterval: 5000,
+        })
+            .then(data => {
+                getCurrentLocationPositionHandler();
+            })
+            .catch(err => {
+                console.log('location settings - error', error);
+            });
+    };
+
+    const askLocationPermissionOnAndroid = async () => {
+        try {
+            request(
+                Platform.select({
+                    android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+                    ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+                }),
+            ).then(res => {
+                if (res === 'granted') {
+                    setHasPermission(true);
+                }
+            });
+        } catch (error) {
+            console.log('location set error:', error);
+        }
+    };
+
+    useEffect(() => {
+        getCurrentLocationPositionHandler();
+    }, [getCurrentLocationPositionHandler]);
+
+    useEffect(() => {
+        setBike(bikes?.[0] || null);
+    }, [bikes]);
 
     useEffect(() => {
         setBike(bikes?.[0] || null);
@@ -139,6 +252,18 @@ const Bike: React.FC<Props> = (props: Props) => {
         });
     };
 
+    const heandleServicesMap = () => {
+        if (!region || !location || !box) {
+            return;
+        }
+
+        props.navigation.navigate('ServicesMap', {
+            region: region,
+            location: location,
+            box: box,
+        });
+    };
+
     const onRemoveBikeHandler = () => {
         Alert.alert('', trans.removeAlert, [
             {
@@ -222,7 +347,15 @@ const Bike: React.FC<Props> = (props: Props) => {
                             <Reviews
                                 style={styles.reviews}
                                 list={bike.warranty.overviews}
+                                details={{
+                                    description: bike?.description,
+                                    warranty: bike.warranty,
+                                }}
+                                box={box}
+                                region={region}
+                                location={location}
                                 description={trans.warranty.reviews}
+                                navigation={props.navigation}
                             />
                         )}
 
@@ -237,13 +370,14 @@ const Bike: React.FC<Props> = (props: Props) => {
                                 />
                             )}
 
-                        {/* <ServiceMapBtn
+                        <ServiceMapBtn
                             style={styles.map}
                             title={trans.servisMap}
                             height={102}
                             region={region}
+                            location={location}
                             onpress={() => heandleServicesMap()}
-                        /> */}
+                        />
 
                         <BigRedBtn
                             style={styles.btn}

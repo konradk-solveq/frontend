@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet, Dimensions, View, Text} from 'react-native';
+import {
+    StyleSheet,
+    Dimensions,
+    View,
+    Text,
+    TouchableWithoutFeedback,
+} from 'react-native';
 import Svg, {Path, Circle} from 'react-native-svg';
 import AnimSvg from '../../../helpers/animSvg';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -15,7 +21,13 @@ import {getDay, getYear} from '../../../helpers/overviews';
 interface Props {
     style?: any;
     list: any;
+    details: any;
     description: any;
+    onpress: Function;
+    navigation: any;
+    box: any;
+    region: any;
+    location: any;
 }
 
 const ww = Dimensions.get('window').width;
@@ -23,6 +35,7 @@ const ww = Dimensions.get('window').width;
 const Reviews: React.FC<Props> = (props: Props) => {
     setObjSize(334, 50);
     const w = ww * (125 / 414);
+    // console.log('%c details:', 'background: #ffcc00; color: #003300', props.details)
 
     const [source, setSource] = useState(
         '<svg xmlns="http://www.w3.org/2000/svg"/>',
@@ -170,6 +183,15 @@ const Reviews: React.FC<Props> = (props: Props) => {
         },
     });
 
+    const heandleShowDeatails = e => {
+        props.navigation.navigate('RewiewsDetails', {
+            details: e,
+            box: props.box,
+            region: props.region,
+            location: props.location,
+        });
+    };
+
     return (
         <View style={[styles.container, props.style]}>
             <Text style={styles.title}>{props.description.name}</Text>
@@ -193,39 +215,43 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                 i == props.list.length - 1 && styles.latItem,
                             ]}
                             key={'item_' + i}>
-                            <View
-                                style={styles.box}
-                                key={'box_' + i}
-                                onLayout={({nativeEvent}) =>
-                                    handleShadowBox(nativeEvent.layout)
-                                }>
-                                <Text style={styles.day}>{getDay(e.date)}</Text>
-                                <Text style={styles.year}>
-                                    {getYear(e.date)}
-                                </Text>
+                            <TouchableWithoutFeedback
+                                onPress={() => heandleShowDeatails(e)}>
+                                <View
+                                    style={styles.box}
+                                    onLayout={({nativeEvent}) =>
+                                        handleShadowBox(nativeEvent.layout)
+                                    }>
+                                    <Text style={styles.day}>
+                                        {getDay(e.date)}
+                                    </Text>
+                                    <Text style={styles.year}>
+                                        {getYear(e.date)}
+                                    </Text>
 
-                                {e.state == 1 && (
-                                    <Svg
-                                        style={styles.mark}
-                                        viewBox="0 0 20 20">
-                                        <Circle
-                                            cx="10.01"
-                                            cy="10"
-                                            r="9.96"
-                                            fill="#39b54a"
-                                            paint-order="markers fill stroke"
-                                        />
-                                        <Path
-                                            fill="none"
-                                            stroke="#fff"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2.11"
-                                            d="M7.18 10.19l2.03 2 4.34-4.42"
-                                        />
-                                    </Svg>
-                                )}
-                            </View>
+                                    {e.state == 1 && (
+                                        <Svg
+                                            style={styles.mark}
+                                            viewBox="0 0 20 20">
+                                            <Circle
+                                                cx="10.01"
+                                                cy="10"
+                                                r="9.96"
+                                                fill="#39b54a"
+                                                paint-order="markers fill stroke"
+                                            />
+                                            <Path
+                                                fill="none"
+                                                stroke="#fff"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2.11"
+                                                d="M7.18 10.19l2.03 2 4.34-4.42"
+                                            />
+                                        </Svg>
+                                    )}
+                                </View>
+                            </TouchableWithoutFeedback>
                             <Text style={styles.type}>{e.info}</Text>
                         </View>
                     ))}

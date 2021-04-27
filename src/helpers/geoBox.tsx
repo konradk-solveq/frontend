@@ -13,3 +13,5 @@ const geoBox = (pos = {lon: 18.7167, lat: 54.1}, distance = 2) => {
     };
     return box;
 };
+
+export default geoBox;

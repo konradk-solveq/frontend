@@ -1,4 +1,3 @@
-//getToKnowEachOther
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
 import I18n from 'react-native-i18n';
@@ -17,6 +16,7 @@ import {
 } from '../../../helpers/layoutFoo';
 import {validateData} from '../../../utils/validation/validation';
 import {userUserValidationRules} from '../../../models/user.model';
+import {nfcIsSupported} from '../../../helpers/nfc';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
@@ -37,6 +37,11 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     const [inputName, setInputName] = useState('');
     const [areaHeigh, setAreaHeigh] = useState(0);
     const [validationStatus, setValidationStatus] = useState(false);
+    const [nfc, setNfc] = useState();
+
+    nfcIsSupported().then(r => {
+        setNfc(r);
+    });
 
     useEffect(() => {
         if (typeof name === 'string') {
@@ -52,9 +57,17 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         setAreaHeigh(layout.height);
     };
 
+    const goFoward = () => {
+        if (nfc) {
+            navigation.navigate('TurtorialNFC');
+        } else {
+            navigation.navigate('AddingByNumber');
+        }
+    };
+
     const hadleOnpress = (inputName: string) => {
         dispatch(setUserName(inputName));
-        navigation.navigate('AddingByNumber');
+        goFoward();
     };
 
     const hadleOnpressWithName = (inputName: string) => {
@@ -62,7 +75,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             return;
         }
         dispatch(setUserName(inputName));
-        navigation.navigate('AddingByNumber');
+        goFoward();
     };
 
     const [headHeight, setHeadHeight] = useState(0);

@@ -14,6 +14,7 @@ import {
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import AnimSvg from '../../../../helpers/animSvg';
+import {countDaysToEnd} from '../../../../helpers/warranty';
 
 interface Props {
     navigation: any,
@@ -129,7 +130,8 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
 
     const hendleDay = (d: string) => {
         const getDate = (dd: string) => {
-            let values = dd.replace(/-|\s|:/g, '#').split('#').map(e => Number(e));
+            let values = dd.replace('Z','').replace(/-|\s|T|:/g, '#').split('#').map(e => Number(e));
+            console.log('%c values:', 'background: #ffcc00; color: #003300', values)
             return new Date(...values);
         }
 
@@ -148,28 +150,28 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
 
                         <View style={styles.titleBox}>
                             <Text style={styles.title}>
-                                {trans.title + details.warranty.id}
+                                {trans.title + (details.warranty && (details.warranty.id ? details.warranty.id : 'no number'))}
                             </Text>
                             <Text style={styles.details}>
-                                {trans.details[0] + ' ' + hendleDay(details.warranty.end) + ' ' + trans.details[1] + ' ' + details.warranty.toEnd + ' ' + trans.details[2]}
+                                {trans.details[0] + ' ' + hendleDay(details.warranty.end) + ' ' + trans.details[1] + ' ' + countDaysToEnd(details.warranty.end) + ' ' + trans.details[2]}
                             </Text>
                         </View>
 
                         <Text style={styles.name}>{trans.bike}</Text>
-                        <Text style={styles.value}>{details.description.name + ' ' + trans.bikeDescription + ' ' + details.description.frame}</Text>
+                        <Text style={styles.value}>{details.description.name + ' ' + trans.bikeDescription + ' ' + details.description.serial_number}</Text>
 
                         <Text style={styles.name}>{trans.id}</Text>
-                        <Text style={styles.value}>{details.description.id}</Text>
+                        <Text style={styles.value}>{details.description.sku}</Text>
 
                         <Text style={styles.name}>{trans.date}</Text>
-                        <Text style={styles.value}>{hendleDay(details.description.bought.date)}</Text>
+                        {/* <Text style={styles.value}>{(details.description.bought.date)}</Text> */}
 
                         <Text style={styles.name}>{trans.place}</Text>
-                        <Text style={styles.shopName}>{details.description.bought.adress.shopName}</Text>
+                        {/* <Text style={styles.shopName}>{details.description.bought.adress.shopName}</Text> */}
 
                         <View>
-                            <Text style={styles.adress}>{details.description.bought.adress.street}</Text>
-                            <Text style={styles.adress}>{details.description.bought.adress.city}</Text>
+                            {/* <Text style={styles.adress}>{details.description.bought.adress.street}</Text>
+                            <Text style={styles.adress}>{details.description.bought.adress.city}</Text> */}
 
                             <AnimSvg
                                 style={styles.place}
@@ -178,8 +180,8 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
                         </View>
 
                         <View style={styles.contact}>
-                            <Text style={styles.constactBox}>{details.description.bought.adress.email}</Text>
-                            <Text style={styles.constactBox}>{details.description.bought.adress.phone}</Text>
+                            {/* <Text style={styles.constactBox}>{details.description.bought.adress.email}</Text>
+                            <Text style={styles.constactBox}>{details.description.bought.adress.phone}</Text> */}
                         </View>
 
                         <BigRedBtn

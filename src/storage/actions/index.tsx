@@ -13,3 +13,5 @@ export {
 } from './bikes';
 
 export {setAppStatus} from './app';
+
+export {fetchPlacesData} from './places';
