@@ -33,7 +33,7 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
   NSString *googleApiKey = [ReactNativeConfig envFor:@"GOOGLE_MAPS_API_KEY"];
-  [GMSServices provideAPIKey:@"AIzaSyBcuDhYsJJqOBvWppdbLf5y75V8OdNOevQ"];
+  [GMSServices provideAPIKey:googleApiKey];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge

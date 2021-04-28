@@ -17,10 +17,16 @@ export type PointDetails = {
     country: string;
 };
 
+export enum markerTypes {
+    SHOP = 'shop',
+    SERVICE = 'service',
+}
+
 export interface Place {
     type: string;
     lat: number;
     lng: number;
     details: PointDetails;
+    markerTypes: markerTypes[];
     markerType: string;
 }

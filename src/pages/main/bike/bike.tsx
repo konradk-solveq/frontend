@@ -43,31 +43,37 @@ import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
 import {Place} from '../../../models/places.model';
 import {fetchPlacesData} from '../../../storage/actions';
 
-
 interface Props {
     navigation: any;
     route: any;
 }
-
+const defaultRegion = {
+    latitude: 53.008773556173104,
+    latitudeDelta: 0.07588885599553308,
+    longitude: 20.89136063395526,
+    longitudeDelta: 0.4499640028797671,
+};
 const Bike: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
 
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
-    const [box, serBox] = useState(null);
-    const [region, serRegion] = useState(null);
+    const [box, serBox] = useState({
+        bottom: 53.46894730287977,
+        left: 20.86694125763505,
+        right: 20.89377214236495,
+        top: 52.569019297120235,
+    });
+    const [region, serRegion] = useState(defaultRegion);
     const [location, serLocation] = useState({
-        longitude: 19.1632083,
-        latitude: 53.6686313,
+        longitude: 20.89136063395526,
+        latitude: 53.008773556173104,
     });
 
     const [hasPermissions, setHasPermission] = useState(false);
 
-    const places = useAppSelector<Place[]>(state => state.places.places);
-    const [allPaces, setAllPlaces] = useState<Place>(places); // <<-- #ask_Sebastian: czy ja to dobrze zaimplementowałem?
-
-    let newBox;
     const getCurrentLocationPositionHandler = useCallback(() => {
+        let newBox;
         if (!hasPermissions && Platform.OS === 'android') {
             askLocationPermissionOnAndroid();
             return;
@@ -78,12 +84,12 @@ const Bike: React.FC<Props> = (props: Props) => {
         })
             .then(location => {
                 serLocation(location);
-                 newBox = geoBox(
+                newBox = geoBox(
                     {
                         lon: location.longitude,
                         lat: location.latitude,
                     },
-                    50,
+                    35,
                 );
                 serBox(newBox);
                 serRegion({
@@ -100,7 +106,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                             {lat: newBox.left, lng: newBox.top},
                             {lat: newBox.right, lng: newBox.bottom},
                         ],
-                        width: 300,
+                        width: 2000,
                     }),
                 );
             })
@@ -147,10 +153,6 @@ const Bike: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         getCurrentLocationPositionHandler();
     }, [getCurrentLocationPositionHandler]);
-
-    useEffect(() => {
-        setBike(bikes?.[0] || null);
-    }, [bikes]);
 
     useEffect(() => {
         setBike(bikes?.[0] || null);
@@ -253,6 +255,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     };
 
     const heandleServicesMap = () => {
+        console.log(box);
         if (!region || !location || !box) {
             return;
         }

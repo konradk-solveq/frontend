@@ -62,7 +62,6 @@ yarn add redux-thunk
 
 yarn add react-native-nfc-manager
 yarn add react-native-get-location
-yarn add react-native-android-location-enabler
 ```
 
 

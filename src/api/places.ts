@@ -1,4 +1,4 @@
-import instance from './api';
+import instance, {source} from './api';
 import {BBox} from '../models/places.model';
 import {tranformParamsToBBoxRequest} from '../utils/apiDataTransform/prepareRequest';
 
@@ -7,6 +7,7 @@ export const getPlaces = async (data: BBox) => {
     const query = `${bboxParams}&width=${data.width}`;
 
     return await instance.get(`/dealers?${query}`, {
+        cancelToken: source.token,
         validateStatus: () => true,
     });
 };
