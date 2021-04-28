@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import {View} from 'react-native';
 import {Marker} from 'react-native-maps';
 
 import MarkerSvg from './markerSvg';
@@ -22,16 +23,18 @@ const CustomMarker: React.FC<IProps> = ({
         <Marker
             ref={markRef => (markerRef.current = markRef)}
             onPress={onPressMarker}
-            opacity={showMarker ? 0 : 1}
+            opacity={!showMarker ? 0 : 1}
             stopPropagation={true}
             anchor={{x: 0.5, y: 0.5}}
             centerOffset={{x: 0.5, y: 0}}
-            tracksViewChanges={false}
+            tracksViewChanges={true}
             coordinate={{
                 latitude: lat,
                 longitude: lng,
             }}>
-            <MarkerSvg />
+            <View style={{opacity: !showMarker ? 0 : 1}}>
+                <MarkerSvg />
+            </View>
         </Marker>
     );
 };

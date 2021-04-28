@@ -22,7 +22,7 @@ const CustomMarker: React.FC<IProps> = ({
         <Marker
             ref={markRef => (markerRef.current = markRef)}
             onPress={onPressMarker}
-            opacity={showMarker ? 0 : 1}
+            opacity={showMarker ? 1 : 0}
             stopPropagation={true}
             anchor={{x: 0.5, y: 0.5}}
             centerOffset={{x: 0.5, y: 0}}
