@@ -1116,7 +1116,8 @@
     "RewiewsDetails": {
         "header": "Przegląd",
         "daysLeft": ["pozostało", "dni"],
-        "servisMap": "Najbliższy servis",
+        "servisMap": "Najbliższy serwis",
+        "descriptionTitle": "W ramach przeglądu powinny być wykonane następujące czynności: ",
         "warning": "Warunkiem ważności Gwarancji jest posiadanie dowodu zakupu i Oświadczenia Gwarancyjnego lub konta gwarancyjnego na platformie kross.eu/pl, założonego zgodnie z regulaminem tej platformy."
     },
     "validation": {
