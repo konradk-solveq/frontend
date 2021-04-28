@@ -336,7 +336,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                                 toEnd={
                                     bike.warranty?.end
                                         ? countDaysToEnd(bike.warranty.end)
-                                        : 0
+                                        : null
                                 }
                                 warranty={trans.warranty}
                                 details={{
