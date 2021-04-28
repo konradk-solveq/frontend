@@ -35,16 +35,16 @@ const MarkerList = ({
                     return null;
                 }
 
-                let isVisible = true;
+                let isHidden = true;
                 if (filterMarkers) {
-                    isVisible = false;
                     filterMarkers.map(m => {
                         const visibility = e?.markerTypes?.includes(m);
-                        if (!visibility && isVisible) {
+
+                        if (!isHidden) {
                             return;
                         }
 
-                        isVisible = visibility;
+                        isHidden = !visibility;
                     });
                 }
 
@@ -53,9 +53,9 @@ const MarkerList = ({
                         key={`marker_${e.lat}_${e.lng}`}
                         lat={e.lat}
                         lng={e.lng}
-                        showMarker={!isVisible}
+                        showMarker={!isHidden}
                         onPressMarker={() =>
-                            isVisible ? onPressMarkerHanlder(e.details) : null
+                            !isHidden ? onPressMarkerHanlder(e.details) : null
                         }
                     />
                 );

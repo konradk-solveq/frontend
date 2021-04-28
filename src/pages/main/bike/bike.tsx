@@ -255,7 +255,6 @@ const Bike: React.FC<Props> = (props: Props) => {
     };
 
     const heandleServicesMap = () => {
-        console.log(box);
         if (!region || !location || !box) {
             return;
         }
