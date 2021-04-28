@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {useNavigation} from '@react-navigation/native';
@@ -15,12 +15,15 @@ import AddBike from './addBike';
 import {setBikesListByFrameNumbers} from '../../../storage/actions/bikes';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
+import {nfcIsSupported} from '../../../helpers/nfc';
 
 const Home: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
     const trans: any = I18n.t('MainHome');
+
+    const [nfc, setNfc] = useState();
 
     useEffect(() => {
         if (isOnline) {
@@ -38,6 +41,10 @@ const Home: React.FC = () => {
             console.log('[Sync Error]', error);
         }
     };
+
+    nfcIsSupported().then(r => {
+        setNfc(r);
+    });
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -70,7 +77,7 @@ const Home: React.FC = () => {
 
     const onAddActionHandler = () => {
         navigation.navigate({
-            name: 'AddingByNumber',
+            name: nfc ? 'TurtorialNFC' : 'AddingByNumber',
             params: {emptyFrame: true},
         });
     };

@@ -141,7 +141,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
 
     const warrantyText = !props.toEnd
         ? I18n.t('MainBike.warranty.lifetime')
-        : `${props.toEnd} ' ' ${props.warranty.days}`;
+        : `${props.toEnd} ${props.warranty.days}`;
     return (
         <View
             style={[styles.container, props.style]}

@@ -195,6 +195,8 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                     initialRegion={defaultRegion}
                     onRegionChangeComplete={onRegionChangeHandler}
                     zoomTapEnabled={false}
+                    minZoomLevel={7}
+                    maxZoomLevel={15}
                     onPress={() => heandleShowAdress(null)}
                     region={regionData}>
                     <MarkerList

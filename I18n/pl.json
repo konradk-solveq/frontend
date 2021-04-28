@@ -23,7 +23,13 @@
         "title_2": ", mam pierwsze zadanie dla Ciebie :)",
         "tekst": "Włącz NFC w telefonie i zbliż go do naklejki umieszczonej na ramie roweru KROSS.\n\nJeśli nie widzisz naklejki lub nie obsługujesz NFC, wprowadź ręcznie numer ramy.",
         "btnNfc": "SKANUJ NAKLEJKĘ NFC",
-        "btnHand": "CHCĘ WPROWADZIĆ RĘCZNIE"
+        "btnHand": "CHCĘ WPROWADZIĆ RĘCZNIE",
+        "alertMessage": "Włącz NFC w ustawieniach telefonu."
+    },
+    "TurtorialNFCmodal": {
+        "title": "Gotowy do skanowania",
+        "text": "Zbliż telefon do naklejki NFC",
+        "cancelBtn": "ANULUJ"
     },
     "WrongScan": {
         "title": "Coś poszło nie tak!",
