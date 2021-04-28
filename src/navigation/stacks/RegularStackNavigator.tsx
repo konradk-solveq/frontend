@@ -15,6 +15,7 @@ import BikeSummary from '../../pages/onboarding/bikeSummary/bikeSummary';
 import ServicesMap from '../../pages/main/bike/servicesMap/servicesMap';
 import AboutApp from '../../pages/main/profile/aboutApp/aboutApp';
 import RewiewsDetails from '../../pages/main/bike/rewiewsDetails/rewiewsDetails';
+import NameChange from '../../pages/main/profile/nameChange/nameChange';
 
 const RegularStackNavigator: React.FC = () => {
     return (
@@ -35,6 +36,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen name="ServicesMap" component={ServicesMap} />
             <Stack.Screen name="AboutApp" component={AboutApp} />
             <Stack.Screen name="RewiewsDetails" component={RewiewsDetails} />
+            <Stack.Screen name="NameChange" component={NameChange} />
             {/* End add bike */}
 
             {/* univesal/generic pages */}
