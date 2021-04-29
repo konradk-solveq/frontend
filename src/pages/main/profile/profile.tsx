@@ -1,10 +1,18 @@
-import React from 'react';
-import {StyleSheet, SafeAreaView, View, Text, Dimensions} from 'react-native';
-import Svg, {G, Path, Circle, Ellipse} from 'react-native-svg';
+import React, {useState, useEffect} from 'react';
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    Text,
+    TouchableOpacity,
+} from 'react-native';
+import Svg, {G, Path, Ellipse} from 'react-native-svg';
 
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import BlueButton from './blueButton';
+
+import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
 
 import {
     setObjSize,
@@ -14,8 +22,6 @@ import {
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 
-const ww = Dimensions.get('window').width;
-
 interface Props {
     navigation: any;
     route: any;
@@ -23,6 +29,17 @@ interface Props {
 
 const Profile: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('MainProfile');
+    // const dispatch = useAppDispatch();
+
+    const name = useAppSelector<string>(state => state.user.userName);
+    const getUserName = name ?  name : trans.defaultName;
+    const [userName, setUserName] = useState<string>(getUserName);
+
+    useEffect(() => {
+        if (typeof name === 'string') {
+            setUserName(getUserName);
+        }
+    }, [name]);
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -60,6 +77,22 @@ const Profile: React.FC<Props> = (props: Props) => {
             textAlign: 'left',
             position: 'relative',
             marginBottom: getVerticalPx(4.5),
+        },
+        nameWrap: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
+        },
+        name: {
+            fontFamily: 'DIN2014Narrow-Regular',
+            fontSize: 23,
+            color: '#313131',
+            textAlign: 'left',
+            position: 'relative',
+            marginTop: getVerticalPx(20),
+            marginBottom: getVerticalPx(51),
         },
     });
 
@@ -265,6 +298,15 @@ const Profile: React.FC<Props> = (props: Props) => {
                     </G>
                 </Svg>
 
+                <TouchableOpacity
+                    onPress={() => props.navigation.navigate('NameChange')}
+                >
+                    <View style={styles.nameWrap}>
+                        <Text style={styles.name}>{userName}</Text>
+                        <Text style={styles.name}>...</Text>
+                    </View>
+                </TouchableOpacity>
+
                 <Text style={styles.title}>{trans.title}</Text>
                 <BlueButton
                     onpress={() => props.navigation.navigate('AboutApp')}
@@ -289,4 +331,4 @@ const Profile: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default Profile;
+export default Profile; 
