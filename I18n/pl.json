@@ -1036,6 +1036,7 @@
         "add": "Dodaj",
         "warranty": {
             "lifetime": "dożywotnio",
+            "noInfo": "brak informacji",
             "state": "status gwarancji",
             "toEnd": "do końca gwarancji",
             "days": "dni",

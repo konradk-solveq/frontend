@@ -6,12 +6,14 @@ import {UserBike} from '../../models/userBike.model';
 
 interface BikesState {
     list: UserBike[];
+    genericBike: UserBike | {};
     error: string;
     loading: boolean;
 }
 
 const initialStateList: BikesState = {
     list: [],
+    genericBike: {},
     error: '',
     loading: false,
 };
@@ -52,6 +54,14 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 list: removedExisted,
             };
         }
+        case actionTypes.SET_GENERIC_BIKE_DATA: {
+            return {
+                ...state,
+                error: '',
+                loading: false,
+                genericBike: action.bikeData,
+            };
+        }
         case actionTypes.SET_BIKES_DATA: {
             const newBikesToAdd = action.bikeData;
             const bikesToRemove = action.numbersToUpdate;
@@ -68,6 +78,7 @@ const bikesReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.SET_BIKES_ERROR: {
+            console.log('error from reducer', action.error)
             return {
                 ...state,
                 loading: false,
@@ -93,7 +104,7 @@ const bikesReducer = (state = initialStateList, action: any) => {
 const persistConfig = {
     key: 'bikes',
     storage: AsyncStorage,
-    whitelist: ['list'],
+    whitelist: ['list, genericBike'],
 };
 
 export default persistReducer(persistConfig, bikesReducer);

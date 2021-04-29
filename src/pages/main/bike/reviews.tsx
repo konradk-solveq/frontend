@@ -23,7 +23,7 @@ interface Props {
     list: any;
     details: any;
     description: any;
-    onpress: Function;
+    onpress?: Function;
     navigation: any;
     box: any;
     region: any;

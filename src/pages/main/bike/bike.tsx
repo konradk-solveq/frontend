@@ -40,8 +40,7 @@ import { UserBike } from '../../../models/userBike.model';
 import BikeImage from '../../../sharedComponents/images/bikeImage';
 import { CogBtn, ShowMoreArrowBtn } from '../../../sharedComponents/buttons';
 
-import { Place } from '../../../models/places.model';
-import { fetchPlacesData } from '../../../storage/actions';
+import {fetchPlacesData} from '../../../storage/actions';
 
 interface Props {
     navigation: any;
@@ -56,6 +55,9 @@ const defaultRegion = {
 const Bike: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
+    const genericBikeData = useAppSelector<UserBike>(
+        state => state.bikes.genericBike,
+    );
 
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
     const [box, serBox] = useState({
@@ -284,6 +286,7 @@ const Bike: React.FC<Props> = (props: Props) => {
         ]);
     };
 
+    const warrantyData = bike?.warranty || genericBikeData.warranty;
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scroll}>
@@ -327,31 +330,33 @@ const Bike: React.FC<Props> = (props: Props) => {
                                 bike?.description.serial_number}
                         </Text>
 
-                        {bike?.warranty && (
+                        {warrantyData && (
                             <Warranty
                                 style={styles.warranty}
                                 navigation={props.navigation}
-                                type={bike.warranty.info}
+                                type={warrantyData.info}
                                 toEnd={
-                                    bike.warranty?.end
-                                        ? countDaysToEnd(bike.warranty.end)
-                                        : null
+                                    bike?.warranty
+                                        ? warrantyData?.end
+                                            ? countDaysToEnd(warrantyData.end)
+                                            : null
+                                        : undefined
                                 }
                                 warranty={trans.warranty}
                                 details={{
                                     description: bike?.description,
-                                    warranty: bike.warranty,
+                                    warranty: warrantyData,
                                 }}
                             />
                         )}
 
-                        {bike?.warranty?.overviews && (
+                        {warrantyData?.overviews && (
                             <Reviews
                                 style={styles.reviews}
-                                list={bike.warranty.overviews}
+                                list={warrantyData.overviews}
                                 details={{
                                     description: bike?.description,
-                                    warranty: bike.warranty,
+                                    warranty: warrantyData,
                                 }}
                                 box={box}
                                 region={region}
