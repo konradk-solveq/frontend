@@ -179,6 +179,7 @@ const Bike: React.FC<Props> = (props: Props) => {
         container: {
             width: '100%',
             height: '100%',
+            backgroundColor: '#ffffff',
         },
         scroll: {
             backgroundColor: '#ffffff',

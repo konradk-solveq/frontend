@@ -51,6 +51,7 @@ const Home: React.FC = () => {
     const styles = StyleSheet.create({
         container1: {
             flex: 1,
+            backgroundColor: '#ffffff',
         },
         container: {
             justifyContent: 'space-between',

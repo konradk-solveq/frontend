@@ -1,6 +1,6 @@
 import React from 'react';
 import type {Node} from 'react';
-import {StyleSheet, TextInput, Text, View} from 'react-native';
+import {StyleSheet, TextInput, Text, View, StatusBar} from 'react-native';
 // import { SafeAreaView } from 'react-native';
 // import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
@@ -14,6 +14,7 @@ import {version} from './package.json';
 
 import NavContainer from './src/navigation/NavContainer';
 import NetworkStatus from './src/sharedComponents/networkStatus/networkStatus';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const now = new Date().toLocaleDateString();
 
@@ -36,14 +37,17 @@ const App: () => Node = () => {
     });
 
     return (
-        <Provider store={storage}>
-            <PersistGate persistor={persistor}>
-                <NetworkStatus />
-                <NavContainer />
+        <>
+            <StatusBar backgroundColor="transparent" barStyle="dark-content" />
+            <Provider store={storage}>
+                <PersistGate persistor={persistor}>
+                    <NetworkStatus />
+                    <NavContainer />
 
-                <Text style={styles.varsion}>{`${version} (${now})`}</Text>
-            </PersistGate>
-        </Provider>
+                    <Text style={styles.varsion}>{`${version} (${now})`}</Text>
+                </PersistGate>
+            </Provider>
+        </>
     );
 };
 
