@@ -66,6 +66,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
 
     /* TODO: extract as helper method */
     const heandleServices = () => {
+        if (!markersFilters?.includes(markerTypes.SHOP)) return;
         setMarkersFilters(prevFilters => {
             if (prevFilters.includes(markerTypes.SERVICE)) {
                 const newFilters = prevFilters.filter(
@@ -77,6 +78,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
         });
     };
     const heandleShops = () => {
+        if (!markersFilters?.includes(markerTypes.SERVICE)) return;
         setMarkersFilters(prevFilters => {
             if (prevFilters.includes(markerTypes.SHOP)) {
                 const newFilters = prevFilters.filter(
