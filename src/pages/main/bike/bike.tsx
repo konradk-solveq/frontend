@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -9,20 +9,20 @@ import {
 } from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import {ScrollView} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import GetLocation from 'react-native-get-location';
 
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
-import {getBike} from '../../../helpers/transformUserBikeData';
-import {removeBikeByNumber} from '../../../storage/actions';
-import {PERMISSIONS, request} from 'react-native-permissions';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { getBike } from '../../../helpers/transformUserBikeData';
+import { removeBikeByNumber } from '../../../storage/actions';
+import { PERMISSIONS, request } from 'react-native-permissions';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 
 import Warranty from './warranty';
 import Reviews from './reviews';
 import ComplaintsRepairs from './complaintsRepairs';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
-import {countDaysToEnd} from '../../../helpers/warranty';
+import { countDaysToEnd } from '../../../helpers/warranty';
 import ServiceMapBtn from '../../../sharedComponents/buttons/serviceMap';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
@@ -35,13 +35,13 @@ import {
 } from '../../../helpers/layoutFoo';
 import geoBox from '../../../helpers/geoBox';
 
-import {UserBike} from '../../../models/userBike.model';
+import { UserBike } from '../../../models/userBike.model';
 
 import BikeImage from '../../../sharedComponents/images/bikeImage';
-import {CogBtn, ShowMoreArrowBtn} from '../../../sharedComponents/buttons';
+import { CogBtn, ShowMoreArrowBtn } from '../../../sharedComponents/buttons';
 
-import {Place} from '../../../models/places.model';
-import {fetchPlacesData} from '../../../storage/actions';
+import { Place } from '../../../models/places.model';
+import { fetchPlacesData } from '../../../storage/actions';
 
 interface Props {
     navigation: any;
@@ -103,15 +103,15 @@ const Bike: React.FC<Props> = (props: Props) => {
                 dispatch(
                     fetchPlacesData({
                         bbox: [
-                            {lat: newBox.left, lng: newBox.top},
-                            {lat: newBox.right, lng: newBox.bottom},
+                            { lat: newBox.left, lng: newBox.top },
+                            { lat: newBox.right, lng: newBox.bottom },
                         ],
                         width: 2000,
                     }),
                 );
             })
             .catch(error => {
-                const {code, message} = error;
+                const { code, message } = error;
                 if (code === 'UNAVAILABLE' && Platform.OS === 'android') {
                     openLocationSettings();
                 }
@@ -314,7 +314,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                             <BikeImage />
                         )}
 
-                        <ShowMoreArrowBtn onPress={() => {}} up={true} />
+                        <ShowMoreArrowBtn onPress={() => { }} up={true} />
 
                         <Text style={styles.bikeName}>
                             {bike?.description.name}

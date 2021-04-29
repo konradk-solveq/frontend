@@ -43,7 +43,11 @@ const Reviews: React.FC<Props> = (props: Props) => {
     const [animSvgStyle, setAnimSvgStyle] = useState({}); // do odpalania animacji svg
 
     const areas: Array<any> = [];
-    const handleShadowBox = (layout: any) => {
+    const handleShadowBox = (layout: any, style: any, num: number) => {
+        if (areas.some(e => e.num == num)) {
+            return;
+        }
+        layout.num = num;
         areas.push(layout);
 
         if (areas.length == props.list.length) {
@@ -75,7 +79,11 @@ const Reviews: React.FC<Props> = (props: Props) => {
             for (let i = 0; i < areas.length; i++) {
                 let ww = areas[i].width;
                 svg +=
-                    '<rect fill="#fdf5f5" stroke="#313131" stroke-width="1.2" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
+                    '<rect fill="' +
+                    style.color +
+                    '" stroke="#313131" stroke-width="' +
+                    (style.dashed ? '1.2' : '0') +
+                    '" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
                     ww +
                     '" height="' +
                     h +
@@ -220,7 +228,11 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                 <View
                                     style={styles.box}
                                     onLayout={({nativeEvent}) =>
-                                        handleShadowBox(nativeEvent.layout)
+                                        handleShadowBox(
+                                            nativeEvent.layout,
+                                            e.style,
+                                            i,
+                                        )
                                     }>
                                     <Text style={styles.day}>
                                         {getDay(e.date)}
@@ -229,7 +241,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                         {getYear(e.date)}
                                     </Text>
 
-                                    {e.state == 1 && (
+                                    {e.style.checkmark && (
                                         <Svg
                                             style={styles.mark}
                                             viewBox="0 0 20 20">
