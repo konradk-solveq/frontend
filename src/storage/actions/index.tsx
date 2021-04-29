@@ -10,6 +10,7 @@ export {
     setBikesData,
     setBikesListByFrameNumber,
     removeBikeByNumber,
+    fetchGenericBikeData,
 } from './bikes';
 
 export {setAppStatus} from './app';

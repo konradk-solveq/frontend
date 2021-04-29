@@ -3,7 +3,11 @@ import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
 import {UserBike} from '../../models/userBike.model';
 import {Bike} from '../../models/bike.model';
-import {getBikeByFrameNr, getBikesListByFrameNrs} from '../../services';
+import {
+    getBikeByFrameNr,
+    getGenericDataforBike,
+    getBikesListByFrameNrs,
+} from '../../services';
 import {setFrameNumber} from './index';
 import {transformToUserBikeType} from '../../utils/transformData';
 
@@ -16,6 +20,13 @@ interface actionAsyncResponse {
 export const setBikeData = (data: Bike) => {
     return {
         type: actionTypes.SET_BIKE_DATA,
+        bikeData: data,
+    };
+};
+
+export const setGenericBikeData = (data: Bike) => {
+    return {
+        type: actionTypes.SET_GENERIC_BIKE_DATA,
         bikeData: data,
     };
 };
@@ -68,6 +79,48 @@ export const setBikesListByFrameNumber = (
             const newData = transformToUserBikeType(response.data);
 
             dispatch(setBikeData(newData));
+
+            return Promise.resolve({
+                success: true,
+                errorMessage: '',
+                data: newData,
+            });
+        }
+    } catch (error) {
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage));
+
+        return Promise.reject({
+            success: false,
+            errorMessage: errorMessage,
+            data: null,
+        });
+    }
+};
+
+export const fetchGenericBikeData = (): AppThunk<
+    Promise<actionAsyncResponse>
+> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const response = await getGenericDataforBike();
+
+        if (response.error || !response.data) {
+            dispatch(setError(response.error));
+
+            return Promise.reject({
+                success: false,
+                errorMessage: response.error,
+                notFound: true,
+                data: null,
+            });
+        } else {
+            /**
+             * TODO: fix class-transformer
+             * */
+            const newData = transformToUserBikeType(response.data);
+
+            dispatch(setGenericBikeData(newData));
 
             return Promise.resolve({
                 success: true,
@@ -160,7 +213,9 @@ export const setBikesListByFrameNumbers = (): AppThunk<
                 dispatch(setBikesData(dataToUpdate, numbersToUpdate));
             }
 
-            dispatch(setError(errorMessage));
+            if (errorMessage) {
+                dispatch(setError(errorMessage));
+            }
             return Promise.resolve({
                 success: !errorMessage,
                 errorMessage: errorMessage,

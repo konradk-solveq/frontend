@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {I18n} from '../../../../I18n/I18n'
+import {I18n} from '../../../../I18n/I18n';
 
 import AnimSvg from '../../../helpers/animSvg';
+import {useAppSelector} from '../../../hooks/redux';
+import {UserBike} from '../../../models/userBike.model';
 
 import {
     setObjSize,
@@ -17,7 +19,7 @@ interface Props {
     // route: any,
     style?: any;
     type: string;
-    toEnd: number | null;
+    toEnd: number | null | undefined;
     warranty: any;
     details: any;
 }
@@ -139,9 +141,12 @@ const Warranty: React.FC<Props> = (props: Props) => {
         props.navigation.navigate('WarrantyDetails', {details: props.details});
     };
 
-    const warrantyText = !props.toEnd
-        ? I18n.t('MainBike.warranty.lifetime')
-        : `${props.toEnd} ${props.warranty.days}`;
+    const warrantyText =
+        props.toEnd === null
+            ? I18n.t('MainBike.warranty.lifetime')
+            : !props.toEnd
+                ? I18n.t('MainBike.warranty.noInfo')
+                : `${props.toEnd} ${props.warranty.days}`;
     return (
         <View
             style={[styles.container, props.style]}

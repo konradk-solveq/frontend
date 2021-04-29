@@ -12,7 +12,7 @@ import {
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 import AddBike from './addBike';
-import {setBikesListByFrameNumbers} from '../../../storage/actions/bikes';
+import {setBikesListByFrameNumbers, fetchGenericBikeData} from '../../../storage/actions/bikes';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
 import {nfcIsSupported} from '../../../helpers/nfc';
@@ -35,6 +35,7 @@ const Home: React.FC = () => {
     const synchData = async () => {
         try {
             /* TODO: add some sync/info loader */
+            await dispatch(fetchGenericBikeData());
             await dispatch(setBikesListByFrameNumbers());
         } catch (error) {
             /* TODO: add some UI information */
