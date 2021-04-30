@@ -30,6 +30,7 @@ import ScanModal from './scanModal.android';
 const isAndroid = Platform.OS === 'android';
 
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
+import {Bike} from '../../../../models/bike.model';
 interface Props {
     navigation: any;
     name: string;
@@ -41,6 +42,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
 
     const isLoading = useAppSelector<boolean>(state => state.bikes.loading);
+    const bikesList = useAppSelector<Bike[]>(state => state.bikes.list);
     const name = useAppSelector<string>(state => state.user.userName);
     const userName = name ? ' ' + name : ' ' + trans.defaultName;
 
@@ -187,13 +189,15 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         );
     }
 
+    const title =
+        bikesList?.length > 0
+            ? trans.titleNext
+            : trans.title_1 + userName + trans.title_2;
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.scroll}>
                 <ScrollView>
-                    <Text style={styles.title}>
-                        {trans.title_1 + userName + trans.title_2}
-                    </Text>
+                    <Text style={styles.title}>{title}</Text>
 
                     <AnimSvg style={styles.nfc_bike} source={nfcBikeSvg} />
 

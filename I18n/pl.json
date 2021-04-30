@@ -21,6 +21,7 @@
         "defaultName": "rowerzysto",
         "title_1": "Witaj",
         "title_2": ", mam pierwsze zadanie dla Ciebie :)",
+        "titleNext": "Nowy rower",
         "tekst": "Włącz NFC w telefonie i zbliż go do naklejki umieszczonej na ramie roweru KROSS.\n\nJeśli nie widzisz naklejki lub nie obsługujesz NFC, wprowadź ręcznie numer ramy.",
         "btnNfc": "SKANUJ NAKLEJKĘ NFC",
         "btnHand": "CHCĘ WPROWADZIĆ RĘCZNIE",
