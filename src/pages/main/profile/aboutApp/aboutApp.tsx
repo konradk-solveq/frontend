@@ -1,13 +1,7 @@
 import React, {useState} from 'react';
-import {
-    StyleSheet,
-    SafeAreaView,
-    View,
-    Text,
-    ScrollView,
-} from 'react-native';
-
+import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
 import I18n from 'react-native-i18n';
+
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import Bike_0 from './bike_0';
 import Bike_1 from '../../../onboarding/newBeginning/bike_1';
@@ -19,6 +13,7 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../../helpers/layoutFoo';
+import {version} from '../../../../../package.json';
 
 interface Props {
     navigation: any;
@@ -26,7 +21,7 @@ interface Props {
 }
 
 const AboutApp: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('AboutApp');
+    const trans: any = I18n.t('AboutApp');
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -79,6 +74,13 @@ const AboutApp: React.FC<Props> = (props: Props) => {
             lineHeight: 24,
             color: '#555555',
         },
+        version: {
+            marginTop: getVerticalPx(30),
+            fontFamily: 'DIN2014Narrow-Light',
+            fontSize: 14,
+            textAlign: 'left',
+            color: '#555555',
+        },
     });
 
     return (
@@ -101,6 +103,8 @@ const AboutApp: React.FC<Props> = (props: Props) => {
                         <Text style={styles.text}>{trans.text_3}</Text>
 
                         <Text style={styles.signature}>{trans.signature}</Text>
+
+                        <Text style={styles.version}>{`v. ${version}`}</Text>
                     </View>
                 </ScrollView>
             </View>
