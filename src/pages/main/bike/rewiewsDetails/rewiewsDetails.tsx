@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    ScrollView,
-    SafeAreaView,
-} from 'react-native';
+import {StyleSheet, View, Text, ScrollView, SafeAreaView} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {
@@ -18,7 +12,7 @@ import {
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import AnimSvg from '../../../../helpers/animSvg';
-import {countDaysToEnd} from '../../../../helpers/warranty';
+import {getCountedDaysText} from '../../../../helpers/reviews';
 import ServiceMapBtn from '../../../../sharedComponents/buttons/serviceMap';
 
 interface Props {
@@ -183,11 +177,12 @@ const RewiewsDetails: React.FC<Props> = (props: Props) => {
                             }>
                             <Text style={styles.title}>{details.info}</Text>
                             <Text style={styles.details}>
-                                {trans.daysLeft[0] +
-                                    ' ' +
-                                    countDaysToEnd(details.date) +
-                                    ' ' +
-                                    trans.daysLeft[1]}
+                                {getCountedDaysText(
+                                    details.date,
+                                    trans.daysLeft[0],
+                                    trans.daysLeft[1],
+                                    trans.pastDate,
+                                )}
                             </Text>
                         </View>
 
