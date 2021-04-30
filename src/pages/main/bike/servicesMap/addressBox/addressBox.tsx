@@ -25,6 +25,8 @@ const AddressBox: React.FC<IProps> = ({address, containerStyle}: IProps) => {
         },
     });
 
+    const withSeparator = address?.email && address.phone ? '\u00a0|' : '';
+    console.log(address);
     return (
         <View style={[styles.addressContainer, containerStyle]}>
             <AnimSvg style={styles.address} source={adressBackground} />
@@ -33,14 +35,15 @@ const AddressBox: React.FC<IProps> = ({address, containerStyle}: IProps) => {
                 <Text style={styles.addressPalce}>
                     {address.city + '\n' + address.street}
                 </Text>
-                <View style={styles.addressContact}>
-                    <Text style={styles.addressEmailPhone}>
-                        {address.email}
-                    </Text>
-                    <Text style={styles.addressEmailPhone}>
-                        {address.phone}
-                    </Text>
-                </View>
+                {address?.email || address?.phone ? (
+                    <View style={styles.addressContact}>
+                        <Text style={styles.addressEmailPhone}>
+                            {`${address.email || ''}${withSeparator} ${
+                                address.phone || ''
+                            }`}
+                        </Text>
+                    </View>
+                ) : null}
             </View>
         </View>
     );
