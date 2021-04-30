@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     addressEmailPhone: {
-        width: '50%',
+        width: '100%',
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'left',
         fontSize: 15,
