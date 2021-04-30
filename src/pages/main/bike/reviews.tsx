@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
     StyleSheet,
     Dimensions,
@@ -6,9 +6,9 @@ import {
     Text,
     TouchableWithoutFeedback,
 } from 'react-native';
-import Svg, {Path, Circle} from 'react-native-svg';
+import Svg, { Path, Circle } from 'react-native-svg';
 import AnimSvg from '../../../helpers/animSvg';
-import {ScrollView} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import {
     setObjSize,
@@ -16,7 +16,7 @@ import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../../helpers/layoutFoo';
-import {getDay, getYear} from '../../../helpers/overviews';
+import { getDay, getYear } from '../../../helpers/overviews';
 import deepCopy from '../../../helpers/deepCopy';
 
 interface Props {
@@ -77,7 +77,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
         // let newAreas = deepCopy(areas);
         // newAreas.push(layout);
         // setAreas(newAreas);
-        areas.push(layout);
+        areas[num] = layout;
 
         if (areas.length == props.list.length) {
             let b = 10;
@@ -251,14 +251,14 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                     styles.item,
                                     i == 0 && styles.fitstItem,
                                     i == props.list.length - 1 &&
-                                        styles.latItem,
+                                    styles.latItem,
                                 ]}
                                 key={'item_' + i}>
                                 <TouchableWithoutFeedback
                                     onPress={() => heandleShowDeatails(e)}>
                                     <View
                                         style={styles.box}
-                                        onLayout={({nativeEvent}) =>
+                                        onLayout={({ nativeEvent }) =>
                                             handleShadowBox(
                                                 nativeEvent.layout,
                                                 e.style,
