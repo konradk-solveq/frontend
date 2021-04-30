@@ -69,7 +69,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
             startTicking();
             return;
         }
-        
+
         let b = 10;
         let w = 0;
         let h = primeLayout.height - 1;
@@ -102,9 +102,9 @@ const Reviews: React.FC<Props> = (props: Props) => {
             let ww = primeLayout.width;
             svg +=
                 '<rect fill="' +
-                props.list[i].color +
+                props.list[i].style.color +
                 '" stroke="#313131" stroke-width="' +
-                (props.list[i].dashed ? '1.2' : '0') +
+                (props.list[i].style.dashed ? '1.2' : '0') +
                 '" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
                 ww +
                 '" height="' +
