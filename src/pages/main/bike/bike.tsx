@@ -244,6 +244,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             width: w,
             height: 50,
             marginTop: getVerticalPx(72),
+            marginBottom: getVerticalPx(110),
         },
         test: {
             backgroundColor: 'khaki',
