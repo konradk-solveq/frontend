@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import {
     StyleSheet,
     Dimensions,
@@ -6,9 +6,9 @@ import {
     Text,
     TouchableWithoutFeedback,
 } from 'react-native';
-import Svg, {Path, Circle} from 'react-native-svg';
+import Svg, { Path, Circle } from 'react-native-svg';
 import AnimSvg from '../../../helpers/animSvg';
-import {ScrollView} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import {
     setObjSize,
@@ -16,7 +16,7 @@ import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../../helpers/layoutFoo';
-import {getDay, getYear} from '../../../helpers/overviews';
+import { getDay, getYear } from '../../../helpers/overviews';
 import deepCopy from '../../../helpers/deepCopy';
 
 interface Props {
@@ -38,7 +38,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
     const w = ww * (125 / 414);
     // console.log('%c details:', 'background: #ffcc00; color: #003300', props.details)
 
-    const [areas, setAreas] = useState([]);
+    // const [areas, setAreas] = useState([]);
     const [listOn, setListOn] = useState(true);
     const [source, setSource] = useState(
         '<svg xmlns="http://www.w3.org/2000/svg"/>',
@@ -54,8 +54,11 @@ const Reviews: React.FC<Props> = (props: Props) => {
         }, 100);
     };
 
+    let areas = [];
+
     useEffect(() => {
-        setAreas([]);
+        areas = [];
+        // setAreas([]);
         startTicking();
     }, [props.list]);
 
@@ -68,18 +71,19 @@ const Reviews: React.FC<Props> = (props: Props) => {
         layout.color = style.color;
         layout.dashed = style.dashed;
 
-        let newAreas = deepCopy(areas);
-        newAreas.push(layout);
-        setAreas(newAreas);
+        // let newAreas = deepCopy(areas);
+        // newAreas.push(layout);
+        // setAreas(newAreas);
+        areas.push(layout);
 
-        if (newAreas.length == props.list.length) {
+        if (areas.length == props.list.length) {
             let b = 10;
             let w = 0;
-            let h = newAreas[0].height - 1;
+            let h = areas[0].height - 1;
 
-            for (let i = 0; i < newAreas.length; i++) {
-                w += newAreas[i].width;
-                w += i == newAreas.length - 1 ? 0 : getVerticalPx(15);
+            for (let i = 0; i < areas.length; i++) {
+                w += areas[i].width;
+                w += i == areas.length - 1 ? 0 : getVerticalPx(15);
             }
             let svg =
                 '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' +
@@ -98,13 +102,13 @@ const Reviews: React.FC<Props> = (props: Props) => {
 
             let x = 0;
             let y = getVerticalPx(5);
-            for (let i = 0; i < newAreas.length; i++) {
-                let ww = newAreas[i].width;
+            for (let i = 0; i < areas.length; i++) {
+                let ww = areas[i].width;
                 svg +=
                     '<rect fill="' +
-                    newAreas[i].color +
+                    areas[i].color +
                     '" stroke="#313131" stroke-width="' +
-                    (newAreas[i].dashed ? '1.2' : '0') +
+                    (areas[i].dashed ? '1.2' : '0') +
                     '" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
                     ww +
                     '" height="' +
@@ -244,14 +248,14 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                     styles.item,
                                     i == 0 && styles.fitstItem,
                                     i == props.list.length - 1 &&
-                                        styles.latItem,
+                                    styles.latItem,
                                 ]}
                                 key={'item_' + i}>
                                 <TouchableWithoutFeedback
                                     onPress={() => heandleShowDeatails(e)}>
                                     <View
                                         style={styles.box}
-                                        onLayout={({nativeEvent}) =>
+                                        onLayout={({ nativeEvent }) =>
                                             handleShadowBox(
                                                 nativeEvent.layout,
                                                 e.style,
