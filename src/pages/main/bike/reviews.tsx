@@ -38,9 +38,7 @@ const ww = Dimensions.get('window').width;
 const Reviews: React.FC<Props> = (props: Props) => {
     setObjSize(334, 50);
     const w = ww * (125 / 414);
-    // console.log('%c details:', 'background: #ffcc00; color: #003300', props.details)
 
-    // const [areas, setAreas] = useState([]);
     const [listOn, setListOn] = useState(true);
     const [source, setSource] = useState(
         '<svg xmlns="http://www.w3.org/2000/svg"/>',
@@ -52,8 +50,10 @@ const Reviews: React.FC<Props> = (props: Props) => {
     const startTicking = () => {
         setListOn(false);
         timeout.current = setTimeout(() => {
-            areas = [];
             setListOn(true);
+            timeout.current = setTimeout(() => {
+                render();
+            }, 200);
         }, 100);
     };
 
@@ -72,70 +72,73 @@ const Reviews: React.FC<Props> = (props: Props) => {
 
         areas[num] = layout;
         console.log('num:', num);
+    };
 
-        if (areas.length == props.list.length) {
-            let b = 10;
-            let w = 0;
-            let h = areas[0].height - 1;
+    const render = () => {
+        let b = 10;
+        let w = 0;
+        let h = areas[0].height - 1;
 
-            for (let i = 0; i < areas.length; i++) {
-                w += areas[i].width;
-                w += i == areas.length - 1 ? 0 : getVerticalPx(15);
-            }
-            let svg =
-                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' +
-                -b +
-                ' ' +
-                -b +
-                ' ' +
-                (w + b * 2) +
-                ' ' +
-                (h + b * 2) +
-                '" width="' +
-                (w + b + b) +
-                '" height="' +
-                (h + b + b) +
-                '">';
-
-            let x = 0;
-            let y = getVerticalPx(5);
-            for (let i = 0; i < areas.length; i++) {
-                let ww = areas[i].width;
-                svg +=
-                    '<rect fill="' +
-                    areas[i].color +
-                    '" stroke="#313131" stroke-width="' +
-                    (areas[i].dashed ? '1.2' : '0') +
-                    '" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
-                    ww +
-                    '" height="' +
-                    h +
-                    '" x="' +
-                    x +
-                    '" y="' +
-                    y +
-                    '" ry="' +
-                    getHorizontalPx(16) +
-                    '"/>';
-
-                x += ww + getVerticalPx(15) + 1;
-            }
-
-            svg += '</svg>';
-
-            setSource(svg);
-
-            setAnimSvgStyle({
-                position: 'absolute',
-                // marginTop: getVerticalPx(10),
-
-                left: -b,
-                top: -b,
-                width: w + b * 2,
-                height: h + b * 2 + getVerticalPx(10),
-                // backgroundColor: 'grey'
-            });
+        for (let i = 0; i < props.list.length; i++) {
+            w += areas[i].width;
+            w += i == areas.length - 1 ? 0 : getVerticalPx(15);
         }
+
+        let svg =
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' +
+            -b +
+            ' ' +
+            -b +
+            ' ' +
+            (w + b * 2) +
+            ' ' +
+            (h + b * 2) +
+            '" width="' +
+            (w + b + b) +
+            '" height="' +
+            (h + b + b) +
+            '">';
+
+        let x = 0;
+        let y = getVerticalPx(5);
+        for (let i = 0; i < props.list.length; i++) {
+            console.log('num 2:', i);
+
+            let ww = areas[i].width;
+            svg +=
+                '<rect fill="' +
+                areas[i].color +
+                '" stroke="#313131" stroke-width="' +
+                (areas[i].dashed ? '1.2' : '0') +
+                '" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
+                ww +
+                '" height="' +
+                h +
+                '" x="' +
+                x +
+                '" y="' +
+                y +
+                '" ry="' +
+                getHorizontalPx(16) +
+                '"/>';
+
+            x += ww + getVerticalPx(15) + 1;
+        }
+
+        svg += '</svg>';
+
+        setSource(svg);
+
+        setAnimSvgStyle({
+            position: 'absolute',
+            // marginTop: getVerticalPx(10),
+
+            left: -b,
+            top: -b,
+            width: w + b * 2,
+            height: h + b * 2 + getVerticalPx(10),
+            // backgroundColor: 'grey'
+        });
     };
 
     const styles = StyleSheet.create({
