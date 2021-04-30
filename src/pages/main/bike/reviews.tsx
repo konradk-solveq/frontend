@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
     StyleSheet,
     Dimensions,
@@ -6,9 +6,9 @@ import {
     Text,
     TouchableWithoutFeedback,
 } from 'react-native';
-import Svg, {Path, Circle} from 'react-native-svg';
+import Svg, { Path, Circle } from 'react-native-svg';
 import AnimSvg from '../../../helpers/animSvg';
-import {ScrollView} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 
 import {
     setObjSize,
@@ -16,7 +16,7 @@ import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../../helpers/layoutFoo';
-import {getDay, getYear} from '../../../helpers/overviews';
+import { getDay, getYear } from '../../../helpers/overviews';
 
 interface Props {
     style?: any;
@@ -47,7 +47,11 @@ const Reviews: React.FC<Props> = (props: Props) => {
         if (areas.some(e => e.num == num)) {
             return;
         }
+
         layout.num = num;
+        layout.color = style.color;
+        layout.dashed = style.dashed;
+
         areas.push(layout);
 
         if (areas.length == props.list.length) {
@@ -80,9 +84,9 @@ const Reviews: React.FC<Props> = (props: Props) => {
                 let ww = areas[i].width;
                 svg +=
                     '<rect fill="' +
-                    style.color +
+                    areas[i].color +
                     '" stroke="#313131" stroke-width="' +
-                    (style.dashed ? '1.2' : '0') +
+                    (areas[i].dashed ? '1.2' : '0') +
                     '" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
                     ww +
                     '" height="' +
@@ -200,6 +204,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
         });
     };
 
+
     return (
         <View style={[styles.container, props.style]}>
             <Text style={styles.title}>{props.description.name}</Text>
@@ -227,7 +232,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                 onPress={() => heandleShowDeatails(e)}>
                                 <View
                                     style={styles.box}
-                                    onLayout={({nativeEvent}) =>
+                                    onLayout={({ nativeEvent }) =>
                                         handleShadowBox(
                                             nativeEvent.layout,
                                             e.style,
