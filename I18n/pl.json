@@ -117,7 +117,7 @@
         }
     ],
     "PrivacyPolicy": {
-        "version": "1.03",
+        "version": "1.04",
         "header": "Polityka Prywatności Aplikacji Mobilnej myKROSS",
         "title": "Dbamy o\u00a0to aby Twoje dane były bezpieczne",
         "text": "1. Niniejsza Polityka Prywatności określa zasady przetwarzania danych osobowych pozyskanych za\u00a0pośrednictwem sklepu internetowego kross.eu (zwanego dalej: „Sklepem Internetowym”).\n\n2. Właścicielem Sklepu Internetowego i\u00a0jednocześnie administratorem danych jest KROSS\u00a0S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046, wpisana do\u00a0rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w\u00a0Białymstoku, XII\u00a0Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS\u00a00000223853, o\u00a0kapitale zakładowym 45.000.000 PLN, NIP:\u00a07611402748, REGON:\u00a0550749108, zwana dalej KROSS\u00a0S.A..\n\n3. Dane osobowe zbierane przez KROSS\u00a0S.A. za\u00a0pośrednictwem Sklepu Internetowego są\u00a0przetwarzane zgodnie z\u00a0Rozporządzeniem Parlamentu Europejskiego i\u00a0Rady (UE) 2016/679 z\u00a0dnia 27\u00a0kwietnia\u00a02016\u00a0r. w\u00a0sprawie ochrony osób fizycznych w\u00a0związku z\u00a0przetwarzaniem danych osobowych i\u00a0w\u00a0sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (ogólne rozporządzenie o\u00a0ochronie danych), zwane również RODO.\n\n4. KROSS\u00a0S.A. dokłada szczególnej staranności do\u00a0poszanowania prywatności Klientów odwiedzających Sklep Internetowy.",
@@ -179,12 +179,12 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "1. Z\u00a0Administratorem danych mogą Państwo skontaktować się pod jego adresem wskazanym w\u00a0§ 3 powyżej, a\u00a0także poprzez formularz kontaktowy na stronie https://kross.eu/pl/kontakt, telefonicznie (29) 752 11 00 lub mailowo kross@kross.pl"
+                "text": "1. Z\u00a0Administratorem danych mogą Państwo skontaktować się pod jego adresem wskazanym w\u00a0§ 3 powyżej, a\u00a0także poprzez formularz kontaktowy na stronie https://kross.eu/pl/kontakt, telefonicznie (29) 752 11 00 lub mailowo\u00a0mailto:kross@kross.pl."
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "2. W\u00a0sprawach z\u00a0zakresu ochrony Pani\\Pana danych osobowych, w\u00a0tym realizacji praw, o\u00a0których mowa w\u00a0§ 10 poniżej najlepiej skontaktować się wysyłając maila na \u00a0mailto:rodo@kross.pl. "
+                "text": "2. W\u00a0sprawach z\u00a0zakresu ochrony Pani\\Pana danych osobowych, w\u00a0tym realizacji praw, o\u00a0których mowa w\u00a0§ 10 poniżej najlepiej skontaktować się wysyłając maila na\u00a0mailto:rodo@kross.pl. "
             },
             {
                 "marginTop": 53,
@@ -199,27 +199,22 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "• w\u00a0celu utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim -\u00a0podstawa prawna -\u00a0niezbędność do\u00a0wykonania umowy o\u00a0świadczenie usługi do\u00a0konta Użytkownika (art.\u00a06 ust.\u00a01 lit.\u00a0b\u00a0RODO);"
+                "text": "1) w\u00a0celu utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim - podstawa prawna - niezbędność do wykonania umowy o\u00a0świadczenie usługi do konta Użytkownika (art. 6 ust. 1 lit. b\u00a0RODO);"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) w\u00a0celu utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim - podstawa prawna - niezbędność do wykonania umowy o\u00a0świadczenie usługi do konta Użytkownika (art. 6 ust. 1 lit. b\u00a0RODO);"
+                "text": "2) w\u00a0celu wyświetlenia informacji dotyczącej obsługi gwarancyjnej – podstawa prawna – niezbędność w\u00a0celu do wykonania umowy (usługi Aplikacji Mobilnej), której stroną jest osoba, której dane dotyczą (art. 6 ust. 1 lit. b\u00a0RODO);"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) w\u00a0celu wyświetlenia informacji dotyczącej obsługi gwarancyjnej – podstawa prawna – niezbędność w\u00a0celu do wykonania umowy (usługi Aplikacji Mobilnej), której stroną jest osoba, której dane dotyczą (art. 6 ust. 1 lit. b\u00a0RODO);"
+                "text": "3) w\u00a0celach statystycznych (tracking), tj. analiz i\u00a0badań oraz audytu oglądalności, a\u00a0w szczególności do tworzenia anonimowych statystyk, które pomagają zrozumieć, w\u00a0jaki sposób Użytkownicy korzystają z\u00a0Aplikacji Mobilnej, co umożliwia ulepszanie jej struktury i\u00a0zawartości; Analizy będą robione w\u00a0oparciu o\u00a0ogólne i\u00a0anonimowe dane statyczne przetwarzane za pośrednictwem narzędzi analitycznych firmy Google – podstawa prawna – prawnie uzasadniony interes Administratora danych (art. 6 ust. 1 lit. b\u00a0RODO) polegający na ułatwieniu i\u00a0ulepszaniu korzystania z\u00a0funkcjonalności Aplikacji Mobilnej;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "c) w\u00a0celach statystycznych (tracking), tj. analiz i\u00a0badań oraz audytu oglądalności, a\u00a0w szczególności do tworzenia anonimowych statystyk, które pomagają zrozumieć, w\u00a0jaki sposób Użytkownicy korzystają z\u00a0Aplikacji Mobilnej, co umożliwia ulepszanie jej struktury i\u00a0zawartości; Analizy będą robione w\u00a0oparciu o\u00a0ogólne i\u00a0anonimowe dane statyczne przetwarzane za pośrednictwem narzędzi analitycznych Google Analytics – podstawa prawna – prawnie uzasadniony interes Administratora danych (art. 6 ust. 1 lit. b\u00a0RODO) polegający na ułatwieniu i\u00a0ulepszaniu korzystania z\u00a0funkcjonalności Aplikacji Mobilnej;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "d) w\u00a0celu ustalania, dochodzenia i\u00a0egzekucji ewentualnych roszczeń wynikających z\u00a0korzystania z\u00a0Aplikacji Mobilnej - podstawa prawna - prawnie uzasadniony interes (art. 6 ust. 1 lit. f\u00a0RODO), polegający na ustaleniu, dochodzeniu i\u00a0egzekucji roszczeń oraz na obronie przed roszczeniami w\u00a0postępowaniu przed sądami i\u00a0innymi organami państwowymi."
+                "text": "4) w\u00a0celu ustalania, dochodzenia i\u00a0egzekucji ewentualnych roszczeń wynikających z\u00a0korzystania z\u00a0Aplikacji Mobilnej - podstawa prawna - prawnie uzasadniony interes (art. 6 ust. 1 lit. f\u00a0RODO), polegający na ustaleniu, dochodzeniu i\u00a0egzekucji roszczeń oraz na obronie przed roszczeniami w\u00a0postępowaniu przed sądami i\u00a0innymi organami państwowymi."
             },
             {
                 "marginTop": 53,
@@ -244,17 +239,17 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) dostawcom usług, z\u00a0których korzysta KROSS przy prowadzeniu Aplikacji Mobilnej, m.in. dostawcom świadczącym usługi hostingu, dostawcom świadczącym usługę wykonania Aplikacji Mobilnej, dostawcom systemów informatycznych KROSS oraz systemów do analizy ruchu, firmie Google jako dostawcy narzędzi, które mogą być wykorzystywane w\u00a0aplikacjach mobilnych;"
+                "text": "1) dostawcom usług, z\u00a0których korzysta KROSS przy prowadzeniu Aplikacji Mobilnej, m.in. dostawcom świadczącym usługi hostingu, dostawcom świadczącym usługę wykonania Aplikacji Mobilnej, dostawcom systemów informatycznych KROSS oraz systemów do analizy ruchu, firmie Google jako dostawcy narzędzi, które mogą być wykorzystywane w\u00a0aplikacjach mobilnych;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) podmioty z\u00a0grupy kapitałowej KROSS, tylko w\u00a0zakresie w\u00a0jakim jest to niezbędne do prawidłowego wykonania usług zapewniających prawidłowe funkcjonowanie Aplikacji Mobilnej. Spółki z\u00a0grupy KROSS stosują jednolity, wysoki standard ochrony danych osobowych, w\u00a0tym zabezpieczenia odpowiednie do potencjalnych ryzyka naruszenia ochrony danych osobowych;"
+                "text": "2) podmioty z\u00a0grupy kapitałowej KROSS, tylko w\u00a0zakresie w\u00a0jakim jest to niezbędne do prawidłowego wykonania usług zapewniających prawidłowe funkcjonowanie Aplikacji Mobilnej. Spółki z\u00a0grupy KROSS stosują jednolity, wysoki standard ochrony danych osobowych, w\u00a0tym zabezpieczenia odpowiednie do potencjalnych ryzyka naruszenia ochrony danych osobowych;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "c) uprawnione organy państwowe, w\u00a0szczególności takie jak: jednostki organizacyjne Prokuratury, Policji, Prezes Urzędu Ochrony Danych Osobowych, Prezes Urzędu Ochrony Konkurencji i\u00a0Konsumentów lub Prezes Urzędu Komunikacji Elektronicznej, w\u00a0przypadku skierowania przez ww organy żądania o\u00a0udostępnienie danych. Organy te mają na celu ochronę praw Użytkowników."
+                "text": "3) uprawnione organy państwowe, w\u00a0szczególności takie jak: jednostki organizacyjne Prokuratury, Policji, Prezes Urzędu Ochrony Danych Osobowych, Prezes Urzędu Ochrony Konkurencji i\u00a0Konsumentów lub Prezes Urzędu Komunikacji Elektronicznej, w\u00a0przypadku skierowania przez ww organy żądania o\u00a0udostępnienie danych. Organy te mają na celu ochronę praw Użytkowników."
             },
             {
                 "marginTop": 15,
@@ -274,12 +269,12 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) W\u00a0przypadku, gdy podstawą przetwarzania danych jest wykonanie umowy, wówczas dane osobowe Użytkownika przetwarzane są przez KROSS tak długo, jak jest to niezbędne do świadczenia usługi, a\u00a0po tym czasie przez okres przedawnienia roszczeń."
+                "text": "1) W\u00a0przypadku, gdy podstawą przetwarzania danych jest wykonanie umowy, wówczas dane osobowe Użytkownika przetwarzane są przez KROSS tak długo, jak jest to niezbędne do świadczenia usługi, a\u00a0po tym czasie przez okres przedawnienia roszczeń."
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) W\u00a0przypadku gdy podstawą przewarzania danych jest prawnie uzasadniony interes, wówczas dane osobowe Użytkownika przetwarzane są przez okres korzystania z\u00a0Aplikacji Mobilnej. Jeśli w\u00a0tym czasie Użytkownik złoży sprzeciw wobec przewarzania danych i\u00a0sprzeciw ten okaże się zasadny przetwarzanie danych w\u00a0tych celach zostanie zaprzestane wcześniej."
+                "text": "2) W\u00a0przypadku gdy podstawą przewarzania danych jest prawnie uzasadniony interes, wówczas dane osobowe Użytkownika przetwarzane są przez okres korzystania z\u00a0Aplikacji Mobilnej. Jeśli w\u00a0tym czasie Użytkownik złoży sprzeciw wobec przewarzania danych i\u00a0sprzeciw ten okaże się zasadny przetwarzanie danych w\u00a0tych celach zostanie zaprzestane wcześniej."
             },
             {
                 "marginTop": 53,
@@ -304,37 +299,37 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) prawo żądania dostępu do danych oraz uzyskania ich kopii;"
+                "text": "1) prawo żądania dostępu do danych oraz uzyskania ich kopii;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) prawo żądania sprostowania danych;"
+                "text": "2) prawo żądania sprostowania danych;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "c) prawo żądania usunięcia lub ograniczenia przetwarzania danych. Prawo do usunięcia danych (prawo do bycia zapomnianym) podlega pewnym ograniczeniem np. jeśli administrator wykaże niezbędność przetwarzania danych dla określonych celów np. dochodzenia roszczeń;"
+                "text": "3) prawo żądania usunięcia lub ograniczenia przetwarzania danych. Prawo do usunięcia danych (prawo do bycia zapomnianym) podlega pewnym ograniczeniem np. jeśli administrator wykaże niezbędność przetwarzania danych dla określonych celów np. dochodzenia roszczeń;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "d) prawo do wniesienia sprzeciwu wobec przewarzania danych w\u00a0sytuacji gdy dane przewarzane są na podstawie prawnie uzasadnionego interesu;"
+                "text": "4) prawo do wniesienia sprzeciwu wobec przewarzania danych w\u00a0sytuacji gdy dane przewarzane są na podstawie prawnie uzasadnionego interesu;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "e) prawo do przenoszenia danych;"
+                "text": "5) prawo do przenoszenia danych;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "f) prawo do cofnięcia zgody w\u00a0dowolnym momencie przewarzania bez wpływu na zgodność z\u00a0prawem przetwarzania, którego dokonano na podstawie zgody przed jej cofnięciem. Prawo to przysługuje w\u00a0sytuacji, gdy przetwarzanie danych oparto na zgodzie."
+                "text": "6) prawo do cofnięcia zgody w\u00a0dowolnym momencie przewarzania bez wpływu na zgodność z\u00a0prawem przetwarzania, którego dokonano na podstawie zgody przed jej cofnięciem. Prawo to przysługuje w\u00a0sytuacji, gdy przetwarzanie danych oparto na zgodzie."
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "2. W\u00a0przypadku chęci zrealizowania któregoś z\u00a0wyżej wymienionych praw prosimy o\u00a0kontakt na \u00a0rodo@kross.pl. Nasz zespół Ochrony Danych Osobowych udzieli odpowiedzi."
+                "text": "2. W\u00a0przypadku chęci zrealizowania któregoś z\u00a0wyżej wymienionych praw prosimy o\u00a0kontakt na\u00a0\u00a0mailto:rodo@kross.pl. Nasz zespół Ochrony Danych Osobowych udzieli odpowiedzi."
             },
             {
                 "marginTop": 15,
@@ -364,12 +359,12 @@
             {
                 "marginTop": 53,
                 "font": "light",
-                "text": "Wersja z\u00a0dnia 23.04.2021 r."
+                "text": "Wersja z\u00a0dnia 30.04.2021 r."
             }
         ]
     },
     "Regulations": {
-        "version": "1.03",
+        "version": "1.04",
         "header": "Regulamin",
         "title": "Sprawdź aktualne zapisy regulaminu dotyczącego Aplikacji Mobilnej myKROSS",
         "paragraph": [{
@@ -517,17 +512,17 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) urządzenie mobilne (smartfon) wyposażone w\u00a0system operacyjny Android w\u00a0wersji co najmniej 5.0 lub nowszej, aktywne konto użytkownika w\u00a0serwisie www.google.com oraz dostęp do sieci Internet;"
+                "text": "1) urządzenie mobilne (smartfon) wyposażone w\u00a0system operacyjny Android w\u00a0wersji co najmniej 5.0 lub nowszej, aktywne konto użytkownika w\u00a0serwisie www.google.com oraz dostęp do sieci Internet;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) urządzenie mobilne (smartfon) wyposażone w\u00a0system operacyjny iOS w\u00a0wersji co najmniej 10 lub nowszej, aktywne konto użytkownika w\u00a0serwisie www.appstore.com oraz dostęp do sieci Internet."
+                "text": "2) urządzenie mobilne (smartfon) wyposażone w\u00a0system operacyjny iOS w\u00a0wersji co najmniej 10 lub nowszej, aktywne konto użytkownika w\u00a0serwisie www.appstore.com oraz dostęp do sieci Internet,"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "w zależności od wyboru systemu, w\u00a0którym będzie działać Aplikacja Mobilna, dokonanego przez Użytkownika."
+                "text": "- w zależności od wyboru systemu, w\u00a0którym będzie działać Aplikacja Mobilna, dokonanego przez Użytkownika."
             },
             {
                 "marginTop": 15,
@@ -587,17 +582,17 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) Prowadzenie Konta Użytkownika, jeśli zostało utworzone przez Użytkownika;"
+                "text": "1) Prowadzenie Konta Użytkownika, jeśli zostało utworzone przez Użytkownika;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) rejestracja roweru\\ów Użytkownika;"
+                "text": "2) rejestracja roweru\\ów Użytkownika;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "c) wyświetlanie specyfikacji roweru\\ów zarejestrowanego\\ych przez Użytkownika."
+                "text": "3) wyświetlanie specyfikacji roweru\\ów zarejestrowanego\\ych przez Użytkownika."
             },
             {
                 "marginTop": 15,
@@ -617,6 +612,11 @@
             {
                 "marginTop": 15,
                 "font": "light",
+                "text": "W przypadku gdy producentem roweru jest Usługodawca, a posiadany przez Użytkownika rower wyposażony jest w naklejkę NFC, Użytkownik alternatywnie zamiast ręcznego wprowadzania numeru ramy, ma możliwość jego zeskanowania. Przyłożenie przez Użytkownika smartfonu z uruchomioną w Aplikacji Mobilnej opcją skanowania NFC do naklejki NFC umieszczonej na ramie roweru, pozwala na automatyczne wczytanie danych. Warunkiem korzystania z tej funkcji Aplikacji Mobilnej jest posiadanie roweru KROSS z naklejką NFC oraz smartfonu obsługującego moduł NFC do wczytywania danych umieszczonych na naklejce NFC."
+            },
+            {
+                "marginTop": 15,
+                "font": "light",
                 "text": "7. Rezygnacja z\u00a0usługi nieodpłatnej rejestracja roweru Użytkownika możliwa jest w\u00a0każdej chwili i\u00a0polega na zaprzestaniu zamieszczania treści przez Użytkownika."
             },
             {
@@ -632,17 +632,12 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) danych technicznych roweru, w\u00a0tym przypadku pełne dane dotyczące specyfikacji roweru (w szczególności: numer ramy, model, rozmiar, kolor, zdjęcie), zaczytują się automatycznie z\u00a0wewnętrznego systemu informatycznego Usługodawcy"
+                "text": "1) danych technicznych roweru, w\u00a0tym przypadku pełne dane dotyczące specyfikacji roweru (w szczególności: numer ramy, model, rozmiar, kolor, zdjęcie), zaczytują się automatycznie z\u00a0wewnętrznego systemu informatycznego Usługodawcy."
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) statusie gwarancji, ilości dni pozostałych do końca gwarancji, informacji o\u00a0przeglądach gwarancyjnych i\u00a0okresowych (data, zakres czynności) Powyższe parametry są przez Usługodawcę aktualizowane."
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "Powyższe parametry są przez Usługodawcę aktualizowane."
+                "text": "2) statusie gwarancji, ilości dni pozostałych do końca gwarancji, informacji o\u00a0przeglądach gwarancyjnych i\u00a0okresowych (data, zakres czynności). Powyższe parametry są przez Usługodawcę aktualizowane."
             },
             {
                 "marginTop": 15,
@@ -682,22 +677,22 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) jest uprawniony do korzystania z\u00a0autorskich praw majątkowych, praw własności przemysłowej i/lub praw pokrewnych do – odpowiednio - utworów, przedmiotów praw własności przemysłowej (np. znaki towarowe) i/lub przedmiotów praw pokrewnych, które składają się na treści;"
+                "text": "1) jest uprawniony do korzystania z\u00a0autorskich praw majątkowych, praw własności przemysłowej i/lub praw pokrewnych do – odpowiednio - utworów, przedmiotów praw własności przemysłowej (np. znaki towarowe) i/lub przedmiotów praw pokrewnych, które składają się na treści;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) umieszczenie oraz udostępnienie danych osobowych, wizerunku oraz informacji dotyczących osób trzecich nastąpiło w\u00a0sposób legalny, dobrowolny oraz za zgodą osób, których one dotyczą;"
+                "text": "2) umieszczenie oraz udostępnienie danych osobowych, wizerunku oraz informacji dotyczących osób trzecich nastąpiło w\u00a0sposób legalny, dobrowolny oraz za zgodą osób, których one dotyczą;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "c) wyraża zgodę na wgląd do opublikowanych treści przez innych Użytkowników oraz Usługodawcę, jak również upoważnia Usługodawcę do ich wykorzystania nieodpłatnie zgodnie z\u00a0postanowieniami niniejszego Regulaminu;"
+                "text": "3) wyraża zgodę na wgląd do opublikowanych treści przez innych Użytkowników oraz Usługodawcę, jak również upoważnia Usługodawcę do ich wykorzystania nieodpłatnie zgodnie z\u00a0postanowieniami niniejszego Regulaminu;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "d) wyraża zgodę na dokonywanie opracowań utworów w\u00a0rozumieniu Ustawy o\u00a0prawie autorskim i\u00a0prawach pokrewnych."
+                "text": "4) wyraża zgodę na dokonywanie opracowań utworów w\u00a0rozumieniu Ustawy o\u00a0prawie autorskim i\u00a0prawach pokrewnych."
             },
             {
                 "marginTop": 15,
@@ -707,12 +702,12 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) zamieszczania danych osobowych osób trzecich oraz rozpowszechniania wizerunku osób trzecich bez wymaganego prawem zezwolenia lub zgody osoby trzeciej;"
+                "text": "1) zamieszczania danych osobowych osób trzecich oraz rozpowszechniania wizerunku osób trzecich bez wymaganego prawem zezwolenia lub zgody osoby trzeciej;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) zamieszczania treści o\u00a0charakterze reklamowym i\\lub promocyjnym."
+                "text": "2) zamieszczania treści o\u00a0charakterze reklamowym i\\lub promocyjnym."
             },
             {
                 "marginTop": 15,
@@ -727,27 +722,27 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "a) zostać zamieszczane w\u00a0złej wierze, np. z\u00a0zamiarem naruszenia dóbr osobistych osób trzecich;"
+                "text": "1) zostać zamieszczane w\u00a0złej wierze, np. z\u00a0zamiarem naruszenia dóbr osobistych osób trzecich;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) naruszać jakiekolwiek prawa osób trzecich, w\u00a0tym prawa związane z\u00a0ochroną praw autorskich i\u00a0praw pokrewnych, ochroną praw własności przemysłowej, tajemnicą przedsiębiorstwa lub mające związek ze zobowiązaniami o\u00a0zachowaniu poufności;"
+                "text": "2) naruszać jakiekolwiek prawa osób trzecich, w\u00a0tym prawa związane z\u00a0ochroną praw autorskich i\u00a0praw pokrewnych, ochroną praw własności przemysłowej, tajemnicą przedsiębiorstwa lub mające związek ze zobowiązaniami o\u00a0zachowaniu poufności;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "c) posiadać charakter obraźliwy bądź stanowić groźbę skierowaną do innych osób, zawierałyby słownictwo naruszające dobre obyczaje (np. poprzez użycie wulgaryzmów lub określeń powszechnie uznawanych za obraźliwe);"
+                "text": "3) posiadać charakter obraźliwy bądź stanowić groźbę skierowaną do innych osób, zawierałyby słownictwo naruszające dobre obyczaje (np. poprzez użycie wulgaryzmów lub określeń powszechnie uznawanych za obraźliwe);"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "d) pozostawać w\u00a0sprzeczności z\u00a0interesem Usługodawcy, tj. treści stanowiących materiały o\u00a0charakterze reklamowym innego przedsiębiorcy lub produktu; treści nie związanych z\u00a0działalnością Usługodawcy; treści nieprawdziwych lub wprowadzających w\u00a0błąd;"
+                "text": "4) pozostawać w\u00a0sprzeczności z\u00a0interesem Usługodawcy, tj. treści stanowiących materiały o\u00a0charakterze reklamowym innego przedsiębiorcy lub produktu; treści nie związanych z\u00a0działalnością Usługodawcy; treści nieprawdziwych lub wprowadzających w\u00a0błąd;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "e) naruszać w\u00a0inny sposób postanowienia Regulaminu, dobre obyczaje, przepisy obowiązującego prawa, normy społeczne lub obyczajowe."
+                "text": "5) naruszać w\u00a0inny sposób postanowienia Regulaminu, dobre obyczaje, przepisy obowiązującego prawa, normy społeczne lub obyczajowe."
             },
             {
                 "marginTop": 15,
@@ -837,7 +832,7 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "1. Zasady ochrony Danych Osobowych zamieszczone są w\u00a0Polityce prywatności udostępnionej w\u00a0Aplikacji Mobilnej."
+                "text": "Zasady ochrony Danych Osobowych zamieszczone są w\u00a0Polityce prywatności udostępnionej w\u00a0Aplikacji Mobilnej."
             },
             {
                 "marginTop": 53,
@@ -877,7 +872,7 @@
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "6. Regulamin wchodzi w\u00a0życie z\u00a0dniem 23.04.2021 r."
+                "text": "6. Regulamin wchodzi w\u00a0życie z\u00a0dniem 30.04.2021 r."
             }
         ]
     },
