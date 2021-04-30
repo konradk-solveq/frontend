@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {Marker} from 'react-native-maps';
 
-import MarkerImageAndroid from '../../../../../assets/images/map_marker_android.png';
+import MarkerImageAndroid from '../../../../../assets/images/map_marker_36.png';
 
 interface IProps {
     lat: number;
