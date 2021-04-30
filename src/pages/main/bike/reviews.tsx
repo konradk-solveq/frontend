@@ -57,12 +57,12 @@ const Reviews: React.FC<Props> = (props: Props) => {
     let areas = [];
 
     useEffect(() => {
-        areas = [];
         // setAreas([]);
         startTicking();
     }, [props.list]);
 
     const handleShadowBox = (layout: any, style: any, num: number) => {
+        if (num == 0) areas = [];
         if (areas.some(e => e.num == num)) {
             return;
         }
