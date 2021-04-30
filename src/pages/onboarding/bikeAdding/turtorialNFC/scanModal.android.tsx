@@ -42,7 +42,7 @@ const ScanModal: React.FC<IProps> = ({
             width: getHorizontalPx(414),
             height: getHorizontalPx(800),
             left: 0,
-            bottom: -(getHorizontalPx(800) - (getVerticalPx(35 + 81 + 35 + 65 + 145 + 30) + 40 + 23 + 50)),
+            bottom: -(getHorizontalPx(800) - (getVerticalPx(35 + 81 + 35 + 65 + 145 + 90) + 40 + 23 + 50)),
         },
         wrap: {
             width: getHorizontalPx(334),
