@@ -58,7 +58,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         // setAreas([]);
-        areas = [];
+        // areas = [];
         startTicking();
     }, [props.list]);
 
