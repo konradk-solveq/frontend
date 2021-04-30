@@ -17,7 +17,6 @@ import {
     getVerticalPx,
 } from '../../../helpers/layoutFoo';
 import {getDay, getYear} from '../../../helpers/overviews';
-import deepCopy from '../../../helpers/deepCopy';
 
 interface Props {
     style?: any;
@@ -31,7 +30,7 @@ interface Props {
     location: any;
 }
 
-let areas = [];
+let primeLayout = null;
 
 const ww = Dimensions.get('window').width;
 
@@ -61,27 +60,23 @@ const Reviews: React.FC<Props> = (props: Props) => {
         startTicking();
     }, [props.list]);
 
-    const handleShadowBox = (layout: any, style: any, num: number) => {
-        if (areas.some(e => e.num == num)) {
-            return;
-        }
-
-        layout.num = num;
-        layout.color = style.color;
-        layout.dashed = style.dashed;
-
-        areas[num] = layout;
-        console.log('num:', num);
+    const handleShadowBox = (layout: any) => {
+        primeLayout = layout;
     };
 
     const render = () => {
+        if (!primeLayout) {
+            startTicking();
+            return;
+        }
+        
         let b = 10;
         let w = 0;
-        let h = areas[0].height - 1;
+        let h = primeLayout.height - 1;
 
         for (let i = 0; i < props.list.length; i++) {
-            w += areas[i].width;
-            w += i == areas.length - 1 ? 0 : getVerticalPx(15);
+            w += primeLayout.width;
+            w += i == props.list.length - 1 ? 0 : getVerticalPx(15);
         }
 
         let svg =
@@ -104,12 +99,12 @@ const Reviews: React.FC<Props> = (props: Props) => {
         for (let i = 0; i < props.list.length; i++) {
             console.log('num 2:', i);
 
-            let ww = areas[i].width;
+            let ww = primeLayout.width;
             svg +=
                 '<rect fill="' +
-                areas[i].color +
+                props.list[i].color +
                 '" stroke="#313131" stroke-width="' +
-                (areas[i].dashed ? '1.2' : '0') +
+                (props.list[i].dashed ? '1.2' : '0') +
                 '" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
                 ww +
                 '" height="' +
@@ -256,11 +251,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                     <View
                                         style={styles.box}
                                         onLayout={({nativeEvent}) =>
-                                            handleShadowBox(
-                                                nativeEvent.layout,
-                                                e.style,
-                                                i,
-                                            )
+                                            handleShadowBox(nativeEvent.layout)
                                         }>
                                         <Text style={styles.day}>
                                             {getDay(e.date)}
