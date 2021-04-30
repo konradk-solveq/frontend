@@ -78,6 +78,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
         // newAreas.push(layout);
         // setAreas(newAreas);
         areas[num] = layout;
+        console.log('num:', num)
 
         if (areas.length == props.list.length) {
             let b = 10;
