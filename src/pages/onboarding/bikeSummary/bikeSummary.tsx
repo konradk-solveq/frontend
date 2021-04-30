@@ -161,7 +161,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                         title={trans.btnChange}
                         onpress={() => {
                             dispatch(removeBikeByNumber(frameNumber));
-                            navigation.navigate('AddingByNumber');
+                            navigation.navigate('TurtorialNFC');
                         }}
                     />
                 </View>
