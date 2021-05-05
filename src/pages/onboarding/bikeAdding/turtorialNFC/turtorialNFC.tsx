@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState, useRef} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -26,11 +26,11 @@ import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
 import {setBikesListByFrameNumber} from '../../../../storage/actions';
 import Loader from '../loader/loader';
 import ScanModal from './scanModal.android';
+import nfcBikeSvg from './nfcBikeBackgoundSvg';
+import {Bike} from '../../../../models/bike.model';
 
 const isAndroid = Platform.OS === 'android';
 
-import nfcBikeSvg from './nfcBikeBackgoundSvg';
-import {Bike} from '../../../../models/bike.model';
 interface Props {
     navigation: any;
     name: string;
@@ -38,6 +38,7 @@ interface Props {
 }
 
 const TurtorialNFC: React.FC<Props> = (props: Props) => {
+    const refTimer = useRef<any>();
     const trans: any = I18n.t('TurtorialNFC');
     const dispatch = useAppDispatch();
 
@@ -49,29 +50,27 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const [showScanModal, setShowScanModal] = useState<boolean>(false);
     const [startScanNFC, setStartScanNFC] = useState<boolean>(false);
 
-    const [inputFrame, setInputFrame] = useState('');
     const [nfcIsOn, setNfcIsoOn] = useState(false);
 
     useEffect(() => {
-        if (startScanNFC) {
+        if (!nfcIsOn) {
             nfcIsEnabled().then(r => {
                 if (r) {
-                    initNfc().then(() => {
-                        setNfcIsoOn(true);
+                    initNfc().then(res => {
+                        setNfcIsoOn(res);
                     });
-                } else {
-                    Alert.alert('', trans.alertMessage);
                 }
             });
         }
         return () => cleanUp();
-    }, [startScanNFC, trans.alertMessage]);
+    }, [nfcIsOn]);
 
     const goForwardHandler = useCallback(
         async (frame: string) => {
             const trimmedInputFrame = frame?.trim();
             try {
                 await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
+                setStartScanNFC(false);
                 props.navigation.navigate({
                     name: 'BikeSummary',
                     params: {frameNumber: trimmedInputFrame},
@@ -92,36 +91,73 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         [dispatch, props.navigation],
     );
 
-    useEffect(() => {
-        if (nfcIsOn) {
-            readNdef().then(res => {
+    const readNFCTag = useCallback(async () => {
+        readNdef()
+            .then(res => {
                 res.forEach(e => {
                     if (e[0] === 'text') {
                         setShowScanModal(false);
-                        setInputFrame(e[1]);
                         goForwardHandler(e[1]);
                     }
                 });
+            })
+            .catch(e => {
+                if (e === 'CANCELED') {
+                    refTimer.current = setTimeout(
+                        () => {
+                            setNfcIsoOn(false);
+                            setStartScanNFC(false);
+                        },
+                        isAndroid ? 0 : 1500,
+                    );
+                }
+            });
+    }, [goForwardHandler]);
+
+    const cancelScanByNfcHandler = useCallback(() => {
+        setShowScanModal(false);
+        if (startScanNFC) {
+            setStartScanNFC(false);
+            setNfcIsoOn(false);
+        }
+    }, [startScanNFC]);
+
+    useEffect(() => {
+        if (nfcIsOn) {
+            if (startScanNFC) {
+                readNFCTag();
+            }
+            return;
+        }
+        if (startScanNFC) {
+            nfcIsEnabled().then(r => {
+                if (r) {
+                    readNFCTag();
+                } else {
+                    Alert.alert('', trans.alertMessage, [
+                        {text: 'Ok', onPress: () => cancelScanByNfcHandler()},
+                    ]);
+                }
             });
         }
-    }, [nfcIsOn, inputFrame, goForwardHandler]);
+
+        return () => clearTimeout(refTimer.current);
+    }, [
+        nfcIsOn,
+        readNFCTag,
+        trans.alertMessage,
+        startScanNFC,
+        cancelScanByNfcHandler,
+    ]);
 
     const [headHeight, setHeadHeightt] = useState(0);
 
-    const heandleScanByNfc = () => {
+    const heandleScanByNfc = async () => {
         if (!isAndroid) {
             onScanNfcHandler();
             return;
         }
         setShowScanModal(true);
-    };
-
-    const cancelScanByNfcHandler = () => {
-        if (startScanNFC) {
-            setStartScanNFC(false);
-            setNfcIsoOn(false);
-        }
-        setShowScanModal(false);
     };
 
     const onScanNfcHandler = () => {
@@ -206,6 +242,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                     <View style={styles.btnNfc}>
                         <BigRedBtn
                             title={trans.btnNfc}
+                            disabled={startScanNFC}
                             onpress={() => heandleScanByNfc()}
                         />
                     </View>
