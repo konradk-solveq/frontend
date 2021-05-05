@@ -1,15 +1,12 @@
-import React from "react";
-import { StyleSheet, Dimensions, View } from 'react-native';
+import React from 'react';
+import {StyleSheet, Dimensions, View, StatusBar} from 'react-native';
 import AnimSvg from '../../../helpers/animSvg';
 
-import {
-    getStandardPx
-} from '../../../helpers/layoutFoo';
+import {getStandardPx} from '../../../helpers/layoutFoo';
 
 const ww = Dimensions.get('window').width;
 
 const SplashScreen = () => {
-
     const krossLogo = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 130">
     <defs>
         <clipPath id="clip">
@@ -54,30 +51,25 @@ const SplashScreen = () => {
         container: {
             width: ww,
             height: '100%',
-            backgroundColor: 'white'
+            backgroundColor: 'white',
         },
         krossLogo: getStandardPx(242, 130, 226),
         krossYouCan: getStandardPx(118, 52, 767),
         khaki: {
-            backgroundColor: 'khaki'
+            backgroundColor: 'khaki',
         },
-    })
+    });
 
     return (
-        <View style={styles.container}>
+        <>
+            <StatusBar hidden />
+            <View style={styles.container}>
+                <AnimSvg style={styles.krossLogo} source={krossLogo} />
 
-            <AnimSvg
-                style={styles.krossLogo}
-                source={krossLogo}
-            />
-
-            <AnimSvg
-                style={styles.krossYouCan}
-                source={krossYouCan}
-            />
-
-        </View>
-    )
-}
+                <AnimSvg style={styles.krossYouCan} source={krossYouCan} />
+            </View>
+        </>
+    );
+};
 
 export default SplashScreen;

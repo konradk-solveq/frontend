@@ -9,4 +9,7 @@ const instance = axios.create({
     // },
 });
 
+export const source = axios.CancelToken.source();
+export const isCancel = (c: any) => axios.isCancel(c);
+
 export default instance;

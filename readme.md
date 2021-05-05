@@ -59,6 +59,9 @@ yarn add react-redux
 yarn add redux
 yarn add redux-persist
 yarn add redux-thunk
+
+yarn add react-native-nfc-manager
+yarn add react-native-get-location
 ```
 
 

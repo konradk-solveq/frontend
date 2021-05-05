@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 414 415">
+  <defs
+     id="defs10">
+    <filter
+       id="0v74ekv9aa"
+       width="1.51"
+       height="1.508"
+       x="-0.255"
+       y="-0.252"
+       filterUnits="objectBoundingBox">
+      <feOffset
+         dy="1"
+         in="SourceAlpha"
+         result="shadowOffsetOuter1"
+         id="feOffset2" />
+      <feGaussianBlur
+         in="shadowOffsetOuter1"
+         result="shadowBlurOuter1"
+         stdDeviation="35"
+         id="feGaussianBlur4" />
+      <feColorMatrix
+         in="shadowBlurOuter1"
+         values="0 0 0 0 0.518513113 0 0 0 0 0.0483188295 0 0 0 0 0.0672953544 0 0 0 0.15 0"
+         id="feColorMatrix6" />
+    </filter>
+    <path
+       id="24z8dt0oxb"
+       d="M 0,0 C 66.443,14.667 135.178,22 206.206,22 277.233,22 346.498,14.667 414,0 V 415 H 0 Z"
+       inkscape:connector-curvature="0" />
+    <filter
+       id="0v74ekv9aa-7"
+       width="1.51"
+       height="1.508"
+       x="-0.255"
+       y="-0.252"
+       filterUnits="objectBoundingBox">
+      <feOffset
+         dy="1"
+         in="SourceAlpha"
+         result="shadowOffsetOuter1"
+         id="feOffset2-9" />
+      <feGaussianBlur
+         in="shadowOffsetOuter1"
+         result="shadowBlurOuter1"
+         stdDeviation="35"
+         id="feGaussianBlur4-9" />
+      <feColorMatrix
+         in="shadowBlurOuter1"
+         values="0 0 0 0 0.518513113 0 0 0 0 0.0483188295 0 0 0 0 0.0672953544 0 0 0 0.15 0"
+         id="feColorMatrix6-9" />
+    </filter>
+  </defs>
+</svg>

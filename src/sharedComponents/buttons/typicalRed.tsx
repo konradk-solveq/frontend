@@ -8,7 +8,7 @@ interface Props {
     title: string; // *
     onpress: Function; // *
     active: boolean; // *
-    height: number;
+    height?: number;
 }
 
 const TypicalRedBtn: React.FC<Props> = (props: Props) => {

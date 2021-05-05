@@ -1,39 +1,16 @@
 import React from 'react';
 import {
     StyleSheet,
-    SafeAreaView,
     View,
     Text,
     TouchableOpacity,
 } from 'react-native';
-import Svg, {G, Path, Circle} from 'react-native-svg';
+import Svg, { Path} from 'react-native-svg';
 
 import {
-    setAppSize,
-    initAppSize,
     setObjSize,
-    getCenterLeftPx,
-    getCenterTopPx,
-    getHorizontal,
     getHorizontalPx,
-    getVertical,
     getVerticalPx,
-    getWidth,
-    getWidthOf,
-    getWidthPx,
-    getWidthPxOf,
-    getHeight,
-    getHeightPx,
-    getHeightOfPx,
-    getRelativeWidth,
-    getRelativeHeight,
-    getStandard,
-    getStandardPx,
-    getPerfectPx,
-    getPosStaticHeight,
-    getOnlyPos,
-    getPosAndWid,
-    getPosWithMinHeight,
 } from '../../../helpers/layoutFoo';
 
 interface Props {

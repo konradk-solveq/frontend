@@ -26,6 +26,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NFCReaderUsageDescription</key>
+	<string>This app needs to get your NFC reader to read bike frame nr from NFC stickers.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -37,6 +39,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Displaying a list of service points and Kross partner stores in the vicinity of the user. Locations displayed on the map.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DIN2014Narrow-Light.otf</string>

@@ -31,6 +31,7 @@ export interface Warranty {
         type: string;
         date: Date;
         info: string;
+        operations: string[];
     }[];
     info: string;
     warning: string;

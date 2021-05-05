@@ -1,1 +1,6 @@
-export {getBikeByFrameNr, getBikesListByFrameNrs} from './bikesService';
+export {
+    getBikeByFrameNr,
+    getGenericDataforBike,
+    getBikesListByFrameNrs,
+} from './bikesService';
+export {getPlacesList} from './placesService';

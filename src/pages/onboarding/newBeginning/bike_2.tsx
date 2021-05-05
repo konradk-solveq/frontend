@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Bike_2: React.FC<Props> = (props: Props) => (
-    <Svg viewBox="0 0 277 274">
+    <Svg style={props.style} viewBox="0 0 277 274">
         <G fill="none" fill-rule="evenodd">
             <Path fill="#F0F0F0" d="M139 191V80l80.4 1.2L246 191z" />
             <G transform="translate(162 63)">
