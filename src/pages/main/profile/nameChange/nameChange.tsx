@@ -56,14 +56,14 @@ const NameChange: React.FC<Props> = ({ navigation }: Props) => {
     };
 
     const hadleOnpressWithName = (inputName: string) => {
-        if (!validateData(userUserValidationRules.userName, inputName)) {
-            setForceMessageWrong('Nazwa jest za krótka');
-            setValidationStatus(false);
-        }
+        // if (!validateData(userUserValidationRules.userName, inputName)) {
+        //     setForceMessageWrong('Nazwa jest za krótka');
+        //     setValidationStatus(false);
+        // }
 
-        if (!validationStatus) {
-            return;
-        }
+        // if (!validationStatus) {
+        //     return;
+        // }
         dispatch(setUserName(inputName));
         navigation.goBack();
     };
