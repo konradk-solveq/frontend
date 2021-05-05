@@ -4,6 +4,7 @@ import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
+import {initCrashlytics} from '../../../utils/crashlytics';
 
 import {
     setObjSize,
@@ -12,7 +13,10 @@ import {
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 import AddBike from './addBike';
-import {setBikesListByFrameNumbers, fetchGenericBikeData} from '../../../storage/actions/bikes';
+import {
+    setBikesListByFrameNumbers,
+    fetchGenericBikeData,
+} from '../../../storage/actions/bikes';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
 import {nfcIsSupported} from '../../../helpers/nfc';
@@ -21,9 +25,16 @@ const Home: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
+    const userName = useAppSelector<string>(state => state.user.userName);
     const trans: any = I18n.t('MainHome');
 
     const [nfc, setNfc] = useState();
+
+    useEffect(() => {
+        /* Logs will be send after app restarted */
+        initCrashlytics(userName);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (isOnline) {

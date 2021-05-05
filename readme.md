@@ -19,6 +19,8 @@ cp .env.example .env
 ```
 replace `API_URL` and `GOOGLE_MAPS_API_KEY` values
 
+Put google-service.json in `android/app/google-services.json` path and GoogleService-Info.plist in `ios/GoogleService-Info.plist` (files comes from Firebase service).
+
 ---
 
 gdyby nie zadziałało:

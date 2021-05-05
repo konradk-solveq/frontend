@@ -232,6 +232,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}>
                 <AnimSvg
+                    key={source.length}
                     source={source}
                     style={[styles.animSvg, animSvgStyle]}
                 />

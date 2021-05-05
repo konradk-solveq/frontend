@@ -219,7 +219,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<
             return Promise.resolve({
                 success: !errorMessage,
                 errorMessage: errorMessage,
-                data: dataToUpdate,
+                data: dataToUpdate, //TODO: serialize data before store in redux
             });
         }
     } catch (error) {
