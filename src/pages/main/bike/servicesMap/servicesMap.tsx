@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
+import logger from '../../../../utils/crashlytics';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {fetchPlacesData} from '../../../../storage/actions';
 import {
@@ -103,11 +104,12 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                     }),
                 );
             } catch (error) {
+                /* TODO: add ui info */
                 console.log('[Get places error]', error);
             }
         };
 
-        getMapData().then(() => getMapData());
+        getMapData();
     }, [mapBox.bottom, mapBox.left, mapBox.top, mapBox.right, dispatch]);
 
     const heandleShowAdress = (adressDetails: PointDetails | null) => {
