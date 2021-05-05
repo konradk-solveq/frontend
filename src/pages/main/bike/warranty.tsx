@@ -125,7 +125,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
         },
         line: {
             borderBottomColor: '#ebebeb',
-            borderBottomWidth: 2,
+            borderBottomWidth: 1,
         },
         dots: {
             position: 'absolute',
