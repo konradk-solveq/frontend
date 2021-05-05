@@ -46,6 +46,10 @@ const Reviews: React.FC<Props> = (props: Props) => {
 
     const timeout = useRef();
 
+    useEffect(() => {
+        return () => clearTimeout(timeout.current);
+    }, []);
+
     const startTicking = () => {
         setListOn(false);
         timeout.current = setTimeout(() => {
@@ -61,7 +65,9 @@ const Reviews: React.FC<Props> = (props: Props) => {
     }, [props.list]);
 
     const handleShadowBox = (layout: any) => {
-        primeLayout = layout;
+        if (!primeLayout) {
+            primeLayout = layout;
+        }
     };
 
     const render = () => {
@@ -97,8 +103,6 @@ const Reviews: React.FC<Props> = (props: Props) => {
         let x = 0;
         let y = getVerticalPx(5);
         for (let i = 0; i < props.list.length; i++) {
-            console.log('num 2:', i);
-
             let ww = primeLayout.width;
             svg +=
                 '<rect fill="' +
@@ -126,13 +130,10 @@ const Reviews: React.FC<Props> = (props: Props) => {
 
         setAnimSvgStyle({
             position: 'absolute',
-            // marginTop: getVerticalPx(10),
-
             left: -b,
             top: -b,
             width: w + b * 2,
             height: h + b * 2 + getVerticalPx(10),
-            // backgroundColor: 'grey'
         });
     };
 
