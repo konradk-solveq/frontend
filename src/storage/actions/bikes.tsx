@@ -105,7 +105,7 @@ export const fetchGenericBikeData = (): AppThunk<
     try {
         const response = await getGenericDataforBike();
 
-        if (response.error || !response.data) {
+        if (response?.error || !response?.data) {
             dispatch(setError(response.error));
 
             return Promise.reject({
@@ -209,7 +209,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<
                 el => !notFound.includes(el),
             );
 
-            if (numbersToUpdate.length > 0) {
+            if (numbersToUpdate.length > 0 && dataToUpdate?.length > 0) {
                 dispatch(setBikesData(dataToUpdate, numbersToUpdate));
             }
 
