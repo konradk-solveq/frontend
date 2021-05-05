@@ -9,31 +9,6 @@ PODS:
     - React-Core (= 0.64.0)
     - React-jsi (= 0.64.0)
     - ReactCommon/turbomodule/core (= 0.64.0)
-  - Firebase/CoreOnly (7.11.0):
-    - FirebaseCore (= 7.11.0)
-  - Firebase/Crashlytics (7.11.0):
-    - Firebase/CoreOnly
-    - FirebaseCrashlytics (~> 7.11.0)
-  - FirebaseCore (7.11.0):
-    - FirebaseCoreDiagnostics (~> 7.4)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
-  - FirebaseCoreDiagnostics (7.11.0):
-    - GoogleDataTransport (~> 8.4)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/Logger (~> 7.0)
-    - nanopb (~> 2.30908.0)
-  - FirebaseCrashlytics (7.11.0):
-    - FirebaseCore (~> 7.0)
-    - FirebaseInstallations (~> 7.0)
-    - GoogleDataTransport (~> 8.4)
-    - nanopb (~> 2.30908.0)
-    - PromisesObjC (~> 1.2)
-  - FirebaseInstallations (7.11.0):
-    - FirebaseCore (~> 7.0)
-    - GoogleUtilities/Environment (~> 7.0)
-    - GoogleUtilities/UserDefaults (~> 7.0)
-    - PromisesObjC (~> 1.2)
   - glog (0.3.5)
   - Google-Maps-iOS-Utils (2.1.0):
     - Google-Maps-iOS-Utils/Clustering (= 2.1.0)
@@ -60,17 +35,6 @@ PODS:
   - GoogleMaps/Base (3.5.0)
   - GoogleMaps/Maps (3.5.0):
     - GoogleMaps/Base
-  - GoogleUtilities/Environment (7.4.0):
-    - PromisesObjC (~> 1.2)
-  - GoogleUtilities/Logger (7.4.0):
-    - GoogleUtilities/Environment
-  - GoogleUtilities/UserDefaults (7.4.0):
-    - GoogleUtilities/Logger
-  - nanopb (2.30908.0):
-    - nanopb/decode (= 2.30908.0)
-    - nanopb/encode (= 2.30908.0)
-  - nanopb/decode (2.30908.0)
-  - nanopb/encode (2.30908.0)
   - Permission-LocationAccuracy (3.0.2):
     - RNPermissions
   - Permission-LocationWhenInUse (3.0.2):
@@ -463,17 +427,9 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
-    - Firebase
-    - FirebaseCore
-    - FirebaseCoreDiagnostics
-    - FirebaseCrashlytics
-    - FirebaseInstallations
     - Google-Maps-iOS-Utils
     - GoogleDataTransport
     - GoogleMaps
-    - GoogleUtilities
-    - nanopb
-    - PromisesObjC
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -580,17 +536,10 @@ SPEC CHECKSUMS:
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: 49cbe4b43e445b06bf29199b6ad2057649e4c8f5
   FBReactNativeSpec: 51aa282aa2bc71d690dd16baf22f6a2973fe4b72
-  Firebase: c121feb35e4126c0b355e3313fa9b487d47319fd
-  FirebaseCore: 907447d8917a4d3eb0cce2829c5a0ad21d90b432
-  FirebaseCoreDiagnostics: 68ad972f99206cef818230f3f3179d52ccfb7f8c
-  FirebaseCrashlytics: 272b675aa9d1e9bae1f9e1449fcc1f2cf6042806
-  FirebaseInstallations: a58d4f72ec5861840b84df489f2668d970df558a
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleDataTransport: cd9db2180fcecd8da1b561aea31e3e56cf834aa7
   GoogleMaps: 32ca02de09de357a10ac773f2c70f1986751392d
-  GoogleUtilities: 284cddc7fffc14ae1907efb6f78ab95c1fccaedc
-  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   Permission-LocationAccuracy: ed4a1528208709ec692cfd42728d4c9925609b42
   Permission-LocationWhenInUse: 9787b0373a06e50f5b4c5bc07d4809d9d9215d23
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
@@ -638,6 +587,6 @@ SPEC CHECKSUMS:
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   Yoga: 8c8436d4171c87504c648ae23b1d81242bdf3bbf
 
-PODFILE CHECKSUM: a71a469e26482ce0b3575ba5c06a87e40678de7b
+PODFILE CHECKSUM: 61f76eb385ea08bbe9c3e26cb08ea20193a965ef
 
 COCOAPODS: 1.10.1

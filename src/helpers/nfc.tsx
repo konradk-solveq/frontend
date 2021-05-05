@@ -26,7 +26,7 @@ const cleanUp = () => {
 };
 
 function readNdef() {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         NfcManager.setEventListener(NfcEvents.DiscoverTag, tag => {
             let parsed = null;
             if (tag.ndefMessage && tag.ndefMessage.length > 0) {
@@ -63,9 +63,14 @@ function readNdef() {
 
         NfcManager.setEventListener(NfcEvents.SessionClosed, () => {
             cleanUp();
+            reject('CANCELED');
         });
 
-        NfcManager.registerTagEvent();
+        // NfcManager.registerTagEvent();
+        NfcManager.registerTagEvent({
+            readerModeDelay: 1000,
+            alertMessage: 'SKANUJ NAKLEJKĘ NFC',
+        });
     });
 }
 

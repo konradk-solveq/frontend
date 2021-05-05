@@ -13,6 +13,7 @@ interface Props {
     onpress: (event: GestureResponderEvent) => void;
     style?: ViewStyle;
     textStyle?: TextStyle;
+    disabled?: boolean;
 }
 
 const BigRedBtn: React.FC<Props> = (props: Props) => {
@@ -37,6 +38,7 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
     return (
         <TouchableOpacity
             style={[styles.btn, props.style]}
+            disabled={props.disabled}
             onPress={props.onpress}>
             <Text style={[styles.text, props.textStyle]}>
                 {props.title.toUpperCase()}
