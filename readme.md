@@ -64,6 +64,12 @@ yarn add redux-thunk
 
 yarn add react-native-nfc-manager
 yarn add react-native-get-location
+yarn add @react-native-firebase
+yarn add @react-native-firebase/app
+yarn add @react-native-firebase/crashlytics
+yarn add react-native-android-location-enabler
+yarn add react-native-config
+yarn add react-native-swiper
 ```
 
 
