@@ -12,8 +12,8 @@ export const getPlacesList = async (bbox: BBox): Promise<PlacesResponse> => {
 
     if (!response?.data || response.status > 400) {
         let errorMessage = 'error';
-        if (response.status === 404 || response.status === 400) {
-            errorMessage = response.data?.message || response.data?.error;
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
         }
         return {data: [], status: response.status, error: errorMessage};
     }
