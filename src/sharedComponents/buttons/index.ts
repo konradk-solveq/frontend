@@ -1,15 +1,17 @@
 import BigRedBtn from './bigRedBtn';
 import CogBtn from './cogBtn';
-import BbigWhiteBtn from './bigWhiteBtn';
+import BigWhiteBtn from './bigWhiteBtn';
 import ShowMoreArrowBtn from './showMoreArrowBtn';
 import TranspLightBtn from './transpLightBtn';
 import TypicalRed from './typicalRed';
+import ShareBtn from './shareBtn';
 
 export {
     BigRedBtn,
-    BbigWhiteBtn,
+    BigWhiteBtn,
     CogBtn,
     ShowMoreArrowBtn,
     TranspLightBtn,
     TypicalRed,
+    ShareBtn,
 };

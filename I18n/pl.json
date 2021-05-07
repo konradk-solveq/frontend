@@ -1155,6 +1155,18 @@
         "warning": "Warunkiem ważności Gwarancji jest posiadanie dowodu zakupu i Oświadczenia Gwarancyjnego lub konta gwarancyjnego na platformie kross.eu/pl, założonego zgodnie z regulaminem tej platformy.",
         "pastDate": "termin minął"
     },
+    "ThankYouPage": {
+        "defaultName": "Rowerzysto",
+        "titleSufix": ", brawo!",
+        "publishBtn": "Upublicznij",
+        "cancelButton": "Powrót",
+        "distance": "Dystans",
+        "distanceSufix": "km",
+        "tripTime": "Czas jazdy",
+        "tripTimeSufix": "h",
+        "pausePrefix": "czas przerw",
+        "pauseSufix": "h"
+    },
     "validation": {
         "isEmpty": "Pole {{property}} nie jest puste",
         "isNotEmpty": "Pole {{property}} jest puste",
