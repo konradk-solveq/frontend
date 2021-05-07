@@ -17,7 +17,7 @@ znajdują się w katalogu: __I18n__
 ```
 cp .env.example .env
 ```
-replace `API_URL` and `GOOGLE_MAPS_API_KEY` values
+replace `API_URL` , `GOOGLE_MAPS_API_KEY` and `TRANSISTORSOFT_BACKGROUND_GEOLOCATION_KEY` values
 
 Put google-service.json in `android/app/google-services.json` path and GoogleService-Info.plist in `ios/GoogleService-Info.plist` (files comes from Firebase service).
 

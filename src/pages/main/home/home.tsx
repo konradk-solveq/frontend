@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 import {initCrashlytics} from '../../../utils/crashlytics';
+import {initBGeolocalization} from '../../../utils/geolocation';
 
 import {
     setObjSize,
@@ -29,6 +30,11 @@ const Home: React.FC = () => {
     const trans: any = I18n.t('MainHome');
 
     const [nfc, setNfc] = useState();
+
+    /* TODO: remove - for test purpose or set in other place*/
+    useEffect(() => {
+        initBGeolocalization();
+    }, []);
 
     useEffect(() => {
         /* Logs will be send after app restarted */
