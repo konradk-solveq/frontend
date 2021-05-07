@@ -72,7 +72,7 @@ export const setProfileSettings = (
                 data: null,
             });
         }
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = I18n.t('dataAction.generalError');
         dispatch(setError(errorMessage));
 
         return Promise.reject({
