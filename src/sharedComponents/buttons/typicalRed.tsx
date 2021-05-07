@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-import {getHorizontalPx} from '../../helpers/layoutFoo';
+import { getHorizontalPx } from '../../helpers/layoutFoo';
 
 interface Props {
     style?: any;
@@ -19,6 +19,7 @@ const TypicalRedBtn: React.FC<Props> = (props: Props) => {
             justifyContent: 'center',
             // alignSelf: 'center',
             backgroundColor: props.active ? '#d8232a' : '#f0f0f0',
+            // backgroundColor: '#d8232a',
             paddingLeft: 10,
             paddingRight: 10,
             height: props.height ? getHorizontalPx(props.height) : '100%',
@@ -33,6 +34,7 @@ const TypicalRedBtn: React.FC<Props> = (props: Props) => {
             fontSize: 16,
             textAlign: 'center',
             color: props.active ? 'white' : '#313131',
+            letterSpacing: props.active ? 0 : 0.45,
         },
     });
 

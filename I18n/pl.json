@@ -1020,8 +1020,18 @@
         "secondBtn": "DODAJ ROWER"
     },
     "MainWorld": {
+        "header": "Świat Kross",
         "title": "Dołącz do drużyny \n KROSS",
-        "footer": "Już wkrótce razem z nami będziesz mógł ruszyć \n w trasę by odkrywać nowe ścieżki rowerowe \n i budować Mapę Rowerową."
+        "footer": "Już wkrótce razem z nami będziesz mógł ruszyć \n w trasę by odkrywać nowe ścieżki rowerowe \n i budować Mapę Rowerową.",
+        "btnBikeMap": "Mapa rowerowa",
+        "btnMyRoutes": "Moje trasy",
+        "btnPlaned": "Planowane",
+    },
+    "MainMyRoutes": {
+        "title": "Nie masz nagranych tras",
+        "text": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
+        "btnRecord": "Nagraj pierwszą trasę",
+        "btnCheck": "sprawdź rekomendowane trasy",
     },
     "MainBike": {
         "header": "Rower",
@@ -1065,6 +1075,17 @@
             "od ",
             " / nr ramy "
         ]
+    },
+    "MainCounter": {
+        "header": "Trwa nagrywanie",
+        "distance": "Dystans",
+        "time": "Czas",
+        "speed": "Prędkość",
+        "averageSpeed": "Średnia prędkość",
+        "btnPauza": "PAUZA",
+        "btnEnd": "ZAKOŃCZ",
+        "btnCancel": "ANULUJ",
+        "btnBreak": "PRZERWIJ"
     },
     "ServicesMap": {
         "services": "Serwisy",
@@ -1125,7 +1146,10 @@
     },
     "RewiewsDetails": {
         "header": "Przegląd",
-        "daysLeft": ["pozostało", "dni"],
+        "daysLeft": [
+            "pozostało",
+            "dni"
+        ],
         "servisMap": "Najbliższy serwis",
         "descriptionTitle": "W ramach przeglądu powinny być wykonane następujące czynności: ",
         "warning": "Warunkiem ważności Gwarancji jest posiadanie dowodu zakupu i Oświadczenia Gwarancyjnego lub konta gwarancyjnego na platformie kross.eu/pl, założonego zgodnie z regulaminem tej platformy.",
