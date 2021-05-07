@@ -251,7 +251,10 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                         <BigWhiteBtn
                             title={trans.btnHand}
                             onpress={() =>
-                                props.navigation.navigate('AddingByNumber')
+                                props.navigation.navigate({
+                                    name: 'AddingByNumber',
+                                    params: {emptyFrame: true},
+                                })
                             }
                         />
                     </View>
