@@ -26,6 +26,8 @@
         "react-devtools": "^4.10.1",
         "react-native": "^0.64.0",
         "react-native-android-location-enabler": "^1.2.2",
+        "react-native-background-fetch": "^4.0.1",
+        "react-native-background-geolocation": "^4.0.3",
         "react-native-config": "^1.4.2",
         "react-native-device-info": "^8.1.0",
         "react-native-dotenv": "^2.5.5",
