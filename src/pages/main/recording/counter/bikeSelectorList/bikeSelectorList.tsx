@@ -1,44 +1,36 @@
-import React, {useState} from 'react';
-import {StyleSheet, Dimensions, View} from 'react-native';
-import {useNavigation, StackActions} from '@react-navigation/native';
-import {ScrollView} from 'react-native-gesture-handler';
+import React, { useState } from 'react';
+import { StyleSheet, Dimensions, View } from 'react-native';
+import { useNavigation, StackActions } from '@react-navigation/native';
+import { ScrollView } from 'react-native-gesture-handler';
 
-import {UserBike} from '../../../../models/userBike.model';
+import { UserBike } from '../../../../../models/userBike.model';
 import {
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
-} from '../../../../helpers/layoutFoo';
-import {nfcIsSupported} from '../../../../helpers/nfc';
+    getHorizontalPx,
+} from '../../../../../helpers/layoutFoo';
+import { nfcIsSupported } from '../../../../../helpers/nfc';
 
-import BikeButton from '../../../../sharedComponents/buttons/bikeButton';
-import BikeIcon from '../../../../sharedComponents/svg/bikeIcon';
+import BikeButton from '../../../../../sharedComponents/buttons/bikeButton';
+import BikeIcon from '../../../../../sharedComponents/svg/bikeIcon';
 
 interface Props {
     style?: any;
-    description: any;
     list: UserBike[];
     callback: Function;
     currentBike: string | undefined;
     buttonText: string;
 }
 
-const {width} = Dimensions.get('window');
-const w = width * (110 / 414);
+const { width } = Dimensions.get('window');
 
 const BikeSelectorList: React.FC<Props> = ({
+    style,
     list,
     callback,
     currentBike,
-    buttonText,
 }: Props) => {
-    const navigation = useNavigation();
-
-    const [nfc, setNfc] = useState();
-
-    nfcIsSupported().then(r => {
-        setNfc(r);
-    });
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -55,6 +47,8 @@ const BikeSelectorList: React.FC<Props> = ({
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
+            borderStartColor: 'red',
+            height: 50,
         },
         item: {
             marginLeft: 15,
@@ -63,8 +57,7 @@ const BikeSelectorList: React.FC<Props> = ({
             marginLeft: getCenterLeftPx(),
         },
         lastItem: {
-            marginLeft: 0,
-            marginRight: getCenterLeftPx(),
+            marginRight: getHorizontalPx(40),
         },
         button: {
             backgroundColor: 'transparent',
@@ -77,52 +70,27 @@ const BikeSelectorList: React.FC<Props> = ({
     const renderList = () => {
         const buttons = list.map((e, i) => {
             const isFirsEl = i === 0;
+            const isLastEl = i === list.length - 1;
             const isSame = currentBike === e.description.serial_number;
 
             return (
                 <View
-                    style={[styles.item, isFirsEl && styles.fitstItem]}
+                    style={[styles.item, isFirsEl && styles.fitstItem, isLastEl && styles.lastItem]}
                     key={e.description.serial_number}>
                     <BikeButton
                         text={e.description?.name || 'rower'}
                         onPress={() => callback(e.description.serial_number)}
-                        {...(isSame && {icon: <BikeIcon />})}
+                        {...(isSame && { icon: <BikeIcon /> })}
                     />
                 </View>
             );
         });
 
-        buttons.push(
-            <View
-                style={[
-                    styles.item,
-                    styles.lastItem,
-                    list.length == 0 && styles.fitstItem,
-                ]}
-                key={`${list.length}_add`}>
-                <BikeButton
-                    text={`+ ${buttonText}`}
-                    onPress={() => {
-                        const pushAction = StackActions.push(
-                            nfc ? 'TurtorialNFC' : 'AddingByNumber',
-                            {
-                                emptyFrame: true,
-                            },
-                        );
-
-                        navigation.dispatch(pushAction);
-                    }}
-                    buttonStyle={styles.button}
-                    textStyle={styles.text}
-                />
-            </View>,
-        );
-
         return buttons;
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             <ScrollView
                 horizontal={true}
                 style={styles.scroll}
