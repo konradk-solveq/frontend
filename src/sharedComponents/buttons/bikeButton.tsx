@@ -11,7 +11,7 @@ import {
     setObjSize,
     getHorizontalPx,
     getVerticalPx,
-} from '../../../../helpers/layoutFoo';
+} from '../../helpers/layoutFoo';
 
 interface IProps {
     text: string;
