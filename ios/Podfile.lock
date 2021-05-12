@@ -71,9 +71,9 @@ PODS:
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - Permission-LocationAccuracy (3.0.2):
+  - Permission-LocationAccuracy (3.0.3):
     - RNPermissions
-  - Permission-LocationWhenInUse (3.0.2):
+  - Permission-LocationWhenInUse (3.0.3):
     - RNPermissions
   - PromisesObjC (1.2.12)
   - RCT-Folly (2020.01.13.00):
@@ -370,7 +370,7 @@ PODS:
     - React-Core
   - RNI18n (2.0.15):
     - React
-  - RNPermissions (3.0.2):
+  - RNPermissions (3.0.3):
     - React-Core
   - RNReanimated (2.1.0):
     - DoubleConversion
@@ -591,8 +591,8 @@ SPEC CHECKSUMS:
   GoogleMaps: 32ca02de09de357a10ac773f2c70f1986751392d
   GoogleUtilities: 284cddc7fffc14ae1907efb6f78ab95c1fccaedc
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  Permission-LocationAccuracy: ed4a1528208709ec692cfd42728d4c9925609b42
-  Permission-LocationWhenInUse: 9787b0373a06e50f5b4c5bc07d4809d9d9215d23
+  Permission-LocationAccuracy: 2b5c6cb5c30b30450ff5e3ebed9215986f19878b
+  Permission-LocationWhenInUse: 5c878c0de1a55558fe978cda69908327e6a07f31
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: 2f8cb5b7533219bf4218a045f92768129cf7050a
@@ -632,7 +632,7 @@ SPEC CHECKSUMS:
   RNFBCrashlytics: 59d9ecfaacddbe10819d9071ee3b9921b79b8c6b
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
-  RNPermissions: 84ffe5ee7d608e037d9ed1db846ffb1d5d4e1dba
+  RNPermissions: d6679ecf0c21bf6de5a619b20df4304182792da8
   RNReanimated: b8c8004b43446e3c2709fe64b2b41072f87428ad
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
