@@ -1077,7 +1077,8 @@
         ]
     },
     "MainCounter": {
-        "header": "Trwa nagrywanie",
+        "headerRecord": "Trwa nagrywanie",
+        "headerPause": "Pauza",
         "distance": "Dystans",
         "distanceUnit": "km",
         "time": "Czas",
@@ -1086,6 +1087,7 @@
         "averageSpeed": "Średnia prędkość",
         "averageSpeedUnit": "km/h",
         "btnPauza": "PAUZA",
+        "btnPauzaOff": "WZNÓW",
         "btnEnd": "ZAKOŃCZ",
         "endText": "Czy chcesz zakończyć nagrywanie trasy?",
         "btnCancel": "ANULUJ",

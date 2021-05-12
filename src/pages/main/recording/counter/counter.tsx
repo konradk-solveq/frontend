@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef, useCallback} from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -6,7 +6,7 @@ import {
     Text,
     TouchableWithoutFeedback,
 } from 'react-native';
-import Svg, {G, Path, Circle} from 'react-native-svg';
+import Svg, { G, Path, Circle } from 'react-native-svg';
 
 import I18n from 'react-native-i18n';
 
@@ -16,8 +16,8 @@ import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../../../helpers/layoutFoo';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {getBike} from '../../../../helpers/transformUserBikeData';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { getBike } from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import apla from '../../../../sharedComponents/modals/backGround';
 
@@ -25,9 +25,9 @@ import AnimSvg from '../../../../helpers/animSvg';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
+import StackHeader from './stackHeader/stackHeader';
 
-import {pointToComa, twoDigits} from '../../../../helpers/stringFoo';
+import { pointToComa, twoDigits } from '../../../../helpers/stringFoo';
 
 const btnMapBackground = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15.4 -15.4 46.2 46.2">
 <defs>
@@ -42,7 +42,7 @@ interface Props {
     navigation: any;
 }
 
-const Counter: React.FC<Props> = ({navigation}: Props) => {
+const Counter: React.FC<Props> = ({ navigation }: Props) => {
     const trans = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
@@ -281,7 +281,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                     </View>
                 </View>
 
-                <TouchableWithoutFeedback onPress={() => {}}>
+                <TouchableWithoutFeedback onPress={() => { }}>
                     <Svg viewBox="0 0 15.4 15.4" style={styles.btnMap}>
                         <G transform="translate(-107.1 -21.8)">
                             <Circle
@@ -310,7 +310,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             <View style={styles.bottons}>
                 <View style={styles.btn}>
                     <BigWhiteBtn
-                        title={endRute ? trans.btnCancel : trans.btnPauza}
+                        title={endRute ? trans.btnCancel : (pause ? trans.btnPauzaOff : trans.btnPauza)}
                         onpress={() => handleCancelOrPause()}
                     />
                 </View>
@@ -326,7 +326,8 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             <StackHeader
                 onpress={() => navigation.goBack()}
                 getHeight={setHeadHeight}
-                inner={trans.header}
+                inner={pause ? trans.headerPause : trans.headerRecord}
+                pause={pause}
             />
         </SafeAreaView>
     );
