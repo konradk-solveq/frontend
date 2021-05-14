@@ -31,6 +31,22 @@
     </path>
     </svg> -->
 
+    <style>
+        @font-face {
+            font-family: 'din-r';
+            font-style: normal;
+            font-weight: 400;
+            src: url('DIN2014Narrow-Regular.eot');
+            src: local('open sans extralight'), local('open-sans-extralight'), url('DIN2014Narrow-Regular.eot?#iefix') format('embedded-opentype'), url('DIN2014Narrow-Regular.woff2') format('woff2'), url('DIN2014Narrow-Regular.woff') format('woff'), url('DIN2014Narrow-Regular.ttf') format('truetype'), url('DIN2014Narrow-Regular.svg#Barlow') format('svg'), url('DIN2014Narrow-Regular.otf') format('otf');
+        }
+        
+        #test {
+            font-family: 'din-r';
+            font-size: 40px;
+        }
+    </style>
+    <div id="test">test</div>
+
     <script>
         const body = document.querySelector('body');
         const getSVGelem = type => document.createElementNS('http://www.w3.org/2000/svg', type);

@@ -1,12 +1,14 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
     View,
     Text,
     TouchableWithoutFeedback,
+    Animated,
+    Easing,
 } from 'react-native';
-import Svg, { G, Path, Circle } from 'react-native-svg';
+import Svg, {G, Path, Circle} from 'react-native-svg';
 
 import I18n from 'react-native-i18n';
 
@@ -16,8 +18,8 @@ import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../../../helpers/layoutFoo';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { getBike } from '../../../../helpers/transformUserBikeData';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import apla from '../../../../sharedComponents/modals/backGround';
 
@@ -27,7 +29,7 @@ import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 import StackHeader from './stackHeader/stackHeader';
 
-import { pointToComa, twoDigits } from '../../../../helpers/stringFoo';
+import {pointToComa, twoDigits} from '../../../../helpers/stringFoo';
 
 const btnMapBackground = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15.4 -15.4 46.2 46.2">
 <defs>
@@ -42,7 +44,7 @@ interface Props {
     navigation: any;
 }
 
-const Counter: React.FC<Props> = ({ navigation }: Props) => {
+const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
@@ -85,8 +87,14 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         };
     }, [interval]);
 
+    const [areaHeigh, setAreaHeigh] = useState(0);
+    const [headHeight, setHeadHeight] = useState(0);
+
     const [endRute, setEndRute] = useState(false);
     const [pause, setPause] = useState(null);
+    const bikeSelectorListPositionY = useRef(
+        new Animated.Value(headHeight + getVerticalPx(30)),
+    ).current;
 
     const handleCancelOrPause = () => {
         if (endRute) {
@@ -97,9 +105,23 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                 setStartTime(startTime + pauseTime);
                 timer.current = setInterval(interval, 1000);
                 setPause(false);
+
+                Animated.timing(bikeSelectorListPositionY, {
+                    toValue: headHeight + getVerticalPx(-30),
+                    duration: 500,
+                    easing: Easing.quad,
+                    useNativeDriver: false,
+                }).start();
             } else {
                 clearInterval(timer.current);
                 setPause(Date.now());
+
+                Animated.timing(bikeSelectorListPositionY, {
+                    toValue: headHeight + getVerticalPx(30),
+                    duration: 500,
+                    easing: Easing.quad,
+                    useNativeDriver: false,
+                }).start();
             }
         }
     };
@@ -109,9 +131,6 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             setEndRute(true);
         }
     };
-
-    const [areaHeigh, setAreaHeigh] = useState(0);
-    const [headHeight, setHeadHeight] = useState(0);
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -127,9 +146,9 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             minHeight: getHorizontalPx(305),
             marginTop: getVerticalPx(60),
         },
-        bikeList: {
-            marginTop: headHeight + getVerticalPx(30),
-        },
+        // bikeList: {
+        //     marginTop: bikeSelectorListPositionY,
+        // },
         board: {
             display: 'flex',
             flexDirection: 'row',
@@ -225,13 +244,19 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <BikeSelectorList
-                style={styles.bikeList}
-                list={bikes}
-                callback={onChangeBikeHandler}
-                currentBike={bike?.description?.serial_number}
-                buttonText={'add'}
-            />
+            <Animated.View
+                style={{
+                    marginTop: bikeSelectorListPositionY
+                        ? bikeSelectorListPositionY
+                        : headHeight + getVerticalPx(30),
+                }}>
+                <BikeSelectorList
+                    list={bikes}
+                    callback={onChangeBikeHandler}
+                    currentBike={bike?.description?.serial_number}
+                    buttonText={'add'}
+                />
+            </Animated.View>
 
             <View style={styles.area}>
                 <View style={styles.board}>
@@ -281,7 +306,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     </View>
                 </View>
 
-                <TouchableWithoutFeedback onPress={() => { }}>
+                <TouchableWithoutFeedback onPress={() => {}}>
                     <Svg viewBox="0 0 15.4 15.4" style={styles.btnMap}>
                         <G transform="translate(-107.1 -21.8)">
                             <Circle
@@ -310,7 +335,13 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             <View style={styles.bottons}>
                 <View style={styles.btn}>
                     <BigWhiteBtn
-                        title={endRute ? trans.btnCancel : (pause ? trans.btnPauzaOff : trans.btnPauza)}
+                        title={
+                            endRute
+                                ? trans.btnCancel
+                                : pause
+                                    ? trans.btnPauzaOff
+                                    : trans.btnPauza
+                        }
                         onpress={() => handleCancelOrPause()}
                     />
                 </View>

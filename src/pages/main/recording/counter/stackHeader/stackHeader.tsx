@@ -24,6 +24,7 @@ interface Props {
 }
 
 const background = `
+
 <script>
 const body = document.querySelector('body');
 const getSVGelem = type => document.createElementNS('http://www.w3.org/2000/svg', type);
@@ -211,7 +212,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                         style={styles.fullView}
                         originWhitelist={['*']}
                         scalesPageToFit={true}
-                        useWebKit={true}
+                        useWebKit={Platform.OS === 'ios'}
                         scrollEnabled={false}
                         showsHorizontalScrollIndicator={false}
                         showsVerticalScrollIndicator={false}
@@ -220,6 +221,10 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                                 '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
                                 background +
                                 '</body></html>',
+                            baseUrl:
+                                Platform.OS === 'ios'
+                                    ? ''
+                                    : 'file:///android_asset/',
                         }}
                         javaScriptEnabled={true}
                         ref={animSvgRef}
@@ -231,7 +236,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                 <TopBackBtn
                     // style={styles.topBtn}
                     // onpress={() => props.onpress()}
-                    onpress={() => {}}
+                    onpress={() => { }}
                     color={props.pause ? '#000' : '#fff'}
                     animSvgRef={animSvgRef}
                 />
