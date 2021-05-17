@@ -22,7 +22,7 @@ export const axiosGet = (url: string, options = {}) => {
         () => abort.cancel(`Timeout of ${config.timeout}ms.`),
         config.timeout,
     );
-    return axios
+    return instance
         .get(url, {cancelToken: abort.token, ...options})
         .then(response => {
             clearTimeout(id);
