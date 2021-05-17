@@ -101,6 +101,8 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     ).current;
 
     const handleCancelOrPause = () => {
+
+
         if (endRute) {
             setEndRute(false);
         } else {
@@ -116,6 +118,8 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     easing: Easing.quad,
                     useNativeDriver: false,
                 }).start();
+
+                animSvgRef.current.injectJavaScript('setMini();true;');
             } else {
                 clearInterval(timer.current);
                 setPause(Date.now());
@@ -126,6 +130,8 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     easing: Easing.quad,
                     useNativeDriver: false,
                 }).start();
+
+                animSvgRef.current.injectJavaScript('setMaxi();true;');
             }
         }
     };
