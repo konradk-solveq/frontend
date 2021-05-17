@@ -18,6 +18,7 @@ import {getBike} from '../../../helpers/transformUserBikeData';
 import {removeBikeByNumber} from '../../../storage/actions';
 import {PERMISSIONS, request} from 'react-native-permissions';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
+import {bikesListSelector} from '../../../storage/selectors';
 
 import Warranty from './warranty';
 import Reviews from './reviews';
@@ -55,7 +56,7 @@ const defaultRegion = {
 };
 const Bike: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
-    const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
+    const bikes = useAppSelector(bikesListSelector);
     const genericBikeData = useAppSelector<UserBike>(
         state => state.bikes.genericBike,
     );

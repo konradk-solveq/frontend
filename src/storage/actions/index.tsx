@@ -16,3 +16,5 @@ export {
 export {setAppStatus} from './app';
 
 export {fetchPlacesData} from './places';
+
+export {fetchMapsList, setMapsData} from './maps';
