@@ -20,10 +20,8 @@ import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
-import {UserBike} from '../../../models/userBike.model';
 import {userBikeValidationRules} from '../../../models/bike.model';
 import {BikeBaseData} from '../../../models/bike.model';
-import {getBike} from '../../../helpers/transformUserBikeData';
 
 import {
     setObjSize,
@@ -32,6 +30,9 @@ import {
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 import deepCopy from '../../../helpers/deepCopy';
+import {frameNumberSelector} from '../../../storage/selectors';
+import {bikeDescriptionByFrameNumberSelector} from '../../../storage/selectors/bikes';
+import {getBikesBaseData} from '../../../utils/transformData';
 
 interface Message {
     serial_number: string;
@@ -50,21 +51,15 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
     const trans: any = I18n.t('BikeData');
 
-    const frame: string = useAppSelector(state => state.user.frameNumber);
-    const userBike = useAppSelector<UserBike | null>(state =>
-        getBike(state.bikes.list, frame),
+    const frame: string = useAppSelector(frameNumberSelector);
+    const bikeDescription = useAppSelector(state =>
+        bikeDescriptionByFrameNumberSelector(state, frame),
     );
 
     const frameNumber: string = route?.params?.serial_number || frame;
-    const [data, setData] = useState<BikeBaseData>({
-        id: userBike?.description?.id || null,
-        sku: '',
-        serial_number: frameNumber,
-        producer: userBike?.description?.producer || '',
-        name: userBike?.description?.name || '',
-        size: userBike?.description?.size || '',
-        color: userBike?.description?.color || '',
-    }); // dane poszczególnych pól
+    const [data, setData] = useState(
+        getBikesBaseData(bikeDescription, frameNumber),
+    ); // dane poszczególnych pól
     const [messages, setMessages] = useState<Message>({
         serial_number: '',
         producer: '',

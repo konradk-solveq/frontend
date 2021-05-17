@@ -199,6 +199,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<
                     return;
                 }
 
+                /* TODO: change to validation process. Should not store class into redux */
                 const newData = transformToUserBikeType(bikesData[nr]);
 
                 dataToUpdate.push(newData);

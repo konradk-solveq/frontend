@@ -21,13 +21,17 @@ import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHead
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
+import {
+    bikesListSelector,
+    loadingBikesSelector,
+    userNameSelector,
+} from '../../../../storage/selectors';
 import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
 import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
 import {setBikesListByFrameNumber} from '../../../../storage/actions';
 import Loader from '../loader/loader';
 import ScanModal from './scanModal.android';
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
-import {Bike} from '../../../../models/bike.model';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -42,9 +46,9 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('TurtorialNFC');
     const dispatch = useAppDispatch();
 
-    const isLoading = useAppSelector<boolean>(state => state.bikes.loading);
-    const bikesList = useAppSelector<Bike[]>(state => state.bikes.list);
-    const name = useAppSelector<string>(state => state.user.userName);
+    const isLoading = useAppSelector(loadingBikesSelector);
+    const bikesList = useAppSelector(bikesListSelector);
+    const name = useAppSelector(userNameSelector);
     const userName = name ? ' ' + name : ' ' + trans.defaultName;
 
     const [showScanModal, setShowScanModal] = useState<boolean>(false);

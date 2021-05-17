@@ -7,8 +7,10 @@ import {
     removeBikeByNumber,
 } from '../../../storage/actions';
 
-import {UserBike} from '../../../models/userBike.model';
-import {getBike} from '../../../helpers/transformUserBikeData';
+import {
+    bikeByFrameNumberSelector,
+    onboardingFinishedSelector,
+} from '../../../storage/selectors';
 
 import {
     setObjSize,
@@ -16,7 +18,6 @@ import {
     getVerticalPx,
     getWidthPx,
     getWidthPxOf,
-    getHeightPx,
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 
@@ -39,11 +40,11 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const userName =
         useAppSelector<string>(state => state.user.userName) || trans.anonim;
     const onboardingFinished = useAppSelector<boolean>(
-        state => state.user.onboardingFinished,
+        onboardingFinishedSelector,
     );
     const frameNumber = route.params.frameNumber;
-    const bikeData = useAppSelector<UserBike | null>(state =>
-        getBike(state.bikes.list, frameNumber),
+    const bikeData = useAppSelector(state =>
+        bikeByFrameNumberSelector(state, frameNumber),
     );
 
     /* TODO: try to exctract */
@@ -170,12 +171,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                     <BigRedBtn
                         title={trans.goForward}
                         onpress={() => {
-                            /* TODO: this change is temporary - business  decision */
-                            // navigation.navigate('CyclingProfile')
-                            /* start to delete */
                             onGoForwrdHandle();
-                            // navigation.replace('MineMenu');
-                            /* end to delete */
                         }}
                     />
                 </View>
