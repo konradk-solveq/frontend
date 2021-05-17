@@ -4,35 +4,20 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;  charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>1</title>
     <link rel='stylesheet' type='text/css' href='index.css'>
 </head>
 
 <body>
-    <div class="wrap">
-        <div id="distance" class="counter cou-left cou-top">
-            <div class="name"></div>
-            <span class="value"></span>
-            <span class="unit"></span>
-        </div>
-        <div id="time" class="counter cou-top">
-            <div class="name"></div>
-            <span class="value"></span>
-            <span class="unit"></span>
-        </div>
-        <div id="speed" class="counter cou-left">
-            <div class="name"></div>
-            <span class="value"></span>
-            <span class="unit"></span>
-        </div>
-        <div id="averageSpeed" class="counter">
-            <div class="name"></div>
-            <span class="value"></span>
-            <span class="unit"></span>
-        </div>
-    </div>
 
-    <script src="index.js"></script>
+    <div id="map"></div>
+    <div class="cover">
+        <svg></svg>
+        <div id="alert1" class="alert"></div>
+        <div id="alert2" class="alert"></div>
+    </div>
 </body>
+<script src="index.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcuDhYsJJqOBvWppdbLf5y75V8OdNOevQ&map_ids=2ffa275ecc610735&callback=initMap">
+</script>
 
 </html>

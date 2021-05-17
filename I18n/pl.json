@@ -1086,6 +1086,7 @@
         "speedUnit": "km/h",
         "averageSpeed": "Średnia prędkość",
         "averageSpeedUnit": "km/h",
+        "btnStart": "START",
         "btnPauza": "PAUZA",
         "btnPauzaOff": "WZNÓW",
         "btnEnd": "ZAKOŃCZ",

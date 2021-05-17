@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef, useCallback} from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -7,8 +7,10 @@ import {
     TouchableWithoutFeedback,
     Animated,
     Easing,
+    Platform
 } from 'react-native';
-import Svg, {G, Path, Circle} from 'react-native-svg';
+import { WebView } from 'react-native-webview';
+import Svg, { G, Path, Circle } from 'react-native-svg';
 
 import I18n from 'react-native-i18n';
 
@@ -18,8 +20,8 @@ import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../../../helpers/layoutFoo';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {getBike} from '../../../../helpers/transformUserBikeData';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { getBike } from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import apla from '../../../../sharedComponents/modals/backGround';
 
@@ -29,7 +31,9 @@ import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 import StackHeader from './stackHeader/stackHeader';
 
-import {pointToComa, twoDigits} from '../../../../helpers/stringFoo';
+import { pointToComa, twoDigits } from '../../../../helpers/stringFoo';
+
+import webview from './webview';
 
 const btnMapBackground = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15.4 -15.4 46.2 46.2">
 <defs>
@@ -44,7 +48,7 @@ interface Props {
     navigation: any;
 }
 
-const Counter: React.FC<Props> = ({navigation}: Props) => {
+const Counter: React.FC<Props> = ({ navigation }: Props) => {
     const trans = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
@@ -131,6 +135,18 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             setEndRute(true);
         }
     };
+
+    const animSvgRef = useRef();
+
+    useEffect(() => {
+        animSvgRef.current.injectJavaScript(
+            'init(' +
+            getHorizontalPx(414) +
+            ', ' +
+            getVerticalPx(896) + ', { lat: 53.009342618210624, lng: 20.890509251985964 }' +
+            ');true;',
+        );
+    }, [])
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -240,10 +256,42 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             textAlign: 'center',
             bottom: getHorizontalPx(65 + 40) + 50,
         },
+        fullView: {
+            backgroundColor: 'transparent',
+            width: '100%',
+            height: '100%',
+        },
     });
 
     return (
         <SafeAreaView style={styles.container}>
+
+
+
+            <View style={styles.fullView}>
+                <WebView
+                    style={styles.fullView}
+                    originWhitelist={['*']}
+                    scalesPageToFit={true}
+                    useWebKit={Platform.OS === 'ios'}
+                    scrollEnabled={false}
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
+                    source={{
+                        html:
+                            '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
+                            webview +
+                            '</body></html>',
+                        baseUrl:
+                            Platform.OS === 'ios'
+                                ? ''
+                                : 'file:///android_asset/',
+                    }}
+                    javaScriptEnabled={true}
+                    ref={animSvgRef}
+                />
+            </View>
+
             <Animated.View
                 style={{
                     marginTop: bikeSelectorListPositionY
@@ -258,79 +306,6 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 />
             </Animated.View>
 
-            <View style={styles.area}>
-                <View style={styles.board}>
-                    <AnimSvg
-                        style={styles.btnMapBackground}
-                        source={btnMapBackground}
-                    />
-
-                    <View style={[styles.quart, styles.horisontalLine]}>
-                        <Text style={styles.name}>{trans.distance}</Text>
-                        <Text style={styles.value}>
-                            {pointToComa(distance)}
-                            <Text style={styles.unit}>
-                                {' ' + trans.distanceUnit}
-                            </Text>
-                        </Text>
-                    </View>
-                    <View
-                        style={[
-                            styles.quart,
-                            styles.horisontalLine,
-                            styles.verticalLine,
-                        ]}>
-                        <Text style={styles.name}>{trans.time}</Text>
-                        <Text style={styles.value}>
-                            {time[0]}
-                            <Text style={styles.unit}>{time[1]}</Text>
-                        </Text>
-                    </View>
-                    <View style={styles.quart}>
-                        <Text style={styles.name}>{trans.speed}</Text>
-                        <Text style={styles.value}>
-                            {pointToComa(speed)}
-                            <Text style={styles.unit}>
-                                {' ' + trans.speedUnit}
-                            </Text>
-                        </Text>
-                    </View>
-                    <View style={[styles.quart, styles.verticalLine]}>
-                        <Text style={styles.name}>{trans.averageSpeed}</Text>
-                        <Text style={styles.value}>
-                            {pointToComa(averageSpeed)}
-                            <Text style={styles.unit}>
-                                {' ' + trans.averageSpeedUnit}
-                            </Text>
-                        </Text>
-                    </View>
-                </View>
-
-                <TouchableWithoutFeedback onPress={() => {}}>
-                    <Svg viewBox="0 0 15.4 15.4" style={styles.btnMap}>
-                        <G transform="translate(-107.1 -21.8)">
-                            <Circle
-                                cx="114.8"
-                                cy="29.5"
-                                r="7.6"
-                                fill="#ffffff"
-                            />
-                            <Path
-                                fill="#313131"
-                                fill-rule="nonzero"
-                                d="M116.7 28.7a.3.3 0 00-.4 0l-1.5 1.5-1.4-1.5a.3.3 0 00-.5.4l1.7 1.7c.2.1.3.1.4 0l1.7-1.7c.1-.1.1-.3 0-.4z"
-                            />
-                        </G>
-                    </Svg>
-                </TouchableWithoutFeedback>
-            </View>
-
-            {endRute && (
-                <>
-                    <AnimSvg style={styles.apla} source={apla} />
-                    <Text style={styles.endText}>{trans.endText}</Text>
-                </>
-            )}
 
             <View style={styles.bottons}>
                 <View style={styles.btn}>

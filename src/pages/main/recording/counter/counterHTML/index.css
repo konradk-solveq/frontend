@@ -26,8 +26,90 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ffffff;
+    /* overflow: hidden; */
+    background-color: #fff;
+    position: relative;
 }
 
 .wrap {
-    margin: 0 9.6618 0 9.6618;
+    margin: 0 9.6618% 0 9.6618%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: green;
+}
+
+#wrap {
+    fill: yellow;
+}
+
+svg {
+    margin: 0;
+    padding: 0;
+}
+
+.counter {
+    width: calc(50% - 7.246377%);
+    padding-left: 7.246377%;
+    background-color: yellow;
+}
+
+.cou-left {
+    width: calc(50% - 1px);
+    padding-left: 0;
+    border-right: 1px solid #aaa;
+}
+
+.cou-top {
+    border-bottom: 1px solid #aaa;
+}
+
+.name {
+    font-family: 'din-l';
+    font-size: 23px;
+    fill: #555555;
+}
+
+.value {
+    font-family: 'din-r';
+    fill: #313131;
+}
+
+.unit {
+    font-family: 'din-r';
+    font-size: 18px;
+    fill: #555555;
+}
+
+.arrow {
+    stroke: #313131;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+.alert {
+    position: absolute;
+    font-family: 'din-r';
+    font-size: 23px;
+    color: #313131;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+#map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    pointer-events: none;
 }
