@@ -81,6 +81,11 @@ svg {
     fill: #555555;
 }
 
+.mapBtn {
+    pointer-events: initial;
+    cursor: pointer;
+}
+
 .arrow {
     stroke: #313131;
     stroke-width: 2px;

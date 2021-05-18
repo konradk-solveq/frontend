@@ -30,7 +30,6 @@ body {
     background-color: #ffffff;
     background-color: #fff;
     position: relative;
-    background-color: khaki;
 }
 
 .wrap {
@@ -168,7 +167,7 @@ let alertApla;
 let alertH = 0;
 let alertCurrentPos = 0;
 const googleMap = document.getElementById('map');
-let position = null;
+let position;
 const values = {
     distance: '00,00',
     time1: '00:00',
@@ -385,7 +384,8 @@ const countersUpdate = () => { // liczniki
     setOneCounter(obj.averageSpeed, values.averageSpeed, trans.averageSpeedUnit, x, y);
 }
 
-const init = (width, height, pos) => {
+const init = (width, height, t, pos) => {
+    // trans = t;
     w = width;
     h = height;
     position = pos;
@@ -409,7 +409,70 @@ const init = (width, height, pos) => {
     svg.setAttribute('width', w);
     svg.setAttribute('height', h);
 
+    { // tylna apla
+        // wraper apli
+        let apla = getSVGelem('g');
+        let y1 = getY(-22);
+        let y2 = (getY(896 - 94 - 22 - 12) - 50 - 23 - 20.5);
+        apla.setAttribute('transform', 'translate(0,' + y1 + ')');
+        // apla.setAttribute('opacity', '0');
+        svg.append(apla);
+        // aplaOa = setAnimation(apla, 'opacity', '0 ; 0.99 ; 1');
+        // aplaOa.setAttribute('dur', '1.1s');
+        // aplaOa.setAttribute('values', '0 ; 0 ; 1');
 
+        //animacja apli
+        aplaA = setAnimaTrans(apla, 'transform');
+        let v9a = '0, ' + y1;
+        let v9b = '0, ' + y2;
+        mapOn.push(() => {
+            aplaA.setAttribute('from', v9a);
+            aplaA.setAttribute('to', v9b);
+            aplaA.beginElement();
+        })
+        mapOff.push(() => {
+            aplaA.setAttribute('from', v9b);
+            aplaA.setAttribute('to', v9a);
+            aplaA.beginElement();
+        })
+
+        // -------------------------------------------------------------------------
+        // cien pod aplą
+        let filter = getSVGelem('filter');
+        filter.setAttribute('id', 'f2');
+        filter.setAttribute('x', '-1');
+        filter.setAttribute('y', '-1');
+        filter.setAttribute('width', '3');
+        filter.setAttribute('height', '3');
+        apla.append(filter);
+
+        let blur = getSVGelem('feGaussianBlur');
+        blur.setAttribute('stdDeviation', '39');
+        filter.append(blur);
+
+        let path = getSVGelem('path');
+        path.setAttribute('fill', '#aaa');
+        path.setAttribute('fill-rule', 'evenodd');
+        let h1 = getY(22);
+        let h2 = h + getY(32);
+        let d = 'M 0,0' +
+            ' C 0,0 ' + data.w2 + ',' + h1 + ' ' + data.cw + ',' + h1 +
+            ' C ' + (data.w - data.w2) + ',' + h1 + ' ' + w + ',0 ' + w + ',0' +
+            ' L ' + w + ',0 ' + w + ',' + h2 + ' 0,' + h2 +
+            ' Z';
+
+        path.setAttribute('d', d);
+        path.setAttribute('filter', 'url(#f2)');
+        apla.append(path);
+
+        // -------------------------------------------------------------------------
+        // kształt apli
+        path = getSVGelem('path');
+        path.setAttribute('fill', '#fff');
+        path.setAttribute('fill-rule', 'evenodd');
+        path.setAttribute('d', d);
+        apla.append(path);
+    }
 
     // wraper liczników
     wrap = getSVGelem('g'); {
@@ -619,6 +682,60 @@ const init = (width, height, pos) => {
         // animacja przy pokazaniu mapy
     }
 
+    { // tylna przednia
+        // wraper apli
+        alertApla = getSVGelem('g');
+        alertCurrentPos = data.alertHide;
+        alertApla.setAttribute('transform', 'translate(0,' + alertCurrentPos + ')');
+        svg.append(alertApla);
+
+        //animacja apli
+        alertAplaA = setAnimaTrans(alertApla, 'transform');
+
+        // -------------------------------------------------------------------------
+        // cien pod aplą
+        let filter = getSVGelem('filter');
+        filter.setAttribute('id', 'f2');
+        filter.setAttribute('x', '-1');
+        filter.setAttribute('y', '-1');
+        filter.setAttribute('width', '3');
+        filter.setAttribute('height', '3');
+        alertApla.append(filter);
+
+        let blur = getSVGelem('feGaussianBlur');
+        blur.setAttribute('stdDeviation', '39');
+        filter.append(blur);
+
+        let path = getSVGelem('path');
+        path.setAttribute('fill', '#aaa');
+        path.setAttribute('fill-rule', 'evenodd');
+        let h1 = getY(22);
+        let d = 'M ' + data.w + ',' + 0 +
+            ' C ' + data.w + ',' + 0 + ' ' + (data.w - data.w2) + ',' + h1 + ' ' + data.cw + ',' + h1 +
+            ' C ' + data.w2 + ',' + h1 + ' 0,' + 0 + ' 0,' + 0 +
+            ' L 0,' + h + ' ' + w + ',' + h +
+            ' Z';
+        path.setAttribute('d', d);
+        path.setAttribute('filter', 'url(#f2)');
+        alertApla.append(path);
+
+        // -------------------------------------------------------------------------
+        // kształt apli
+        path = getSVGelem('path');
+        path.setAttribute('fill', '#fff');
+        path.setAttribute('fill-rule', 'evenodd');
+        path.setAttribute('d', d);
+        alertApla.append(path);
+
+        alert1.style.bottom = (getY(896) - data.alertBottom) + 'px';
+        alert1.style.left = getX(40) + 'px';
+        alert1.style.width = getX(334) + 'px';
+
+        alert2.style.bottom = (getY(896) - data.alertBottom) + 'px';
+        alert2.style.left = getX(40) + 'px';
+        alert2.style.width = getX(334) + 'px';
+    }
+
     googleMap.style.width = getX(414) + 'px';
     googleMap.style.height = getY(896) + 'px';
 };
@@ -649,6 +766,7 @@ const start = () => {
     startTime = Date.now();
     interval = setInterval(timer, 1000)
 }
+start();
 
 const setPauseOn = () => {
     if (!showed) return;
@@ -765,7 +883,6 @@ function initMap() {
         center: new google.maps.LatLng(p.lat, p.lng),
         zoom: 15,
     });
-
     const icons = {
         parking: {
             icon: "icon.png",

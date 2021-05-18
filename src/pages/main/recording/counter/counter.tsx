@@ -94,15 +94,17 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     const [areaHeigh, setAreaHeigh] = useState(0);
     const [headHeight, setHeadHeight] = useState(0);
 
+    useEffect(()=>{
+        bikeSelectorListPositionY.setValue(headHeight + getVerticalPx(69));
+    }, [headHeight])
+
     const [endRute, setEndRute] = useState(false);
     const [pause, setPause] = useState(null);
     const bikeSelectorListPositionY = useRef(
-        new Animated.Value(headHeight + getVerticalPx(30)),
+        new Animated.Value(headHeight + getVerticalPx(69)),
     ).current;
 
     const handleCancelOrPause = () => {
-
-
         if (endRute) {
             setEndRute(false);
         } else {
@@ -112,26 +114,27 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                 timer.current = setInterval(interval, 1000);
                 setPause(false);
 
+                animSvgRef.current.injectJavaScript('setMaxi();true;');
+
+                Animated.timing(bikeSelectorListPositionY, {
+                    toValue: headHeight + getVerticalPx(69),
+                    duration: 500,
+                    easing: Easing.quad,
+                    useNativeDriver: false,
+                }).start();
+
+            } else {
+                clearInterval(timer.current);
+                setPause(Date.now());
+
+                animSvgRef.current.injectJavaScript('setMini();true;');
+
                 Animated.timing(bikeSelectorListPositionY, {
                     toValue: headHeight + getVerticalPx(-30),
                     duration: 500,
                     easing: Easing.quad,
                     useNativeDriver: false,
                 }).start();
-
-                animSvgRef.current.injectJavaScript('setMini();true;');
-            } else {
-                clearInterval(timer.current);
-                setPause(Date.now());
-
-                Animated.timing(bikeSelectorListPositionY, {
-                    toValue: headHeight + getVerticalPx(30),
-                    duration: 500,
-                    easing: Easing.quad,
-                    useNativeDriver: false,
-                }).start();
-
-                animSvgRef.current.injectJavaScript('setMaxi();true;');
             }
         }
     };
@@ -161,16 +164,19 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             height: '100%',
             backgroundColor: 'white',
         },
-        area: {
-            width: getHorizontalPx(334),
-            left: getHorizontalPx(40),
-            height: areaHeigh,
-            minHeight: getHorizontalPx(305),
-            marginTop: getVerticalPx(60),
-        },
+        // area: {
+        //     width: getHorizontalPx(334),
+        //     left: getHorizontalPx(40),
+        //     height: areaHeigh,
+        //     minHeight: getHorizontalPx(305),
+        //     marginTop: getVerticalPx(60),
+        // },
         // bikeList: {
         //     marginTop: bikeSelectorListPositionY,
         // },
+        bikeList: {
+            position: 'absolute',
+        },
         board: {
             display: 'flex',
             flexDirection: 'row',
@@ -272,8 +278,6 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     return (
         <SafeAreaView style={styles.container}>
 
-
-
             <View style={styles.fullView}>
                 <WebView
                     style={styles.fullView}
@@ -298,19 +302,19 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                 />
             </View>
 
-            <Animated.View
-                style={{
-                    marginTop: bikeSelectorListPositionY
-                        ? bikeSelectorListPositionY
-                        : headHeight + getVerticalPx(30),
-                }}>
+            {bikeSelectorListPositionY && <Animated.View
+                style={[
+                    styles.bikeList,
+                    {
+                        top: bikeSelectorListPositionY
+                    }]}>
                 <BikeSelectorList
                     list={bikes}
                     callback={onChangeBikeHandler}
                     currentBike={bike?.description?.serial_number}
                     buttonText={'add'}
                 />
-            </Animated.View>
+            </Animated.View>}
 
 
             <View style={styles.bottons}>
