@@ -1026,6 +1026,47 @@
         "btnBikeMap": "Mapa rowerowa",
         "btnMyRoutes": "Moje trasy",
         "btnPlaned": "Planowane",
+        "maps": {
+            "filtersTitle": "Filtry",
+            "filtersDescription": "Określ parametry, które pozwolą zawezić listę wyświetlanych tras.",
+            "filtersSaveBtn": "Zastosuj",
+            "filtersBackBtn": "Przywróć",
+            "filters": {
+                "date": {
+                    "name":"Sortuj po dacie",
+                    "options": ["Od najnowszych","Od najstarszych"]
+                },
+                "routeType": {
+                    "name":"Pokaż trasy",
+                    "options": ["Wszystkie","Niepubliczne","Publiczne"]
+                },
+                "level": {
+                    "name":"Poziom trudności",
+                    "options": ["Łatwa","Umiarkowana","Wymagająca"]
+                },
+                "pavement": {
+                    "name":"Nawierzchnia",
+                    "options": [
+                       "Szutrowa",
+                       "Asfalt",
+                       "Utwardzona",
+                       "Nieutwardzona",
+                       "Ścieżka rowerowa"
+                    ]
+                },
+                "tags": {
+                    "name":"Tagi",
+                    "options": [
+                       "widokowa",
+                       "mały ruch",
+                       "weekendowa",
+                       "ciekawe atrakcje",
+                       "dobre jedzenie",
+                       "dla dzieci"
+                    ]
+                }
+            }
+        }
     },
     "MainMyRoutes": {
         "title": "Nie masz nagranych tras",
