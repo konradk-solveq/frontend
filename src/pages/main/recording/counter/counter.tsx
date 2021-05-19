@@ -205,8 +205,6 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         // setJs('setMini();true;');
     }, [pageState])
 
-
-
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {

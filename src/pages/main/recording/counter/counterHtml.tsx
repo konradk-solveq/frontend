@@ -177,7 +177,7 @@ let alertH = 0;
 let alertCurrentPos = 0;
 const googleMap = document.getElementById('map');
 let position;
-const values = {
+let values = {
     distance: '00,00',
     time1: '00:00',
     time2: ':00',
@@ -193,6 +193,12 @@ const animDur = '0.4s';
 const coolDownT = 430;
 let coolDown = false;
 let showed = false;
+
+const setValues = v => {
+    if (v.distance) values.distance = v.distance;
+    if (v.speed) values.speed = v.speed;
+    if (v.averageSpeed) values.averageSpeed = v.averageSpeed;
+}
 
 const getXless = (n, min) => w * (n / 414) < min ? min : w * (n / 414);
 const getYless = (n, min) => w * (n / 896) < min ? min : w * (n / 896);
