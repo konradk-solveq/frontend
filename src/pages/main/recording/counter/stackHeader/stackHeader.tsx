@@ -91,7 +91,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                 <TopBackBtn
                     // style={styles.topBtn}
                     // onpress={() => props.onpress()}
-                    onpress={() => { }}
+                    onpress={props.onpress}
                     color={props.pause ? '#000' : '#fff'}
                 />
 

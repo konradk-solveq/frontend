@@ -1077,6 +1077,7 @@
         ]
     },
     "MainCounter": {
+        "headerStart": "Rozpocznij nagrywanie",
         "headerRecord": "Trwa nagrywanie",
         "headerPause": "Pauza",
         "distance": "Dystans",
@@ -1090,6 +1091,7 @@
         "btnPauza": "PAUZA",
         "btnPauzaOff": "WZNÓW",
         "btnEnd": "ZAKOŃCZ",
+        "cancelText": "Czy chcesz przerwać nagrywanie trasy bez jej zapisywania?",
         "endText": "Czy chcesz zakończyć nagrywanie trasy?",
         "btnCancel": "ANULUJ",
         "btnBreak": "PRZERWIJ"

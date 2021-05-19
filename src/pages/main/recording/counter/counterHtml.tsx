@@ -28,8 +28,10 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ffffff;
+    /* overflow: hidden; */
     background-color: #fff;
     position: relative;
+    // pointer-events: none;
 }
 
 .wrap {
@@ -82,6 +84,11 @@ svg {
     fill: #555555;
 }
 
+.mapBtn {
+    cursor: pointer;
+    pointer-events: initial;
+}
+
 .arrow {
     stroke: #313131;
     stroke-width: 2px;
@@ -96,7 +103,6 @@ svg {
     font-size: 23px;
     color: #313131;
     text-align: center;
-    opacity: 0;
     transition: opacity .3s;
 }
 
@@ -162,7 +168,10 @@ let paused = false;
 const alert1 = document.getElementById('alert1');
 const alert2 = document.getElementById('alert2');
 let alerted = false;
+let alert1H = null;
+let alert2H = null;
 let curentShapeOfHeader = null;
+let curentColorOfHeader = null;
 let alertApla;
 let alertH = 0;
 let alertCurrentPos = 0;
@@ -175,6 +184,9 @@ const values = {
     speed: '00,0',
     averageSpeed: '00,0',
 };
+let mapView = false;
+let map;
+
 
 
 const animDur = '0.4s';
@@ -384,7 +396,7 @@ const countersUpdate = () => { // liczniki
     setOneCounter(obj.averageSpeed, values.averageSpeed, trans.averageSpeedUnit, x, y);
 }
 
-const init = (width, height, t, pos) => {
+const init = (width, height, pos) => {
     // trans = t;
     w = width;
     h = height;
@@ -413,13 +425,9 @@ const init = (width, height, t, pos) => {
         // wraper apli
         let apla = getSVGelem('g');
         let y1 = getY(-22);
-        let y2 = (getY(896 - 94 - 22 - 12) - 50 - 23 - 20.5);
+        let y2 = (getY(896 - 94 - 22 - 12) - 50 - 23 - 25.5);
         apla.setAttribute('transform', 'translate(0,' + y1 + ')');
-        // apla.setAttribute('opacity', '0');
         svg.append(apla);
-        // aplaOa = setAnimation(apla, 'opacity', '0 ; 0.99 ; 1');
-        // aplaOa.setAttribute('dur', '1.1s');
-        // aplaOa.setAttribute('values', '0 ; 0 ; 1');
 
         //animacja apli
         aplaA = setAnimaTrans(apla, 'transform');
@@ -429,11 +437,13 @@ const init = (width, height, t, pos) => {
             aplaA.setAttribute('from', v9a);
             aplaA.setAttribute('to', v9b);
             aplaA.beginElement();
+            apla.style.setProperty('pointer-events', 'none');
         })
         mapOff.push(() => {
             aplaA.setAttribute('from', v9b);
             aplaA.setAttribute('to', v9a);
             aplaA.beginElement();
+            apla.style.setProperty('pointer-events', 'initial');
         })
 
         // -------------------------------------------------------------------------
@@ -507,7 +517,7 @@ const init = (width, height, t, pos) => {
 
         // animacja całej grupy buttona z krzyżakiem
         let v3a = '' + (getX(414 - 80) / 2) + ',' + (wrapParam.h / 2);
-        let v3b = '' + (getX(414 - 80) / 2) + ',' + (-(23 + 20.5 + getY(12)));
+        let v3b = '' + (getX(414 - 80) / 2) + ',' + (-(23 + 25.5 + getY(12)));
         mapOn.push(() => {
             btnWrapA.setAttribute('from', v3a);
             btnWrapA.setAttribute('to', v3b);
@@ -534,7 +544,7 @@ const init = (width, height, t, pos) => {
         filter.append(blur);
 
         let shadow = getSVGelem('circle');
-        shadow.setAttribute('r', '20.5');
+        shadow.setAttribute('r', '25.5');
         shadow.setAttribute('fill', '#ddd');
         shadow.setAttribute('filter', 'url(#f1)');
         btnWrap.append(shadow);
@@ -602,9 +612,15 @@ const init = (width, height, t, pos) => {
         // -------------------------------------------------------------------------
         // button
         let btn = getSVGelem('circle');
-        btn.setAttribute('r', '20.5');
+        btn.setAttribute('class', 'mapBtn');
+        btn.setAttribute('r', '25.5');
         btn.setAttribute('fill', '#fff');
         btnWrap.append(btn);
+
+        btn.addEventListener('click', e => {
+            clickMapShower();
+        })
+
 
         // -------------------------------------------------------------------------
         // strałka
@@ -637,47 +653,57 @@ const init = (width, height, t, pos) => {
         let animate = getSVGelem('animate');
         animate.setAttribute('id', 'shape');
         animate.setAttribute('attributeName', 'd');
-        animate.setAttribute('dur', '1.1s');
+        animate.setAttribute('dur', '0.5s');
         animate.setAttribute('repeatCount', '1');
         animate.setAttribute('fill', 'freeze');
 
         const zeroVal = 'M 0,0 ' + data.w + ',0 ' + data.w + ',0' +
             ' C ' + data.w + ',0 ' + (data.w - data.w2) + ',0 ' + data.cw + ',0' +
             ' C ' + data.w2 + ',0 0,0 0,0 Z';
-        const startVal = 'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.h2 +
-            ' C ' + data.w + ',' + data.h2 + ' ' + (data.w - data.w2) + ',' + data.h + ' ' + data.cw + ',' + data.h +
-            ' C ' + data.w2 + ',' + data.h + ' 0,' + data.h2 + ' 0,' + data.h2 + ' Z';
+        curentShapeOfHeader =
+            // 'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.h2 +
+            //     ' C ' + data.w + ',' + data.h2 + ' ' + (data.w - data.w2) + ',' + data.h + ' ' + data.cw + ',' + data.h +
+            //     ' C ' + data.w2 + ',' + data.h + ' 0,' + data.h2 + ' 0,' + data.h2 + ' Z';
+            'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.hs +
+            ' C ' + data.w + ',' + data.hs + ' ' + (data.w - data.w2) + ',' + data.hs + ' ' + data.cw + ',' + data.hs + '' +
+            ' C ' + data.w2 + ',' + data.hs + ' 0,' + data.hs + ' 0,' + data.hs + ' Z';
 
-        animate.setAttribute('values', zeroVal + ' ; ' + startVal);
+        curentColorOfHeader = '#F3A805';
+
+        animate.setAttribute('values', zeroVal + ' ; ' + curentShapeOfHeader);
         path.append(animate);
 
         let animate2 = getSVGelem('animate');
         animate2.setAttribute('id', 'color');
         animate2.setAttribute('attributeName', 'fill');
-        animate2.setAttribute('dur', '1.1s');
+        animate2.setAttribute('dur', '0.5s');
         animate2.setAttribute('repeatCount', '1');
         animate2.setAttribute('fill', 'freeze');
-        animate2.setAttribute('values', '#ffffff ; #D8232A');
+        animate2.setAttribute('values', '#ffffff ; ' + curentColorOfHeader);
         path.append(animate2);
 
         setTimeout(() => {
             showed = true;
-            curentShapeOfHeader = 'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.h2 +
-                ' C ' + data.w + ',' + data.h2 + ' ' + (data.w - data.w2) + ',' + data.h + ' ' + data.cw + ',' + data.h +
-                ' C ' + data.w2 + ',' + data.h + ' 0,' + data.h2 + ' 0,' + data.h2 + ' Z'
+
             mapOn.push(() => {
                 animate.setAttribute('values', '' + curentShapeOfHeader + ' ; ' + zeroVal);
                 animate.setAttribute('dur', '0.3s');
                 animate.beginElement();
+                animate2.setAttribute('values', '' + curentColorOfHeader + ' ; ' + curentColorOfHeader);
+                animate2.setAttribute('dur', '0.001s');
+                animate2.beginElement();
                 cover.style.backgroundColor = '';
             })
             mapOff.push(() => {
                 animate.setAttribute('values', '' + zeroVal + ' ; ' + curentShapeOfHeader);
                 animate.setAttribute('dur', '0.3s');
                 animate.beginElement();
+                animate2.setAttribute('values', '' + curentColorOfHeader + ' ; ' + curentColorOfHeader);
+                animate2.setAttribute('dur', '0.001s');
+                animate2.beginElement();
             })
 
-        }, 1100);
+        }, 600);
 
         // animacja przy pokazaniu mapy
     }
@@ -727,151 +753,38 @@ const init = (width, height, t, pos) => {
         path.setAttribute('d', d);
         alertApla.append(path);
 
-        alert1.style.bottom = (getY(896) - data.alertBottom) + 'px';
+        alert1.style.top = (data.alertBottom - 23) + 'px';
         alert1.style.left = getX(40) + 'px';
         alert1.style.width = getX(334) + 'px';
+        alert1.style.opacity = '0';
 
-        alert2.style.bottom = (getY(896) - data.alertBottom) + 'px';
+        alert2.style.bottom = (data.alertBottom - 23) + 'px';
         alert2.style.left = getX(40) + 'px';
         alert2.style.width = getX(334) + 'px';
+        alert2.style.opacity = '0';
     }
 
     googleMap.style.width = getX(414) + 'px';
     googleMap.style.height = getY(896) + 'px';
+
+
+    mapOn.push(() => {
+        map.setOptions({
+            draggable: true,
+            zoomControl: true,
+            scrollwheel: true,
+            disableDoubleClickZoom: false
+        });
+    })
+    mapOff.push(() => {
+        map.setOptions({
+            draggable: false,
+            zoomControl: false,
+            scrollwheel: false,
+            disableDoubleClickZoom: true
+        });
+    })
 };
-
-let interval = null;
-let startTime = 0;
-let pauseTime = 0;
-let pauseStart = 0;
-
-const pointToComa = num => num.toString().replace('.', ',');
-
-const twoDigits = num => num < 10 ? '0' + num : '' + num;
-
-const timer = () => {
-    let diference = Date.now() - startTime - pauseTime;
-    console.log('%c pauseTime:', 'background: #ffcc00; color: #003300', pauseTime)
-    let sec = Math.round(diference / 1000) % 60;
-    let min = Math.floor(diference / (1000 * 60)) % 60;
-    let hou = Math.floor(diference / (1000 * 60 * 60));
-
-    values.time1 = twoDigits(hou) + ':' + twoDigits(min)
-    values.time2 = ':' + twoDigits(sec)
-
-    if (!coolDown) countersUpdate();
-}
-
-const start = () => {
-    startTime = Date.now();
-    interval = setInterval(timer, 1000)
-}
-start();
-
-const setPauseOn = () => {
-    if (!showed) return;
-    paused = true;
-    let shape = document.getElementById('shape');
-    let value = 'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.h2 +
-        ' C ' + data.w + ',' + data.h2 + ' ' + (data.w - data.w2) + ',' + data.h + ' ' + data.cw + ',' + data.h +
-        ' C ' + data.w2 + ',' + data.h + ' 0,' + data.h2 + ' 0,' + data.h2 + ' Z';
-    curentShapeOfHeader = 'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.hs +
-        ' C ' + data.w + ',' + data.hs + ' ' + (data.w - data.w2) + ',' + data.hs + ' ' + data.cw + ',' + data.hs + '' +
-        ' C ' + data.w2 + ',' + data.hs + ' 0,' + data.hs + ' 0,' + data.hs + ' Z'
-    shape.setAttribute('values', value + ' ; ' + curentShapeOfHeader);
-    shape.setAttribute('dur', '0.4s');
-    shape.beginElement();
-
-    let color = document.getElementById('color');
-    color.setAttribute('dur', '0.4s');
-    color.setAttribute('values', '#D8232A ; #F3A805');
-    color.beginElement();
-
-    pauseStart = Date.now();
-    clearInterval(interval);
-}
-
-const setPauseOff = () => {
-    if (!showed) return;
-    paused = false;
-    let shape = document.getElementById('shape');
-    let value = 'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.hs +
-        ' C ' + data.w + ',' + data.hs + ' ' + (data.w - data.w2) + ',' + data.hs + ' ' + data.cw + ',' + data.hs + '' +
-        ' C ' + data.w2 + ',' + data.hs + ' 0,' + data.hs + ' 0,' + data.hs + ' Z';
-    curentShapeOfHeader = 'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.h2 +
-        ' C ' + data.w + ',' + data.h2 + ' ' + (data.w - data.w2) + ',' + data.h + ' ' + data.cw + ',' + data.h +
-        ' C ' + data.w2 + ',' + data.h + ' 0,' + data.h2 + ' 0,' + data.h2 + ' Z'
-    shape.setAttribute('values', value + ' ; ' + curentShapeOfHeader);
-    shape.setAttribute('dur', '0.4s');
-    shape.beginElement();
-
-    let color = document.getElementById('color');
-    color.setAttribute('dur', '0.4s');
-    color.setAttribute('values', '#F3A805 ; #D8232A');
-    color.beginElement();
-
-    pauseTime += (Date.now() - pauseStart);
-    interval = setInterval(timer, 1000)
-}
-
-const coolDownFoo = () => {
-    coolDown = true;
-    setTimeout(() => {
-        coolDown = false;
-        countersUpdate();
-    }, coolDownT);
-}
-
-const setMini = () => {
-    mapOn.forEach(f => f());
-    coolDownFoo();
-}
-
-const setMaxi = () => {
-    mapOff.forEach(f => f());
-    coolDownFoo();
-}
-
-const showAlert = (num, txt) => {
-    alerted = true;
-
-    alert1.style.opacity = 0;
-    alert2.style.opacity = 0;
-    alert1.innerHTML = '';
-    alert2.innerHTML = '';
-
-    let alert = (num == 1) ? alert1 : alert2;
-    alert.innerHTML = txt;
-    setTimeout(() => {
-        alertH = alert.getBoundingClientRect().height;
-
-        let startFrom = alertCurrentPos;
-        alertCurrentPos = (data.alertBottom - alertH - getY(38));
-
-        alertAplaA.setAttribute('from', '0, ' + startFrom);
-        alertAplaA.setAttribute('to', '0, ' + alertCurrentPos);
-        alertAplaA.beginElement();
-
-        setTimeout(() => {
-            alert.style.opacity = 1;
-        }, 300);
-    }, 100);
-}
-
-const hideAlert = () => {
-    alerted = false;
-
-    alert1.style.opacity = 0;
-    alert2.style.opacity = 0;
-    setTimeout(() => {
-        alertAplaA.setAttribute('from', '0, ' + alertCurrentPos);
-        alertAplaA.setAttribute('to', '0, ' + data.alertHide);
-        alertCurrentPos = data.alertHide;
-        alertAplaA.beginElement();
-    }, 300)
-}
-
-let map;
 
 function initMap() {
     let p = position ? position : {
@@ -961,8 +874,178 @@ function initMap() {
             map: map,
         });
     }
+
+    map.setOptions({
+        draggable: false,
+        zoomControl: false,
+        scrollwheel: false,
+        disableDoubleClickZoom: true
+    });
 }
+let interval = null;
+let startTime = 0;
+let pauseTime = 0;
+let pauseStart = 0;
+
+const pointToComa = num => num.toString().replace('.', ',');
+
+const twoDigits = num => num < 10 ? '0' + num : '' + num;
+
+const timer = () => {
+    let diference = Date.now() - startTime - pauseTime;
+    let sec = Math.round(diference / 1000) % 60;
+    let min = Math.floor(diference / (1000 * 60)) % 60;
+    if (min < 0) min = 0;
+    let hou = Math.floor(diference / (1000 * 60 * 60));
+    if (hou < 0) hou = 0;
+
+    values.time1 = twoDigits(hou) + ':' + twoDigits(min)
+    values.time2 = ':' + twoDigits(sec)
+
+    if (!coolDown) countersUpdate();
+}
+
+let started = false;
+const start = () => {
+    if (started) return;
+    started = true;
+    startTime = Date.now();
+    pauseStart = Date.now();
+    interval = setInterval(timer, 1000)
+}
+
+const setPauseOn = () => {
+    if (!showed) return;
+    paused = true;
+    let shape = document.getElementById('shape');
+    let value = curentShapeOfHeader;
+    curentShapeOfHeader = 'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.hs +
+        ' C ' + data.w + ',' + data.hs + ' ' + (data.w - data.w2) + ',' + data.hs + ' ' + data.cw + ',' + data.hs + '' +
+        ' C ' + data.w2 + ',' + data.hs + ' 0,' + data.hs + ' 0,' + data.hs + ' Z';
+    if (!mapView) {
+        shape.setAttribute('values', value + ' ; ' + curentShapeOfHeader);
+        shape.setAttribute('dur', '0.4s');
+        shape.beginElement();
+    }
+
+    let color = document.getElementById('color');
+    color.setAttribute('dur', '0.4s');
+    value = curentColorOfHeader;
+    curentColorOfHeader = '#F3A805';
+    if (!mapView) {
+        color.setAttribute('values', value + ' ; ' + curentColorOfHeader);
+        color.beginElement();
+    }
+
+    pauseStart = Date.now();
+    clearInterval(interval);
+    interval = null;
+}
+
+const setPauseOff = () => {
+    if (!showed) return;
+    paused = false;
+    let shape = document.getElementById('shape');
+    let value = curentShapeOfHeader;
+    curentShapeOfHeader = 'M 0,0 ' + data.w + ',0 ' + data.w + ',' + data.h2 +
+        ' C ' + data.w + ',' + data.h2 + ' ' + (data.w - data.w2) + ',' + data.h + ' ' + data.cw + ',' + data.h +
+        ' C ' + data.w2 + ',' + data.h + ' 0,' + data.h2 + ' 0,' + data.h2 + ' Z';
+    if (!mapView) {
+        shape.setAttribute('values', value + ' ; ' + curentShapeOfHeader);
+        shape.setAttribute('dur', '0.4s');
+        shape.beginElement();
+    }
+
+    let color = document.getElementById('color');
+    color.setAttribute('dur', '0.4s');
+    value = curentColorOfHeader;
+    curentColorOfHeader = '#D8232A';
+     if (!mapView) {
+        color.setAttribute('values', value + ' ; ' + curentColorOfHeader);
+        color.beginElement();
+    }
+
+    pauseTime += (Date.now() - pauseStart);
+    if (!interval)
+        interval = setInterval(timer, 1000)
+}
+
+const coolDownFoo = () => {
+    coolDown = true;
+    setTimeout(() => {
+        coolDown = false;
+        countersUpdate();
+    }, coolDownT);
+}
+
+const setMini = () => {
+    mapOn.forEach(f => f());
+    coolDownFoo();
+    mapView = true;
+}
+
+const setMaxi = () => {
+    mapOff.forEach(f => f());
+    coolDownFoo();
+    mapView = false;
+}
+
+let onOff = true;
+const clickMapShower = () => {
+    if (onOff) {
+        setMini();
+        onOff = false;
+    } else {
+        setMaxi();
+        onOff = true;
+    }
+}
+
+const showAlert = (num, txt) => {
+    alerted = true;
+
+    alert1.style.opacity = 0;
+    alert2.style.opacity = 0;
+    alert1.innerHTML = '';
+    alert2.innerHTML = '';
+
+    let alert = (num == 1) ? alert1 : alert2;
+    alert.innerHTML = txt;
+    setTimeout(() => {
+        alertH = alert.getBoundingClientRect().height;
+        if (num == 1 && alert1H) {alertH = alert1H} else {alert1H = alertH}
+        if (num == 2 && alert2H) {alertH = alert2H} else {alert2H = alertH}
+
+        alert.style.top = (data.alertBottom - alertH) + 'px';
+        let startFrom = alertCurrentPos;
+        alertCurrentPos = (data.alertBottom - alertH - getY(38));
+
+        alertAplaA.setAttribute('from', '0, ' + startFrom);
+        alertAplaA.setAttribute('to', '0, ' + alertCurrentPos);
+        alertAplaA.beginElement();
+
+        setTimeout(() => {
+            alert.style.opacity = 1;
+        }, 300);
+    }, 100);
+}
+
+const hideAlert = () => {
+    alerted = false;
+
+    alert1.style.opacity = 0;
+    alert2.style.opacity = 0;
+    setTimeout(() => {
+        alertAplaA.setAttribute('from', '0, ' + alertCurrentPos);
+        alertAplaA.setAttribute('to', '0, ' + data.alertHide);
+        alertCurrentPos = data.alertHide;
+        alertAplaA.beginElement();
+    }, 300)
+}
+
+
 </script>
+
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcuDhYsJJqOBvWppdbLf5y75V8OdNOevQ&map_ids=2ffa275ecc610735&callback=initMap">
 </script>
 `

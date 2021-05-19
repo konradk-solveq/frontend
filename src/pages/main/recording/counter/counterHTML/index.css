@@ -29,6 +29,7 @@ body {
     /* overflow: hidden; */
     background-color: #fff;
     position: relative;
+    pointer-events: none;
 }
 
 .wrap {
@@ -82,7 +83,6 @@ svg {
 }
 
 .mapBtn {
-    pointer-events: initial;
     cursor: pointer;
 }
 
@@ -116,5 +116,4 @@ svg {
     left: 0;
     top: 0;
     z-index: 999;
-    pointer-events: none;
 }

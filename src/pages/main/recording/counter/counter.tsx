@@ -23,26 +23,15 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { getBike } from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
-import apla from '../../../../sharedComponents/modals/backGround';
-
-import AnimSvg from '../../../../helpers/animSvg';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 import StackHeader from './stackHeader/stackHeader';
 
-import { pointToComa, twoDigits } from '../../../../helpers/stringFoo';
+import counterHtml from './counterHtml';
+import mapHtml from './mapHtml';
 
-import webview from './webview';
 
-const btnMapBackground = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-15.4 -15.4 46.2 46.2">
-<defs>
-    <filter id="f1" x="-1" width="3" y="-1" height="3">
-        <feGaussianBlur stdDeviation="6"/>
-    </filter>
-</defs>
-<circle transform="translate(-107.1 -21.8)" cx="114.8" cy="29.5" r="7.6" fill="#dddddd" filter="url(#f1)" />
-</svg>`;
 
 interface Props {
     navigation: any;
@@ -54,6 +43,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
 
+    // lista rowerów
     useEffect(() => {
         setBike(bikes?.[0] || null);
     }, [bikes]);
@@ -68,94 +58,154 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         }
     };
 
-    const [distance, setDistance] = useState(34.66);
-    const [time, setTime] = useState(['00:00', ':00']);
-    const [startTime, setStartTime] = useState(Date.now());
-    const [speed, setSpeed] = useState(2.3);
-    const [averageSpeed, setAverageSpeed] = useState(15.1);
+    // położenie listy rowerów
+    const setListUp = () => {
+        Animated.timing(bikeSelectorListPositionY, {
+            toValue: headHeight + getVerticalPx(69),
+            duration: 500,
+            easing: Easing.quad,
+            useNativeDriver: false,
+        }).start();
+    }
 
-    const timer = useRef();
-    const interval = useCallback(() => {
-        let passed = Math.round((Date.now() - startTime) / 1000);
-        let s = passed % 60;
-        let m = Math.floor((passed / 60) % 60);
-        let h = Math.floor((passed / (60 * 60)) % (60 * 60));
+    const setListDown = () => {
+        Animated.timing(bikeSelectorListPositionY, {
+            toValue: headHeight + getVerticalPx(-30),
+            duration: 500,
+            easing: Easing.quad,
+            useNativeDriver: false,
+        }).start();
+    }
 
-        setTime(['' + twoDigits(h) + ':' + twoDigits(m), ':' + twoDigits(s)]);
-    }, [startTime]);
-
-    useEffect(() => {
-        timer.current = setInterval(interval, 1000);
-        return () => {
-            clearInterval(timer.current);
-        };
-    }, [interval]);
-
-    const [areaHeigh, setAreaHeigh] = useState(0);
+    // wysokośc headera
     const [headHeight, setHeadHeight] = useState(0);
 
-    useEffect(()=>{
+    // do animacji położeni listy rowerów
+    useEffect(() => {
         bikeSelectorListPositionY.setValue(headHeight + getVerticalPx(69));
     }, [headHeight])
 
-    const [endRute, setEndRute] = useState(false);
-    const [pause, setPause] = useState(null);
     const bikeSelectorListPositionY = useRef(
         new Animated.Value(headHeight + getVerticalPx(69)),
     ).current;
 
-    const handleCancelOrPause = () => {
-        if (endRute) {
-            setEndRute(false);
-        } else {
-            if (pause) {
-                let pauseTime = Date.now() - pause;
-                setStartTime(startTime + pauseTime);
-                timer.current = setInterval(interval, 1000);
-                setPause(false);
-
-                animSvgRef.current.injectJavaScript('setMaxi();true;');
-
-                Animated.timing(bikeSelectorListPositionY, {
-                    toValue: headHeight + getVerticalPx(69),
-                    duration: 500,
-                    easing: Easing.quad,
-                    useNativeDriver: false,
-                }).start();
-
-            } else {
-                clearInterval(timer.current);
-                setPause(Date.now());
-
-                animSvgRef.current.injectJavaScript('setMini();true;');
-
-                Animated.timing(bikeSelectorListPositionY, {
-                    toValue: headHeight + getVerticalPx(-30),
-                    duration: 500,
-                    easing: Easing.quad,
-                    useNativeDriver: false,
-                }).start();
-            }
-        }
-    };
-
-    const handleEnd = () => {
-        if (!endRute) {
-            setEndRute(true);
-        }
-    };
-
+    // inicjalizacja elementów webviwe
     const animSvgRef = useRef();
-
     useEffect(() => {
         animSvgRef.current.injectJavaScript(
             'init(' +
             getHorizontalPx(414) +
             ', ' +
             getVerticalPx(896) + ', { lat: 53.009342618210624, lng: 20.890509251985964 }' +
-            ');true;',
+            ');true'
         );
     }, [])
+
+    const setJs = (foo: string) => animSvgRef.current.injectJavaScript(foo);
+
+    const [pageState, setPageState] = useState('start');
+
+    const [leftBtnTile, setLeftBtnTile] = useState('');
+    const [rightBtnTile, setRightBtnTile] = useState('');
+    const [headerTitle, setHeaderTitle] = useState('');
+    const [pause, setPause] = useState(true);
+
+    const heandleLeftBtnClick = () => {
+        switch (pageState) {
+            case 'start': {
+                navigation.goBack();
+            } break;
+            case 'record': {
+                setPageState('pause');
+                setJs('setPauseOn();true;');
+            } break;
+            case 'pause': {
+                setPageState('record');
+                setJs('hideAlert();setPauseOff();true;');
+            } break;
+            case 'cancelText': {
+                setPageState('record');
+                setJs('hideAlert();true;');
+            } break;
+            case 'endMessage': {
+                setPageState('record');
+                setJs('hideAlert();true;');
+            } break;
+        }
+    };
+
+    const heandleRightBtnClick = () => {
+        switch (pageState) {
+            case 'start': {
+                setPageState('record');
+                setJs('start();setPauseOff();true;');
+            } break;
+            case 'record': {
+                setPageState('endMessage');
+            } break;
+            case 'cancelText': {
+                navigation.goBack();
+            } break;
+            case 'endMessage': {
+                // TODO
+                // do ekranu zakończenia
+            } break;
+        }
+    };
+
+    const heandleGoBackClick = () => {
+        switch (pageState) {
+            case 'start': {
+                navigation.goBack();
+            } break;
+            default: {
+                setPageState('cancelText');
+            } break;
+        }
+    };
+
+    useEffect(() => {
+        switch (pageState) {
+            case 'start':
+                {
+                    setLeftBtnTile(trans.btnCancel);
+                    setRightBtnTile(trans.btnStart);
+                    setHeaderTitle(trans.headerStart)
+                    setPause(true);
+                    // setListDown();
+                }
+                break;
+            case 'record':
+                {
+                    setLeftBtnTile(trans.btnPauza);
+                    setRightBtnTile(trans.btnEnd);
+                    setHeaderTitle(trans.headerRecord)
+                    setPause(false);
+                }
+                break;
+            case 'pause':
+                {
+                    setLeftBtnTile(trans.btnPauzaOff);
+                    setHeaderTitle(trans.headerPause);
+                    setPause(true);
+                }
+                break;
+            case 'cancelText': {
+                setLeftBtnTile(trans.btnCancel);
+                setRightBtnTile(trans.btnBreak);
+                setJs('showAlert(1, "' + trans.cancelText + '");true;');
+            } break;
+            case 'endMessage': {
+                setLeftBtnTile(trans.btnCancel);
+                setRightBtnTile(trans.btnEnd);
+                setJs('showAlert(2, "' + trans.endText + '");true;');
+
+            } break;
+        }
+        // setJs('setMini();true;');
+    }, [pageState])
+
+
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -164,75 +214,8 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             height: '100%',
             backgroundColor: 'white',
         },
-        // area: {
-        //     width: getHorizontalPx(334),
-        //     left: getHorizontalPx(40),
-        //     height: areaHeigh,
-        //     minHeight: getHorizontalPx(305),
-        //     marginTop: getVerticalPx(60),
-        // },
-        // bikeList: {
-        //     marginTop: bikeSelectorListPositionY,
-        // },
         bikeList: {
             position: 'absolute',
-        },
-        board: {
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-        },
-        quart: {
-            width: '50%',
-            paddingTop: getVerticalPx(37),
-            paddingBottom: getHorizontalPx(116) - 95,
-        },
-        name: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            lineHeight: 24,
-            color: '#555555',
-        },
-        counter: {
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'baseline',
-        },
-        value: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 57,
-            lineHeight: 72,
-            color: '#313131',
-        },
-        unit: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 18,
-            color: '#555555',
-        },
-        horisontalLine: {
-            borderBottomColor: '#dddddd',
-            borderBottomWidth: 1,
-            paddingTop: getVerticalPx(5),
-            paddingBottom: getHorizontalPx(152 - 5) - 95,
-        },
-        verticalLine: {
-            borderLeftColor: '#dddddd',
-            borderLeftWidth: 1,
-            paddingLeft: getHorizontalPx(30),
-        },
-        btnMap: {
-            width: getHorizontalPx(51),
-            height: getHorizontalPx(51),
-            position: 'absolute',
-            left: getHorizontalPx(167 - 25),
-            top: getHorizontalPx(152 - 25),
-        },
-        btnMapBackground: {
-            position: 'absolute',
-            width: getHorizontalPx(51 * 3),
-            height: getHorizontalPx(51 * 3),
-            left: getHorizontalPx(167 - 25 * 3 - 1),
-            top: getHorizontalPx(152 - 25 * 3 - 1),
         },
         bottons: {
             display: 'flex',
@@ -246,27 +229,6 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         },
         btn: {
             width: getWidthPxOf(157),
-        },
-        apla: {
-            position: 'absolute',
-            width: getHorizontalPx(414),
-            height: getHorizontalPx(800),
-            left: 0,
-            bottom: -(
-                getHorizontalPx(800) -
-                (getVerticalPx(35 + 65 + 145 + 90) + 50)
-            ),
-        },
-        endText: {
-            position: 'absolute',
-            width: getHorizontalPx(352),
-            left: getHorizontalPx(30),
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 23,
-            lineHeight: 30,
-            color: '#313131',
-            textAlign: 'center',
-            bottom: getHorizontalPx(65 + 40) + 50,
         },
         fullView: {
             backgroundColor: 'transparent',
@@ -290,7 +252,8 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     source={{
                         html:
                             '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
-                            webview +
+                            counterHtml +
+                            mapHtml +
                             '</body></html>',
                         baseUrl:
                             Platform.OS === 'ios'
@@ -320,29 +283,23 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             <View style={styles.bottons}>
                 <View style={styles.btn}>
                     <BigWhiteBtn
-                        title={
-                            endRute
-                                ? trans.btnCancel
-                                : pause
-                                    ? trans.btnPauzaOff
-                                    : trans.btnPauza
-                        }
-                        onpress={() => handleCancelOrPause()}
+                        title={leftBtnTile}
+                        onpress={heandleLeftBtnClick}
                     />
                 </View>
 
                 <View style={styles.btn}>
                     <BigRedBtn
-                        title={trans.btnEnd}
-                        onpress={() => handleEnd()}
+                        title={rightBtnTile}
+                        onpress={heandleRightBtnClick}
                     />
                 </View>
             </View>
 
             <StackHeader
-                onpress={() => navigation.goBack()}
+                onpress={heandleGoBackClick}
                 getHeight={setHeadHeight}
-                inner={pause ? trans.headerPause : trans.headerRecord}
+                inner={headerTitle}
                 pause={pause}
             />
         </SafeAreaView>
