@@ -3,18 +3,6 @@ import { Dimensions } from 'react-native';
 // funkcje wiliczające położenie elementów proporcje wg layoutu 
 // https://app.zeplin.io/project/5fbf658b936bbbb842e3c43c/dashboard?sid=60397836dc2eff2bfdde033a
 
-const {width, height} = Dimensions.get('window');
-
-let layout: {
-    width: number;
-    height: number;
-    ratio: number;
-} = {
-    width: 414, // wartości pełnego ekranu wg designu
-    height: 896,
-    ratio: 414 / 896
-}
-
 let appSize: {
     width: number,
     height: number,
@@ -50,76 +38,76 @@ const setObjSize = (w: number, h: number) => {
 }
 
 const getCenterLeftPx = () => {
-    let res: number = (((layout.width - objSize.width) / 2) / layout.width) * appSize.width;
+    let res: number = (((414 - objSize.width) / 2) / 414) * appSize.width;
     return res;
 }
 
 const getCenterTopPx = () => {
-    let res: number = (((layout.height - objSize.height) / 2) / layout.height) * appSize.height;
+    let res: number = (((896 - objSize.height) / 2) / 896) * appSize.height;
     return res;
 }
 
 
 
-const getHorizontal = (left: number) => {
-    let res: number = (left / layout.width) * 100;
+const getHorizontal = (px: number) => {
+    let res: number = (px / 414) * 100;
     return res.toFixed(3) + '%';
 }
-const getHorizontalPx = (left: number) => {
-    let res: number = (left / layout.width) * appSize.width;
+const getHorizontalPx = (px: number) => {
+    let res: number = (px / 414) * appSize.width;
     return res;
 }
 
-const getVertical = (top: number) => {
-    let res: number = ((top) / layout.height) * 100;
+const getVertical = (px: number) => {
+    let res: number = (px / 896) * 100;
     return res.toFixed(3) + '%'
 }
-const getVerticalPx = (top: number) => {
-    let res: number = ((top) / layout.height) * appSize.height;
+const getVerticalPx = (px: number) => {
+    let res: number = ((px) / 896) * appSize.height;
     return res
 }
 
 
 
 const getWidth = () => {
-    let res: number = (objSize.width / layout.width) * 100;
+    let res: number = (objSize.width / 414) * 100;
     return res.toFixed(3) + '%';
 }
 const getWidthPx = () => {
-    let res: number = (objSize.width / layout.width) * appSize.width;
+    let res: number = (objSize.width / 414) * appSize.width;
     return res;
 }
 const getWidthOf = (num: number) => {
-    let res: number = (num / layout.width) * 100;
+    let res: number = (num / 414) * 100;
     return res.toFixed(3) + '%';
 }
 const getWidthPxOf = (num: number) => {
-    let res: number = (num / layout.width) * appSize.width;
+    let res: number = (num / 414) * appSize.width;
     return res;
 }
 
 const getHeight = () => {
-    let res: number = (objSize.height / layout.height) * 100;
+    let res: number = (objSize.height / 896) * 100;
     return res.toFixed(3) + '%';
 }
 const getHeightPx = () => {
-    let res: number = (objSize.height / layout.height) * appSize.height;
+    let res: number = (objSize.height / 896) * appSize.height;
     return res;
 }
 const getHeightOfPx = (num: number) => {
-    let res: number = (num / layout.height) * appSize.height;
+    let res: number = (num / 896) * appSize.height;
     return res;
 }
 
 
 
 const getRelativeWidth = () => {
-    let res: number = ((objSize.width / layout.height) / appSize.ratio) * 100;
+    let res: number = ((objSize.width / 896) / appSize.ratio) * 100;
     return res.toFixed(3) + '%';
 }
 
 const getRelativeHeight = () => {
-    let res: number = ((objSize.height / layout.width) * appSize.ratio) * 100;
+    let res: number = ((objSize.height / 414) * appSize.ratio) * 100;
     return res.toFixed(3) + '%';
 }
 
@@ -200,7 +188,7 @@ const getOnlyPos = (w: number, h: number, t: number) => {
     setObjSize(w, h);
     let res: {
         position: string,
-        left: string,
+        left: number,
         top: string
     } = {
         position: 'absolute',
@@ -231,9 +219,9 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     let height = getHeightPx();
     let res: {
         position: string,
-        width: string,
+        width: number,
         height: number,
-        left: string,
+        left: number,
         top: string
     } = {
         position: 'absolute',
@@ -245,14 +233,8 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     return res;
 }
 
-const getVerticalPixels = (px: number) => {
-    return (height / 896) * px;
-};
-
-const getHorizontalPixels = (px: number) => {
-    return (width / 414) * px;
-};
-
+const getHorizontalPixels = getHorizontalPx;
+const getVerticalPixels = getVerticalPx;
 
 export {
     setAppSize,

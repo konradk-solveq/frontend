@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
-import {getVerticalPixels} from '../../../../../helpers/layoutFoo';
+import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {OptionType} from './filtersData';
 
 import TypicalRedBtn from '../../../../../sharedComponents/buttons/typicalRed';
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
         letterSpacing: 0.5,
         color: '#313131',
         textAlign: 'left',
-        marginTop: getVerticalPixels(20),
-        marginBottom: getVerticalPixels(5),
+        marginTop: getVerticalPx(20),
+        marginBottom: getVerticalPx(5),
     },
     list: {
         flexDirection: 'row',

@@ -8,6 +8,7 @@ import ShareBtn from './shareBtn';
 import CloseBtn from './closeBtn';
 import MapBtn from './mapBtn';
 import FiltersBtn from './filtersBtn';
+import EditBtn from './editBtn';
 
 export {
     BigRedBtn,
@@ -20,4 +21,5 @@ export {
     CloseBtn,
     MapBtn,
     FiltersBtn,
+    EditBtn,
 };
