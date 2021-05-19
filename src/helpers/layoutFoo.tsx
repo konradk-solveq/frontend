@@ -239,7 +239,8 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     return res;
 }
 
-
+const getVerticalPixels = getVerticalPx;
+const getHorizontalPixels = getHorizontalPx;
 
 export {
     setAppSize,
