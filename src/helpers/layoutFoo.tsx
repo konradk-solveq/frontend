@@ -23,6 +23,9 @@ const setAppSize = (w: number, h: number) => {
     }
 }
 
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
 const initAppSize = () => {
     const ww = Dimensions.get('window').width;
     const wh = Dimensions.get('window').height;
