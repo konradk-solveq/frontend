@@ -53,19 +53,25 @@ const getHorizontal = (px: number) => {
     let res: number = (px / 414) * 100;
     return res.toFixed(3) + '%';
 }
-const getHorizontalPx = (px: number) => {
-    let res: number = (px / 414) * appSize.width;
-    return res;
-}
+// const getHorizontalPx = (px: number) => {
+//     let res: number = (px / 414) * appSize.width;
+//     return res;
+// }
+const getHorizontalPixels = (px: number) => {
+    return (width / 414) * px;
+};
 
 const getVertical = (px: number) => {
     let res: number = (px / 896) * 100;
     return res.toFixed(3) + '%'
 }
+// const getVerticalPx = (px: number) => {
+//     let res: number = ((px) / 896) * appSize.height;
+//     return res
+// }
 const getVerticalPx = (px: number) => {
-    let res: number = ((px) / 896) * appSize.height;
-    return res
-}
+    return (height / 896) * px;
+};
 
 
 
@@ -233,8 +239,7 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     return res;
 }
 
-const getHorizontalPixels = getHorizontalPx;
-const getVerticalPixels = getVerticalPx;
+
 
 export {
     setAppSize,
