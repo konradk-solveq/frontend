@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet, StatusBar, SafeAreaView} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
-import {getVerticalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
+import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {I18n} from '../../../../../I18n/I18n';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';

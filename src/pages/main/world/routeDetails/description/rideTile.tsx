@@ -13,7 +13,7 @@ import {
 } from '../../../../../helpers/layoutFoo';
 import BikeIcon from '../../../../../sharedComponents/svg/bikeIcon';
 import ClockIcon from '../../../../../sharedComponents/svg/clockIcon';
-import MountainIcon from '../../../../../sharedComponents/svg/MountainIcon';
+import MountainIcon from '../../../../../sharedComponents/svg/mountainIcon';
 import WayIcon from '../../../../../sharedComponents/svg/wayIcon';
 
 interface Props {
