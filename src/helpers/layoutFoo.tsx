@@ -57,7 +57,7 @@ const getHorizontal = (px: number) => {
 //     let res: number = (px / 414) * appSize.width;
 //     return res;
 // }
-const getHorizontalPixels = (px: number) => {
+const getHorizontalPx = (px: number) => {
     return (width / 414) * px;
 };
 
