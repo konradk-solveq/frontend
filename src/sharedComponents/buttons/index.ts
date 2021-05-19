@@ -5,6 +5,7 @@ import ShowMoreArrowBtn from './showMoreArrowBtn';
 import TranspLightBtn from './transpLightBtn';
 import TypicalRed from './typicalRed';
 import ShareBtn from './shareBtn';
+import EditBtn from './editBtn';
 import CloseBtn from './closeBtn';
 import MapBtn from './mapBtn';
 import FiltersBtn from './filtersBtn';
@@ -18,6 +19,7 @@ export {
     TranspLightBtn,
     TypicalRed,
     ShareBtn,
+    EditBtn,
     CloseBtn,
     MapBtn,
     FiltersBtn,
