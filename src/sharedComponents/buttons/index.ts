@@ -5,6 +5,9 @@ import ShowMoreArrowBtn from './showMoreArrowBtn';
 import TranspLightBtn from './transpLightBtn';
 import TypicalRed from './typicalRed';
 import ShareBtn from './shareBtn';
+import CloseBtn from './closeBtn';
+import MapBtn from './mapBtn';
+import FiltersBtn from './filtersBtn';
 
 export {
     BigRedBtn,
@@ -14,4 +17,7 @@ export {
     TranspLightBtn,
     TypicalRed,
     ShareBtn,
+    CloseBtn,
+    MapBtn,
+    FiltersBtn,
 };

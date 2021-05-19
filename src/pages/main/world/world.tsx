@@ -1,16 +1,10 @@
 import React, {useState} from 'react';
-import {
-    View,
-    StyleSheet,
-    Dimensions,
-    SafeAreaView,
-    Text,
-    Platform,
-} from 'react-native';
+import {View, StyleSheet, Dimensions, SafeAreaView, Text} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
 import MyRoutes from './myRoutes/myRoutes';
+import {OptionType} from './bikeMap/filters/filtersData';
 
 import {
     setObjSize,
@@ -19,11 +13,21 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
+import FiltersModal from './bikeMap/filters/filtersModal';
+import useStatusBarHeight from '../../../hooks/statusBarHeight';
+import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
 
 const ww = Dimensions.get('window').width;
 
+type PickedFilters = {
+    [key: string]: OptionType[];
+};
+
 const World: React.FC = () => {
     const trans: any = I18n.t('MainWorld');
+    const statusBarHeight = useStatusBarHeight();
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
 
     enum markerTypes {
         BIKEMAP = 'map',
@@ -61,15 +65,30 @@ const World: React.FC = () => {
             height: '100%',
             backgroundColor: '#fff',
         },
-        header: {
+        headerWrapper: {
             position: 'absolute',
+            flexDirection: 'row',
             width: getWidthPx(),
             left: getCenterLeftPx(),
-            top: getVerticalPx(65),
+            right: 40,
+            top: getVerticalPx(65 - statusBarHeight),
+        },
+        header: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
             fontSize: getHorizontalPx(18),
             color: '#313131',
+            width: '100%',
+        },
+        headerButtons: {
+            flexDirection: 'row',
+            right: getHorizontalPx(60),
+        },
+        headerButton: {
+            margin: 0,
+        },
+        headerButtonLeft: {
+            marginRight: 20,
         },
         wrap: {
             width: getHorizontalPx(334),
@@ -104,9 +123,43 @@ const World: React.FC = () => {
         },
     });
 
+    const onShowModalHanlder = () => {
+        setShowModal(true);
+    };
+
+    const onHideModalHandler = () => {
+        setShowModal(false);
+    };
+
+    const onSetFiltersHandler = (picked: PickedFilters) => {
+        setSavedMapFilters(picked);
+        onHideModalHandler();
+    };
+
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.header}>{trans.header}</Text>
+            <FiltersModal
+                onClose={onHideModalHandler}
+                definedFilters={savedMapFilters}
+                onSave={onSetFiltersHandler}
+                showModal={showModal}
+            />
+            <View style={styles.headerWrapper}>
+                <Text style={styles.header}>{trans.header}</Text>
+                <View style={styles.headerButtons}>
+                    <FiltersBtn
+                        onPress={onShowModalHanlder}
+                        iconStyle={[
+                            styles.headerButton,
+                            styles.headerButtonLeft,
+                        ]}
+                    />
+                    <MapBtn
+                        onPress={() => {}}
+                        iconStyle={styles.headerButton}
+                    />
+                </View>
+            </View>
 
             <View style={styles.wrap}>
                 <View style={styles.btns}>
@@ -130,7 +183,7 @@ const World: React.FC = () => {
                     />
                 </View>
 
-               {markersFilters?.includes(markerTypes.MYROUTES) && <MyRoutes/>}
+                {markersFilters?.includes(markerTypes.MYROUTES) && <MyRoutes />}
             </View>
 
             <TabBackGround />
