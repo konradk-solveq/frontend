@@ -2,6 +2,7 @@ import { Dimensions } from 'react-native';
 
 // funkcje wiliczające położenie elementów proporcje wg layoutu 
 // https://app.zeplin.io/project/5fbf658b936bbbb842e3c43c/dashboard?sid=60397836dc2eff2bfdde033a
+const {width, height} = Dimensions.get('window');
 
 let appSize: {
     width: number,
@@ -22,9 +23,6 @@ const setAppSize = (w: number, h: number) => {
         ratio: w / h
     }
 }
-
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
 
 const initAppSize = () => {
     const ww = Dimensions.get('window').width;
