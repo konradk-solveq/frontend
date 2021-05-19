@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import {View, Text, Modal, ScrollView, StyleSheet} from 'react-native';
 import {I18n} from '../../../../../../I18n/I18n';
-import {getVerticalPixels} from '../../../../../helpers/layoutFoo';
+import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 
 import {
     BigRedBtn,
@@ -111,8 +111,8 @@ const styles = StyleSheet.create({
     },
     wrap: {
         flex: 1,
-        marginHorizontal: getVerticalPixels(40),
-        marginBottom: getVerticalPixels(65),
+        marginHorizontal: getVerticalPx(40),
+        marginBottom: getVerticalPx(65),
         justifyContent: 'space-between',
     },
     headerWrapper: {
@@ -128,8 +128,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         letterSpacing: 0.5,
         color: '#313131',
-        marginTop: getVerticalPixels(8),
-        marginBottom: getVerticalPixels(10),
+        marginTop: getVerticalPx(8),
+        marginBottom: getVerticalPx(10),
     },
     buttonContainer: {
         alignItems: 'flex-end',
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     buttonsWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: getVerticalPixels(91),
+        marginTop: getVerticalPx(91),
     },
     button: {
         width: '46%',

@@ -17,6 +17,7 @@ interface Props {
     onpress: Function; // po naciśnięciu strzałki
     inner: string; // nazwa headera
     getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
+    rightActions?: Element;
 }
 
 const ww = Dimensions.get('window').width;
@@ -69,6 +70,11 @@ const StackHeader: React.FC<Props> = (props: Props) => {
         },
         wrap,
         title,
+        actionButtons: {
+            marginTop: 3,
+            alignItems: 'flex-end',
+            marginRight: 40,
+        },
     });
 
     return (
@@ -80,6 +86,12 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                 />
 
                 <Text style={styles.title}>{props.inner}</Text>
+
+                {props.rightActions && (
+                    <View style={styles.actionButtons}>
+                        {props.rightActions}
+                    </View>
+                )}
             </View>
         </View>
     );
