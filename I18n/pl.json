@@ -1066,6 +1066,13 @@
                     ]
                 }
             }
+        },
+        "BikeMap": {
+            "title": "Zobacz rekomendowane trasy w okolicy",
+            "distanceUnit": "km",
+            "timeUnit": "h",
+            "noTitle": "Brak tytułu",
+            "distanceToStart": " km od Ciebie"
         }
     },
     "MainMyRoutes": {

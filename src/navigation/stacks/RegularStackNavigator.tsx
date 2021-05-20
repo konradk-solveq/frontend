@@ -17,6 +17,7 @@ import AboutApp from '../../pages/main/profile/aboutApp/aboutApp';
 import RewiewsDetails from '../../pages/main/bike/rewiewsDetails/rewiewsDetails';
 import NameChange from '../../pages/main/profile/nameChange/nameChange';
 import Counter from '../../pages/main/recording/counter/counter';
+import RouteDetails from '../../pages/main/world/routeDetails/routeDetails';
 
 const RegularStackNavigator: React.FC = () => {
     return (
@@ -40,6 +41,10 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen name="NameChange" component={NameChange} />
             <Stack.Screen name="Counter" component={Counter} />
             {/* End add bike */}
+
+            {/* START KROSS WORLD */}
+            <Stack.Screen name="RouteDetailsScreen" component={RouteDetails} />
+            {/* END KROSS WORLD */}
 
             {/* univesal/generic pages */}
             <Stack.Screen name="ListPageInput" component={ListPageInput} />

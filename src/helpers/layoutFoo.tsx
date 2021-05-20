@@ -4,6 +4,9 @@ import { Dimensions } from 'react-native';
 // https://app.zeplin.io/project/5fbf658b936bbbb842e3c43c/dashboard?sid=60397836dc2eff2bfdde033a
 const {width, height} = Dimensions.get('window');
 
+const baseHeight = 896;
+const baseWidth = 414;
+
 let appSize: {
     width: number,
     height: number,
@@ -39,82 +42,82 @@ const setObjSize = (w: number, h: number) => {
 }
 
 const getCenterLeftPx = () => {
-    let res: number = (((414 - objSize.width) / 2) / 414) * appSize.width;
+    let res: number = (((baseWidth - objSize.width) / 2) / baseWidth) * appSize.width;
     return res;
 }
 
 const getCenterTopPx = () => {
-    let res: number = (((896 - objSize.height) / 2) / 896) * appSize.height;
+    let res: number = (((baseHeight - objSize.height) / 2) / baseHeight) * appSize.height;
     return res;
 }
 
 
 
 const getHorizontal = (px: number) => {
-    let res: number = (px / 414) * 100;
+    let res: number = (px / baseWidth) * 100;
     return res.toFixed(3) + '%';
 }
 // const getHorizontalPx = (px: number) => {
-//     let res: number = (px / 414) * appSize.width;
+//     let res: number = (px / baseWidth) * appSize.width;
 //     return res;
 // }
 const getHorizontalPx = (px: number) => {
-    return (width / 414) * px;
+    return (width / baseWidth) * px;
 };
 
 const getVertical = (px: number) => {
-    let res: number = (px / 896) * 100;
+    let res: number = (px / baseHeight) * 100;
     return res.toFixed(3) + '%'
 }
 // const getVerticalPx = (px: number) => {
-//     let res: number = ((px) / 896) * appSize.height;
+//     let res: number = ((px) / baseHeight) * appSize.height;
 //     return res
 // }
 const getVerticalPx = (px: number) => {
-    return (height / 896) * px;
+    return (height / baseHeight) * px;
 };
 
 
 
 const getWidth = () => {
-    let res: number = (objSize.width / 414) * 100;
+    let res: number = (objSize.width / baseWidth) * 100;
     return res.toFixed(3) + '%';
 }
 const getWidthPx = () => {
-    let res: number = (objSize.width / 414) * appSize.width;
+    let res: number = (objSize.width / baseWidth) * appSize.width;
     return res;
 }
 const getWidthOf = (num: number) => {
-    let res: number = (num / 414) * 100;
+    let res: number = (num / baseWidth) * 100;
     return res.toFixed(3) + '%';
 }
 const getWidthPxOf = (num: number) => {
-    let res: number = (num / 414) * appSize.width;
+    let res: number = (num / baseWidth) * appSize.width;
     return res;
 }
 
 const getHeight = () => {
-    let res: number = (objSize.height / 896) * 100;
+    let res: number = (objSize.height / baseHeight) * 100;
     return res.toFixed(3) + '%';
 }
 const getHeightPx = () => {
-    let res: number = (objSize.height / 896) * appSize.height;
+    let res: number = (objSize.height / baseHeight) * appSize.height;
     return res;
 }
 const getHeightOfPx = (num: number) => {
-    let res: number = (num / 896) * appSize.height;
+    let res: number = (num / baseHeight) * appSize.height;
     return res;
 }
 
 
 
 const getRelativeWidth = () => {
-    let res: number = ((objSize.width / 896) / appSize.ratio) * 100;
+    let res: number = ((objSize.width / baseHeight) / appSize.ratio) * 100;
     return res.toFixed(3) + '%';
 }
 
 const getRelativeHeight = () => {
-    let res: number = ((objSize.height / 414) * appSize.ratio) * 100;
+    let res: number = ((objSize.height / baseWidth) * appSize.ratio) * 100;
     return res.toFixed(3) + '%';
 }
 
@@ -240,9 +243,6 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     return res;
 }
 
-const getVerticalPixels = getVerticalPx;
-const getHorizontalPixels = getHorizontalPx;
-
 export {
     setAppSize,
     initAppSize,
@@ -269,6 +269,4 @@ export {
     getOnlyPos,
     getPosAndWid,
     getPosWithMinHeight,
-    getHorizontalPixels,
-    getVerticalPixels,
 }

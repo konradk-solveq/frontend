@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Dimensions, SafeAreaView, Text} from 'react-native';
+import {View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
@@ -16,8 +16,13 @@ import {
 import FiltersModal from './bikeMap/filters/filtersModal';
 import useStatusBarHeight from '../../../hooks/statusBarHeight';
 import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
+import BikeMap from './bikeMap/bikeMap';
 
-const ww = Dimensions.get('window').width;
+enum routesTab {
+    BIKEMAP = 'map',
+    MYROUTES = 'routes',
+    PLANED = 'planed',
+}
 
 type PickedFilters = {
     [key: string]: OptionType[];
@@ -29,40 +34,31 @@ const World: React.FC = () => {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
 
-    enum markerTypes {
-        BIKEMAP = 'map',
-        MYROUTES = 'routes',
-        PLANED = 'planed',
-    }
-
-    const [markersFilters, setMarkersFilters] = useState<markerTypes[]>([
-        markerTypes.BIKEMAP,
-    ]);
+    const [activeTab, setActiveTab] = useState<routesTab>(routesTab.BIKEMAP);
 
     const heandleBikeMap = () => {
-        if (markersFilters?.includes(markerTypes.BIKEMAP)) {
+        if (activeTab?.includes(routesTab.BIKEMAP)) {
             return;
         }
-        setMarkersFilters([markerTypes.BIKEMAP]);
+        setActiveTab(routesTab.BIKEMAP);
     };
     const heandleMyRoutes = () => {
-        if (markersFilters?.includes(markerTypes.MYROUTES)) {
+        if (activeTab?.includes(routesTab.MYROUTES)) {
             return;
         }
-        setMarkersFilters([markerTypes.MYROUTES]);
+        setActiveTab(routesTab.MYROUTES);
     };
     const heandlePlaned = () => {
-        if (markersFilters?.includes(markerTypes.PLANED)) {
+        if (activeTab?.includes(routesTab.PLANED)) {
             return;
         }
-        setMarkersFilters([markerTypes.PLANED]);
+        setActiveTab(routesTab.PLANED);
     };
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
-            width: '100%',
-            height: '100%',
+            flex: 1,
             backgroundColor: '#fff',
         },
         headerWrapper: {
@@ -99,7 +95,10 @@ const World: React.FC = () => {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',
-            marginTop: getVerticalPx(138) < 100 ? 100 : getVerticalPx(138),
+            marginTop:
+                getVerticalPx(138) < 100
+                    ? 100
+                    : getVerticalPx(138 - statusBarHeight),
         },
         btn: {
             marginRight: getHorizontalPx(5),
@@ -120,6 +119,10 @@ const World: React.FC = () => {
             color: '#313131',
             textAlign: 'left',
             marginTop: getVerticalPx(20),
+        },
+        viewContainer: {
+            flex: 1,
+            marginTop: getVerticalPx(30),
         },
     });
 
@@ -166,24 +169,28 @@ const World: React.FC = () => {
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnBikeMap}
-                        active={markersFilters?.includes(markerTypes.BIKEMAP)}
+                        active={activeTab === routesTab.BIKEMAP}
                         onpress={heandleBikeMap}
                     />
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnMyRoutes}
-                        active={markersFilters?.includes(markerTypes.MYROUTES)}
+                        active={activeTab === routesTab.MYROUTES}
                         onpress={heandleMyRoutes}
                     />
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnPlaned}
-                        active={markersFilters?.includes(markerTypes.PLANED)}
+                        active={activeTab === routesTab.PLANED}
                         onpress={heandlePlaned}
                     />
                 </View>
 
-                {markersFilters?.includes(markerTypes.MYROUTES) && <MyRoutes />}
+                {activeTab?.includes(routesTab.MYROUTES) && <MyRoutes />}
+            </View>
+
+            <View style={styles.viewContainer}>
+                {activeTab === routesTab.BIKEMAP && <BikeMap />}
             </View>
 
             <TabBackGround />

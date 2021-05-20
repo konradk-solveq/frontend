@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, StyleSheet, StatusBar, SafeAreaView} from 'react-native';
+import {
+    View,
+    StyleSheet,
+    StatusBar,
+    SafeAreaView,
+    Platform,
+} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
@@ -13,14 +19,21 @@ import {
 } from '../../../../sharedComponents/buttons';
 import Description from './description/description';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
+import useStatusBarHeight from '../../../../hooks/statusBarHeight';
+
+const isIOS = Platform.OS === 'ios';
 
 const RouteDetails = () => {
     const trans: any = I18n.t('RoutesDetails');
     const navigation = useNavigation();
     const route = useRoute();
     /* TODO: add selector for route details (image url) based on passed mapID */
+    const statusBarHeight = useStatusBarHeight();
+    const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
 
-    const headerBackgroundHeight = getVerticalPx(100);
+    const headerBackgroundHeight = getVerticalPx(
+        100,
+    ); /* equal to header height */
 
     const onBackHandler = () => {
         navigation.goBack();
@@ -29,41 +42,39 @@ const RouteDetails = () => {
     return (
         <>
             <StatusBar translucent />
-            <SafeAreaView
-                style={[
-                    styles.safeAreaView,
-                    {paddingTop: headerBackgroundHeight},
-                ]}>
-                <StackHeader
-                    onpress={onBackHandler}
-                    inner=""
-                    style={styles.header}
-                    rightActions={
-                        <View style={styles.actionButtonsContainer}>
-                            <EditBtn
-                                onPress={() => {}}
-                                iconStyle={[
-                                    styles.actionButton,
-                                    styles.leftActionButton,
-                                ]}
-                            />
-                            <ShareBtn
-                                onPress={() => {}}
-                                iconStyle={styles.actionButton}
+            <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
+                <View style={{paddingTop: headerBackgroundHeight, flex: 1}}>
+                    <StackHeader
+                        onpress={onBackHandler}
+                        inner=""
+                        style={styles.header}
+                        rightActions={
+                            <View style={styles.actionButtonsContainer}>
+                                <EditBtn
+                                    onPress={() => {}}
+                                    iconStyle={[
+                                        styles.actionButton,
+                                        styles.leftActionButton,
+                                    ]}
+                                />
+                                <ShareBtn
+                                    onPress={() => {}}
+                                    iconStyle={styles.actionButton}
+                                />
+                            </View>
+                        }
+                    />
+                    <SliverTopBar>
+                        <View style={styles.content}>
+                            <Description mapID={route?.params?.mapID || ''} />
+                            <BigRedBtn
+                                title={trans.deleteButton}
+                                onpress={() => {}}
+                                style={styles.deleteButton}
                             />
                         </View>
-                    }
-                />
-                <SliverTopBar>
-                    <View style={styles.content}>
-                        <Description mapID={route?.params?.mapID || ''} />
-                        <BigRedBtn
-                            title={trans.deleteButton}
-                            onpress={() => {}}
-                            style={styles.deleteButton}
-                        />
-                    </View>
-                </SliverTopBar>
+                    </SliverTopBar>
+                </View>
             </SafeAreaView>
         </>
     );

@@ -33,7 +33,9 @@ export interface MapType {
     date: Date;
     author?: string;
     totalDistance?: number;
+    totalTime?: string;
     details: MapDetails;
+    rating?: number;
     tags?: string[]; // widokowa | mały ruch | weekendowa | ciekawe atrakcje | dobre jedzenie | dla dzieci
 }
 
