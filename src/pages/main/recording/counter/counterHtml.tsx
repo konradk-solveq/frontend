@@ -3,10 +3,11 @@ import { Dimensions, PixelRatio, Platform, StatusBar } from 'react-native';
 
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
+let stH = StatusBar.currentHeight;
+console.log('%c stH:', 'background: #ffcc00; color: #003300', stH)
 if (Platform.OS === 'ios') {
     let iosW = Dimensions.get('screen').width;
-    let stH = StatusBar.currentHeight;
-    let iosH = Dimensions.get('screen').height - (stH ? stH : 0)
+    let iosH = Dimensions.get('screen').height - stH;
     let r = iosW / iosH;
     w = iosW;
     h = iosH;
