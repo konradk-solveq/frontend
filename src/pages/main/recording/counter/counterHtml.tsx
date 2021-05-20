@@ -1,16 +1,30 @@
-import { Dimensions, PixelRatio, Platform, StatusBar } from 'react-native';
+import { Dimensions, Platform, StatusBar } from 'react-native';
 
+const X_WIDTH = 375;
+const X_HEIGHT = 812;
+
+const XSMAX_WIDTH = 414;
+const XSMAX_HEIGHT = 896;
+
+const { height, width } = Dimensions.get('window');
+
+const isIPhoneX = () => Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS
+    ? width === X_WIDTH && height === X_HEIGHT || width === XSMAX_WIDTH && height === XSMAX_HEIGHT
+    : false;
+
+const StatusBarHeight = Platform.select({
+    ios: isIPhoneX() ? 44 : 20,
+    android: StatusBar.currentHeight,
+    default: 0
+})
+
+console.log('%c StatusBarHeight:', StatusBarHeight)
 
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
-let stH = StatusBar.currentHeight;
-console.log('%c stH:', 'background: #ffcc00; color: #003300', stH)
+
 if (Platform.OS === 'ios') {
-    let iosW = Dimensions.get('screen').width;
-    let iosH = Dimensions.get('screen').height - stH;
-    let r = iosW / iosH;
-    w = iosW;
-    h = iosH;
+    h = Dimensions.get('screen').height - StatusBarHeight;
 }
 
 
@@ -150,7 +164,7 @@ svg {
 <svg></svg>
 <div id="alert1" class="alert"></div>
 <div id="alert2" class="alert"></div>
-<div class="test">`+ stH + `</div>
+<div class="test">`+ StatusBarHeight + `</div>
 </div>
 
 <script>
