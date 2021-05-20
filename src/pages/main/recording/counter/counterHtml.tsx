@@ -1,7 +1,15 @@
 import { Dimensions, PixelRatio, Platform } from 'react-native';
 
-let w = Platform.OS === 'ios' ? Dimensions.get('window').width * PixelRatio.get() : Dimensions.get('window').width;
+
+let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
+if (Platform.OS === 'ios') {
+    let iosW = Dimensions.get('window').width * PixelRatio.get();
+    let iosH = Dimensions.get('window').height * PixelRatio.get();
+    let r = iosW / iosH;
+    w = r * h;
+}
+
 
 export default `
 <style>
