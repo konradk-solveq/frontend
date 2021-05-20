@@ -75,7 +75,11 @@ const Description: React.FC<IProps> = ({mapID}: IProps) => {
                     ]}>
                     {example?.details.localization || ''}
                 </Text>
-                <RideTile />
+                <RideTile
+                    distance={example?.totalDistance}
+                    level={example?.details?.level}
+                    type={example?.details?.pavement?.[0]}
+                />
             </View>
             <View>
                 <Text

@@ -33,15 +33,8 @@ const SliverTopBar: React.FC<IProps> = ({
         });
     };
 
-    const barScale = scrollY.interpolate({
-        inputRange: [-maxHeight, 0],
-        outputRange: [3, 1],
-        extrapolate: 'clamp',
-    });
-
     const transformBarStyle = {
         height: maxHeight,
-        transform: [{scale: barScale}],
     };
 
     const scale = scrollY.interpolate({
