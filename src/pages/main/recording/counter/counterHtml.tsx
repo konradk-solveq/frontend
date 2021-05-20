@@ -24,7 +24,7 @@ let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
 if (Platform.OS === 'ios') {
-    h = Dimensions.get('screen').height - StatusBarHeight;
+    h = Dimensions.get('window').height - StatusBarHeight;
 }
 
 
