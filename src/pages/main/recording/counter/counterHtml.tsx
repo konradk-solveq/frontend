@@ -136,12 +136,21 @@ svg {
     z-index: 999;
     pointer-events: none;
 }
+
+.test {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1999;
+    font-size: 35px;
+}
 </style>
 <div id="map"></div>
 <div class="cover">
 <svg></svg>
 <div id="alert1" class="alert"></div>
 <div id="alert2" class="alert"></div>
+<div class="test">`+ stH + `</div>
 </div>
 
 <script>
