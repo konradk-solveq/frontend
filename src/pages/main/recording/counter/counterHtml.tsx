@@ -1,4 +1,4 @@
-import { Dimensions, Platform, StatusBar } from 'react-native';
+import { Dimensions, PixelRatio, Platform, StatusBar } from 'react-native';
 
 const X_WIDTH = 375;
 const X_HEIGHT = 812;
@@ -23,8 +23,10 @@ console.log('%c StatusBarHeight:', StatusBarHeight)
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
+let sbh = StatusBarHeight * PixelRatio.get();
+
 if (Platform.OS === 'ios') {
-    h = Dimensions.get('window').height - StatusBarHeight;
+    h = Dimensions.get('window').height - sbh;
 }
 
 
@@ -164,7 +166,7 @@ svg {
 <svg></svg>
 <div id="alert1" class="alert"></div>
 <div id="alert2" class="alert"></div>
-<div class="test">`+ StatusBarHeight + `</div>
+<div class="test">`+ sbh + `</div>
 </div>
 
 <script>
