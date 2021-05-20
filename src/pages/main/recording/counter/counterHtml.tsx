@@ -7,7 +7,8 @@ if (Platform.OS === 'ios') {
     let iosW = Dimensions.get('window').width * PixelRatio.get();
     let iosH = Dimensions.get('window').height * PixelRatio.get();
     let r = iosW / iosH;
-    w = r * h;
+    w = iosW;
+    h = iosH;
 }
 
 
