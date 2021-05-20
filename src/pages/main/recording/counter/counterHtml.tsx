@@ -1,4 +1,7 @@
-import {  Dimensions} from 'react-native';
+import { Dimensions, PixelRatio, Platform } from 'react-native';
+
+let w = Platform.OS === 'ios' ? Dimensions.get('window').width * PixelRatio.get() : Dimensions.get('window').width;
+let h = Dimensions.get('window').height;
 
 export default `
 <style>
@@ -405,8 +408,8 @@ const countersUpdate = () => { // liczniki
 
 const init = () => {
     // trans = t;
-    w = ` + Dimensions.get('window').width + `;
-    h = ` + Dimensions.get('window').height + `;
+    w = ` + w + `;
+    h = ` + h + `;
     getYlessCorect(305, 220);
     data = {
         w,
