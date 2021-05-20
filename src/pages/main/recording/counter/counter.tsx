@@ -91,16 +91,6 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
 
     // inicjalizacja elementów webviwe
     const animSvgRef = useRef();
-    useEffect(() => {
-        animSvgRef.current.injectJavaScript(
-            'init(' +
-            getHorizontalPx(414) +
-            ', ' +
-            getVerticalPx(896) + ', { lat: 53.009342618210624, lng: 20.890509251985964 }' +
-            ');true'
-        );
-    }, [])
-
     const setJs = (foo: string) => animSvgRef.current.injectJavaScript(foo);
 
     const [pageState, setPageState] = useState('start');
@@ -205,6 +195,15 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         // setJs('setMini();true;');
     }, [pageState])
 
+    const heandleOnMessage = e => {
+        console.log('onMessage:', e.nativeEvent.data)
+        switch (e.nativeEvent.data) {
+            case 'map is ready':
+                { setJs('setPositionOnMap({lat: 53.009342618210624, lng: 20.890509251985964 });true;') }
+                break;
+        }
+    }
+
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
@@ -260,6 +259,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     }}
                     javaScriptEnabled={true}
                     ref={animSvgRef}
+                    onMessage={heandleOnMessage}
                 />
             </View>
 

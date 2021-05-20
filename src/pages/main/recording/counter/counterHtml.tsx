@@ -1,3 +1,5 @@
+import {  Dimensions} from 'react-native';
+
 export default `
 <style>
 @font-face {
@@ -176,7 +178,6 @@ let alertApla;
 let alertH = 0;
 let alertCurrentPos = 0;
 const googleMap = document.getElementById('map');
-let position;
 let values = {
     distance: '00,00',
     time1: '00:00',
@@ -402,11 +403,10 @@ const countersUpdate = () => { // liczniki
     setOneCounter(obj.averageSpeed, values.averageSpeed, trans.averageSpeedUnit, x, y);
 }
 
-const init = (width, height, pos) => {
+const init = () => {
     // trans = t;
-    w = width;
-    h = height;
-    position = pos;
+    w = ` + Dimensions.get('window').width + `;
+    h = ` + Dimensions.get('window').height + `;
     getYlessCorect(305, 220);
     data = {
         w,
@@ -792,16 +792,11 @@ const init = (width, height, pos) => {
     })
 };
 
-function initMap() {
-    let p = position ? position : {
-        lat: 53.009342618210624,
-        lng: 20.890509251985964
-    };
+init();
 
-    map = new google.maps.Map(googleMap, {
-        center: new google.maps.LatLng(p.lat, p.lng),
-        zoom: 15,
-    });
+function initMap() {
+    map = new google.maps.Map(googleMap);
+
     const icons = {
         parking: {
             icon: "icon.png",
@@ -813,63 +808,13 @@ function initMap() {
             icon: "icon3.png",
         },
     };
+
     const features = [{
         position: new google.maps.LatLng(-33.91721, 151.2263),
         type: "info",
     }, {
         position: new google.maps.LatLng(-33.91539, 151.2282),
         type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.91747, 151.22912),
-        type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.9191, 151.22907),
-        type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.91725, 151.23011),
-        type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.91872, 151.23089),
-        type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.91784, 151.23094),
-        type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.91682, 151.23149),
-        type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.9179, 151.23463),
-        type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.91666, 151.23468),
-        type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.916988, 151.23364),
-        type: "info",
-    }, {
-        position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-        type: "parking",
-    }, {
-        position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
-        type: "parking",
-    }, {
-        position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
-        type: "parking",
-    }, {
-        position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-        type: "parking",
-    }, {
-        position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-        type: "parking",
-    }, {
-        position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-        type: "parking",
-    }, {
-        position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-        type: "parking",
-    }, {
-        position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
-        type: "library",
     }, ];
 
     // Create markers.
@@ -887,7 +832,18 @@ function initMap() {
         scrollwheel: false,
         disableDoubleClickZoom: true
     });
+
+    window.ReactNativeWebView.postMessage("map is ready");
 }
+
+const setPositionOnMap = pos => {
+    map = new google.maps.Map(googleMap, {
+        center: new google.maps.LatLng(pos.lat, pos.lng),
+        zoom: 15,
+    });
+}
+
+
 let interval = null;
 let startTime = 0;
 let pauseTime = 0;
@@ -909,6 +865,7 @@ const timer = () => {
     values.time2 = ':' + twoDigits(sec)
 
     if (!coolDown) countersUpdate();
+    let val = values.time1 + values.time2;
 }
 
 let started = false;
