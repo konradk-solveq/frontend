@@ -33,7 +33,7 @@ if (Platform.OS === 'ios') {
 export default `
 <style>
 @font-face {
-    font-family: 'din-l';
+    font-family: 'DIN2014Narrow-Light';
     font-style: normal;
     font-weight: 400;
     src: url('DIN2014Narrow-Light.eot');
@@ -41,7 +41,7 @@ export default `
 }
 
 @font-face {
-    font-family: 'din-r';
+    font-family: 'DIN2014Narrow-Regular';
     font-style: normal;
     font-weight: 400;
     src: url('DIN2014Narrow-Regular.eot');
@@ -49,7 +49,7 @@ export default `
 }
 
 @font-face {
-    font-family: 'din-b';
+    font-family: 'DIN2014Narrow-Bold';
     font-style: normal;
     font-weight: 400;
     src: url('DIN2014Narrow-Bold.eot');
@@ -100,18 +100,18 @@ svg {
 }
 
 .name {
-    font-family: 'din-l';
+    font-family: 'DIN2014Narrow-Light';
     font-size: 23px;
     fill: #555555;
 }
 
 .value {
-    font-family: 'din-r';
+    font-family: 'DIN2014Narrow-Regular';
     fill: #313131;
 }
 
 .unit {
-    font-family: 'din-r';
+    font-family: 'DIN2014Narrow-Regular';
     font-size: 18px;
     fill: #555555;
 }
@@ -131,7 +131,7 @@ svg {
 
 .alert {
     position: absolute;
-    font-family: 'din-r';
+    font-family: 'DIN2014Narrow-Regular';
     font-size: 23px;
     color: #313131;
     text-align: center;
