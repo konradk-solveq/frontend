@@ -20,6 +20,7 @@ interface IProps {
     maxLength?: number;
     keyboardType?: KeyboardTypeOptions;
     secureTextEntry?: boolean;
+    isMultiline?: boolean;
     Icon?: Element;
     style?: ViewStyle;
 }
@@ -35,6 +36,7 @@ const OneLineText: React.FC<IProps> = ({
     forceMessageWrong,
     maxLength,
     keyboardType,
+    isMultiline,
     secureTextEntry,
     Icon,
 }: IProps) => {
@@ -104,6 +106,7 @@ const OneLineText: React.FC<IProps> = ({
                     maxLength={maxLength ? maxLength : 20}
                     keyboardType={keyboardType}
                     secureTextEntry={secureTextEntry}
+                    multiline={isMultiline}
                 />
 
                 {Icon ? <View style={styles.iconContainer}>{Icon}</View> : null}
