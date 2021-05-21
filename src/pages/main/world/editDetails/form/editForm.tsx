@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/core';
 import {View, Text} from 'react-native';
 import {useForm, SubmitHandler} from 'react-hook-form';
@@ -16,10 +16,10 @@ import {FormData} from './inputs/types';
 
 import {BigWhiteBtn, BigRedBtn} from '../../../../../sharedComponents/buttons';
 import OneLineText from '../../../../../sharedComponents/inputs/oneLineText';
-import ImageSwiper from '../../../../../sharedComponents/imageSwiper/imageSwiper';
 import {MultiSelect} from '../../../../../sharedComponents/inputs';
 import Checkbox from './inputs/checkbox';
 import ControlledInput from './inputs/controlledInput';
+import ImagesInput from './inputs/imagesInput';
 
 import styles from './style';
 
@@ -58,6 +58,9 @@ const EditForm: React.FC<IProps> = ({onSubmit}: IProps) => {
         'validation.fields.mapDetails.formErrors',
     );
     const userName = useAppSelector(userNameSelector);
+    const [images, setImages] = useState<string[]>(
+        example?.details?.images || [],
+    );
 
     const {control, handleSubmit} = useForm<FormData>();
 
@@ -78,6 +81,13 @@ const EditForm: React.FC<IProps> = ({onSubmit}: IProps) => {
         console.log('on valdidate', val, fieldName, isValid);
 
         return isValid || validationMessages[fieldName];
+    };
+
+    const onAddImageHanlder = (imageUri: string) => {
+        console.log('add Image', imageUri);
+        if (imageUri) {
+            setImages(prev => [imageUri, ...prev]);
+        }
     };
 
     return (
@@ -202,9 +212,7 @@ const EditForm: React.FC<IProps> = ({onSubmit}: IProps) => {
                     ]}>
                     {trans.imagesTitle}
                 </Text>
-                {example?.details?.images?.length > 0 && (
-                    <ImageSwiper images={example.details.images} />
-                )}
+                <ImagesInput images={images} onAddImage={onAddImageHanlder} />
             </View>
             <View style={styles.tagsContainer}>
                 <ControlledInput
