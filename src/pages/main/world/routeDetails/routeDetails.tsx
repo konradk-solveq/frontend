@@ -20,6 +20,7 @@ import {
 import Description from './description/description';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
+import {RegularStackRoute} from '../../../../navigation/route';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -39,6 +40,13 @@ const RouteDetails = () => {
         navigation.goBack();
     };
 
+    const onGoToEditHandler = () => {
+        navigation.navigate({
+            name: RegularStackRoute.EDIT_DETAILS_SCREEN,
+            params: {mapID: route?.params?.mapID},
+        });
+    };
+
     return (
         <>
             <StatusBar translucent />
@@ -51,7 +59,7 @@ const RouteDetails = () => {
                         rightActions={
                             <View style={styles.actionButtonsContainer}>
                                 <EditBtn
-                                    onPress={() => {}}
+                                    onPress={onGoToEditHandler}
                                     iconStyle={[
                                         styles.actionButton,
                                         styles.leftActionButton,
