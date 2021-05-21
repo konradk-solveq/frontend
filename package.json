@@ -24,6 +24,7 @@
         "fetch": "^1.1.0",
         "react": "^17.0.2",
         "react-devtools": "^4.10.1",
+        "react-hook-form": "^7.6.3",
         "react-native": "^0.64.0",
         "react-native-android-location-enabler": "^1.2.2",
         "react-native-background-fetch": "^4.0.2",
