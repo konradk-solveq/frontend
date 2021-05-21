@@ -204,9 +204,9 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         }
     }
 
-    const handleOnLayout = (layout: any) => {
-        setJs('init(' + layout.width + ', ' + layout.height + ');true;');
-    }
+    // const handleOnLayout = (layout: any) => {
+    //     setJs('init(' + layout.width + ', ' + layout.height + ');true;');
+    // }
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -253,7 +253,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     scrollEnabled={false}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
-                    onLayout={({ nativeEvent }) => handleOnLayout(nativeEvent.layout)}
+                    // onLayout={({ nativeEvent }) => handleOnLayout(nativeEvent.layout)}
                     source={{
                         html:
                             '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
