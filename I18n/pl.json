@@ -1072,7 +1072,10 @@
             "distanceUnit": "km",
             "timeUnit": "h",
             "noTitle": "Brak tytułu",
-            "distanceToStart": " km od Ciebie"
+            "distanceToStart": " km od Ciebie",
+            "addToFavAction": "Pobierz trasę",
+            "showOnMapAction": "Zobacz na mapie",
+            "routeDetailsAction": "Szczegóły"
         }
     },
     "MainMyRoutes": {
@@ -1084,6 +1087,7 @@
     "RoutesDetails": {
         "noInfo": "brak informacji",
         "deleteButton": "Usuń",
+        "reportButton": "Zgłoś naruszenie",
         "details": {
             "author": "Autor",
             "noInfo": "brak informacji",
