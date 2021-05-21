@@ -61,7 +61,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     // położenie listy rowerów
     const setListUp = () => {
         Animated.timing(bikeSelectorListPositionY, {
-            toValue: headHeight + getVerticalPx(69),
+            toValue: headHeight + getVerticalPx(50 ),
             duration: 500,
             easing: Easing.quad,
             useNativeDriver: false,
@@ -70,7 +70,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
 
     const setListDown = () => {
         Animated.timing(bikeSelectorListPositionY, {
-            toValue: headHeight + getVerticalPx(-30),
+            toValue: headHeight + getVerticalPx(-110),
             duration: 500,
             easing: Easing.quad,
             useNativeDriver: false,
@@ -82,11 +82,11 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
 
     // do animacji położeni listy rowerów
     useEffect(() => {
-        bikeSelectorListPositionY.setValue(headHeight + getVerticalPx(69));
+        bikeSelectorListPositionY.setValue(headHeight + getVerticalPx(50));
     }, [headHeight])
 
     const bikeSelectorListPositionY = useRef(
-        new Animated.Value(headHeight + getVerticalPx(69)),
+        new Animated.Value(headHeight + getVerticalPx(50)),
     ).current;
 
     // inicjalizacja elementów webviwe
@@ -217,22 +217,20 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
 
     const heandleMapVisibility = () => {
         if (mapOn) {
-            setJs('setMaxi();true;')
+            setJs('setMaxi();true;');
+            setListUp();
             setMapBtnPos(mapBtnPosMemo[0]);
             setMapOn(false);
         } else {
-            setJs('setMini();true;')
+            setJs('setMini();true;');
+            setListDown();
             setMapBtnPos(mapBtnPosMemo[1]);
             setMapOn(true);
         }
-        console.log('%c mapBtnPosMemo:', 'background: #ffcc00; color: #003300', mapBtnPosMemo)
     }
 
-    // const handleOnLayout = (layout: any) => {
-    //     setJs('init(' + layout.width + ', ' + layout.height + ');true;');
-    // }
-
     setObjSize(334, 50);
+    let mapBtnSize = 60;
     const styles = StyleSheet.create({
         container: {
             width: '100%',
@@ -265,12 +263,12 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         },
         mapBtn: {
             position: 'absolute',
-            width: 51,
-            height: 51,
-            backgroundColor: 'green',
-            left: (getHorizontalPx(414) - 51) / 2,
-            top: mapBtnPos - (51 / 2),
-            opacity: .3,
+            width: mapBtnSize,
+            height: mapBtnSize,
+            left: (getHorizontalPx(414) - mapBtnSize) / 2,
+            top: mapBtnPos - (mapBtnSize / 2),
+            // backgroundColor: 'green',
+            // opacity: .3,
         }
     });
 
@@ -286,7 +284,6 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     scrollEnabled={false}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
-                    // onLayout={({ nativeEvent }) => handleOnLayout(nativeEvent.layout)}
                     source={{
                         html:
                             '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +

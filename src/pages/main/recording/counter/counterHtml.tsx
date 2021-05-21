@@ -808,7 +808,17 @@ const init = () => {
 init();
 
 function initMap() {
-    map = new google.maps.Map(googleMap);
+    map = new google.maps.Map(googleMap, {
+        draggable: false,
+        zoomControl: false,
+        scrollwheel: false,
+        disableDoubleClickZoom: true,
+        mapTypeControl: false,
+        // mapTypeControlOptions: {
+        //   style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+        //   mapTypeIds: ["roadmap", "terrain"],
+        // },    
+    });
 
     const icons = {
         parking: {
@@ -839,18 +849,11 @@ function initMap() {
         });
     }
 
-    map.setOptions({
-        draggable: false,
-        zoomControl: false,
-        scrollwheel: false,
-        disableDoubleClickZoom: true
-    });
-
     window.ReactNativeWebView.postMessage("map is ready");
 }
 
 const setPositionOnMap = pos => {
-    map = new google.maps.Map(googleMap, {
+    map.setOptions({
         center: new google.maps.LatLng(pos.lat, pos.lng),
         zoom: 15,
     });
