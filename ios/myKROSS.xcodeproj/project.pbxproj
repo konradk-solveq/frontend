@@ -12,6 +12,21 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1D13B1F42657B94D00A4F34A /* DIN2014Narrow-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */; };
+		1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */; };
+		1D13B2042657B97F00A4F34A /* DIN2014Narrow-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */; };
+		1D13B2052657B97F00A4F34A /* DIN2014Narrow-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F72657B97F00A4F34A /* DIN2014Narrow-Light.ttf */; };
+		1D13B2062657B97F00A4F34A /* DIN2014Narrow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F82657B97F00A4F34A /* DIN2014Narrow-Regular.ttf */; };
+		1D13B2072657B97F00A4F34A /* DIN2014Narrow-Regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F92657B97F00A4F34A /* DIN2014Narrow-Regular.svg */; };
+		1D13B2082657B97F00A4F34A /* DIN2014Narrow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FA2657B97F00A4F34A /* DIN2014Narrow-Bold.ttf */; };
+		1D13B2092657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FB2657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 */; };
+		1D13B20A2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FC2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 */; };
+		1D13B20B2657B97F00A4F34A /* DIN2014Narrow-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FD2657B97F00A4F34A /* DIN2014Narrow-Regular.woff */; };
+		1D13B20C2657B97F00A4F34A /* DIN2014Narrow-Light.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FE2657B97F00A4F34A /* DIN2014Narrow-Light.eot */; };
+		1D13B20D2657B97F00A4F34A /* DIN2014Narrow-Bold.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FF2657B97F00A4F34A /* DIN2014Narrow-Bold.svg */; };
+		1D13B20E2657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B2002657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 */; };
+		1D13B20F2657B97F00A4F34A /* DIN2014Narrow-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B2012657B97F00A4F34A /* DIN2014Narrow-Bold.woff */; };
+		1D13B2102657B97F00A4F34A /* DIN2014Narrow-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B2022657B97F00A4F34A /* DIN2014Narrow-Light.woff */; };
 		6FF568C20250283E91A9D677 /* libPods-myKROSS-myKROSSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C00157A3356B11F2F29CD7B9 /* libPods-myKROSS-myKROSSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9009F68626452075005FBC58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9009F68826452075005FBC58 /* InfoPlist.strings */; };
@@ -44,6 +59,21 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.eot"; path = "../assets/fonts/DIN2014Narrow-Bold.eot"; sourceTree = "<group>"; };
+		1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "DIN2014Narrow-Light.svg"; path = "../assets/fonts/DIN2014Narrow-Light.svg"; sourceTree = "<group>"; };
+		1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.eot"; path = "../assets/fonts/DIN2014Narrow-Regular.eot"; sourceTree = "<group>"; };
+		1D13B1F72657B97F00A4F34A /* DIN2014Narrow-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.ttf"; path = "../assets/fonts/DIN2014Narrow-Light.ttf"; sourceTree = "<group>"; };
+		1D13B1F82657B97F00A4F34A /* DIN2014Narrow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.ttf"; path = "../assets/fonts/DIN2014Narrow-Regular.ttf"; sourceTree = "<group>"; };
+		1D13B1F92657B97F00A4F34A /* DIN2014Narrow-Regular.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "DIN2014Narrow-Regular.svg"; path = "../assets/fonts/DIN2014Narrow-Regular.svg"; sourceTree = "<group>"; };
+		1D13B1FA2657B97F00A4F34A /* DIN2014Narrow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.ttf"; path = "../assets/fonts/DIN2014Narrow-Bold.ttf"; sourceTree = "<group>"; };
+		1D13B1FB2657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.woff2"; path = "../assets/fonts/DIN2014Narrow-Bold.woff2"; sourceTree = "<group>"; };
+		1D13B1FC2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.woff2"; path = "../assets/fonts/DIN2014Narrow-Light.woff2"; sourceTree = "<group>"; };
+		1D13B1FD2657B97F00A4F34A /* DIN2014Narrow-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.woff"; path = "../assets/fonts/DIN2014Narrow-Regular.woff"; sourceTree = "<group>"; };
+		1D13B1FE2657B97F00A4F34A /* DIN2014Narrow-Light.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.eot"; path = "../assets/fonts/DIN2014Narrow-Light.eot"; sourceTree = "<group>"; };
+		1D13B1FF2657B97F00A4F34A /* DIN2014Narrow-Bold.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "DIN2014Narrow-Bold.svg"; path = "../assets/fonts/DIN2014Narrow-Bold.svg"; sourceTree = "<group>"; };
+		1D13B2002657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.woff2"; path = "../assets/fonts/DIN2014Narrow-Regular.woff2"; sourceTree = "<group>"; };
+		1D13B2012657B97F00A4F34A /* DIN2014Narrow-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.woff"; path = "../assets/fonts/DIN2014Narrow-Bold.woff"; sourceTree = "<group>"; };
+		1D13B2022657B97F00A4F34A /* DIN2014Narrow-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.woff"; path = "../assets/fonts/DIN2014Narrow-Light.woff"; sourceTree = "<group>"; };
 		246FBF5E49ECEBEAA486039E /* Pods-myKROSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.debug.xcconfig"; sourceTree = "<group>"; };
 		3059369D71CBAD33E88526C8 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		725A3EAD23A616F0783F5825 /* Pods-myKROSS-myKROSSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +170,21 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				1D13B1FF2657B97F00A4F34A /* DIN2014Narrow-Bold.svg */,
+				1D13B1FA2657B97F00A4F34A /* DIN2014Narrow-Bold.ttf */,
+				1D13B2012657B97F00A4F34A /* DIN2014Narrow-Bold.woff */,
+				1D13B1FB2657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 */,
+				1D13B1FE2657B97F00A4F34A /* DIN2014Narrow-Light.eot */,
+				1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */,
+				1D13B1F72657B97F00A4F34A /* DIN2014Narrow-Light.ttf */,
+				1D13B2022657B97F00A4F34A /* DIN2014Narrow-Light.woff */,
+				1D13B1FC2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 */,
+				1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */,
+				1D13B1F92657B97F00A4F34A /* DIN2014Narrow-Regular.svg */,
+				1D13B1F82657B97F00A4F34A /* DIN2014Narrow-Regular.ttf */,
+				1D13B1FD2657B97F00A4F34A /* DIN2014Narrow-Regular.woff */,
+				1D13B2002657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 */,
+				1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */,
 				901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* myKROSS */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -268,6 +313,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */,
+				1D13B2042657B97F00A4F34A /* DIN2014Narrow-Regular.eot in Resources */,
+				1D13B2052657B97F00A4F34A /* DIN2014Narrow-Light.ttf in Resources */,
+				1D13B2062657B97F00A4F34A /* DIN2014Narrow-Regular.ttf in Resources */,
+				1D13B2072657B97F00A4F34A /* DIN2014Narrow-Regular.svg in Resources */,
+				1D13B2082657B97F00A4F34A /* DIN2014Narrow-Bold.ttf in Resources */,
+				1D13B2092657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 in Resources */,
+				1D13B20A2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 in Resources */,
+				1D13B20B2657B97F00A4F34A /* DIN2014Narrow-Regular.woff in Resources */,
+				1D13B20C2657B97F00A4F34A /* DIN2014Narrow-Light.eot in Resources */,
+				1D13B20D2657B97F00A4F34A /* DIN2014Narrow-Bold.svg in Resources */,
+				1D13B20E2657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 in Resources */,
+				1D13B20F2657B97F00A4F34A /* DIN2014Narrow-Bold.woff in Resources */,
+				1D13B2102657B97F00A4F34A /* DIN2014Narrow-Light.woff in Resources */,
+				1D13B1F42657B94D00A4F34A /* DIN2014Narrow-Bold.eot in Resources */,
 				9009F68626452075005FBC58 /* InfoPlist.strings in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
