@@ -4,6 +4,7 @@ import {
     SafeAreaView,
     View,
     Text,
+    Dimensions,
     TouchableWithoutFeedback,
     Animated,
     Easing,
@@ -23,6 +24,8 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { getBike } from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
+import AnimSvg from '../../../../helpers/animSvg';
+
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
@@ -30,8 +33,9 @@ import StackHeader from './stackHeader/stackHeader';
 
 import counterHtml from './counterHtml';
 import mapHtml from './mapHtml';
+import gradient from './gradientSvg';
 
-
+const { width } = Dimensions.get('window');
 
 interface Props {
     navigation: any;
@@ -59,16 +63,16 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     };
 
     // położenie listy rowerów
-    const setListUp = () => {
+    const animateElemsOnMapOff = () => {
         Animated.timing(bikeSelectorListPositionY, {
-            toValue: headHeight + getVerticalPx(50 ),
+            toValue: headHeight + getVerticalPx(50),
             duration: 500,
             easing: Easing.quad,
             useNativeDriver: false,
         }).start();
     }
 
-    const setListDown = () => {
+    const animateElemsOnMapOn = () => {
         Animated.timing(bikeSelectorListPositionY, {
             toValue: headHeight + getVerticalPx(-110),
             duration: 500,
@@ -89,9 +93,16 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         new Animated.Value(headHeight + getVerticalPx(50)),
     ).current;
 
+    const gradientOpacity = useRef(
+        new Animated.Value(.1),
+    ).current;
+
     // inicjalizacja elementów webviwe
     const animSvgRef = useRef();
     const setJs = (foo: string) => animSvgRef.current.injectJavaScript(foo);
+
+    const gradientRef = useRef();
+    const gradientJs = (foo: string) => gradientRef.current.injectJavaScript(foo);
 
     const [pageState, setPageState] = useState('start');
 
@@ -166,7 +177,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     setRightBtnTile(trans.btnStart);
                     setHeaderTitle(trans.headerStart)
                     setPause(true);
-                    // setListDown();
+                    // animateElemsOnMapOn();
                 }
                 break;
             case 'record':
@@ -218,13 +229,15 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     const heandleMapVisibility = () => {
         if (mapOn) {
             setJs('setMaxi();true;');
-            setListUp();
+            animateElemsOnMapOff();
             setMapBtnPos(mapBtnPosMemo[0]);
+            gradientJs('show();true;')
             setMapOn(false);
         } else {
             setJs('setMini();true;');
-            setListDown();
+            animateElemsOnMapOn();
             setMapBtnPos(mapBtnPosMemo[1]);
+            gradientJs('hide();true;')
             setMapOn(true);
         }
     }
@@ -237,8 +250,33 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             height: '100%',
             backgroundColor: 'white',
         },
+        fullView: {
+            backgroundColor: 'transparent',
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            right: 0,
+            bottom: 0,
+        },
+        gradient: {
+            backgroundColor: 'transparent',
+            position: 'absolute',
+            width: width,
+            height: width,
+            top: 0,
+            left: 0,
+        },
         bikeList: {
             position: 'absolute',
+        },
+        mapBtn: {
+            position: 'absolute',
+            width: mapBtnSize,
+            height: mapBtnSize,
+            left: (getHorizontalPx(414) - mapBtnSize) / 2,
+            top: mapBtnPos - (mapBtnSize / 2),
+            // backgroundColor: 'green',
+            // opacity: .3,
         },
         bottons: {
             display: 'flex',
@@ -253,23 +291,6 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         btn: {
             width: getWidthPxOf(157),
         },
-        fullView: {
-            backgroundColor: 'transparent',
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            right: 0,
-            bottom: 0,
-        },
-        mapBtn: {
-            position: 'absolute',
-            width: mapBtnSize,
-            height: mapBtnSize,
-            left: (getHorizontalPx(414) - mapBtnSize) / 2,
-            top: mapBtnPos - (mapBtnSize / 2),
-            // backgroundColor: 'green',
-            // opacity: .3,
-        }
     });
 
     return (
@@ -298,6 +319,31 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     javaScriptEnabled={true}
                     ref={animSvgRef}
                     onMessage={heandleOnMessage}
+                />
+            </View>
+
+
+            <View style={styles.gradient} pointerEvents="none">
+                <WebView
+                    style={styles.fullView}
+                    originWhitelist={['*']}
+                    scalesPageToFit={true}
+                    useWebKit={Platform.OS === 'ios'}
+                    scrollEnabled={false}
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
+                    source={{
+                        html:
+                            '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
+                            gradient +
+                            '</body></html>',
+                        baseUrl:
+                            Platform.OS === 'ios'
+                                ? ''
+                                : 'file:///android_asset/',
+                    }}
+                    javaScriptEnabled={true}
+                    ref={gradientRef}
                 />
             </View>
 
