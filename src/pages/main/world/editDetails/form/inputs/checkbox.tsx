@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
     },
     label: {
         marginLeft: getHorizontalPx(25),
+        fontFamily: 'DIN2014Narrow-Light',
+        fontSize: 18,
+        letterSpacing: 0.5,
         color: '#555555',
     },
 });

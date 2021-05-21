@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    aligned: {
+        justifyContent: 'center',
+    },
 });
 
 interface Props {
@@ -41,6 +44,7 @@ const CheckBoxx: React.FC<Props> = (props: Props) => {
                 <View
                     style={[
                         styles.stretch,
+                        styles.aligned,
                         {
                             position: 'absolute',
                         },
@@ -48,7 +52,9 @@ const CheckBoxx: React.FC<Props> = (props: Props) => {
                     {props.wrong ? <ChecboxWrong /> : <ChecboxOff />}
                 </View>
 
-                <View style={styles.stretch}>{checked && <ChecboxOn />}</View>
+                <View style={[styles.stretch, styles.aligned]}>
+                    {checked && <ChecboxOn />}
+                </View>
             </View>
         </TouchableWithoutFeedback>
     );

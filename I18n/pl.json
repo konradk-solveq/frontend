@@ -1106,6 +1106,7 @@
             "publishWithName": "Opublikuj jako",
             "intro": "Opis trasy",
             "description": "Szczegółowy opis trasy",
+            "imagesTitle": "Zdjęcia z trasy",
             "attributes": {
                 "level": {
                     "name": "Poziom trudności",

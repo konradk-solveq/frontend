@@ -91,8 +91,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     buttonsWrapper: {
-        marginTop: getVerticalPx(95),
-        marginBottom: getVerticalPx(65),
+        // marginTop: getVerticalPx(95),
     },
     onPressBtn: {
         height: 50,
@@ -100,10 +99,13 @@ const styles = StyleSheet.create({
     bottomBtn: {
         marginTop: getVerticalPx(30),
     },
-    nameInput: {
-        paddingBottom: getVerticalPx(30),
-    },
     checkboxContainer: {
+        marginBottom: getVerticalPx(40),
+    },
+    levelContainer: {
+        marginBottom: getVerticalPx(40),
+    },
+    pavementContainer: {
         marginBottom: getVerticalPx(40),
     },
 });

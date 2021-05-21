@@ -79,12 +79,11 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     name: {
-        fontFamily: 'DIN2014Narrow-Regular',
+        fontFamily: 'DIN2014Narrow-Light',
         fontSize: 18,
         letterSpacing: 0.5,
-        color: '#313131',
+        color: '#555555',
         textAlign: 'left',
-        marginTop: getVerticalPx(20),
         marginBottom: getVerticalPx(5),
     },
     list: {

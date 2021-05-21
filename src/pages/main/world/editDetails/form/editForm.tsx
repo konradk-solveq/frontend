@@ -110,14 +110,13 @@ const EditForm: React.FC<IProps> = ({onSubmit}: IProps) => {
                             validationWrong={!!errMsg}
                             messageWrong={errMsg || 'Error'}
                             value={value}
-                            style={styles.nameInput}
                             maxLength={100}
                         />
                     )}
                     onValidate={onValidateHanlder}
                 />
             </View>
-            <View>
+            <View style={styles.levelContainer}>
                 <ControlledInput
                     fieldName="level"
                     control={control}
@@ -135,7 +134,7 @@ const EditForm: React.FC<IProps> = ({onSubmit}: IProps) => {
                     onValidate={onValidateHanlder}
                 />
             </View>
-            <View>
+            <View style={styles.pavementContainer}>
                 <ControlledInput
                     fieldName="pavement"
                     control={control}
@@ -232,7 +231,7 @@ const EditForm: React.FC<IProps> = ({onSubmit}: IProps) => {
                     style={styles.onPressBtn}
                 />
                 <BigWhiteBtn
-                    title="upublicznij"
+                    title="Zapisz"
                     onpress={
                         () =>
                             console.log(
