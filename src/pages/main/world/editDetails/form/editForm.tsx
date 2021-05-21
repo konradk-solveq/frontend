@@ -185,7 +185,6 @@ const EditForm: React.FC<IProps> = ({onSubmit}: IProps) => {
                             validationWrong={!!errMsg}
                             messageWrong={errMsg || 'Error'}
                             value={value}
-                            style={styles.nameInput}
                             isMultiline
                             maxLength={5000}
                         />
@@ -226,12 +225,12 @@ const EditForm: React.FC<IProps> = ({onSubmit}: IProps) => {
             </View>
             <View style={styles.buttonsWrapper}>
                 <BigRedBtn
-                    title="Zapisz i upublicznij"
+                    title={trans.publishButton}
                     onpress={handleSubmit(onSubmitHandler)}
                     style={styles.onPressBtn}
                 />
                 <BigWhiteBtn
-                    title="Zapisz"
+                    title={trans.saveButton}
                     onpress={
                         () =>
                             console.log(
