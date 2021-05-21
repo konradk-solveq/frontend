@@ -166,7 +166,6 @@ svg {
 <svg></svg>
 <div id="alert1" class="alert"></div>
 <div id="alert2" class="alert"></div>
-<div class="test">`+ sbh + `</div>
 </div>
 
 <script>
@@ -442,10 +441,14 @@ const countersUpdate = () => { // liczniki
     setOneCounter(obj.averageSpeed, values.averageSpeed, trans.averageSpeedUnit, x, y);
 }
 
-const init = () => {
+let firtInit = true;
+const init = (width, height) => {
+    if (!firtInit) return;
+    firtInit = false;
+
     // trans = t;
-    w = ` + w + `;
-    h = ` + h + `;
+    w = width;
+    h = height;
     getYlessCorect(305, 220);
     data = {
         w,
@@ -831,7 +834,7 @@ const init = () => {
     })
 };
 
-init();
+// init();
 
 function initMap() {
     map = new google.maps.Map(googleMap);
