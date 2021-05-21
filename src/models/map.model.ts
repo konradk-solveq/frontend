@@ -8,6 +8,40 @@ import {
     IsNumber,
     IsDate,
 } from 'class-validator';
+import validationRules from '../utils/validation/validationRules';
+
+export const publishMapValidationRules = {
+    name: [
+        validationRules.required,
+        validationRules.string,
+        {[validationRules.min]: 3},
+        {[validationRules.max]: 150},
+    ],
+    publishWithName: [validationRules.boolean],
+    intro: [
+        validationRules.required,
+        validationRules.string,
+        {[validationRules.min]: 3},
+        {[validationRules.max]: 1000},
+    ],
+    description: [
+        validationRules.required,
+        validationRules.string,
+        {[validationRules.min]: 3},
+        {[validationRules.max]: 5000},
+    ],
+    level: [
+        validationRules.required,
+        validationRules.isArray,
+        {[validationRules.isLength]: 1},
+    ],
+    pavement: [
+        validationRules.required,
+        validationRules.isArray,
+        {[validationRules.min]: 1},
+    ],
+    tags: [validationRules.isArray],
+};
 
 export interface MapCoord {
     langitude: number;
