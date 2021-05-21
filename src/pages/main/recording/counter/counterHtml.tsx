@@ -1,34 +1,5 @@
-import { Dimensions, PixelRatio, Platform, StatusBar } from 'react-native';
-
-const X_WIDTH = 375;
-const X_HEIGHT = 812;
-
-const XSMAX_WIDTH = 414;
-const XSMAX_HEIGHT = 896;
-
+import { Dimensions } from 'react-native';
 const { height, width } = Dimensions.get('window');
-
-const isIPhoneX = () => Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS
-    ? width === X_WIDTH && height === X_HEIGHT || width === XSMAX_WIDTH && height === XSMAX_HEIGHT
-    : false;
-
-const StatusBarHeight = Platform.select({
-    ios: isIPhoneX() ? 44 : 20,
-    android: StatusBar.currentHeight,
-    default: 0
-})
-
-console.log('%c StatusBarHeight:', StatusBarHeight)
-
-let w = Dimensions.get('window').width;
-let h = Dimensions.get('window').height;
-
-let sbh = StatusBarHeight * PixelRatio.get();
-
-if (Platform.OS === 'ios') {
-    h = Dimensions.get('window').height - sbh;
-}
-
 
 export default `
 <style>
@@ -166,7 +137,6 @@ svg {
 <svg></svg>
 <div id="alert1" class="alert"></div>
 <div id="alert2" class="alert"></div>
-<div class="test">`+ sbh + `</div>
 </div>
 
 <script>
@@ -201,6 +171,7 @@ const obj = {};
 const mapOn = [];
 const mapOff = [];
 let data = {};
+let mapBtnPos = {};
 const getSVGelem = type => document.createElementNS('http://www.w3.org/2000/svg', type);
 const getX = n => w * (n / 414);
 const getY = n => h * (n / 896);
@@ -442,10 +413,10 @@ const countersUpdate = () => { // liczniki
     setOneCounter(obj.averageSpeed, values.averageSpeed, trans.averageSpeedUnit, x, y);
 }
 
-const init = (width, height) => {
+const init = () => {
     // trans = t;
-    w = ` + w + `;
-    h = ` + h + `;
+    w = ` + width + `;
+    h = ` + height + `;
     getYlessCorect(305, 220);
     data = {
         w,
@@ -534,10 +505,13 @@ const init = (width, height) => {
         wrap.setAttribute('transform', 'translate(' + getX(40) + ',' + (getY(287) - wrapParam.c) + ')');
         svg.append(wrap)
 
+        mapBtnPos.y1 = getY(287) - wrapParam.c;
+        mapBtnPos.y2 = getY(896 - 94) - 50;
+
         // animacja wrapera
         wrapA = setAnimaTrans(wrap, 'transform');
-        let v0a = '' + getX(40) + ',' + (getY(287) - wrapParam.c);
-        let v0b = '' + getX(40) + ',' + (getY(896 - 94) - 50);
+        let v0a = '' + getX(40) + ',' + mapBtnPos.y1;
+        let v0b = '' + getX(40) + ',' + mapBtnPos.y2;
         mapOn.push(() => {
             wrapA.setAttribute('from', v0a);
             wrapA.setAttribute('to', v0b);
@@ -560,9 +534,14 @@ const init = (width, height) => {
         wrap.append(btnWrap);
         btnWrapA = setAnimaTrans(btnWrap, 'transform');
 
+        // dane do toucha w RN
+        let cy1 = (wrapParam.h / 2);
+        let cy2 = -(23 + 25.5 + getY(12));
+        window.ReactNativeWebView.postMessage('mapBtn;['+(mapBtnPos.y1 + cy1)+', '+(mapBtnPos.y2 + cy2)+']');
+
         // animacja całej grupy buttona z krzyżakiem
-        let v3a = '' + (getX(414 - 80) / 2) + ',' + (wrapParam.h / 2);
-        let v3b = '' + (getX(414 - 80) / 2) + ',' + (-(23 + 25.5 + getY(12)));
+        let v3a = '' + (getX(414 - 80) / 2) + ',' + cy1;
+        let v3b = '' + (getX(414 - 80) / 2) + ',' + cy2;
         mapOn.push(() => {
             btnWrapA.setAttribute('from', v3a);
             btnWrapA.setAttribute('to', v3b);
@@ -661,11 +640,6 @@ const init = (width, height) => {
         btn.setAttribute('r', '25.5');
         btn.setAttribute('fill', '#fff');
         btnWrap.append(btn);
-
-        btn.addEventListener('click', e => {
-            clickMapShower();
-        })
-
 
         // -------------------------------------------------------------------------
         // strałka
@@ -990,17 +964,6 @@ const setMaxi = () => {
     mapOff.forEach(f => f());
     coolDownFoo();
     mapView = false;
-}
-
-let onOff = true;
-const clickMapShower = () => {
-    if (onOff) {
-        setMini();
-        onOff = false;
-    } else {
-        setMaxi();
-        onOff = true;
-    }
 }
 
 const showAlert = (num, txt) => {

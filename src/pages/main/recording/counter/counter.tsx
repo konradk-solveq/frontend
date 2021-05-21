@@ -100,6 +100,10 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     const [headerTitle, setHeaderTitle] = useState('');
     const [pause, setPause] = useState(true);
 
+    const [mapBtnPos, setMapBtnPos] = useState(0);
+    const [mapBtnPosMemo, setMapBtnPosMemo] = useState(0);
+    const [mapOn, setMapOn] = useState(false);
+
     const heandleLeftBtnClick = () => {
         switch (pageState) {
             case 'start': {
@@ -197,11 +201,31 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
 
     const heandleOnMessage = e => {
         console.log('onMessage:', e.nativeEvent.data)
-        switch (e.nativeEvent.data) {
+        let val = e.nativeEvent.data.split(';');
+
+        switch (val[0]) {
             case 'map is ready':
                 { setJs('setPositionOnMap({lat: 53.009342618210624, lng: 20.890509251985964 });true;') }
                 break;
+            case 'mapBtn': {
+                let posY = JSON.parse(val[1]);
+                setMapBtnPosMemo(posY);
+                setMapBtnPos(posY[0]);
+            } break;
         }
+    }
+
+    const heandleMapVisibility = () => {
+        if (mapOn) {
+            setJs('setMaxi();true;')
+            setMapBtnPos(mapBtnPosMemo[0]);
+            setMapOn(false);
+        } else {
+            setJs('setMini();true;')
+            setMapBtnPos(mapBtnPosMemo[1]);
+            setMapOn(true);
+        }
+        console.log('%c mapBtnPosMemo:', 'background: #ffcc00; color: #003300', mapBtnPosMemo)
     }
 
     // const handleOnLayout = (layout: any) => {
@@ -239,6 +263,15 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             right: 0,
             bottom: 0,
         },
+        mapBtn: {
+            position: 'absolute',
+            width: 51,
+            height: 51,
+            backgroundColor: 'green',
+            left: (getHorizontalPx(414) - 51) / 2,
+            top: mapBtnPos - (51 / 2),
+            opacity: .3,
+        }
     });
 
     return (
@@ -284,6 +317,10 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     buttonText={'add'}
                 />
             </Animated.View>}
+
+            <TouchableWithoutFeedback onPress={() => heandleMapVisibility()}>
+                <View style={styles.mapBtn}></View>
+            </TouchableWithoutFeedback>
 
 
             <View style={styles.bottons}>
