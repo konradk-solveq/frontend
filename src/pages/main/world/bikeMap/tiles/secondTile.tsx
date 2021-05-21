@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
 
 import {
     BikeIcon,
@@ -18,17 +17,14 @@ import TileBackground from './tileBackground';
 import styles, {secondTileStyles} from './style';
 interface IProps {
     mapData: MapType;
+    onPress: (state: boolean, mapID: string) => void;
 }
 
-const SecondTile: React.FC<IProps> = ({mapData}: IProps) => {
+const SecondTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
-    const navigation = useNavigation();
 
     const onDetailsButtonPressedHandler = () => {
-        navigation.navigate({
-            name: 'RouteDetailsScreen',
-            params: {mapID: mapData.id},
-        });
+        onPress(true, mapData.id);
     };
 
     return (

@@ -68,9 +68,9 @@ const RouteDetails = () => {
                         <View style={styles.content}>
                             <Description mapID={route?.params?.mapID || ''} />
                             <BigRedBtn
-                                title={trans.deleteButton}
+                                title={trans.reportButton}
                                 onpress={() => {}}
-                                style={styles.deleteButton}
+                                style={styles.reportButton}
                             />
                         </View>
                     </SliverTopBar>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 40,
         marginBottom: getVerticalPx(35),
     },
-    deleteButton: {
+    reportButton: {
         height: 50,
     },
 });
