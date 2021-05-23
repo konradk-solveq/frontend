@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -8,10 +8,10 @@ import {
     TouchableWithoutFeedback,
     Animated,
     Easing,
-    Platform
+    Platform,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
-import Svg, { G, Path, Circle } from 'react-native-svg';
+import {WebView} from 'react-native-webview';
+import Svg, {G, Path, Circle} from 'react-native-svg';
 
 import I18n from 'react-native-i18n';
 
@@ -21,11 +21,10 @@ import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../../../helpers/layoutFoo';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { getBike } from '../../../../helpers/transformUserBikeData';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import AnimSvg from '../../../../helpers/animSvg';
-
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
@@ -35,13 +34,13 @@ import counterHtml from './counterHtml';
 import mapHtml from './mapHtml';
 import gradient from './gradientSvg';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 interface Props {
     navigation: any;
 }
 
-const Counter: React.FC<Props> = ({ navigation }: Props) => {
+const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
@@ -70,7 +69,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             easing: Easing.quad,
             useNativeDriver: false,
         }).start();
-    }
+    };
 
     const animateElemsOnMapOn = () => {
         Animated.timing(bikeSelectorListPositionY, {
@@ -79,7 +78,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             easing: Easing.quad,
             useNativeDriver: false,
         }).start();
-    }
+    };
 
     // wysokośc headera
     const [headHeight, setHeadHeight] = useState(0);
@@ -87,22 +86,21 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     // do animacji położeni listy rowerów
     useEffect(() => {
         bikeSelectorListPositionY.setValue(headHeight + getVerticalPx(50));
-    }, [headHeight])
+    }, [headHeight]);
 
     const bikeSelectorListPositionY = useRef(
         new Animated.Value(headHeight + getVerticalPx(50)),
     ).current;
 
-    const gradientOpacity = useRef(
-        new Animated.Value(.1),
-    ).current;
+    const gradientOpacity = useRef(new Animated.Value(0.1)).current;
 
     // inicjalizacja elementów webviwe
     const animSvgRef = useRef();
     const setJs = (foo: string) => animSvgRef.current.injectJavaScript(foo);
 
     const gradientRef = useRef();
-    const gradientJs = (foo: string) => gradientRef.current.injectJavaScript(foo);
+    const gradientJs = (foo: string) =>
+        gradientRef.current.injectJavaScript(foo);
 
     const [pageState, setPageState] = useState('start');
 
@@ -117,56 +115,78 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
 
     const heandleLeftBtnClick = () => {
         switch (pageState) {
-            case 'start': {
-                navigation.goBack();
-            } break;
-            case 'record': {
-                setPageState('pause');
-                setJs('setPauseOn();true;');
-            } break;
-            case 'pause': {
-                setPageState('record');
-                setJs('hideAlert();setPauseOff();true;');
-            } break;
-            case 'cancelText': {
-                setPageState('record');
-                setJs('hideAlert();true;');
-            } break;
-            case 'endMessage': {
-                setPageState('record');
-                setJs('hideAlert();true;');
-            } break;
+            case 'start':
+                {
+                    navigation.goBack();
+                }
+                break;
+            case 'record':
+                {
+                    setPageState('pause');
+                    setJs('setPauseOn();true;');
+                }
+                break;
+            case 'pause':
+                {
+                    setPageState('record');
+                    setJs('hideAlert();setPauseOff();true;');
+                }
+                break;
+            case 'cancelText':
+                {
+                    setPageState('record');
+                    setJs('hideAlert();true;');
+                }
+                break;
+            case 'endMessage':
+                {
+                    setPageState('record');
+                    setJs('hideAlert();true;');
+                }
+                break;
         }
     };
 
     const heandleRightBtnClick = () => {
         switch (pageState) {
-            case 'start': {
-                setPageState('record');
-                setJs('start();setPauseOff();true;');
-            } break;
-            case 'record': {
-                setPageState('endMessage');
-            } break;
-            case 'cancelText': {
-                navigation.goBack();
-            } break;
-            case 'endMessage': {
-                // TODO
-                navigation.navigate('CounterThankYouPage');
-                // do ekranu zakończenia
-            } break;
+            case 'start':
+                {
+                    setPageState('record');
+                    setJs('start();setPauseOff();true;');
+                }
+                break;
+            case 'record':
+                {
+                    setPageState('endMessage');
+                }
+                break;
+            case 'cancelText':
+                {
+                    navigation.goBack();
+                }
+                break;
+            case 'endMessage':
+                {
+                    // TODO
+                    navigation.navigate('CounterThankYouPage');
+                    // do ekranu zakończenia
+                }
+                break;
         }
     };
 
     const heandleGoBackClick = () => {
         switch (pageState) {
-            case 'start': {
-                navigation.goBack();
-            } break;
-            default: {
-                setPageState('cancelText');
-            } break;
+            case 'start':
+                {
+                    navigation.goBack();
+                }
+                break;
+            default:
+                {
+                    setPageState('cancelText');
+                }
+                break;
         }
     };
 
@@ -176,7 +196,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                 {
                     setLeftBtnTile(trans.btnCancel);
                     setRightBtnTile(trans.btnStart);
-                    setHeaderTitle(trans.headerStart)
+                    setHeaderTitle(trans.headerStart);
                     setPause(true);
                     // animateElemsOnMapOn();
                 }
@@ -185,7 +205,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                 {
                     setLeftBtnTile(trans.btnPauza);
                     setRightBtnTile(trans.btnEnd);
-                    setHeaderTitle(trans.headerRecord)
+                    setHeaderTitle(trans.headerRecord);
                     setPause(false);
                 }
                 break;
@@ -196,52 +216,61 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                     setPause(true);
                 }
                 break;
-            case 'cancelText': {
-                setLeftBtnTile(trans.btnCancel);
-                setRightBtnTile(trans.btnBreak);
-                setJs('showAlert(1, "' + trans.cancelText + '");true;');
-            } break;
-            case 'endMessage': {
-                setLeftBtnTile(trans.btnCancel);
-                setRightBtnTile(trans.btnEnd);
-                setJs('showAlert(2, "' + trans.endText + '");true;');
-
-            } break;
+            case 'cancelText':
+                {
+                    setLeftBtnTile(trans.btnCancel);
+                    setRightBtnTile(trans.btnBreak);
+                    setJs('showAlert(1, "' + trans.cancelText + '");true;');
+                }
+                break;
+            case 'endMessage':
+                {
+                    setLeftBtnTile(trans.btnCancel);
+                    setRightBtnTile(trans.btnEnd);
+                    setJs('showAlert(2, "' + trans.endText + '");true;');
+                }
+                break;
         }
         // setJs('setMini();true;');
-    }, [pageState])
+    }, [pageState]);
 
     const heandleOnMessage = e => {
-        console.log('onMessage:', e.nativeEvent.data)
+        console.log('onMessage:', e.nativeEvent.data);
         let val = e.nativeEvent.data.split(';');
 
         switch (val[0]) {
             case 'map is ready':
-                { setJs('setPositionOnMap({lat: 53.009342618210624, lng: 20.890509251985964 });true;') }
+                {
+                    setJs(
+                        'setPositionOnMap({lat: 53.009342618210624, lng: 20.890509251985964 });true;',
+                    );
+                }
                 break;
-            case 'mapBtn': {
-                let posY = JSON.parse(val[1]);
-                setMapBtnPosMemo(posY);
-                setMapBtnPos(posY[0]);
-            } break;
+            case 'mapBtn':
+                {
+                    let posY = JSON.parse(val[1]);
+                    setMapBtnPosMemo(posY);
+                    setMapBtnPos(posY[0]);
+                }
+                break;
         }
-    }
+    };
 
     const heandleMapVisibility = () => {
         if (mapOn) {
             setJs('setMaxi();true;');
             animateElemsOnMapOff();
             setMapBtnPos(mapBtnPosMemo[0]);
-            gradientJs('show();true;')
+            gradientJs('show();true;');
             setMapOn(false);
         } else {
             setJs('setMini();true;');
             animateElemsOnMapOn();
             setMapBtnPos(mapBtnPosMemo[1]);
-            gradientJs('hide();true;')
+            gradientJs('hide();true;');
             setMapOn(true);
         }
-    }
+    };
 
     setObjSize(334, 50);
     let mapBtnSize = 60;
@@ -275,7 +304,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             width: mapBtnSize,
             height: mapBtnSize,
             left: (getHorizontalPx(414) - mapBtnSize) / 2,
-            top: mapBtnPos - (mapBtnSize / 2),
+            top: mapBtnPos - mapBtnSize / 2,
             // backgroundColor: 'green',
             // opacity: .3,
         },
@@ -296,7 +325,6 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
 
     return (
         <SafeAreaView style={styles.container}>
-
             <View style={styles.fullView}>
                 <WebView
                     style={styles.fullView}
@@ -323,7 +351,6 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                 />
             </View>
 
-
             <View style={styles.gradient} pointerEvents="none">
                 <WebView
                     style={styles.fullView}
@@ -348,24 +375,26 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                 />
             </View>
 
-            {bikeSelectorListPositionY && <Animated.View
-                style={[
-                    styles.bikeList,
-                    {
-                        top: bikeSelectorListPositionY
-                    }]}>
-                <BikeSelectorList
-                    list={bikes}
-                    callback={onChangeBikeHandler}
-                    currentBike={bike?.description?.serial_number}
-                    buttonText={'add'}
-                />
-            </Animated.View>}
+            {bikeSelectorListPositionY && (
+                <Animated.View
+                    style={[
+                        styles.bikeList,
+                        {
+                            top: bikeSelectorListPositionY,
+                        },
+                    ]}>
+                    <BikeSelectorList
+                        list={bikes}
+                        callback={onChangeBikeHandler}
+                        currentBike={bike?.description?.serial_number}
+                        buttonText={'add'}
+                    />
+                </Animated.View>
+            )}
 
             <TouchableWithoutFeedback onPress={() => heandleMapVisibility()}>
-                <View style={styles.mapBtn}></View>
+                <View style={styles.mapBtn} />
             </TouchableWithoutFeedback>
-
 
             <View style={styles.bottons}>
                 <View style={styles.btn}>
