@@ -1096,6 +1096,20 @@
         "btnCancel": "ANULUJ",
         "btnBreak": "PRZERWIJ"
     },
+    "CounterThankYouPage": {
+        "title": ", brawo oszczędziłeś",
+        "defaultName": "Rowerzysto",
+        "type_1": ["drzewo!", "drzew!"],
+        "type_2": "l paliwa!",
+        "distance": "Dystans",
+        "distanceUnit": "km",
+        "time": "Czas jazdy",
+        "timeUnit": "h",
+        "break": "czas przerw",
+        "breakUnit": "h",
+        "btnSave": "UPUBLICZNIJ",
+        "btnCancel": "POWRÓT"
+    },
     "ServicesMap": {
         "services": "Serwisy",
         "shops": "Sklepy"

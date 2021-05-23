@@ -17,6 +17,7 @@ import AboutApp from '../../pages/main/profile/aboutApp/aboutApp';
 import RewiewsDetails from '../../pages/main/bike/rewiewsDetails/rewiewsDetails';
 import NameChange from '../../pages/main/profile/nameChange/nameChange';
 import Counter from '../../pages/main/recording/counter/counter';
+import CounterThankYouPage from '../../pages/main/recording/counterThankYouPage/counterThankYouPage';
 
 const RegularStackNavigator: React.FC = () => {
     return (
@@ -39,6 +40,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen name="RewiewsDetails" component={RewiewsDetails} />
             <Stack.Screen name="NameChange" component={NameChange} />
             <Stack.Screen name="Counter" component={Counter} />
+            <Stack.Screen name="CounterThankYouPage" component={CounterThankYouPage} />
             {/* End add bike */}
 
             {/* univesal/generic pages */}

@@ -153,6 +153,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             } break;
             case 'endMessage': {
                 // TODO
+                navigation.navigate('CounterThankYouPage');
                 // do ekranu zakończenia
             } break;
         }
