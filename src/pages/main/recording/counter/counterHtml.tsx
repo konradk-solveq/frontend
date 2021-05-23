@@ -872,9 +872,9 @@ const twoDigits = num => num < 10 ? '0' + num : '' + num;
 const timer = () => {
     let diference = Date.now() - startTime - pauseTime;
     let sec = Math.round(diference / 1000) % 60;
-    let min = Math.floor(diference / (1000 * 60)) % 60;
+    let min = Math.floor((diference + 1000) / (1000 * 60)) % 60;
     if (min < 0) min = 0;
-    let hou = Math.floor(diference / (1000 * 60 * 60));
+    let hou = Math.floor((diference + 1000) / (1000 * 60 * 60));
     if (hou < 0) hou = 0;
 
     values.time1 = twoDigits(hou) + ':' + twoDigits(min)
