@@ -2,10 +2,10 @@ import {persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '../actions/actionTypes';
-import {Map} from '../../models/map.model';
+import {MapType} from '../../models/map.model';
 
 interface MapsState {
-    maps: Map[];
+    maps: MapType[];
     favourites: string[];
     error: string;
     loading: boolean;
@@ -14,7 +14,7 @@ interface MapsState {
 
 const initialStateList: MapsState = {
     maps: [],
-    favourites: [],
+    favourites: ['222', '333'],
     error: '',
     loading: false,
     statusCode: 200,

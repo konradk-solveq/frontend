@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
 import MyRoutes from './myRoutes/myRoutes';
-import {OptionType} from './bikeMap/filters/filtersData';
+import {OptionType} from './components/filters/filtersData';
 
 import {
     setObjSize,
@@ -13,10 +13,11 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
-import FiltersModal from './bikeMap/filters/filtersModal';
+import FiltersModal from './components/filters/filtersModal';
 import useStatusBarHeight from '../../../hooks/statusBarHeight';
 import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
 import BikeMap from './bikeMap/bikeMap';
+import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
 enum routesTab {
     BIKEMAP = 'map',
@@ -36,19 +37,19 @@ const World: React.FC = () => {
 
     const [activeTab, setActiveTab] = useState<routesTab>(routesTab.BIKEMAP);
 
-    const heandleBikeMap = () => {
+    const handleBikeMap = () => {
         if (activeTab?.includes(routesTab.BIKEMAP)) {
             return;
         }
         setActiveTab(routesTab.BIKEMAP);
     };
-    const heandleMyRoutes = () => {
+    const handleMyRoutes = () => {
         if (activeTab?.includes(routesTab.MYROUTES)) {
             return;
         }
         setActiveTab(routesTab.MYROUTES);
     };
-    const heandlePlaned = () => {
+    const handlePlaned = () => {
         if (activeTab?.includes(routesTab.PLANED)) {
             return;
         }
@@ -139,6 +140,23 @@ const World: React.FC = () => {
         onHideModalHandler();
     };
 
+    const renderActiveScreen = useCallback(() => {
+        switch (activeTab) {
+            case routesTab.BIKEMAP:
+                return <BikeMap />;
+            case routesTab.MYROUTES:
+                return <MyRoutes />;
+            case routesTab.PLANED:
+                return (
+                    <PlannedRoutes
+                        onPress={() => setActiveTab(routesTab.BIKEMAP)}
+                    />
+                );
+            default:
+                return <BikeMap />;
+        }
+    }, [activeTab]);
+
     return (
         <SafeAreaView style={styles.container}>
             <FiltersModal
@@ -170,28 +188,24 @@ const World: React.FC = () => {
                         style={styles.btn}
                         title={trans.btnBikeMap}
                         active={activeTab === routesTab.BIKEMAP}
-                        onpress={heandleBikeMap}
+                        onpress={handleBikeMap}
                     />
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnMyRoutes}
                         active={activeTab === routesTab.MYROUTES}
-                        onpress={heandleMyRoutes}
+                        onpress={handleMyRoutes}
                     />
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnPlaned}
                         active={activeTab === routesTab.PLANED}
-                        onpress={heandlePlaned}
+                        onpress={handlePlaned}
                     />
                 </View>
-
-                {activeTab?.includes(routesTab.MYROUTES) && <MyRoutes />}
             </View>
 
-            <View style={styles.viewContainer}>
-                {activeTab === routesTab.BIKEMAP && <BikeMap />}
-            </View>
+            <View style={styles.viewContainer}>{renderActiveScreen()}</View>
 
             <TabBackGround />
         </SafeAreaView>
