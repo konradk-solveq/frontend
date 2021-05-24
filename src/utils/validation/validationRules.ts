@@ -9,6 +9,10 @@ export const validationRules = {
     int: 'int',
     min: 'min',
     max: 'max',
+    equal: 'equal',
+    boolean: 'boolean',
+    isArray: 'isArray',
+    isLength: 'isLength',
 };
 
 export default validationRules;

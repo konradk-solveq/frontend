@@ -5,6 +5,9 @@ import {
     StatusBar,
     SafeAreaView,
     Platform,
+    ScrollView,
+    Text,
+    KeyboardAvoidingView,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
@@ -12,19 +15,14 @@ import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {I18n} from '../../../../../I18n/I18n';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import {
-    ShareBtn,
-    EditBtn,
-    BigRedBtn,
-} from '../../../../sharedComponents/buttons';
-import Description from './description/description';
+
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
-import {RegularStackRoute} from '../../../../navigation/route';
+import EditForm from './form/editForm';
 
 const isIOS = Platform.OS === 'ios';
 
-const RouteDetails = () => {
+const EditDetails = () => {
     const trans: any = I18n.t('RoutesDetails');
     const navigation = useNavigation();
     const route = useRoute();
@@ -40,13 +38,6 @@ const RouteDetails = () => {
         navigation.goBack();
     };
 
-    const onGoToEditHandler = () => {
-        navigation.navigate({
-            name: RegularStackRoute.EDIT_DETAILS_SCREEN,
-            params: {mapID: route?.params?.mapID},
-        });
-    };
-
     return (
         <>
             <StatusBar translucent />
@@ -56,30 +47,40 @@ const RouteDetails = () => {
                         onpress={onBackHandler}
                         inner=""
                         style={styles.header}
-                        rightActions={
-                            <View style={styles.actionButtonsContainer}>
-                                <EditBtn
-                                    onPress={onGoToEditHandler}
-                                    iconStyle={[
-                                        styles.actionButton,
-                                        styles.leftActionButton,
-                                    ]}
-                                />
-                                <ShareBtn
-                                    onPress={() => {}}
-                                    iconStyle={styles.actionButton}
-                                />
-                            </View>
-                        }
                     />
                     <SliverTopBar>
                         <View style={styles.content}>
-                            <Description mapID={route?.params?.mapID || ''} />
-                            <BigRedBtn
+                            {/* <Description mapID={route?.params?.mapID || ''} /> */}
+                            {/* <BigRedBtn
                                 title={trans.reportButton}
                                 onpress={() => {}}
                                 style={styles.reportButton}
-                            />
+                            /> */}
+                            <KeyboardAvoidingView
+                                style={styles.keyboard}
+                                behavior={
+                                    Platform.OS === 'ios' ? 'padding' : 'height'
+                                }
+                                enabled>
+                                <ScrollView
+                                    showsVerticalScrollIndicator={false}>
+                                    <View style={styles.container}>
+                                        {/* <View style={styles.titleWrapper}>
+                                            <Text style={[styles.title]}>
+                                                {`${
+                                                    'Janek kolanek' ||
+                                                    trans.defaultUserName
+                                                }${trans.title}`}
+                                            </Text>
+                                        </View> */}
+                                        {/* <Description
+                                            mapID={route?.params?.mapID || ''}
+                                        /> */}
+                                        {/* <AuthForm onSubmit={onSubmitHandler} /> */}
+                                        <EditForm onSubmit={() => {}} />
+                                    </View>
+                                </ScrollView>
+                            </KeyboardAvoidingView>
                         </View>
                     </SliverTopBar>
                 </View>
@@ -122,6 +123,24 @@ const styles = StyleSheet.create({
     reportButton: {
         height: 50,
     },
+    container: {
+        // paddingHorizontal: 40,
+    },
+
+    titleWrapper: {
+        marginTop: getVerticalPx(50),
+        marginBottom: getVerticalPx(135),
+    },
+
+    title: {
+        fontFamily: 'DIN2014Narrow-Light',
+        fontSize: 30,
+        color: '#313131',
+    },
+
+    keyboard: {
+        flex: 1,
+    },
 });
 
-export default RouteDetails;
+export default EditDetails;

@@ -1099,6 +1099,43 @@
             "creationPrefix": "Utworzona",
             "distanceToStart": " km od Ciebie",
             "noDescription": "Brak opisu."
+        },
+        "EditScreen": {
+            "tagsTitle": "Tagi",
+            "nameInput": "Tytuł",
+            "publishWithName": "Opublikuj jako",
+            "intro": "Opis trasy",
+            "description": "Szczegółowy opis trasy",
+            "publishButton": "Zapisz i upublicznij",
+            "saveButton": "Zapisz",
+            "imagesTitle": "Zdjęcia z trasy",
+            "attributes": {
+                "level": {
+                    "name": "Poziom trudności",
+                    "options": ["Łatwa", "Umiarkowana", "Wymagająca"]
+                },
+                "pavement": {
+                    "name": "Nawierzchnia",
+                    "options": [
+                        "Szutrowa",
+                        "Asfalt",
+                        "Utwardzona",
+                        "Nieutwardzona",
+                        "Ścieżka rowerowa"
+                    ]
+                },
+                "tags": {
+                    "name": "Tagi",
+                    "options": [
+                        "widokowa",
+                        "mały ruch",
+                        "weekendowa",
+                        "ciekawe atrakcje",
+                        "dobre jedzenie",
+                        "dla dzieci"
+                    ]
+                }
+            }
         }
     },
     "MainBike": {
@@ -1271,6 +1308,17 @@
                 "model": "model",
                 "size": "rozmiar",
                 "color": "kolor"
+            },
+            "mapDetails": {
+                "formErrors": {
+                    "name": "Nieprawidłowe znaki",
+                    "publishWithName": "Pole wymagane",
+                    "intro": "Nieprawidłowe znaki",
+                    "description": "Nieprawidłowe znaki",
+                    "level": "Wybierz poziom trudności",
+                    "pavement": "Wybierz rodzaje nawierzchni",
+                    "tags": "Wybierz tagi"
+                }
             }
         }
     },

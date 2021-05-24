@@ -19,6 +19,8 @@ import NameChange from '../../pages/main/profile/nameChange/nameChange';
 import Counter from '../../pages/main/recording/counter/counter';
 import RouteDetails from '../../pages/main/world/routeDetails/routeDetails';
 import CounterThankYouPage from '../../pages/main/recording/counterThankYouPage/counterThankYouPage';
+import EditDetails from '../../pages/main/world/editDetails/editDetails';
+import {RegularStackRoute} from '../route';
 
 const RegularStackNavigator: React.FC = () => {
     return (
@@ -46,6 +48,10 @@ const RegularStackNavigator: React.FC = () => {
 
             {/* START KROSS WORLD */}
             <Stack.Screen name="RouteDetailsScreen" component={RouteDetails} />
+            <Stack.Screen
+                name={RegularStackRoute.EDIT_DETAILS_SCREEN}
+                component={EditDetails}
+            />
             {/* END KROSS WORLD */}
 
             {/* univesal/generic pages */}

@@ -8,6 +8,8 @@ import {
     minLength,
     maxLength,
     matches,
+    isBoolean,
+    isArray,
 } from 'class-validator';
 import validationRules from './validationRules';
 
@@ -29,13 +31,24 @@ export const validateData = (rules: any[], value: any) => {
 
         if (typeof el === 'object') {
             if (el?.min) {
-                isValid = minLength(value, el.min);
+                if (isArray(value)) {
+                    isValid = value?.length >= el.min;
+                } else {
+                    isValid = minLength(value, el.min);
+                }
             }
             if (el?.max) {
-                isValid = maxLength(value, el.max);
+                if (isArray(value)) {
+                    isValid = value?.length <= el.max;
+                } else {
+                    isValid = maxLength(value, el.max);
+                }
             }
             if (el?.match) {
                 isValid = matches(value, new RegExp(el.match));
+            }
+            if (el?.isLength) {
+                isValid = value?.length === el.isLength;
             }
         }
 
@@ -65,6 +78,10 @@ export const validateData = (rules: any[], value: any) => {
 
         if (containsRule(el, validationRules.email)) {
             isValid = isEmail(value);
+        }
+
+        if (containsRule(el, validationRules.boolean)) {
+            isValid = isBoolean(value);
         }
     });
 
