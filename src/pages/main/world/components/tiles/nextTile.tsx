@@ -75,7 +75,7 @@ const NextTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                                 </View>
                             </View>
                             <View style={styles.borderLine} />
-                            <View style={styles.secondtSection}>
+                            <View style={nextTileStyles.secondtSection}>
                                 <View style={styles.sectionContentRow}>
                                     <View style={styles.sectionTextRow}>
                                         <BikeIcon

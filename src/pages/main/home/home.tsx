@@ -18,6 +18,7 @@ import {
     setBikesListByFrameNumbers,
     fetchGenericBikeData,
 } from '../../../storage/actions/bikes';
+import {fetchMapsList} from '../../../storage/actions';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
 import {nfcIsSupported} from '../../../helpers/nfc';
@@ -54,6 +55,7 @@ const Home: React.FC = () => {
             /* TODO: add some sync/info loader */
             await dispatch(fetchGenericBikeData());
             await dispatch(setBikesListByFrameNumbers());
+            dispatch(fetchMapsList());
         } catch (error) {
             /* TODO: add some UI information */
             console.log('[Sync Error]', error);

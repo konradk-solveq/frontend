@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     sectionContentRow: {
         flexDirection: 'row',
         paddingVertical: getVerticalPx(10),
+        justifyContent: 'flex-start',
     },
     sectionTextRow: {
         width: '50%',
@@ -220,6 +221,10 @@ export const nextTileStyles = StyleSheet.create({
     firstSectionRightColumn: {
         flexDirection: 'column',
         width: '70%',
+    },
+    secondtSection: {
+        marginLeft: 0,
+        marginRight: 20,
     },
     imageWrapper: {
         width: getVerticalPx(95),
