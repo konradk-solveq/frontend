@@ -71,4 +71,4 @@ android/app/src/main/res/values/strings.xml
 android/app/google-services.json
 
 ios/GoogleService-Info.plist
-
+.vscode
