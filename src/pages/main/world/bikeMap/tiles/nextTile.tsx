@@ -27,7 +27,7 @@ const NextTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
     const onDetailsButtonPressedHandler = () => {
         onPress(true, mapData.id);
     };
-
+console.log(mapData?.details?.images)
     return (
         <TileBackground>
             <View style={nextTileStyles.container}>
@@ -35,9 +35,11 @@ const NextTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                     <View style={nextTileStyles.firstSection}>
                         <View style={nextTileStyles.firstSectionLeftColumn}>
                             <View style={nextTileStyles.imageWrapper}>
-                                {mapData?.details?.mapUrl ? (
+                                {mapData?.details?.images?.length ? (
                                     <Image
-                                        source={{uri: mapData.details.mapUrl}}
+                                        source={{
+                                            uri: mapData.details.images[0],
+                                        }}
                                         style={nextTileStyles.image}
                                         resizeMode="cover"
                                     />

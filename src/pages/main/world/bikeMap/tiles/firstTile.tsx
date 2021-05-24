@@ -31,9 +31,9 @@ const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
         <TileBackground>
             <View style={styles.container}>
                 <View style={styles.imageWrapper}>
-                    {mapData?.details?.mapUrl ? (
+                    {mapData?.details?.images?.length ? (
                         <Image
-                            source={{uri: mapData.details.mapUrl}}
+                            source={{uri: mapData.details.images[0]}}
                             style={styles.image}
                             resizeMode="cover"
                         />

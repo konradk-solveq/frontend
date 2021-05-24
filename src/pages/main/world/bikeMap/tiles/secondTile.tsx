@@ -34,15 +34,19 @@ const SecondTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                     <View style={secondTileStyles.firstSection}>
                         <View style={secondTileStyles.firstSectionLeftColumn}>
                             <View style={secondTileStyles.imageWrapper}>
-                                {mapData?.details?.mapUrl ? (
-                                    <Image
-                                        source={{uri: mapData.details.mapUrl}}
-                                        style={secondTileStyles.image}
-                                        resizeMode="cover"
-                                    />
-                                ) : (
-                                    <View style={styles.mImg} />
-                                )}
+                                <View style={secondTileStyles.imageWrapper}>
+                                    {mapData?.details?.images?.length ? (
+                                        <Image
+                                            source={{
+                                                uri: mapData.details.images[0],
+                                            }}
+                                            style={secondTileStyles.image}
+                                            resizeMode="cover"
+                                        />
+                                    ) : (
+                                        <View style={styles.mImg} />
+                                    )}
+                                </View>
                             </View>
                         </View>
                         <View style={secondTileStyles.firstSectionRightColumn}>
