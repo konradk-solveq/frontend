@@ -15,5 +15,5 @@ export const loadingMapsSelector = (state: RootState): boolean =>
 export const favouritesMapsSelector = createSelector(
     favouritesMapsIDSSelector,
     mapsListSelector,
-    (fav, maps) => maps.filter(m => !fav.includes(m.id)),
+    (fav, maps) => maps.filter(m => fav.includes(m.id)),
 );

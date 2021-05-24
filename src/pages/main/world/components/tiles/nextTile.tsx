@@ -13,14 +13,16 @@ import {I18n} from '../../../../../../I18n/I18n';
 import {MapType} from '../../../../../models/map.model';
 
 import TileBackground from './tileBackground';
+import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
 
-import styles, {secondTileStyles} from './style';
+import styles, {nextTileStyles} from './style';
+
 interface IProps {
     mapData: MapType;
     onPress: (state: boolean, mapID: string) => void;
 }
 
-const SecondTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
+const NextTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
 
     const onDetailsButtonPressedHandler = () => {
@@ -29,35 +31,41 @@ const SecondTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
 
     return (
         <TileBackground>
-            <View style={secondTileStyles.container}>
-                <View style={secondTileStyles.sectionsContainer}>
-                    <View style={secondTileStyles.firstSection}>
-                        <View style={secondTileStyles.firstSectionLeftColumn}>
-                            <View style={secondTileStyles.imageWrapper}>
-                                {mapData?.details?.mapUrl ? (
+            <View style={nextTileStyles.container}>
+                <View style={nextTileStyles.sectionsContainer}>
+                    <View style={nextTileStyles.firstSection}>
+                        <View style={nextTileStyles.firstSectionLeftColumn}>
+                            <View style={nextTileStyles.imageWrapper}>
+                                {mapData?.details?.images?.length ? (
                                     <Image
-                                        source={{uri: mapData.details.mapUrl}}
-                                        style={secondTileStyles.image}
+                                        source={{
+                                            uri: mapData.details.images[0],
+                                        }}
+                                        style={nextTileStyles.image}
                                         resizeMode="cover"
                                     />
                                 ) : (
-                                    <View style={styles.mImg} />
+                                    <RouteImagePlaceholder
+                                        noBackgroundImage
+                                        containerStyles={styles.placeholderLogo}
+                                        logoSize={{height: 22, width: 28}}
+                                    />
                                 )}
                             </View>
                         </View>
-                        <View style={secondTileStyles.firstSectionRightColumn}>
+                        <View style={nextTileStyles.firstSectionRightColumn}>
                             <Text
                                 style={styles.tileSectionTitle}
                                 numberOfLines={1}>
                                 {mapData?.name || trans.noTitle}
                             </Text>
-                            <View style={styles.firstSectionContent}>
+                            <View style={nextTileStyles.firstSectionContent}>
                                 <Text
                                     style={[
                                         styles.distanceToStart,
                                         styles.column,
                                     ]}>
-                                    1 000{trans.distanceToStart}
+                                    1,2{trans.distanceToStart}
                                 </Text>
                                 <View
                                     style={[
@@ -73,41 +81,42 @@ const SecondTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                                     </Text>
                                 </View>
                             </View>
-                            <Text
-                                numberOfLines={2}
-                                style={styles.localizationDescription}>
-                                {mapData?.details?.intro || ''}
-                            </Text>
+                            <View style={styles.borderLine} />
+                            <View style={nextTileStyles.secondtSection}>
+                                <View style={styles.sectionContentRow}>
+                                    <View style={styles.sectionTextRow}>
+                                        <BikeIcon
+                                            iconStyle={styles.secondSectionIcon}
+                                        />
+                                        <Text style={styles.secondSectionText}>
+                                            {mapData?.totalDistance || '-'}{' '}
+                                            <Text
+                                                style={
+                                                    styles.secondSectionSuffix
+                                                }>
+                                                {trans.distanceUnit}
+                                            </Text>
+                                        </Text>
+                                    </View>
+                                    <View style={styles.sectionTextRow}>
+                                        <ClockIcon
+                                            iconStyle={styles.secondSectionIcon}
+                                        />
+                                        <Text style={styles.secondSectionText}>
+                                            {mapData?.totalTime || '-:--'}{' '}
+                                            <Text
+                                                style={
+                                                    styles.secondSectionSuffix
+                                                }>
+                                                {trans.timeUnit}
+                                            </Text>
+                                        </Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={styles.borderLine} />
                         </View>
                     </View>
-                    <View style={styles.borderLine} />
-                    <View style={styles.secondtSection}>
-                        <View style={styles.sectionContentRow}>
-                            <View style={styles.sectionTextRow}>
-                                <BikeIcon
-                                    iconStyle={styles.secondSectionIcon}
-                                />
-                                <Text style={styles.secondSectionText}>
-                                    {mapData?.totalDistance || '-'}{' '}
-                                    <Text style={styles.secondSectionSuffix}>
-                                        {trans.distanceUnit}
-                                    </Text>
-                                </Text>
-                            </View>
-                            <View style={styles.sectionTextRow}>
-                                <ClockIcon
-                                    iconStyle={styles.secondSectionIcon}
-                                />
-                                <Text style={styles.secondSectionText}>
-                                    {mapData?.totalTime || '-:--'}{' '}
-                                    <Text style={styles.secondSectionSuffix}>
-                                        {trans.timeUnit}
-                                    </Text>
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.borderLine} />
                     <View style={styles.thirdSection}>
                         <View style={styles.sectionContentRow}>
                             <View style={styles.thirdSectionFirstColumn}>
@@ -149,4 +158,4 @@ const SecondTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
     );
 };
 
-export default SecondTile;
+export default NextTile;

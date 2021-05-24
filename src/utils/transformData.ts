@@ -94,18 +94,40 @@ export const getBikesBaseData = (
 };
 
 export const transformToMapsType = (data: any): Map => {
-    const {id, name, coords, totalDistance} = data;
+    const {
+        id,
+        name,
+        coords,
+        totalDistance,
+        details,
+        date,
+        totalTime,
+        author,
+        rating,
+        tags,
+    } = data;
 
-    const newData = new Map(id, name, coords);
+    const newData = new Map(id, name, coords, details, date);
     if (totalDistance) {
         newData.totalDistance = totalDistance;
+    }
+    if (totalTime) {
+        newData.totalTime = totalTime;
+    }
+    if (author) {
+        newData.author = author;
+    }
+    if (rating) {
+        newData.rating = rating;
+    }
+    if (tags) {
+        newData.tags = tags;
     }
 
     return newData;
 };
 
 export const mapsListToClass = (maps: []): Map[] => {
-    console.log('mm', maps);
     const result: Map[] = [];
     maps.forEach(b => {
         result.push(transformToMapsType(b));

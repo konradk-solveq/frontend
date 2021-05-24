@@ -100,11 +100,28 @@ export class Map implements MapType {
     @IsNumber()
     public totalDistance?: number;
 
+    @IsOptional()
+    @IsString()
+    public totalTime?: string;
+
+    @IsOptional()
+    @IsString()
+    @MinLength(3)
+    @MaxLength(100)
+    public author?: string;
+
+    @IsOptional()
+    @IsNumber()
+    public rating?: number;
+
+    @IsOptional()
+    public tags?: string[];
+
     constructor(
         id: string,
         name: string,
-        details: MapDetails,
         coords: MapCoord[],
+        details: MapDetails,
         date: Date,
     ) {
         this.id = id;
