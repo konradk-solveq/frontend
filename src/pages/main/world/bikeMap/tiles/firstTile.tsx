@@ -12,8 +12,10 @@ import {
 import {I18n} from '../../../../../../I18n/I18n';
 import {MapType} from '../../../../../models/map.model';
 
-import styles from './style';
 import TileBackground from './tileBackground';
+import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
+
+import styles from './style';
 
 interface IProps {
     mapData: MapType;
@@ -38,7 +40,7 @@ const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                             resizeMode="cover"
                         />
                     ) : (
-                        <View style={styles.mImg} />
+                        <RouteImagePlaceholder />
                     )}
                 </View>
                 <View style={styles.sectionsContainer}>

@@ -13,6 +13,7 @@ import {I18n} from '../../../../../../I18n/I18n';
 import {MapType} from '../../../../../models/map.model';
 
 import TileBackground from './tileBackground';
+import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
 
 import styles, {nextTileStyles} from './style';
 
@@ -27,7 +28,7 @@ const NextTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
     const onDetailsButtonPressedHandler = () => {
         onPress(true, mapData.id);
     };
-console.log(mapData?.details?.images)
+
     return (
         <TileBackground>
             <View style={nextTileStyles.container}>
@@ -44,7 +45,11 @@ console.log(mapData?.details?.images)
                                         resizeMode="cover"
                                     />
                                 ) : (
-                                    <View style={styles.mImg} />
+                                    <RouteImagePlaceholder
+                                        noBackgroundImage
+                                        containerStyles={styles.placeholderLogo}
+                                        logoSize={{height: 22, width: 28}}
+                                    />
                                 )}
                             </View>
                         </View>

@@ -158,6 +158,9 @@ const styles = StyleSheet.create({
     column: {
         width: '50%',
     },
+    placeholderLogo: {
+        marginTop: 0,
+    },
 });
 
 export const secondTileStyles = StyleSheet.create({
