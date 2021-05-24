@@ -25,7 +25,11 @@ interface RenderItem {
     index: number;
 }
 
-const PlannedRoutes: React.FC = () => {
+interface IProps {
+    onPress: () => void;
+}
+
+const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
     const trans: any = I18n.t('MainWorld.PlannedRoutes');
     const userName = useAppSelector(userNameSelector);
     const favouriteMaps = useAppSelector(favouritesMapsSelector);
@@ -51,7 +55,7 @@ const PlannedRoutes: React.FC = () => {
     };
 
     if (!favouriteMaps?.length) {
-        return <EmptyList />;
+        return <EmptyList onPress={onPress} />;
     }
 
     return (

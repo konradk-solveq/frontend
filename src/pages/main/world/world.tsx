@@ -37,19 +37,19 @@ const World: React.FC = () => {
 
     const [activeTab, setActiveTab] = useState<routesTab>(routesTab.BIKEMAP);
 
-    const heandleBikeMap = () => {
+    const handleBikeMap = () => {
         if (activeTab?.includes(routesTab.BIKEMAP)) {
             return;
         }
         setActiveTab(routesTab.BIKEMAP);
     };
-    const heandleMyRoutes = () => {
+    const handleMyRoutes = () => {
         if (activeTab?.includes(routesTab.MYROUTES)) {
             return;
         }
         setActiveTab(routesTab.MYROUTES);
     };
-    const heandlePlaned = () => {
+    const handlePlaned = () => {
         if (activeTab?.includes(routesTab.PLANED)) {
             return;
         }
@@ -147,7 +147,11 @@ const World: React.FC = () => {
             case routesTab.MYROUTES:
                 return <MyRoutes />;
             case routesTab.PLANED:
-                return <PlannedRoutes />;
+                return (
+                    <PlannedRoutes
+                        onPress={() => setActiveTab(routesTab.BIKEMAP)}
+                    />
+                );
             default:
                 return <BikeMap />;
         }
@@ -184,19 +188,19 @@ const World: React.FC = () => {
                         style={styles.btn}
                         title={trans.btnBikeMap}
                         active={activeTab === routesTab.BIKEMAP}
-                        onpress={heandleBikeMap}
+                        onpress={handleBikeMap}
                     />
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnMyRoutes}
                         active={activeTab === routesTab.MYROUTES}
-                        onpress={heandleMyRoutes}
+                        onpress={handleMyRoutes}
                     />
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnPlaned}
                         active={activeTab === routesTab.PLANED}
-                        onpress={heandlePlaned}
+                        onpress={handlePlaned}
                     />
                 </View>
             </View>

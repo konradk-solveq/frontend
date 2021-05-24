@@ -1,15 +1,17 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import I18n from 'react-native-i18n';
-import {useNavigation} from '@react-navigation/native';
 
 import {BigRedBtn} from '../../../../sharedComponents/buttons';
 
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 
-const EmptyList: React.FC = () => {
+interface IProsp {
+    onPress: () => void;
+}
+
+const EmptyList: React.FC<IProsp> = ({onPress}: IProsp) => {
     const trans: any = I18n.t('MainWorld.PlannedRoutes');
-    const navigation = useNavigation();
 
     return (
         <View style={styles.container}>
@@ -20,7 +22,7 @@ const EmptyList: React.FC = () => {
             <BigRedBtn
                 style={styles.btnRecord}
                 title={trans.emptyStateButton}
-                onpress={() => {}}
+                onpress={onPress}
             />
         </View>
     );
