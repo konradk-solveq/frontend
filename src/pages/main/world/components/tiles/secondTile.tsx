@@ -13,8 +13,10 @@ import {I18n} from '../../../../../../I18n/I18n';
 import {MapType} from '../../../../../models/map.model';
 
 import TileBackground from './tileBackground';
+import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
 
 import styles, {secondTileStyles} from './style';
+
 interface IProps {
     mapData: MapType;
     onPress: (state: boolean, mapID: string) => void;
@@ -34,15 +36,25 @@ const SecondTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                     <View style={secondTileStyles.firstSection}>
                         <View style={secondTileStyles.firstSectionLeftColumn}>
                             <View style={secondTileStyles.imageWrapper}>
-                                {mapData?.details?.mapUrl ? (
-                                    <Image
-                                        source={{uri: mapData.details.mapUrl}}
-                                        style={secondTileStyles.image}
-                                        resizeMode="cover"
-                                    />
-                                ) : (
-                                    <View style={styles.mImg} />
-                                )}
+                                <View style={secondTileStyles.imageWrapper}>
+                                    {mapData?.details?.images?.length ? (
+                                        <Image
+                                            source={{
+                                                uri: mapData.details.images[0],
+                                            }}
+                                            style={secondTileStyles.image}
+                                            resizeMode="cover"
+                                        />
+                                    ) : (
+                                        <RouteImagePlaceholder
+                                            noBackgroundImage
+                                            containerStyles={
+                                                styles.placeholderLogo
+                                            }
+                                            logoSize={{height: 22, width: 28}}
+                                        />
+                                    )}
+                                </View>
                             </View>
                         </View>
                         <View style={secondTileStyles.firstSectionRightColumn}>

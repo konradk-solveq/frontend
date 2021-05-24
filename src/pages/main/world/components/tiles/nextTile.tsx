@@ -13,6 +13,7 @@ import {I18n} from '../../../../../../I18n/I18n';
 import {MapType} from '../../../../../models/map.model';
 
 import TileBackground from './tileBackground';
+import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
 
 import styles, {nextTileStyles} from './style';
 
@@ -35,14 +36,20 @@ const NextTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                     <View style={nextTileStyles.firstSection}>
                         <View style={nextTileStyles.firstSectionLeftColumn}>
                             <View style={nextTileStyles.imageWrapper}>
-                                {mapData?.details?.mapUrl ? (
+                                {mapData?.details?.images?.length ? (
                                     <Image
-                                        source={{uri: mapData.details.mapUrl}}
+                                        source={{
+                                            uri: mapData.details.images[0],
+                                        }}
                                         style={nextTileStyles.image}
                                         resizeMode="cover"
                                     />
                                 ) : (
-                                    <View style={styles.mImg} />
+                                    <RouteImagePlaceholder
+                                        noBackgroundImage
+                                        containerStyles={styles.placeholderLogo}
+                                        logoSize={{height: 22, width: 28}}
+                                    />
                                 )}
                             </View>
                         </View>
