@@ -68,6 +68,7 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
             </View>
             <ShowMoreModal
                 showModal={showModal}
+                removeFav
                 mapID={activeMapID}
                 onPressCancel={() => onPressHandler(false)}
             />

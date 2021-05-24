@@ -25,6 +25,16 @@ export const setError = (error: string, statusCode: number) => ({
     statusCode: statusCode,
 });
 
+export const addMapToFavourite = (mapID: string) => ({
+    type: actionTypes.ADD_MAP_TO_FAVOURITES,
+    mapID: mapID,
+});
+
+export const removeMapFromFavourite = (mapID: string) => ({
+    type: actionTypes.REMOVE_MAP_TO_FAVOURITES,
+    mapID: mapID,
+});
+
 export const fetchMapsList = (): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {

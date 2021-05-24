@@ -7,6 +7,11 @@ import I18n from 'react-native-i18n';
 import AnimSvg from '../../../../../helpers/animSvg';
 
 import styles from './style';
+import {useAppDispatch} from '../../../../../hooks/redux';
+import {
+    addMapToFavourite,
+    removeMapFromFavourite,
+} from '../../../../../storage/actions/maps';
 
 const backGround = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 332">
 <filter id="filter" x="-1" width="3" y="-1" height="3">
@@ -23,14 +28,17 @@ interface IProps {
     showModal?: boolean;
     mapID: string;
     onPressCancel: () => void;
+    removeFav?: boolean;
 }
 
 const ShowMoreModal: React.FC<IProps> = ({
     onPressCancel,
     mapID,
     showModal,
+    removeFav,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
+    const dispatch = useAppDispatch();
     const navigation = useNavigation();
 
     const onDetailsButtonPressedHandler = () => {
@@ -39,6 +47,15 @@ const ShowMoreModal: React.FC<IProps> = ({
             name: 'RouteDetailsScreen',
             params: {mapID: mapID},
         });
+    };
+
+    const onAddToFavRoutesHandler = () => {
+        onPressCancel();
+        if (removeFav) {
+            dispatch(removeMapFromFavourite(mapID));
+            return;
+        }
+        dispatch(addMapToFavourite(mapID));
     };
 
     return (
@@ -54,7 +71,13 @@ const ShowMoreModal: React.FC<IProps> = ({
                 <AnimSvg style={styles.backGround} source={backGround} />
 
                 <View style={styles.wrap}>
-                    <Text style={styles.text}>{trans.addToFavAction}</Text>
+                    <Pressable onPress={onAddToFavRoutesHandler}>
+                        <Text style={styles.text}>
+                            {!removeFav
+                                ? trans.addToFavAction
+                                : trans.removeToFavAction}
+                        </Text>
+                    </Pressable>
                     <Text style={styles.text}>{trans.showOnMapAction}</Text>
                     <Pressable onPress={onDetailsButtonPressedHandler}>
                         <Text style={styles.text}>

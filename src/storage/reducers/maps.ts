@@ -14,7 +14,7 @@ interface MapsState {
 
 const initialStateList: MapsState = {
     maps: [],
-    favourites: ['222', '333'],
+    favourites: [],
     error: '',
     loading: false,
     statusCode: 200,
@@ -42,6 +42,27 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 loading: false,
                 maps: action.maps,
                 statusCode: 200,
+            };
+        }
+        case actionTypes.ADD_MAP_TO_FAVOURITES: {
+            let newFavs = [...state.favourites];
+            if (!state.favourites.includes(action.mapID)) {
+                newFavs = [...newFavs, action.mapID];
+            }
+            return {
+                ...state,
+                loading: false,
+                favourites: newFavs,
+            };
+        }
+        case actionTypes.REMOVE_MAP_TO_FAVOURITES: {
+            const newFavs = [...state.favourites].filter(
+                id => id !== action.mapID,
+            );
+            return {
+                ...state,
+                loading: false,
+                favourites: newFavs,
             };
         }
         case actionTypes.LOGOUT: {
