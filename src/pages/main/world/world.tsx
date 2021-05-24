@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {View, StyleSheet, SafeAreaView, Text} from 'react-native';
+import {View, StyleSheet, SafeAreaView, Text, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
@@ -18,6 +18,8 @@ import useStatusBarHeight from '../../../hooks/statusBarHeight';
 import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
 import BikeMap from './bikeMap/bikeMap';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
+
+const isAndroid = Platform.OS === 'android';
 
 enum routesTab {
     BIKEMAP = 'map',
@@ -68,7 +70,7 @@ const World: React.FC = () => {
             width: getWidthPx(),
             left: getCenterLeftPx(),
             right: 40,
-            top: getVerticalPx(65 - statusBarHeight),
+            top: getVerticalPx(isAndroid ? 65 - statusBarHeight : 65),
         },
         header: {
             fontFamily: 'DIN2014Narrow-Light',
@@ -124,6 +126,7 @@ const World: React.FC = () => {
         viewContainer: {
             flex: 1,
             marginTop: getVerticalPx(30),
+            marginHorizontal: 40,
         },
     });
 
