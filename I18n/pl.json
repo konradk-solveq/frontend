@@ -1145,7 +1145,9 @@
         ]
     },
     "MainCounter": {
-        "header": "Trwa nagrywanie",
+        "headerStart": "Rozpocznij nagrywanie",
+        "headerRecord": "Trwa nagrywanie",
+        "headerPause": "Pauza",
         "distance": "Dystans",
         "distanceUnit": "km",
         "time": "Czas",
@@ -1153,11 +1155,28 @@
         "speedUnit": "km/h",
         "averageSpeed": "Średnia prędkość",
         "averageSpeedUnit": "km/h",
+        "btnStart": "START",
         "btnPauza": "PAUZA",
+        "btnPauzaOff": "WZNÓW",
         "btnEnd": "ZAKOŃCZ",
+        "cancelText": "Czy chcesz przerwać nagrywanie trasy bez jej zapisywania?",
         "endText": "Czy chcesz zakończyć nagrywanie trasy?",
         "btnCancel": "ANULUJ",
         "btnBreak": "PRZERWIJ"
+    },
+    "CounterThankYouPage": {
+        "title": ", brawo oszczędziłeś",
+        "defaultName": "Rowerzysto",
+        "type_1": ["drzewo!", "drzew!"],
+        "type_2": "l paliwa!",
+        "distance": "Dystans",
+        "distanceUnit": "km",
+        "time": "Czas jazdy",
+        "timeUnit": "h",
+        "break": "czas przerw",
+        "breakUnit": "h",
+        "btnSave": "UPUBLICZNIJ",
+        "btnCancel": "POWRÓT"
     },
     "ServicesMap": {
         "services": "Serwisy",
