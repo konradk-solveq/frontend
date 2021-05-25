@@ -9,3 +9,4 @@
 NSLocationWhenInUseUsageDescription = "Wyświetlanie listy punktów serwisowych i sklepów partnerskich Kross w okolicy użytkownika. Lokalizacja na mapie.";
 NSLocationAlwaysAndWhenInUseUsageDescription = "Lokalizacja umożliwia stały dostęp do geolokalizacji urządzenia na potrzeby rejestrowania aktywności użytkownika w aplikacji.";
 NSMotionUsageDescription = "Akcelerometr umożliwia zmniejszenie zużycia baterii w czasie korzystania z lokalizacji urządzenia w aplikacji.";
+NSPhotoLibraryUsageDescription = "Aplikacja umożliwia dodawanie zdjęć w czasie edycji opisów tras."
