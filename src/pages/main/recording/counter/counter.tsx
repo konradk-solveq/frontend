@@ -9,6 +9,7 @@ import {
     Animated,
     Easing,
     Platform,
+    StatusBar,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
 import Svg, {G, Path, Circle} from 'react-native-svg';
@@ -20,6 +21,7 @@ import {
     getWidthPxOf,
     getHorizontalPx,
     getVerticalPx,
+    getStackHeaderHeight,
 } from '../../../../helpers/layoutFoo';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
@@ -33,6 +35,8 @@ import StackHeader from './stackHeader/stackHeader';
 import counterHtml from './counterHtml';
 import mapHtml from './mapHtml';
 import gradient from './gradientSvg';
+import {UserBike} from '../../../../models/userBike.model';
+import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 
 const {width} = Dimensions.get('window');
 
@@ -42,14 +46,15 @@ interface Props {
 
 const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
-    const dispatch = useAppDispatch();
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
+    const statusBarHeight = useStatusBarHeight();
+    const headerHeight = getStackHeaderHeight() - statusBarHeight;
+    const marginTopOnIos = Platform.OS === 'ios' ? statusBarHeight : 0;
 
-    // lista rowerów
-    useEffect(() => {
-        setBike(bikes?.[0] || null);
-    }, [bikes]);
+    const bikeSelectorListPositionY = useRef(
+        new Animated.Value(headerHeight + getVerticalPx(50)),
+    ).current;
 
     const onChangeBikeHandler = (frameNumber: string) => {
         if (frameNumber === bike?.description.serial_number) {
@@ -64,7 +69,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     // położenie listy rowerów
     const animateElemsOnMapOff = () => {
         Animated.timing(bikeSelectorListPositionY, {
-            toValue: headHeight + getVerticalPx(50),
+            toValue: headerHeight + getVerticalPx(50),
             duration: 500,
             easing: Easing.quad,
             useNativeDriver: false,
@@ -73,26 +78,12 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
 
     const animateElemsOnMapOn = () => {
         Animated.timing(bikeSelectorListPositionY, {
-            toValue: headHeight + getVerticalPx(-110),
+            toValue: headerHeight + getVerticalPx(-70),
             duration: 500,
             easing: Easing.quad,
             useNativeDriver: false,
         }).start();
     };
-
-    // wysokośc headera
-    const [headHeight, setHeadHeight] = useState(0);
-
-    // do animacji położeni listy rowerów
-    useEffect(() => {
-        bikeSelectorListPositionY.setValue(headHeight + getVerticalPx(50));
-    }, [headHeight]);
-
-    const bikeSelectorListPositionY = useRef(
-        new Animated.Value(headHeight + getVerticalPx(50)),
-    ).current;
-
-    const gradientOpacity = useRef(new Animated.Value(0.1)).current;
 
     // inicjalizacja elementów webviwe
     const animSvgRef = useRef();
@@ -276,9 +267,12 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     let mapBtnSize = 60;
     const styles = StyleSheet.create({
         container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
+            flex: 1,
+            marginTop: marginTopOnIos,
+            backgroundColor: 'transparent',
+        },
+        innerContainer: {
+            flex: 1,
         },
         fullView: {
             backgroundColor: 'transparent',
@@ -324,101 +318,104 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     });
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.fullView}>
-                <WebView
-                    style={styles.fullView}
-                    originWhitelist={['*']}
-                    scalesPageToFit={true}
-                    useWebKit={Platform.OS === 'ios'}
-                    scrollEnabled={false}
-                    showsHorizontalScrollIndicator={false}
-                    showsVerticalScrollIndicator={false}
-                    source={{
-                        html:
-                            '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
-                            counterHtml +
-                            mapHtml +
-                            '</body></html>',
-                        baseUrl:
-                            Platform.OS === 'ios'
-                                ? ''
-                                : 'file:///android_asset/',
-                    }}
-                    javaScriptEnabled={true}
-                    ref={animSvgRef}
-                    onMessage={heandleOnMessage}
-                />
-            </View>
-
-            <View style={styles.gradient} pointerEvents="none">
-                <WebView
-                    style={styles.fullView}
-                    originWhitelist={['*']}
-                    scalesPageToFit={true}
-                    useWebKit={Platform.OS === 'ios'}
-                    scrollEnabled={false}
-                    showsHorizontalScrollIndicator={false}
-                    showsVerticalScrollIndicator={false}
-                    source={{
-                        html:
-                            '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
-                            gradient +
-                            '</body></html>',
-                        baseUrl:
-                            Platform.OS === 'ios'
-                                ? ''
-                                : 'file:///android_asset/',
-                    }}
-                    javaScriptEnabled={true}
-                    ref={gradientRef}
-                />
-            </View>
-
-            {bikeSelectorListPositionY && (
-                <Animated.View
-                    style={[
-                        styles.bikeList,
-                        {
-                            top: bikeSelectorListPositionY,
-                        },
-                    ]}>
-                    <BikeSelectorList
-                        list={bikes}
-                        callback={onChangeBikeHandler}
-                        currentBike={bike?.description?.serial_number}
-                        buttonText={'add'}
-                    />
-                </Animated.View>
-            )}
-
-            <TouchableWithoutFeedback onPress={() => heandleMapVisibility()}>
-                <View style={styles.mapBtn} />
-            </TouchableWithoutFeedback>
-
-            <View style={styles.bottons}>
-                <View style={styles.btn}>
-                    <BigWhiteBtn
-                        title={leftBtnTile}
-                        onpress={heandleLeftBtnClick}
+        <>
+            <StatusBar backgroundColor="#ffffff" />
+            <View style={styles.innerContainer}>
+                <View style={styles.fullView}>
+                    <WebView
+                        style={styles.fullView}
+                        originWhitelist={['*']}
+                        scalesPageToFit={true}
+                        useWebKit={Platform.OS === 'ios'}
+                        scrollEnabled={false}
+                        showsHorizontalScrollIndicator={false}
+                        showsVerticalScrollIndicator={false}
+                        source={{
+                            html:
+                                '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
+                                counterHtml +
+                                mapHtml +
+                                '</body></html>',
+                            baseUrl:
+                                Platform.OS === 'ios'
+                                    ? ''
+                                    : 'file:///android_asset/',
+                        }}
+                        javaScriptEnabled={true}
+                        ref={animSvgRef}
+                        onMessage={heandleOnMessage}
                     />
                 </View>
-
-                <View style={styles.btn}>
-                    <BigRedBtn
-                        title={rightBtnTile}
-                        onpress={heandleRightBtnClick}
+                <View style={styles.gradient} pointerEvents="none">
+                    <WebView
+                        style={styles.fullView}
+                        originWhitelist={['*']}
+                        scalesPageToFit={true}
+                        useWebKit={Platform.OS === 'ios'}
+                        scrollEnabled={false}
+                        showsHorizontalScrollIndicator={false}
+                        showsVerticalScrollIndicator={false}
+                        source={{
+                            html:
+                                '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
+                                gradient +
+                                '</body></html>',
+                            baseUrl:
+                                Platform.OS === 'ios'
+                                    ? ''
+                                    : 'file:///android_asset/',
+                        }}
+                        javaScriptEnabled={true}
+                        ref={gradientRef}
                     />
                 </View>
-            </View>
+                <SafeAreaView style={styles.container}>
+                    {bikes && (
+                        <Animated.View
+                            style={[
+                                styles.bikeList,
+                                {
+                                    top: bikeSelectorListPositionY,
+                                },
+                            ]}>
+                            <BikeSelectorList
+                                list={bikes}
+                                callback={onChangeBikeHandler}
+                                currentBike={bike?.description?.serial_number}
+                                buttonText={'add'}
+                            />
+                        </Animated.View>
+                    )}
+                </SafeAreaView>
 
-            <StackHeader
-                onpress={heandleGoBackClick}
-                getHeight={setHeadHeight}
-                inner={headerTitle}
-                pause={pause}
-            />
-        </SafeAreaView>
+                <TouchableWithoutFeedback
+                    onPress={() => heandleMapVisibility()}>
+                    <View style={styles.mapBtn} />
+                </TouchableWithoutFeedback>
+
+                <View style={styles.bottons}>
+                    <View style={styles.btn}>
+                        <BigWhiteBtn
+                            title={leftBtnTile}
+                            onpress={heandleLeftBtnClick}
+                        />
+                    </View>
+
+                    <View style={styles.btn}>
+                        <BigRedBtn
+                            title={rightBtnTile}
+                            onpress={heandleRightBtnClick}
+                        />
+                    </View>
+                </View>
+
+                <StackHeader
+                    onpress={heandleGoBackClick}
+                    inner={headerTitle}
+                    pause={pause}
+                />
+            </View>
+        </>
     );
 };
 
