@@ -9,9 +9,11 @@ const styles = StyleSheet.create({
         fontFamily: fontLight,
         fontSize: getVerticalPx(30),
         color: darkText,
+        marginHorizontal: 40,
     },
     tileWrapper: {
         marginTop: getVerticalPx(30),
+        marginHorizontal: 40,
     },
     lastTile: {
         marginBottom: getVerticalPx(150),

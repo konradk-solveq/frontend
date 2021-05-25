@@ -20,7 +20,7 @@ const MyRoutes: React.FC = () => {
 
     const styles = StyleSheet.create({
         container: {
-            width: '100%',
+            marginHorizontal: 40,
         },
         title: {
             fontFamily: 'DIN2014Narrow-Regular',

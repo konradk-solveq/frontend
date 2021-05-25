@@ -72,15 +72,17 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
                 mapID={activeMapID}
                 onPressCancel={() => onPressHandler(false)}
             />
-            <FlatList
-                keyExtractor={item => item.id}
-                data={favouriteMaps}
-                renderItem={renderItem}
-                showsVerticalScrollIndicator={false}
-                getItemLayout={getItemLayout}
-                initialNumToRender={10}
-                removeClippedSubviews
-            />
+            <View style={styles.horizontalSpace}>
+                <FlatList
+                    keyExtractor={item => item.id}
+                    data={favouriteMaps}
+                    renderItem={renderItem}
+                    showsVerticalScrollIndicator={false}
+                    getItemLayout={getItemLayout}
+                    initialNumToRender={10}
+                    removeClippedSubviews
+                />
+            </View>
         </>
     );
 };

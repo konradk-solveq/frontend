@@ -126,7 +126,6 @@ const World: React.FC = () => {
         viewContainer: {
             flex: 1,
             marginTop: getVerticalPx(30),
-            marginHorizontal: 40,
         },
     });
 
