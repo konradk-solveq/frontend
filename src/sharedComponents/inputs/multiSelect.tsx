@@ -30,7 +30,9 @@ const MultiSelect: React.FC<IProps> = ({
     const [active, setActive] = useState<number[]>([]);
 
     useEffect(() => {
-        setActive(predefined);
+        if (predefined) {
+            setActive(predefined);
+        }
     }, [predefined]);
 
     const onPressHanlder = useCallback(

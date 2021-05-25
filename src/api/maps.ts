@@ -13,8 +13,8 @@ export const getMaps = async () => {
                     intro: 'Przykładowe intro',
                     description: 'Przykładowy opis trasy.',
                     localization: 'Miasto, województwo, Kraj',
-                    level: 'łatwa',
-                    pavement: ['ścieżka rowerowa'],
+                    level: 'umiarkowana',
+                    pavement: ['ścieżka rowerowa', 'utwardzona'],
                     images: [
                         'https://kross.eu/media/cache/gallery/images/34/34231/hexagon_1_0_black_red_white_matte.png',
                         'https://kross.eu/media/cache/gallery/images/36/36853/2021_KR Trans 5.0 D 28 M rub_cza p.jpg',
@@ -58,7 +58,7 @@ export const getMaps = async () => {
                     description: 'Przykładowy opis trasy.',
                     localization: 'Miasto, województwo, Kraj',
                     level: 'łatwa',
-                    pavement: ['ścieżka rowerowa'],
+                    pavement: ['ścieżka rowerowa', 'asfalt'],
                     images: [
                         'https://kross.eu/media/cache/gallery/images/34/34231/hexagon_1_0_black_red_white_matte.png',
                         'https://kross.eu/media/cache/gallery/images/36/36853/2021_KR Trans 5.0 D 28 M rub_cza p.jpg',
@@ -79,7 +79,7 @@ export const getMaps = async () => {
                     intro: 'Przykładowe intro',
                     description: 'Przykładowy opis trasy.',
                     localization: 'Miasto, województwo, Kraj',
-                    level: 'łatwa',
+                    level: 'wymagająca',
                     pavement: ['ścieżka rowerowa'],
                     images: [
                         'https://kross.eu/media/cache/gallery/images/34/34231/hexagon_1_0_black_red_white_matte.png',

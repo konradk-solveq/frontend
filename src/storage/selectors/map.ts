@@ -17,3 +17,6 @@ export const favouritesMapsSelector = createSelector(
     mapsListSelector,
     (fav, maps) => maps.filter(m => fav.includes(m.id)),
 );
+
+export const mapDataByIDSelector = (mapID: string) =>
+    createSelector(mapsListSelector, maps => maps.find(m => m.id === mapID));

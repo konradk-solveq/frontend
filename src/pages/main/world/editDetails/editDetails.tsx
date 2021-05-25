@@ -6,18 +6,18 @@ import {
     SafeAreaView,
     Platform,
     ScrollView,
-    Text,
     KeyboardAvoidingView,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
+import {useAppSelector} from '../../../../hooks/redux';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {I18n} from '../../../../../I18n/I18n';
+import {mapDataByIDSelector} from '../../../../storage/selectors/map';
+import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
-import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import EditForm from './form/editForm';
 
 const isIOS = Platform.OS === 'ios';
@@ -26,7 +26,9 @@ const EditDetails = () => {
     const trans: any = I18n.t('RoutesDetails');
     const navigation = useNavigation();
     const route = useRoute();
-    /* TODO: add selector for route details (image url) based on passed mapID */
+    const mapID: string = route?.params?.mapID;
+    const mapData = useAppSelector(mapDataByIDSelector(mapID));
+
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
 
@@ -48,14 +50,8 @@ const EditDetails = () => {
                         inner=""
                         style={styles.header}
                     />
-                    <SliverTopBar>
+                    <SliverTopBar imgSrc={mapData?.details?.images?.[0] || ''}>
                         <View style={styles.content}>
-                            {/* <Description mapID={route?.params?.mapID || ''} /> */}
-                            {/* <BigRedBtn
-                                title={trans.reportButton}
-                                onpress={() => {}}
-                                style={styles.reportButton}
-                            /> */}
                             <KeyboardAvoidingView
                                 style={styles.keyboard}
                                 behavior={
@@ -65,19 +61,11 @@ const EditDetails = () => {
                                 <ScrollView
                                     showsVerticalScrollIndicator={false}>
                                     <View style={styles.container}>
-                                        {/* <View style={styles.titleWrapper}>
-                                            <Text style={[styles.title]}>
-                                                {`${
-                                                    'Janek kolanek' ||
-                                                    trans.defaultUserName
-                                                }${trans.title}`}
-                                            </Text>
-                                        </View> */}
-                                        {/* <Description
-                                            mapID={route?.params?.mapID || ''}
-                                        /> */}
                                         {/* <AuthForm onSubmit={onSubmitHandler} /> */}
-                                        <EditForm onSubmit={() => {}} />
+                                        <EditForm
+                                            onSubmit={() => {}}
+                                            mapData={mapData}
+                                        />
                                     </View>
                                 </ScrollView>
                             </KeyboardAvoidingView>
