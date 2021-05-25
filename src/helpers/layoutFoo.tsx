@@ -6,6 +6,7 @@ const {width, height} = Dimensions.get('window');
 
 const baseHeight = 896;
 const baseWidth = 414;
+const baseStackHeaderHeight = 100;
 
 let appSize: {
     width: number,
@@ -76,6 +77,10 @@ const getVertical = (px: number) => {
 const getVerticalPx = (px: number) => {
     return (height / baseHeight) * px;
 };
+
+const getStackHeaderHeight = () => {
+    return getVerticalPx(baseStackHeaderHeight);
+}
 
 
 
@@ -269,4 +274,5 @@ export {
     getOnlyPos,
     getPosAndWid,
     getPosWithMinHeight,
+    getStackHeaderHeight,
 }
