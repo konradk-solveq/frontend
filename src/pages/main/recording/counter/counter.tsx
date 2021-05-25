@@ -226,7 +226,6 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     }, [pageState]);
 
     const heandleOnMessage = e => {
-        console.log('onMessage:', e.nativeEvent.data);
         let val = e.nativeEvent.data.split(';');
 
         switch (val[0]) {
