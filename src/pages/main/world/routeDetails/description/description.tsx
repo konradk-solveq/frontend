@@ -4,43 +4,20 @@ import {View, Text, Image} from 'react-native';
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {MapType} from '../../../../../models/map.model';
+
 import ImageSwiper from '../../../../../sharedComponents/imageSwiper/imageSwiper';
 
 import RideTile from './rideTile';
 
 import styles from './styles';
 
-/* TODO: remove after selector added */
-const example: MapType = {
-    id: 'random-id-123',
-    name: 'Przykładowy tytuł',
-    coords: [],
-    date: new Date(),
-    details: {
-        intro: 'Przykładowe intro',
-        description: 'Przykładowy opis trasy.',
-        localization: 'Miasto, województwo, Kraj',
-        level: 'łatwa',
-        pavement: ['ścieżka rowerowa'],
-        images: [
-            'https://kross.eu/media/cache/gallery/images/34/34231/hexagon_1_0_black_red_white_matte.png',
-            'https://kross.eu/media/cache/gallery/images/36/36853/2021_KR Trans 5.0 D 28 M rub_cza p.jpg',
-            'https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png',
-        ],
-        mapUrl: '',
-    },
-    author: 'Jan Kowalski',
-    totalDistance: 100,
-    tags: ['widokowa', 'mały ruch'],
-};
-
 interface IProps {
-    mapID: string;
+    mapData: MapType | undefined;
 }
 
-const Description: React.FC<IProps> = ({mapID}: IProps) => {
+const Description: React.FC<IProps> = ({mapData}: IProps) => {
     const trans: any = I18n.t('RoutesDetails.details');
-    /* TODO: add selector for route details */
+
     return (
         <View style={styles.container}>
             <View>
@@ -50,10 +27,10 @@ const Description: React.FC<IProps> = ({mapID}: IProps) => {
                         styles.smallText,
                         styles.color555555,
                     ]}>
-                    {`${trans.author}: ${example?.author || trans.noInfo}`}
+                    {`${trans.author}: ${mapData?.author || trans.noInfo}`}
                 </Text>
                 <Text style={[styles.textStyle, styles.title]}>
-                    {example.name || trans.noTitle}
+                    {mapData?.name || trans.noTitle}
                 </Text>
                 <Text
                     style={[
@@ -73,12 +50,12 @@ const Description: React.FC<IProps> = ({mapID}: IProps) => {
                         styles.color555555,
                         {marginBottom: getVerticalPx(16)},
                     ]}>
-                    {example?.details.localization || ''}
+                    {mapData?.details.localization || ''}
                 </Text>
                 <RideTile
-                    distance={example?.totalDistance}
-                    level={example?.details?.level}
-                    type={example?.details?.pavement?.[0]}
+                    distance={mapData?.totalDistance}
+                    level={mapData?.details?.level}
+                    type={mapData?.details?.pavement?.[0]}
                 />
             </View>
             <View>
@@ -97,12 +74,12 @@ const Description: React.FC<IProps> = ({mapID}: IProps) => {
                             styles.lightFont,
                             styles.descriptionTitle,
                         ]}>
-                        {example?.details?.intro
-                            ? `„${example.details.intro}”`
+                        {mapData?.details?.intro
+                            ? `„${mapData.details.intro}”`
                             : ''}
                     </Text>
                     <Text style={[styles.textStyle, styles.lightFont]}>
-                        {example?.details?.description || trans.noDescription}
+                        {mapData?.details?.description || trans.noDescription}
                     </Text>
                 </View>
             </View>
@@ -116,8 +93,8 @@ const Description: React.FC<IProps> = ({mapID}: IProps) => {
                     ]}>
                     {trans.imagesTitle}
                 </Text>
-                {example?.details?.images?.length > 0 && (
-                    <ImageSwiper images={example.details.images} />
+                {mapData && mapData?.details?.images?.length > 0 && (
+                    <ImageSwiper images={mapData.details.images} />
                 )}
             </View>
             <View style={styles.mapContainer}>
@@ -131,11 +108,11 @@ const Description: React.FC<IProps> = ({mapID}: IProps) => {
                     {trans.mapTitle}
                 </Text>
                 <View style={styles.mapImage}>
-                    {example?.details?.mapUrl ? (
+                    {mapData?.details?.mapUrl ? (
                         <Image
                             style={styles.mImg}
                             resizeMode="cover"
-                            source={{uri: example.details.mapUrl}}
+                            source={{uri: mapData.details.mapUrl}}
                         />
                     ) : (
                         <View style={styles.mImg} />
@@ -147,8 +124,8 @@ const Description: React.FC<IProps> = ({mapID}: IProps) => {
                     {trans.tagsTitle}
                 </Text>
                 <View style={styles.tagsWrapper}>
-                    {example.tags &&
-                        example.tags.map(t => {
+                    {mapData?.tags &&
+                        mapData.tags.map(t => {
                             return (
                                 <View key={t} style={styles.tag}>
                                     <Text
@@ -170,7 +147,7 @@ const Description: React.FC<IProps> = ({mapID}: IProps) => {
                     styles.lightFont,
                     styles.color555555,
                 ]}>
-                {trans.creationPrefix}: {example.date.toLocaleString()}
+                {trans.creationPrefix}: {mapData?.date?.toLocaleString()}
             </Text>
         </View>
     );

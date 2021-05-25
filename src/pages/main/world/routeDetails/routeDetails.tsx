@@ -10,6 +10,10 @@ import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {I18n} from '../../../../../I18n/I18n';
+import useStatusBarHeight from '../../../../hooks/statusBarHeight';
+import {RegularStackRoute} from '../../../../navigation/route';
+import {useAppSelector} from '../../../../hooks/redux';
+import {mapDataByIDSelector} from '../../../../storage/selectors/map';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import {
@@ -19,8 +23,6 @@ import {
 } from '../../../../sharedComponents/buttons';
 import Description from './description/description';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
-import useStatusBarHeight from '../../../../hooks/statusBarHeight';
-import {RegularStackRoute} from '../../../../navigation/route';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -28,7 +30,9 @@ const RouteDetails = () => {
     const trans: any = I18n.t('RoutesDetails');
     const navigation = useNavigation();
     const route = useRoute();
-    /* TODO: add selector for route details (image url) based on passed mapID */
+    const mapID: string = route?.params?.mapID;
+    const mapData = useAppSelector(mapDataByIDSelector(mapID));
+
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
 
@@ -43,7 +47,7 @@ const RouteDetails = () => {
     const onGoToEditHandler = () => {
         navigation.navigate({
             name: RegularStackRoute.EDIT_DETAILS_SCREEN,
-            params: {mapID: route?.params?.mapID},
+            params: {mapID: mapID},
         });
     };
 
@@ -72,9 +76,9 @@ const RouteDetails = () => {
                             </View>
                         }
                     />
-                    <SliverTopBar>
+                    <SliverTopBar imgSrc={mapData?.details?.images?.[0] || ''}>
                         <View style={styles.content}>
-                            <Description mapID={route?.params?.mapID || ''} />
+                            <Description mapData={mapData} />
                             <BigRedBtn
                                 title={trans.reportButton}
                                 onpress={() => {}}

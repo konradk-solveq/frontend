@@ -1,3 +1,4 @@
+import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
 import {
     BikeBaseData,
     BikeDescription,
@@ -6,6 +7,7 @@ import {
 } from '../models/bike.model';
 import {Map} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
+import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 
 export const transfromToBikeDescription = (
     description: BikeDescription,
@@ -134,4 +136,67 @@ export const mapsListToClass = (maps: []): Map[] => {
     });
 
     return result;
+};
+
+export const getRouteLevel = (level: string, levelTrans: string[]) => {
+    const lcTrans = levelTrans.map(t => t?.toLowerCase());
+    const index = lcTrans.indexOf(level?.toLowerCase());
+
+    switch (index) {
+        case 0:
+            return [levelFilter.easy];
+        case 1:
+            return [levelFilter.medium];
+        case 2:
+            return [levelFilter.hard];
+        default:
+            return [];
+    }
+};
+
+const findEnumsFromValues = (values: string[], trans: string[]) => {
+    const lcTrans = trans.map(t => t?.toLowerCase());
+    const result: any[] = [];
+    lcTrans.forEach(t => {
+        if (values.includes(t)) {
+            const index = values.indexOf(t?.toLowerCase());
+            result.push(index);
+        }
+    });
+
+    return result;
+};
+
+export const getRoutePavements = (pavements: string[], pavTrans: string[]) => {
+    const result: pavementFilter[] = findEnumsFromValues(pavements, pavTrans);
+
+    return result;
+};
+
+export const getRouteTags = (tags: string[], tagsTrans: string[]) => {
+    const result: tagsFilter[] = findEnumsFromValues(tags, tagsTrans);
+
+    return result;
+};
+
+export const mapDataToFormData = (
+    mapData: Map,
+    levelTrans: string[],
+    pavementTrans: string[],
+    tagsTrans: string[],
+): FormData => {
+    return {
+        id: mapData.id,
+        name: mapData.name,
+        publishWithName: false,
+        intro: mapData?.details?.intro || '',
+        description: mapData?.details?.description || '',
+        level: mapData?.details?.level
+            ? getRouteLevel(mapData.details.level, levelTrans)
+            : [],
+        pavement: mapData?.details?.pavement
+            ? getRoutePavements(mapData.details.pavement, pavementTrans)
+            : [],
+        tags: mapData?.tags ? getRouteTags(mapData.tags, tagsTrans) : [],
+    };
 };
