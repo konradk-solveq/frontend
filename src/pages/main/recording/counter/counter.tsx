@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -10,9 +10,10 @@ import {
     Easing,
     Platform,
     StatusBar,
+    Alert,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
-import Svg, { G, Path, Circle } from 'react-native-svg';
+import {WebView} from 'react-native-webview';
+import Svg, {G, Path, Circle} from 'react-native-svg';
 
 import I18n from 'react-native-i18n';
 
@@ -23,8 +24,8 @@ import {
     getVerticalPx,
     getStackHeaderHeight,
 } from '../../../../helpers/layoutFoo';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { getBike } from '../../../../helpers/transformUserBikeData';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import AnimSvg from '../../../../helpers/animSvg';
 
@@ -40,16 +41,17 @@ import mapHtml from './mapHtml';
 import fooHtml from './fooHtml';
 
 import gradient from './gradientSvg';
-import { UserBike } from '../../../../models/userBike.model';
+import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
+import BackgroundGeolocation from 'react-native-background-geolocation';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 interface Props {
     navigation: any;
 }
 
-const Counter: React.FC<Props> = ({ navigation }: Props) => {
+const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
@@ -186,6 +188,23 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         }
     };
 
+    const onStartGPSHandler = () => {
+        console.log('started');
+        // setIsStarted(true);
+        BackgroundGeolocation.start().then(state => {
+            console.log('state - start', state?.enabled);
+            Alert.alert('', `GPS Started -- ${state.enabled}`);
+        });
+    };
+
+    const onStopGPSHandler = () => {
+        BackgroundGeolocation.stop().then(state => {
+            console.log('state - stop', state?.enabled);
+            // setIsStarted(false);
+            Alert.alert('', `GPS stoppped -- ${state?.enabled}`);
+        });
+    };
+
     useEffect(() => {
         switch (pageState) {
             case 'start':
@@ -199,6 +218,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                 break;
             case 'record':
                 {
+                    onStartGPSHandler();
                     setLeftBtnTile(trans.btnPauza);
                     setRightBtnTile(trans.btnEnd);
                     setHeaderTitle(trans.headerRecord);
@@ -221,6 +241,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                 break;
             case 'endMessage':
                 {
+                    onStopGPSHandler();
                     setLeftBtnTile(trans.btnCancel);
                     setRightBtnTile(trans.btnEnd);
                     setJs('showAlert(2, "' + trans.endText + '");true;');
