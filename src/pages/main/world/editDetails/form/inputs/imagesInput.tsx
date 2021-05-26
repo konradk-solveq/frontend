@@ -8,9 +8,14 @@ import ImageSwiper from '../../../../../../sharedComponents/imageSwiper/imageSwi
 interface IProps {
     images: string[];
     onAddImage: (imageUri: string) => void;
+    onRemoveImage: (imageUri: string) => void;
 }
 
-const ImagesInput: React.FC<IProps> = ({images, onAddImage}: IProps) => {
+const ImagesInput: React.FC<IProps> = ({
+    images,
+    onAddImage,
+    onRemoveImage,
+}: IProps) => {
     const onAddImageHanlder = () => {
         launchImageLibrary(
             {
@@ -30,7 +35,13 @@ const ImagesInput: React.FC<IProps> = ({images, onAddImage}: IProps) => {
     return (
         <View style={styles.container}>
             <AddBtn onPress={onAddImageHanlder} containerStyle={styles.btn} />
-            {images?.length > 0 && <ImageSwiper images={images} />}
+            {images?.length > 0 && (
+                <ImageSwiper
+                    images={images}
+                    withRemoveButton
+                    onPress={onRemoveImage}
+                />
+            )}
         </View>
     );
 };

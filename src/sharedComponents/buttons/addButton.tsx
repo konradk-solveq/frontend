@@ -13,7 +13,7 @@ interface IProps {
     iconStyle?: ViewStyle;
 }
 
-const CogBtn: React.FC<IProps> = ({
+const AddBtn: React.FC<IProps> = ({
     onPress,
     containerStyle,
     iconStyle,
@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CogBtn;
+export default AddBtn;

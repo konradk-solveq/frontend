@@ -54,15 +54,19 @@ const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
     ) => {
         const rules = publishMapValidationRules[fieldName];
         const isValid = validateData(rules, val);
-        console.log('on valdidate', val, fieldName, isValid);
 
         return isValid || validationMessages[fieldName];
     };
 
-    const onAddImageHanlder = (imageUri: string) => {
-        console.log('add Image', imageUri);
+    const onAddImageHandler = (imageUri: string) => {
         if (imageUri) {
             setImages(prev => [imageUri, ...prev]);
+        }
+    };
+
+    const onRemoveImageHandler = (imageUri: string) => {
+        if (imageUri) {
+            setImages(prev => [...prev].filter(i => i !== imageUri));
         }
     };
 
@@ -191,7 +195,11 @@ const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
                     ]}>
                     {trans.imagesTitle}
                 </Text>
-                <ImagesInput images={images} onAddImage={onAddImageHanlder} />
+                <ImagesInput
+                    images={images}
+                    onAddImage={onAddImageHandler}
+                    onRemoveImage={onRemoveImageHandler}
+                />
             </View>
             <View style={styles.tagsContainer}>
                 <ControlledInput
