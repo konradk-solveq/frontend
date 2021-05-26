@@ -1,19 +1,16 @@
-import React, {useEffect, useState, useRef, useCallback} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
     View,
-    Text,
     Dimensions,
     TouchableWithoutFeedback,
     Animated,
     Easing,
     Platform,
     StatusBar,
-    Alert,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
-import Svg, {G, Path, Circle} from 'react-native-svg';
 
 import I18n from 'react-native-i18n';
 
@@ -24,10 +21,10 @@ import {
     getVerticalPx,
     getStackHeaderHeight,
 } from '../../../../helpers/layoutFoo';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
-import AnimSvg from '../../../../helpers/animSvg';
+import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
@@ -43,12 +40,6 @@ import fooHtml from './fooHtml';
 import gradient from './gradientSvg';
 import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
-
-import {
-    getBackgroundGeolocationState,
-    startBackgroundGeolocation,
-    stopBackgroundGeolocation,
-} from '../../../../utils/geolocation';
 
 const {width} = Dimensions.get('window');
 
@@ -67,6 +58,14 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const bikeSelectorListPositionY = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
     ).current;
+
+    const {trackerData, startTracker, stopTracker} = useLocalizationTracker(
+        true,
+    );
+
+    useEffect(() => {
+        setJs(`setValues(${JSON.stringify(trackerData)});true;`);
+    }, [trackerData]);
 
     const onChangeBikeHandler = (frameNumber: string) => {
         if (frameNumber === bike?.description.serial_number) {
@@ -117,6 +116,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const [mapOn, setMapOn] = useState(false);
 
     const heandleLeftBtnClick = () => {
+        console.log('[heandleLeftBtnClick]', pageState);
         switch (pageState) {
             case 'start':
                 {
@@ -150,27 +150,31 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         }
     };
 
-    const heandleRightBtnClick = () => {
+    const heandleRightBtnClick = async () => {
         switch (pageState) {
             case 'start':
                 {
+                    await startTracker();
                     setPageState('record');
                     setJs('start();setPauseOff();true;');
                 }
                 break;
             case 'record':
                 {
+                    // await startTracker();
                     setPageState('endMessage');
                 }
                 break;
             case 'cancelText':
                 {
+                    await stopTracker();
                     navigation.goBack();
                 }
                 break;
             case 'endMessage':
                 {
                     // TODO
+                    await stopTracker();
                     navigation.navigate('CounterThankYouPage');
                     // do ekranu zakończenia
                 }
@@ -193,19 +197,6 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         }
     };
 
-    const onStartGPSHandler = async () => {
-        console.log('started');
-        const state = await getBackgroundGeolocationState();
-        if (!state.enabled) {
-            startBackgroundGeolocation();
-        }
-    };
-
-    const onStopGPSHandler = () => {
-        console.log('stoped');
-        stopBackgroundGeolocation();
-    };
-
     useEffect(() => {
         switch (pageState) {
             case 'start':
@@ -219,7 +210,6 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 break;
             case 'record':
                 {
-                    onStartGPSHandler();
                     setLeftBtnTile(trans.btnPauza);
                     setRightBtnTile(trans.btnEnd);
                     setHeaderTitle(trans.headerRecord);
@@ -242,7 +232,6 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 break;
             case 'endMessage':
                 {
-                    onStopGPSHandler();
                     setLeftBtnTile(trans.btnCancel);
                     setRightBtnTile(trans.btnEnd);
                     setJs('showAlert(2, "' + trans.endText + '");true;');
