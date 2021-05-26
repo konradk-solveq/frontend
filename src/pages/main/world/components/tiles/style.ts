@@ -1,11 +1,10 @@
-import {StyleSheet, Dimensions, Platform} from 'react-native';
+import {StyleSheet, Platform, Dimensions} from 'react-native';
 import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
 const {height} = Dimensions.get('window');
-const containerHeight = height < 800 && !isIOS ? 334 : 304;
-const nextTileContainerHeight = height < 800 && !isIOS ? 175 : 160;
-const imageContainerHeight = height < 800 && !isIOS ? 212 : 182;
+const ichForAndroid = height < 600 ? 200 : 190;
+const imageContainerHeight = isIOS ? 180 : ichForAndroid;
 
 const fontLight = 'DIN2014Narrow-Light';
 const fontRegular = 'DIN2014Narrow-Regular';
@@ -14,7 +13,6 @@ const darkText = '#555555';
 
 const styles = StyleSheet.create({
     container: {
-        height: getVerticalPx(containerHeight),
         borderRadius: 25,
         overflow: 'hidden',
         backgroundColor: '#ffffff',
@@ -113,7 +111,7 @@ const styles = StyleSheet.create({
     },
     thirdSection: {
         marginHorizontal: 20,
-        marginBottom: getVerticalPx(18),
+        marginBottom: 0,
     },
     thirdSectionText: {
         fontFamily: fontLight,
@@ -166,7 +164,6 @@ const styles = StyleSheet.create({
 
 export const secondTileStyles = StyleSheet.create({
     container: {
-        height: getVerticalPx(214),
         borderRadius: 25,
         overflow: 'hidden',
         backgroundColor: '#ffffff',
@@ -186,6 +183,10 @@ export const secondTileStyles = StyleSheet.create({
         flexDirection: 'column',
         width: '70%',
     },
+    thirdSection: {
+        marginHorizontal: 20,
+        marginBottom: 0,
+    },
     imageWrapper: {
         width: getVerticalPx(95),
         height: getVerticalPx(95),
@@ -201,7 +202,6 @@ export const secondTileStyles = StyleSheet.create({
 
 export const nextTileStyles = StyleSheet.create({
     container: {
-        height: getVerticalPx(nextTileContainerHeight),
         borderRadius: 25,
         overflow: 'hidden',
         backgroundColor: '#ffffff',
@@ -228,6 +228,10 @@ export const nextTileStyles = StyleSheet.create({
     secondtSection: {
         marginLeft: 0,
         marginRight: 20,
+    },
+    thirdSection: {
+        marginHorizontal: 20,
+        marginBottom: 0,
     },
     imageWrapper: {
         width: getVerticalPx(95),

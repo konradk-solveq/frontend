@@ -120,7 +120,7 @@ const SecondTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                         </View>
                     </View>
                     <View style={styles.borderLine} />
-                    <View style={styles.thirdSection}>
+                    <View style={secondTileStyles.thirdSection}>
                         <View style={styles.sectionContentRow}>
                             <View style={styles.thirdSectionFirstColumn}>
                                 <View
