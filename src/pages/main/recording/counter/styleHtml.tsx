@@ -1,3 +1,4 @@
+export default `<style>
 @font-face {
     font-family: 'DIN2014Narrow-Light';
     font-style: normal;
@@ -135,3 +136,5 @@ svg {
     z-index: 1999;
     font-size: 35px;
 }
+</style>
+`

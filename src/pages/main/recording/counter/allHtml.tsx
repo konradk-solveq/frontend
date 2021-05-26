@@ -1,7 +1,164 @@
 import {Dimensions} from 'react-native';
 const {height, width} = Dimensions.get('window');
 
-export default `<script>
+export default `<style>
+@font-face {
+    font-family: 'DIN2014Narrow-Light';
+    font-style: normal;
+    font-weight: 400;
+    src: url('DIN2014Narrow-Light.eot');
+    src: local('open sans extralight'), local('open-sans-extralight'), url('DIN2014Narrow-Light.eot?#iefix') format('embedded-opentype'), url('DIN2014Narrow-Light.woff2') format('woff2'), url('DIN2014Narrow-Light.woff') format('woff'), url('DIN2014Narrow-Light.ttf') format('truetype'), url('DIN2014Narrow-Light.svg#Barlow') format('svg'), url('DIN2014Narrow-Light.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'DIN2014Narrow-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('DIN2014Narrow-Regular.eot');
+    src: local('open sans extralight'), local('open-sans-extralight'), url('DIN2014Narrow-Regular.eot?#iefix') format('embedded-opentype'), url('DIN2014Narrow-Regular.woff2') format('woff2'), url('DIN2014Narrow-Regular.woff') format('woff'), url('DIN2014Narrow-Regular.ttf') format('truetype'), url('DIN2014Narrow-Regular.svg#Barlow') format('svg'), url('DIN2014Narrow-Regular.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'DIN2014Narrow-Bold';
+    font-style: normal;
+    font-weight: 400;
+    src: url('DIN2014Narrow-Bold.eot');
+    src: local('open sans extralight'), local('open-sans-extralight'), url('DIN2014Narrow-Bold.eot?#iefix') format('embedded-opentype'), url('DIN2014Narrow-Bold.woff2') format('woff2'), url('DIN2014Narrow-Bold.woff') format('woff'), url('DIN2014Narrow-Bold.ttf') format('truetype'), url('DIN2014Narrow-Bold.svg#Barlow') format('svg'), url('DIN2014Narrow-Bold.otf') format('otf');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    /* overflow: hidden; */
+    background-color: #fff;
+    position: relative;
+    // pointer-events: none;
+}
+
+.wrap {
+    margin: 0 9.6618% 0 9.6618%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: green;
+}
+
+#wrap {
+    fill: yellow;
+}
+
+svg {
+    margin: 0;
+    padding: 0;
+}
+
+.counter {
+    width: calc(50% - 7.246377%);
+    padding-left: 7.246377%;
+    background-color: yellow;
+}
+
+.cou-left {
+    width: calc(50% - 1px);
+    padding-left: 0;
+    border-right: 1px solid #aaa;
+}
+
+.cou-top {
+    border-bottom: 1px solid #aaa;
+}
+
+.name {
+    font-family: 'DIN2014Narrow-Light';
+    font-size: 23px;
+    fill: #555555;
+    transition: opacity .2s;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
+}
+
+.value {
+    font-family: 'DIN2014Narrow-Regular';
+    fill: #313131;
+}
+
+.unit {
+    font-family: 'DIN2014Narrow-Regular';
+    font-size: 18px;
+    fill: #555555;
+}
+
+.mapBtn {
+    cursor: pointer;
+    pointer-events: initial;
+}
+
+.arrow {
+    stroke: #313131;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+.alert {
+    position: absolute;
+    font-family: 'DIN2014Narrow-Regular';
+    font-size: 23px;
+    color: #313131;
+    text-align: center;
+    transition: opacity .3s;
+}
+
+#map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.test {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1999;
+    font-size: 35px;
+}
+</style>
+<script>
+const trans = {
+    headerRecord: 'Trwa nagrywanie',
+    headerPause: 'Pauza',
+    distance: 'Dystans',
+    distanceUnit: ' km',
+    time: 'Czas',
+    speed: 'Prędkość',
+    speedUnit: ' km/h',
+    averageSpeed: 'Średnia prędkość',
+    averageSpeedUnit: ' km/h',
+    btnPauza: 'PAUZA',
+    btnPauzaOff: 'WZNÓW',
+    btnEnd: 'ZAKOŃCZ',
+    endText: 'Czy chcesz zakończyć nagrywanie trasy?',
+    btnCancel: 'ANULUJ',
+    btnBreak: 'PRZERWIJ',
+};
+
 const svg = document.querySelector('svg');
 const cover = document.querySelector('.cover');
 let w = 0;
@@ -39,6 +196,18 @@ const animDur = '0.6s'; // czas animacji pokazania mapy #animtime
 // w .css show i hide
 // w .js #animtime
 let showed = false;
+
+const setValues = v => {
+    if (v.distance) {
+        values.distance = v.distance;
+    }
+    if (v.speed) {
+        values.speed = v.speed;
+    }
+    if (v.averageSpeed) {
+        values.averageSpeed = v.averageSpeed;
+    }
+};
 
 const getXless = (n, min) => (w * (n / 414) < min ? min : w * (n / 414));
 const getYless = (n, min) => (w * (n / 896) < min ? min : w * (n / 896));
@@ -289,6 +458,37 @@ const counters = () => {
     );
 };
 
+const countersUpdate = () => {
+    // liczniki
+    let index = 0;
+    const setOneCounter = (hook, value, unit, x, y) => {
+        // wartośc licznikka
+        hook.value.textContent = value;
+
+        // jednostka licznika
+        hook.unit = getSVGelem('tspan');
+        hook.unit.setAttribute('class', 'unit');
+        let u2N = document.createTextNode(unit);
+        hook.unit.append(u2N);
+        hook.value.append(hook.unit);
+
+        index++;
+    };
+
+    setOneCounter(obj.distance, values.distance, trans.distanceUnit, 0, 0);
+    let x = getX(198);
+    setOneCounter(obj.time, values.time1, values.time2, x, 0);
+    let y = getYwrap(6 + 18 + 90 + 20 + 45);
+    setOneCounter(obj.speed, values.speed, trans.speedUnit, 0, y);
+    setOneCounter(
+        obj.averageSpeed,
+        values.averageSpeed,
+        trans.averageSpeedUnit,
+        x,
+        y,
+    );
+};
+
 const init = () => {
     // trans = t;
     w = ` +
@@ -344,21 +544,21 @@ const init = () => {
 
         // -------------------------------------------------------------------------
         // cien pod aplą
-        // let filter = getSVGelem('filter');
-        // filter.setAttribute('id', 'f2');
-        // filter.setAttribute('x', '-1');
-        // filter.setAttribute('y', '-1');
-        // filter.setAttribute('width', '3');
-        // filter.setAttribute('height', '3');
-        // apla.append(filter);
+        let filter = getSVGelem('filter');
+        filter.setAttribute('id', 'f2');
+        filter.setAttribute('x', '-1');
+        filter.setAttribute('y', '-1');
+        filter.setAttribute('width', '3');
+        filter.setAttribute('height', '3');
+        apla.append(filter);
 
-        // let blur = getSVGelem('feGaussianBlur');
-        // blur.setAttribute('stdDeviation', '39');
-        // filter.append(blur);
+        let blur = getSVGelem('feGaussianBlur');
+        blur.setAttribute('stdDeviation', '39');
+        filter.append(blur);
 
-        // let path = getSVGelem('path');
-        // path.setAttribute('fill', '#aaa');
-        // path.setAttribute('fill-rule', 'evenodd');
+        let path = getSVGelem('path');
+        path.setAttribute('fill', '#aaa');
+        path.setAttribute('fill-rule', 'evenodd');
         let h1 = getY(22);
         let h2 = h + getY(32);
         let d =
@@ -390,9 +590,9 @@ const init = () => {
             h2 +
             ' Z';
 
-        // path.setAttribute('d', d);
-        // path.setAttribute('filter', 'url(#f2)');
-        // apla.append(path);
+        path.setAttribute('d', d);
+        path.setAttribute('filter', 'url(#f2)');
+        apla.append(path);
 
         // -------------------------------------------------------------------------
         // kształt apli
@@ -776,5 +976,383 @@ const init = () => {
 };
 
 init();
+
+let map;
+
+const setPositionOnMap = pos => {
+    map.setOptions({
+        center: new google.maps.LatLng(pos.lat, pos.lng),
+        zoom: 15,
+    });
+};
+
+function initMap() {
+    map = new google.maps.Map(googleMap, {
+        draggable: false,
+        zoomControl: false,
+        scrollwheel: false,
+        disableDoubleClickZoom: true,
+        mapTypeControl: false,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+            mapTypeIds: ['roadmap', 'terrain'],
+        },
+    });
+
+    // const icons = {
+    //     parking: {
+    //         icon: "icon.png",
+    //     },
+    //     library: {
+    //         icon: "icon2.png",
+    //     },
+    //     info: {
+    //         icon: "icon3.png",
+    //     },
+    // };
+
+    // const features = [{
+    //     position: new google.maps.LatLng(-33.91721, 151.2263),
+    //     type: "info",
+    // }, {
+    //     position: new google.maps.LatLng(-33.91539, 151.2282),
+    //     type: "info",
+    // }, ];
+
+    // // Create markers.
+    // for (let i = 0; i < features.length; i++) {
+    //     const marker = new google.maps.Marker({
+    //         position: features[i].position,
+    //         icon: icons[features[i].type].icon,
+    //         map: map,
+    //     });
+    // }
+
+    mapOn.push(() => {
+        map.setOptions({
+            draggable: true,
+            zoomControl: true,
+            scrollwheel: true,
+            disableDoubleClickZoom: false,
+        });
+    });
+    mapOff.push(() => {
+        map.setOptions({
+            draggable: false,
+            zoomControl: false,
+            scrollwheel: false,
+            disableDoubleClickZoom: true,
+        });
+    });
+
+    // window.ReactNativeWebView.postMessage("map is ready");
+    setPositionOnMap({ lat: 53.009342618210624, lng: 20.890509251985964 });
+}
+
+let map;
+
+const setPositionOnMap = pos => {
+    map.setOptions({
+        center: new google.maps.LatLng(pos.lat, pos.lng),
+        zoom: 15,
+    });
+};
+
+function initMap() {
+    map = new google.maps.Map(googleMap, {
+        draggable: false,
+        zoomControl: false,
+        scrollwheel: false,
+        disableDoubleClickZoom: true,
+        mapTypeControl: false,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+            mapTypeIds: ['roadmap', 'terrain'],
+        },
+    });
+
+    // const icons = {
+    //     parking: {
+    //         icon: "icon.png",
+    //     },
+    //     library: {
+    //         icon: "icon2.png",
+    //     },
+    //     info: {
+    //         icon: "icon3.png",
+    //     },
+    // };
+
+    // const features = [{
+    //     position: new google.maps.LatLng(-33.91721, 151.2263),
+    //     type: "info",
+    // }, {
+    //     position: new google.maps.LatLng(-33.91539, 151.2282),
+    //     type: "info",
+    // }, ];
+
+    // // Create markers.
+    // for (let i = 0; i < features.length; i++) {
+    //     const marker = new google.maps.Marker({
+    //         position: features[i].position,
+    //         icon: icons[features[i].type].icon,
+    //         map: map,
+    //     });
+    // }
+
+    mapOn.push(() => {
+        map.setOptions({
+            draggable: true,
+            zoomControl: true,
+            scrollwheel: true,
+            disableDoubleClickZoom: false,
+        });
+    });
+    mapOff.push(() => {
+        map.setOptions({
+            draggable: false,
+            zoomControl: false,
+            scrollwheel: false,
+            disableDoubleClickZoom: true,
+        });
+    });
+
+    window.ReactNativeWebView.postMessage("map is ready");
+}
+
+let interval = null;
+let startTime = 0;
+let pauseTime = 0;
+let pauseStart = 0;
+let alerted = false;
+let alert1H = null;
+let alert2H = null;
+let alertH = 0;
+let paused = false;
+const coolDownT = 630; // update wartości licznika #animtime
+let coolDown = false;
+let mapView = false;
+
+const pointToComa = num => num.toString().replace('.', ',');
+
+const twoDigits = num => (num < 10 ? '0' + num : '' + num);
+
+const timer = () => {
+    let diference = Date.now() - startTime - pauseTime;
+    let sec = Math.round(diference / 1000) % 60;
+    let min = Math.floor((diference + 1000) / (1000 * 60)) % 60;
+    if (min < 0) {
+        min = 0;
+    }
+    let hou = Math.floor((diference + 1000) / (1000 * 60 * 60));
+    if (hou < 0) {
+        hou = 0;
+    }
+
+    values.time1 = twoDigits(hou) + ':' + twoDigits(min);
+    values.time2 = ':' + twoDigits(sec);
+
+    if (!coolDown) {
+        countersUpdate();
+    }
+    let val = values.time1 + values.time2;
+};
+
+let started = false;
+const start = () => {
+    if (started) {
+        return;
+    }
+    started = true;
+    startTime = Date.now();
+    pauseStart = Date.now();
+    interval = setInterval(timer, 1000);
+};
+
+const setPauseOn = () => {
+    if (!showed) {
+        return;
+    }
+    paused = true;
+    let shape = document.getElementById('shape');
+    let value = curentShapeOfHeader;
+    curentShapeOfHeader =
+        'M 0,0 ' +
+        data.w +
+        ',0 ' +
+        data.w +
+        ',' +
+        data.hs +
+        ' C ' +
+        data.w +
+        ',' +
+        data.hs +
+        ' ' +
+        (data.w - data.w2) +
+        ',' +
+        data.hs +
+        ' ' +
+        data.cw +
+        ',' +
+        data.hs +
+        '' +
+        ' C ' +
+        data.w2 +
+        ',' +
+        data.hs +
+        ' 0,' +
+        data.hs +
+        ' 0,' +
+        data.hs +
+        ' Z';
+    if (!mapView) {
+        shape.setAttribute('values', value + ' ; ' + curentShapeOfHeader);
+        shape.setAttribute('dur', '0.4s');
+        shape.beginElement();
+    }
+
+    let color = document.getElementById('color');
+    color.setAttribute('dur', '0.4s');
+    value = curentColorOfHeader;
+    curentColorOfHeader = '#F3A805';
+    if (!mapView) {
+        color.setAttribute('values', value + ' ; ' + curentColorOfHeader);
+        color.beginElement();
+    }
+
+    pauseStart = Date.now();
+    clearInterval(interval);
+    interval = null;
+};
+
+const setPauseOff = () => {
+    if (!showed) {
+        return;
+    }
+    paused = false;
+    let shape = document.getElementById('shape');
+    let value = curentShapeOfHeader;
+    curentShapeOfHeader =
+        'M 0,0 ' +
+        data.w +
+        ',0 ' +
+        data.w +
+        ',' +
+        data.h2 +
+        ' C ' +
+        data.w +
+        ',' +
+        data.h2 +
+        ' ' +
+        (data.w - data.w2) +
+        ',' +
+        data.h +
+        ' ' +
+        data.cw +
+        ',' +
+        data.h +
+        ' C ' +
+        data.w2 +
+        ',' +
+        data.h +
+        ' 0,' +
+        data.h2 +
+        ' 0,' +
+        data.h2 +
+        ' Z';
+    if (!mapView) {
+        shape.setAttribute('values', value + ' ; ' + curentShapeOfHeader);
+        shape.setAttribute('dur', '0.4s');
+        shape.beginElement();
+    }
+
+    let color = document.getElementById('color');
+    color.setAttribute('dur', '0.4s');
+    value = curentColorOfHeader;
+    curentColorOfHeader = '#D8232A';
+    if (!mapView) {
+        color.setAttribute('values', value + ' ; ' + curentColorOfHeader);
+        color.beginElement();
+    }
+
+    pauseTime += Date.now() - pauseStart;
+    if (!interval) {
+        interval = setInterval(timer, 1000);
+    }
+};
+
+const coolDownFoo = () => {
+    coolDown = true;
+    setTimeout(() => {
+        coolDown = false;
+        countersUpdate();
+    }, coolDownT);
+};
+
+const setMini = () => {
+    mapOn.forEach(f => f());
+    coolDownFoo();
+    mapView = true;
+};
+
+const setMaxi = () => {
+    mapOff.forEach(f => f());
+    coolDownFoo();
+    mapView = false;
+};
+
+const showAlert = (num, txt) => {
+    alerted = true;
+
+    alert1.style.opacity = 0;
+    alert2.style.opacity = 0;
+    alert1.innerHTML = '';
+    alert2.innerHTML = '';
+
+    let alert = num == 1 ? alert1 : alert2;
+    alert.innerHTML = txt;
+    setTimeout(() => {
+        alertH = alert.getBoundingClientRect().height;
+        if (num == 1 && alert1H) {
+            alertH = alert1H;
+        } else {
+            alert1H = alertH;
+        }
+        if (num == 2 && alert2H) {
+            alertH = alert2H;
+        } else {
+            alert2H = alertH;
+        }
+
+        alert.style.top = data.alertBottom - alertH + 'px';
+        let startFrom = alertCurrentPos;
+        alertCurrentPos = data.alertBottom - alertH - getY(38);
+
+        alertAplaA.setAttribute('from', '0, ' + startFrom);
+        alertAplaA.setAttribute('to', '0, ' + alertCurrentPos);
+        alertAplaA.beginElement();
+
+        setTimeout(() => {
+            alert.style.opacity = 1;
+        }, 300);
+    }, 100);
+};
+
+const hideAlert = () => {
+    alerted = false;
+
+    alert1.style.opacity = 0;
+    alert2.style.opacity = 0;
+    setTimeout(() => {
+        alertAplaA.setAttribute('from', '0, ' + alertCurrentPos);
+        alertAplaA.setAttribute('to', '0, ' + data.alertHide);
+        alertCurrentPos = data.alertHide;
+        alertAplaA.beginElement();
+    }, 300);
+};
+
 </script>
-`;
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcuDhYsJJqOBvWppdbLf5y75V8OdNOevQ&map_ids=2ffa275ecc610735&callback=initMap">
+</script>
+`
