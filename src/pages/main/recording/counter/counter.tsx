@@ -43,7 +43,12 @@ import fooHtml from './fooHtml';
 import gradient from './gradientSvg';
 import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
-import BackgroundGeolocation from 'react-native-background-geolocation';
+
+import {
+    getBackgroundGeolocationState,
+    startBackgroundGeolocation,
+    stopBackgroundGeolocation,
+} from '../../../../utils/geolocation';
 
 const {width} = Dimensions.get('window');
 
@@ -188,21 +193,17 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         }
     };
 
-    const onStartGPSHandler = () => {
+    const onStartGPSHandler = async () => {
         console.log('started');
-        // setIsStarted(true);
-        BackgroundGeolocation.start().then(state => {
-            console.log('state - start', state?.enabled);
-            Alert.alert('', `GPS Started -- ${state.enabled}`);
-        });
+        const state = await getBackgroundGeolocationState();
+        if (!state.enabled) {
+            startBackgroundGeolocation();
+        }
     };
 
     const onStopGPSHandler = () => {
-        BackgroundGeolocation.stop().then(state => {
-            console.log('state - stop', state?.enabled);
-            // setIsStarted(false);
-            Alert.alert('', `GPS stoppped -- ${state?.enabled}`);
-        });
+        console.log('stoped');
+        stopBackgroundGeolocation();
     };
 
     useEffect(() => {
