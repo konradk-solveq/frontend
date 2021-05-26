@@ -1,5 +1,11 @@
-import BackgroundGeolocation from 'react-native-background-geolocation';
+import BackgroundGeolocation, {
+    Location,
+    LocationError,
+} from 'react-native-background-geolocation';
 
+import {LocationDataI} from '../interfaces/geolocation';
+
+/* TODO: catch errors */
 export const initBGeolocalization = async () => {
     const state = await BackgroundGeolocation.ready({
         reset: true,
@@ -27,6 +33,7 @@ export const initBGeolocalization = async () => {
             ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
             : BackgroundGeolocation.LOG_LEVEL_OFF,
         maxDaysToPersist: 14,
+        desiredOdometerAccuracy: 10,
     });
 
     return state;
@@ -57,6 +64,8 @@ export const getBackgroundGeolocationState = async () => {
 };
 
 export const startBackgroundGeolocation = async () => {
+    await BackgroundGeolocation.resetOdometer();
+
     const state = await BackgroundGeolocation.start();
 
     return state;
@@ -64,6 +73,39 @@ export const startBackgroundGeolocation = async () => {
 
 export const stopBackgroundGeolocation = async () => {
     const state = await BackgroundGeolocation.stop();
-
+    console.log('stopBackgroundGeolocation', state.enabled);
     return state;
+};
+
+export const cleanUp = () => {
+    BackgroundGeolocation.removeListeners();
+};
+
+export const onLocationChange = async (
+    onLocation: (data: Location) => void,
+    onError: (error: LocationError) => void,
+) => {
+    BackgroundGeolocation.onLocation(onLocation, onError);
+};
+
+export const transformGeoloCationData = (data: Location): LocationDataI => {
+    const location = {
+        uuid: data.uuid,
+        timestamp: data.timestamp,
+        coords: {
+            latitude: data.coords.latitude,
+            longitude: data.coords.longitude,
+            altitude: data.coords.altitude,
+            speed: data.coords.speed,
+        },
+        odomenter: data.odometer,
+    };
+
+    return location;
+};
+
+export const getLocations = async () => {
+    const locations = await BackgroundGeolocation.getLocations();
+
+    return locations;
 };

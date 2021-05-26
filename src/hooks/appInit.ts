@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {State} from 'react-native-background-geolocation';
 
 import {initCrashlytics} from '../utils/crashlytics';
-import {initBGeolocalization} from '../utils/geolocation';
+import {initBGeolocalization, cleanUp} from '../utils/geolocation';
 import {
     setBikesListByFrameNumbers,
     fetchGenericBikeData,
@@ -32,6 +32,10 @@ const useAppInit = () => {
             setGeolocationState(geolocation);
         };
         init();
+
+        return () => {
+            cleanUp();
+        };
     }, []);
 
     useEffect(() => {
