@@ -51,6 +51,15 @@ const styles = StyleSheet.create({
         width: width,
         transform: [{scaleX: 0.6}],
     },
+    placeholderWrapper: {
+        height: getVerticalPx(300),
+        backgroundColor: '#f1f1f1',
+    },
+    placeholderImage: {
+        height: getVerticalPx(142),
+        width: width,
+        transform: [{scaleX: 0.6}],
+    },
 });
 
 export default styles;

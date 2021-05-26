@@ -15,4 +15,6 @@ export const OnboardingStackRoute = {
 export const RegularStackRoute = {
     MAIN_MENU_SCREEN: 'MineMenu',
     EDIT_DETAILS_SCREEN: 'EditDetailsScreen',
+    KROSS_WORLD_SCREEN: 'World',
+    COUNTER_ROUTE_SCREEN: 'Counter',
 };

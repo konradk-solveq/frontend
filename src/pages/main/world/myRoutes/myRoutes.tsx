@@ -1,20 +1,18 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, Text } from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import I18n from 'react-native-i18n';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
-import {
-    setObjSize,
-    getCenterLeftPx,
-    getHorizontalPx,
-    getVerticalPx,
-    getWidthPx,
-} from '../../../../helpers/layoutFoo';
+import {getVerticalPx} from '../../../../helpers/layoutFoo';
 
-const MyRoutes: React.FC = () => {
+interface IProps {
+    onPress: () => void;
+}
+
+const MyRoutes: React.FC<IProps> = ({onPress}: IProps) => {
     const trans: any = I18n.t('MainMyRoutes');
     const navigation = useNavigation();
 
@@ -66,7 +64,7 @@ const MyRoutes: React.FC = () => {
             <BigWhiteBtn
                 style={styles.btnCheck}
                 title={trans.btnCheck}
-                onpress={() => { }}
+                onpress={onPress}
             />
         </View>
     );

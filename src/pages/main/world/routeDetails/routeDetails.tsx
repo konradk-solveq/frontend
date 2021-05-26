@@ -51,6 +51,10 @@ const RouteDetails = () => {
         });
     };
 
+    const onPressHandler = () => {
+        /* TODO: user can delete if creted route. For public routes can only make ticket */
+    };
+
     return (
         <>
             <StatusBar translucent />
@@ -66,13 +70,13 @@ const RouteDetails = () => {
                                     onPress={onGoToEditHandler}
                                     iconStyle={[
                                         styles.actionButton,
-                                        styles.leftActionButton,
+                                        // styles.leftActionButton,
                                     ]}
                                 />
-                                <ShareBtn
+                                {/* <ShareBtn
                                     onPress={() => {}}
                                     iconStyle={styles.actionButton}
-                                />
+                                /> */}
                             </View>
                         }
                     />
@@ -81,7 +85,7 @@ const RouteDetails = () => {
                             <Description mapData={mapData} />
                             <BigRedBtn
                                 title={trans.reportButton}
-                                onpress={() => {}}
+                                onpress={onPressHandler}
                                 style={styles.reportButton}
                             />
                         </View>

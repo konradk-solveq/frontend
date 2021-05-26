@@ -24,6 +24,8 @@ import {
 } from '../../../../helpers/stringFoo';
 
 import laurelWreath from './laurelWreath';
+import {useNavigation} from '@react-navigation/core';
+import {RegularStackRoute} from '../../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -33,6 +35,7 @@ interface Props {
 
 const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('CounterThankYouPage');
+    const navigation = useNavigation();
     const dispatch = useAppDispatch();
 
     const name = useAppSelector<string>(state => state.user.userName);
@@ -204,13 +207,24 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     </Text>
 
                     <View style={styles.btnSave}>
-                        <BigRedBtn title={trans.btnSave} onpress={() => {}} />
+                        <BigRedBtn
+                            title={trans.btnSave}
+                            onpress={() =>
+                                navigation.navigate(
+                                    RegularStackRoute.EDIT_DETAILS_SCREEN,
+                                )
+                            }
+                        />
                     </View>
 
                     <View style={styles.btnCancel}>
                         <BigWhiteBtn
                             title={trans.btnCancel}
-                            onpress={() => {}}
+                            onpress={() =>
+                                navigation.navigate(
+                                    RegularStackRoute.KROSS_WORLD_SCREEN,
+                                )
+                            }
                         />
                     </View>
                 </ScrollView>
