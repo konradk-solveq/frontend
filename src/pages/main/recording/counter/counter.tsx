@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef, useCallback} from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -11,8 +11,8 @@ import {
     Platform,
     StatusBar,
 } from 'react-native';
-import {WebView} from 'react-native-webview';
-import Svg, {G, Path, Circle} from 'react-native-svg';
+import { WebView } from 'react-native-webview';
+import Svg, { G, Path, Circle } from 'react-native-svg';
 
 import I18n from 'react-native-i18n';
 
@@ -23,8 +23,8 @@ import {
     getVerticalPx,
     getStackHeaderHeight,
 } from '../../../../helpers/layoutFoo';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {getBike} from '../../../../helpers/transformUserBikeData';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import { getBike } from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import AnimSvg from '../../../../helpers/animSvg';
 
@@ -32,19 +32,24 @@ import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 import StackHeader from './stackHeader/stackHeader';
 
+import styleHtml from './styleHtml';
+import htmlHtml from './htmlHtml';
+import transHtml from './transHtml';
 import counterHtml from './counterHtml';
 import mapHtml from './mapHtml';
+import fooHtml from './fooHtml';
+
 import gradient from './gradientSvg';
-import {UserBike} from '../../../../models/userBike.model';
+import { UserBike } from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 interface Props {
     navigation: any;
 }
 
-const Counter: React.FC<Props> = ({navigation}: Props) => {
+const Counter: React.FC<Props> = ({ navigation }: Props) => {
     const trans = I18n.t('MainCounter');
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
@@ -332,8 +337,12 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                         source={{
                             html:
                                 '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
+                                styleHtml +
+                                htmlHtml +
+                                transHtml +
                                 counterHtml +
                                 mapHtml +
+                                fooHtml +
                                 '</body></html>',
                             baseUrl:
                                 Platform.OS === 'ios'

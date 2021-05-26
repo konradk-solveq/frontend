@@ -1,3 +1,4 @@
+export default `<script>
 let interval = null;
 let startTime = 0;
 let pauseTime = 0;
@@ -14,6 +15,7 @@ let mapView = false;
 const pointToComa = num => num.toString().replace('.', ',');
 
 const twoDigits = num => (num < 10 ? '0' + num : '' + num);
+
 
 const countersUpdate = () => {
     // liczniki
@@ -261,9 +263,7 @@ const hideAlert = () => {
 };
 
 const setValues = v => {
-    if (coolDown) {
-        return;
-    }
+    if (coolDown) return;
 
     if (v.distance) {
         values.distance = pointToComa(v.distance);
@@ -277,3 +277,5 @@ const setValues = v => {
 
     countersUpdate();
 };
+
+</script>`
