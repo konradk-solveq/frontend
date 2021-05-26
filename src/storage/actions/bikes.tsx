@@ -222,6 +222,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<
             if (errorMessage) {
                 dispatch(setError(errorMessage));
             }
+            dispatch(setLoadingState(false));
             return Promise.resolve({
                 success: !errorMessage,
                 errorMessage: errorMessage,
