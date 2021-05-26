@@ -38,9 +38,9 @@ const useLocalizationTracker = (persist: boolean) => {
     );
 
     const startTracker = async () => {
-        console.log('started');
+        console.log('[startTracker]');
         const state = await getBackgroundGeolocationState();
-        console.log('[onStartGPSHandler]', state.enabled);
+
         if (!state.enabled) {
             setIsActive(true);
             activateKeepAwake();
@@ -49,7 +49,7 @@ const useLocalizationTracker = (persist: boolean) => {
     };
 
     const stopTracker = async () => {
-        console.log('stoped');
+        console.log('[stopTracker]');
         await stopBackgroundGeolocation();
         deactivateKeepAwake();
         setIsActive(false);
