@@ -2,6 +2,7 @@ import React, {useRef} from 'react';
 import {Animated, Image, View} from 'react-native';
 
 import {getVerticalPx} from '../../helpers/layoutFoo';
+import RouteImagePlaceholder from '../images/routeListImagePlaceholder';
 
 import styles from './styles';
 
@@ -34,7 +35,7 @@ const SliverTopBar: React.FC<IProps> = ({
     };
 
     const transformBarStyle = {
-        height: maxHeight,
+        height: getVerticalPx(maxHeight),
     };
 
     const scale = scrollY.interpolate({
@@ -63,8 +64,13 @@ const SliverTopBar: React.FC<IProps> = ({
                                 source={{uri: imgSrc}}
                                 resizeMode="cover"
                             />
-                        ) : null}
-                        {/* TODO: replace with image from https://app.zeplin.io/project/5fbf658b936bbbb842e3c43c/screen/6036c0178dfa142fdb6662d5 */}
+                        ) : (
+                            <View style={styles.placeholderWrapper}>
+                                <RouteImagePlaceholder
+                                    containerStyles={styles.placeholderImage}
+                                />
+                            </View>
+                        )}
                     </Animated.View>
                 </View>
                 <Animated.View

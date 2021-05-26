@@ -12,6 +12,7 @@ import {
     addMapToFavourite,
     removeMapFromFavourite,
 } from '../../../../../storage/actions/maps';
+import {RegularStackRoute} from '../../../../../navigation/route';
 
 const backGround = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 332">
 <filter id="filter" x="-1" width="3" y="-1" height="3">
@@ -58,6 +59,14 @@ const ShowMoreModal: React.FC<IProps> = ({
         dispatch(addMapToFavourite(mapID));
     };
 
+    const onStartRouteHandler = () => {
+        onPressCancel();
+        navigation.navigate({
+            name: RegularStackRoute.COUNTER_ROUTE_SCREEN,
+            params: {mapID: mapID},
+        });
+    };
+
     return (
         <Modal
             animationType="slide"
@@ -71,6 +80,13 @@ const ShowMoreModal: React.FC<IProps> = ({
                 <AnimSvg style={styles.backGround} source={backGround} />
 
                 <View style={styles.wrap}>
+                    {removeFav && (
+                        <Pressable onPress={onStartRouteHandler}>
+                            <Text style={styles.text}>
+                                {trans.startTripAction}
+                            </Text>
+                        </Pressable>
+                    )}
                     <Pressable onPress={onAddToFavRoutesHandler}>
                         <Text style={styles.text}>
                             {!removeFav

@@ -147,7 +147,9 @@ const World: React.FC = () => {
             case routesTab.BIKEMAP:
                 return <BikeMap />;
             case routesTab.MYROUTES:
-                return <MyRoutes />;
+                return (
+                    <MyRoutes onPress={() => setActiveTab(routesTab.BIKEMAP)} />
+                );
             case routesTab.PLANED:
                 return (
                     <PlannedRoutes

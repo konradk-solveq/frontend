@@ -1074,6 +1074,7 @@
             "noTitle": "Brak tytułu",
             "distanceToStart": " km od Ciebie",
             "addToFavAction": "Pobierz trasę",
+            "startTripAction": "Rozpocznij",
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
             "routeDetailsAction": "Szczegóły"

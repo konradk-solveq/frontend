@@ -37,7 +37,7 @@ const RouteImagePlaceholder: React.FC<IProps> = ({
                     viewBox={'0 0 44 34'}
                     width={getVerticalPx(logoSize?.width || DEFAULT_LOGO_WIDTH)}
                     height={getVerticalPx(
-                        logoSize?.width || DEFAULT_LOGO_HEIGHT,
+                        logoSize?.height || DEFAULT_LOGO_HEIGHT,
                     )}>
                     <G fill="#D8232A" fillRule="evenodd">
                         <Path d="M27.59 21.29L38.285 7.507h-6.12c-.985 0-1.795.09-2.43.264-.63.181-1.168.404-1.608.668-.44.265-.817.557-1.131.884-.294.299-9.696 11.953-9.718 11.967l14.454 10.846c.314.174.636.362.95.55.314.195.692.369 1.132.529.44.16.978.285 1.614.396.635.105 1.439.154 2.424.154h6.126L27.59 21.29z" />
