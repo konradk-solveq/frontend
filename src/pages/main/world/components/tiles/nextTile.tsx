@@ -117,7 +117,7 @@ const NextTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                             <View style={styles.borderLine} />
                         </View>
                     </View>
-                    <View style={styles.thirdSection}>
+                    <View style={nextTileStyles.thirdSection}>
                         <View style={styles.sectionContentRow}>
                             <View style={styles.thirdSectionFirstColumn}>
                                 <View
