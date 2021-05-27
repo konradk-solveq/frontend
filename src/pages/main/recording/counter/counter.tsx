@@ -40,6 +40,7 @@ import fooHtml from './fooHtml';
 import gradient from './gradientSvg';
 import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
+import {trackerActiveSelector} from '../../../../storage/selectors/routes';
 
 const {width} = Dimensions.get('window');
 
@@ -49,6 +50,7 @@ interface Props {
 
 const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
+    const isTrackerActive = useAppSelector(trackerActiveSelector);
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
     const statusBarHeight = useStatusBarHeight();
@@ -62,7 +64,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const {trackerData, startTracker, stopTracker} = useLocalizationTracker(
         true,
     );
-
+console.log(trackerData)
     useEffect(() => {
         setJs(`setValues(${JSON.stringify(trackerData)});true;`);
     }, [trackerData]);
@@ -115,8 +117,15 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const [mapBtnPosMemo, setMapBtnPosMemo] = useState(0);
     const [mapOn, setMapOn] = useState(false);
 
+    useEffect(() => {
+        if (isTrackerActive) {
+            setPageState('record');
+            startTracker(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const heandleLeftBtnClick = () => {
-        console.log('[heandleLeftBtnClick]', pageState);
         switch (pageState) {
             case 'start':
                 {
