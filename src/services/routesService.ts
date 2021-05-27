@@ -1,6 +1,7 @@
 import {createRoute, sendRouteData} from '../api';
 import {LocationDataI} from '../interfaces/geolocation';
 import {MapType} from '../models/map.model';
+import {routesDataToAPIRequest} from '../utils/transformData';
 
 export interface MapsResponse {
     data: MapType | null;
@@ -21,7 +22,10 @@ export const syncRouteData = async (
         return {data: null, status: response.status, error: errorMessage};
     }
 
-    const responseFromUpdate = await sendRouteData(response.data.id, path);
+    const responseFromUpdate = await sendRouteData(
+        response.data.id,
+        routesDataToAPIRequest(path),
+    );
 
     return {
         data: <MapType>responseFromUpdate.data,

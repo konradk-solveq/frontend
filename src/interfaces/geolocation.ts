@@ -9,3 +9,11 @@ export interface LocationDataI {
     };
     odometer: number;
 }
+
+export interface ApiPathI {
+    lat: number;
+    lon: number;
+    altitude: number | undefined;
+    speed: number | undefined;
+    time: string;
+}

@@ -1,5 +1,5 @@
 import instance, {source} from './api';
-import {LocationDataI} from '../interfaces/geolocation';
+import {ApiPathI} from '../interfaces/geolocation';
 
 export const createRoute = async () => {
     return await instance.post('/route ', {
@@ -8,7 +8,7 @@ export const createRoute = async () => {
     });
 };
 
-export const sendRouteData = async (id: string, path: LocationDataI[]) => {
+export const sendRouteData = async (id: string, path: ApiPathI[]) => {
     return await instance.post(
         `/route/${id}/path`,
         {
