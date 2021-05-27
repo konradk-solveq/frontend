@@ -238,19 +238,3 @@ export const routesDataToPersist = async (
 
     return currRoutes;
 };
-
-export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
-    const apiPathArr: ApiPathI[] = [];
-    path.forEach(p => {
-        const np: ApiPathI = {
-            lat: p.coords.latitude,
-            lon: p.coords.longitude,
-            altitude: p.coords.altitude,
-            speed: p.coords.speed,
-            time: p.timestamp,
-        };
-        apiPathArr.push(np);
-    });
-
-    return apiPathArr;
-};

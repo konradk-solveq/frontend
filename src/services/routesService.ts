@@ -1,7 +1,7 @@
 import {createRoute, sendRouteData} from '../api';
 import {LocationDataI} from '../interfaces/geolocation';
 import {MapType} from '../models/map.model';
-import {routesDataToAPIRequest} from '../utils/transformData';
+import {routesDataToAPIRequest} from '../utils/apiDataTransform/prepareRequest';
 
 export interface MapsResponse {
     data: MapType | null;
