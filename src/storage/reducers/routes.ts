@@ -114,6 +114,7 @@ const persistConfig = {
     key: 'routes',
     storage: AsyncStorage,
     whitelist: ['currentRoute, currentRouteData, routes, routesToSync'],
+    timeout: 20000,
 };
 
 export default persistReducer(persistConfig, routesReducer);

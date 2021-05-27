@@ -26,8 +26,8 @@ export const initBGeolocalization = async (notificationTitle: string) => {
                 "In order to allow track activity when app is in the background, please enable 'Allow all the time permission",
             positiveAction: 'Change to Allow all the time',
         },
-        distanceFilter: 40,
-        stopTimeout: 5,
+        distanceFilter: 60,
+        stopTimeout: 2,
         debug: __DEV__ ? true : false,
         logLevel: __DEV__
             ? BackgroundGeolocation.LOG_LEVEL_VERBOSE

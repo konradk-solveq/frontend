@@ -105,6 +105,7 @@ const persistConfig = {
     key: 'bikes',
     storage: AsyncStorage,
     whitelist: ['list, genericBike'],
+    timeout: 20000,
 };
 
 export default persistReducer(persistConfig, bikesReducer);

@@ -14,7 +14,7 @@ interface MapsState {
 
 const initialStateList: MapsState = {
     maps: [],
-    favourites: ['222', '333'],
+    favourites: [],
     error: '',
     loading: false,
     statusCode: 200,
@@ -77,6 +77,7 @@ const persistConfig = {
     key: 'maps',
     storage: AsyncStorage,
     whitelist: ['maps, favourites'],
+    timeout: 20000,
 };
 
 export default persistReducer(persistConfig, mapsReducer);

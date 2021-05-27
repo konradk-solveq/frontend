@@ -7,9 +7,10 @@ import reducer from './reducer';
 
 const buildStore = () => {
     const persistConfig = {
-        key: 'root',
+        key: 'root_mykross',
         storage: AsyncStorage,
         stateReconciler: autoMergeLevel2,
+        timeout: 2000,
     };
 
     const persistedReducer = persistReducer<any, any>(persistConfig, reducer);
