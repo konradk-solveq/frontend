@@ -53,7 +53,8 @@
         "redux": "^4.0.5",
         "redux-persist": "^6.0.0",
         "redux-thunk": "^2.3.0",
-        "reselect": "^4.0.0"
+        "reselect": "^4.0.0",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "@babel/core": "^7.12.9",
@@ -66,6 +67,7 @@
         "@types/react-native-dotenv": "^0.2.0",
         "@types/react-native-i18n": "^2.0.0",
         "@types/react-test-renderer": "^17.0.1",
+        "@types/uuid": "^8.3.0",
         "babel-jest": "^26.6.3",
         "eslint": "7.14.0",
         "jest": "^26.6.3",

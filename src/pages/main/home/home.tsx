@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
+import {trackerActiveSelector} from '../../../storage/selectors/routes';
 
 import {
     setObjSize,
@@ -13,16 +14,25 @@ import {
 } from '../../../helpers/layoutFoo';
 import AddBike from './addBike';
 
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
+import {useAppSelector} from '../../../hooks/redux';
 import useAppInit from '../../../hooks/appInit';
 import {I18n} from '../../../../I18n/I18n';
 import {nfcIsSupported} from '../../../helpers/nfc';
+import {RegularStackRoute} from '../../../navigation/route';
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
     const trans: any = I18n.t('MainHome');
+    const isTrackerActive = useAppSelector(trackerActiveSelector);
 
     const {isOnline} = useAppInit();
+
+    /* TODO: move initialization to splashs screen or add loader */
+    useEffect(() => {
+        if (isTrackerActive) {
+            navigation.navigate(RegularStackRoute.COUNTER_ROUTE_SCREEN);
+        }
+    }, [isTrackerActive, navigation]);
 
     const [nfc, setNfc] = useState();
 

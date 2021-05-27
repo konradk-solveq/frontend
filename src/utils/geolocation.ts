@@ -63,8 +63,10 @@ export const getBackgroundGeolocationState = async () => {
     return state;
 };
 
-export const startBackgroundGeolocation = async () => {
-    await BackgroundGeolocation.resetOdometer();
+export const startBackgroundGeolocation = async (keep?: boolean) => {
+    if (!keep) {
+        await BackgroundGeolocation.resetOdometer();
+    }
 
     const state = await BackgroundGeolocation.start();
 

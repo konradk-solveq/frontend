@@ -1,9 +1,16 @@
 import {useCallback, useEffect, useState} from 'react';
+import {v4 as uuidv4} from 'uuid';
 import {
     activateKeepAwake,
     deactivateKeepAwake,
 } from '@sayem314/react-native-keep-awake';
 
+import {useAppDispatch} from './redux';
+import {
+    persistCurrentRouteData,
+    setCurrentRoute,
+    stopCurrentRoute,
+} from '../storage/actions/routes';
 import {
     cleanUp,
     getBackgroundGeolocationState,
@@ -20,7 +27,16 @@ interface DataI {
     averageSpeed: string;
 }
 
+const startCurrentRoute = async () => {
+    return {
+        id: uuidv4(),
+        isActive: true,
+        startedAt: new Date(),
+    };
+};
+
 const useLocalizationTracker = (persist: boolean) => {
+    const dispatch = useAppDispatch();
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
     const [lastDistance, setLastDistance] = useState<number>(0);
@@ -30,29 +46,36 @@ const useLocalizationTracker = (persist: boolean) => {
             if (d - lastDistance < 1000) {
                 return;
             }
-            /* TODO: persist locations to redux */
-            // const locations = await getLocations();
+
+            persistCurrentRouteData();
             setLastDistance(d);
         },
         [lastDistance],
     );
 
-    const startTracker = async () => {
-        console.log('[startTracker]');
-        const state = await getBackgroundGeolocationState();
-
-        if (!state.enabled) {
-            setIsActive(true);
-            activateKeepAwake();
-            await startBackgroundGeolocation();
-        }
-    };
-
     const stopTracker = async () => {
         console.log('[stopTracker]');
+        /* TODO: error */
         await stopBackgroundGeolocation();
         deactivateKeepAwake();
         setIsActive(false);
+        dispatch(stopCurrentRoute());
+    };
+
+    const startTracker = async (keep?: boolean) => {
+        /* TODO: error */
+        const state = await getBackgroundGeolocationState();
+        console.log('[startTracker]', state.enabled);
+        if (state.enabled) {
+            await stopTracker();
+        }
+
+        setIsActive(true);
+        activateKeepAwake();
+        await startBackgroundGeolocation(keep);
+
+        const currRoute = await startCurrentRoute();
+        dispatch(setCurrentRoute(currRoute));
     };
 
     useEffect(() => {
