@@ -48,17 +48,15 @@ const useLocalizationTracker = (persist: boolean) => {
                 return;
             }
 
-            persistCurrentRouteData();
+            dispatch(persistCurrentRouteData());
             setLastDistance(d);
         },
-        [lastDistance],
+        [dispatch, lastDistance],
     );
 
     const stopTracker = async () => {
         /* TODO: error */
-        // await stopBackgroundGeolocation();
-        const state = await stopBackgroundGeolocation();
-        console.log('[stopTracker]', state?.enabled);
+        /* TODO: add to synch queue on stop */
         deactivateKeepAwake();
         dispatch(stopCurrentRoute());
         setIsActive(false);
@@ -67,7 +65,7 @@ const useLocalizationTracker = (persist: boolean) => {
     const startTracker = async (keep?: boolean) => {
         /* TODO: error */
         const state = await getBackgroundGeolocationState();
-        console.log('[startTracker]', state.enabled);
+
         if (state.enabled && !keep) {
             await stopTracker();
         }
@@ -75,12 +73,11 @@ const useLocalizationTracker = (persist: boolean) => {
         setIsActive(true);
         activateKeepAwake();
 
+        await startBackgroundGeolocation(keep);
         if (!keep) {
-            await startBackgroundGeolocation(keep);
+            const currRoute = await startCurrentRoute();
+            dispatch(setCurrentRoute(keep ? undefined : currRoute));
         }
-
-        const currRoute = await startCurrentRoute();
-        dispatch(setCurrentRoute(keep ? undefined : currRoute));
     };
 
     useEffect(() => {

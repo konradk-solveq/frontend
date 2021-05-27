@@ -7,5 +7,5 @@ export interface LocationDataI {
         altitude: number | undefined;
         speed: number | undefined;
     };
-    odomenter: number;
+    odometer: number;
 }

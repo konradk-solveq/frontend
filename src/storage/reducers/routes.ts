@@ -16,7 +16,7 @@ export interface RoutesI {
     route: LocationDataI[];
 }
 
-interface RoutesState {
+export interface RoutesState {
     currentRoute: CurrentRouteI;
     currentRouteData: LocationDataI[];
     routes: RoutesI[];
