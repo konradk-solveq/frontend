@@ -118,10 +118,10 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const [mapBtnPosMemo, setMapBtnPosMemo] = useState(0);
     const [mapOn, setMapOn] = useState(false);
 
+    /* Re-run counter after app restart */
     useEffect(() => {
         if (isTrackerActive) {
-            setPageState('record');
-            startTracker(true);
+            heandleRightBtnClick(true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -160,11 +160,11 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         }
     };
 
-    const heandleRightBtnClick = async () => {
+    const heandleRightBtnClick = async (keepState?: boolean) => {
         switch (pageState) {
             case 'start':
                 {
-                    await startTracker();
+                    await startTracker(keepState);
                     setPageState('record');
                     setJs('start();setPauseOff();true;');
                 }
@@ -225,10 +225,10 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 break;
             case 'record':
                 {
-                        setLeftBtnTile(trans.btnPauza);
-                        setRightBtnTile(trans.btnEnd);
-                        setHeaderTitle(trans.headerRecord);
-                        setPause(false);
+                    setLeftBtnTile(trans.btnPauza);
+                    setRightBtnTile(trans.btnEnd);
+                    setHeaderTitle(trans.headerRecord);
+                    setPause(false);
                 }
                 break;
             case 'pause':
