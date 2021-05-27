@@ -24,7 +24,7 @@ import {
 } from '../../../../helpers/stringFoo';
 
 import laurelWreath from './laurelWreath';
-import {useNavigation} from '@react-navigation/core';
+import {useNavigation, useRoute} from '@react-navigation/core';
 import {RegularStackRoute} from '../../../../navigation/route';
 
 interface Props {
@@ -36,6 +36,7 @@ interface Props {
 const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('CounterThankYouPage');
     const navigation = useNavigation();
+    const route = useRoute();
     const dispatch = useAppDispatch();
 
     const name = useAppSelector<string>(state => state.user.userName);
@@ -180,7 +181,9 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                         <View>
                             <Text style={styles.name}>{trans.distance}</Text>
                             <Text style={styles.value}>
-                                {pointToComaString(distance.toFixed(2))}
+                                {pointToComaString(
+                                    route?.params?.distance || '0.00',
+                                )}
                                 <Text style={styles.unit}>
                                     {' ' + trans.distanceUnit}
                                 </Text>

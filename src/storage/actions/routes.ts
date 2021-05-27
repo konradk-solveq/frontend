@@ -23,7 +23,7 @@ export const setError = (error: string, statusCode: number) => ({
     statusCode: statusCode,
 });
 
-export const setCurrentRoute = (currentRoute: Partial<CurrentRouteI>) => ({
+export const setCurrentRoute = (currentRoute?: Partial<CurrentRouteI>) => ({
     type: actionTypes.SET_CURRENT_ROUTE,
     currentRoute: currentRoute,
 });

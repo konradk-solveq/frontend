@@ -54,28 +54,32 @@ const useLocalizationTracker = (persist: boolean) => {
     );
 
     const stopTracker = async () => {
-        console.log('[stopTracker]');
         /* TODO: error */
         await stopBackgroundGeolocation();
+        const state = await stopBackgroundGeolocation();
+        console.log('[stopTracker]', state?.enabled);
         deactivateKeepAwake();
-        setIsActive(false);
         dispatch(stopCurrentRoute());
+        setIsActive(false);
     };
 
     const startTracker = async (keep?: boolean) => {
         /* TODO: error */
         const state = await getBackgroundGeolocationState();
         console.log('[startTracker]', state.enabled);
-        if (state.enabled) {
+        if (state.enabled && !keep) {
             await stopTracker();
         }
 
         setIsActive(true);
         activateKeepAwake();
-        await startBackgroundGeolocation(keep);
+
+        if (!keep) {
+            await startBackgroundGeolocation(keep);
+        }
 
         const currRoute = await startCurrentRoute();
-        dispatch(setCurrentRoute(currRoute));
+        dispatch(setCurrentRoute(keep ? undefined : currRoute));
     };
 
     useEffect(() => {

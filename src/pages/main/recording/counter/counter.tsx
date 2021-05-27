@@ -185,7 +185,12 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 {
                     // TODO
                     await stopTracker();
-                    navigation.navigate('CounterThankYouPage');
+                    navigation.navigate({
+                        name: 'CounterThankYouPage',
+                        params: {
+                            distance: trackerData?.distance
+                        },
+                    });
                     // do ekranu zakończenia
                 }
                 break;

@@ -66,10 +66,18 @@ const routesReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.SET_CURRENT_ROUTE: {
+            let route = action.currentRoute;
+            if (!route) {
+                route = {
+                    ...state.currentRoute,
+                    isActive: true,
+                };
+            }
+
             return {
                 ...state,
                 loading: false,
-                currentRoute: action.currentRoute,
+                currentRoute: route,
             };
         }
         case actionTypes.SET_CURRENT_ROUTE_DATA: {
