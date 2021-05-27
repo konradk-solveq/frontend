@@ -12,6 +12,7 @@ import {
     stopCurrentRoute,
 } from '../storage/actions/routes';
 import {
+    cleanUp,
     getBackgroundGeolocationState,
     getCurrentLocation,
     requestGeolocationPermission,
@@ -56,7 +57,9 @@ const useLocalizationTracker = (persist: boolean) => {
 
     const stopTracker = async () => {
         /* TODO: error */
-        /* TODO: add to synch queue on stop */
+        dispatch(persistCurrentRouteData());
+        await stopBackgroundGeolocation();
+
         deactivateKeepAwake();
         dispatch(stopCurrentRoute());
         setIsActive(false);
@@ -118,6 +121,7 @@ const useLocalizationTracker = (persist: boolean) => {
 
         return () => {
             clearInterval(interval);
+            cleanUp();
         };
     }, [isActive, persist, onPersistData]);
 

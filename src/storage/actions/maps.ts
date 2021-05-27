@@ -10,6 +10,12 @@ export const setMapsData = (maps: Map[]) => ({
     maps: maps,
 });
 
+export const addMapData = (map: Map, ownerId?: string) => ({
+    type: actionTypes.SET_MAPS_DATA,
+    map: map,
+    ownerId: ownerId,
+});
+
 export const clearError = () => ({
     type: actionTypes.CLEAR_MAPS_ERROR,
 });

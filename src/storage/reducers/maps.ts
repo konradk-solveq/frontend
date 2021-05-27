@@ -7,6 +7,7 @@ import {MapType} from '../../models/map.model';
 interface MapsState {
     maps: MapType[];
     favourites: string[];
+    ownes: string[];
     error: string;
     loading: boolean;
     statusCode: number;
@@ -15,6 +16,7 @@ interface MapsState {
 const initialStateList: MapsState = {
     maps: [],
     favourites: [],
+    ownes: [],
     error: '',
     loading: false,
     statusCode: 200,
@@ -41,6 +43,20 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 ...state,
                 loading: false,
                 maps: action.maps,
+                statusCode: 200,
+            };
+        }
+        case actionTypes.SET_MAP_DATA: {
+            const o = [...state.ownes];
+            if (action.ownerId) {
+                o.push(action.ownerId);
+            }
+
+            return {
+                ...state,
+                loading: false,
+                maps: [...state.maps, action.map],
+                ownes: o,
                 statusCode: 200,
             };
         }
@@ -76,7 +92,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
 const persistConfig = {
     key: 'maps',
     storage: AsyncStorage,
-    whitelist: ['maps, favourites'],
+    whitelist: ['maps, favourites, ownes'],
     timeout: 20000,
 };
 

@@ -13,6 +13,8 @@ const instance = axios.create({
     // },
 });
 
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 export const source = axios.CancelToken.source();
 export const isCancel = (c: any) => axios.isCancel(c);
 

@@ -5,7 +5,7 @@ import * as actionTypes from '../actions/actionTypes';
 import {LocationDataI} from '../../interfaces/geolocation';
 
 export interface CurrentRouteI {
-    id: string | undefined;
+    id: string;
     isActive: boolean;
     startedAt: Date | undefined;
     endedAt: Date | undefined;
@@ -28,7 +28,7 @@ export interface RoutesState {
 
 const initialStateList: RoutesState = {
     currentRoute: {
-        id: undefined,
+        id: '',
         isActive: false,
         startedAt: undefined,
         endedAt: undefined,
@@ -60,8 +60,7 @@ const routesReducer = (state = initialStateList, action: any) => {
         case actionTypes.SET_ROUTES_DATA: {
             return {
                 ...state,
-                loading: false,
-                maps: action.routes,
+                routes: [...state.routes, action.routes],
                 statusCode: 200,
             };
         }
@@ -76,23 +75,49 @@ const routesReducer = (state = initialStateList, action: any) => {
 
             return {
                 ...state,
-                loading: false,
                 currentRoute: route,
+            };
+        }
+        case actionTypes.SET_ROUTE_TO_SYNC: {
+            return {
+                ...state,
+                routesToSync: [...state.routesToSync, action.routeId],
             };
         }
         case actionTypes.SET_CURRENT_ROUTE_DATA: {
             return {
                 ...state,
-                loading: false,
                 currentRouteData: action.currentRouteData,
             };
         }
         case actionTypes.CLEAR_CURRENT_ROUTE_DATA: {
+            const removeFromRoutes = [...state.routes].filter(
+                r => r.id !== state.currentRoute.id,
+            );
+            const removeFromRoutesToSynch = [...state.routesToSync].filter(
+                s => s !== state.currentRoute.id,
+            );
+
             return {
                 ...state,
-                loading: false,
+                routes: removeFromRoutes,
+                routesToSync: removeFromRoutesToSynch,
                 currentRoute: {...initialStateList.currentRoute},
                 currentRouteData: [],
+            };
+        }
+        case actionTypes.CLEAR_ROUTES_TO_SYNC: {
+            const removeFromRoutes = [...state.routes].filter(
+                r => !action.ids.includes(r.id),
+            );
+            const removeFromRoutesToSynch = [...state.routesToSync].filter(
+                s => !action.ids.includes(s),
+            );
+
+            return {
+                ...state,
+                routes: removeFromRoutes,
+                routesToSync: removeFromRoutesToSynch,
             };
         }
         case actionTypes.CLEAR_ROUTES_ERROR: {
