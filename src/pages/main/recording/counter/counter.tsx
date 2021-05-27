@@ -174,9 +174,9 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         switch (pageState) {
             case 'start':
                 {
-                    await startTracker();
                     setPageState('record');
                     setJs('start();setPauseOff();true;');
+                    await startTracker();
                 }
                 break;
             case 'record':
