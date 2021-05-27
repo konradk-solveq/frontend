@@ -1,4 +1,5 @@
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
+import {LocationDataI} from '../interfaces/geolocation';
 import {
     BikeBaseData,
     BikeDescription,
@@ -8,6 +9,7 @@ import {
 import {Map} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
+import {getLocations} from './geolocation';
 
 export const transfromToBikeDescription = (
     description: BikeDescription,
@@ -199,4 +201,40 @@ export const mapDataToFormData = (
             : [],
         tags: mapData?.tags ? getRouteTags(mapData.tags, tagsTrans) : [],
     };
+};
+
+export const routesDataToPersist = async (
+    timestampToCompare: number,
+    oldRoutes: LocationDataI[],
+): Promise<LocationDataI[]> => {
+    const currRoutes = [...oldRoutes];
+    const locations = await getLocations();
+
+    /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
+    locations.forEach((l: any) => {
+        if (
+            timestampToCompare &&
+            timestampToCompare > Date.parse(l.timestamp)
+        ) {
+            return;
+        }
+
+        if (!oldRoutes.find(d => d.uuid === l.uuid)) {
+            const newRoute: LocationDataI = {
+                uuid: l.uuid,
+                coords: {
+                    latitude: l.coords.latitude,
+                    longitude: l.coords.longitude,
+                    altitude: l.coords.altitude,
+                    speed: l.coords.speed,
+                },
+                odometer: l.odometer,
+                timestamp: l.timestamp,
+            };
+
+            currRoutes.push(newRoute);
+        }
+    });
+
+    return currRoutes;
 };
