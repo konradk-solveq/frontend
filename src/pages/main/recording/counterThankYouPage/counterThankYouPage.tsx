@@ -42,7 +42,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const navigation = useNavigation();
     const route = useRoute();
     const dispatch = useAppDispatch();
-console.log(error)
+
     const name = useAppSelector<string>(state => state.user.userName);
     const userName = name ? ' ' + name : ' ' + trans.defaultName;
 

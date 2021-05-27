@@ -126,11 +126,11 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     /* Re-run counter after app restart */
     useEffect(() => {
         if (isTrackerActive && onMapLoaded) {
+            setPageState('record');
             const startTime = trackerStartTime
                 ? Date.parse(trackerStartTime.toUTCString())
                 : null;
             setJs(`start(${startTime});setPauseOff();true;`);
-            setPageState('record');
             startTracker(true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
