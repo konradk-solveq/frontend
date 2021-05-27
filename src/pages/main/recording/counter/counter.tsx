@@ -57,6 +57,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const statusBarHeight = useStatusBarHeight();
     const headerHeight = getStackHeaderHeight() - statusBarHeight;
     const marginTopOnIos = Platform.OS === 'ios' ? statusBarHeight : 0;
+    const [onMapLoaded, setOnMapLoaded] = useState(false);
 
     const bikeSelectorListPositionY = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
@@ -120,11 +121,13 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
 
     /* Re-run counter after app restart */
     useEffect(() => {
-        if (isTrackerActive) {
-            heandleRightBtnClick(true);
+        if (isTrackerActive && onMapLoaded) {
+            setPageState('record');
+            startTracker(true);
+            setJs('start();setPauseOff();true;');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [onMapLoaded]);
 
     const heandleLeftBtnClick = () => {
         switch (pageState) {
@@ -160,11 +163,11 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         }
     };
 
-    const heandleRightBtnClick = async (keepState?: boolean) => {
+    const heandleRightBtnClick = async () => {
         switch (pageState) {
             case 'start':
                 {
-                    await startTracker(keepState);
+                    await startTracker();
                     setPageState('record');
                     setJs('start();setPauseOff();true;');
                 }
@@ -360,6 +363,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                         scrollEnabled={false}
                         showsHorizontalScrollIndicator={false}
                         showsVerticalScrollIndicator={false}
+                        onLoadEnd={() => setOnMapLoaded(true)}
                         source={{
                             html:
                                 '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +

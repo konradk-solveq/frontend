@@ -12,7 +12,6 @@ import {
     stopCurrentRoute,
 } from '../storage/actions/routes';
 import {
-    cleanUp,
     getBackgroundGeolocationState,
     getCurrentLocation,
     requestGeolocationPermission,
@@ -33,6 +32,7 @@ const startCurrentRoute = async () => {
         id: uuidv4(),
         isActive: true,
         startedAt: new Date(),
+        endedAt: undefined,
     };
 };
 
@@ -111,11 +111,12 @@ const useLocalizationTracker = (persist: boolean) => {
                     };
 
                     setTrackerData(res);
+
                     if (persist) {
                         onPersistData(d?.odometer);
                     }
                 });
-            }, 1000);
+            }, 5000);
         }
 
         return () => {

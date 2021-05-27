@@ -49,7 +49,7 @@ export const stopCurrentRoute = (): AppThunk<Promise<void>> => async (
 
         dispatch(setCurrentRoute(currentRouteToEnd));
     } catch (error) {
-        logger.log('[fetchMapsList]');
+        logger.log('[stopCurrentRoute]');
         logger.recordError(error);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
