@@ -6,7 +6,7 @@ import BackgroundGeolocation, {
 import {LocationDataI} from '../interfaces/geolocation';
 
 /* TODO: catch errors */
-export const initBGeolocalization = async () => {
+export const initBGeolocalization = async (notificationTitle: string) => {
     const state = await BackgroundGeolocation.ready({
         reset: true,
         stopOnTerminate: false,
@@ -34,6 +34,10 @@ export const initBGeolocalization = async () => {
             : BackgroundGeolocation.LOG_LEVEL_OFF,
         maxDaysToPersist: 14,
         desiredOdometerAccuracy: 10,
+        notification: {
+            text: notificationTitle,
+            smallIcon: 'drawable/ic_launcher_round',
+        },
     });
 
     return state;

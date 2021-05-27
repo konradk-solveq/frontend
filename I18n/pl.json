@@ -1337,5 +1337,10 @@
         "generalError": "Wystąpił błąd, spróbuj ponownie",
         "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem"
     },
+    "Geolocation": {
+        "notification": {
+            "title": "Nagrywanie trasy"
+        }
+    },
     "aaaaaaa-aaaaaa": "_____"
 }
