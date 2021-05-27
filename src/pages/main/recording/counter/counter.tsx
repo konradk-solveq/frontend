@@ -25,6 +25,7 @@ import {useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
+import useGetLocation from '../../../../hooks/useGetLocation';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
@@ -55,6 +56,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
+    const {location} = useGetLocation();
 
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
@@ -72,7 +74,20 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     );
 
     useEffect(() => {
+        if (location && onMapLoaded) {
+            setJs(
+                `setPositionOnMap({lat: ${location.lat}, lng: ${location.lon} });true;`,
+            );
+        }
+    }, [location, onMapLoaded]);
+
+    useEffect(() => {
         setJs(`setValues(${JSON.stringify(trackerData)});true;`);
+        if (trackerData?.coords) {
+            setJs(
+                `setPositionOnMap({lat: ${trackerData?.coords.lat}, lng: ${trackerData?.coords.lon} });true;`,
+            );
+        }
     }, [trackerData]);
 
     const onChangeBikeHandler = (frameNumber: string) => {
@@ -199,7 +214,9 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                         name: 'CounterThankYouPage',
                         params: {
                             distance: trackerData?.distance,
-                            time: Date.now() - Date.parse(trackerStartTime.toUTCString()),
+                            time:
+                                Date.now() -
+                                Date.parse(trackerStartTime.toUTCString()),
                         },
                     });
                     // do ekranu zakończenia
@@ -274,7 +291,11 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             case 'map is ready':
                 {
                     setJs(
-                        'setPositionOnMap({lat: 53.009342618210624, lng: 20.890509251985964 });true;',
+                        `setPositionOnMap({lat: ${
+                            location?.lat || '53.009342618210624'
+                        }, lng: ${
+                            location?.lon || '20.890509251985964'
+                        } });true;`,
                     );
                 }
                 break;

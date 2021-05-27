@@ -26,6 +26,10 @@ interface DataI {
     distance: string;
     speed: string;
     averageSpeed: string;
+    coords: {
+        lat: number;
+        lon: number;
+    };
 }
 
 const startCurrentRoute = async () => {
@@ -108,6 +112,10 @@ const useLocalizationTracker = (persist: boolean) => {
                         distance: distance || '00,00',
                         speed: msToKH(d?.coords?.speed) || '00,0',
                         averageSpeed: msToKH(averageSpeed) || '00,0',
+                        coords: {
+                            lat: d?.coords?.latitude,
+                            lon: d?.coords?.longitude,
+                        },
                     };
 
                     setTrackerData(res);
