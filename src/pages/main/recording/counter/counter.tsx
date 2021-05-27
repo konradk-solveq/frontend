@@ -51,6 +51,7 @@ interface Props {
 const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
+
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
     const statusBarHeight = useStatusBarHeight();
@@ -64,7 +65,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const {trackerData, startTracker, stopTracker} = useLocalizationTracker(
         true,
     );
-console.log(trackerData)
+
     useEffect(() => {
         setJs(`setValues(${JSON.stringify(trackerData)});true;`);
     }, [trackerData]);
