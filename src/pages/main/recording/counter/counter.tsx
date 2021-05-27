@@ -40,7 +40,10 @@ import fooHtml from './fooHtml';
 import gradient from './gradientSvg';
 import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
-import {trackerActiveSelector} from '../../../../storage/selectors/routes';
+import {
+    trackerActiveSelector,
+    trackerStartTimeSelector,
+} from '../../../../storage/selectors/routes';
 
 const {width} = Dimensions.get('window');
 
@@ -51,6 +54,7 @@ interface Props {
 const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
+    const trackerStartTime = useAppSelector(trackerStartTimeSelector);
 
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
@@ -122,9 +126,12 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     /* Re-run counter after app restart */
     useEffect(() => {
         if (isTrackerActive && onMapLoaded) {
+            const startTime = trackerStartTime
+                ? Date.parse(trackerStartTime.toUTCString())
+                : null;
+            setJs(`start(${startTime});setPauseOff();true;`);
             setPageState('record');
             startTracker(true);
-            setJs('start();setPauseOff();true;');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [onMapLoaded]);
@@ -192,6 +199,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                         name: 'CounterThankYouPage',
                         params: {
                             distance: trackerData?.distance,
+                            time: Date.now() - Date.parse(trackerStartTime.toUTCString()),
                         },
                     });
                     // do ekranu zakończenia

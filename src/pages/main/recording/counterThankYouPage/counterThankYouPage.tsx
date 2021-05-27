@@ -193,7 +193,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                         <View>
                             <Text style={styles.name}>{trans.time}</Text>
                             <Text style={styles.value}>
-                                {simplyTimer(time)}
+                                {simplyTimer(route?.params?.time)}
                                 <Text style={styles.unit}>
                                     {' ' + trans.timeUnit}
                                 </Text>

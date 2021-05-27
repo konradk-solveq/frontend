@@ -70,12 +70,12 @@ const timer = () => {
 };
 
 let started = false;
-const start = () => {
+const start = (sTime) => {
     if (started) {
         return;
     }
     started = true;
-    startTime = Date.now();
+    startTime = sTime ?  sTime : Date.now();
     pauseStart = Date.now();
     interval = setInterval(timer, 1000);
 };
