@@ -17,9 +17,8 @@ import MountainIcon from '../../../../../sharedComponents/svg/mountainIcon';
 import WayIcon from '../../../../../sharedComponents/svg/wayIcon';
 
 interface Props {
-    distance?: number;
-    hours?: number;
-    minutes?: number;
+    distance?: string;
+    time?: string;
     level?: string;
     type?: string;
     containerStyle?: any;
@@ -27,8 +26,7 @@ interface Props {
 
 const RideTile: React.FC<Props> = ({
     distance,
-    hours,
-    minutes,
+    time,
     level,
     type,
     containerStyle,
@@ -178,8 +176,7 @@ const RideTile: React.FC<Props> = ({
                             iconStyle={styles.iconTop}
                         />
                         <Text style={styles.topText}>
-                            {distance || '-'}{' '}
-                            <Text style={styles.textSuffix}>km</Text>
+                            {distance} <Text style={styles.textSuffix}>km</Text>
                         </Text>
                     </View>
                     <View style={styles.textContainer}>
@@ -188,7 +185,7 @@ const RideTile: React.FC<Props> = ({
                             iconStyle={styles.iconTop}
                         />
                         <Text style={styles.topText}>
-                            {hours && minutes ? `${hours}:${minutes}` : '-:--'}{' '}
+                            {time || '-:--'}{' '}
                             <Text style={styles.textSuffix}>h</Text>
                         </Text>
                     </View>

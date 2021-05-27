@@ -1,6 +1,8 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
+import {SelectOptionType} from '../../models/map.model';
+import {firstLetterToUpperCase} from '../../utils/strings';
 import {getVerticalPx} from '../../helpers/layoutFoo';
 
 import TypicalRedBtn from '../../sharedComponents/buttons/typicalRed';
@@ -12,9 +14,9 @@ interface OptionsTransI {
 
 interface IProps {
     predefined: any[];
-    options: any[];
+    options: SelectOptionType[] | undefined;
     optionsTrans: OptionsTransI;
-    onSave: (filters: number[]) => void;
+    onSave: (filters: string[]) => void;
     errorMessage?: string;
     isRadioType?: boolean;
 }
@@ -27,7 +29,7 @@ const MultiSelect: React.FC<IProps> = ({
     errorMessage,
     isRadioType,
 }: IProps) => {
-    const [active, setActive] = useState<number[]>([]);
+    const [active, setActive] = useState<string[]>([]);
 
     useEffect(() => {
         if (predefined) {
@@ -36,7 +38,7 @@ const MultiSelect: React.FC<IProps> = ({
     }, [predefined]);
 
     const onPressHanlder = useCallback(
-        (idx: number) => {
+        (idx: string) => {
             if (active.includes(idx) && !isRadioType) {
                 const newNumbers = [...active].filter(nr => nr !== idx);
                 setActive(newNumbers);
@@ -52,26 +54,34 @@ const MultiSelect: React.FC<IProps> = ({
 
     const renderOptions = useMemo(
         () =>
-            options.map(o => {
-                const option = optionsTrans.options[o];
+            options?.map(o => {
+                const option = firstLetterToUpperCase(o?.i18nValue);
+                if (!option) {
+                    return null;
+                }
+
                 return (
                     <TypicalRedBtn
                         key={`${option}_${o}`}
                         title={option}
-                        onpress={() => onPressHanlder(o)}
-                        active={active.includes(o)}
+                        onpress={() => onPressHanlder(o.enumValue)}
+                        active={active.includes(o.enumValue)}
                         height={41}
                     />
                 );
             }),
-        [active, options, optionsTrans.options, onPressHanlder],
+        [active, options, onPressHanlder],
     );
 
     return (
         <View style={styles.container}>
             <Text style={styles.name}>{optionsTrans.name}</Text>
-            <View style={styles.list}>{renderOptions}</View>
-            {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
+            {options?.length ? (
+                <View style={styles.list}>{renderOptions}</View>
+            ) : null}
+            {errorMessage ? (
+                <Text style={styles.error}>{errorMessage}</Text>
+            ) : null}
         </View>
     );
 };

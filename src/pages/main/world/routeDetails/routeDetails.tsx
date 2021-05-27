@@ -14,6 +14,7 @@ import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {RegularStackRoute} from '../../../../navigation/route';
 import {useAppSelector} from '../../../../hooks/redux';
 import {mapDataByIDSelector} from '../../../../storage/selectors/map';
+import {getImagesThumbs} from '../../../../utils/transformData';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import {
@@ -32,6 +33,7 @@ const RouteDetails = () => {
     const route = useRoute();
     const mapID: string = route?.params?.mapID;
     const mapData = useAppSelector(mapDataByIDSelector(mapID));
+    const images = getImagesThumbs(mapData?.images || []);
 
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
@@ -80,9 +82,9 @@ const RouteDetails = () => {
                             </View>
                         }
                     />
-                    <SliverTopBar imgSrc={mapData?.details?.images?.[0] || ''}>
+                    <SliverTopBar imgSrc={images?.images?.[0] || ''}>
                         <View style={styles.content}>
-                            <Description mapData={mapData} />
+                            <Description mapData={mapData} images={images} />
                             <BigRedBtn
                                 title={trans.reportButton}
                                 onpress={onPressHandler}

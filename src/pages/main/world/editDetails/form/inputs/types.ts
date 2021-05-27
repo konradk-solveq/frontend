@@ -1,10 +1,10 @@
-import {
-    levelFilter,
-    pavementFilter,
-    tagsFilter,
-} from '../../../../../../enums/mapsFilters';
+import {SelectI} from '../../../../../../models/map.model';
 
-export type OptionType = levelFilter | pavementFilter | tagsFilter;
+export type OptionType = {
+    difficulty: SelectI | undefined;
+    surface: SelectI | undefined;
+    tags: SelectI | undefined;
+};
 
 export interface FCPropsI {
     onChange: (...event: any[]) => void;
@@ -17,9 +17,9 @@ export type FormData = {
     id: string;
     name: string;
     publishWithName: boolean;
-    intro: string;
-    description: string;
-    level: OptionType[];
-    pavement: OptionType[];
-    tags: OptionType[];
+    short?: string;
+    long?: string;
+    difficulty?: SelectI;
+    surface?: SelectI;
+    tags?: SelectI;
 };

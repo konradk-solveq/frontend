@@ -5,7 +5,7 @@ import {
     Complaint,
     Parameters,
 } from '../models/bike.model';
-import {Map} from '../models/map.model';
+import {Images, Map} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 
@@ -99,22 +99,47 @@ export const transformToMapsType = (data: any): Map => {
     const {
         id,
         name,
-        coords,
-        totalDistance,
-        details,
-        date,
-        totalTime,
         author,
-        rating,
+        difficulty,
+        ownerId,
+        surface,
+        description,
         tags,
+        location,
+        path,
+        images,
+        date,
+        distance,
+        distanceToRoute,
+        time,
+        rating,
+        isPublish,
     } = data;
 
-    const newData = new Map(id, name, coords, details, date);
-    if (totalDistance) {
-        newData.totalDistance = totalDistance;
+    const newData = new Map(id, name, path, date);
+    if (distance) {
+        newData.distance = distance;
     }
-    if (totalTime) {
-        newData.totalTime = totalTime;
+    if (distanceToRoute) {
+        newData.distanceToRoute = distanceToRoute;
+    }
+    if (difficulty) {
+        newData.difficulty = difficulty;
+    }
+    if (ownerId) {
+        newData.ownerId = ownerId;
+    }
+    if (surface) {
+        newData.surface = surface;
+    }
+    if (description) {
+        newData.description = description;
+    }
+    if (location) {
+        newData.location = location;
+    }
+    if (time) {
+        newData.time = time;
     }
     if (author) {
         newData.author = author;
@@ -122,8 +147,14 @@ export const transformToMapsType = (data: any): Map => {
     if (rating) {
         newData.rating = rating;
     }
+    if (images) {
+        newData.images = images;
+    }
     if (tags) {
         newData.tags = tags;
+    }
+    if (isPublish) {
+        newData.isPublish = isPublish;
     }
 
     return newData;
@@ -179,24 +210,65 @@ export const getRouteTags = (tags: string[], tagsTrans: string[]) => {
     return result;
 };
 
-export const mapDataToFormData = (
-    mapData: Map,
-    levelTrans: string[],
-    pavementTrans: string[],
-    tagsTrans: string[],
-): FormData => {
+export const mapDataToFormData = (mapData: Map): FormData => {
     return {
         id: mapData.id,
         name: mapData.name,
         publishWithName: false,
-        intro: mapData?.details?.intro || '',
-        description: mapData?.details?.description || '',
-        level: mapData?.details?.level
-            ? getRouteLevel(mapData.details.level, levelTrans)
-            : [],
-        pavement: mapData?.details?.pavement
-            ? getRoutePavements(mapData.details.pavement, pavementTrans)
-            : [],
-        tags: mapData?.tags ? getRouteTags(mapData.tags, tagsTrans) : [],
+        short: mapData?.description?.short || '',
+        long: mapData?.description?.long || '',
+        difficulty: mapData?.difficulty || undefined,
+        surface: mapData?.surface || undefined,
+        tags: mapData?.tags || undefined,
     };
+};
+
+export const getImagesThumbs = (images: Images[]) => {
+    const imgsUrls: string[] = [];
+    let mapImgUrl = '';
+
+    if (!images?.length) {
+        return {
+            images: imgsUrls,
+            mapImg: mapImgUrl,
+        };
+    }
+
+    images.forEach(i => {
+        if (i.type === 'photo') {
+            const imgUrl = i.variants?.square?.[0]?.url;
+            if (imgUrl) {
+                imgsUrls.push(imgUrl);
+            }
+        }
+        if (i.type === 'map') {
+            const url = i.variants?.square?.[0]?.url;
+            if (url) {
+                mapImgUrl = url;
+            }
+        }
+    });
+
+    return {
+        images: imgsUrls,
+        mapImg: mapImgUrl,
+    };
+};
+
+export const getMapImageThumb = (images: Images[]) => {
+    let imgUrl = '';
+    if (!images?.length) {
+        return imgUrl;
+    }
+
+    images.forEach(i => {
+        if (i.type === 'map') {
+            const url = i.variants?.square?.[0]?.url;
+            if (url) {
+                imgUrl = url;
+            }
+        }
+    });
+
+    return imgUrl;
 };

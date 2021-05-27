@@ -1,25 +1,37 @@
 import {getMaps} from '../api';
-import {Map} from '../models/map.model';
+import {MapType, Coords} from '../models/map.model';
+
+export interface MapsData {
+    elements: MapType[] | [];
+    links: {prev: string};
+}
 
 export interface MapsResponse {
-    data: Map[] | [];
+    data: MapsData;
     status: number;
     error: string;
 }
 
-export const getMapsList = async (): Promise<MapsResponse> => {
-    const response = await getMaps();
+export const getMapsList = async (location: Coords): Promise<MapsResponse> => {
+    const response = await getMaps(location);
 
     if (!response?.data || response.status > 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
         }
-        return {data: [], status: response.status, error: errorMessage};
+        return {
+            data: {elements: [], links: {prev: ''}},
+            status: response.status,
+            error: errorMessage,
+        };
     }
 
     return {
-        data: <Map[] | []>response.data,
+        data: {
+            elements: response.data.elements,
+            links: response.data.links,
+        },
         status: response.status,
         error: '',
     };

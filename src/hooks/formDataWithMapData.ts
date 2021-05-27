@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useForm} from 'react-hook-form';
 
 import {
@@ -6,33 +6,44 @@ import {
     OptionType,
 } from '../pages/main/world/editDetails/form/inputs/types';
 import {I18n} from '../../I18n/I18n';
-import {Map} from '../models/map.model';
+import {Map, SelectI} from '../models/map.model';
 import {mapDataToFormData} from '../utils/transformData';
+
+type ValueType = string | boolean | SelectI | undefined | string[];
 
 const useFormDataWithMapData = (mapData: Map | undefined) => {
     const trans: any = I18n.t('RoutesDetails.EditScreen');
     const {control, handleSubmit, setValue} = useForm<FormData>();
+    const [options, setOptions] = useState<OptionType>({
+        difficulty: undefined,
+        surface: undefined,
+        tags: undefined,
+    });
 
     useEffect(() => {
         if (mapData) {
-            const newMapData = mapDataToFormData(
-                mapData,
-                trans.attributes.level.options,
-                trans.attributes.pavement.options,
-                trans.attributes.tags.options,
-            );
+            const newMapData = mapDataToFormData(mapData);
 
             Object.keys(newMapData).forEach(md => {
                 const k: any = md;
-                const v: string | boolean | OptionType[] =
-                    newMapData[k as keyof FormData];
+                let v: ValueType = newMapData[k as keyof FormData];
+                if (typeof v === 'object' && !Array.isArray(v)) {
+                    v = v?.values;
+                }
+
                 setValue(k, v);
             });
+
+            const optionsArr: OptionType = {...options};
+            optionsArr.difficulty = newMapData.difficulty;
+            optionsArr.surface = newMapData.surface;
+            optionsArr.tags = newMapData.tags;
+            setOptions(optionsArr);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return {control, handleSubmit, setValue};
+    return {control, handleSubmit, setValue, options};
 };
 
 export default useFormDataWithMapData;

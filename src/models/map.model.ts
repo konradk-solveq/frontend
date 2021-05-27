@@ -7,7 +7,10 @@ import {
     IsOptional,
     IsNumber,
     IsDate,
+    IsBoolean,
 } from 'class-validator';
+import {simplyTimer} from '../helpers/stringFoo';
+import {transformMetersToKilometersString} from '../utils/metersToKilometers';
 import validationRules from '../utils/validation/validationRules';
 
 export const publishMapValidationRules = {
@@ -18,24 +21,24 @@ export const publishMapValidationRules = {
         {[validationRules.max]: 150},
     ],
     publishWithName: [validationRules.boolean],
-    intro: [
+    short: [
         validationRules.required,
         validationRules.string,
         {[validationRules.min]: 3},
         {[validationRules.max]: 1000},
     ],
-    description: [
+    long: [
         validationRules.required,
         validationRules.string,
         {[validationRules.min]: 3},
         {[validationRules.max]: 5000},
     ],
-    level: [
+    difficulty: [
         validationRules.required,
         validationRules.isArray,
         {[validationRules.isLength]: 1},
     ],
-    pavement: [
+    surface: [
         validationRules.required,
         validationRules.isArray,
         {[validationRules.min]: 1},
@@ -50,6 +53,44 @@ export interface MapCoord {
     timestamp: number;
 }
 
+export type SelectOptionType = {
+    enumValue: string;
+    i18nValue: string;
+};
+
+export interface SelectI {
+    options: SelectOptionType[];
+    values: string[];
+}
+
+export interface Coords {
+    latitude: number;
+    longitude: number;
+}
+
+export type Image = {
+    url: string;
+    width: number;
+    height: number;
+};
+
+export interface ImagesVariants {
+    share: Image[];
+    square: Image[];
+    vertical: Image[];
+}
+
+export interface Images {
+    id: string;
+    type: string;
+    variants: ImagesVariants;
+}
+
+export type MapDescriptionType = {
+    short?: string;
+    long?: string;
+};
+
 export interface MapDetails {
     intro?: string;
     description?: string;
@@ -63,14 +104,21 @@ export interface MapDetails {
 export interface MapType {
     id: string;
     name: string;
-    coords: MapCoord[];
-    date: Date;
     author?: string;
-    totalDistance?: number;
-    totalTime?: string;
-    details: MapDetails;
+    difficulty?: SelectI;
+    ownerId?: string;
+    surface?: SelectI;
+    description?: MapDescriptionType;
+    tags?: SelectI;
+    location?: string;
+    path: Coords[];
+    images?: Images[];
+    date: Date;
+    distance?: number;
+    distanceToRoute?: number;
+    time?: number;
     rating?: number;
-    tags?: string[]; // widokowa | mały ruch | weekendowa | ciekawe atrakcje | dobre jedzenie | dla dzieci
+    isPublish?: boolean;
 }
 
 export class Map implements MapType {
@@ -85,20 +133,18 @@ export class Map implements MapType {
     public name: string;
 
     @IsArray()
-    public coords: MapCoord[];
-
-    @IsNotEmpty()
-    @IsString()
-    @MinLength(3)
-    @MaxLength(1000)
-    public details: MapDetails;
+    public path: Coords[];
 
     @IsDate()
     public date: Date;
 
     @IsOptional()
     @IsNumber()
-    public totalDistance?: number;
+    public distance?: number;
+
+    @IsOptional()
+    @IsNumber()
+    public distanceToRoute?: number;
 
     @IsOptional()
     @IsString()
@@ -115,19 +161,63 @@ export class Map implements MapType {
     public rating?: number;
 
     @IsOptional()
-    public tags?: string[];
+    public tags?: SelectI;
 
-    constructor(
-        id: string,
-        name: string,
-        coords: MapCoord[],
-        details: MapDetails,
-        date: Date,
-    ) {
+    @IsOptional()
+    public images?: Images[];
+
+    @IsOptional()
+    @IsArray()
+    public difficulty?: SelectI;
+
+    @IsOptional()
+    @IsString()
+    public ownerId?: string;
+
+    @IsOptional()
+    @IsArray()
+    surface?: SelectI;
+
+    @IsOptional()
+    @IsArray()
+    public description?: MapDescriptionType;
+
+    @IsOptional()
+    @IsString()
+    public location?: string;
+
+    @IsOptional()
+    @IsNumber()
+    public time?: number;
+
+    @IsOptional()
+    @IsBoolean()
+    public isPublish?: boolean;
+
+    constructor(id: string, name: string, path: Coords[], date: Date) {
         this.id = id;
         this.name = name;
-        this.coords = coords;
-        this.details = details;
+        this.path = path;
         this.date = date;
+    }
+
+    public get distanceInKilometers(): string {
+        return transformMetersToKilometersString(this.distance);
+    }
+
+    public get distanceToRouteInKilometers(): string {
+        return transformMetersToKilometersString(this.distanceToRoute);
+    }
+
+    public get formattedTimeString(): string {
+        return simplyTimer(this.time ? this.time * 1000 : 0);
+    }
+
+    public get firstDifficulty(): string | undefined {
+        return this?.difficulty?.options?.[0]?.i18nValue;
+    }
+
+    public get firstSurface(): string | undefined {
+        return this?.surface?.options?.[0]?.i18nValue;
     }
 }

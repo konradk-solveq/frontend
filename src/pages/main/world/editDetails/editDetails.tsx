@@ -15,6 +15,7 @@ import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {I18n} from '../../../../../I18n/I18n';
 import {mapDataByIDSelector} from '../../../../storage/selectors/map';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
+import {getImagesThumbs} from '../../../../utils/transformData';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
@@ -28,6 +29,7 @@ const EditDetails = () => {
     const route = useRoute();
     const mapID: string = route?.params?.mapID;
     const mapData = useAppSelector(mapDataByIDSelector(mapID));
+    const images = getImagesThumbs(mapData?.images || []);
 
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
@@ -50,7 +52,7 @@ const EditDetails = () => {
                         inner=""
                         style={styles.header}
                     />
-                    <SliverTopBar imgSrc={mapData?.details?.images?.[0] || ''}>
+                    <SliverTopBar imgSrc={images?.images?.[0] || ''}>
                         <View style={styles.content}>
                             <KeyboardAvoidingView
                                 style={styles.keyboard}
@@ -65,6 +67,7 @@ const EditDetails = () => {
                                         <EditForm
                                             onSubmit={() => {}}
                                             mapData={mapData}
+                                            imagesData={images}
                                         />
                                     </View>
                                 </ScrollView>

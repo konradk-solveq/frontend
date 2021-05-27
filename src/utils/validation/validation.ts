@@ -50,6 +50,7 @@ export const validateData = (rules: any[], value: any) => {
             if (el?.isLength) {
                 isValid = value?.length === el.isLength;
             }
+            return isValid;
         }
 
         if (containsRule(el, validationRules.required)) {

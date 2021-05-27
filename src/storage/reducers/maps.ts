@@ -3,21 +3,26 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '../actions/actionTypes';
 import {MapType} from '../../models/map.model';
+import {MapPagination} from '../../interfaces/api';
 
 interface MapsState {
     maps: MapType[];
+    paginationCoursor: MapPagination;
     favourites: string[];
     error: string;
     loading: boolean;
     statusCode: number;
+    refresh: boolean;
 }
 
 const initialStateList: MapsState = {
     maps: [],
+    paginationCoursor: {},
     favourites: ['222', '333'],
     error: '',
     loading: false,
     statusCode: 200,
+    refresh: false,
 };
 
 const mapsReducer = (state = initialStateList, action: any) => {
@@ -25,6 +30,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
         case actionTypes.SET_MAPS_LOADING_STATE: {
             return {
                 ...state,
+                refresh: false,
                 loading: action.state,
             };
         }
@@ -32,16 +38,27 @@ const mapsReducer = (state = initialStateList, action: any) => {
             return {
                 ...state,
                 loading: false,
+                refresh: false,
                 error: action.error,
                 statusCode: action.statusCode,
             };
         }
         case actionTypes.SET_MAPS_DATA: {
+            let newMaps = [...state.maps];
+            if (action.refresh) {
+                newMaps = action.maps;
+            }
+
+            if (!action.refresh || !newMaps?.length) {
+                newMaps = [...newMaps, ...action.maps];
+            }
             return {
                 ...state,
                 loading: false,
-                maps: action.maps,
+                maps: newMaps,
+                pagintaion: action.paginationCoursor,
                 statusCode: 200,
+                refresh: action.refresh,
             };
         }
         case actionTypes.ADD_MAP_TO_FAVOURITES: {
@@ -52,6 +69,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
             return {
                 ...state,
                 loading: false,
+                refresh: false,
                 favourites: newFavs,
             };
         }
@@ -62,6 +80,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
             return {
                 ...state,
                 loading: false,
+                refresh: false,
                 favourites: newFavs,
             };
         }

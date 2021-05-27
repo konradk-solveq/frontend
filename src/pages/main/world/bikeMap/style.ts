@@ -13,12 +13,19 @@ const styles = StyleSheet.create({
     },
     tileWrapper: {
         marginTop: getVerticalPx(30),
+        marginBottom: getVerticalPx(10),
         marginHorizontal: 40,
     },
     lastTile: {
         marginBottom: getVerticalPx(150),
     },
     horizontalSpace: {},
+    loaderContainer: {
+        height: 50,
+        width: '100%',
+        marginTop: -getVerticalPx(120),
+        marginBottom: getVerticalPx(150),
+    },
 });
 
 export default styles;

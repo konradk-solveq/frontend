@@ -1,12 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {useNavigation} from '@react-navigation/native';
 
-import KroosLogo from '../../../sharedComponents/svg/krossLogo';
-import {initCrashlytics} from '../../../utils/crashlytics';
-import {initBGeolocalization} from '../../../utils/geolocation';
 
+import useAppInit from '../../../hooks/appInit';
 import {
     setObjSize,
     getCenterLeftPx,
@@ -14,53 +11,19 @@ import {
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 import AddBike from './addBike';
-import {
-    setBikesListByFrameNumbers,
-    fetchGenericBikeData,
-} from '../../../storage/actions/bikes';
-import {fetchMapsList} from '../../../storage/actions';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
 import {nfcIsSupported} from '../../../helpers/nfc';
 
+import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import KroosLogo from '../../../sharedComponents/svg/krossLogo';
+
 const Home: React.FC = () => {
-    const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
-    const userName = useAppSelector<string>(state => state.user.userName);
     const trans: any = I18n.t('MainHome');
 
     const [nfc, setNfc] = useState();
 
-    /* TODO: remove - for test purpose or set in other place*/
-    useEffect(() => {
-        initBGeolocalization();
-    }, []);
-
-    useEffect(() => {
-        /* Logs will be send after app restarted */
-        initCrashlytics(userName);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        if (isOnline) {
-            synchData();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const synchData = async () => {
-        try {
-            /* TODO: add some sync/info loader */
-            await dispatch(fetchGenericBikeData());
-            await dispatch(setBikesListByFrameNumbers());
-            dispatch(fetchMapsList());
-        } catch (error) {
-            /* TODO: add some UI information */
-            console.log('[Sync Error]', error);
-        }
-    };
+    const {isOnline} = useAppInit();
 
     nfcIsSupported().then(r => {
         setNfc(r);
