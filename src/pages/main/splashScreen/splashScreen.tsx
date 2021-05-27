@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Dimensions, View, StatusBar} from 'react-native';
 import AnimSvg from '../../../helpers/animSvg';
 
@@ -18,9 +18,14 @@ interface Props {
 }
 
 const SplashScreen: React.FC<Props> = (props: Props) => {
+    const [showNewRegulations, setShowNewRegulations] = useState(true);
+
+    let time = __DEV__ ? 100 : 3000;
     setTimeout(() => {
-        props.navigation.replace('MineMenu');
-    }, 3000);
+        props.navigation.replace(
+            showNewRegulations ? 'newRegulations' : 'MineMenu',
+        );
+    }, time);
 
     const krossLogo = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 130">
     <defs>
