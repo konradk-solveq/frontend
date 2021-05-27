@@ -188,7 +188,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                     navigation.navigate({
                         name: 'CounterThankYouPage',
                         params: {
-                            distance: trackerData?.distance
+                            distance: trackerData?.distance,
                         },
                     });
                     // do ekranu zakończenia
@@ -225,10 +225,10 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 break;
             case 'record':
                 {
-                    setLeftBtnTile(trans.btnPauza);
-                    setRightBtnTile(trans.btnEnd);
-                    setHeaderTitle(trans.headerRecord);
-                    setPause(false);
+                        setLeftBtnTile(trans.btnPauza);
+                        setRightBtnTile(trans.btnEnd);
+                        setHeaderTitle(trans.headerRecord);
+                        setPause(false);
                 }
                 break;
             case 'pause':

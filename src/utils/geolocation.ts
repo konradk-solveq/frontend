@@ -115,3 +115,9 @@ export const getLocations = async () => {
 
     return locations;
 };
+
+export const requestGeolocationPermission = async () => {
+    const status = await BackgroundGeolocation.requestPermission();
+
+    return status;
+};

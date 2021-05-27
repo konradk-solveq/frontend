@@ -15,6 +15,7 @@ import {
     cleanUp,
     getBackgroundGeolocationState,
     getCurrentLocation,
+    requestGeolocationPermission,
     startBackgroundGeolocation,
     stopBackgroundGeolocation,
 } from '../utils/geolocation';
@@ -55,7 +56,7 @@ const useLocalizationTracker = (persist: boolean) => {
 
     const stopTracker = async () => {
         /* TODO: error */
-        await stopBackgroundGeolocation();
+        // await stopBackgroundGeolocation();
         const state = await stopBackgroundGeolocation();
         console.log('[stopTracker]', state?.enabled);
         deactivateKeepAwake();
@@ -81,6 +82,10 @@ const useLocalizationTracker = (persist: boolean) => {
         const currRoute = await startCurrentRoute();
         dispatch(setCurrentRoute(keep ? undefined : currRoute));
     };
+
+    useEffect(() => {
+        requestGeolocationPermission();
+    }, []);
 
     useEffect(() => {
         let interval: any;
@@ -115,7 +120,6 @@ const useLocalizationTracker = (persist: boolean) => {
 
         return () => {
             clearInterval(interval);
-            cleanUp();
         };
     }, [isActive, persist, onPersistData]);
 
