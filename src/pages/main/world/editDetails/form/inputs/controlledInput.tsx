@@ -1,14 +1,15 @@
 import React from 'react';
 import {Controller, Control} from 'react-hook-form';
+import {SelectI} from '../../../../../../models/map.model';
 import GenericInput from './genericInput';
-import {FCPropsI, FormData, OptionType} from './types';
+import {FCPropsI, FormData} from './types';
 
 interface IProps {
     fieldName: keyof FormData;
     control: Control<FormData>;
     Input: React.FunctionComponent<FCPropsI>;
     onValidate: (
-        val: string | number | boolean | OptionType[],
+        val: string | number | boolean | SelectI | undefined,
         fieldName: string,
     ) => any;
 }

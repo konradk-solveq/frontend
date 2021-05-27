@@ -12,6 +12,9 @@ export const favouritesMapsIDSSelector = (state: RootState): string[] =>
 export const loadingMapsSelector = (state: RootState): boolean =>
     state.maps.loading;
 
+export const refreshMapsSelector = (state: RootState): boolean =>
+    state.maps.refresh;
+
 export const favouritesMapsSelector = createSelector(
     favouritesMapsIDSSelector,
     mapsListSelector,
@@ -20,3 +23,9 @@ export const favouritesMapsSelector = createSelector(
 
 export const mapDataByIDSelector = (mapID: string) =>
     createSelector(mapsListSelector, maps => maps.find(m => m.id === mapID));
+
+export const nextPaginationCoursor = (state: RootState): string | undefined =>
+    state.maps.paginationCoursor?.next;
+
+export const prevPaginationCoursor = (state: RootState): string | undefined =>
+    state.maps.paginationCoursor?.prev;

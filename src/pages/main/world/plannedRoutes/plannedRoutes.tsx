@@ -7,6 +7,7 @@ import {useAppSelector} from '../../../../hooks/redux';
 import {MapType} from '../../../../models/map.model';
 import {I18n} from '../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
+import {getImagesThumbs} from '../../../../utils/transformData';
 
 import NextTile from '../components/tiles/nextTile';
 import EmptyList from './emptyList';
@@ -47,9 +48,14 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
     const renderItem = ({item, index}: RenderItem) => {
         const lastItemStyle =
             index === favouriteMaps?.length - 1 ? styles.lastTile : undefined;
+        const images = getImagesThumbs(item?.images || []);
         return (
             <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
-                <NextTile mapData={item} onPress={onPressHandler} />
+                <NextTile
+                    mapData={item}
+                    images={images}
+                    onPress={onPressHandler}
+                />
             </View>
         );
     };

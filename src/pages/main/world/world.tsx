@@ -1,23 +1,26 @@
 import React, {useCallback, useState} from 'react';
 import {View, StyleSheet, SafeAreaView, Text, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
+
 import MyRoutes from './myRoutes/myRoutes';
 import {OptionType} from './components/filters/filtersData';
-
-import {
-    setObjSize,
-    getCenterLeftPx,
-    getHorizontalPx,
-    getVerticalPx,
-    getWidthPx,
-} from '../../../helpers/layoutFoo';
-import FiltersModal from './components/filters/filtersModal';
+import {getVerticalPx} from '../../../helpers/layoutFoo';
 import useStatusBarHeight from '../../../hooks/statusBarHeight';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
+import {
+    loadingMapsSelector,
+    nextPaginationCoursor,
+} from '../../../storage/selectors/map';
+import {fetchMapsList} from '../../../storage/actions';
+
+import FiltersModal from './components/filters/filtersModal';
 import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
 import BikeMap from './bikeMap/bikeMap';
+import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
+import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
+
+import styles from './style';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -31,103 +34,36 @@ type PickedFilters = {
     [key: string]: OptionType[];
 };
 
+/* TODO: refresh data if position chagned more than 500 meters */
 const World: React.FC = () => {
+    const dispatch = useAppDispatch();
     const trans: any = I18n.t('MainWorld');
     const statusBarHeight = useStatusBarHeight();
+    const nextCoursor = useAppSelector(nextPaginationCoursor);
+    const isLoading = useAppSelector(loadingMapsSelector);
+
     const [showModal, setShowModal] = useState<boolean>(false);
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
-
     const [activeTab, setActiveTab] = useState<routesTab>(routesTab.BIKEMAP);
 
     const handleBikeMap = () => {
-        if (activeTab?.includes(routesTab.BIKEMAP)) {
+        if (activeTab === routesTab.BIKEMAP) {
             return;
         }
         setActiveTab(routesTab.BIKEMAP);
     };
     const handleMyRoutes = () => {
-        if (activeTab?.includes(routesTab.MYROUTES)) {
+        if (activeTab === routesTab.MYROUTES) {
             return;
         }
         setActiveTab(routesTab.MYROUTES);
     };
     const handlePlaned = () => {
-        if (activeTab?.includes(routesTab.PLANED)) {
+        if (activeTab === routesTab.PLANED) {
             return;
         }
         setActiveTab(routesTab.PLANED);
     };
-
-    setObjSize(334, 50);
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            backgroundColor: '#fff',
-        },
-        headerWrapper: {
-            position: 'absolute',
-            flexDirection: 'row',
-            width: getWidthPx(),
-            left: getCenterLeftPx(),
-            right: 40,
-            top: getVerticalPx(isAndroid ? 65 - statusBarHeight : 65),
-        },
-        header: {
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'center',
-            fontSize: getHorizontalPx(18),
-            color: '#313131',
-            width: '100%',
-        },
-        headerButtons: {
-            flexDirection: 'row',
-            right: getHorizontalPx(60),
-        },
-        headerButton: {
-            margin: 0,
-        },
-        headerButtonLeft: {
-            marginRight: 20,
-        },
-        wrap: {
-            width: getHorizontalPx(334),
-            left: getHorizontalPx(40),
-        },
-        btns: {
-            height: 41,
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            marginTop:
-                getVerticalPx(138) < 100
-                    ? 100
-                    : getVerticalPx(138 - statusBarHeight),
-        },
-        btn: {
-            marginRight: getHorizontalPx(5),
-        },
-        title: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
-            lineHeight: 52,
-            color: '#d8232a',
-            textAlign: 'center',
-            marginTop: getVerticalPx(37),
-        },
-        text: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 23,
-            lineHeight: 30,
-            letterSpacing: 0.5,
-            color: '#313131',
-            textAlign: 'left',
-            marginTop: getVerticalPx(20),
-        },
-        viewContainer: {
-            flex: 1,
-            marginTop: getVerticalPx(30),
-        },
-    });
 
     const onShowModalHanlder = () => {
         setShowModal(true);
@@ -142,10 +78,25 @@ const World: React.FC = () => {
         onHideModalHandler();
     };
 
+    const onLoadMoreHandler = useCallback(() => {
+        if (nextCoursor && !isLoading) {
+            dispatch(fetchMapsList(nextCoursor));
+        }
+    }, [dispatch, isLoading, nextCoursor]);
+
+    const onRefreshHandler = useCallback(() => {
+        dispatch(fetchMapsList());
+    }, [dispatch]);
+
     const renderActiveScreen = useCallback(() => {
         switch (activeTab) {
             case routesTab.BIKEMAP:
-                return <BikeMap />;
+                return (
+                    <BikeMap
+                        onRefresh={onRefreshHandler}
+                        onLoadMore={onLoadMoreHandler}
+                    />
+                );
             case routesTab.MYROUTES:
                 return (
                     <MyRoutes onPress={() => setActiveTab(routesTab.BIKEMAP)} />
@@ -157,9 +108,26 @@ const World: React.FC = () => {
                     />
                 );
             default:
-                return <BikeMap />;
+                return (
+                    <BikeMap
+                        onRefresh={onRefreshHandler}
+                        onLoadMore={onLoadMoreHandler}
+                    />
+                );
         }
-    }, [activeTab]);
+    }, [activeTab, onLoadMoreHandler, onRefreshHandler]);
+
+    const dynamicStyles = StyleSheet.create({
+        headerWrapper: {
+            top: getVerticalPx(isAndroid ? 65 - statusBarHeight : 65),
+        },
+        btns: {
+            marginTop:
+                getVerticalPx(138) < 100
+                    ? 100
+                    : getVerticalPx(138 - statusBarHeight),
+        },
+    });
 
     return (
         <SafeAreaView style={styles.container}>
@@ -169,7 +137,7 @@ const World: React.FC = () => {
                 onSave={onSetFiltersHandler}
                 showModal={showModal}
             />
-            <View style={styles.headerWrapper}>
+            <View style={[styles.headerWrapper, dynamicStyles.headerWrapper]}>
                 <Text style={styles.header}>{trans.header}</Text>
                 <View style={styles.headerButtons}>
                     <FiltersBtn
@@ -187,7 +155,7 @@ const World: React.FC = () => {
             </View>
 
             <View style={styles.wrap}>
-                <View style={styles.btns}>
+                <View style={[styles.btns, dynamicStyles.btns]}>
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnBikeMap}

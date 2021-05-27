@@ -3,19 +3,19 @@ import {View, Text, Image} from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
-import {MapType} from '../../../../../models/map.model';
+import {Map} from '../../../../../models/map.model';
 
 import ImageSwiper from '../../../../../sharedComponents/imageSwiper/imageSwiper';
-
 import RideTile from './rideTile';
 
 import styles from './styles';
 
 interface IProps {
-    mapData: MapType | undefined;
+    mapData: Map | undefined;
+    images: {images: string[]; mapImg: string};
 }
 
-const Description: React.FC<IProps> = ({mapData}: IProps) => {
+const Description: React.FC<IProps> = ({mapData, images}: IProps) => {
     const trans: any = I18n.t('RoutesDetails.details');
 
     return (
@@ -39,7 +39,8 @@ const Description: React.FC<IProps> = ({mapData}: IProps) => {
                         styles.lightFont,
                         styles.color555555,
                     ]}>
-                    1,2{trans.distanceToStart}
+                    {mapData?.distanceToRouteInKilometers}
+                    {trans.distanceToStart}
                 </Text>
             </View>
             <View style={styles.tileWrapper}>
@@ -50,12 +51,13 @@ const Description: React.FC<IProps> = ({mapData}: IProps) => {
                         styles.color555555,
                         {marginBottom: getVerticalPx(16)},
                     ]}>
-                    {mapData?.details.localization || ''}
+                    {mapData?.location || ''}
                 </Text>
                 <RideTile
-                    distance={mapData?.totalDistance}
-                    level={mapData?.details?.level}
-                    type={mapData?.details?.pavement?.[0]}
+                    distance={mapData?.distanceInKilometers}
+                    level={mapData?.firstDifficulty}
+                    type={mapData?.firstSurface}
+                    time={mapData?.formattedTimeString}
                 />
             </View>
             <View>
@@ -74,12 +76,12 @@ const Description: React.FC<IProps> = ({mapData}: IProps) => {
                             styles.lightFont,
                             styles.descriptionTitle,
                         ]}>
-                        {mapData?.details?.intro
-                            ? `„${mapData.details.intro}”`
+                        {mapData?.description?.short
+                            ? `„${mapData.description.short}”`
                             : ''}
                     </Text>
                     <Text style={[styles.textStyle, styles.lightFont]}>
-                        {mapData?.details?.description || trans.noDescription}
+                        {mapData?.description?.long || trans.noDescription}
                     </Text>
                 </View>
             </View>
@@ -93,8 +95,8 @@ const Description: React.FC<IProps> = ({mapData}: IProps) => {
                     ]}>
                     {trans.imagesTitle}
                 </Text>
-                {mapData && mapData?.details?.images?.length > 0 && (
-                    <ImageSwiper images={mapData.details.images} />
+                {mapData && images?.images?.length > 0 && (
+                    <ImageSwiper images={images?.images} />
                 )}
             </View>
             <View style={styles.mapContainer}>
@@ -108,11 +110,11 @@ const Description: React.FC<IProps> = ({mapData}: IProps) => {
                     {trans.mapTitle}
                 </Text>
                 <View style={styles.mapImage}>
-                    {mapData?.details?.mapUrl ? (
+                    {images?.mapImg ? (
                         <Image
                             style={styles.mImg}
                             resizeMode="cover"
-                            source={{uri: mapData.details.mapUrl}}
+                            source={{uri: images?.mapImg}}
                         />
                     ) : (
                         <View style={styles.mImg} />
@@ -124,16 +126,16 @@ const Description: React.FC<IProps> = ({mapData}: IProps) => {
                     {trans.tagsTitle}
                 </Text>
                 <View style={styles.tagsWrapper}>
-                    {mapData?.tags &&
-                        mapData.tags.map(t => {
+                    {mapData?.tags?.options &&
+                        mapData.tags?.options.map(t => {
                             return (
-                                <View key={t} style={styles.tag}>
+                                <View key={t?.enumValue} style={styles.tag}>
                                     <Text
                                         style={[
                                             styles.textStyle,
                                             styles.color555555,
                                         ]}>
-                                        {t}
+                                        {t?.i18nValue}
                                     </Text>
                                 </View>
                             );

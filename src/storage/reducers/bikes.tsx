@@ -78,7 +78,6 @@ const bikesReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.SET_BIKES_ERROR: {
-            console.log('error from reducer', action.error)
             return {
                 ...state,
                 loading: false,

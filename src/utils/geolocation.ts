@@ -30,3 +30,21 @@ export const initBGeolocalization = async () => {
 
     return state;
 };
+
+export const getCurrentLocation = async () => {
+    const location = await BackgroundGeolocation.getCurrentPosition({
+        timeout: 30,
+        maximumAge: 5000,
+        desiredAccuracy: 10,
+        samples: 3,
+    });
+
+    return location;
+};
+
+export const getLatLng = async () => {
+    const location = await getCurrentLocation();
+    const lat = location.coords.latitude;
+    const lng = location.coords.longitude;
+    return {lat, lng};
+};

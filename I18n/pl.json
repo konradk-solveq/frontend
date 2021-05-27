@@ -1322,10 +1322,10 @@
                 "formErrors": {
                     "name": "Nieprawidłowe znaki",
                     "publishWithName": "Pole wymagane",
-                    "intro": "Nieprawidłowe znaki",
-                    "description": "Nieprawidłowe znaki",
-                    "level": "Wybierz poziom trudności",
-                    "pavement": "Wybierz rodzaje nawierzchni",
+                    "short": "Nieprawidłowe znaki",
+                    "long": "Nieprawidłowe znaki",
+                    "difficulty": "Wybierz poziom trudności",
+                    "surface": "Wybierz rodzaje nawierzchni",
                     "tags": "Wybierz tagi"
                 }
             }

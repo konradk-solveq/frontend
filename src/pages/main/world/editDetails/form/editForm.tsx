@@ -6,8 +6,12 @@ import {SubmitHandler} from 'react-hook-form';
 import {I18n} from '../../../../../../I18n/I18n';
 import {validateData} from '../../../../../utils/validation/validation';
 import {useAppSelector} from '../../../../../hooks/redux';
-import {attributes, OptionType} from './attributes';
-import {Map, publishMapValidationRules} from '../../../../../models/map.model';
+import {attributes} from './attributes';
+import {
+    Map,
+    publishMapValidationRules,
+    SelectI,
+} from '../../../../../models/map.model';
 import {userNameSelector} from '../../../../../storage/selectors';
 import {FormData} from './inputs/types';
 
@@ -19,14 +23,19 @@ import ControlledInput from './inputs/controlledInput';
 import ImagesInput from './inputs/imagesInput';
 
 import styles from './style';
-import useFormDataWithMapData from '../../../../../hooks/mapDataToFormData';
+import useFormDataWithMapData from '../../../../../hooks/formDataWithMapData';
 
 interface IProps {
     mapData: Map | undefined;
+    imagesData: {images: string[]; mapImg: string};
     onSubmit: (email: string, password: string) => void;
 }
 
-const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
+const EditForm: React.FC<IProps> = ({
+    onSubmit,
+    imagesData,
+    mapData,
+}: IProps) => {
     const navigation = useNavigation();
     const trans: any = I18n.t('RoutesDetails.EditScreen');
     const validationMessages: any = I18n.t(
@@ -34,11 +43,9 @@ const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
     );
     const userName = useAppSelector(userNameSelector);
 
-    const [images, setImages] = useState<string[]>(
-        mapData?.details?.images || [],
-    );
+    const [images, setImages] = useState<string[]>(imagesData?.images || []);
 
-    const {control, handleSubmit} = useFormDataWithMapData(mapData);
+    const {control, handleSubmit, options} = useFormDataWithMapData(mapData);
 
     const onSubmitHandler: SubmitHandler<FormData> = data => {
         console.log('onSubmitHandler -- action', data);
@@ -49,7 +56,7 @@ const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
     };
 
     const onValidateHanlder = (
-        val: string | number | boolean | OptionType[],
+        val: string | number | boolean | SelectI | undefined,
         fieldName: string,
     ) => {
         const rules = publishMapValidationRules[fieldName];
@@ -108,14 +115,14 @@ const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
             </View>
             <View style={styles.levelContainer}>
                 <ControlledInput
-                    fieldName="level"
+                    fieldName="difficulty"
                     control={control}
                     Input={({value, onChange, errMsg}) => {
                         console.log(value);
                         return (
                             <MultiSelect
                                 key={attributes.level.name}
-                                options={attributes.level.options}
+                                options={options?.difficulty?.options}
                                 optionsTrans={trans.attributes.level}
                                 predefined={value}
                                 errorMessage={errMsg}
@@ -129,12 +136,12 @@ const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
             </View>
             <View style={styles.pavementContainer}>
                 <ControlledInput
-                    fieldName="pavement"
+                    fieldName="surface"
                     control={control}
                     Input={({value, onChange, errMsg}) => (
                         <MultiSelect
                             key={attributes.pavement.name}
-                            options={attributes.pavement.options}
+                            options={options?.surface?.options}
                             optionsTrans={trans.attributes.pavement}
                             predefined={value}
                             errorMessage={errMsg}
@@ -146,7 +153,7 @@ const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
             </View>
             <View>
                 <ControlledInput
-                    fieldName="intro"
+                    fieldName="short"
                     control={control}
                     Input={({value, isValid, onChange, errMsg}) => (
                         <OneLineText
@@ -167,7 +174,7 @@ const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
             </View>
             <View>
                 <ControlledInput
-                    fieldName="description"
+                    fieldName="long"
                     control={control}
                     Input={({value, isValid, onChange, errMsg}) => (
                         <OneLineText
@@ -208,7 +215,7 @@ const EditForm: React.FC<IProps> = ({onSubmit, mapData}: IProps) => {
                     Input={({value, onChange, errMsg}) => (
                         <MultiSelect
                             key={attributes.tags.name}
-                            options={attributes.tags.options}
+                            options={options?.tags?.options}
                             optionsTrans={trans.attributes.tags}
                             predefined={value}
                             errorMessage={errMsg}

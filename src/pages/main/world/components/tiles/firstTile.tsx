@@ -1,6 +1,9 @@
 import React from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 
+import {I18n} from '../../../../../../I18n/I18n';
+import {Map} from '../../../../../models/map.model';
+
 import {
     BikeIcon,
     ClockIcon,
@@ -9,20 +12,18 @@ import {
     WayIcon,
     DownloadIcon,
 } from '../../../../../sharedComponents/svg/icons';
-import {I18n} from '../../../../../../I18n/I18n';
-import {MapType} from '../../../../../models/map.model';
-
 import TileBackground from './tileBackground';
 import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
 
 import styles from './style';
 
 interface IProps {
-    mapData: MapType;
+    mapData: Map;
+    images: {images: string[]; mapImg: string};
     onPress: (state: boolean, mapID: string) => void;
 }
 
-const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
+const FirstTile: React.FC<IProps> = ({mapData, images, onPress}: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
 
     const onDetailsButtonPressedHandler = () => {
@@ -33,9 +34,11 @@ const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
         <TileBackground>
             <View style={styles.container}>
                 <View style={styles.imageWrapper}>
-                    {mapData?.details?.images?.length ? (
+                    {images?.images?.length && images.images?.[0] ? (
                         <Image
-                            source={{uri: mapData.details.images[0]}}
+                            source={{
+                                uri: images.images[0],
+                            }}
                             style={styles.image}
                             resizeMode="cover"
                         />
@@ -50,7 +53,8 @@ const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                         </Text>
                         <View style={styles.firstSectionContent}>
                             <Text style={styles.distanceToStart}>
-                                1,2{trans.distanceToStart}
+                                {mapData.distanceToRouteInKilometers}
+                                {trans.distanceToStart}
                             </Text>
                             <View style={styles.raitingContainer}>
                                 <View style={styles.borderVerticalLine} />
@@ -65,7 +69,7 @@ const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                         <Text
                             numberOfLines={1}
                             style={styles.localizationDescription}>
-                            {mapData?.details?.intro || ''}
+                            {mapData?.description?.short || ''}
                         </Text>
                     </View>
                     <View style={styles.borderLine} />
@@ -76,7 +80,7 @@ const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                                     iconStyle={styles.secondSectionIcon}
                                 />
                                 <Text style={styles.secondSectionText}>
-                                    {mapData?.totalDistance || '-'}{' '}
+                                    {mapData.distanceInKilometers || '-'}{' '}
                                     <Text style={styles.secondSectionSuffix}>
                                         {trans.distanceUnit}
                                     </Text>
@@ -87,7 +91,7 @@ const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                                     iconStyle={styles.secondSectionIcon}
                                 />
                                 <Text style={styles.secondSectionText}>
-                                    {mapData?.totalTime || '-:--'}{' '}
+                                    {mapData?.formattedTimeString || '-:--'}{' '}
                                     <Text style={styles.secondSectionSuffix}>
                                         {trans.timeUnit}
                                     </Text>
@@ -108,7 +112,7 @@ const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                                         iconStyle={styles.mountainIcon}
                                     />
                                     <Text style={styles.thirdSectionText}>
-                                        {mapData?.details?.level || ''}
+                                        {mapData?.firstDifficulty || ''}
                                     </Text>
                                 </View>
                                 <View
@@ -118,7 +122,7 @@ const FirstTile: React.FC<IProps> = ({mapData, onPress}: IProps) => {
                                     ]}>
                                     <WayIcon iconStyle={styles.wayIcon} />
                                     <Text style={styles.thirdSectionText}>
-                                        {mapData?.details?.pavement?.[0] || ''}
+                                        {mapData?.firstSurface || ''}
                                     </Text>
                                 </View>
                             </View>
