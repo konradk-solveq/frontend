@@ -78,6 +78,9 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             setJs(
                 `setPositionOnMap({lat: ${location.lat}, lng: ${location.lon} });true;`,
             );
+            setJs(
+                `setMarkerPositionOnMap({lat: ${location.lat}, lng: ${location.lon} });true;`,
+            );
         }
     }, [location, onMapLoaded]);
 
@@ -85,7 +88,10 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         setJs(`setValues(${JSON.stringify(trackerData)});true;`);
         if (trackerData?.coords) {
             setJs(
-                `setPositionOnMap({lat: ${trackerData?.coords.lat}, lng: ${trackerData?.coords.lon} });true;`,
+                `setPositionOnMap({lat: ${trackerData.coords.lat}, lng: ${trackerData.coords.lon} });true;`,
+            );
+            setJs(
+                `setMarkerPositionOnMap({lat: ${trackerData.coords.lat}, lng: ${trackerData.coords.lon} });true;`,
             );
         }
     }, [trackerData]);
