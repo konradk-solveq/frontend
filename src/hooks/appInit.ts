@@ -4,27 +4,34 @@ import {State} from 'react-native-background-geolocation';
 import {I18n} from '../../I18n/I18n';
 import {initCrashlytics} from '../utils/crashlytics';
 import {initBGeolocalization, cleanUp} from '../utils/geolocation';
-import {
-    setBikesListByFrameNumbers,
-    fetchGenericBikeData,
-} from '../storage/actions/bikes';
-import {fetchMapsList} from '../storage/actions';
 import {useAppDispatch, useAppSelector} from './redux';
+import {appSyncData, clearAppError} from '../storage/actions/app';
+import {
+    appErrorSelector,
+    isOnlineAppStatusSelector,
+    syncAppSelector,
+} from '../storage/selectors';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
     const dispatch = useAppDispatch();
-    const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
+    const isOnline = useAppSelector<boolean>(isOnlineAppStatusSelector);
     const userName = useAppSelector<string>(state => state.user.userName);
+    const syncStatus = useAppSelector(syncAppSelector);
+    const error = useAppSelector(
+        appErrorSelector,
+    ); /* TODO: check all errors from sync requests */
 
     const [geolocationState, setGeolocationState] = useState<State>();
     const [crashlyticsInitialized, setCrashlyticsInitialized] = useState(false);
     const [dataInitialized, setDataInitialized] = useState(false);
 
+    const clearAppSyncError = () => {
+        dispatch(clearAppError());
+    };
+
     const synchData = async () => {
-        dispatch(fetchGenericBikeData());
-        dispatch(setBikesListByFrameNumbers());
-        dispatch(fetchMapsList());
+        dispatch(appSyncData());
         setDataInitialized(true);
     };
 
@@ -60,6 +67,9 @@ const useAppInit = () => {
         crashlyticsInitialized,
         dataInitialized,
         isOnline,
+        syncStatus,
+        error,
+        clearAppSyncError,
     };
 };
 

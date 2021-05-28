@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, SafeAreaView, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, SafeAreaView, View, Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
-import { trackerActiveSelector } from '../../../storage/selectors/routes';
+import {trackerActiveSelector} from '../../../storage/selectors/routes';
 
 import useAppInit from '../../../hooks/appInit';
 import {
@@ -14,19 +14,32 @@ import {
 } from '../../../helpers/layoutFoo';
 import AddBike from './addBike';
 
-import { useAppSelector } from '../../../hooks/redux';
-import { I18n } from '../../../../I18n/I18n';
-import { nfcIsSupported } from '../../../helpers/nfc';
-import { RegularStackRoute } from '../../../navigation/route';
+import {useAppSelector} from '../../../hooks/redux';
+import {I18n} from '../../../../I18n/I18n';
+import {nfcIsSupported} from '../../../helpers/nfc';
+import {RegularStackRoute} from '../../../navigation/route';
 
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import Loader from '../../onboarding/bikeAdding/loader/loader';
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
     const trans: any = I18n.t('MainHome');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
 
-    const { isOnline } = useAppInit();
+    const {syncStatus, error, clearAppSyncError} = useAppInit();
+
+    useEffect(() => {
+        if (!syncStatus && error.statusCode > 400) {
+            Alert.alert('', error.message, [
+                {
+                    text: 'Ok',
+                    onPress: clearAppSyncError,
+                },
+            ]);
+            return;
+        }
+    }, [syncStatus, error, clearAppSyncError]);
 
     /* TODO: move initialization to splashs screen or add loader */
     useEffect(() => {
@@ -74,13 +87,17 @@ const Home: React.FC = () => {
     const onAddActionHandler = () => {
         navigation.navigate({
             name: nfc ? 'TurtorialNFC' : 'AddingByNumber',
-            params: { emptyFrame: true },
+            params: {emptyFrame: true},
         });
     };
 
     const onCheckActionHandler = () => {
         navigation.navigate('Bike');
     };
+
+    if (syncStatus) {
+        return <Loader />;
+    }
 
     return (
         <SafeAreaView style={styles.container1}>

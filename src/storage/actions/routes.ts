@@ -35,14 +35,23 @@ export const setCurrentRouteData = (currentRouteData: LocationDataI[]) => ({
     currentRouteData: currentRouteData,
 });
 
-export const setRoutesData = (routes: RoutesI) => ({
+export const setRoutesData = (
+    routes: RoutesI | RoutesI[],
+    refresh?: boolean,
+) => ({
     type: actionTypes.SET_ROUTES_DATA,
     routes: routes,
+    refresh: refresh,
 });
 
 export const setRouteToSynch = (routeId: string) => ({
     type: actionTypes.SET_ROUTE_TO_SYNC,
     routeId: routeId,
+});
+
+export const setRoutesToSynch = (routeIds: string[]) => ({
+    type: actionTypes.SET_ROUTES_TO_SYNC,
+    routeIds: routeIds,
 });
 
 export const clearRoutesToSynch = (routeIds: string[]) => ({
@@ -166,6 +175,50 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[syncCurrentRouteData]');
+        logger.recordError(error);
+
+        dispatch(addRoutesToSynchQueue());
+    }
+};
+
+export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
+    dispatch,
+    getState,
+) => {
+    dispatch(setLoadingState(true));
+    try {
+        const {routesToSync, routes}: RoutesState = getState().routes;
+
+        if (!routesToSync?.length) {
+            dispatch(setLoadingState(false));
+            return;
+        }
+
+        let newRoutes: RoutesI[] = [...routes];
+        let newRoutesToSync: string[] = [...routesToSync];
+        routesToSync.forEach(async (id: string) => {
+            const routeToSync = routes.find((r: RoutesI) => r.id === id);
+            if (!routeToSync) {
+                newRoutesToSync = newRoutesToSync.filter(rs => rs !== id);
+                return;
+            }
+
+            const response = await syncRouteData(routeToSync.route);
+
+            if (response.error || !response?.data?.id) {
+                return;
+            }
+
+            dispatch(addMapData(response.data, response.data.id));
+            newRoutesToSync = newRoutesToSync.filter(rs => rs !== id);
+            newRoutes = newRoutes.filter(r => r.id !== id);
+        });
+
+        dispatch(setRoutesToSynch(newRoutesToSync));
+        dispatch(setRoutesData(newRoutes, true));
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        logger.log('[syncRouteDataFromQueue]');
         logger.recordError(error);
 
         dispatch(addRoutesToSynchQueue());
