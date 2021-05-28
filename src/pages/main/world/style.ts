@@ -22,7 +22,8 @@ const worldStyles = StyleSheet.create({
     },
     headerButtons: {
         flexDirection: 'row',
-        right: getHorizontalPx(60),
+        right: getHorizontalPx(30),
+        // right: getHorizontalPx(60),
     },
     headerButton: {
         margin: 0,
