@@ -144,13 +144,13 @@ const World: React.FC = () => {
                         onPress={onShowModalHanlder}
                         iconStyle={[
                             styles.headerButton,
-                            styles.headerButtonLeft,
+                            // styles.headerButtonLeft,
                         ]}
                     />
-                    <MapBtn
+                    {/* <MapBtn
                         onPress={() => {}}
                         iconStyle={styles.headerButton}
-                    />
+                    /> */}
                 </View>
             </View>
 
