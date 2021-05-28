@@ -3,6 +3,7 @@ import {Stack} from './../stack';
 import {horizontalAnim} from '../../helpers/positioning';
 
 import SplashScreen from '../../pages/main/splashScreen/splashScreen';
+import newRegulations from '../../pages/main/newRegulations/newRegulations';
 import ListPageInput from '../../sharedComponents/inputs/listPageInput';
 import InputPage from '../../sharedComponents/inputs/inputPage';
 import MineMenu from '../../pages/main/mainMenu';
@@ -31,6 +32,7 @@ const RegularStackNavigator: React.FC = () => {
             screenOptions={horizontalAnim}>
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
             <Stack.Screen name="MineMenu" component={MineMenu} />
+            <Stack.Screen name="newRegulations" component={newRegulations} />
 
             {/* Start add bike */}
             <Stack.Screen name="AddingByNumber" component={AddingByNumber} />

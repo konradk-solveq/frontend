@@ -876,6 +876,20 @@
             }
         ]
     },
+    "newRegulations": {
+        "version": "1.0.0",
+        "type": "info",
+        "header": "Regulamin",
+        "title": "Od 1 czerwca 2021 zmieniamy regulamin aplikacji.",
+        "text": "Sprawdź zmiany i nowości, które wprowadzamy w http://kross.eu.",
+        "urls": [{
+            "url": "http://kross.eu",
+            "hyper": "Regulaminem Aplikacji Mobilnej"
+        }],
+        "btnOk": "DALEJ",
+        "btnDontAccept": "NIE AKCEPTUJĘ",
+        "btnAccept": "AKCEPTUJĘ"
+    },
     "BikeData": {
         "header": "Identyfikacja roweru",
         "title": "Hej, to nie jest rower KROSS.\nNic nie szkodzi, podaj dane swojego roweru.",
@@ -1034,15 +1048,26 @@
             "filters": {
                 "date": {
                     "name": "Sortuj po dacie",
-                    "options": ["Od najnowszych", "Od najstarszych"]
+                    "options": [
+                        "Od najnowszych",
+                        "Od najstarszych"
+                    ]
                 },
                 "routeType": {
                     "name": "Pokaż trasy",
-                    "options": ["Wszystkie", "Niepubliczne", "Publiczne"]
+                    "options": [
+                        "Wszystkie",
+                        "Niepubliczne",
+                        "Publiczne"
+                    ]
                 },
                 "level": {
                     "name": "Poziom trudności",
-                    "options": ["Łatwa", "Umiarkowana", "Wymagająca"]
+                    "options": [
+                        "Łatwa",
+                        "Umiarkowana",
+                        "Wymagająca"
+                    ]
                 },
                 "pavement": {
                     "name": "Nawierzchnia",
@@ -1121,7 +1146,11 @@
             "attributes": {
                 "level": {
                     "name": "Poziom trudności",
-                    "options": ["Łatwa", "Umiarkowana", "Wymagająca"]
+                    "options": [
+                        "Łatwa",
+                        "Umiarkowana",
+                        "Wymagająca"
+                    ]
                 },
                 "pavement": {
                     "name": "Nawierzchnia",
@@ -1213,7 +1242,10 @@
     "CounterThankYouPage": {
         "title": ", brawo oszczędziłeś",
         "defaultName": "Rowerzysto",
-        "type_1": ["drzewo!", "drzew!"],
+        "type_1": [
+            "drzewo!",
+            "drzew!"
+        ],
         "type_2": "l paliwa!",
         "distance": "Dystans",
         "distanceUnit": "km",

@@ -277,3 +277,10 @@ const setValues = v => {
 
     countersUpdate();
 };
+
+const sleep = () => {}
+
+const awake = () => {
+    interval = setInterval(timer, 1000);
+
+}

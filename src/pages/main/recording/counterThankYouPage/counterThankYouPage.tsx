@@ -98,7 +98,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     const heandleGetTitleType = () => {
         if (titleType == 0) {
-            let num = Math.floor(parseFloat(route?.params?.distance) / 11);
+            let num = Math.floor(distance / 23);
             if (num < 1) {
                 num = 1;
             }
@@ -106,7 +106,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 ' ' + num + ' ' + (num == 1 ? trans.type_1[0] : trans.type_1[1])
             );
         } else {
-            let num = Math.floor(parseFloat(route?.params?.distance) / 7);
+            let num = Math.floor(distance / 14.3);
             if (num < 1) {
                 num = 1;
             }
