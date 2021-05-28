@@ -58,9 +58,14 @@ const routesReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.SET_ROUTES_DATA: {
+            let newRoutes = [...state.routes, action.routes];
+            if (action?.refresh) {
+                newRoutes = action.routes;
+            }
+
             return {
                 ...state,
-                routes: [...state.routes, action.routes],
+                routes: newRoutes,
                 statusCode: 200,
             };
         }
@@ -82,6 +87,12 @@ const routesReducer = (state = initialStateList, action: any) => {
             return {
                 ...state,
                 routesToSync: [...state.routesToSync, action.routeId],
+            };
+        }
+        case actionTypes.SET_ROUTES_TO_SYNC: {
+            return {
+                ...state,
+                routesToSync: action.routeIds,
             };
         }
         case actionTypes.SET_CURRENT_ROUTE_DATA: {
