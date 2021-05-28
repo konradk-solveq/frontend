@@ -18,7 +18,7 @@ interface Props {
 }
 
 const SplashScreen: React.FC<Props> = (props: Props) => {
-    const [showNewRegulations, setShowNewRegulations] = useState(true);
+    const [showNewRegulations, setShowNewRegulations] = useState(false);
 
     let time = __DEV__ ? 100 : 3000;
     setTimeout(() => {

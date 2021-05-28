@@ -6,8 +6,21 @@ let marker;
 const setPositionOnMap = pos => {
     map.setOptions({
         center: new google.maps.LatLng(pos.lat, pos.lng),
-        zoom: 15,
+
+
     });
+
+    // LatLng latLng = new LatLng(pos.lat, pos.lng);
+    // CameraPosition cameraPosition = new CameraPosition.Builder()
+    // .target(latLng)
+    // .tilt(0)
+    // .zoom(15)
+    //     .bearing(pos.heading)
+    //     .build();
+    // map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+    // map.style.setProperty('transform','rotate(90deg)');
+    // map.style.transform = 'rotate(180)';
 };
 
 const setMarkerPositionOnMap = pos => {
@@ -28,6 +41,7 @@ function initMap() {
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
             mapTypeIds: ['roadmap', 'terrain'],
         },
+        zoom: 15,
     });
 
     marker = new google.maps.Marker();

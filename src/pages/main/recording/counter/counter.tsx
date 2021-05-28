@@ -76,7 +76,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     useEffect(() => {
         if (location && onMapLoaded) {
             setJs(
-                `setPositionOnMap({lat: ${location.lat}, lng: ${location.lon} });true;`,
+                `setPositionOnMap({lat: ${location.lat}, lng: ${location.lon}, heading: ${location.heading} });true;`,
             );
             setJs(
                 `setMarkerPositionOnMap({lat: ${location.lat}, lng: ${location.lon} });true;`,

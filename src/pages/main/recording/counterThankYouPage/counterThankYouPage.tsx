@@ -65,7 +65,6 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 setTitleType(randomNum());
             }, 300);
         });
-        //   return unsubscribe;
     }, [props.navigation]);
 
     const onGoForward = useCallback(() => {
@@ -96,20 +95,28 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
         }
     }, [error.message, isSyncData, onGoForward]);
 
+    const heandleSaveDistance = ratio => {
+        let d = route?.params?.distance;
+        if (typeof d === 'undefined') {
+            d = 1;
+        } else {
+            d = Number(d.replace(',', '.'));
+        }
+        let res = Math.floor(d / ratio);
+        if (res < 1) {
+            res = 1;
+        }
+        return res;
+    };
+
     const heandleGetTitleType = () => {
         if (titleType == 0) {
-            let num = Math.floor(distance / 23);
-            if (num < 1) {
-                num = 1;
-            }
+            let num = heandleSaveDistance(23);
             return (
                 ' ' + num + ' ' + (num == 1 ? trans.type_1[0] : trans.type_1[1])
             );
         } else {
-            let num = Math.floor(distance / 14.3);
-            if (num < 1) {
-                num = 1;
-            }
+            let num = heandleSaveDistance(14.3);
             return ' ' + num + ' ' + trans.type_2;
         }
     };

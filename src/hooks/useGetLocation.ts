@@ -5,6 +5,7 @@ import {cleanUp, getCurrentLocation} from '../utils/geolocation';
 interface LocationI {
     lat: number;
     lon: number;
+    heading: number;
 }
 
 const useGetLocation = () => {
@@ -16,6 +17,7 @@ const useGetLocation = () => {
                 setLocation({
                     lat: d.coords.latitude,
                     lon: d.coords.longitude,
+                    heading: d.coords.heading || 0,
                 });
             }
         });
