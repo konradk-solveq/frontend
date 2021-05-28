@@ -4,13 +4,13 @@ export const getAverageSpeed = (speed: number[]) => {
     }
 
     if (speed.length === 1) {
-        return speed[0].toFixed(2);
+        return Math.abs(speed[0]).toFixed(2);
     }
 
-    return (
+    return Math.abs(
         speed.reduce((a, b) => {
             return a + b;
-        }, 0) / speed.length
+        }, 0) / speed.length,
     ).toFixed(2);
 };
 
@@ -24,5 +24,5 @@ export const msToKH = (speed: number | string | undefined) => {
         return 0;
     }
 
-    return (s * (3600 / 1000)).toFixed(2);
+    return Math.abs(s * (3600 / 1000)).toFixed(2);
 };
