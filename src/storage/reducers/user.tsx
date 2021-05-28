@@ -7,6 +7,7 @@ import {riderProfiles} from '../../utils/constants';
 interface UserState {
     userName: string;
     frameNumber: string;
+    userID: string;
     riderProfile: RiderProfile;
     onboardingFinished: boolean;
     error: string;
@@ -16,6 +17,7 @@ interface UserState {
 const initialState: UserState = {
     userName: '',
     frameNumber: '',
+    userID: '',
     riderProfile: {
         cyclingStyle: 0,
         tours: 0,
@@ -87,6 +89,7 @@ const persistConfig = {
         'frameNumber',
         'riderProfile',
         'onboardingFinished',
+        'userID',
     ],
     timeout: 20000,
 };

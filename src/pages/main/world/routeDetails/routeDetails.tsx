@@ -14,6 +14,7 @@ import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {RegularStackRoute} from '../../../../navigation/route';
 import {useAppSelector} from '../../../../hooks/redux';
 import {mapDataByIDSelector} from '../../../../storage/selectors/map';
+import {userIDSelector} from '../../../../storage/selectors/user';
 import {getImagesThumbs} from '../../../../utils/transformData';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -33,6 +34,7 @@ const RouteDetails = () => {
     const route = useRoute();
     const mapID: string = route?.params?.mapID;
     const mapData = useAppSelector(mapDataByIDSelector(mapID));
+    const userID = useAppSelector(userIDSelector);
     const images = getImagesThumbs(mapData?.images || []);
 
     const statusBarHeight = useStatusBarHeight();
@@ -68,13 +70,15 @@ const RouteDetails = () => {
                         style={styles.header}
                         rightActions={
                             <View style={styles.actionButtonsContainer}>
-                                <EditBtn
-                                    onPress={onGoToEditHandler}
-                                    iconStyle={[
-                                        styles.actionButton,
-                                        // styles.leftActionButton,
-                                    ]}
-                                />
+                                {userID === mapData?.ownerId && (
+                                    <EditBtn
+                                        onPress={onGoToEditHandler}
+                                        iconStyle={[
+                                            styles.actionButton,
+                                            // styles.leftActionButton,
+                                        ]}
+                                    />
+                                )}
                                 {/* <ShareBtn
                                     onPress={() => {}}
                                     iconStyle={styles.actionButton}
