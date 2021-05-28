@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
     View,
-    Text,
     Dimensions,
     TouchableWithoutFeedback,
     Animated,
@@ -11,8 +10,7 @@ import {
     Platform,
     StatusBar,
 } from 'react-native';
-import { WebView } from 'react-native-webview';
-import Svg, { G, Path, Circle } from 'react-native-svg';
+import {WebView} from 'react-native-webview';
 
 import I18n from 'react-native-i18n';
 
@@ -23,10 +21,11 @@ import {
     getVerticalPx,
     getStackHeaderHeight,
 } from '../../../../helpers/layoutFoo';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { getBike } from '../../../../helpers/transformUserBikeData';
+import {useAppSelector} from '../../../../hooks/redux';
+import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
-import AnimSvg from '../../../../helpers/animSvg';
+import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
+import useGetLocation from '../../../../hooks/useGetLocation';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
@@ -40,26 +39,62 @@ import mapHtml from './mapHtml';
 import fooHtml from './fooHtml';
 
 import gradient from './gradientSvg';
-import { UserBike } from '../../../../models/userBike.model';
+import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
+import {
+    trackerActiveSelector,
+    trackerStartTimeSelector,
+} from '../../../../storage/selectors/routes';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 interface Props {
     navigation: any;
 }
 
-const Counter: React.FC<Props> = ({ navigation }: Props) => {
+const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
+    const isTrackerActive = useAppSelector(trackerActiveSelector);
+    const trackerStartTime = useAppSelector(trackerStartTimeSelector);
+    const {location} = useGetLocation();
+
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
     const statusBarHeight = useStatusBarHeight();
     const headerHeight = getStackHeaderHeight() - statusBarHeight;
     const marginTopOnIos = Platform.OS === 'ios' ? statusBarHeight : 0;
+    const [onMapLoaded, setOnMapLoaded] = useState(false);
 
     const bikeSelectorListPositionY = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
     ).current;
+
+    const {trackerData, startTracker, stopTracker} = useLocalizationTracker(
+        true,
+    );
+
+    useEffect(() => {
+        if (location && onMapLoaded) {
+            setJs(
+                `setPositionOnMap({lat: ${location.lat}, lng: ${location.lon} });true;`,
+            );
+            setJs(
+                `setMarkerPositionOnMap({lat: ${location.lat}, lng: ${location.lon} });true;`,
+            );
+        }
+    }, [location, onMapLoaded]);
+
+    useEffect(() => {
+        setJs(`setValues(${JSON.stringify(trackerData)});true;`);
+        if (trackerData?.coords) {
+            setJs(
+                `setPositionOnMap({lat: ${trackerData.coords.lat}, lng: ${trackerData.coords.lon} });true;`,
+            );
+            setJs(
+                `setMarkerPositionOnMap({lat: ${trackerData.coords.lat}, lng: ${trackerData.coords.lon} });true;`,
+            );
+        }
+    }, [trackerData]);
 
     const onChangeBikeHandler = (frameNumber: string) => {
         if (frameNumber === bike?.description.serial_number) {
@@ -109,6 +144,19 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
     const [mapBtnPosMemo, setMapBtnPosMemo] = useState(0);
     const [mapOn, setMapOn] = useState(false);
 
+    /* Re-run counter after app restart */
+    useEffect(() => {
+        if (isTrackerActive && onMapLoaded) {
+            setPageState('record');
+            const startTime = trackerStartTime
+                ? Date.parse(trackerStartTime.toUTCString())
+                : null;
+            setJs(`start(${startTime});setPauseOff();true;`);
+            startTracker(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [onMapLoaded]);
+
     const heandleLeftBtnClick = () => {
         switch (pageState) {
             case 'start':
@@ -143,28 +191,40 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
         }
     };
 
-    const heandleRightBtnClick = () => {
+    const heandleRightBtnClick = async () => {
         switch (pageState) {
             case 'start':
                 {
                     setPageState('record');
                     setJs('start();setPauseOff();true;');
+                    await startTracker();
                 }
                 break;
             case 'record':
                 {
+                    // await startTracker();
                     setPageState('endMessage');
                 }
                 break;
             case 'cancelText':
                 {
+                    await stopTracker();
                     navigation.goBack();
                 }
                 break;
             case 'endMessage':
                 {
                     // TODO
-                    navigation.navigate('CounterThankYouPage');
+                    await stopTracker();
+                    navigation.navigate({
+                        name: 'CounterThankYouPage',
+                        params: {
+                            distance: trackerData?.distance,
+                            time:
+                                Date.now() -
+                                Date.parse(trackerStartTime.toUTCString()),
+                        },
+                    });
                     // do ekranu zakończenia
                 }
                 break;
@@ -237,7 +297,11 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
             case 'map is ready':
                 {
                     setJs(
-                        'setPositionOnMap({lat: 53.009342618210624, lng: 20.890509251985964 });true;',
+                        `setPositionOnMap({lat: ${
+                            location?.lat || '53.009342618210624'
+                        }, lng: ${
+                            location?.lon || '20.890509251985964'
+                        } });true;`,
                     );
                 }
                 break;
@@ -334,6 +398,7 @@ const Counter: React.FC<Props> = ({ navigation }: Props) => {
                         scrollEnabled={false}
                         showsHorizontalScrollIndicator={false}
                         showsVerticalScrollIndicator={false}
+                        onLoadEnd={() => setOnMapLoaded(true)}
                         source={{
                             html:
                                 '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +

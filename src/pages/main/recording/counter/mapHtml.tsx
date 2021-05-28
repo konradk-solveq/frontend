@@ -1,12 +1,20 @@
 export default `
 <script>
 let map;
+let marker;
 
 const setPositionOnMap = pos => {
     map.setOptions({
         center: new google.maps.LatLng(pos.lat, pos.lng),
         zoom: 15,
     });
+};
+
+const setMarkerPositionOnMap = pos => {
+    marker.setOptions({
+        position: pos,
+        map: map,
+      });
 };
 
 function initMap() {
@@ -21,6 +29,8 @@ function initMap() {
             mapTypeIds: ['roadmap', 'terrain'],
         },
     });
+
+    marker = new google.maps.Marker();
 
     // const icons = {
     //     parking: {

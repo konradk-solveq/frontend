@@ -18,6 +18,12 @@ export const setMapsData = (
     refresh: refresh,
 });
 
+export const addMapData = (map: Map, ownerId?: string) => ({
+    type: actionTypes.SET_MAPS_DATA,
+    map: map,
+    ownerId: ownerId,
+});
+
 export const clearError = () => ({
     type: actionTypes.CLEAR_MAPS_ERROR,
 });

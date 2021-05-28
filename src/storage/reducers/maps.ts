@@ -9,6 +9,7 @@ interface MapsState {
     maps: MapType[];
     paginationCoursor: MapPagination;
     favourites: string[];
+    ownes: string[];
     error: string;
     loading: boolean;
     statusCode: number;
@@ -19,6 +20,7 @@ const initialStateList: MapsState = {
     maps: [],
     paginationCoursor: {},
     favourites: ['222', '333'],
+    ownes: [],
     error: '',
     loading: false,
     statusCode: 200,
@@ -61,6 +63,20 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 refresh: action.refresh,
             };
         }
+        case actionTypes.SET_MAP_DATA: {
+            const o = [...state.ownes];
+            if (action.ownerId) {
+                o.push(action.ownerId);
+            }
+
+            return {
+                ...state,
+                loading: false,
+                maps: [...state.maps, action.map],
+                ownes: o,
+                statusCode: 200,
+            };
+        }
         case actionTypes.ADD_MAP_TO_FAVOURITES: {
             let newFavs = [...state.favourites];
             if (!state.favourites.includes(action.mapID)) {
@@ -95,7 +111,8 @@ const mapsReducer = (state = initialStateList, action: any) => {
 const persistConfig = {
     key: 'maps',
     storage: AsyncStorage,
-    whitelist: ['maps, favourites'],
+    whitelist: ['maps, favourites, ownes'],
+    timeout: 20000,
 };
 
 export default persistReducer(persistConfig, mapsReducer);

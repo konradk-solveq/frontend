@@ -2,7 +2,7 @@ import axios from 'axios';
 import {API_URL} from '@env';
 
 const config = {
-    timeout: 1000,
+    timeout: 10000,
 };
 
 const instance = axios.create({
@@ -12,6 +12,8 @@ const instance = axios.create({
     //     return true;
     // },
 });
+
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export const source = axios.CancelToken.source();
 export const isCancel = (c: any) => axios.isCancel(c);

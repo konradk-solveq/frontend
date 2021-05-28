@@ -1,31 +1,33 @@
-import React, {useCallback, useEffect, useState, useRef} from 'react';
-import {
-    StyleSheet,
-    SafeAreaView,
-    View,
-    Text,
-    ScrollView,
-    Alert,
-    Platform,
-} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {SafeAreaView, View, Text, ScrollView, Alert} from 'react-native';
 import I18n from 'react-native-i18n';
 import AnimSvg from '../../../../helpers/animSvg';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
-import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
 import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
 
-import {
-    pointToComaString,
-    twoDigits,
-    simplyTimer,
-} from '../../../../helpers/stringFoo';
+import {pointToComaString, simplyTimer} from '../../../../helpers/stringFoo';
 
 import laurelWreath from './laurelWreath';
-import {useNavigation} from '@react-navigation/core';
+import {useNavigation, useRoute} from '@react-navigation/core';
 import {RegularStackRoute} from '../../../../navigation/route';
+
+import styles from './style';
+import {
+    trackerErrorSelector,
+    trackerLoadingSelector,
+} from '../../../../storage/selectors/routes';
+import {
+    clearError,
+    syncCurrentRouteData,
+} from '../../../../storage/actions/routes';
+
+enum Action {
+    next = 'next',
+    prev = 'prev',
+}
 
 interface Props {
     navigation: any;
@@ -35,7 +37,10 @@ interface Props {
 
 const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('CounterThankYouPage');
+    const isSyncData = useAppSelector(trackerLoadingSelector);
+    const error = useAppSelector(trackerErrorSelector);
     const navigation = useNavigation();
+    const route = useRoute();
     const dispatch = useAppDispatch();
 
     const name = useAppSelector<string>(state => state.user.userName);
@@ -44,9 +49,10 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const [show, setShow] = useState(true);
     const randomNum = () => Math.floor(Math.random() * 2);
     const [titleType, setTitleType] = useState(randomNum());
-    const [distance, setDistance] = useState(103.66);
-    const [time, setTime] = useState(5519500);
+
     const [breakTime, setBreakTime] = useState(1551500);
+
+    const [goForward, setGoForward] = useState('');
 
     useEffect(() => {
         setShow(true);
@@ -62,9 +68,37 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
         //   return unsubscribe;
     }, [props.navigation]);
 
+    const onGoForward = useCallback(() => {
+        dispatch(clearError());
+        if (goForward === Action.next) {
+            navigation.navigate(RegularStackRoute.EDIT_DETAILS_SCREEN);
+            return;
+        }
+
+        if (goForward === Action.prev) {
+            navigation.navigate(RegularStackRoute.KROSS_WORLD_SCREEN);
+        }
+    }, [dispatch, goForward, navigation]);
+
+    useEffect(() => {
+        if (!isSyncData && goForward) {
+            if (error?.message) {
+                Alert.alert('', error.message, [
+                    {
+                        text: 'Ok',
+                        onPress: onGoForward,
+                    },
+                ]);
+                return;
+            }
+
+            onGoForward();
+        }
+    }, [error.message, isSyncData, onGoForward]);
+
     const heandleGetTitleType = () => {
         if (titleType == 0) {
-            let num = Math.floor(distance / 11);
+            let num = Math.floor(parseFloat(route?.params?.distance) / 11);
             if (num < 1) {
                 num = 1;
             }
@@ -72,7 +106,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 ' ' + num + ' ' + (num == 1 ? trans.type_1[0] : trans.type_1[1])
             );
         } else {
-            let num = Math.floor(distance / 7);
+            let num = Math.floor(parseFloat(route?.params?.distance) / 7);
             if (num < 1) {
                 num = 1;
             }
@@ -80,86 +114,11 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
         }
     };
 
-    const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-        },
-        scroll: {
-            width: '100%',
-            height: '100%',
-        },
-        title: {
-            width: getHorizontalPx(334),
-            left: getHorizontalPx(40),
-            marginTop: getVerticalPx(90),
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
-            lineHeight: 52,
-            color: '#2cba3f',
-            textAlign: 'center',
-        },
-        laurelWreath: {
-            width: getHorizontalPx(334),
-            height: getHorizontalPx(334),
-            left: getHorizontalPx(40),
-            marginTop: getVerticalPx(20),
-        },
-        recorded: {
-            width: getHorizontalPx(334),
-            left: getHorizontalPx(40),
-            marginTop: getVerticalPx(20),
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-        },
-        name: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            lineHeight: 22,
-            color: '#555555',
-            textAlign: 'left',
-        },
-        value: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 57,
-            color: '#555555',
-            textAlign: 'left',
-        },
-        unit: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 18,
-            color: '#555555',
-            textAlign: 'left',
-        },
-        breakName: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            color: '#555555',
-            textAlign: 'center',
-            marginTop: getVerticalPx(32),
-        },
-        breakValue: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 23,
-            color: '#555555',
-            textAlign: 'left',
-        },
-        btnSave: {
-            width: getHorizontalPx(334),
-            left: getHorizontalPx(40),
-            height: 50,
-            marginTop: getVerticalPx(52),
-        },
-        btnCancel: {
-            width: getHorizontalPx(334),
-            height: 50,
-            left: getHorizontalPx(40),
-            marginTop: getVerticalPx(30),
-            marginBottom: getVerticalPx(65),
-        },
-    });
+    const onSaveRouteHandler = (forward: string) => {
+        console.log('on save handler', forward);
+        setGoForward(forward);
+        dispatch(syncCurrentRouteData());
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -180,7 +139,9 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                         <View>
                             <Text style={styles.name}>{trans.distance}</Text>
                             <Text style={styles.value}>
-                                {pointToComaString(distance.toFixed(2))}
+                                {pointToComaString(
+                                    route?.params?.distance || '0.00',
+                                )}
                                 <Text style={styles.unit}>
                                     {' ' + trans.distanceUnit}
                                 </Text>
@@ -190,7 +151,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                         <View>
                             <Text style={styles.name}>{trans.time}</Text>
                             <Text style={styles.value}>
-                                {simplyTimer(time)}
+                                {simplyTimer(route?.params?.time)}
                                 <Text style={styles.unit}>
                                     {' ' + trans.timeUnit}
                                 </Text>
@@ -209,22 +170,14 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     <View style={styles.btnSave}>
                         <BigRedBtn
                             title={trans.btnSave}
-                            onpress={() =>
-                                navigation.navigate(
-                                    RegularStackRoute.EDIT_DETAILS_SCREEN,
-                                )
-                            }
+                            onpress={() => onSaveRouteHandler(Action.next)}
                         />
                     </View>
 
                     <View style={styles.btnCancel}>
                         <BigWhiteBtn
                             title={trans.btnCancel}
-                            onpress={() =>
-                                navigation.navigate(
-                                    RegularStackRoute.KROSS_WORLD_SCREEN,
-                                )
-                            }
+                            onpress={() => onSaveRouteHandler(Action.prev)}
                         />
                     </View>
                 </ScrollView>

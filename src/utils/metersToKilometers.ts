@@ -17,8 +17,12 @@ export const putSeparatorIntoNum = (
 export const transformMetersToKilometersString = (
     meters: number | undefined,
     fixedNumber?: number,
+    emptyFalse?: boolean,
 ): string => {
     if (!meters) {
+        if (emptyFalse) {
+            return '';
+        }
         return '-';
     }
 
