@@ -1,8 +1,8 @@
 import crashlytics from '@react-native-firebase/crashlytics';
 
-export const initCrashlytics = async (username: string) => {
+export const initCrashlytics = async (username: string, userId: string) => {
     await Promise.all([
-        crashlytics().setUserId('undefined'),
+        crashlytics().setUserId(userId || 'undefined'),
         crashlytics().setAttributes({
             username: username,
         }),

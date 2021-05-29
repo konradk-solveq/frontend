@@ -14,7 +14,7 @@ import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {RegularStackRoute} from '../../../../navigation/route';
 import {useAppSelector} from '../../../../hooks/redux';
 import {mapDataByIDSelector} from '../../../../storage/selectors/map';
-import {userIDSelector} from '../../../../storage/selectors/user';
+import {userIdSelector} from '../../../../storage/selectors/auth';
 import {getImagesThumbs} from '../../../../utils/transformData';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -34,7 +34,7 @@ const RouteDetails = () => {
     const route = useRoute();
     const mapID: string = route?.params?.mapID;
     const mapData = useAppSelector(mapDataByIDSelector(mapID));
-    const userID = useAppSelector(userIDSelector);
+    const userID = useAppSelector(userIdSelector);
     const images = getImagesThumbs(mapData?.images || []);
 
     const statusBarHeight = useStatusBarHeight();

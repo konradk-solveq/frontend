@@ -8,7 +8,6 @@ const useStatusBarHeight = (): number => {
         StatusBar.currentHeight || 0,
     );
     useEffect(() => {
-        getStatusBarHeight;
         getStatusBarHeight(false).then(h => {
             setStatusbarHeight(h || 0);
         });

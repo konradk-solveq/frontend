@@ -6,6 +6,7 @@ import {initCrashlytics} from '../utils/crashlytics';
 import {initBGeolocalization, cleanUp} from '../utils/geolocation';
 import {useAppDispatch, useAppSelector} from './redux';
 import {appSyncData, clearAppError} from '../storage/actions/app';
+import {userIdSelector} from '../storage/selectors/auth';
 import {
     appErrorSelector,
     isOnlineAppStatusSelector,
@@ -16,6 +17,7 @@ const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
     const dispatch = useAppDispatch();
     const isOnline = useAppSelector<boolean>(isOnlineAppStatusSelector);
+    const userId = useAppSelector<string>(userIdSelector);
     const userName = useAppSelector<string>(state => state.user.userName);
     const syncStatus = useAppSelector(syncAppSelector);
     const error = useAppSelector(
@@ -50,7 +52,7 @@ const useAppInit = () => {
 
     useEffect(() => {
         /* Logs will be send after app restarted */
-        initCrashlytics(userName);
+        initCrashlytics(userName, userId);
         setCrashlyticsInitialized(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
