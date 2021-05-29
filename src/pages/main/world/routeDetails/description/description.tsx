@@ -128,6 +128,14 @@ const Description: React.FC<IProps> = ({mapData, images}: IProps) => {
                 <View style={styles.tagsWrapper}>
                     {mapData?.tags?.options &&
                         mapData.tags?.options.map(t => {
+                            if (t?.enumValue) {
+                                return null;
+                            }
+
+                            if (!mapData.tags?.values.includes(t.enumValue)) {
+                                return null;
+                            }
+
                             return (
                                 <View key={t?.enumValue} style={styles.tag}>
                                     <Text
