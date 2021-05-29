@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 import I18n from 'react-native-i18n';
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
@@ -26,6 +26,7 @@ import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader'
 import BikeImage from '../../../sharedComponents/images/bikeImage';
 import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
 import Curve from '../../../sharedComponents/svg/curve';
+import useCustomBackNavButton from '../../../hooks/useCustomBackNavBtn';
 
 interface IProps {
     navigation: any;
@@ -46,6 +47,11 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
         getBike(state.bikes.list, frameNumber),
     );
 
+    const removeBikeOnCancel = useCallback(() => {
+        dispatch(removeBikeByNumber(frameNumber));
+    }, [dispatch, frameNumber]);
+
+    useCustomBackNavButton(removeBikeOnCancel);
     /* TODO: try to exctract */
     setObjSize(334, 50);
     const w = getWidthPx();
@@ -111,7 +117,10 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     return (
         <SafeAreaView style={styles.container}>
             <StackHeader
-                onpress={() => navigation.pop()}
+                onpress={() => {
+                    removeBikeOnCancel();
+                    navigation.pop();
+                }}
                 inner={trans.header}
             />
 
@@ -160,7 +169,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                     <BigWhiteBtn
                         title={trans.btnChange}
                         onpress={() => {
-                            dispatch(removeBikeByNumber(frameNumber));
+                            removeBikeOnCancel();
                             navigation.navigate('TurtorialNFC');
                         }}
                     />
