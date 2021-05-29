@@ -6,3 +6,10 @@ export {
 export {getPlacesList} from './placesService';
 export {getMapsList} from './mapsService';
 export {syncRouteData} from './routesService';
+export {
+    checkSessionAndRecreateIfNeededService,
+    logInService,
+    getCurrentSessionService,
+    getRefreshSessionService,
+    registerMobileDevice,
+} from './authService';

@@ -14,5 +14,3 @@ export const errorMessageSelector = (state: RootState): string =>
 
 export const frameNumberSelector = (state: RootState): string =>
     state.user.frameNumber;
-
-export const userIDSelector = (state: RootState): string => state.user.userID;

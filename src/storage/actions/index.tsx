@@ -45,3 +45,16 @@ export {
     syncCurrentRouteData,
     syncRouteDataFromQueue,
 } from './routes';
+
+export {
+    checkSession,
+    clearAuthError,
+    clearAuthorizationStateState,
+    logIn,
+    register,
+    setAuthData,
+    setAuthError,
+    setAuthorizationState,
+    setAuthSyncState,
+    setAuthSessionData,
+} from './auth';

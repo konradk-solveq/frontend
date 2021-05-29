@@ -62,6 +62,7 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 .env
+.env.development
 
 android/gradle.properties
 android/key2.jks
