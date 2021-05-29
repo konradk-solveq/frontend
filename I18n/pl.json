@@ -1104,6 +1104,7 @@
     },
     "NameChange": {
         "header": "Dane osobowe",
+        "defaultName": "Rowerzysto",
         "title": ", sprawdź czy Twoje dane są aktualne",
         "placeholder": "Podaj imię lub pseudonim",
         "btn": "ZAPISZ"
