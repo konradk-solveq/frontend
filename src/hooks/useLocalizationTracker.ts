@@ -5,7 +5,8 @@ import {
     deactivateKeepAwake,
 } from '@sayem314/react-native-keep-awake';
 
-import {useAppDispatch} from './redux';
+import {useAppDispatch, useAppSelector} from './redux';
+import {trackerCurrentRouteAverrageSpeedSelector} from '../storage/selectors/routes';
 import {
     persistCurrentRouteData,
     setCurrentRoute,
@@ -26,6 +27,7 @@ interface DataI {
     distance: string;
     speed: string;
     averageSpeed: string;
+    odometer: number;
     coords: {
         lat: number;
         lon: number;
@@ -43,9 +45,13 @@ const startCurrentRoute = async () => {
 
 const useLocalizationTracker = (persist: boolean) => {
     const dispatch = useAppDispatch();
+    const currentRouteAverrageSpeed = useAppSelector(
+        trackerCurrentRouteAverrageSpeedSelector,
+    );
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
     const [lastDistance, setLastDistance] = useState<number>(0);
+    const [averageSpeed, setAverageSpeed] = useState<number | undefined>();
 
     const onPersistData = useCallback(
         async (d: number) => {
@@ -54,9 +60,10 @@ const useLocalizationTracker = (persist: boolean) => {
             }
 
             dispatch(persistCurrentRouteData());
+            dispatch(setAverageSpeed(averageSpeed));
             setLastDistance(d);
         },
-        [dispatch, lastDistance],
+        [dispatch, lastDistance, averageSpeed],
     );
 
     const stopTracker = async () => {
@@ -101,7 +108,13 @@ const useLocalizationTracker = (persist: boolean) => {
                         speed.push(d?.coords?.speed);
                     }
 
-                    const averageSpeed = getAverageSpeed(speed);
+                    let aSpeed = getAverageSpeed(speed);
+                    if (currentRouteAverrageSpeed) {
+                        aSpeed = getAverageSpeed([
+                            parseFloat(aSpeed),
+                            currentRouteAverrageSpeed,
+                        ]);
+                    }
                     const distance = transformMetersToKilometersString(
                         d?.odometer,
                         2,
@@ -111,7 +124,8 @@ const useLocalizationTracker = (persist: boolean) => {
                     const res = {
                         distance: distance || '00,00',
                         speed: msToKH(d?.coords?.speed) || '00,0',
-                        averageSpeed: msToKH(averageSpeed) || '00,0',
+                        averageSpeed: msToKH(aSpeed) || '00,0',
+                        odometer: d?.odometer,
                         coords: {
                             lat: d?.coords?.latitude,
                             lon: d?.coords?.longitude,
@@ -119,6 +133,7 @@ const useLocalizationTracker = (persist: boolean) => {
                     };
 
                     setTrackerData(res);
+                    setAverageSpeed(parseFloat(aSpeed));
 
                     if (persist) {
                         onPersistData(d?.odometer);
@@ -131,7 +146,7 @@ const useLocalizationTracker = (persist: boolean) => {
             clearInterval(interval);
             cleanUp();
         };
-    }, [isActive, persist, onPersistData]);
+    }, [isActive, persist, onPersistData, currentRouteAverrageSpeed]);
 
     return {
         trackerData,

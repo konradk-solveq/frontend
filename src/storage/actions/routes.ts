@@ -35,6 +35,11 @@ export const setCurrentRouteData = (currentRouteData: LocationDataI[]) => ({
     currentRouteData: currentRouteData,
 });
 
+export const setAverageSpeed = (averageSpeed: number) => ({
+    type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
+    averageSpeed: averageSpeed,
+});
+
 export const setRoutesData = (
     routes: RoutesI | RoutesI[],
     refresh?: boolean,
@@ -61,6 +66,10 @@ export const clearRoutesToSynch = (routeIds: string[]) => ({
 
 export const clearCurrentRouteData = () => ({
     type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
+});
+
+export const clearAverageSpeed = () => ({
+    type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
 });
 
 export const stopCurrentRoute = (): AppThunk<Promise<void>> => async (
@@ -127,6 +136,7 @@ export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
 
         /* If fail add to queue. Resolve in different action. */
         dispatch(clearCurrentRouteData());
+        dispatch(clearAverageSpeed());
         dispatch(setRouteToSynch(currentRoute.id));
         dispatch(setRoutesData({id: currentRoute.id, route: currentRouteData}));
 
@@ -140,6 +150,7 @@ export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
 
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
         dispatch(clearCurrentRouteData());
+        dispatch(clearAverageSpeed());
         dispatch(setRouteToSynch(currentRoute.id));
         dispatch(setRoutesData({id: currentRoute.id, route: currentRouteData}));
 
@@ -172,6 +183,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
         dispatch(addMapData(response.data, response.data.id));
         dispatch(clearCurrentRouteData());
+        dispatch(clearAverageSpeed());
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[syncCurrentRouteData]');
