@@ -1,4 +1,5 @@
 import {createSelector} from 'reselect';
+import {LocationDataI} from '../../interfaces/geolocation';
 import {RoutesI} from '../reducers/routes';
 import {RootState} from '../storage';
 
@@ -23,3 +24,11 @@ export const trackerRoutesToSyncSelector = (state: RootState): string[] =>
 
 export const trackerRoutesDataSelector = (state: RootState): RoutesI[] =>
     state.routes.routes;
+
+export const trackerCurrentRoutesDataSelector = (
+    state: RootState,
+): LocationDataI[] => state.routes.currentRouteData;
+
+export const trackerCurrentRouteAverrageSpeedSelector = (
+    state: RootState,
+): number => state.routes.averageSpeed;

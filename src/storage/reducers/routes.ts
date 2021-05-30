@@ -21,6 +21,7 @@ export interface RoutesState {
     currentRouteData: LocationDataI[];
     routes: RoutesI[];
     routesToSync: string[] /* uuids */;
+    averageSpeed: number | undefined;
     error: string;
     loading: boolean;
     statusCode: number;
@@ -36,6 +37,7 @@ const initialStateList: RoutesState = {
     currentRouteData: [],
     routes: [],
     routesToSync: [],
+    averageSpeed: undefined,
     error: '',
     loading: false,
     statusCode: 200,
@@ -55,6 +57,12 @@ const routesReducer = (state = initialStateList, action: any) => {
                 loading: false,
                 error: action.error,
                 statusCode: action.statusCode,
+            };
+        }
+        case actionTypes.SET_AVERAGE_ROUTE_SPEED: {
+            return {
+                ...state,
+                averageSpeed: action.averageSpeed,
             };
         }
         case actionTypes.SET_ROUTES_DATA: {
@@ -131,6 +139,12 @@ const routesReducer = (state = initialStateList, action: any) => {
                 routesToSync: removeFromRoutesToSynch,
             };
         }
+        case actionTypes.CLEAR_AVERAGE_ROUTE_SPEED: {
+            return {
+                ...state,
+                averageSpeed: undefined,
+            };
+        }
         case actionTypes.CLEAR_ROUTES_ERROR: {
             return {
                 ...state,
@@ -149,7 +163,9 @@ const routesReducer = (state = initialStateList, action: any) => {
 const persistConfig = {
     key: 'routes',
     storage: AsyncStorage,
-    whitelist: ['currentRoute, currentRouteData, routes, routesToSync'],
+    whitelist: [
+        'currentRoute, currentRouteData, routes, routesToSync, averageSpeed',
+    ],
     timeout: 20000,
 };
 
