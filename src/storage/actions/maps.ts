@@ -5,6 +5,7 @@ import {
     editPrivateMapMetadataService,
     getMapsList,
     getPrivateMapsListService,
+    removePrivateMapByIdService,
 } from '../../services';
 import {MapType} from '../../models/map.model';
 import logger from '../../utils/crashlytics';
@@ -164,6 +165,30 @@ export const editPrivateMapMetaData = (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[editPrivateMapMetaData]');
+        logger.recordError(error);
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const removePrivateMapMetaData = (
+    id: string,
+): AppThunk<Promise<void>> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const response = await removePrivateMapByIdService(id);
+
+        if (response.error || response.status >= 400) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        dispatch(fetchPrivateMapsList());
+        dispatch(fetchMapsList());
+        dispatch(clearPrivateMapId());
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        logger.log('[removePrivateMapMetaData]');
         logger.recordError(error);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));

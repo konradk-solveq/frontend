@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     View,
     StyleSheet,
@@ -12,13 +12,14 @@ import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {I18n} from '../../../../../I18n/I18n';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {RegularStackRoute} from '../../../../navigation/route';
-import {useAppSelector} from '../../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {
     mapDataByIDSelector,
     privateDataByIDSelector,
 } from '../../../../storage/selectors/map';
 import {userIdSelector} from '../../../../storage/selectors/auth';
 import {getImagesThumbs} from '../../../../utils/transformData';
+import {removePrivateMapMetaData} from '../../../../storage/actions/maps';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import {
@@ -28,11 +29,13 @@ import {
 } from '../../../../sharedComponents/buttons';
 import Description from './description/description';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
+import BottomModal from '../../../../sharedComponents/modals/bottomModal/bottomModal';
 
 const isIOS = Platform.OS === 'ios';
 
 const RouteDetails = () => {
     const trans: any = I18n.t('RoutesDetails');
+    const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const route = useRoute();
     const mapID: string = route?.params?.mapID;
@@ -44,6 +47,8 @@ const RouteDetails = () => {
     );
     const userID = useAppSelector(userIdSelector);
     const images = getImagesThumbs(mapData?.images || []);
+
+    const [showBottomModal, setShowBottomModal] = useState(false);
 
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
@@ -65,11 +70,21 @@ const RouteDetails = () => {
 
     const onPressHandler = () => {
         if (privateMap) {
-            console.log('delete map');
+            setShowBottomModal(true);
             return;
         }
         console.log('create ticket');
         /* TODO: user can delete if creted route. For public routes can only make ticket */
+    };
+
+    const onPressDeleteHandler = () => {
+        setShowBottomModal(false);
+        dispatch(removePrivateMapMetaData(mapID));
+        navigation.goBack();
+    };
+
+    const onPressCancelHandler = () => {
+        setShowBottomModal(false);
     };
 
     return (
@@ -114,6 +129,14 @@ const RouteDetails = () => {
                         </View>
                     </SliverTopBar>
                 </View>
+                <BottomModal
+                    showModal={showBottomModal}
+                    rightBtnTitle={trans.EditScreen.removeRouteBtn}
+                    leftBtnTitle={trans.EditScreen.cancelRemoveRouteBtn}
+                    onPressRight={onPressDeleteHandler}
+                    onPressLeft={onPressCancelHandler}
+                    onPressCancel={onPressCancelHandler}
+                />
             </SafeAreaView>
         </>
     );

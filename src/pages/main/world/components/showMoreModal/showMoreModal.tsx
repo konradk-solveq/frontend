@@ -69,6 +69,14 @@ const ShowMoreModal: React.FC<IProps> = ({
         });
     };
 
+    const onPublishRouteHandler = () => {
+        onPressCancel();
+        navigation.navigate({
+            name: RegularStackRoute.EDIT_DETAILS_SCREEN,
+            params: {mapID: mapID, private: isPrivate},
+        });
+    };
+
     return (
         <Modal
             animationType="slide"
@@ -82,20 +90,29 @@ const ShowMoreModal: React.FC<IProps> = ({
                 <AnimSvg style={styles.backGround} source={backGround} />
 
                 <View style={styles.wrap}>
-                    {removeFav && (
+                    {isPrivate && (
+                        <Pressable onPress={onPublishRouteHandler}>
+                            <Text style={styles.text}>
+                                {trans.publishTripAction}
+                            </Text>
+                        </Pressable>
+                    )}
+                    {removeFav && !isPrivate && (
                         <Pressable onPress={onStartRouteHandler}>
                             <Text style={styles.text}>
                                 {trans.startTripAction}
                             </Text>
                         </Pressable>
                     )}
-                    <Pressable onPress={onAddToFavRoutesHandler}>
-                        <Text style={styles.text}>
-                            {!removeFav
-                                ? trans.addToFavAction
-                                : trans.removeToFavAction}
-                        </Text>
-                    </Pressable>
+                    {!isPrivate && (
+                        <Pressable onPress={onAddToFavRoutesHandler}>
+                            <Text style={styles.text}>
+                                {!removeFav
+                                    ? trans.addToFavAction
+                                    : trans.removeToFavAction}
+                            </Text>
+                        </Pressable>
+                    )}
                     <Text style={styles.text}>{trans.showOnMapAction}</Text>
                     <Pressable onPress={onDetailsButtonPressedHandler}>
                         <Text style={styles.text}>
