@@ -106,7 +106,8 @@ const NextTile: React.FC<IProps> = ({mapData, images, onPress}: IProps) => {
                                             iconStyle={styles.secondSectionIcon}
                                         />
                                         <Text style={styles.secondSectionText}>
-                                            {mapData?.formattedTimeString || '-:--'}{' '}
+                                            {mapData?.formattedTimeString ||
+                                                '-:--'}{' '}
                                             <Text
                                                 style={
                                                     styles.secondSectionSuffix

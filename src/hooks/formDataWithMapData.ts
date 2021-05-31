@@ -1,10 +1,9 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 
-import {
-    FormData,
-    OptionType,
-} from '../pages/main/world/editDetails/form/inputs/types';
+import {useAppSelector} from './redux';
+import {mapOptionsAndTagsSelector} from '../storage/selectors/app';
+import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {I18n} from '../../I18n/I18n';
 import {Map, SelectI} from '../models/map.model';
 import {mapDataToFormData} from '../utils/transformData';
@@ -13,12 +12,8 @@ type ValueType = string | boolean | SelectI | undefined | string[];
 
 const useFormDataWithMapData = (mapData: Map | undefined) => {
     const trans: any = I18n.t('RoutesDetails.EditScreen');
+    const options = useAppSelector(mapOptionsAndTagsSelector);
     const {control, handleSubmit, setValue} = useForm<FormData>();
-    const [options, setOptions] = useState<OptionType>({
-        difficulty: undefined,
-        surface: undefined,
-        tags: undefined,
-    });
 
     useEffect(() => {
         if (mapData) {
@@ -33,12 +28,6 @@ const useFormDataWithMapData = (mapData: Map | undefined) => {
 
                 setValue(k, v);
             });
-
-            const optionsArr: OptionType = {...options};
-            optionsArr.difficulty = newMapData.difficulty;
-            optionsArr.surface = newMapData.surface;
-            optionsArr.tags = newMapData.tags;
-            setOptions(optionsArr);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

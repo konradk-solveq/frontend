@@ -30,6 +30,7 @@ interface IProps {
     mapID: string;
     onPressCancel: () => void;
     removeFav?: boolean;
+    isPrivate?: boolean;
 }
 
 const ShowMoreModal: React.FC<IProps> = ({
@@ -37,6 +38,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     mapID,
     showModal,
     removeFav,
+    isPrivate,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
@@ -46,7 +48,7 @@ const ShowMoreModal: React.FC<IProps> = ({
         onPressCancel();
         navigation.navigate({
             name: 'RouteDetailsScreen',
-            params: {mapID: mapID},
+            params: {mapID: mapID, private: isPrivate},
         });
     };
 
@@ -63,7 +65,7 @@ const ShowMoreModal: React.FC<IProps> = ({
         onPressCancel();
         navigation.navigate({
             name: RegularStackRoute.COUNTER_ROUTE_SCREEN,
-            params: {mapID: mapID},
+            params: {mapID: mapID, private: isPrivate},
         });
     };
 

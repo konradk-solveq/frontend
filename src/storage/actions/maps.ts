@@ -1,11 +1,16 @@
 import * as actionTypes from './actionTypes';
 import {I18n} from '../../../I18n/I18n';
 import {AppThunk} from '../thunk';
-import {getMapsList} from '../../services';
+import {
+    editPrivateMapMetadataService,
+    getMapsList,
+    getPrivateMapsListService,
+} from '../../services';
 import {MapType} from '../../models/map.model';
 import logger from '../../utils/crashlytics';
 import {MapPagination} from '../../interfaces/api';
 import {getLatLng} from '../../utils/geolocation';
+import {MapFormDataResult} from '../../interfaces/form';
 
 export const setMapsData = (
     maps: MapType[],
@@ -18,7 +23,27 @@ export const setMapsData = (
     refresh: refresh,
 });
 
-export const addMapData = (map: Map, ownerId?: string) => ({
+export const setPrivateMapsData = (
+    privateMaps: MapType[],
+    paginationCoursor: MapPagination,
+    refresh: boolean,
+) => ({
+    type: actionTypes.SET_PRIVATE_MAPS_DATA,
+    privateMaps: privateMaps,
+    paginationCoursor: paginationCoursor,
+    refresh: refresh,
+});
+
+export const setPrivateMapId = (mapId: string) => ({
+    type: actionTypes.SET_PRIVATE_MAPID_TO_ADD,
+    privateMapId: mapId,
+});
+
+export const clearPrivateMapId = () => ({
+    type: actionTypes.CLEAR_PRIVATE_MAPID_TO_ADD,
+});
+
+export const addMapData = (map: MapType, ownerId?: string) => ({
     type: actionTypes.SET_MAPS_DATA,
     map: map,
     ownerId: ownerId,
@@ -56,7 +81,10 @@ export const fetchMapsList = (
     try {
         const {lat, lng} = await getLatLng();
 
-        const response = await getMapsList({latitude: lat, longitude: lng});
+        const response = await getMapsList(
+            {latitude: lat, longitude: lng},
+            page,
+        );
 
         if (response.error || !response.data || !response.data.elements) {
             dispatch(setError(response.error, response.status));
@@ -69,6 +97,73 @@ export const fetchMapsList = (
         );
     } catch (error) {
         logger.log('[fetchMapsList]');
+        logger.recordError(error);
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const fetchPrivateMapsList = (
+    page?: string,
+): AppThunk<Promise<void>> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const {lat, lng} = await getLatLng();
+        const response = await getPrivateMapsListService(
+            {latitude: lat, longitude: lng},
+            page,
+        );
+
+        if (response.error || !response.data || !response.data.elements) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        const refresh = !page;
+        dispatch(
+            setPrivateMapsData(
+                response.data.elements,
+                response.data.links,
+                refresh,
+            ),
+        );
+    } catch (error) {
+        logger.log('[fetchMapsList]');
+        logger.recordError(error);
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const editPrivateMapMetaData = (
+    data: MapFormDataResult,
+    publish?: boolean,
+    id?: string,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    dispatch(setLoadingState(true));
+    try {
+        const {userName} = getState().user;
+
+        const response = await editPrivateMapMetadataService(
+            data,
+            userName,
+            !!publish,
+            id,
+        );
+
+        if (response.error || response.status >= 400) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        if (publish) {
+            dispatch(fetchMapsList());
+        }
+        dispatch(fetchPrivateMapsList());
+        dispatch(clearPrivateMapId());
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        logger.log('[editPrivateMapMetaData]');
         logger.recordError(error);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));

@@ -23,8 +23,7 @@ const useAuthorization = (active: boolean) => {
         if (active && isOnline && !isRegistered) {
             dispatch(register());
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [dispatch, active, isOnline, isRegistered]);
 
     /* Log in */
     useEffect(() => {

@@ -11,6 +11,8 @@ export const isLodingSelector = (state: RootState): boolean =>
 
 export const userIdSelector = (state: RootState): string => state.auth.userId;
 
+export const authTokenSelector = (state: RootState): string => state.auth.sessionData.access_token;
+
 export const authErrorSelector = (
     state: RootState,
 ): {message: string; statusCode: number} => ({

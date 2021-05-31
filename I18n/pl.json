@@ -1030,8 +1030,10 @@
         "firstText": "Sezon rozpoczęty, ale czy Twój rower o tym wie? Zadbaj o niego i sprawdź czy jest gotowy do jazdy.",
         "firstBtn": "SPRAWDŹ",
         "secondTitle": "Dodaj kolejny rower",
+        "thirdTitle": "Nagraj trasę",
         "secondText": "Jeżeli chcesz w jednym miejscu zarządzać Twoimi rowerami KROSS oraz rowerami innych producentów, dodaj je do aplikacji.",
-        "secondBtn": "DODAJ ROWER"
+        "secondBtn": "DODAJ ROWER",
+        "thirdBtn": "Nagraj"
     },
     "MainWorld": {
         "header": "Świat Kross",
@@ -1105,6 +1107,13 @@
             "routeDetailsAction": "Szczegóły"
         },
         "PlannedRoutes": {
+            "title": ", odkryj Ciekawe trasy z Kross",
+            "emptyStateTitle": "Nie masz nagranych tras",
+            "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
+            "emptyStateButton": "Pobierz trasę",
+            "defaultUserName": "Rowerzysto"
+        },
+        "MyRoutes": {
             "title": ", odkryj Ciekawe trasy z Kross",
             "emptyStateTitle": "Nie masz nagranych tras",
             "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
@@ -1368,7 +1377,11 @@
         "validationError": "Sprawdź błędy w\u00a0formularzu",
         "apiError": "Wystąpił błąd podczas łączenia z serwerem, spróbuj ponownie",
         "generalError": "Wystąpił błąd, spróbuj ponownie",
-        "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem"
+        "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem",
+        "routeData": {
+            "defaultRouteName": "Trasa z dnia",
+            "defaultAuthorName": "Rowerzysta"
+        }
     },
     "Geolocation": {
         "notification": {

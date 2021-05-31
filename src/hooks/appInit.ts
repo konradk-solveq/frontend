@@ -6,18 +6,20 @@ import {initCrashlytics} from '../utils/crashlytics';
 import {initBGeolocalization, cleanUp} from '../utils/geolocation';
 import {useAppDispatch, useAppSelector} from './redux';
 import {appSyncData, clearAppError} from '../storage/actions/app';
-import {userIdSelector} from '../storage/selectors/auth';
+import {authTokenSelector, userIdSelector} from '../storage/selectors/auth';
 import {
     appErrorSelector,
     isOnlineAppStatusSelector,
     syncAppSelector,
 } from '../storage/selectors';
+import {setAutorizationHeader} from '../api/api';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
     const dispatch = useAppDispatch();
     const isOnline = useAppSelector<boolean>(isOnlineAppStatusSelector);
     const userId = useAppSelector<string>(userIdSelector);
+    const authToken = useAppSelector<string>(authTokenSelector);
     const userName = useAppSelector<string>(state => state.user.userName);
     const syncStatus = useAppSelector(syncAppSelector);
     const error = useAppSelector(
@@ -36,6 +38,13 @@ const useAppInit = () => {
         dispatch(appSyncData());
         setDataInitialized(true);
     };
+
+    /* Set token in axios instance */
+    useEffect(() => {
+        if (authToken) {
+            setAutorizationHeader(authToken);
+        }
+    }, [authToken]);
 
     useEffect(() => {
         const init = async () => {

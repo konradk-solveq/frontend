@@ -19,3 +19,16 @@ export type SessionDataType = {
         email: string;
     };
 };
+
+export type MapMetadataType = {
+    name: string;
+    difficulty: string[];
+    surface: string[];
+    description: {
+        short: string;
+        long: string;
+    };
+    author: string;
+    tags: string[];
+    location?: string;
+};

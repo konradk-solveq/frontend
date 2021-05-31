@@ -8,7 +8,8 @@ import {LocationDataI} from '../../interfaces/geolocation';
 
 import logger from '../../utils/crashlytics';
 import {syncRouteData} from '../../services';
-import {addMapData} from './maps';
+import {fetchPrivateMapsList, setPrivateMapId} from './maps';
+import {getTimestampToCompare} from '../../utils/persistLocationData';
 
 export const clearError = () => ({
     type: actionTypes.CLEAR_ROUTES_ERROR,
@@ -102,11 +103,13 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
 ) => {
     dispatch(setLoadingState(true));
     try {
-        const {currentRouteData}: RoutesState = getState().routes;
+        const {currentRoute, currentRouteData}: RoutesState = getState().routes;
 
-        const lastDate =
-            currentRouteData?.[currentRouteData.length - 1]?.timestamp;
-        const lastTimestamp = lastDate ? Date.parse(lastDate) : 0;
+        const lastTimestamp = getTimestampToCompare(
+            currentRoute.startedAt,
+            currentRouteData?.[currentRouteData.length - 1]?.timestamp,
+        );
+
         const currRoutes = await routesDataToPersist(
             lastTimestamp,
             currentRouteData,
@@ -175,16 +178,19 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             }
 
             /* If fail add to queue. Resolve tasks queue in different action. */
-            dispatch(addRoutesToSynchQueue());
+            if (currentRouteData?.length >= 10) {
+                dispatch(addRoutesToSynchQueue());
+            }
 
             dispatch(setError(errorMessage, response.status));
             return;
         }
 
-        dispatch(addMapData(response.data, response.data.id));
+        dispatch(setPrivateMapId(response.data.id));
         dispatch(clearCurrentRouteData());
         dispatch(clearAverageSpeed());
         dispatch(setLoadingState(false));
+        dispatch(fetchPrivateMapsList());
     } catch (error) {
         logger.log('[syncCurrentRouteData]');
         logger.recordError(error);
@@ -210,7 +216,7 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         let newRoutesToSync: string[] = [...routesToSync];
         routesToSync.forEach(async (id: string) => {
             const routeToSync = routes.find((r: RoutesI) => r.id === id);
-            if (!routeToSync) {
+            if (!routeToSync || routeToSync?.route?.length < 10) {
                 newRoutesToSync = newRoutesToSync.filter(rs => rs !== id);
                 return;
             }
@@ -221,7 +227,6 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
                 return;
             }
 
-            dispatch(addMapData(response.data, response.data.id));
             newRoutesToSync = newRoutesToSync.filter(rs => rs !== id);
             newRoutes = newRoutes.filter(r => r.id !== id);
         });

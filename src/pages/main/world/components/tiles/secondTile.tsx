@@ -113,7 +113,7 @@ const SecondTile: React.FC<IProps> = ({mapData, images, onPress}: IProps) => {
                                     iconStyle={styles.secondSectionIcon}
                                 />
                                 <Text style={styles.secondSectionText}>
-                                    {mapData?.totalTime || '-:--'}{' '}
+                                    {mapData?.formattedTimeString || '-:--'}{' '}
                                     <Text style={styles.secondSectionSuffix}>
                                         {trans.timeUnit}
                                     </Text>

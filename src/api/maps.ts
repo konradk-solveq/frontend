@@ -1,11 +1,12 @@
-import {axiosGet} from './api';
+import instance, {axiosGet, source} from './api';
 import {Coords} from '../models/map.model';
+import {MapMetadataType} from '../interfaces/api';
 
 export const getMaps = async (
     location: Coords,
+    paginationUrl?: string,
     range?: number,
     limit?: number,
-    paginationUrl?: string,
 ) => {
     const r = range || 50000;
     const l = limit || 10;
@@ -19,3 +20,36 @@ export const getRoute = async (id: string) =>
     await axiosGet(`/routes/route/${id}`, {
         validateStatus: () => true,
     });
+
+export const getPrivateRoutes = async (
+    location: Coords,
+    paginationUrl?: string,
+) =>
+    await axiosGet(
+        paginationUrl ||
+            `/routes/find/my?location?lat=${location.latitude}&lng=${location.longitude}detailed=true`,
+        {
+            validateStatus: () => true,
+        },
+    );
+
+export const editPrivateMapMetaData = async (
+    id: string,
+    data: MapMetadataType,
+) => {
+    return await instance.patch(`/routes/route/${id}/metadata`, data, {
+        cancelToken: source.token,
+        validateStatus: () => true,
+    });
+};
+
+export const publishPrivateMapData = async (id: string) => {
+    return await instance.post(
+        `/routes/route/${id}/publish`,
+        {},
+        {
+            cancelToken: source.token,
+            validateStatus: () => true,
+        },
+    );
+};

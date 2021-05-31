@@ -6,6 +6,7 @@ import {SubmitHandler} from 'react-hook-form';
 import {I18n} from '../../../../../../I18n/I18n';
 import {validateData} from '../../../../../utils/validation/validation';
 import {useAppSelector} from '../../../../../hooks/redux';
+import useFormDataWithMapData from '../../../../../hooks/formDataWithMapData';
 import {attributes} from './attributes';
 import {
     Map,
@@ -13,7 +14,7 @@ import {
     SelectI,
 } from '../../../../../models/map.model';
 import {userNameSelector} from '../../../../../storage/selectors';
-import {FormData} from './inputs/types';
+import {MapFormDataResult} from '../../../../../interfaces/form';
 
 import {BigWhiteBtn, BigRedBtn} from '../../../../../sharedComponents/buttons';
 import OneLineText from '../../../../../sharedComponents/inputs/oneLineText';
@@ -23,12 +24,11 @@ import ControlledInput from './inputs/controlledInput';
 import ImagesInput from './inputs/imagesInput';
 
 import styles from './style';
-import useFormDataWithMapData from '../../../../../hooks/formDataWithMapData';
 
 interface IProps {
     mapData: Map | undefined;
     imagesData: {images: string[]; mapImg: string};
-    onSubmit: (email: string, password: string) => void;
+    onSubmit: (data: MapFormDataResult, publish: boolean) => void;
 }
 
 const EditForm: React.FC<IProps> = ({
@@ -47,12 +47,11 @@ const EditForm: React.FC<IProps> = ({
 
     const {control, handleSubmit, options} = useFormDataWithMapData(mapData);
 
-    const onSubmitHandler: SubmitHandler<FormData> = data => {
-        console.log('onSubmitHandler -- action', data);
-        console.log(
-            '[save and publish action]',
-        ); /* todo: go back after dispatch action and status ended */
-        // onSubmit(data.email, data.password);
+    const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> = data => {
+        onSubmit(data, true);
+    };
+    const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
+        onSubmit(data, false);
     };
 
     const onValidateHanlder = (
@@ -118,11 +117,10 @@ const EditForm: React.FC<IProps> = ({
                     fieldName="difficulty"
                     control={control}
                     Input={({value, onChange, errMsg}) => {
-                        console.log(value);
                         return (
                             <MultiSelect
                                 key={attributes.level.name}
-                                options={options?.difficulty?.options}
+                                options={options?.difficulties}
                                 optionsTrans={trans.attributes.level}
                                 predefined={value}
                                 errorMessage={errMsg}
@@ -141,7 +139,7 @@ const EditForm: React.FC<IProps> = ({
                     Input={({value, onChange, errMsg}) => (
                         <MultiSelect
                             key={attributes.pavement.name}
-                            options={options?.surface?.options}
+                            options={options?.surfaces}
                             optionsTrans={trans.attributes.pavement}
                             predefined={value}
                             errorMessage={errMsg}
@@ -215,7 +213,7 @@ const EditForm: React.FC<IProps> = ({
                     Input={({value, onChange, errMsg}) => (
                         <MultiSelect
                             key={attributes.tags.name}
-                            options={options?.tags?.options}
+                            options={options?.tags}
                             optionsTrans={trans.attributes.tags}
                             predefined={value}
                             errorMessage={errMsg}
@@ -228,17 +226,12 @@ const EditForm: React.FC<IProps> = ({
             <View style={styles.buttonsWrapper}>
                 <BigRedBtn
                     title={trans.publishButton}
-                    onpress={handleSubmit(onSubmitHandler)}
+                    onpress={handleSubmit(onSubmitHandlerWithPublish)}
                     style={styles.onPressBtn}
                 />
                 <BigWhiteBtn
                     title={trans.saveButton}
-                    onpress={
-                        () =>
-                            console.log(
-                                '[publish action]',
-                            ) /* todo: go back after dispatch action and status ended */
-                    }
+                    onpress={handleSubmit(onSubmitHandler)}
                     style={[styles.onPressBtn, styles.bottomBtn]}
                 />
             </View>

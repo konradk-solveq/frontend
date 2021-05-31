@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, SafeAreaView, View, Alert} from 'react-native';
+import {StyleSheet, SafeAreaView, View, Alert, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
@@ -78,6 +78,7 @@ const Home: React.FC = () => {
         },
         tileWrapper: {
             top: getVerticalPx(138),
+            paddingBottom: getVerticalPx(230),
         },
         tileSpace: {
             marginBottom: 25,
@@ -95,33 +96,46 @@ const Home: React.FC = () => {
         navigation.navigate('Bike');
     };
 
+    const onRecordTripActionHandler = () => {
+        navigation.navigate(RegularStackRoute.COUNTER_ROUTE_SCREEN);
+    };
+
     if (syncStatus) {
         return <Loader />;
     }
 
     return (
         <SafeAreaView style={styles.container1}>
-            <View style={styles.header}>
-                <KroosLogo />
-            </View>
-
-            <View style={styles.container}>
-                <View style={styles.tileWrapper}>
-                    <AddBike
-                        title={trans.firstTitle}
-                        description={trans.firstText}
-                        btnText={trans.firstBtn}
-                        style={styles.tileSpace}
-                        onPress={onCheckActionHandler}
-                    />
-                    <AddBike
-                        title={trans.secondTitle}
-                        description={trans.secondText}
-                        btnText={trans.secondBtn}
-                        onPress={onAddActionHandler}
-                    />
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.header}>
+                    <KroosLogo />
                 </View>
-            </View>
+
+                <View style={styles.container}>
+                    <View style={styles.tileWrapper}>
+                        <AddBike
+                            title={trans.firstTitle}
+                            description={trans.firstText}
+                            btnText={trans.firstBtn}
+                            style={styles.tileSpace}
+                            onPress={onCheckActionHandler}
+                        />
+                        <AddBike
+                            title={trans.secondTitle}
+                            description={trans.secondText}
+                            btnText={trans.secondBtn}
+                            style={styles.tileSpace}
+                            onPress={onAddActionHandler}
+                        />
+                        <AddBike
+                            title={trans.thirdTitle}
+                            description={trans.secondText}
+                            btnText={trans.thirdBtn}
+                            onPress={onRecordTripActionHandler}
+                        />
+                    </View>
+                </View>
+            </ScrollView>
 
             <TabBackGround />
         </SafeAreaView>

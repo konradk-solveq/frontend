@@ -1,18 +1,25 @@
 import {createRoute, sendRouteData} from '../api';
 import {LocationDataI} from '../interfaces/geolocation';
-import {MapType} from '../models/map.model';
-import {routesDataToAPIRequest} from '../utils/apiDataTransform/prepareRequest';
 
-export interface MapsResponse {
-    data: MapType | null;
+import {
+    getRouteDefaultName,
+    routesDataToAPIRequest,
+} from '../utils/apiDataTransform/prepareRequest';
+
+export type CreatedRouteType = {
+    id: string;
+};
+export interface RoutesResponse {
+    data: CreatedRouteType | null;
     status: number;
     error: string;
 }
 
 export const syncRouteData = async (
     path: LocationDataI[],
-): Promise<MapsResponse> => {
-    const response = await createRoute();
+): Promise<RoutesResponse> => {
+    const defaultName = getRouteDefaultName();
+    const response = await createRoute(defaultName);
 
     if (!response?.data?.id || response.status > 400) {
         let errorMessage = 'error';
@@ -28,7 +35,7 @@ export const syncRouteData = async (
     );
 
     return {
-        data: <MapType>responseFromUpdate.data,
+        data: {id: responseFromUpdate.data.id},
         status: response.status,
         error: '',
     };
