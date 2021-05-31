@@ -27,7 +27,7 @@ interface Props {
 
 const NameChange: React.FC<Props> = ({navigation}: Props) => {
     const dispatch = useAppDispatch();
-    const trans = I18n.t('NameChange');
+    const trans: any = I18n.t('NameChange');
 
     const name: string = useAppSelector(state => state.user.userName);
 
@@ -141,7 +141,9 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
                 keyboardShouldPersistTaps={'always'}
                 style={styles.scroll}>
                 <View style={styles.area}>
-                    <Text style={styles.title}>{name + trans.title}</Text>
+                    <Text style={styles.title}>
+                        {(name || trans.defaultName) + trans.title}
+                    </Text>
 
                     <View style={[styles.inputAndPlaceholder, styles.input]}>
                         <OneLineTekst
