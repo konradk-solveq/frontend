@@ -334,11 +334,6 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     setObjSize(334, 50);
     let mapBtnSize = 60;
     const styles = StyleSheet.create({
-        container: {
-            // flex: 1,
-            marginTop: marginTopOnIos,
-            backgroundColor: 'transparent',
-        },
         innerContainer: {
             flex: 1,
         },
@@ -359,6 +354,8 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             left: 0,
         },
         bikeList: {
+            zIndex: 1,
+            marginTop: marginTopOnIos,
             position: 'absolute',
         },
         mapBtn: {
@@ -419,6 +416,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                         onMessage={heandleOnMessage}
                     />
                 </View>
+
                 <View style={styles.gradient} pointerEvents="none">
                     <WebView
                         style={styles.fullView}
@@ -442,24 +440,23 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                         ref={gradientRef}
                     />
                 </View>
-                <SafeAreaView style={styles.container}>
-                    {bikes && (
-                        <Animated.View
-                            style={[
-                                styles.bikeList,
-                                {
-                                    top: bikeSelectorListPositionY,
-                                },
-                            ]}>
-                            <BikeSelectorList
-                                list={bikes}
-                                callback={onChangeBikeHandler}
-                                currentBike={bike?.description?.serial_number}
-                                buttonText={'add'}
-                            />
-                        </Animated.View>
-                    )}
-                </SafeAreaView>
+
+                {bikes && (
+                    <Animated.View
+                        style={[
+                            styles.bikeList,
+                            {
+                                top: bikeSelectorListPositionY,
+                            },
+                        ]}>
+                        <BikeSelectorList
+                            list={bikes}
+                            callback={onChangeBikeHandler}
+                            currentBike={bike?.description?.serial_number}
+                            buttonText={'add'}
+                        />
+                    </Animated.View>
+                )}
 
                 <TouchableWithoutFeedback
                     onPress={() => heandleMapVisibility()}>
@@ -486,6 +483,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                     onpress={heandleGoBackClick}
                     inner={headerTitle}
                     pause={pause}
+                    titleOn={!mapOn}
                 />
             </View>
         </>
