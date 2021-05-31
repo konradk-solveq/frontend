@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { StyleSheet, Dimensions, View } from 'react-native';
-import { useNavigation, StackActions } from '@react-navigation/native';
-import { ScrollView } from 'react-native-gesture-handler';
+import React, {useState} from 'react';
+import {StyleSheet, Dimensions, View} from 'react-native';
+import {useNavigation, StackActions} from '@react-navigation/native';
+import {ScrollView} from 'react-native-gesture-handler';
 
-import { UserBike } from '../../../../../models/userBike.model';
+import {UserBike} from '../../../../../models/userBike.model';
 import {
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
     getHorizontalPx,
 } from '../../../../../helpers/layoutFoo';
-import { nfcIsSupported } from '../../../../../helpers/nfc';
+import {nfcIsSupported} from '../../../../../helpers/nfc';
 
 import BikeButton from '../../../../../sharedComponents/buttons/bikeButton';
 import BikeIcon from '../../../../../sharedComponents/svg/bikeIcon';
@@ -23,7 +23,7 @@ interface Props {
     buttonText: string;
 }
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const BikeSelectorList: React.FC<Props> = ({
     style,
@@ -31,7 +31,6 @@ const BikeSelectorList: React.FC<Props> = ({
     callback,
     currentBike,
 }: Props) => {
-
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
@@ -75,12 +74,16 @@ const BikeSelectorList: React.FC<Props> = ({
 
             return (
                 <View
-                    style={[styles.item, isFirsEl && styles.fitstItem, isLastEl && styles.lastItem]}
+                    style={[
+                        styles.item,
+                        isFirsEl && styles.fitstItem,
+                        isLastEl && styles.lastItem,
+                    ]}
                     key={e.description.serial_number}>
                     <BikeButton
                         text={e.description?.name || 'rower'}
                         onPress={() => callback(e.description.serial_number)}
-                        {...(isSame && { icon: <BikeIcon /> })}
+                        {...(isSame && {icon: <BikeIcon />})}
                     />
                 </View>
             );

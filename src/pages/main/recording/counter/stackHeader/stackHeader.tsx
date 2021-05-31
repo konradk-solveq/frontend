@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View, Dimensions, Platform } from 'react-native';
-import { WebView } from 'react-native-webview';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -12,13 +11,13 @@ import {
     getHorizontalPx,
 } from '../../../../../helpers/layoutFoo';
 import { getStatusBarHeight } from '../../../../../utils/detectIOSDevice';
-import AnimSvg from '../../../../../helpers/animSvg';
 
 interface Props {
     // * wartości wymagane
     style?: any;
     onpress: Function; // po naciśnięciu strzałki
     inner: string; // nazwa headera
+    titleOn: boolean; // czy nazwa w headerze ma się pokazać
     getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
     pause: boolean;
 }
@@ -95,7 +94,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                     color={props.pause ? '#000' : '#fff'}
                 />
 
-                <Text style={styles.title}>{props.inner}</Text>
+                {props.titleOn && <Text style={styles.title}>{props.inner}</Text>}
             </View>
         </View>
     );
