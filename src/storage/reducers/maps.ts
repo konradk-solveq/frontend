@@ -7,7 +7,10 @@ import {MapPagination} from '../../interfaces/api';
 
 interface MapsState {
     maps: MapType[];
+    privateMaps: MapType[];
     paginationCoursor: MapPagination;
+    mapToAddId: string;
+    paginationCoursorPrivate: MapPagination;
     favourites: string[];
     ownes: string[];
     error: string;
@@ -18,8 +21,11 @@ interface MapsState {
 
 const initialStateList: MapsState = {
     maps: [],
+    privateMaps: [],
     paginationCoursor: {},
-    favourites: ['222', '333'],
+    paginationCoursorPrivate: {},
+    mapToAddId: '',
+    favourites: [],
     ownes: [],
     error: '',
     loading: false,
@@ -58,7 +64,25 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 ...state,
                 loading: false,
                 maps: newMaps,
-                pagintaion: action.paginationCoursor,
+                paginationCoursor: action.paginationCoursor,
+                statusCode: 200,
+                refresh: action.refresh,
+            };
+        }
+        case actionTypes.SET_PRIVATE_MAPS_DATA: {
+            let newMaps = [...state.privateMaps];
+            if (action.refresh) {
+                newMaps = action.privateMaps;
+            }
+
+            if (!action.refresh || !newMaps?.length) {
+                newMaps = [...newMaps, ...action.privateMaps];
+            }
+            return {
+                ...state,
+                loading: false,
+                privateMaps: newMaps,
+                paginationCoursorPrivate: action.paginationCoursor,
                 statusCode: 200,
                 refresh: action.refresh,
             };
@@ -75,6 +99,20 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 maps: [...state.maps, action.map],
                 ownes: o,
                 statusCode: 200,
+            };
+        }
+        case actionTypes.SET_PRIVATE_MAPID_TO_ADD: {
+            return {
+                ...state,
+                loading: false,
+                mapToAddId: action.privateMapId,
+            };
+        }
+        case actionTypes.CLEAR_PRIVATE_MAPID_TO_ADD: {
+            return {
+                ...state,
+                loading: false,
+                mapToAddId: initialStateList.mapToAddId,
             };
         }
         case actionTypes.ADD_MAP_TO_FAVOURITES: {
@@ -111,7 +149,9 @@ const mapsReducer = (state = initialStateList, action: any) => {
 const persistConfig = {
     key: 'maps',
     storage: AsyncStorage,
-    whitelist: ['maps, favourites, ownes'],
+    whitelist: [
+        'maps, favourites, ownes, privateMaps, paginationCoursorPrivate',
+    ],
     timeout: 20000,
 };
 

@@ -9,6 +9,7 @@ import {
 } from '../../services';
 import {I18n} from '../../../I18n/I18n';
 import logger from '../../utils/crashlytics';
+import {setAutorizationHeader} from '../../api/api';
 
 export const setAuthError = (error: string, statusCode: number) => ({
     type: actionTypes.SET_AUTH_ERROR,
@@ -91,6 +92,7 @@ export const logIn = (): AppThunk<Promise<void>> => async (
             return;
         }
 
+        setAutorizationHeader(response.data.access_token);
         dispatch(clearAuthError());
         dispatch(setAuthSessionData(response.data));
         dispatch(setAuthorizationState());
@@ -152,6 +154,7 @@ export const checkSession = (): AppThunk<Promise<void>> => async (
 
         /* Refresh session token if needed */
         if (refreshToken !== response.data?.refresh_token) {
+            setAutorizationHeader(response.data.access_token);
             dispatch(clearAuthError());
             dispatch(setAuthSessionData(response.data));
             dispatch(setAuthorizationState());

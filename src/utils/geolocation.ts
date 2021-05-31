@@ -78,6 +78,7 @@ export const startBackgroundGeolocation = async (keep?: boolean) => {
 };
 
 export const stopBackgroundGeolocation = async () => {
+    await BackgroundGeolocation.resetOdometer();
     const state = await BackgroundGeolocation.stop();
     console.log('stopBackgroundGeolocation', state.enabled);
     return state;

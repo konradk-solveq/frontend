@@ -30,6 +30,8 @@ export {
     addMapData,
     addMapToFavourite,
     removeMapFromFavourite,
+    fetchPrivateMapsList,
+    setPrivateMapId,
 } from './maps';
 
 export {

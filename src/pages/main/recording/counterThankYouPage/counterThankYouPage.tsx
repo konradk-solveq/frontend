@@ -24,6 +24,8 @@ import {
     syncCurrentRouteData,
 } from '../../../../storage/actions/routes';
 
+import Loader from '../../../onboarding/bikeAdding/loader/loader';
+
 enum Action {
     next = 'next',
     prev = 'prev',
@@ -70,7 +72,10 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const onGoForward = useCallback(() => {
         dispatch(clearError());
         if (goForward === Action.next) {
-            navigation.navigate(RegularStackRoute.EDIT_DETAILS_SCREEN);
+            navigation.navigate({
+                name: RegularStackRoute.EDIT_DETAILS_SCREEN,
+                params: {redirectTo: RegularStackRoute.KROSS_WORLD_SCREEN},
+            });
             return;
         }
 
@@ -93,7 +98,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
             onGoForward();
         }
-    }, [error.message, isSyncData, onGoForward]);
+    }, [error.message, isSyncData, onGoForward, goForward]);
 
     const heandleSaveDistance = ratio => {
         let d = route?.params?.distance;
@@ -122,10 +127,13 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     };
 
     const onSaveRouteHandler = (forward: string) => {
-        console.log('on save handler', forward);
         setGoForward(forward);
         dispatch(syncCurrentRouteData());
     };
+
+    if (isSyncData) {
+        return <Loader />;
+    }
 
     return (
         <SafeAreaView style={styles.container}>

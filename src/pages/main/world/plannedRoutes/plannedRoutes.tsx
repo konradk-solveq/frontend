@@ -4,7 +4,7 @@ import {View, Text, FlatList} from 'react-native';
 import {favouritesMapsSelector} from '../../../../storage/selectors/map';
 import {userNameSelector} from '../../../../storage/selectors';
 import {useAppSelector} from '../../../../hooks/redux';
-import {MapType} from '../../../../models/map.model';
+import {Map} from '../../../../models/map.model';
 import {I18n} from '../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {getImagesThumbs} from '../../../../utils/transformData';
@@ -22,7 +22,7 @@ const getItemLayout = (_: any, index: number) => ({
 });
 
 interface RenderItem {
-    item: MapType;
+    item: Map;
     index: number;
 }
 

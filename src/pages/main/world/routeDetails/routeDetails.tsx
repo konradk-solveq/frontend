@@ -13,7 +13,10 @@ import {I18n} from '../../../../../I18n/I18n';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {RegularStackRoute} from '../../../../navigation/route';
 import {useAppSelector} from '../../../../hooks/redux';
-import {mapDataByIDSelector} from '../../../../storage/selectors/map';
+import {
+    mapDataByIDSelector,
+    privateDataByIDSelector,
+} from '../../../../storage/selectors/map';
 import {userIdSelector} from '../../../../storage/selectors/auth';
 import {getImagesThumbs} from '../../../../utils/transformData';
 
@@ -33,7 +36,12 @@ const RouteDetails = () => {
     const navigation = useNavigation();
     const route = useRoute();
     const mapID: string = route?.params?.mapID;
-    const mapData = useAppSelector(mapDataByIDSelector(mapID));
+    const privateMap: boolean = route?.params?.private;
+    const mapData = useAppSelector(
+        !privateMap
+            ? mapDataByIDSelector(mapID)
+            : privateDataByIDSelector(mapID),
+    );
     const userID = useAppSelector(userIdSelector);
     const images = getImagesThumbs(mapData?.images || []);
 
@@ -51,11 +59,16 @@ const RouteDetails = () => {
     const onGoToEditHandler = () => {
         navigation.navigate({
             name: RegularStackRoute.EDIT_DETAILS_SCREEN,
-            params: {mapID: mapID},
+            params: {mapID: mapID, private: privateMap},
         });
     };
 
     const onPressHandler = () => {
+        if (privateMap) {
+            console.log('delete map');
+            return;
+        }
+        console.log('create ticket');
         /* TODO: user can delete if creted route. For public routes can only make ticket */
     };
 
@@ -90,7 +103,11 @@ const RouteDetails = () => {
                         <View style={styles.content}>
                             <Description mapData={mapData} images={images} />
                             <BigRedBtn
-                                title={trans.reportButton}
+                                title={
+                                    !privateMap
+                                        ? trans.reportButton
+                                        : trans.deleteButton
+                                }
                                 onpress={onPressHandler}
                                 style={styles.reportButton}
                             />

@@ -71,7 +71,7 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
             }
             if (index === 1) {
                 return (
-                    <View style={styles.tileWrapper}>
+                    <View style={[styles.tileWrapper, lastItemStyle]}>
                         <SecondTile
                             mapData={item}
                             images={images}

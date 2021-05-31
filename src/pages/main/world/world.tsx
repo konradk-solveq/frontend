@@ -10,6 +10,7 @@ import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {
     loadingMapsSelector,
     nextPaginationCoursor,
+    nextPrivatePaginationCoursor,
 } from '../../../storage/selectors/map';
 import {fetchMapsList} from '../../../storage/actions';
 
@@ -21,6 +22,7 @@ import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
 import styles from './style';
+import {fetchPrivateMapsList} from '../../../storage/actions/maps';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -40,6 +42,7 @@ const World: React.FC = () => {
     const trans: any = I18n.t('MainWorld');
     const statusBarHeight = useStatusBarHeight();
     const nextCoursor = useAppSelector(nextPaginationCoursor);
+    const nextPrivateCoursor = useAppSelector(nextPrivatePaginationCoursor);
     const isLoading = useAppSelector(loadingMapsSelector);
 
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -79,14 +82,28 @@ const World: React.FC = () => {
     };
 
     const onLoadMoreHandler = useCallback(() => {
-        if (nextCoursor && !isLoading) {
-            dispatch(fetchMapsList(nextCoursor));
+        if (!isLoading) {
+            if (nextPrivateCoursor && activeTab === routesTab.MYROUTES) {
+                dispatch(fetchPrivateMapsList(nextPrivateCoursor));
+                return;
+            }
+            if (nextCoursor && activeTab === routesTab.BIKEMAP) {
+                dispatch(fetchMapsList(nextCoursor));
+                return;
+            }
         }
-    }, [dispatch, isLoading, nextCoursor]);
+    }, [dispatch, isLoading, nextCoursor, nextPrivateCoursor, activeTab]);
 
     const onRefreshHandler = useCallback(() => {
-        dispatch(fetchMapsList());
-    }, [dispatch]);
+        if (activeTab === routesTab.MYROUTES) {
+            dispatch(fetchPrivateMapsList());
+            return;
+        }
+        if (activeTab === routesTab.BIKEMAP) {
+            dispatch(fetchMapsList());
+            return;
+        }
+    }, [dispatch, activeTab]);
 
     const renderActiveScreen = useCallback(() => {
         switch (activeTab) {
@@ -99,7 +116,11 @@ const World: React.FC = () => {
                 );
             case routesTab.MYROUTES:
                 return (
-                    <MyRoutes onPress={() => setActiveTab(routesTab.BIKEMAP)} />
+                    <MyRoutes
+                        onRefresh={onRefreshHandler}
+                        onLoadMore={onLoadMoreHandler}
+                        onPress={() => setActiveTab(routesTab.BIKEMAP)}
+                    />
                 );
             case routesTab.PLANED:
                 return (

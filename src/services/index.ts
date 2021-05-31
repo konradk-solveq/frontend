@@ -4,7 +4,11 @@ export {
     getBikesListByFrameNrs,
 } from './bikesService';
 export {getPlacesList} from './placesService';
-export {getMapsList} from './mapsService';
+export {
+    getMapsList,
+    getPrivateMapsListService,
+    editPrivateMapMetadataService,
+} from './mapsService';
 export {syncRouteData} from './routesService';
 export {
     checkSessionAndRecreateIfNeededService,
@@ -13,3 +17,4 @@ export {
     getRefreshSessionService,
     registerMobileDevice,
 } from './authService';
+export {getAppConfigService} from './appService';

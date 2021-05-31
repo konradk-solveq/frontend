@@ -1,5 +1,5 @@
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
-import {ApiPathI, LocationDataI} from '../interfaces/geolocation';
+import {LocationDataI} from '../interfaces/geolocation';
 import {
     BikeBaseData,
     BikeDescription,
@@ -244,7 +244,7 @@ export const getImagesThumbs = (images: Images[]) => {
             }
         }
         if (i.type === 'map') {
-            const url = i.variants?.square?.[0]?.url;
+            const url = i.variants?.square?.[1]?.url;
             if (url) {
                 mapImgUrl = url;
             }

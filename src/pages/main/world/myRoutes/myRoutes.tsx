@@ -1,72 +1,128 @@
-import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import I18n from 'react-native-i18n';
-import {useNavigation} from '@react-navigation/native';
+import React, {useCallback, useState} from 'react';
+import {View, Text, FlatList} from 'react-native';
 
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
-
+import {
+    loadingMapsSelector,
+    privateMapsListSelector,
+    refreshMapsSelector,
+} from '../../../../storage/selectors/map';
+import {userNameSelector} from '../../../../storage/selectors';
+import {useAppSelector} from '../../../../hooks/redux';
+import {Map} from '../../../../models/map.model';
+import {I18n} from '../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
+import {getImagesThumbs} from '../../../../utils/transformData';
+
+import NextTile from '../components/tiles/nextTile';
+import EmptyList from './emptyList';
+
+import styles from './style';
+import ShowMoreModal from '../components/showMoreModal/showMoreModal';
+import Loader from '../../../../sharedComponents/loader/loader';
+
+const getItemLayout = (_: any, index: number) => ({
+    length: getVerticalPx(175),
+    offset: getVerticalPx(175) * index,
+    index,
+});
+
+interface RenderItem {
+    item: Map;
+    index: number;
+}
 
 interface IProps {
     onPress: () => void;
+    onRefresh: () => void;
+    onLoadMore: () => void;
 }
 
-const MyRoutes: React.FC<IProps> = ({onPress}: IProps) => {
-    const trans: any = I18n.t('MainMyRoutes');
-    const navigation = useNavigation();
+const MyRoutes: React.FC<IProps> = ({
+    onPress,
+    onRefresh,
+    onLoadMore,
+}: IProps) => {
+    const trans: any = I18n.t('MainWorld.MyRoutes');
+    const userName = useAppSelector(userNameSelector);
+    const privateMaps = useAppSelector(privateMapsListSelector);
+    const isLoading = useAppSelector(loadingMapsSelector);
+    const isRefreshing = useAppSelector(refreshMapsSelector);
 
-    const styles = StyleSheet.create({
-        container: {
-            marginHorizontal: 40,
+    const [showModal, setShowModal] = useState(false);
+    const [activeMapID, setActiveMapID] = useState<string>('');
+
+    const onPressHandler = (state: boolean, mapID?: string) => {
+        setShowModal(state);
+        if (mapID) {
+            setActiveMapID(mapID);
+        }
+    };
+
+    const renderItem = useCallback(
+        ({item, index}: RenderItem) => {
+            const lastItemStyle =
+                index === privateMaps?.length - 1 ? styles.lastTile : undefined;
+            const images = getImagesThumbs(item?.images || []);
+            return (
+                <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
+                    <NextTile
+                        mapData={item}
+                        images={images}
+                        onPress={onPressHandler}
+                    />
+                </View>
+            );
         },
-        title: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
-            lineHeight: 52,
-            color: '#d8232a',
-            textAlign: 'center',
-            marginTop: getVerticalPx(37),
-        },
-        text: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 23,
-            lineHeight: 30,
-            letterSpacing: 0.5,
-            color: '#313131',
-            textAlign: 'left',
-            marginTop: getVerticalPx(20),
-        },
-        btnRecord: {
-            height: 50,
-            width: '100%',
-            marginTop: getVerticalPx(40),
-        },
-        btnCheck: {
-            height: 50,
-            width: '100%',
-            marginTop: getVerticalPx(30),
-        },
-    });
+        [privateMaps?.length],
+    );
+
+    if (!privateMaps?.length) {
+        return <EmptyList onPress={onPress} />;
+    }
+
+    const renderListLoader = () => {
+        if (isLoading && privateMaps.length > 3) {
+            return (
+                <View style={styles.loaderContainer}>
+                    <Loader />
+                </View>
+            );
+        }
+        return null;
+    };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{trans.title}</Text>
-
-            <Text style={styles.text}>{trans.text}</Text>
-
-            <BigRedBtn
-                style={styles.btnRecord}
-                title={trans.btnRecord}
-                onpress={() => navigation.navigate('Counter')}
+        <>
+            <View style={styles.horizontalSpace}>
+                <Text style={styles.header}>
+                    {userName || trans.defaultUserName}
+                    {trans.title}
+                </Text>
+            </View>
+            <ShowMoreModal
+                showModal={showModal}
+                removeFav
+                mapID={activeMapID}
+                onPressCancel={() => onPressHandler(false)}
+                isPrivate
             />
-
-            <BigWhiteBtn
-                style={styles.btnCheck}
-                title={trans.btnCheck}
-                onpress={onPress}
-            />
-        </View>
+            <View style={styles.horizontalSpace}>
+                <FlatList
+                    keyExtractor={item => item.id}
+                    data={privateMaps}
+                    renderItem={renderItem}
+                    showsVerticalScrollIndicator={false}
+                    getItemLayout={getItemLayout}
+                    initialNumToRender={10}
+                    removeClippedSubviews
+                    onEndReached={onLoadMore}
+                    onEndReachedThreshold={0.5}
+                    ListFooterComponent={renderListLoader}
+                    refreshing={isLoading && isRefreshing}
+                    onRefresh={onRefresh}
+                />
+            </View>
+        </>
     );
 };
 

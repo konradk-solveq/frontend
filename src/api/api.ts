@@ -13,7 +13,15 @@ const instance = axios.create({
     // },
 });
 
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+instance.defaults.headers.post['Content-Type'] = 'application/json';
+
+export const setAutorizationHeader = (token: string) => {
+    /* TODO: replace with smth more fancy */
+    instance.defaults.headers.get.Authorization = `Bearer ${token}`;
+    instance.defaults.headers.post.Authorization = `Bearer ${token}`;
+    instance.defaults.headers.patch.Authorization = `Bearer ${token}`;
+    instance.defaults.headers.delete.Authorization = `Bearer ${token}`;
+};
 
 export const source = axios.CancelToken.source();
 export const isCancel = (c: any) => axios.isCancel(c);
