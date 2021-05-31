@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -53,11 +53,15 @@ const defaultRegion = {
     longitudeDelta: 0.4499640028797671,
 };
 const Bike: React.FC<Props> = (props: Props) => {
+    const scrollRef = useRef<null | ScrollView>(null);
+
     const dispatch = useAppDispatch();
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const genericBikeData = useAppSelector<UserBike>(
         state => state.bikes.genericBike,
     );
+
+    const [resetReviewsPosition, setResetReviewsPosition] = useState(false);
 
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
     const [box, serBox] = useState({
@@ -167,6 +171,7 @@ const Bike: React.FC<Props> = (props: Props) => {
         const newBike = getBike(bikes, frameNumber);
         if (newBike) {
             setBike(newBike);
+            setResetReviewsPosition(true);
         }
     };
 
@@ -282,6 +287,11 @@ const Bike: React.FC<Props> = (props: Props) => {
                         dispatch(
                             removeBikeByNumber(bike.description.serial_number),
                         );
+                        scrollRef.current?.scrollTo({
+                            y: 0,
+                            animated: true,
+                        });
+                        setResetReviewsPosition(true);
                     }
                 },
             },
@@ -291,7 +301,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     const warrantyData = bike?.warranty || genericBikeData.warranty;
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scroll}>
+            <ScrollView ref={scrollRef} style={styles.scroll}>
                 <Text style={styles.header}>{trans.header}</Text>
 
                 {bike?.description && (
@@ -365,6 +375,10 @@ const Bike: React.FC<Props> = (props: Props) => {
                                 location={location}
                                 description={trans.warranty.reviews}
                                 navigation={props.navigation}
+                                resetPostion={resetReviewsPosition}
+                                onScrollToStart={() =>
+                                    setResetReviewsPosition(false)
+                                }
                             />
                         )}
 

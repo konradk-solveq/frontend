@@ -28,6 +28,8 @@ interface Props {
     box: any;
     region: any;
     location: any;
+    resetPostion?: boolean;
+    onScrollToStart?: () => void;
 }
 
 let primeLayout = null;
@@ -45,10 +47,23 @@ const Reviews: React.FC<Props> = (props: Props) => {
     const [animSvgStyle, setAnimSvgStyle] = useState({}); // do odpalania animacji svg
 
     const timeout = useRef();
+    const scrollRef = useRef<null | ScrollView>(null);
 
     useEffect(() => {
         return () => clearTimeout(timeout.current);
     }, []);
+
+    useEffect(() => {
+        if (props.resetPostion) {
+            scrollRef.current?.scrollTo({
+                x: 0,
+                animated: true,
+            });
+            if (props.onScrollToStart) {
+                props.onScrollToStart();
+            }
+        }
+    }, [props.resetPostion, props.onScrollToStart]);
 
     const startTicking = () => {
         setListOn(false);
@@ -227,6 +242,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
             <Text style={styles.title}>{props.description.name}</Text>
 
             <ScrollView
+                ref={scrollRef}
                 horizontal={true}
                 style={styles.scroll}
                 showsVerticalScrollIndicator={false}
