@@ -6,6 +6,7 @@ import {
     Text,
     Alert,
     ScrollView,
+    Keyboard,
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
@@ -49,7 +50,23 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     const [inputFrame, setInputFrame] = useState('');
     const [canGoFoward, setCanGoFoward] = useState(false);
     const [forceMessageWrong, setForceMessageWrong] = useState('');
-    const [areaHeigh, setAreaHeigh] = useState(0);
+
+    // do wyliczania wysokości ekranu z klawiaturą i bez
+    const [keyboardHeight, setKeyboardHeight] = useState(0);
+    const keyboardDidShow = (e: any) =>
+        setKeyboardHeight(e.endCoordinates.height);
+    const keyboardDidHide = (e: any) =>
+        setKeyboardHeight(e.endCoordinates.height);
+
+    useEffect(() => {
+        Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+        Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+
+        return () => {
+            Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
+            Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+        };
+    }, []);
 
     // do pobrania nazwy użytkownika zz local sorage
     useEffect(() => {
@@ -103,10 +120,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         }
     };
 
-    const handleAreaHeight = (layout: any) => {
-        setAreaHeigh(layout.height);
-    };
-
     const [headHeight, setHeadHeight] = useState(0);
 
     setObjSize(334, 50);
@@ -121,7 +134,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         },
         area: {
             width: '100%',
-            height: areaHeigh,
+            height: getVerticalPx(896) - keyboardHeight,
             minHeight: getVerticalPx(450) + headHeight,
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351 - 100, 100),
@@ -160,9 +173,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     }
 
     return (
-        <SafeAreaView
-            style={styles.container}
-            onLayout={({nativeEvent}) => handleAreaHeight(nativeEvent.layout)}>
+        <SafeAreaView style={styles.container}>
             <ScrollView
                 keyboardShouldPersistTaps={'always'}
                 style={styles.scroll}>
