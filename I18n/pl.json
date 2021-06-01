@@ -1101,6 +1101,7 @@
             "noTitle": "Brak tytułu",
             "distanceToStart": " km od Ciebie",
             "addToFavAction": "Pobierz trasę",
+            "publishTripAction": "Upublicznij",
             "startTripAction": "Rozpocznij",
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
@@ -1152,6 +1153,8 @@
             "publishButton": "Zapisz i upublicznij",
             "saveButton": "Zapisz",
             "imagesTitle": "Zdjęcia z trasy",
+            "removeRouteBtn": "Tak, usuń",
+            "cancelRemoveRouteBtn": "Anuluj",
             "attributes": {
                 "level": {
                     "name": "Poziom trudności",

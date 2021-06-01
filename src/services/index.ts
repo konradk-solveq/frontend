@@ -8,6 +8,7 @@ export {
     getMapsList,
     getPrivateMapsListService,
     editPrivateMapMetadataService,
+    removePrivateMapByIdService,
 } from './mapsService';
 export {syncRouteData} from './routesService';
 export {

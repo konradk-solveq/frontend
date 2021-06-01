@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View, StyleSheet, SafeAreaView, Text, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
 
@@ -13,6 +13,8 @@ import {
     nextPrivatePaginationCoursor,
 } from '../../../storage/selectors/map';
 import {fetchMapsList} from '../../../storage/actions';
+import {fetchPrivateMapsList} from '../../../storage/actions/maps';
+import {requestGeolocationPermission} from '../../../utils/geolocation';
 
 import FiltersModal from './components/filters/filtersModal';
 import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
@@ -22,7 +24,6 @@ import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
 import styles from './style';
-import {fetchPrivateMapsList} from '../../../storage/actions/maps';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -48,6 +49,10 @@ const World: React.FC = () => {
     const [showModal, setShowModal] = useState<boolean>(false);
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
     const [activeTab, setActiveTab] = useState<routesTab>(routesTab.BIKEMAP);
+
+    useEffect(() => {
+        requestGeolocationPermission();
+    }, []);
 
     const handleBikeMap = () => {
         if (activeTab === routesTab.BIKEMAP) {

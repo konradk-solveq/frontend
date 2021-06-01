@@ -1,7 +1,6 @@
 import {axiosGet} from './api';
 
-export const getConfig = async () => {
-    return await axiosGet('/application/config', {
+export const getConfig = async () =>
+    await axiosGet('/application/config', {
         validateStatus: () => true,
     });
-};

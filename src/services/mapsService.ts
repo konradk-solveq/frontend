@@ -3,6 +3,7 @@ import {
     getMaps,
     getPrivateRoutes,
     publishPrivateMapData,
+    removePrivateMapData,
 } from '../api';
 import {MapFormDataResult} from '../interfaces/form';
 import {MapType, Coords} from '../models/map.model';
@@ -127,6 +128,30 @@ export const editPrivateMapMetadataService = async (
                 error: errorMessage,
             };
         }
+    }
+
+    return {
+        data: '',
+        status: response.status,
+        error: '',
+    };
+};
+
+export const removePrivateMapByIdService = async (
+    id: string,
+): Promise<MapsDataResponse> => {
+    const response = await removePrivateMapData(id);
+
+    if (response.status > 400) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: null,
+            status: response.status,
+            error: errorMessage,
+        };
     }
 
     return {

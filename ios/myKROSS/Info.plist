@@ -43,19 +43,19 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Displaying a list of service points and Kross partner stores in the vicinity of the user. Locations displayed on the map.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>The location allows constant access to the geolocation of the device for the purpose of recording user activity in the application.</string>
-    <key>NSMotionUsageDescription</key>
-	<string>The accelerometer reduces battery consumption when using the device's location in the application.</string>
-    <key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 	<dict>
 		<key>Recording a trip</key>
 		<string>Allow myKROSS app to track location with high accuracy</string>
 	</dict>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app requires access to the photo library to add to route description.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Displaying a list of service points and Kross partner stores in the vicinity of the user. Locations displayed on the map.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>The accelerometer reduces battery consumption when using the device's location in the application.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to the photo library to add to route description.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DIN2014Narrow-Light.otf</string>

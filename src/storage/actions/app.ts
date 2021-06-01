@@ -47,12 +47,13 @@ export const fetchAppConfig = (
     try {
         const response = await getAppConfigService();
 
-        if (response.error || !response.data) {
+        if (response.error || response.status >= 400 || !response.data) {
             dispatch(setSyncError(response.error, response.status));
             return;
         }
 
         dispatch(setAppConfig(response.data));
+        dispatch(clearAppError());
         if (!noLoader) {
             dispatch(setAppStatus(false));
         }
@@ -69,11 +70,11 @@ export const appSyncData = (): AppThunk<Promise<void>> => async dispatch => {
     try {
         await dispatch(fetchAppConfig(true));
 
-        await dispatch(syncRouteDataFromQueue());
-        dispatch(fetchMapsList());
+        await dispatch(fetchMapsList());
         dispatch(fetchPrivateMapsList());
         dispatch(fetchGenericBikeData());
         dispatch(setBikesListByFrameNumbers());
+        dispatch(syncRouteDataFromQueue());
 
         dispatch(setSyncStatus(false));
     } catch (error) {

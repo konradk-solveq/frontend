@@ -53,3 +53,10 @@ export const publishPrivateMapData = async (id: string) => {
         },
     );
 };
+
+export const removePrivateMapData = async (id: string) => {
+    return await instance.delete(`/routes/route/${id}`, {
+        cancelToken: source.token,
+        validateStatus: () => true,
+    });
+};

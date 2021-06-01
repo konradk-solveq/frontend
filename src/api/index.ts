@@ -7,6 +7,7 @@ export {
     getRoute,
     editPrivateMapMetaData,
     publishPrivateMapData,
+    removePrivateMapData,
 } from './maps';
 export {createRoute, sendRouteData} from './routes';
 export {
