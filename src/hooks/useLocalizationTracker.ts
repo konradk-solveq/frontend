@@ -9,6 +9,7 @@ import {useAppDispatch, useAppSelector} from './redux';
 import {trackerCurrentRouteAverrageSpeedSelector} from '../storage/selectors/routes';
 import {
     persistCurrentRouteData,
+    setAverageSpeed,
     setCurrentRoute,
     stopCurrentRoute,
 } from '../storage/actions/routes';
@@ -51,16 +52,20 @@ const useLocalizationTracker = (persist: boolean) => {
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
     const [lastDistance, setLastDistance] = useState<number>(0);
-    const [averageSpeed, setAverageSpeed] = useState<number | undefined>();
+    const [averageSpeed, setCurrentAverageSpeed] = useState<
+        number | undefined
+    >();
 
     const onPersistData = useCallback(
         async (d: number) => {
-            if (d - lastDistance < 1000) {
+            if (d - lastDistance < 500) {
                 return;
             }
 
             dispatch(persistCurrentRouteData());
-            dispatch(setAverageSpeed(averageSpeed));
+            if (averageSpeed) {
+                dispatch(setAverageSpeed(averageSpeed));
+            }
             setLastDistance(d);
         },
         [dispatch, lastDistance, averageSpeed],
@@ -133,7 +138,7 @@ const useLocalizationTracker = (persist: boolean) => {
                     };
 
                     setTrackerData(res);
-                    setAverageSpeed(parseFloat(aSpeed));
+                    setCurrentAverageSpeed(parseFloat(aSpeed));
 
                     if (persist) {
                         onPersistData(d?.odometer);
@@ -154,6 +159,7 @@ const useLocalizationTracker = (persist: boolean) => {
         isActive,
         startTracker,
         stopTracker,
+        averageSpeed,
     };
 };
 
