@@ -3,7 +3,7 @@ import {ApiPathI} from '../interfaces/geolocation';
 
 export const createRoute = async (name: string) => {
     return await instance.post(
-        '/routes/route ',
+        '/routes/route',
         {
             name: name,
         },
