@@ -8,10 +8,10 @@
         "start": "react-native start",
         "test": "jest",
         "lint": "eslint .",
-        "dev-android-on-bash": "ENVFILE=.env.development react-native run-android",
-        "dev-ios-on-bash": "ENVFILE=.env.development react-native run-ios",
-        "dev-android-on-cmd": "SET ENVFILE=.env.development && react-native run-android",
-        "dev-ios-on-cmd": "SET ENVFILE=.env.development && react-native run-ios"
+        "dev-android-bash": "ENVFILE=.env.development react-native run-android",
+        "dev-ios-bash": "ENVFILE=.env.development react-native run-ios",
+        "dev-android-cmd": "SET ENVFILE=.env.development && react-native run-android",
+        "dev-ios-cmd": "SET ENVFILE=.env.development && react-native run-ios"
     },
     "dependencies": {
         "@react-native-async-storage/async-storage": "^1.14.1",
