@@ -34,7 +34,7 @@ export const syncRouteData = async (
         routesDataToAPIRequest(path),
     );
 
-    if (!responseFromUpdate?.data?.id || responseFromUpdate.status > 400) {
+    if (responseFromUpdate.status > 400) {
         let errorMessage = 'error';
         if (
             responseFromUpdate.data?.message ||
@@ -52,8 +52,8 @@ export const syncRouteData = async (
     }
 
     return {
-        data: {id: responseFromUpdate.data.id},
-        status: response.status,
+        data: {id: response.data.id},
+        status: responseFromUpdate.status,
         error: '',
     };
 };
