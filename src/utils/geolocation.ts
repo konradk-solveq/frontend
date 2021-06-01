@@ -71,6 +71,9 @@ export const startBackgroundGeolocation = async (keep?: boolean) => {
     if (!keep) {
         await BackgroundGeolocation.resetOdometer();
     }
+    await BackgroundGeolocation.setConfig({
+        isMoving: true,
+    });
 
     const state = await BackgroundGeolocation.start();
 
@@ -80,7 +83,10 @@ export const startBackgroundGeolocation = async (keep?: boolean) => {
 export const stopBackgroundGeolocation = async () => {
     await BackgroundGeolocation.resetOdometer();
     const state = await BackgroundGeolocation.stop();
-    console.log('stopBackgroundGeolocation', state.enabled);
+    await BackgroundGeolocation.setConfig({
+        isMoving: true,
+    });
+
     return state;
 };
 
