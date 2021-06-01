@@ -70,11 +70,11 @@ export const appSyncData = (): AppThunk<Promise<void>> => async dispatch => {
     try {
         await dispatch(fetchAppConfig(true));
 
-        dispatch(syncRouteDataFromQueue());
-        dispatch(fetchMapsList());
+        await dispatch(fetchMapsList());
         dispatch(fetchPrivateMapsList());
         dispatch(fetchGenericBikeData());
         dispatch(setBikesListByFrameNumbers());
+        dispatch(syncRouteDataFromQueue());
 
         dispatch(setSyncStatus(false));
     } catch (error) {
