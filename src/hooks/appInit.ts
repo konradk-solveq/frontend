@@ -47,6 +47,13 @@ const useAppInit = () => {
     }, [authToken]);
 
     useEffect(() => {
+        /* Logs will be send after app restarted */
+        initCrashlytics(userName, userId);
+        setCrashlyticsInitialized(true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
         const init = async () => {
             const geolocation = await initBGeolocalization(trans.title);
             setGeolocationState(geolocation);
@@ -60,18 +67,11 @@ const useAppInit = () => {
     }, []);
 
     useEffect(() => {
-        /* Logs will be send after app restarted */
-        initCrashlytics(userName, userId);
-        setCrashlyticsInitialized(true);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        if (isOnline) {
+        if (isOnline && authToken) {
             synchData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [authToken]);
 
     return {
         geolocationState,
