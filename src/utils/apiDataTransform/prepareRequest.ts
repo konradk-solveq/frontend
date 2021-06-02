@@ -1,7 +1,7 @@
 import {ApiPathI, LocationDataI} from '../../interfaces/geolocation';
 import {Point} from '../../models/places.model';
 import {MapMetadataType} from '../../interfaces/api';
-import {MapFormDataResult} from '../../interfaces/form';
+import {ImageType, MapFormDataResult} from '../../interfaces/form';
 import {I18n} from '../../../I18n/I18n';
 
 export const tranformParamsToBBoxRequest = (data: Point[]): string => {
@@ -57,4 +57,19 @@ export const mapFormMetadataToAPIRequest = (
     };
 
     return mData;
+};
+
+export const createFileFormData = (
+    source: ImageType,
+    fieldName?: string,
+): FormData => {
+    const img = {
+        uri: source.uri,
+        type: source.type,
+        name: source.fileName,
+    };
+    const formdata = new FormData();
+    formdata.append(fieldName || 'image', img);
+
+    return formdata;
 };

@@ -69,9 +69,13 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         new Animated.Value(headerHeight + getVerticalPx(50)),
     ).current;
 
-    const {trackerData, startTracker, stopTracker} = useLocalizationTracker(
-        true,
-    );
+    const {
+        trackerData,
+        startTracker,
+        stopTracker,
+        pauseTracker,
+        resumeTracker,
+    } = useLocalizationTracker(true);
 
     useEffect(() => {
         if (location && onMapLoaded) {
@@ -250,6 +254,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         switch (pageState) {
             case 'start':
                 {
+                    // pauseTracker();
                     setLeftBtnTile(trans.btnCancel);
                     setRightBtnTile(trans.btnStart);
                     setHeaderTitle(trans.headerStart);
@@ -259,6 +264,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 break;
             case 'record':
                 {
+                    resumeTracker();
                     setLeftBtnTile(trans.btnPauza);
                     setRightBtnTile(trans.btnEnd);
                     setHeaderTitle(trans.headerRecord);
@@ -267,6 +273,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 break;
             case 'pause':
                 {
+                    pauseTracker();
                     setLeftBtnTile(trans.btnPauzaOff);
                     setHeaderTitle(trans.headerPause);
                     setPause(true);

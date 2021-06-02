@@ -1,13 +1,14 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
+import {ImageType} from '../../../../../../interfaces/form';
 
 import {AddBtn} from '../../../../../../sharedComponents/buttons';
 import ImageSwiper from '../../../../../../sharedComponents/imageSwiper/imageSwiper';
 
 interface IProps {
     images: string[];
-    onAddImage: (imageUri: string) => void;
+    onAddImage: (imageUri: ImageType) => void;
     onRemoveImage: (imageUri: string) => void;
 }
 
@@ -26,7 +27,7 @@ const ImagesInput: React.FC<IProps> = ({
             o => {
                 /* TODO: on error */
                 if (typeof o?.uri !== 'undefined') {
-                    onAddImage(o.uri);
+                    onAddImage(o);
                 }
             },
         );

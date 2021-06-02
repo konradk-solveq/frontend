@@ -69,20 +69,23 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
         });
     }, [props.navigation]);
 
-    const onGoForward = useCallback(() => {
-        dispatch(clearError());
-        if (goForward === Action.next) {
-            navigation.navigate({
-                name: RegularStackRoute.EDIT_DETAILS_SCREEN,
-                params: {redirectTo: RegularStackRoute.KROSS_WORLD_SCREEN},
-            });
-            return;
-        }
+    const onGoForward = useCallback(
+        (prev?: boolean) => {
+            dispatch(clearError());
+            if (goForward === Action.next && !prev) {
+                navigation.navigate({
+                    name: RegularStackRoute.EDIT_DETAILS_SCREEN,
+                    params: {redirectTo: RegularStackRoute.KROSS_WORLD_SCREEN},
+                });
+                return;
+            }
 
-        if (goForward === Action.prev) {
-            navigation.navigate(RegularStackRoute.KROSS_WORLD_SCREEN);
-        }
-    }, [dispatch, goForward, navigation]);
+            if (goForward === Action.prev || prev) {
+                navigation.navigate(RegularStackRoute.KROSS_WORLD_SCREEN);
+            }
+        },
+        [dispatch, goForward, navigation],
+    );
 
     useEffect(() => {
         if (!isSyncData && goForward) {
@@ -90,7 +93,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 Alert.alert('', error.message, [
                     {
                         text: 'Ok',
-                        onPress: onGoForward,
+                        onPress: () => onGoForward(true),
                     },
                 ]);
                 return;

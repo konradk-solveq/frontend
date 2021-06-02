@@ -134,7 +134,7 @@ const SecondTile: React.FC<IProps> = ({mapData, images, onPress}: IProps) => {
                                         iconStyle={styles.mountainIcon}
                                     />
                                     <Text style={styles.thirdSectionText}>
-                                        {mapData?.firstDifficulty || ''}
+                                        {mapData?.firstPickedDifficulty || ''}
                                     </Text>
                                 </View>
                                 <View
@@ -144,7 +144,7 @@ const SecondTile: React.FC<IProps> = ({mapData, images, onPress}: IProps) => {
                                     ]}>
                                     <WayIcon iconStyle={styles.wayIcon} />
                                     <Text style={styles.thirdSectionText}>
-                                        {mapData?.firstSurface || ''}
+                                        {mapData?.firstPickedSurface || ''}
                                     </Text>
                                 </View>
                             </View>

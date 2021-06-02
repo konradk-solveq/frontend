@@ -27,3 +27,12 @@ export type OptionType = {
     surfaces: SelectOptionType[] | undefined;
     tags: SelectOptionType[] | undefined;
 };
+
+export type ImageType = {
+    fileName?: string;
+    fileSize?: number;
+    height?: number;
+    type?: string;
+    uri?: string;
+    width?: number;
+};

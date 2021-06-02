@@ -150,6 +150,7 @@ const routesReducer = (state = initialStateList, action: any) => {
                 ...state,
                 loading: false,
                 error: '',
+                statusCode: 200,
             };
         }
         case actionTypes.LOGOUT: {

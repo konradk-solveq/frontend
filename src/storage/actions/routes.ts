@@ -173,13 +173,18 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
         if (response.error || !response?.data?.id) {
             let errorMessage = response.error;
-            if (!response?.data?.id) {
-                errorMessage = I18n.t('dataAction.dataSyncError');
-            }
 
             /* If fail add to queue. Resolve tasks queue in different action. */
-            if (currentRouteData?.length >= 10) {
+            if (
+                currentRouteData?.length >= 10 &&
+                currentRouteData?.[currentRouteData?.length - 1].odometer >=
+                    200 &&
+                response.status !== 400
+            ) {
                 dispatch(addRoutesToSynchQueue());
+            } else {
+                dispatch(clearCurrentRouteData());
+                dispatch(clearAverageSpeed());
             }
 
             dispatch(setError(errorMessage, response.status));

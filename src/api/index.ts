@@ -8,6 +8,8 @@ export {
     editPrivateMapMetaData,
     publishPrivateMapData,
     removePrivateMapData,
+    removeImagesToMapData,
+    uploadImageToMapData,
 } from './maps';
 export {createRoute, sendRouteData} from './routes';
 export {

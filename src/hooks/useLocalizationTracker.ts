@@ -1,5 +1,4 @@
 import {useCallback, useEffect, useState} from 'react';
-import {v4 as uuidv4} from 'uuid';
 import {
     activateKeepAwake,
     deactivateKeepAwake,
@@ -21,8 +20,14 @@ import {
     startBackgroundGeolocation,
     stopBackgroundGeolocation,
 } from '../utils/geolocation';
-import {transformMetersToKilometersString} from '../utils/metersToKilometers';
-import {getAverageSpeed, msToKH} from '../utils/speed';
+import {
+    DEFAULT_SPEED,
+    deviceIsNotMoving,
+    getAverageSpeedData,
+    getTrackerData,
+    speedToLow,
+    startCurrentRoute,
+} from './utils/localizationTracker';
 
 interface DataI {
     distance: string;
@@ -35,14 +40,7 @@ interface DataI {
     };
 }
 
-const startCurrentRoute = async () => {
-    return {
-        id: uuidv4(),
-        isActive: true,
-        startedAt: new Date(),
-        endedAt: undefined,
-    };
-};
+let speed: number[] = [];
 
 const useLocalizationTracker = (persist: boolean) => {
     const dispatch = useAppDispatch();
@@ -56,9 +54,17 @@ const useLocalizationTracker = (persist: boolean) => {
         number | undefined
     >();
 
+    const setAverageSpeedOnStart = useCallback(() => {
+        if (!averageSpeed && currentRouteAverrageSpeed) {
+            const as = getAverageSpeedData([currentRouteAverrageSpeed]);
+            setCurrentAverageSpeed(parseFloat(as));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const onPersistData = useCallback(
         async (d: number) => {
-            if (d - lastDistance < 500) {
+            if (d - lastDistance < 200) {
                 return;
             }
 
@@ -73,15 +79,15 @@ const useLocalizationTracker = (persist: boolean) => {
 
     const stopTracker = async () => {
         /* TODO: error */
-        dispatch(persistCurrentRouteData());
-        await stopBackgroundGeolocation();
-
         deactivateKeepAwake();
-        dispatch(stopCurrentRoute());
+        dispatch(persistCurrentRouteData());
         setIsActive(false);
+        dispatch(stopCurrentRoute());
+        stopBackgroundGeolocation();
     };
 
     const startTracker = async (keep?: boolean) => {
+        speed = [];
         /* TODO: error */
         const state = await getBackgroundGeolocationState();
 
@@ -99,43 +105,71 @@ const useLocalizationTracker = (persist: boolean) => {
         }
     };
 
+    const onPauseTracker = () => {
+        setIsActive(false);
+        setTrackerData(prev => {
+            if (prev) {
+                return {
+                    ...prev,
+                    speed: DEFAULT_SPEED,
+                };
+            }
+            return undefined;
+        });
+    };
+
     useEffect(() => {
-        requestGeolocationPermission();
+        speed = [];
     }, []);
 
     useEffect(() => {
+        requestGeolocationPermission();
+    }, []);
+    /* TODO: on motion change event */
+    useEffect(() => {
         let interval: any;
         if (isActive) {
-            const speed: number[] = [];
             interval = setInterval(() => {
                 getCurrentLocation().then(d => {
-                    if (d?.coords?.speed) {
+                    const notMoving = false;
+                    const lowSpeed = speedToLow(d);
+
+                    setAverageSpeedOnStart();
+
+                    let aSpeed = getAverageSpeedData(speed);
+                    if (notMoving || lowSpeed) {
+                        setTrackerData(prev => {
+                            if (!prev) {
+                                return undefined;
+                            }
+                            return {
+                                ...prev,
+                                averageSpeed: getAverageSpeedData(
+                                    speed,
+                                    currentRouteAverrageSpeed,
+                                ),
+                                speed: '0,0',
+                            };
+                        });
+                        return;
+                    }
+
+                    if (d?.coords?.speed && d?.coords?.speed > 0) {
                         speed.push(d?.coords?.speed);
                     }
 
-                    let aSpeed = getAverageSpeed(speed);
-                    if (currentRouteAverrageSpeed) {
-                        aSpeed = getAverageSpeed([
-                            parseFloat(aSpeed),
+                    if (
+                        (d?.odometer - lastDistance > 10 || !lastDistance) &&
+                        !notMoving &&
+                        parseFloat(aSpeed) >= 0.1
+                    ) {
+                        aSpeed = getAverageSpeedData(
+                            speed,
                             currentRouteAverrageSpeed,
-                        ]);
+                        );
                     }
-                    const distance = transformMetersToKilometersString(
-                        d?.odometer,
-                        2,
-                        true,
-                    );
 
-                    const res = {
-                        distance: distance || '00,00',
-                        speed: msToKH(d?.coords?.speed) || '00,0',
-                        averageSpeed: msToKH(aSpeed) || '00,0',
-                        odometer: d?.odometer,
-                        coords: {
-                            lat: d?.coords?.latitude,
-                            lon: d?.coords?.longitude,
-                        },
-                    };
+                    const res = getTrackerData(d, aSpeed);
 
                     setTrackerData(res);
                     setCurrentAverageSpeed(parseFloat(aSpeed));
@@ -144,19 +178,28 @@ const useLocalizationTracker = (persist: boolean) => {
                         onPersistData(d?.odometer);
                     }
                 });
-            }, 5000);
+            }, 1000);
         }
 
         return () => {
             clearInterval(interval);
             cleanUp();
         };
-    }, [isActive, persist, onPersistData, currentRouteAverrageSpeed]);
+    }, [
+        isActive,
+        persist,
+        onPersistData,
+        currentRouteAverrageSpeed,
+        lastDistance,
+        setAverageSpeedOnStart,
+    ]);
 
     return {
         trackerData,
         lastDistance,
         isActive,
+        pauseTracker: onPauseTracker,
+        resumeTracker: () => setIsActive(true),
         startTracker,
         stopTracker,
         averageSpeed,

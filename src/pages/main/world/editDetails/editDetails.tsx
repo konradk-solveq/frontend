@@ -13,6 +13,7 @@ import {useNavigation, useRoute} from '@react-navigation/core';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {I18n} from '../../../../../I18n/I18n';
+import {ImagesMetadataType} from '../../../../interfaces/api';
 import {
     loadingMapsSelector,
     mapDataByIDSelector,
@@ -23,12 +24,14 @@ import {
 import {editPrivateMapMetaData} from '../../../../storage/actions/maps';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {getImagesThumbs} from '../../../../utils/transformData';
-import {MapFormDataResult} from '../../../../interfaces/form';
+import {ImageType, MapFormDataResult} from '../../../../interfaces/form';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
 import EditForm from './form/editForm';
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
+
+import styles from './style';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -73,8 +76,34 @@ const EditDetails = () => {
         }
     }, [isLoading, error?.statusCode, submit, onBackHandler]);
 
-    const onSubmitHandler = (data: MapFormDataResult, publish: boolean) => {
-        dispatch(editPrivateMapMetaData(data, publish, newPrivateMapID));
+    const onSubmitHandler = (
+        data: MapFormDataResult,
+        publish: boolean,
+        imgsToAdd?: ImageType[],
+        imgsToRemove?: string[],
+    ) => {
+        const iToRemove: string[] = [];
+        images.images.forEach(i => {
+            if (imgsToRemove?.includes(i)) {
+                const iTD = mapData?.images?.find(im => i.includes(im.id));
+                if (iTD?.id) {
+                    iToRemove.push(iTD?.id);
+                }
+            }
+        });
+        const imgsToChange: ImagesMetadataType = {
+            save: imgsToAdd,
+            delete: iToRemove,
+        };
+
+        dispatch(
+            editPrivateMapMetaData(
+                data,
+                imgsToChange,
+                publish,
+                newPrivateMapID,
+            ),
+        );
         setSubmit(true);
     };
 
@@ -92,7 +121,7 @@ const EditDetails = () => {
                         inner=""
                         style={styles.header}
                     />
-                    <SliverTopBar imgSrc={images?.images?.[0] || ''}>
+                    <SliverTopBar imgSrc={images?.sliverImg || ''}>
                         <View style={styles.content}>
                             {/* Bug - padding is not remove */}
                             {/* <KeyboardAvoidingView
@@ -118,59 +147,5 @@ const EditDetails = () => {
         </>
     );
 };
-
-const styles = StyleSheet.create({
-    safeAreaView: {
-        flex: 1,
-        backgroundColor: '#ffffff',
-    },
-    headerContainer: {
-        flexDirection: 'row',
-    },
-    headerBackground: {
-        zIndex: 1,
-        backgroundColor: '#ffffff',
-        position: 'absolute',
-        left: 0,
-        right: 0,
-    },
-    header: {
-        zIndex: 3,
-    },
-    actionButtonsContainer: {
-        flexDirection: 'row',
-    },
-    actionButton: {
-        margin: 0,
-    },
-    leftActionButton: {
-        marginRight: 20,
-    },
-    content: {
-        marginHorizontal: 40,
-        marginBottom: getVerticalPx(35),
-    },
-    reportButton: {
-        height: 50,
-    },
-    container: {
-        // paddingHorizontal: 40,
-    },
-
-    titleWrapper: {
-        marginTop: getVerticalPx(50),
-        marginBottom: getVerticalPx(135),
-    },
-
-    title: {
-        fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 30,
-        color: '#313131',
-    },
-
-    keyboard: {
-        flex: 1,
-    },
-});
 
 export default EditDetails;
