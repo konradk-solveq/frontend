@@ -9,8 +9,8 @@ import {
 } from '../../services';
 import {MapType} from '../../models/map.model';
 import logger from '../../utils/crashlytics';
-import {MapPagination} from '../../interfaces/api';
-import {getLatLng} from '../../utils/geolocation';
+import {ImagesMetadataType, MapPagination} from '../../interfaces/api';
+import {getLatLngFromForeground} from '../../utils/geolocation';
 import {MapFormDataResult} from '../../interfaces/form';
 
 export const setMapsData = (
@@ -80,7 +80,7 @@ export const fetchMapsList = (
 ): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {
-        const {lat, lng} = await getLatLng();
+        const {lat, lng} = await getLatLngFromForeground();
 
         const response = await getMapsList(
             {latitude: lat, longitude: lng},
@@ -109,7 +109,7 @@ export const fetchPrivateMapsList = (
 ): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {
-        const {lat, lng} = await getLatLng();
+        const {lat, lng} = await getLatLngFromForeground();
         const response = await getPrivateMapsListService(
             {latitude: lat, longitude: lng},
             page,
@@ -138,6 +138,7 @@ export const fetchPrivateMapsList = (
 
 export const editPrivateMapMetaData = (
     data: MapFormDataResult,
+    images?: ImagesMetadataType,
     publish?: boolean,
     id?: string,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
@@ -148,6 +149,7 @@ export const editPrivateMapMetaData = (
         const response = await editPrivateMapMetadataService(
             data,
             userName,
+            images,
             !!publish,
             id,
         );
@@ -160,7 +162,7 @@ export const editPrivateMapMetaData = (
         if (publish) {
             dispatch(fetchMapsList());
         }
-        dispatch(fetchPrivateMapsList());
+        await dispatch(fetchPrivateMapsList());
         dispatch(clearPrivateMapId());
         dispatch(setLoadingState(false));
     } catch (error) {

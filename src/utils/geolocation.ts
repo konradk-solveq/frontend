@@ -2,6 +2,7 @@ import BackgroundGeolocation, {
     Location,
     LocationError,
 } from 'react-native-background-geolocation';
+import GetLocation from 'react-native-get-location';
 
 import {LocationDataI} from '../interfaces/geolocation';
 
@@ -26,8 +27,8 @@ export const initBGeolocalization = async (notificationTitle: string) => {
                 "In order to allow track activity when app is in the background, please enable 'Allow all the time permission",
             positiveAction: 'Change to Allow all the time',
         },
-        distanceFilter: 60,
-        stopTimeout: 2,
+        distanceFilter: 30,
+        stopTimeout: 1,
         debug: __DEV__ ? true : false,
         logLevel: __DEV__
             ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
@@ -46,9 +47,10 @@ export const initBGeolocalization = async (notificationTitle: string) => {
 export const getCurrentLocation = async () => {
     const location = await BackgroundGeolocation.getCurrentPosition({
         timeout: 30,
-        maximumAge: 5000,
+        maximumAge: 500,
         desiredAccuracy: 10,
-        samples: 3,
+        samples: 6,
+        persist: false,
     });
 
     return location;
@@ -58,6 +60,16 @@ export const getLatLng = async () => {
     const location = await getCurrentLocation();
     const lat = location.coords.latitude;
     const lng = location.coords.longitude;
+    return {lat, lng};
+};
+
+export const getLatLngFromForeground = async () => {
+    const location = await GetLocation.getCurrentPosition({
+        enableHighAccuracy: true,
+        timeout: 15000,
+    });
+    const lat = location.latitude;
+    const lng = location.longitude;
     return {lat, lng};
 };
 
@@ -84,7 +96,7 @@ export const stopBackgroundGeolocation = async () => {
     await BackgroundGeolocation.resetOdometer();
     const state = await BackgroundGeolocation.stop();
     await BackgroundGeolocation.setConfig({
-        isMoving: true,
+        isMoving: false,
     });
 
     return state;

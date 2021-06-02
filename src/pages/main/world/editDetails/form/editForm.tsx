@@ -14,7 +14,7 @@ import {
     SelectI,
 } from '../../../../../models/map.model';
 import {userNameSelector} from '../../../../../storage/selectors';
-import {MapFormDataResult} from '../../../../../interfaces/form';
+import {ImageType, MapFormDataResult} from '../../../../../interfaces/form';
 
 import {BigWhiteBtn, BigRedBtn} from '../../../../../sharedComponents/buttons';
 import OneLineText from '../../../../../sharedComponents/inputs/oneLineText';
@@ -28,7 +28,12 @@ import styles from './style';
 interface IProps {
     mapData: Map | undefined;
     imagesData: {images: string[]; mapImg: string};
-    onSubmit: (data: MapFormDataResult, publish: boolean) => void;
+    onSubmit: (
+        data: MapFormDataResult,
+        publish: boolean,
+        imagesToAdd?: ImageType[],
+        imagesToRemove?: string[],
+    ) => void;
 }
 
 const EditForm: React.FC<IProps> = ({
@@ -44,14 +49,16 @@ const EditForm: React.FC<IProps> = ({
     const userName = useAppSelector(userNameSelector);
 
     const [images, setImages] = useState<string[]>(imagesData?.images || []);
+    const [imagesToAdd, setImagesToAdd] = useState<ImageType[]>([]);
+    const [imagesToRemove, setImagesToRemove] = useState<string[]>([]);
 
     const {control, handleSubmit, options} = useFormDataWithMapData(mapData);
 
     const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> = data => {
-        onSubmit(data, true);
+        onSubmit(data, true, imagesToAdd, imagesToRemove);
     };
     const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
-        onSubmit(data, false);
+        onSubmit(data, false, imagesToAdd, imagesToRemove);
     };
 
     const onValidateHanlder = (
@@ -64,15 +71,20 @@ const EditForm: React.FC<IProps> = ({
         return isValid || validationMessages[fieldName];
     };
 
-    const onAddImageHandler = (imageUri: string) => {
-        if (imageUri) {
-            setImages(prev => [imageUri, ...prev]);
+    const onAddImageHandler = (img: ImageType) => {
+        if (img) {
+            if (img.uri) {
+                setImages(prev => [img.uri, ...prev]);
+            }
+            setImagesToAdd(prev => [img, ...prev]);
         }
     };
 
     const onRemoveImageHandler = (imageUri: string) => {
         if (imageUri) {
             setImages(prev => [...prev].filter(i => i !== imageUri));
+            setImagesToAdd(prev => [...prev].filter(i => i.uri !== imageUri));
+            setImagesToRemove(prev => [imageUri, ...prev]);
         }
     };
 

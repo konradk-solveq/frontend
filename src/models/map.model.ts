@@ -101,27 +101,27 @@ export interface MapDetails {
     mapUrl: string;
 }
 
-export interface MapType {
-    id: string;
-    name: string;
-    author?: string;
-    difficulty?: SelectI;
-    ownerId?: string;
-    surface?: SelectI;
-    description?: MapDescriptionType;
-    tags?: SelectI;
-    location?: string;
-    path: Coords[];
-    images?: Images[];
-    date: Date;
-    distance?: number;
-    distanceToRoute?: number;
-    time?: number;
-    rating?: number;
-    isPublish?: boolean;
-}
+// export interface MapType {
+//     id: string;
+//     name: string;
+//     author?: string;
+//     difficulty?: SelectI;
+//     ownerId?: string;
+//     surface?: SelectI;
+//     description?: MapDescriptionType;
+//     tags?: SelectI;
+//     location?: string;
+//     path: Coords[];
+//     images?: Images[];
+//     date: Date;
+//     distance?: number;
+//     distanceToRoute?: number;
+//     time?: number;
+//     rating?: number;
+//     isPublish?: boolean;
+// }
 
-export class Map implements MapType {
+export class Map {
     @IsNotEmpty()
     @IsString()
     public id: string;
@@ -217,7 +217,40 @@ export class Map implements MapType {
         return this?.difficulty?.options?.[0]?.i18nValue;
     }
 
+    public get firstPickedDifficulty(): string | undefined {
+        const values = this?.difficulty?.values;
+        return this?.difficulty?.options?.find(o =>
+            values?.includes(o.enumValue),
+        )?.i18nValue;
+    }
+
     public get firstSurface(): string | undefined {
         return this?.surface?.options?.[0]?.i18nValue;
     }
+
+    public get firstPickedSurface(): string | undefined {
+        const values = this?.surface?.values;
+        return this?.surface?.options?.find(o => values?.includes(o.enumValue))
+            ?.i18nValue;
+    }
+}
+
+export interface MapType extends Map {
+    // id: string;
+    // name: string;
+    // author?: string;
+    // difficulty?: SelectI;
+    // ownerId?: string;
+    // surface?: SelectI;
+    // description?: MapDescriptionType;
+    // tags?: SelectI;
+    // location?: string;
+    // path: Coords[];
+    // images?: Images[];
+    // date: Date;
+    // distance?: number;
+    // distanceToRoute?: number;
+    // time?: number;
+    // rating?: number;
+    // isPublish?: boolean;
 }

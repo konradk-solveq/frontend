@@ -55,8 +55,8 @@ const Description: React.FC<IProps> = ({mapData, images}: IProps) => {
                 </Text>
                 <RideTile
                     distance={mapData?.distanceInKilometers}
-                    level={mapData?.firstDifficulty}
-                    type={mapData?.firstSurface}
+                    level={mapData?.firstPickedDifficulty}
+                    type={mapData?.firstPickedSurface}
                     time={mapData?.formattedTimeString}
                 />
             </View>

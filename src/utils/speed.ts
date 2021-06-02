@@ -1,19 +1,22 @@
 export const getAverageSpeed = (speed: number[]) => {
     if (!speed?.length) {
-        return '0,00';
+        return '0,0';
     }
     /* Remove no data */
     const s = speed.filter(sp => sp >= 0);
 
     if (s.length === 1) {
-        return Math.abs(s[0]).toFixed(2);
+        const speedToReturn = Math.abs(s[0]).toFixed(1);
+        return speedToReturn;
     }
 
-    return Math.abs(
+    const speedToReturn = Math.abs(
         s.reduce((a, b) => {
             return a + b;
         }, 0) / s.length,
     ).toFixed(2);
+
+    return speedToReturn;
 };
 
 export const msToKH = (speed: number | string | undefined | null) => {
@@ -26,5 +29,6 @@ export const msToKH = (speed: number | string | undefined | null) => {
         return null;
     }
 
-    return Math.abs(s * (3600 / 1000)).toFixed(2);
+    const speedToReturn = Math.abs(s * (3600 / 1000)).toFixed(1);
+    return speedToReturn;
 };

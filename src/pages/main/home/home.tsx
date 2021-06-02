@@ -30,15 +30,16 @@ const Home: React.FC = () => {
     const {syncStatus, error, clearAppSyncError} = useAppInit();
 
     useEffect(() => {
-        if (!syncStatus && error.statusCode > 400) {
-            Alert.alert('', error.message, [
-                {
-                    text: 'Ok',
-                    onPress: clearAppSyncError,
-                },
-            ]);
-            return;
-        }
+        /* To show errror message must check all synch errors to prevent re-renders */
+        // if (!syncStatus && error.statusCode > 400) {
+        //     Alert.alert('', error.message, [
+        //         {
+        //             text: 'Ok',
+        //             onPress: clearAppSyncError,
+        //         },
+        //     ]);
+        //     return;
+        // }
     }, [syncStatus, error, clearAppSyncError]);
 
     /* TODO: move initialization to splashs screen or add loader */

@@ -228,6 +228,7 @@ export const mapDataToFormData = (mapData: Map): FormData => {
 export const getImagesThumbs = (images: Images[]) => {
     const imgsUrls: string[] = [];
     let mapImgUrl = '';
+    let sliverImgUrl = '';
 
     if (!images?.length) {
         return {
@@ -239,6 +240,13 @@ export const getImagesThumbs = (images: Images[]) => {
     images.forEach(i => {
         if (i.type === 'photo') {
             const imgUrl = i.variants?.square?.[0]?.url;
+            const bigImgUrl =
+                i.variants?.square?.[2]?.url || i.variants?.square?.[0]?.url;
+
+            if (sliverImgUrl === '') {
+                sliverImgUrl = bigImgUrl;
+            }
+
             if (imgUrl) {
                 imgsUrls.push(imgUrl);
             }
@@ -254,6 +262,7 @@ export const getImagesThumbs = (images: Images[]) => {
     return {
         images: imgsUrls,
         mapImg: mapImgUrl,
+        sliverImg: sliverImgUrl,
     };
 };
 

@@ -1,3 +1,5 @@
+import {ImageType} from './form';
+
 export type MapPagination = {
     next?: string | undefined;
     prev?: string | undefined;
@@ -31,4 +33,9 @@ export type MapMetadataType = {
     author: string;
     tags: string[];
     location?: string;
+};
+
+export type ImagesMetadataType = {
+    save: ImageType[] | undefined;
+    delete: string[] | undefined;
 };
