@@ -96,6 +96,8 @@ export const fetchMapsList = (
         dispatch(
             setMapsData(response.data.elements, response.data.links, refresh),
         );
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[fetchMapsList]');
         logger.recordError(error);
@@ -128,8 +130,10 @@ export const fetchPrivateMapsList = (
                 refresh,
             ),
         );
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[fetchMapsList]');
+        logger.log('[fetchPrivateMapsList]');
         logger.recordError(error);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -156,14 +160,16 @@ export const editPrivateMapMetaData = (
 
         if (response.error || response.status >= 400) {
             dispatch(setError(response.error, response.status));
+            dispatch(setLoadingState(false));
             return;
         }
 
+        await dispatch(fetchPrivateMapsList());
         if (publish) {
             dispatch(fetchMapsList());
         }
-        await dispatch(fetchPrivateMapsList());
         dispatch(clearPrivateMapId());
+        dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[editPrivateMapMetaData]');
@@ -188,6 +194,7 @@ export const removePrivateMapMetaData = (
         dispatch(fetchPrivateMapsList());
         dispatch(fetchMapsList());
         dispatch(clearPrivateMapId());
+        dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[removePrivateMapMetaData]');

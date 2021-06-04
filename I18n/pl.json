@@ -1349,6 +1349,12 @@
         "pausePrefix": "czas przerw",
         "pauseSufix": "h"
     },
+    "PublishThankYouPage": {
+        "defaultName": "Rowerzysto",
+        "titleSufix": ", trasa została upubliczniona",
+        "okBtn": "Ok",
+        "errorTitle": "Coś poszło nie tak!"
+    },
     "validation": {
         "isEmpty": "Pole {{property}} nie jest puste",
         "isNotEmpty": "Pole {{property}} jest puste",

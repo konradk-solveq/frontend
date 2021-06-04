@@ -51,6 +51,15 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 statusCode: action.statusCode,
             };
         }
+        case actionTypes.CLEAR_MAPS_ERROR: {
+            return {
+                ...state,
+                loading: false,
+                refresh: false,
+                error: '',
+                statusCode: 200,
+            };
+        }
         case actionTypes.SET_MAPS_DATA: {
             let newMaps = [...state.maps];
             if (action.refresh) {
