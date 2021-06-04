@@ -288,7 +288,7 @@ function initMap() {
     map.addListener('zoom_changed', getRgion);
     setTimeout(() => {
         getRgion();
-    }, 500);
+    }, 1500);
 
 }
 
