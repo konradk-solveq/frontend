@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     header: {
-        fontFamily: 'DIN2014Narrow',
+        fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'center',
         fontSize: 40,
         paddingVertical: 5,

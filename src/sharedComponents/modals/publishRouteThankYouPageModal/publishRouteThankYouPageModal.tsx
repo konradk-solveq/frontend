@@ -20,12 +20,14 @@ interface IProps {
     showModal?: boolean;
     onPress: () => void;
     onBackPress: () => void;
+    isPublished?: boolean;
 }
 
 const PublishRouteThankYouPageModal: React.FC<IProps> = ({
     showModal,
     onPress,
     onBackPress,
+    isPublished,
 }: IProps) => {
     const userName = useAppSelector<string>(state => state.user.userName);
     const statusBarHeight = useStatusBarHeight();
@@ -55,6 +57,11 @@ const PublishRouteThankYouPageModal: React.FC<IProps> = ({
                             <Text style={styles.header}>
                                 {`${userName || trans.defaultName}${
                                     trans.titleSufix
+                                }`}
+                                {`${
+                                    isPublished
+                                        ? trans.titleSufixPublished
+                                        : trans.titleSufixSaved
                                 }`}
                             </Text>
                         </View>
@@ -95,7 +102,7 @@ const styles = StyleSheet.create({
         marginBottom: getVerticalPx(37),
     },
     header: {
-        fontFamily: 'DIN2014Narrow',
+        fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'center',
         fontSize: 30,
         paddingVertical: 5,

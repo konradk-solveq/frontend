@@ -166,13 +166,13 @@ const World: React.FC = () => {
             <View style={[styles.headerWrapper, dynamicStyles.headerWrapper]}>
                 <Text style={styles.header}>{trans.header}</Text>
                 <View style={styles.headerButtons}>
-                    <FiltersBtn
+                    {/* <FiltersBtn
                         onPress={onShowModalHanlder}
                         iconStyle={[
                             styles.headerButton,
                             // styles.headerButtonLeft,
                         ]}
-                    />
+                    /> */}
                     {/* <MapBtn
                         onPress={() => {}}
                         iconStyle={styles.headerButton}

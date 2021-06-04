@@ -116,7 +116,11 @@ const RouteDetails = () => {
                     />
                     <SliverTopBar imgSrc={images?.sliverImg || ''}>
                         <View style={styles.content}>
-                            <Description mapData={mapData} images={images} />
+                            <Description
+                                mapData={mapData}
+                                images={images}
+                                isPrivateView={privateMap}
+                            />
                             <BigRedBtn
                                 title={
                                     !privateMap

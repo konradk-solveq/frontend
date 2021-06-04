@@ -3,9 +3,11 @@ import {View, Text, Image} from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {useAppSelector} from '../../../../../hooks/redux';
 import {Map} from '../../../../../models/map.model';
 
 import ImageSwiper from '../../../../../sharedComponents/imageSwiper/imageSwiper';
+import {userNameSelector} from '../../../../../storage/selectors';
 import RideTile from './rideTile';
 
 import styles from './styles';
@@ -13,10 +15,18 @@ import styles from './styles';
 interface IProps {
     mapData: Map | undefined;
     images: {images: string[]; mapImg: string};
+    isPrivateView?: boolean;
 }
 
-const Description: React.FC<IProps> = ({mapData, images}: IProps) => {
+const Description: React.FC<IProps> = ({
+    mapData,
+    images,
+    isPrivateView,
+}: IProps) => {
     const trans: any = I18n.t('RoutesDetails.details');
+    const userName = useAppSelector(userNameSelector);
+    const authorName =
+        mapData?.author || isPrivateView ? userName : trans.defaultAuthor;
 
     return (
         <View style={styles.container}>
@@ -27,21 +37,24 @@ const Description: React.FC<IProps> = ({mapData, images}: IProps) => {
                         styles.smallText,
                         styles.color555555,
                     ]}>
-                    {`${trans.author}: ${mapData?.author || trans.noInfo}`}
+                    {`${trans.author}: ${authorName}`}
                 </Text>
                 <Text style={[styles.textStyle, styles.title]}>
                     {mapData?.name || trans.noTitle}
                 </Text>
-                <Text
-                    style={[
-                        styles.textStyle,
-                        styles.smallText,
-                        styles.lightFont,
-                        styles.color555555,
-                    ]}>
-                    {mapData?.distanceToRouteInKilometers}
-                    {trans.distanceToStart}
-                </Text>
+                {!isPrivateView ||
+                    (mapData?.distanceToRouteInKilometers !== '-' ? (
+                        <Text
+                            style={[
+                                styles.textStyle,
+                                styles.smallText,
+                                styles.lightFont,
+                                styles.color555555,
+                            ]}>
+                            {mapData?.distanceToRouteInKilometers}
+                            {trans.distanceToStart}
+                        </Text>
+                    ) : null)}
             </View>
             <View style={styles.tileWrapper}>
                 <Text
@@ -60,45 +73,52 @@ const Description: React.FC<IProps> = ({mapData, images}: IProps) => {
                     time={mapData?.formattedTimeString}
                 />
             </View>
-            <View>
-                <Text
-                    style={[
-                        styles.textStyle,
-                        styles.smallText,
-                        styles.color555555,
-                    ]}>
-                    {trans.descriptionTitle}
-                </Text>
-                <View style={[styles.descriptionContainer]}>
-                    <Text
-                        style={[
-                            styles.textStyle,
-                            styles.lightFont,
-                            styles.descriptionTitle,
-                        ]}>
-                        {mapData?.description?.short
-                            ? `„${mapData.description.short}”`
-                            : ''}
-                    </Text>
-                    <Text style={[styles.textStyle, styles.lightFont]}>
-                        {mapData?.description?.long || trans.noDescription}
-                    </Text>
-                </View>
-            </View>
-            <View style={styles.imagesContainer}>
-                <Text
-                    style={[
-                        styles.textStyle,
-                        styles.lightFont,
-                        styles.color555555,
-                        styles.imagesTitle,
-                    ]}>
-                    {trans.imagesTitle}
-                </Text>
-                {mapData && images?.images?.length > 0 && (
-                    <ImageSwiper images={images?.images} />
-                )}
-            </View>
+            {!isPrivateView ||
+                (mapData?.description?.short ? (
+                    <View>
+                        <Text
+                            style={[
+                                styles.textStyle,
+                                styles.smallText,
+                                styles.color555555,
+                            ]}>
+                            {trans.descriptionTitle}
+                        </Text>
+                        <View style={[styles.descriptionContainer]}>
+                            <Text
+                                style={[
+                                    styles.textStyle,
+                                    styles.lightFont,
+                                    styles.descriptionTitle,
+                                ]}>
+                                {mapData?.description?.short
+                                    ? `„${mapData.description.short}”`
+                                    : ''}
+                            </Text>
+                            <Text style={[styles.textStyle, styles.lightFont]}>
+                                {mapData?.description?.long ||
+                                    trans.noDescription}
+                            </Text>
+                        </View>
+                    </View>
+                ) : null)}
+            {!isPrivateView ||
+                (images?.images?.length ? (
+                    <View style={styles.imagesContainer}>
+                        <Text
+                            style={[
+                                styles.textStyle,
+                                styles.lightFont,
+                                styles.color555555,
+                                styles.imagesTitle,
+                            ]}>
+                            {trans.imagesTitle}
+                        </Text>
+                        {mapData && images?.images?.length > 0 && (
+                            <ImageSwiper images={images?.images} />
+                        )}
+                    </View>
+                ) : null)}
             <View style={styles.mapContainer}>
                 <Text
                     style={[
@@ -121,34 +141,38 @@ const Description: React.FC<IProps> = ({mapData, images}: IProps) => {
                     )}
                 </View>
             </View>
-            <View style={styles.tagsContainer}>
-                <Text style={[styles.textStyle, styles.lightFont]}>
-                    {trans.tagsTitle}
-                </Text>
-                <View style={styles.tagsWrapper}>
-                    {mapData?.tags?.options &&
-                        mapData.tags?.options.map(t => {
-                            if (!t?.enumValue) {
-                                return null;
-                            }
-                            if (!mapData.tags?.values.includes(t.enumValue)) {
-                                return null;
-                            }
+            {!isPrivateView || mapData?.tags?.values?.length ? (
+                <View style={styles.tagsContainer}>
+                    <Text style={[styles.textStyle, styles.lightFont]}>
+                        {trans.tagsTitle}
+                    </Text>
+                    <View style={styles.tagsWrapper}>
+                        {mapData?.tags?.options &&
+                            mapData.tags?.options.map(t => {
+                                if (!t?.enumValue) {
+                                    return null;
+                                }
+                                if (
+                                    !mapData.tags?.values.includes(t.enumValue)
+                                ) {
+                                    return null;
+                                }
 
-                            return (
-                                <View key={t?.enumValue} style={styles.tag}>
-                                    <Text
-                                        style={[
-                                            styles.textStyle,
-                                            styles.color555555,
-                                        ]}>
-                                        {t?.i18nValue}
-                                    </Text>
-                                </View>
-                            );
-                        })}
+                                return (
+                                    <View key={t?.enumValue} style={styles.tag}>
+                                        <Text
+                                            style={[
+                                                styles.textStyle,
+                                                styles.color555555,
+                                            ]}>
+                                            {t?.i18nValue}
+                                        </Text>
+                                    </View>
+                                );
+                            })}
+                    </View>
                 </View>
-            </View>
+            ) : null}
             <Text
                 style={[
                     styles.textStyle,

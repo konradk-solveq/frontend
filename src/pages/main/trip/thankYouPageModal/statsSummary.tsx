@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     pauseSummaryValue: {
         fontSize: 23,
-        fontFamily: 'DIN2014Narrow',
+        fontFamily: 'DIN2014Narrow-Regular',
     },
 });
 
