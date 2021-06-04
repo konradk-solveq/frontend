@@ -137,5 +137,9 @@ svg {
 }
 
 #map {
-    transform: rotate(90deg);
+    /* transform: rotate(90deg); */
+}
+
+#map-wrap {
+    background-color: red;
 }

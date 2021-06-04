@@ -11,6 +11,7 @@ import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Svg, {Path, Circle} from 'react-native-svg';
 
 import {getVerticalPx} from '../../helpers/layoutFoo';
+import mapStyle from '../../sharedComponents/maps/styles';
 
 interface Props {
     style?: ViewStyle;
@@ -69,6 +70,7 @@ const ServiceMapBtn: React.FC<Props> = (props: Props) => {
                 <MapView
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                     style={styles.map}
+                    customMapStyle={mapStyle}
                     region={props.region}>
                     {props.location && (
                         <Marker
