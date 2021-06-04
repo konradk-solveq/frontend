@@ -115,7 +115,7 @@ export const transformToMapsType = (data: any): Map => {
         distanceToRoute,
         time,
         rating,
-        isPublish,
+        isPublic,
     } = data;
 
     const newData = new Map(id, name, path, date);
@@ -155,8 +155,8 @@ export const transformToMapsType = (data: any): Map => {
     if (tags) {
         newData.tags = tags;
     }
-    if (isPublish) {
-        newData.isPublish = isPublish;
+    if (isPublic) {
+        newData.isPublic = isPublic;
     }
 
     return newData;
@@ -216,7 +216,7 @@ export const mapDataToFormData = (mapData: Map): FormData => {
     return {
         id: mapData.id,
         name: mapData.name,
-        publishWithName: false,
+        publishWithName: mapData?.isPublic || false,
         short: mapData?.description?.short || '',
         long: mapData?.description?.long || '',
         difficulty: mapData?.difficulty || undefined,

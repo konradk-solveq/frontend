@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {
     View,
-    StyleSheet,
     StatusBar,
     SafeAreaView,
     Platform,
@@ -54,6 +53,7 @@ const EditDetails = () => {
 
     const images = getImagesThumbs(mapData?.images || []);
     const [submit, setSubmit] = useState(false);
+    const [scrollToTop, setScrollToTop] = useState(false);
 
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
@@ -69,6 +69,10 @@ const EditDetails = () => {
         }
         navigation.goBack();
     }, [navigation, redirectToScreen]);
+
+    const onScrollToTopHandler = (p: boolean) => {
+        setScrollToTop(p);
+    };
 
     useEffect(() => {
         if (submit && error?.statusCode < 400 && !isLoading) {
@@ -121,7 +125,10 @@ const EditDetails = () => {
                         inner=""
                         style={styles.header}
                     />
-                    <SliverTopBar imgSrc={images?.sliverImg || ''}>
+                    <SliverTopBar
+                        scrollToTopPosition={scrollToTop}
+                        resetScrollPosition={() => onScrollToTopHandler(false)}
+                        imgSrc={images?.sliverImg || ''}>
                         <View style={styles.content}>
                             {/* Bug - padding is not remove */}
                             {/* <KeyboardAvoidingView
@@ -136,6 +143,9 @@ const EditDetails = () => {
                                         onSubmit={onSubmitHandler}
                                         mapData={mapData}
                                         imagesData={images}
+                                        scrollTop={() =>
+                                            onScrollToTopHandler(true)
+                                        }
                                     />
                                 </View>
                             </ScrollView>

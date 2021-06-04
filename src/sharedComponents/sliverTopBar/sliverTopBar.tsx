@@ -1,5 +1,5 @@
-import React, {useRef} from 'react';
-import {Animated, Image, View} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {Animated, Image, View, ScrollView} from 'react-native';
 
 import {getVerticalPx} from '../../helpers/layoutFoo';
 import RouteImagePlaceholder from '../images/routeListImagePlaceholder';
@@ -14,6 +14,8 @@ interface IProps {
     minHeight?: number;
     maxHeight?: number;
     imgSrc?: string;
+    scrollToTopPosition?: boolean;
+    resetScrollPosition?: () => void;
 }
 
 const SliverTopBar: React.FC<IProps> = ({
@@ -21,8 +23,11 @@ const SliverTopBar: React.FC<IProps> = ({
     maxHeight = HEADER_EXPANDED_HEIGHT,
     children,
     imgSrc,
+    scrollToTopPosition,
+    resetScrollPosition,
 }: IProps) => {
     const scrollY = useRef(new Animated.Value(0)).current;
+    const scrollRef = useRef<null | ScrollView>(null);
     const styleForEmptyImg = imgSrc ? '#ffffff' : '#f7f7f7';
 
     const interpolateOnImageHeight = (outputRange: Array<number>) => {
@@ -46,6 +51,22 @@ const SliverTopBar: React.FC<IProps> = ({
     const transformBorderRadiusStyle = {
         borderRadius: scale,
     };
+
+    const onScrollToTop = () => {
+        scrollRef.current?.scrollTo({
+            y: getVerticalPx(HEADER_EXPANDED_HEIGHT),
+            animated: true,
+        });
+    };
+
+    useEffect(() => {
+        if (scrollToTopPosition) {
+            onScrollToTop();
+            if (resetScrollPosition) {
+                resetScrollPosition();
+            }
+        }
+    }, [scrollToTopPosition, resetScrollPosition]);
 
     const renderSliverTopBar = () => {
         return (
@@ -89,9 +110,11 @@ const SliverTopBar: React.FC<IProps> = ({
         <>
             {renderSliverTopBar()}
             <Animated.ScrollView
+                ref={scrollRef}
                 scrollEventThrottle={5}
                 showsVerticalScrollIndicator={false}
                 overScrollMode="never"
+                scrollToOverflowEnabled
                 onScroll={Animated.event(
                     [
                         {
