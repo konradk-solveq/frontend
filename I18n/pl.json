@@ -1134,6 +1134,7 @@
         "reportButton": "Zgłoś naruszenie",
         "details": {
             "author": "Autor",
+            "defaultAuthor": "Rowerzysta",
             "noInfo": "brak informacji",
             "noTitle": "brak tytułu",
             "descriptionTitle": "Opis trasy",
@@ -1351,7 +1352,9 @@
     },
     "PublishThankYouPage": {
         "defaultName": "Rowerzysto",
-        "titleSufix": ", trasa została upubliczniona",
+        "titleSufix": ", trasa została ",
+        "titleSufixPublished": "upubliczniona",
+        "titleSufixSaved": "zapisana",
         "okBtn": "Ok",
         "errorTitle": "Coś poszło nie tak!"
     },

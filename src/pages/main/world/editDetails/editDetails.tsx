@@ -61,6 +61,7 @@ const EditDetails = () => {
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
     const [showModal, setShowModal] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
+    const [isPublished, setIsPublished] = useState(false);
 
     const headerBackgroundHeight = getVerticalPx(
         100,
@@ -117,6 +118,7 @@ const EditDetails = () => {
             ),
         );
         setSubmit(true);
+        setIsPublished(publish);
     };
 
     if (isLoading && submit) {
@@ -163,6 +165,7 @@ const EditDetails = () => {
                     <PublishRouteThankYouPageModal
                         showModal={showModal}
                         onPress={onBackHandler}
+                        isPublished={isPublished}
                         onBackPress={() => setShowModal(false)}
                     />
                     <WrongResponseModal
