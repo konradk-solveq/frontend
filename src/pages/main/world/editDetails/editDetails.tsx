@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {
     View,
-    StyleSheet,
     StatusBar,
     SafeAreaView,
     Platform,
@@ -30,8 +29,10 @@ import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHead
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
 import EditForm from './form/editForm';
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
+import PublishRouteThankYouPageModal from '../../../../sharedComponents/modals/publishRouteThankYouPageModal/publishRouteThankYouPageModal';
 
 import styles from './style';
+import WrongResponseModal from '../../../../sharedComponents/modals/fail/failedResponseModal';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -57,6 +58,8 @@ const EditDetails = () => {
 
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
+    const [showModal, setShowModal] = useState(false);
+    const [showErrorModal, setShowErrorModal] = useState(false);
 
     const headerBackgroundHeight = getVerticalPx(
         100,
@@ -71,8 +74,12 @@ const EditDetails = () => {
     }, [navigation, redirectToScreen]);
 
     useEffect(() => {
-        if (submit && error?.statusCode < 400 && !isLoading) {
-            onBackHandler();
+        if (submit && !isLoading) {
+            if (error?.statusCode < 400) {
+                setShowModal(true);
+                return;
+            }
+            setShowErrorModal(true);
         }
     }, [isLoading, error?.statusCode, submit, onBackHandler]);
 
@@ -142,6 +149,16 @@ const EditDetails = () => {
                             {/* </KeyboardAvoidingView> */}
                         </View>
                     </SliverTopBar>
+                    <PublishRouteThankYouPageModal
+                        showModal={showModal}
+                        onPress={onBackHandler}
+                        onBackPress={() => setShowModal(false)}
+                    />
+                    <WrongResponseModal
+                        showModal={showErrorModal}
+                        errorMessage={error?.message}
+                        onClose={() => setShowErrorModal(false)}
+                    />
                 </View>
             </SafeAreaView>
         </>
