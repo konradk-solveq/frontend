@@ -193,8 +193,6 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
             latitude: route.params.location.latitude,
             longitude: route.params.location.longitude,
         };
-        console.log('pos:', pos)
-        console.log('route.params:', route.params)
 
         setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
     };
@@ -202,7 +200,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         let p = JSON.stringify(places);
         if(places.length == 0) return;
-        console.log('--> ',p)
+
         setJs(`setMarks(${p});true;`);
     }, [places]);
 
