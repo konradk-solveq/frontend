@@ -4,7 +4,10 @@ import {View, Text} from 'react-native';
 import {SubmitHandler} from 'react-hook-form';
 
 import {I18n} from '../../../../../../I18n/I18n';
-import {validateData} from '../../../../../utils/validation/validation';
+import {
+    reValidateMapMetadataManually,
+    validateData,
+} from '../../../../../utils/validation/validation';
 import {useAppSelector} from '../../../../../hooks/redux';
 import useFormDataWithMapData from '../../../../../hooks/formDataWithMapData';
 import {attributes} from './attributes';
@@ -34,12 +37,14 @@ interface IProps {
         imagesToAdd?: ImageType[],
         imagesToRemove?: string[],
     ) => void;
+    scrollTop: () => void;
 }
 
 const EditForm: React.FC<IProps> = ({
     onSubmit,
     imagesData,
     mapData,
+    scrollTop,
 }: IProps) => {
     const navigation = useNavigation();
     const trans: any = I18n.t('RoutesDetails.EditScreen');
@@ -52,9 +57,20 @@ const EditForm: React.FC<IProps> = ({
     const [imagesToAdd, setImagesToAdd] = useState<ImageType[]>([]);
     const [imagesToRemove, setImagesToRemove] = useState<string[]>([]);
 
-    const {control, handleSubmit, options} = useFormDataWithMapData(mapData);
+    const {control, handleSubmit, setError, options} = useFormDataWithMapData(
+        mapData,
+    );
 
     const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> = data => {
+        const isValid = reValidateMapMetadataManually(
+            data,
+            validationMessages,
+            setError,
+        );
+        if (!isValid) {
+            scrollTop();
+            return;
+        }
         onSubmit(data, true, imagesToAdd, imagesToRemove);
     };
     const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {

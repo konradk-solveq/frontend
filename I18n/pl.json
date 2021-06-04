@@ -1371,10 +1371,10 @@
             },
             "mapDetails": {
                 "formErrors": {
-                    "name": "Nieprawidłowe znaki",
+                    "name": "Uzupełnij nazwę",
                     "publishWithName": "Pole wymagane",
-                    "short": "Nieprawidłowe znaki",
-                    "long": "Nieprawidłowe znaki",
+                    "short": "Uzupełnij opis",
+                    "long": "Uzupełnij szczegółowy opis",
                     "difficulty": "Wybierz poziom trudności",
                     "surface": "Wybierz rodzaje nawierzchni",
                     "tags": "Wybierz tagi"

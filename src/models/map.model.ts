@@ -21,28 +21,10 @@ export const publishMapValidationRules = {
         {[validationRules.max]: 150},
     ],
     publishWithName: [validationRules.boolean],
-    short: [
-        validationRules.required,
-        validationRules.string,
-        {[validationRules.min]: 3},
-        {[validationRules.max]: 1000},
-    ],
-    long: [
-        validationRules.required,
-        validationRules.string,
-        {[validationRules.min]: 3},
-        {[validationRules.max]: 5000},
-    ],
-    difficulty: [
-        validationRules.required,
-        validationRules.isArray,
-        {[validationRules.isLength]: 1},
-    ],
-    surface: [
-        validationRules.required,
-        validationRules.isArray,
-        {[validationRules.min]: 1},
-    ],
+    short: [validationRules.string, {[validationRules.max]: 1000}],
+    long: [validationRules.string, {[validationRules.max]: 5000}],
+    difficulty: [validationRules.isArray],
+    surface: [validationRules.isArray],
     tags: [validationRules.isArray],
 };
 
@@ -192,7 +174,7 @@ export class Map {
 
     @IsOptional()
     @IsBoolean()
-    public isPublish?: boolean;
+    public isPublic?: boolean;
 
     constructor(id: string, name: string, path: Coords[], date: Date) {
         this.id = id;
