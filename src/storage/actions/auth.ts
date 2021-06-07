@@ -10,6 +10,7 @@ import {
 import {I18n} from '../../../I18n/I18n';
 import logger from '../../utils/crashlytics';
 import {setAutorizationHeader} from '../../api/api';
+import { convertToApiError } from '../../utils/apiDataTransform/communicationError';
 
 export const setAuthError = (error: string, statusCode: number) => ({
     type: actionTypes.SET_AUTH_ERROR,
@@ -71,7 +72,8 @@ export const register = (): AppThunk<Promise<void>> => async dispatch => {
         dispatch(setAuthSyncState(false));
     } catch (error) {
         logger.log('[register]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
         dispatch(clearAuthorizationStateState());
@@ -99,7 +101,8 @@ export const logIn = (): AppThunk<Promise<void>> => async (
         dispatch(setAuthSyncState(false));
     } catch (error) {
         logger.log('[logIn]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
         dispatch(clearAuthorizationStateState());
@@ -165,7 +168,8 @@ export const checkSession = (): AppThunk<Promise<void>> => async (
         dispatch(setAuthSyncState(false));
     } catch (error) {
         logger.log('[checkSession]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
     }
