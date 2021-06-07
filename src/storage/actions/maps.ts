@@ -12,6 +12,7 @@ import logger from '../../utils/crashlytics';
 import {ImagesMetadataType, MapPagination} from '../../interfaces/api';
 import {getLatLngFromForeground} from '../../utils/geolocation';
 import {MapFormDataResult} from '../../interfaces/form';
+import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 
 export const setMapsData = (
     maps: MapType[],
@@ -100,7 +101,8 @@ export const fetchMapsList = (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[fetchMapsList]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -134,7 +136,8 @@ export const fetchPrivateMapsList = (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[fetchPrivateMapsList]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -173,7 +176,8 @@ export const editPrivateMapMetaData = (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[editPrivateMapMetaData]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -198,7 +202,8 @@ export const removePrivateMapMetaData = (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[removePrivateMapMetaData]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
