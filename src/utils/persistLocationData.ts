@@ -10,3 +10,14 @@ export const getTimestampToCompare = (
 
     return lastTimestamp;
 };
+
+export const toTimestamp = (date: Date | undefined, noNull?: boolean) => {
+    if (!date) {
+        if (noNull) {
+            return Date.parse(new Date().toUTCString());
+        }
+        return null;
+    }
+
+    return Date.parse(date.toUTCString());
+};

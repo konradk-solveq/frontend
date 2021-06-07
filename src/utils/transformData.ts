@@ -267,8 +267,9 @@ export const getImagesThumbs = (images: Images[]) => {
 };
 
 export const routesDataToPersist = async (
-    timestampToCompare: number,
+    startTimestampToCompare: number,
     oldRoutes: LocationDataI[],
+    endTimestampToCompare?: number,
 ): Promise<LocationDataI[]> => {
     const currRoutes = [...oldRoutes];
     const locations = await getLocations();
@@ -276,8 +277,15 @@ export const routesDataToPersist = async (
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
         if (
-            timestampToCompare &&
-            timestampToCompare > Date.parse(l.timestamp)
+            startTimestampToCompare &&
+            startTimestampToCompare > Date.parse(l.timestamp)
+        ) {
+            return;
+        }
+
+        if (
+            endTimestampToCompare &&
+            endTimestampToCompare < Date.parse(l.timestamp)
         ) {
             return;
         }
