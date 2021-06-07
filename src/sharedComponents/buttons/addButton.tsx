@@ -11,15 +11,17 @@ interface IProps {
     onPress: Function;
     containerStyle?: ViewStyle;
     iconStyle?: ViewStyle;
+    disabled?: boolean;
 }
 
 const AddBtn: React.FC<IProps> = ({
     onPress,
     containerStyle,
     iconStyle,
+    disabled,
 }: IProps) => {
     return (
-        <TouchableWithoutFeedback onPress={() => onPress()}>
+        <TouchableWithoutFeedback onPress={() => onPress()} disabled={disabled}>
             <View style={containerStyle}>
                 <Svg viewBox="0 0 126 126" style={[styles.icon, iconStyle]}>
                     <Path
