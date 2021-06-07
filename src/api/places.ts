@@ -8,6 +8,5 @@ export const getPlaces = async (data: BBox) => {
 
     return await instance.get(`/dealers?${query}`, {
         cancelToken: source.token,
-        validateStatus: () => true,
     });
 };
