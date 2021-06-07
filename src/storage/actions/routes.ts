@@ -9,8 +9,8 @@ import {LocationDataI} from '../../interfaces/geolocation';
 import logger from '../../utils/crashlytics';
 import {syncRouteData} from '../../services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
-import {getTimestampToCompare} from '../../utils/persistLocationData';
-import { convertToApiError } from '../../utils/apiDataTransform/communicationError';
+import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+import {toTimestamp} from '../../utils/persistLocationData';
 
 export const clearError = () => ({
     type: actionTypes.CLEAR_ROUTES_ERROR,
@@ -107,14 +107,10 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
     try {
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
 
-        const lastTimestamp = getTimestampToCompare(
-            currentRoute.startedAt,
-            currentRouteData?.[currentRouteData.length - 1]?.timestamp,
-        );
-
         const currRoutes = await routesDataToPersist(
-            lastTimestamp,
+            toTimestamp(currentRoute.startedAt, true),
             currentRouteData,
+            toTimestamp(currentRoute.endedAt),
         );
 
         if (!currRoutes) {
