@@ -13,7 +13,7 @@ export const registerDevice = async () => {
 
 export const logInMobile = async (userId: string, deviceToken: string) => {
     return await instance.post(
-        '/sessions/mobile/login',
+        '/session/mobile/login',
         {
             userId: userId,
             deviceToken: deviceToken,
@@ -25,7 +25,7 @@ export const logInMobile = async (userId: string, deviceToken: string) => {
 };
 
 export const currentSession = async (token: string) => {
-    return await instance.get('/sessions/current', {
+    return await instance.get('/session/current', {
         headers: {Authorization: `Bearer ${token}`},
         cancelToken: source.token,
     });
@@ -33,7 +33,7 @@ export const currentSession = async (token: string) => {
 
 export const refreshSession = async (token: string, refreshToken: string) => {
     return await instance.post(
-        '/sessions/refresh',
+        '/session/refresh',
         {
             refresh_token: refreshToken,
         },
