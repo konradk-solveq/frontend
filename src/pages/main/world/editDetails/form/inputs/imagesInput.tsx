@@ -48,7 +48,7 @@ const ImagesInput: React.FC<IProps> = ({
                 <ImageSwiper
                     images={images}
                     withRemoveButton
-                    onPress={onRemoveImage}
+                    onPressRemove={onRemoveImage}
                 />
             )}
         </View>

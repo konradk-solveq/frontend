@@ -111,6 +111,8 @@ export const transformToMapsType = (data: any): Map => {
         path,
         images,
         date,
+        createdAt,
+        publishedAt,
         distance,
         distanceToRoute,
         time,
@@ -118,7 +120,10 @@ export const transformToMapsType = (data: any): Map => {
         isPublic,
     } = data;
 
-    const newData = new Map(id, name, path, date);
+    const newData = new Map(id, name, path, date, createdAt);
+    if (publishedAt) {
+        newData.publishedAt = publishedAt;
+    }
     if (distance) {
         newData.distance = distance;
     }
@@ -227,6 +232,7 @@ export const mapDataToFormData = (mapData: Map): FormData => {
 
 export const getImagesThumbs = (images: Images[]) => {
     const imgsUrls: string[] = [];
+    const fullSizeImgsUrls: string[] = [];
     let mapImgUrl = '';
     let sliverImgUrl = '';
 
@@ -242,6 +248,10 @@ export const getImagesThumbs = (images: Images[]) => {
             const imgUrl = i.variants?.square?.[0]?.url;
             const bigImgUrl =
                 i.variants?.square?.[2]?.url || i.variants?.square?.[0]?.url;
+            const fullSizeImage =
+                i.variants?.vertical?.[2]?.url ||
+                i.variants?.vertical?.[1]?.url ||
+                i.variants?.vertical?.[0]?.url;
 
             if (sliverImgUrl === '') {
                 sliverImgUrl = bigImgUrl;
@@ -249,6 +259,10 @@ export const getImagesThumbs = (images: Images[]) => {
 
             if (imgUrl) {
                 imgsUrls.push(imgUrl);
+            }
+
+            if (fullSizeImage) {
+                fullSizeImgsUrls.push(fullSizeImage);
             }
         }
         if (i.type === 'map') {
@@ -261,6 +275,7 @@ export const getImagesThumbs = (images: Images[]) => {
 
     return {
         images: imgsUrls,
+        fullSizeImages: fullSizeImgsUrls,
         mapImg: mapImgUrl,
         sliverImg: sliverImgUrl,
     };

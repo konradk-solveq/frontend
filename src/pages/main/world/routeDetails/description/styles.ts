@@ -79,6 +79,30 @@ const styles = StyleSheet.create({
         height: 29,
         justifyContent: 'center',
     },
+    galleryWrapper: {
+        flex: 1,
+        backgroundColor: '#313131',
+        alignItems: 'center',
+        paddingBottom: getVerticalPx(60),
+    },
+    closeGalleryBtnContainer: {
+        position: 'absolute',
+        right: 20,
+        zIndex: 10,
+    },
+    swiperContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    authorText: {
+        color: '#ffffff',
+        position: 'absolute',
+        bottom: getVerticalPx(100),
+        fontSize: 15,
+        letterSpacing: 0.42,
+        fontFamily: 'DIN2014Narrow-Regular',
+        left: 40,
+    },
 });
 
 export default styles;
