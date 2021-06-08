@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -11,6 +11,14 @@ import {
     StatusBar,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
+import GetLocation from 'react-native-get-location';
+import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
+import CompassHeading from 'react-native-compass-heading';
+import {PERMISSIONS, request} from 'react-native-permissions';
+
+import Svg, {Path, Circle} from 'react-native-svg';
+
+import mapStyle from '../../../../sharedComponents/maps/styles';
 
 import I18n from 'react-native-i18n';
 
@@ -25,7 +33,6 @@ import {useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
-import useGetLocation from '../../../../hooks/useGetLocation';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
@@ -35,7 +42,6 @@ import styleHtml from './styleHtml';
 import htmlHtml from './htmlHtml';
 import transHtml from './transHtml';
 import counterHtml from './counterHtml';
-import mapHtml from './mapHtml';
 import fooHtml from './fooHtml';
 
 import gradient from './gradientSvg';
@@ -45,6 +51,7 @@ import {
     trackerActiveSelector,
     trackerStartTimeSelector,
 } from '../../../../storage/selectors/routes';
+import deepCopy from '../../../../helpers/deepCopy';
 
 const {width} = Dimensions.get('window');
 
@@ -56,7 +63,9 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const trans = I18n.t('MainCounter');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
-    const {location} = useGetLocation();
+    const [location, serLocation] = useState(
+        null,
+    ); /* TODO: compare with useGetLocation - check if there is any significant difference */
 
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
@@ -65,10 +74,82 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const marginTopOnIos = Platform.OS === 'ios' ? statusBarHeight : 0;
     const [onMapLoaded, setOnMapLoaded] = useState(false);
 
+    const [compassHeading, setCompassHeading] = useState(0);
+    const mapRef = useRef();
+
+    const [rute, setRute] = useState([]);
+    const [ruteNumber, setRuteNumber] = useState(0);
+    const [currentPosition, setCurrentPosition] = useState(0);
+
+    useEffect(() => {
+        const degree_update_rate = 3;
+
+        CompassHeading.start(degree_update_rate, ({heading}) => {
+            setCompassHeading(heading);
+        });
+
+        return () => {
+            CompassHeading.stop();
+        };
+    }, []);
+
+    useEffect(() => {
+        if (mapRef.current && trackerData) {
+            const pos = {
+                latitude: trackerData.coords.lat,
+                longitude: trackerData.coords.lon,
+            };
+            mapRef.current.animateCamera(
+                {
+                    heading: compassHeading,
+                    center: pos,
+                },
+                {duration: 600},
+            );
+        }
+    }, [currentPosition, compassHeading]);
+
+    // dla pobrania lokalizacji
+    const [hasPermissions, setHasPermission] = useState(false);
+    const askLocationPermissionOnAndroid = async () => {
+        try {
+            request(
+                Platform.select({
+                    android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+                    ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+                }),
+            ).then(res => {
+                if (res === 'granted') {
+                    setHasPermission(true);
+                }
+            });
+        } catch (error) {
+            console.log('location set error:', error);
+        }
+    };
+
+    const getCurrentLocationPositionHandler = useCallback(() => {
+        if (!hasPermissions && Platform.OS === 'android') {
+            askLocationPermissionOnAndroid();
+            return;
+        }
+        GetLocation.getCurrentPosition({
+            enableHighAccuracy: true,
+            timeout: 15000,
+        }).then(pos => {
+            serLocation(pos);
+        });
+    }, [hasPermissions]);
+
+    useEffect(() => {
+        getCurrentLocationPositionHandler();
+    }, [getCurrentLocationPositionHandler]);
+
     const bikeSelectorListPositionY = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
     ).current;
 
+    // trakowanie
     const {
         trackerData,
         startTracker,
@@ -90,16 +171,32 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
 
     useEffect(() => {
         setJs(`setValues(${JSON.stringify(trackerData)});true;`);
-        if (trackerData?.coords) {
+        if (trackerData?.coords && mapRef.current) {
             setJs(
                 `setPositionOnMap({lat: ${trackerData.coords.lat}, lng: ${trackerData.coords.lon} });true;`,
             );
             setJs(
                 `setMarkerPositionOnMap({lat: ${trackerData.coords.lat}, lng: ${trackerData.coords.lon} });true;`,
             );
+            const pos = {
+                latitude: trackerData.coords.lat,
+                longitude: trackerData.coords.lon,
+            };
+            setCurrentPosition(pos);
+
+            // zapisywanie trasy do vizualizacji
+            const newRure = deepCopy(rute);
+            if (typeof rute[ruteNumber] === 'undefined') {
+                newRure[ruteNumber] = [];
+            }
+            setTimeout(() => {
+                newRure[ruteNumber].push(pos);
+                setRute(newRure);
+            }, 400);
         }
     }, [trackerData]);
 
+    // zmiana roweru
     const onChangeBikeHandler = (frameNumber: string) => {
         if (frameNumber === bike?.description.serial_number) {
             return;
@@ -161,6 +258,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [onMapLoaded]);
 
+    // zmiana stanu strony na lewym przycisku
     const heandleLeftBtnClick = () => {
         switch (pageState) {
             case 'start':
@@ -178,6 +276,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 {
                     setPageState('record');
                     setJs('hideAlert();setPauseOff();true;');
+                    setRuteNumber(ruteNumber + 1);
                 }
                 break;
             case 'cancelText':
@@ -195,6 +294,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         }
     };
 
+    // zmiana stanu strony na prawym przycisku
     const heandleRightBtnClick = async () => {
         switch (pageState) {
             case 'start':
@@ -207,6 +307,11 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             case 'record':
                 {
                     // await startTracker();
+                    setPageState('endMessage');
+                }
+                break;
+            case 'pause':
+                {
                     setPageState('endMessage');
                 }
                 break;
@@ -235,6 +340,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         }
     };
 
+    // zmiana funckji strzałki headera
     const heandleGoBackClick = () => {
         switch (pageState) {
             case 'start':
@@ -250,6 +356,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         }
     };
 
+    // zmiana funkcji przycisków i strzałki headera
     useEffect(() => {
         switch (pageState) {
             case 'start':
@@ -297,6 +404,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         // setJs('setMini();true;');
     }, [pageState]);
 
+    // funkcje wywoływane przez js z webview
     const heandleOnMessage = e => {
         let val = e.nativeEvent.data.split(';');
 
@@ -322,6 +430,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         }
     };
 
+    // funkcje kierowane z RN do js w webview
     const heandleMapVisibility = () => {
         if (mapOn) {
             setJs('setMaxi();true;');
@@ -343,6 +452,23 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const styles = StyleSheet.create({
         innerContainer: {
             flex: 1,
+            backgroundColor: 'khaki',
+        },
+        map: {
+            width: '100%',
+            // height: mapBtnPos + mapBtnSize,
+            height: '100%',
+        },
+        markWrap: {
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+        },
+        mark: {
+            width: 31,
+            height: 31,
+            left: -15.5,
+            top: -15.5,
         },
         fullView: {
             backgroundColor: 'transparent',
@@ -393,7 +519,49 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         <>
             <StatusBar backgroundColor="#ffffff" />
             <View style={styles.innerContainer}>
-                <View style={styles.fullView}>
+                {location && (
+                    <MapView
+                        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                        style={styles.map}
+                        customMapStyle={mapStyle}
+                        pitchEnabled={true}
+                        ref={mapRef}
+                        scrollEnabled={false}
+                        initialCamera={{
+                            center: {
+                                latitude: location.latitude,
+                                longitude: location.longitude,
+                            },
+                            pitch: 0,
+                            altitude: 0,
+                            heading: compassHeading,
+                            zoom: 18,
+                        }}>
+                        {rute.map((e, i) => (
+                            <Polyline
+                                coordinates={e}
+                                strokeColor="#d8232a"
+                                strokeColors={['#d8232a']}
+                                lineCap={'round'}
+                                lineJoin={'round'}
+                                strokeWidth={8}
+                                key={'rute_' + i}
+                            />
+                        ))}
+                    </MapView>
+                )}
+
+                <View style={styles.markWrap} pointerEvents="none">
+                    <Svg viewBox="0 0 31 31" style={styles.mark}>
+                        <Circle cx="15.5" cy="15.5" r="15.5" fill="#fff" />
+                        <Path
+                            d="M15.544 6.294s-6.429 19.152-6.34 18.974c.09-.179 6.34-4.286 6.34-4.286s6.25 4.107 6.34 4.286c.088.179-6.34-18.974-6.34-18.974z"
+                            fill="#d8232a"
+                        />
+                    </Svg>
+                </View>
+
+                <View style={styles.fullView} pointerEvents="none">
                     <WebView
                         style={styles.fullView}
                         originWhitelist={['*']}
@@ -410,7 +578,6 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                                 htmlHtml +
                                 transHtml +
                                 counterHtml +
-                                mapHtml +
                                 fooHtml +
                                 '</body></html>',
                             baseUrl:

@@ -26,11 +26,7 @@ export default `<style>
 body {
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
-    /* overflow: hidden; */
-    background-color: #fff;
     position: relative;
-    // pointer-events: none;
 }
 
 .wrap {
@@ -38,7 +34,6 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: green;
 }
 
 #wrap {
@@ -114,13 +109,6 @@ svg {
     transition: opacity .3s;
 }
 
-#map {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1;
-}
-
 .cover {
     position: absolute;
     left: 0;
@@ -129,12 +117,5 @@ svg {
     pointer-events: none;
 }
 
-.test {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 1999;
-    font-size: 35px;
-}
 </style>
 `
