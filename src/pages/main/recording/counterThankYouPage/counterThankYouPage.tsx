@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {SafeAreaView, View, Text, ScrollView, Alert} from 'react-native';
 import I18n from 'react-native-i18n';
 import AnimSvg from '../../../../helpers/animSvg';
@@ -39,6 +39,8 @@ interface Props {
 }
 
 const CounterThankYouPage: React.FC<Props> = (props: Props) => {
+    const scrollRef = useRef<null | ScrollView>(null);
+
     const trans: any = I18n.t('CounterThankYouPage');
     const isSyncData = useAppSelector(trackerLoadingSelector);
     const error = useAppSelector(trackerErrorSelector);
@@ -71,6 +73,16 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
             }, 300);
         });
     }, [props.navigation]);
+
+    useEffect(() => {
+        const t = setTimeout(() => {
+            scrollRef.current?.scrollToEnd({
+                animated: true,
+            });
+        }, 2000);
+
+        return () => clearTimeout(t);
+    }, []);
 
     const onGoForward = useCallback(
         (prev?: boolean) => {
@@ -144,9 +156,13 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.scroll}>
-                <ScrollView>
-                    <Text style={styles.title}>
-                        {userName + trans.title + heandleGetTitleType()}
+                <ScrollView
+                    ref={scrollRef}
+                    decelerationRate={0.1}
+                    showsVerticalScrollIndicator={false}>
+                    <Text style={styles.title}>{userName + trans.title}</Text>
+                    <Text style={styles.subTitle}>
+                        {trans.subTilte + heandleGetTitleType()}
                     </Text>
 
                     {show && (
@@ -188,18 +204,19 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                         <Text style={styles.unit}>{' ' + trans.breakUnit}</Text>
                     </Text>
 
-                    <View style={styles.btnSave}>
-                        <BigRedBtn
-                            title={trans.btnSave}
-                            onpress={() => onSaveRouteHandler(Action.next)}
-                        />
-                    </View>
-
-                    <View style={styles.btnCancel}>
-                        <BigWhiteBtn
-                            title={trans.btnCancel}
-                            onpress={() => onSaveRouteHandler(Action.prev)}
-                        />
+                    <View style={styles.btnContainer}>
+                        <View style={styles.btnCancel}>
+                            <BigWhiteBtn
+                                title={trans.btnCancel}
+                                onpress={() => onSaveRouteHandler(Action.prev)}
+                            />
+                        </View>
+                        <View style={styles.btnSave}>
+                            <BigRedBtn
+                                title={trans.btnSave}
+                                onpress={() => onSaveRouteHandler(Action.next)}
+                            />
+                        </View>
                     </View>
                 </ScrollView>
             </View>

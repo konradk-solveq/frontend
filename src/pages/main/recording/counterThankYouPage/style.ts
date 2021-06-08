@@ -21,6 +21,17 @@ const styles = StyleSheet.create({
         color: '#2cba3f',
         textAlign: 'center',
     },
+    subTitle: {
+        width: getHorizontalPx(334),
+        left: getHorizontalPx(40),
+        marginTop: getVerticalPx(7),
+        fontFamily: 'DIN2014Narrow-Light',
+        fontSize: 18,
+        lineHeight: 20,
+        letterSpacing: 0.5,
+        color: '#555555',
+        textAlign: 'center',
+    },
     laurelWreath: {
         width: getHorizontalPx(334),
         height: getHorizontalPx(334),
@@ -67,18 +78,23 @@ const styles = StyleSheet.create({
         color: '#555555',
         textAlign: 'left',
     },
+    btnContainer: {
+        
+        marginBottom: getVerticalPx(65),
+        flexDirection: 'row',
+        marginHorizontal: 40,
+        justifyContent: 'space-between'
+    },
     btnSave: {
-        width: getHorizontalPx(334),
-        left: getHorizontalPx(40),
+        width: getHorizontalPx(157),
         height: 50,
-        marginTop: getVerticalPx(52),
+        marginTop: getVerticalPx(42),
     },
     btnCancel: {
-        width: getHorizontalPx(334),
+        width: getHorizontalPx(157),
         height: 50,
-        left: getHorizontalPx(40),
-        marginTop: getVerticalPx(30),
-        marginBottom: getVerticalPx(65),
+        marginRight: getHorizontalPx(20),
+        marginTop: getVerticalPx(42),
     },
 });
 

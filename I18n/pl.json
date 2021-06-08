@@ -1254,7 +1254,8 @@
         "btnBreak": "PRZERWIJ"
     },
     "CounterThankYouPage": {
-        "title": ", brawo oszczędziłeś",
+        "title": ", brawo!",
+        "subTilte": "Oszczędziłeś",
         "defaultName": "Rowerzysto",
         "type_1": [
             "drzewo!",
