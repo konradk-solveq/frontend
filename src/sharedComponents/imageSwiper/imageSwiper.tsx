@@ -6,6 +6,7 @@ import {
     ViewStyle,
     ImageProps,
     View,
+    Pressable,
 } from 'react-native';
 
 import {RemoveBtn} from '../buttons';
@@ -15,7 +16,8 @@ interface IProps {
     containerStyle?: ViewStyle;
     imageStyle?: ImageProps;
     withRemoveButton?: boolean;
-    onPress?: (uri: string) => void;
+    onPress?: (uri: string) => void | null;
+    onPressRemove?: (uri: string) => void;
 }
 
 const ImageSwiper: React.FC<IProps> = ({
@@ -24,7 +26,14 @@ const ImageSwiper: React.FC<IProps> = ({
     imageStyle,
     withRemoveButton,
     onPress,
+    onPressRemove,
 }: IProps) => {
+    const onPressHandle = (uri: string) => {
+        if (onPress) {
+            onPress(uri);
+        }
+    };
+
     return (
         <ScrollView
             horizontal
@@ -32,14 +41,16 @@ const ImageSwiper: React.FC<IProps> = ({
             style={[styles.scrollView, containerStyle]}>
             {images.map(i => (
                 <View key={JSON.stringify(i)} style={styles.container}>
-                    <Image
-                        source={{uri: i}}
-                        style={[styles.image, imageStyle]}
-                        resizeMode="cover"
-                    />
-                    {withRemoveButton && onPress && (
+                    <Pressable onPress={() => onPressHandle(i)}>
+                        <Image
+                            source={{uri: i}}
+                            style={[styles.image, imageStyle]}
+                            resizeMode="cover"
+                        />
+                    </Pressable>
+                    {withRemoveButton && onPressRemove && (
                         <View style={styles.buttonContainer}>
-                            <RemoveBtn onPress={() => onPress(i)} />
+                            <RemoveBtn onPress={() => onPressRemove(i)} />
                         </View>
                     )}
                 </View>

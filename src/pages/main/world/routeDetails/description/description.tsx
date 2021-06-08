@@ -1,20 +1,24 @@
-import React from 'react';
-import {View, Text, Image} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, Image, Modal, Platform} from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../../../hooks/redux';
+import useStatusBarHeight from '../../../../../hooks/statusBarHeight';
 import {Map} from '../../../../../models/map.model';
+import {CloseBtn} from '../../../../../sharedComponents/buttons';
+import ImageGallery from '../../../../../sharedComponents/imageGallery/imageGallery';
 
 import ImageSwiper from '../../../../../sharedComponents/imageSwiper/imageSwiper';
 import {userNameSelector} from '../../../../../storage/selectors';
+import {convertToDateWithTime} from '../../../../../utils/dateTime';
 import RideTile from './rideTile';
 
 import styles from './styles';
 
 interface IProps {
     mapData: Map | undefined;
-    images: {images: string[]; mapImg: string};
+    images: {images: string[]; mapImg: string; fullSizeImages: string[]};
     isPrivateView?: boolean;
 }
 
@@ -24,9 +28,11 @@ const Description: React.FC<IProps> = ({
     isPrivateView,
 }: IProps) => {
     const trans: any = I18n.t('RoutesDetails.details');
+    const statusBarHeight = useStatusBarHeight();
     const userName = useAppSelector(userNameSelector);
     const authorName =
         mapData?.author || isPrivateView ? userName : trans.defaultAuthor;
+    const [showImgPreview, setShowImgPreview] = useState(false);
 
     return (
         <View style={styles.container}>
@@ -111,7 +117,10 @@ const Description: React.FC<IProps> = ({
                         {trans.imagesTitle}
                     </Text>
                     {mapData && images?.images?.length > 0 && (
-                        <ImageSwiper images={images?.images} />
+                        <ImageSwiper
+                            images={images?.images}
+                            onPress={() => setShowImgPreview(true)}
+                        />
                     )}
                 </View>
             ) : null}
@@ -176,8 +185,58 @@ const Description: React.FC<IProps> = ({
                     styles.lightFont,
                     styles.color555555,
                 ]}>
-                {trans.creationPrefix}: {mapData?.date?.toLocaleString()}
+                {trans.creationPrefix}:{' '}
+                {convertToDateWithTime(mapData?.createdAt)}
             </Text>
+            {mapData?.publishedAt && (
+                <Text
+                    style={[
+                        styles.textStyle,
+                        styles.smallText,
+                        styles.lightFont,
+                        styles.color555555,
+                    ]}>
+                    {trans.publishPrefix}:{' '}
+                    {convertToDateWithTime(mapData?.publishedAt)}
+                </Text>
+            )}
+            {images?.fullSizeImages && (
+                <Modal
+                    animationType="slide"
+                    statusBarTranslucent
+                    hardwareAccelerated={Platform.OS === 'android'}
+                    visible={showImgPreview}
+                    onRequestClose={() => setShowImgPreview(false)}>
+                    <View
+                        style={[
+                            styles.galleryWrapper,
+                            {
+                                paddingTop: getVerticalPx(67) - statusBarHeight,
+                            },
+                        ]}>
+                        <View
+                            style={[
+                                styles.closeGalleryBtnContainer,
+                                {
+                                    top: getVerticalPx(67) - statusBarHeight,
+                                },
+                            ]}>
+                            <CloseBtn
+                                onPress={() => setShowImgPreview(false)}
+                                iconColor="#ffffff"
+                            />
+                        </View>
+                        <View style={styles.swiperContainer}>
+                            <ImageGallery images={images.fullSizeImages} />
+                            {mapData?.author && (
+                                <Text style={styles.authorText}>
+                                    {trans.author}: {mapData?.author}
+                                </Text>
+                            )}
+                        </View>
+                    </View>
+                </Modal>
+            )}
         </View>
     );
 };

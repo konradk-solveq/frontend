@@ -1142,6 +1142,7 @@
             "mapTitle": "Sprawdź trasę na mapie",
             "tagsTitle": "Tagi na trasie",
             "creationPrefix": "Utworzona",
+            "publishPrefix": "Na mapie rowerowej od",
             "distanceToStart": " km od Ciebie",
             "noDescription": "Brak opisu."
         },

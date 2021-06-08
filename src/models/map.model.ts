@@ -120,6 +120,12 @@ export class Map {
     @IsDate()
     public date: Date;
 
+    @IsDate()
+    public createdAt: Date;
+
+    @IsDate()
+    public publishedAt: Date;
+
     @IsOptional()
     @IsNumber()
     public distance?: number;
@@ -176,11 +182,18 @@ export class Map {
     @IsBoolean()
     public isPublic?: boolean;
 
-    constructor(id: string, name: string, path: Coords[], date: Date) {
+    constructor(
+        id: string,
+        name: string,
+        path: Coords[],
+        date: Date,
+        createdAt: Date,
+    ) {
         this.id = id;
         this.name = name;
         this.path = path;
         this.date = date;
+        this.createdAt = createdAt;
     }
 
     public get distanceInKilometers(): string {
