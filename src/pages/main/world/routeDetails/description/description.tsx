@@ -42,19 +42,18 @@ const Description: React.FC<IProps> = ({
                 <Text style={[styles.textStyle, styles.title]}>
                     {mapData?.name || trans.noTitle}
                 </Text>
-                {!isPrivateView ||
-                    (mapData?.distanceToRouteInKilometers !== '-' ? (
-                        <Text
-                            style={[
-                                styles.textStyle,
-                                styles.smallText,
-                                styles.lightFont,
-                                styles.color555555,
-                            ]}>
-                            {mapData?.distanceToRouteInKilometers}
-                            {trans.distanceToStart}
-                        </Text>
-                    ) : null)}
+                {mapData?.distanceToRouteInKilometers !== '-' ? (
+                    <Text
+                        style={[
+                            styles.textStyle,
+                            styles.smallText,
+                            styles.lightFont,
+                            styles.color555555,
+                        ]}>
+                        {mapData?.distanceToRouteInKilometers}
+                        {trans.distanceToStart}
+                    </Text>
+                ) : null}
             </View>
             <View style={styles.tileWrapper}>
                 <Text
@@ -73,52 +72,49 @@ const Description: React.FC<IProps> = ({
                     time={mapData?.formattedTimeString}
                 />
             </View>
-            {!isPrivateView ||
-                (mapData?.description?.short ? (
-                    <View>
-                        <Text
-                            style={[
-                                styles.textStyle,
-                                styles.smallText,
-                                styles.color555555,
-                            ]}>
-                            {trans.descriptionTitle}
-                        </Text>
-                        <View style={[styles.descriptionContainer]}>
-                            <Text
-                                style={[
-                                    styles.textStyle,
-                                    styles.lightFont,
-                                    styles.descriptionTitle,
-                                ]}>
-                                {mapData?.description?.short
-                                    ? `„${mapData.description.short}”`
-                                    : ''}
-                            </Text>
-                            <Text style={[styles.textStyle, styles.lightFont]}>
-                                {mapData?.description?.long ||
-                                    trans.noDescription}
-                            </Text>
-                        </View>
-                    </View>
-                ) : null)}
-            {!isPrivateView ||
-                (images?.images?.length ? (
-                    <View style={styles.imagesContainer}>
+            {mapData?.description?.short ? (
+                <View>
+                    <Text
+                        style={[
+                            styles.textStyle,
+                            styles.smallText,
+                            styles.color555555,
+                        ]}>
+                        {trans.descriptionTitle}
+                    </Text>
+                    <View style={[styles.descriptionContainer]}>
                         <Text
                             style={[
                                 styles.textStyle,
                                 styles.lightFont,
-                                styles.color555555,
-                                styles.imagesTitle,
+                                styles.descriptionTitle,
                             ]}>
-                            {trans.imagesTitle}
+                            {mapData?.description?.short
+                                ? `„${mapData.description.short}”`
+                                : ''}
                         </Text>
-                        {mapData && images?.images?.length > 0 && (
-                            <ImageSwiper images={images?.images} />
-                        )}
+                        <Text style={[styles.textStyle, styles.lightFont]}>
+                            {mapData?.description?.long || trans.noDescription}
+                        </Text>
                     </View>
-                ) : null)}
+                </View>
+            ) : null}
+            {images?.images?.length ? (
+                <View style={styles.imagesContainer}>
+                    <Text
+                        style={[
+                            styles.textStyle,
+                            styles.lightFont,
+                            styles.color555555,
+                            styles.imagesTitle,
+                        ]}>
+                        {trans.imagesTitle}
+                    </Text>
+                    {mapData && images?.images?.length > 0 && (
+                        <ImageSwiper images={images?.images} />
+                    )}
+                </View>
+            ) : null}
             <View style={styles.mapContainer}>
                 <Text
                     style={[
@@ -141,7 +137,7 @@ const Description: React.FC<IProps> = ({
                     )}
                 </View>
             </View>
-            {!isPrivateView || mapData?.tags?.values?.length ? (
+            {mapData?.tags?.values?.length ? (
                 <View style={styles.tagsContainer}>
                     <Text style={[styles.textStyle, styles.lightFont]}>
                         {trans.tagsTitle}
