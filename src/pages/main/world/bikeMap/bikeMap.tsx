@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
 
 import {Map} from '../../../../models/map.model';
 import {I18n} from '../../../../../I18n/I18n';
@@ -38,6 +39,7 @@ interface IProps {
 
 const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
+    const navigation = useNavigation();
 
     const mapsData = useAppSelector(mapsListSelector);
     const isLoading = useAppSelector(loadingMapsSelector);
@@ -53,6 +55,16 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
         }
     };
 
+    const onPressTileHandler = useCallback(
+        (mapID?: string) => {
+            navigation.navigate({
+                name: 'RouteDetailsScreen',
+                params: {mapID: mapID, private: false},
+            });
+        },
+        [navigation],
+    );
+
     const renderItem = useCallback(
         ({item, index}: RenderItem) => {
             const lastItemStyle =
@@ -65,6 +77,8 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                             mapData={item}
                             images={images}
                             onPress={onPressHandler}
+                            onPressTile={onPressTileHandler}
+                            tilePressable
                         />
                     </View>
                 );
@@ -76,6 +90,8 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                             mapData={item}
                             images={images}
                             onPress={onPressHandler}
+                            onPressTile={onPressTileHandler}
+                            tilePressable
                         />
                     </View>
                 );
@@ -86,11 +102,13 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                         mapData={item}
                         images={images}
                         onPress={onPressHandler}
+                        onPressTile={onPressTileHandler}
+                        tilePressable
                     />
                 </View>
             );
         },
-        [mapsData?.length],
+        [mapsData?.length, onPressTileHandler],
     );
 
     const renderListLoader = () => {
@@ -115,6 +133,7 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                         showModal={showModal}
                         mapID={activeMapID}
                         onPressCancel={() => onPressHandler(false)}
+                        backdropStyle={styles.backdrop}
                     />
                     <FlatList
                         keyExtractor={item => item.id}

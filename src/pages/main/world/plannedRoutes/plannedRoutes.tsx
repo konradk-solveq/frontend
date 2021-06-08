@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
 
 import {favouritesMapsSelector} from '../../../../storage/selectors/map';
 import {userNameSelector} from '../../../../storage/selectors';
@@ -32,6 +33,7 @@ interface IProps {
 
 const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
     const trans: any = I18n.t('MainWorld.PlannedRoutes');
+    const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
     const favouriteMaps = useAppSelector(favouritesMapsSelector);
 
@@ -45,6 +47,13 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
         }
     };
 
+    const onPressTileHandler = (mapID?: string) => {
+        navigation.navigate({
+            name: 'RouteDetailsScreen',
+            params: {mapID: mapID, private: false},
+        });
+    };
+
     const renderItem = ({item, index}: RenderItem) => {
         const lastItemStyle =
             index === favouriteMaps?.length - 1 ? styles.lastTile : undefined;
@@ -55,6 +64,8 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
                     mapData={item}
                     images={images}
                     onPress={onPressHandler}
+                    onPressTile={onPressTileHandler}
+                    tilePressable
                 />
             </View>
         );
@@ -77,6 +88,7 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
                 removeFav
                 mapID={activeMapID}
                 onPressCancel={() => onPressHandler(false)}
+                backdropStyle={styles.backdrop}
             />
             <View style={styles.horizontalSpace}>
                 <FlatList

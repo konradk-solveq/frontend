@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Modal, Pressable} from 'react-native';
+import {View, Text, Modal, Pressable, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
 import I18n from 'react-native-i18n';
@@ -31,6 +31,7 @@ interface IProps {
     onPressCancel: () => void;
     removeFav?: boolean;
     isPrivate?: boolean;
+    backdropStyle?: ViewStyle;
 }
 
 const ShowMoreModal: React.FC<IProps> = ({
@@ -39,6 +40,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     showModal,
     removeFav,
     isPrivate,
+    backdropStyle,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
@@ -78,50 +80,53 @@ const ShowMoreModal: React.FC<IProps> = ({
     };
 
     return (
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={showModal}
-            onRequestClose={onPressCancel}>
-            <View style={styles.container}>
-                <Pressable onPress={onPressCancel}>
-                    <View style={styles.pressableArea} />
-                </Pressable>
-                <AnimSvg style={styles.backGround} source={backGround} />
-
-                <View style={styles.wrap}>
-                    {isPrivate && (
-                        <Pressable onPress={onPublishRouteHandler}>
-                            <Text style={styles.text}>
-                                {trans.publishTripAction}
-                            </Text>
-                        </Pressable>
-                    )}
-                    {removeFav && !isPrivate && (
-                        <Pressable onPress={onStartRouteHandler}>
-                            <Text style={styles.text}>
-                                {trans.startTripAction}
-                            </Text>
-                        </Pressable>
-                    )}
-                    {!isPrivate && (
-                        <Pressable onPress={onAddToFavRoutesHandler}>
-                            <Text style={styles.text}>
-                                {!removeFav
-                                    ? trans.addToFavAction
-                                    : trans.removeToFavAction}
-                            </Text>
-                        </Pressable>
-                    )}
-                    <Text style={styles.text}>{trans.showOnMapAction}</Text>
-                    <Pressable onPress={onDetailsButtonPressedHandler}>
-                        <Text style={styles.text}>
-                            {trans.routeDetailsAction}
-                        </Text>
+        <>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={showModal}
+                onRequestClose={onPressCancel}>
+                <View style={styles.container}>
+                    <Pressable onPress={onPressCancel}>
+                        <View style={styles.pressableArea} />
                     </Pressable>
+                    <AnimSvg style={styles.backGround} source={backGround} />
+
+                    <View style={styles.wrap}>
+                        {isPrivate && (
+                            <Pressable onPress={onPublishRouteHandler}>
+                                <Text style={styles.text}>
+                                    {trans.publishTripAction}
+                                </Text>
+                            </Pressable>
+                        )}
+                        {removeFav && !isPrivate && (
+                            <Pressable onPress={onStartRouteHandler}>
+                                <Text style={styles.text}>
+                                    {trans.startTripAction}
+                                </Text>
+                            </Pressable>
+                        )}
+                        {!isPrivate && (
+                            <Pressable onPress={onAddToFavRoutesHandler}>
+                                <Text style={styles.text}>
+                                    {!removeFav
+                                        ? trans.addToFavAction
+                                        : trans.removeToFavAction}
+                                </Text>
+                            </Pressable>
+                        )}
+                        <Text style={styles.text}>{trans.showOnMapAction}</Text>
+                        <Pressable onPress={onDetailsButtonPressedHandler}>
+                            <Text style={styles.text}>
+                                {trans.routeDetailsAction}
+                            </Text>
+                        </Pressable>
+                    </View>
                 </View>
-            </View>
-        </Modal>
+            </Modal>
+            {showModal && <View style={[styles.backdrop, backdropStyle]} />}
+        </>
     );
 };
 
