@@ -30,7 +30,7 @@ export const getPrivateRoutes = async (
 ) =>
     await axiosGet(
         paginationUrl ||
-            `${BASE_URL}/find/my?location?lat=${location.latitude}&lng=${location.longitude}detailed=true`,
+            `${BASE_URL}/find/my?lat=${location.latitude}&lng=${location.longitude}&detailed=true`,
         {
             validateStatus: () => true,
         },
