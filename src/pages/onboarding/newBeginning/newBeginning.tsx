@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {StyleSheet, Dimensions, View, Animated, Easing, Platform} from 'react-native';
+import {
+    StyleSheet,
+    Dimensions,
+    View,
+    Animated,
+    Easing,
+    Platform,
+} from 'react-native';
 import AnimSvg from '../../../helpers/animSvg';
 
 import {
@@ -26,6 +33,8 @@ interface Props {
 const isIOS = Platform.OS === 'ios';
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
+const minBoard = 1;
+const maxBoard = 3;
 
 const NewBeginning: React.FC<Props> = (props: Props) => {
     const [board, setBoard] = useState(0);
@@ -202,20 +211,32 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
         line,
     });
 
-    return (
-        <View>
-            <Animated.View
-                style={[
-                    styles.wrap,
-                    {
-                        transform: [{translateX: position}],
-                    },
-                ]}>
-                <View style={styles.screen}>
-                    <SplashScreen />
-                </View>
+    const onSwipeRight = () => {
+        setBoard(prev => (prev !== maxBoard ? prev + 1 : prev));
+    };
 
-                <Swipe direction={2} onSwipeAction={() => setBoard(2)}>
+    const onSwipeLeft = () => {
+        setBoard(prev => (prev !== minBoard ? prev - 1 : prev));
+    };
+
+    return (
+        <BidirectionalSwipe
+            onFirstSwipeAction={onSwipeRight}
+            firstDirection={2}
+            onSecondSwipeAction={onSwipeLeft}
+            secondDirection={1}>
+            <View>
+                <Animated.View
+                    style={[
+                        styles.wrap,
+                        {
+                            transform: [{translateX: position}],
+                        },
+                    ]}>
+                    <View style={styles.screen}>
+                        <SplashScreen />
+                    </View>
+
                     <View style={styles.screen}>
                         <Screen_1
                             handleMeasurement={handleMeasurement}
@@ -225,13 +246,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
                             textH={textH}
                         />
                     </View>
-                </Swipe>
 
-                <BidirectionalSwipe
-                    onFirstSwipeAction={() => setBoard(3)}
-                    firstDirection={2}
-                    onSecondSwipeAction={() => setBoard(1)}
-                    secondDirection={1}>
                     <View style={styles.screen}>
                         <Screen_2
                             handleMeasurement={handleMeasurement}
@@ -241,9 +256,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
                             textH={textH}
                         />
                     </View>
-                </BidirectionalSwipe>
 
-                <Swipe direction={1} onSwipeAction={() => setBoard(2)}>
                     <View style={styles.screen}>
                         <Screen_3
                             handleMeasurement={handleMeasurement}
@@ -253,35 +266,35 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
                             textH={textH}
                         />
                     </View>
-                </Swipe>
-            </Animated.View>
+                </Animated.View>
 
-            <Animated.View
-                style={[
-                    styles.line,
-                    {
-                        transform: [{translateX: position}],
-                    },
-                ]}>
-                <AnimSvg source={lineSvg} />
-            </Animated.View>
+                <Animated.View
+                    style={[
+                        styles.line,
+                        {
+                            transform: [{translateX: position}],
+                        },
+                    ]}>
+                    <AnimSvg source={lineSvg} />
+                </Animated.View>
 
-            <Animated.View
-                style={[
-                    styles.screen,
-                    styles.static,
-                    {
-                        opacity: opacity,
-                    },
-                ]}>
-                <StaticElements
-                    goFoward={() => props.navigation.navigate('Permits')}
-                    board={board}
-                    list={list}
-                    setBoard={setBoard}
-                />
-            </Animated.View>
-        </View>
+                <Animated.View
+                    style={[
+                        styles.screen,
+                        styles.static,
+                        {
+                            opacity: opacity,
+                        },
+                    ]}>
+                    <StaticElements
+                        goFoward={() => props.navigation.navigate('Permits')}
+                        board={board}
+                        list={list}
+                        setBoard={setBoard}
+                    />
+                </Animated.View>
+            </View>
+        </BidirectionalSwipe>
     );
 };
 
