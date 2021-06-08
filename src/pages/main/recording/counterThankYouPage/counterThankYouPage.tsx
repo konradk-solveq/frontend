@@ -7,6 +7,7 @@ import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
 import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
+import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 
 import {pointToComaString, simplyTimer} from '../../../../helpers/stringFoo';
 
@@ -44,6 +45,8 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const navigation = useNavigation();
     const route = useRoute();
     const dispatch = useAppDispatch();
+
+    useCustomBackNavButton(() => {}, true);
 
     const name = useAppSelector<string>(state => state.user.userName);
     const userName = name ? ' ' + name : ' ' + trans.defaultName;
