@@ -54,7 +54,8 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const userName = name ? ' ' + name : ' ' + trans.defaultName;
 
     const [show, setShow] = useState(true);
-    const randomNum = () => Math.floor(Math.random() * 2);
+    const randomNum = () => 1;
+    // const randomNum = () => Math.floor(Math.random() * 2);
     const [titleType, setTitleType] = useState(randomNum());
 
     const [breakTime, setBreakTime] = useState(1551500);
