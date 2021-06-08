@@ -9,7 +9,7 @@ const instance = axios.create({
     baseURL: API_URL,
     timeout: config.timeout,
     validateStatus: status => {
-        return status >= 200 && status < 300;
+        return status >= 200 && status < 500;
     },
 });
 
