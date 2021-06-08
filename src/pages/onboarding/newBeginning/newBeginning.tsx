@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {StyleSheet, Dimensions, View, Animated, Easing} from 'react-native';
+import {StyleSheet, Dimensions, View, Animated, Easing, Platform} from 'react-native';
 import AnimSvg from '../../../helpers/animSvg';
 
 import {
@@ -16,11 +16,14 @@ import Screen_2 from './screen_2';
 import Screen_3 from './screen_3';
 
 import StaticElements from './../staticElements';
+import Swipe from '../../../sharedComponents/navi/swipe/swipe';
+import BidirectionalSwipe from '../../../sharedComponents/navi/swipe/bidirectionalSwipe';
 
 interface Props {
     navigation: any;
 }
 
+const isIOS = Platform.OS === 'ios';
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
 
@@ -177,11 +180,12 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
     setObjSize(414, 175);
     const styles = StyleSheet.create({
         static: {
-            position: 'absolute',
+            position: isIOS ? 'relative' : 'absolute',
             left: 0,
             top: 0,
         },
         wrap: {
+            flex: isIOS ? 1 : 0,
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
@@ -189,6 +193,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
             width: ww * 4,
             height: '100%',
             backgroundColor: 'white',
+            zIndex: isIOS ? 1 : 0,
         },
         screen: {
             width: ww,
@@ -198,7 +203,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <>
+        <View>
             <Animated.View
                 style={[
                     styles.wrap,
@@ -210,35 +215,45 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
                     <SplashScreen />
                 </View>
 
-                <View style={styles.screen}>
-                    <Screen_1
-                        handleMeasurement={handleMeasurement}
-                        wrapH={wrapH}
-                        imgH={imgH}
-                        titleH={titleH}
-                        textH={textH}
-                    />
-                </View>
+                <Swipe direction={2} onSwipeAction={() => setBoard(2)}>
+                    <View style={styles.screen}>
+                        <Screen_1
+                            handleMeasurement={handleMeasurement}
+                            wrapH={wrapH}
+                            imgH={imgH}
+                            titleH={titleH}
+                            textH={textH}
+                        />
+                    </View>
+                </Swipe>
 
-                <View style={styles.screen}>
-                    <Screen_2
-                        handleMeasurement={handleMeasurement}
-                        wrapH={wrapH}
-                        imgH={imgH}
-                        titleH={titleH}
-                        textH={textH}
-                    />
-                </View>
+                <BidirectionalSwipe
+                    onFirstSwipeAction={() => setBoard(3)}
+                    firstDirection={2}
+                    onSecondSwipeAction={() => setBoard(1)}
+                    secondDirection={1}>
+                    <View style={styles.screen}>
+                        <Screen_2
+                            handleMeasurement={handleMeasurement}
+                            wrapH={wrapH}
+                            imgH={imgH}
+                            titleH={titleH}
+                            textH={textH}
+                        />
+                    </View>
+                </BidirectionalSwipe>
 
-                <View style={styles.screen}>
-                    <Screen_3
-                        handleMeasurement={handleMeasurement}
-                        wrapH={wrapH}
-                        imgH={imgH}
-                        titleH={titleH}
-                        textH={textH}
-                    />
-                </View>
+                <Swipe direction={1} onSwipeAction={() => setBoard(2)}>
+                    <View style={styles.screen}>
+                        <Screen_3
+                            handleMeasurement={handleMeasurement}
+                            wrapH={wrapH}
+                            imgH={imgH}
+                            titleH={titleH}
+                            textH={textH}
+                        />
+                    </View>
+                </Swipe>
             </Animated.View>
 
             <Animated.View
@@ -260,15 +275,13 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
                     },
                 ]}>
                 <StaticElements
-                    goFoward={() =>
-                        props.navigation.navigate('Permits')
-                    }
+                    goFoward={() => props.navigation.navigate('Permits')}
                     board={board}
                     list={list}
                     setBoard={setBoard}
                 />
             </Animated.View>
-        </>
+        </View>
     );
 };
 
