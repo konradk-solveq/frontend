@@ -7,7 +7,6 @@ export const registerDevice = async () => {
         {},
         {
             cancelToken: source.token,
-            validateStatus: () => true,
         },
     );
 };
@@ -21,7 +20,6 @@ export const logInMobile = async (userId: string, deviceToken: string) => {
         },
         {
             cancelToken: source.token,
-            validateStatus: () => true,
         },
     );
 };
@@ -30,7 +28,6 @@ export const currentSession = async (token: string) => {
     return await instance.get('/session/current', {
         headers: {Authorization: `Bearer ${token}`},
         cancelToken: source.token,
-        validateStatus: () => true,
     });
 };
 
@@ -43,7 +40,6 @@ export const refreshSession = async (token: string, refreshToken: string) => {
         {
             headers: {Authorization: `Bearer ${token}`},
             cancelToken: source.token,
-            validateStatus: () => true,
         },
     );
 };

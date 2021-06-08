@@ -12,6 +12,7 @@ import {AppConfigI} from '../../models/config.model';
 import logger from '../../utils/crashlytics';
 import {I18n} from '../../../I18n/I18n';
 import {getAppConfigService} from '../../services';
+import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 
 export const setAppStatus = (status: boolean) => ({
     type: actionTypes.SET_APP_NETWORK_STATUS,
@@ -59,7 +60,9 @@ export const fetchAppConfig = (
         }
     } catch (error) {
         logger.log('[fetchAppConfig]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
     }
@@ -79,8 +82,8 @@ export const appSyncData = (): AppThunk<Promise<void>> => async dispatch => {
         dispatch(setSyncStatus(false));
     } catch (error) {
         logger.log('[appSyncData]');
-        logger.recordError(error);
-        console.log(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
 
         dispatch(setSyncError(errorMessage, 500));

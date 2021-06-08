@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {ImageType} from '../../../../../../interfaces/form';
@@ -17,7 +17,10 @@ const ImagesInput: React.FC<IProps> = ({
     onAddImage,
     onRemoveImage,
 }: IProps) => {
+    const [isBlocked, setIsBocked] = useState(false);
+
     const onAddImageHanlder = () => {
+        setIsBocked(true);
         launchImageLibrary(
             {
                 mediaType: 'photo',
@@ -29,13 +32,18 @@ const ImagesInput: React.FC<IProps> = ({
                 if (typeof o?.uri !== 'undefined') {
                     onAddImage(o);
                 }
+                setIsBocked(false);
             },
         );
     };
 
     return (
         <View style={styles.container}>
-            <AddBtn onPress={onAddImageHanlder} containerStyle={styles.btn} />
+            <AddBtn
+                onPress={onAddImageHanlder}
+                containerStyle={styles.btn}
+                disabled={isBlocked}
+            />
             {images?.length > 0 && (
                 <ImageSwiper
                     images={images}

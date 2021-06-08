@@ -9,9 +9,8 @@ import {LocationDataI} from '../../interfaces/geolocation';
 import logger from '../../utils/crashlytics';
 import {syncRouteData} from '../../services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
-import {
-    toTimestamp,
-} from '../../utils/persistLocationData';
+import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+import {toTimestamp} from '../../utils/persistLocationData';
 
 export const clearError = () => ({
     type: actionTypes.CLEAR_ROUTES_ERROR,
@@ -93,7 +92,8 @@ export const stopCurrentRoute = (): AppThunk<Promise<void>> => async (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[stopCurrentRoute]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -121,7 +121,8 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[persistCurrentRouteData]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -145,8 +146,8 @@ export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[addRoutesToSynchQueue]');
-        logger.recordError(error);
-        console.log(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
 
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
@@ -196,7 +197,8 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(fetchPrivateMapsList());
     } catch (error) {
         logger.log('[syncCurrentRouteData]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
 
         dispatch(addRoutesToSynchQueue());
     }
@@ -239,7 +241,8 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[syncRouteDataFromQueue]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
 
         dispatch(addRoutesToSynchQueue());
     }

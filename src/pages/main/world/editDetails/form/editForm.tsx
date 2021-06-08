@@ -66,6 +66,7 @@ const EditForm: React.FC<IProps> = ({
             data,
             validationMessages,
             setError,
+            ['publishWithName'],
         );
         if (!isValid) {
             scrollTop();

@@ -9,7 +9,6 @@ export const createRoute = async (name: string) => {
         },
         {
             cancelToken: source.token,
-            validateStatus: () => true,
         },
     );
 };
@@ -17,6 +16,5 @@ export const createRoute = async (name: string) => {
 export const sendRouteData = async (id: string, path: ApiPathI[]) => {
     return await instance.patch(`/routes/route/${id}/path`, path, {
         cancelToken: source.token,
-        validateStatus: () => true,
     });
 };

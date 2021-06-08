@@ -14,15 +14,11 @@ export const getMaps = async (
     const r = range || 50000;
     const l = limit || 10;
     const url = `${BASE_URL}/find/location?lat=${location.latitude}&lng=${location.longitude}&range=${r}&limit=${l}&page=1`;
-    return await axiosGet(paginationUrl || url, {
-        validateStatus: () => true,
-    });
+    return await axiosGet(paginationUrl || url);
 };
 
 export const getRoute = async (id: string) =>
-    await axiosGet(`${BASE_ROUTE_URL}/${id}`, {
-        validateStatus: () => true,
-    });
+    await axiosGet(`${BASE_ROUTE_URL}/${id}`);
 
 export const getPrivateRoutes = async (
     location: Coords,
@@ -30,10 +26,7 @@ export const getPrivateRoutes = async (
 ) =>
     await axiosGet(
         paginationUrl ||
-            `${BASE_URL}/find/my?lat=${location.latitude}&lng=${location.longitude}&detailed=true`,
-        {
-            validateStatus: () => true,
-        },
+            `${BASE_URL}/find/my?location?lat=${location.latitude}&lng=${location.longitude}detailed=true`,
     );
 
 export const editPrivateMapMetaData = async (
@@ -42,7 +35,6 @@ export const editPrivateMapMetaData = async (
 ) => {
     return await instance.patch(`${BASE_ROUTE_URL}/${id}/metadata`, data, {
         cancelToken: source.token,
-        validateStatus: () => true,
     });
 };
 
@@ -52,7 +44,6 @@ export const publishPrivateMapData = async (id: string) => {
         {},
         {
             cancelToken: source.token,
-            validateStatus: () => true,
         },
     );
 };
@@ -60,15 +51,14 @@ export const publishPrivateMapData = async (id: string) => {
 export const removePrivateMapData = async (id: string) => {
     return await instance.delete(`${BASE_ROUTE_URL}/${id}`, {
         cancelToken: source.token,
-        validateStatus: () => true,
     });
 };
 
 export const uploadImageToMapData = async (id: string, formData: FormData) => {
     return await instance.post(`${BASE_ROUTE_URL}/${id}/image`, formData, {
         headers: {'Content-Type': 'multipart/form-data'},
+        timeout: 60000,
         cancelToken: source.token,
-        validateStatus: () => true,
     });
 };
 
@@ -78,6 +68,5 @@ export const removeImagesToMapData = async (id: string, ids: string[]) => {
             ids,
         },
         cancelToken: source.token,
-        validateStatus: () => true,
     });
 };

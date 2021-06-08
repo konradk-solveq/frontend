@@ -8,9 +8,9 @@ const config = {
 const instance = axios.create({
     baseURL: API_URL,
     timeout: config.timeout,
-    // validateStatus: () => {
-    //     return true;
-    // },
+    validateStatus: status => {
+        return status >= 200 && status < 300;
+    },
 });
 
 instance.defaults.headers.post['Content-Type'] = 'application/json';

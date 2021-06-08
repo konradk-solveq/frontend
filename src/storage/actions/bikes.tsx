@@ -11,6 +11,7 @@ import {
 import {setFrameNumber} from './index';
 import {transformToUserBikeType} from '../../utils/transformData';
 import logger from '../../utils/crashlytics';
+import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 
 interface actionAsyncResponse {
     success: boolean;
@@ -89,7 +90,8 @@ export const setBikesListByFrameNumber = (
         }
     } catch (error) {
         logger.log('[setBikesListByFrameNumber]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage));
 
@@ -133,7 +135,8 @@ export const fetchGenericBikeData = (): AppThunk<
         }
     } catch (error) {
         logger.log('[fetchGenericBikeData]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage));
 
@@ -231,7 +234,8 @@ export const setBikesListByFrameNumbers = (): AppThunk<
         }
     } catch (error) {
         logger.log('[setBikesListByFrameNumbers]');
-        logger.recordError(error);
+        const err = convertToApiError(error);
+        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage));
 

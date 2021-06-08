@@ -95,9 +95,14 @@ export const reValidateMapMetadataManually = (
     data: MapFormDataResult,
     validationMessages: string[],
     onError: UseFormSetError<MapFormData>,
+    skip?: string[],
 ) => {
     let isValid = true;
     Object.keys(data).forEach((d: any) => {
+        if (skip && skip.includes(d)) {
+            return;
+        }
+
         const el = data?.[d as keyof MapFormDataResult];
         const isEmptyString = isString(el) && isEmpty(el.trim());
         const emptyArray = isArray(el) && !el?.length;
