@@ -36,6 +36,16 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         marginBottom: getVerticalPx(30),
     },
+    backdrop: {
+        position: 'absolute',
+        backgroundColor: '#313131',
+        opacity: 0.3,
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1,
+    },
 });
 
 export default styles;

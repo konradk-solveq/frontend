@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
         marginTop: -getVerticalPx(120),
         marginBottom: getVerticalPx(150),
     },
+    backdrop: {
+        marginTop: -getVerticalPx(250),
+    },
 });
 
 export default styles;

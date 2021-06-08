@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
 
 import {
     loadingMapsSelector,
@@ -19,6 +20,7 @@ import EmptyList from './emptyList';
 import styles from './style';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../../sharedComponents/loader/loader';
+import FirstTile from '../components/tiles/firstTile';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -43,6 +45,7 @@ const MyRoutes: React.FC<IProps> = ({
     onLoadMore,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.MyRoutes');
+    const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
     const privateMaps = useAppSelector(privateMapsListSelector);
     const isLoading = useAppSelector(loadingMapsSelector);
@@ -58,22 +61,47 @@ const MyRoutes: React.FC<IProps> = ({
         }
     };
 
+    const onPressTileHandler = useCallback(
+        (mapID?: string) => {
+            navigation.navigate({
+                name: 'RouteDetailsScreen',
+                params: {mapID: mapID, private: true},
+            });
+        },
+        [navigation],
+    );
+
     const renderItem = useCallback(
         ({item, index}: RenderItem) => {
             const lastItemStyle =
                 index === privateMaps?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
+            if (index === 0) {
+                return (
+                    <View style={styles.tileWrapper}>
+                        <FirstTile
+                            mapData={item}
+                            images={images}
+                            onPress={onPressHandler}
+                            onPressTile={onPressTileHandler}
+                            tilePressable
+                        />
+                    </View>
+                );
+            }
             return (
                 <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
                     <NextTile
                         mapData={item}
                         images={images}
                         onPress={onPressHandler}
+                        onPressTile={onPressTileHandler}
+                        tilePressable
                     />
                 </View>
             );
         },
-        [privateMaps?.length],
+        [privateMaps?.length, onPressTileHandler],
     );
 
     if (!privateMaps?.length) {
@@ -104,6 +132,7 @@ const MyRoutes: React.FC<IProps> = ({
                 removeFav
                 mapID={activeMapID}
                 onPressCancel={() => onPressHandler(false)}
+                backdropStyle={styles.backdrop}
                 isPrivate
             />
             <View style={styles.horizontalSpace}>
