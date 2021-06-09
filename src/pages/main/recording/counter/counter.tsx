@@ -52,14 +52,16 @@ import {
     trackerStartTimeSelector,
 } from '../../../../storage/selectors/routes';
 import deepCopy from '../../../../helpers/deepCopy';
+import {mapDataByIDSelector} from '../../../../storage/selectors/map';
 
 const {width} = Dimensions.get('window');
 
 interface Props {
     navigation: any;
+    route: any;
 }
 
-const Counter: React.FC<Props> = ({navigation}: Props) => {
+const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans = I18n.t('MainCounter');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
@@ -77,9 +79,36 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const [compassHeading, setCompassHeading] = useState(0);
     const mapRef = useRef();
 
-    const [rute, setRute] = useState([]);
-    const [ruteNumber, setRuteNumber] = useState(0);
+    const [myRoute, setMyRoute] = useState([]);
+    const [myRouteNumber, setMyRouteNumber] = useState(0);
     const [currentPosition, setCurrentPosition] = useState(0);
+    const [foreignRoute, setForeignRoute] = useState(null);
+
+    // trakowanie
+    const {
+        trackerData,
+        startTracker,
+        stopTracker,
+        pauseTracker,
+        resumeTracker,
+        followedRouteId,
+    } = useLocalizationTracker(true);
+
+    const mapData = useAppSelector(
+        mapDataByIDSelector(followedRouteId || route?.params?.mapID),
+    );
+
+    useEffect(() => {
+        if (mapData) {
+            const fRoute = mapData.path.map(e => {
+                return {
+                    latitude: e[0],
+                    longitude: e[1],
+                };
+            });
+            setForeignRoute(fRoute);
+        }
+    }, []);
 
     useEffect(() => {
         const degree_update_rate = 3;
@@ -149,15 +178,6 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
         new Animated.Value(headerHeight + getVerticalPx(50)),
     ).current;
 
-    // trakowanie
-    const {
-        trackerData,
-        startTracker,
-        stopTracker,
-        pauseTracker,
-        resumeTracker,
-    } = useLocalizationTracker(true);
-
     useEffect(() => {
         if (location && onMapLoaded) {
             setJs(
@@ -185,13 +205,13 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             setCurrentPosition(pos);
 
             // zapisywanie trasy do vizualizacji
-            const newRure = deepCopy(rute);
-            if (typeof rute[ruteNumber] === 'undefined') {
-                newRure[ruteNumber] = [];
+            const newRure = deepCopy(myRoute);
+            if (typeof myRoute[myRouteNumber] === 'undefined') {
+                newRure[myRouteNumber] = [];
             }
             setTimeout(() => {
-                newRure[ruteNumber].push(pos);
-                setRute(newRure);
+                newRure[myRouteNumber].push(pos);
+                setMyRoute(newRure);
             }, 400);
         }
     }, [trackerData]);
@@ -253,7 +273,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 ? Date.parse(trackerStartTime.toUTCString())
                 : null;
             setJs(`start(${startTime});setPauseOff();true;`);
-            startTracker(true);
+            startTracker(true, route?.params?.mapID);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [onMapLoaded]);
@@ -276,7 +296,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 {
                     setPageState('record');
                     setJs('hideAlert();setPauseOff();true;');
-                    setRuteNumber(ruteNumber + 1);
+                    setMyRouteNumber(myRouteNumber + 1);
                 }
                 break;
             case 'cancelText':
@@ -301,7 +321,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                 {
                     setPageState('record');
                     setJs('start();setPauseOff();true;');
-                    await startTracker();
+                    await startTracker(false, route?.params?.mapID);
                 }
                 break;
             case 'record':
@@ -452,7 +472,6 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
     const styles = StyleSheet.create({
         innerContainer: {
             flex: 1,
-            backgroundColor: 'khaki',
         },
         map: {
             width: '100%',
@@ -477,6 +496,8 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
             top: 0,
             right: 0,
             bottom: 0,
+            width: '100%',
+            height: '100%',
         },
         gradient: {
             backgroundColor: 'transparent',
@@ -537,7 +558,7 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                             heading: compassHeading,
                             zoom: 18,
                         }}>
-                        {rute.map((e, i) => (
+                        {myRoute.map((e, i) => (
                             <Polyline
                                 coordinates={e}
                                 strokeColor="#d8232a"
@@ -545,9 +566,19 @@ const Counter: React.FC<Props> = ({navigation}: Props) => {
                                 lineCap={'round'}
                                 lineJoin={'round'}
                                 strokeWidth={8}
-                                key={'rute_' + i}
+                                key={'route_' + i}
                             />
                         ))}
+                        {foreignRoute && (
+                            <Polyline
+                                coordinates={foreignRoute}
+                                strokeColor="#3583e4"
+                                strokeColors={['#3583e4']}
+                                lineCap={'round'}
+                                lineJoin={'round'}
+                                strokeWidth={8}
+                            />
+                        )}
                     </MapView>
                 )}
 

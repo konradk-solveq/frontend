@@ -55,3 +55,6 @@ export const nextPrivatePaginationCoursor = (
 export const prevPrivatePaginationCoursor = (
     state: RootState,
 ): string | undefined => state.maps.paginationCoursorPrivate?.prev;
+
+export const hasRecordedRoutesSelector = (state: RootState): boolean =>
+    state.maps.privateMaps?.length > 0;

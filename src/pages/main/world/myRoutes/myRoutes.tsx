@@ -78,7 +78,7 @@ const MyRoutes: React.FC<IProps> = ({
             const images = getImagesThumbs(item?.images || []);
             if (index === 0) {
                 return (
-                    <View style={styles.tileWrapper}>
+                    <View style={[styles.tileWrapper, lastItemStyle]}>
                         <FirstTile
                             mapData={item}
                             images={images}

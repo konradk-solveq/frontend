@@ -11,6 +11,7 @@ import {syncRouteData} from '../../services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {toTimestamp} from '../../utils/persistLocationData';
+import {MIN_ROUTE_LENGTH} from '../../helpers/global';
 
 export const clearError = () => ({
     type: actionTypes.CLEAR_ROUTES_ERROR,
@@ -176,8 +177,8 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             /* If fail add to queue. Resolve tasks queue in different action. */
             if (
                 currentRouteData?.length >= 10 &&
-                currentRouteData?.[currentRouteData?.length - 1].odometer >=
-                    200 &&
+                currentRouteData?.[currentRouteData?.length - 1]?.odometer >=
+                    MIN_ROUTE_LENGTH &&
                 response.status !== 400
             ) {
                 dispatch(addRoutesToSynchQueue());
