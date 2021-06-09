@@ -1110,7 +1110,7 @@
         "PlannedRoutes": {
             "title": ", odkryj Ciekawe trasy z KROSS",
             "emptyStateTitle": "Dobry plan to podstawa",
-            "emptyStateContent": "Zaplanuj wycieczkę na postawie tras rekomendowanych przez KROSS.",
+            "emptyStateContent": "Zaplanuj wycieczkę na podstawie tras rekomendowanych przez KROSS.",
             "emptyStateButton": "Pobierz trasę",
             "defaultUserName": "Rowerzysto"
         },
