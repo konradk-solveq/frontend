@@ -1,4 +1,5 @@
 import {createRoute, removePrivateMapData, sendRouteData} from '../api';
+import {MIN_ROUTE_LENGTH} from '../helpers/global';
 import {LocationDataI} from '../interfaces/geolocation';
 
 import {
@@ -18,12 +19,14 @@ export interface RoutesResponse {
 export const syncRouteData = async (
     path: LocationDataI[],
 ): Promise<RoutesResponse> => {
-    if (path?.[path?.length - 1].odometer < 200) {
+    if (
+        !path?.[path?.length - 1]?.odometer ||
+        path?.[path?.length - 1]?.odometer < MIN_ROUTE_LENGTH
+    ) {
         return {
             data: null,
             status: 400,
-            error:
-                "Route path could not be save. It's too short. It should take at least 200 meters",
+            error: `Route path could not be save. It's too short. It should take at least ${MIN_ROUTE_LENGTH} meters`,
         };
     }
 
