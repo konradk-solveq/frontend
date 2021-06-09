@@ -1030,10 +1030,14 @@
         "firstText": "Sezon rozpoczęty, ale czy Twój rower o tym wie? Zadbaj o niego i sprawdź czy jest gotowy do jazdy.",
         "firstBtn": "SPRAWDŹ",
         "secondTitle": "Dodaj kolejny rower",
-        "thirdTitle": "Nagraj trasę",
+        "thirdTitle": "Nagraj swoją pierwszą trasę",
+        "fourthTitle": "Buduj z nami Mapę Rowerową",
         "secondText": "Jeżeli chcesz w jednym miejscu zarządzać Twoimi rowerami KROSS oraz rowerami innych producentów, dodaj je do aplikacji.",
+        "thirdText": "Nie zwlekaj! Wsiadaj na rower i zacznij przemierzać kilometry z myKROSS.",
+        "fourthText": "Bądź inspiracją dla innych. Nagraj kolejną trasę i upublicznij ją na Mapie Rowerowej.",
         "secondBtn": "DODAJ ROWER",
-        "thirdBtn": "Nagraj"
+        "thirdBtn": "Nagraj trasę",
+        "fourthBtn": "Nagraj trasę"
     },
     "MainWorld": {
         "header": "Świat KROSS",
