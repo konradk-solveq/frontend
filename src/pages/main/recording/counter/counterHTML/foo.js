@@ -15,7 +15,11 @@ const pointToComa = num => num.toString().replace('.', ',');
 
 const twoDigits = num => (num < 10 ? '0' + num : '' + num);
 
+let notTooFast = 0;
 const countersUpdate = () => {
+    let now = Date.now();
+    let colled = 1000;
+
     // liczniki
     let index = 0;
     const setOneCounter = (hook, value, unit, x, y) => {
@@ -37,14 +41,24 @@ const countersUpdate = () => {
     setOneCounter(obj.time, values.time1, values.time2, x, 0);
     let y = getYwrap(6 + 18 + 90 + 20 + 45);
     setOneCounter(obj.speed, values.speed, trans.speedUnit, 0, y);
-    setOneCounter(
-        obj.averageSpeed,
-        values.averageSpeed,
-        trans.averageSpeedUnit,
-        x,
-        y,
+
+    if (notTooFast + colled > now) {
+        return;
+    }
+    notTooFast = now;
+    let averageSpeed = pointToComa(
+        (
+            Number(values.distance.replace(',', '.')) /
+            ((Date.now() - startTime - pauseTime) / (60 * 60 * 1000))
+        ).toFixed(1),
     );
+    setOneCounter(obj.averageSpeed, averageSpeed, trans.averageSpeedUnit, x, y);
 };
+
+const getPauseTime = () =>
+    window.ReactNativeWebView.postMessage(
+        'pause;' + (pauseTime + Date.now() - pauseStart),
+    );
 
 const timer = () => {
     let diference = Date.now() - startTime - pauseTime;
@@ -68,7 +82,7 @@ const timer = () => {
 };
 
 let started = false;
-const start = (sTime) => {
+const start = sTime => {
     if (started) {
         return;
     }
@@ -76,6 +90,7 @@ const start = (sTime) => {
     startTime = sTime ? sTime : Date.now();
     pauseStart = Date.now();
     interval = setInterval(timer, 1000);
+    notTooFast = 0;
 };
 
 const setPauseOn = () => {
@@ -278,9 +293,8 @@ const setValues = v => {
     countersUpdate();
 };
 
-const sleep = () => {}
+const sleep = () => {};
 
 const awake = () => {
     interval = setInterval(timer, 1000);
-
-}
+};

@@ -200,7 +200,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     <Text style={styles.breakName}>
                         {trans.break + '  '}
                         <Text style={styles.breakValue}>
-                            {simplyTimer(breakTime)}
+                            {simplyTimer(route?.params?.pause)}
                         </Text>
                         <Text style={styles.unit}>{' ' + trans.breakUnit}</Text>
                     </Text>
