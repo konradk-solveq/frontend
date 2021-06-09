@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 import {trackerActiveSelector} from '../../../storage/selectors/routes';
+import {hasRecordedRoutesSelector} from '../../../storage/selectors/map';
 
 import useAppInit from '../../../hooks/appInit';
 import {
@@ -26,6 +27,7 @@ const Home: React.FC = () => {
     const navigation = useNavigation();
     const trans: any = I18n.t('MainHome');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
+    const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
 
     const {syncStatus, error, clearAppSyncError} = useAppInit();
 
@@ -79,7 +81,7 @@ const Home: React.FC = () => {
         },
         tileWrapper: {
             top: getVerticalPx(138),
-            paddingBottom: getVerticalPx(230),
+            paddingBottom: getVerticalPx(260),
         },
         tileSpace: {
             marginBottom: 25,
@@ -128,12 +130,21 @@ const Home: React.FC = () => {
                             style={styles.tileSpace}
                             onPress={onAddActionHandler}
                         />
-                        <AddBike
-                            title={trans.thirdTitle}
-                            description={trans.secondText}
-                            btnText={trans.thirdBtn}
-                            onPress={onRecordTripActionHandler}
-                        />
+                        {!hasRecordedRoutes ? (
+                            <AddBike
+                                title={trans.thirdTitle}
+                                description={trans.thirdText}
+                                btnText={trans.thirdBtn}
+                                onPress={onRecordTripActionHandler}
+                            />
+                        ) : (
+                            <AddBike
+                                title={trans.fourthTitle}
+                                description={trans.fourthText}
+                                btnText={trans.fourthBtn}
+                                onPress={onRecordTripActionHandler}
+                            />
+                        )}
                     </View>
                 </View>
             </ScrollView>
