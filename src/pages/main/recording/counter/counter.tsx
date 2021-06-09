@@ -296,7 +296,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     setJs('hideAlert();true;');
                     if (!pause) {
                         setJs('start();setPauseOff();true;');
-                        setRuteNumber(ruteNumber + 1);
+                        setMyRouteNumber(myRouteNumber + 1);
                     }
                 }
                 break;
@@ -318,7 +318,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     // await startTracker();
                     setPageState('endMessage');
                     setJs('setPauseOn();true;');
-                    
                 }
                 break;
             case 'pause':
@@ -414,7 +413,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     setJs('showAlert(2, "' + trans.endText + '");true;');
                     setJs('getPauseTime();true;');
                     setHeaderTitle(trans.headerPause);
-                    
                 }
                 break;
         }
