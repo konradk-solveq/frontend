@@ -82,6 +82,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [myRoute, setMyRoute] = useState([]);
     const [myRouteNumber, setMyRouteNumber] = useState(0);
     const [currentPosition, setCurrentPosition] = useState(0);
+    const [pauseTime, setPauseTime] = useState(0);
     const [foreignRoute, setForeignRoute] = useState(null);
 
     // trakowanie
@@ -179,25 +180,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     ).current;
 
     useEffect(() => {
-        if (location && onMapLoaded) {
-            setJs(
-                `setPositionOnMap({lat: ${location.lat}, lng: ${location.lon}, heading: ${location.heading} });true;`,
-            );
-            setJs(
-                `setMarkerPositionOnMap({lat: ${location.lat}, lng: ${location.lon} });true;`,
-            );
-        }
-    }, [location, onMapLoaded]);
-
-    useEffect(() => {
         setJs(`setValues(${JSON.stringify(trackerData)});true;`);
+
         if (trackerData?.coords && mapRef.current) {
-            setJs(
-                `setPositionOnMap({lat: ${trackerData.coords.lat}, lng: ${trackerData.coords.lon} });true;`,
-            );
-            setJs(
-                `setMarkerPositionOnMap({lat: ${trackerData.coords.lat}, lng: ${trackerData.coords.lon} });true;`,
-            );
             const pos = {
                 latitude: trackerData.coords.lat,
                 longitude: trackerData.coords.lon,
@@ -307,8 +292,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 break;
             case 'endMessage':
                 {
-                    setPageState('record');
+                    setPageState(pause ? 'pause' : 'record');
                     setJs('hideAlert();true;');
+                    if (!pause) {
+                        setJs('start();setPauseOff();true;');
+                        setRuteNumber(ruteNumber + 1);
+                    }
                 }
                 break;
         }
@@ -328,11 +317,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 {
                     // await startTracker();
                     setPageState('endMessage');
+                    setJs('setPauseOn();true;');
+                    
                 }
                 break;
             case 'pause':
                 {
                     setPageState('endMessage');
+                    setJs('setPauseOn();true;');
                 }
                 break;
             case 'cancelText':
@@ -352,6 +344,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             time:
                                 Date.now() -
                                 Date.parse(trackerStartTime.toUTCString()),
+                            pause: pauseTime,
                         },
                     });
                     // do ekranu zakończenia
@@ -415,9 +408,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 break;
             case 'endMessage':
                 {
+                    pauseTracker();
                     setLeftBtnTile(trans.btnCancel);
                     setRightBtnTile(trans.btnEnd);
                     setJs('showAlert(2, "' + trans.endText + '");true;');
+                    setJs('getPauseTime();true;');
+                    setHeaderTitle(trans.headerPause);
+                    
                 }
                 break;
         }
@@ -445,6 +442,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     let posY = JSON.parse(val[1]);
                     setMapBtnPosMemo(posY);
                     setMapBtnPos(posY[0]);
+                }
+                break;
+            case 'pause':
+                {
+                    setPauseTime(JSON.parse(val[1]));
                 }
                 break;
         }
