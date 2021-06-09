@@ -5,7 +5,10 @@ import {
 } from '@sayem314/react-native-keep-awake';
 
 import {useAppDispatch, useAppSelector} from './redux';
-import {trackerCurrentRouteAverrageSpeedSelector} from '../storage/selectors/routes';
+import {
+    trackerCurrentRouteAverrageSpeedSelector,
+    trackerFollowedRouteIdSelector,
+} from '../storage/selectors/routes';
 import {
     persistCurrentRouteData,
     setAverageSpeed,
@@ -47,6 +50,7 @@ const useLocalizationTracker = (persist: boolean) => {
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
     );
+    const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
     const [lastDistance, setLastDistance] = useState<number>(0);
@@ -86,7 +90,7 @@ const useLocalizationTracker = (persist: boolean) => {
         stopBackgroundGeolocation();
     };
 
-    const startTracker = async (keep?: boolean) => {
+    const startTracker = async (keep?: boolean, routeIdToFollow?: string) => {
         speed = [];
         /* TODO: error */
         const state = await getBackgroundGeolocationState();
@@ -100,7 +104,7 @@ const useLocalizationTracker = (persist: boolean) => {
 
         await startBackgroundGeolocation(keep);
         if (!keep) {
-            const currRoute = await startCurrentRoute();
+            const currRoute = await startCurrentRoute(routeIdToFollow);
             dispatch(setCurrentRoute(keep ? undefined : currRoute));
         }
     };
@@ -203,6 +207,7 @@ const useLocalizationTracker = (persist: boolean) => {
         startTracker,
         stopTracker,
         averageSpeed,
+        followedRouteId,
     };
 };
 

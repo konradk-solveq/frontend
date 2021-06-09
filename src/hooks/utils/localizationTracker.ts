@@ -18,12 +18,13 @@ export const getAverageSpeedData = (
     return aSpeed;
 };
 
-export const startCurrentRoute = async () => {
+export const startCurrentRoute = async (followByRoute?: string) => {
     return {
         id: uuidv4(),
         isActive: true,
         startedAt: new Date(),
         endedAt: undefined,
+        routeId: followByRoute || undefined,
     };
 };
 
