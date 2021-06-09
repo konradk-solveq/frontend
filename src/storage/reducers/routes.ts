@@ -9,6 +9,7 @@ export interface CurrentRouteI {
     isActive: boolean;
     startedAt: Date | undefined;
     endedAt: Date | undefined;
+    routeId?: string | undefined;
 }
 
 export interface RoutesI {
@@ -33,6 +34,7 @@ const initialStateList: RoutesState = {
         isActive: false,
         startedAt: undefined,
         endedAt: undefined,
+        routeId: undefined,
     },
     currentRouteData: [],
     routes: [],
