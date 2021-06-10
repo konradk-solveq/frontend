@@ -1,7 +1,7 @@
 import BackgroundGeolocation, {
     Location,
     LocationError,
-} from 'react-native-background-geolocation';
+} from 'react-native-background-geolocation-android';
 import GetLocation from 'react-native-get-location';
 
 import {LocationDataI} from '../interfaces/geolocation';
@@ -27,7 +27,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
                 "In order to allow track activity when app is in the background, please enable 'Allow all the time permission",
             positiveAction: 'Change to Allow all the time',
         },
-        distanceFilter: 30,
+        distanceFilter: 10,
         stopTimeout: 1,
         debug: __DEV__ ? true : false,
         logLevel: __DEV__
@@ -39,18 +39,24 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             text: notificationTitle,
             smallIcon: 'drawable/ic_launcher_round',
         },
+        preventSuspend: true,
+        heartbeatInterval: 60,
+        activityType: BackgroundGeolocation.ACTIVITY_TYPE_FITNESS,
     });
 
     return state;
 };
 
-export const getCurrentLocation = async () => {
+export const getCurrentLocation = async (routeId?: string) => {
     const location = await BackgroundGeolocation.getCurrentPosition({
         timeout: 30,
         maximumAge: 500,
         desiredAccuracy: 10,
         samples: 6,
-        persist: false,
+        persist: true,
+        extras: {
+            route_id: routeId || '',
+        },
     });
 
     return location;
@@ -79,24 +85,34 @@ export const getBackgroundGeolocationState = async () => {
     return state;
 };
 
-export const startBackgroundGeolocation = async (keep?: boolean) => {
+export const startBackgroundGeolocation = async (
+    routeId: string,
+    keep?: boolean,
+) => {
     if (!keep) {
         await BackgroundGeolocation.resetOdometer();
     }
     await BackgroundGeolocation.setConfig({
         isMoving: true,
+        extras: {
+            route_id: routeId,
+        },
     });
 
     const state = await BackgroundGeolocation.start();
+    await BackgroundGeolocation.changePace(true);
 
     return state;
 };
 
 export const stopBackgroundGeolocation = async () => {
-    await BackgroundGeolocation.resetOdometer();
+    await BackgroundGeolocation.changePace(false);
     const state = await BackgroundGeolocation.stop();
     await BackgroundGeolocation.setConfig({
         isMoving: false,
+        extras: {
+            route_id: '',
+        },
     });
 
     return state;
@@ -139,4 +155,12 @@ export const requestGeolocationPermission = async () => {
     const status = await BackgroundGeolocation.requestPermission();
 
     return status;
+};
+
+export const pauseTracingLocation = async () => {
+    await BackgroundGeolocation.changePace(false);
+};
+
+export const resumeTracingLocation = async () => {
+    await BackgroundGeolocation.changePace(true);
 };

@@ -19,14 +19,11 @@ export interface RoutesResponse {
 export const syncRouteData = async (
     path: LocationDataI[],
 ): Promise<RoutesResponse> => {
-    if (
-        !path?.[path?.length - 1]?.odometer ||
-        path?.[path?.length - 1]?.odometer < MIN_ROUTE_LENGTH
-    ) {
+    if (!path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)) {
         return {
             data: null,
             status: 400,
-            error: `Route path could not be save. It's too short. It should take at least ${MIN_ROUTE_LENGTH} meters`,
+            error: `Route path could not be save. It's too short. It should take at least ${MIN_ROUTE_LENGTH} meters.`,
         };
     }
 
