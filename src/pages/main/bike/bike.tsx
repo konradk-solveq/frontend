@@ -11,7 +11,7 @@ import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {ScrollView} from 'react-native-gesture-handler';
 import GetLocation from 'react-native-get-location';
-import BackgroundGeolocation from 'react-native-background-geolocation';
+// import BackgroundGeolocation from 'react-native-background-geolocation-android';
 
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {getBike} from '../../../helpers/transformUserBikeData';

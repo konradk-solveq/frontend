@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {State} from 'react-native-background-geolocation';
+import {State} from 'react-native-background-geolocation-android';
 
 import {I18n} from '../../I18n/I18n';
 import {initCrashlytics} from '../utils/crashlytics';

@@ -366,7 +366,7 @@ PODS:
     - React
   - RNBackgroundFetch (4.0.2):
     - React-Core
-  - RNBackgroundGeolocation (4.0.3):
+  - RNBackgroundGeolocation (4.1.0):
     - CocoaLumberjack (~> 3.7.2)
     - React-Core
   - RNCAsyncStorage (1.15.2):
@@ -468,7 +468,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeGetLocation (from `../node_modules/react-native-get-location`)
   - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
-  - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation`)
+  - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation-android`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
@@ -584,7 +584,7 @@ EXTERNAL SOURCES:
   RNBackgroundFetch:
     :path: "../node_modules/react-native-background-fetch"
   RNBackgroundGeolocation:
-    :path: "../node_modules/react-native-background-geolocation"
+    :path: "../node_modules/react-native-background-geolocation-android"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCMaskedView:
@@ -666,7 +666,7 @@ SPEC CHECKSUMS:
   ReactCommon: cfe2b7fd20e0dbd2d1185cd7d8f99633fbc5ff05
   ReactNativeGetLocation: 7ed719807f65206e20b6793896372b11ad835d6d
   RNBackgroundFetch: 1efac9adb6daac367819488f0c8b201d780a08bf
-  RNBackgroundGeolocation: 2e6fd0a6e8abacdba82f7915da19cedc36c5ecd5
+  RNBackgroundGeolocation: 82ccf764929c22246ee13a6561a099c400f39e86
   RNCAsyncStorage: 502fbf425b9ee2d73ca6fa4b299dce0be411b422
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNDeviceInfo: 77944ee74f4464aa4672b62e3239e4fa69ab534f

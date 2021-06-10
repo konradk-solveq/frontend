@@ -109,9 +109,8 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
 
         const currRoutes = await routesDataToPersist(
-            toTimestamp(currentRoute.startedAt, true),
+            currentRoute.id,
             currentRouteData,
-            toTimestamp(currentRoute.endedAt),
         );
 
         if (!currRoutes) {
@@ -176,9 +175,10 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
             /* If fail add to queue. Resolve tasks queue in different action. */
             if (
-                currentRouteData?.length >= 10 &&
-                currentRouteData?.[currentRouteData?.length - 1]?.odometer >=
-                    MIN_ROUTE_LENGTH &&
+                currentRouteData?.length >= 3 &&
+                currentRouteData?.find(
+                    cr => cr?.odometer >= MIN_ROUTE_LENGTH,
+                ) &&
                 response.status !== 400
             ) {
                 dispatch(addRoutesToSynchQueue());

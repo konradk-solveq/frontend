@@ -3,9 +3,11 @@ import {LocationDataI} from '../../interfaces/geolocation';
 import {RoutesI} from '../reducers/routes';
 import {RootState} from '../storage';
 
-export const trackerFollowedRouteIdSelector = (
-    state: RootState,
-): string | undefined => state.routes.currentRoute.routeId;
+export const trackerFollowedRouteIdSelector = (state: RootState): string =>
+    state.routes.currentRoute.routeId;
+
+export const trackerRouteIdSelector = (state: RootState): string | undefined =>
+    state.routes.currentRoute.id;
 
 export const trackerActiveSelector = (state: RootState): boolean =>
     state.routes.currentRoute.isActive;
