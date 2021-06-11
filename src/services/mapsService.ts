@@ -155,7 +155,10 @@ export const editPrivateMapMetadataService = async (
     if (images?.save?.length) {
         for (let i = 0; i < images.save.length; i++) {
             const formdata = createFileFormData(images.save[i]);
-            const imageResponse = await uploadImageToMapData(data.id, formdata);
+            const imageResponse = await uploadImageToMapData(
+                id || data.id,
+                formdata,
+            );
 
             if (
                 !imageResponse?.data ||
