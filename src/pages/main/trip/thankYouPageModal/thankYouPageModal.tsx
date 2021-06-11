@@ -35,7 +35,6 @@ const ThankYouPageModal: React.FC<IProps> = ({
             onPressShareBtn();
             return;
         }
-        console.log('[ShareButton - onPress] - clicked');
     };
 
     return (

@@ -80,6 +80,7 @@ export const clearAverageSpeed = () => ({
     type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
 });
 
+/* Creates route ID in first step, because actions are asynch on backend side */
 export const startRecordingRoute = (
     currRoute: CurrentRouteI,
     keep?: boolean,
@@ -224,11 +225,10 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 response.status !== 406
             ) {
                 dispatch(addRoutesToSynchQueue());
-            } else {
-                dispatch(clearCurrentRouteData());
-                dispatch(clearAverageSpeed());
             }
 
+            dispatch(clearCurrentRouteData());
+            dispatch(clearAverageSpeed());
             dispatch(setError(errorMessage, response.status));
             return;
         }
@@ -271,11 +271,10 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
             const response = await syncRouteData(routeToSync.route);
 
             if (response.error || !response?.data?.id) {
+                newRoutesToSync.push(id);
+                newRoutes.push(routeToSync);
                 return;
             }
-
-            newRoutesToSync.push(id);
-            newRoutes.push(routeToSync);
         });
 
         dispatch(setRoutesToSynch(newRoutesToSync));

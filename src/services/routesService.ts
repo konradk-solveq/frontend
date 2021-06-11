@@ -28,12 +28,19 @@ export const createNewRouteService = async (): Promise<RoutesResponse> => {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
-            if (response.status !== 400 && response.status !== 404) {
+            if (
+                response?.data?.statusCode !== 400 &&
+                response?.data?.statusCode !== 404
+            ) {
                 errorMessage =
                     'Route could not be created. Please try again later.';
             }
         }
-        return {data: null, status: response.status, error: errorMessage};
+        return {
+            data: null,
+            status: response?.data?.statusCode || response.status,
+            error: errorMessage,
+        };
     }
 
     return {
@@ -43,11 +50,43 @@ export const createNewRouteService = async (): Promise<RoutesResponse> => {
     };
 };
 
+export const removeCeratedRouteIDService = async (
+    routeId: string,
+): Promise<RoutesResponse> => {
+    const response = await removePrivateMapData(routeId);
+
+    if (
+        !response?.data?.id ||
+        response.status >= 400 ||
+        response.data?.statusCode >= 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+
+        return {
+            data: {id: routeId},
+            status: response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: {id: routeId},
+        status: response.data?.statusCode || response?.status,
+        error: '',
+    };
+};
+
 export const syncRouteData = async (
     path: LocationDataI[],
     remoteRouteId?: string,
 ): Promise<RoutesResponse> => {
     if (!path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)) {
+        if (remoteRouteId) {
+            await removeCeratedRouteIDService(remoteRouteId);
+        }
         return {
             data: null,
             status: 400,
@@ -68,12 +107,19 @@ export const syncRouteData = async (
             let errorMessage = 'error';
             if (response.data?.message || response.data?.error) {
                 errorMessage = response.data.message || response.data.error;
-                if (response.status !== 400 && response.status !== 404) {
+                if (
+                    response?.data?.statusCode !== 400 &&
+                    response?.data?.statusCode !== 404
+                ) {
                     errorMessage =
                         'Route could not be created. Please try again later.';
                 }
             }
-            return {data: null, status: response.status, error: errorMessage};
+            return {
+                data: null,
+                status: response?.data?.statusCode || response.status,
+                error: errorMessage,
+            };
         }
     }
 
@@ -101,7 +147,8 @@ export const syncRouteData = async (
         if (
             response &&
             (response?.data?.statusCode === 404 ||
-                response?.data?.statusCode === 400)
+                response?.data?.statusCode === 400 ||
+                responseFromUpdate.data?.statusCode >= 400)
         ) {
             errorMessage =
                 'Route could not be updated. Please try again later.';

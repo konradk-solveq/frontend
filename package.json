@@ -11,7 +11,11 @@
         "dev-android-bash": "ENVFILE=.env.development react-native run-android",
         "dev-ios-bash": "ENVFILE=.env.development react-native run-ios",
         "dev-android-cmd": "SET ENVFILE=.env.development && react-native run-android",
-        "dev-ios-cmd": "SET ENVFILE=.env.development && react-native run-ios"
+        "dev-ios-cmd": "SET ENVFILE=.env.development && react-native run-ios",
+        "prod-android-bash": "ENVFILE=.env react-native run-android",
+        "prod-ios-bash": "ENVFILE=.env react-native run-ios",
+        "prod-android-cmd": "SET ENVFILE=.env && react-native run-android",
+        "prod-ios-cmd": "SET ENVFILE=.env && react-native run-ios"
     },
     "dependencies": {
         "@react-native-async-storage/async-storage": "^1.14.1",
