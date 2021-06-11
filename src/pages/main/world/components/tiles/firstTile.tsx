@@ -64,7 +64,9 @@ const FirstTile: React.FC<IProps> = ({
                     </View>
                     <View style={styles.sectionsContainer}>
                         <View style={styles.firstSection}>
-                            <Text style={styles.tileSectionTitle}>
+                            <Text
+                                numberOfLines={1}
+                                style={styles.tileSectionTitle}>
                                 {mapData?.name || trans.noTitle}
                             </Text>
                             <View style={styles.firstSectionContent}>
