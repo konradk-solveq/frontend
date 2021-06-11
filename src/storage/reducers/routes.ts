@@ -10,6 +10,7 @@ export interface CurrentRouteI {
     startedAt: Date | undefined;
     endedAt: Date | undefined;
     routeId?: string | undefined;
+    remoteRouteId?: string | undefined;
 }
 
 export interface RoutesI {
@@ -35,6 +36,7 @@ const initialStateList: RoutesState = {
         startedAt: undefined,
         endedAt: undefined,
         routeId: undefined,
+        remoteRouteId: undefined,
     },
     currentRouteData: [],
     routes: [],
@@ -91,6 +93,15 @@ const routesReducer = (state = initialStateList, action: any) => {
             return {
                 ...state,
                 currentRoute: route,
+            };
+        }
+        case actionTypes.SET_REMOTE_ROUTE_ID: {
+            return {
+                ...state,
+                currentRoute: {
+                    ...state.currentRoute,
+                    remoteRouteId: action.remoteRouteId,
+                },
             };
         }
         case actionTypes.SET_ROUTE_TO_SYNC: {

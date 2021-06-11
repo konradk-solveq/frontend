@@ -2,7 +2,7 @@ import axios from 'axios';
 import {API_URL} from '@env';
 
 const config = {
-    timeout: 10000,
+    timeout: 30000,
 };
 
 const instance = axios.create({

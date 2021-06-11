@@ -10,7 +10,7 @@ export {
     editPrivateMapMetadataService,
     removePrivateMapByIdService,
 } from './mapsService';
-export {syncRouteData} from './routesService';
+export {syncRouteData, createNewRouteService} from './routesService';
 export {
     checkSessionAndRecreateIfNeededService,
     logInService,
