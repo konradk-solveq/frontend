@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {StyleSheet, Text, View, Dimensions, Platform} from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Dimensions,
+    Platform,
+    TextStyle,
+} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -18,6 +25,8 @@ interface Props {
     inner: string; // nazwa headera
     getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
     rightActions?: Element;
+    hideBackArrow?: boolean;
+    titleStyle?: TextStyle;
 }
 
 const ww = Dimensions.get('window').width;
@@ -80,12 +89,16 @@ const StackHeader: React.FC<Props> = (props: Props) => {
     return (
         <View style={[styles.container, props.style]}>
             <View style={styles.wrap}>
-                <TopBackBtn
-                    // style={styles.topBtn}
-                    onpress={() => props.onpress()}
-                />
+                {!props.hideBackArrow && (
+                    <TopBackBtn
+                        // style={styles.topBtn}
+                        onpress={() => props.onpress()}
+                    />
+                )}
 
-                <Text style={styles.title}>{props.inner}</Text>
+                <Text style={[styles.title, props.titleStyle]}>
+                    {props.inner}
+                </Text>
 
                 {props.rightActions && (
                     <View style={styles.actionButtons}>

@@ -11,6 +11,7 @@ import MapBtn from './mapBtn';
 import FiltersBtn from './filtersBtn';
 import AddBtn from './addButton';
 import RemoveBtn from './removeButton';
+import ArrowBtn from './arrowBtn';
 
 export {
     BigRedBtn,
@@ -26,4 +27,5 @@ export {
     FiltersBtn,
     AddBtn,
     RemoveBtn,
+    ArrowBtn,
 };
