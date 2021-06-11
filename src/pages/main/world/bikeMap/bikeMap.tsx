@@ -65,6 +65,18 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
         [navigation],
     );
 
+    const onEndReachedHandler = () => {
+        if (!isLoading && !isRefreshing) {
+            onLoadMore();
+        }
+    };
+
+    const onRefreshHandler = () => {
+        if (!isLoading && !isRefreshing) {
+            onRefresh();
+        }
+    };
+
     const renderItem = useCallback(
         ({item, index}: RenderItem) => {
             const lastItemStyle =
@@ -143,11 +155,11 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                         getItemLayout={getItemLayout}
                         initialNumToRender={10}
                         removeClippedSubviews
-                        onEndReached={onLoadMore}
-                        onEndReachedThreshold={0.5}
+                        onEndReached={onEndReachedHandler}
+                        onEndReachedThreshold={0.2}
                         ListFooterComponent={renderListLoader}
                         refreshing={isLoading && isRefreshing}
-                        onRefresh={onRefresh}
+                        onRefresh={onRefreshHandler}
                     />
                 </>
             ) : null}

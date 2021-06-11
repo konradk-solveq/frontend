@@ -13,6 +13,7 @@ import {
     persistCurrentRouteData,
     setAverageSpeed,
     setCurrentRoute,
+    startRecordingRoute,
     stopCurrentRoute,
 } from '../storage/actions/routes';
 import {
@@ -111,7 +112,7 @@ const useLocalizationTracker = (persist: boolean) => {
         const routeID = keep ? currentRouteId : currRoute.id;
         await startBackgroundGeolocation(routeID, keep);
         if (!keep) {
-            dispatch(setCurrentRoute(keep ? undefined : currRoute));
+            dispatch(startRecordingRoute(currRoute, keep));
         }
     };
 
