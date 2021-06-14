@@ -30,8 +30,8 @@ const Description: React.FC<IProps> = ({
     const trans: any = I18n.t('RoutesDetails.details');
     const statusBarHeight = useStatusBarHeight();
     const userName = useAppSelector(userNameSelector);
-    const authorName =
-        mapData?.author || isPrivateView ? userName : trans.defaultAuthor;
+    const privateName = isPrivateView ? userName : trans.defaultAuthor;
+    const authorName = mapData?.author || privateName;
     const [showImgPreview, setShowImgPreview] = useState(false);
 
     return (
