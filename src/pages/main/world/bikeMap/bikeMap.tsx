@@ -136,9 +136,6 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
 
     return (
         <>
-            <View style={styles.horizontalSpace}>
-                <Text style={styles.header}>{trans.title}</Text>
-            </View>
             {mapsData?.length ? (
                 <>
                     <ShowMoreModal
@@ -148,6 +145,9 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                         backdropStyle={styles.backdrop}
                     />
                     <FlatList
+                        ListHeaderComponent={
+                            <Text style={styles.header}>{trans.title}</Text>
+                        }
                         keyExtractor={item => item.id}
                         data={mapsData}
                         renderItem={renderItem}

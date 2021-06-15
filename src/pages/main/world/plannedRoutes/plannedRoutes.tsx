@@ -77,12 +77,6 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
 
     return (
         <>
-            <View style={styles.horizontalSpace}>
-                <Text style={styles.header}>
-                    {userName || trans.defaultUserName}
-                    {trans.title}
-                </Text>
-            </View>
             <ShowMoreModal
                 showModal={showModal}
                 removeFav
@@ -93,6 +87,12 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
             <View style={styles.horizontalSpace}>
                 <FlatList
                     keyExtractor={item => item.id}
+                    ListHeaderComponent={
+                        <Text style={styles.header}>
+                            {userName || trans.defaultUserName}
+                            {trans.title}
+                        </Text>
+                    }
                     data={favouriteMaps}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
