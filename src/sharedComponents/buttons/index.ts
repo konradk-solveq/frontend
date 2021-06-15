@@ -12,6 +12,7 @@ import FiltersBtn from './filtersBtn';
 import AddBtn from './addButton';
 import RemoveBtn from './removeButton';
 import ArrowBtn from './arrowBtn';
+import ImageBtn from './imageBtn';
 
 export {
     BigRedBtn,
@@ -28,4 +29,5 @@ export {
     AddBtn,
     RemoveBtn,
     ArrowBtn,
+    ImageBtn,
 };

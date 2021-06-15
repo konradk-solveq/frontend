@@ -1,12 +1,14 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {View, Text, Image, Modal, Platform} from 'react-native';
+import {View, Text, Modal, Platform} from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../../../hooks/redux';
 import useStatusBarHeight from '../../../../../hooks/statusBarHeight';
 import {Map} from '../../../../../models/map.model';
-import {CloseBtn} from '../../../../../sharedComponents/buttons';
+import {RegularStackRoute} from '../../../../../navigation/route';
+import {CloseBtn, ImageBtn} from '../../../../../sharedComponents/buttons';
 import ImageGallery from '../../../../../sharedComponents/imageGallery/imageGallery';
 
 import ImageSwiper from '../../../../../sharedComponents/imageSwiper/imageSwiper';
@@ -28,11 +30,21 @@ const Description: React.FC<IProps> = ({
     isPrivateView,
 }: IProps) => {
     const trans: any = I18n.t('RoutesDetails.details');
+    const navigation = useNavigation();
     const statusBarHeight = useStatusBarHeight();
     const userName = useAppSelector(userNameSelector);
     const authorName =
         mapData?.author || isPrivateView ? userName : trans.defaultAuthor;
     const [showImgPreview, setShowImgPreview] = useState(false);
+
+    const onNavigateToMapPreview = () => {
+        navigation.navigate({
+            name: RegularStackRoute.MAP_PREVIEW_SCREEN,
+            params: {
+                mapId: mapData?.id,
+            },
+        });
+    };
 
     return (
         <View style={styles.container}>
@@ -136,10 +148,9 @@ const Description: React.FC<IProps> = ({
                 </Text>
                 <View style={styles.mapImage}>
                     {images?.mapImg ? (
-                        <Image
-                            style={styles.mImg}
-                            resizeMode="cover"
-                            source={{uri: images?.mapImg}}
+                        <ImageBtn
+                            imgUrl={images.mapImg}
+                            onPress={onNavigateToMapPreview}
                         />
                     ) : (
                         <View style={styles.mImg} />

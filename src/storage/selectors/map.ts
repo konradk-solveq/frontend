@@ -37,6 +37,12 @@ export const favouritesMapsSelector = createSelector(
 export const mapDataByIDSelector = (mapID: string) =>
     createSelector(mapsListSelector, maps => maps.find(m => m.id === mapID));
 
+export const mapPathByIDSelector = (mapID: string) =>
+    createSelector(
+        mapsListSelector,
+        maps => maps.find(m => m.id === mapID)?.path,
+    );
+
 export const privateDataByIDSelector = (mapID: string) =>
     createSelector(privateMapsListSelector, pMaps =>
         pMaps.find(m => m.id === mapID),

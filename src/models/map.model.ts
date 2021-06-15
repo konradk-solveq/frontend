@@ -49,6 +49,7 @@ export interface Coords {
     latitude: number;
     longitude: number;
 }
+export type CoordsType = [latitude: number, longitude: number];
 
 export type Image = {
     url: string;
@@ -115,7 +116,7 @@ export class Map {
     public name: string;
 
     @IsArray()
-    public path: Coords[];
+    public path: CoordsType[];
 
     @IsDate()
     public date: Date;
@@ -185,7 +186,7 @@ export class Map {
     constructor(
         id: string,
         name: string,
-        path: Coords[],
+        path: CoordsType[],
         date: Date,
         createdAt: Date,
     ) {
