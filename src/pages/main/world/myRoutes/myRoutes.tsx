@@ -121,12 +121,6 @@ const MyRoutes: React.FC<IProps> = ({
 
     return (
         <>
-            <View style={styles.horizontalSpace}>
-                <Text style={styles.header}>
-                    {userName || trans.defaultUserName}
-                    {trans.title}
-                </Text>
-            </View>
             <ShowMoreModal
                 showModal={showModal}
                 removeFav
@@ -138,6 +132,12 @@ const MyRoutes: React.FC<IProps> = ({
             <View style={styles.horizontalSpace}>
                 <FlatList
                     keyExtractor={item => item.id}
+                    ListHeaderComponent={
+                        <Text style={styles.header}>
+                            {userName || trans.defaultUserName}
+                            {trans.title}
+                        </Text>
+                    }
                     data={privateMaps}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
