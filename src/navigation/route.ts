@@ -17,4 +17,5 @@ export const RegularStackRoute = {
     EDIT_DETAILS_SCREEN: 'EditDetailsScreen',
     KROSS_WORLD_SCREEN: 'World',
     COUNTER_ROUTE_SCREEN: 'Counter',
+    MAP_PREVIEW_SCREEN: 'MapPreviewScreen',
 };

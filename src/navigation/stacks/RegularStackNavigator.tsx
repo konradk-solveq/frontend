@@ -22,6 +22,7 @@ import RouteDetails from '../../pages/main/world/routeDetails/routeDetails';
 import CounterThankYouPage from '../../pages/main/recording/counterThankYouPage/counterThankYouPage';
 import EditDetails from '../../pages/main/world/editDetails/editDetails';
 import {RegularStackRoute} from '../route';
+import MapPreview from '../../pages/main/world/routeDetails/mapPreview/mapPreview';
 
 const RegularStackNavigator: React.FC = () => {
     return (
@@ -45,11 +46,18 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen name="RewiewsDetails" component={RewiewsDetails} />
             <Stack.Screen name="NameChange" component={NameChange} />
             <Stack.Screen name="Counter" component={Counter} />
-            <Stack.Screen name="CounterThankYouPage" component={CounterThankYouPage} />
+            <Stack.Screen
+                name="CounterThankYouPage"
+                component={CounterThankYouPage}
+            />
             {/* End add bike */}
 
             {/* START KROSS WORLD */}
             <Stack.Screen name="RouteDetailsScreen" component={RouteDetails} />
+            <Stack.Screen
+                name={RegularStackRoute.MAP_PREVIEW_SCREEN}
+                component={MapPreview}
+            />
             <Stack.Screen
                 name={RegularStackRoute.EDIT_DETAILS_SCREEN}
                 component={EditDetails}
