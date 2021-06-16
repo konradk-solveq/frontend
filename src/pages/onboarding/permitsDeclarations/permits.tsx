@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     StyleSheet,
     View,
@@ -20,6 +20,8 @@ import {
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OnePermit from './onePermit';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+import {fetchAppRegulations} from '../../../storage/actions/app';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 
 interface Props {
     navigation: any;
@@ -28,10 +30,30 @@ interface Props {
 const wh = Dimensions.get('window').height;
 
 const Permits: React.FC<Props> = (props: Props) => {
+    const dispatch = useAppDispatch();
+    const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
+
     const trans = I18n.t('Permits');
 
     const [checked, setChecked] = useState(false);
     const [wrong, setWrong] = useState(false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const synchData = async () => {
+        try {
+            /* TODO: add some sync/info loader */
+            await dispatch(fetchAppRegulations());
+        } catch (error) {
+            /* TODO: add some UI information */
+            console.log('[Sync Error]', error);
+        }
+    };
+
+    useEffect(() => {
+        if (isOnline) {
+            synchData();
+        }
+    }, [isOnline, synchData]);
 
     // po kliknięciu 'DALEJ', walidacja i przejście dalej
     const hendlerGoFoward = () => {
