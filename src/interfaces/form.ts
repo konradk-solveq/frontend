@@ -36,3 +36,7 @@ export type ImageType = {
     uri?: string;
     width?: number;
 };
+
+export type PickedFilters = {
+    [key: string]: OptionType[];
+};

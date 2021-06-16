@@ -11,7 +11,7 @@ import {MapType} from '../../models/map.model';
 import logger from '../../utils/crashlytics';
 import {ImagesMetadataType, MapPagination} from '../../interfaces/api';
 import {getLatLngFromForeground} from '../../utils/geolocation';
-import {MapFormDataResult} from '../../interfaces/form';
+import {MapFormDataResult, PickedFilters} from '../../interfaces/form';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 
 export const setMapsData = (
@@ -78,6 +78,7 @@ export const removeMapFromFavourite = (mapID: string) => ({
 
 export const fetchMapsList = (
     page?: string,
+    filters?: PickedFilters,
 ): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {
@@ -86,6 +87,7 @@ export const fetchMapsList = (
         const response = await getMapsList(
             {latitude: lat, longitude: lng},
             page,
+            filters,
         );
 
         if (response.error || !response.data || !response.data.elements) {
@@ -110,6 +112,7 @@ export const fetchMapsList = (
 
 export const fetchPrivateMapsList = (
     page?: string,
+    filters?: PickedFilters,
 ): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {
@@ -117,6 +120,7 @@ export const fetchPrivateMapsList = (
         const response = await getPrivateMapsListService(
             {latitude: lat, longitude: lng},
             page,
+            filters,
         );
 
         if (response.error || !response.data || !response.data.elements) {

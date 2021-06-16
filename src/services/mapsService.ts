@@ -8,8 +8,9 @@ import {
     uploadImageToMapData,
 } from '../api';
 import {ImagesMetadataType} from '../interfaces/api';
-import {MapFormDataResult} from '../interfaces/form';
+import {MapFormDataResult, PickedFilters} from '../interfaces/form';
 import {MapType, Coords} from '../models/map.model';
+import {getFiltersParam} from '../utils/apiDataTransform/filters';
 import {
     createFileFormData,
     mapFormMetadataToAPIRequest,
@@ -35,8 +36,11 @@ export interface MapsDataResponse {
 export const getMapsList = async (
     location: Coords,
     paginationUrl?: string,
+    filters?: PickedFilters,
 ): Promise<MapsResponse> => {
-    const response = await getMaps(location, paginationUrl);
+    const f = getFiltersParam(filters);
+
+    const response = await getMaps(location, paginationUrl, f);
 
     if (
         !response?.data ||
@@ -67,8 +71,11 @@ export const getMapsList = async (
 export const getPrivateMapsListService = async (
     location: Coords,
     page?: string,
+    filters?: PickedFilters,
 ): Promise<MapsResponse> => {
-    const response = await getPrivateRoutes(location, page);
+    const f = getFiltersParam(filters);
+
+    const response = await getPrivateRoutes(location, page, f);
 
     if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';

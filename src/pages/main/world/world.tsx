@@ -3,7 +3,6 @@ import {View, StyleSheet, SafeAreaView, Text, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import MyRoutes from './myRoutes/myRoutes';
-import {OptionType} from './components/filters/filtersData';
 import {getVerticalPx} from '../../../helpers/layoutFoo';
 import useStatusBarHeight from '../../../hooks/statusBarHeight';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
@@ -15,6 +14,8 @@ import {
 import {fetchMapsList} from '../../../storage/actions';
 import {fetchPrivateMapsList} from '../../../storage/actions/maps';
 import {requestGeolocationPermission} from '../../../utils/geolocation';
+import {PickedFilters} from '../../../interfaces/form';
+import {checkIfContainsFitlers} from '../../../utils/apiDataTransform/filters';
 
 import FiltersModal from './components/filters/filtersModal';
 import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
@@ -33,10 +34,6 @@ enum routesTab {
     PLANED = 'planed',
 }
 
-type PickedFilters = {
-    [key: string]: OptionType[];
-};
-
 /* TODO: refresh data if position chagned more than 500 meters */
 const World: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -54,22 +51,41 @@ const World: React.FC = () => {
         requestGeolocationPermission();
     }, []);
 
+    useEffect(() => {
+        const isValid = checkIfContainsFitlers(savedMapFilters);
+        if (isValid) {
+            if (activeTab === routesTab.BIKEMAP) {
+                dispatch(fetchMapsList(undefined, savedMapFilters));
+                return;
+            }
+            if (activeTab === routesTab.MYROUTES) {
+                dispatch(fetchPrivateMapsList(undefined, savedMapFilters));
+            }
+            // if (activeTab === routesTab.PLANED) {
+            //     dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
+            // }
+        }
+    }, [dispatch, savedMapFilters, activeTab]);
+
     const handleBikeMap = () => {
         if (activeTab === routesTab.BIKEMAP) {
             return;
         }
+        setSavedMapFilters({});
         setActiveTab(routesTab.BIKEMAP);
     };
     const handleMyRoutes = () => {
         if (activeTab === routesTab.MYROUTES) {
             return;
         }
+        setSavedMapFilters({});
         setActiveTab(routesTab.MYROUTES);
     };
     const handlePlaned = () => {
         if (activeTab === routesTab.PLANED) {
             return;
         }
+        setSavedMapFilters({});
         setActiveTab(routesTab.PLANED);
     };
 
@@ -93,11 +109,18 @@ const World: React.FC = () => {
                 return;
             }
             if (nextCoursor && activeTab === routesTab.BIKEMAP) {
-                dispatch(fetchMapsList(nextCoursor));
+                dispatch(fetchMapsList(nextCoursor, savedMapFilters));
                 return;
             }
         }
-    }, [dispatch, isLoading, nextCoursor, nextPrivateCoursor, activeTab]);
+    }, [
+        dispatch,
+        isLoading,
+        nextCoursor,
+        nextPrivateCoursor,
+        activeTab,
+        savedMapFilters,
+    ]);
 
     const onRefreshHandler = useCallback(() => {
         if (activeTab === routesTab.MYROUTES) {
@@ -158,21 +181,25 @@ const World: React.FC = () => {
     return (
         <SafeAreaView style={styles.container}>
             <FiltersModal
+                key={activeTab}
                 onClose={onHideModalHandler}
                 definedFilters={savedMapFilters}
                 onSave={onSetFiltersHandler}
                 showModal={showModal}
+                allowedFilters={
+                    routesTab.MYROUTES === activeTab ? ['order'] : undefined
+                }
             />
             <View style={[styles.headerWrapper, dynamicStyles.headerWrapper]}>
                 <Text style={styles.header}>{trans.header}</Text>
                 <View style={styles.headerButtons}>
-                    {/* <FiltersBtn
+                    <FiltersBtn
                         onPress={onShowModalHanlder}
                         iconStyle={[
                             styles.headerButton,
                             // styles.headerButtonLeft,
                         ]}
-                    /> */}
+                    />
                     {/* <MapBtn
                         onPress={() => {}}
                         iconStyle={styles.headerButton}

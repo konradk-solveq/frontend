@@ -150,7 +150,7 @@ const EditForm: React.FC<IProps> = ({
                             <MultiSelect
                                 key={attributes.level.name}
                                 options={options?.difficulties}
-                                optionsTrans={trans.attributes.level}
+                                optionsTransName={trans.attributes.level.name}
                                 predefined={value}
                                 errorMessage={errMsg}
                                 onSave={onChange}
@@ -169,7 +169,7 @@ const EditForm: React.FC<IProps> = ({
                         <MultiSelect
                             key={attributes.pavement.name}
                             options={options?.surfaces}
-                            optionsTrans={trans.attributes.pavement}
+                            optionsTransName={trans.attributes.pavement.name}
                             predefined={value}
                             errorMessage={errMsg}
                             onSave={onChange}
@@ -243,7 +243,7 @@ const EditForm: React.FC<IProps> = ({
                         <MultiSelect
                             key={attributes.tags.name}
                             options={options?.tags}
-                            optionsTrans={trans.attributes.tags}
+                            optionsTransName={trans.attributes.tags.name}
                             predefined={value}
                             errorMessage={errMsg}
                             onSave={onChange}
