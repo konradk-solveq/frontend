@@ -3,6 +3,7 @@ import {Stack} from './../stack';
 import {horizontalAnim} from '../../helpers/positioning';
 
 import SplashScreen from '../../pages/main/splashScreen/splashScreen';
+import newRegulations from '../../pages/main/newRegulations/newRegulations';
 import ListPageInput from '../../sharedComponents/inputs/listPageInput';
 import InputPage from '../../sharedComponents/inputs/inputPage';
 import MineMenu from '../../pages/main/mainMenu';
@@ -16,6 +17,9 @@ import ServicesMap from '../../pages/main/bike/servicesMap/servicesMap';
 import AboutApp from '../../pages/main/profile/aboutApp/aboutApp';
 import RewiewsDetails from '../../pages/main/bike/rewiewsDetails/rewiewsDetails';
 import NameChange from '../../pages/main/profile/nameChange/nameChange';
+import Regulations from '../../pages/onboarding/permitsDeclarations/regulations';
+import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
+import Contact from '../../pages//main/profile/contact/contact';
 
 const RegularStackNavigator: React.FC = () => {
     return (
@@ -26,6 +30,7 @@ const RegularStackNavigator: React.FC = () => {
             screenOptions={horizontalAnim}>
             <Stack.Screen name="SplashScreen" component={SplashScreen} />
             <Stack.Screen name="MineMenu" component={MineMenu} />
+            <Stack.Screen name="newRegulations" component={newRegulations} />
 
             {/* Start add bike */}
             <Stack.Screen name="AddingByNumber" component={AddingByNumber} />
@@ -42,6 +47,9 @@ const RegularStackNavigator: React.FC = () => {
             {/* univesal/generic pages */}
             <Stack.Screen name="ListPageInput" component={ListPageInput} />
             <Stack.Screen name="InputPage" component={InputPage} />
+            <Stack.Screen name="Regulations" component={Regulations} />
+            <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+            <Stack.Screen name="Contact" component={Contact} />
         </Stack.Navigator>
     );
 };

@@ -13,6 +13,17 @@ export {
     fetchGenericBikeData,
 } from './bikes';
 
-export {setAppStatus} from './app';
+export {
+    clearAppError,
+    fetchAppRegulations,
+    setAppRegulation,
+    setAppStatus,
+    setSyncError,
+    setSyncStatus,
+    setAppCurrentTerms,
+    setAppPolicy,
+    setAppShowedRegulationsNumber,
+    setAppTerms,
+} from './app';
 
 export {fetchPlacesData} from './places';
