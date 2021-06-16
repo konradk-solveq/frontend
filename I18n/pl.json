@@ -1048,11 +1048,11 @@
         "btnPlaned": "Planowane",
         "maps": {
             "filtersTitle": "Filtry",
-            "filtersDescription": "Określ parametry, które pozwolą zawezić listę wyświetlanych tras.",
+            "filtersDescription": "Określ parametry, które pozwolą zawęzić listę wyświetlanych tras.",
             "filtersSaveBtn": "Zastosuj",
             "filtersBackBtn": "Przywróć",
             "filters": {
-                "date": {
+                "order": {
                     "name": "Sortuj po dacie",
                     "options": [
                         "Od najnowszych",
@@ -1067,7 +1067,7 @@
                         "Publiczne"
                     ]
                 },
-                "level": {
+                "difficulties": {
                     "name": "Poziom trudności",
                     "options": [
                         "Łatwa",
@@ -1075,7 +1075,7 @@
                         "Wymagająca"
                     ]
                 },
-                "pavement": {
+                "surfaces": {
                     "name": "Nawierzchnia",
                     "options": [
                         "Szutrowa",

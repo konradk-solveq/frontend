@@ -1,33 +1,31 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, TextStyle} from 'react-native';
 
 import {SelectOptionType} from '../../models/map.model';
-import {firstLetterToUpperCase} from '../../utils/strings';
 import {getVerticalPx} from '../../helpers/layoutFoo';
 
 import TypicalRedBtn from '../../sharedComponents/buttons/typicalRed';
 
-interface OptionsTransI {
-    name: string;
-    options: string[];
-}
-
 interface IProps {
     predefined: any[];
     options: SelectOptionType[] | undefined;
-    optionsTrans: OptionsTransI;
+    optionsTransName: string;
     onSave: (filters: string[]) => void;
     errorMessage?: string;
     isRadioType?: boolean;
+    withEmptyRadio?: boolean;
+    titleStyle?: TextStyle;
 }
 
 const MultiSelect: React.FC<IProps> = ({
     predefined,
     options,
-    optionsTrans,
+    optionsTransName,
     onSave,
     errorMessage,
     isRadioType,
+    withEmptyRadio,
+    titleStyle,
 }: IProps) => {
     const [active, setActive] = useState<string[]>([]);
 
@@ -39,7 +37,7 @@ const MultiSelect: React.FC<IProps> = ({
 
     const onPressHanlder = useCallback(
         (idx: string) => {
-            if (active.includes(idx) && !isRadioType) {
+            if (active.includes(idx) && (!isRadioType || withEmptyRadio)) {
                 const newNumbers = [...active].filter(nr => nr !== idx);
                 setActive(newNumbers);
                 onSave(newNumbers);
@@ -49,21 +47,20 @@ const MultiSelect: React.FC<IProps> = ({
             setActive(newNumbers);
             onSave(newNumbers);
         },
-        [active, onSave, isRadioType],
+        [active, onSave, isRadioType, withEmptyRadio],
     );
 
     const renderOptions = useMemo(
         () =>
             options?.map(o => {
-                const option = firstLetterToUpperCase(o?.i18nValue);
-                if (!option) {
+                if (!o?.i18nValue) {
                     return null;
                 }
 
                 return (
                     <TypicalRedBtn
-                        key={`${option}_${o}`}
-                        title={option}
+                        key={`${o.enumValue}_${o}`}
+                        title={o.i18nValue}
                         onpress={() => onPressHanlder(o.enumValue)}
                         active={active.includes(o.enumValue)}
                         height={41}
@@ -75,7 +72,7 @@ const MultiSelect: React.FC<IProps> = ({
 
     return (
         <View style={styles.container}>
-            <Text style={styles.name}>{optionsTrans.name}</Text>
+            <Text style={[styles.name, titleStyle]}>{optionsTransName}</Text>
             {options?.length ? (
                 <View style={styles.list}>{renderOptions}</View>
             ) : null}

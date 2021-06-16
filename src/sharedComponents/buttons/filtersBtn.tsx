@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    StyleProp,
-    StyleSheet,
-    TouchableWithoutFeedback,
-    View,
-    ViewStyle,
-} from 'react-native';
+import {StyleProp, StyleSheet, Pressable, View, ViewStyle} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 
 interface IProps {
@@ -20,7 +14,9 @@ const FiltersBtn: React.FC<IProps> = ({
     iconStyle,
 }: IProps) => {
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <Pressable
+            onPress={onPress}
+            hitSlop={{top: 20, bottom: 20, right: 10, left: 10}}>
             <View style={containerStyle}>
                 <Svg viewBox="0 0 20 14" style={[styles.icon, iconStyle]}>
                     <Path
@@ -30,7 +26,7 @@ const FiltersBtn: React.FC<IProps> = ({
                     />
                 </Svg>
             </View>
-        </TouchableWithoutFeedback>
+        </Pressable>
     );
 };
 

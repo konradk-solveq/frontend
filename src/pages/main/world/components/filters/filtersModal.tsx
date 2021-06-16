@@ -3,25 +3,25 @@ import React, {useState} from 'react';
 import {View, Text, Modal, ScrollView, StyleSheet} from 'react-native';
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {useAppSelector} from '../../../../../hooks/redux';
+import {OptionType, PickedFilters} from '../../../../../interfaces/form';
 
 import {
     BigRedBtn,
     BigWhiteBtn,
     CloseBtn,
 } from '../../../../../sharedComponents/buttons';
+import {mapOptionsAndTagsSelector} from '../../../../../storage/selectors/app';
 import Filter from './filter';
 
-import {filters, OptionType} from './filtersData';
-
-type PickedFilters = {
-    [key: string]: OptionType[];
-};
+import {getFitlers, updateFilters} from './filtersData';
 
 interface IProps {
     onSave: (picked: PickedFilters) => void;
     onClose: () => void;
     definedFilters: PickedFilters;
     showModal?: boolean;
+    allowedFilters?: string[];
 }
 
 const FiltersModal: React.FC<IProps> = ({
@@ -29,18 +29,20 @@ const FiltersModal: React.FC<IProps> = ({
     onClose,
     definedFilters,
     showModal,
+    allowedFilters,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.maps');
+    const mapOptions = useAppSelector(mapOptionsAndTagsSelector);
+    const filters = getFitlers(mapOptions, trans?.filters?.order?.options);
+    const contentStyle = allowedFilters ? {minHeight: '90%'} : undefined;
+
     const [pickedFilters, setPickedFilters] = useState<PickedFilters>({});
 
     const onSaveFiltersHanlder = (
         filterName: string,
         filtersArr: OptionType[],
     ) => {
-        setPickedFilters(prev => ({
-            ...prev,
-            ...{[filterName]: filtersArr},
-        }));
+        setPickedFilters(prev => updateFilters(prev, filterName, filtersArr));
     };
 
     const onSaveHandler = () => {
@@ -61,7 +63,9 @@ const FiltersModal: React.FC<IProps> = ({
                     onPress={onClose}
                     containerStyle={styles.buttonContainer}
                 />
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={contentStyle}>
                     <View style={styles.wrap}>
                         <View style={styles.headerWrapper}>
                             <Text style={styles.header}>
@@ -71,29 +75,38 @@ const FiltersModal: React.FC<IProps> = ({
                                 {trans.filtersDescription}
                             </Text>
 
-                            {Object.keys(filters).map(f => (
-                                <Filter
-                                    key={filters[f].name}
-                                    name={filters[f].name}
-                                    options={filters[f].options}
-                                    predefined={pickedFilters?.[f] || []}
-                                    onSave={onSaveFiltersHanlder}
-                                />
-                            ))}
+                            {Object.keys(filters).map(f => {
+                                if (
+                                    allowedFilters &&
+                                    !allowedFilters.includes(f)
+                                ) {
+                                    return null;
+                                }
 
-                            <View style={styles.buttonsWrapper}>
-                                <View style={styles.button}>
-                                    <BigWhiteBtn
-                                        title={trans.filtersBackBtn}
-                                        onpress={onResetHandler}
+                                return (
+                                    <Filter
+                                        key={filters[f]?.name}
+                                        name={filters?.[f]?.name}
+                                        options={filters[f]?.options}
+                                        predefined={pickedFilters?.[f] || []}
+                                        isRadioType={filters[f].radioType}
+                                        onSave={onSaveFiltersHanlder}
                                     />
-                                </View>
-                                <View style={styles.button}>
-                                    <BigRedBtn
-                                        title={trans.filtersSaveBtn}
-                                        onpress={onSaveHandler}
-                                    />
-                                </View>
+                                );
+                            })}
+                        </View>
+                        <View style={styles.buttonsWrapper}>
+                            <View style={styles.button}>
+                                <BigWhiteBtn
+                                    title={trans.filtersBackBtn}
+                                    onpress={onResetHandler}
+                                />
+                            </View>
+                            <View style={styles.button}>
+                                <BigRedBtn
+                                    title={trans.filtersSaveBtn}
+                                    onpress={onSaveHandler}
+                                />
                             </View>
                         </View>
                     </View>
