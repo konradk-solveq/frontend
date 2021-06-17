@@ -8,6 +8,7 @@ import {useAppDispatch, useAppSelector} from './redux';
 import {
     trackerCurrentRouteAverrageSpeedSelector,
     trackerFollowedRouteIdSelector,
+    trackerRouteIdSelector,
 } from '../storage/selectors/routes';
 import {
     persistCurrentRouteData,
@@ -53,7 +54,7 @@ const useLocalizationTracker = (persist: boolean) => {
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
     );
-    const currentRouteId = useAppSelector(trackerFollowedRouteIdSelector);
+    const currentRouteId = useAppSelector(trackerRouteIdSelector);
     const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
@@ -72,7 +73,7 @@ const useLocalizationTracker = (persist: boolean) => {
 
     const onPersistData = useCallback(
         async (d: number) => {
-            if (d - lastDistance < 200) {
+            if (d - lastDistance < 150) {
                 return;
             }
 
@@ -109,7 +110,7 @@ const useLocalizationTracker = (persist: boolean) => {
         activateKeepAwake();
 
         const currRoute = await startCurrentRoute(routeIdToFollow);
-        const routeID = keep ? currentRouteId : currRoute.id;
+        const routeID = keep && currentRouteId ? currentRouteId : currRoute.id;
         await startBackgroundGeolocation(routeID, keep);
         if (!keep) {
             dispatch(startRecordingRoute(currRoute, keep));
