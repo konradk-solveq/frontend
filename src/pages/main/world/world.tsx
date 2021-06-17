@@ -56,7 +56,6 @@ const World: React.FC = () => {
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
-        console.log('ACTIVE TAB', activeTab)
         if (isValid) {
             if (activeTab === routesTab.BIKEMAP) {
                 dispatch(fetchMapsList(undefined, savedMapFilters));
