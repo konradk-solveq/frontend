@@ -73,7 +73,7 @@ const useLocalizationTracker = (persist: boolean) => {
 
     const onPersistData = useCallback(
         async (d: number) => {
-            if (d - lastDistance < 200) {
+            if (d - lastDistance < 150) {
                 return;
             }
 
