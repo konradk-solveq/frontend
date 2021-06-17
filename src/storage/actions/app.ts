@@ -110,17 +110,36 @@ export const fetchAppConfig = (
     }
 };
 
-export const appSyncData = (): AppThunk<Promise<void>> => async dispatch => {
+export const appSyncData = (): AppThunk<Promise<void>> => async (
+    dispatch,
+    getState,
+) => {
     dispatch(setSyncStatus(true));
     try {
+        const {showedRegulations} = getState().app;
+        const {sessionData} = getState().auth;
+        const {onboardingFinished} = getState().user;
+
+        await dispatch(fetchAppRegulations(true));
         await dispatch(fetchAppConfig(true));
 
-        await dispatch(fetchMapsList());
-        dispatch(fetchPrivateMapsList());
-        dispatch(fetchPlannedMapsList());
-        dispatch(fetchGenericBikeData());
-        dispatch(setBikesListByFrameNumbers());
-        dispatch(syncRouteDataFromQueue());
+        if (onboardingFinished && showedRegulations) {
+            await dispatch(fetchMapsList());
+        }
+
+        if (sessionData?.access_token) {
+            dispatch(fetchPrivateMapsList());
+            dispatch(fetchPlannedMapsList());
+        }
+
+        if (onboardingFinished) {
+            dispatch(fetchGenericBikeData());
+            dispatch(setBikesListByFrameNumbers());
+        }
+
+        if (sessionData?.access_token) {
+            dispatch(syncRouteDataFromQueue());
+        }
 
         dispatch(setSyncStatus(false));
     } catch (error) {

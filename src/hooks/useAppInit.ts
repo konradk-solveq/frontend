@@ -1,19 +1,36 @@
 import {useEffect, useState} from 'react';
+import {State} from 'react-native-background-geolocation-android';
 
+import {I18n} from '../../I18n/I18n';
 import {initCrashlytics} from '../utils/crashlytics';
+import {initBGeolocalization, cleanUp} from '../utils/geolocation';
 import {useAppDispatch, useAppSelector} from './redux';
-import {fetchAppRegulations, clearAppError} from '../storage/actions/app';
+import {
+    appSyncData,
+    clearAppError,
+    fetchAppRegulations,
+} from '../storage/actions/app';
+import {authTokenSelector, userIdSelector} from '../storage/selectors/auth';
+import {
+    appErrorSelector,
+    isOnlineAppStatusSelector,
+    syncAppSelector,
+} from '../storage/selectors';
+import {setAutorizationHeader} from '../api/api';
 
 const useAppInit = () => {
+    const trans: any = I18n.t('Geolocation.notification');
     const dispatch = useAppDispatch();
-    const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
+    const isOnline = useAppSelector<boolean>(isOnlineAppStatusSelector);
+    const userId = useAppSelector<string>(userIdSelector);
+    const authToken = useAppSelector<string>(authTokenSelector);
     const userName = useAppSelector<string>(state => state.user.userName);
-    const syncStatus = useAppSelector(state => state.app.sync);
-    const error = useAppSelector(state => ({
-        message: state.app.error,
-        statusCode: state.app.statusCode,
-    }));
+    const syncStatus = useAppSelector(syncAppSelector);
+    const error = useAppSelector(
+        appErrorSelector,
+    ); /* TODO: check all errors from sync requests */
 
+    const [geolocationState, setGeolocationState] = useState<State>();
     const [crashlyticsInitialized, setCrashlyticsInitialized] = useState(false);
     const [dataInitialized, setDataInitialized] = useState(false);
 
@@ -22,14 +39,35 @@ const useAppInit = () => {
     };
 
     const synchData = async () => {
+        dispatch(appSyncData());
         dispatch(fetchAppRegulations());
         setDataInitialized(true);
     };
 
+    /* Set token in axios instance */
+    useEffect(() => {
+        if (authToken) {
+            setAutorizationHeader(authToken);
+        }
+    }, [authToken]);
+
     useEffect(() => {
         /* Logs will be send after app restarted */
-        initCrashlytics(userName);
+        initCrashlytics(userName, userId);
         setCrashlyticsInitialized(true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        const init = async () => {
+            const geolocation = await initBGeolocalization(trans.title);
+            setGeolocationState(geolocation);
+        };
+        init();
+
+        return () => {
+            cleanUp();
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -38,9 +76,10 @@ const useAppInit = () => {
             synchData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [isOnline]);
 
     return {
+        geolocationState,
         crashlyticsInitialized,
         dataInitialized,
         isOnline,
