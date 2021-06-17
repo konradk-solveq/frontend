@@ -1,9 +1,12 @@
 import {
+    addPlannedRoute,
     editPrivateMapMetaData,
     getMaps,
+    getPlannedRoutes,
     getPrivateRoutes,
     publishPrivateMapData,
     removeImagesToMapData,
+    removePlannedRoute,
     removePrivateMapData,
     uploadImageToMapData,
 } from '../api';
@@ -21,8 +24,18 @@ export interface MapsData {
     links: {prev: string};
 }
 
+export type CreatedPlannedMap = {
+    id: string;
+};
+
 export interface MapsResponse {
     data: MapsData;
+    status: number;
+    error: string;
+}
+
+export interface PlannedMapsResponse {
+    data: CreatedPlannedMap | null;
     status: number;
     error: string;
 }
@@ -232,6 +245,96 @@ export const removePrivateMapByIdService = async (
     id: string,
 ): Promise<MapsDataResponse> => {
     const response = await removePrivateMapData(id);
+
+    if (response.status >= 400 || response.data?.statusCode >= 400) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+            if (
+                response.data?.statusCode !== 400 &&
+                response.data.statusCode !== 404
+            ) {
+                errorMessage =
+                    'Route could not be removed. Please try again later.';
+            }
+        }
+        return {
+            data: null,
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: '',
+        status: response.data?.statusCode || response.status,
+        error: '',
+    };
+};
+
+export const getPlannedMapsListService = async (
+    location: Coords,
+    page?: string,
+    filters?: PickedFilters,
+): Promise<MapsResponse> => {
+    const f = getFiltersParam(filters);
+
+    const response = await getPlannedRoutes(location, page, f);
+
+    if (
+        !response?.data ||
+        response.status >= 400 ||
+        response.data?.statusCode >= 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: {elements: [], links: {prev: ''}},
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: {
+            elements: response.data.elements,
+            links: response.data.links,
+        },
+        status: response.data?.statusCode || response.status,
+        error: '',
+    };
+};
+
+export const addPlannedMapsListService = async (
+    id: string,
+): Promise<PlannedMapsResponse> => {
+    const response = await addPlannedRoute(id);
+
+    if (response.status >= 400 || response.data?.statusCode >= 400) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: null,
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: null,
+        status: response.data?.statusCode || response.status,
+        error: '',
+    };
+};
+
+export const removePlannedMapByIdService = async (
+    id: string,
+): Promise<MapsDataResponse> => {
+    const response = await removePlannedRoute(id);
 
     if (response.status >= 400 || response.data?.statusCode >= 400) {
         let errorMessage = 'error';

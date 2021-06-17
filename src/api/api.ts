@@ -20,6 +20,7 @@ export const setAutorizationHeader = (token: string) => {
     instance.defaults.headers.get.Authorization = `Bearer ${token}`;
     instance.defaults.headers.post.Authorization = `Bearer ${token}`;
     instance.defaults.headers.patch.Authorization = `Bearer ${token}`;
+    instance.defaults.headers.put.Authorization = `Bearer ${token}`;
     instance.defaults.headers.delete.Authorization = `Bearer ${token}`;
 };
 

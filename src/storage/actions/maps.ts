@@ -13,6 +13,11 @@ import {ImagesMetadataType, MapPagination} from '../../interfaces/api';
 import {getLatLngFromForeground} from '../../utils/geolocation';
 import {MapFormDataResult, PickedFilters} from '../../interfaces/form';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+import {
+    addPlannedMapsListService,
+    getPlannedMapsListService,
+    removePlannedMapByIdService,
+} from '../../services/mapsService';
 
 export const setMapsData = (
     maps: MapType[],
@@ -32,6 +37,17 @@ export const setPrivateMapsData = (
 ) => ({
     type: actionTypes.SET_PRIVATE_MAPS_DATA,
     privateMaps: privateMaps,
+    paginationCoursor: paginationCoursor,
+    refresh: refresh,
+});
+
+export const setPlannedMapsData = (
+    plannedMaps: MapType[],
+    paginationCoursor: MapPagination,
+    refresh: boolean,
+) => ({
+    type: actionTypes.SET_PLANNED_MAPS_DATA,
+    plannedMaps: plannedMaps,
     paginationCoursor: paginationCoursor,
     refresh: refresh,
 });
@@ -72,7 +88,7 @@ export const addMapToFavourite = (mapID: string) => ({
 });
 
 export const removeMapFromFavourite = (mapID: string) => ({
-    type: actionTypes.REMOVE_MAP_TO_FAVOURITES,
+    type: actionTypes.REMOVE_MAP_FROM_FAVOURITES,
     mapID: mapID,
 });
 
@@ -206,6 +222,92 @@ export const removePrivateMapMetaData = (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[removePrivateMapMetaData]');
+        const err = convertToApiError(error);
+        logger.recordError(err);
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const fetchPlannedMapsList = (
+    page?: string,
+    filters?: PickedFilters,
+): AppThunk<Promise<void>> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        /* TODO: move to global listener - locaiton */
+        const {lat, lng} = await getLatLngFromForeground();
+        const response = await getPlannedMapsListService(
+            {latitude: lat, longitude: lng},
+            page,
+            filters,
+        );
+
+        if (response.error || !response.data || !response.data?.elements) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        const refresh = !page;
+        dispatch(
+            setPlannedMapsData(
+                response.data.elements,
+                response.data.links,
+                refresh,
+            ),
+        );
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        logger.log('[fetchPlannedMapsList]');
+        const err = convertToApiError(error);
+        logger.recordError(err);
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const addPlannedMap = (
+    id: string,
+): AppThunk<Promise<void>> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const response = await addPlannedMapsListService(id);
+
+        if (response.error || response.status >= 400) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        dispatch(fetchPlannedMapsList());
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        logger.log('[addPlannedMap]');
+        const err = convertToApiError(error);
+        logger.recordError(err);
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const removePlanendMap = (
+    id: string,
+): AppThunk<Promise<void>> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const response = await removePlannedMapByIdService(id);
+
+        if (response.error || response.status >= 400) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        dispatch(fetchPlannedMapsList());
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        logger.log('[removePlanendMap]');
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
