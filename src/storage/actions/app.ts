@@ -13,6 +13,7 @@ import logger from '../../utils/crashlytics';
 import {I18n} from '../../../I18n/I18n';
 import {getAppConfigService} from '../../services';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+import { fetchPlannedMapsList } from './maps';
 
 export const setAppStatus = (status: boolean) => ({
     type: actionTypes.SET_APP_NETWORK_STATUS,
@@ -75,6 +76,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async dispatch => {
 
         await dispatch(fetchMapsList());
         dispatch(fetchPrivateMapsList());
+        dispatch(fetchPlannedMapsList());
         dispatch(fetchGenericBikeData());
         dispatch(setBikesListByFrameNumbers());
         dispatch(syncRouteDataFromQueue());

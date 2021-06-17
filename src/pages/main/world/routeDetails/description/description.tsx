@@ -22,12 +22,14 @@ interface IProps {
     mapData: Map | undefined;
     images: {images: string[]; mapImg: string; fullSizeImages: string[]};
     isPrivateView?: boolean;
+    isFavView?: boolean;
 }
 
 const Description: React.FC<IProps> = ({
     mapData,
     images,
     isPrivateView,
+    isFavView,
 }: IProps) => {
     const trans: any = I18n.t('RoutesDetails.details');
     const navigation = useNavigation();
@@ -42,6 +44,8 @@ const Description: React.FC<IProps> = ({
             name: RegularStackRoute.MAP_PREVIEW_SCREEN,
             params: {
                 mapId: mapData?.id,
+                private: isPrivateView,
+                favourite: isFavView,
             },
         });
     };

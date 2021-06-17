@@ -10,6 +10,9 @@ export {
     removePrivateMapData,
     removeImagesToMapData,
     uploadImageToMapData,
+    addPlannedRoute,
+    getPlannedRoutes,
+    removePlannedRoute,
 } from './maps';
 export {createRoute, sendRouteData} from './routes';
 export {

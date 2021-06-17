@@ -12,7 +12,10 @@ import {
     nextPrivatePaginationCoursor,
 } from '../../../storage/selectors/map';
 import {fetchMapsList} from '../../../storage/actions';
-import {fetchPrivateMapsList} from '../../../storage/actions/maps';
+import {
+    fetchPlannedMapsList,
+    fetchPrivateMapsList,
+} from '../../../storage/actions/maps';
 import {requestGeolocationPermission} from '../../../utils/geolocation';
 import {PickedFilters} from '../../../interfaces/form';
 import {checkIfContainsFitlers} from '../../../utils/apiDataTransform/filters';
@@ -53,6 +56,7 @@ const World: React.FC = () => {
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
+        console.log('ACTIVE TAB', activeTab)
         if (isValid) {
             if (activeTab === routesTab.BIKEMAP) {
                 dispatch(fetchMapsList(undefined, savedMapFilters));
@@ -61,9 +65,9 @@ const World: React.FC = () => {
             if (activeTab === routesTab.MYROUTES) {
                 dispatch(fetchPrivateMapsList(undefined, savedMapFilters));
             }
-            // if (activeTab === routesTab.PLANED) {
-            //     dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
-            // }
+            if (activeTab === routesTab.PLANED) {
+                dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
+            }
         }
     }, [dispatch, savedMapFilters, activeTab]);
 
@@ -112,6 +116,10 @@ const World: React.FC = () => {
                 dispatch(fetchMapsList(nextCoursor, savedMapFilters));
                 return;
             }
+            if (nextCoursor && activeTab === routesTab.PLANED) {
+                dispatch(fetchPlannedMapsList(nextCoursor, savedMapFilters));
+                return;
+            }
         }
     }, [
         dispatch,
@@ -129,6 +137,10 @@ const World: React.FC = () => {
         }
         if (activeTab === routesTab.BIKEMAP) {
             dispatch(fetchMapsList());
+            return;
+        }
+        if (activeTab === routesTab.PLANED) {
+            dispatch(fetchPlannedMapsList());
             return;
         }
     }, [dispatch, activeTab]);
@@ -153,6 +165,8 @@ const World: React.FC = () => {
             case routesTab.PLANED:
                 return (
                     <PlannedRoutes
+                        onRefresh={onRefreshHandler}
+                        onLoadMore={onLoadMoreHandler}
                         onPress={() => setActiveTab(routesTab.BIKEMAP)}
                     />
                 );

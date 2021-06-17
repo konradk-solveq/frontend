@@ -14,8 +14,8 @@ import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {RegularStackRoute} from '../../../../navigation/route';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {
-    mapDataByIDSelector,
-    privateDataByIDSelector,
+    selectMapDataByIDBasedOnTypeSelector,
+    selectorTypeEnum,
 } from '../../../../storage/selectors/map';
 import {userIdSelector} from '../../../../storage/selectors/auth';
 import {getImagesThumbs} from '../../../../utils/transformData';
@@ -33,6 +33,16 @@ import BottomModal from '../../../../sharedComponents/modals/bottomModal/bottomM
 
 const isIOS = Platform.OS === 'ios';
 
+const getMapType = (params: any) => {
+    if (params?.private) {
+        return selectorTypeEnum.private;
+    }
+    if (params?.favourite) {
+        return selectorTypeEnum.favourite;
+    }
+    return selectorTypeEnum.regular;
+};
+
 const RouteDetails = () => {
     const trans: any = I18n.t('RoutesDetails');
     const dispatch = useAppDispatch();
@@ -40,10 +50,9 @@ const RouteDetails = () => {
     const route = useRoute();
     const mapID: string = route?.params?.mapID;
     const privateMap: boolean = route?.params?.private;
+    const favouriteMap: boolean = route?.params?.favourite;
     const mapData = useAppSelector(
-        !privateMap
-            ? mapDataByIDSelector(mapID)
-            : privateDataByIDSelector(mapID),
+        selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
     const userID = useAppSelector(userIdSelector);
     const images = getImagesThumbs(mapData?.images || []);
@@ -120,6 +129,7 @@ const RouteDetails = () => {
                                 mapData={mapData}
                                 images={images}
                                 isPrivateView={privateMap}
+                                isFavView={favouriteMap}
                             />
                             <BigRedBtn
                                 title={
