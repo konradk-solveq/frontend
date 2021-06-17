@@ -183,6 +183,10 @@ export class Map {
     @IsBoolean()
     public isPublic?: boolean;
 
+    @IsNumber()
+    @IsOptional()
+    public downloads?: number;
+
     constructor(
         id: string,
         name: string,

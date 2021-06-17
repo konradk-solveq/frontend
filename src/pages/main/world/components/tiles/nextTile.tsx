@@ -101,7 +101,7 @@ const NextTile: React.FC<IProps> = ({
                                             <DownloadIcon
                                                 iconStyle={styles.raitingIcon}
                                             />
-                                            {mapData?.rating || '-'}
+                                            {mapData?.downloads || '-'}
                                         </Text>
                                     </View>
                                 </View>

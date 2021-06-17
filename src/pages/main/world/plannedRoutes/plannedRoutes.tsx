@@ -2,7 +2,11 @@ import React, {useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
-import {favouritesMapsSelector} from '../../../../storage/selectors/map';
+import {
+    favouritesMapsSelector,
+    loadingMapsSelector,
+    refreshMapsSelector,
+} from '../../../../storage/selectors/map';
 import {userNameSelector} from '../../../../storage/selectors';
 import {useAppSelector} from '../../../../hooks/redux';
 import {Map} from '../../../../models/map.model';
@@ -15,6 +19,7 @@ import EmptyList from './emptyList';
 
 import styles from './style';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
+import Loader from '../../../onboarding/bikeAdding/loader/loader';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -29,13 +34,21 @@ interface RenderItem {
 
 interface IProps {
     onPress: () => void;
+    onRefresh: () => void;
+    onLoadMore: () => void;
 }
 
-const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
+const PlannedRoutes: React.FC<IProps> = ({
+    onPress,
+    onRefresh,
+    onLoadMore,
+}: IProps) => {
     const trans: any = I18n.t('MainWorld.PlannedRoutes');
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
     const favouriteMaps = useAppSelector(favouritesMapsSelector);
+    const isLoading = useAppSelector(loadingMapsSelector);
+    const isRefreshing = useAppSelector(refreshMapsSelector);
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
@@ -50,7 +63,7 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
     const onPressTileHandler = (mapID?: string) => {
         navigation.navigate({
             name: 'RouteDetailsScreen',
-            params: {mapID: mapID, private: false},
+            params: {mapID: mapID, private: false, favourite: true},
         });
     };
 
@@ -74,6 +87,17 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
     if (!favouriteMaps?.length) {
         return <EmptyList onPress={onPress} />;
     }
+
+    const renderListLoader = () => {
+        if (isLoading && favouriteMaps.length > 3) {
+            return (
+                <View style={styles.loaderContainer}>
+                    <Loader />
+                </View>
+            );
+        }
+        return null;
+    };
 
     return (
         <>
@@ -99,6 +123,11 @@ const PlannedRoutes: React.FC<IProps> = ({onPress}: IProps) => {
                     getItemLayout={getItemLayout}
                     initialNumToRender={10}
                     removeClippedSubviews
+                    onEndReached={onLoadMore}
+                    onEndReachedThreshold={0.5}
+                    ListFooterComponent={renderListLoader}
+                    refreshing={isLoading && isRefreshing}
+                    onRefresh={onRefresh}
                 />
             </View>
         </>

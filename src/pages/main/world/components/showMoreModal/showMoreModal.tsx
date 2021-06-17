@@ -9,8 +9,8 @@ import AnimSvg from '../../../../../helpers/animSvg';
 import styles from './style';
 import {useAppDispatch} from '../../../../../hooks/redux';
 import {
-    addMapToFavourite,
-    removeMapFromFavourite,
+    addPlannedMap,
+    removePlanendMap,
 } from '../../../../../storage/actions/maps';
 import {RegularStackRoute} from '../../../../../navigation/route';
 
@@ -57,10 +57,10 @@ const ShowMoreModal: React.FC<IProps> = ({
     const onAddToFavRoutesHandler = () => {
         onPressCancel();
         if (removeFav) {
-            dispatch(removeMapFromFavourite(mapID));
+            dispatch(removePlanendMap(mapID));
             return;
         }
-        dispatch(addMapToFavourite(mapID));
+        dispatch(addPlannedMap(mapID));
     };
 
     const onStartRouteHandler = () => {

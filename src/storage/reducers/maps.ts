@@ -8,9 +8,11 @@ import {MapPagination} from '../../interfaces/api';
 interface MapsState {
     maps: MapType[];
     privateMaps: MapType[];
+    plannedMaps: MapType[];
     paginationCoursor: MapPagination;
     mapToAddId: string;
     paginationCoursorPrivate: MapPagination;
+    paginationCoursorPlanned: MapPagination;
     favourites: string[];
     ownes: string[];
     error: string;
@@ -22,8 +24,10 @@ interface MapsState {
 const initialStateList: MapsState = {
     maps: [],
     privateMaps: [],
+    plannedMaps: [],
     paginationCoursor: {},
     paginationCoursorPrivate: {},
+    paginationCoursorPlanned: {},
     mapToAddId: '',
     favourites: [],
     ownes: [],
@@ -79,19 +83,37 @@ const mapsReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.SET_PRIVATE_MAPS_DATA: {
-            let newMaps = [...state.privateMaps];
+            let newPrivateMaps = [...state.privateMaps];
             if (action.refresh) {
-                newMaps = action.privateMaps;
+                newPrivateMaps = action.privateMaps;
             }
 
-            if (!action.refresh || !newMaps?.length) {
-                newMaps = [...newMaps, ...action.privateMaps];
+            if (!action.refresh || !newPrivateMaps?.length) {
+                newPrivateMaps = [...newPrivateMaps, ...action.privateMaps];
             }
             return {
                 ...state,
                 loading: false,
-                privateMaps: newMaps,
+                privateMaps: newPrivateMaps,
                 paginationCoursorPrivate: action.paginationCoursor,
+                statusCode: 200,
+                refresh: action.refresh,
+            };
+        }
+        case actionTypes.SET_PLANNED_MAPS_DATA: {
+            let newPlannedMaps = [...state.plannedMaps];
+            if (action.refresh) {
+                newPlannedMaps = action.plannedMaps;
+            }
+
+            if (!action.refresh || !newPlannedMaps?.length) {
+                newPlannedMaps = [...newPlannedMaps, ...action.plannedMaps];
+            }
+            return {
+                ...state,
+                loading: false,
+                plannedMaps: newPlannedMaps,
+                paginationCoursorPlanned: action.paginationCoursor,
                 statusCode: 200,
                 refresh: action.refresh,
             };
@@ -136,7 +158,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 favourites: newFavs,
             };
         }
-        case actionTypes.REMOVE_MAP_TO_FAVOURITES: {
+        case actionTypes.REMOVE_MAP_FROM_FAVOURITES: {
             const newFavs = [...state.favourites].filter(
                 id => id !== action.mapID,
             );

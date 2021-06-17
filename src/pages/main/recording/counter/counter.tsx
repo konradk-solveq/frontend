@@ -52,7 +52,7 @@ import {
     trackerStartTimeSelector,
 } from '../../../../storage/selectors/routes';
 import deepCopy from '../../../../helpers/deepCopy';
-import {mapDataByIDSelector} from '../../../../storage/selectors/map';
+import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
 
 const {width} = Dimensions.get('window');
 
@@ -96,7 +96,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     } = useLocalizationTracker(true);
 
     const mapData = useAppSelector(
-        mapDataByIDSelector(followedRouteId || route?.params?.mapID),
+        favouriteMapDataByIDSelector(followedRouteId || route?.params?.mapID),
     );
 
     useEffect(() => {

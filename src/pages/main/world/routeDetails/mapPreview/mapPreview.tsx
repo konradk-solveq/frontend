@@ -4,7 +4,11 @@ import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
 import CompassHeading from 'react-native-compass-heading';
 
 import {useAppSelector} from '../../../../../hooks/redux';
-import {mapPathByIDSelector} from '../../../../../storage/selectors/map';
+import {
+    selectMapPathByIDBasedOnTypeSelector,
+    selectorTypeEnum,
+} from '../../../../../storage/selectors/map';
+import {Coords, CoordsType} from '../../../../../models/map.model';
 
 import StackHeader from '../../../../../sharedComponents/navi/stackHeader/stackHeader';
 import AnimSvg from '../../../../../helpers/animSvg';
@@ -12,20 +16,30 @@ import mapStyle from '../../../../../sharedComponents/maps/styles';
 import gradient from './gradientSvg';
 
 import styles from './style';
-import {Coords, CoordsType} from '../../../../../models/map.model';
 
 interface Props {
     navigation: any;
     route: any;
 }
 
-const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
-    const [compassHeading, setCompassHeading] = useState(0);
+const getMapType = (params: any) => {
+    if (params?.private) {
+        return selectorTypeEnum.private;
+    }
+    if (params?.favourite) {
+        return selectorTypeEnum.favourite;
+    }
+    return selectorTypeEnum.regular;
+};
 
+const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
+    const mapId = route?.params?.mapId;
+
+    const [compassHeading, setCompassHeading] = useState(0);
     const [foreignRoute, setForeignRoute] = useState<Coords[]>([]);
 
     const mapPath = useAppSelector<CoordsType[] | undefined>(
-        mapPathByIDSelector(route?.params?.mapId),
+        selectMapPathByIDBasedOnTypeSelector(mapId, getMapType(route?.params)),
     );
 
     useEffect(() => {

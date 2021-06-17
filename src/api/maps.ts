@@ -5,6 +5,7 @@ import {OptionType} from '../interfaces/form';
 
 const BASE_URL = '/routes';
 const BASE_ROUTE_URL = `${BASE_URL}/route`;
+const PLANNED_ROUTE_URL = `${BASE_URL}/favorites`;
 
 type MapFitlerType = {
     [k: string]: OptionType[];
@@ -19,7 +20,7 @@ export const getMaps = async (
 ) => {
     const r = range || 50000;
     const l = limit || 10;
-    let url = `${BASE_URL}/find/location?lat=${location.latitude}&lng=${location.longitude}&range=${r}&limit=${l}&page=1`;
+    let url = `${BASE_URL}/find/location?lat=${location.latitude}&lng=${location.longitude}&range=${r}&limit=${l}&page=1&detailed=true`;
 
     const params =
         filters && Object.keys(filters)?.length > 0 ? {params: filters} : {};
@@ -82,6 +83,37 @@ export const removeImagesToMapData = async (id: string, ids: string[]) => {
         data: {
             ids,
         },
+        cancelToken: source.token,
+    });
+};
+
+export const getPlannedRoutes = async (
+    location: Coords,
+    paginationUrl?: string,
+    filters?: MapFitlerType,
+) => {
+    const params =
+        filters && Object.keys(filters)?.length > 0 ? {params: filters} : {};
+
+    return await axiosGet(
+        paginationUrl ||
+            `${PLANNED_ROUTE_URL}?lat=${location.latitude}&lng=${location.longitude}&detailed=true`,
+        params,
+    );
+};
+
+export const addPlannedRoute = async (id: string) => {
+    return await instance.put(
+        `${PLANNED_ROUTE_URL}/${id}`,
+        {},
+        {
+            cancelToken: source.token,
+        },
+    );
+};
+
+export const removePlannedRoute = async (id: string) => {
+    return await instance.delete(`${PLANNED_ROUTE_URL}/${id}`, {
         cancelToken: source.token,
     });
 };
