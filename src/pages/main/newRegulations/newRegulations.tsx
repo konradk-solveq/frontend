@@ -51,47 +51,32 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
     const [shovedToSave, setShovedToSave] = useState<number>(0);
 
     useEffect(() => {
-        const now = Date.now();
-        const showDate = data.showDate ? Date.parse(data.showDate) : 0;
-        const publishDate = data?.publishDate
-            ? Date.parse(data.publishDate)
-            : 0;
+        if (data) {
+            const now = Date.now();
+            const showDate = data.showDate ? Date.parse(data.showDate) : 0;
+            const publishDate = data?.publishDate
+                ? Date.parse(data.publishDate)
+                : 0;
 
-        // console.log('data:', data);
-        // console.log('content:', content);
-        // console.log('showed:', showed);
-        // console.log('currentVersion:', currentVersion);
-        // console.log('now:', now);
-        // console.log('showDate:', showDate);
-        // console.log('publishDate:', publishDate);
-        // console.log('pageType:', pageType);
-        // console.log(
-        //     'showDate <:',
-        //     (!currentVersion ||
-        //         Number(showed) < Number(currentVersion) + 0.5) &&
-        //         showDate <= now &&
-        //         publishDate > now,
-        // );
-        // console.log(
-        //     'publishDate <:',
-        //     Number(showed) < Number(data.version) && publishDate <= now,
-        // );
-
-        if (Number(currentVersion) != Number(data.version) || !currentVersion) {
             if (
-                (!currentVersion ||
-                    Number(showed) < Number(currentVersion) + 0.5) &&
-                showDate <= now &&
-                publishDate > now
+                Number(currentVersion) != Number(data.version) ||
+                !currentVersion
             ) {
-                setPageType('info');
-                setShovedToSave(Number(currentVersion) + 0.5);
-            } else if (
-                Number(showed) < Number(data.version) &&
-                publishDate <= now
-            ) {
-                setPageType('change');
-                setShovedToSave(Number(data.version));
+                if (
+                    (!currentVersion ||
+                        Number(showed) < Number(currentVersion) + 0.5) &&
+                    showDate <= now &&
+                    publishDate > now
+                ) {
+                    setPageType('info');
+                    setShovedToSave(Number(currentVersion) + 0.5);
+                } else if (
+                    Number(showed) < Number(data.version) &&
+                    publishDate <= now
+                ) {
+                    setPageType('change');
+                    setShovedToSave(Number(data.version));
+                }
             }
         }
     }, [pageType, currentVersion, data, showed]);
