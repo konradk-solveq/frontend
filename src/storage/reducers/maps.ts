@@ -159,14 +159,21 @@ const mapsReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.REMOVE_MAP_FROM_FAVOURITES: {
-            const newFavs = [...state.favourites].filter(
-                id => id !== action.mapID,
+            const newFavs = [...state.plannedMaps].filter(
+                m => m.id !== action.mapID,
             );
             return {
                 ...state,
-                loading: false,
-                refresh: false,
-                favourites: newFavs,
+                plannedMaps: newFavs,
+            };
+        }
+        case actionTypes.REMOVE_MAP_FROM_PRIVATES: {
+            const newPriv = [...state.privateMaps].filter(
+                m => m.id !== action.mapID,
+            );
+            return {
+                ...state,
+                privateMaps: newPriv,
             };
         }
         case actionTypes.LOGOUT: {

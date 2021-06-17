@@ -92,6 +92,11 @@ export const removeMapFromFavourite = (mapID: string) => ({
     mapID: mapID,
 });
 
+export const removeMapFromPrivates = (mapID: string) => ({
+    type: actionTypes.REMOVE_MAP_FROM_PRIVATES,
+    mapID: mapID,
+});
+
 export const fetchMapsList = (
     page?: string,
     filters?: PickedFilters,
@@ -215,6 +220,7 @@ export const removePrivateMapMetaData = (
             return;
         }
 
+        dispatch(removeMapFromPrivates(id));
         dispatch(fetchPrivateMapsList());
         dispatch(fetchMapsList());
         dispatch(clearPrivateMapId());
@@ -303,6 +309,7 @@ export const removePlanendMap = (
             return;
         }
 
+        dispatch(removeMapFromFavourite(id));
         dispatch(fetchPlannedMapsList());
         dispatch(clearError());
         dispatch(setLoadingState(false));
