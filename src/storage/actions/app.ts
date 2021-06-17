@@ -13,19 +13,15 @@ import logger from '../../utils/crashlytics';
 import {I18n} from '../../../I18n/I18n';
 import {getAppConfigService} from '../../services';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
-import { fetchPlannedMapsList } from './maps';
-import{
+import {fetchPlannedMapsList} from './maps';
+import {
     RegulationType,
     TermsAndConditionsType,
 } from '../../models/regulations.model';
-
-import logger from '../../utils/crashlytics';
-import {I18n} from '../../../I18n/I18n';
 import {
     getAppTermsAndConditionsService,
     getNewRegulationsService,
 } from '../../services';
-import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 
 export const setAppStatus = (status: boolean) => ({
     type: actionTypes.SET_APP_NETWORK_STATUS,
