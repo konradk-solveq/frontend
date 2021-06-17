@@ -82,9 +82,12 @@ export const fetchAppRegulations = (
         }
         dispatch(setAppTerms(response.data));
 
+        const newTerms = response.data;
         const currVersion =
             currentTerms.version || terms?.[terms?.length - 2]?.version;
-        const newestVersion = terms?.[terms?.length - 1]?.version;
+        const newestVersion =
+            newTerms?.[newTerms?.length - 1]?.version ||
+            terms?.[terms?.length - 1]?.version;
 
         if (currVersion && newestVersion) {
             const newRegulations = await getNewRegulationsService(
