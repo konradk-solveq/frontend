@@ -152,7 +152,7 @@ const useLocalizationTracker = (persist: boolean) => {
                 getCurrentLocation(currentRouteId).then(d => {
                     const notMoving = false;
                     const lowSpeed = speedToLow(d);
-console.log('read localization after restrat', d)
+
                     setAverageSpeedOnStart();
                     let aSpeed = getAverageSpeedData(speed);
                     if (notMoving || lowSpeed) {
