@@ -22,3 +22,4 @@ export {
     registerDevice,
 } from './auth';
 export {getConfig} from './app';
+export {getTermsAndConditions, getPolicy, getRegulation} from './app';

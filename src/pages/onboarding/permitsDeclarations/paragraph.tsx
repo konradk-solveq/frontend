@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, Linking} from 'react-native';
+import {useNavigation, StackActions} from '@react-navigation/native';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 
@@ -13,6 +14,8 @@ interface Props {
 }
 
 const Paragraph: React.FC<Props> = (props: Props) => {
+    const navigation = useNavigation();
+
     const trans = I18n.t('Urls');
 
     const styles = StyleSheet.create({
@@ -42,7 +45,11 @@ const Paragraph: React.FC<Props> = (props: Props) => {
                 }
             }}
             onPress={(url: string) => {
-                Linking.openURL(url);
+                if (url == 'https://www.kross.pl.rgulamin') {
+                    navigation.navigate('Regulations');
+                } else {
+                    Linking.openURL(url);
+                }
             }}>
             {typeof props.text === 'string' ? (
                 <Text

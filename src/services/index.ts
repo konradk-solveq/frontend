@@ -19,3 +19,9 @@ export {
     registerMobileDevice,
 } from './authService';
 export {getAppConfigService} from './appService';
+export {
+    getAppTermsAndConditionsService,
+    getNewRegulationsService,
+    getPolicyService,
+    getRegulationService,
+} from './appServices';

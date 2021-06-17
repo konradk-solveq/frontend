@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {useEffect} from 'react';
 import {
     StyleSheet,
     Dimensions,
@@ -16,6 +17,7 @@ import {
     getVerticalPx,
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
+import {useAppSelector} from '../../../hooks/redux';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import Paragraph from './paragraph';
@@ -27,10 +29,9 @@ interface Props {
 const wh = Dimensions.get('window').height;
 
 const Regulations: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('Regulations');
-    const list = trans.paragraph;
+    const data = useAppSelector(state => state.app.regulation);
 
-    const [headHeight, setheadHeightt] = useState(0);
+    const [headHeight, setheadHeight] = useState(0);
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -65,39 +66,39 @@ const Regulations: React.FC<Props> = (props: Props) => {
         light: {
             fontFamily: 'DIN2014Narrow-Light',
         },
-        test: {
-            width: 100,
-            height: 20,
-            marginEnd: 5,
-        },
     });
 
     return (
-        <SafeAreaView >
+        <SafeAreaView>
             <View style={styles.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
-                        <Text style={styles.title}>{trans.title}</Text>
+                        {data.title && (
+                            <Text style={styles.title}>{data.title}</Text>
+                        )}
 
-                        {list.map((e, i) => (
-                            <Paragraph
-                                marginTop={e.marginTop}
-                                font={e.font}
-                                text={e.text}
-                                num={i}
-                                key={'pgraph_' + i}
-                            />
-                        ))}
+                        {data.paragraph &&
+                            data.paragraph.map((e, i) => (
+                                <Paragraph
+                                    marginTop={e.marginTop}
+                                    font={e.font}
+                                    text={e.text}
+                                    num={i}
+                                    key={'pgraph_' + i}
+                                />
+                            ))}
                     </View>
                 </ScrollView>
             </View>
 
-            <StackHeader
-                onpress={() => props.navigation.goBack()}
-                inner={trans.header}
-                getHeight={setheadHeightt}
-                style={{backgroundColor: '#fff'}}
-            />
+            {data.header && (
+                <StackHeader
+                    onpress={() => props.navigation.goBack()}
+                    inner={data.header}
+                    getHeight={setheadHeight}
+                    style={{backgroundColor: '#fff'}}
+                />
+            )}
         </SafeAreaView>
     );
 };

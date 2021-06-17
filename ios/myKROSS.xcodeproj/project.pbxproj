@@ -58,6 +58,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* myKROSSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myKROSSTests.m; sourceTree = "<group>"; };
 		08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Bold.otf"; path = "../assets/fonts/DIN2014Narrow-Bold.otf"; sourceTree = "<group>"; };
+		0DC89EDCDB4E3C4A34DAD346 /* Pods-myKROSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* myKROSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myKROSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 		B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Regular.otf"; path = "../assets/fonts/DIN2014Narrow-Regular.otf"; sourceTree = "<group>"; };
 		EC431651155FD0F88ABC2301 /* Pods-myKROSS-myKROSSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		FFA9D8B639F402EB42A20108 /* libPods-myKROSS-myKROSSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS-myKROSSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +410,7 @@
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			name = "[CP-User] [RNFB] Core Configuration";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-resources.sh\"\n";
@@ -432,20 +435,15 @@
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myKROSS-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A782CA785E3F375A170A5D80 /* [CP] Check Pods Manifest.lock */ = {
