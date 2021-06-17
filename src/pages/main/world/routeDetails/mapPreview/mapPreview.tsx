@@ -82,6 +82,7 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
                         style={styles.map}
                         customMapStyle={mapStyle}
                         pitchEnabled={true}
+                        showsCompass={false}
                         initialCamera={{
                             center: {
                                 latitude: foreignRoute?.[0].latitude,
