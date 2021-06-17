@@ -35,6 +35,7 @@ interface IProps {
     scrollToTopPosition?: boolean;
     resetScrollPosition?: () => void;
     headerElement?: ReactElement;
+    hideHeader?: boolean;
 }
 
 const SliverTopBar: React.FC<IProps> = ({
@@ -45,6 +46,7 @@ const SliverTopBar: React.FC<IProps> = ({
     scrollToTopPosition,
     resetScrollPosition,
     headerElement,
+    hideHeader,
 }: IProps) => {
     const scrollY = useRef(new Animated.Value(0)).current;
     const spinValue = useRef(new Animated.Value(0)).current;
@@ -205,21 +207,23 @@ const SliverTopBar: React.FC<IProps> = ({
                 {headerElement}
             </Animated.View>
 
-            {renderSliverTopBar()}
-            <Animated.View
-                pointerEvents="box-none"
-                style={[
-                    styles.arrowBtnContainer,
-                    {
-                        top: getVerticalPx(
-                            HEADER_EXPANDED_HEIGHT -
-                                (statusBarHeight > 30 ? 60 : 65),
-                        ),
-                    },
-                    moveYAxisArrow,
-                ]}>
-                <ArrowBtn onPress={arrowBtnActionHandler} />
-            </Animated.View>
+            {!hideHeader && renderSliverTopBar()}
+            {!hideHeader && (
+                <Animated.View
+                    pointerEvents="box-none"
+                    style={[
+                        styles.arrowBtnContainer,
+                        {
+                            top: getVerticalPx(
+                                HEADER_EXPANDED_HEIGHT -
+                                    (statusBarHeight > 30 ? 60 : 65),
+                            ),
+                        },
+                        moveYAxisArrow,
+                    ]}>
+                    <ArrowBtn onPress={arrowBtnActionHandler} />
+                </Animated.View>
+            )}
 
             <Animated.ScrollView
                 ref={scrollRef}

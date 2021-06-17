@@ -243,19 +243,23 @@ const Bike: React.FC<Props> = (props: Props) => {
                         style={styles.header}
                         titleStyle={styles.title}
                     />
-                    <CogBtn
-                        callback={heandleParams}
-                        containerStyle={[
-                            styles.params,
-                            {
-                                marginTop: getVerticalPx(40),
-                            },
-                        ]}
-                        iconStyle={styles.paramIcon}
-                    />
+
+                    {bike?.description && (
+                        <CogBtn
+                            callback={heandleParams}
+                            containerStyle={[
+                                styles.params,
+                                {
+                                    marginTop: getVerticalPx(40),
+                                },
+                            ]}
+                            iconStyle={styles.paramIcon}
+                        />
+                    )}
 
                     <SliverImage
                         imgSrc={bike?.images?.[0]}
+                        hideHeader={!bike?.description}
                         headerElement={
                             <BikeSelectorList
                                 style={styles.reviews}
