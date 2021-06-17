@@ -8,6 +8,7 @@ import {useAppDispatch, useAppSelector} from './redux';
 import {
     trackerCurrentRouteAverrageSpeedSelector,
     trackerFollowedRouteIdSelector,
+    trackerRouteIdSelector,
 } from '../storage/selectors/routes';
 import {
     persistCurrentRouteData,
@@ -53,7 +54,7 @@ const useLocalizationTracker = (persist: boolean) => {
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
     );
-    const currentRouteId = useAppSelector(trackerFollowedRouteIdSelector);
+    const currentRouteId = useAppSelector(trackerRouteIdSelector);
     const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
@@ -109,7 +110,7 @@ const useLocalizationTracker = (persist: boolean) => {
         activateKeepAwake();
 
         const currRoute = await startCurrentRoute(routeIdToFollow);
-        const routeID = keep ? currentRouteId : currRoute.id;
+        const routeID = keep && currentRouteId ? currentRouteId : currRoute.id;
         await startBackgroundGeolocation(routeID, keep);
         if (!keep) {
             dispatch(startRecordingRoute(currRoute, keep));
@@ -151,7 +152,7 @@ const useLocalizationTracker = (persist: boolean) => {
                 getCurrentLocation(currentRouteId).then(d => {
                     const notMoving = false;
                     const lowSpeed = speedToLow(d);
-
+console.log('read localization after restrat', d)
                     setAverageSpeedOnStart();
                     let aSpeed = getAverageSpeedData(speed);
                     if (notMoving || lowSpeed) {
