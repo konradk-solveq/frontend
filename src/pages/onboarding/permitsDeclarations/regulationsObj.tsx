@@ -11,7 +11,7 @@ export default [
              {
                 "marginTop": 1,
                 "font": "regular",
-                "text": "Obowiazujący do 22.06.2021 roku."
+                "text": "Obowiazujący do 23.06.2021 roku."
 
              },
 
@@ -673,13 +673,12 @@ export default [
                 "font": "regular",
                 "text": "REGULAMIN APLIKACJI MOBILNEJ"
             },
-             {
-                "marginTop": 1,
-                "font": "regular",
-                "text": "Obowiazujący od 23.06.2021 roku."
+            {
+            "marginTop": 1,
+            "font": "regular",
+            "text": "Obowiazujący od 24.06.2021 roku."
 
-             },
-
+            },
             {
                 "marginTop": 15,
                 "text": [{
@@ -902,7 +901,7 @@ export default [
                 "font": "light",
                 "text": "3) wyświetlanie specyfikacji roweru\\ów zarejestrowanego\\ych przez Użytkownika."
             },
-             {
+            {
                 "marginTop": 15,
                 "font": "light",
                 "text": "4) nagrywanie trasy przez Użytkownika;"
@@ -1325,7 +1324,7 @@ export default [
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "6. Regulamin wchodzi w\u00a0życie z\u00a0dniem 23.06.2021 r."
+                "text": "6. Regulamin wchodzi w\u00a0życie z\u00a0dniem 24.06.2021 r."
             }
         ]
     }
