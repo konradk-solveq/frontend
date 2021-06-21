@@ -11,7 +11,7 @@ const data = [
     {
         version: '2',
         showDate: '2021-06-15',
-        publishDate: '2021-06-23',
+        publishDate: '2021-06-24',
         title:
             'Zmiana Regulaminu i\u00a0Polityki Prywatności Aplikacji Mobilnej myKROSS',
         text:
