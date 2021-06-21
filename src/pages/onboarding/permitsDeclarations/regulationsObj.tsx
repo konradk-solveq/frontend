@@ -12,15 +12,8 @@ export default [
             {
                 "marginTop": 1,
                 "font": "regular",
-<<<<<<< HEAD
-                "text": "Obowiazujący do 23.06.2021 roku."
-
-             },
-
-=======
                 "text": "Obowiązuje do 24.06.2021 roku."
             },
->>>>>>> feature/regulations-last
             {
                 "marginTop": 15,
                 "text": [{
@@ -536,16 +529,9 @@ export default [
                 "text": "REGULAMIN APLIKACJI MOBILNEJ"
             },
             {
-<<<<<<< HEAD
-            "marginTop": 1,
-            "font": "regular",
-            "text": "Obowiazujący od 24.06.2021 roku."
-
-=======
                 "marginTop": 1,
                 "font": "regular",
                 "text": "Obowiazuje od 25.06.2021 roku."
->>>>>>> feature/regulations-last
             },
             {
                 "marginTop": 15,
@@ -1187,11 +1173,7 @@ export default [
             {
                 "marginTop": 15,
                 "font": "light",
-<<<<<<< HEAD
-                "text": "6. Regulamin wchodzi w\u00a0życie z\u00a0dniem 24.06.2021 r."
-=======
                 "text": "6. Regulamin wchodzi w\u00a0życie z\u00a0dniem 25.06.2021 r."
->>>>>>> feature/regulations-last
             }
         ]
     }
