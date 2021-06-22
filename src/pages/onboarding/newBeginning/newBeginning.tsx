@@ -21,6 +21,8 @@ import SplashScreen from '../splashScreen/splashScreen';
 import Screen_1 from './screen_1';
 import Screen_2 from './screen_2';
 import Screen_3 from './screen_3';
+import Screen_4 from './screen_4';
+import Screen_5 from './screen_5';
 
 import StaticElements from './../staticElements';
 import Swipe from '../../../sharedComponents/navi/swipe/swipe';
@@ -34,7 +36,7 @@ const isIOS = Platform.OS === 'ios';
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
 const minBoard = 1;
-const maxBoard = 3;
+const maxBoard = 5;
 
 const NewBeginning: React.FC<Props> = (props: Props) => {
     const [board, setBoard] = useState(0);
@@ -52,6 +54,12 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
         () => {
             setBoard(3);
         },
+        () => {
+            setBoard(4);
+        },
+        () => {
+            setBoard(5);
+        },
     ];
 
     // przewinięcie ekranu startowego
@@ -62,6 +70,10 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
             }, 3500);
         }
     }, []);
+
+    useEffect(() => {
+        console.log('%c board:', board);
+    }, [board]);
 
     useEffect(() => {
         Animated.timing(position, {
@@ -102,7 +114,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
 
     let numTitle = 0;
     let numText = 0;
-    const ELEMENTS_SUM = 3;
+    const ELEMENTS_SUM = 5;
 
     let title_h = 0;
     let text_h = 0;
@@ -199,7 +211,7 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            width: ww * 4,
+            width: ww * 6,
             height: '100%',
             backgroundColor: 'white',
             zIndex: isIOS ? 1 : 0,
@@ -259,6 +271,26 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.screen}>
                         <Screen_3
+                            handleMeasurement={handleMeasurement}
+                            wrapH={wrapH}
+                            imgH={imgH}
+                            titleH={titleH}
+                            textH={textH}
+                        />
+                    </View>
+
+                    <View style={styles.screen}>
+                        <Screen_4
+                            handleMeasurement={handleMeasurement}
+                            wrapH={wrapH}
+                            imgH={imgH}
+                            titleH={titleH}
+                            textH={textH}
+                        />
+                    </View>
+
+                    <View style={styles.screen}>
+                        <Screen_5
                             handleMeasurement={handleMeasurement}
                             wrapH={wrapH}
                             imgH={imgH}

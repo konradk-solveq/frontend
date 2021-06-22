@@ -4,7 +4,7 @@ import I18n from 'react-native-i18n';
 
 import {getHorizontalPx, getVerticalPx} from '../../../helpers/layoutFoo';
 
-import Bike_3 from './bike_3';
+import Bike_4 from './bike_4';
 
 interface Props {
     handleMeasurement: Function;
@@ -14,7 +14,7 @@ interface Props {
     textH: any;
 }
 
-const Screen_3: React.FC<Props> = (props: Props) => {
+const Screen_4: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('Onboarding');
 
     let styles = StyleSheet.create({
@@ -51,9 +51,9 @@ const Screen_3: React.FC<Props> = (props: Props) => {
         },
         image: {
             position: 'relative',
-            width: '72.455%',
+            width: '97.605%',
             height: props.imgH,
-            left: '13.772%',
+            left: '1.198%',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -61,9 +61,9 @@ const Screen_3: React.FC<Props> = (props: Props) => {
         },
         svgWrap: {
             position: 'relative',
-            marginTop: '9.244%',
+            marginTop: '-8.8%',
             width: '100%',
-            height: '90.756%',
+            height: '108.8%',
             // backgroundColor: '#00ccff',
         },
         svg: {
@@ -104,7 +104,7 @@ const Screen_3: React.FC<Props> = (props: Props) => {
 
                 <View style={styles.image}>
                     <View style={styles.svgWrap}>
-                        <Bike_3 style={styles.svg} />
+                        <Bike_4 style={styles.svg} />
                     </View>
                 </View>
 
@@ -122,4 +122,4 @@ const Screen_3: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default Screen_3;
+export default Screen_4;
