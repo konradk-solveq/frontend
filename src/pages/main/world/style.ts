@@ -12,6 +12,7 @@ const worldStyles = StyleSheet.create({
         width: '100%',
         paddingHorizontal: 40,
         top: getVerticalPx(65),
+        zIndex: 1,
     },
     header: {
         fontFamily: 'DIN2014Narrow-Light',

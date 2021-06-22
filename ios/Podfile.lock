@@ -1,7 +1,5 @@
 PODS:
   - boost-for-react-native (1.63.0)
-  - BVLinearGradient (2.5.6):
-    - React
   - CocoaLumberjack (3.7.2):
     - CocoaLumberjack/Core (= 3.7.2)
   - CocoaLumberjack/Core (3.7.2)
@@ -368,7 +366,7 @@ PODS:
     - React
   - RNBackgroundFetch (4.0.2):
     - React-Core
-  - RNBackgroundGeolocation (4.1.0):
+  - RNBackgroundGeolocation (4.1.1):
     - CocoaLumberjack (~> 3.7.2)
     - React-Core
   - RNCAsyncStorage (1.15.2):
@@ -426,7 +424,6 @@ PODS:
   - Yoga (1.14.0)
 
 DEPENDENCIES:
-  - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
@@ -502,8 +499,6 @@ SPEC REPOS:
     - PromisesObjC
 
 EXTERNAL SOURCES:
-  BVLinearGradient:
-    :path: "../node_modules/react-native-linear-gradient"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   FBLazyVector:
@@ -617,7 +612,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: 49cbe4b43e445b06bf29199b6ad2057649e4c8f5
@@ -672,7 +666,7 @@ SPEC CHECKSUMS:
   ReactCommon: cfe2b7fd20e0dbd2d1185cd7d8f99633fbc5ff05
   ReactNativeGetLocation: 7ed719807f65206e20b6793896372b11ad835d6d
   RNBackgroundFetch: 1efac9adb6daac367819488f0c8b201d780a08bf
-  RNBackgroundGeolocation: 82ccf764929c22246ee13a6561a099c400f39e86
+  RNBackgroundGeolocation: e879bdf74724f628a71ff6d3f5351c51239027db
   RNCAsyncStorage: 502fbf425b9ee2d73ca6fa4b299dce0be411b422
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNDeviceInfo: 77944ee74f4464aa4672b62e3239e4fa69ab534f
