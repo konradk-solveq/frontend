@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
+import {
+    View,
+    Text,
+    Modal,
+    ScrollView,
+    StyleSheet,
+    SafeAreaView,
+} from 'react-native';
 
-import {View, Text, Modal, ScrollView, StyleSheet} from 'react-native';
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../../../hooks/redux';
+import useStatusBarHeight from '../../../../../hooks/statusBarHeight';
 import {OptionType, PickedFilters} from '../../../../../interfaces/form';
 
 import {
@@ -35,6 +43,7 @@ const FiltersModal: React.FC<IProps> = ({
     const mapOptions = useAppSelector(mapOptionsAndTagsSelector);
     const filters = getFitlers(mapOptions, trans?.filters?.order?.options);
     const contentStyle = allowedFilters ? {minHeight: '90%'} : undefined;
+    const statusBarHeight = useStatusBarHeight();
 
     const [pickedFilters, setPickedFilters] = useState<PickedFilters>({});
 
@@ -58,60 +67,64 @@ const FiltersModal: React.FC<IProps> = ({
             animationType="slide"
             visible={showModal}
             onRequestClose={onClose}>
-            <View style={styles.container}>
-                <CloseBtn
-                    onPress={onClose}
-                    containerStyle={styles.buttonContainer}
-                />
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={contentStyle}>
-                    <View style={styles.wrap}>
-                        <View style={styles.headerWrapper}>
-                            <Text style={styles.header}>
-                                {trans.filtersTitle}
-                            </Text>
-                            <Text style={styles.description}>
-                                {trans.filtersDescription}
-                            </Text>
+            <SafeAreaView>
+                <View style={styles.container}>
+                    <CloseBtn
+                        onPress={onClose}
+                        containerStyle={styles.buttonContainer}
+                    />
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                        contentContainerStyle={contentStyle}>
+                        <View style={styles.wrap}>
+                            <View style={styles.headerWrapper}>
+                                <Text style={styles.header}>
+                                    {trans.filtersTitle}
+                                </Text>
+                                <Text style={styles.description}>
+                                    {trans.filtersDescription}
+                                </Text>
 
-                            {Object.keys(filters).map(f => {
-                                if (
-                                    allowedFilters &&
-                                    !allowedFilters.includes(f)
-                                ) {
-                                    return null;
-                                }
+                                {Object.keys(filters).map(f => {
+                                    if (
+                                        allowedFilters &&
+                                        !allowedFilters.includes(f)
+                                    ) {
+                                        return null;
+                                    }
 
-                                return (
-                                    <Filter
-                                        key={filters[f]?.name}
-                                        name={filters?.[f]?.name}
-                                        options={filters[f]?.options}
-                                        predefined={pickedFilters?.[f] || []}
-                                        isRadioType={filters[f].radioType}
-                                        onSave={onSaveFiltersHanlder}
+                                    return (
+                                        <Filter
+                                            key={filters[f]?.name}
+                                            name={filters?.[f]?.name}
+                                            options={filters[f]?.options}
+                                            predefined={
+                                                pickedFilters?.[f] || []
+                                            }
+                                            isRadioType={filters[f].radioType}
+                                            onSave={onSaveFiltersHanlder}
+                                        />
+                                    );
+                                })}
+                            </View>
+                            <View style={styles.buttonsWrapper}>
+                                <View style={styles.button}>
+                                    <BigWhiteBtn
+                                        title={trans.filtersBackBtn}
+                                        onpress={onResetHandler}
                                     />
-                                );
-                            })}
-                        </View>
-                        <View style={styles.buttonsWrapper}>
-                            <View style={styles.button}>
-                                <BigWhiteBtn
-                                    title={trans.filtersBackBtn}
-                                    onpress={onResetHandler}
-                                />
-                            </View>
-                            <View style={styles.button}>
-                                <BigRedBtn
-                                    title={trans.filtersSaveBtn}
-                                    onpress={onSaveHandler}
-                                />
+                                </View>
+                                <View style={styles.button}>
+                                    <BigRedBtn
+                                        title={trans.filtersSaveBtn}
+                                        onpress={onSaveHandler}
+                                    />
+                                </View>
                             </View>
                         </View>
-                    </View>
-                </ScrollView>
-            </View>
+                    </ScrollView>
+                </View>
+            </SafeAreaView>
         </Modal>
     );
 };
