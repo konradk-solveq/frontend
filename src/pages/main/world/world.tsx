@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, StyleSheet, SafeAreaView, Text, Platform} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import I18n from 'react-native-i18n';
 
 import MyRoutes from './myRoutes/myRoutes';
@@ -41,6 +42,8 @@ enum routesTab {
 const World: React.FC = () => {
     const dispatch = useAppDispatch();
     const trans: any = I18n.t('MainWorld');
+    const navigation = useNavigation();
+
     const statusBarHeight = useStatusBarHeight();
     const nextCoursor = useAppSelector(nextPaginationCoursor);
     const nextPrivateCoursor = useAppSelector(nextPrivatePaginationCoursor);
@@ -213,10 +216,14 @@ const World: React.FC = () => {
                             // styles.headerButtonLeft,
                         ]}
                     />
-                    {/* <MapBtn
-                        onPress={() => {}}
-                        iconStyle={styles.headerButton}
-                    /> */}
+                    <View style={styles.mapBtn}>
+                        <MapBtn
+                            onPress={() => {
+                                navigation.navigate('RoutesMap');
+                            }}
+                            iconStyle={styles.headerButton}
+                        />
+                    </View>
                 </View>
             </View>
 

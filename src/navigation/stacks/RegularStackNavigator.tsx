@@ -26,6 +26,7 @@ import MapPreview from '../../pages/main/world/routeDetails/mapPreview/mapPrevie
 import Regulations from '../../pages/onboarding/permitsDeclarations/regulations';
 import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
 import Contact from '../../pages//main/profile/contact/contact';
+import RoutesMap from '../../pages/main/world/routesMap/routesMap';
 
 const RegularStackNavigator: React.FC = () => {
     return (
@@ -73,6 +74,8 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen name="Regulations" component={Regulations} />
             <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
             <Stack.Screen name="Contact" component={Contact} />
+
+            <Stack.Screen name="RoutesMap" component={RoutesMap} />
         </Stack.Navigator>
     );
 };

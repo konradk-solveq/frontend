@@ -23,8 +23,11 @@ const worldStyles = StyleSheet.create({
     },
     headerButtons: {
         flexDirection: 'row',
-        right: getHorizontalPx(30),
+        right: getHorizontalPx(52),
         // right: getHorizontalPx(60),
+    },
+    mapBtn: {
+        marginLeft: getVerticalPx(22),
     },
     headerButton: {
         margin: 0,
