@@ -371,6 +371,7 @@
         }
     },
     "MainRoutesMap": {
+        "header": "Świat Kross",
         "bikeMap": "Mapa rowerowa",
         "myRoutes": "Moje trasy",
         "planning": "Planowane"

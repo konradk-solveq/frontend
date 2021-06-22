@@ -169,14 +169,14 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
         }
     };
 
-    // const heandleMapLoaded = () => {
-    //     let pos = {
-    //         latitude: route.params.location.latitude,
-    //         longitude: route.params.location.longitude,
-    //     };
+    const heandleMapLoaded = () => {
+        // let pos = {
+        //     latitude: route.params.location.latitude,
+        //     longitude: route.params.location.longitude,
+        // };
 
-    //     setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
-    // };
+        // setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+    };
 
     useEffect(() => {
         // let p = JSON.stringify(places);
@@ -236,8 +236,8 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView SafeAreaView style={styles.container}>
-            {/* <View style={styles.fullView}>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.fullView}>
                 <WebView
                     style={styles.fullView}
                     originWhitelist={['*']}
@@ -261,7 +261,7 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
                     ref={mapRef}
                     onMessage={heandleOnMessage}
                 />
-            </View> */}
+            </View>
 
             <AnimSvg style={styles.gradient} source={gradient} />
 
@@ -287,7 +287,10 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
             </View>
             {adress && <AddressBox address={adress} />}
 
-            <StackHeader onpress={() => props.navigation.goBack()} inner={''} />
+            <StackHeader
+                onpress={() => props.navigation.goBack()}
+                inner={trans.header}
+            />
         </SafeAreaView>
     );
 };
