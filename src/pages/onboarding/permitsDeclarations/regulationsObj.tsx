@@ -3,32 +3,31 @@ export default [
         "version": "1",
         "header": "Regulamin",
         "title": "Sprawdź aktualne zapisy regulaminu dotyczącego Aplikacji Mobilnej myKROSS",
-        "paragraph": [{
-                "marginTop": 53,
+        "paragraph": [
+            {
+                "marginTop": 60,
                 "font": "regular",
                 "text": "REGULAMIN APLIKACJI MOBILNEJ"
             },
-             {
+            {
                 "marginTop": 1,
                 "font": "regular",
-                "text": "Obowiazujący do 22.06.2021 roku."
-
-             },
-
+                "text": "Obowiązuje do 24.06.2021 roku."
+            },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób świadczenia usług drogą elektroniczną przez KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu za pośrednictwem aplikacji mobilnej myKROSS (zwanej dalej: ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "„Aplikacją Mobilną”",
-                        "bold": true
-                    },
-                    {
-                        "phrase": ").",
-                        "bold": false
-                    }
+                    "phrase": "Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób świadczenia usług drogą elektroniczną przez KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu za pośrednictwem aplikacji mobilnej myKROSS (zwanej dalej: ",
+                    "bold": false
+                },
+                {
+                    "phrase": "„Aplikacją Mobilną”",
+                    "bold": true
+                },
+                {
+                    "phrase": ").",
+                    "bold": false
+                }
                 ]
             },
             {
@@ -39,65 +38,65 @@ export default [
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "1. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Aplikacja Mobilna ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza program komputerowy zainstalowany na urządzeniu mobilnym Użytkownika, przy pomocy którego Usługodawca świadczy usługi drogą elektroniczną.",
-                        "bold": false
-                    }
+                    "phrase": "1. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Aplikacja Mobilna ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza program komputerowy zainstalowany na urządzeniu mobilnym Użytkownika, przy pomocy którego Usługodawca świadczy usługi drogą elektroniczną.",
+                    "bold": false
+                }
                 ]
             },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "2. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Konto Użytkownika ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "oznacza indywidualne dla każdego Użytkownika Konto, uruchomione na jego rzecz przez Usługodawcę, po wprowadzeniu w\u00a0panelu Aplikacji Mobilnej imienia lub pseudonimu. W\u00a0przypadku braku podania imienia lub pseudonimu, w\u00a0Aplikacji Użytkownik będzie tytułowany jako Rowerzysta.",
-                        "bold": false
-                    }
+                    "phrase": "2. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Konto Użytkownika ",
+                    "bold": true
+                },
+                {
+                    "phrase": "oznacza indywidualne dla każdego Użytkownika Konto, uruchomione na jego rzecz przez Usługodawcę, po wprowadzeniu w\u00a0panelu Aplikacji Mobilnej imienia lub pseudonimu. W\u00a0przypadku braku podania imienia lub pseudonimu, w\u00a0Aplikacji Użytkownik będzie tytułowany jako Rowerzysta.",
+                    "bold": false
+                }
                 ]
             },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "3. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Regulamin ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza niniejszy regulamin Aplikacji Mobilnej.",
-                        "bold": false
-                    }
+                    "phrase": "3. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Regulamin ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza niniejszy regulamin Aplikacji Mobilnej.",
+                    "bold": false
+                }
                 ]
             },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "4. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Usługodawca ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul. Leszno 46, NIP: 7611402748, REGON: 550749108, wpisaną do rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w\u00a0Białymstoku, XII Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS 0000223853, o\u00a0kapitale zakładowym w\u00a0wysokości 45.000.000 złotych; e-mail: kross@kross.pl, będącą jednocześnie właścicielem Aplikacji Mobilnej.",
-                        "bold": false
-                    }
+                    "phrase": "4. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Usługodawca ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul. Leszno 46, NIP: 7611402748, REGON: 550749108, wpisaną do rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w\u00a0Białymstoku, XII Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS 0000223853, o\u00a0kapitale zakładowym w\u00a0wysokości 45.000.000 złotych; e-mail: kross@kross.pl, będącą jednocześnie właścicielem Aplikacji Mobilnej.",
+                    "bold": false
+                }
                 ]
             },
             {
@@ -108,33 +107,33 @@ export default [
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "5. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Umowa ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza umowę pomiędzy Użytkownikiem a\u00a0Usługodawcą o\u00a0świadczenie usług związanych z\u00a0Aplikacją Mobilną, zawarta drogą elektroniczną wskutek akceptacji przez Użytkownika niniejszego Regulaminu.",
-                        "bold": false
-                    }
+                    "phrase": "5. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Umowa ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza umowę pomiędzy Użytkownikiem a\u00a0Usługodawcą o\u00a0świadczenie usług związanych z\u00a0Aplikacją Mobilną, zawarta drogą elektroniczną wskutek akceptacji przez Użytkownika niniejszego Regulaminu.",
+                    "bold": false
+                }
                 ]
             },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "6. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Użytkownik\\Konsument ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza osobę fizyczną dokonującą czynności prawnej niezwiązanej bezpośrednio z\u00a0jej działalnością gospodarczą lub zawodową.",
-                        "bold": false
-                    }
+                    "phrase": "6. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Użytkownik\\Konsument ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza osobę fizyczną dokonującą czynności prawnej niezwiązanej bezpośrednio z\u00a0jej działalnością gospodarczą lub zawodową.",
+                    "bold": false
+                }
                 ]
             },
             {
@@ -225,7 +224,7 @@ export default [
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "1) prowadzenie Konta Użytkownika, jeśli zostało utworzone przez Użytkownika;"
+                "text": "1) Prowadzenie Konta Użytkownika, jeśli zostało utworzone przez Użytkownika;"
             },
             {
                 "marginTop": 15,
@@ -237,55 +236,10 @@ export default [
                 "font": "light",
                 "text": "3) wyświetlanie specyfikacji roweru\\ów zarejestrowanego\\ych przez Użytkownika."
             },
-             {
-                "marginTop": 15,
-                "font": "light",
-                "text": "4) nagrywanie trasy przez Użytkownika;"
-            },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "5) rejestrowanie i zapisanie w Aplikacji Mobilnej śladu nagrywanej trasy na mapie;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "6) moduł pt.: Świat Kross składający się z funkcji:"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "a) Moje trasy – lista tras prywatnych nagranych i zapisanych wraz z ich parametrami oraz śladem trasy na mapie, przez Użytkownika Aplikacji Mobilnej, dostępna tylko dla tego Użytkownika;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "b) Mapa Rowerowa – lista tras publicznych wraz z ich parametrami, opublikowanych przez Użytkowników i dostępnych dla wszystkich Użytkowników Aplikacji Mobilnej;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "c) Planowane – lista tras publicznych wraz z ich parametrami oraz widokiem śladów trasy na mapie pobranych przez Użytkownika z listy Mapa rowerowa do listy Planowane i dostępnych tylko dla tego Użytkownika."
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "4. Usługa Prowadzenie Konta Użytkownika dostępna jest po utworzeniu Konta Użytkownika, na zasadach określonych w\u00a0Regulaminie. W\u00a0ramach swojego Konta Użytkownika, Użytkownik może:"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "1) zmienić podane wcześniej imię lub pseudonim;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "2) wyświetlać statystyki jazdy dla wszystkich rowerów zarejestrowanych w Aplikacji Mobilnej, tj. dystans, czas, średnią prędkość, ilość upublicznionych tras, ilość pobranych tras. Statystyki dostępne są dla Użytkownika w ujęciu czasowym (7 dni, miesiąc, rok, dowolny okres);"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "3) korzystać z menu Pomoc z najczęściej zadawanymi pytaniami dotyczącymi Aplikacji Mobilnej."
+                "text": "4. Usługa Prowadzenie Konta Użytkownika dostępna jest po utworzeniu Konta Użytkownika, na zasadach określonych w\u00a0Regulaminie. W\u00a0ramach swojego Konta Użytkownika, Użytkownik może zmienić podane wcześniej imię lub pseudonim."
             },
             {
                 "marginTop": 15,
@@ -295,15 +249,10 @@ export default [
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "6. Usługa rejestracja roweru Użytkownika, polega na wprowadzeniu przez Użytkownika parametrów swojego roweru, gdy producentem jest Usługodawca: (numer ramy) oraz gdy producentem jest dowolny inny producent: (numer ramy,  producent, model, rozmiar, kolor)."
+                "text": "6. Usługa rejestracja roweru Użytkownika, polega na wprowadzeniu przez Użytkownika parametrów swojego roweru, gdy producentem jest Usługodawca: numer ramy oraz gdy producentem jest dowolny inny producent: numer ramy,  producent, model, rozmiar, kolor."
             },
             {
-                "marginTop": 1,
-                "font": "light",
-                "text": "W ramach usługi rejestracja roweru Użytkownik może wyświetlać statystyki jazdy dla danego roweru zarejestrowanego w Aplikacji Mobilnej, tj. dystansu oraz czasu przejechanych tras na ekranie prezentującym dane roweru."
-            },
-            {
-                "marginTop": 1,
+                "marginTop": 15,
                 "font": "light",
                 "text": "W przypadku gdy producentem roweru jest Usługodawca, a posiadany przez Użytkownika rower wyposażony jest w naklejkę NFC, Użytkownik alternatywnie zamiast ręcznego wprowadzania numeru ramy, ma możliwość jego zeskanowania. Przyłożenie przez Użytkownika smartfonu z uruchomioną w Aplikacji Mobilnej opcją skanowania NFC do naklejki NFC umieszczonej na ramie roweru, pozwala na automatyczne wczytanie danych. Warunkiem korzystania z tej funkcji Aplikacji Mobilnej jest posiadanie roweru KROSS z naklejką NFC oraz smartfonu obsługującego moduł NFC do wczytywania danych umieszczonych na naklejce NFC. "
             },
@@ -346,101 +295,6 @@ export default [
                 "marginTop": 15,
                 "font": "light",
                 "text": "12. Rezygnacja z\u00a0usługi nieodpłatnej wyświetlanie specyfikacji roweru/ów zarejestrowanych przez Użytkownika, możliwa jest w\u00a0każdej chwili i\u00a0wiąże się z\u00a0zaprzestaniem korzystania z\u00a0usługi."
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "13. Usługa nieodpłatna nagrywania trasy przez użytkownika, pozwala Użytkownikowi na rejestrację parametrów w trakcie jazdy rowerem (dystans, czas jazdy, czas przerw w trakcie jazdy, prędkość, średnia prędkość)."
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "14. Rezygnacja z usługi nieodpłatnej nagrywania trasy przez Użytkownika, możliwa jest w każdej chwili i polega na zaprzestaniu korzystania z usługi przez Użytkownika."
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "15. W usłudze nieodpłatnej rejestrowanie i zapisanie w aplikacji śladu nagrywanej trasy na mapie, ślad jest widoczny dla Użytkownika dopiero po zakończeniu nagrywania i zapisaniu trasy. Zanim Użytkownik zapisze trasę, na mapie widoczna jest tylko pozycja Użytkownika."
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "16. Rezygnacja z usługi nieodpłatnej rejestrowanie i zapisywanie w aplikacji śladu nagrywanej trasy na mapie, możliwa jest w każdej chwili i polega na zaprzestaniu korzystania z usługi przez Użytkownika."
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "17. Usługa bezpłatna Świat Kross z funkcją Moje trasy, daje Użytkownikowi możliwość:"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "1) wyświetlania listy tras prywatnych nagranych i zapisanych przez Użytkownika na prywatnej liście Moje trasy, widocznych wraz ze śladem trasy na mapie tylko przez autora trasy. Parametry widoczne dla trasy zapisanej to: tytuł (nadawany domyślnie w aplikacji według wzoru „Trasa z dnia dd/mm/rrrr”, data utworzenia trasy, godzina utworzenia trasy, dystans, czas jazdy, czas przerw w trakcie jazdy, odległość Użytkownika od bieżącej lokalizacji do początku trasy, początek trasy (miejscowość, województwo), koniec trasy (miejscowość, województwo), status trasy (opublikowana, nieopublikowana);"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "2) dodania lub edycji przez Użytkownika informacji do nagranej trasy (modyfikacja tytułu domyślnego, opis, zdjęcia, tagi, poziom trudności, rodzaj nawierzchni);"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "3) publikowania nagranej i zapisanej przez Użytkownika trasy na publicznej Mapie Rowerowej. Publikacja pod imieniem/pseudonimem lub anonimowo. Warunkiem opublikowania trasy na publicznej Mapie Rowerowej w aplikacji jest uzupełnienie informacji dotyczących trasy wskazanych w ust. 17 lit. 2);"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "4) filtrowania zapisanych tras wg: daty, poziomu trudności, rodzaju nawierzchni, tagów;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "5) usuwania przez Użytkownika zapisanych tras prywatnych;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "6) odinstalowania aplikacji przez Użytkownika z urządzenia mobilnego (smartfon). Odinstalowanie aplikacji spowoduje utratę danych dotyczących tras prywatnych zapisanych w sekcji Moje trasy. Po ponownym zainstalowaniu aplikacji przez Użytkownika w sekcji Moje trasy nie będą widocznie trasy zapisane przez Użytkownika w aplikacji przed jej odinstalowaniem."
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "18. Usługa bezpłatna Świat Kross z funkcją Mapa rowerowa, daje Użytkownikowi możliwość:"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "1) wyświetlania tras publicznych opublikowanych na publicznej Mapie Rowerowej przez Użytkowników wraz z widokiem śladu trasy na mapie. Parametry widoczne dla trasy opublikowanej to: tytuł, opis, zdjęcia trasy/z trasy, dystans, czas niezbędny na przejechanie trasy, odległość użytkownika od bieżącej lokalizacji do początku trasy, rodzaj nawierzchni, poziom trudności, tagi, rating (ilość pobrań danej trasy przez Użytkowników do listy Planowane, autor (Rowerzysta lub imię/pseudonim);"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "2) pobrania trasy z publicznej Mapy Rowerowej do listy tras Planowanych do przejechania przez użytkownika Aplikacji Mobilnej;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "3) dodawania opisów trasy w komentarzach, zdjęć trasy oraz tagów do opublikowanej przez Użytkownika trasy także przez innych Użytkowników;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "4) filtrowania zapisanych tras wg: daty, poziomu trudności, rodzaju nawierzchni, tagów;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "19. Usługa bezpłatna Świat Kross z funkcją Planowane, daje Użytkownikowi możliwość:"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "1) filtrowania zapisanych tras wg: daty, poziomu trudności, rodzaju nawierzchni, tagów;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "2) usuwania przez Użytkownika tras pobranych do listy Planowane."
             },
             {
                 "marginTop": 53,
@@ -668,32 +522,31 @@ export default [
         "version": "2",
         "header": "Regulamin",
         "title": "Sprawdź aktualne zapisy regulaminu dotyczącego Aplikacji Mobilnej myKROSS",
-        "paragraph": [{
-                "marginTop": 53,
+        "paragraph": [
+            {
+                "marginTop": 60,
                 "font": "regular",
                 "text": "REGULAMIN APLIKACJI MOBILNEJ"
             },
-             {
+            {
                 "marginTop": 1,
                 "font": "regular",
-                "text": "Obowiazujący od 23.06.2021 roku."
-
-             },
-
+                "text": "Obowiazuje od 25.06.2021 roku."
+            },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób świadczenia usług drogą elektroniczną przez KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu za pośrednictwem aplikacji mobilnej myKROSS (zwanej dalej: ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "„Aplikacją Mobilną”",
-                        "bold": true
-                    },
-                    {
-                        "phrase": ").",
-                        "bold": false
-                    }
+                    "phrase": "Niniejszy Regulamin określa ogólne warunki, zasady oraz sposób świadczenia usług drogą elektroniczną przez KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu za pośrednictwem aplikacji mobilnej myKROSS (zwanej dalej: ",
+                    "bold": false
+                },
+                {
+                    "phrase": "„Aplikacją Mobilną”",
+                    "bold": true
+                },
+                {
+                    "phrase": ").",
+                    "bold": false
+                }
                 ]
             },
             {
@@ -704,65 +557,65 @@ export default [
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "1. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Aplikacja Mobilna ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza program komputerowy zainstalowany na urządzeniu mobilnym Użytkownika, przy pomocy którego Usługodawca świadczy usługi drogą elektroniczną.",
-                        "bold": false
-                    }
+                    "phrase": "1. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Aplikacja Mobilna ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza program komputerowy zainstalowany na urządzeniu mobilnym Użytkownika, przy pomocy którego Usługodawca świadczy usługi drogą elektroniczną.",
+                    "bold": false
+                }
                 ]
             },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "2. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Konto Użytkownika ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "oznacza indywidualne dla każdego Użytkownika Konto, uruchomione na jego rzecz przez Usługodawcę, po wprowadzeniu w\u00a0panelu Aplikacji Mobilnej imienia lub pseudonimu. W\u00a0przypadku braku podania imienia lub pseudonimu, w\u00a0Aplikacji Użytkownik będzie tytułowany jako Rowerzysta.",
-                        "bold": false
-                    }
+                    "phrase": "2. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Konto Użytkownika ",
+                    "bold": true
+                },
+                {
+                    "phrase": "oznacza indywidualne dla każdego Użytkownika Konto, uruchomione na jego rzecz przez Usługodawcę, po wprowadzeniu w\u00a0panelu Aplikacji Mobilnej imienia lub pseudonimu. W\u00a0przypadku braku podania imienia lub pseudonimu, w\u00a0Aplikacji Użytkownik będzie tytułowany jako Rowerzysta.",
+                    "bold": false
+                }
                 ]
             },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "3. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Regulamin ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza niniejszy regulamin Aplikacji Mobilnej.",
-                        "bold": false
-                    }
+                    "phrase": "3. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Regulamin ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza niniejszy regulamin Aplikacji Mobilnej.",
+                    "bold": false
+                }
                 ]
             },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "4. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Usługodawca ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul. Leszno 46, NIP: 7611402748, REGON: 550749108, wpisaną do rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w\u00a0Białymstoku, XII Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS 0000223853, o\u00a0kapitale zakładowym w\u00a0wysokości 45.000.000 złotych; e-mail: kross@kross.pl, będącą jednocześnie właścicielem Aplikacji Mobilnej.",
-                        "bold": false
-                    }
+                    "phrase": "4. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Usługodawca ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul. Leszno 46, NIP: 7611402748, REGON: 550749108, wpisaną do rejestru przedsiębiorców Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy w\u00a0Białymstoku, XII Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS 0000223853, o\u00a0kapitale zakładowym w\u00a0wysokości 45.000.000 złotych; e-mail: kross@kross.pl, będącą jednocześnie właścicielem Aplikacji Mobilnej.",
+                    "bold": false
+                }
                 ]
             },
             {
@@ -773,33 +626,33 @@ export default [
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "5. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Umowa ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza umowę pomiędzy Użytkownikiem a\u00a0Usługodawcą o\u00a0świadczenie usług związanych z\u00a0Aplikacją Mobilną, zawarta drogą elektroniczną wskutek akceptacji przez Użytkownika niniejszego Regulaminu.",
-                        "bold": false
-                    }
+                    "phrase": "5. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Umowa ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza umowę pomiędzy Użytkownikiem a\u00a0Usługodawcą o\u00a0świadczenie usług związanych z\u00a0Aplikacją Mobilną, zawarta drogą elektroniczną wskutek akceptacji przez Użytkownika niniejszego Regulaminu.",
+                    "bold": false
+                }
                 ]
             },
             {
                 "marginTop": 15,
                 "text": [{
-                        "phrase": "6. ",
-                        "bold": false
-                    },
-                    {
-                        "phrase": "Użytkownik\\Konsument ",
-                        "bold": true
-                    },
-                    {
-                        "phrase": "- oznacza osobę fizyczną dokonującą czynności prawnej niezwiązanej bezpośrednio z\u00a0jej działalnością gospodarczą lub zawodową.",
-                        "bold": false
-                    }
+                    "phrase": "6. ",
+                    "bold": false
+                },
+                {
+                    "phrase": "Użytkownik\\Konsument ",
+                    "bold": true
+                },
+                {
+                    "phrase": "- oznacza osobę fizyczną dokonującą czynności prawnej niezwiązanej bezpośrednio z\u00a0jej działalnością gospodarczą lub zawodową.",
+                    "bold": false
+                }
                 ]
             },
             {
@@ -902,7 +755,7 @@ export default [
                 "font": "light",
                 "text": "3) wyświetlanie specyfikacji roweru\\ów zarejestrowanego\\ych przez Użytkownika."
             },
-             {
+            {
                 "marginTop": 15,
                 "font": "light",
                 "text": "4) nagrywanie trasy przez Użytkownika;"
@@ -925,12 +778,12 @@ export default [
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "b) Mapa Rowerowa – lista tras publicznych wraz z ich parametrami, opublikowanych przez Użytkowników i dostępnych dla wszystkich Użytkowników Aplikacji Mobilnej;"
+                "text": "b) Mapa Rowerowa – lista tras publicznych wraz z ich parametrami oraz widokiem śladów trasy na mapie, opublikowanych przez Użytkowników i dostępnych dla wszystkich Użytkowników Aplikacji Mobilnej;"
             },
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "c) Planowane – lista tras publicznych wraz z ich parametrami oraz widokiem śladów trasy na mapie pobranych przez Użytkownika z listy Mapa rowerowa do listy Planowane i dostępnych tylko dla tego Użytkownika."
+                "text": "c) Planowane – lista tras publicznych wraz z ich parametrami oraz widokiem śladów trasy na mapie pobranych przez Użytkownika z listy Mapa Rowerowa do listy Planowane i dostępnych tylko dla tego Użytkownika."
             },
             {
                 "marginTop": 15,
@@ -955,7 +808,7 @@ export default [
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "5. Rezygnacja z\u00a0usługi Konto Użytkownika możliwa jest w\u00a0każdej chwili i\u00a0polega na zaprzestaniu korzystania z\u00a0Aplikacji mobilnej."
+                "text": "5. Rezygnacja z\u00a0usługi Konto Użytkownika możliwa jest w\u00a0każdej chwili i\u00a0polega na zaprzestaniu korzystania z\u00a0Aplikacji Mobilnej."
             },
             {
                 "marginTop": 15,
@@ -1075,7 +928,7 @@ export default [
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "1) wyświetlania tras publicznych opublikowanych na publicznej Mapie Rowerowej przez Użytkowników wraz z widokiem śladu trasy na mapie. Parametry widoczne dla trasy opublikowanej to: tytuł, opis, zdjęcia trasy/z trasy, dystans, czas niezbędny na przejechanie trasy, odległość użytkownika od bieżącej lokalizacji do początku trasy, rodzaj nawierzchni, poziom trudności, tagi, rating (ilość pobrań danej trasy przez Użytkowników do listy Planowane, autor (Rowerzysta lub imię/pseudonim);"
+                "text": "1) wyświetlania tras publicznych opublikowanych na publicznej Mapie Rowerowej przez Użytkowników wraz z widokiem śladu trasy na mapie. Parametry widoczne dla trasy opublikowanej to: tytuł, opis, zdjęcia trasy/z trasy, dystans, czas niezbędny na przejechanie trasy, odległość użytkownika od bieżącej lokalizacji do początku trasy, rodzaj nawierzchni, poziom trudności, tagi, rating (ilość pobrań danej trasy przez Użytkowników do listy Planowane), autor (Rowerzysta lub imię/pseudonim);"
             },
             {
                 "marginTop": 15,
@@ -1085,12 +938,7 @@ export default [
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "3) dodawania opisów trasy w komentarzach, zdjęć trasy oraz tagów do opublikowanej przez Użytkownika trasy także przez innych Użytkowników;"
-            },
-            {
-                "marginTop": 15,
-                "font": "light",
-                "text": "4) filtrowania zapisanych tras wg: daty, poziomu trudności, rodzaju nawierzchni, tagów;"
+                "text": "3) filtrowania zapisanych tras wg: daty, poziomu trudności, rodzaju nawierzchni, tagów;"
             },
             {
                 "marginTop": 15,
@@ -1325,9 +1173,8 @@ export default [
             {
                 "marginTop": 15,
                 "font": "light",
-                "text": "6. Regulamin wchodzi w\u00a0życie z\u00a0dniem 23.06.2021 r."
+                "text": "6. Regulamin wchodzi w\u00a0życie z\u00a0dniem 25.06.2021 r."
             }
         ]
     }
-
 ];

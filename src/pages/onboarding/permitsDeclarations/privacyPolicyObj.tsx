@@ -12,7 +12,7 @@ export default [
             {
                 "marginTop": 15,
                 "font": "regular",
-                "text": "Obowiązuje do dnia 22.06.2021 roku."
+                "text": "Obowiązuje do dnia 23.06.2021 roku."
             },
             {
                 "marginTop": 53,
@@ -264,7 +264,7 @@ export default [
             {
                 "marginTop": 15,
                 "font": "regular",
-                "text": "Obowiązuje od dnia 23.06.2021 roku."
+                "text": "Obowiązuje od dnia 24.06.2021 roku."
             },
             {
                 "marginTop": 53,
@@ -514,7 +514,7 @@ export default [
             {
                 "marginTop": 53,
                 "font": "light",
-                "text": "Wersja obowiązuje od dnia 23.06.2021 r."
+                "text": "Wersja obowiązuje od dnia 24.06.2021 r."
             }
         ]
     }
