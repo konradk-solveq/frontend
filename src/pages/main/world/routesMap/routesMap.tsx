@@ -11,11 +11,10 @@ import {
 import I18n from 'react-native-i18n';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {fetchPlacesData} from '../../../../storage/actions';
 import useGetLocation from '../../../../hooks/useGetLocation';
 
 import {
-    markerTypes,
+    RouteMapType,
     Place,
     PointDetails,
 } from '../../../../models/places.model';
@@ -45,104 +44,86 @@ const {width, height} = Dimensions.get('window');
 
 const RoutesMap: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
-    const isFetching = useAppSelector<boolean>(state => state.places.loading);
-    const places = useAppSelector<Place[]>(state => state.places.places);
+    // const isFetching = useAppSelector<boolean>(state => state.places.loading);
+    // dodać listę tras
 
-    const trans: any = I18n.t('ServicesMap');
+    const trans: any = I18n.t('MainRoutesMap');
     const param = props.route.params;
     const route = useRoute();
 
-    const [markersFilters, setMarkersFilters] = useState<markerTypes[]>([
-        markerTypes.SERVICE,
-        markerTypes.SHOP,
-    ]);
     const [adress, setAdress] = useState<PointDetails | null>(null);
-    const [regionData, setRegionData] = useState<Region>(param.region);
+    const [currentMapType, setCurrentMapType] = useState<string>(
+        RouteMapType.BIKE_MAP,
+    );
 
-    const heandleShowAdress = (adressDetails: PointDetails | null) => {
-        if (adressDetails && Platform.OS === 'android') {
-            setRegionData(undefined);
-        }
-        setAdress(adressDetails);
-    };
+    // const [regionData, setRegionData] = useState<Region>(param.region);
 
-    const onRegionChangeHandler = (region: Region) => {
-        if (isFetching) {
-            return;
-        }
+    // const heandleShowAdress = (adressDetails: PointDetails | null) => {
+    //     if (adressDetails && Platform.OS === 'android') {
+    //         setRegionData(undefined);
+    //     }
+    //     setAdress(adressDetails);
+    // };
 
-        // wyliczenie regionu widocznego na ekranie
-        const newBox = {
-            top: region.latitude - region.latitudeDelta * 0.5,
-            bottom: region.latitude + region.latitudeDelta * 0.5,
-            left: region.longitude - region.longitudeDelta * 0.5,
-            right: region.longitude + region.longitudeDelta * 0.5,
-        };
+    // const onRegionChangeHandler = (region: Region) => {
+    //     if (isFetching) {
+    //         return;
+    //     }
 
-        setRegionData(region);
+    //     // wyliczenie regionu widocznego na ekranie
+    //     const newBox = {
+    //         top: region.latitude - region.latitudeDelta * 0.5,
+    //         bottom: region.latitude + region.latitudeDelta * 0.5,
+    //         left: region.longitude - region.longitudeDelta * 0.5,
+    //         right: region.longitude + region.longitudeDelta * 0.5,
+    //     };
 
-        const getMapData = async () => {
-            if (isFetching) {
-                return;
-            }
+    //     setRegionData(region);
 
-            let bbox = [
-                {lat: newBox.left, lng: newBox.top},
-                {lat: newBox.right, lng: newBox.bottom},
-            ];
+    //     const getMapData = async () => {
+    //         if (isFetching) {
+    //             return;
+    //         }
 
-            try {
-                await dispatch(
-                    fetchPlacesData({
-                        bbox,
-                        width: 2500,
-                    }),
-                );
-            } catch (error) {
-                /* TODO: add ui info */
-                console.log('[Get places error]', error);
-            }
-        };
+    //         let bbox = [
+    //             {lat: newBox.left, lng: newBox.top},
+    //             {lat: newBox.right, lng: newBox.bottom},
+    //         ];
 
-        getMapData();
-    };
+    //         try {
+    //             await dispatch(
+    //                 fetchPlacesData({
+    //                     bbox,
+    //                     width: 2500,
+    //                 }),
+    //             );
+    //         } catch (error) {
+    //             /* TODO: add ui info */
+    //             console.log('[Get places error]', error);
+    //         }
+    //     };
+
+    //     getMapData();
+    // };
 
     const mapRef = useRef();
     const setJs = (foo: string) => mapRef.current.injectJavaScript(foo);
 
     /* TODO: extract as helper method */
-    const heandleShops = () => {
-        if (!markersFilters?.includes(markerTypes.SERVICE)) {
-            return;
-        }
-        setMarkersFilters(prevFilters => {
-            if (prevFilters.includes(markerTypes.SHOP)) {
-                const newFilters = prevFilters.filter(
-                    f => f !== markerTypes.SHOP,
-                );
-                setJs('setShops(false)');
-                return newFilters;
-            }
-            setJs('setShops(true)');
-            return [...prevFilters, markerTypes.SHOP];
-        });
+    const setBtnRadio = (mapType: string) => {
+        setCurrentMapType(mapType);
     };
 
-    const heandleServices = () => {
-        if (!markersFilters?.includes(markerTypes.SHOP)) {
-            return;
-        }
-        setMarkersFilters(prevFilters => {
-            if (prevFilters.includes(markerTypes.SERVICE)) {
-                const newFilters = prevFilters.filter(
-                    f => f !== markerTypes.SERVICE,
-                );
-                setJs('setServices(false)');
-                return newFilters;
-            }
-            setJs('setServices(true)');
-            return [...prevFilters, markerTypes.SERVICE];
-        });
+    const heandleBikeMap = () => {
+        setBtnRadio(RouteMapType.BIKE_MAP);
+    };
+
+    const heandleMyRoutes = () => {
+        setBtnRadio(RouteMapType.MY_ROUTES);
+    };
+
+    const heandlePlanning = () => {
+        setBtnRadio(RouteMapType.PLANNING);
     };
 
     const heandleOnMessage = e => {
@@ -158,21 +139,21 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
                         {lat: newBox.west, lng: newBox.south},
                     ];
 
-                    const getMapData = async () => {
-                        try {
-                            await dispatch(
-                                fetchPlacesData({
-                                    bbox: bbox,
-                                    width: 500,
-                                }),
-                            );
-                        } catch (error) {
-                            /* TODO: add ui info */
-                            console.log('[Get places error]', error);
-                        }
-                    };
+                    // const getMapData = async () => {
+                    //     try {
+                    //         await dispatch(
+                    //             fetchPlacesData({
+                    //                 bbox: bbox,
+                    //                 width: 500,
+                    //             }),
+                    //         );
+                    //     } catch (error) {
+                    //         /* TODO: add ui info */
+                    //         console.log('[Get places error]', error);
+                    //     }
+                    // };
 
-                    getMapData();
+                    // getMapData();
                 }
                 break;
             case 'clickMarker':
@@ -188,21 +169,20 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
         }
     };
 
-    const heandleMapLoaded = () => {
-        let pos = {
-            latitude: route.params.location.latitude,
-            longitude: route.params.location.longitude,
-        };
+    // const heandleMapLoaded = () => {
+    //     let pos = {
+    //         latitude: route.params.location.latitude,
+    //         longitude: route.params.location.longitude,
+    //     };
 
-        setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
-    };
+    //     setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+    // };
 
     useEffect(() => {
-        let p = JSON.stringify(places);
-        if(places.length == 0) return;
-
-        setJs(`setMarks(${p});true;`);
-    }, [places]);
+        // let p = JSON.stringify(places);
+        // if(places.length == 0) return; // lista tras
+        // setJs(`setMarks(${p});true;`);
+    }, []);
 
     setObjSize(350, 23);
     const styles = StyleSheet.create({
@@ -257,7 +237,7 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
 
     return (
         <SafeAreaView SafeAreaView style={styles.container}>
-            <View style={styles.fullView}>
+            {/* <View style={styles.fullView}>
                 <WebView
                     style={styles.fullView}
                     originWhitelist={['*']}
@@ -281,22 +261,28 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
                     ref={mapRef}
                     onMessage={heandleOnMessage}
                 />
-            </View>
+            </View> */}
 
             <AnimSvg style={styles.gradient} source={gradient} />
 
             <View style={styles.btns}>
                 <TypicalRedBtn
                     style={styles.btn}
-                    title={trans.services}
-                    active={markersFilters?.includes(markerTypes.SERVICE)}
-                    onpress={heandleServices}
+                    title={trans.bikeMap}
+                    active={currentMapType === RouteMapType.BIKE_MAP}
+                    onpress={heandleBikeMap}
                 />
                 <TypicalRedBtn
                     style={styles.btn}
-                    title={trans.shops}
-                    active={markersFilters?.includes(markerTypes.SHOP)}
-                    onpress={heandleShops}
+                    title={trans.myRoutes}
+                    active={currentMapType === RouteMapType.MY_ROUTES}
+                    onpress={heandleMyRoutes}
+                />
+                <TypicalRedBtn
+                    style={styles.btn}
+                    title={trans.planning}
+                    active={currentMapType === RouteMapType.PLANNING}
+                    onpress={heandlePlanning}
                 />
             </View>
             {adress && <AddressBox address={adress} />}

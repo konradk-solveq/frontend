@@ -30,3 +30,9 @@ export interface Place {
     markerTypes: markerTypes[];
     markerType: string;
 }
+
+export enum RouteMapType {
+    BIKE_MAP = 'bikeMap',
+    MY_ROUTES = 'myRoutes',
+    PLANNING = 'planning',
+}

@@ -114,10 +114,10 @@
     ],
     "newRegulations": {
         "version": "1.0.0",
-        "header": ["Informacja", "Regulamin"],
-        "btnOk": "DALEJ",
-        "btnDontAccept": "NIE AKCEPTUJĘ",
-        "btnAccept": "AKCEPTUJĘ",
+        "type": "info",
+        "header": "Regulamin",
+        "title": "Od 1 czerwca 2021 zmieniamy regulamin aplikacji.",
+        "text": "Sprawdź zmiany i nowości, które wprowadzamy w http://kross.eu.",
         "urls": [{
                 "url": "http://regulations.eu",
                 "hyper": "Regulaminu"
@@ -130,18 +130,7 @@
                 "url": "http://informUs.eu",
                 "hyper": "poinformuj nas"
             },
-        ]
-    },
-    "newRegulations": {
-        "version": "1.0.0",
-        "type": "info",
-        "header": "Regulamin",
-        "title": "Od 1 czerwca 2021 zmieniamy regulamin aplikacji.",
-        "text": "Sprawdź zmiany i nowości, które wprowadzamy w http://kross.eu.",
-        "urls": [{
-            "url": "http://kross.eu",
-            "hyper": "Regulaminem Aplikacji Mobilnej"
-        }],
+        ],
         "btnOk": "DALEJ",
         "btnDontAccept": "NIE AKCEPTUJĘ",
         "btnAccept": "AKCEPTUJĘ"
@@ -380,6 +369,12 @@
             "emptyStateButton": "Pobierz trasę",
             "defaultUserName": "Rowerzysto"
         }
+    },
+    "MainRoutesMap": {
+        "bikeMap": "Mapa rowerowa",
+        "myRoutes": "Moje trasy",
+        "planning": "Planowane"
+
     },
     "MainMyRoutes": {
         "title": "Nie masz nagranych tras",
