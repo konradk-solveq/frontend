@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {useAppSelector} from '../hooks/redux';
 import useAuthorization from '../hooks/useAuthorization';
+import useAppInit from '../hooks/useAppInit';
 
 import OnboardingStackNavigator from './stacks/OnboardingStackNavigator';
 import RegularStackNavigator from './stacks/RegularStackNavigator';
@@ -20,6 +21,7 @@ const NavContainer: React.FC = () => {
         onboardingFinishedSelector,
     );
     useAuthorization(isOnboardingFinished);
+    useAppInit();
 
     return (
         <NavigationContainer theme={KrossTheme}>

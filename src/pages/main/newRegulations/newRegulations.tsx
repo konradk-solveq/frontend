@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -8,41 +8,82 @@ import {
     Platform,
     Linking,
 } from 'react-native';
-import Svg, { Path, Circle } from 'react-native-svg';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 
-import { getStatusBarHeight } from '../../../utils/detectIOSDevice';
+import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
 import {
     setObjSize,
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
+import Loader from '../../onboarding/bikeAdding/loader/loader';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
+import {TermsAndConditionsType} from '../../../models/regulations.model';
+import {setAppShowedRegulationsNumber} from '../../../storage/actions';
 
 interface Props {
     navigation: any;
     route: any;
 }
 
-const newRegulations: React.FC<Props> = (props: Props) => {
+const NewRegulations: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('newRegulations');
-    // TODO
-    // data = {
-    //     version: string, // 1.0.0
-    //     type: string, // info | change
-    //     title: string, // Od 1 czerwca 2021 zmieniamy regulamin aplikacji.
-    //     text: string, //Sprawdź zmiany i nowości, które wprowadzamy w http://kross.eu.
-    //     urls: [{
-    //         url: string, // http://kross.eu
-    //         hyper: string // Regulaminem Aplikacji Mobilnej
-    //     }],
-    // }
-    
-    const [headHeight, setHeadHeight] = useState(0);
+    const dispatch = useAppDispatch();
+    const currentVersion = useAppSelector<string>(
+        state => state.app.currentTerms?.version,
+    );
+    const data = useAppSelector<TermsAndConditionsType>(
+        state => state.app.terms?.[state.app?.terms?.length - 1],
+    );
+    const content = useAppSelector<TermsAndConditionsType>(
+        state => state.app.terms?.[Number(currentVersion) - 1],
+    );
+    const showed = useAppSelector<number>(state => state.app.showedRegulations);
+
+    const [headHeight, setHeadHeight] = useState<number>(0);
+    const [pageType, setPageType] = useState<string | null>(null);
+    const [shovedToSave, setShovedToSave] = useState<number>(0);
+
+    useEffect(() => {
+        if (data) {
+            const now = Date.now();
+            const showDate = data.showDate ? Date.parse(data.showDate) : 0;
+            const publishDate = data?.publishDate
+                ? Date.parse(data.publishDate)
+                : 0;
+
+            if (
+                Number(currentVersion) != Number(data.version) ||
+                !currentVersion
+            ) {
+                if (
+                    (!currentVersion ||
+                        Number(showed) < Number(currentVersion) + 0.5) &&
+                    showDate <= now &&
+                    publishDate > now
+                ) {
+                    setPageType('info');
+                    setShovedToSave(Number(currentVersion) + 0.5);
+                } else if (
+                    Number(showed) < Number(data.version) &&
+                    publishDate <= now
+                ) {
+                    setPageType('change');
+                    setShovedToSave(Number(data.version));
+                }
+            }
+        }
+    }, [pageType, currentVersion, data, showed]);
+
+    const handleGoForward = () => {
+        dispatch(setAppShowedRegulationsNumber(shovedToSave));
+        props.navigation.navigate('MineMenu');
+    };
 
     const getHeight = useCallback(async () => {
         const statusBarHeight = await getStatusBarHeight(
@@ -81,11 +122,12 @@ const newRegulations: React.FC<Props> = (props: Props) => {
         },
         svg: {
             marginTop: getVerticalPx(37),
-            width: getWidthPx(),
-            height: getWidthPx(),
+            width: getWidthPx() / 2,
+            height: getWidthPx() / 2,
+            left: getWidthPx() / 4,
         },
         text: {
-            marginTop: getVerticalPx(20),
+            marginTop: getVerticalPx(37),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
             fontSize: 23,
@@ -129,17 +171,26 @@ const newRegulations: React.FC<Props> = (props: Props) => {
         },
         oneOfTwoBtns: {
             width: getHorizontalPx(157),
-        }
+        },
     });
+
+    if (!pageType) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <Loader />
+            </SafeAreaView>
+        );
+    }
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.scroll}>
                 <ScrollView>
-                    <View style={styles.wrap}>
-                        <Text style={styles.title}>{trans.title}</Text>
+                    {content && (
+                        <View style={styles.wrap}>
+                            <Text style={styles.title}>{content.title}</Text>
 
-                        <Svg style={styles.svg} viewBox="0 0 296 296">
+                            {/* <Svg style={styles.svg} viewBox="0 0 296 296">
                             <Circle cx="148" cy="148" r="148" fill="#F0F0F0" />
                             <Path
                                 fill="#FFF"
@@ -163,53 +214,70 @@ const newRegulations: React.FC<Props> = (props: Props) => {
                                 d="M172.22 104.954L223.377 114.934 222.423 117.899z"
                                 transform="translate(-62 -253) translate(3) translate(59 253)"
                             />
-                        </Svg>
+                        </Svg> */}
 
-                        <Hyperlink
-                            linkStyle={{ color: '#3587ea' }}
-                            linkText={(url: string) => {
-                                let link = trans.urls.find(e => e.url == url);
-                                if (link) {
-                                    return link.hyper;
-                                } else {
-                                    return url;
-                                }
-                            }}
-                            onPress={(url: string) => {
-                                Linking.openURL(url);
-                            }}>
-                            <Text style={styles.text}>{trans.text}</Text>
-                        </Hyperlink>
-                    </View>
+                            <Hyperlink
+                                linkStyle={{color: '#3587ea'}}
+                                linkText={(url: string) => {
+                                    let link = trans.urls.find(
+                                        e => e.url == url,
+                                    );
+                                    if (link) {
+                                        return link.hyper;
+                                    } else {
+                                        return url;
+                                    }
+                                }}
+                                onPress={(url: string) => {
+                                    if (url == 'http://regulations.eu') {
+                                        props.navigation.navigate(
+                                            'Regulations',
+                                        );
+                                    } else if (
+                                        url == 'http://privacyPolicy.eu'
+                                    ) {
+                                        props.navigation.navigate(
+                                            'PrivacyPolicy',
+                                        );
+                                    } else if (url == 'http://informUs.eu') {
+                                        props.navigation.navigate('Contact');
+                                    } else {
+                                        Linking.openURL(url);
+                                    }
+                                }}>
+                                <Text style={styles.text}>{content.text}</Text>
+                            </Hyperlink>
+                        </View>
+                    )}
                 </ScrollView>
             </View>
 
             <View style={styles.header}>
-                <Text style={styles.headerText}>{trans.header}</Text>
+                <Text style={styles.headerText}>
+                    {pageType === 'info' ? trans.header[0] : trans.header[1]}
+                </Text>
             </View>
 
             <View style={styles.btns}>
-                {trans.type == 'info' && (
+                {pageType === 'info' && (
                     <BigRedBtn
                         style={styles.oneBtn}
                         title={trans.btnOk}
-                        onpress={() => props.navigation.navigate('MineMenu')}
+                        onpress={handleGoForward}
                     />
                 )}
-                {trans.type == 'change' && (
+                {pageType === 'change' && (
                     <View style={styles.twoBtnsWrap}>
-
                         <BigWhiteBtn
                             style={styles.oneOfTwoBtns}
                             title={trans.btnDontAccept}
-                            onpress={() => { }}
+                            onpress={() => {}}
                         />
                         <BigRedBtn
                             style={styles.oneOfTwoBtns}
                             title={trans.btnAccept}
-                            onpress={() => { }}
+                            onpress={handleGoForward}
                         />
-
                     </View>
                 )}
             </View>
@@ -217,4 +285,4 @@ const newRegulations: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default newRegulations;
+export default NewRegulations;
