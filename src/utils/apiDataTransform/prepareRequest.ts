@@ -3,6 +3,7 @@ import {Point} from '../../models/places.model';
 import {MapMetadataType} from '../../interfaces/api';
 import {ImageType, MapFormDataResult} from '../../interfaces/form';
 import {I18n} from '../../../I18n/I18n';
+import {getDateString} from '../dateTime';
 
 export const tranformParamsToBBoxRequest = (data: Point[]): string => {
     const first = `bbox=${data[0].lat}&bbox=${data[0].lng}`;
@@ -29,10 +30,8 @@ export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
 
 export const getRouteDefaultName = () => {
     const trans: any = I18n.t('dataAction.routeData');
-    const date = new Date();
-    const defaultName = `${
-        trans.defaultRouteName
-    } ${date.toLocaleDateString()}`;
+    const date = getDateString(new Date(), '/');
+    const defaultName = `${trans.defaultRouteName} ${date}`;
 
     return defaultName;
 };
