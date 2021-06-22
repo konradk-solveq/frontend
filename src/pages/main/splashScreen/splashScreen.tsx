@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Dimensions, View, StatusBar} from 'react-native';
 import AnimSvg from '../../../helpers/animSvg';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 
 import {
     setObjSize,
@@ -9,6 +10,7 @@ import {
     getWidthPx,
     getRelativeHeight,
 } from '../../../helpers/layoutFoo';
+import {TermsAndConditionsType} from '../../../models/regulations.model';
 
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
@@ -17,15 +19,56 @@ interface Props {
     navigation: any;
 }
 
-const SplashScreen: React.FC<Props> = (props: Props) => {
-    const [showNewRegulations, setShowNewRegulations] = useState(false);
+let time = __DEV__ ? 100 : 3000;
 
-    let time = __DEV__ ? 100 : 3000;
-    setTimeout(() => {
-        props.navigation.replace(
-            showNewRegulations ? 'newRegulations' : 'MineMenu',
-        );
-    }, time);
+const SplashScreen: React.FC<Props> = (props: Props) => {
+    const data = useAppSelector<TermsAndConditionsType>(
+        state => state.app.terms?.[state.app?.terms?.length - 1],
+    );
+    const currentVersion = useAppSelector<string>(
+        state => state.app.currentTerms.version,
+    );
+    const isLoading = useAppSelector<boolean>(state => state.app.sync);
+    const showed = useAppSelector<number>(state => state.app.showedRegulations);
+    const [showNewRegulations, setShowNewRegulations] = useState<boolean>();
+
+    useEffect(() => {
+        if (data) {
+            const now = Date.now();
+            const showDate = data.showDate ? Date.parse(data.showDate) : 0;
+            const publishDate = data?.publishDate
+                ? Date.parse(data.publishDate)
+                : 0;
+
+            const condition1 =
+                Number(currentVersion) != Number(data.version) ||
+                !currentVersion;
+
+            const condition2 =
+                (!currentVersion ||
+                    Number(showed) < Number(currentVersion) + 0.5) &&
+                showDate <= now &&
+                publishDate > now;
+
+            const condition3 =
+                Number(showed) < Number(data.version) && publishDate <= now;
+
+            setShowNewRegulations(condition1 && (condition2 || condition3));
+        }
+    }, [currentVersion, showed, data]);
+
+    useEffect(() => {
+        if (!isLoading) {
+            const t = setTimeout(() => {
+                props.navigation.replace(
+                    showNewRegulations ? 'newRegulations' : 'MineMenu',
+                );
+            }, time);
+            return () => {
+                clearTimeout(t);
+            };
+        }
+    }, [isLoading, props.navigation, showNewRegulations]);
 
     const krossLogo = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 130">
     <defs>

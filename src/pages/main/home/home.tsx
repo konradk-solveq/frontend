@@ -6,7 +6,7 @@ import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 import {trackerActiveSelector} from '../../../storage/selectors/routes';
 import {hasRecordedRoutesSelector} from '../../../storage/selectors/map';
 
-import useAppInit from '../../../hooks/appInit';
+import {syncAppSelector} from '../../../storage/selectors';
 import {
     setObjSize,
     getCenterLeftPx,
@@ -28,21 +28,7 @@ const Home: React.FC = () => {
     const trans: any = I18n.t('MainHome');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
-
-    const {syncStatus, error, clearAppSyncError} = useAppInit();
-
-    useEffect(() => {
-        /* To show errror message must check all synch errors to prevent re-renders */
-        // if (!syncStatus && error.statusCode > 400) {
-        //     Alert.alert('', error.message, [
-        //         {
-        //             text: 'Ok',
-        //             onPress: clearAppSyncError,
-        //         },
-        //     ]);
-        //     return;
-        // }
-    }, [syncStatus, error, clearAppSyncError]);
+    const syncStatus = useAppSelector(syncAppSelector);
 
     /* TODO: move initialization to splashs screen or add loader */
     useEffect(() => {

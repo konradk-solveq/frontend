@@ -23,6 +23,9 @@ import CounterThankYouPage from '../../pages/main/recording/counterThankYouPage/
 import EditDetails from '../../pages/main/world/editDetails/editDetails';
 import {RegularStackRoute} from '../route';
 import MapPreview from '../../pages/main/world/routeDetails/mapPreview/mapPreview';
+import Regulations from '../../pages/onboarding/permitsDeclarations/regulations';
+import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
+import Contact from '../../pages//main/profile/contact/contact';
 
 const RegularStackNavigator: React.FC = () => {
     return (
@@ -67,6 +70,9 @@ const RegularStackNavigator: React.FC = () => {
             {/* univesal/generic pages */}
             <Stack.Screen name="ListPageInput" component={ListPageInput} />
             <Stack.Screen name="InputPage" component={InputPage} />
+            <Stack.Screen name="Regulations" component={Regulations} />
+            <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
+            <Stack.Screen name="Contact" component={Contact} />
         </Stack.Navigator>
     );
 };

@@ -5,7 +5,11 @@ import {I18n} from '../../I18n/I18n';
 import {initCrashlytics} from '../utils/crashlytics';
 import {initBGeolocalization, cleanUp} from '../utils/geolocation';
 import {useAppDispatch, useAppSelector} from './redux';
-import {appSyncData, clearAppError} from '../storage/actions/app';
+import {
+    appSyncData,
+    clearAppError,
+    fetchAppRegulations,
+} from '../storage/actions/app';
 import {authTokenSelector, userIdSelector} from '../storage/selectors/auth';
 import {
     appErrorSelector,
@@ -36,6 +40,7 @@ const useAppInit = () => {
 
     const synchData = async () => {
         dispatch(appSyncData());
+        dispatch(fetchAppRegulations());
         setDataInitialized(true);
     };
 
@@ -67,11 +72,11 @@ const useAppInit = () => {
     }, []);
 
     useEffect(() => {
-        if (isOnline && authToken) {
+        if (isOnline) {
             synchData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [authToken]);
+    }, [isOnline]);
 
     return {
         geolocationState,

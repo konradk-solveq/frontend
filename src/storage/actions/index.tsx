@@ -15,11 +15,17 @@ export {
 } from './bikes';
 
 export {
-    setAppStatus,
     appSyncData,
     clearAppError,
+    setAppStatus,
     setSyncError,
     setSyncStatus,
+    fetchAppRegulations,
+    setAppRegulation,
+    setAppCurrentTerms,
+    setAppPolicy,
+    setAppShowedRegulationsNumber,
+    setAppTerms,
 } from './app';
 
 export {fetchPlacesData} from './places';
