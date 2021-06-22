@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { StyleSheet, Text, View, Dimensions, Platform } from 'react-native';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
+import {StyleSheet, Text, View, Dimensions, Platform} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -10,7 +10,7 @@ import {
     getHeightPx,
     getHorizontalPx,
 } from '../../../../../helpers/layoutFoo';
-import { getStatusBarHeight } from '../../../../../utils/detectIOSDevice';
+import {getStatusBarHeight} from '../../../../../utils/detectIOSDevice';
 
 interface Props {
     // * wartości wymagane
@@ -19,7 +19,7 @@ interface Props {
     inner: string; // nazwa headera
     titleOn: boolean; // czy nazwa w headerze ma się pokazać
     getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
-    pause: boolean;
+    whiteArow: boolean;
 }
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
@@ -88,13 +88,13 @@ const StackHeader: React.FC<Props> = (props: Props) => {
         <View style={[styles.container, props.style]}>
             <View style={styles.wrap}>
                 <TopBackBtn
-                    // style={styles.topBtn}
-                    // onpress={() => props.onpress()}
                     onpress={props.onpress}
-                    color={props.pause ? '#000' : '#fff'}
+                    color={props.whiteArow ? '#fff' : '#000'}
                 />
 
-                {props.titleOn && <Text style={styles.title}>{props.inner}</Text>}
+                {props.titleOn && (
+                    <Text style={styles.title}>{props.inner}</Text>
+                )}
             </View>
         </View>
     );
