@@ -9,6 +9,7 @@ import {
     Easing,
     Platform,
     StatusBar,
+    Alert,
 } from 'react-native';
 import {WebView} from 'react-native-webview';
 import GetLocation from 'react-native-get-location';
@@ -300,6 +301,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     }
                 }
                 break;
+            default: {
+                Alert.alert('', 'błąd podpięcia funkcji pod przyciski', [
+                    {
+                        text: 'Ok',
+                    },
+                ]);
+            }
         }
     };
 
@@ -349,6 +357,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     // do ekranu zakończenia
                 }
                 break;
+            default: {
+                Alert.alert('', 'błąd podpięcia funkcji pod przyciski', [
+                    {
+                        text: 'Ok',
+                    },
+                ]);
+            }
         }
     };
 
@@ -415,6 +430,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     setHeaderTitle(trans.headerPause);
                 }
                 break;
+            default: {
+                Alert.alert('', 'błąd przypisania wartości "pageState"', [
+                    {
+                        text: 'Ok',
+                    },
+                ]);
+            }
         }
         // setJs('setMini();true;');
     }, [pageState]);
@@ -687,7 +709,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 <StackHeader
                     onpress={heandleGoBackClick}
                     inner={headerTitle}
-                    pause={pause}
+                    whiteArow={!pause && !mapOn}
                     titleOn={!mapOn}
                 />
             </View>
