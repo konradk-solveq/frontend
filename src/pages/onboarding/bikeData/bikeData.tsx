@@ -252,25 +252,18 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                             forceMessageWrong={messages.serial_number}
                         />
 
-                        <ListInputBtn
+                        <OneLineTekst
                             style={styles.inputAndPlaceholder}
                             placeholder={trans.producer.title}
-                            onpress={() =>
-                                navigation.navigate('ListPageInput', {
-                                    header: trans.producer.listHeader,
-                                    list: trans.producer.listData,
-                                    last: trans.producer.listDataLast,
-                                    key: 'producer',
-                                    backTo: 'BikeData',
-                                    other: trans.producer.other,
-                                })
+                            onChangeText={(value: string) =>
+                                hendleChangeDataValue('producer', value)
                             }
                             validationOk={(value: string) =>
                                 hendleValidationOk(value, 'producer')
                             }
+                            // validationWrong={hendleValidationWrong}
                             messageWrong={trans.wrong}
                             value={data.producer}
-                            valueName={trans.producer.list}
                             validationStatus={(value: boolean) =>
                                 handleSetCanGoFoard('producer', value)
                             }
