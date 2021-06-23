@@ -9,6 +9,7 @@ import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {
     loadingMapsSelector,
     nextPaginationCoursor,
+    nextPlannedPaginationCoursor,
     nextPrivatePaginationCoursor,
 } from '../../../storage/selectors/map';
 import {fetchMapsList} from '../../../storage/actions';
@@ -44,6 +45,7 @@ const World: React.FC = () => {
     const statusBarHeight = useStatusBarHeight();
     const nextCoursor = useAppSelector(nextPaginationCoursor);
     const nextPrivateCoursor = useAppSelector(nextPrivatePaginationCoursor);
+    const nextPlannedCoursor = useAppSelector(nextPlannedPaginationCoursor);
     const isLoading = useAppSelector(loadingMapsSelector);
 
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -116,7 +118,9 @@ const World: React.FC = () => {
                 return;
             }
             if (nextCoursor && activeTab === routesTab.PLANED) {
-                dispatch(fetchPlannedMapsList(nextCoursor, savedMapFilters));
+                dispatch(
+                    fetchPlannedMapsList(nextPlannedCoursor, savedMapFilters),
+                );
                 return;
             }
         }
@@ -125,6 +129,7 @@ const World: React.FC = () => {
         isLoading,
         nextCoursor,
         nextPrivateCoursor,
+        nextPlannedCoursor,
         activeTab,
         savedMapFilters,
     ]);
