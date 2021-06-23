@@ -1,104 +1,249 @@
-import React from 'react';
-import {
-    StyleSheet,
-    Dimensions,
-    SafeAreaView,
-    Text,
-    Platform,
-} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {View, StyleSheet, SafeAreaView, Text, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import AnimSvg from '../../../helpers/animSvg';
 
+import MyRoutes from './myRoutes/myRoutes';
+import {getVerticalPx} from '../../../helpers/layoutFoo';
+import useStatusBarHeight from '../../../hooks/statusBarHeight';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {
-    setObjSize,
-    getCenterLeftPx,
-    getHorizontalPx,
-    getVerticalPx,
-    getWidthPx,
-} from '../../../helpers/layoutFoo';
-import MapSvg from './mapSvg';
+    loadingMapsSelector,
+    nextPaginationCoursor,
+    nextPrivatePaginationCoursor,
+} from '../../../storage/selectors/map';
+import {fetchMapsList} from '../../../storage/actions';
+import {
+    fetchPlannedMapsList,
+    fetchPrivateMapsList,
+} from '../../../storage/actions/maps';
+import {requestGeolocationPermission} from '../../../utils/geolocation';
+import {PickedFilters} from '../../../interfaces/form';
+import {checkIfContainsFitlers} from '../../../utils/apiDataTransform/filters';
 
-const line = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 256" width="412" height="256">
-        <path d="M412 150c-53.5-53.8-82.8-63.2-88-28-7.8 52.8 49.5 27.5 48 86.4-1.5 59-169.3 52.7-250.5 29.1C15.5 220.8 80.5-20.8-2 2.1" stroke="#D8232A" fill="none" fill-rule="evenodd" stroke-dasharray="6 9" stroke-linecap="round">
-            <animate attributeName="stroke-dashoffset" dur="100s" repeatCount="indefinite" values="0 ; 1000"/>
-        </path>
-    </svg>`;
+import FiltersModal from './components/filters/filtersModal';
+import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
+import BikeMap from './bikeMap/bikeMap';
+import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
+import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
-const ww = Dimensions.get('window').width;
+import styles from './style';
 
+const isAndroid = Platform.OS === 'android';
+
+enum routesTab {
+    BIKEMAP = 'map',
+    MYROUTES = 'routes',
+    PLANED = 'planed',
+}
+
+/* TODO: refresh data if position chagned more than 500 meters */
 const World: React.FC = () => {
+    const dispatch = useAppDispatch();
     const trans: any = I18n.t('MainWorld');
+    const statusBarHeight = useStatusBarHeight();
+    const nextCoursor = useAppSelector(nextPaginationCoursor);
+    const nextPrivateCoursor = useAppSelector(nextPrivatePaginationCoursor);
+    const isLoading = useAppSelector(loadingMapsSelector);
 
-    const t = getVerticalPx(348);
-    const h = ww * (202 / 400);
-    const th = getVerticalPx(300);
-    const tt =
-        Platform.OS === 'ios'
-            ? getVerticalPx(138)
-            : t - (th + getVerticalPx(138));
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
+    const [activeTab, setActiveTab] = useState<routesTab>(routesTab.BIKEMAP);
 
-    setObjSize(350, 23);
-    const styles = StyleSheet.create({
-        container: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#fff',
+    useEffect(() => {
+        requestGeolocationPermission();
+    }, []);
+
+    useEffect(() => {
+        const isValid = checkIfContainsFitlers(savedMapFilters);
+        if (isValid) {
+            if (activeTab === routesTab.BIKEMAP) {
+                dispatch(fetchMapsList(undefined, savedMapFilters));
+                return;
+            }
+            if (activeTab === routesTab.MYROUTES) {
+                dispatch(fetchPrivateMapsList(undefined, savedMapFilters));
+            }
+            if (activeTab === routesTab.PLANED) {
+                dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
+            }
+        }
+    }, [dispatch, savedMapFilters, activeTab]);
+
+    const handleBikeMap = () => {
+        if (activeTab === routesTab.BIKEMAP) {
+            return;
+        }
+        setSavedMapFilters({});
+        setActiveTab(routesTab.BIKEMAP);
+    };
+    const handleMyRoutes = () => {
+        if (activeTab === routesTab.MYROUTES) {
+            return;
+        }
+        setSavedMapFilters({});
+        setActiveTab(routesTab.MYROUTES);
+    };
+    const handlePlaned = () => {
+        if (activeTab === routesTab.PLANED) {
+            return;
+        }
+        setSavedMapFilters({});
+        setActiveTab(routesTab.PLANED);
+    };
+
+    const onShowModalHanlder = () => {
+        setShowModal(true);
+    };
+
+    const onHideModalHandler = () => {
+        setShowModal(false);
+    };
+
+    const onSetFiltersHandler = (picked: PickedFilters) => {
+        setSavedMapFilters(picked);
+        onHideModalHandler();
+    };
+
+    const onLoadMoreHandler = useCallback(() => {
+        if (!isLoading) {
+            if (nextPrivateCoursor && activeTab === routesTab.MYROUTES) {
+                dispatch(fetchPrivateMapsList(nextPrivateCoursor));
+                return;
+            }
+            if (nextCoursor && activeTab === routesTab.BIKEMAP) {
+                dispatch(fetchMapsList(nextCoursor, savedMapFilters));
+                return;
+            }
+            if (nextCoursor && activeTab === routesTab.PLANED) {
+                dispatch(fetchPlannedMapsList(nextCoursor, savedMapFilters));
+                return;
+            }
+        }
+    }, [
+        dispatch,
+        isLoading,
+        nextCoursor,
+        nextPrivateCoursor,
+        activeTab,
+        savedMapFilters,
+    ]);
+
+    const onRefreshHandler = useCallback(() => {
+        if (activeTab === routesTab.MYROUTES) {
+            dispatch(fetchPrivateMapsList());
+            return;
+        }
+        if (activeTab === routesTab.BIKEMAP) {
+            dispatch(fetchMapsList());
+            return;
+        }
+        if (activeTab === routesTab.PLANED) {
+            dispatch(fetchPlannedMapsList());
+            return;
+        }
+    }, [dispatch, activeTab]);
+
+    const renderActiveScreen = useCallback(() => {
+        switch (activeTab) {
+            case routesTab.BIKEMAP:
+                return (
+                    <BikeMap
+                        onRefresh={onRefreshHandler}
+                        onLoadMore={onLoadMoreHandler}
+                    />
+                );
+            case routesTab.MYROUTES:
+                return (
+                    <MyRoutes
+                        onRefresh={onRefreshHandler}
+                        onLoadMore={onLoadMoreHandler}
+                        onPress={() => setActiveTab(routesTab.BIKEMAP)}
+                    />
+                );
+            case routesTab.PLANED:
+                return (
+                    <PlannedRoutes
+                        onRefresh={onRefreshHandler}
+                        onLoadMore={onLoadMoreHandler}
+                        onPress={() => setActiveTab(routesTab.BIKEMAP)}
+                    />
+                );
+            default:
+                return (
+                    <BikeMap
+                        onRefresh={onRefreshHandler}
+                        onLoadMore={onLoadMoreHandler}
+                    />
+                );
+        }
+    }, [activeTab, onLoadMoreHandler, onRefreshHandler]);
+
+    const dynamicStyles = StyleSheet.create({
+        headerWrapper: {
+            top: getVerticalPx(isAndroid ? 65 - statusBarHeight : 65),
         },
-        image: {
-            position: 'absolute',
-            width: ww,
-            height: h + getVerticalPx(Platform.OS === 'ios' ? 100 : 60),
-            top: t - getVerticalPx(50),
-        },
-        header: {
-            position: 'absolute',
-            width: getWidthPx(),
-            left: getCenterLeftPx(),
-            top: getVerticalPx(65),
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'center',
-            fontSize: getHorizontalPx(18),
-            color: '#313131',
-        },
-        title: {
-            position: 'absolute',
-            width: getWidthPx(),
-            height: th,
-            top: tt,
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(40),
-            color: '#313131',
-            textAlign: 'center',
-            textAlignVertical: 'bottom',
-            left: getCenterLeftPx(),
-        },
-        footer: {
-            position: 'absolute',
-            bottom: t - getVerticalPx(193),
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(18),
-            letterSpacing: 0.5,
-            color: '#313131',
-            textAlign: 'center',
-            width: getWidthPx(),
-            left: getCenterLeftPx(),
+        btns: {
+            marginTop:
+                getVerticalPx(138) < 100
+                    ? 100
+                    : getVerticalPx(138 - statusBarHeight),
         },
     });
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.header}>Świat Kross</Text>
+            <FiltersModal
+                key={activeTab}
+                onClose={onHideModalHandler}
+                definedFilters={savedMapFilters}
+                onSave={onSetFiltersHandler}
+                showModal={showModal}
+                allowedFilters={
+                    routesTab.MYROUTES === activeTab ? ['order'] : undefined
+                }
+            />
+            <View style={[styles.headerWrapper, dynamicStyles.headerWrapper]}>
+                <Text style={styles.header}>{trans.header}</Text>
+                <View style={styles.headerButtons}>
+                    <FiltersBtn
+                        onPress={onShowModalHanlder}
+                        iconStyle={[
+                            styles.headerButton,
+                            // styles.headerButtonLeft,
+                        ]}
+                    />
+                    {/* <MapBtn
+                        onPress={() => {}}
+                        iconStyle={styles.headerButton}
+                    /> */}
+                </View>
+            </View>
 
-            <AnimSvg style={styles.image} source={line} />
-            <MapSvg />
+            <View style={styles.wrap}>
+                <View style={[styles.btns, dynamicStyles.btns]}>
+                    <TypicalRedBtn
+                        style={styles.btn}
+                        title={trans.btnBikeMap}
+                        active={activeTab === routesTab.BIKEMAP}
+                        onpress={handleBikeMap}
+                    />
+                    <TypicalRedBtn
+                        style={styles.btn}
+                        title={trans.btnMyRoutes}
+                        active={activeTab === routesTab.MYROUTES}
+                        onpress={handleMyRoutes}
+                    />
+                    <TypicalRedBtn
+                        style={styles.btn}
+                        title={trans.btnPlaned}
+                        active={activeTab === routesTab.PLANED}
+                        onpress={handlePlaned}
+                    />
+                </View>
+            </View>
 
-            <Text style={styles.title}>{trans.title}</Text>
-
-            <Text style={styles.footer}>{trans.footer}</Text>
+            <View style={styles.viewContainer}>{renderActiveScreen()}</View>
 
             <TabBackGround />
         </SafeAreaView>

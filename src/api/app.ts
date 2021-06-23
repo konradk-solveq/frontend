@@ -1,5 +1,7 @@
 import {axiosGet} from './api';
 
+export const getConfig = async () => await axiosGet('/application/config');
+
 export const getTermsAndConditions = async () =>
     await axiosGet('/application/terms-and-conditions');
 

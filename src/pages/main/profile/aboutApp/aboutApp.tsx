@@ -22,7 +22,7 @@ interface Props {
 
 const AboutApp: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('AboutApp');
-    const myVersion = '1.1.4.d3 - server P_R_O_D_U_K_C_Y_J_N_Y';
+    const myVersion = '1.2.0.h';
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -105,7 +105,9 @@ const AboutApp: React.FC<Props> = (props: Props) => {
 
                         <Text style={styles.signature}>{trans.signature}</Text>
 
-                        <Text style={styles.version}>{`v. ${version}`}</Text>
+                        <Text style={styles.version}>{`v. ${
+                            __DEV__ ? version : myVersion
+                        }`}</Text>
                     </View>
                 </ScrollView>
             </View>

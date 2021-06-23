@@ -1,6 +1,8 @@
-export const horizontalAnim = {
+import {StackNavigationOptions} from '@react-navigation/stack';
+
+export const horizontalAnim: StackNavigationOptions = {
     gestureDirection: 'horizontal',
-    gesturesEnabled: true,
+    gestureEnabled: true,
     gestureResponseDistance: {horizontal: 20},
     cardStyleInterpolator: ({current, layouts}) => {
         return {

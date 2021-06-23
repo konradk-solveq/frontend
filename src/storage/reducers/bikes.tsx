@@ -78,7 +78,6 @@ const bikesReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.SET_BIKES_ERROR: {
-            console.log('error from reducer', action.error)
             return {
                 ...state,
                 loading: false,
@@ -105,6 +104,7 @@ const persistConfig = {
     key: 'bikes',
     storage: AsyncStorage,
     whitelist: ['list, genericBike'],
+    timeout: 20000,
 };
 
 export default persistReducer(persistConfig, bikesReducer);

@@ -1,10 +1,12 @@
 import React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import {useAppSelector} from '../hooks/redux';
+import useAuthorization from '../hooks/useAuthorization';
+import useAppInit from '../hooks/useAppInit';
 
 import OnboardingStackNavigator from './stacks/OnboardingStackNavigator';
 import RegularStackNavigator from './stacks/RegularStackNavigator';
-import useAppInit from '../hooks/useAppInit';
+import {onboardingFinishedSelector} from '../storage/selectors';
 
 const KrossTheme = {
     ...DefaultTheme,
@@ -16,8 +18,9 @@ const KrossTheme = {
 
 const NavContainer: React.FC = () => {
     const isOnboardingFinished: boolean = useAppSelector(
-        state => state.user.onboardingFinished,
+        onboardingFinishedSelector,
     );
+    useAuthorization(isOnboardingFinished);
     useAppInit();
 
     return (

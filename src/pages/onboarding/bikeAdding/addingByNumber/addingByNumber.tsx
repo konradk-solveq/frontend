@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -6,13 +6,18 @@ import {
     Text,
     Alert,
     ScrollView,
+    Keyboard,
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
-import { useAppSelector, useAppDispatch } from '../../../../hooks/redux';
-import { setBikesListByFrameNumber } from '../../../../storage/actions';
-import { validateData } from '../../../../utils/validation/validation';
-import { userBikeValidationRules } from '../../../../models/bike.model';
+import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
+import {setBikesListByFrameNumber} from '../../../../storage/actions';
+import {validateData} from '../../../../utils/validation/validation';
+import {userBikeValidationRules} from '../../../../models/bike.model';
+import {
+    loadingBikesSelector,
+    frameNumberSelector,
+} from '../../../../storage/selectors';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
@@ -30,8 +35,6 @@ import {
 } from '../../../../helpers/layoutFoo';
 import Loader from '../loader/loader';
 
-import { initNfc, cleanUp, readNdef } from '../../../../helpers/nfc';
-
 interface Props {
     navigation: any;
     route: any;
@@ -39,15 +42,31 @@ interface Props {
 
 const AddingByNumber: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
-    const frame: string = useAppSelector(state => state.user.frameNumber);
-    const isLoading: boolean = useAppSelector(state => state.bikes.loading);
+    const frame: string = useAppSelector(frameNumberSelector);
+    const isLoading: boolean = useAppSelector(loadingBikesSelector);
 
     const trans = I18n.t('AddingByNumber');
 
     const [inputFrame, setInputFrame] = useState('');
     const [canGoFoward, setCanGoFoward] = useState(false);
     const [forceMessageWrong, setForceMessageWrong] = useState('');
-    const [areaHeigh, setAreaHeigh] = useState(0);
+
+    // do wyliczania wysokości ekranu z klawiaturą i bez
+    const [keyboardHeight, setKeyboardHeight] = useState(0);
+    const keyboardDidShow = (e: any) =>
+        setKeyboardHeight(e.endCoordinates.height);
+    const keyboardDidHide = (e: any) =>
+        setKeyboardHeight(e.endCoordinates.height);
+
+    useEffect(() => {
+        Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+        Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+
+        return () => {
+            Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
+            Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+        };
+    }, []);
 
     // do pobrania nazwy użytkownika zz local sorage
     useEffect(() => {
@@ -82,14 +101,14 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
                 props.navigation.navigate({
                     name: 'BikeSummary',
-                    params: { frameNumber: trimmedInputFrame },
+                    params: {frameNumber: trimmedInputFrame},
                 });
                 return;
             } catch (error) {
                 if (error.notFound) {
                     props.navigation.navigate({
                         name: 'BikeData',
-                        params: { frameNumber: trimmedInputFrame },
+                        params: {frameNumber: trimmedInputFrame},
                     });
                     return;
                 }
@@ -99,10 +118,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         } else {
             setForceMessageWrong('Pole wymagane');
         }
-    };
-
-    const handleAreaHeight = (layout: any) => {
-        setAreaHeigh(layout.height);
     };
 
     const [headHeight, setHeadHeight] = useState(0);
@@ -119,7 +134,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         },
         area: {
             width: '100%',
-            height: areaHeigh,
+            height: getVerticalPx(896) - keyboardHeight,
             minHeight: getVerticalPx(450) + headHeight,
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351 - 100, 100),
@@ -158,9 +173,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     }
 
     return (
-        <SafeAreaView
-            style={styles.container}
-            onLayout={({ nativeEvent }) => handleAreaHeight(nativeEvent.layout)}>
+        <SafeAreaView style={styles.container}>
             <ScrollView
                 keyboardShouldPersistTaps={'always'}
                 style={styles.scroll}>

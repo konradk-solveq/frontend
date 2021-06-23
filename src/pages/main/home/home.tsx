@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, SafeAreaView, View} from 'react-native';
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import {StyleSheet, SafeAreaView, View, Alert, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
-import {initCrashlytics} from '../../../utils/crashlytics';
+import {trackerActiveSelector} from '../../../storage/selectors/routes';
+import {hasRecordedRoutesSelector} from '../../../storage/selectors/map';
 
+import {syncAppSelector} from '../../../storage/selectors';
 import {
     setObjSize,
     getCenterLeftPx,
@@ -13,46 +14,30 @@ import {
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 import AddBike from './addBike';
-import {
-    setBikesListByFrameNumbers,
-    fetchGenericBikeData,
-} from '../../../storage/actions/bikes';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
+
+import {useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
 import {nfcIsSupported} from '../../../helpers/nfc';
+import {RegularStackRoute} from '../../../navigation/route';
+
+import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import Loader from '../../onboarding/bikeAdding/loader/loader';
 
 const Home: React.FC = () => {
-    const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
-    const userName = useAppSelector<string>(state => state.user.userName);
     const trans: any = I18n.t('MainHome');
+    const isTrackerActive = useAppSelector(trackerActiveSelector);
+    const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
+    const syncStatus = useAppSelector(syncAppSelector);
+
+    /* TODO: move initialization to splashs screen or add loader */
+    useEffect(() => {
+        if (isTrackerActive) {
+            navigation.navigate(RegularStackRoute.COUNTER_ROUTE_SCREEN);
+        }
+    }, [isTrackerActive, navigation]);
 
     const [nfc, setNfc] = useState();
-
-    useEffect(() => {
-        /* Logs will be send after app restarted */
-        initCrashlytics(userName);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        if (isOnline) {
-            synchData();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const synchData = async () => {
-        try {
-            /* TODO: add some sync/info loader */
-            await dispatch(fetchGenericBikeData());
-            await dispatch(setBikesListByFrameNumbers());
-        } catch (error) {
-            /* TODO: add some UI information */
-            console.log('[Sync Error]', error);
-        }
-    };
 
     nfcIsSupported().then(r => {
         setNfc(r);
@@ -82,6 +67,7 @@ const Home: React.FC = () => {
         },
         tileWrapper: {
             top: getVerticalPx(138),
+            paddingBottom: getVerticalPx(260),
         },
         tileSpace: {
             marginBottom: 25,
@@ -99,29 +85,55 @@ const Home: React.FC = () => {
         navigation.navigate('Bike');
     };
 
+    const onRecordTripActionHandler = () => {
+        navigation.navigate(RegularStackRoute.COUNTER_ROUTE_SCREEN);
+    };
+
+    if (syncStatus) {
+        return <Loader />;
+    }
+
     return (
         <SafeAreaView style={styles.container1}>
-            <View style={styles.header}>
-                <KroosLogo />
-            </View>
-
-            <View style={styles.container}>
-                <View style={styles.tileWrapper}>
-                    <AddBike
-                        title={trans.firstTitle}
-                        description={trans.firstText}
-                        btnText={trans.firstBtn}
-                        style={styles.tileSpace}
-                        onPress={onCheckActionHandler}
-                    />
-                    <AddBike
-                        title={trans.secondTitle}
-                        description={trans.secondText}
-                        btnText={trans.secondBtn}
-                        onPress={onAddActionHandler}
-                    />
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.header}>
+                    <KroosLogo />
                 </View>
-            </View>
+
+                <View style={styles.container}>
+                    <View style={styles.tileWrapper}>
+                        <AddBike
+                            title={trans.firstTitle}
+                            description={trans.firstText}
+                            btnText={trans.firstBtn}
+                            style={styles.tileSpace}
+                            onPress={onCheckActionHandler}
+                        />
+                        <AddBike
+                            title={trans.secondTitle}
+                            description={trans.secondText}
+                            btnText={trans.secondBtn}
+                            style={styles.tileSpace}
+                            onPress={onAddActionHandler}
+                        />
+                        {!hasRecordedRoutes ? (
+                            <AddBike
+                                title={trans.thirdTitle}
+                                description={trans.thirdText}
+                                btnText={trans.thirdBtn}
+                                onPress={onRecordTripActionHandler}
+                            />
+                        ) : (
+                            <AddBike
+                                title={trans.fourthTitle}
+                                description={trans.fourthText}
+                                btnText={trans.fourthBtn}
+                                onPress={onRecordTripActionHandler}
+                            />
+                        )}
+                    </View>
+                </View>
+            </ScrollView>
 
             <TabBackGround />
         </SafeAreaView>

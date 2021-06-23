@@ -5,6 +5,7 @@
 #import <React/RCTRootView.h>
 #import <Firebase.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import <TSBackgroundFetch/TSBackgroundFetch.h>
 #import <ReactNativeConfig.h>
 
 #ifdef FB_SONARKIT_ENABLED
@@ -37,7 +38,7 @@ static void InitializeFlipper(UIApplication *application) {
   if([FIRApp defaultApp] == nil){
     [FIRApp configure];
   }
-  NSString *googleApiKey = [ReactNativeConfig envFor:@"GOOGLE_MAPS_API_KEY"];
+  NSString *googleApiKey = [ReactNativeConfig envFor:@"GOOGLE_API_KEY"];
   [GMSServices provideAPIKey:googleApiKey];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
@@ -56,6 +57,8 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  [[TSBackgroundFetch sharedInstance] didFinishLaunching];
   return YES;
 }
 

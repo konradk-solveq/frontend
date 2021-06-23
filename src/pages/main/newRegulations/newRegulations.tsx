@@ -8,7 +8,6 @@ import {
     Platform,
     Linking,
 } from 'react-native';
-import Svg, {Path, Circle} from 'react-native-svg';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 

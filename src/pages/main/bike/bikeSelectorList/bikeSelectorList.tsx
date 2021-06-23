@@ -11,8 +11,8 @@ import {
 } from '../../../../helpers/layoutFoo';
 import {nfcIsSupported} from '../../../../helpers/nfc';
 
-import Button from './button';
-import BikeIcon from './bikeIcon';
+import BikeButton from '../../../../sharedComponents/buttons/bikeButton';
+import BikeIcon from '../../../../sharedComponents/svg/bikeIcon';
 
 interface Props {
     style?: any;
@@ -83,7 +83,7 @@ const BikeSelectorList: React.FC<Props> = ({
                 <View
                     style={[styles.item, isFirsEl && styles.fitstItem]}
                     key={e.description.serial_number}>
-                    <Button
+                    <BikeButton
                         text={e.description?.name || 'rower'}
                         onPress={() => callback(e.description.serial_number)}
                         {...(isSame && {icon: <BikeIcon />})}
@@ -100,7 +100,7 @@ const BikeSelectorList: React.FC<Props> = ({
                     list.length == 0 && styles.fitstItem,
                 ]}
                 key={`${list.length}_add`}>
-                <Button
+                <BikeButton
                     text={`+ ${buttonText}`}
                     onPress={() => {
                         const pushAction = StackActions.push(

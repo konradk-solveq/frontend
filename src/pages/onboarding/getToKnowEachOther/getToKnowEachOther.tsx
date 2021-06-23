@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    Text,
+    ScrollView,
+    Keyboard,
+} from 'react-native';
 import I18n from 'react-native-i18n';
 import {setUserName} from '../../../storage/actions/index';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
@@ -35,7 +42,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     const name: string = useAppSelector(state => state.user.userName);
 
     const [inputName, setInputName] = useState('');
-    const [areaHeigh, setAreaHeigh] = useState(0);
     const [validationStatus, setValidationStatus] = useState(false);
     const [nfc, setNfc] = useState();
 
@@ -49,12 +55,25 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         }
     }, [name]);
 
+    // do wyliczania wysokości ekranu z klawiaturą i bez
+    const [keyboardHeight, setKeyboardHeight] = useState(0);
+    const keyboardDidShow = (e: any) =>
+        setKeyboardHeight(e.endCoordinates.height);
+    const keyboardDidHide = (e: any) =>
+        setKeyboardHeight(e.endCoordinates.height);
+
+    useEffect(() => {
+        Keyboard.addListener('keyboardDidShow', keyboardDidShow);
+        Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+
+        return () => {
+            Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
+            Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+        };
+    }, []);
+
     const hendleValidationOk = (value: string) => {
         return validateData(userUserValidationRules.userName, value);
-    };
-
-    const handleAreaHeight = (layout: any) => {
-        setAreaHeigh(layout.height);
     };
 
     const goFoward = () => {
@@ -103,7 +122,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         },
         area: {
             width: '100%',
-            height: areaHeigh,
+            height: getVerticalPx(896) - keyboardHeight,
             minHeight: getVertical(414),
         },
         title: {
@@ -134,9 +153,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     });
 
     return (
-        <SafeAreaView
-            style={styles.container}
-            onLayout={({nativeEvent}) => handleAreaHeight(nativeEvent.layout)}>
+        <SafeAreaView style={styles.container}>
             <ScrollView
                 keyboardShouldPersistTaps={'always'}
                 style={styles.scroll}>

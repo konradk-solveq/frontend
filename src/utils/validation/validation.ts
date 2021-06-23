@@ -8,7 +8,11 @@ import {
     minLength,
     maxLength,
     matches,
+    isBoolean,
+    isArray,
 } from 'class-validator';
+import {UseFormSetError} from 'react-hook-form';
+import {MapFormData, MapFormDataResult} from '../../interfaces/form';
 import validationRules from './validationRules';
 
 const containsRule = (rule: string, k: string) => {
@@ -29,14 +33,26 @@ export const validateData = (rules: any[], value: any) => {
 
         if (typeof el === 'object') {
             if (el?.min) {
-                isValid = minLength(value, el.min);
+                if (isArray(value)) {
+                    isValid = value?.length >= el.min;
+                } else {
+                    isValid = minLength(value, el.min);
+                }
             }
             if (el?.max) {
-                isValid = maxLength(value, el.max);
+                if (isArray(value)) {
+                    isValid = value?.length <= el.max;
+                } else {
+                    isValid = maxLength(value, el.max);
+                }
             }
             if (el?.match) {
                 isValid = matches(value, new RegExp(el.match));
             }
+            if (el?.isLength) {
+                isValid = value?.length === el.isLength;
+            }
+            return isValid;
         }
 
         if (containsRule(el, validationRules.required)) {
@@ -65,6 +81,38 @@ export const validateData = (rules: any[], value: any) => {
 
         if (containsRule(el, validationRules.email)) {
             isValid = isEmail(value);
+        }
+
+        if (containsRule(el, validationRules.boolean)) {
+            isValid = isBoolean(value);
+        }
+    });
+
+    return isValid;
+};
+
+export const reValidateMapMetadataManually = (
+    data: MapFormDataResult,
+    validationMessages: string[],
+    onError: UseFormSetError<MapFormData>,
+    skip?: string[],
+) => {
+    let isValid = true;
+    Object.keys(data).forEach((d: any) => {
+        if (skip && skip.includes(d)) {
+            return;
+        }
+
+        const el = data?.[d as keyof MapFormDataResult];
+        const isEmptyString = isString(el) && isEmpty(el.trim());
+        const emptyArray = isArray(el) && !el?.length;
+
+        if (!el || isEmptyString || emptyArray) {
+            isValid = false;
+            onError(d, {
+                type: 'manual',
+                message: validationMessages[d],
+            });
         }
     });
 

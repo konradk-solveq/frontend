@@ -152,7 +152,7 @@ const AddBike: React.FC<Props> = ({
                 <SmallRedBtn
                     style={styles.button}
                     onpress={onPress}
-                    title={btnText}
+                    title={btnText?.toUpperCase()}
                 />
             </View>
         </View>

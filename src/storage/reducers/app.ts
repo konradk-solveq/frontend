@@ -3,6 +3,7 @@ import persistReducer from 'redux-persist/es/persistReducer';
 import * as actionTypes from '../actions/actionTypes';
 // import getVersion from '../../helpers/veriosn';
 
+import {AppConfigI} from '../../models/config.model';
 import {
     RegulationType,
     TermsAndConditionsType,
@@ -13,6 +14,7 @@ export interface AppState {
     sync: boolean;
     error: string;
     statusCode: number;
+    config: AppConfigI;
     terms: TermsAndConditionsType[];
     currentTerms: TermsAndConditionsType;
     showedRegulations: number | null;
@@ -25,6 +27,14 @@ const initialState: AppState = {
     sync: false,
     error: '',
     statusCode: 200,
+    config: {
+        name: '',
+        lang: '',
+        langs: {name: '', displayName: ''},
+        difficulties: [],
+        surfaces: [],
+        tags: [],
+    },
     terms: [],
     currentTerms: {
         version: '1',
@@ -44,6 +54,11 @@ const appReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 isOffline: action.status,
+            };
+        case actionTypes.SET_APP_CONFIG:
+            return {
+                ...state,
+                config: action.config,
             };
         case actionTypes.SET_APP_TERMS:
             return {
@@ -176,6 +191,7 @@ const persistConfig = {
     key: 'app',
     storage: AsyncStorage,
     whitelist: [
+        'config',
         'terms',
         'regulation',
         'policy',
