@@ -54,6 +54,8 @@ import {
 } from '../../../../storage/selectors/routes';
 import deepCopy from '../../../../helpers/deepCopy';
 import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
+import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
+import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
 
 const {width} = Dimensions.get('window');
 
@@ -382,6 +384,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 break;
         }
     };
+
+    useCustomBackNavButton(heandleGoBackClick, true);
+    useCustomSwipeBackNav(heandleGoBackClick, true);
 
     // zmiana funkcji przycisków i strzałki headera
     useEffect(() => {
