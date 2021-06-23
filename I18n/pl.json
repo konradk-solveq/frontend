@@ -71,7 +71,7 @@
             "text": "Oświadczam, że\u00a0zapoznałem się z\u00a0https://www.kross.pl.rgulamn i\u00a0akceptuję wszystkie zawarte w\u00a0nim warunki.\u00a0*"
         },
         "clauseTitle": "Klauzula informacyjna",
-        "clause": "Administratorem danych jest KROSSS.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046. Dane osobowe będą przetwarzane dla celów utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim, w\u00a0celu realizacji obsługi gwarancyjnej, w\u00a0celach analiz statystycznych oraz w\u00a0celu ustalania, dochodzenia i\u00a0egzekucji ewentualnych roszczeń. Na\u00a0zasadach określonych w\u00a0RODO przysługuje Pani\\Panu prawo dostępu do danych, prawo żądania ich sprostowania, usunięcia lub ograniczenia ich przetwarzania, wniesienia sprzeciwu wobec ich przetwarzania, prawo żądania ich przenoszenia, a\u00a0także prawo wniesienia skargi do\u00a0Prezesa UODO. Podanie danych osobowych jest dobrowolne, jednak odmowa ich podania uniemożliwia korzystanie z\u00a0Aplikacji Mobilnej. Więcej informacji na\u00a0temat przetwarzania danych osobowych znajduje się w\u00a0https://www.kross.pl.polityka.",
+        "clause": "Administratorem danych jest KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046. Dane osobowe będą przetwarzane dla celów utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim, w\u00a0celu realizacji obsługi gwarancyjnej, w\u00a0celach analiz statystycznych oraz w\u00a0celu ustalania, dochodzenia i\u00a0egzekucji ewentualnych roszczeń. Na\u00a0zasadach określonych w\u00a0RODO przysługuje Pani\\Panu prawo dostępu do danych, prawo żądania ich sprostowania, usunięcia lub ograniczenia ich przetwarzania, wniesienia sprzeciwu wobec ich przetwarzania, prawo żądania ich przenoszenia, a\u00a0także prawo wniesienia skargi do\u00a0Prezesa UODO. Podanie danych osobowych jest dobrowolne, jednak odmowa ich podania uniemożliwia korzystanie z\u00a0Aplikacji Mobilnej. Więcej informacji na\u00a0temat przetwarzania danych osobowych znajduje się w\u00a0https://www.kross.pl.polityka.",
         "wrong": "Zgoda jest wymagana",
         "btn": "DALEJ"
     },
@@ -133,7 +133,7 @@
             {
                 "url": "http://informUs.eu",
                 "hyper": "poinformuj nas"
-            },
+            }
         ]
     },
     "BikeData": {
@@ -275,12 +275,169 @@
         "firstText": "Sezon rozpoczęty, ale czy Twój rower o tym wie? Zadbaj o niego i sprawdź czy jest gotowy do jazdy.",
         "firstBtn": "SPRAWDŹ",
         "secondTitle": "Dodaj kolejny rower",
+        "thirdTitle": "Nagraj swoją pierwszą trasę",
+        "fourthTitle": "Buduj z nami Mapę Rowerową",
         "secondText": "Jeżeli chcesz w jednym miejscu zarządzać Twoimi rowerami KROSS oraz rowerami innych producentów, dodaj je do aplikacji.",
-        "secondBtn": "DODAJ ROWER"
+        "thirdText": "Nie zwlekaj! Wsiadaj na rower i zacznij przemierzać kilometry z myKROSS.",
+        "fourthText": "Bądź inspiracją dla innych. Nagraj kolejną trasę i upublicznij ją na Mapie Rowerowej.",
+        "secondBtn": "DODAJ ROWER",
+        "thirdBtn": "Nagraj trasę",
+        "fourthBtn": "Nagraj trasę"
     },
     "MainWorld": {
+        "header": "Świat KROSS",
         "title": "Dołącz do drużyny \n KROSS",
-        "footer": "Już wkrótce razem z nami będziesz mógł ruszyć \n w trasę by odkrywać nowe ścieżki rowerowe \n i budować Mapę Rowerową."
+        "footer": "Już wkrótce razem z nami będziesz mógł ruszyć \n w trasę by odkrywać nowe ścieżki rowerowe \n i budować Mapę Rowerową.",
+        "btnBikeMap": "Mapa rowerowa",
+        "btnMyRoutes": "Moje trasy",
+        "btnPlaned": "Planowane",
+        "maps": {
+            "filtersTitle": "Filtry",
+            "filtersDescription": "Określ parametry, które pozwolą zawęzić listę wyświetlanych tras.",
+            "filtersSaveBtn": "Zastosuj",
+            "filtersBackBtn": "Przywróć",
+            "filters": {
+                "order": {
+                    "name": "Sortuj po dacie",
+                    "options": [
+                        "Od najnowszych",
+                        "Od najstarszych"
+                    ]
+                },
+                "routeType": {
+                    "name": "Pokaż trasy",
+                    "options": [
+                        "Wszystkie",
+                        "Niepubliczne",
+                        "Publiczne"
+                    ]
+                },
+                "difficulties": {
+                    "name": "Poziom trudności",
+                    "options": [
+                        "Łatwa",
+                        "Umiarkowana",
+                        "Wymagająca"
+                    ]
+                },
+                "surfaces": {
+                    "name": "Nawierzchnia",
+                    "options": [
+                        "Szutrowa",
+                        "Asfalt",
+                        "Utwardzona",
+                        "Nieutwardzona",
+                        "Ścieżka rowerowa"
+                    ]
+                },
+                "tags": {
+                    "name": "Tagi",
+                    "options": [
+                        "widokowa",
+                        "mały ruch",
+                        "weekendowa",
+                        "ciekawe atrakcje",
+                        "dobre jedzenie",
+                        "dla dzieci"
+                    ]
+                }
+            }
+        },
+        "BikeMap": {
+            "title": "Zobacz rekomendowane trasy w okolicy",
+            "distanceUnit": "km",
+            "timeUnit": "h",
+            "noTitle": "Brak tytułu",
+            "distanceToStart": " km od Ciebie",
+            "addToFavAction": "Pobierz trasę",
+            "publishTripAction": "Upublicznij",
+            "startTripAction": "Rozpocznij",
+            "removeToFavAction": "Usuń trasę",
+            "showOnMapAction": "Zobacz na mapie",
+            "routeDetailsAction": "Szczegóły"
+        },
+        "PlannedRoutes": {
+            "title": ", odkryj Ciekawe trasy z KROSS",
+            "emptyStateTitle": "Dobry plan to podstawa",
+            "emptyStateContent": "Zaplanuj wycieczkę na podstawie tras rekomendowanych przez KROSS.",
+            "emptyStateButton": "Pobierz trasę",
+            "defaultUserName": "Rowerzysto"
+        },
+        "MyRoutes": {
+            "title": ", odkryj Ciekawe trasy z KROSS",
+            "emptyStateTitle": "Nie masz nagranych tras",
+            "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
+            "emptyStateButton": "Pobierz trasę",
+            "defaultUserName": "Rowerzysto"
+        }
+    },
+    "MainMyRoutes": {
+        "title": "Nie masz nagranych tras",
+        "text": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
+        "btnRecord": "Nagraj pierwszą trasę",
+        "btnCheck": "sprawdź rekomendowane trasy"
+    },
+    "RoutesDetails": {
+        "noInfo": "brak informacji",
+        "deleteButton": "Usuń",
+        "reportButton": "Zgłoś naruszenie",
+        "details": {
+            "author": "Autor",
+            "defaultAuthor": "Rowerzysta",
+            "noInfo": "brak informacji",
+            "noTitle": "brak tytułu",
+            "descriptionTitle": "Opis trasy",
+            "imagesTitle": "Zdjęcia z trasy",
+            "mapTitle": "Sprawdź trasę na mapie",
+            "tagsTitle": "Tagi na trasie",
+            "creationPrefix": "Utworzona",
+            "publishPrefix": "Na mapie rowerowej od",
+            "distanceToStart": " km od Ciebie",
+            "noDescription": "Brak opisu."
+        },
+        "EditScreen": {
+            "tagsTitle": "Tagi",
+            "nameInput": "Tytuł",
+            "publishWithName": "Opublikuj jako",
+            "intro": "Opis trasy",
+            "description": "Szczegółowy opis trasy",
+            "publishButton": "Zapisz i upublicznij",
+            "saveButton": "Zapisz",
+            "imagesTitle": "Zdjęcia z trasy",
+            "removeRouteBtn": "Tak, usuń",
+            "cancelRemoveRouteBtn": "Anuluj",
+            "attributes": {
+                "level": {
+                    "name": "Poziom trudności",
+                    "options": [
+                        "Łatwa",
+                        "Umiarkowana",
+                        "Wymagająca"
+                    ]
+                },
+                "pavement": {
+                    "name": "Nawierzchnia",
+                    "options": [
+                        "Szutrowa",
+                        "Asfalt",
+                        "Utwardzona",
+                        "Nieutwardzona",
+                        "Ścieżka rowerowa"
+                    ]
+                },
+                "tags": {
+                    "name": "Tagi",
+                    "options": [
+                        "widokowa",
+                        "mały ruch",
+                        "weekendowa",
+                        "ciekawe atrakcje",
+                        "dobre jedzenie",
+                        "dla dzieci"
+                    ]
+                }
+            }
+        }
     },
     "MainBike": {
         "header": "Rower",
@@ -325,6 +482,44 @@
             " / nr ramy "
         ]
     },
+    "MainCounter": {
+        "headerStart": "Rozpocznij nagrywanie",
+        "headerRecord": "Trwa nagrywanie",
+        "headerPause": "Pauza",
+        "distance": "Dystans",
+        "distanceUnit": "km",
+        "time": "Czas",
+        "speed": "Prędkość",
+        "speedUnit": "km/h",
+        "averageSpeed": "Średnia prędkość",
+        "averageSpeedUnit": "km/h",
+        "btnStart": "START",
+        "btnPauza": "PAUZA",
+        "btnPauzaOff": "WZNÓW",
+        "btnEnd": "ZAKOŃCZ",
+        "cancelText": "Czy chcesz przerwać nagrywanie trasy bez jej zapisywania?",
+        "endText": "Czy chcesz zakończyć nagrywanie trasy?",
+        "btnCancel": "ANULUJ",
+        "btnBreak": "PRZERWIJ"
+    },
+    "CounterThankYouPage": {
+        "title": ", brawo!",
+        "subTilte": "Oszczędziłeś",
+        "defaultName": "Rowerzysto",
+        "type_1": [
+            "drzewo!",
+            "drzew!"
+        ],
+        "type_2": "l paliwa!",
+        "distance": "Dystans",
+        "distanceUnit": "km",
+        "time": "Czas jazdy",
+        "timeUnit": "h",
+        "break": "czas przerw",
+        "breakUnit": "h",
+        "btnSave": "UPUBLICZNIJ",
+        "btnCancel": "POWRÓT"
+    },
     "ServicesMap": {
         "services": "Serwisy",
         "shops": "Sklepy"
@@ -350,7 +545,7 @@
         "text_1": "Aplikacja myKROSS powstała z myślą o rowerzystach przemierzających kilkanaście, kilkadziesiąt, a nawet kilkaset kilometrów miesięcznie, poszukujących rzetelnej informacji o swoim rowerze oraz informacji jak zadbać o jego stan.",
         "text_2": "Wystarczy podać numer ramy swojego roweru, a aplikacja sprawdzi czy jest to rower marki KROSS czy też innego producenta i umożliwi dodanie go do listy rowerów.\n\nW aplikacji prezentowane są podstawowe dane zarejestrowanego roweru, np. informacje o numerze ramy, modelu czy producencie. Dodatkowo dla rowerów KROSS można podejrzeć pełną specyfikację ze szczegółowymi informacjami o ramie i widelcu, elementach napędu, kołach, hamulcach, itp.",
         "text_3": "W zależności od producenta roweru aplikacja umożliwia też dostęp do informacji o najbliższych przeglądach gwarancyjnych, okresowych czy sezonowych. Co więcej, każdy typ przeglądu zawiera szczegółowy wykaz czynności jakie powinny zostać podczas niego wykonane.\n\nmyKROSS pomaga również w zlokalizowaniu najbliższego punktu serwisowego lub sklepu rowerowego rekomendowanego przez KROSS, gdzie można wykonać wymagane przeglądy lub przygotować rower do sezonu rowerowego.\n\nŻyczymy udanej jazdy!",
-        "signature": "Zespół KROSS",
+        "signature": "Zespół KROSS"
     },
     "Contact": {
         "header": "Kontakt",
@@ -385,11 +580,34 @@
     },
     "RewiewsDetails": {
         "header": "Przegląd",
-        "daysLeft": ["pozostało", "dni"],
+        "daysLeft": [
+            "pozostało",
+            "dni"
+        ],
         "servisMap": "Najbliższy serwis",
         "descriptionTitle": "W ramach przeglądu powinny być wykonane następujące czynności: ",
         "warning": "Warunkiem ważności Gwarancji jest posiadanie dowodu zakupu i Oświadczenia Gwarancyjnego lub konta gwarancyjnego na platformie kross.eu/pl, założonego zgodnie z regulaminem tej platformy.",
         "pastDate": "termin minął"
+    },
+    "ThankYouPage": {
+        "defaultName": "Rowerzysto",
+        "titleSufix": ", brawo!",
+        "publishBtn": "Upublicznij",
+        "cancelButton": "Powrót",
+        "distance": "Dystans",
+        "distanceSufix": "km",
+        "tripTime": "Czas jazdy",
+        "tripTimeSufix": "h",
+        "pausePrefix": "czas przerw",
+        "pauseSufix": "h"
+    },
+    "PublishThankYouPage": {
+        "defaultName": "Rowerzysto",
+        "titleSufix": ", trasa została ",
+        "titleSufixPublished": "upubliczniona",
+        "titleSufixSaved": "zapisana",
+        "okBtn": "Ok",
+        "errorTitle": "Coś poszło nie tak!"
     },
     "validation": {
         "isEmpty": "Pole {{property}} nie jest puste",
@@ -404,6 +622,17 @@
                 "model": "model",
                 "size": "rozmiar",
                 "color": "kolor"
+            },
+            "mapDetails": {
+                "formErrors": {
+                    "name": "Uzupełnij nazwę",
+                    "publishWithName": "Pole wymagane",
+                    "short": "Uzupełnij opis",
+                    "long": "Uzupełnij szczegółowy opis",
+                    "difficulty": "Wybierz poziom trudności",
+                    "surface": "Wybierz rodzaje nawierzchni",
+                    "tags": "Wybierz tagi"
+                }
             }
         }
     },
@@ -411,7 +640,16 @@
         "validationError": "Sprawdź błędy w\u00a0formularzu",
         "apiError": "Wystąpił błąd podczas łączenia z serwerem, spróbuj ponownie",
         "generalError": "Wystąpił błąd, spróbuj ponownie",
-        "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem"
+        "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem",
+        "routeData": {
+            "defaultRouteName": "Trasa z dnia",
+            "defaultAuthorName": "Rowerzysta"
+        }
+    },
+    "Geolocation": {
+        "notification": {
+            "title": "Nagrywanie trasy"
+        }
     },
     "aaaaaaa-aaaaaa": "_____"
 }
