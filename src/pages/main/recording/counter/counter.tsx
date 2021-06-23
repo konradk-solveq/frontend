@@ -386,7 +386,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     useCustomBackNavButton(heandleGoBackClick, true);
-    useCustomSwipeBackNav(heandleGoBackClick, true);
+    useCustomSwipeBackNav(heandleGoBackClick, pageState !== 'start');
 
     // zmiana funkcji przycisków i strzałki headera
     useEffect(() => {

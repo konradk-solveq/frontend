@@ -13,12 +13,14 @@ const useCustomSwipeBackNav = (
                 e.preventDefault();
             }
 
-            if (callback) {
+            if (callback && abortActionDefault) {
                 callback();
             }
         });
 
-        return eventListener;
+        return () => {
+            eventListener();
+        };
     }, [abortActionDefault, callback, navigation]);
 };
 
