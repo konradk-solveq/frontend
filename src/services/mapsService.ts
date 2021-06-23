@@ -18,6 +18,7 @@ import {
     createFileFormData,
     mapFormMetadataToAPIRequest,
 } from '../utils/apiDataTransform/prepareRequest';
+import {I18n} from '../../I18n/I18n';
 
 export interface MapsData {
     elements: MapType[] | [];
@@ -158,8 +159,7 @@ export const editPrivateMapMetadataService = async (
                 errorMessage =
                     publishResponse.data.message || publishResponse.data.error;
                 if (publishResponse.data?.statusCode !== 400) {
-                    errorMessage =
-                        "Route can't be published. Please try again later";
+                    errorMessage = I18n.t('dataAction.mapData.publishError');
                 }
             }
             return {
@@ -190,7 +190,10 @@ export const editPrivateMapMetadataService = async (
                     errorMessage =
                         imageResponse.data.message || imageResponse.data.error;
                     if (imageResponse.data?.statusCode !== 400) {
-                        errorMessage = `File [${images.save[i].fileName}] could not be uloaded. Please try again later`;
+                        errorMessage = I18n.t(
+                            'dataAction.mapData.fileUploadError',
+                            {value: images.save[i].fileName},
+                        );
                     }
                 }
                 return {
@@ -254,8 +257,7 @@ export const removePrivateMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage =
-                    'Route could not be removed. Please try again later.';
+                errorMessage = I18n.t('dataAction.routeData.removeRouteError');
             }
         }
         return {
@@ -344,8 +346,7 @@ export const removePlannedMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage =
-                    'Route could not be removed. Please try again later.';
+                errorMessage = I18n.t('dataAction.routeData.removeRouteError');
             }
         }
         return {
