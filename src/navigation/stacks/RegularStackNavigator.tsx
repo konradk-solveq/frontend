@@ -25,6 +25,7 @@ import {RegularStackRoute} from '../route';
 import MapPreview from '../../pages/main/world/routeDetails/mapPreview/mapPreview';
 import Regulations from '../../pages/onboarding/permitsDeclarations/regulations';
 import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
+import Help from '../../pages//main/profile/help/help';
 import Contact from '../../pages//main/profile/contact/contact';
 
 const RegularStackNavigator: React.FC = () => {
@@ -48,6 +49,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen name="AboutApp" component={AboutApp} />
             <Stack.Screen name="RewiewsDetails" component={RewiewsDetails} />
             <Stack.Screen name="NameChange" component={NameChange} />
+            <Stack.Screen name="Help" component={Help} />
             <Stack.Screen name="Counter" component={Counter} />
             <Stack.Screen
                 name="CounterThankYouPage"
