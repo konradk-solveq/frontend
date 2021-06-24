@@ -12,6 +12,7 @@ import {fetchPrivateMapsList, setPrivateMapId} from './maps';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {toTimestamp} from '../../utils/persistLocationData';
 import {MIN_ROUTE_LENGTH} from '../../helpers/global';
+import { AppState } from '../reducers/app';
 
 export const clearError = () => ({
     type: actionTypes.CLEAR_ROUTES_ERROR,
@@ -208,6 +209,13 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
     dispatch(setLoadingState(true));
     try {
         const {currentRouteData, currentRoute}: RoutesState = getState().routes;
+        const {isOffline}: AppState = getState().app;
+
+        if (isOffline) {
+            dispatch(setError('No internet connection', 500));
+            return;
+        }
+
         const response = await syncRouteData(
             currentRouteData,
             currentRoute?.remoteRouteId,

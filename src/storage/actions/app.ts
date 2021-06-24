@@ -22,6 +22,7 @@ import {
     getAppTermsAndConditionsService,
     getNewRegulationsService,
 } from '../../services';
+import {AppState} from '../reducers/app';
 
 export const setAppStatus = (status: boolean) => ({
     type: actionTypes.SET_APP_NETWORK_STATUS,
@@ -116,9 +117,14 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
 ) => {
     dispatch(setSyncStatus(true));
     try {
-        const {showedRegulations} = getState().app;
+        const {showedRegulations, isOffline}: AppState = getState().app;
         const {sessionData} = getState().auth;
         const {onboardingFinished} = getState().user;
+
+        if (isOffline) {
+            dispatch(setSyncError('No internet connection', 500));
+            return;
+        }
 
         await dispatch(fetchAppRegulations(true));
         await dispatch(fetchAppConfig(true));
