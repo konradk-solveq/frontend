@@ -62,18 +62,27 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     const [goForward, setGoForward] = useState('');
 
-    useEffect(() => {
+    const setShowVisible = useCallback(() => {
         setShow(true);
-        props.navigation.addListener('focus', () => {
-            setShow(true);
-        });
-        props.navigation.addListener('blur', () => {
-            setTimeout(() => {
-                setShow(false);
-                setTitleType(randomNum());
-            }, 300);
-        });
-    }, [props.navigation]);
+    }, []);
+
+    const setShowHidden = useCallback(() => {
+        setTimeout(() => {
+            setShow(false);
+            setTitleType(randomNum());
+        }, 300);
+    }, []);
+
+    useEffect(() => {
+        setShowVisible();
+        props.navigation.addListener('focus', setShowVisible);
+        props.navigation.addListener('blur', setShowHidden);
+
+        return () => {
+            props.navigation.removeListener('focus', setShowVisible);
+            props.navigation.removeListener('blur', setShowHidden);
+        };
+    }, [props.navigation, setShowHidden, setShowVisible]);
 
     useEffect(() => {
         const t = setTimeout(() => {

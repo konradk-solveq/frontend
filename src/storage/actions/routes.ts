@@ -213,7 +213,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             currentRoute?.remoteRouteId,
         );
 
-        if (response.error || !response?.data?.id) {
+        if ((response.error && response.status >= 400) || !response?.data?.id) {
             let errorMessage = response.error;
 
             /* If fail add to queue. Resolve tasks queue in different action. */
