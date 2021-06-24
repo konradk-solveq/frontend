@@ -56,10 +56,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const [show, setShow] = useState(true);
     const randomNum = () => 1;
     // const randomNum = () => Math.floor(Math.random() * 2);
-    const [titleType, setTitleType] = useState(randomNum());
-
-    const [breakTime, setBreakTime] = useState(1551500);
-
+    const [titleType, setTitleType] = useState(1);
     const [goForward, setGoForward] = useState('');
 
     const setShowVisible = useCallback(() => {
@@ -130,26 +127,32 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     const heandleSaveDistance = ratio => {
         let d = route?.params?.distance;
+
         if (typeof d === 'undefined') {
             d = 1;
         } else {
             d = Number(d.replace(',', '.'));
         }
-        let res = Math.floor(d / ratio);
-        if (res < 1) {
-            res = 1;
+
+        let res = d * ratio;
+        if (res < 0.1) {
+            res = 0.1;
         }
-        return res;
+
+        return res.toFixed(1).replace('.', ',');
     };
 
     const heandleGetTitleType = () => {
         if (titleType == 0) {
             let num = heandleSaveDistance(23);
             return (
-                ' ' + num + ' ' + (num == 1 ? trans.type_1[0] : trans.type_1[1])
+                ' ' +
+                num +
+                ' ' +
+                (num === 1 ? trans.type_1[0] : trans.type_1[1])
             );
         } else {
-            let num = heandleSaveDistance(14.3);
+            let num = heandleSaveDistance(4);
             return ' ' + num + ' ' + trans.type_2;
         }
     };
