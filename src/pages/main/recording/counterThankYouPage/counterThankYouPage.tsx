@@ -129,7 +129,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
         let d = route?.params?.distance;
 
         if (typeof d === 'undefined') {
-            d = 1;
+            d = 0.001;
         } else {
             d = Number(d.replace(',', '.'));
         }
