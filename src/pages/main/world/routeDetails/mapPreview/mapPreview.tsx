@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
 import CompassHeading from 'react-native-compass-heading';
@@ -16,6 +16,9 @@ import mapStyle from '../../../../../sharedComponents/maps/styles';
 import gradient from './gradientSvg';
 
 import styles from './style';
+import {Platform} from 'react-native';
+
+const isIOS = Platform.OS === 'ios';
 
 interface Props {
     navigation: any;
@@ -34,6 +37,7 @@ const getMapType = (params: any) => {
 
 const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
     const mapId = route?.params?.mapId;
+    const mapRef = useRef<MapView>(null);
 
     const [compassHeading, setCompassHeading] = useState(0);
     const [foreignRoute, setForeignRoute] = useState<Coords[]>([]);
@@ -70,7 +74,6 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
     const heandleGoBackClick = () => {
         navigation.goBack();
     };
-
     return (
         <>
             <View style={styles.innerContainer}>
@@ -78,20 +81,54 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
 
                 {foreignRoute?.[0] && (
                     <MapView
+                        ref={mapRef}
                         provider={PROVIDER_GOOGLE}
                         style={styles.map}
                         customMapStyle={mapStyle}
                         pitchEnabled={true}
                         showsCompass={false}
-                        initialCamera={{
-                            center: {
-                                latitude: foreignRoute?.[0].latitude,
-                                longitude: foreignRoute?.[0].longitude,
+                        {...(!isIOS && {
+                            initialCamera: {
+                                center: {
+                                    latitude: foreignRoute?.[0].latitude,
+                                    longitude: foreignRoute?.[0].longitude,
+                                },
+                                pitch: 0,
+                                altitude: 0,
+                                heading: compassHeading,
+                                zoom: 16,
                             },
-                            pitch: 0,
-                            altitude: 0,
-                            heading: compassHeading,
-                            zoom: 16,
+                        })}
+                        {...(isIOS && {
+                            onLayout: () => {
+                                if (mapRef.current) {
+                                    mapRef.current.animateCamera({
+                                        center: {
+                                            latitude: foreignRoute[0].latitude,
+                                            longitude:
+                                                foreignRoute[0].longitude,
+                                        },
+                                        pitch: 0,
+                                        altitude: 0,
+                                        heading: compassHeading,
+                                        zoom: 16,
+                                    });
+                                }
+                            },
+                        })}
+                        onLayout={() => {
+                            if (mapRef.current) {
+                                mapRef.current.animateCamera({
+                                    center: {
+                                        latitude: foreignRoute[0].latitude,
+                                        longitude: foreignRoute[0].longitude,
+                                    },
+                                    pitch: 0,
+                                    altitude: 0,
+                                    heading: compassHeading,
+                                    zoom: 16,
+                                });
+                            }
                         }}>
                         {foreignRoute && (
                             <Polyline
