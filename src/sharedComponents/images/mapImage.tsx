@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image, StyleSheet, ViewStyle, ImageStyle} from 'react-native';
-import { getVerticalPx } from '../../helpers/layoutFoo';
+import {getVerticalPx} from '../../helpers/layoutFoo';
 
 interface IProps {
     imgUrl: string;

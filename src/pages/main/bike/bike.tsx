@@ -56,9 +56,8 @@ const Bike: React.FC<Props> = (props: Props) => {
     const scrollRef = useRef<null | ScrollView>(null);
     const statusBarHeight = useStatusBarHeight();
 
-    const headerBackgroundHeight = getVerticalPx(
-        100,
-    ); /* equal to header height */
+    const headerBackgroundHeight =
+        getVerticalPx(100); /* equal to header height */
 
     const dispatch = useAppDispatch();
     const bikes = useAppSelector(bikesListSelector);

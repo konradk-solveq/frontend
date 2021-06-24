@@ -29,8 +29,7 @@ const TopBackBtn: React.FC<Props> = (props: Props) => {
         <TouchableOpacity
             onPress={props.onpress}
             style={styles.btn}
-            hitSlop={{top: 10, bottom: 10, left: 20, right: 20}}
-            >
+            hitSlop={{top: 10, bottom: 10, left: 20, right: 20}}>
             <Svg viewBox="0 0 20 16">
                 <Path
                     fill="#313131"

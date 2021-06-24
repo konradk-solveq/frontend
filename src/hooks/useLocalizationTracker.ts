@@ -86,7 +86,7 @@ const useLocalizationTracker = (persist: boolean) => {
         [dispatch, lastDistance, averageSpeed],
     );
 
-    const stopTracker = async () => {
+    const stopTracker = useCallback(async () => {
         /* TODO: error */
         deactivateKeepAwake();
         dispatch(stopCurrentRoute());
@@ -95,27 +95,31 @@ const useLocalizationTracker = (persist: boolean) => {
         if (!state.enabled) {
             setIsActive(false);
         }
-    };
+    }, [dispatch]);
 
-    const startTracker = async (keep?: boolean, routeIdToFollow?: string) => {
-        speed = [];
-        /* TODO: error */
-        const state = await getBackgroundGeolocationState();
+    const startTracker = useCallback(
+        async (keep?: boolean, routeIdToFollow?: string) => {
+            speed = [];
+            /* TODO: error */
+            const state = await getBackgroundGeolocationState();
 
-        if (state.enabled && !keep) {
-            await stopTracker();
-        }
+            if (state.enabled && !keep) {
+                await stopTracker();
+            }
 
-        setIsActive(true);
-        activateKeepAwake();
+            setIsActive(true);
+            activateKeepAwake();
 
-        const currRoute = await startCurrentRoute(routeIdToFollow);
-        const routeID = keep && currentRouteId ? currentRouteId : currRoute.id;
-        await startBackgroundGeolocation(routeID, keep);
-        if (!keep) {
-            dispatch(startRecordingRoute(currRoute, keep));
-        }
-    };
+            const currRoute = await startCurrentRoute(routeIdToFollow);
+            const routeID =
+                keep && currentRouteId ? currentRouteId : currRoute.id;
+            await startBackgroundGeolocation(routeID, keep);
+            if (!keep) {
+                dispatch(startRecordingRoute(currRoute, keep));
+            }
+        },
+        [dispatch, currentRouteId, stopTracker],
+    );
 
     const onPauseTracker = () => {
         setIsActive(false);
@@ -193,7 +197,8 @@ const useLocalizationTracker = (persist: boolean) => {
                     setCurrentAverageSpeed(parseFloat(aSpeed));
 
                     if (persist) {
-                        onPersistData(d?.odometer);
+                        /* TODO: High disk usage - to verify and eventually delete */
+                        // onPersistData(d?.odometer);
                     }
                 });
             }, 1000);

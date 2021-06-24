@@ -28,7 +28,6 @@ interface Props {
 const wh = Dimensions.get('window').height;
 
 const Permits: React.FC<Props> = (props: Props) => {
-
     const trans = I18n.t('Permits');
 
     const [checked, setChecked] = useState(false);

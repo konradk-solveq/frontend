@@ -13,13 +13,8 @@ type ValueType = string | boolean | SelectI | undefined | string[];
 const useFormDataWithMapData = (mapData: Map | undefined) => {
     const trans: any = I18n.t('RoutesDetails.EditScreen');
     const options = useAppSelector(mapOptionsAndTagsSelector);
-    const {
-        control,
-        handleSubmit,
-        setValue,
-        setError,
-        setFocus,
-    } = useForm<FormData>();
+    const {control, handleSubmit, setValue, setError, setFocus} =
+        useForm<FormData>();
 
     useEffect(() => {
         if (mapData) {

@@ -1,6 +1,5 @@
 import React from 'react';
-import Svg, { G, Path, Circle } from 'react-native-svg';
-
+import Svg, {G, Path, Circle} from 'react-native-svg';
 
 interface Props {
     style: any;

@@ -6,14 +6,16 @@
 // unika błedów płykiej kopi na zanieżdżeniach arraya
 // ***************************
 
-const deepCopy = (obj) => {
+const deepCopy = obj => {
     let copy;
 
     // Handle the 3 simple types, and null or undefined
-    if (obj == null || typeof obj != "object") {
-        if (typeof obj == 'undefined') return;
-        return obj
-    };
+    if (obj == null || typeof obj !== 'object') {
+        if (typeof obj === 'undefined') {
+            return;
+        }
+        return obj;
+    }
 
     // Handle Date
     if (obj instanceof Date) {
@@ -37,13 +39,15 @@ const deepCopy = (obj) => {
         for (let attr in obj) {
             if (obj.hasOwnProperty(attr)) {
                 let res = deepCopy(obj[attr]);
-                if (typeof res != 'undefined') copy[attr] = res
-            };
+                if (typeof res !== 'undefined') {
+                    copy[attr] = res;
+                }
+            }
         }
         return copy;
     }
 
     throw new Error("Unable to copy obj! Its type isn't supported.");
-}
+};
 
-export default deepCopy
+export default deepCopy;

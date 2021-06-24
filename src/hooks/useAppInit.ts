@@ -26,9 +26,10 @@ const useAppInit = () => {
     const authToken = useAppSelector<string>(authTokenSelector);
     const userName = useAppSelector<string>(state => state.user.userName);
     const syncStatus = useAppSelector(syncAppSelector);
-    const error = useAppSelector(
-        appErrorSelector,
-    ); /* TODO: check all errors from sync requests */
+    const error =
+        useAppSelector(
+            appErrorSelector,
+        ); /* TODO: check all errors from sync requests */
 
     const [geolocationState, setGeolocationState] = useState<State>();
     const [crashlyticsInitialized, setCrashlyticsInitialized] = useState(false);

@@ -97,227 +97,230 @@ export const removeMapFromPrivates = (mapID: string) => ({
     mapID: mapID,
 });
 
-export const fetchMapsList = (
-    page?: string,
-    filters?: PickedFilters,
-): AppThunk<Promise<void>> => async dispatch => {
-    dispatch(setLoadingState(true));
-    try {
-        const {lat, lng} = await getLatLngFromForeground();
+export const fetchMapsList =
+    (page?: string, filters?: PickedFilters): AppThunk<Promise<void>> =>
+        async dispatch => {
+            dispatch(setLoadingState(true));
+            try {
+                const {lat, lng} = await getLatLngFromForeground();
 
-        const response = await getMapsList(
-            {latitude: lat, longitude: lng},
-            page,
-            filters,
-        );
+                const response = await getMapsList(
+                    {latitude: lat, longitude: lng},
+                    page,
+                    filters,
+                );
 
-        if (response.error || !response.data || !response.data.elements) {
-            dispatch(setError(response.error, response.status));
-            return;
-        }
+                if (response.error || !response.data || !response.data.elements) {
+                    dispatch(setError(response.error, response.status));
+                    return;
+                }
 
-        const refresh = !page;
-        dispatch(
-            setMapsData(response.data.elements, response.data.links, refresh),
-        );
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
-    } catch (error) {
-        logger.log('[fetchMapsList]');
-        const err = convertToApiError(error);
-        logger.recordError(err);
-        const errorMessage = I18n.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
-    }
-};
+                const refresh = !page;
+                dispatch(
+                    setMapsData(
+                        response.data.elements,
+                        response.data.links,
+                        refresh,
+                    ),
+                );
+                dispatch(clearError());
+                dispatch(setLoadingState(false));
+            } catch (error) {
+                logger.log('[fetchMapsList]');
+                const err = convertToApiError(error);
+                logger.recordError(err);
+                const errorMessage = I18n.t('dataAction.apiError');
+                dispatch(setError(errorMessage, 500));
+            }
+        };
 
-export const fetchPrivateMapsList = (
-    page?: string,
-    filters?: PickedFilters,
-): AppThunk<Promise<void>> => async dispatch => {
-    dispatch(setLoadingState(true));
-    try {
-        const {lat, lng} = await getLatLngFromForeground();
-        const response = await getPrivateMapsListService(
-            {latitude: lat, longitude: lng},
-            page,
-            filters,
-        );
+export const fetchPrivateMapsList =
+    (page?: string, filters?: PickedFilters): AppThunk<Promise<void>> =>
+        async dispatch => {
+            dispatch(setLoadingState(true));
+            try {
+                const {lat, lng} = await getLatLngFromForeground();
+                const response = await getPrivateMapsListService(
+                    {latitude: lat, longitude: lng},
+                    page,
+                    filters,
+                );
 
-        if (response.error || !response.data || !response.data.elements) {
-            dispatch(setError(response.error, response.status));
-            return;
-        }
+                if (response.error || !response.data || !response.data.elements) {
+                    dispatch(setError(response.error, response.status));
+                    return;
+                }
 
-        const refresh = !page;
-        dispatch(
-            setPrivateMapsData(
-                response.data.elements,
-                response.data.links,
-                refresh,
-            ),
-        );
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
-    } catch (error) {
-        logger.log('[fetchPrivateMapsList]');
-        const err = convertToApiError(error);
-        logger.recordError(err);
-        const errorMessage = I18n.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
-    }
-};
+                const refresh = !page;
+                dispatch(
+                    setPrivateMapsData(
+                        response.data.elements,
+                        response.data.links,
+                        refresh,
+                    ),
+                );
+                dispatch(clearError());
+                dispatch(setLoadingState(false));
+            } catch (error) {
+                logger.log('[fetchPrivateMapsList]');
+                const err = convertToApiError(error);
+                logger.recordError(err);
+                const errorMessage = I18n.t('dataAction.apiError');
+                dispatch(setError(errorMessage, 500));
+            }
+        };
 
-export const editPrivateMapMetaData = (
-    data: MapFormDataResult,
-    images?: ImagesMetadataType,
-    publish?: boolean,
-    id?: string,
-): AppThunk<Promise<void>> => async (dispatch, getState) => {
-    dispatch(setLoadingState(true));
-    try {
-        const {userName} = getState().user;
+export const editPrivateMapMetaData =
+    (
+        data: MapFormDataResult,
+        images?: ImagesMetadataType,
+        publish?: boolean,
+        id?: string,
+    ): AppThunk<Promise<void>> =>
+        async (dispatch, getState) => {
+            dispatch(setLoadingState(true));
+            try {
+                const {userName} = getState().user;
 
-        const response = await editPrivateMapMetadataService(
-            data,
-            userName,
-            images,
-            !!publish,
-            id,
-        );
+                const response = await editPrivateMapMetadataService(
+                    data,
+                    userName,
+                    images,
+                    !!publish,
+                    id,
+                );
 
-        if (response.error || response.status >= 400) {
-            dispatch(setError(response.error, response.status));
-            dispatch(setLoadingState(false));
-            return;
-        }
+                if (response.error || response.status >= 400) {
+                    dispatch(setError(response.error, response.status));
+                    dispatch(setLoadingState(false));
+                    return;
+                }
 
-        await dispatch(fetchPrivateMapsList());
-        if (publish) {
-            dispatch(fetchMapsList());
-        }
-        dispatch(clearPrivateMapId());
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
-    } catch (error) {
-        logger.log('[editPrivateMapMetaData]');
-        const err = convertToApiError(error);
-        logger.recordError(err);
-        const errorMessage = I18n.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
-    }
-};
+                await dispatch(fetchPrivateMapsList());
+                if (publish) {
+                    dispatch(fetchMapsList());
+                }
+                dispatch(clearPrivateMapId());
+                dispatch(clearError());
+                dispatch(setLoadingState(false));
+            } catch (error) {
+                logger.log('[editPrivateMapMetaData]');
+                const err = convertToApiError(error);
+                logger.recordError(err);
+                const errorMessage = I18n.t('dataAction.apiError');
+                dispatch(setError(errorMessage, 500));
+            }
+        };
 
-export const removePrivateMapMetaData = (
-    id: string,
-): AppThunk<Promise<void>> => async dispatch => {
-    dispatch(setLoadingState(true));
-    try {
-        const response = await removePrivateMapByIdService(id);
+export const removePrivateMapMetaData =
+    (id: string): AppThunk<Promise<void>> =>
+        async dispatch => {
+            dispatch(setLoadingState(true));
+            try {
+                const response = await removePrivateMapByIdService(id);
 
-        if (response.error || response.status >= 400) {
-            dispatch(setError(response.error, response.status));
-            return;
-        }
+                if (response.error || response.status >= 400) {
+                    dispatch(setError(response.error, response.status));
+                    return;
+                }
 
-        dispatch(removeMapFromPrivates(id));
-        dispatch(fetchPrivateMapsList());
-        dispatch(fetchMapsList());
-        dispatch(clearPrivateMapId());
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
-    } catch (error) {
-        logger.log('[removePrivateMapMetaData]');
-        const err = convertToApiError(error);
-        logger.recordError(err);
-        const errorMessage = I18n.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
-    }
-};
+                dispatch(removeMapFromPrivates(id));
+                dispatch(fetchPrivateMapsList());
+                dispatch(fetchMapsList());
+                dispatch(clearPrivateMapId());
+                dispatch(clearError());
+                dispatch(setLoadingState(false));
+            } catch (error) {
+                logger.log('[removePrivateMapMetaData]');
+                const err = convertToApiError(error);
+                logger.recordError(err);
+                const errorMessage = I18n.t('dataAction.apiError');
+                dispatch(setError(errorMessage, 500));
+            }
+        };
 
-export const fetchPlannedMapsList = (
-    page?: string,
-    filters?: PickedFilters,
-): AppThunk<Promise<void>> => async dispatch => {
-    dispatch(setLoadingState(true));
-    try {
-        /* TODO: move to global listener - locaiton */
-        const {lat, lng} = await getLatLngFromForeground();
-        const response = await getPlannedMapsListService(
-            {latitude: lat, longitude: lng},
-            page,
-            filters,
-        );
+export const fetchPlannedMapsList =
+    (page?: string, filters?: PickedFilters): AppThunk<Promise<void>> =>
+        async dispatch => {
+            dispatch(setLoadingState(true));
+            try {
+            /* TODO: move to global listener - locaiton */
+                const {lat, lng} = await getLatLngFromForeground();
+                const response = await getPlannedMapsListService(
+                    {latitude: lat, longitude: lng},
+                    page,
+                    filters,
+                );
 
-        if (response.error || !response.data || !response.data?.elements) {
-            dispatch(setError(response.error, response.status));
-            return;
-        }
+                if (response.error || !response.data || !response.data?.elements) {
+                    dispatch(setError(response.error, response.status));
+                    return;
+                }
 
-        const refresh = !page;
-        dispatch(
-            setPlannedMapsData(
-                response.data.elements,
-                response.data.links,
-                refresh,
-            ),
-        );
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
-    } catch (error) {
-        logger.log('[fetchPlannedMapsList]');
-        const err = convertToApiError(error);
-        logger.recordError(err);
-        const errorMessage = I18n.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
-    }
-};
+                const refresh = !page;
+                dispatch(
+                    setPlannedMapsData(
+                        response.data.elements,
+                        response.data.links,
+                        refresh,
+                    ),
+                );
+                dispatch(clearError());
+                dispatch(setLoadingState(false));
+            } catch (error) {
+                logger.log('[fetchPlannedMapsList]');
+                const err = convertToApiError(error);
+                logger.recordError(err);
+                const errorMessage = I18n.t('dataAction.apiError');
+                dispatch(setError(errorMessage, 500));
+            }
+        };
 
-export const addPlannedMap = (
-    id: string,
-): AppThunk<Promise<void>> => async dispatch => {
-    dispatch(setLoadingState(true));
-    try {
-        const response = await addPlannedMapsListService(id);
+export const addPlannedMap =
+    (id: string): AppThunk<Promise<void>> =>
+        async dispatch => {
+            dispatch(setLoadingState(true));
+            try {
+                const response = await addPlannedMapsListService(id);
 
-        if (response.error || response.status >= 400) {
-            dispatch(setError(response.error, response.status));
-            return;
-        }
+                if (response.error || response.status >= 400) {
+                    dispatch(setError(response.error, response.status));
+                    return;
+                }
 
-        dispatch(fetchPlannedMapsList());
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
-    } catch (error) {
-        logger.log('[addPlannedMap]');
-        const err = convertToApiError(error);
-        logger.recordError(err);
-        const errorMessage = I18n.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
-    }
-};
+                dispatch(fetchPlannedMapsList());
+                dispatch(clearError());
+                dispatch(setLoadingState(false));
+            } catch (error) {
+                logger.log('[addPlannedMap]');
+                const err = convertToApiError(error);
+                logger.recordError(err);
+                const errorMessage = I18n.t('dataAction.apiError');
+                dispatch(setError(errorMessage, 500));
+            }
+        };
 
-export const removePlanendMap = (
-    id: string,
-): AppThunk<Promise<void>> => async dispatch => {
-    dispatch(setLoadingState(true));
-    try {
-        const response = await removePlannedMapByIdService(id);
+export const removePlanendMap =
+    (id: string): AppThunk<Promise<void>> =>
+        async dispatch => {
+            dispatch(setLoadingState(true));
+            try {
+                const response = await removePlannedMapByIdService(id);
 
-        if (response.error || response.status >= 400) {
-            dispatch(setError(response.error, response.status));
-            return;
-        }
+                if (response.error || response.status >= 400) {
+                    dispatch(setError(response.error, response.status));
+                    return;
+                }
 
-        dispatch(removeMapFromFavourite(id));
-        dispatch(fetchPlannedMapsList());
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
-    } catch (error) {
-        logger.log('[removePlanendMap]');
-        const err = convertToApiError(error);
-        logger.recordError(err);
-        const errorMessage = I18n.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
-    }
-};
+                dispatch(removeMapFromFavourite(id));
+                dispatch(fetchPlannedMapsList());
+                dispatch(clearError());
+                dispatch(setLoadingState(false));
+            } catch (error) {
+                logger.log('[removePlanendMap]');
+                const err = convertToApiError(error);
+                logger.recordError(err);
+                const errorMessage = I18n.t('dataAction.apiError');
+                dispatch(setError(errorMessage, 500));
+            }
+        };

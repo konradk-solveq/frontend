@@ -1,11 +1,5 @@
-import React, { useState} from 'react';
-import {
-    StyleSheet,
-    SafeAreaView,
-    View,
-    Text,
-    ScrollView,
-} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
 
 import StackHeader from '../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../sharedComponents/inputs/oneLineTekst';

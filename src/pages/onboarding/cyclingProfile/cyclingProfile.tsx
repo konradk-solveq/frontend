@@ -1,22 +1,18 @@
-
-
-import React from "react";
-import { Stack } from '../../../navigation/stack';
+import React from 'react';
+import {Stack} from '../../../navigation/stack';
 
 import CyclingProfileView from './cyclingProfileView';
 import CyclingProfileSettings from './cyclingProfileSettings';
 
 interface Props {
-    navigation: any,
-    route: any,
-};
+    navigation: any;
+    route: any;
+}
 
 const CyclingProfile: React.FC<Props> = (props: Props) => {
-
-
     const verticalAnim = {
         gestureDirection: 'vertical',
-        cardStyleInterpolator: ({ current, layouts }) => {
+        cardStyleInterpolator: ({current, layouts}) => {
             return {
                 cardStyle: {
                     transform: [
@@ -37,14 +33,17 @@ const CyclingProfile: React.FC<Props> = (props: Props) => {
             headerMode="none"
             initialRouteName="CyclingProfileView"
             mode="modal"
-            screenOptions={verticalAnim}
-        >
-
-            <Stack.Screen name="CyclingProfileView" component={CyclingProfileView} />
-            <Stack.Screen name="CyclingProfileSettings" component={CyclingProfileSettings} />
-
+            screenOptions={verticalAnim}>
+            <Stack.Screen
+                name="CyclingProfileView"
+                component={CyclingProfileView}
+            />
+            <Stack.Screen
+                name="CyclingProfileSettings"
+                component={CyclingProfileSettings}
+            />
         </Stack.Navigator>
-    )
-}
+    );
+};
 
-export default CyclingProfile
+export default CyclingProfile;

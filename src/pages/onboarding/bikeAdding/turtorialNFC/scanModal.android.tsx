@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Modal } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import React, {useEffect} from 'react';
+import {StyleSheet, View, Text, Modal} from 'react-native';
+import Svg, {Path} from 'react-native-svg';
 import AnimSvg from '../../../../helpers/animSvg';
 import I18n from 'react-native-i18n';
 
@@ -42,7 +42,10 @@ const ScanModal: React.FC<IProps> = ({
             width: getHorizontalPx(414),
             height: getHorizontalPx(800),
             left: 0,
-            bottom: -(getHorizontalPx(800) - (getVerticalPx(35 + 81 + 35 + 65 + 145 + 90) + 40 + 23 + 50)),
+            bottom: -(
+                getHorizontalPx(800) -
+                (getVerticalPx(35 + 81 + 35 + 65 + 145 + 90) + 40 + 23 + 50)
+            ),
         },
         wrap: {
             width: getHorizontalPx(334),

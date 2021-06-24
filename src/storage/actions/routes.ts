@@ -10,7 +10,6 @@ import logger from '../../utils/crashlytics';
 import {createNewRouteService, syncRouteData} from '../../services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
-import {toTimestamp} from '../../utils/persistLocationData';
 import {MIN_ROUTE_LENGTH} from '../../helpers/global';
 import { AppState } from '../reducers/app';
 

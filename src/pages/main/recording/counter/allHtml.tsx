@@ -1355,4 +1355,4 @@ const hideAlert = () => {
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcuDhYsJJqOBvWppdbLf5y75V8OdNOevQ&map_ids=2ffa275ecc610735&callback=initMap">
 </script>
-`
+`;

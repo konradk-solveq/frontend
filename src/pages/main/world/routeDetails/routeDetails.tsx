@@ -62,9 +62,8 @@ const RouteDetails = () => {
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
 
-    const headerBackgroundHeight = getVerticalPx(
-        100,
-    ); /* equal to header height */
+    const headerBackgroundHeight =
+        getVerticalPx(100); /* equal to header height */
 
     const onBackHandler = () => {
         navigation.goBack();
