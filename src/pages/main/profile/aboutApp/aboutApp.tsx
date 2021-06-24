@@ -130,8 +130,7 @@ const AboutApp: React.FC<Props> = (props: Props) => {
                         <Text style={styles.nextLineSignature}>{trans.signature_2}</Text>
 
                         <Text style={styles.version}>{`v. ${
-                            // __DEV__ ? version : myVersion
-                            myVersion
+                            __DEV__ ? version : myVersion
                         }`}</Text>
                     </View>
                 </ScrollView>

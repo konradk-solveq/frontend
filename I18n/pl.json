@@ -114,6 +114,14 @@
         {
             "url": "https://www.kross.pl.rgulamin",
             "hyper": "Regulamin Aplikacji Mobilnej"
+        },
+        {
+            "url": "https://play.google.com/store/apps/details?id=pl.kross.mykross",
+            "hyper": "Aplikacja myKROSS - Android"
+        },
+        {
+            "url": "https://apps.apple.com/pl/app/mykross/id1561981216",
+            "hyper": "Aplikacja myKROSS - iOS"
         }
     ],
     "newRegulations": {
@@ -518,7 +526,11 @@
         "app": "O aplikacji",
         "regulations": "Regulamin",
         "privacyPolicy": "Polityka prywatności",
+        "help": "Pomoc",
         "contact": "Kontakt"
+    },
+    "Help": {
+        "header": "Pomoc"
     },
     "AboutApp": {
         "header": "O aplikacji",

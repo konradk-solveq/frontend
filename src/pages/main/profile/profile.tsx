@@ -13,7 +13,7 @@ import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import BlueButton from './blueButton';
 
-import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
+import {useAppSelector} from '../../../hooks/redux';
 
 import {
     setObjSize,
@@ -170,6 +170,10 @@ const Profile: React.FC<Props> = (props: Props) => {
                             props.navigation.navigate('PrivacyPolicy')
                         }
                         title={trans.privacyPolicy}
+                    />
+                    <BlueButton
+                        onpress={() => props.navigation.navigate('Help')}
+                        title={trans.help}
                     />
                     <BlueButton
                         onpress={() => props.navigation.navigate('Contact')}

@@ -6236,15 +6236,16 @@ react-native-android-location-enabler@^1.2.2:
   resolved "https://registry.yarnpkg.com/react-native-android-location-enabler/-/react-native-android-location-enabler-1.2.2.tgz#84b8dbbda0d5198d99cf264e6be4edaa7f256ba1"
   integrity sha512-CC5ghRoK3jkGNK8jdIiYIc3l0XZuQuMt2KEfldDpnMCkNz2aAfUWyLCoOniFLqtdD9poA3az+kCmUzTvLAyTiA==
 
-react-native-background-fetch@^4.0.2:
+react-native-background-fetch@^4.0.2, react-native-background-fetch@~4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/react-native-background-fetch/-/react-native-background-fetch-4.0.2.tgz#97842722b67c584fd860f30eb1fc70e481b207c0"
   integrity sha512-R5T4fxz3k7Lldv3urUDuhOVwueMNCGQ03pCu44oe/zcOmKX3iGzvwup9W2J2C763MKnuSztF0Y2F4fMYPIR0fw==
 
-react-native-background-geolocation-android@^0.0.1-security:
-  version "0.0.1-security"
-  resolved "https://registry.yarnpkg.com/react-native-background-geolocation-android/-/react-native-background-geolocation-android-0.0.1-security.tgz#41ec1b3b006599d400d93fe2c226d06acce18034"
-  integrity sha1-QewbOwBlmdQA2T/iwibQaszhgDQ=
+"react-native-background-geolocation-android@git+ssh://git@github.com:transistorsoft/react-native-background-geolocation-android.git":
+  version "4.1.1"
+  resolved "git+ssh://git@github.com:transistorsoft/react-native-background-geolocation-android.git#2a0138d9c59a58fbdb86e452de20250e36aea930"
+  dependencies:
+    react-native-background-fetch "~4.0.1"
 
 react-native-codegen@^0.0.6:
   version "0.0.6"
@@ -6402,7 +6403,7 @@ react-native-webview@^11.3.2:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
 
-react-native@^0.64.0:
+react-native@^0.64.2:
   version "0.64.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.64.2.tgz#233b6ed84ac4749c8bc2a2d6cf63577a1c437d18"
   integrity sha512-Ty/fFHld9DcYsFZujXYdeVjEhvSeQcwuTGXezyoOkxfiGEGrpL/uwUZvMzwShnU4zbbTKDu2PAm/uwuOittRGA==
