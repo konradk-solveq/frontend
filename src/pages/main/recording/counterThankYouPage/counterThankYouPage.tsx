@@ -134,9 +134,9 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
             d = Number(d.replace(',', '.'));
         }
 
-        let res = (d * ratio) / 100;
-        if (res < 0.1) {
-            res = 0.1;
+        let res = d * (ratio / 100);
+        if (res < 0) {
+            res = 0;
         }
 
         return res.toFixed(1).replace('.', ',');
