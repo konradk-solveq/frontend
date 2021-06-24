@@ -80,6 +80,8 @@ const RouteDetails = () => {
         if (privateMap) {
             setShowBottomModal(true);
             return;
+        } else {
+            navigation.navigate('Contact');
         }
         console.log('create ticket');
         /* TODO: user can delete if creted route. For public routes can only make ticket */
