@@ -368,9 +368,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             flex: 1,
         },
         map: {
-            width: '100%',
-            // height: mapBtnPos + mapBtnSize,
-            height: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: getHorizontalPx(414),
+            height: getVerticalPx(896) - statusBarHeight,
         },
         markWrap: {
             position: 'absolute',
