@@ -13,7 +13,7 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
-import AddBike from './addBike';
+import Tile from './tile';
 
 import {useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
@@ -102,35 +102,37 @@ const Home: React.FC = () => {
 
                 <View style={styles.container}>
                     <View style={styles.tileWrapper}>
-                        <AddBike
-                            title={trans.firstTitle}
-                            description={trans.firstText}
-                            btnText={trans.firstBtn}
-                            style={styles.tileSpace}
-                            onPress={onCheckActionHandler}
-                        />
-                        <AddBike
+                        {!hasRecordedRoutes ? (
+                            <Tile
+                                title={trans.thirdTitle}
+                                description={trans.thirdText}
+                                btnText={trans.thirdBtn}
+                                style={styles.tileSpace}
+                                onPress={onRecordTripActionHandler}
+                            />
+                        ) : (
+                            <Tile
+                                title={trans.fourthTitle}
+                                description={trans.fourthText}
+                                btnText={trans.fourthBtn}
+                                style={styles.tileSpace}
+                                onPress={onRecordTripActionHandler}
+                            />
+                        )}
+                        <Tile
                             title={trans.secondTitle}
                             description={trans.secondText}
                             btnText={trans.secondBtn}
                             style={styles.tileSpace}
                             onPress={onAddActionHandler}
                         />
-                        {!hasRecordedRoutes ? (
-                            <AddBike
-                                title={trans.thirdTitle}
-                                description={trans.thirdText}
-                                btnText={trans.thirdBtn}
-                                onPress={onRecordTripActionHandler}
-                            />
-                        ) : (
-                            <AddBike
-                                title={trans.fourthTitle}
-                                description={trans.fourthText}
-                                btnText={trans.fourthBtn}
-                                onPress={onRecordTripActionHandler}
-                            />
-                        )}
+                        {/* <Tile
+                            title={trans.firstTitle}
+                            description={trans.firstText}
+                            btnText={trans.firstBtn}
+                            style={styles.tileSpace}
+                            onPress={onCheckActionHandler}
+                        /> */}
                     </View>
                 </View>
             </ScrollView>
