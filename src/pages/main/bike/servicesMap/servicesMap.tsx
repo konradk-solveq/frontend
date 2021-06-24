@@ -199,7 +199,9 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         let p = JSON.stringify(places);
-        if(places.length == 0) return;
+        if (places.length == 0) {
+            return;
+        }
 
         setJs(`setMarks(${p});true;`);
     }, [places]);

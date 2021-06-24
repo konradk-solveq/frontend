@@ -1,6 +1,5 @@
-
-import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
 
 import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
 
@@ -9,27 +8,26 @@ import {
     getCenterLeftPx,
     getVerticalPx,
     getWidthPx,
-    getHorizontalPx
+    getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 
 interface Props {
-    name: string,
-    list: Array<string>,
-    getReult: Function,
-    active: number
-};
+    name: string;
+    list: Array<string>;
+    getReult: Function;
+    active: number;
+}
 
 const RadioLine: React.FC<Props> = (props: Props) => {
-
     const [active, setActive] = useState(props.active);
     useEffect(() => {
-        setActive(props.active)
-    }, [props.active])
+        setActive(props.active);
+    }, [props.active]);
 
     const hendleOnpress = (value: number) => {
         props.getReult && props.getReult(value);
         setActive(value);
-    }
+    };
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -40,7 +38,7 @@ const RadioLine: React.FC<Props> = (props: Props) => {
         },
         reg18: {
             width: '100%',
-            fontFamily: "DIN2014Narrow-Regular",
+            fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(18),
             color: '#313131',
             textAlign: 'left',
@@ -51,15 +49,12 @@ const RadioLine: React.FC<Props> = (props: Props) => {
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
-        }
-    })
+        },
+    });
 
     return (
         <View style={styles.conainer}>
-
-            <Text style={styles.reg18}>
-                {props.name}
-            </Text>
+            <Text style={styles.reg18}>{props.name}</Text>
 
             <View style={styles.list}>
                 {props.list.map((e, i) => (
@@ -69,11 +64,10 @@ const RadioLine: React.FC<Props> = (props: Props) => {
                         active={active == i}
                         key={props.name + '_' + i}
                         height={41}
-                    ></TypicalRedBtn>
+                    />
                 ))}
             </View>
-
         </View>
-    )
-}
-export default RadioLine
+    );
+};
+export default RadioLine;

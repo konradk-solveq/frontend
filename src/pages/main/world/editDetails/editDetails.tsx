@@ -63,9 +63,8 @@ const EditDetails = () => {
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [isPublished, setIsPublished] = useState(false);
 
-    const headerBackgroundHeight = getVerticalPx(
-        100,
-    ); /* equal to header height */
+    const headerBackgroundHeight =
+        getVerticalPx(100); /* equal to header height */
 
     const onBackHandler = useCallback(() => {
         if (redirectToScreen) {

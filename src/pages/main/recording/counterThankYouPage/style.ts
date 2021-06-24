@@ -79,11 +79,10 @@ const styles = StyleSheet.create({
         textAlign: 'left',
     },
     btnContainer: {
-        
         marginBottom: getVerticalPx(65),
         flexDirection: 'row',
         marginHorizontal: 40,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     btnSave: {
         width: getHorizontalPx(157),

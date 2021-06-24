@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {WebView} from 'react-native-webview';
 
@@ -17,7 +17,6 @@ const AnimSvg: React.FC<Props> = (props: Props) => {
             height: '100%',
         },
     });
-
 
     return (
         <View style={props.style} pointerEvents="none">

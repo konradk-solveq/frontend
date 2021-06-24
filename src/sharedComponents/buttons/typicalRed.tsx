@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import {StyleSheet, TouchableOpacity, Text} from 'react-native';
 
-import { getHorizontalPx } from '../../helpers/layoutFoo';
+import {getHorizontalPx} from '../../helpers/layoutFoo';
 
 interface Props {
     style?: any;
