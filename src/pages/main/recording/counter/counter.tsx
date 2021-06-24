@@ -572,9 +572,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                         style={styles.map}
                         customMapStyle={mapStyle}
-                        pitchEnabled={true}
+                        pitchEnabled={false}
                         ref={mapRef}
                         scrollEnabled={false}
+                        zoomEnabled={false}
                         initialCamera={{
                             center: {
                                 latitude: location.latitude,
