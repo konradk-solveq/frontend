@@ -73,7 +73,7 @@ const useLocalizationTracker = (persist: boolean) => {
 
     const onPersistData = useCallback(
         async (d: number) => {
-            if (d - lastDistance < 150) {
+            if (d - lastDistance < 1500) {
                 return;
             }
 
@@ -133,8 +133,8 @@ const useLocalizationTracker = (persist: boolean) => {
     };
 
     const onStartTracker = async () => {
-        await resumeTracingLocation();
         setIsActive(true);
+        await resumeTracingLocation();
     };
 
     useEffect(() => {

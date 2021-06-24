@@ -148,6 +148,7 @@ export const syncRouteData = async (
         }
 
         if (
+            !routeId &&
             response &&
             (response?.data?.statusCode === 404 ||
                 response?.data?.statusCode === 400 ||
