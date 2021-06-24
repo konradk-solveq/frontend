@@ -134,7 +134,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
             d = Number(d.replace(',', '.'));
         }
 
-        let res = d * ratio;
+        let res = (d * ratio) / 100;
         if (res < 0.1) {
             res = 0.1;
         }
@@ -152,7 +152,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 (num === 1 ? trans.type_1[0] : trans.type_1[1])
             );
         } else {
-            let num = heandleSaveDistance(4);
+            let num = heandleSaveDistance(5);
             return ' ' + num + ' ' + trans.type_2;
         }
     };
