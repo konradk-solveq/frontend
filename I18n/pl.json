@@ -357,7 +357,8 @@
             "emptyStateTitle": "Nie masz nagranych tras",
             "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
             "emptyStateButton": "Pobierz trasę",
-            "defaultUserName": "Rowerzysto"
+            "defaultUserName": "Rowerzysto",
+            "routesNumberTitle": "Ilość nagranych tras:"
         }
     },
     "MainMyRoutes": {
@@ -640,6 +641,7 @@
         "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem",
         "routeData": {
             "defaultRouteName": "Trasa z dnia",
+            "defaultAlternativeRouteName": "Trasa {{number}} z dnia",
             "defaultAuthorName": "Rowerzysta",
             "removeRouteError": "Trasa nie została usunięta. Spróbuj ponownie.",
             "createRouteError": "Trasa nie została utworzona. Spróbuj ponownie.",

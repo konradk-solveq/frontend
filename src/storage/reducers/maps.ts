@@ -5,7 +5,7 @@ import * as actionTypes from '../actions/actionTypes';
 import {MapType} from '../../models/map.model';
 import {MapPagination} from '../../interfaces/api';
 
-interface MapsState {
+export interface MapsState {
     maps: MapType[];
     totalMaps: number | null;
     privateMaps: MapType[];
