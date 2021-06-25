@@ -7,7 +7,9 @@ import {MapPagination} from '../../interfaces/api';
 
 interface MapsState {
     maps: MapType[];
+    totalMaps: number | null;
     privateMaps: MapType[];
+    totalPrivateMaps: number | null;
     plannedMaps: MapType[];
     paginationCoursor: MapPagination;
     mapToAddId: string;
@@ -23,7 +25,9 @@ interface MapsState {
 
 const initialStateList: MapsState = {
     maps: [],
+    totalMaps: null,
     privateMaps: [],
+    totalPrivateMaps: null,
     plannedMaps: [],
     paginationCoursor: {},
     paginationCoursorPrivate: {},
@@ -78,12 +82,14 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 loading: false,
                 maps: newMaps,
                 paginationCoursor: action.paginationCoursor,
+                totalMaps: action.totalMaps,
                 statusCode: 200,
                 refresh: action.refresh,
             };
         }
         case actionTypes.SET_PRIVATE_MAPS_DATA: {
             let newPrivateMaps = [...state.privateMaps];
+            console.log(action.totalPrivateMaps);
             if (action.refresh) {
                 newPrivateMaps = action.privateMaps;
             }
@@ -96,6 +102,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 loading: false,
                 privateMaps: newPrivateMaps,
                 paginationCoursorPrivate: action.paginationCoursor,
+                totalPrivateMaps: action.totalPrivateMaps,
                 statusCode: 200,
                 refresh: action.refresh,
             };
@@ -188,7 +195,7 @@ const persistConfig = {
     key: 'maps',
     storage: AsyncStorage,
     whitelist: [
-        'maps, favourites, ownes, privateMaps, paginationCoursorPrivate',
+        'maps, favourites, ownes, privateMaps, plannedMaps, paginationCoursorPrivate, paginationCoursorPlanned, totalMaps, totalPrivateMaps',
     ],
     timeout: 20000,
 };

@@ -23,6 +23,7 @@ import {I18n} from '../../I18n/I18n';
 export interface MapsData {
     elements: MapType[] | [];
     links: {prev: string};
+    total: number;
 }
 
 export type CreatedPlannedMap = {
@@ -66,7 +67,7 @@ export const getMapsList = async (
             errorMessage = response.data.message || response.data.error;
         }
         return {
-            data: {elements: [], links: {prev: ''}},
+            data: {elements: [], links: {prev: ''}, total: 0},
             status: response.data?.statusCode || response.status,
             error: errorMessage,
         };
@@ -76,6 +77,7 @@ export const getMapsList = async (
         data: {
             elements: response.data.elements,
             links: response.data.links,
+            total: response.data.total,
         },
         status: response.data?.statusCode || response.status,
         error: '',
@@ -97,7 +99,7 @@ export const getPrivateMapsListService = async (
             errorMessage = response.data.message || response.data.error;
         }
         return {
-            data: {elements: [], links: {prev: ''}},
+            data: {elements: [], links: {prev: ''}, total: 0},
             status: response.data?.statusCode || response.status,
             error: errorMessage,
         };
@@ -107,6 +109,7 @@ export const getPrivateMapsListService = async (
         data: {
             elements: response.data.elements,
             links: response.data.links,
+            total: response.data.total,
         },
         status: response.data?.statusCode || response.status,
         error: '',
@@ -293,7 +296,7 @@ export const getPlannedMapsListService = async (
             errorMessage = response.data.message || response.data.error;
         }
         return {
-            data: {elements: [], links: {prev: ''}},
+            data: {elements: [], links: {prev: ''}, total: 0},
             status: response.data?.statusCode || response.status,
             error: errorMessage,
         };
@@ -303,6 +306,7 @@ export const getPlannedMapsListService = async (
         data: {
             elements: response.data.elements,
             links: response.data.links,
+            total: response.data.total,
         },
         status: response.data?.statusCode || response.status,
         error: '',

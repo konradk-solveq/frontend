@@ -131,3 +131,10 @@ export const prevPlannedPaginationCoursor = (
 
 export const hasRecordedRoutesSelector = (state: RootState): boolean =>
     state.maps.privateMaps?.length > 0;
+
+export const totalMapsNumberSelector = (state: RootState): number | null =>
+    state.maps.totalMaps;
+
+export const privateTotalMapsNumberSelector = (
+    state: RootState,
+): number | null => state.maps.totalPrivateMaps;
