@@ -111,7 +111,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         if (!isSyncData && goForward) {
-            if (error?.message) {
+            if (error?.message && error?.statusCode >= 400) {
                 Alert.alert('', error.message, [
                     {
                         text: 'Ok',
@@ -123,7 +123,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
             onGoForward();
         }
-    }, [error.message, isSyncData, onGoForward, goForward]);
+    }, [error?.statusCode, isSyncData, onGoForward, goForward]);
 
     const heandleSaveDistance = ratio => {
         let d = route?.params?.distance;

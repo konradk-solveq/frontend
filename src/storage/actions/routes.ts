@@ -218,8 +218,13 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             return;
         }
 
-        const response = await syncRouteData(
+        const currRoutesDat = await routesDataToPersist(
+            currentRoute.id,
             currentRouteData,
+        );
+
+        const response = await syncRouteData(
+            currRoutesDat,
             currentRoute?.remoteRouteId,
         );
 
