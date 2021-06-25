@@ -3,7 +3,6 @@ import BackgroundGeolocation, {
     Location,
     LocationError,
 } from 'react-native-background-geolocation-android';
-import GetLocation from 'react-native-get-location';
 
 import {LocationDataI} from '../interfaces/geolocation';
 
@@ -79,12 +78,9 @@ export const getLatLng = async () => {
 };
 
 export const getLatLngFromForeground = async () => {
-    const location = await GetLocation.getCurrentPosition({
-        enableHighAccuracy: true,
-        timeout: 15000,
-    });
-    const lat = location.latitude;
-    const lng = location.longitude;
+    const location = await getCurrentLocation('', 1);
+    const lat = location.coords.latitude;
+    const lng = location.coords.longitude;
     return {lat, lng};
 };
 
@@ -106,6 +102,9 @@ export const startBackgroundGeolocation = async (
         extras: {
             route_id: routeId,
         },
+        notification: {
+            text: 'Nagrywanie trasy',
+        },
     });
 
     const state = await BackgroundGeolocation.start();
@@ -121,6 +120,9 @@ export const stopBackgroundGeolocation = async () => {
         isMoving: false,
         extras: {
             route_id: '',
+        },
+        notification: {
+            text: 'Pobieranie lokalizacji',
         },
     });
 
