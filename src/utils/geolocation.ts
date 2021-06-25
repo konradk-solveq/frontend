@@ -76,7 +76,11 @@ export const getLatLng = async () => {
     const lng = location.coords.longitude;
     return {lat, lng};
 };
-
+/**
+ * TODO: change to listen for geofances constantly.
+ * Loc should be reqested only on beginging and set geofacne (let say about 1km).
+ * onExit event locaclization should be updated.
+ */
 export const getLatLngFromForeground = async () => {
     const location = await getCurrentLocation('', 1);
     const lat = location.coords.latitude;
