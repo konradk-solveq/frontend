@@ -84,7 +84,7 @@ export const removeCeratedRouteIDService = async (
 export const syncRouteData = async (
     path: LocationDataI[],
     remoteRouteId?: string,
-    routeNumber?: number,
+    routeNumber?: number | null,
 ): Promise<RoutesResponse> => {
     if (!path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)) {
         if (remoteRouteId) {
