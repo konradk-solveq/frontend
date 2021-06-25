@@ -107,6 +107,7 @@ const PlannedRoutes: React.FC<IProps> = ({
                 mapID={activeMapID}
                 onPressCancel={() => onPressHandler(false)}
                 backdropStyle={styles.backdrop}
+                isFavourite
             />
             <View style={styles.horizontalSpace}>
                 <FlatList
