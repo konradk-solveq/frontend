@@ -107,6 +107,7 @@ export const startRecordingRoute = (
             };
         }
 
+        dispatch(clearError());
         dispatch(setCurrentRoute(keep ? undefined : currentRouteData));
         dispatch(setLoadingState(false));
     } catch (error) {
@@ -132,6 +133,7 @@ export const stopCurrentRoute = (): AppThunk<Promise<void>> => async (
             endedAt: new Date(),
         };
 
+        dispatch(clearError());
         dispatch(setCurrentRoute(currentRouteToEnd));
         dispatch(setLoadingState(false));
     } catch (error) {
@@ -160,6 +162,7 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
             dispatch(setError('Error on persisting locations', 500));
         }
 
+        dispatch(clearError());
         dispatch(setCurrentRouteData(currRoutes));
         dispatch(setLoadingState(false));
     } catch (error) {
@@ -218,8 +221,13 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             return;
         }
 
-        const response = await syncRouteData(
+        const currRoutesDat = await routesDataToPersist(
+            currentRoute.id,
             currentRouteData,
+        );
+
+        const response = await syncRouteData(
+            currRoutesDat,
             currentRoute?.remoteRouteId,
             totalPrivateMaps,
         );
@@ -247,6 +255,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(setPrivateMapId(response.data.id));
         dispatch(clearCurrentRouteData());
         dispatch(clearAverageSpeed());
+        dispatch(clearError());
         dispatch(setLoadingState(false));
         dispatch(fetchPrivateMapsList());
     } catch (error) {
@@ -290,6 +299,7 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
 
         dispatch(setRoutesToSynch(newRoutesToSync));
         dispatch(setRoutesData(newRoutes, true));
+        dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[syncRouteDataFromQueue]');

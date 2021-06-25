@@ -163,7 +163,10 @@ export const fetchPrivateMapsList = (
             setPrivateMapsData(
                 response.data.elements,
                 response.data.links,
+<<<<<<< HEAD
                 response.data.total,
+=======
+>>>>>>> bugfix/shows-error-on-route-save
                 refresh,
             ),
         );

@@ -655,7 +655,7 @@
     },
     "Geolocation": {
         "notification": {
-            "title": "Nagrywanie trasy"
+            "title": "Pobieranie lokalizacji"
         }
     },
     "aaaaaaa-aaaaaa": "_____"

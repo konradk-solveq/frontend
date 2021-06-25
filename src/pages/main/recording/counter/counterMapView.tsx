@@ -1,12 +1,12 @@
-import React, {useState, useRef, useEffect, useCallback} from 'react';
-import {StyleSheet, Platform} from 'react-native';
+import React, {useState, useRef, useEffect} from 'react';
+import {StyleSheet} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
+import {Coords} from 'react-native-background-geolocation-android';
 import CompassHeading from 'react-native-compass-heading';
-import GetLocation, {Location} from 'react-native-get-location';
-import {PERMISSIONS, request} from 'react-native-permissions';
 
 import {useAppSelector} from '../../../../hooks/redux';
 import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
+import {getCurrentLocation} from '../../../../utils/geolocation';
 
 import mapStyle from '../../../../sharedComponents/maps/styles';
 import deepCopy from '../../../../helpers/deepCopy';
@@ -27,46 +27,19 @@ const CounterMapView: React.FC<IProps> = ({
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
 
     const [compassHeading, setCompassHeading] = useState(0);
-    const [hasPermissions, setHasPermission] = useState(false);
-    const [location, setLocaion] = useState<Location | null>(null);
+    const [location, setLocaion] = useState<Coords | null>(null);
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
     const [myRoute, setMyRoute] = useState([]);
 
-    const askLocationPermissionOnAndroid = async () => {
-        try {
-            request(
-                Platform.select({
-                    android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-                    ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
-                }),
-            ).then(res => {
-                if (res === 'granted') {
-                    setHasPermission(true);
-                }
-            });
-        } catch (error) {
-            console.log('location set error:', error);
-        }
-    };
-
-    const getCurrentLocationPositionHandler = useCallback(() => {
-        if (!hasPermissions && Platform.OS === 'android') {
-            askLocationPermissionOnAndroid();
-            return;
-        }
-        GetLocation.getCurrentPosition({
-            enableHighAccuracy: true,
-            timeout: 15000,
-        }).then(pos => {
-            setLocaion(pos);
-        });
-    }, [hasPermissions]);
-
     useEffect(() => {
-        getCurrentLocationPositionHandler();
-    }, [getCurrentLocationPositionHandler]);
+        const loc = async () => {
+            const l = await getCurrentLocation('', 1);
+            setLocaion(l.coords);
+        };
+        loc();
+    }, []);
 
     useEffect(() => {
         if (mapData) {
