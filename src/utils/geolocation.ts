@@ -1,3 +1,4 @@
+import {Platform} from 'react-native';
 import BackgroundGeolocation, {
     Location,
     LocationError,
@@ -6,13 +7,17 @@ import GetLocation from 'react-native-get-location';
 
 import {LocationDataI} from '../interfaces/geolocation';
 
+const isIOS = Platform.OS === 'ios';
+
 /* TODO: catch errors */
 export const initBGeolocalization = async (notificationTitle: string) => {
     const state = await BackgroundGeolocation.ready({
         reset: true,
         stopOnTerminate: false,
         startOnBoot: true,
-        desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
+        desiredAccuracy: isIOS
+            ? BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION
+            : BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
         locationAuthorizationRequest: 'Always',
         locationAuthorizationAlert: {
             titleWhenNotEnabled: 'Location-services not enabled',
@@ -47,12 +52,16 @@ export const initBGeolocalization = async (notificationTitle: string) => {
     return state;
 };
 
-export const getCurrentLocation = async (routeId?: string) => {
+export const getCurrentLocation = async (
+    routeId?: string,
+    samples?: number,
+    accuracy?: number,
+) => {
     const location = await BackgroundGeolocation.getCurrentPosition({
         timeout: 30,
         maximumAge: 500,
-        desiredAccuracy: 10,
-        samples: 6,
+        desiredAccuracy: accuracy || 10,
+        samples: samples || 6,
         persist: true,
         extras: {
             route_id: routeId || '',
