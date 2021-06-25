@@ -140,9 +140,10 @@ const CounterMapView: React.FC<IProps> = ({
                     provider={PROVIDER_GOOGLE}
                     style={styles.map}
                     customMapStyle={mapStyle}
-                    pitchEnabled={true}
+                    pitchEnabled={false}
                     ref={mapRef}
                     scrollEnabled={false}
+                    zoomEnabled={false}
                     initialCamera={{
                         center: {
                             latitude: location.latitude,
