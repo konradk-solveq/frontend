@@ -212,7 +212,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 setJs('setPauseOn();true;');
                 break;
             case 'cancelText':
-                await stopTracker();
+                await stopTracker(true);
                 navigation.goBack();
                 break;
             case 'endMessage':
@@ -239,23 +239,22 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     ]);
 
     // zmiana funckji strzałki headera
-    const heandleGoBackClick = () => {
+    const heandleGoBackClick = async () => {
         switch (pageState) {
             case 'start':
-                {
-                    navigation.goBack();
-                }
+                navigation.goBack();
                 break;
             default:
-                {
-                    setPageState('cancelText');
-                }
+                setPageState('cancelText');
                 break;
         }
     };
 
     useCustomBackNavButton(heandleGoBackClick, true);
-    useCustomSwipeBackNav(heandleGoBackClick, pageState !== 'start');
+    useCustomSwipeBackNav(
+        heandleGoBackClick,
+        pageState !== 'start' && pageState !== 'cancelText',
+    );
 
     // zmiana funkcji przycisków i strzałki headera
     useEffect(() => {

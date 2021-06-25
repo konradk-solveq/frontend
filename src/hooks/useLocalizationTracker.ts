@@ -86,16 +86,21 @@ const useLocalizationTracker = (persist: boolean) => {
         [dispatch, lastDistance, averageSpeed],
     );
 
-    const stopTracker = useCallback(async () => {
-        /* TODO: error */
-        deactivateKeepAwake();
-        dispatch(stopCurrentRoute());
-        dispatch(persistCurrentRouteData());
-        const state = await stopBackgroundGeolocation();
-        if (!state.enabled) {
-            setIsActive(false);
-        }
-    }, [dispatch]);
+    const stopTracker = useCallback(
+        async (omitPersist?: boolean) => {
+            /* TODO: error */
+            deactivateKeepAwake();
+            dispatch(stopCurrentRoute(omitPersist));
+            if (!omitPersist) {
+                dispatch(persistCurrentRouteData());
+            }
+            const state = await stopBackgroundGeolocation();
+            if (!state.enabled) {
+                setIsActive(false);
+            }
+        },
+        [dispatch],
+    );
 
     const startTracker = useCallback(
         async (keep?: boolean, routeIdToFollow?: string) => {

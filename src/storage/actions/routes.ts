@@ -6,7 +6,11 @@ import * as actionTypes from './actionTypes';
 import {routesDataToPersist} from '../../utils/transformData';
 import {LocationDataI} from '../../interfaces/geolocation';
 import {AppState} from '../reducers/app';
+<<<<<<< HEAD
 import {MapsState} from '../reducers/maps';
+=======
+import {removeCeratedRouteIDService} from '../../services/routesService';
+>>>>>>> feature/cant-abort-recording
 
 import logger from '../../utils/crashlytics';
 import {createNewRouteService, syncRouteData} from '../../services';
@@ -119,13 +123,29 @@ export const startRecordingRoute = (
     }
 };
 
-export const stopCurrentRoute = (): AppThunk<Promise<void>> => async (
-    dispatch,
-    getState,
-) => {
+export const stopCurrentRoute = (
+    omitPersists?: boolean,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        const {currentRoute} = getState().routes;
+        const {currentRoute}: RoutesState = getState().routes;
+
+        if (omitPersists) {
+            if (currentRoute.remoteRouteId) {
+                const response = await removeCeratedRouteIDService(
+                    currentRoute.remoteRouteId,
+                );
+                if (response.error) {
+                    logger.log('[stopCurrentRoute]');
+                    const err = convertToApiError(response.error);
+                    logger.recordError(err);
+                }
+            }
+            dispatch(clearCurrentRouteData());
+            dispatch(clearAverageSpeed());
+            dispatch(setLoadingState(false));
+            return;
+        }
 
         const currentRouteToEnd: CurrentRouteI = {
             ...currentRoute,
@@ -284,7 +304,7 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         let newRoutesToSync: string[] = [];
         routesToSync.forEach(async (id: string) => {
             const routeToSync = routes.find((r: RoutesI) => r.id === id);
-            if (!routeToSync || routeToSync?.route?.length < 3) {
+            if (!routeToSync || routeToSync?.route?.length < 2) {
                 return;
             }
 
