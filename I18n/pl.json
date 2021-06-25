@@ -129,7 +129,7 @@
         "header": ["Informacja", "Regulamin"],
         "btnOk": "DALEJ",
         "btnDontAccept": "NIE AKCEPTUJĘ",
-        "btnAccept": "AKCEPTUJĘ",
+        "btnAccept": "DALEJ",
         "urls": [{
                 "url": "http://regulations.eu",
                 "hyper": "Regulaminu"

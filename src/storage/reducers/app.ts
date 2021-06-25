@@ -101,19 +101,21 @@ const appReducer = (state = initialState, action: any) => {
                 term1version < term2version
                     ? action.regulation.regulation1
                     : action.regulation.regulation2;
+            const newRegulations =
+                term1version > term2version
+                    ? action.regulation.regulation1
+                    : action.regulation.regulation2;
 
-            let result = oldRegulations;
+            let result;
 
             let lastTerm = state.terms[state.terms.length - 1];
             if (Date.parse(lastTerm?.publishDate) > Date.now()) {
-                const newRegulations =
-                    term1version > term2version
-                        ? action.regulation.regulation1
-                        : action.regulation.regulation2;
-
+                result = oldRegulations;
                 result.paragraph = result?.paragraph?.concat(
                     newRegulations?.paragraph,
                 );
+            } else {
+                result = newRegulations;
             }
 
             return {
@@ -144,18 +146,20 @@ const appReducer = (state = initialState, action: any) => {
                 term1version < term2version
                     ? action.policy.policy1
                     : action.policy.policy2;
+            const newPolicy =
+                term1version > term2version
+                    ? action.policy.policy1
+                    : action.policy.policy2;
 
-            let result = oldPolicy;
+            let result;
             let lastTerm = state.terms[state.terms.length - 1];
             if (Date.parse(lastTerm?.publishDate) > Date.now()) {
-                const newPolicy =
-                    term1version > term2version
-                        ? action.policy.policy1
-                        : action.policy.policy2;
-
+                result = oldPolicy;
                 result.paragraph = result?.paragraph?.concat(
                     newPolicy?.paragraph,
                 );
+            } else {
+                result = newPolicy;
             }
 
             return {

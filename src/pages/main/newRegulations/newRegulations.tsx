@@ -40,14 +40,28 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
     const data = useAppSelector<TermsAndConditionsType>(
         state => state.app.terms?.[state.app?.terms?.length - 1],
     );
-    const content = useAppSelector<TermsAndConditionsType>(
-        state => state.app.terms?.[Number(currentVersion) - 1],
+    const terms = useAppSelector<TermsAndConditionsType>(
+        state => state.app.terms,
     );
     const showed = useAppSelector<number>(state => state.app.showedRegulations);
 
     const [headHeight, setHeadHeight] = useState<number>(0);
     const [pageType, setPageType] = useState<string | null>(null);
     const [shovedToSave, setShovedToSave] = useState<number>(0);
+    const [content, setContent] = useState(null);
+
+    useEffect(() => {
+        if (terms && currentVersion) {
+            const newTerm = terms[Number(currentVersion) - 1];
+            const publishDate = Date.parse(newTerm.publishDate);
+
+            if (publishDate <= Date.now()) {
+                setContent(terms[Number(currentVersion)]);
+            } else {
+                setContent(terms[Number(currentVersion) - 1]);
+            }
+        }
+    }, [terms]);
 
     useEffect(() => {
         if (data) {
@@ -170,7 +184,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
             flexDirection: 'row',
         },
         oneOfTwoBtns: {
-            width: getHorizontalPx(157),
+            width: '100%',
         },
     });
 
@@ -268,11 +282,6 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
                 )}
                 {pageType === 'change' && (
                     <View style={styles.twoBtnsWrap}>
-                        <BigWhiteBtn
-                            style={styles.oneOfTwoBtns}
-                            title={trans.btnDontAccept}
-                            onpress={() => {}}
-                        />
                         <BigRedBtn
                             style={styles.oneOfTwoBtns}
                             title={trans.btnAccept}
