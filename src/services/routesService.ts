@@ -17,8 +17,10 @@ export interface RoutesResponse {
     error: string;
 }
 
-export const createNewRouteService = async (): Promise<RoutesResponse> => {
-    const defaultName = getRouteDefaultName();
+export const createNewRouteService = async (
+    routeNumber?: number | null,
+): Promise<RoutesResponse> => {
+    const defaultName = getRouteDefaultName(routeNumber);
     const response = await createRoute(defaultName);
 
     if (
@@ -82,6 +84,7 @@ export const removeCeratedRouteIDService = async (
 export const syncRouteData = async (
     path: LocationDataI[],
     remoteRouteId?: string,
+    routeNumber?: number,
 ): Promise<RoutesResponse> => {
     if (!path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)) {
         if (remoteRouteId) {
@@ -98,7 +101,7 @@ export const syncRouteData = async (
 
     let response;
     if (!remoteRouteId) {
-        const defaultName = getRouteDefaultName();
+        const defaultName = getRouteDefaultName(routeNumber);
         response = await createRoute(defaultName);
 
         if (

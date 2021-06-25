@@ -5,13 +5,14 @@ import {CurrentRouteI, RoutesI, RoutesState} from '../reducers/routes';
 import * as actionTypes from './actionTypes';
 import {routesDataToPersist} from '../../utils/transformData';
 import {LocationDataI} from '../../interfaces/geolocation';
+import {AppState} from '../reducers/app';
+import {MapsState} from '../reducers/maps';
 
 import logger from '../../utils/crashlytics';
 import {createNewRouteService, syncRouteData} from '../../services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {MIN_ROUTE_LENGTH} from '../../helpers/global';
-import { AppState } from '../reducers/app';
 
 export const clearError = () => ({
     type: actionTypes.CLEAR_ROUTES_ERROR,
@@ -88,10 +89,11 @@ export const startRecordingRoute = (
     dispatch(setLoadingState(true));
     try {
         const {currentRoute} = getState().routes;
+        const {totalPrivateMaps}: MapsState = getState().maps;
         let currentRouteData = {...currRoute};
 
         if (!keep || !currentRoute?.remoteRouteId) {
-            const response = await createNewRouteService();
+            const response = await createNewRouteService(totalPrivateMaps);
 
             if (response.error || !response?.data?.id) {
                 let errorMessage = response.error;
@@ -209,6 +211,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
     try {
         const {currentRouteData, currentRoute}: RoutesState = getState().routes;
         const {isOffline}: AppState = getState().app;
+        const {totalPrivateMaps}: MapsState = getState().maps;
 
         if (isOffline) {
             dispatch(setError('No internet connection', 500));
@@ -218,6 +221,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         const response = await syncRouteData(
             currentRouteData,
             currentRoute?.remoteRouteId,
+            totalPrivateMaps,
         );
 
         if ((response.error && response.status >= 400) || !response?.data?.id) {

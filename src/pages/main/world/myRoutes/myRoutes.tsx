@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/core';
 import {
     loadingMapsSelector,
     privateMapsListSelector,
+    privateTotalMapsNumberSelector,
     refreshMapsSelector,
 } from '../../../../storage/selectors/map';
 import {userNameSelector} from '../../../../storage/selectors';
@@ -48,6 +49,9 @@ const MyRoutes: React.FC<IProps> = ({
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
     const privateMaps = useAppSelector(privateMapsListSelector);
+    const totalNumberOfPrivateMaps = useAppSelector(
+        privateTotalMapsNumberSelector,
+    );
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
 
@@ -119,6 +123,9 @@ const MyRoutes: React.FC<IProps> = ({
         return null;
     };
 
+    const basicTitle = `${userName || trans.defaultUserName} ${trans.title}`;
+    const secondTitle = `${trans.routesNumberTitle} ${totalNumberOfPrivateMaps}`;
+
     return (
         <>
             <ShowMoreModal
@@ -134,8 +141,10 @@ const MyRoutes: React.FC<IProps> = ({
                     keyExtractor={item => item.id}
                     ListHeaderComponent={
                         <Text style={styles.header}>
-                            {userName || trans.defaultUserName}
-                            {trans.title}
+                            {totalNumberOfPrivateMaps &&
+                            totalNumberOfPrivateMaps > 0
+                                ? secondTitle
+                                : basicTitle}
                         </Text>
                     }
                     data={privateMaps}
