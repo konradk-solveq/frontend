@@ -288,7 +288,7 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         let newRoutesToSync: string[] = [];
         routesToSync.forEach(async (id: string) => {
             const routeToSync = routes.find((r: RoutesI) => r.id === id);
-            if (!routeToSync || routeToSync?.route?.length < 3) {
+            if (!routeToSync || routeToSync?.route?.length < 2) {
                 return;
             }
 
