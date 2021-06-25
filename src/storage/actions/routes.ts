@@ -5,13 +5,14 @@ import {CurrentRouteI, RoutesI, RoutesState} from '../reducers/routes';
 import * as actionTypes from './actionTypes';
 import {routesDataToPersist} from '../../utils/transformData';
 import {LocationDataI} from '../../interfaces/geolocation';
+import {AppState} from '../reducers/app';
+import {removeCeratedRouteIDService} from '../../services/routesService';
 
 import logger from '../../utils/crashlytics';
 import {createNewRouteService, syncRouteData} from '../../services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {MIN_ROUTE_LENGTH} from '../../helpers/global';
-import { AppState } from '../reducers/app';
 
 export const clearError = () => ({
     type: actionTypes.CLEAR_ROUTES_ERROR,
@@ -116,13 +117,29 @@ export const startRecordingRoute = (
     }
 };
 
-export const stopCurrentRoute = (): AppThunk<Promise<void>> => async (
-    dispatch,
-    getState,
-) => {
+export const stopCurrentRoute = (
+    omitPersists?: boolean,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        const {currentRoute} = getState().routes;
+        const {currentRoute}: RoutesState = getState().routes;
+
+        if (omitPersists) {
+            if (currentRoute.remoteRouteId) {
+                const response = await removeCeratedRouteIDService(
+                    currentRoute.remoteRouteId,
+                );
+                if (response.error) {
+                    logger.log('[stopCurrentRoute]');
+                    const err = convertToApiError(response.error);
+                    logger.recordError(err);
+                }
+            }
+            dispatch(clearCurrentRouteData());
+            dispatch(clearAverageSpeed());
+            dispatch(setLoadingState(false));
+            return;
+        }
 
         const currentRouteToEnd: CurrentRouteI = {
             ...currentRoute,
