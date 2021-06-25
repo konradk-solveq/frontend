@@ -244,10 +244,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             case 'start':
                 navigation.goBack();
                 break;
-            case 'cancelText':
-                await stopTracker(true);
-                navigation.goBack();
-                break;
             default:
                 setPageState('cancelText');
                 break;
