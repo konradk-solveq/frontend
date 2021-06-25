@@ -129,14 +129,14 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
         let d = route?.params?.distance;
 
         if (typeof d === 'undefined') {
-            d = 1;
+            d = 0.001;
         } else {
             d = Number(d.replace(',', '.'));
         }
 
-        let res = d * ratio;
-        if (res < 0.1) {
-            res = 0.1;
+        let res = d * (ratio / 100);
+        if (res < 0) {
+            res = 0;
         }
 
         return res.toFixed(1).replace('.', ',');
@@ -152,7 +152,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 (num === 1 ? trans.type_1[0] : trans.type_1[1])
             );
         } else {
-            let num = heandleSaveDistance(4);
+            let num = heandleSaveDistance(5);
             return ' ' + num + ' ' + trans.type_2;
         }
     };
