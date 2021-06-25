@@ -6,11 +6,8 @@ import * as actionTypes from './actionTypes';
 import {routesDataToPersist} from '../../utils/transformData';
 import {LocationDataI} from '../../interfaces/geolocation';
 import {AppState} from '../reducers/app';
-<<<<<<< HEAD
 import {MapsState} from '../reducers/maps';
-=======
 import {removeCeratedRouteIDService} from '../../services/routesService';
->>>>>>> feature/cant-abort-recording
 
 import logger from '../../utils/crashlytics';
 import {createNewRouteService, syncRouteData} from '../../services';
