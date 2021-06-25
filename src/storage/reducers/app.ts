@@ -37,7 +37,7 @@ const initialState: AppState = {
     },
     terms: [],
     currentTerms: {
-        version: '1',
+        version: undefined,
         showDate: undefined,
         publishDate: undefined,
         text: '',
