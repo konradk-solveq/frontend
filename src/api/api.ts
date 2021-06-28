@@ -23,7 +23,9 @@ export const setAutorizationHeader = (token: string) => {
     instance.defaults.headers.patch.Authorization = `Bearer ${token}`;
     instance.defaults.headers.put.Authorization = `Bearer ${token}`;
     instance.defaults.headers.delete.Authorization = `Bearer ${token}`;
+};
 
+export const setUserAgentHeader = () => {
     const uaHeader = getUserAgent();
     if (uaHeader) {
         instance.defaults.headers.common['User-Agent'] = uaHeader;

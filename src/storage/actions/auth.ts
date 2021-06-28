@@ -9,7 +9,7 @@ import {
 } from '../../services';
 import {I18n} from '../../../I18n/I18n';
 import logger from '../../utils/crashlytics';
-import {setAutorizationHeader} from '../../api/api';
+import {setAutorizationHeader, setUserAgentHeader} from '../../api/api';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 
 export const setAuthError = (error: string, statusCode: number) => ({
@@ -92,6 +92,7 @@ export const logIn =
                 return;
             }
 
+            setUserAgentHeader();
             setAutorizationHeader(response.data.access_token);
             dispatch(clearAuthError());
             dispatch(setAuthSessionData(response.data));
@@ -153,6 +154,7 @@ export const checkSession =
 
             /* Refresh session token if needed */
             if (refreshToken !== response.data?.refresh_token) {
+                setUserAgentHeader();
                 setAutorizationHeader(response.data.access_token);
                 dispatch(clearAuthError());
                 dispatch(setAuthSessionData(response.data));

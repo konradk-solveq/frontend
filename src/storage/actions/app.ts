@@ -23,6 +23,7 @@ import {
     getNewRegulationsService,
 } from '../../services';
 import {AppState} from '../reducers/app';
+import { setUserAgentHeader } from '../../api';
 
 export const setAppStatus = (status: boolean) => ({
     type: actionTypes.SET_APP_NETWORK_STATUS,
@@ -120,6 +121,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         const {showedRegulations} = getState().app;
         const {sessionData} = getState().auth;
         const {onboardingFinished} = getState().user;
+        setUserAgentHeader();
 
         await dispatch(fetchAppRegulations(true));
         await dispatch(fetchAppConfig(true));

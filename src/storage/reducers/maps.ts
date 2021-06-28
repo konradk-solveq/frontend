@@ -89,7 +89,6 @@ const mapsReducer = (state = initialStateList, action: any) => {
         }
         case actionTypes.SET_PRIVATE_MAPS_DATA: {
             let newPrivateMaps = [...state.privateMaps];
-            console.log(action.totalPrivateMaps);
             if (action.refresh) {
                 newPrivateMaps = action.privateMaps;
             }
