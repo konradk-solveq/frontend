@@ -142,7 +142,6 @@ const useLocalizationTracker = (persist: boolean) => {
 
     const onStartTracker = async () => {
         setIsActive(true);
-        console.log('[onStartTracker]', currentRouteId)
         await resumeTracingLocation();
     };
 
@@ -161,7 +160,7 @@ const useLocalizationTracker = (persist: boolean) => {
                 getCurrentLocation(currentRouteId).then(d => {
                     const notMoving = false;
                     const lowSpeed = speedToLow(d);
-setRawLocData(d)
+
                     setAverageSpeedOnStart();
                     let aSpeed = getAverageSpeedData(speed);
                     if (notMoving || lowSpeed) {
@@ -233,8 +232,6 @@ setRawLocData(d)
         stopTracker,
         averageSpeed,
         followedRouteId,
-        rawLocData,
-        currentRouteId,
     };
 };
 
