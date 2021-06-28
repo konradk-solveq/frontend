@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
 import I18n from 'react-native-i18n';
+import DeviceInfo from 'react-native-device-info';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import Bike_0 from './bike_0';
@@ -20,6 +21,12 @@ interface Props {
     navigation: any;
     route: any;
 }
+
+const getAppVersion = () => {
+    const appBuildNumber = DeviceInfo.getBuildNumber();
+
+    return `${version} (${appBuildNumber})`;
+};
 
 const AboutApp: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('AboutApp');
@@ -126,11 +133,15 @@ const AboutApp: React.FC<Props> = (props: Props) => {
                         <Text style={styles.text}>{trans.text_4}</Text>
                         <Text style={styles.nextLineText}>{trans.text_4b}</Text>
 
-                        <Text style={styles.signature}>{trans.signature_1}</Text>
-                        <Text style={styles.nextLineSignature}>{trans.signature_2}</Text>
+                        <Text style={styles.signature}>
+                            {trans.signature_1}
+                        </Text>
+                        <Text style={styles.nextLineSignature}>
+                            {trans.signature_2}
+                        </Text>
 
                         <Text style={styles.version}>{`v. ${
-                            __DEV__ ? version : myVersion
+                            __DEV__ ? getAppVersion() : myVersion
                         }`}</Text>
                     </View>
                 </ScrollView>
