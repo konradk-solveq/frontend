@@ -128,7 +128,6 @@ const useLocalizationTracker = (persist: boolean) => {
 
     const onPauseTracker = () => {
         setIsActive(false);
-        resumeTracingLocation();
         pauseTracingLocation();
         setTrackerData(prev => {
             if (prev) {
