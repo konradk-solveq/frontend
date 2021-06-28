@@ -22,6 +22,7 @@ import {RegularStackRoute} from '../../../navigation/route';
 
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import Loader from '../../onboarding/bikeAdding/loader/loader';
+import { requestGeolocationPermission } from '../../../utils/geolocation';
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
@@ -85,7 +86,8 @@ const Home: React.FC = () => {
         navigation.navigate('Bike');
     };
 
-    const onRecordTripActionHandler = () => {
+    const onRecordTripActionHandler = async () => {
+        await requestGeolocationPermission();
         navigation.navigate(RegularStackRoute.COUNTER_ROUTE_SCREEN);
     };
 
