@@ -1,4 +1,4 @@
-export {default as instance, isCancel, source} from './api';
+export {default as instance, isCancel, source, setUserAgentHeader} from './api';
 export {getBike, getGenericBikeData, getBikesList} from './bikes';
 export {getPlaces} from './places';
 export {
