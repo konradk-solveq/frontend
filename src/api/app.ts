@@ -10,3 +10,5 @@ export const getRegulation = async (versionNr: string) =>
 
 export const getPolicy = async (versionNr: string) =>
     await axiosGet(`/application/policy/${versionNr}`);
+
+export const getFaq = async () => await axiosGet('/application/faq');

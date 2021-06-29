@@ -11,10 +11,11 @@ import {AppConfigI} from '../../models/config.model';
 
 import logger from '../../utils/crashlytics';
 import {I18n} from '../../../I18n/I18n';
-import {getAppConfigService} from '../../services';
+import {getAppConfigService, getFaqService} from '../../services';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {fetchPlannedMapsList} from './maps';
 import {
+    FaqType,
     RegulationType,
     TermsAndConditionsType,
 } from '../../models/regulations.model';
@@ -67,6 +68,11 @@ export const setAppPolicy = (policy: {
     policy: policy,
 });
 
+export const setAppFaq = (faq: FaqType[]) => ({
+    type: actionTypes.SET_APP_FAQ,
+    faq: faq,
+});
+
 export const setSyncStatus = (status: boolean) => ({
     type: actionTypes.SET_SYNC_APP_DATA_STATUS,
     status: status,
@@ -111,6 +117,60 @@ export const fetchAppConfig = (
     }
 };
 
+export const fetchAppFaq = (
+    noLoader?: boolean,
+): AppThunk<Promise<void>> => async dispatch => {
+    if (!noLoader) {
+        dispatch(setSyncStatus(true));
+    }
+    try {
+        const response = await getFaqService();
+        if (response.error || response.status >= 400 || !response.data) {
+            dispatch(setSyncError(response.error, response.status));
+            return;
+        }
+
+        const links = [
+            {
+                url:
+                    'https://play.google.com/store/apps/details?id=pl.kross.mykross',
+                hyper: 'Aplikacja myKROSS - Android',
+            },
+            {
+                url: 'https://apps.apple.com/pl/app/mykross/id1561981216',
+                hyper: 'Aplikacja myKROSS - iOS',
+            },
+        ];
+
+        response.data.faq.forEach(element => {
+            links.forEach(
+                link =>
+                    (element.answer = element.answer.replace(
+                        link.hyper,
+                        link.url,
+                    )),
+            );
+
+            element.question = element.question.replace(
+                'https://kross.eu/',
+                'kross.eu',
+            );
+        });
+
+        dispatch(setAppFaq(response.data));
+        if (!noLoader) {
+            dispatch(setSyncStatus(false));
+        }
+    } catch (error) {
+        logger.log('[fetchAppFaq]');
+        const err = convertToApiError(error);
+        logger.recordError(err);
+
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setSyncError(errorMessage, 500));
+    }
+};
+
 export const appSyncData = (): AppThunk<Promise<void>> => async (
     dispatch,
     getState,
@@ -143,6 +203,8 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
             dispatch(syncRouteDataFromQueue());
         }
 
+        await dispatch(fetchAppFaq(true));
+
         dispatch(setSyncStatus(false));
     } catch (error) {
         logger.log('[appSyncData]');
@@ -174,7 +236,7 @@ export const fetchAppRegulations = (
         let currVersion =
             currentTerms.version || terms?.[terms?.length - 2]?.version;
 
-        /* TODO: temp solution */
+        /* TODO: temp solution  */
         if (!currVersion) {
             currVersion = newTerms?.[newTerms?.length - 2]?.version;
         }

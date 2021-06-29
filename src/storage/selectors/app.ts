@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect';
 import {OptionType} from '../../interfaces/form';
 import {SelectOptionType} from '../../models/map.model';
+import { FaqType } from '../../models/regulations.model';
 import {RootState} from '../storage';
 
 export const syncAppSelector = (state: RootState): boolean => state.app.sync;
@@ -48,3 +49,5 @@ export const mapOptionsAndTagsSelector = (state: RootState): OptionType => ({
     difficulties: state.app.config.difficulties,
     surfaces: state.app.config.surfaces,
 });
+
+export const faqDataSelector = (state: RootState): FaqType[] => state.app.faq;

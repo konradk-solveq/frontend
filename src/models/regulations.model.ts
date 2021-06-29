@@ -24,6 +24,11 @@ export type RegulationType = {
     paragraph: TextType[];
 };
 
+export type FaqType = {
+    question: string;
+    answer: string;
+};
+
 export class AppRegulations {
     constructor(
         public termsAndConditions: TermsAndConditionsType[],

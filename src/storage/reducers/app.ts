@@ -5,6 +5,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 import {AppConfigI} from '../../models/config.model';
 import {
+    FaqType,
     RegulationType,
     TermsAndConditionsType,
 } from '../../models/regulations.model';
@@ -17,6 +18,7 @@ export interface AppState {
     config: AppConfigI;
     terms: TermsAndConditionsType[];
     currentTerms: TermsAndConditionsType;
+    faq: {faq: FaqType[]};
     showedRegulations: number | null;
     regulation: RegulationType | {};
     policy: RegulationType | {};
@@ -43,6 +45,7 @@ const initialState: AppState = {
         text: '',
         title: '',
     },
+    faq: [],
     showedRegulations: null,
     regulation: {},
     policy: {},
@@ -167,7 +170,11 @@ const appReducer = (state = initialState, action: any) => {
                 policy: result,
             };
         }
-
+        case actionTypes.SET_APP_FAQ:
+            return {
+                ...state,
+                faq: action.faq,
+            };
         case actionTypes.SET_SYNC_APP_DATA_STATUS:
             return {
                 ...state,
@@ -201,6 +208,7 @@ const persistConfig = {
         'policy',
         'currentTerms',
         'showedRegulations',
+        'faq',
     ],
     timeout: 20000,
 };
