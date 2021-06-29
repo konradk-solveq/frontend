@@ -1,5 +1,6 @@
-import {getTermsAndConditions, getRegulation, getPolicy} from '../api';
+import {getTermsAndConditions, getRegulation, getPolicy, getFaq} from '../api';
 import {
+    FaqType,
     RegulationType,
     TermsAndConditionsType,
 } from '../models/regulations.model';
@@ -108,5 +109,31 @@ export const getNewRegulationsService = async (
         },
         status: status,
         error: errorMessage,
+    };
+};
+
+export const getFaqService = async () => {
+    const response = await getFaq();
+
+    if (
+        !response?.data ||
+        response.data?.statusCode > 400 ||
+        response.status > 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: null,
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: {faq: response.data},
+        status: response.status,
+        error: '',
     };
 };

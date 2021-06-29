@@ -24,4 +24,5 @@ export {
     getNewRegulationsService,
     getPolicyService,
     getRegulationService,
+    getFaqService,
 } from './appServices';

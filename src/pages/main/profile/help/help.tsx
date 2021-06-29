@@ -1,12 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
     StyleSheet,
     Dimensions,
     View,
-    Text,
     ScrollView,
     SafeAreaView,
-    Linking,
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
@@ -20,7 +18,7 @@ import {useAppSelector} from '../../../../hooks/redux';
 
 import Question from './faq/question';
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import data from './faq/data';
+import {faqDataSelector} from '../../../../storage/selectors/app';
 
 interface Props {
     navigation: any;
@@ -30,6 +28,8 @@ const wh = Dimensions.get('window').height;
 
 const Help: React.FC<Props> = (props: Props) => {
     const trans = I18n.t('Help');
+
+    const faqData = useAppSelector(faqDataSelector);
 
     const [headHeight, setheadHeight] = useState(0);
 
@@ -75,7 +75,7 @@ const Help: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
-                        {data.map((e, i) => (
+                        {faqData?.faq?.map((e, i) => (
                             <Question key={'query_' + i} data={e} />
                         ))}
                     </View>

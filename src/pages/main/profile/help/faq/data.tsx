@@ -64,4 +64,19 @@ const data = [
     },
 ];
 
+const links = [
+    {
+        url: 'https://play.google.com/store/apps/details?id=pl.kross.mykross',
+        hyper: 'Aplikacja myKROSS - Android',
+    },
+    {
+        url: 'https://apps.apple.com/pl/app/mykross/id1561981216',
+        hyper: 'Aplikacja myKROSS - iOS',
+    },
+];
+
+data.forEach(element => {
+    links.forEach(e => element.answer.replace(e.hyper, e.url));
+});
+
 export default data;

@@ -21,5 +21,10 @@ export {
     refreshSession,
     registerDevice,
 } from './auth';
-export {getConfig} from './app';
-export {getTermsAndConditions, getPolicy, getRegulation} from './app';
+export {
+    getTermsAndConditions,
+    getPolicy,
+    getRegulation,
+    getFaq,
+    getConfig,
+} from './app';
