@@ -63,8 +63,9 @@ const EditDetails = () => {
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [isPublished, setIsPublished] = useState(false);
 
-    const headerBackgroundHeight =
-        getVerticalPx(100); /* equal to header height */
+    const headerBackgroundHeight = getVerticalPx(
+        100,
+    ); /* equal to header height */
 
     const onBackHandler = useCallback(() => {
         if (redirectToScreen) {
@@ -97,7 +98,9 @@ const EditDetails = () => {
         const iToRemove: string[] = [];
         images.images.forEach(i => {
             if (imgsToRemove?.includes(i)) {
-                const iTD = mapData?.images?.find(im => i.includes(im.id));
+                const iTD = mapData?.images?.find(
+                    im => i.includes(im.id) && im.type !== 'map',
+                );
                 if (iTD?.id) {
                     iToRemove.push(iTD?.id);
                 }
@@ -107,7 +110,6 @@ const EditDetails = () => {
             save: imgsToAdd,
             delete: iToRemove,
         };
-
         dispatch(
             editPrivateMapMetaData(
                 data,
