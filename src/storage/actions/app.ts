@@ -22,8 +22,7 @@ import {
     getAppTermsAndConditionsService,
     getNewRegulationsService,
 } from '../../services';
-import {AppState} from '../reducers/app';
-import { setUserAgentHeader } from '../../api';
+import {setUserAgentHeader} from '../../api';
 
 export const setAppStatus = (status: boolean) => ({
     type: actionTypes.SET_APP_NETWORK_STATUS,
@@ -87,7 +86,7 @@ export const fetchAppConfig = (
     noLoader?: boolean,
 ): AppThunk<Promise<void>> => async dispatch => {
     if (!noLoader) {
-        dispatch(setAppStatus(true));
+        dispatch(setSyncStatus(true));
     }
     try {
         const response = await getAppConfigService();
@@ -100,7 +99,7 @@ export const fetchAppConfig = (
         dispatch(setAppConfig(response.data));
         dispatch(clearAppError());
         if (!noLoader) {
-            dispatch(setAppStatus(false));
+            dispatch(setSyncStatus(false));
         }
     } catch (error) {
         logger.log('[fetchAppConfig]');
@@ -159,7 +158,7 @@ export const fetchAppRegulations = (
     noLoader?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     if (!noLoader) {
-        dispatch(setAppStatus(true));
+        dispatch(setSyncStatus(true));
     }
     try {
         const {terms, currentTerms} = getState().app;
@@ -201,11 +200,10 @@ export const fetchAppRegulations = (
 
         dispatch(clearAppError());
         if (!noLoader) {
-            dispatch(setAppStatus(false));
+            dispatch(setSyncStatus(false));
         }
     } catch (error) {
         logger.log('[fetchAppRegulations]');
-        console.log('fetchAppRegulations', error);
         const err = convertToApiError(error);
         logger.recordError(err);
 
