@@ -129,7 +129,13 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
                     </MapView>
                 )}
 
-                <StackHeader onpress={heandleGoBackClick} inner="" />
+                <StackHeader
+                    onpress={heandleGoBackClick}
+                    inner=""
+                    style={{
+                        zIndex: 1,
+                    }}
+                />
             </View>
         </>
     );
