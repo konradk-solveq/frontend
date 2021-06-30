@@ -31,13 +31,13 @@ import {
 import {AppState} from '../reducers/app';
 
 export const setAppStatus = (
-    status: boolean,
+    isOffline: boolean,
     connectionType: NetInfoStateType,
     cellularGeneration: NetInfoCellularGeneration,
     goodConnectionQuality: boolean,
 ) => ({
     type: actionTypes.SET_APP_NETWORK_STATUS,
-    isOffline: status,
+    isOffline: isOffline,
     connectionType: connectionType,
     cellularGeneration: cellularGeneration,
     goodConnectionQuality: goodConnectionQuality,
