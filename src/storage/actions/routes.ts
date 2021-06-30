@@ -239,6 +239,12 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 currentRouteData?.find(cr => cr?.odometer >= MIN_ROUTE_LENGTH)
             ) {
                 dispatch(addRoutesToSynchQueue());
+
+                if (currentRoute?.remoteRouteId) {
+                    await removeCeratedRouteIDService(
+                        currentRoute.remoteRouteId,
+                    );
+                }
             }
             dispatch(clearCurrentRouteData());
             dispatch(clearAverageSpeed());
