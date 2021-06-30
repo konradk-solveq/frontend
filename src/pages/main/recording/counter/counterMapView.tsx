@@ -115,6 +115,7 @@ const CounterMapView: React.FC<IProps> = ({
                     customMapStyle={mapStyle}
                     pitchEnabled={false}
                     ref={mapRef}
+                    rotateEnabled={false}
                     scrollEnabled={false}
                     zoomEnabled={false}
                     initialCamera={{
