@@ -139,7 +139,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                 getCurrentLocationPositionHandler();
             })
             .catch(err => {
-                console.log('location settings - error', error);
+                console.log('location settings - error', err);
             });
     };
 
