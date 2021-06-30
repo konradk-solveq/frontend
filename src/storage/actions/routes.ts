@@ -234,6 +234,15 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         const {totalPrivateMaps}: MapsState = getState().maps;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            if (
+                currentRouteData?.length >= 2 &&
+                currentRouteData?.find(cr => cr?.odometer >= MIN_ROUTE_LENGTH)
+            ) {
+                dispatch(addRoutesToSynchQueue());
+            }
+            dispatch(clearCurrentRouteData());
+            dispatch(clearAverageSpeed());
+
             dispatch(setError('No internet connection', 500));
             dispatch(setLoadingState(false));
             return;
