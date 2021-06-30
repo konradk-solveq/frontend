@@ -523,6 +523,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     inner={headerTitle}
                     whiteArow={!pause && !mapOn}
                     titleOn={!mapOn}
+                    style={{
+                        zIndex: 1,
+                    }}
                 />
             </View>
         </>
