@@ -3,7 +3,7 @@ import {convertToTimeoutError} from '../utils/apiDataTransform/timeoutError';
 
 export const checkInternetConnectionQuality = async () => {
     return await axiosGet('https://clients3.google.com/generate_204', {
-        timeout: 10000,
+        timeout: 3000,
     }).catch(e => {
         return Promise.reject(convertToTimeoutError(e));
     });
