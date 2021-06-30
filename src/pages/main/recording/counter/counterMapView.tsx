@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
 import {Coords} from 'react-native-background-geolocation-android';
 import CompassHeading from 'react-native-compass-heading';
@@ -11,6 +11,7 @@ import {getCurrentLocation} from '../../../../utils/geolocation';
 import mapStyle from '../../../../sharedComponents/maps/styles';
 import deepCopy from '../../../../helpers/deepCopy';
 
+const isIOS = Platform.OS === 'ios';
 interface IProps {
     routeId: string;
     trackerData: any;
@@ -106,6 +107,17 @@ const CounterMapView: React.FC<IProps> = ({
         };
     }, []);
 
+    const cameraInitObj = {
+        center: {
+            latitude: location?.latitude || 53.020817,
+            longitude: location?.longitude || 20.866278,
+        },
+        pitch: 0,
+        altitude: 0,
+        heading: compassHeading,
+        zoom: 18,
+    };
+
     return (
         <>
             {location && (
@@ -118,16 +130,16 @@ const CounterMapView: React.FC<IProps> = ({
                     rotateEnabled={false}
                     scrollEnabled={false}
                     zoomEnabled={false}
-                    initialCamera={{
-                        center: {
-                            latitude: location.latitude,
-                            longitude: location.longitude,
+                    {...(!isIOS && {
+                        initialCamera: cameraInitObj,
+                    })}
+                    {...(isIOS && {
+                        onLayout: () => {
+                            if (mapRef.current) {
+                                mapRef.current.setCamera(cameraInitObj);
+                            }
                         },
-                        pitch: 0,
-                        altitude: 0,
-                        heading: compassHeading,
-                        zoom: 18,
-                    }}>
+                    })}>
                     {myRoute.map((e, i) => (
                         <Polyline
                             coordinates={e}

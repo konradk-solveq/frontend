@@ -115,21 +115,7 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
                                     });
                                 }
                             },
-                        })}
-                        onLayout={() => {
-                            if (mapRef.current) {
-                                mapRef.current.animateCamera({
-                                    center: {
-                                        latitude: foreignRoute[0].latitude,
-                                        longitude: foreignRoute[0].longitude,
-                                    },
-                                    pitch: 0,
-                                    altitude: 0,
-                                    heading: compassHeading,
-                                    zoom: 16,
-                                });
-                            }
-                        }}>
+                        })}>
                         {foreignRoute && (
                             <Polyline
                                 coordinates={foreignRoute}
