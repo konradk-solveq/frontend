@@ -74,8 +74,13 @@ export const clearRoutesToSynch = (routeIds: string[]) => ({
     ids: routeIds,
 });
 
-export const clearCurrentRouteData = () => ({
+export const clearCurrentRouteData = (removeDuplicates?: boolean) => ({
     type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
+    removeDuplicates: removeDuplicates,
+});
+
+export const clearCurrentRoute = () => ({
+    type: actionTypes.CLEAR_CURRENT_ROUTE,
 });
 
 export const clearAverageSpeed = () => ({
@@ -91,9 +96,14 @@ export const startRecordingRoute = (
     try {
         const {currentRoute} = getState().routes;
         const {totalPrivateMaps}: MapsState = getState().maps;
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
         let currentRouteData = {...currRoute};
 
-        if (!keep || !currentRoute?.remoteRouteId) {
+        if (
+            (!keep || !currentRoute?.remoteRouteId) &&
+            !isOffline &&
+            internetConnectionInfo
+        ) {
             const response = await createNewRouteService(totalPrivateMaps);
 
             if (response.error || !response?.data?.id) {
@@ -138,7 +148,8 @@ export const stopCurrentRoute = (
                     logger.recordError(err);
                 }
             }
-            dispatch(clearCurrentRouteData());
+            dispatch(clearCurrentRouteData(true));
+            dispatch(clearCurrentRoute());
             dispatch(clearAverageSpeed());
             dispatch(setLoadingState(false));
             return;
@@ -200,10 +211,9 @@ export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
 
         /* If fail add to queue. Resolve in different action. */
-        dispatch(clearCurrentRouteData());
-        dispatch(clearAverageSpeed());
         dispatch(setRouteToSynch(currentRoute.id));
         dispatch(setRoutesData({id: currentRoute.id, route: currentRouteData}));
+        dispatch(clearAverageSpeed());
 
         dispatch(setError(I18n.t('dataAction.dataSyncError'), 500));
         dispatch(setLoadingState(false));
@@ -214,10 +224,9 @@ export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
         const errorMessage = I18n.t('dataAction.apiError');
 
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
-        dispatch(clearCurrentRouteData());
-        dispatch(clearAverageSpeed());
         dispatch(setRouteToSynch(currentRoute.id));
         dispatch(setRoutesData({id: currentRoute.id, route: currentRouteData}));
+        dispatch(clearAverageSpeed());
 
         dispatch(setError(errorMessage, 500));
     }
@@ -239,15 +248,9 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 currentRouteData?.find(cr => cr?.odometer >= MIN_ROUTE_LENGTH)
             ) {
                 dispatch(addRoutesToSynchQueue());
-
-                if (currentRoute?.remoteRouteId) {
-                    await removeCeratedRouteIDService(
-                        currentRoute.remoteRouteId,
-                    );
-                }
             }
             dispatch(clearCurrentRouteData());
-            dispatch(clearAverageSpeed());
+            dispatch(clearCurrentRoute());
 
             dispatch(setError('No internet connection', 500));
             dispatch(setLoadingState(false));
@@ -277,9 +280,16 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 response.status !== 406
             ) {
                 dispatch(addRoutesToSynchQueue());
+
+                if (currentRoute?.remoteRouteId) {
+                    await removeCeratedRouteIDService(
+                        currentRoute.remoteRouteId,
+                    );
+                }
             }
 
             dispatch(clearCurrentRouteData());
+            dispatch(clearCurrentRoute());
             dispatch(clearAverageSpeed());
             dispatch(setError(errorMessage, response.status));
             return;
@@ -287,6 +297,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
         dispatch(setPrivateMapId(response.data.id));
         dispatch(clearCurrentRouteData());
+        dispatch(clearCurrentRoute());
         dispatch(clearAverageSpeed());
         dispatch(clearError());
         dispatch(setLoadingState(false));
@@ -306,7 +317,11 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
 ) => {
     dispatch(setLoadingState(true));
     try {
-        const {routesToSync, routes}: RoutesState = getState().routes;
+        const {
+            routesToSync,
+            routes,
+            currentRoute,
+        }: RoutesState = getState().routes;
 
         if (!routesToSync?.length) {
             dispatch(setLoadingState(false));
@@ -329,12 +344,21 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
                 return;
             }
 
-            const response = await syncRouteData(routeToSync.route);
+            const remoteId =
+                routeToSync.id === currentRoute.id
+                    ? currentRoute?.remoteRouteId
+                    : undefined;
+
+            const response = await syncRouteData(routeToSync.route, remoteId);
 
             if (response.error || !response?.data?.id) {
                 newRoutesToSync.push(id);
                 newRoutes.push(routeToSync);
                 return;
+            }
+
+            if (remoteId) {
+                dispatch(clearCurrentRoute());
             }
         });
 
