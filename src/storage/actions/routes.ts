@@ -255,7 +255,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
             /* If fail add to queue. Resolve tasks queue in different action. */
             if (
-                currentRouteData?.length >= 3 &&
+                currentRouteData?.length >= 2 &&
                 currentRouteData?.find(
                     cr => cr?.odometer >= MIN_ROUTE_LENGTH,
                 ) &&
@@ -331,7 +331,5 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         logger.log('[syncRouteDataFromQueue]');
         const err = convertToApiError(error);
         logger.recordError(err);
-
-        dispatch(addRoutesToSynchQueue());
     }
 };
