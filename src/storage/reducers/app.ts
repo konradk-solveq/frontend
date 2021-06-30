@@ -60,7 +60,7 @@ const appReducer = (state = initialState, action: any) => {
         case actionTypes.SET_APP_NETWORK_STATUS:
             return {
                 ...state,
-                isOffline: !action.isOffline,
+                isOffline: action.isOffline,
                 internetConnectionInfo: {
                     connectionType: action.connectionType,
                     cellularGeneration: action.cellularGeneration,

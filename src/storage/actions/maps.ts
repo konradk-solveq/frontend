@@ -18,7 +18,7 @@ import {
     getPlannedMapsListService,
     removePlannedMapByIdService,
 } from '../../services/mapsService';
-import { AppState } from '../reducers/app';
+import {AppState} from '../reducers/app';
 
 export const setMapsData = (
     maps: MapType[],
@@ -219,7 +219,6 @@ export const editPrivateMapMetaData = (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[editPrivateMapMetaData]');
-        console.log('[error]', error)
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');

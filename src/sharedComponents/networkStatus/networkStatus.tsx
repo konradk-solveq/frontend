@@ -19,7 +19,7 @@ const NetworkStatus: React.FC<IProps> = ({children}: IProps) => {
     const onChangeConnectivityState = useCallback(
         async (state: NetInfoState) => {
             let newState = false;
-            if (!state.isConnected || state.isInternetReachable) {
+            if (!state.isConnected || !state.isInternetReachable) {
                 newState = true;
             }
             setIsConnected(newState);
