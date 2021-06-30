@@ -1,6 +1,17 @@
 import {axiosGet} from './api';
+import {convertToTimeoutError} from '../utils/apiDataTransform/timeoutError';
 
-export const getConfig = async () => await axiosGet('/application/config');
+export const checkInternetConnectionQuality = async () => {
+    return await axiosGet('https://clients3.google.com/generate_204', {
+        timeout: 10000,
+    }).catch(e => {
+        return Promise.reject(convertToTimeoutError(e));
+    });
+};
+
+export const getConfig = async () => {
+    return await axiosGet('/application/config');
+};
 
 export const getTermsAndConditions = async () =>
     await axiosGet('/application/terms-and-conditions');

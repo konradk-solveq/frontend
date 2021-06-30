@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import persistReducer from 'redux-persist/es/persistReducer';
 import * as actionTypes from '../actions/actionTypes';
-// import getVersion from '../../helpers/veriosn';
 
 import {AppConfigI} from '../../models/config.model';
 import {
@@ -9,16 +8,18 @@ import {
     RegulationType,
     TermsAndConditionsType,
 } from '../../models/regulations.model';
+import {InternetConnectionInfoType} from '../../interfaces/internetConnection';
 
 export interface AppState {
     isOffline: boolean;
+    internetConnectionInfo: InternetConnectionInfoType;
     sync: boolean;
     error: string;
     statusCode: number;
     config: AppConfigI;
     terms: TermsAndConditionsType[];
     currentTerms: TermsAndConditionsType;
-    faq: {faq: FaqType[]};
+    faq: {faq: FaqType[]} | {};
     showedRegulations: number | null;
     regulation: RegulationType | {};
     policy: RegulationType | {};
@@ -26,6 +27,9 @@ export interface AppState {
 
 const initialState: AppState = {
     isOffline: false,
+    internetConnectionInfo: {
+        goodConnectionQuality: true,
+    },
     sync: false,
     error: '',
     statusCode: 200,
@@ -45,7 +49,7 @@ const initialState: AppState = {
         text: '',
         title: '',
     },
-    faq: [],
+    faq: {},
     showedRegulations: null,
     regulation: {},
     policy: {},
@@ -56,7 +60,12 @@ const appReducer = (state = initialState, action: any) => {
         case actionTypes.SET_APP_NETWORK_STATUS:
             return {
                 ...state,
-                isOffline: action.status,
+                isOffline: !action.isOffline,
+                internetConnectionInfo: {
+                    connectionType: action.connectionType,
+                    cellularGeneration: action.cellularGeneration,
+                    goodConnectionQuality: action.goodConnectionQuality,
+                },
             };
         case actionTypes.SET_APP_CONFIG:
             return {

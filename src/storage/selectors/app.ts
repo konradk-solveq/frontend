@@ -1,13 +1,16 @@
 import {createSelector} from 'reselect';
 import {OptionType} from '../../interfaces/form';
 import {SelectOptionType} from '../../models/map.model';
-import { FaqType } from '../../models/regulations.model';
+import {FaqType} from '../../models/regulations.model';
 import {RootState} from '../storage';
 
 export const syncAppSelector = (state: RootState): boolean => state.app.sync;
 
 export const isOnlineAppStatusSelector = (state: RootState): boolean =>
     !state.app.isOffline;
+
+export const isGoodConnectionQualitySelector = (state: RootState): boolean =>
+    state.app.internetConnectionInfo?.goodConnectionQuality;
 
 export const appErrorSelector = (
     state: RootState,
