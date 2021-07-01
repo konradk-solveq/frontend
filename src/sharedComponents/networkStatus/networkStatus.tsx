@@ -18,15 +18,15 @@ const NetworkStatus: React.FC<IProps> = ({children}: IProps) => {
 
     const onChangeConnectivityState = useCallback(
         async (state: NetInfoState) => {
-            let newState = false;
+            let isOffline = false;
             if (!state.isConnected || !state.isInternetReachable) {
-                newState = true;
+                isOffline = true;
             }
-            setIsConnected(newState);
+            setIsConnected(isOffline);
 
             let goodInternetConnection = true;
             /* Check wifi too. Some hotspots may have poor connection quality */
-            if (newState) {
+            if (!isOffline) {
                 const connectionQuality = await checkInternetConnectionQualityService();
                 if (connectionQuality.status === 408) {
                     goodInternetConnection = false;
@@ -35,7 +35,7 @@ const NetworkStatus: React.FC<IProps> = ({children}: IProps) => {
 
             dispatch(
                 setAppStatus(
-                    newState,
+                    isOffline,
                     state.type,
                     state?.details?.cellularGeneration,
                     goodInternetConnection,
