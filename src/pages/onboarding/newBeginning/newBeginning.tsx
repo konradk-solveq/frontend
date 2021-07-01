@@ -27,6 +27,7 @@ import Screen_5 from './screen_5';
 import StaticElements from './../staticElements';
 import Swipe from '../../../sharedComponents/navi/swipe/swipe';
 import BidirectionalSwipe from '../../../sharedComponents/navi/swipe/bidirectionalSwipe';
+import {OnboardingStackRoute} from '../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -313,7 +314,11 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
                         },
                     ]}>
                     <StaticElements
-                        goFoward={() => props.navigation.navigate('Permits')}
+                        goFoward={() =>
+                            props.navigation.navigate(
+                                OnboardingStackRoute.PERMITS_SCREEN,
+                            )
+                        }
                         board={board}
                         list={list}
                         setBoard={setBoard}

@@ -15,6 +15,7 @@ import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHead
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import AnimSvg from '../../../../helpers/animSvg';
 import {countDaysToEnd} from '../../../../helpers/warranty';
+import {RegularStackRoute} from '../../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -224,7 +225,9 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('TabMenu')}
+                onpress={() =>
+                    props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
+                }
                 inner={trans.header}
                 getHeight={setHeadHeightt}
             />

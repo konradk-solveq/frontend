@@ -25,6 +25,7 @@ import Loader from '../../onboarding/bikeAdding/loader/loader';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {TermsAndConditionsType} from '../../../models/regulations.model';
 import {setAppShowedRegulationsNumber} from '../../../storage/actions';
+import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -96,7 +97,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
 
     const handleGoForward = () => {
         dispatch(setAppShowedRegulationsNumber(shovedToSave));
-        props.navigation.navigate('MineMenu');
+        props.navigation.navigate(BothStackRoute.MAIN_MENU_SCREEN);
     };
 
     const getHeight = useCallback(async () => {
@@ -148,6 +149,9 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
             lineHeight: 30,
             color: '#313131',
             marginBottom: getVerticalPx(60),
+        },
+        link: {
+            color: '#3587ea',
         },
         header: {
             position: 'absolute',
@@ -231,10 +235,10 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
                         </Svg> */}
 
                             <Hyperlink
-                                linkStyle={{color: '#3587ea'}}
+                                linkStyle={styles.link}
                                 linkText={(url: string) => {
                                     let link = trans.urls.find(
-                                        e => e.url == url,
+                                        e => e.url === url,
                                     );
                                     if (link) {
                                         return link.hyper;
@@ -243,18 +247,20 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
                                     }
                                 }}
                                 onPress={(url: string) => {
-                                    if (url == 'http://regulations.eu') {
+                                    if (url === 'http://regulations.eu') {
                                         props.navigation.navigate(
-                                            'Regulations',
+                                            BothStackRoute.REGULATIONS_SCREEN,
                                         );
                                     } else if (
-                                        url == 'http://privacyPolicy.eu'
+                                        url === 'http://privacyPolicy.eu'
                                     ) {
                                         props.navigation.navigate(
-                                            'PrivacyPolicy',
+                                            BothStackRoute.PRIVACY_POLICY_SCREEN,
                                         );
-                                    } else if (url == 'http://informUs.eu') {
-                                        props.navigation.navigate('Contact');
+                                    } else if (url === 'http://informUs.eu') {
+                                        props.navigation.navigate(
+                                            RegularStackRoute.CONTACT_SCREEN,
+                                        );
                                     } else {
                                         Linking.openURL(url);
                                     }

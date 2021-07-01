@@ -81,7 +81,7 @@ const RouteDetails = () => {
             setShowBottomModal(true);
             return;
         } else {
-            navigation.navigate('Contact');
+            navigation.navigate(RegularStackRoute.CONTACT_SCREEN);
         }
         console.log('create ticket');
         /* TODO: user can delete if creted route. For public routes can only make ticket */

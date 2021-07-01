@@ -14,14 +14,15 @@ import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHead
 import AnimSvg from '../../../../helpers/animSvg';
 import {getCountedDaysText} from '../../../../helpers/reviews';
 import ServiceMapBtn from '../../../../sharedComponents/buttons/serviceMap';
+import {RegularStackRoute} from '../../../../navigation/route';
 
 interface Props {
     navigation: any;
     route: any;
 }
 
-const RewiewsDetails: React.FC<Props> = (props: Props) => {
-    const trans: any = I18n.t('RewiewsDetails');
+const ReviewsDetails: React.FC<Props> = (props: Props) => {
+    const trans: any = I18n.t('ReviewsDetails');
     const details = props.route.params.details;
     const box = props.route.params.box;
     const region = props.route.params.region;
@@ -106,7 +107,7 @@ const RewiewsDetails: React.FC<Props> = (props: Props) => {
             return;
         }
 
-        props.navigation.navigate('ServicesMap', {
+        props.navigation.navigate(RegularStackRoute.SERVICES_MAP_SCREEN, {
             region: region,
             location: location,
             box: box,
@@ -223,7 +224,9 @@ const RewiewsDetails: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('TabMenu')}
+                onpress={() =>
+                    props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
+                }
                 inner={trans.header}
                 getHeight={setHeadHeightt}
             />
@@ -231,4 +234,4 @@ const RewiewsDetails: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default RewiewsDetails;
+export default ReviewsDetails;

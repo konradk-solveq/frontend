@@ -9,6 +9,7 @@ import World from './world/world';
 import Bike from './bike/bike';
 import Profile from './profile/profile';
 
+import {RegularStackRoute} from '../../navigation/route';
 import {getHorizontalPx} from '../../helpers/layoutFoo';
 
 interface Props {
@@ -41,10 +42,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
             bottom: 0,
             height: getHorizontalPx(95),
             elevation: 0,
-            // backgroundColor: 'khaki'
         },
-        // activeTintColor: 'blue',
-        // inactiveTintColor: 'white',
         labelStyle: {
             fontSize: 12,
             fontWeight: 'bold',
@@ -53,13 +51,13 @@ const TabMenu: React.FC<Props> = (props: Props) => {
 
     return (
         <Tab.Navigator
-            initialRouteName="Home"
+            initialRouteName={RegularStackRoute.HOME_SCREEN}
             tabBarOptions={tabBarOptions}
             // swipeEnabled={true}
             // animationEnabled={true}
         >
             <Tab.Screen
-                name="Home"
+                name={RegularStackRoute.HOME_SCREEN}
                 component={Home}
                 options={{
                     tabBarLabel: '',
@@ -85,7 +83,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
             />
 
             <Tab.Screen
-                name="World"
+                name={RegularStackRoute.KROSS_WORLD_SCREEN}
                 component={World}
                 options={{
                     tabBarLabel: '',
@@ -111,7 +109,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
             />
 
             <Tab.Screen
-                name="Bike"
+                name={RegularStackRoute.BIKE_SCREEN}
                 component={Bike}
                 options={{
                     tabBarLabel: '',
@@ -135,7 +133,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
             />
 
             <Tab.Screen
-                name="Profile"
+                name={RegularStackRoute.PROFILE_SCREEN}
                 component={Profile}
                 options={{
                     tabBarLabel: '',

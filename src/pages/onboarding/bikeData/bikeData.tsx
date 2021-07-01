@@ -33,6 +33,7 @@ import deepCopy from '../../../helpers/deepCopy';
 import {frameNumberSelector} from '../../../storage/selectors';
 import {bikeDescriptionByFrameNumberSelector} from '../../../storage/selectors/bikes';
 import {getBikesBaseData} from '../../../utils/transformData';
+import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
 
 interface Message {
     serial_number: string;
@@ -146,10 +147,12 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                     }),
                 );
                 /* TODO: this change is temporary - business  decision */
-                // navigation.navigate('CyclingProfile');
+                // navigation.navigate(
+                //     OnboardingStackRoute.CYCLING_PROFILE_SCREEN,
+                // );
                 /* start to delete */
                 navigation.navigate({
-                    name: 'BikeSummary',
+                    name: BothStackRoute.BIKE_SUMMARY_SCREEN,
                     params: {frameNumber: data.serial_number},
                 });
                 /* end to delete */

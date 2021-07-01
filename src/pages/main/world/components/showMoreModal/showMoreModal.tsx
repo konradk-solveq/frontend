@@ -51,7 +51,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     const onDetailsButtonPressedHandler = () => {
         onPressCancel();
         navigation.navigate({
-            name: 'RouteDetailsScreen',
+            name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
             params: {mapID: mapID, private: isPrivate},
         });
     };
@@ -80,7 +80,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     const onStartRouteHandler = () => {
         onPressCancel();
         navigation.navigate({
-            name: RegularStackRoute.COUNTER_ROUTE_SCREEN,
+            name: RegularStackRoute.COUNTER_SCREEN,
             params: {mapID: mapID, private: isPrivate},
         });
     };

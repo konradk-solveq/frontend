@@ -13,6 +13,7 @@ import {nfcIsSupported} from '../../../../helpers/nfc';
 
 import BikeButton from '../../../../sharedComponents/buttons/bikeButton';
 import BikeIcon from '../../../../sharedComponents/svg/bikeIcon';
+import {BothStackRoute} from '../../../../navigation/route';
 
 interface Props {
     style?: any;
@@ -104,7 +105,9 @@ const BikeSelectorList: React.FC<Props> = ({
                     text={`+ ${buttonText}`}
                     onPress={() => {
                         const pushAction = StackActions.push(
-                            nfc ? 'TurtorialNFC' : 'AddingByNumber',
+                            nfc
+                                ? BothStackRoute.TURTORIAL_NFC_SCREEN
+                                : BothStackRoute.ADDING_BY_NUMBER_SCREEN,
                             {
                                 emptyFrame: true,
                             },
