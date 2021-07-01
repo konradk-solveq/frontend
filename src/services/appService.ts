@@ -11,6 +11,7 @@ import {
     RegulationType,
     TermsAndConditionsType,
 } from '../models/regulations.model';
+import {I18n} from '../../I18n/I18n';
 
 export const checkInternetConnectionQualityService = async () => {
     try {
@@ -19,7 +20,7 @@ export const checkInternetConnectionQualityService = async () => {
         return {
             data: '',
             status: resp.status === 204 ? 204 : 408,
-            error: new Error('Internet connection unavailable'),
+            error: new Error(I18n.t('dataAction.noInternetConnection')),
         };
     } catch (error) {
         return {

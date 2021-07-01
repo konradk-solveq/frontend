@@ -197,7 +197,9 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         }: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setSyncError('No internet connection', 500));
+            dispatch(
+                setSyncError(I18n.t('dataAction.noInternetConnection'), 500),
+            );
             dispatch(setSyncStatus(false));
             return;
         }

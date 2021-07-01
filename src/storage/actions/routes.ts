@@ -252,7 +252,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
 
-            dispatch(setError('No internet connection', 500));
+            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
             dispatch(setLoadingState(false));
             return;
         }
@@ -331,7 +331,7 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError('No internet connection', 500));
+            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
             dispatch(setLoadingState(false));
             return;
         }
