@@ -603,6 +603,12 @@
         "pausePrefix": "czas przerw",
         "pauseSufix": "h"
     },
+    "PublishPoorConnectionPage": {
+        "title": "Daj nam jeszcze chwilę",
+        "content": "Zapisywanie trasy może potrwać dłużej niż zwykle, np. gdy zasięg internetu jest słaby",
+        "cancelBtn": "Przerwij zapis trasy",
+        "continueBtn": "Wróć do zapisu trasy"
+    },
     "PublishThankYouPage": {
         "defaultName": "Rowerzysto",
         "titleSufix": ", trasa została ",

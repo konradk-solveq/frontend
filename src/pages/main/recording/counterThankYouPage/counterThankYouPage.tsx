@@ -21,15 +21,18 @@ import {
     trackerLoadingSelector,
 } from '../../../../storage/selectors/routes';
 import {
+    abortSyncCurrentRouteData,
     clearError,
     syncCurrentRouteData,
 } from '../../../../storage/actions/routes';
 
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
+import PoorConnectionModal from '../../../../sharedComponents/modals/poorConnectionModal/poorConnectionModal';
 
 enum Action {
     next = 'next',
     prev = 'prev',
+    home = 'home',
 }
 
 interface Props {
@@ -94,6 +97,11 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const onGoForward = useCallback(
         (prev?: boolean) => {
             dispatch(clearError());
+            console.log(goForward);
+            if (goForward === Action.home) {
+                navigation.navigate(RegularStackRoute.MAIN_MENU_SCREEN);
+                return;
+            }
             if (goForward === Action.next && !prev) {
                 navigation.navigate({
                     name: RegularStackRoute.EDIT_DETAILS_SCREEN,
@@ -162,8 +170,20 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
         dispatch(syncCurrentRouteData());
     };
 
+    const onCancelRouteHandler = (forward: string) => {
+        setGoForward(forward);
+        dispatch(abortSyncCurrentRouteData());
+    };
+
     if (isSyncData) {
-        return <Loader />;
+        return (
+            <>
+                <Loader />
+                <PoorConnectionModal
+                    onAbort={() => onCancelRouteHandler(Action.home)}
+                />
+            </>
+        );
     }
 
     return (
