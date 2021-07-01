@@ -22,6 +22,7 @@ import styles from './style';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../../sharedComponents/loader/loader';
 import FirstTile from '../components/tiles/firstTile';
+import { RegularStackRoute } from '../../../../navigation/route';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -68,7 +69,7 @@ const MyRoutes: React.FC<IProps> = ({
     const onPressTileHandler = useCallback(
         (mapID?: string) => {
             navigation.navigate({
-                name: 'RouteDetailsScreen',
+                name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
                 params: {mapID: mapID, private: true},
             });
         },

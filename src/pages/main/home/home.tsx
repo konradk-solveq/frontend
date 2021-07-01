@@ -18,11 +18,11 @@ import Tile from './tile';
 import {useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
 import {nfcIsSupported} from '../../../helpers/nfc';
-import {RegularStackRoute} from '../../../navigation/route';
+import {BothStackRoute, RegularStackRoute} from '../../../navigation/route';
 
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import Loader from '../../onboarding/bikeAdding/loader/loader';
-import { requestGeolocationPermission } from '../../../utils/geolocation';
+import {requestGeolocationPermission} from '../../../utils/geolocation';
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
@@ -34,7 +34,7 @@ const Home: React.FC = () => {
     /* TODO: move initialization to splashs screen or add loader */
     useEffect(() => {
         if (isTrackerActive) {
-            navigation.navigate(RegularStackRoute.COUNTER_ROUTE_SCREEN);
+            navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
         }
     }, [isTrackerActive, navigation]);
 
@@ -77,18 +77,20 @@ const Home: React.FC = () => {
 
     const onAddActionHandler = () => {
         navigation.navigate({
-            name: nfc ? 'TurtorialNFC' : 'AddingByNumber',
+            name: nfc
+                ? BothStackRoute.TURTORIAL_NFC_SCREEN
+                : BothStackRoute.ADDING_BY_NUMBER_SCREEN,
             params: {emptyFrame: true},
         });
     };
 
     const onCheckActionHandler = () => {
-        navigation.navigate('Bike');
+        navigation.navigate(RegularStackRoute.BIKE_SCREEN);
     };
 
     const onRecordTripActionHandler = async () => {
         await requestGeolocationPermission();
-        navigation.navigate(RegularStackRoute.COUNTER_ROUTE_SCREEN);
+        navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
     };
 
     if (syncStatus) {

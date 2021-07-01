@@ -20,6 +20,7 @@ import {
     getHeightPx,
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
+import {BothStackRoute, CyclingProfileRoute} from '../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -261,20 +262,20 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
 
     const handleSaveOnboarding = () => {
         dispatch(setOnboardingFinished(true));
-        navigation.navigate('MineMenu');
+        navigation.navigate(BothStackRoute.MAIN_MENU_SCREEN);
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>{trans.title}</Text>
 
-            {profilType == riderProfiles.AMATEUR && (
+            {profilType === riderProfiles.AMATEUR && (
                 <AnimSvg source={amatour_biker} style={styles.image} />
             )}
-            {profilType == riderProfiles.CITY && (
+            {profilType === riderProfiles.CITY && (
                 <AnimSvg source={city_biker} style={styles.image} />
             )}
-            {profilType == riderProfiles.PROFESSIONAL && (
+            {profilType === riderProfiles.PROFESSIONAL && (
                 <AnimSvg source={advanced_biker} style={styles.image} />
             )}
 
@@ -289,7 +290,9 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
                     style={styles.btn}
                     title={trans.btnChange}
                     onpress={() =>
-                        navigation.navigate('CyclingProfileSettings')
+                        navigation.navigate(
+                            CyclingProfileRoute.CYCLING_PROFILE_SETTINGS_SCREEN,
+                        )
                     }
                 />
 
@@ -301,7 +304,9 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => navigation.navigate('AddingByNumber')}
+                onpress={() =>
+                    navigation.navigate(BothStackRoute.ADDING_BY_NUMBER_SCREEN)
+                }
                 inner={trans.header}
             />
         </SafeAreaView>

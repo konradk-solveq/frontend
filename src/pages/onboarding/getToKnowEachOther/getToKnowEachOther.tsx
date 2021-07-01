@@ -30,6 +30,7 @@ import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
+import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -78,9 +79,9 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
 
     const goFoward = () => {
         if (nfc) {
-            navigation.navigate('TurtorialNFC');
+            navigation.navigate(BothStackRoute.TURTORIAL_NFC_SCREEN);
         } else {
-            navigation.navigate('AddingByNumber');
+            navigation.navigate(BothStackRoute.ADDING_BY_NUMBER_SCREEN);
         }
     };
 
@@ -190,7 +191,9 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             </ScrollView>
 
             <StackHeader
-                onpress={() => navigation.navigate('Permits')}
+                onpress={() =>
+                    navigation.navigate(OnboardingStackRoute.PERMITS_SCREEN)
+                }
                 getHeight={setHeadHeight}
                 inner={''}
             />

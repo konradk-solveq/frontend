@@ -28,6 +28,7 @@ import BikeImage from '../../../sharedComponents/images/bikeImage';
 import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
 import Curve from '../../../sharedComponents/svg/curve';
 import useCustomBackNavButton from '../../../hooks/useCustomBackNavBtn';
+import {BothStackRoute} from '../../../navigation/route';
 
 interface IProps {
     navigation: any;
@@ -111,7 +112,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
         }
         navigation.reset({
             index: 0,
-            routes: [{name: 'MineMenu'}],
+            routes: [{name: BothStackRoute.MAIN_MENU_SCREEN}],
         });
     };
 
@@ -171,7 +172,9 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                         title={trans.btnChange}
                         onpress={() => {
                             removeBikeOnCancel();
-                            navigation.navigate('TurtorialNFC');
+                            navigation.navigate(
+                                BothStackRoute.TURTORIAL_NFC_SCREEN,
+                            );
                         }}
                     />
                 </View>

@@ -22,6 +22,7 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
+import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -149,7 +150,11 @@ const Profile: React.FC<Props> = (props: Props) => {
                     <AnimSvg source={amatour_biker} style={styles.imgage} />
 
                     <TouchableOpacity
-                        onPress={() => props.navigation.navigate('NameChange')}>
+                        onPress={() =>
+                            props.navigation.navigate(
+                                RegularStackRoute.NAME_CHANGE_SCREEN,
+                            )
+                        }>
                         <View style={styles.nameWrap}>
                             <Text style={styles.name}>{userName}</Text>
                             <Text style={styles.name}>...</Text>
@@ -158,25 +163,43 @@ const Profile: React.FC<Props> = (props: Props) => {
 
                     <Text style={styles.title}>{trans.title}</Text>
                     <BlueButton
-                        onpress={() => props.navigation.navigate('AboutApp')}
+                        onpress={() =>
+                            props.navigation.navigate(
+                                RegularStackRoute.ABOUT_APP_SCREEN,
+                            )
+                        }
                         title={trans.app}
                     />
                     <BlueButton
-                        onpress={() => props.navigation.navigate('Regulations')}
+                        onpress={() =>
+                            props.navigation.navigate(
+                                BothStackRoute.REGULATIONS_SCREEN,
+                            )
+                        }
                         title={trans.regulations}
                     />
                     <BlueButton
                         onpress={() =>
-                            props.navigation.navigate('PrivacyPolicy')
+                            props.navigation.navigate(
+                                BothStackRoute.PRIVACY_POLICY_SCREEN,
+                            )
                         }
                         title={trans.privacyPolicy}
                     />
                     <BlueButton
-                        onpress={() => props.navigation.navigate('Help')}
+                        onpress={() =>
+                            props.navigation.navigate(
+                                RegularStackRoute.HELP_SCREEN,
+                            )
+                        }
                         title={trans.help}
                     />
                     <BlueButton
-                        onpress={() => props.navigation.navigate('Contact')}
+                        onpress={() =>
+                            props.navigation.navigate(
+                                RegularStackRoute.CONTACT_SCREEN,
+                            )
+                        }
                         title={trans.contact}
                     />
                 </View>

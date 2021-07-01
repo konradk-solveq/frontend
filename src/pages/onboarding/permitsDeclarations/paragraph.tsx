@@ -5,6 +5,7 @@ import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 
 import {getVerticalPx} from '../../../helpers/layoutFoo';
+import {BothStackRoute} from '../../../navigation/route';
 
 interface Props {
     marginTop: any;
@@ -37,7 +38,7 @@ const Paragraph: React.FC<Props> = (props: Props) => {
         <Hyperlink
             linkStyle={{color: '#3587ea'}}
             linkText={(url: string) => {
-                let link = trans.find(e => e.url == url);
+                let link = trans.find(e => e.url === url);
                 if (link) {
                     return link.hyper;
                 } else {
@@ -46,7 +47,7 @@ const Paragraph: React.FC<Props> = (props: Props) => {
             }}
             onPress={(url: string) => {
                 if (url == 'https://www.kross.pl.rgulamin') {
-                    navigation.navigate('Regulations');
+                    navigation.navigate(BothStackRoute.REGULATIONS_SCREEN);
                 } else {
                     Linking.openURL(url);
                 }
@@ -55,8 +56,8 @@ const Paragraph: React.FC<Props> = (props: Props) => {
                 <Text
                     style={[
                         styles.paragraph,
-                        props.font == 'regular' && styles.regular,
-                        props.font == 'light' && styles.light,
+                        props.font === 'regular' && styles.regular,
+                        props.font === 'light' && styles.light,
                         {marginTop: getVerticalPx(props.marginTop)},
                     ]}>
                     {props.text}

@@ -17,6 +17,7 @@ import {
     getVerticalPx,
 } from '../../../helpers/layoutFoo';
 import {getDay, getYear} from '../../../helpers/overviews';
+import {RegularStackRoute} from '../../../navigation/route';
 
 interface Props {
     style?: any;
@@ -229,7 +230,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
     });
 
     const heandleShowDeatails = e => {
-        props.navigation.navigate('RewiewsDetails', {
+        props.navigation.navigate(RegularStackRoute.REVIEWS_DETAILS_SCREEN, {
             details: e,
             box: props.box,
             region: props.region,

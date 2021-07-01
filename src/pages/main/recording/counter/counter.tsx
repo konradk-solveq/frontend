@@ -46,6 +46,7 @@ import CounterGradient from './counterGradient';
 import MarkPointer from './markPointer';
 import CounterActionButtons from './counterActionButtons';
 import CounterMapView from './counterMapView';
+import {RegularStackRoute} from '../../../../navigation/route';
 
 const {width} = Dimensions.get('window');
 
@@ -184,7 +185,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const navigateToTHPPage = useCallback(() => {
         navigation.navigate({
-            name: 'CounterThankYouPage',
+            name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
             params: {
                 distance: trackerData?.distance,
                 time: Date.now() - Date.parse(trackerStartTime.toUTCString()),

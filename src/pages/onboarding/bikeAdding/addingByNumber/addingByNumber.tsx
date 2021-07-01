@@ -34,6 +34,7 @@ import {
     getHorizontalPx,
 } from '../../../../helpers/layoutFoo';
 import Loader from '../loader/loader';
+import {BothStackRoute} from '../../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -100,14 +101,14 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             try {
                 await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
                 props.navigation.navigate({
-                    name: 'BikeSummary',
+                    name: BothStackRoute.BIKE_SUMMARY_SCREEN,
                     params: {frameNumber: trimmedInputFrame},
                 });
                 return;
             } catch (error) {
                 if (error.notFound) {
                     props.navigation.navigate({
-                        name: 'BikeData',
+                        name: BothStackRoute.BIKE_DATA_SCREEN,
                         params: {frameNumber: trimmedInputFrame},
                     });
                     return;
@@ -198,7 +199,9 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                             algin="right"
                             color="#3587ea"
                             onpress={() =>
-                                props.navigation.navigate('AddingInfo')
+                                props.navigation.navigate(
+                                    BothStackRoute.ADDING_INFO_SCREEN,
+                                )
                             }
                         />
                     </View>

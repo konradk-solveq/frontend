@@ -27,6 +27,7 @@ import {
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 import deepCopy from '../../../helpers/deepCopy';
+import {CyclingProfileRoute} from '../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -122,7 +123,10 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
 
         try {
             await dispatch(setProfileSettings(newData));
-            props.navigation.navigate('CyclingProfileView', {profile: profNum});
+            props.navigation.navigate(
+                CyclingProfileRoute.CYCLING_PROFILE_VIEW_SCREEN,
+                {profile: profNum},
+            );
         } catch (error) {
             /* TODO: show toast/alert */
             console.log('[error -- cyclingProfileSettings]', error);
@@ -190,7 +194,9 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
                 <ScrollView>
                     <VerticalHeader
                         onpress={() =>
-                            props.navigation.navigate('CyclingProfileView')
+                            props.navigation.navigate(
+                                CyclingProfileRoute.CYCLING_PROFILE_VIEW_SCREEN,
+                            )
                         }
                     />
 

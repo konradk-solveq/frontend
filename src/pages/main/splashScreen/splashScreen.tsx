@@ -12,6 +12,7 @@ import {
 } from '../../../helpers/layoutFoo';
 import {TermsAndConditionsType} from '../../../models/regulations.model';
 import {setAppCurrentTerms} from '../../../storage/actions';
+import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
 
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
@@ -78,7 +79,9 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
         if (!isLoading) {
             const t = setTimeout(() => {
                 props.navigation.replace(
-                    showNewRegulations ? 'newRegulations' : 'MineMenu',
+                    showNewRegulations
+                        ? RegularStackRoute.NEW_REGULATIONS_SCREEN
+                        : BothStackRoute.MAIN_MENU_SCREEN,
                 );
             }, time);
             return () => {

@@ -39,6 +39,7 @@ import styles from './style';
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import {getVerticalPx} from '../../../helpers/layoutFoo';
 import useStatusBarHeight from '../../../hooks/statusBarHeight';
+import {RegularStackRoute} from '../../../navigation/route';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -182,7 +183,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('MainBike');
 
     const heandleParams = () => {
-        props.navigation.navigate('BikeParams', {
+        props.navigation.navigate(RegularStackRoute.BIKE_PARAMS_SCREEN, {
             description: bike?.description,
             params: bike?.params,
         });
@@ -193,7 +194,7 @@ const Bike: React.FC<Props> = (props: Props) => {
             return;
         }
 
-        props.navigation.navigate('ServicesMap', {
+        props.navigation.navigate(RegularStackRoute.SERVICES_MAP_SCREEN, {
             region: region,
             location: location,
             box: box,
