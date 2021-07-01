@@ -12,6 +12,7 @@ import {
     TermsAndConditionsType,
 } from '../models/regulations.model';
 import {I18n} from '../../I18n/I18n';
+import TimeoutError from '../utils/apiDataTransform/timeoutError';
 
 export const checkInternetConnectionQualityService = async () => {
     try {
@@ -25,7 +26,7 @@ export const checkInternetConnectionQualityService = async () => {
     } catch (error) {
         return {
             data: '',
-            status: 408,
+            status: error instanceof TimeoutError ? 408 : 500,
             error: error,
         };
     }
