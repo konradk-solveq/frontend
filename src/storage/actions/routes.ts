@@ -372,3 +372,38 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         logger.recordError(err);
     }
 };
+
+export const abortSyncCurrentRouteData = (): AppThunk<Promise<void>> => async (
+    dispatch,
+    getState,
+) => {
+    dispatch(setLoadingState(true));
+    try {
+        const {currentRoute}: RoutesState = getState().routes;
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(clearCurrentRouteData());
+            dispatch(clearCurrentRoute());
+
+            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setLoadingState(false));
+            return;
+        }
+
+        if (currentRoute?.remoteRouteId) {
+            await removeCeratedRouteIDService(currentRoute.remoteRouteId);
+        }
+
+        dispatch(clearCurrentRouteData());
+        dispatch(clearCurrentRoute());
+        dispatch(clearAverageSpeed());
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+        dispatch(fetchPrivateMapsList());
+    } catch (error) {
+        logger.log('[syncCurrentRouteData]');
+        const err = convertToApiError(error);
+        logger.recordError(err);
+    }
+};
