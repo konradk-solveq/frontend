@@ -84,7 +84,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     ).current;
 
     useEffect(() => {
-        setJs(`setValues(${JSON.stringify(trackerData)});true;`);
+        if (trackerData) {
+            setJs(`setValues(${JSON.stringify(trackerData)});true;`);
+        }
     }, [trackerData]);
 
     // zmiana roweru
