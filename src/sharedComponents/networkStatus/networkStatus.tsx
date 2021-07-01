@@ -25,7 +25,7 @@ const NetworkStatus: React.FC<IProps> = ({children}: IProps) => {
             setIsConnected(newState);
 
             let goodInternetConnection = true;
-            if (newState && state.type !== NetInfoStateType.wifi) {
+            if (newState) {
                 const connectionQuality = await checkInternetConnectionQualityService();
                 if (connectionQuality.status === 408) {
                     goodInternetConnection = false;
