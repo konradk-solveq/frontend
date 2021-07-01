@@ -119,7 +119,6 @@ export const startBackgroundGeolocation = async (
 
 export const stopBackgroundGeolocation = async () => {
     await BackgroundGeolocation.changePace(false);
-    const state = await BackgroundGeolocation.stop();
     await BackgroundGeolocation.setConfig({
         isMoving: false,
         extras: {
@@ -129,6 +128,7 @@ export const stopBackgroundGeolocation = async () => {
             text: 'Pobieranie lokalizacji',
         },
     });
+    const state = await BackgroundGeolocation.stop();
 
     return state;
 };

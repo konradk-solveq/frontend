@@ -18,6 +18,7 @@ import {
     getPlannedMapsListService,
     removePlannedMapByIdService,
 } from '../../services/mapsService';
+import {AppState} from '../reducers/app';
 
 export const setMapsData = (
     maps: MapType[],
@@ -186,6 +187,13 @@ export const editPrivateMapMetaData = (
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setLoadingState(false));
+            return;
+        }
+
         const {userName} = getState().user;
 
         const response = await editPrivateMapMetadataService(

@@ -643,6 +643,7 @@
         "apiError": "Wystąpił błąd podczas łączenia z serwerem, spróbuj ponownie",
         "generalError": "Wystąpił błąd, spróbuj ponownie",
         "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem",
+        "noInternetConnection": "Brak połączenia z internetem lub jest ono niestabilne.",
         "routeData": {
             "defaultRouteName": "Trasa z dnia",
             "defaultAlternativeRouteName": "Trasa {{number}} z dnia",

@@ -122,19 +122,28 @@ const routesReducer = (state = initialStateList, action: any) => {
                 currentRouteData: action.currentRouteData,
             };
         }
+        case actionTypes.CLEAR_CURRENT_ROUTE: {
+            return {
+                ...state,
+                currentRoute: {...initialStateList.currentRoute},
+            };
+        }
         case actionTypes.CLEAR_CURRENT_ROUTE_DATA: {
-            const removeFromRoutes = [...state.routes].filter(
-                r => r.id !== state.currentRoute.id,
-            );
-            const removeFromRoutesToSynch = [...state.routesToSync].filter(
-                s => s !== state.currentRoute.id,
-            );
+            let removeFromRoutes = [...state.routes];
+            let removeFromRoutesToSynch = [...state.routesToSync];
+            if (action.removeDuplicates) {
+                removeFromRoutes = [...state.routes].filter(
+                    r => r.id !== state.currentRoute.id,
+                );
+                removeFromRoutesToSynch = [...state.routesToSync].filter(
+                    s => s !== state.currentRoute.id,
+                );
+            }
 
             return {
                 ...state,
                 routes: removeFromRoutes,
                 routesToSync: removeFromRoutesToSynch,
-                currentRoute: {...initialStateList.currentRoute},
                 currentRouteData: [],
             };
         }

@@ -27,4 +27,5 @@ export {
     getRegulation,
     getFaq,
     getConfig,
+    checkInternetConnectionQuality,
 } from './app';

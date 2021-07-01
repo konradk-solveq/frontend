@@ -24,10 +24,23 @@ import {
     getNewRegulationsService,
 } from '../../services';
 import {setUserAgentHeader} from '../../api';
+import {
+    NetInfoCellularGeneration,
+    NetInfoStateType,
+} from '@react-native-community/netinfo';
+import {AppState} from '../reducers/app';
 
-export const setAppStatus = (status: boolean) => ({
+export const setAppStatus = (
+    isOffline: boolean,
+    connectionType: NetInfoStateType,
+    cellularGeneration: NetInfoCellularGeneration,
+    goodConnectionQuality: boolean,
+) => ({
     type: actionTypes.SET_APP_NETWORK_STATUS,
-    isOffline: status,
+    isOffline: isOffline,
+    connectionType: connectionType,
+    cellularGeneration: cellularGeneration,
+    goodConnectionQuality: goodConnectionQuality,
 });
 
 export const setAppConfig = (config: AppConfigI) => ({
@@ -177,7 +190,19 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
 ) => {
     dispatch(setSyncStatus(true));
     try {
-        const {showedRegulations} = getState().app;
+        const {
+            isOffline,
+            internetConnectionInfo,
+            showedRegulations,
+        }: AppState = getState().app;
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(
+                setSyncError(I18n.t('dataAction.noInternetConnection'), 500),
+            );
+            dispatch(setSyncStatus(false));
+            return;
+        }
         const {sessionData} = getState().auth;
         const {onboardingFinished} = getState().user;
         setUserAgentHeader();
