@@ -143,7 +143,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     }, [myRouteNumber, navigation, pageState, pause]);
 
     const navigateToTHPPage = useCallback(() => {
-        console.log('[nawigate]')
         navigation.navigate({
             name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
             params: {
@@ -152,8 +151,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 pause: pauseTime,
             },
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [navigation, pauseTime, trackerStartTime]);
+    }, [navigation, pauseTime, trackerStartTime, trackerData?.distance]);
 
     // zmiana stanu strony na prawym przycisku
     const heandleRightBtnClick = useCallback(async () => {
