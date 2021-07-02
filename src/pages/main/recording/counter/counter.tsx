@@ -47,6 +47,11 @@ import MarkPointer from './markPointer';
 import CounterActionButtons from './counterActionButtons';
 import CounterMapView from './counterMapView';
 import {RegularStackRoute} from '../../../../navigation/route';
+import NativeCounter from './nativeCounter/nativeCounter';
+import {
+    CounterCallbackContext,
+    CounterDataContext,
+} from './nativeCounter/counterContext/counterContext';
 
 const {width} = Dimensions.get('window');
 
@@ -78,6 +83,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         pauseTracker,
         resumeTracker,
         followedRouteId,
+        isActive,
     } = useLocalizationTracker(true);
 
     const bikeSelectorListPositionY = useRef(
@@ -86,7 +92,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     useEffect(() => {
         if (trackerData) {
-            setJs(`setValues(${JSON.stringify(trackerData)});true;`);
+            // setJs(`setValues(${JSON.stringify(trackerData)});true;`);
         }
     }, [trackerData]);
 
@@ -121,8 +127,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     // inicjalizacja elementów webviwe
-    const animSvgRef = useRef();
-    const setJs = (foo: string) => animSvgRef.current.injectJavaScript(foo);
+    // const animSvgRef = useRef();
+    // const setJs = (foo: string) => animSvgRef.current.injectJavaScript(foo);
 
     const [pageState, setPageState] = useState('start');
 
@@ -137,12 +143,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     /* Re-run counter after app restart */
     useEffect(() => {
-        if (isTrackerActive && onMapLoaded) {
+        if (isTrackerActive) {
             setPageState('record');
             const startTime = trackerStartTime
                 ? Date.parse(trackerStartTime.toUTCString())
                 : null;
-            setJs(`start(${startTime});setPauseOff();true;`);
+            // setJs(`start(${startTime});setPauseOff();true;`);
             startTracker(true, route?.params?.mapID);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -156,22 +162,22 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 break;
             case 'record':
                 setPageState('pause');
-                setJs('setPauseOn();true;');
+                // setJs('setPauseOn();true;');
                 break;
             case 'pause':
                 setPageState('record');
-                setJs('hideAlert();setPauseOff();true;');
+                // setJs('hideAlert();setPauseOff();true;');
                 setMyRouteNumber(myRouteNumber + 1);
                 break;
             case 'cancelText':
                 setPageState('record');
-                setJs('hideAlert();true;');
+                // setJs('hideAlert();true;');
                 break;
             case 'endMessage':
                 setPageState(pause ? 'pause' : 'record');
-                setJs('hideAlert();true;');
+                // setJs('hideAlert();true;');
                 if (!pause) {
-                    setJs('start();setPauseOff();true;');
+                    // setJs('start();setPauseOff();true;');
                     setMyRouteNumber(myRouteNumber + 1);
                 }
                 break;
@@ -202,17 +208,17 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         switch (pageState) {
             case 'start':
                 setPageState('record');
-                setJs('start();setPauseOff();true;');
+                // setJs('start();setPauseOff();true;');
                 await startTracker(false, route?.params?.mapID);
                 break;
             case 'record':
                 // await startTracker();
                 setPageState('endMessage');
-                setJs('setPauseOn();true;');
+                // setJs('setPauseOn();true;');
                 break;
             case 'pause':
                 setPageState('endMessage');
-                setJs('setPauseOn();true;');
+                // setJs('setPauseOn();true;');
                 break;
             case 'cancelText':
                 await stopTracker(true);
@@ -293,7 +299,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 {
                     setLeftBtnTile(trans.btnCancel);
                     setRightBtnTile(trans.btnBreak);
-                    setJs('showAlert(1, "' + trans.cancelText + '");true;');
+                    // setJs('showAlert(1, "' + trans.cancelText + '");true;');
                 }
                 break;
             case 'endMessage':
@@ -301,8 +307,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     pauseTracker();
                     setLeftBtnTile(trans.btnCancel);
                     setRightBtnTile(trans.btnEnd);
-                    setJs('showAlert(2, "' + trans.endText + '");true;');
-                    setJs('getPauseTime();true;');
+                    // setJs('showAlert(2, "' + trans.endText + '");true;');
+                    // setJs('getPauseTime();true;');
                     setHeaderTitle(trans.headerPause);
                 }
                 break;
@@ -324,13 +330,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         switch (val[0]) {
             case 'map is ready':
                 {
-                    setJs(
-                        `setPositionOnMap({lat: ${
-                            location?.lat || '53.009342618210624'
-                        }, lng: ${
-                            location?.lon || '20.890509251985964'
-                        } });true;`,
-                    );
+                    // setJs(
+                    //     `setPositionOnMap({lat: ${
+                    //         location?.lat || '53.009342618210624'
+                    //     }, lng: ${
+                    //         location?.lon || '20.890509251985964'
+                    //     } });true;`,
+                    // );
                 }
                 break;
             case 'mapBtn':
@@ -351,12 +357,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     // funkcje kierowane z RN do js w webview
     const heandleMapVisibility = () => {
         if (mapOn) {
-            setJs('setMaxi();true;');
+            // setJs('setMaxi();true;');
             animateElemsOnMapOff();
             setMapBtnPos(mapBtnPosMemo[0]);
             setMapOn(false);
         } else {
-            setJs('setMini();true;');
+            // setJs('setMini();true;');
             animateElemsOnMapOn();
             setMapBtnPos(mapBtnPosMemo[1]);
             setMapOn(true);
@@ -446,7 +452,17 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
                 <MarkPointer />
 
-                <View style={styles.fullView} pointerEvents="none">
+                <CounterDataContext.Provider value={trackerData}>
+                    <CounterCallbackContext.Provider
+                        value={() => console.log('[CounterCallbackContext]')}>
+                        <NativeCounter
+                            time={trackerStartTime}
+                            isRunning={isActive}
+                        />
+                    </CounterCallbackContext.Provider>
+                </CounterDataContext.Provider>
+
+                {/* <View style={styles.fullView} pointerEvents="none">
                     <WebView
                         style={styles.fullView}
                         originWhitelist={['*']}
@@ -474,7 +490,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         ref={animSvgRef}
                         onMessage={heandleOnMessage}
                     />
-                </View>
+                </View> */}
 
                 <CounterGradient showGradient={!mapOn} />
 
@@ -499,21 +515,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     <View style={styles.mapBtn} />
                 </TouchableWithoutFeedback>
 
-                {/* <View style={styles.bottons}>
-                    <View style={styles.btn}>
-                        <BigWhiteBtn
-                            title={leftBtnTile}
-                            onpress={heandleLeftBtnClick}
-                        />
-                    </View>
-
-                    <View style={styles.btn}>
-                        <BigRedBtn
-                            title={rightBtnTile}
-                            onpress={heandleRightBtnClick}
-                        />
-                    </View>
-                </View> */}
                 <CounterActionButtons
                     leftBtnTitle={leftBtnTile}
                     leftBtnCallback={heandleLeftBtnClick}

@@ -38,7 +38,7 @@ interface IProps {
     hideHeader?: boolean;
 }
 
-const SliverTopBar: React.FC<IProps> = ({
+const SliverImage: React.FC<IProps> = ({
     minHeight = HEADER_COLLAPSED_HEIGHT,
     maxHeight = HEADER_EXPANDED_HEIGHT,
     children,
@@ -263,9 +263,9 @@ const SliverTopBar: React.FC<IProps> = ({
     );
 };
 
-SliverTopBar.defaultProps = {
+SliverImage.defaultProps = {
     minHeight: HEADER_COLLAPSED_HEIGHT,
     maxHeight: HEADER_EXPANDED_HEIGHT,
 };
 
-export default SliverTopBar;
+export default SliverImage;

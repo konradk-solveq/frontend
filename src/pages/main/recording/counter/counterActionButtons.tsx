@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: getVerticalPx(65),
         height: 50,
+        zIndex: 10,
     },
     btn: {
         width: getHorizontalPx(157),

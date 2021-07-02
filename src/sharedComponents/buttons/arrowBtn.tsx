@@ -17,13 +17,14 @@ import {
 
 interface Props {
     style?: any;
+    down?: boolean;
     onPress: () => void;
 }
 
 const {width} = Dimensions.get('window');
 const isIOS = Platform.OS === 'ios';
 
-const ArrowBtn: React.FC<Props> = ({onPress, style}: Props) => {
+const ArrowBtn: React.FC<Props> = ({onPress, down, style}: Props) => {
     setObjSize(51, 51);
     const h = width * (40 / 120.8);
     const w = getWidthPx();
@@ -68,7 +69,9 @@ const ArrowBtn: React.FC<Props> = ({onPress, style}: Props) => {
                                 fill="#313131"
                                 fill-rule="nonzero"
                                 d={
-                                    'm 116.7,30.754844 a 0.3,0.3 0 0 1 -0.4,0 l -1.5,-1.5 -1.4,1.5 a 0.32015621,0.32015621 0 0 1 -0.5,-0.4 l 1.7,-1.7 c 0.2,-0.1 0.3,-0.1 0.4,0 l 1.7,1.7 c 0.1,0.1 0.1,0.3 0,0.4 z'
+                                    !down
+                                        ? 'm 116.7,30.754844 a 0.3,0.3 0 0 1 -0.4,0 l -1.5,-1.5 -1.4,1.5 a 0.32015621,0.32015621 0 0 1 -0.5,-0.4 l 1.7,-1.7 c 0.2,-0.1 0.3,-0.1 0.4,0 l 1.7,1.7 c 0.1,0.1 0.1,0.3 0,0.4 z'
+                                        : 'M116.7 28.7a.3.3 0 00-.4 0l-1.5 1.5-1.4-1.5a.3.3 0 00-.5.4l1.7 1.7c.2.1.3.1.4 0l1.7-1.7c.1-.1.1-.3 0-.4z'
                                 }
                             />
                         </G>

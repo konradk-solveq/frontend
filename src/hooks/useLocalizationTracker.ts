@@ -36,7 +36,7 @@ import {
     startCurrentRoute,
 } from './utils/localizationTracker';
 
-interface DataI {
+export interface DataI {
     distance: string;
     speed: string;
     averageSpeed: string;
