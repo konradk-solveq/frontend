@@ -2,22 +2,15 @@ import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {
     StyleSheet,
     View,
-    Dimensions,
-    TouchableWithoutFeedback,
     Animated,
-    Easing,
     Platform,
     StatusBar,
     Alert,
 } from 'react-native';
-import {WebView} from 'react-native-webview';
 
 import I18n from 'react-native-i18n';
 
 import {
-    setObjSize,
-    getWidthPxOf,
-    getHorizontalPx,
     getVerticalPx,
     getStackHeaderHeight,
 } from '../../../../helpers/layoutFoo';
@@ -28,12 +21,6 @@ import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
 
 import StackHeader from './stackHeader/stackHeader';
 
-import styleHtml from './styleHtml';
-import htmlHtml from './htmlHtml';
-import transHtml from './transHtml';
-import counterHtml from './counterHtml';
-import fooHtml from './fooHtml';
-
 import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {
@@ -42,7 +29,7 @@ import {
 } from '../../../../storage/selectors/routes';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
-import CounterGradient from './counterGradient';
+
 import MarkPointer from './markPointer';
 import CounterActionButtons from './counterActionButtons';
 import CounterMapView from './counterMapView';
@@ -53,8 +40,9 @@ import {
     CounterDataContext,
 } from './nativeCounter/counterContext/counterContext';
 import NativeTopInfo from './nativeTopInfo/nativeTopInfo';
+import ShowMoreModal from '../../world/components/showMoreModal/showMoreModal';
 
-const {width} = Dimensions.get('window');
+const isIOS = Platform.OS === 'ios';
 
 interface Props {
     navigation: any;
@@ -62,7 +50,7 @@ interface Props {
 }
 
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
-    const trans = I18n.t('MainCounter');
+    const trans: any = I18n.t('MainCounter');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
 
@@ -71,7 +59,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const statusBarHeight = useStatusBarHeight();
     const headerHeight = getStackHeaderHeight() - statusBarHeight;
     const marginTopOnIos = Platform.OS === 'ios' ? statusBarHeight : 0;
-    const [onMapLoaded, setOnMapLoaded] = useState(false);
 
     const [myRouteNumber, setMyRouteNumber] = useState(0);
     const [pauseTime, setPauseTime] = useState(0);
@@ -91,12 +78,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         new Animated.Value(headerHeight + getVerticalPx(50)),
     ).current;
 
-    useEffect(() => {
-        if (trackerData) {
-            // setJs(`setValues(${JSON.stringify(trackerData)});true;`);
-        }
-    }, [trackerData]);
-
     // zmiana roweru
     const onChangeBikeHandler = (frameNumber: string) => {
         if (frameNumber === bike?.description.serial_number) {
@@ -108,29 +89,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         }
     };
 
-    // położenie listy rowerów
-    const animateElemsOnMapOff = () => {
-        Animated.timing(bikeSelectorListPositionY, {
-            toValue: headerHeight + getVerticalPx(50),
-            duration: 500,
-            easing: Easing.quad,
-            useNativeDriver: false,
-        }).start();
-    };
-
-    const animateElemsOnMapOn = () => {
-        Animated.timing(bikeSelectorListPositionY, {
-            toValue: headerHeight + getVerticalPx(-70),
-            duration: 500,
-            easing: Easing.quad,
-            useNativeDriver: false,
-        }).start();
-    };
-
-    // inicjalizacja elementów webviwe
-    // const animSvgRef = useRef();
-    // const setJs = (foo: string) => animSvgRef.current.injectJavaScript(foo);
-
     const [pageState, setPageState] = useState('start');
 
     const [leftBtnTile, setLeftBtnTile] = useState('');
@@ -138,22 +96,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [headerTitle, setHeaderTitle] = useState('');
     const [pause, setPause] = useState(true);
 
-    const [mapBtnPos, setMapBtnPos] = useState(0);
-    const [mapBtnPosMemo, setMapBtnPosMemo] = useState(0);
-    const [mapOn, setMapOn] = useState(false);
-
     /* Re-run counter after app restart */
     useEffect(() => {
         if (isTrackerActive) {
             setPageState('record');
-            const startTime = trackerStartTime
-                ? Date.parse(trackerStartTime.toUTCString())
-                : null;
-            // setJs(`start(${startTime});setPauseOff();true;`);
             startTracker(true, route?.params?.mapID);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onMapLoaded]);
+    }, []);
 
     // zmiana stanu strony na lewym przycisku
     const heandleLeftBtnClick = useCallback(() => {
@@ -193,6 +143,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     }, [myRouteNumber, navigation, pageState, pause]);
 
     const navigateToTHPPage = useCallback(() => {
+        console.log('[nawigate]')
         navigation.navigate({
             name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
             params: {
@@ -206,6 +157,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     // zmiana stanu strony na prawym przycisku
     const heandleRightBtnClick = useCallback(async () => {
+        console.log('right buttm', pageState)
         switch (pageState) {
             case 'start':
                 setPageState('record');
@@ -213,7 +165,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 await startTracker(false, route?.params?.mapID);
                 break;
             case 'record':
-                // await startTracker();
                 setPageState('endMessage');
                 // setJs('setPauseOn();true;');
                 break;
@@ -252,6 +203,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const heandleGoBackClick = async () => {
         switch (pageState) {
             case 'start':
+                console.log('[goback]');
                 navigation.goBack();
                 break;
             default:
@@ -270,48 +222,33 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     useEffect(() => {
         switch (pageState) {
             case 'start':
-                {
-                    // pauseTracker();
-                    setLeftBtnTile(trans.btnCancel);
-                    setRightBtnTile(trans.btnStart);
-                    setHeaderTitle(trans.headerStart);
-                    setPause(true);
-                    // animateElemsOnMapOn();
-                }
+                setLeftBtnTile(trans.btnCancel);
+                setRightBtnTile(trans.btnStart);
+                setHeaderTitle(trans.headerStart);
+                setPause(true);
                 break;
             case 'record':
-                {
-                    resumeTracker();
-                    setLeftBtnTile(trans.btnPauza);
-                    setRightBtnTile(trans.btnEnd);
-                    setHeaderTitle(trans.headerRecord);
-                    setPause(false);
-                }
+                resumeTracker();
+                setLeftBtnTile(trans.btnPauza);
+                setRightBtnTile(trans.btnEnd);
+                setHeaderTitle(trans.headerRecord);
+                setPause(false);
                 break;
             case 'pause':
-                {
-                    pauseTracker();
-                    setLeftBtnTile(trans.btnPauzaOff);
-                    setHeaderTitle(trans.headerPause);
-                    setPause(true);
-                }
+                pauseTracker();
+                setLeftBtnTile(trans.btnPauzaOff);
+                setHeaderTitle(trans.headerPause);
+                setPause(true);
                 break;
             case 'cancelText':
-                {
-                    setLeftBtnTile(trans.btnCancel);
-                    setRightBtnTile(trans.btnBreak);
-                    // setJs('showAlert(1, "' + trans.cancelText + '");true;');
-                }
+                setLeftBtnTile(trans.btnCancel);
+                setRightBtnTile(trans.btnBreak);
                 break;
             case 'endMessage':
-                {
-                    pauseTracker();
-                    setLeftBtnTile(trans.btnCancel);
-                    setRightBtnTile(trans.btnEnd);
-                    // setJs('showAlert(2, "' + trans.endText + '");true;');
-                    // setJs('getPauseTime();true;');
-                    setHeaderTitle(trans.headerPause);
-                }
+                pauseTracker();
+                setLeftBtnTile(trans.btnCancel);
+                setRightBtnTile(trans.btnEnd);
+                setHeaderTitle(trans.headerPause);
                 break;
             default: {
                 Alert.alert('', 'błąd przypisania wartości "pageState"', [
@@ -321,123 +258,31 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 ]);
             }
         }
-        // setJs('setMini();true;');
-    }, [pageState]);
+    }, [pageState, trans]);
 
     // funkcje wywoływane przez js z webview
     const heandleOnMessage = e => {
         let val = e.nativeEvent.data.split(';');
 
         switch (val[0]) {
-            case 'map is ready':
-                {
-                    // setJs(
-                    //     `setPositionOnMap({lat: ${
-                    //         location?.lat || '53.009342618210624'
-                    //     }, lng: ${
-                    //         location?.lon || '20.890509251985964'
-                    //     } });true;`,
-                    // );
-                }
-                break;
-            case 'mapBtn':
-                {
-                    let posY = JSON.parse(val[1]);
-                    setMapBtnPosMemo(posY);
-                    setMapBtnPos(posY[0]);
-                }
-                break;
             case 'pause':
-                {
-                    setPauseTime(JSON.parse(val[1]));
-                }
+                setPauseTime(JSON.parse(val[1]));
                 break;
         }
     };
 
-    // funkcje kierowane z RN do js w webview
-    const heandleMapVisibility = () => {
-        if (mapOn) {
-            // setJs('setMaxi();true;');
-            animateElemsOnMapOff();
-            setMapBtnPos(mapBtnPosMemo[0]);
-            setMapOn(false);
-        } else {
-            // setJs('setMini();true;');
-            animateElemsOnMapOn();
-            setMapBtnPos(mapBtnPosMemo[1]);
-            setMapOn(true);
-        }
-    };
-
-    setObjSize(334, 50);
-    let mapBtnSize = 60;
+    // setObjSize(334, 50);
     const styles = StyleSheet.create({
+        stackHeader: {
+            zIndex: 2,
+        },
         innerContainer: {
             flex: 1,
-        },
-        map: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: getHorizontalPx(414),
-            height: getVerticalPx(896) - statusBarHeight,
-        },
-        markWrap: {
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-        },
-        mark: {
-            width: 31,
-            height: 31,
-            left: -15.5,
-            top: -15.5,
-        },
-        fullView: {
-            backgroundColor: 'transparent',
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: '100%',
-            height: '100%',
-        },
-        gradient: {
-            backgroundColor: 'transparent',
-            position: 'absolute',
-            width: width,
-            height: width,
-            top: 0,
-            left: 0,
         },
         bikeList: {
             zIndex: 1,
             marginTop: marginTopOnIos,
             position: 'absolute',
-        },
-        mapBtn: {
-            position: 'absolute',
-            width: mapBtnSize,
-            height: mapBtnSize,
-            left: (getHorizontalPx(414) - mapBtnSize) / 2,
-            top: mapBtnPos - mapBtnSize / 2,
-            // backgroundColor: 'green',
-            // opacity: .3,
-        },
-        bottons: {
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            width: getHorizontalPx(334),
-            left: getHorizontalPx(40),
-            position: 'absolute',
-            bottom: getVerticalPx(65),
-            height: 50,
-        },
-        btn: {
-            width: getWidthPxOf(157),
         },
     });
 
@@ -453,7 +298,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
                 <MarkPointer />
 
-                <NativeTopInfo started={pageState === 'record'} />
+                <NativeTopInfo
+                    started={
+                        pageState === 'record' || pageState === 'cancelText'
+                    }
+                />
 
                 <CounterDataContext.Provider value={trackerData}>
                     <CounterCallbackContext.Provider
@@ -464,38 +313,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         />
                     </CounterCallbackContext.Provider>
                 </CounterDataContext.Provider>
-
-                {/* <View style={styles.fullView} pointerEvents="none">
-                    <WebView
-                        style={styles.fullView}
-                        originWhitelist={['*']}
-                        scalesPageToFit={true}
-                        useWebKit={Platform.OS === 'ios'}
-                        scrollEnabled={false}
-                        showsHorizontalScrollIndicator={false}
-                        showsVerticalScrollIndicator={false}
-                        onLoadEnd={() => setOnMapLoaded(true)}
-                        source={{
-                            html:
-                                '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
-                                styleHtml +
-                                htmlHtml +
-                                transHtml +
-                                counterHtml +
-                                fooHtml +
-                                '</body></html>',
-                            baseUrl:
-                                Platform.OS === 'ios'
-                                    ? ''
-                                    : 'file:///android_asset/',
-                        }}
-                        javaScriptEnabled={true}
-                        ref={animSvgRef}
-                        onMessage={heandleOnMessage}
-                    />
-                </View> */}
-
-                <CounterGradient showGradient={!mapOn} />
 
                 {bikes && (
                     <Animated.View
@@ -514,25 +331,27 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     </Animated.View>
                 )}
 
-                <TouchableWithoutFeedback onPress={heandleMapVisibility}>
-                    <View style={styles.mapBtn} />
-                </TouchableWithoutFeedback>
-
                 <CounterActionButtons
                     leftBtnTitle={leftBtnTile}
                     leftBtnCallback={heandleLeftBtnClick}
                     rightBtnTitle={rightBtnTile}
                     rightBtnCallback={heandleRightBtnClick}
+                    withBackground={
+                        pageState === 'cancelText' || pageState === 'endMessage'
+                    }
+                    message={
+                        pageState === 'cancelText'
+                            ? trans.cancelText
+                            : trans.endText
+                    }
                 />
 
                 <StackHeader
                     onpress={heandleGoBackClick}
                     inner={headerTitle}
-                    whiteArow={!pause && !mapOn}
-                    titleOn={!mapOn}
-                    style={{
-                        zIndex: 2,
-                    }}
+                    whiteArow={!pause}
+                    titleOn={true}
+                    style={styles.stackHeader}
                 />
             </View>
         </>

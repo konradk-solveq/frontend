@@ -5,7 +5,6 @@ interface IProps {
     started?: boolean;
 }
 
-/* TODO: add context for values */
 const NativeTopInfo: React.FC<IProps> = ({started}: IProps) => {
     const topInfo = useRef(new Animated.Value(0)).current;
 

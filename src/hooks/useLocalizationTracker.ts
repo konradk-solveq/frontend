@@ -126,7 +126,7 @@ const useLocalizationTracker = (persist: boolean) => {
         [dispatch, currentRouteId, stopTracker],
     );
 
-    const onPauseTracker = () => {
+    const onPauseTracker = useCallback(() => {
         setIsActive(false);
         pauseTracingLocation();
         setTrackerData(prev => {
@@ -138,12 +138,12 @@ const useLocalizationTracker = (persist: boolean) => {
             }
             return undefined;
         });
-    };
+    }, []);
 
-    const onStartTracker = async () => {
+    const onStartTracker = useCallback(async () => {
         setIsActive(true);
         await resumeTracingLocation();
-    };
+    }, []);
 
     useEffect(() => {
         speed = [];

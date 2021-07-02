@@ -3,11 +3,15 @@ import {StyleSheet, View} from 'react-native';
 import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
 import {BigRedBtn, BigWhiteBtn} from '../../../../sharedComponents/buttons';
 
+import ButtonBackground from './buttonBackground';
+
 interface IProps {
     leftBtnTitle: string;
     leftBtnCallback: () => void;
     rightBtnTitle: string;
     rightBtnCallback: () => void;
+    withBackground?: boolean;
+    message: string;
 }
 
 const CounterActionButtons: React.FC<IProps> = ({
@@ -15,17 +19,28 @@ const CounterActionButtons: React.FC<IProps> = ({
     leftBtnCallback,
     rightBtnTitle,
     rightBtnCallback,
+    withBackground,
+    message,
 }: IProps) => {
     return (
-        <View style={styles.bottons}>
-            <View style={styles.btn}>
-                <BigWhiteBtn title={leftBtnTitle} onpress={leftBtnCallback} />
-            </View>
+        <>
+            <View style={styles.bottons}>
+                <View style={styles.btn}>
+                    <BigWhiteBtn
+                        title={leftBtnTitle}
+                        onpress={leftBtnCallback}
+                    />
+                </View>
 
-            <View style={styles.btn}>
-                <BigRedBtn title={rightBtnTitle} onpress={rightBtnCallback} />
+                <View style={styles.btn}>
+                    <BigRedBtn
+                        title={rightBtnTitle}
+                        onpress={rightBtnCallback}
+                    />
+                </View>
             </View>
-        </View>
+            <ButtonBackground showModal={withBackground} text={message} />
+        </>
     );
 };
 

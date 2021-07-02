@@ -1,30 +1,16 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Dimensions, Animated, Platform} from 'react-native';
-import AnimSvg from '../../../../../helpers/animSvg';
+import {View, Text, Dimensions, Animated} from 'react-native';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {ArrowBtn} from '../../../../../sharedComponents/buttons';
 import DisplayAverageSpeed from './displayAverageSpeed/displayAveragaSpeed';
 import DisplayDistance from './displayDistance/displayDistance';
 import DisplaySpeed from './displaySpeed/displaySpeed';
 import DisplayTimer from './displayTimer/displayTimer';
-import DisplayValue from './displayValue/displayValue';
-
-import Svg, {Path, G} from 'react-native-svg';
 
 const {width, height} = Dimensions.get('window');
 
 import styles from './style';
-
-const backGround = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 332">
-<filter id="filter" x="-1" width="3" y="-1" height="3">
-    <feGaussianBlur stdDeviation="38.75575"/>
-</filter>
-<path
- d="m 0,94.362406 c 0,0 82.50881,21.581224 207,21.581224 124.49119,0 207,-21.581224 207,-21.581224 V 810.06156 H 0 Z"
- filter="url(#filter)" fill="#aaa" />
-<path
- d="m 0,94.362406 c 0,0 82.50881,21.581224 207,21.581224 124.49119,0 207,-21.581224 207,-21.581224 V 810.06156 H 0 Z" fill="#fff"/>
-</svg>`;
+import CurvedShape from './curvedShape/curvedShape';
 
 interface IProps {
     time: Date;
@@ -189,27 +175,8 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
         <>
             <Animated.View
                 style={[styles.container, {height: containerHeight}]}>
-                <View
-                    style={{
-                        width: width,
-                        aspectRatio: 414 / 132,
-                        position: 'absolute',
-                        top: -110,
-                        left: 0,
-                        right: 0,
-                    }}>
-                    <Svg
-                        height="100%"
-                        width="100%"
-                        viewBox={`0 0 ${414} ${132}`}>
-                        <Path
-                            d="m 0,94.362406 c 0,0 82.50881,21.581224 207,21.581224 124.49119,0 207,-21.581224 207,-21.581224 V 180.06156 H 0 Z" // put your path here
-                            fill="white"
-                            stroke="white"
-                        />
-                    </Svg>
-                </View>
-                {/* <AnimSvg style={styles.backGround} source={backGround} /> */}
+                <CurvedShape />
+
                 <Animated.View
                     style={[
                         styles.displayContainer,

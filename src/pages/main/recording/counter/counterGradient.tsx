@@ -3,7 +3,6 @@ import {Dimensions} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {View, Platform} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {WebViewSource} from 'react-native-webview/lib/WebViewTypes';
 
 import gradient from './gradientSvg';
 
