@@ -9,6 +9,8 @@ import DisplaySpeed from './displaySpeed/displaySpeed';
 import DisplayTimer from './displayTimer/displayTimer';
 import DisplayValue from './displayValue/displayValue';
 
+import Svg, {Path, G} from 'react-native-svg';
+
 const {width, height} = Dimensions.get('window');
 
 import styles from './style';
@@ -35,6 +37,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
     const arrowPos = useRef(new Animated.Value(height / 2 - 50)).current;
     const arrowDirection = useRef(new Animated.Value(1)).current;
     const borderWidth = useRef(new Animated.Value(1)).current;
+    const labelOpacity = useRef(new Animated.Value(1)).current;
 
     const displayContainerHeight = useRef(
         new Animated.Value(getVerticalPx(334)),
@@ -56,6 +59,12 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
             useNativeDriver: false,
         }).start();
 
+        Animated.timing(labelOpacity, {
+            toValue: 0,
+            duration: 100,
+            useNativeDriver: false,
+        }).start();
+
         Animated.timing(borderWidth, {
             toValue: 0,
             duration: 300,
@@ -63,7 +72,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
         }).start();
 
         Animated.timing(arrowPos, {
-            toValue: -50,
+            toValue: -55,
             duration: 400,
             useNativeDriver: false,
         }).start();
@@ -78,6 +87,12 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
         Animated.timing(displayContainerHeight, {
             toValue: getVerticalPx(334),
             duration: 300,
+            useNativeDriver: false,
+        }).start();
+
+        Animated.timing(labelOpacity, {
+            toValue: 1,
+            duration: 350,
             useNativeDriver: false,
         }).start();
 
@@ -108,9 +123,34 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
     };
 
     return (
-        <Animated.View style={[styles.container, {height: containerHeight}]}>
-            {/* <AnimSvg style={styles.backGround} source={backGround} /> */}
-            {/* <View
+        <>
+            <Animated.View
+                style={[styles.container, {height: containerHeight}]}>
+                <View
+                    style={{
+                        width: width,
+                        aspectRatio: 414 / 132,
+                        position: 'absolute',
+                        top: -110,
+                        left: 0,
+                        right: 0,
+                    }}>
+                    <Svg
+                        height="100%"
+                        width="100%"
+                        viewBox={`0 0 ${414} ${132}`}
+                        style={{
+                            // backgroundColor: 'blue',
+                        }}>
+                        <Path
+                            d="m 0,94.362406 c 0,0 82.50881,21.581224 207,21.581224 124.49119,0 207,-21.581224 207,-21.581224 V 180.06156 H 0 Z" // put your path here
+                            fill="white"
+                            stroke="white"
+                        />
+                    </Svg>
+                </View>
+                {/* <AnimSvg style={styles.backGround} source={backGround} /> */}
+                {/* <View
                 style={{
                     position: 'absolute',
                     top: 0,
@@ -124,71 +164,102 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                     zIndex: 1,
                 }}
             /> */}
-            <Animated.View
-                style={[
-                    styles.displayContainer,
-                    {height: displayContainerHeight},
-                ]}>
-                <View>
-                    <View style={styles.displayRow}>
-                        <Animated.View
-                            style={[
-                                styles.displayCell,
-                                styles.displayLeftTopCell,
-                                {
-                                    borderRightWidth: borderWidth,
-                                    borderBottomWidth: borderWidth,
-                                },
-                            ]}>
-                            <Text style={styles.displayLabel}>Dystans</Text>
-                            <DisplayDistance />
-                        </Animated.View>
-                        <View
-                            style={[
-                                styles.displayCell,
-                                styles.displayRightCell,
-                            ]}>
-                            <Text style={styles.displayLabel}>Czas</Text>
-                            <DisplayTimer time={time} isRunning={isRunning} />
-                        </View>
-                    </View>
-                    <View style={[styles.displayRow]}>
-                        <View style={styles.displayCell}>
-                            <Text style={styles.displayLabel}>Prędkość</Text>
-                            <DisplaySpeed />
-                        </View>
-                        <Animated.View
-                            style={[
-                                styles.displayCell,
-                                styles.displayRightBottomCell,
-                                {
-                                    borderLeftWidth: borderWidth,
-                                    borderTopWidth: borderWidth,
-                                },
-                            ]}>
-                            <Text
+                <Animated.View
+                    style={[
+                        styles.displayContainer,
+                        {height: displayContainerHeight},
+                    ]}>
+                    <View>
+                        <View style={styles.displayRow}>
+                            <Animated.View
                                 style={[
-                                    styles.displayRightBottomLabel,
-                                    styles.displayLabel,
+                                    styles.displayCell,
+                                    styles.displayLeftTopCell,
+                                    {
+                                        borderRightWidth: borderWidth,
+                                        borderBottomWidth: borderWidth,
+                                    },
                                 ]}>
-                                Średnia prędkość
-                            </Text>
-                            <DisplayAverageSpeed />
-                        </Animated.View>
+                                <Animated.View
+                                    style={[
+                                        styles.displayLabelContainer,
+                                        {opacity: labelOpacity},
+                                    ]}>
+                                    <Text style={styles.displayLabel}>
+                                        Dystans
+                                    </Text>
+                                </Animated.View>
+                                <DisplayDistance />
+                            </Animated.View>
+                            <View
+                                style={[
+                                    styles.displayCell,
+                                    styles.displayRightCell,
+                                ]}>
+                                <Animated.View
+                                    style={[
+                                        styles.displayLabelContainer,
+                                        {opacity: labelOpacity},
+                                    ]}>
+                                    <Text style={styles.displayLabel}>
+                                        Czas
+                                    </Text>
+                                </Animated.View>
+                                <DisplayTimer
+                                    time={time}
+                                    isRunning={isRunning}
+                                />
+                            </View>
+                        </View>
+                        <View style={[styles.displayRow]}>
+                            <View style={styles.displayCell}>
+                                <Animated.View
+                                    style={[
+                                        styles.displayLabelContainer,
+                                        {opacity: labelOpacity},
+                                    ]}>
+                                    <Text style={styles.displayLabel}>
+                                        Prędkość
+                                    </Text>
+                                </Animated.View>
+                                <DisplaySpeed />
+                            </View>
+                            <Animated.View
+                                style={[
+                                    styles.displayCell,
+                                    styles.displayRightBottomCell,
+                                    {
+                                        borderLeftWidth: borderWidth,
+                                        borderTopWidth: borderWidth,
+                                    },
+                                ]}>
+                                <Animated.View
+                                    style={[
+                                        styles.displayLabelContainer,
+                                        styles.displayRightBottomLabel,
+                                        {opacity: labelOpacity},
+                                    ]}>
+                                    <Text style={[styles.displayLabel]}>
+                                        Średnia prędkość
+                                    </Text>
+                                </Animated.View>
+                                <DisplayAverageSpeed />
+                            </Animated.View>
+                        </View>
                     </View>
-                </View>
+                </Animated.View>
+                <Animated.View
+                    style={[
+                        styles.arrowBtnContainer,
+                        {
+                            top: arrowPos,
+                            transform: [{scaleY: arrowDirection}],
+                        },
+                    ]}>
+                    <ArrowBtn onPress={arrowBtnActionHandler} down={down} />
+                </Animated.View>
             </Animated.View>
-            <Animated.View
-                style={[
-                    styles.arrowBtnContainer,
-                    {
-                        top: arrowPos,
-                        transform: [{scaleY: arrowDirection}],
-                    },
-                ]}>
-                <ArrowBtn onPress={arrowBtnActionHandler} down={down} />
-            </Animated.View>
-        </Animated.View>
+        </>
     );
 };
 

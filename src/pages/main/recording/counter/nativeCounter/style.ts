@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
+        // backgroundColor: 'green',
         backgroundColor: '#ffffff',
         justifyContent: 'center',
         alignItems: 'center',
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
         // opacity: 0.5,
     },
     displayContainer: {
-        backgroundColor: 'lightblue',
+        // backgroundColor: 'lightblue',
         height: getVerticalPx(334),
         width: '100%',
         paddingHorizontal: 40,
@@ -48,9 +49,15 @@ const styles = StyleSheet.create({
         borderTopColor: 'rgba(49, 49, 49, 0.1)',
         borderTopWidth: 1,
     },
-    displayLabel: {
+    displayLabelContainer: {
         position: 'absolute',
         top: 21,
+        fontFamily: 'DIN2014Narrow-Light',
+        fontSize: 18,
+        letterSpacing: 0.5,
+        color: '#555555',
+    },
+    displayLabel: {
         fontFamily: 'DIN2014Narrow-Light',
         fontSize: 18,
         letterSpacing: 0.5,
@@ -76,6 +83,14 @@ const styles = StyleSheet.create({
         right: 0,
         zIndex: 15,
     },
+    backGround: {
+        position: 'absolute',
+        height: 20,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+    }
 });
 
 export default styles;
