@@ -52,6 +52,7 @@ import {
     CounterCallbackContext,
     CounterDataContext,
 } from './nativeCounter/counterContext/counterContext';
+import NativeTopInfo from './nativeTopInfo/nativeTopInfo';
 
 const {width} = Dimensions.get('window');
 
@@ -452,6 +453,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
                 <MarkPointer />
 
+                <NativeTopInfo started={pageState === 'record'} />
+
                 <CounterDataContext.Provider value={trackerData}>
                     <CounterCallbackContext.Provider
                         value={() => console.log('[CounterCallbackContext]')}>
@@ -528,7 +531,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     whiteArow={!pause && !mapOn}
                     titleOn={!mapOn}
                     style={{
-                        zIndex: 1,
+                        zIndex: 2,
                     }}
                 />
             </View>

@@ -61,7 +61,9 @@ const ArrowBtn: React.FC<Props> = ({onPress, down, style}: Props) => {
 
     return (
         <View style={[styles.container, style]}>
-            <TouchableWithoutFeedback onPress={onPress}>
+            <TouchableWithoutFeedback
+                onPress={onPress}
+                hitSlop={{top: 20, bottom: 20}}>
                 <View style={styles.button}>
                     <Svg viewBox="0 0 15.4 15.4" style={styles.btnContainer}>
                         <G transform="translate(-107.1 -22)">

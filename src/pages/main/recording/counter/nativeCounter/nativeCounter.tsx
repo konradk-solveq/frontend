@@ -38,13 +38,23 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
     const arrowDirection = useRef(new Animated.Value(1)).current;
     const borderWidth = useRef(new Animated.Value(1)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
+    const displayCellWidth = useRef(new Animated.Value((width - 80) / 2))
+        .current;
+    const displayCellLeftMargin = useRef(new Animated.Value(20)).current;
+    const rowLeftDirection = useRef(new Animated.Value(0)).current;
+    const rowTopDirection = useRef(new Animated.Value(0)).current;
 
     const displayContainerHeight = useRef(
         new Animated.Value(getVerticalPx(334)),
     ).current;
     const [down, setDown] = useState(true);
 
-    console.log('[NativeCounter -- render]');
+    console.log(`[NativeCounter -- render - ${containerHeight?.__getValue()}]`);
+
+    // const redirect = rowDirection.setValue({
+    //     inputRange: [0, 1],
+    //     outputRange: ['column', 'row'],
+    // });
 
     const startAnimation = () => {
         Animated.timing(containerHeight, {
@@ -65,6 +75,30 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
             useNativeDriver: false,
         }).start();
 
+        Animated.timing(displayCellWidth, {
+            toValue: (width - 80) / 4,
+            duration: 300,
+            useNativeDriver: false,
+        }).start();
+
+        Animated.timing(rowLeftDirection, {
+            toValue: (width - 80) / 2,
+            duration: 300,
+            useNativeDriver: false,
+        }).start();
+
+        Animated.timing(rowTopDirection, {
+            toValue: -50,
+            duration: 300,
+            useNativeDriver: false,
+        }).start();
+
+        Animated.timing(displayCellLeftMargin, {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: false,
+        }).start();
+
         Animated.timing(borderWidth, {
             toValue: 0,
             duration: 300,
@@ -76,7 +110,10 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
             duration: 400,
             useNativeDriver: false,
         }).start();
+
+        // setDirection('row');
     };
+
     const stopAnimation = () => {
         Animated.timing(containerHeight, {
             toValue: height,
@@ -96,6 +133,30 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
             useNativeDriver: false,
         }).start();
 
+        Animated.timing(displayCellWidth, {
+            toValue: (width - 80) / 2,
+            duration: 300,
+            useNativeDriver: false,
+        }).start();
+
+        Animated.timing(rowLeftDirection, {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: false,
+        }).start();
+
+        Animated.timing(rowTopDirection, {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: false,
+        }).start();
+
+        Animated.timing(displayCellLeftMargin, {
+            toValue: 20,
+            duration: 300,
+            useNativeDriver: false,
+        }).start();
+
         Animated.timing(borderWidth, {
             toValue: 1,
             duration: 300,
@@ -107,6 +168,8 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
             duration: 400,
             useNativeDriver: false,
         }).start();
+
+        // setDirection('column');
     };
 
     const arrowBtnActionHandler = () => {
@@ -138,10 +201,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                     <Svg
                         height="100%"
                         width="100%"
-                        viewBox={`0 0 ${414} ${132}`}
-                        style={{
-                            // backgroundColor: 'blue',
-                        }}>
+                        viewBox={`0 0 ${414} ${132}`}>
                         <Path
                             d="m 0,94.362406 c 0,0 82.50881,21.581224 207,21.581224 124.49119,0 207,-21.581224 207,-21.581224 V 180.06156 H 0 Z" // put your path here
                             fill="white"
@@ -150,20 +210,6 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                     </Svg>
                 </View>
                 {/* <AnimSvg style={styles.backGround} source={backGround} /> */}
-                {/* <View
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    backgroundColor: 'red',
-                    alignSelf: 'center',
-                    width: 100,
-                    height: 50,
-                    borderBottomRightRadius: 50,
-                    borderBottomLeftRadius: 50,
-                    transform: [{scaleX: 4}],
-                    zIndex: 1,
-                }}
-            /> */}
                 <Animated.View
                     style={[
                         styles.displayContainer,
@@ -178,6 +224,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                     {
                                         borderRightWidth: borderWidth,
                                         borderBottomWidth: borderWidth,
+                                        width: displayCellWidth,
                                     },
                                 ]}>
                                 <Animated.View
@@ -185,16 +232,20 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                         styles.displayLabelContainer,
                                         {opacity: labelOpacity},
                                     ]}>
-                                    <Text style={styles.displayLabel}>
+                                    <Animated.Text style={styles.displayLabel}>
                                         Dystans
-                                    </Text>
+                                    </Animated.Text>
                                 </Animated.View>
-                                <DisplayDistance />
+                                <DisplayDistance fontSize={down ? 57 : 23} />
                             </Animated.View>
-                            <View
+                            <Animated.View
                                 style={[
                                     styles.displayCell,
                                     styles.displayRightCell,
+                                    {
+                                        width: displayCellWidth,
+                                        marginLeft: displayCellLeftMargin,
+                                    },
                                 ]}>
                                 <Animated.View
                                     style={[
@@ -208,11 +259,23 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                 <DisplayTimer
                                     time={time}
                                     isRunning={isRunning}
+                                    fontSize={down ? 57 : 23}
                                 />
-                            </View>
+                            </Animated.View>
                         </View>
-                        <View style={[styles.displayRow]}>
-                            <View style={styles.displayCell}>
+                        <Animated.View
+                            style={[
+                                styles.displayRow,
+                                {
+                                    marginTop: rowTopDirection,
+                                    marginLeft: rowLeftDirection,
+                                },
+                            ]}>
+                            <Animated.View
+                                style={[
+                                    styles.displayCell,
+                                    {width: displayCellWidth},
+                                ]}>
                                 <Animated.View
                                     style={[
                                         styles.displayLabelContainer,
@@ -222,8 +285,8 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                         Prędkość
                                     </Text>
                                 </Animated.View>
-                                <DisplaySpeed />
-                            </View>
+                                <DisplaySpeed fontSize={down ? 57 : 23} />
+                            </Animated.View>
                             <Animated.View
                                 style={[
                                     styles.displayCell,
@@ -231,6 +294,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                     {
                                         borderLeftWidth: borderWidth,
                                         borderTopWidth: borderWidth,
+                                        width: displayCellWidth,
                                     },
                                 ]}>
                                 <Animated.View
@@ -243,9 +307,11 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                         Średnia prędkość
                                     </Text>
                                 </Animated.View>
-                                <DisplayAverageSpeed />
+                                <DisplayAverageSpeed
+                                    fontSize={down ? 57 : 23}
+                                />
                             </Animated.View>
-                        </View>
+                        </Animated.View>
                     </View>
                 </Animated.View>
                 <Animated.View

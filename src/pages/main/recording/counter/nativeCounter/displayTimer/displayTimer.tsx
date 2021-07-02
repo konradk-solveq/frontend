@@ -1,15 +1,22 @@
 import React, {useEffect, useState} from 'react';
+import {TextStyle} from 'react-native';
 
 import {convertToCounterFormat} from '../../../../../../utils/dateTime';
-
 import DisplayValue from '../displayValue/displayValue';
 
 interface IProps {
     time: Date;
     isRunning: boolean;
+    style?: TextStyle;
+    fontSize?: number;
 }
 
-const DisplayTimer: React.FC<IProps> = ({time, isRunning}: IProps) => {
+const DisplayTimer: React.FC<IProps> = ({
+    time,
+    isRunning,
+    style,
+    fontSize,
+}: IProps) => {
     const [currentTime, setCurrentTime] = useState(0);
 
     useEffect(() => {
@@ -36,6 +43,8 @@ const DisplayTimer: React.FC<IProps> = ({time, isRunning}: IProps) => {
             }
             suffix={`:${convertToCounterFormat(currentTime).dzSeconds}`}
             noSpace
+            style={style}
+            fontSize={fontSize}
         />
     );
 };
