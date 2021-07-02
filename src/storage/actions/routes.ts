@@ -212,7 +212,13 @@ export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
 
         /* If fail add to queue. Resolve in different action. */
         dispatch(setRouteToSynch(currentRoute.id));
-        dispatch(setRoutesData({id: currentRoute.id, route: currentRouteData}));
+        dispatch(
+            setRoutesData({
+                id: currentRoute.id,
+                route: currentRouteData,
+                remoteRouteId: currentRoute?.remoteRouteId,
+            }),
+        );
         dispatch(clearAverageSpeed());
 
         dispatch(setError(I18n.t('dataAction.dataSyncError'), 500));
@@ -347,7 +353,7 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
             const remoteId =
                 routeToSync.id === currentRoute.id
                     ? currentRoute?.remoteRouteId
-                    : undefined;
+                    : routeToSync?.remoteRouteId;
 
             const response = await syncRouteData(routeToSync.route, remoteId);
 
