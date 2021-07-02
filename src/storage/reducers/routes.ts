@@ -16,6 +16,7 @@ export interface CurrentRouteI {
 export interface RoutesI {
     id: string;
     route: LocationDataI[];
+    remoteRouteId?: string;
 }
 
 export interface RoutesState {
