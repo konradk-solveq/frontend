@@ -42,7 +42,7 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
             disabled={props.disabled}
             onPress={props.onpress}>
             <Text style={[styles.text, props.textStyle]}>
-                {props.neutralCase ? props.title : props.title.toUpperCase()}
+                {props.neutralCase ? props.title : props.title?.toUpperCase()}
             </Text>
         </TouchableOpacity>
     );
