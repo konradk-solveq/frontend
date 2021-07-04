@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {StyleSheet, Platform, Dimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
 import {Coords} from 'react-native-background-geolocation-android';
@@ -83,7 +83,7 @@ const CounterMapView: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [trackerData]);
 
-    useEffect(() => {
+    const setMapCamera = useCallback(() => {
         if (mapRef.current && trackerData) {
             const pos = {
                 latitude: trackerData.coords.lat,
@@ -98,6 +98,10 @@ const CounterMapView: React.FC<IProps> = ({
             );
         }
     }, [trackerData, compassHeading]);
+
+    useEffect(() => {
+        setMapCamera();
+    }, [setMapCamera]);
 
     useEffect(() => {
         const degree_update_rate = 3;
@@ -136,6 +140,7 @@ const CounterMapView: React.FC<IProps> = ({
                         rotateEnabled={false}
                         scrollEnabled={false}
                         zoomEnabled={false}
+                        zoomTapEnabled={false}
                         {...(!isIOS && {
                             initialCamera: cameraInitObj,
                         })}
@@ -158,6 +163,7 @@ const CounterMapView: React.FC<IProps> = ({
                                     lineCap={'round'}
                                     lineJoin={'round'}
                                     strokeWidth={8}
+                                    tappable={false}
                                     key={'route_' + i}
                                 />
                             );
@@ -169,6 +175,7 @@ const CounterMapView: React.FC<IProps> = ({
                                 strokeColors={['#3583e4']}
                                 lineCap={'round'}
                                 lineJoin={'round'}
+                                tappable={false}
                                 strokeWidth={8}
                             />
                         )}

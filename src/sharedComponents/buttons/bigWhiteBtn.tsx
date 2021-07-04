@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler'
 
 import {getHorizontalPx} from '../../helpers/layoutFoo';
 
