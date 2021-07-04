@@ -1,16 +1,19 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Dimensions, Animated} from 'react-native';
+import {View, Text, Dimensions, Animated, Platform} from 'react-native';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {ArrowBtn} from '../../../../../sharedComponents/buttons';
 import DisplayAverageSpeed from './displayAverageSpeed/displayAveragaSpeed';
 import DisplayDistance from './displayDistance/displayDistance';
 import DisplaySpeed from './displaySpeed/displaySpeed';
 import DisplayTimer from './displayTimer/displayTimer';
-
-const {width, height} = Dimensions.get('window');
+import CurvedShape from './curvedShape/curvedShape';
 
 import styles from './style';
-import CurvedShape from './curvedShape/curvedShape';
+
+const isIOS = Platform.OS === 'ios';
+const {width, height} = Dimensions.get('window');
+const arrowPositionTop = height / 2 - getVerticalPx(isIOS ? 55 : 50);
+const arrowPositionBottom = getVerticalPx(isIOS ? -60 : -55);
 
 interface IProps {
     time: Date;
@@ -20,7 +23,7 @@ interface IProps {
 /* TODO: add context for values */
 const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
     const containerHeight = useRef(new Animated.Value(height)).current;
-    const arrowPos = useRef(new Animated.Value(height / 2 - 50)).current;
+    const arrowPos = useRef(new Animated.Value(arrowPositionTop)).current;
     const arrowDirection = useRef(new Animated.Value(1)).current;
     const borderWidth = useRef(new Animated.Value(1)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
@@ -92,7 +95,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
         }).start();
 
         Animated.timing(arrowPos, {
-            toValue: -55,
+            toValue: arrowPositionBottom,
             duration: 400,
             useNativeDriver: false,
         }).start();
@@ -150,7 +153,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
         }).start();
 
         Animated.timing(arrowPos, {
-            toValue: height / 2 - 50,
+            toValue: arrowPositionTop,
             duration: 400,
             useNativeDriver: false,
         }).start();

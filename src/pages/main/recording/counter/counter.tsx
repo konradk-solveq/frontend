@@ -58,7 +58,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
     const statusBarHeight = useStatusBarHeight();
     const headerHeight = getStackHeaderHeight() - statusBarHeight;
-    const marginTopOnIos = Platform.OS === 'ios' ? statusBarHeight : 0;
+    const marginTopOnIos = isIOS ? -statusBarHeight : 0;
 
     const [myRouteNumber, setMyRouteNumber] = useState(0);
     const [pauseTime, setPauseTime] = useState(0);

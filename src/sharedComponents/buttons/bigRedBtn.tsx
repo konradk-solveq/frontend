@@ -6,7 +6,7 @@ import {
     TextStyle,
     ViewStyle,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler'
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 interface Props {
     title: string;
