@@ -8,8 +8,6 @@ interface IProps {
 const NativeTopInfo: React.FC<IProps> = ({started}: IProps) => {
     const topInfo = useRef(new Animated.Value(0)).current;
 
-    console.log('[NativeTopInfo -- render]');
-
     useEffect(() => {
         if (started) {
             Animated.timing(topInfo, {
@@ -67,4 +65,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NativeTopInfo;
+export default React.memo(NativeTopInfo);
