@@ -61,7 +61,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const marginTopOnIos = isIOS ? -statusBarHeight : 0;
 
     const [myRouteNumber, setMyRouteNumber] = useState(0);
-    const [pauseTime, setPauseTime] = useState(0);
+    const [pauseTime, setPauseTime] = useState({
+        start: 0,
+        total: 0,
+    });
 
     // trakowanie
     const {
@@ -113,22 +116,17 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 break;
             case 'record':
                 setPageState('pause');
-                // setJs('setPauseOn();true;');
                 break;
             case 'pause':
                 setPageState('record');
-                // setJs('hideAlert();setPauseOff();true;');
                 setMyRouteNumber(myRouteNumber + 1);
                 break;
             case 'cancelText':
                 setPageState('record');
-                // setJs('hideAlert();true;');
                 break;
             case 'endMessage':
                 setPageState(pause ? 'pause' : 'record');
-                // setJs('hideAlert();true;');
                 if (!pause) {
-                    // setJs('start();setPauseOff();true;');
                     setMyRouteNumber(myRouteNumber + 1);
                 }
                 break;
@@ -148,27 +146,23 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             params: {
                 distance: trackerData?.distance,
                 time: Date.now() - Date.parse(trackerStartTime.toUTCString()),
-                pause: pauseTime,
+                pause: pauseTime.total,
             },
         });
     }, [navigation, pauseTime, trackerStartTime, trackerData?.distance]);
 
     // zmiana stanu strony na prawym przycisku
     const heandleRightBtnClick = useCallback(async () => {
-        console.log('right buttm', pageState)
         switch (pageState) {
             case 'start':
                 setPageState('record');
-                // setJs('start();setPauseOff();true;');
                 await startTracker(false, route?.params?.mapID);
                 break;
             case 'record':
                 setPageState('endMessage');
-                // setJs('setPauseOn();true;');
                 break;
             case 'pause':
                 setPageState('endMessage');
-                // setJs('setPauseOn();true;');
                 break;
             case 'cancelText':
                 await stopTracker(true);
@@ -201,7 +195,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const heandleGoBackClick = async () => {
         switch (pageState) {
             case 'start':
-                console.log('[goback]');
                 navigation.goBack();
                 break;
             default:
@@ -231,12 +224,22 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 setRightBtnTile(trans.btnEnd);
                 setHeaderTitle(trans.headerRecord);
                 setPause(false);
+                setPauseTime(prevPT => ({
+                    ...prevPT,
+                    total: prevPT.start
+                        ? prevPT.total + (Date.now() - prevPT.start)
+                        : 0,
+                }));
                 break;
             case 'pause':
                 pauseTracker();
                 setLeftBtnTile(trans.btnPauzaOff);
                 setHeaderTitle(trans.headerPause);
                 setPause(true);
+                setPauseTime(prevPT => ({
+                    ...prevPT,
+                    start: Date.now(),
+                }));
                 break;
             case 'cancelText':
                 setLeftBtnTile(trans.btnCancel);
@@ -257,17 +260,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             }
         }
     }, [pageState, trans]);
-
-    // funkcje wywoływane przez js z webview
-    const heandleOnMessage = e => {
-        let val = e.nativeEvent.data.split(';');
-
-        switch (val[0]) {
-            case 'pause':
-                setPauseTime(JSON.parse(val[1]));
-                break;
-        }
-    };
 
     // setObjSize(334, 50);
     const styles = StyleSheet.create({

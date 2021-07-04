@@ -172,10 +172,12 @@ export const requestGeolocationPermission = async () => {
     return status;
 };
 
+/* Set plugin to stationary state - doesnt disable tracking permamently */
 export const pauseTracingLocation = async () => {
     await BackgroundGeolocation.changePace(false);
 };
 
+/* Set plugin to moving state */
 export const resumeTracingLocation = async () => {
     await BackgroundGeolocation.changePace(true);
 };
