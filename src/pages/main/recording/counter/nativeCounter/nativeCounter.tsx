@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {View, Text, Dimensions, Animated, Platform} from 'react-native';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {ArrowBtn} from '../../../../../sharedComponents/buttons';
@@ -23,143 +23,68 @@ interface IProps {
 /* TODO: add context for values */
 const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
     const containerHeight = useRef(new Animated.Value(height)).current;
+    const displayContainer = useRef(new Animated.Value(0)).current;
     const arrowPos = useRef(new Animated.Value(arrowPositionTop)).current;
     const arrowDirection = useRef(new Animated.Value(1)).current;
-    const borderWidth = useRef(new Animated.Value(1)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
-    const displayCellWidth = useRef(new Animated.Value((width - 80) / 2))
-        .current;
-    const displayCellLeftMargin = useRef(new Animated.Value(20)).current;
-    const rowLeftDirection = useRef(new Animated.Value(0)).current;
-    const rowTopDirection = useRef(new Animated.Value(0)).current;
 
-    const displayContainerHeight = useRef(
-        new Animated.Value(getVerticalPx(334)),
-    ).current;
     const [down, setDown] = useState(true);
 
-    console.log(`[NativeCounter -- render - ${containerHeight?.__getValue()}]`);
-
-    // const redirect = rowDirection.setValue({
-    //     inputRange: [0, 1],
-    //     outputRange: ['column', 'row'],
-    // });
-
-    const startAnimation = () => {
+    const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
-            toValue: 200,
+            toValue: !revert ? 200 : height,
             duration: 400,
             useNativeDriver: false,
         }).start();
 
-        Animated.timing(displayContainerHeight, {
-            toValue: 150,
+        Animated.timing(displayContainer, {
+            toValue: !revert ? 1 : 0,
             duration: 300,
             useNativeDriver: false,
         }).start();
 
         Animated.timing(labelOpacity, {
-            toValue: 0,
-            duration: 100,
-            useNativeDriver: false,
-        }).start();
-
-        Animated.timing(displayCellWidth, {
-            toValue: (width - 80) / 4,
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
-
-        Animated.timing(rowLeftDirection, {
-            toValue: (width - 80) / 2,
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
-
-        Animated.timing(rowTopDirection, {
-            toValue: -50,
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
-
-        Animated.timing(displayCellLeftMargin, {
-            toValue: 0,
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
-
-        Animated.timing(borderWidth, {
-            toValue: 0,
-            duration: 300,
+            toValue: !revert ? 0 : 1,
+            duration: !revert ? 100 : 350,
             useNativeDriver: false,
         }).start();
 
         Animated.timing(arrowPos, {
-            toValue: arrowPositionBottom,
+            toValue: !revert ? arrowPositionBottom : arrowPositionTop,
             duration: 400,
             useNativeDriver: false,
         }).start();
-
-        // setDirection('row');
     };
 
-    const stopAnimation = () => {
-        Animated.timing(containerHeight, {
-            toValue: height,
-            duration: 400,
-            useNativeDriver: false,
-        }).start();
+    const displayContainerInterpolation = displayContainer.interpolate({
+        inputRange: [0, 1],
+        outputRange: [getVerticalPx(334), 150],
+    });
 
-        Animated.timing(displayContainerHeight, {
-            toValue: getVerticalPx(334),
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
+    const displayCellWidthInterpolation = displayContainer.interpolate({
+        inputRange: [0, 1],
+        outputRange: [(width - 80) / 2, (width - 80) / 4],
+    });
 
-        Animated.timing(labelOpacity, {
-            toValue: 1,
-            duration: 350,
-            useNativeDriver: false,
-        }).start();
+    const displayRowLeftDirectionInterpolation = displayContainer.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, (width - 80) / 2],
+    });
 
-        Animated.timing(displayCellWidth, {
-            toValue: (width - 80) / 2,
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
+    const displayRowTopDirectionInterpolation = displayContainer.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, -50],
+    });
 
-        Animated.timing(rowLeftDirection, {
-            toValue: 0,
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
+    const displayCellLeftMarginInterpolation = displayContainer.interpolate({
+        inputRange: [0, 1],
+        outputRange: [20, 0],
+    });
 
-        Animated.timing(rowTopDirection, {
-            toValue: 0,
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
-
-        Animated.timing(displayCellLeftMargin, {
-            toValue: 20,
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
-
-        Animated.timing(borderWidth, {
-            toValue: 1,
-            duration: 300,
-            useNativeDriver: false,
-        }).start();
-
-        Animated.timing(arrowPos, {
-            toValue: arrowPositionTop,
-            duration: 400,
-            useNativeDriver: false,
-        }).start();
-
-        // setDirection('column');
-    };
+    const displayBorderWidthInterpolation = displayContainer.interpolate({
+        inputRange: [0, 1],
+        outputRange: [1, 0],
+    });
 
     const arrowBtnActionHandler = () => {
         console.log('[onPress -- ArrowBtn]');
@@ -169,7 +94,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
             startAnimation();
             setDown(false);
         } else {
-            stopAnimation();
+            startAnimation(true);
             setDown(true);
         }
     };
@@ -183,7 +108,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                 <Animated.View
                     style={[
                         styles.displayContainer,
-                        {height: displayContainerHeight},
+                        {height: displayContainerInterpolation},
                     ]}>
                     <View>
                         <View style={styles.displayRow}>
@@ -192,9 +117,9 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                     styles.displayCell,
                                     styles.displayLeftTopCell,
                                     {
-                                        borderRightWidth: borderWidth,
-                                        borderBottomWidth: borderWidth,
-                                        width: displayCellWidth,
+                                        borderRightWidth: displayBorderWidthInterpolation,
+                                        borderBottomWidth: displayBorderWidthInterpolation,
+                                        width: displayCellWidthInterpolation,
                                     },
                                 ]}>
                                 <Animated.View
@@ -213,8 +138,8 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                     styles.displayCell,
                                     styles.displayRightCell,
                                     {
-                                        width: displayCellWidth,
-                                        marginLeft: displayCellLeftMargin,
+                                        width: displayCellWidthInterpolation,
+                                        marginLeft: displayCellLeftMarginInterpolation,
                                     },
                                 ]}>
                                 <Animated.View
@@ -237,14 +162,14 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                             style={[
                                 styles.displayRow,
                                 {
-                                    marginTop: rowTopDirection,
-                                    marginLeft: rowLeftDirection,
+                                    marginTop: displayRowTopDirectionInterpolation,
+                                    marginLeft: displayRowLeftDirectionInterpolation,
                                 },
                             ]}>
                             <Animated.View
                                 style={[
                                     styles.displayCell,
-                                    {width: displayCellWidth},
+                                    {width: displayCellWidthInterpolation},
                                 ]}>
                                 <Animated.View
                                     style={[
@@ -262,9 +187,9 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                     styles.displayCell,
                                     styles.displayRightBottomCell,
                                     {
-                                        borderLeftWidth: borderWidth,
-                                        borderTopWidth: borderWidth,
-                                        width: displayCellWidth,
+                                        borderLeftWidth: displayBorderWidthInterpolation,
+                                        borderTopWidth: displayBorderWidthInterpolation,
+                                        width: displayCellWidthInterpolation,
                                     },
                                 ]}>
                                 <Animated.View
