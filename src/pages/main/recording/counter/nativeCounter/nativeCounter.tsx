@@ -278,6 +278,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                     </Text>
                                 </Animated.View>
                                 <DisplayAverageSpeed
+                                    time={time}
                                     fontSize={down ? 57 : 23}
                                 />
                             </Animated.View>
