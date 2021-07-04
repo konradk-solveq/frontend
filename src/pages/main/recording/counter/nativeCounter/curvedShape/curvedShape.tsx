@@ -11,7 +11,7 @@ const {width} = Dimensions.get('window');
 
 const isIOS = Platform.OS === 'ios';
 const shapeWidth = getHorizontalPx(414);
-const shapeHeight = getVerticalPx(132);
+const shapeHeight = getVerticalPx(142);
 
 const CurvedShape: React.FC = () => {
     return (
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         width: width,
         aspectRatio: shapeWidth / shapeHeight,
         position: 'absolute',
-        top: getVerticalPx(isIOS ? -120 : -110),
+        top: getVerticalPx(isIOS ? -120 : -140),
         left: 0,
         right: 0,
     },

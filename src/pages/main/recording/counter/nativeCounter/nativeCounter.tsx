@@ -12,8 +12,8 @@ import styles from './style';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
-const arrowPositionTop = height / 2 - getVerticalPx(isIOS ? 55 : 50);
-const arrowPositionBottom = getVerticalPx(isIOS ? -60 : -55);
+const arrowPositionTop = height / 2 - getVerticalPx(isIOS ? 55 : 60);
+const arrowPositionBottom = getVerticalPx(isIOS ? -60 : -65);
 
 interface IProps {
     time: Date;
