@@ -140,17 +140,22 @@ const CounterMapView: React.FC<IProps> = ({
                             }
                         },
                     })}>
-                    {myRoute.map((e, i) => (
-                        <Polyline
-                            coordinates={e}
-                            strokeColor="#d8232a"
-                            strokeColors={['#d8232a']}
-                            lineCap={'round'}
-                            lineJoin={'round'}
-                            strokeWidth={8}
-                            key={'route_' + i}
-                        />
-                    ))}
+                    {myRoute?.map((e, i) => {
+                        if (!e) {
+                            return null;
+                        }
+                        return (
+                            <Polyline
+                                coordinates={e}
+                                strokeColor="#d8232a"
+                                strokeColors={['#d8232a']}
+                                lineCap={'round'}
+                                lineJoin={'round'}
+                                strokeWidth={8}
+                                key={'route_' + i}
+                            />
+                        );
+                    })}
                     {foreignRoute && (
                         <Polyline
                             coordinates={foreignRoute}
