@@ -357,7 +357,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 <StackHeader
                     onpress={heandleGoBackClick}
                     inner={headerTitle}
-                    whiteArow={!pause}
+                    whiteArow={!pause && pageState !== 'endMessage'}
                     titleOn={true}
                     style={styles.stackHeader}
                 />
