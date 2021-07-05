@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     image: {
-        backgroundColor: 'red',
+        backgroundColor: '#ededed',
         width: 125,
         height: 125,
         marginRight: 15,
