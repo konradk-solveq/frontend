@@ -5,20 +5,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         position: 'absolute',
-        // top: 0,
         bottom: 0,
         left: 0,
         right: 0,
-        // backgroundColor: 'green',
         backgroundColor: '#ffffff',
         justifyContent: 'center',
         alignItems: 'center',
         zIndex: 1,
-        // height: '100%',
-        // opacity: 0.5,
     },
     displayContainer: {
-        // backgroundColor: 'lightblue',
         height: getVerticalPx(334),
         width: '100%',
         paddingHorizontal: 40,
@@ -26,7 +21,6 @@ const styles = StyleSheet.create({
     displayRow: {
         flexDirection: 'row',
         height: '50%',
-        // backgroundColor: 'red',
         alignItems: 'center',
     },
     displayCell: {
@@ -90,7 +84,7 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         zIndex: 1,
-    }
+    },
 });
 
 export default styles;

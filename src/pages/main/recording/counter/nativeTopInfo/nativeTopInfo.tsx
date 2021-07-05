@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import {Animated, StyleSheet} from 'react-native';
+import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
 
 interface IProps {
     started?: boolean;
@@ -33,20 +34,20 @@ const NativeTopInfo: React.FC<IProps> = ({started}: IProps) => {
         outputRange: ['#F3A805', '#d8232a'],
     });
 
-    const boxBorderInterpolation = topInfo.interpolate({
+    const boxBorderWidthInterpolation = topInfo.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, 50],
+        outputRange: [0, getHorizontalPx(50)],
     });
 
     const boxHeightInterpolation = topInfo.interpolate({
         inputRange: [0, 1],
-        outputRange: [50, 100],
+        outputRange: [getVerticalPx(50), getVerticalPx(100)],
     });
 
     const animatedStyle = {
         backgroundColor: boxInterpolation,
-        borderBottomRightRadius: boxBorderInterpolation,
-        borderBottomLeftRadius: boxBorderInterpolation,
+        borderBottomRightRadius: boxBorderWidthInterpolation,
+        borderBottomLeftRadius: boxBorderWidthInterpolation,
         height: boxHeightInterpolation,
     };
 
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
         top: 0,
         alignSelf: 'center',
         backgroundColor: '#F3A805',
-        width: 100,
+        width: getHorizontalPx(100),
         transform: [{scaleX: 5}],
         zIndex: 2,
     },
