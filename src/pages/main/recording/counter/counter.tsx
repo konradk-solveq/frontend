@@ -37,12 +37,8 @@ import CounterActionButtons from './counterActionButtons';
 import CounterMapView from './counterMapView';
 import {RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
-import {
-    CounterCallbackContext,
-    CounterDataContext,
-} from './nativeCounter/counterContext/counterContext';
+import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import NativeTopInfo from './nativeTopInfo/nativeTopInfo';
-import ShowMoreModal from '../../world/components/showMoreModal/showMoreModal';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -313,13 +309,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 />
 
                 <CounterDataContext.Provider value={trackerData}>
-                    <CounterCallbackContext.Provider
-                        value={() => console.log('[CounterCallbackContext]')}>
-                        <NativeCounter
-                            time={trackerStartTime}
-                            isRunning={isActive}
-                        />
-                    </CounterCallbackContext.Provider>
+                    <NativeCounter
+                        time={trackerStartTime}
+                        isRunning={isActive}
+                    />
                 </CounterDataContext.Provider>
 
                 {bikes && (
