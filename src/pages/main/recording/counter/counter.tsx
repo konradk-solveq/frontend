@@ -14,10 +14,11 @@ import {
     getVerticalPx,
     getStackHeaderHeight,
 } from '../../../../helpers/layoutFoo';
-import {useAppSelector} from '../../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
+import {setCurrentRoutePauseTime} from '../../../../storage/actions/routes';
 
 import StackHeader from './stackHeader/stackHeader';
 
@@ -25,6 +26,7 @@ import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {
     trackerActiveSelector,
+    trackerPauseTimeSelector,
     trackerStartTimeSelector,
 } from '../../../../storage/selectors/routes';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
@@ -51,8 +53,11 @@ interface Props {
 
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainCounter');
+    const dispatch = useAppDispatch();
+
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
+    const trackerPauseTime = useAppSelector(trackerPauseTimeSelector);
 
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
@@ -103,10 +108,17 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     useEffect(() => {
         if (isTrackerActive) {
             setPageState('record');
+            setPauseTime({start: 0, total: trackerPauseTime});
             startTracker(true, route?.params?.mapID);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        if (pauseTime.total > 0) {
+            dispatch(setCurrentRoutePauseTime(pauseTime.total));
+        }
+    }, [dispatch, pauseTime.total]);
 
     // zmiana stanu strony na lewym przycisku
     const heandleLeftBtnClick = useCallback(() => {
@@ -224,12 +236,16 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 setRightBtnTile(trans.btnEnd);
                 setHeaderTitle(trans.headerRecord);
                 setPause(false);
-                setPauseTime(prevPT => ({
-                    ...prevPT,
-                    total: prevPT.start
+                setPauseTime(prevPT => {
+                    const newTotalTime = prevPT.start
                         ? prevPT.total + (Date.now() - prevPT.start)
-                        : 0,
-                }));
+                        : 0;
+
+                    return {
+                        ...prevPT,
+                        total: newTotalTime,
+                    };
+                });
                 break;
             case 'pause':
                 pauseTracker();
@@ -246,6 +262,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 setRightBtnTile(trans.btnBreak);
                 break;
             case 'endMessage':
+                dispatch(setCurrentRoutePauseTime(pauseTime.total));
                 pauseTracker();
                 setLeftBtnTile(trans.btnCancel);
                 setRightBtnTile(trans.btnEnd);
@@ -259,6 +276,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 ]);
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageState, trans]);
 
     // setObjSize(334, 50);

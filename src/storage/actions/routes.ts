@@ -45,6 +45,11 @@ export const setCurrentRouteData = (currentRouteData: LocationDataI[]) => ({
     currentRouteData: currentRouteData,
 });
 
+export const setCurrentRoutePauseTime = (pauseTime: number) => ({
+    type: actionTypes.SET_CURRENT_ROUTE_PAUSE_TIME,
+    pauseTime: pauseTime,
+});
+
 export const setAverageSpeed = (averageSpeed: number) => ({
     type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
     averageSpeed: averageSpeed,

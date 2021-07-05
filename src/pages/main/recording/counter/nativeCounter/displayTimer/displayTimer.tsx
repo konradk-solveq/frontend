@@ -49,4 +49,4 @@ const DisplayTimer: React.FC<IProps> = ({
     );
 };
 
-export default DisplayTimer;
+export default React.memo(DisplayTimer);
