@@ -1,6 +1,11 @@
 import React from 'react';
-import {StyleSheet, Dimensions, View, Platform} from 'react-native';
-import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
+import {
+    StyleSheet,
+    Dimensions,
+    View,
+    TouchableWithoutFeedback,
+    Platform,
+} from 'react-native';
 import Svg, {G, Path} from 'react-native-svg';
 
 import {
@@ -55,8 +60,8 @@ const ArrowBtn: React.FC<Props> = ({onPress, style}: Props) => {
 
     return (
         <View style={[styles.container, style]}>
-            <View style={styles.button}>
-                <TouchableWithoutFeedback onPress={onPress}>
+            <TouchableWithoutFeedback onPress={onPress}>
+                <View style={styles.button}>
                     <Svg viewBox="0 0 15.4 15.4" style={styles.btnContainer}>
                         <G transform="translate(-107.1 -22)">
                             <Path
@@ -68,8 +73,8 @@ const ArrowBtn: React.FC<Props> = ({onPress, style}: Props) => {
                             />
                         </G>
                     </Svg>
-                </TouchableWithoutFeedback>
-            </View>
+                </View>
+            </TouchableWithoutFeedback>
         </View>
     );
 };
