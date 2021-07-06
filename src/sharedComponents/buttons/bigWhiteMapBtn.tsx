@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {getHorizontalPx} from '../../helpers/layoutFoo';
 
@@ -10,7 +11,7 @@ interface Props {
     neutralCase?: boolean;
 }
 
-const BigWhiteBtn: React.FC<Props> = (props: Props) => {
+const BigWhiteMapBtn: React.FC<Props> = (props: Props) => {
     let styles = StyleSheet.create({
         btn: {
             display: 'flex',
@@ -43,4 +44,4 @@ const BigWhiteBtn: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default BigWhiteBtn;
+export default BigWhiteMapBtn;

@@ -1,46 +1,51 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-
-import {getHorizontalPx} from '../../helpers/layoutFoo';
+import {
+    StyleSheet,
+    Text,
+    GestureResponderEvent,
+    TextStyle,
+    ViewStyle,
+} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 interface Props {
-    style?: any;
     title: string;
-    onpress: Function;
+    onpress: (event: GestureResponderEvent) => void;
+    style?: ViewStyle;
+    textStyle?: TextStyle;
+    disabled?: boolean;
     neutralCase?: boolean;
 }
 
-const BigWhiteBtn: React.FC<Props> = (props: Props) => {
+const BigRedMapBtn: React.FC<Props> = (props: Props) => {
     let styles = StyleSheet.create({
         btn: {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            backgroundColor: '#d8232a',
             width: '100%',
             height: '100%',
-            borderRadius: getHorizontalPx(50),
-            textAlign: 'center',
-            color: 'black',
-            borderWidth: 1,
-            borderColor: '#33555555',
+            borderRadius: 50,
         },
         text: {
             fontFamily: 'DIN2014Narrow-Bold',
-            fontSize: getHorizontalPx(20),
+            fontSize: 20,
             textAlign: 'center',
-            color: '#313131',
+            color: 'white',
         },
     });
 
     return (
         <TouchableOpacity
             style={[styles.btn, props.style]}
+            disabled={props.disabled}
             onPress={props.onpress}>
-            <Text style={styles.text}>
+            <Text style={[styles.text, props.textStyle]}>
                 {props.neutralCase ? props.title : props.title.toUpperCase()}
             </Text>
         </TouchableOpacity>
     );
 };
 
-export default BigWhiteBtn;
+export default BigRedMapBtn;
