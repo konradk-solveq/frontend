@@ -12,7 +12,6 @@ import I18n from 'react-native-i18n';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {fetchPlacesData} from '../../../../storage/actions';
-import useGetLocation from '../../../../hooks/useGetLocation';
 
 import {
     markerTypes,
@@ -35,6 +34,16 @@ import {
 
 import mapSource from './servicesMapHtml';
 import {useRoute} from '@react-navigation/core';
+import {
+    onLocationChange,
+    cleanUp,
+    transformGeoloCationData,
+} from '../../../../utils/geolocation';
+import BackgroundGeolocation, {
+    Location,
+    LocationError,
+} from 'react-native-background-geolocation-android';
+import {Region} from 'react-native-maps';
 
 interface Props {
     navigation: any;
@@ -58,6 +67,29 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
     ]);
     const [adress, setAdress] = useState<PointDetails | null>(null);
     const [regionData, setRegionData] = useState<Region>(param.region);
+    const [mapLoaded, setMapLoaded] = useState<boolean>(false);
+
+    useEffect(() => {
+        const onLocationHandler = (data: Location) => {
+            if (data && data?.coords) {
+                const pos = {
+                    latitude: data.coords.latitude,
+                    longitude: data.coords.longitude,
+                };
+
+                setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
+            }
+        };
+
+        BackgroundGeolocation.start();
+
+        onLocationChange(onLocationHandler, () => {});
+
+        return () => {
+            BackgroundGeolocation.stop();
+            cleanUp();
+        };
+    }, []);
 
     const heandleShowAdress = (adressDetails: PointDetails | null) => {
         if (adressDetails && Platform.OS === 'android') {
@@ -195,15 +227,14 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
         };
 
         setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+        setMapLoaded(true);
     };
 
     useEffect(() => {
-        let p = JSON.stringify(places);
-        if (places.length == 0) {
-            return;
+        if (mapLoaded && places.length > 0) {
+            let p = JSON.stringify(places);
+            setJs(`setMarks(${p});`);
         }
-
-        setJs(`setMarks(${p});true;`);
     }, [places]);
 
     setObjSize(350, 23);
@@ -213,7 +244,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
             justifyContent: 'center',
             alignItems: 'center',
             width: '100%',
-            height: '100%',
+            height: getVerticalPx(896 * 1.1),
             backgroundColor: '#fff',
             flex: 1,
         },
@@ -224,17 +255,15 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
             ...StyleSheet.absoluteFillObject,
             width: width,
             height: height,
-            // backgroundColor: 'khaki',
         },
         fullView: {
-            // backgroundColor: 'khaki',
             position: 'absolute',
             left: 0,
             top: 0,
             right: 0,
             bottom: 0,
             width: '100%',
-            height: '100%',
+            height: getVerticalPx(896 * 1.1),
         },
         gradient: {
             position: 'absolute',
