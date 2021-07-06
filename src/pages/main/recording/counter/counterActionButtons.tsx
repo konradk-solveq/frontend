@@ -1,7 +1,10 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
-import {BigRedBtn, BigWhiteBtn} from '../../../../sharedComponents/buttons';
+import {
+    BigRedMapBtn,
+    BigWhiteMapBtn,
+} from '../../../../sharedComponents/buttons';
 
 interface IProps {
     leftBtnTitle: string;
@@ -19,11 +22,17 @@ const CounterActionButtons: React.FC<IProps> = ({
     return (
         <View style={styles.bottons}>
             <View style={styles.btn}>
-                <BigWhiteBtn title={leftBtnTitle} onpress={leftBtnCallback} />
+                <BigWhiteMapBtn
+                    title={leftBtnTitle}
+                    onpress={leftBtnCallback}
+                />
             </View>
 
             <View style={styles.btn}>
-                <BigRedBtn title={rightBtnTitle} onpress={rightBtnCallback} />
+                <BigRedMapBtn
+                    title={rightBtnTitle}
+                    onpress={rightBtnCallback}
+                />
             </View>
         </View>
     );
