@@ -35,7 +35,7 @@ import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
 import MarkPointer from './markPointer';
 import CounterActionButtons from './counterActionButtons';
 import CounterMapView from './counterMapView';
-import {RegularStackRoute} from '../../../../navigation/route';
+import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import NativeTopInfo from './nativeTopInfo/nativeTopInfo';
@@ -46,6 +46,14 @@ interface Props {
     navigation: any;
     route: any;
 }
+
+const returnToPreviousScreen = (nav: any) => {
+    if (nav.canGoBack()) {
+        nav.goBack();
+        return;
+    }
+    nav.replace(BothStackRoute.MAIN_MENU_SCREEN);
+};
 
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainCounter');
@@ -120,7 +128,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const heandleLeftBtnClick = useCallback(() => {
         switch (pageState) {
             case 'start':
-                navigation.goBack();
+                returnToPreviousScreen(navigation);
                 break;
             case 'record':
                 setPageState('pause');
@@ -174,7 +182,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 break;
             case 'cancelText':
                 await stopTracker(true);
-                navigation.goBack();
+                returnToPreviousScreen(navigation);
                 break;
             case 'endMessage':
                 // TODO
@@ -203,7 +211,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const heandleGoBackClick = async () => {
         switch (pageState) {
             case 'start':
-                navigation.goBack();
+                returnToPreviousScreen(navigation);
                 break;
             default:
                 setPageState('cancelText');
