@@ -1,7 +1,10 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
-import {BigRedBtn, BigWhiteBtn} from '../../../../sharedComponents/buttons';
+import {
+    BigRedMapBtn,
+    BigWhiteMapBtn,
+} from '../../../../sharedComponents/buttons';
 
 import ButtonBackground from './buttonBackground';
 
@@ -26,14 +29,14 @@ const CounterActionButtons: React.FC<IProps> = ({
         <>
             <View style={styles.bottons}>
                 <View style={styles.btn}>
-                    <BigWhiteBtn
+                    <BigWhiteMapBtn
                         title={leftBtnTitle}
                         onpress={leftBtnCallback}
                     />
                 </View>
 
                 <View style={styles.btn}>
-                    <BigRedBtn
+                    <BigRedMapBtn
                         title={rightBtnTitle}
                         onpress={rightBtnCallback}
                     />

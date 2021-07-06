@@ -5,8 +5,8 @@ import {
     GestureResponderEvent,
     TextStyle,
     ViewStyle,
+    TouchableOpacity,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 interface Props {
     title: string;
