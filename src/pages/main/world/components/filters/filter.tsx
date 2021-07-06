@@ -1,0 +1,75 @@
+import React, {useCallback} from 'react';
+import {StyleSheet, View} from 'react-native';
+
+import {I18n} from '../../../../../../I18n/I18n';
+import {getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {OptionType} from '../../../../../interfaces/form';
+import {SelectOptionType} from '../../../../../models/map.model';
+
+import {MultiSelect} from '../../../../../sharedComponents/inputs';
+import {firstLetterToUpperCase} from '../../../../../utils/strings';
+
+interface IProps {
+    name: string;
+    predefined: OptionType[];
+    options: SelectOptionType[];
+    isRadioType: boolean;
+    onSave: (name: string, filters: string[]) => void;
+}
+
+const Filter: React.FC<IProps> = ({
+    name,
+    predefined,
+    options,
+    isRadioType,
+    onSave,
+}: IProps) => {
+    const trans: any = I18n.t('MainWorld.maps.filters');
+    const filterName = trans?.[name]?.name || firstLetterToUpperCase(name);
+
+    const onPressHanlder = useCallback(
+        (values: string[]) => {
+            onSave(name, values);
+        },
+        [name, onSave],
+    );
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.list}>
+                <MultiSelect
+                    key={name}
+                    options={options}
+                    optionsTransName={filterName}
+                    predefined={predefined}
+                    errorMessage={''}
+                    onSave={onPressHanlder}
+                    isRadioType={isRadioType}
+                    titleStyle={styles.name}
+                    withEmptyRadio={isRadioType}
+                />
+            </View>
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        width: '100%',
+    },
+    name: {
+        fontFamily: 'DIN2014Narrow-Regular',
+        fontSize: 18,
+        letterSpacing: 0.5,
+        color: '#313131',
+        textAlign: 'left',
+        marginTop: getVerticalPx(20),
+        marginBottom: getVerticalPx(5),
+    },
+    list: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
+});
+
+export default Filter;

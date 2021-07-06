@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 import I18n from 'react-native-i18n';
 import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
@@ -7,8 +7,10 @@ import {
     removeBikeByNumber,
 } from '../../../storage/actions';
 
-import {UserBike} from '../../../models/userBike.model';
-import {getBike} from '../../../helpers/transformUserBikeData';
+import {
+    bikeByFrameNumberSelector,
+    onboardingFinishedSelector,
+} from '../../../storage/selectors';
 
 import {
     setObjSize,
@@ -16,7 +18,6 @@ import {
     getVerticalPx,
     getWidthPx,
     getWidthPxOf,
-    getHeightPx,
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 
@@ -26,6 +27,8 @@ import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader'
 import BikeImage from '../../../sharedComponents/images/bikeImage';
 import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
 import Curve from '../../../sharedComponents/svg/curve';
+import useCustomBackNavButton from '../../../hooks/useCustomBackNavBtn';
+import {BothStackRoute} from '../../../navigation/route';
 
 interface IProps {
     navigation: any;
@@ -39,13 +42,18 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const userName =
         useAppSelector<string>(state => state.user.userName) || trans.anonim;
     const onboardingFinished = useAppSelector<boolean>(
-        state => state.user.onboardingFinished,
+        onboardingFinishedSelector,
     );
     const frameNumber = route.params.frameNumber;
-    const bikeData = useAppSelector<UserBike | null>(state =>
-        getBike(state.bikes.list, frameNumber),
+    const bikeData = useAppSelector(state =>
+        bikeByFrameNumberSelector(state, frameNumber),
     );
 
+    const removeBikeOnCancel = useCallback(() => {
+        dispatch(removeBikeByNumber(frameNumber));
+    }, [dispatch, frameNumber]);
+
+    useCustomBackNavButton(removeBikeOnCancel);
     /* TODO: try to exctract */
     setObjSize(334, 50);
     const w = getWidthPx();
@@ -104,14 +112,17 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
         }
         navigation.reset({
             index: 0,
-            routes: [{name: 'MineMenu'}],
+            routes: [{name: BothStackRoute.MAIN_MENU_SCREEN}],
         });
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <StackHeader
-                onpress={() => navigation.pop()}
+                onpress={() => {
+                    removeBikeOnCancel();
+                    navigation.pop();
+                }}
                 inner={trans.header}
             />
 
@@ -160,8 +171,10 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                     <BigWhiteBtn
                         title={trans.btnChange}
                         onpress={() => {
-                            dispatch(removeBikeByNumber(frameNumber));
-                            navigation.navigate('TurtorialNFC');
+                            removeBikeOnCancel();
+                            navigation.navigate(
+                                BothStackRoute.TURTORIAL_NFC_SCREEN,
+                            );
                         }}
                     />
                 </View>
@@ -170,12 +183,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                     <BigRedBtn
                         title={trans.goForward}
                         onpress={() => {
-                            /* TODO: this change is temporary - business  decision */
-                            // navigation.navigate('CyclingProfile')
-                            /* start to delete */
                             onGoForwrdHandle();
-                            // navigation.replace('MineMenu');
-                            /* end to delete */
                         }}
                     />
                 </View>

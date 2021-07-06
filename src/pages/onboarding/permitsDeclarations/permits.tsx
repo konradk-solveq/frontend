@@ -20,6 +20,7 @@ import {
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OnePermit from './onePermit';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -36,7 +37,9 @@ const Permits: React.FC<Props> = (props: Props) => {
     // po kliknięciu 'DALEJ', walidacja i przejście dalej
     const hendlerGoFoward = () => {
         if (checked) {
-            props.navigation.navigate('GetToKnowEachOther');
+            props.navigation.navigate(
+                OnboardingStackRoute.GET_TO_KNOW_EACH_OTHER_SCREEN,
+            );
             setWrong(false);
         } else {
             setWrong(true);
@@ -121,20 +124,24 @@ const Permits: React.FC<Props> = (props: Props) => {
                         <Hyperlink
                             linkStyle={{color: '#3587ea'}}
                             linkText={(url: string) => {
-                                if (url == trans.urlRegulations) {
+                                if (url === trans.urlRegulations) {
                                     return trans.hiperRegulations;
                                 }
-                                if (url == trans.urlPrivacyPolicy) {
+                                if (url === trans.urlPrivacyPolicy) {
                                     return trans.hiperPrivacyPolicy;
                                 }
                                 return url;
                             }}
                             onPress={(url: string) => {
-                                if (url == trans.urlRegulations) {
-                                    props.navigation.navigate('Regulations');
+                                if (url === trans.urlRegulations) {
+                                    props.navigation.navigate(
+                                        BothStackRoute.REGULATIONS_SCREEN,
+                                    );
                                 }
-                                if (url == trans.urlPrivacyPolicy) {
-                                    props.navigation.navigate('PrivacyPolicy');
+                                if (url === trans.urlPrivacyPolicy) {
+                                    props.navigation.navigate(
+                                        BothStackRoute.PRIVACY_POLICY_SCREEN,
+                                    );
                                 }
                             }}>
                             <Text style={styles.clause}>{trans.clause}</Text>
@@ -150,7 +157,11 @@ const Permits: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('NewBeginning')}
+                onpress={() =>
+                    props.navigation.navigate(
+                        OnboardingStackRoute.NEW_BEGINNING_SCREEN,
+                    )
+                }
                 inner={trans.header}
                 getHeight={setHeadHeightt}
                 style={{backgroundColor: '#fff'}}

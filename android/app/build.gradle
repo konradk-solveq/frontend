@@ -1,4 +1,7 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
@@ -82,6 +85,8 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+Project background_geolocation = project(":react-native-background-geolocation-android")
+apply from: "${background_geolocation.projectDir}/app.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -134,13 +139,8 @@ android {
         applicationId "pl.kross.mykross"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-<<<<<<< HEAD
-        versionCode 4
-        versionName "1.0.3"
-=======
-        versionCode 6
-        versionName "1.1.3"
->>>>>>> 7a3c78f81e69f8f39cd5cf55de024ba1366a6e9c
+        versionCode 9
+        versionName "1.2.0"
     }
     splits {
         abi {
@@ -158,6 +158,14 @@ android {
             keyPassword 'android'
         }
         release {
+            /* Add the firebaseCrashlytics extension (by default,
+            * it's disabled to improve build speeds) and set
+            * nativeSymbolUploadEnabled to true. */
+
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+            }
+
             if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
                 storeFile file('../key2.jks')
                 storePassword MYAPP_RELEASE_STORE_PASSWORD
@@ -174,6 +182,7 @@ android {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
             // signingConfig signingConfigs.debug
+            proguardFiles "${background_geolocation.projectDir}/proguard-rules.pro"
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"

@@ -1,10 +1,12 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { WebView } from 'react-native-webview';
+import React, {useRef} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {WebView} from 'react-native-webview';
 
 interface Props {
     source: string;
     style?: any;
+    js?: any;
+    animSvgRef?: any;
 }
 
 const AnimSvg: React.FC<Props> = (props: Props) => {
@@ -33,6 +35,8 @@ const AnimSvg: React.FC<Props> = (props: Props) => {
                             props.source +
                             '</body></html>',
                     }}
+                    injectedJavaScript={props.js}
+                    ref={props.animSvgRef}
                 />
             </View>
         </View>

@@ -17,7 +17,7 @@ import {
     getVerticalPx,
 } from '../../../helpers/layoutFoo';
 import {getDay, getYear} from '../../../helpers/overviews';
-import deepCopy from '../../../helpers/deepCopy';
+import {RegularStackRoute} from '../../../navigation/route';
 
 interface Props {
     style?: any;
@@ -29,16 +29,18 @@ interface Props {
     box: any;
     region: any;
     location: any;
+    resetPostion?: boolean;
+    onScrollToStart?: () => void;
 }
+
+let primeLayout = null;
 
 const ww = Dimensions.get('window').width;
 
 const Reviews: React.FC<Props> = (props: Props) => {
     setObjSize(334, 50);
     const w = ww * (125 / 414);
-    // console.log('%c details:', 'background: #ffcc00; color: #003300', props.details)
 
-    const [areas, setAreas] = useState([]);
     const [listOn, setListOn] = useState(true);
     const [source, setSource] = useState(
         '<svg xmlns="http://www.w3.org/2000/svg"/>',
@@ -46,95 +48,109 @@ const Reviews: React.FC<Props> = (props: Props) => {
     const [animSvgStyle, setAnimSvgStyle] = useState({}); // do odpalania animacji svg
 
     const timeout = useRef();
+    const scrollRef = useRef<null | ScrollView>(null);
+
+    useEffect(() => {
+        return () => clearTimeout(timeout.current);
+    }, []);
+
+    useEffect(() => {
+        if (props.resetPostion) {
+            scrollRef.current?.scrollTo({
+                x: 0,
+                animated: true,
+            });
+            if (props.onScrollToStart) {
+                props.onScrollToStart();
+            }
+        }
+    }, [props.resetPostion, props.onScrollToStart]);
 
     const startTicking = () => {
         setListOn(false);
         timeout.current = setTimeout(() => {
             setListOn(true);
+            timeout.current = setTimeout(() => {
+                render();
+            }, 200);
         }, 100);
     };
 
     useEffect(() => {
-        setAreas([]);
         startTicking();
     }, [props.list]);
 
-    const handleShadowBox = (layout: any, style: any, num: number) => {
-        if (areas.some(e => e.num == num)) {
+    const handleShadowBox = (layout: any) => {
+        if (!primeLayout) {
+            primeLayout = layout;
+        }
+    };
+
+    const render = () => {
+        if (!primeLayout) {
+            startTicking();
             return;
         }
 
-        layout.num = num;
-        layout.color = style.color;
-        layout.dashed = style.dashed;
+        let b = 10;
+        let w = 0;
+        let h = primeLayout.height - 1;
 
-        let newAreas = deepCopy(areas);
-        newAreas.push(layout);
-        setAreas(newAreas);
-
-        if (newAreas.length == props.list.length) {
-            let b = 10;
-            let w = 0;
-            let h = newAreas[0].height - 1;
-
-            for (let i = 0; i < newAreas.length; i++) {
-                w += newAreas[i].width;
-                w += i == newAreas.length - 1 ? 0 : getVerticalPx(15);
-            }
-            let svg =
-                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' +
-                -b +
-                ' ' +
-                -b +
-                ' ' +
-                (w + b * 2) +
-                ' ' +
-                (h + b * 2) +
-                '" width="' +
-                (w + b + b) +
-                '" height="' +
-                (h + b + b) +
-                '">';
-
-            let x = 0;
-            let y = getVerticalPx(5);
-            for (let i = 0; i < newAreas.length; i++) {
-                let ww = newAreas[i].width;
-                svg +=
-                    '<rect fill="' +
-                    newAreas[i].color +
-                    '" stroke="#313131" stroke-width="' +
-                    (newAreas[i].dashed ? '1.2' : '0') +
-                    '" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
-                    ww +
-                    '" height="' +
-                    h +
-                    '" x="' +
-                    x +
-                    '" y="' +
-                    y +
-                    '" ry="' +
-                    getHorizontalPx(16) +
-                    '"/>';
-
-                x += ww + getVerticalPx(15) + 1;
-            }
-
-            svg += '</svg>';
-
-            setSource(svg);
-
-            setAnimSvgStyle({
-                position: 'absolute',
-                // marginTop: getVerticalPx(10),
-
-                left: -b,
-                top: -b,
-                width: w + b * 2,
-                height: h + b * 2 + getVerticalPx(10),
-                // backgroundColor: 'grey'
-            });
+        for (let i = 0; i < props.list.length; i++) {
+            w += primeLayout.width;
+            w += i == props.list.length - 1 ? 0 : getVerticalPx(15);
         }
+
+        let svg =
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' +
+            -b +
+            ' ' +
+            -b +
+            ' ' +
+            (w + b * 2) +
+            ' ' +
+            (h + b * 2) +
+            '" width="' +
+            (w + b + b) +
+            '" height="' +
+            (h + b + b) +
+            '">';
+
+        let x = 0;
+        let y = getVerticalPx(5);
+        for (let i = 0; i < props.list.length; i++) {
+            let ww = primeLayout.width;
+            svg +=
+                '<rect fill="' +
+                props.list[i].style.color +
+                '" stroke="#313131" stroke-width="' +
+                (props.list[i].style.dashed ? '1.2' : '0') +
+                '" stroke-dasharray="1.5 1.5" stroke-dashoffset="0" stroke="none" width="' +
+                ww +
+                '" height="' +
+                h +
+                '" x="' +
+                x +
+                '" y="' +
+                y +
+                '" ry="' +
+                getHorizontalPx(16) +
+                '"/>';
+
+            x += ww + getVerticalPx(15) + 1;
+        }
+
+        svg += '</svg>';
+
+        setSource(svg);
+
+        setAnimSvgStyle({
+            position: 'absolute',
+            left: -b,
+            top: -b,
+            width: w + b * 2,
+            height: h + b * 2 + getVerticalPx(10),
+        });
     };
 
     const styles = StyleSheet.create({
@@ -214,7 +230,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
     });
 
     const heandleShowDeatails = e => {
-        props.navigation.navigate('RewiewsDetails', {
+        props.navigation.navigate(RegularStackRoute.REVIEWS_DETAILS_SCREEN, {
             details: e,
             box: props.box,
             region: props.region,
@@ -227,11 +243,13 @@ const Reviews: React.FC<Props> = (props: Props) => {
             <Text style={styles.title}>{props.description.name}</Text>
 
             <ScrollView
+                ref={scrollRef}
                 horizontal={true}
                 style={styles.scroll}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}>
                 <AnimSvg
+                    key={source.length}
                     source={source}
                     style={[styles.animSvg, animSvgStyle]}
                 />
@@ -252,11 +270,7 @@ const Reviews: React.FC<Props> = (props: Props) => {
                                     <View
                                         style={styles.box}
                                         onLayout={({nativeEvent}) =>
-                                            handleShadowBox(
-                                                nativeEvent.layout,
-                                                e.style,
-                                                i,
-                                            )
+                                            handleShadowBox(nativeEvent.layout)
                                         }>
                                         <Text style={styles.day}>
                                             {getDay(e.date)}

@@ -5,8 +5,8 @@ export const getBikeByFrameNr = async (frameNr: string) => {
 
     if (!response?.data || response.status > 400) {
         let errorMessage = 'error';
-        if (response.status === 404) {
-            errorMessage = response.data?.message || response.data?.error;
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
         }
         return {data: null, status: response.status, error: errorMessage};
     }
@@ -19,8 +19,8 @@ export const getGenericDataforBike = async () => {
 
     if (!response?.data || response.status > 400) {
         let errorMessage = 'error';
-        if (response.status === 404) {
-            errorMessage = response.data?.message || response.data?.error;
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
         }
         return {data: null, status: response.status, error: errorMessage};
     }
@@ -34,8 +34,8 @@ export const getBikesListByFrameNrs = async (frameNrs: string[]) => {
 
     if (!response?.data || response.status > 400) {
         let errorMessage = 'error';
-        if (response.status === 404) {
-            errorMessage = response.data?.message || response.data?.error;
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
         }
         return {data: null, status: response.status, error: errorMessage};
     }

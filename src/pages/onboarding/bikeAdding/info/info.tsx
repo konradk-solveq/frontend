@@ -13,6 +13,7 @@ import {
     getVerticalPx,
     getCenterLeftPx,
 } from '../../../../helpers/layoutFoo';
+import {BothStackRoute} from '../../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -83,7 +84,11 @@ const Info: React.FC<Props> = (props: Props) => {
             </ScrollView>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('AddingByNumber')}
+                onpress={() =>
+                    props.navigation.navigate(
+                        BothStackRoute.ADDING_BY_NUMBER_SCREEN,
+                    )
+                }
                 inner={trans.head}
             />
         </SafeAreaView>

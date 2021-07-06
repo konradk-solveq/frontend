@@ -8,7 +8,7 @@ import {
     Linking,
 } from 'react-native';
 import I18n from 'react-native-i18n';
-import { useAppSelector } from '../../../../hooks/redux';
+import {useAppSelector} from '../../../../hooks/redux';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
@@ -115,7 +115,7 @@ const Contact: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.goBack()}
                 inner={trans.header}
-            // getHeight={setheadHeight}
+                // getHeight={setheadHeight}
             />
         </SafeAreaView>
     );

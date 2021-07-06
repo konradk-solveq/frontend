@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
 import I18n from 'react-native-i18n';
+import DeviceInfo from 'react-native-device-info';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import Bike_0 from './bike_0';
-import Bike_1 from '../../../onboarding/newBeginning/bike_1';
-import Bike_2 from '../../../onboarding/newBeginning/bike_2';
+import Bike_1 from '../../../onboarding/newBeginning/bike_4';
+import Bike_2 from '../../../onboarding/newBeginning/bike_5';
+import Bike_3 from '../../../onboarding/newBeginning/bike_2';
 
 import {
     setObjSize,
@@ -20,8 +22,15 @@ interface Props {
     route: any;
 }
 
+const getAppVersion = () => {
+    const appBuildNumber = DeviceInfo.getBuildNumber();
+
+    return `${version} (${appBuildNumber})`;
+};
+
 const AboutApp: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('AboutApp');
+    const myVersion = '1.2.0.k9 - serwer: P_R_O_D_U_K_C_Y_J_N_Y';
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -66,8 +75,24 @@ const AboutApp: React.FC<Props> = (props: Props) => {
             lineHeight: 24,
             color: '#555555',
         },
+        nextLineText: {
+            marginTop: getVerticalPx(15),
+            fontFamily: 'DIN2014Narrow-Light',
+            textAlign: 'left',
+            fontSize: 18,
+            lineHeight: 24,
+            color: '#555555',
+        },
         signature: {
-            marginTop: getVerticalPx(30),
+            marginTop: getVerticalPx(45),
+            fontFamily: 'DIN2014Narrow-Regular',
+            textAlign: 'left',
+            fontSize: 18,
+            lineHeight: 24,
+            color: '#555555',
+        },
+        nextLineSignature: {
+            marginTop: getVerticalPx(15),
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
             fontSize: 18,
@@ -75,7 +100,7 @@ const AboutApp: React.FC<Props> = (props: Props) => {
             color: '#555555',
         },
         version: {
-            marginTop: getVerticalPx(30),
+            marginTop: getVerticalPx(80),
             fontFamily: 'DIN2014Narrow-Light',
             fontSize: 14,
             textAlign: 'left',
@@ -93,6 +118,7 @@ const AboutApp: React.FC<Props> = (props: Props) => {
                         <Bike_0 style={styles.bike} />
 
                         <Text style={styles.text}>{trans.text_1}</Text>
+                        <Text style={styles.nextLineText}>{trans.text_1b}</Text>
 
                         <Bike_1 style={styles.bike} />
 
@@ -102,9 +128,21 @@ const AboutApp: React.FC<Props> = (props: Props) => {
 
                         <Text style={styles.text}>{trans.text_3}</Text>
 
-                        <Text style={styles.signature}>{trans.signature}</Text>
+                        <Bike_3 style={styles.bike} />
 
-                        <Text style={styles.version}>{`v. ${version}`}</Text>
+                        <Text style={styles.text}>{trans.text_4}</Text>
+                        <Text style={styles.nextLineText}>{trans.text_4b}</Text>
+
+                        <Text style={styles.signature}>
+                            {trans.signature_1}
+                        </Text>
+                        <Text style={styles.nextLineSignature}>
+                            {trans.signature_2}
+                        </Text>
+
+                        <Text style={styles.version}>{`v. ${
+                            __DEV__ ? getAppVersion() : myVersion
+                        }`}</Text>
                     </View>
                 </ScrollView>
             </View>

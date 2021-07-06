@@ -17,7 +17,13 @@ znajdują się w katalogu: __I18n__
 ```
 cp .env.example .env
 ```
-replace `API_URL` and `GOOGLE_MAPS_API_KEY` values
+replace `API_URL` , `GOOGLE_API_KEY` and `TRANSISTORSOFT_BACKGROUND_GEOLOCATION_KEY` values
+
+Put google-service.json in `android/app/google-services.json` path and GoogleService-Info.plist in `ios/GoogleService-Info.plist` (files comes from Firebase service).
+
+#### BackgroundGeolocation
+
+We're using private repo. Follow these intructions [how to install](https://github.com/transistorsoft/react-native-background-geolocation-android/wiki/Migrating-your-installation-from-Public-package-to-Private-repo:)
 
 ---
 
@@ -34,6 +40,9 @@ yarn add -D typescript @types/jest @types/react @types/react-native @types/react
 yarn add @react-native-async-storage/async-storage
 yarn add @react-native-community/masked-view
 yarn add @react-native-community/netinfo
+yarn add @react-native-firebase
+yarn add @react-native-firebase/app
+yarn add @react-native-firebase/crashlytics
 yarn add @react-navigation/bottom-tabs
 yarn add @react-navigation/native
 yarn add @react-navigation/stack
@@ -42,26 +51,31 @@ yarn add class-transformer
 yarn add class-validator
 yarn add fetch
 yarn add react-devtools
+yarn add react-native-android-location-enabler
+yarn add react-native-background-fetch
+yarn add react-native-background-geolocation
+yarn add react-native-config
 yarn add react-native-device-info
 yarn add react-native-dotenv
 yarn add react-native-gesture-handler
+yarn add react-native-get-location
 yarn add react-native-hyperlink
 yarn add react-native-i18n
 yarn add react-native-keyboard-aware-scroll-view
 yarn add react-native-maps
+yarn add react-native-nfc-manager
+yarn add react-native-permissions
 yarn add react-native-reanimated
 yarn add react-native-safe-area-context
 yarn add react-native-safe-area-view
 yarn add react-native-screens
 yarn add react-native-svg
+yarn add react-native-swiper
 yarn add react-native-webview
 yarn add react-redux
 yarn add redux
 yarn add redux-persist
 yarn add redux-thunk
-
-yarn add react-native-nfc-manager
-yarn add react-native-get-location
 ```
 
 

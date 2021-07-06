@@ -1,16 +1,9 @@
-import instance from './api';
+import {axiosGet} from './api';
 
 export const getBike = async (frameNr: string) =>
-    await instance.get(`/frame/lookup/${frameNr}`, {
-        validateStatus: () => true,
-    });
+    await axiosGet(`/frame/lookup/${frameNr}`);
 
-export const getGenericBikeData = async () =>
-    await instance.get('/frame/generic', {
-        validateStatus: () => true,
-    });
+export const getGenericBikeData = async () => await axiosGet('/frame/generic');
 
 export const getBikesList = async (frameNrs: string) =>
-    await instance.get(`/frame/lookup?serial_numbers=${frameNrs}`, {
-        validateStatus: () => true,
-    });
+    await axiosGet(`/frame/lookup?serial_numbers=${frameNrs}`);

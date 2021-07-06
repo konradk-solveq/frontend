@@ -13,6 +13,7 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
+import {RegularStackRoute} from '../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -125,7 +126,7 @@ const Warranty: React.FC<Props> = (props: Props) => {
         },
         line: {
             borderBottomColor: '#ebebeb',
-            borderBottomWidth: 2,
+            borderBottomWidth: 1,
         },
         dots: {
             position: 'absolute',
@@ -138,7 +139,9 @@ const Warranty: React.FC<Props> = (props: Props) => {
     });
 
     const heandleWarrantyDetails = () => {
-        props.navigation.navigate('WarrantyDetails', {details: props.details});
+        props.navigation.navigate(RegularStackRoute.WARRANTY_DETAILS_SCREEN, {
+            details: props.details,
+        });
     };
 
     const warrantyText =

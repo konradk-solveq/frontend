@@ -88,6 +88,7 @@ const persistConfig = {
         'riderProfile',
         'onboardingFinished',
     ],
+    timeout: 20000,
 };
 
 export default persistReducer(persistConfig, userReducer);

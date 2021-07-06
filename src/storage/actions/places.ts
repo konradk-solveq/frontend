@@ -27,39 +27,39 @@ export const setError = (error: string) => ({
     error: error,
 });
 
-export const fetchPlacesData = (
-    bbox: BBox,
-): AppThunk<Promise<actionAsyncResponse>> => async dispatch => {
-    dispatch(setLoadingState(true));
-    try {
-        const response = await getPlacesList(bbox);
+export const fetchPlacesData =
+    (bbox: BBox): AppThunk<Promise<actionAsyncResponse>> =>
+        async dispatch => {
+            dispatch(setLoadingState(true));
+            try {
+                const response = await getPlacesList(bbox);
 
-        if (response.error || !response.data) {
-            dispatch(setError(response.error));
+                if (response.error || !response.data) {
+                    dispatch(setError(response.error));
 
-            return Promise.reject({
-                success: false,
-                errorMessage: response.error,
-                notFound: true,
-                data: null,
-            });
-        } else {
-            dispatch(setPlacesData(response.data));
+                    return Promise.reject({
+                        success: false,
+                        errorMessage: response.error,
+                        notFound: true,
+                        data: null,
+                    });
+                } else {
+                    dispatch(setPlacesData(response.data));
 
-            return Promise.resolve({
-                success: true,
-                errorMessage: '',
-                data: response.data,
-            });
-        }
-    } catch (error) {
-        const errorMessage = I18n.t('dataAction.apiError');
-        dispatch(setError(errorMessage));
+                    return Promise.resolve({
+                        success: true,
+                        errorMessage: '',
+                        data: response.data,
+                    });
+                }
+            } catch (error) {
+                const errorMessage = I18n.t('dataAction.apiError');
+                dispatch(setError(errorMessage));
 
-        return Promise.reject({
-            success: false,
-            errorMessage: errorMessage,
-            data: null,
-        });
-    }
-};
+                return Promise.reject({
+                    success: false,
+                    errorMessage: errorMessage,
+                    data: null,
+                });
+            }
+        };

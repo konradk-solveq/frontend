@@ -48,6 +48,7 @@ const persistConfig = {
     key: 'places',
     storage: AsyncStorage,
     whitelist: ['places'],
+    timeout: 20000,
 };
 
 export default persistReducer(persistConfig, bikesReducer);

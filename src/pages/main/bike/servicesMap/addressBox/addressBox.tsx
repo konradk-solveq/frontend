@@ -26,7 +26,6 @@ const AddressBox: React.FC<IProps> = ({address, containerStyle}: IProps) => {
     });
 
     const withSeparator = address?.email && address.phone ? '\u00a0|' : '';
-    console.log(address);
     return (
         <View style={[styles.addressContainer, containerStyle]}>
             <AnimSvg style={styles.address} source={adressBackground} />

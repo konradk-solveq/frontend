@@ -38,50 +38,50 @@ export const setRiderProfile = (data: RiderProfile) => ({
     riderProfile: data,
 });
 
-export const setProfileSettings = (
-    data: RiderProfile,
-): AppThunk<Promise<actionAsyncResponse>> => async dispatch => {
-    try {
-        const newData = new UserRideProfile(
-            data.cyclingStyle,
-            data.tours,
-            data.whereDoYouGo,
-            data.drivingSpeed,
-            data.distancePerMonth,
-            data.whoAreYou,
-            data.profileNumber,
-            data.name,
-        );
-        await validateOrReject(newData);
+export const setProfileSettings =
+    (data: RiderProfile): AppThunk<Promise<actionAsyncResponse>> =>
+        async dispatch => {
+            try {
+                const newData = new UserRideProfile(
+                    data.cyclingStyle,
+                    data.tours,
+                    data.whereDoYouGo,
+                    data.drivingSpeed,
+                    data.distancePerMonth,
+                    data.whoAreYou,
+                    data.profileNumber,
+                    data.name,
+                );
+                await validateOrReject(newData);
 
-        dispatch(setRiderProfile(newData));
+                dispatch(setRiderProfile(newData));
 
-        return Promise.resolve({
-            success: true,
-            errorMessage: '',
-            data: newData,
-        });
-    } catch (error) {
-        if (error?.[0] instanceof ValidationError) {
-            const errorMessage = I18n.t('dataAction.validationError');
-            dispatch(setError(errorMessage));
+                return Promise.resolve({
+                    success: true,
+                    errorMessage: '',
+                    data: newData,
+                });
+            } catch (error) {
+                if (error?.[0] instanceof ValidationError) {
+                    const errorMessage = I18n.t('dataAction.validationError');
+                    dispatch(setError(errorMessage));
 
-            return Promise.reject({
-                success: false,
-                errorMessage: errorMessage,
-                data: null,
-            });
-        }
-        const errorMessage = I18n.t('dataAction.apiError');
-        dispatch(setError(errorMessage));
+                    return Promise.reject({
+                        success: false,
+                        errorMessage: errorMessage,
+                        data: null,
+                    });
+                }
+                const errorMessage = I18n.t('dataAction.generalError');
+                dispatch(setError(errorMessage));
 
-        return Promise.reject({
-            success: false,
-            errorMessage: errorMessage,
-            data: null,
-        });
-    }
-};
+                return Promise.reject({
+                    success: false,
+                    errorMessage: errorMessage,
+                    data: null,
+                });
+            }
+        };
 
 export const setOnboardingFinished = (status: boolean) => ({
     type: actionTypes.SET_ONBOARDING_FINISHED,

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, SafeAreaView, View, Text, ScrollView } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
 import I18n from 'react-native-i18n';
-import { setUserName } from '../../../../storage/actions/index';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import {setUserName} from '../../../../storage/actions/index';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 
 import {
     setObjSize,
@@ -14,8 +14,8 @@ import {
     getCenterLeftPx,
     getPosWithMinHeight,
 } from '../../../../helpers/layoutFoo';
-import { validateData } from '../../../../utils/validation/validation';
-import { userUserValidationRules } from '../../../../models/user.model';
+import {validateData} from '../../../../utils/validation/validation';
+import {userUserValidationRules} from '../../../../models/user.model';
 
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
@@ -25,9 +25,9 @@ interface Props {
     navigation: any;
 }
 
-const NameChange: React.FC<Props> = ({ navigation }: Props) => {
+const NameChange: React.FC<Props> = ({navigation}: Props) => {
     const dispatch = useAppDispatch();
-    const trans = I18n.t('NameChange');
+    const trans: any = I18n.t('NameChange');
 
     const name: string = useAppSelector(state => state.user.userName);
 
@@ -45,7 +45,7 @@ const NameChange: React.FC<Props> = ({ navigation }: Props) => {
     const handleSetInputName = (value: string) => {
         setForceMessageWrong('');
         setInputName(value);
-    }
+    };
 
     const hendleValidationOk = (value: string) => {
         return validateData(userUserValidationRules.userName, value);
@@ -56,8 +56,14 @@ const NameChange: React.FC<Props> = ({ navigation }: Props) => {
     };
 
     const hadleOnpressWithName = (inputName: string) => {
+        if (inputName.length === 0) {
+            dispatch(setUserName(inputName));
+            navigation.goBack();
+            return;
+        }
+
         if (!validateData(userUserValidationRules.userName, inputName)) {
-            setForceMessageWrong('Nazwa jest za krótka');
+            setForceMessageWrong('Nazwa ma niepoprawną długość');
             setValidationStatus(false);
         }
 
@@ -124,19 +130,20 @@ const NameChange: React.FC<Props> = ({ navigation }: Props) => {
             height: 50,
             left: getCenterLeftPx(),
             bottom: getVerticalPx(65 + 100), // 100 - przesunięcie dla scroll o headera
-
         },
     });
 
     return (
         <SafeAreaView
             style={styles.container}
-            onLayout={({ nativeEvent }) => handleAreaHeight(nativeEvent.layout)}>
+            onLayout={({nativeEvent}) => handleAreaHeight(nativeEvent.layout)}>
             <ScrollView
                 keyboardShouldPersistTaps={'always'}
                 style={styles.scroll}>
                 <View style={styles.area}>
-                    <Text style={styles.title}>{name + trans.title}</Text>
+                    <Text style={styles.title}>
+                        {(name || trans.defaultName) + trans.title}
+                    </Text>
 
                     <View style={[styles.inputAndPlaceholder, styles.input]}>
                         <OneLineTekst

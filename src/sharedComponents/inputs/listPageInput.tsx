@@ -18,6 +18,7 @@ import {
     getHorizontalPx,
 } from '../../helpers/layoutFoo';
 import deepCopy from '../../helpers/deepCopy';
+import {BothStackRoute} from '../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -48,13 +49,13 @@ const ListPageInput: React.FC<Props> = (props: Props) => {
     const hendleOnpress = (value: string) => {
         if (last && value == last) {
             // console.log('last:', last);
-            props.navigation.navigate('InputPage', {
+            props.navigation.navigate(BothStackRoute.INPUT_PAGE_SCREEN, {
                 header: other.header,
                 btn: other.btn,
                 hendleGoFoward: (value: string) => {
                     props.navigation.navigate(backTo, {key, value});
                 },
-                goBack: 'ListPageInput',
+                goBack: BothStackRoute.LIST_PAGE_INPUT_SCREEN,
                 text: other.text,
                 placeholder: other.placeholder,
                 messageWrong: other.messageWrong,
