@@ -3,13 +3,13 @@ import {
     StyleSheet,
     View,
     Dimensions,
-    TouchableWithoutFeedback,
     Animated,
     Easing,
     Platform,
     StatusBar,
     Alert,
 } from 'react-native';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {WebView} from 'react-native-webview';
 
 import I18n from 'react-native-i18n';
@@ -410,14 +410,18 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             marginTop: marginTopOnIos,
             position: 'absolute',
         },
-        mapBtn: {
+        mapBtnContainer: {
             position: 'absolute',
             width: mapBtnSize,
             height: mapBtnSize,
             left: (getHorizontalPx(414) - mapBtnSize) / 2,
             top: mapBtnPos - mapBtnSize / 2,
-            // backgroundColor: 'green',
+            zIndex: 1,
             // opacity: .3,
+        },
+        mapBtn: {
+            width: '100%',
+            height: '100%',
         },
         bottons: {
             display: 'flex',
@@ -495,9 +499,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     </Animated.View>
                 )}
 
-                <TouchableWithoutFeedback onPress={heandleMapVisibility}>
-                    <View style={styles.mapBtn} />
-                </TouchableWithoutFeedback>
+                <View style={styles.mapBtnContainer}>
+                    <TouchableWithoutFeedback onPress={heandleMapVisibility}>
+                        <View style={styles.mapBtn} />
+                    </TouchableWithoutFeedback>
+                </View>
 
                 {/* <View style={styles.bottons}>
                     <View style={styles.btn}>
