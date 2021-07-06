@@ -13,8 +13,6 @@ import AddBtn from './addButton';
 import RemoveBtn from './removeButton';
 import ArrowBtn from './arrowBtn';
 import ImageBtn from './imageBtn';
-import BigWhiteMapBtn from './bigWhiteMapBtn';
-import BigRedMapBtn from './bigRedMapBtn';
 
 export {
     BigRedBtn,
@@ -32,6 +30,4 @@ export {
     RemoveBtn,
     ArrowBtn,
     ImageBtn,
-    BigWhiteMapBtn,
-    BigRedMapBtn,
 };

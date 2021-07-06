@@ -1,12 +1,18 @@
 import React from 'react';
 import {
     StyleSheet,
+    View,
     Text,
     GestureResponderEvent,
     TextStyle,
     ViewStyle,
-    TouchableOpacity,
+    TouchableOpacity as TouchableOpacityRN,
+    Platform,
 } from 'react-native';
+import {TouchableOpacity as TouchableOpacityIOS} from 'react-native-gesture-handler';
+
+const TouchableOpacity =
+    Platform.OS === 'ios' ? TouchableOpacityIOS : TouchableOpacityRN;
 
 interface Props {
     title: string;
@@ -37,14 +43,15 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <TouchableOpacity
-            style={[styles.btn, props.style]}
-            disabled={props.disabled}
-            onPress={props.onpress}>
-            <Text style={[styles.text, props.textStyle]}>
-                {props.neutralCase ? props.title : props.title.toUpperCase()}
-            </Text>
-        </TouchableOpacity>
+        <View style={props.style}>
+            <TouchableOpacity style={styles.btn} onPress={props.onpress}>
+                <Text style={[styles.text, props.textStyle]}>
+                    {props.neutralCase
+                        ? props.title
+                        : props.title.toUpperCase()}
+                </Text>
+            </TouchableOpacity>
+        </View>
     );
 };
 
