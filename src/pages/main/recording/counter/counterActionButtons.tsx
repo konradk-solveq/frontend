@@ -28,7 +28,7 @@ const CounterActionButtons: React.FC<IProps> = ({
                 <BigWhiteBtn title={leftBtnTitle} onpress={leftBtnCallback} />
             </View>
 
-            <View style={styles.btn}>
+            <View style={[styles.btn, styles.rightBtn]}>
                 <BigRedBtn title={rightBtnTitle} onpress={rightBtnCallback} />
             </View>
             <ButtonBackground showModal={withBackground} text={message} />
@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: getHorizontalPx(157),
+    },
+    rightBtn: {
+        marginLeft: 20,
     },
 });
 
