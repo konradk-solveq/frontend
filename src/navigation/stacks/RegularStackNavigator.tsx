@@ -1,6 +1,8 @@
 import React from 'react';
 import {Stack} from './../stack';
 import {horizontalAnim} from '../../helpers/positioning';
+import {useAppSelector} from '../../hooks/redux';
+import {trackerActiveSelector} from '../../storage/selectors';
 
 import SplashScreen from '../../pages/main/splashScreen/splashScreen';
 import newRegulations from '../../pages/main/newRegulations/newRegulations';
@@ -30,10 +32,16 @@ import Contact from '../../pages//main/profile/contact/contact';
 import {RegularStackRoute, BothStackRoute} from '../route';
 
 const RegularStackNavigator: React.FC = () => {
+    const isActive = useAppSelector(trackerActiveSelector);
+
     return (
         <Stack.Navigator
             headerMode="none"
-            initialRouteName={RegularStackRoute.SPLASH_SCREEN}
+            initialRouteName={
+                !isActive
+                    ? RegularStackRoute.SPLASH_SCREEN
+                    : RegularStackRoute.COUNTER_SCREEN
+            }
             mode="modal"
             screenOptions={horizontalAnim}>
             <Stack.Screen
