@@ -32,7 +32,7 @@ const CounterActionButtons: React.FC<IProps> = ({
                 <BigRedBtn title={rightBtnTitle} onpress={rightBtnCallback} />
             </View>
             <ButtonBackground showModal={withBackground} text={message} />
-        </>
+        </View>
     );
 };
 
