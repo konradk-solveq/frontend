@@ -87,7 +87,6 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
     });
 
     const arrowBtnActionHandler = () => {
-        console.log('[onPress -- ArrowBtn]');
         const containerH = containerHeight?.__getValue();
 
         if (containerH >= 500) {
