@@ -34,11 +34,6 @@ const DisplayValue: React.FC<IProps> = ({
                 duration: 300,
                 useNativeDriver: false,
             }).start();
-
-            return () => {
-                displayFontSize.setValue(0);
-                suffixFontSize.setValue(0);
-            };
         }
     }, [fontSize, displayFontSize, suffixFontSize]);
 
