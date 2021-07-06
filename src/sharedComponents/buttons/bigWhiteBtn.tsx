@@ -1,5 +1,14 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    Platform,
+    TouchableOpacity as TouchableOpacityRN,
+} from 'react-native';
+import {TouchableOpacity as TouchableOpacityIOS} from 'react-native-gesture-handler';
+
+const TouchableOpacity =
+    Platform.OS === 'ios' ? TouchableOpacityIOS : TouchableOpacityRN;
 
 import {getHorizontalPx} from '../../helpers/layoutFoo';
 

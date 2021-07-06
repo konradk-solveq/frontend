@@ -140,9 +140,10 @@ const AboutApp: React.FC<Props> = (props: Props) => {
                             {trans.signature_2}
                         </Text>
 
-                        <Text style={styles.version}>{`v. ${
-                            __DEV__ ? getAppVersion() : myVersion
-                        }`}</Text>
+                        <Text
+                            style={
+                                styles.version
+                            }>{`v. ${getAppVersion()}`}</Text>
                     </View>
                 </ScrollView>
             </View>
