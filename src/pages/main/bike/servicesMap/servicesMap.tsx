@@ -18,7 +18,6 @@ import {
     Place,
     PointDetails,
 } from '../../../../models/places.model';
-import useGeolocation from '../../../../hooks/useGeolocation';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import AnimSvg from '../../../../helpers/animSvg';
@@ -58,20 +57,6 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
     ]);
     const [adress, setAdress] = useState<PointDetails | null>(null);
     const [regionData, setRegionData] = useState<Region>(param.region);
-
-    const {locations} = useGeolocation();
-
-    useEffect(() => {
-        if (locations?.length) {
-            const lastPos = locations?.[locations?.length - 1];
-            const pos = {
-                latitude: lastPos.coords.latitude,
-                longitude: lastPos.coords.longitude,
-            };
-
-            setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
-        }
-    }, [locations]);
 
     const heandleShowAdress = (adressDetails: PointDetails | null) => {
         if (adressDetails && Platform.OS === 'android') {
