@@ -158,12 +158,12 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
                 break;
             case 'clickMarker':
                 {
-                    heandleShowAdress(JSON.parse(val[1]));
+                    // heandleShowAdress(JSON.parse(val[1]));
                 }
                 break;
             case 'clickMap':
                 {
-                    heandleShowAdress(null);
+                    // heandleShowAdress(null);
                 }
                 break;
         }
