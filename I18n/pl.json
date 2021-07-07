@@ -685,7 +685,7 @@
             "title": "Zezwól na dostęp do lokalizacji w tle",
             "message": "Aby umożliwić rejestrowanie trasy, kiedy aplikacja jest w tle włącz 'Zawsze zezwalaj'",
             "positiveAction": "Zmień na Zawsze zezwalaj",
-            "negativeAction": "Odmów"
+            "negativeAction": "Anuluj"
         }
     },
     "aaaaaaa-aaaaaa": "_____"
