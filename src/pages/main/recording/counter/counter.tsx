@@ -78,7 +78,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         pauseTracker,
         resumeTracker,
         followedRouteId,
-    } = useLocalizationTracker(true);
+    } = useLocalizationTracker(true, true);
 
     const bikeSelectorListPositionY = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),

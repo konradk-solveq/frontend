@@ -3,6 +3,12 @@ import BackgroundGeolocation, {
     Location,
     LocationError,
 } from 'react-native-background-geolocation-android';
+import {
+    checkMultiple,
+    PERMISSIONS,
+    RESULTS,
+    request,
+} from 'react-native-permissions';
 
 import {LocationDataI} from '../interfaces/geolocation';
 
@@ -25,6 +31,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             cancelButton: 'Cancel',
             settingsButton: 'Settings',
         },
+        disableLocationAuthorizationAlert: !isIOS,
         backgroundPermissionRationale: {
             title: "Allow access to this device's location in the background?",
             message:
@@ -178,4 +185,48 @@ export const pauseTracingLocation = async () => {
 
 export const resumeTracingLocation = async () => {
     await BackgroundGeolocation.changePace(true);
+};
+
+export const askFineLocationPermission = async () => {
+    let permission = 'unavailable';
+    try {
+        const res = await request(
+            Platform.select({
+                android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+                ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+            }),
+        );
+        permission = res;
+    } catch (error) {}
+
+    return permission;
+};
+
+export const checkAndroidLocationPermission = async () => {
+    const locationPermissions = {fineLocation: false, coarseLocation: false};
+    try {
+        const result = await checkMultiple([
+            PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+            PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
+        ]);
+
+        switch (result[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION]) {
+            case RESULTS.LIMITED:
+                locationPermissions.fineLocation = true;
+                break;
+            case RESULTS.GRANTED:
+                locationPermissions.fineLocation = true;
+                break;
+        }
+        switch (result[PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION]) {
+            case RESULTS.LIMITED:
+                locationPermissions.coarseLocation = true;
+                break;
+            case RESULTS.GRANTED:
+                locationPermissions.coarseLocation = true;
+                break;
+        }
+    } catch (error) {}
+
+    return locationPermissions;
 };

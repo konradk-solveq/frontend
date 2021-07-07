@@ -667,6 +667,12 @@
     "Geolocation": {
         "notification": {
             "title": "Pobieranie lokalizacji"
+        },
+        "locationPermission": {
+            "title": "Używanie lokalizacji w tle",
+            "message": "Lokalizacja umożliwia stały dostęp do geolokalizacji urządzenia na potrzeby rejestrowania aktywności użytkownika w aplikacji.",
+            "leftButton": "Pomiń",
+            "rightButton": "Włącz"
         }
     },
     "aaaaaaa-aaaaaa": "_____"

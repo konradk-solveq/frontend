@@ -1,13 +1,18 @@
 import React from 'react';
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
+import {View, StyleSheet, Text, ScrollView, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
 import {useNavigation} from '@react-navigation/native';
 
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {showedLocationInfoSelector} from '../../../../storage/selectors/app';
 
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import {RegularStackRoute} from '../../../../navigation/route';
+import {
+    onRecordTripActionHandler,
+    showLocationInfo,
+} from '../../../../utils/showAndroidLlocationInfo';
 
 interface IProps {
     onPress: () => void;
@@ -16,6 +21,15 @@ interface IProps {
 const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
     const trans: any = I18n.t('MainMyRoutes');
     const navigation = useNavigation();
+    const dispatch = useAppDispatch();
+
+    const isLocationInfoShowed = useAppSelector(showedLocationInfoSelector);
+
+    const doAction = () => {
+        Platform.OS === 'ios' || isLocationInfoShowed
+            ? onRecordTripActionHandler(navigation)
+            : showLocationInfo(navigation, dispatch);
+    };
 
     return (
         <View style={styles.container}>
@@ -27,9 +41,7 @@ const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
                 <BigRedBtn
                     style={styles.btnRecord}
                     title={trans.btnRecord}
-                    onpress={() =>
-                        navigation.navigate(RegularStackRoute.COUNTER_SCREEN)
-                    }
+                    onpress={doAction}
                 />
 
                 <BigWhiteBtn
