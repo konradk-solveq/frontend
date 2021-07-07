@@ -31,7 +31,6 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             cancelButton: 'Cancel',
             settingsButton: 'Settings',
         },
-        disableLocationAuthorizationAlert: !isIOS,
         backgroundPermissionRationale: {
             title: "Allow access to this device's location in the background?",
             message:
