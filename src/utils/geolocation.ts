@@ -38,7 +38,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             title: trans.title,
             message: trans.message,
             positiveAction: trans.positiveAction,
-            // negativeAction: trans.negativeAction,
+            negativeAction: trans.negativeAction,
         },
         distanceFilter: 10,
         stopTimeout: 1,
