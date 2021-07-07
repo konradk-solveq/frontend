@@ -9,6 +9,7 @@ import {
     RESULTS,
     request,
 } from 'react-native-permissions';
+import {I18n} from '../../I18n/I18n';
 
 import {LocationDataI} from '../interfaces/geolocation';
 
@@ -16,6 +17,8 @@ const isIOS = Platform.OS === 'ios';
 
 /* TODO: catch errors */
 export const initBGeolocalization = async (notificationTitle: string) => {
+    const trans: any = I18n.t('Geolocation.backgroundPermissionRationale');
+
     const state = await BackgroundGeolocation.ready({
         reset: true,
         stopOnTerminate: false,
@@ -25,17 +28,17 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             : BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
         locationAuthorizationRequest: 'Always',
         locationAuthorizationAlert: {
-            titleWhenNotEnabled: 'Location-services not enabled',
-            titleWhenOff: 'Location-services OFF',
-            instructions: "You must enable 'Always' in location-services",
-            cancelButton: 'Cancel',
-            settingsButton: 'Settings',
+            titleWhenNotEnabled: trans.titleWhenNotEnabled,
+            titleWhenOff: trans.titleWhenOff,
+            instructions: trans.instructions,
+            cancelButton: trans.cancelButton,
+            settingsButton: trans.settingsButton,
         },
         backgroundPermissionRationale: {
-            title: "Allow access to this device's location in the background?",
-            message:
-                "In order to allow track activity when app is in the background, please enable 'Allow all the time permission",
-            positiveAction: 'Change to Allow all the time',
+            title: trans.title,
+            message: trans.message,
+            positiveAction: trans.positiveAction,
+            negativeAction: trans.negativeAction,
         },
         distanceFilter: 10,
         stopTimeout: 1,
