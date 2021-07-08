@@ -56,7 +56,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
     const isFetching = useAppSelector<boolean>(state => state.places.loading);
     const places = useAppSelector<Place[]>(state => state.places.places);
-
+console.log('places', JSON.stringify(places))
     const trans: any = I18n.t('ServicesMap');
     const param = props.route.params;
     const route = useRoute();

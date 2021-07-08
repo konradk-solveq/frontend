@@ -41,16 +41,20 @@ import {
     RoutesMapRouteType,
 } from '../../../../types/rootStack';
 import {RegularStackRoute} from '../../../../navigation/route';
+import useGeolocation from '../../../../hooks/useGeolocation';
+
+import styles from './style';
+import RoutesList from './markerList/routesList';
+import BottomList from './bottomList.tsx/bottomList';
 
 interface Props {
     navigation: RoutesMapNavigationPropI;
     route: RoutesMapRouteType;
 }
 
-const {width, height} = Dimensions.get('window');
-
 const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
+    const mapRef = useRef(null);
     // const isFetching = useAppSelector<boolean>(state => state.places.loading);
     // dodać listę tras
 
@@ -62,6 +66,10 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
         route.params.activeTab || RouteMapType.BIKE_MAP,
     );
+    const [mapLoaded, setMapLoaded] = useState(false);
+
+    const {locations} = useGeolocation();
+
     // const [regionData, setRegionData] = useState<Region>(param.region);
 
     // const heandleShowAdress = (adressDetails: PointDetails | null) => {
@@ -112,8 +120,37 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     //     getMapData();
     // };
 
-    const mapRef = useRef();
-    const setJs = (foo: string) => mapRef.current.injectJavaScript(foo);
+    const setJs = (foo: string) => mapRef.current?.injectJavaScript(foo);
+
+    useEffect(() => {
+        let positionSet = false;
+        if (locations?.length && mapLoaded) {
+            const lastLocation = locations?.[locations.length - 1];
+            if (!lastLocation) {
+                return;
+            }
+
+            const pos = {
+                latitude: lastLocation.coords.latitude,
+                longitude: lastLocation.coords.longitude,
+            };
+
+            /**
+             * Initially set map and user position.
+             * Follow only user position.
+             * */
+            if (!positionSet) {
+                setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+                positionSet = true;
+            } else {
+                setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
+            }
+        }
+
+        return () => {
+            positionSet = false;
+        };
+    }, [locations, mapLoaded]);
 
     /* TODO: extract as helper method */
     const setBtnRadio = (mapType: string) => {
@@ -138,6 +175,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         switch (val[0]) {
             case 'changeRegion':
                 {
+                    console.log('[change region]');
                     const newBox = JSON.parse(val[1]);
 
                     const bbox = [
@@ -176,11 +214,16 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     const heandleMapLoaded = () => {
-        // let pos = {
-        //     latitude: route.params.location.latitude,
-        //     longitude: route.params.location.longitude,
-        // };
-        // setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+        // if (locations?.length) {
+        //     const lastLocation = locations?.[locations.length - 1];
+        //     const pos = {
+        //         latitude: lastLocation.coords.latitude,
+        //         longitude: lastLocation.coords.longitude,
+        //     };
+        //     setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+        //     setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
+        // }
+        setMapLoaded(true);
     };
 
     useEffect(() => {
@@ -189,62 +232,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         // setJs(`setMarks(${p});true;`);
     }, []);
 
-    setObjSize(350, 23);
-    const styles = StyleSheet.create({
-        container: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#fff',
-            flex: 1,
-        },
-        innerContainer: {
-            flex: 1,
-        },
-        wrap: {
-            ...StyleSheet.absoluteFillObject,
-            width: width,
-            height: height,
-            // backgroundColor: 'khaki',
-        },
-        fullView: {
-            // backgroundColor: 'khaki',
-            position: 'absolute',
-            left: 0,
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: '100%',
-            height: '100%',
-        },
-        gradient: {
-            position: 'absolute',
-            width: width,
-            height: width,
-            top: 0,
-            left: 0,
-        },
-        btns: {
-            position: 'absolute',
-            left: getHorizontalPx(40),
-            top: getVerticalPx(108),
-            height: 41,
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-        },
-        btn: {
-            marginRight: getHorizontalPx(5),
-        },
-        actionButtonsContainer: {
-            flexDirection: 'row',
-        },
-        actionButton: {
-            margin: 0,
-        },
-    });
+    // setObjSize(350, 23);
 
     const onNavigateBack = () => {
         navigation.navigate(
@@ -304,6 +292,8 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 />
             </View>
             {adress && <AddressBox address={adress} />}
+
+            <BottomList />
 
             <StackHeader
                 hideBackArrow
