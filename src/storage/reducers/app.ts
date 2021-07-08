@@ -23,6 +23,7 @@ export interface AppState {
     showedRegulations: number | null;
     regulation: RegulationType | {};
     policy: RegulationType | {};
+    showedLocationInfo: boolean;
 }
 
 const initialState: AppState = {
@@ -196,6 +197,11 @@ const appReducer = (state = initialState, action: any) => {
                 error: action.error,
                 statusCode: action.statusCode,
             };
+        case actionTypes.SET_LOCATION_INFO_SHOWED:
+            return {
+                ...state,
+                showedLocationInfo: true,
+            };
         case actionTypes.CLEAR_APP_ERROR:
             return {
                 ...state,
@@ -218,6 +224,7 @@ const persistConfig = {
         'currentTerms',
         'showedRegulations',
         'faq',
+        'showedLocationInfo',
     ],
     timeout: 20000,
 };

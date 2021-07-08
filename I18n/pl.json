@@ -667,6 +667,25 @@
     "Geolocation": {
         "notification": {
             "title": "Pobieranie lokalizacji"
+        },
+        "locationPermission": {
+            "title": "Używanie lokalizacji w tle",
+            "message": "Lokalizacja umożliwia stały dostęp do geolokalizacji urządzenia na potrzeby rejestrowania aktywności użytkownika w aplikacji.",
+            "leftButton": "Pomiń",
+            "rightButton": "Włącz"
+        },
+        "locationAuthorizationAlert": {
+            "titleWhenNotEnabled": "Usługi lokalizacji są wyłączone",
+            "titleWhenOff": "Usługi lokalizacji są wyłączone",
+            "instructions": "Włącz Zawsz zezwalaj w usługach lokalizacyjnych",
+            "cancelButton": "Anuluj",
+            "settingsButton": "Ustawienia"
+        },
+        "backgroundPermissionRationale": {
+            "title": "Zezwól na dostęp do lokalizacji w tle",
+            "message": "Aby umożliwić rejestrowanie trasy, kiedy aplikacja jest w tle włącz 'Zawsze zezwalaj'",
+            "positiveAction": "Zmień na Zawsze zezwalaj",
+            "negativeAction": "Anuluj"
         }
     },
     "aaaaaaa-aaaaaa": "_____"

@@ -97,6 +97,10 @@ export const setSyncError = (error: string, statusCode: number) => ({
     statusCode: statusCode,
 });
 
+export const setLocationInfoShowed = () => ({
+    type: actionTypes.SET_LOCATION_INFO_SHOWED,
+});
+
 export const clearAppError = () => ({
     type: actionTypes.CLEAR_APP_ERROR,
 });
