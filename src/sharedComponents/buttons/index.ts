@@ -13,6 +13,7 @@ import AddBtn from './addButton';
 import RemoveBtn from './removeButton';
 import ArrowBtn from './arrowBtn';
 import ImageBtn from './imageBtn';
+import ListBtn from './listButton';
 
 export {
     BigRedBtn,
@@ -30,4 +31,5 @@ export {
     RemoveBtn,
     ArrowBtn,
     ImageBtn,
+    ListBtn,
 };

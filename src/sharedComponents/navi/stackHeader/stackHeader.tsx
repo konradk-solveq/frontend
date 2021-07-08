@@ -21,7 +21,7 @@ import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
 interface Props {
     // * wartości wymagane
     style?: any;
-    onpress: Function; // po naciśnięciu strzałki
+    onpress?: Function; // po naciśnięciu strzałki
     inner: string; // nazwa headera
     getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
     rightActions?: Element;

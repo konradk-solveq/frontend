@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, StyleSheet, SafeAreaView, Text, Platform} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import I18n from 'react-native-i18n';
 
 import MyRoutes from './myRoutes/myRoutes';
@@ -31,20 +31,24 @@ import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
 import styles from './style';
+import {RegularStackRoute} from '../../../navigation/route';
+import {RouteMapType} from '../../../models/places.model';
+import {WorldRouteType} from '../../../types/rootStack';
 
 const isAndroid = Platform.OS === 'android';
 
-enum routesTab {
-    BIKEMAP = 'map',
-    MYROUTES = 'routes',
-    PLANED = 'planed',
-}
+// enum routesTab {
+//     BIKEMAP = 'map',
+//     MYROUTES = 'routes',
+//     PLANED = 'planed',
+// }
 
 /* TODO: refresh data if position chagned more than 500 meters */
 const World: React.FC = () => {
     const dispatch = useAppDispatch();
     const trans: any = I18n.t('MainWorld');
     const navigation = useNavigation();
+    const route = useRoute<WorldRouteType>();
 
     const statusBarHeight = useStatusBarHeight();
     const nextCoursor = useAppSelector(nextPaginationCoursor);
@@ -54,46 +58,54 @@ const World: React.FC = () => {
 
     const [showModal, setShowModal] = useState<boolean>(false);
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
-    const [activeTab, setActiveTab] = useState<routesTab>(routesTab.BIKEMAP);
+    const [activeTab, setActiveTab] = useState<RouteMapType>(
+        RouteMapType.BIKE_MAP,
+    );
 
     useFineWhenInUseLocationPermission();
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
         if (isValid) {
-            if (activeTab === routesTab.BIKEMAP) {
+            if (activeTab === RouteMapType.BIKE_MAP) {
                 dispatch(fetchMapsList(undefined, savedMapFilters));
                 return;
             }
-            if (activeTab === routesTab.MYROUTES) {
+            if (activeTab === RouteMapType.MY_ROUTES) {
                 dispatch(fetchPrivateMapsList(undefined, savedMapFilters));
             }
-            if (activeTab === routesTab.PLANED) {
+            if (activeTab === RouteMapType.PLANNING) {
                 dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
             }
         }
     }, [dispatch, savedMapFilters, activeTab]);
 
+    useEffect(() => {
+        if (route.params?.activeTab) {
+            setActiveTab(route.params.activeTab);
+        }
+    }, [route.params?.activeTab]);
+
     const handleBikeMap = () => {
-        if (activeTab === routesTab.BIKEMAP) {
+        if (activeTab === RouteMapType.BIKE_MAP) {
             return;
         }
         setSavedMapFilters({});
-        setActiveTab(routesTab.BIKEMAP);
+        setActiveTab(RouteMapType.BIKE_MAP);
     };
     const handleMyRoutes = () => {
-        if (activeTab === routesTab.MYROUTES) {
+        if (activeTab === RouteMapType.MY_ROUTES) {
             return;
         }
         setSavedMapFilters({});
-        setActiveTab(routesTab.MYROUTES);
+        setActiveTab(RouteMapType.MY_ROUTES);
     };
     const handlePlaned = () => {
-        if (activeTab === routesTab.PLANED) {
+        if (activeTab === RouteMapType.PLANNING) {
             return;
         }
         setSavedMapFilters({});
-        setActiveTab(routesTab.PLANED);
+        setActiveTab(RouteMapType.PLANNING);
     };
 
     const onShowModalHanlder = () => {
@@ -111,15 +123,15 @@ const World: React.FC = () => {
 
     const onLoadMoreHandler = useCallback(() => {
         if (!isLoading) {
-            if (nextPrivateCoursor && activeTab === routesTab.MYROUTES) {
+            if (nextPrivateCoursor && activeTab === RouteMapType.MY_ROUTES) {
                 dispatch(fetchPrivateMapsList(nextPrivateCoursor));
                 return;
             }
-            if (nextCoursor && activeTab === routesTab.BIKEMAP) {
+            if (nextCoursor && activeTab === RouteMapType.BIKE_MAP) {
                 dispatch(fetchMapsList(nextCoursor, savedMapFilters));
                 return;
             }
-            if (nextCoursor && activeTab === routesTab.PLANED) {
+            if (nextCoursor && activeTab === RouteMapType.PLANNING) {
                 dispatch(
                     fetchPlannedMapsList(nextPlannedCoursor, savedMapFilters),
                 );
@@ -137,43 +149,50 @@ const World: React.FC = () => {
     ]);
 
     const onRefreshHandler = useCallback(() => {
-        if (activeTab === routesTab.MYROUTES) {
+        if (activeTab === RouteMapType.MY_ROUTES) {
             dispatch(fetchPrivateMapsList());
             return;
         }
-        if (activeTab === routesTab.BIKEMAP) {
+        if (activeTab === RouteMapType.BIKE_MAP) {
             dispatch(fetchMapsList());
             return;
         }
-        if (activeTab === routesTab.PLANED) {
+        if (activeTab === RouteMapType.PLANNING) {
             dispatch(fetchPlannedMapsList());
             return;
         }
     }, [dispatch, activeTab]);
 
+    const navigateTouRouteMap = useCallback(() => {
+        console.log(activeTab);
+        navigation.navigate(RegularStackRoute.ROUTES_MAP_SCREEN, {
+            activeTab: activeTab,
+        });
+    }, [activeTab, navigation]);
+
     const renderActiveScreen = useCallback(() => {
         switch (activeTab) {
-            case routesTab.BIKEMAP:
+            case RouteMapType.BIKE_MAP:
                 return (
                     <BikeMap
                         onRefresh={onRefreshHandler}
                         onLoadMore={onLoadMoreHandler}
                     />
                 );
-            case routesTab.MYROUTES:
+            case RouteMapType.MY_ROUTES:
                 return (
                     <MyRoutes
                         onRefresh={onRefreshHandler}
                         onLoadMore={onLoadMoreHandler}
-                        onPress={() => setActiveTab(routesTab.BIKEMAP)}
+                        onPress={() => setActiveTab(RouteMapType.BIKE_MAP)}
                     />
                 );
-            case routesTab.PLANED:
+            case RouteMapType.PLANNING:
                 return (
                     <PlannedRoutes
                         onRefresh={onRefreshHandler}
                         onLoadMore={onLoadMoreHandler}
-                        onPress={() => setActiveTab(routesTab.BIKEMAP)}
+                        onPress={() => setActiveTab(RouteMapType.BIKE_MAP)}
                     />
                 );
             default:
@@ -207,7 +226,7 @@ const World: React.FC = () => {
                 onSave={onSetFiltersHandler}
                 showModal={showModal}
                 allowedFilters={
-                    routesTab.MYROUTES === activeTab ? ['order'] : undefined
+                    RouteMapType.MY_ROUTES === activeTab ? ['order'] : undefined
                 }
             />
             <View style={[styles.headerWrapper, dynamicStyles.headerWrapper]}>
@@ -222,9 +241,7 @@ const World: React.FC = () => {
                     />
                     <View style={styles.mapBtn}>
                         <MapBtn
-                            onPress={() => {
-                                navigation.navigate('RoutesMap');
-                            }}
+                            onPress={navigateTouRouteMap}
                             iconStyle={styles.headerButton}
                         />
                     </View>
@@ -236,19 +253,19 @@ const World: React.FC = () => {
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnBikeMap}
-                        active={activeTab === routesTab.BIKEMAP}
+                        active={activeTab === RouteMapType.BIKE_MAP}
                         onpress={handleBikeMap}
                     />
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnMyRoutes}
-                        active={activeTab === routesTab.MYROUTES}
+                        active={activeTab === RouteMapType.MY_ROUTES}
                         onpress={handleMyRoutes}
                     />
                     <TypicalRedBtn
                         style={styles.btn}
                         title={trans.btnPlaned}
-                        active={activeTab === routesTab.PLANED}
+                        active={activeTab === RouteMapType.PLANNING}
                         onpress={handlePlaned}
                     />
                 </View>

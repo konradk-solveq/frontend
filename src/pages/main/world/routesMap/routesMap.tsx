@@ -23,6 +23,7 @@ import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHead
 import AnimSvg from '../../../../helpers/animSvg';
 import TypicalRedBtn from '../../../../sharedComponents/buttons/typicalRed';
 import gradient from './gradientSvg';
+import {ListBtn} from '../../../../sharedComponents/buttons';
 
 import AddressBox from './addressBox/addressBox';
 
@@ -33,29 +34,34 @@ import {
 } from '../../../../helpers/layoutFoo';
 
 import mapSource from './routesMapHtml';
-import {useRoute} from '@react-navigation/core';
+
+import {
+    RootStackType,
+    RoutesMapNavigationPropI,
+    RoutesMapRouteType,
+} from '../../../../types/rootStack';
+import {RegularStackRoute} from '../../../../navigation/route';
 
 interface Props {
-    navigation: any;
-    route: any;
+    navigation: RoutesMapNavigationPropI;
+    route: RoutesMapRouteType;
 }
 
 const {width, height} = Dimensions.get('window');
 
-const RoutesMap: React.FC<Props> = (props: Props) => {
+const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
     // const isFetching = useAppSelector<boolean>(state => state.places.loading);
     // dodać listę tras
 
     const trans: any = I18n.t('MainRoutesMap');
-    const param = props.route.params;
-    const route = useRoute();
+    const params = route.params;
+    console.log('[PARAMS]', params);
 
     const [adress, setAdress] = useState<PointDetails | null>(null);
-    const [currentMapType, setCurrentMapType] = useState<string>(
-        RouteMapType.BIKE_MAP,
+    const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
+        route.params.activeTab || RouteMapType.BIKE_MAP,
     );
-
     // const [regionData, setRegionData] = useState<Region>(param.region);
 
     // const heandleShowAdress = (adressDetails: PointDetails | null) => {
@@ -174,7 +180,6 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
         //     latitude: route.params.location.latitude,
         //     longitude: route.params.location.longitude,
         // };
-
         // setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
     };
 
@@ -233,7 +238,20 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
         btn: {
             marginRight: getHorizontalPx(5),
         },
+        actionButtonsContainer: {
+            flexDirection: 'row',
+        },
+        actionButton: {
+            margin: 0,
+        },
     });
+
+    const onNavigateBack = () => {
+        navigation.navigate(
+            RegularStackRoute.KROSS_WORLD_SCREEN as keyof RootStackType,
+            {activeTab: currentMapType},
+        );
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -288,8 +306,16 @@ const RoutesMap: React.FC<Props> = (props: Props) => {
             {adress && <AddressBox address={adress} />}
 
             <StackHeader
-                onpress={() => props.navigation.goBack()}
+                hideBackArrow
                 inner={trans.header}
+                rightActions={
+                    <View style={styles.actionButtonsContainer}>
+                        <ListBtn
+                            onPress={onNavigateBack}
+                            iconStyle={styles.actionButton}
+                        />
+                    </View>
+                }
             />
         </SafeAreaView>
     );
