@@ -28,12 +28,16 @@ export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
     return apiPathArr;
 };
 
-export const getRouteDefaultName = () => {
+export const getRouteDefaultName = (routeNumber?: number | null) => {
     const trans: any = I18n.t('dataAction.routeData');
     const date = getDateString(new Date(), '/');
     const defaultName = `${trans.defaultRouteName} ${date}`;
+    const alternativeDefaultName = `${I18n.t(
+        'dataAction.routeData.defaultAlternativeRouteName',
+        {number: routeNumber},
+    )} ${date}`;
 
-    return defaultName;
+    return routeNumber ? alternativeDefaultName : defaultName;
 };
 
 export const mapFormMetadataToAPIRequest = (

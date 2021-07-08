@@ -1,7 +1,5 @@
-
-
-import React, { useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
 import I18n from 'react-native-i18n';
 import AnimSvg from '../../../helpers/animSvg';
 import {setOnboardingFinished} from '../../../storage/actions';
@@ -20,26 +18,32 @@ import {
     getWidthPx,
     getWidthPxOf,
     getHeightPx,
-    getHorizontalPx
+    getHorizontalPx,
 } from '../../../helpers/layoutFoo';
+import {BothStackRoute, CyclingProfileRoute} from '../../../navigation/route';
 
 interface Props {
-    navigation: any,
-    route: any,
-};
+    navigation: any;
+    route: any;
+}
 
 const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
-    const cyclingProfile = useAppSelector<RiderProfile>(state => state.user.riderProfile);
+    const cyclingProfile = useAppSelector<RiderProfile>(
+        state => state.user.riderProfile,
+    );
 
     const trans = I18n.t('Profile').view;
 
     const profiles = Object.keys(trans.types); // lista nazw profili
     const [profilType, setProfilType] = useState(cyclingProfile.name); // dane poszczególnych pól
 
-    useEffect(() => { // zmiana profilu po ustawieniach w settingsach
-        route.params && (typeof route.params.profile != 'undefined') && setProfilType(profiles[route.params.profile])
-    }, [route.params])
+    useEffect(() => {
+        // zmiana profilu po ustawieniach w settingsach
+        route.params &&
+            typeof route.params.profile !== 'undefined' &&
+            setProfilType(profiles[route.params.profile]);
+    }, [route.params]);
 
     const amatour_biker = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315 296">
     <defs/>
@@ -194,18 +198,18 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
         left: getCenterLeftPx(),
         top: getVerticalPx(253),
         // backgroundColor: 'khaki'
-    }
+    };
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
-            backgroundColor: "white"
+            backgroundColor: 'white',
         },
 
         title: {
-            fontFamily: "DIN2014Narrow-Light",
+            fontFamily: 'DIN2014Narrow-Light',
             fontSize: getHorizontalPx(30),
             color: '#313131',
             textAlign: 'left',
@@ -217,7 +221,7 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
         image,
         name: {
             position: 'absolute',
-            fontFamily: "DIN2014Narrow-Regular",
+            fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(40),
             color: '#313131',
             textAlign: 'center',
@@ -228,7 +232,7 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
         },
         description: {
             position: 'absolute',
-            fontFamily: "DIN2014Narrow-Light",
+            fontFamily: 'DIN2014Narrow-Light',
             fontSize: getHorizontalPx(18),
             color: '#555555',
             textAlign: 'center',
@@ -245,74 +249,68 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            bottom: getVerticalPx(65)
+            bottom: getVerticalPx(65),
         },
         btn: {
             width: getWidthPxOf(157),
         },
         spaceOnEnd: {
             width: '100%',
-            height: getVerticalPx(65)
-        }
-    })
+            height: getVerticalPx(65),
+        },
+    });
 
     const handleSaveOnboarding = () => {
         dispatch(setOnboardingFinished(true));
-        navigation.navigate('MineMenu')
-    }
+        navigation.navigate(BothStackRoute.MAIN_MENU_SCREEN);
+    };
 
     return (
         <SafeAreaView style={styles.container}>
+            <Text style={styles.title}>{trans.title}</Text>
 
-            <Text style={styles.title}>
-                {trans.title}
-            </Text>
+            {profilType === riderProfiles.AMATEUR && (
+                <AnimSvg source={amatour_biker} style={styles.image} />
+            )}
+            {profilType === riderProfiles.CITY && (
+                <AnimSvg source={city_biker} style={styles.image} />
+            )}
+            {profilType === riderProfiles.PROFESSIONAL && (
+                <AnimSvg source={advanced_biker} style={styles.image} />
+            )}
 
-
-            {profilType == riderProfiles.AMATEUR && <AnimSvg
-                source={amatour_biker}
-                style={styles.image}
-            />}
-            {profilType == riderProfiles.CITY && <AnimSvg
-                source={city_biker}
-                style={styles.image}
-            />}
-            {profilType == riderProfiles.PROFESSIONAL && <AnimSvg
-                source={advanced_biker}
-                style={styles.image}
-            />}
-
-
-            <Text style={styles.name}>
-                {trans.types[profilType].name}
-            </Text>
+            <Text style={styles.name}>{trans.types[profilType].name}</Text>
 
             <Text style={styles.description}>
                 {trans.types[profilType].description}
             </Text>
 
-
             <View style={styles.bottons}>
                 <BigWhiteBtn
                     style={styles.btn}
                     title={trans.btnChange}
-                    onpress={() => navigation.navigate('CyclingProfileSettings')}
-                ></BigWhiteBtn>
+                    onpress={() =>
+                        navigation.navigate(
+                            CyclingProfileRoute.CYCLING_PROFILE_SETTINGS_SCREEN,
+                        )
+                    }
+                />
 
                 <BigRedBtn
                     style={styles.btn}
                     title={trans.btnSave}
                     onpress={handleSaveOnboarding}
-                ></BigRedBtn>
+                />
             </View>
 
             <StackHeader
-                onpress={() => navigation.navigate('AddingByNumber')}
+                onpress={() =>
+                    navigation.navigate(BothStackRoute.ADDING_BY_NUMBER_SCREEN)
+                }
                 inner={trans.header}
-            ></StackHeader>
-
+            />
         </SafeAreaView>
-    )
-}
+    );
+};
 
-export default CyclingProfileView
+export default CyclingProfileView;

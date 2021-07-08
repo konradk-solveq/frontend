@@ -1,3 +1,1 @@
-export {
-    riderProfiles
-} from './rider';
+export {riderProfiles} from './rider';

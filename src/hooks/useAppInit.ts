@@ -17,11 +17,15 @@ import {
     syncAppSelector,
 } from '../storage/selectors';
 import {setAutorizationHeader} from '../api/api';
+import {isGoodConnectionQualitySelector} from '../storage/selectors/app';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
     const dispatch = useAppDispatch();
     const isOnline = useAppSelector<boolean>(isOnlineAppStatusSelector);
+    const isGoodInternetConnectionQuality = useAppSelector(
+        isGoodConnectionQualitySelector,
+    );
     const userId = useAppSelector<string>(userIdSelector);
     const authToken = useAppSelector<string>(authTokenSelector);
     const userName = useAppSelector<string>(state => state.user.userName);
@@ -72,11 +76,11 @@ const useAppInit = () => {
     }, []);
 
     useEffect(() => {
-        if (isOnline) {
+        if (isOnline && isGoodInternetConnectionQuality) {
             synchData();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isOnline]);
+    }, [isOnline, isGoodInternetConnectionQuality]);
 
     return {
         geolocationState,

@@ -33,6 +33,7 @@ import deepCopy from '../../../helpers/deepCopy';
 import {frameNumberSelector} from '../../../storage/selectors';
 import {bikeDescriptionByFrameNumberSelector} from '../../../storage/selectors/bikes';
 import {getBikesBaseData} from '../../../utils/transformData';
+import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
 
 interface Message {
     serial_number: string;
@@ -146,10 +147,12 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                     }),
                 );
                 /* TODO: this change is temporary - business  decision */
-                // navigation.navigate('CyclingProfile');
+                // navigation.navigate(
+                //     OnboardingStackRoute.CYCLING_PROFILE_SCREEN,
+                // );
                 /* start to delete */
                 navigation.navigate({
-                    name: 'BikeSummary',
+                    name: BothStackRoute.BIKE_SUMMARY_SCREEN,
                     params: {frameNumber: data.serial_number},
                 });
                 /* end to delete */
@@ -252,25 +255,18 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                             forceMessageWrong={messages.serial_number}
                         />
 
-                        <ListInputBtn
+                        <OneLineTekst
                             style={styles.inputAndPlaceholder}
                             placeholder={trans.producer.title}
-                            onpress={() =>
-                                navigation.navigate('ListPageInput', {
-                                    header: trans.producer.listHeader,
-                                    list: trans.producer.listData,
-                                    last: trans.producer.listDataLast,
-                                    key: 'producer',
-                                    backTo: 'BikeData',
-                                    other: trans.producer.other,
-                                })
+                            onChangeText={(value: string) =>
+                                hendleChangeDataValue('producer', value)
                             }
                             validationOk={(value: string) =>
                                 hendleValidationOk(value, 'producer')
                             }
+                            // validationWrong={hendleValidationWrong}
                             messageWrong={trans.wrong}
                             value={data.producer}
-                            valueName={trans.producer.list}
                             validationStatus={(value: boolean) =>
                                 handleSetCanGoFoard('producer', value)
                             }

@@ -1,10 +1,12 @@
+import {Platform} from 'react-native';
 import BackgroundGeolocation, {
     Location,
     LocationError,
 } from 'react-native-background-geolocation-android';
-import GetLocation from 'react-native-get-location';
 
 import {LocationDataI} from '../interfaces/geolocation';
+
+const isIOS = Platform.OS === 'ios';
 
 /* TODO: catch errors */
 export const initBGeolocalization = async (notificationTitle: string) => {
@@ -12,7 +14,9 @@ export const initBGeolocalization = async (notificationTitle: string) => {
         reset: true,
         stopOnTerminate: false,
         startOnBoot: true,
-        desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
+        desiredAccuracy: isIOS
+            ? BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION
+            : BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
         locationAuthorizationRequest: 'Always',
         locationAuthorizationAlert: {
             titleWhenNotEnabled: 'Location-services not enabled',
@@ -47,12 +51,16 @@ export const initBGeolocalization = async (notificationTitle: string) => {
     return state;
 };
 
-export const getCurrentLocation = async (routeId?: string) => {
+export const getCurrentLocation = async (
+    routeId?: string,
+    samples?: number,
+    accuracy?: number,
+) => {
     const location = await BackgroundGeolocation.getCurrentPosition({
         timeout: 30,
         maximumAge: 500,
-        desiredAccuracy: 10,
-        samples: 6,
+        desiredAccuracy: accuracy || 10,
+        samples: samples || 6,
         persist: true,
         extras: {
             route_id: routeId || '',
@@ -68,14 +76,15 @@ export const getLatLng = async () => {
     const lng = location.coords.longitude;
     return {lat, lng};
 };
-
+/**
+ * TODO: change to listen for geofances constantly.
+ * Loc should be reqested only on beginging and set geofacne (let say about 1km).
+ * onExit event locaclization should be updated.
+ */
 export const getLatLngFromForeground = async () => {
-    const location = await GetLocation.getCurrentPosition({
-        enableHighAccuracy: true,
-        timeout: 15000,
-    });
-    const lat = location.latitude;
-    const lng = location.longitude;
+    const location = await getCurrentLocation('', 1);
+    const lat = location.coords.latitude;
+    const lng = location.coords.longitude;
     return {lat, lng};
 };
 
@@ -97,6 +106,9 @@ export const startBackgroundGeolocation = async (
         extras: {
             route_id: routeId,
         },
+        notification: {
+            text: 'Nagrywanie trasy',
+        },
     });
 
     const state = await BackgroundGeolocation.start();
@@ -107,13 +119,16 @@ export const startBackgroundGeolocation = async (
 
 export const stopBackgroundGeolocation = async () => {
     await BackgroundGeolocation.changePace(false);
-    const state = await BackgroundGeolocation.stop();
     await BackgroundGeolocation.setConfig({
         isMoving: false,
         extras: {
             route_id: '',
         },
+        notification: {
+            text: 'Pobieranie lokalizacji',
+        },
     });
+    const state = await BackgroundGeolocation.stop();
 
     return state;
 };

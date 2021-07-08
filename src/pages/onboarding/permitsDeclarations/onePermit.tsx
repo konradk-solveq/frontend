@@ -11,6 +11,7 @@ import {
     getHorizontalPx,
     getWidthOf,
 } from '../../../helpers/layoutFoo';
+import {BothStackRoute} from '../../../navigation/route';
 
 import CheckBox from '../../../sharedComponents/checkBox/checkBox';
 
@@ -96,10 +97,14 @@ const OnePermit: React.FC<Props> = (props: Props) => {
                     }}
                     onPress={(url: string) => {
                         if (url == trans.urlRegulations) {
-                            props.navigation.navigate('Regulations');
+                            props.navigation.navigate(
+                                BothStackRoute.REGULATIONS_SCREEN,
+                            );
                         }
                         if (url == trans.urlPrivacyPolicy) {
-                            props.navigation.navigate('PrivacyPolicy');
+                            props.navigation.navigate(
+                                BothStackRoute.PRIVACY_POLICY_SCREEN,
+                            );
                         }
                     }}>
                     <Text style={styles.text}>{props.text}</Text>
@@ -125,10 +130,14 @@ const OnePermit: React.FC<Props> = (props: Props) => {
                         }}
                         onPress={(url: string) => {
                             if (url == trans.urlRegulations) {
-                                props.navigation.navigate('Regulations');
+                                props.navigation.navigate(
+                                    BothStackRoute.REGULATIONS_SCREEN,
+                                );
                             }
                             if (url == trans.urlPrivacyPolicy) {
-                                props.navigation.navigate('PrivacyPolicy');
+                                props.navigation.navigate(
+                                    BothStackRoute.PRIVACY_POLICY_SCREEN,
+                                );
                             }
                         }}>
                         <Text style={[styles.text, styles.info]}>

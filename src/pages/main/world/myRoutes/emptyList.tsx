@@ -7,6 +7,7 @@ import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
+import {RegularStackRoute} from '../../../../navigation/route';
 
 interface IProps {
     onPress: () => void;
@@ -26,7 +27,9 @@ const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
                 <BigRedBtn
                     style={styles.btnRecord}
                     title={trans.btnRecord}
-                    onpress={() => navigation.navigate('Counter')}
+                    onpress={() =>
+                        navigation.navigate(RegularStackRoute.COUNTER_SCREEN)
+                    }
                 />
 
                 <BigWhiteBtn

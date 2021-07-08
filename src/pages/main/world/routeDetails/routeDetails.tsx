@@ -62,9 +62,8 @@ const RouteDetails = () => {
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
 
-    const headerBackgroundHeight = getVerticalPx(
-        100,
-    ); /* equal to header height */
+    const headerBackgroundHeight =
+        getVerticalPx(100); /* equal to header height */
 
     const onBackHandler = () => {
         navigation.goBack();
@@ -81,6 +80,8 @@ const RouteDetails = () => {
         if (privateMap) {
             setShowBottomModal(true);
             return;
+        } else {
+            navigation.navigate(RegularStackRoute.CONTACT_SCREEN);
         }
         console.log('create ticket');
         /* TODO: user can delete if creted route. For public routes can only make ticket */

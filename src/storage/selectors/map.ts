@@ -121,5 +121,20 @@ export const prevPrivatePaginationCoursor = (
     state: RootState,
 ): string | undefined => state.maps.paginationCoursorPrivate?.prev;
 
+export const nextPlannedPaginationCoursor = (
+    state: RootState,
+): string | undefined => state.maps.paginationCoursorPlanned?.next;
+
+export const prevPlannedPaginationCoursor = (
+    state: RootState,
+): string | undefined => state.maps.paginationCoursorPlanned?.prev;
+
 export const hasRecordedRoutesSelector = (state: RootState): boolean =>
     state.maps.privateMaps?.length > 0;
+
+export const totalMapsNumberSelector = (state: RootState): number | null =>
+    state.maps.totalMaps;
+
+export const privateTotalMapsNumberSelector = (
+    state: RootState,
+): number | null => state.maps.totalPrivateMaps;

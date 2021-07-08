@@ -13,15 +13,16 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../helpers/layoutFoo';
-import AddBike from './addBike';
+import Tile from './tile';
 
 import {useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
 import {nfcIsSupported} from '../../../helpers/nfc';
-import {RegularStackRoute} from '../../../navigation/route';
+import {BothStackRoute, RegularStackRoute} from '../../../navigation/route';
 
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import Loader from '../../onboarding/bikeAdding/loader/loader';
+import {requestGeolocationPermission} from '../../../utils/geolocation';
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
@@ -33,7 +34,7 @@ const Home: React.FC = () => {
     /* TODO: move initialization to splashs screen or add loader */
     useEffect(() => {
         if (isTrackerActive) {
-            navigation.navigate(RegularStackRoute.COUNTER_ROUTE_SCREEN);
+            navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
         }
     }, [isTrackerActive, navigation]);
 
@@ -76,17 +77,20 @@ const Home: React.FC = () => {
 
     const onAddActionHandler = () => {
         navigation.navigate({
-            name: nfc ? 'TurtorialNFC' : 'AddingByNumber',
+            name: nfc
+                ? BothStackRoute.TURTORIAL_NFC_SCREEN
+                : BothStackRoute.ADDING_BY_NUMBER_SCREEN,
             params: {emptyFrame: true},
         });
     };
 
     const onCheckActionHandler = () => {
-        navigation.navigate('Bike');
+        navigation.navigate(RegularStackRoute.BIKE_SCREEN);
     };
 
-    const onRecordTripActionHandler = () => {
-        navigation.navigate(RegularStackRoute.COUNTER_ROUTE_SCREEN);
+    const onRecordTripActionHandler = async () => {
+        await requestGeolocationPermission();
+        navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
     };
 
     if (syncStatus) {
@@ -102,35 +106,37 @@ const Home: React.FC = () => {
 
                 <View style={styles.container}>
                     <View style={styles.tileWrapper}>
-                        <AddBike
-                            title={trans.firstTitle}
-                            description={trans.firstText}
-                            btnText={trans.firstBtn}
-                            style={styles.tileSpace}
-                            onPress={onCheckActionHandler}
-                        />
-                        <AddBike
+                        {!hasRecordedRoutes ? (
+                            <Tile
+                                title={trans.thirdTitle}
+                                description={trans.thirdText}
+                                btnText={trans.thirdBtn}
+                                style={styles.tileSpace}
+                                onPress={onRecordTripActionHandler}
+                            />
+                        ) : (
+                            <Tile
+                                title={trans.fourthTitle}
+                                description={trans.fourthText}
+                                btnText={trans.fourthBtn}
+                                style={styles.tileSpace}
+                                onPress={onRecordTripActionHandler}
+                            />
+                        )}
+                        <Tile
                             title={trans.secondTitle}
                             description={trans.secondText}
                             btnText={trans.secondBtn}
                             style={styles.tileSpace}
                             onPress={onAddActionHandler}
                         />
-                        {!hasRecordedRoutes ? (
-                            <AddBike
-                                title={trans.thirdTitle}
-                                description={trans.thirdText}
-                                btnText={trans.thirdBtn}
-                                onPress={onRecordTripActionHandler}
-                            />
-                        ) : (
-                            <AddBike
-                                title={trans.fourthTitle}
-                                description={trans.fourthText}
-                                btnText={trans.fourthBtn}
-                                onPress={onRecordTripActionHandler}
-                            />
-                        )}
+                        {/* <Tile
+                            title={trans.firstTitle}
+                            description={trans.firstText}
+                            btnText={trans.firstBtn}
+                            style={styles.tileSpace}
+                            onPress={onCheckActionHandler}
+                        /> */}
                     </View>
                 </View>
             </ScrollView>

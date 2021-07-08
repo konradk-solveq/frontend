@@ -57,23 +57,23 @@ const EditForm: React.FC<IProps> = ({
     const [imagesToAdd, setImagesToAdd] = useState<ImageType[]>([]);
     const [imagesToRemove, setImagesToRemove] = useState<string[]>([]);
 
-    const {control, handleSubmit, setError, options} = useFormDataWithMapData(
-        mapData,
-    );
+    const {control, handleSubmit, setError, options} =
+        useFormDataWithMapData(mapData);
 
-    const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> = data => {
-        const isValid = reValidateMapMetadataManually(
-            data,
-            validationMessages,
-            setError,
-            ['publishWithName'],
-        );
-        if (!isValid) {
-            scrollTop();
-            return;
-        }
-        onSubmit(data, true, imagesToAdd, imagesToRemove);
-    };
+    const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> =
+        data => {
+            const isValid = reValidateMapMetadataManually(
+                data,
+                validationMessages,
+                setError,
+                ['publishWithName'],
+            );
+            if (!isValid) {
+                scrollTop();
+                return;
+            }
+            onSubmit(data, true, imagesToAdd, imagesToRemove);
+        };
     const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
         onSubmit(data, false, imagesToAdd, imagesToRemove);
     };

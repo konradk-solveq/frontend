@@ -6,6 +6,7 @@ import {
     getRouteDefaultName,
     routesDataToAPIRequest,
 } from '../utils/apiDataTransform/prepareRequest';
+import {I18n} from '../../I18n/I18n';
 
 export type CreatedRouteType = {
     id: string;
@@ -16,8 +17,10 @@ export interface RoutesResponse {
     error: string;
 }
 
-export const createNewRouteService = async (): Promise<RoutesResponse> => {
-    const defaultName = getRouteDefaultName();
+export const createNewRouteService = async (
+    routeNumber?: number | null,
+): Promise<RoutesResponse> => {
+    const defaultName = getRouteDefaultName(routeNumber);
     const response = await createRoute(defaultName);
 
     if (
@@ -32,8 +35,7 @@ export const createNewRouteService = async (): Promise<RoutesResponse> => {
                 response?.data?.statusCode !== 400 &&
                 response?.data?.statusCode !== 404
             ) {
-                errorMessage =
-                    'Route could not be created. Please try again later.';
+                errorMessage = I18n.t('dataAction.routeData.createRouteError');
             }
         }
         return {
@@ -82,6 +84,7 @@ export const removeCeratedRouteIDService = async (
 export const syncRouteData = async (
     path: LocationDataI[],
     remoteRouteId?: string,
+    routeNumber?: number | null,
 ): Promise<RoutesResponse> => {
     if (!path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)) {
         if (remoteRouteId) {
@@ -90,13 +93,15 @@ export const syncRouteData = async (
         return {
             data: null,
             status: 400,
-            error: `Route path could not be save. It's too short. It should take at least ${MIN_ROUTE_LENGTH} meters.`,
+            error: I18n.t('dataAction.routeData.routeLengthError', {
+                value: MIN_ROUTE_LENGTH,
+            }),
         };
     }
 
     let response;
     if (!remoteRouteId) {
-        const defaultName = getRouteDefaultName();
+        const defaultName = getRouteDefaultName(routeNumber);
         response = await createRoute(defaultName);
 
         if (
@@ -111,8 +116,9 @@ export const syncRouteData = async (
                     response?.data?.statusCode !== 400 &&
                     response?.data?.statusCode !== 404
                 ) {
-                    errorMessage =
-                        'Route could not be created. Please try again later.';
+                    errorMessage = I18n.t(
+                        'dataAction.routeData.createRouteError',
+                    );
                 }
             }
             return {
@@ -145,13 +151,13 @@ export const syncRouteData = async (
         }
 
         if (
+            !routeId &&
             response &&
             (response?.data?.statusCode === 404 ||
                 response?.data?.statusCode === 400 ||
                 responseFromUpdate.data?.statusCode >= 400)
         ) {
-            errorMessage =
-                'Route could not be updated. Please try again later.';
+            errorMessage = I18n.t('dataAction.routeData.updateRouteError');
             await removePrivateMapData(routeId);
             return {
                 data: null,

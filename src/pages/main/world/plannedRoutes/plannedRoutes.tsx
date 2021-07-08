@@ -20,6 +20,7 @@ import EmptyList from './emptyList';
 import styles from './style';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
+import { RegularStackRoute } from '../../../../navigation/route';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -62,7 +63,7 @@ const PlannedRoutes: React.FC<IProps> = ({
 
     const onPressTileHandler = (mapID?: string) => {
         navigation.navigate({
-            name: 'RouteDetailsScreen',
+            name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
             params: {mapID: mapID, private: false, favourite: true},
         });
     };
@@ -107,6 +108,7 @@ const PlannedRoutes: React.FC<IProps> = ({
                 mapID={activeMapID}
                 onPressCancel={() => onPressHandler(false)}
                 backdropStyle={styles.backdrop}
+                isFavourite
             />
             <View style={styles.horizontalSpace}>
                 <FlatList

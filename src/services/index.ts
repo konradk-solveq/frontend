@@ -18,10 +18,11 @@ export {
     getRefreshSessionService,
     registerMobileDevice,
 } from './authService';
-export {getAppConfigService} from './appService';
 export {
+    getAppConfigService,
     getAppTermsAndConditionsService,
     getNewRegulationsService,
     getPolicyService,
     getRegulationService,
-} from './appServices';
+    getFaqService,
+} from './appService';

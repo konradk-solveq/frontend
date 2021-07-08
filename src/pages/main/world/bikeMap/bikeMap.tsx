@@ -20,6 +20,7 @@ import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../../sharedComponents/loader/loader';
 
 import styles from './style';
+import { RegularStackRoute } from '../../../../navigation/route';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -58,7 +59,7 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
     const onPressTileHandler = useCallback(
         (mapID?: string) => {
             navigation.navigate({
-                name: 'RouteDetailsScreen',
+                name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
                 params: {mapID: mapID, private: false},
             });
         },

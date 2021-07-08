@@ -21,15 +21,18 @@ import {
     trackerLoadingSelector,
 } from '../../../../storage/selectors/routes';
 import {
+    abortSyncCurrentRouteData,
     clearError,
     syncCurrentRouteData,
 } from '../../../../storage/actions/routes';
 
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
+import PoorConnectionModal from '../../../../sharedComponents/modals/poorConnectionModal/poorConnectionModal';
 
 enum Action {
     next = 'next',
     prev = 'prev',
+    home = 'home',
 }
 
 interface Props {
@@ -56,24 +59,30 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const [show, setShow] = useState(true);
     const randomNum = () => 1;
     // const randomNum = () => Math.floor(Math.random() * 2);
-    const [titleType, setTitleType] = useState(randomNum());
-
-    const [breakTime, setBreakTime] = useState(1551500);
-
+    const [titleType, setTitleType] = useState(1);
     const [goForward, setGoForward] = useState('');
 
-    useEffect(() => {
+    const setShowVisible = useCallback(() => {
         setShow(true);
-        props.navigation.addListener('focus', () => {
-            setShow(true);
-        });
-        props.navigation.addListener('blur', () => {
-            setTimeout(() => {
-                setShow(false);
-                setTitleType(randomNum());
-            }, 300);
-        });
-    }, [props.navigation]);
+    }, []);
+
+    const setShowHidden = useCallback(() => {
+        setTimeout(() => {
+            setShow(false);
+            setTitleType(randomNum());
+        }, 300);
+    }, []);
+
+    useEffect(() => {
+        setShowVisible();
+        props.navigation.addListener('focus', setShowVisible);
+        props.navigation.addListener('blur', setShowHidden);
+
+        return () => {
+            props.navigation.removeListener('focus', setShowVisible);
+            props.navigation.removeListener('blur', setShowHidden);
+        };
+    }, [props.navigation, setShowHidden, setShowVisible]);
 
     useEffect(() => {
         const t = setTimeout(() => {
@@ -88,6 +97,11 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const onGoForward = useCallback(
         (prev?: boolean) => {
             dispatch(clearError());
+            console.log(goForward);
+            if (goForward === Action.home) {
+                navigation.navigate(RegularStackRoute.MAIN_MENU_SCREEN);
+                return;
+            }
             if (goForward === Action.next && !prev) {
                 navigation.navigate({
                     name: RegularStackRoute.EDIT_DETAILS_SCREEN,
@@ -105,7 +119,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         if (!isSyncData && goForward) {
-            if (error?.message) {
+            if (error?.message && error?.statusCode >= 400) {
                 Alert.alert('', error.message, [
                     {
                         text: 'Ok',
@@ -117,30 +131,36 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
             onGoForward();
         }
-    }, [error.message, isSyncData, onGoForward, goForward]);
+    }, [error?.statusCode, isSyncData, onGoForward, goForward]);
 
     const heandleSaveDistance = ratio => {
         let d = route?.params?.distance;
+
         if (typeof d === 'undefined') {
-            d = 1;
+            d = 0.001;
         } else {
             d = Number(d.replace(',', '.'));
         }
-        let res = Math.floor(d / ratio);
-        if (res < 1) {
-            res = 1;
+
+        let res = d * (ratio / 100);
+        if (res < 0) {
+            res = 0;
         }
-        return res;
+
+        return res.toFixed(1).replace('.', ',');
     };
 
     const heandleGetTitleType = () => {
         if (titleType == 0) {
             let num = heandleSaveDistance(23);
             return (
-                ' ' + num + ' ' + (num == 1 ? trans.type_1[0] : trans.type_1[1])
+                ' ' +
+                num +
+                ' ' +
+                (num === 1 ? trans.type_1[0] : trans.type_1[1])
             );
         } else {
-            let num = heandleSaveDistance(14.3);
+            let num = heandleSaveDistance(5);
             return ' ' + num + ' ' + trans.type_2;
         }
     };
@@ -150,8 +170,20 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
         dispatch(syncCurrentRouteData());
     };
 
+    const onCancelRouteHandler = (forward: string) => {
+        setGoForward(forward);
+        dispatch(abortSyncCurrentRouteData());
+    };
+
     if (isSyncData) {
-        return <Loader />;
+        return (
+            <>
+                <Loader />
+                <PoorConnectionModal
+                    onAbort={() => onCancelRouteHandler(Action.home)}
+                />
+            </>
+        );
     }
 
     return (

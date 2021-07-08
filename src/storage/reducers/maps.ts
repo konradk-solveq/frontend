@@ -5,9 +5,11 @@ import * as actionTypes from '../actions/actionTypes';
 import {MapType} from '../../models/map.model';
 import {MapPagination} from '../../interfaces/api';
 
-interface MapsState {
+export interface MapsState {
     maps: MapType[];
+    totalMaps: number | null;
     privateMaps: MapType[];
+    totalPrivateMaps: number | null;
     plannedMaps: MapType[];
     paginationCoursor: MapPagination;
     mapToAddId: string;
@@ -23,7 +25,9 @@ interface MapsState {
 
 const initialStateList: MapsState = {
     maps: [],
+    totalMaps: null,
     privateMaps: [],
+    totalPrivateMaps: null,
     plannedMaps: [],
     paginationCoursor: {},
     paginationCoursorPrivate: {},
@@ -78,6 +82,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 loading: false,
                 maps: newMaps,
                 paginationCoursor: action.paginationCoursor,
+                totalMaps: action.totalMaps,
                 statusCode: 200,
                 refresh: action.refresh,
             };
@@ -96,6 +101,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 loading: false,
                 privateMaps: newPrivateMaps,
                 paginationCoursorPrivate: action.paginationCoursor,
+                totalPrivateMaps: action.totalPrivateMaps,
                 statusCode: 200,
                 refresh: action.refresh,
             };
@@ -188,7 +194,7 @@ const persistConfig = {
     key: 'maps',
     storage: AsyncStorage,
     whitelist: [
-        'maps, favourites, ownes, privateMaps, paginationCoursorPrivate',
+        'maps, favourites, ownes, privateMaps, plannedMaps, paginationCoursorPrivate, paginationCoursorPlanned, totalMaps, totalPrivateMaps',
     ],
     timeout: 20000,
 };

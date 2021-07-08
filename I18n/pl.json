@@ -7,7 +7,11 @@
         "title_2": "Sprawdź najbliższy przegląd",
         "text_2": "Od dziś nie zapomnisz o\u00a0przeglądach gwarancyjnych i\u00a0okresowych. Podpowiemy Ci\u00a0kiedy udać się do\u00a0serwisu oraz jaki zakres czynności powinien zostać wykonywany w\u00a0ramach każdego z\u00a0przeglądów.",
         "title_3": "Znajdź najbliższy punkt serwisowy",
-        "text_3": "Jeśli Twój rower nie jest w pełni sprawny lub wymaga okresowego przeglądu nie zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów."
+        "text_3": "Jeśli Twój rower nie jest w\u00a0pełni sprawny lub wymaga okresowego przeglądu nie\u00a0zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów.",
+        "title_4": "Nagrywaj trasy",
+        "text_4": "Jeździsz amatorsko lub wyczynowo na\u00a0rowerze, dołącz do\u00a0drużyny KROSS. Nagrywaj przejechane kilometry w\u00a0aplikacji, a\u00a0najciekawsze trasy publikuj na\u00a0Mapie Rowerowej.",
+        "title_5": "Odkrywaj ciekawe miejsca",
+        "text_5": "Nie masz pomysłu na\u00a0wycieczkę rowerową -\u00a0sprawdź trasy rekomendowane przez KROSS. Wyszukaj trasy na\u00a0Mapie Rowerowej i\u00a0pobierz te, z\u00a0którymi chcesz się zmierzyć."
     },
     "GetToKnowEachOther": {
         "title": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
@@ -76,6 +80,10 @@
             "hyper": "kross.eu"
         },
         {
+            "url": "https://kross.eu/",
+            "hyper": "kross.eu"
+        },
+        {
             "url": "mailto:kross@kross.pl",
             "hyper": "kross@kross.pl"
         },
@@ -110,14 +118,22 @@
         {
             "url": "https://www.kross.pl.rgulamin",
             "hyper": "Regulamin Aplikacji Mobilnej"
+        },
+        {
+            "url": "https://play.google.com/store/apps/details?id=pl.kross.mykross",
+            "hyper": "Aplikacja myKROSS - Android"
+        },
+        {
+            "url": "https://apps.apple.com/pl/app/mykross/id1561981216",
+            "hyper": "Aplikacja myKROSS - iOS"
         }
     ],
     "newRegulations": {
         "version": "1.0.0",
-        "type": "info",
-        "header": "Regulamin",
-        "title": "Od 1 czerwca 2021 zmieniamy regulamin aplikacji.",
-        "text": "Sprawdź zmiany i nowości, które wprowadzamy w http://kross.eu.",
+        "header": ["Informacja", "Regulamin"],
+        "btnOk": "DALEJ",
+        "btnDontAccept": "NIE AKCEPTUJĘ",
+        "btnAccept": "DALEJ",
         "urls": [{
                 "url": "http://regulations.eu",
                 "hyper": "Regulaminu"
@@ -129,11 +145,8 @@
             {
                 "url": "http://informUs.eu",
                 "hyper": "poinformuj nas"
-            },
-        ],
-        "btnOk": "DALEJ",
-        "btnDontAccept": "NIE AKCEPTUJĘ",
-        "btnAccept": "AKCEPTUJĘ"
+            }
+        ]
     },
     "BikeData": {
         "header": "Identyfikacja roweru",
@@ -143,25 +156,6 @@
             "title": "Producent",
             "list": "Wybierz producenta",
             "listHeader": "Producent ramy",
-            "listData": [
-                "BTWIN",
-                "Cannondale",
-                "Canyon",
-                "Cube",
-                "Fuji",
-                "Giant",
-                "Kellys",
-                "KROSS",
-                "Merida",
-                "Rockrider",
-                "Santa Cruz",
-                "Scott",
-                "Specialized",
-                "Trek",
-                "Triban",
-                "Woom"
-            ],
-            "listDataLast": "Inny",
             "other": {
                 "header": "Nazwa producenta",
                 "text": "Podaj nazwę producenta",
@@ -367,7 +361,8 @@
             "emptyStateTitle": "Nie masz nagranych tras",
             "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
             "emptyStateButton": "Pobierz trasę",
-            "defaultUserName": "Rowerzysto"
+            "defaultUserName": "Rowerzysto",
+            "routesNumberTitle": "Ilość nagranych tras:"
         }
     },
     "MainRoutesMap": {
@@ -543,15 +538,23 @@
         "app": "O aplikacji",
         "regulations": "Regulamin",
         "privacyPolicy": "Polityka prywatności",
+        "help": "Pomoc",
         "contact": "Kontakt"
+    },
+    "Help": {
+        "header": "Pomoc"
     },
     "AboutApp": {
         "header": "O aplikacji",
-        "title": "myKROSS to aplikacja dla wszystkich pasjonatów jazdy rowerem.",
-        "text_1": "Aplikacja myKROSS powstała z myślą o rowerzystach przemierzających kilkanaście, kilkadziesiąt, a nawet kilkaset kilometrów miesięcznie, poszukujących rzetelnej informacji o swoim rowerze oraz informacji jak zadbać o jego stan.",
-        "text_2": "Wystarczy podać numer ramy swojego roweru, a aplikacja sprawdzi czy jest to rower marki KROSS czy też innego producenta i umożliwi dodanie go do listy rowerów.\n\nW aplikacji prezentowane są podstawowe dane zarejestrowanego roweru, np. informacje o numerze ramy, modelu czy producencie. Dodatkowo dla rowerów KROSS można podejrzeć pełną specyfikację ze szczegółowymi informacjami o ramie i widelcu, elementach napędu, kołach, hamulcach, itp.",
-        "text_3": "W zależności od producenta roweru aplikacja umożliwia też dostęp do informacji o najbliższych przeglądach gwarancyjnych, okresowych czy sezonowych. Co więcej, każdy typ przeglądu zawiera szczegółowy wykaz czynności jakie powinny zostać podczas niego wykonane.\n\nmyKROSS pomaga również w zlokalizowaniu najbliższego punktu serwisowego lub sklepu rowerowego rekomendowanego przez KROSS, gdzie można wykonać wymagane przeglądy lub przygotować rower do sezonu rowerowego.\n\nŻyczymy udanej jazdy!",
-        "signature": "Zespół KROSS"
+        "title": "myKROSS to\u00a0aplikacja dla wszystkich pasjonatów jazdy rowerem.",
+        "text_1": "Aplikacja myKROSS powstała z\u00a0myślą o\u00a0rowerzystach przemierzających kilkanaście, kilkadziesiąt, a\u00a0nawet kilkaset kilometrów miesięcznie. Osób, które poszukują rzetelnej informacji o\u00a0swoim rowerze, o\u00a0tym jak zadbać o\u00a0jego stan, a\u00a0przede wszystkim chcących stać się inspiracją dla innych poprzez współudział w\u00a0tworzeniu Mapy Rowerowej.",
+        "text_1b": "Dzięki naklejce NFC umieszczonej na\u00a0ramie roweru KROSS aplikacja w\u00a0szybki sposób doda go do\u00a0listy rowerów. Natomiast każdy Użytkownik, także posiadający rower innego producenta, ma\u00a0możliwość dodania go\u00a0ręcznie w\u00a0aplikacji. W\u00a0przypadku posiadania większej liczby rowerów, każdy kolejny można dodać do\u00a0listy w\u00a0taki sam sposób.",
+        "text_2": "Jedną z\u00a0podstawowych funkcji aplikacji myKROSS jest nagrywanie tras. Licznik rejestrujący parametry jazdy na\u00a0bieżąco informuje Rowerzystę o\u00a0pokonanym dystansie, prędkości oraz czasie. Dodatkowo w\u00a0trakcie jazdy można obserwować ślad swojej trasy na\u00a0mapie, a\u00a0po jej zakończeniu, ślad trasy wraz ze\u00a0wszystkimi zarejestrowanymi parametrami zostaje zapisany na\u00a0liście „Moje trasy”.",
+        "text_3": "Dla tych, którzy zdecydują się podzielić swoimi trasami z\u00a0innymi powstała Mapa Rowerowa. To\u00a0katalog wszystkich opublikowanych przez Rowerzystów tras. Zawierają one ciekawostki i\u00a0zdjęcia z wycieczki lub treningu. Dzięki prostym a\u00a0zarazem funkcjonalnym filtrom można w\u00a0łatwy sposób wyszukać interesujące trasy, a\u00a0następnie pobrać je\u00a0do\u00a0swoich „Planowanych” tras i\u00a0przejechać na\u00a0własnym rowerze.",
+        "text_4": "W\u00a0zależności od\u00a0producenta roweru aplikacja myKROSS umożliwia także dostęp do\u00a0informacji o\u00a0najbliższych przeglądach gwarancyjnych, okresowych czy sezonowych. Co\u00a0więcej, każdy typ przeglądu zawiera szczegółowy wykaz czynności jakie powinny zostać wykonane. Dodatkowo właściciele rowerów KROSS mogą zapoznać się ze\u00a0szczegółowymi informacjami o\u00a0ramie i\u00a0widelcu, elementach napędu, kołach, hamulcach,\u00a0itp.",
+        "text_4b": "myKROSS pomaga również w zlokalizowaniu najbliższego punktu serwisowego lub sklepu rowerowego rekomendowanego przez KROSS, gdzie można wykonać wymagane przeglądy lub przygotować rower do\u00a0sezonu rowerowego.",
+        "signature_1": "Życzymy udanej jazdy!",
+        "signature_2": "Zespół KROSS"
     },
     "Contact": {
         "header": "Kontakt",
@@ -584,7 +587,7 @@
         "place": "Miejsce zakupu",
         "btn": "POBIERZ GWARANCJĘ"
     },
-    "RewiewsDetails": {
+    "ReviewsDetails": {
         "header": "Przegląd",
         "daysLeft": [
             "pozostało",
@@ -606,6 +609,12 @@
         "tripTimeSufix": "h",
         "pausePrefix": "czas przerw",
         "pauseSufix": "h"
+    },
+    "PublishPoorConnectionPage": {
+        "title": "Daj nam jeszcze chwilę",
+        "content": "Zapisywanie trasy może potrwać dłużej niż zwykle, np. gdy zasięg internetu jest słaby",
+        "cancelBtn": "Przerwij zapis trasy",
+        "continueBtn": "Wróć do zapisu trasy"
     },
     "PublishThankYouPage": {
         "defaultName": "Rowerzysto",
@@ -647,14 +656,24 @@
         "apiError": "Wystąpił błąd podczas łączenia z serwerem, spróbuj ponownie",
         "generalError": "Wystąpił błąd, spróbuj ponownie",
         "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem",
+        "noInternetConnection": "Brak połączenia z internetem lub jest ono niestabilne.",
         "routeData": {
             "defaultRouteName": "Trasa z dnia",
-            "defaultAuthorName": "Rowerzysta"
+            "defaultAlternativeRouteName": "Trasa {{number}} z dnia",
+            "defaultAuthorName": "Rowerzysta",
+            "removeRouteError": "Trasa nie została usunięta. Spróbuj ponownie.",
+            "createRouteError": "Trasa nie została utworzona. Spróbuj ponownie.",
+            "updateRouteError": "Trasa nie została zaktualizowana. Spróbuj ponownie.",
+            "routeLengthError": "Trasa nie została zapisana. Jest zbyt krótka, minimalna długość powinna wynosić co najmniej {{value}} metrów."
+        },
+        "mapData": {
+            "publishError": "Trasa mie została opublikowana. Spróbuj ponownie później.",
+            "fileUploadError": "Plik [ {{value}} ] nie został wysłany. Spróbuj ponownie później."
         }
     },
     "Geolocation": {
         "notification": {
-            "title": "Nagrywanie trasy"
+            "title": "Pobieranie lokalizacji"
         }
     },
     "aaaaaaa-aaaaaa": "_____"

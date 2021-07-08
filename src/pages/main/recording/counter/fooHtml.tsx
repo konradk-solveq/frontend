@@ -290,4 +290,4 @@ const setValues = v => {
     countersUpdate();
 };
 
-</script>`
+</script>`;

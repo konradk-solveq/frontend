@@ -1,4 +1,4 @@
-export {default as instance, isCancel, source} from './api';
+export {default as instance, isCancel, source, setUserAgentHeader} from './api';
 export {getBike, getGenericBikeData, getBikesList} from './bikes';
 export {getPlaces} from './places';
 export {
@@ -21,5 +21,11 @@ export {
     refreshSession,
     registerDevice,
 } from './auth';
-export {getConfig} from './app';
-export {getTermsAndConditions, getPolicy, getRegulation} from './app';
+export {
+    getTermsAndConditions,
+    getPolicy,
+    getRegulation,
+    getFaq,
+    getConfig,
+    checkInternetConnectionQuality,
+} from './app';

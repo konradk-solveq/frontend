@@ -74,7 +74,7 @@ const ServiceMapBtn: React.FC<Props> = (props: Props) => {
                     region={props.region}>
                     {props.location && (
                         <Marker
-                        anchor={{x: 0.5, y: 0.5}}
+                            anchor={{x: 0.5, y: 0.5}}
                             coordinate={{
                                 latitude: props.location.latitude,
                                 longitude: props.location.longitude,

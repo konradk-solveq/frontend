@@ -16,4 +16,4 @@ const trans = {
     btnCancel: 'ANULUJ',
     btnBreak: 'PRZERWIJ',
 };
-</script>`
+</script>`;

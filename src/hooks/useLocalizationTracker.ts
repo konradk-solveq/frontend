@@ -73,7 +73,7 @@ const useLocalizationTracker = (persist: boolean) => {
 
     const onPersistData = useCallback(
         async (d: number) => {
-            if (d - lastDistance < 150) {
+            if (d - lastDistance < 1500) {
                 return;
             }
 
@@ -86,40 +86,48 @@ const useLocalizationTracker = (persist: boolean) => {
         [dispatch, lastDistance, averageSpeed],
     );
 
-    const stopTracker = async () => {
-        /* TODO: error */
-        deactivateKeepAwake();
-        dispatch(stopCurrentRoute());
-        dispatch(persistCurrentRouteData());
-        const state = await stopBackgroundGeolocation();
-        if (!state.enabled) {
-            setIsActive(false);
-        }
-    };
+    const stopTracker = useCallback(
+        async (omitPersist?: boolean) => {
+            /* TODO: error */
+            deactivateKeepAwake();
+            dispatch(stopCurrentRoute(omitPersist));
+            if (!omitPersist) {
+                dispatch(persistCurrentRouteData());
+            }
+            const state = await stopBackgroundGeolocation();
+            if (!state.enabled) {
+                setIsActive(false);
+            }
+        },
+        [dispatch],
+    );
 
-    const startTracker = async (keep?: boolean, routeIdToFollow?: string) => {
-        speed = [];
-        /* TODO: error */
-        const state = await getBackgroundGeolocationState();
+    const startTracker = useCallback(
+        async (keep?: boolean, routeIdToFollow?: string) => {
+            speed = [];
+            /* TODO: error */
+            const state = await getBackgroundGeolocationState();
 
-        if (state.enabled && !keep) {
-            await stopTracker();
-        }
+            if (state.enabled && !keep) {
+                await stopTracker();
+            }
 
-        setIsActive(true);
-        activateKeepAwake();
+            setIsActive(true);
+            activateKeepAwake();
 
-        const currRoute = await startCurrentRoute(routeIdToFollow);
-        const routeID = keep && currentRouteId ? currentRouteId : currRoute.id;
-        await startBackgroundGeolocation(routeID, keep);
-        if (!keep) {
-            dispatch(startRecordingRoute(currRoute, keep));
-        }
-    };
+            const currRoute = await startCurrentRoute(routeIdToFollow);
+            const routeID =
+                keep && currentRouteId ? currentRouteId : currRoute.id;
+            await startBackgroundGeolocation(routeID, keep);
+            if (!keep) {
+                dispatch(startRecordingRoute(currRoute, keep));
+            }
+        },
+        [dispatch, currentRouteId, stopTracker],
+    );
 
     const onPauseTracker = () => {
         setIsActive(false);
-        resumeTracingLocation();
         pauseTracingLocation();
         setTrackerData(prev => {
             if (prev) {
@@ -133,8 +141,8 @@ const useLocalizationTracker = (persist: boolean) => {
     };
 
     const onStartTracker = async () => {
-        await resumeTracingLocation();
         setIsActive(true);
+        await resumeTracingLocation();
     };
 
     useEffect(() => {
@@ -193,7 +201,8 @@ const useLocalizationTracker = (persist: boolean) => {
                     setCurrentAverageSpeed(parseFloat(aSpeed));
 
                     if (persist) {
-                        onPersistData(d?.odometer);
+                        /* TODO: High disk usage - to verify and eventually delete */
+                        // onPersistData(d?.odometer);
                     }
                 });
             }, 1000);

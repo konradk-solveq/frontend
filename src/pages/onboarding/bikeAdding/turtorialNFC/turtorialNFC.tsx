@@ -32,6 +32,7 @@ import {setBikesListByFrameNumber} from '../../../../storage/actions';
 import Loader from '../loader/loader';
 import ScanModal from './scanModal.android';
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
+import {BothStackRoute} from '../../../../navigation/route';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -76,14 +77,14 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                 await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
                 setStartScanNFC(false);
                 props.navigation.navigate({
-                    name: 'BikeSummary',
+                    name: BothStackRoute.BIKE_SUMMARY_SCREEN,
                     params: {frameNumber: trimmedInputFrame},
                 });
                 return;
             } catch (error) {
                 if (error.notFound) {
                     props.navigation.navigate({
-                        name: 'BikeData',
+                        name: BothStackRoute.BIKE_DATA_SCREEN,
                         params: {frameNumber: trimmedInputFrame},
                     });
                     return;
@@ -256,7 +257,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                             title={trans.btnHand}
                             onpress={() =>
                                 props.navigation.navigate({
-                                    name: 'AddingByNumber',
+                                    name: BothStackRoute.ADDING_BY_NUMBER_SCREEN,
                                     params: {emptyFrame: true},
                                 })
                             }

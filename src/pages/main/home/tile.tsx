@@ -19,7 +19,7 @@ interface Props {
     style?: any;
 }
 
-const AddBike: React.FC<Props> = ({
+const Tile: React.FC<Props> = ({
     title,
     description,
     btnText,
@@ -159,4 +159,4 @@ const AddBike: React.FC<Props> = ({
     );
 };
 
-export default AddBike;
+export default Tile;

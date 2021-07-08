@@ -22,11 +22,12 @@ const timer = (time: number) => {
 };
 
 const simplyTimer = (time: number) => {
-    let min = Math.floor((time + 1000) / (1000 * 60)) % 60;
+    const t = isNaN(time) ? 0 : time;
+    let min = Math.floor((t + 1000) / (1000 * 60)) % 60;
     if (min < 0) {
         min = 0;
     }
-    let hou = Math.floor((time + 1000) / (1000 * 60 * 60));
+    let hou = Math.floor((t + 1000) / (1000 * 60 * 60));
     if (hou < 0) {
         hou = 0;
     }

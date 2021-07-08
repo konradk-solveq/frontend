@@ -13,6 +13,7 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../../helpers/layoutFoo';
+import {RegularStackRoute} from '../../../../navigation/route';
 
 interface Props {
     navigation: any;
@@ -177,7 +178,9 @@ const BikeParams: React.FC<Props> = (props: Props) => {
             </ScrollView>
 
             <StackHeader
-                onpress={() => props.navigation.navigate('TabMenu')}
+                onpress={() =>
+                    props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
+                }
                 inner={trans.header}
                 getHeight={setHeadHeightt}
             />

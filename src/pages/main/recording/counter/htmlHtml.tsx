@@ -4,4 +4,4 @@ export default `
     <div id="alert1" class="alert"></div>
     <div id="alert2" class="alert"></div>
 </div>
-`
+`;

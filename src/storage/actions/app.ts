@@ -11,10 +11,11 @@ import {AppConfigI} from '../../models/config.model';
 
 import logger from '../../utils/crashlytics';
 import {I18n} from '../../../I18n/I18n';
-import {getAppConfigService} from '../../services';
+import {getAppConfigService, getFaqService} from '../../services';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {fetchPlannedMapsList} from './maps';
 import {
+    FaqType,
     RegulationType,
     TermsAndConditionsType,
 } from '../../models/regulations.model';
@@ -22,10 +23,25 @@ import {
     getAppTermsAndConditionsService,
     getNewRegulationsService,
 } from '../../services';
+import {setUserAgentHeader} from '../../api';
+import {
+    NetInfoCellularGeneration,
+    NetInfoStateType,
+} from '@react-native-community/netinfo';
+import {AppState} from '../reducers/app';
+import {RoutesState} from '../reducers/routes';
 
-export const setAppStatus = (status: boolean) => ({
+export const setAppStatus = (
+    isOffline: boolean,
+    connectionType: NetInfoStateType,
+    cellularGeneration: NetInfoCellularGeneration,
+    goodConnectionQuality: boolean,
+) => ({
     type: actionTypes.SET_APP_NETWORK_STATUS,
-    isOffline: status,
+    isOffline: isOffline,
+    connectionType: connectionType,
+    cellularGeneration: cellularGeneration,
+    goodConnectionQuality: goodConnectionQuality,
 });
 
 export const setAppConfig = (config: AppConfigI) => ({
@@ -66,6 +82,11 @@ export const setAppPolicy = (policy: {
     policy: policy,
 });
 
+export const setAppFaq = (faq: FaqType[]) => ({
+    type: actionTypes.SET_APP_FAQ,
+    faq: faq,
+});
+
 export const setSyncStatus = (status: boolean) => ({
     type: actionTypes.SET_SYNC_APP_DATA_STATUS,
     status: status,
@@ -85,7 +106,7 @@ export const fetchAppConfig = (
     noLoader?: boolean,
 ): AppThunk<Promise<void>> => async dispatch => {
     if (!noLoader) {
-        dispatch(setAppStatus(true));
+        dispatch(setSyncStatus(true));
     }
     try {
         const response = await getAppConfigService();
@@ -98,10 +119,64 @@ export const fetchAppConfig = (
         dispatch(setAppConfig(response.data));
         dispatch(clearAppError());
         if (!noLoader) {
-            dispatch(setAppStatus(false));
+            dispatch(setSyncStatus(false));
         }
     } catch (error) {
         logger.log('[fetchAppConfig]');
+        const err = convertToApiError(error);
+        logger.recordError(err);
+
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setSyncError(errorMessage, 500));
+    }
+};
+
+export const fetchAppFaq = (
+    noLoader?: boolean,
+): AppThunk<Promise<void>> => async dispatch => {
+    if (!noLoader) {
+        dispatch(setSyncStatus(true));
+    }
+    try {
+        const response = await getFaqService();
+        if (response.error || response.status >= 400 || !response.data) {
+            dispatch(setSyncError(response.error, response.status));
+            return;
+        }
+
+        const links = [
+            {
+                url:
+                    'https://play.google.com/store/apps/details?id=pl.kross.mykross',
+                hyper: 'Aplikacja myKROSS - Android',
+            },
+            {
+                url: 'https://apps.apple.com/pl/app/mykross/id1561981216',
+                hyper: 'Aplikacja myKROSS - iOS',
+            },
+        ];
+
+        response.data.faq.forEach(element => {
+            links.forEach(
+                link =>
+                    (element.answer = element.answer.replace(
+                        link.hyper,
+                        link.url,
+                    )),
+            );
+
+            element.question = element.question.replace(
+                'https://kross.eu/',
+                'kross.eu',
+            );
+        });
+
+        dispatch(setAppFaq(response.data));
+        if (!noLoader) {
+            dispatch(setSyncStatus(false));
+        }
+    } catch (error) {
+        logger.log('[fetchAppFaq]');
         const err = convertToApiError(error);
         logger.recordError(err);
 
@@ -116,30 +191,50 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
 ) => {
     dispatch(setSyncStatus(true));
     try {
-        const {showedRegulations} = getState().app;
+        const {
+            isOffline,
+            internetConnectionInfo,
+            showedRegulations,
+        }: AppState = getState().app;
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(
+                setSyncError(I18n.t('dataAction.noInternetConnection'), 500),
+            );
+            dispatch(setSyncStatus(false));
+            return;
+        }
         const {sessionData} = getState().auth;
         const {onboardingFinished} = getState().user;
+        setUserAgentHeader();
 
         await dispatch(fetchAppRegulations(true));
         await dispatch(fetchAppConfig(true));
 
-        if (onboardingFinished && showedRegulations) {
+        const {currentRoute}: RoutesState = getState().routes;
+
+        /* Omit synch map data if recording is active */
+        const isRecordingActive = currentRoute?.isActive;
+
+        if (onboardingFinished && showedRegulations && !isRecordingActive) {
             await dispatch(fetchMapsList());
         }
 
-        if (sessionData?.access_token) {
+        if (sessionData?.access_token && !isRecordingActive) {
             dispatch(fetchPrivateMapsList());
             dispatch(fetchPlannedMapsList());
         }
 
-        if (onboardingFinished) {
+        if (onboardingFinished && !isRecordingActive) {
             dispatch(fetchGenericBikeData());
             dispatch(setBikesListByFrameNumbers());
         }
 
-        if (sessionData?.access_token) {
+        if (sessionData?.access_token && !isRecordingActive) {
             dispatch(syncRouteDataFromQueue());
         }
+
+        await dispatch(fetchAppFaq(true));
 
         dispatch(setSyncStatus(false));
     } catch (error) {
@@ -156,7 +251,7 @@ export const fetchAppRegulations = (
     noLoader?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     if (!noLoader) {
-        dispatch(setAppStatus(true));
+        dispatch(setSyncStatus(true));
     }
     try {
         const {terms, currentTerms} = getState().app;
@@ -169,8 +264,14 @@ export const fetchAppRegulations = (
         dispatch(setAppTerms(response.data));
 
         const newTerms = response.data;
-        const currVersion =
+        let currVersion =
             currentTerms.version || terms?.[terms?.length - 2]?.version;
+
+        /* TODO: temp solution  */
+        if (!currVersion) {
+            currVersion = newTerms?.[newTerms?.length - 2]?.version;
+        }
+
         const newestVersion =
             newTerms?.[newTerms?.length - 1]?.version ||
             terms?.[terms?.length - 1]?.version;
@@ -198,11 +299,10 @@ export const fetchAppRegulations = (
 
         dispatch(clearAppError());
         if (!noLoader) {
-            dispatch(setAppStatus(false));
+            dispatch(setSyncStatus(false));
         }
     } catch (error) {
         logger.log('[fetchAppRegulations]');
-        console.log('fetchAppRegulations', error);
         const err = convertToApiError(error);
         logger.recordError(err);
 

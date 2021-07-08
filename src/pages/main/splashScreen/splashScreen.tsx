@@ -11,6 +11,8 @@ import {
     getRelativeHeight,
 } from '../../../helpers/layoutFoo';
 import {TermsAndConditionsType} from '../../../models/regulations.model';
+import {setAppCurrentTerms} from '../../../storage/actions';
+import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
 
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
@@ -31,6 +33,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
     const isLoading = useAppSelector<boolean>(state => state.app.sync);
     const showed = useAppSelector<number>(state => state.app.showedRegulations);
     const [showNewRegulations, setShowNewRegulations] = useState<boolean>();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (data) {
@@ -40,20 +43,35 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                 ? Date.parse(data.publishDate)
                 : 0;
 
-            const condition1 =
-                Number(currentVersion) != Number(data.version) ||
-                !currentVersion;
+            const condition1: boolean =
+                currentVersion &&
+                Number(currentVersion) != Number(data.version);
 
-            const condition2 =
-                (!currentVersion ||
-                    Number(showed) < Number(currentVersion) + 0.5) &&
+            const condition2: boolean =
+                currentVersion &&
+                Number(showed) < Number(currentVersion) + 0.5 &&
                 showDate <= now &&
                 publishDate > now;
 
-            const condition3 =
+            const condition3: boolean =
                 Number(showed) < Number(data.version) && publishDate <= now;
 
-            setShowNewRegulations(condition1 && (condition2 || condition3));
+            const allCondition: boolean =
+                condition1 && (condition2 || condition3);
+
+            setShowNewRegulations(allCondition);
+
+            if (!allCondition) {
+                dispatch(
+                    setAppCurrentTerms({
+                        version: data.version, // do testów -> jak zmienisz na wersję niższ to mozna sprwdzić czy się wyświetli dla update-u
+                        showDate: data.showDate,
+                        publishDate: data.publishDate,
+                        title: data.title,
+                        text: data.text,
+                    }),
+                );
+            }
         }
     }, [currentVersion, showed, data]);
 
@@ -61,7 +79,9 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
         if (!isLoading) {
             const t = setTimeout(() => {
                 props.navigation.replace(
-                    showNewRegulations ? 'newRegulations' : 'MineMenu',
+                    showNewRegulations
+                        ? RegularStackRoute.NEW_REGULATIONS_SCREEN
+                        : BothStackRoute.MAIN_MENU_SCREEN,
                 );
             }, time);
             return () => {

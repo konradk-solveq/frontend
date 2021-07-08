@@ -2,8 +2,8 @@ import React from 'react';
 import {
     StyleSheet,
     Dimensions,
-    TouchableWithoutFeedback,
     View,
+    TouchableWithoutFeedback,
     Platform,
 } from 'react-native';
 import Svg, {G, Path} from 'react-native-svg';

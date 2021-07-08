@@ -65,7 +65,7 @@ svg {
     font-family: 'DIN2014Narrow-Light';
     font-size: 23px;
     fill: #555555;
-    transition: opacity .2s;
+    // transition: opacity .2s;
 }
 
 .hide {
@@ -106,7 +106,7 @@ svg {
     font-size: 23px;
     color: #313131;
     text-align: center;
-    transition: opacity .3s;
+    // transition: opacity .3s;
 }
 
 .cover {
@@ -118,4 +118,4 @@ svg {
 }
 
 </style>
-`
+`;

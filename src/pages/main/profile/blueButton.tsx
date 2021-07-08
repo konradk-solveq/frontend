@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-} from 'react-native';
-import Svg, { Path} from 'react-native-svg';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import Svg, {Path} from 'react-native-svg';
 
 import {
     setObjSize,

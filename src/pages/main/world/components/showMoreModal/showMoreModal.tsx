@@ -31,6 +31,7 @@ interface IProps {
     onPressCancel: () => void;
     removeFav?: boolean;
     isPrivate?: boolean;
+    isFavourite?: boolean;
     backdropStyle?: ViewStyle;
 }
 
@@ -40,6 +41,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     showModal,
     removeFav,
     isPrivate,
+    isFavourite,
     backdropStyle,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
@@ -49,8 +51,20 @@ const ShowMoreModal: React.FC<IProps> = ({
     const onDetailsButtonPressedHandler = () => {
         onPressCancel();
         navigation.navigate({
-            name: 'RouteDetailsScreen',
+            name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
             params: {mapID: mapID, private: isPrivate},
+        });
+    };
+
+    const onMapDetailsButtonPressedHandler = () => {
+        onPressCancel();
+        navigation.navigate({
+            name: RegularStackRoute.MAP_PREVIEW_SCREEN,
+            params: {
+                mapId: mapID,
+                private: isPrivate,
+                favourite: isFavourite,
+            },
         });
     };
 
@@ -66,7 +80,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     const onStartRouteHandler = () => {
         onPressCancel();
         navigation.navigate({
-            name: RegularStackRoute.COUNTER_ROUTE_SCREEN,
+            name: RegularStackRoute.COUNTER_SCREEN,
             params: {mapID: mapID, private: isPrivate},
         });
     };
@@ -116,7 +130,13 @@ const ShowMoreModal: React.FC<IProps> = ({
                                 </Text>
                             </Pressable>
                         )}
-                        <Text style={styles.text}>{trans.showOnMapAction}</Text>
+                        <Pressable onPress={onMapDetailsButtonPressedHandler}>
+                            <Text style={styles.text}>
+                                <Text style={styles.text}>
+                                    {trans.showOnMapAction}
+                                </Text>
+                            </Text>
+                        </Pressable>
                         <Pressable onPress={onDetailsButtonPressedHandler}>
                             <Text style={styles.text}>
                                 {trans.routeDetailsAction}

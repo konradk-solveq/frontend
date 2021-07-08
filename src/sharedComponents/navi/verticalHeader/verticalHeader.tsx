@@ -1,9 +1,13 @@
-
-
-import React from "react";
-import { StyleSheet, Dimensions, TouchableWithoutFeedback, View, Text } from 'react-native';
+import React from 'react';
+import {
+    StyleSheet,
+    Dimensions,
+    TouchableWithoutFeedback,
+    View,
+    Text,
+} from 'react-native';
 import I18n from 'react-native-i18n';
-import Svg, { G, Path, Circle } from 'react-native-svg';
+import Svg, {G, Path, Circle} from 'react-native-svg';
 
 import AnimSvg from '../../../helpers/animSvg';
 import {
@@ -13,16 +17,14 @@ import {
     getWidthPx,
 } from '../../../helpers/layoutFoo';
 
-
 interface Props {
-    style?: any,
-    onpress: Function
-};
+    style?: any;
+    onpress: Function;
+}
 
 const ww = Dimensions.get('window').width;
 
 const VerticalHeader: React.FC<Props> = (props: Props) => {
-
     const background = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.8 40">
     <defs>
         <filter id="f1" x="-1" width="3" y="-1" height="3">
@@ -45,47 +47,51 @@ const VerticalHeader: React.FC<Props> = (props: Props) => {
     const styles = StyleSheet.create({
         container: {
             width: '100%',
-            height: (h*.8),
+            height: h * 0.8,
             // backgroundColor: "khaki",
         },
         headerBack: {
             position: 'absolute',
             width: ww,
             height: h,
-            marginBottom: getVerticalPx(40)
+            marginBottom: getVerticalPx(40),
         },
         headerBtn: {
             position: 'absolute',
             width: w,
             height: w,
             left: getCenterLeftPx(),
-            top: (h * .40) - (w / 2)
-        }
-    })
+            top: h * 0.4 - w / 2,
+        },
+    });
 
     return (
         <View style={[styles.container, props.style]}>
-
-            <AnimSvg
-                style={styles.headerBack}
-                source={background}
-            />
+            <AnimSvg style={styles.headerBack} source={background} />
 
             <View style={styles.headerBtn}>
-                <TouchableWithoutFeedback
-                    onPress={() => props.onpress()}
-                >
-                    <Svg viewBox="0 0 15.4 15.4" style={{ width: '100%', height: '100%' }}>
+                <TouchableWithoutFeedback onPress={() => props.onpress()}>
+                    <Svg
+                        viewBox="0 0 15.4 15.4"
+                        style={{width: '100%', height: '100%'}}>
                         <G transform="translate(-107.1 -21.8)">
-                            <Circle cx="114.8" cy="29.5" r="7.6" fill="#fdfdfd" />
-                            <Path fill="#313131" fill-rule="nonzero" d="M116.7 28.7a.3.3 0 00-.4 0l-1.5 1.5-1.4-1.5a.3.3 0 00-.5.4l1.7 1.7c.2.1.3.1.4 0l1.7-1.7c.1-.1.1-.3 0-.4z" />
+                            <Circle
+                                cx="114.8"
+                                cy="29.5"
+                                r="7.6"
+                                fill="#fdfdfd"
+                            />
+                            <Path
+                                fill="#313131"
+                                fill-rule="nonzero"
+                                d="M116.7 28.7a.3.3 0 00-.4 0l-1.5 1.5-1.4-1.5a.3.3 0 00-.5.4l1.7 1.7c.2.1.3.1.4 0l1.7-1.7c.1-.1.1-.3 0-.4z"
+                            />
                         </G>
                     </Svg>
                 </TouchableWithoutFeedback>
             </View>
-
         </View>
-    )
-}
+    );
+};
 
-export default VerticalHeader
+export default VerticalHeader;

@@ -1,22 +1,25 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import persistReducer from 'redux-persist/es/persistReducer';
 import * as actionTypes from '../actions/actionTypes';
-// import getVersion from '../../helpers/veriosn';
 
 import {AppConfigI} from '../../models/config.model';
 import {
+    FaqType,
     RegulationType,
     TermsAndConditionsType,
 } from '../../models/regulations.model';
+import {InternetConnectionInfoType} from '../../interfaces/internetConnection';
 
 export interface AppState {
     isOffline: boolean;
+    internetConnectionInfo: InternetConnectionInfoType;
     sync: boolean;
     error: string;
     statusCode: number;
     config: AppConfigI;
     terms: TermsAndConditionsType[];
     currentTerms: TermsAndConditionsType;
+    faq: {faq: FaqType[]} | {};
     showedRegulations: number | null;
     regulation: RegulationType | {};
     policy: RegulationType | {};
@@ -24,6 +27,9 @@ export interface AppState {
 
 const initialState: AppState = {
     isOffline: false,
+    internetConnectionInfo: {
+        goodConnectionQuality: true,
+    },
     sync: false,
     error: '',
     statusCode: 200,
@@ -37,12 +43,13 @@ const initialState: AppState = {
     },
     terms: [],
     currentTerms: {
-        version: '1',
+        version: undefined,
         showDate: undefined,
         publishDate: undefined,
         text: '',
         title: '',
     },
+    faq: {},
     showedRegulations: null,
     regulation: {},
     policy: {},
@@ -53,7 +60,12 @@ const appReducer = (state = initialState, action: any) => {
         case actionTypes.SET_APP_NETWORK_STATUS:
             return {
                 ...state,
-                isOffline: action.status,
+                isOffline: action.isOffline,
+                internetConnectionInfo: {
+                    connectionType: action.connectionType,
+                    cellularGeneration: action.cellularGeneration,
+                    goodConnectionQuality: action.goodConnectionQuality,
+                },
             };
         case actionTypes.SET_APP_CONFIG:
             return {
@@ -101,19 +113,21 @@ const appReducer = (state = initialState, action: any) => {
                 term1version < term2version
                     ? action.regulation.regulation1
                     : action.regulation.regulation2;
+            const newRegulations =
+                term1version > term2version
+                    ? action.regulation.regulation1
+                    : action.regulation.regulation2;
 
-            let result = oldRegulations;
+            let result;
 
             let lastTerm = state.terms[state.terms.length - 1];
             if (Date.parse(lastTerm?.publishDate) > Date.now()) {
-                const newRegulations =
-                    term1version > term2version
-                        ? action.regulation.regulation1
-                        : action.regulation.regulation2;
-
+                result = oldRegulations;
                 result.paragraph = result?.paragraph?.concat(
                     newRegulations?.paragraph,
                 );
+            } else {
+                result = newRegulations;
             }
 
             return {
@@ -144,18 +158,20 @@ const appReducer = (state = initialState, action: any) => {
                 term1version < term2version
                     ? action.policy.policy1
                     : action.policy.policy2;
+            const newPolicy =
+                term1version > term2version
+                    ? action.policy.policy1
+                    : action.policy.policy2;
 
-            let result = oldPolicy;
+            let result;
             let lastTerm = state.terms[state.terms.length - 1];
             if (Date.parse(lastTerm?.publishDate) > Date.now()) {
-                const newPolicy =
-                    term1version > term2version
-                        ? action.policy.policy1
-                        : action.policy.policy2;
-
+                result = oldPolicy;
                 result.paragraph = result?.paragraph?.concat(
                     newPolicy?.paragraph,
                 );
+            } else {
+                result = newPolicy;
             }
 
             return {
@@ -163,7 +179,11 @@ const appReducer = (state = initialState, action: any) => {
                 policy: result,
             };
         }
-
+        case actionTypes.SET_APP_FAQ:
+            return {
+                ...state,
+                faq: action.faq,
+            };
         case actionTypes.SET_SYNC_APP_DATA_STATUS:
             return {
                 ...state,
@@ -197,6 +217,7 @@ const persistConfig = {
         'policy',
         'currentTerms',
         'showedRegulations',
+        'faq',
     ],
     timeout: 20000,
 };

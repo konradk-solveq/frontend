@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import Svg, {Path} from 'react-native-svg';
 
 import {getWidthPxOf} from '../../../../../helpers/layoutFoo';
@@ -17,11 +18,12 @@ const TopBackBtn: React.FC<Props> = (props: Props) => {
             justifyContent: 'center',
             // backgroundColor: '#d8232a',
             padding: 9,
-            position: 'absolute',
+            // position: 'absolute',
             width: getWidthPxOf(40),
             height: getWidthPxOf(34),
             left: getWidthPxOf(30),
             top: getWidthPxOf(-2),
+            zIndex: 1,
         },
     });
 

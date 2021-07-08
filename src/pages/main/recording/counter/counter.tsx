@@ -1,25 +1,16 @@
 import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {
     StyleSheet,
-    SafeAreaView,
     View,
     Dimensions,
-    TouchableWithoutFeedback,
     Animated,
     Easing,
     Platform,
     StatusBar,
     Alert,
 } from 'react-native';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {WebView} from 'react-native-webview';
-import GetLocation from 'react-native-get-location';
-import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
-import CompassHeading from 'react-native-compass-heading';
-import {PERMISSIONS, request} from 'react-native-permissions';
-
-import Svg, {Path, Circle} from 'react-native-svg';
-
-import mapStyle from '../../../../sharedComponents/maps/styles';
 
 import I18n from 'react-native-i18n';
 
@@ -35,8 +26,6 @@ import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
 
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 import StackHeader from './stackHeader/stackHeader';
 
 import styleHtml from './styleHtml';
@@ -45,15 +34,19 @@ import transHtml from './transHtml';
 import counterHtml from './counterHtml';
 import fooHtml from './fooHtml';
 
-import gradient from './gradientSvg';
 import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {
     trackerActiveSelector,
     trackerStartTimeSelector,
 } from '../../../../storage/selectors/routes';
-import deepCopy from '../../../../helpers/deepCopy';
-import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
+import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
+import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
+import CounterGradient from './counterGradient';
+import MarkPointer from './markPointer';
+import CounterActionButtons from './counterActionButtons';
+import CounterMapView from './counterMapView';
+import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 
 const {width} = Dimensions.get('window');
 
@@ -62,13 +55,18 @@ interface Props {
     route: any;
 }
 
+const returnToPreviousScreen = (nav: any) => {
+    if (nav.canGoBack()) {
+        nav.goBack();
+        return;
+    }
+    nav.replace(BothStackRoute.MAIN_MENU_SCREEN);
+};
+
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans = I18n.t('MainCounter');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
-    const [location, serLocation] = useState(
-        null,
-    ); /* TODO: compare with useGetLocation - check if there is any significant difference */
 
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
@@ -77,14 +75,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const marginTopOnIos = Platform.OS === 'ios' ? statusBarHeight : 0;
     const [onMapLoaded, setOnMapLoaded] = useState(false);
 
-    const [compassHeading, setCompassHeading] = useState(0);
-    const mapRef = useRef();
-
-    const [myRoute, setMyRoute] = useState([]);
     const [myRouteNumber, setMyRouteNumber] = useState(0);
-    const [currentPosition, setCurrentPosition] = useState(0);
     const [pauseTime, setPauseTime] = useState(0);
-    const [foreignRoute, setForeignRoute] = useState(null);
 
     // trakowanie
     const {
@@ -96,109 +88,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         followedRouteId,
     } = useLocalizationTracker(true);
 
-    const mapData = useAppSelector(
-        favouriteMapDataByIDSelector(followedRouteId || route?.params?.mapID),
-    );
-
-    useEffect(() => {
-        if (mapData) {
-            const fRoute = mapData.path.map(e => {
-                return {
-                    latitude: e[0],
-                    longitude: e[1],
-                };
-            });
-            setForeignRoute(fRoute);
-        }
-    }, []);
-
-    useEffect(() => {
-        const degree_update_rate = 3;
-
-        CompassHeading.start(degree_update_rate, ({heading}) => {
-            setCompassHeading(heading);
-        });
-
-        return () => {
-            CompassHeading.stop();
-        };
-    }, []);
-
-    useEffect(() => {
-        if (mapRef.current && trackerData) {
-            const pos = {
-                latitude: trackerData.coords.lat,
-                longitude: trackerData.coords.lon,
-            };
-            mapRef.current.animateCamera(
-                {
-                    heading: compassHeading,
-                    center: pos,
-                },
-                {duration: 600},
-            );
-        }
-    }, [currentPosition, compassHeading]);
-
-    // dla pobrania lokalizacji
-    const [hasPermissions, setHasPermission] = useState(false);
-    const askLocationPermissionOnAndroid = async () => {
-        try {
-            request(
-                Platform.select({
-                    android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-                    ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
-                }),
-            ).then(res => {
-                if (res === 'granted') {
-                    setHasPermission(true);
-                }
-            });
-        } catch (error) {
-            console.log('location set error:', error);
-        }
-    };
-
-    const getCurrentLocationPositionHandler = useCallback(() => {
-        if (!hasPermissions && Platform.OS === 'android') {
-            askLocationPermissionOnAndroid();
-            return;
-        }
-        GetLocation.getCurrentPosition({
-            enableHighAccuracy: true,
-            timeout: 15000,
-        }).then(pos => {
-            serLocation(pos);
-        });
-    }, [hasPermissions]);
-
-    useEffect(() => {
-        getCurrentLocationPositionHandler();
-    }, [getCurrentLocationPositionHandler]);
-
     const bikeSelectorListPositionY = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
     ).current;
 
     useEffect(() => {
-        setJs(`setValues(${JSON.stringify(trackerData)});true;`);
-
-        if (trackerData?.coords && mapRef.current) {
-            const pos = {
-                latitude: trackerData.coords.lat,
-                longitude: trackerData.coords.lon,
-            };
-            setCurrentPosition(pos);
-
-            // zapisywanie trasy do vizualizacji
-            const newRure = deepCopy(myRoute);
-            if (typeof myRoute[myRouteNumber] === 'undefined') {
-                newRure[myRouteNumber] = [];
-            }
-            setTimeout(() => {
-                newRure[myRouteNumber].push(pos);
-                setMyRoute(newRure);
-            }, 400);
+        if (trackerData) {
+            setJs(`setValues(${JSON.stringify(trackerData)});true;`);
         }
     }, [trackerData]);
 
@@ -236,10 +132,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const animSvgRef = useRef();
     const setJs = (foo: string) => animSvgRef.current.injectJavaScript(foo);
 
-    const gradientRef = useRef();
-    const gradientJs = (foo: string) =>
-        gradientRef.current.injectJavaScript(foo);
-
     const [pageState, setPageState] = useState('start');
 
     const [leftBtnTile, setLeftBtnTile] = useState('');
@@ -265,42 +157,32 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     }, [onMapLoaded]);
 
     // zmiana stanu strony na lewym przycisku
-    const heandleLeftBtnClick = () => {
+    const heandleLeftBtnClick = useCallback(() => {
         switch (pageState) {
             case 'start':
-                {
-                    navigation.goBack();
-                }
+                returnToPreviousScreen(navigation);
                 break;
             case 'record':
-                {
-                    setPageState('pause');
-                    setJs('setPauseOn();true;');
-                }
+                setPageState('pause');
+                setJs('setPauseOn();true;');
                 break;
             case 'pause':
-                {
-                    setPageState('record');
-                    setJs('hideAlert();setPauseOff();true;');
+                setPageState('record');
+                setJs('hideAlert();setPauseOff();true;');
+                setMyRouteNumber(myRouteNumber + 1);
+                break;
+            case 'cancelText':
+                setPageState('record');
+                setJs('hideAlert();true;');
+                break;
+            case 'endMessage':
+                setPageState(pause ? 'pause' : 'record');
+                setJs('hideAlert();true;');
+                if (!pause) {
+                    setJs('start();setPauseOff();true;');
                     setMyRouteNumber(myRouteNumber + 1);
                 }
                 break;
-            case 'cancelText':
-                {
-                    setPageState('record');
-                    setJs('hideAlert();true;');
-                }
-                break;
-            case 'endMessage':
-                {
-                    setPageState(pause ? 'pause' : 'record');
-                    setJs('hideAlert();true;');
-                    if (!pause) {
-                        setJs('start();setPauseOff();true;');
-                        setMyRouteNumber(myRouteNumber + 1);
-                    }
-                }
-                break;
             default: {
                 Alert.alert('', 'błąd podpięcia funkcji pod przyciski', [
                     {
@@ -309,53 +191,46 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 ]);
             }
         }
-    };
+    }, [myRouteNumber, navigation, pageState, pause]);
+
+    const navigateToTHPPage = useCallback(() => {
+        navigation.navigate({
+            name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
+            params: {
+                distance: trackerData?.distance,
+                time: Date.now() - Date.parse(trackerStartTime.toUTCString()),
+                pause: pauseTime,
+            },
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [navigation, pauseTime, trackerStartTime]);
 
     // zmiana stanu strony na prawym przycisku
-    const heandleRightBtnClick = async () => {
+    const heandleRightBtnClick = useCallback(async () => {
         switch (pageState) {
             case 'start':
-                {
-                    setPageState('record');
-                    setJs('start();setPauseOff();true;');
-                    await startTracker(false, route?.params?.mapID);
-                }
+                setPageState('record');
+                setJs('start();setPauseOff();true;');
+                await startTracker(false, route?.params?.mapID);
                 break;
             case 'record':
-                {
-                    // await startTracker();
-                    setPageState('endMessage');
-                    setJs('setPauseOn();true;');
-                }
+                // await startTracker();
+                setPageState('endMessage');
+                setJs('setPauseOn();true;');
                 break;
             case 'pause':
-                {
-                    setPageState('endMessage');
-                    setJs('setPauseOn();true;');
-                }
+                setPageState('endMessage');
+                setJs('setPauseOn();true;');
                 break;
             case 'cancelText':
-                {
-                    await stopTracker();
-                    navigation.goBack();
-                }
+                await stopTracker(true);
+                returnToPreviousScreen(navigation);
                 break;
             case 'endMessage':
-                {
-                    // TODO
-                    await stopTracker();
-                    navigation.navigate({
-                        name: 'CounterThankYouPage',
-                        params: {
-                            distance: trackerData?.distance,
-                            time:
-                                Date.now() -
-                                Date.parse(trackerStartTime.toUTCString()),
-                            pause: pauseTime,
-                        },
-                    });
-                    // do ekranu zakończenia
-                }
+                // TODO
+                await stopTracker();
+                navigateToTHPPage();
+                // do ekranu zakończenia
                 break;
             default: {
                 Alert.alert('', 'błąd podpięcia funkcji pod przyciski', [
@@ -365,23 +240,32 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 ]);
             }
         }
-    };
+    }, [
+        navigation,
+        startTracker,
+        stopTracker,
+        navigateToTHPPage,
+        pageState,
+        route?.params?.mapID,
+    ]);
 
     // zmiana funckji strzałki headera
-    const heandleGoBackClick = () => {
+    const heandleGoBackClick = async () => {
         switch (pageState) {
             case 'start':
-                {
-                    navigation.goBack();
-                }
+                returnToPreviousScreen(navigation);
                 break;
             default:
-                {
-                    setPageState('cancelText');
-                }
+                setPageState('cancelText');
                 break;
         }
     };
+
+    useCustomBackNavButton(heandleGoBackClick, true);
+    useCustomSwipeBackNav(
+        heandleGoBackClick,
+        pageState !== 'start' && pageState !== 'cancelText',
+    );
 
     // zmiana funkcji przycisków i strzałki headera
     useEffect(() => {
@@ -478,13 +362,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             setJs('setMaxi();true;');
             animateElemsOnMapOff();
             setMapBtnPos(mapBtnPosMemo[0]);
-            gradientJs('show();true;');
             setMapOn(false);
         } else {
             setJs('setMini();true;');
             animateElemsOnMapOn();
             setMapBtnPos(mapBtnPosMemo[1]);
-            gradientJs('hide();true;');
             setMapOn(true);
         }
     };
@@ -496,9 +378,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             flex: 1,
         },
         map: {
-            width: '100%',
-            // height: mapBtnPos + mapBtnSize,
-            height: '100%',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: getHorizontalPx(414),
+            height: getVerticalPx(896) - statusBarHeight,
         },
         markWrap: {
             position: 'absolute',
@@ -534,14 +418,18 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             marginTop: marginTopOnIos,
             position: 'absolute',
         },
-        mapBtn: {
+        mapBtnContainer: {
             position: 'absolute',
             width: mapBtnSize,
             height: mapBtnSize,
             left: (getHorizontalPx(414) - mapBtnSize) / 2,
             top: mapBtnPos - mapBtnSize / 2,
-            // backgroundColor: 'green',
+            zIndex: 1,
             // opacity: .3,
+        },
+        mapBtn: {
+            width: '100%',
+            height: '100%',
         },
         bottons: {
             display: 'flex',
@@ -562,57 +450,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         <>
             <StatusBar backgroundColor="#ffffff" />
             <View style={styles.innerContainer}>
-                {location && (
-                    <MapView
-                        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-                        style={styles.map}
-                        customMapStyle={mapStyle}
-                        pitchEnabled={true}
-                        ref={mapRef}
-                        scrollEnabled={false}
-                        initialCamera={{
-                            center: {
-                                latitude: location.latitude,
-                                longitude: location.longitude,
-                            },
-                            pitch: 0,
-                            altitude: 0,
-                            heading: compassHeading,
-                            zoom: 18,
-                        }}>
-                        {myRoute.map((e, i) => (
-                            <Polyline
-                                coordinates={e}
-                                strokeColor="#d8232a"
-                                strokeColors={['#d8232a']}
-                                lineCap={'round'}
-                                lineJoin={'round'}
-                                strokeWidth={8}
-                                key={'route_' + i}
-                            />
-                        ))}
-                        {foreignRoute && (
-                            <Polyline
-                                coordinates={foreignRoute}
-                                strokeColor="#3583e4"
-                                strokeColors={['#3583e4']}
-                                lineCap={'round'}
-                                lineJoin={'round'}
-                                strokeWidth={8}
-                            />
-                        )}
-                    </MapView>
-                )}
+                <CounterMapView
+                    routeId={followedRouteId || route?.params?.mapID}
+                    trackerData={trackerData}
+                    routeNumber={myRouteNumber}
+                />
 
-                <View style={styles.markWrap} pointerEvents="none">
-                    <Svg viewBox="0 0 31 31" style={styles.mark}>
-                        <Circle cx="15.5" cy="15.5" r="15.5" fill="#fff" />
-                        <Path
-                            d="M15.544 6.294s-6.429 19.152-6.34 18.974c.09-.179 6.34-4.286 6.34-4.286s6.25 4.107 6.34 4.286c.088.179-6.34-18.974-6.34-18.974z"
-                            fill="#d8232a"
-                        />
-                    </Svg>
-                </View>
+                <MarkPointer />
 
                 <View style={styles.fullView} pointerEvents="none">
                     <WebView
@@ -644,29 +488,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     />
                 </View>
 
-                <View style={styles.gradient} pointerEvents="none">
-                    <WebView
-                        style={styles.fullView}
-                        originWhitelist={['*']}
-                        scalesPageToFit={true}
-                        useWebKit={Platform.OS === 'ios'}
-                        scrollEnabled={false}
-                        showsHorizontalScrollIndicator={false}
-                        showsVerticalScrollIndicator={false}
-                        source={{
-                            html:
-                                '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>' +
-                                gradient +
-                                '</body></html>',
-                            baseUrl:
-                                Platform.OS === 'ios'
-                                    ? ''
-                                    : 'file:///android_asset/',
-                        }}
-                        javaScriptEnabled={true}
-                        ref={gradientRef}
-                    />
-                </View>
+                <CounterGradient showGradient={!mapOn} />
 
                 {bikes && (
                     <Animated.View
@@ -685,12 +507,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     </Animated.View>
                 )}
 
-                <TouchableWithoutFeedback
-                    onPress={() => heandleMapVisibility()}>
-                    <View style={styles.mapBtn} />
-                </TouchableWithoutFeedback>
+                <View style={styles.mapBtnContainer}>
+                    <TouchableWithoutFeedback onPress={heandleMapVisibility}>
+                        <View style={styles.mapBtn} />
+                    </TouchableWithoutFeedback>
+                </View>
 
-                <View style={styles.bottons}>
+                {/* <View style={styles.bottons}>
                     <View style={styles.btn}>
                         <BigWhiteBtn
                             title={leftBtnTile}
@@ -704,13 +527,22 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             onpress={heandleRightBtnClick}
                         />
                     </View>
-                </View>
+                </View> */}
+                <CounterActionButtons
+                    leftBtnTitle={leftBtnTile}
+                    leftBtnCallback={heandleLeftBtnClick}
+                    rightBtnTitle={rightBtnTile}
+                    rightBtnCallback={heandleRightBtnClick}
+                />
 
                 <StackHeader
                     onpress={heandleGoBackClick}
                     inner={headerTitle}
                     whiteArow={!pause && !mapOn}
                     titleOn={!mapOn}
+                    style={{
+                        zIndex: 1,
+                    }}
                 />
             </View>
         </>
