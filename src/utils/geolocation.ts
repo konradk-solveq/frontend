@@ -137,11 +137,15 @@ export const cleanUp = () => {
     BackgroundGeolocation.removeListeners();
 };
 
-export const onLocationChange = async (
+export const onPostitionWatch = async (
     onLocation: (data: Location) => void,
     onError: (error: LocationError) => void,
 ) => {
-    BackgroundGeolocation.onLocation(onLocation, onError);
+    BackgroundGeolocation.watchPosition(onLocation, onError);
+};
+
+export const cleaUpPositionWatcher = () => {
+    BackgroundGeolocation.stopWatchPosition();
 };
 
 export const transformGeoloCationData = (data: Location): LocationDataI => {
