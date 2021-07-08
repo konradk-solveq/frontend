@@ -9,6 +9,7 @@ import {Map} from '../../../../../models/map.model';
 import Swipe from '../../../../../sharedComponents/navi/swipe/swipe';
 import CurvedShape from '../../../../../sharedComponents/svg/curvedShape';
 import {mapsListSelector} from '../../../../../storage/selectors';
+import BottomListItem from './bottomListItem/bottomListItem';
 
 const minContainerHeight = getVerticalPx(248);
 const maxContainerHeight = getVerticalPx(582);
@@ -41,18 +42,7 @@ const BottomList: React.FC = () => {
     };
 
     const renderItem = ({item, index}: RenderItem) => {
-        return (
-            <View>
-                <Text style={{color: 'black'}}>{item.name}</Text>
-                <Text style={{color: 'black'}}>
-                    {item.distanceInKilometers}
-                </Text>
-                <Text style={{color: 'black'}}>{item.totalTime}</Text>
-                <Text style={{color: 'black'}}>
-                    {item.distanceToRouteInKilometers}
-                </Text>
-            </View>
-        );
+        return <BottomListItem data={item} />;
     };
 
     return (
@@ -104,7 +94,7 @@ const styles = StyleSheet.create({
         marginTop: getVerticalPx(60),
         width: '100%',
         paddingHorizontal: 40,
-        backgroundColor: 'lightgrey',
+        // backgroundColor: 'lightgrey',
     },
 });
 

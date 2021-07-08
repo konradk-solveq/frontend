@@ -60,7 +60,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     const trans: any = I18n.t('MainRoutesMap');
     const params = route.params;
-    console.log('[PARAMS]', params);
+    // console.log('[PARAMS]', params);
 
     const [adress, setAdress] = useState<PointDetails | null>(null);
     const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
