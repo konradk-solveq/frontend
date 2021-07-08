@@ -6,8 +6,8 @@ import {
 import {LocationDataI} from '../interfaces/geolocation';
 
 import {
-    cleanUp,
-    onLocationChange,
+    cleaUpPositionWatcher,
+    onPostitionWatch,
     transformGeoloCationData,
 } from '../utils/geolocation';
 import {useAppSelector} from './redux';
@@ -28,10 +28,10 @@ const useGeolocation = () => {
     };
 
     useEffect(() => {
-        onLocationChange(onLocationHandler, onLocationErrorHandler);
+        onPostitionWatch(onLocationHandler, onLocationErrorHandler);
 
         return () => {
-            cleanUp();
+            cleaUpPositionWatcher();
         };
     }, []);
 

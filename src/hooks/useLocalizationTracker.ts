@@ -49,7 +49,10 @@ interface DataI {
 
 let speed: number[] = [];
 
-const useLocalizationTracker = (persist: boolean) => {
+const useLocalizationTracker = (
+    persist: boolean,
+    omitRequestingPermission?: boolean,
+) => {
     const dispatch = useAppDispatch();
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
@@ -150,7 +153,10 @@ const useLocalizationTracker = (persist: boolean) => {
     }, []);
 
     useEffect(() => {
-        requestGeolocationPermission();
+        if (!omitRequestingPermission) {
+            requestGeolocationPermission();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     /* TODO: on motion change event */
     useEffect(() => {

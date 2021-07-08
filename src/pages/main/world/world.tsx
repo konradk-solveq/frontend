@@ -21,6 +21,7 @@ import {
 import {requestGeolocationPermission} from '../../../utils/geolocation';
 import {PickedFilters} from '../../../interfaces/form';
 import {checkIfContainsFitlers} from '../../../utils/apiDataTransform/filters';
+import useFineWhenInUseLocationPermission from '../../../hooks/useFineWhenInUseLocationPermission';
 
 import FiltersModal from './components/filters/filtersModal';
 import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
@@ -55,9 +56,7 @@ const World: React.FC = () => {
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
     const [activeTab, setActiveTab] = useState<routesTab>(routesTab.BIKEMAP);
 
-    useEffect(() => {
-        requestGeolocationPermission();
-    }, []);
+    useFineWhenInUseLocationPermission();
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
