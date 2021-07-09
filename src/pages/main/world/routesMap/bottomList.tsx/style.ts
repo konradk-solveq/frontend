@@ -27,10 +27,25 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         marginTop: getVerticalPx(40),
+        paddingHorizontal: 40,
         width: '100%',
     },
-    listContentContainer: {
-        marginHorizontal: 40,
+    imageWrapper: {
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: getVerticalPx(20),
+    },
+    imageContainer: {
+        borderRadius: 25,
+        height: 185,
+        width: 185,
+    },
+    imagePlaceholder: {
+        borderRadius: 25,
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#f7f7f7',
     },
 });
 

@@ -1,9 +1,10 @@
 import React, {useRef, useState} from 'react';
 import {useEffect} from 'react';
-import {Animated, FlatList, View} from 'react-native';
+import {Animated, View} from 'react-native';
 
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {Map} from '../../../../../models/map.model';
+import {ImageBtn} from '../../../../../sharedComponents/buttons';
 
 import Swipe from '../../../../../sharedComponents/navi/swipe/swipe';
 import CurvedShape from '../../../../../sharedComponents/svg/curvedShape';
@@ -12,16 +13,11 @@ import BottomListItem from './bottomListItem/bottomListItem';
 import styles from './style';
 
 const zeroContainerHeight = getVerticalPx(50);
-const minContainerHeight = getVerticalPx(248);
-const maxContainerHeight = getVerticalPx(582);
-
-interface RenderItem {
-    item: Map;
-    index: number;
-}
+const minContainerHeight = getVerticalPx(148);
+const maxContainerHeight = getVerticalPx(400);
 
 interface IProps {
-    data: Map[];
+    data: Map;
     onPress: (mapID: string) => void;
 }
 
@@ -31,9 +27,9 @@ const BottomList: React.FC<IProps> = ({data, onPress}: IProps) => {
     const [isUp, setIsUp] = useState(false);
 
     useEffect(() => {
-        const shoudMinimize = !data?.length;
+        const shoudMinimize = !data;
         const shoudlMaximize =
-            data?.length && containerHeight?.__getValue() < minContainerHeight;
+            containerHeight?.__getValue() < minContainerHeight;
         if (shoudMinimize || shoudlMaximize) {
             const previousHeigth = !isUp
                 ? minContainerHeight
@@ -44,7 +40,7 @@ const BottomList: React.FC<IProps> = ({data, onPress}: IProps) => {
                 useNativeDriver: false,
             }).start();
         }
-    }, [data?.length, containerHeight, isUp]);
+    }, [data, containerHeight, isUp]);
 
     const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
@@ -57,21 +53,11 @@ const BottomList: React.FC<IProps> = ({data, onPress}: IProps) => {
     };
 
     const onSwipeFlatButton = () => {
-        if (!data?.length || data?.length <= 2) {
+        if (!data) {
             return;
         }
 
         startAnimation(isUp);
-    };
-
-    const renderItem = ({item}: RenderItem) => {
-        return (
-            <BottomListItem
-                data={item}
-                onPressTile={onPress}
-                onPressButton={onPress}
-            />
-        );
     };
 
     return (
@@ -82,15 +68,27 @@ const BottomList: React.FC<IProps> = ({data, onPress}: IProps) => {
                 </View>
             </Swipe>
             <CurvedShape />
-            <View style={styles.listContainer}>
-                <FlatList
-                    data={data}
-                    renderItem={renderItem}
-                    showsVerticalScrollIndicator={false}
-                    scrollEnabled={isUp}
-                    contentContainerStyle={styles.listContentContainer}
-                />
-            </View>
+            {data && (
+                <View style={styles.listContainer}>
+                    <BottomListItem
+                        data={data}
+                        onPressTile={onPress}
+                        onPressButton={onPress}
+                    />
+                    <View style={styles.imageWrapper}>
+                        <View style={styles.imageContainer}>
+                            {data?.url ? (
+                                <ImageBtn
+                                    imgUrl={data?.url}
+                                    onPress={onPress}
+                                />
+                            ) : (
+                                <View style={styles.imagePlaceholder} />
+                            )}
+                        </View>
+                    </View>
+                </View>
+            )}
         </Animated.View>
     );
 };

@@ -5,7 +5,11 @@ import {SafeAreaView, View, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {RouteMapType, PointDetails} from '../../../../models/places.model';
+import {
+    RouteMapType,
+    PointDetails,
+    Place,
+} from '../../../../models/places.model';
 import {
     RootStackType,
     RoutesMapNavigationPropI,
@@ -33,6 +37,7 @@ import mapSource from './routesMapHtml';
 
 import styles from './style';
 import BottomList from './bottomList.tsx/bottomList';
+import {fetchPlacesData} from '../../../../storage/actions';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -60,6 +65,8 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         privateData || favouriteData || regularRoutesData,
     );
     // dodać listę tras
+
+    const places = useAppSelector<Place[]>(state => state.places.places);
 
     const trans: any = I18n.t('MainRoutesMap');
     const params = route.params;
@@ -157,6 +164,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
              * */
             if (!positionSet) {
                 setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+                setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
                 positionSet = true;
             } else {
                 setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
@@ -167,6 +175,13 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             positionSet = false;
         };
     }, [locations, mapLoaded]);
+
+    useEffect(() => {
+        if (mapLoaded && places.length > 0) {
+            let p = JSON.stringify(places);
+            setJs(`setMarks(${p});`);
+        }
+    }, [places]);
 
     /* TODO: extract as helper method */
     const setBtnRadio = (mapType: string) => {
@@ -199,21 +214,21 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                         {lat: newBox.west, lng: newBox.south},
                     ];
 
-                    // const getMapData = async () => {
-                    //     try {
-                    //         await dispatch(
-                    //             fetchPlacesData({
-                    //                 bbox: bbox,
-                    //                 width: 500,
-                    //             }),
-                    //         );
-                    //     } catch (error) {
-                    //         /* TODO: add ui info */
-                    //         console.log('[Get places error]', error);
-                    //     }
-                    // };
+                    const getMapData = async () => {
+                        try {
+                            await dispatch(
+                                fetchPlacesData({
+                                    bbox: bbox,
+                                    width: 500,
+                                }),
+                            );
+                        } catch (error) {
+                            /* TODO: add ui info */
+                            console.log('[Get places error]', error);
+                        }
+                    };
 
-                    // getMapData();
+                    getMapData();
                 }
                 break;
             case 'clickMarker':
@@ -316,7 +331,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             </View>
             {adress && <AddressBox address={adress} />}
 
-            <BottomList data={routesData} onPress={onNavigateDetails} />
+            <BottomList data={routesData?.[0]} onPress={onNavigateDetails} />
 
             <StackHeader
                 hideBackArrow
