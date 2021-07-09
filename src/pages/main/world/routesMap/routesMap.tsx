@@ -18,6 +18,8 @@ import {
     favouritesMapsSelector,
     privateMapsListSelector,
 } from '../../../../storage/selectors/map';
+import {getVerticalPx} from '../../../../helpers/layoutFoo';
+import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import AnimSvg from '../../../../helpers/animSvg';
@@ -32,6 +34,8 @@ import mapSource from './routesMapHtml';
 import styles from './style';
 import BottomList from './bottomList.tsx/bottomList';
 
+const isIOS = Platform.OS === 'ios';
+
 interface Props {
     navigation: RoutesMapNavigationPropI;
     route: RoutesMapRouteType;
@@ -40,6 +44,7 @@ interface Props {
 const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
     const mapRef = useRef(null);
+    const statusBarHeight = useStatusBarHeight();
 
     /* TODO: routes should be updated every tab change */
     const regularRoutesData = useAppSelector(mapsListSelector);
@@ -316,6 +321,9 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             <StackHeader
                 hideBackArrow
                 inner={trans.header}
+                style={{
+                    top: getVerticalPx(-statusBarHeight),
+                }}
                 rightActions={
                     <View style={styles.actionButtonsContainer}>
                         <ListBtn
