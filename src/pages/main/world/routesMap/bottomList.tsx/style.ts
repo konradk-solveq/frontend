@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
     flatButtonContainer: {
         position: 'absolute',
         top: 1,
-        paddingVertical: 20,
+        paddingTop: 10,
+        paddingBottom: 20,
         zIndex: 1,
     },
     flatButton: {
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#555555',
     },
     listContainer: {
-        marginTop: getVerticalPx(60),
+        marginTop: getVerticalPx(40),
     },
     listContentContainer: {
         marginHorizontal: 40,
