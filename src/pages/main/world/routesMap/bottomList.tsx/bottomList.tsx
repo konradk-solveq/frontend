@@ -57,7 +57,7 @@ const BottomList: React.FC<IProps> = ({data, onPress}: IProps) => {
     };
 
     const onSwipeFlatButton = () => {
-        if (!data?.length) {
+        if (!data?.length || data?.length <= 2) {
             return;
         }
 
