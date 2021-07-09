@@ -1,6 +1,3 @@
-import {Dimensions} from 'react-native';
-const {width, height} = Dimensions.get('window');
-
 export default `
 <style>
 @font-face {
@@ -73,8 +70,6 @@ const setPosOnMap = position => {
     map.setOptions({
         center: latLng,
     });
-
-    setMyLocation(position);
 }
 const getRgion = () => {
     const bounds = map.getBounds();
@@ -445,8 +440,8 @@ function initMap() {
     setPosOnMap(pos)
 
     // dla chowania apli z adresem
-    map.addListener('click', () => {
-        window.ReactNativeWebView.postMessage("clickMap");
+    map.addListener('click', (e) => {
+        window.ReactNativeWebView.postMessage("clickMap "+JSON.stringify(e));
     });
 
     // dla zmiany pozycji regionu
@@ -455,7 +450,6 @@ function initMap() {
     setTimeout(() => {
         getRgion();
     }, 1500);
-
 }
 
 // dodawanie punktów po zmianie regionu
@@ -489,6 +483,7 @@ const setMarks = places => {
 
     clusterShops = new MarkerClusterer(map, marks.shop, {
         ignoreHidden: true,
+        zoomOnClick: false,
         styles: [{
                 url: "shop_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
@@ -535,10 +530,19 @@ const setMarks = places => {
                 anchor:[22,22],
             },
         ]
+    });
+
+    google.maps.event.addListener(clusterShops, 'clusterclick', function(cluster) {
+        const markersData = cluster.getMarkers();
+
+        let markersList = [];
+        markersData.forEach(e => markersList.push(e.details));
+        window.ReactNativeWebView.postMessage("sdddddd#$#"+JSON.stringify(markersList));
     });
 
     clusterService = new MarkerClusterer(map, marks.service, {
         ignoreHidden: true,
+        zoomOnClick: false,
         styles: [{
                 url: "service_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
@@ -587,8 +591,17 @@ const setMarks = places => {
         ]
     });
 
+    google.maps.event.addListener(clusterService, 'clusterclick', function(cluster) {
+        const markersData = cluster.getMarkers();
+
+        let markersList = [];
+        markersData.forEach(e => markersList.push(e.details));
+        window.ReactNativeWebView.postMessage("sdddddd#$#"+JSON.stringify(markersList));
+    });
+
     clusterServiceShops = new MarkerClusterer(map, marks.serviceshop, {
         ignoreHidden: true,
+        zoomOnClick: false,
         styles: [{
                 url: "serviceshop_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",

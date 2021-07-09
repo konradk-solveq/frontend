@@ -15,11 +15,7 @@ interface IProps {
     onPressButton: (mapID: string) => void;
 }
 
-const BottomListItem: React.FC<IProps> = ({
-    data,
-    onPressTile,
-    onPressButton,
-}: IProps) => {
+const Tile: React.FC<IProps> = ({data, onPressTile, onPressButton}: IProps) => {
     const onPressTileHandler = () => {
         onPressTile(data.id);
     };
@@ -68,4 +64,4 @@ const BottomListItem: React.FC<IProps> = ({
     );
 };
 
-export default React.memo(BottomListItem);
+export default React.memo(Tile);

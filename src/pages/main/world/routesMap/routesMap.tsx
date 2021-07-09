@@ -24,20 +24,20 @@ import {
 } from '../../../../storage/selectors/map';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
+import {fetchPlacesData} from '../../../../storage/actions';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import AnimSvg from '../../../../helpers/animSvg';
 import TypicalRedBtn from '../../../../sharedComponents/buttons/typicalRed';
 import gradient from './gradientSvg';
 import {ListBtn} from '../../../../sharedComponents/buttons';
+import BottomInfoTile from './bottomList.tsx/bottomInfoTile';
 
 import AddressBox from './addressBox/addressBox';
 
 import mapSource from './routesMapHtml';
 
 import styles from './style';
-import BottomList from './bottomList.tsx/bottomList';
-import {fetchPlacesData} from '../../../../storage/actions';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -331,7 +331,10 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             </View>
             {adress && <AddressBox address={adress} />}
 
-            <BottomList data={routesData?.[0]} onPress={onNavigateDetails} />
+            <BottomInfoTile
+                data={routesData?.[0]}
+                onPress={onNavigateDetails}
+            />
 
             <StackHeader
                 hideBackArrow

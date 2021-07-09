@@ -4,11 +4,11 @@ import {Animated, View} from 'react-native';
 
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {Map} from '../../../../../models/map.model';
-import {ImageBtn} from '../../../../../sharedComponents/buttons';
 
+import {ImageBtn} from '../../../../../sharedComponents/buttons';
+import Tile from './tile/tile';
 import Swipe from '../../../../../sharedComponents/navi/swipe/swipe';
 import CurvedShape from '../../../../../sharedComponents/svg/curvedShape';
-import BottomListItem from './bottomListItem/bottomListItem';
 
 import styles from './style';
 
@@ -21,7 +21,7 @@ interface IProps {
     onPress: (mapID: string) => void;
 }
 
-const BottomList: React.FC<IProps> = ({data, onPress}: IProps) => {
+const BottomInfoTile: React.FC<IProps> = ({data, onPress}: IProps) => {
     const containerHeight = useRef(new Animated.Value(minContainerHeight))
         .current;
     const [isUp, setIsUp] = useState(false);
@@ -70,7 +70,7 @@ const BottomList: React.FC<IProps> = ({data, onPress}: IProps) => {
             <CurvedShape />
             {data && (
                 <View style={styles.listContainer}>
-                    <BottomListItem
+                    <Tile
                         data={data}
                         onPressTile={onPress}
                         onPressButton={onPress}
@@ -93,4 +93,4 @@ const BottomList: React.FC<IProps> = ({data, onPress}: IProps) => {
     );
 };
 
-export default BottomList;
+export default BottomInfoTile;
