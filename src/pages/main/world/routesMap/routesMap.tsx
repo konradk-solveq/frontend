@@ -1,23 +1,23 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {WebView} from 'react-native-webview';
 
-import {
-    StyleSheet,
-    Dimensions,
-    SafeAreaView,
-    View,
-    Platform,
-} from 'react-native';
+import {SafeAreaView, View, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import useGetLocation from '../../../../hooks/useGetLocation';
-
+import {RouteMapType, PointDetails} from '../../../../models/places.model';
 import {
-    RouteMapType,
-    Place,
-    PointDetails,
-} from '../../../../models/places.model';
+    RootStackType,
+    RoutesMapNavigationPropI,
+    RoutesMapRouteType,
+} from '../../../../types/rootStack';
+import {RegularStackRoute} from '../../../../navigation/route';
+import useGeolocation from '../../../../hooks/useGeolocation';
+import {mapsListSelector} from '../../../../storage/selectors';
+import {
+    favouritesMapsSelector,
+    privateMapsListSelector,
+} from '../../../../storage/selectors/map';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import AnimSvg from '../../../../helpers/animSvg';
@@ -27,24 +27,9 @@ import {ListBtn} from '../../../../sharedComponents/buttons';
 
 import AddressBox from './addressBox/addressBox';
 
-import {
-    setObjSize,
-    getHorizontalPx,
-    getVerticalPx,
-} from '../../../../helpers/layoutFoo';
-
 import mapSource from './routesMapHtml';
 
-import {
-    RootStackType,
-    RoutesMapNavigationPropI,
-    RoutesMapRouteType,
-} from '../../../../types/rootStack';
-import {RegularStackRoute} from '../../../../navigation/route';
-import useGeolocation from '../../../../hooks/useGeolocation';
-
 import styles from './style';
-import RoutesList from './markerList/routesList';
 import BottomList from './bottomList.tsx/bottomList';
 
 interface Props {
@@ -55,7 +40,20 @@ interface Props {
 const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
     const mapRef = useRef(null);
-    // const isFetching = useAppSelector<boolean>(state => state.places.loading);
+
+    /* TODO: routes should be updated every tab change */
+    const regularRoutesData = useAppSelector(mapsListSelector);
+    const privateRoutesData = useAppSelector(privateMapsListSelector);
+    const favouriteRoutesData = useAppSelector(favouritesMapsSelector);
+
+    const privateData = route.params?.private ? privateRoutesData : undefined;
+    const favouriteData = route.params?.favourite
+        ? favouriteRoutesData
+        : undefined;
+
+    const [routesData, setRoutesData] = useState(
+        privateData || favouriteData || regularRoutesData,
+    );
     // dodać listę tras
 
     const trans: any = I18n.t('MainRoutesMap');
@@ -69,6 +67,19 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const [mapLoaded, setMapLoaded] = useState(false);
 
     const {locations} = useGeolocation();
+
+    useEffect(() => {
+        if (currentMapType === RouteMapType.MY_ROUTES) {
+            setRoutesData(privateRoutesData);
+        }
+        if (currentMapType === RouteMapType.PLANNING) {
+            setRoutesData(favouriteRoutesData);
+        }
+        if (currentMapType === RouteMapType.BIKE_MAP) {
+            setRoutesData(regularRoutesData);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentMapType]);
 
     // const [regionData, setRegionData] = useState<Region>(param.region);
 
@@ -300,7 +311,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             </View>
             {adress && <AddressBox address={adress} />}
 
-            <BottomList onPress={onNavigateDetails} />
+            <BottomList data={routesData} onPress={onNavigateDetails} />
 
             <StackHeader
                 hideBackArrow

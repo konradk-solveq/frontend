@@ -4,7 +4,11 @@ import {RouteMapType} from '../models/places.model';
 
 export type RootStackType = {
     World: {activeTab?: RouteMapType} | undefined;
-    RoutesMap: {activeTab: RouteMapType};
+    RoutesMap: {
+        activeTab: RouteMapType;
+        private?: boolean;
+        favourite?: boolean;
+    };
     RouteDetails: {mapID: string; private: false};
 };
 

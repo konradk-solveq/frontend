@@ -164,9 +164,10 @@ const World: React.FC = () => {
     }, [dispatch, activeTab]);
 
     const navigateTouRouteMap = useCallback(() => {
-        console.log(activeTab);
         navigation.navigate(RegularStackRoute.ROUTES_MAP_SCREEN, {
             activeTab: activeTab,
+            private: activeTab === RouteMapType.MY_ROUTES,
+            favourite: activeTab === RouteMapType.PLANNING,
         });
     }, [activeTab, navigation]);
 

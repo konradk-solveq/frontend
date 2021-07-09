@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         backgroundColor: '#ffffff',
-        justifyContent: 'center',
         alignItems: 'center',
         zIndex: 1,
     },
@@ -28,6 +27,7 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         marginTop: getVerticalPx(40),
+        width: '100%',
     },
     listContentContainer: {
         marginHorizontal: 40,
