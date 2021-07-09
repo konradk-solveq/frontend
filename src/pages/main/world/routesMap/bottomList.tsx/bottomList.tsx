@@ -1,15 +1,16 @@
-import React, {useRef} from 'react';
-import {useState} from 'react';
-import {Pressable, StyleSheet, View, Text} from 'react-native';
-import {Animated} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
-import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
+import React, {useRef, useState} from 'react';
+import {Animated, FlatList, View} from 'react-native';
+
+import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../../../hooks/redux';
 import {Map} from '../../../../../models/map.model';
+import {mapsListSelector} from '../../../../../storage/selectors';
+
 import Swipe from '../../../../../sharedComponents/navi/swipe/swipe';
 import CurvedShape from '../../../../../sharedComponents/svg/curvedShape';
-import {mapsListSelector} from '../../../../../storage/selectors';
 import BottomListItem from './bottomListItem/bottomListItem';
+
+import styles from './style';
 
 const minContainerHeight = getVerticalPx(248);
 const maxContainerHeight = getVerticalPx(582);
@@ -19,7 +20,11 @@ interface RenderItem {
     index: number;
 }
 
-const BottomList: React.FC = () => {
+interface IProps {
+    onPress: (mapID: string) => void;
+}
+
+const BottomList: React.FC<IProps> = ({onPress}: IProps) => {
     const containerHeight = useRef(new Animated.Value(minContainerHeight))
         .current;
     const [isUp, setIsUp] = useState(false);
@@ -41,8 +46,14 @@ const BottomList: React.FC = () => {
         startAnimation(isUp);
     };
 
-    const renderItem = ({item, index}: RenderItem) => {
-        return <BottomListItem data={item} />;
+    const renderItem = ({item}: RenderItem) => {
+        return (
+            <BottomListItem
+                data={item}
+                onPressTile={onPress}
+                onPressButton={onPress}
+            />
+        );
     };
 
     return (
@@ -59,43 +70,11 @@ const BottomList: React.FC = () => {
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
                     scrollEnabled={isUp}
+                    contentContainerStyle={styles.listContentContainer}
                 />
             </View>
         </Animated.View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        backgroundColor: '#ffffff',
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 1,
-    },
-    flatButtonContainer: {
-        position: 'absolute',
-        top: 1,
-        // backgroundColor: 'red',
-        paddingVertical: 20,
-        zIndex: 1,
-    },
-    flatButton: {
-        height: 4,
-        width: getHorizontalPx(153),
-        borderRadius: 3.5,
-        backgroundColor: '#555555',
-    },
-    listContainer: {
-        marginTop: getVerticalPx(60),
-        width: '100%',
-        paddingHorizontal: 40,
-        // backgroundColor: 'lightgrey',
-    },
-});
 
 export default BottomList;

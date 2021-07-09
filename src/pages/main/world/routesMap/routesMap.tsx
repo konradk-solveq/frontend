@@ -241,6 +241,13 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         );
     };
 
+    const onNavigateDetails = (mapID: string) => {
+        navigation.navigate(
+            RegularStackRoute.ROUTE_DETAILS_SCREEN as keyof RootStackType,
+            {mapID: mapID, private: false},
+        );
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.fullView}>
@@ -293,7 +300,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             </View>
             {adress && <AddressBox address={adress} />}
 
-            <BottomList />
+            <BottomList onPress={onNavigateDetails} />
 
             <StackHeader
                 hideBackArrow
