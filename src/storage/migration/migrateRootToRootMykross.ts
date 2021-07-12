@@ -65,7 +65,7 @@ export const migration = async (
                 }
 
                 if (
-                    !oldBikesList.find(
+                    !mergeBikesList.find(
                         e =>
                             e?.description?.serial_number !==
                             l.description.serial_number,
