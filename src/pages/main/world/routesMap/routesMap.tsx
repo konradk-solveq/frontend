@@ -49,6 +49,7 @@ interface Props {
 const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
     const mapRef = useRef(null);
+    const posRef = useRef(false);
     const statusBarHeight = useStatusBarHeight();
 
     /* TODO: routes should be updated every tab change */
@@ -95,58 +96,17 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     // const [regionData, setRegionData] = useState<Region>(param.region);
 
-    // const heandleShowAdress = (adressDetails: PointDetails | null) => {
-    //     if (adressDetails && Platform.OS === 'android') {
-    //         setRegionData(undefined);
-    //     }
-    //     setAdress(adressDetails);
-    // };
-
-    // const onRegionChangeHandler = (region: Region) => {
-    //     if (isFetching) {
-    //         return;
-    //     }
-
-    //     // wyliczenie regionu widocznego na ekranie
-    //     const newBox = {
-    //         top: region.latitude - region.latitudeDelta * 0.5,
-    //         bottom: region.latitude + region.latitudeDelta * 0.5,
-    //         left: region.longitude - region.longitudeDelta * 0.5,
-    //         right: region.longitude + region.longitudeDelta * 0.5,
-    //     };
-
-    //     setRegionData(region);
-
-    //     const getMapData = async () => {
-    //         if (isFetching) {
-    //             return;
-    //         }
-
-    //         let bbox = [
-    //             {lat: newBox.left, lng: newBox.top},
-    //             {lat: newBox.right, lng: newBox.bottom},
-    //         ];
-
-    //         try {
-    //             await dispatch(
-    //                 fetchPlacesData({
-    //                     bbox,
-    //                     width: 2500,
-    //                 }),
-    //             );
-    //         } catch (error) {
-    //             /* TODO: add ui info */
-    //             console.log('[Get places error]', error);
-    //         }
-    //     };
-
-    //     getMapData();
-    // };
+    const heandleShowAdress = (adressDetails: PointDetails | null) => {
+        console.log('[ON PRESSED -- heandleShowAdress]', adressDetails);
+        // if (adressDetails && Platform.OS === 'android') {
+        //     setRegionData(undefined);
+        // }
+        // setAdress(adressDetails);
+    };
 
     const setJs = (foo: string) => mapRef.current?.injectJavaScript(foo);
 
     useEffect(() => {
-        let positionSet = false;
         if (locations?.length && mapLoaded) {
             const lastLocation = locations?.[locations.length - 1];
             if (!lastLocation) {
@@ -162,18 +122,14 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
              * Initially set map and user position.
              * Follow only user position.
              * */
-            if (!positionSet) {
+            if (!posRef.current) {
                 setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
                 setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
-                positionSet = true;
+                posRef.current = true;
             } else {
                 setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
             }
         }
-
-        return () => {
-            positionSet = false;
-        };
     }, [locations, mapLoaded]);
 
     useEffect(() => {
@@ -206,14 +162,12 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         switch (val[0]) {
             case 'changeRegion':
                 {
-                    console.log('[change region]');
+                    console.log('[change region]', val[1]);
                     const newBox = JSON.parse(val[1]);
-
                     const bbox = [
                         {lat: newBox.east, lng: newBox.north},
                         {lat: newBox.west, lng: newBox.south},
                     ];
-
                     const getMapData = async () => {
                         try {
                             await dispatch(
@@ -227,43 +181,25 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                             console.log('[Get places error]', error);
                         }
                     };
-
                     getMapData();
                 }
                 break;
             case 'clickMarker':
                 {
-                    // heandleShowAdress(JSON.parse(val[1]));
+                    heandleShowAdress(JSON.parse(val[1]));
                 }
                 break;
             case 'clickMap':
                 {
-                    // heandleShowAdress(null);
+                    heandleShowAdress(null);
                 }
                 break;
         }
     };
 
     const heandleMapLoaded = () => {
-        // if (locations?.length) {
-        //     const lastLocation = locations?.[locations.length - 1];
-        //     const pos = {
-        //         latitude: lastLocation.coords.latitude,
-        //         longitude: lastLocation.coords.longitude,
-        //     };
-        //     setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
-        //     setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
-        // }
         setMapLoaded(true);
     };
-
-    useEffect(() => {
-        // let p = JSON.stringify(places);
-        // if(places.length == 0) return; // lista tras
-        // setJs(`setMarks(${p});true;`);
-    }, []);
-
-    // setObjSize(350, 23);
 
     const onNavigateBack = () => {
         navigation.navigate(
