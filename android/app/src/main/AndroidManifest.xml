@@ -1,12 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="pl.kross.mykross">
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
-=======
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
->>>>>>> 7a3c78f81e69f8f39cd5cf55de024ba1366a6e9c
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -18,28 +15,16 @@
         <service android:name="com.transistorsoft.locationmanager.service.TrackingService" android:foregroundServiceType="location" />
         <service android:name="com.transistorsoft.locationmanager.service.LocationRequestService" android:foregroundServiceType="location" />
         <activity
-<<<<<<< HEAD
-        android:name=".MainActivity"
-        android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-        android:launchMode="singleTask"
-        android:screenOrientation="portrait"
-        android:windowSoftInputMode="adjustResize">
-=======
           android:name=".MainActivity"
           android:label="@string/app_name"
           android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
           android:launchMode="singleTask"
           android:screenOrientation="portrait"
           android:windowSoftInputMode="adjustResize">
->>>>>>> 7a3c78f81e69f8f39cd5cf55de024ba1366a6e9c
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-<<<<<<< HEAD
-        </activity>
-=======
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -55,6 +40,5 @@
           android:name="com.google.android.geo.API_KEY"
           android:value="@string/GOOGLE_API_KEY"/>
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
->>>>>>> 7a3c78f81e69f8f39cd5cf55de024ba1366a6e9c
     </application>
 </manifest>

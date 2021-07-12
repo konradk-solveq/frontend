@@ -98,14 +98,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         goFoward();
     };
 
-    const hadleOnpressWithName = (inputName: string) => {
-        if (!validationStatus) {
-            return;
-        }
-        dispatch(setUserName(inputName));
-        navigation.navigate('AddingByNumber');
-    };
-
     const [headHeight, setHeadHeight] = useState(0);
 
     setObjSize(334, 50);
