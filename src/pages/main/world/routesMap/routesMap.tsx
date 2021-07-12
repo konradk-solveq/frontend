@@ -38,8 +38,7 @@ import AddressBox from './addressBox/addressBox';
 import mapSource from './routesMapHtml';
 
 import styles from './style';
-
-const isIOS = Platform.OS === 'ios';
+import { fetchMapIfNotExistsLocally } from '../../../../storage/actions/maps';
 
 interface Props {
     navigation: RoutesMapNavigationPropI;
@@ -70,8 +69,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const places = useAppSelector<Place[]>(state => state.places.places);
 
     const trans: any = I18n.t('MainRoutesMap');
-    const params = route.params;
-    // console.log('[PARAMS]', params);
 
     const [adress, setAdress] = useState<PointDetails | null>(null);
     const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
@@ -94,13 +91,10 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentMapType]);
 
-    // const [regionData, setRegionData] = useState<Region>(param.region);
-
     const heandleShowAdress = (adressDetails: PointDetails | null) => {
         console.log('[ON PRESSED -- heandleShowAdress]', adressDetails);
-        // if (adressDetails && Platform.OS === 'android') {
-        //     setRegionData(undefined);
-        // }
+        /* TODO: check if locally route exists, fetch if not */
+        dispatch(fetchMapIfNotExistsLocally(adressDetails?.id, currentMapType));
         setAdress(adressDetails);
     };
 

@@ -64,13 +64,14 @@ export const getCurrentLocation = async (
     routeId?: string,
     samples?: number,
     accuracy?: number,
+    notPersist?: boolean,
 ) => {
     const location = await BackgroundGeolocation.getCurrentPosition({
         timeout: 30,
         maximumAge: 500,
         desiredAccuracy: accuracy || 10,
         samples: samples || 6,
-        persist: true,
+        persist: !notPersist,
         extras: {
             route_id: routeId || '',
         },
@@ -91,7 +92,7 @@ export const getLatLng = async () => {
  * onExit event locaclization should be updated.
  */
 export const getLatLngFromForeground = async () => {
-    const location = await getCurrentLocation('', 1);
+    const location = await getCurrentLocation('', 1, 10, true);
     const lat = location.coords.latitude;
     const lng = location.coords.longitude;
     return {lat, lng};

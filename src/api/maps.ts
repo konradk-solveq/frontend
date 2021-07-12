@@ -28,8 +28,14 @@ export const getMaps = async (
     return await axiosGet(paginationUrl || url, params);
 };
 
-export const getRoute = async (id: string) =>
-    await axiosGet(`${BASE_ROUTE_URL}/${id}`);
+export const getRoute = async (id: string, location?: Coords) => {
+    let url = `${BASE_ROUTE_URL}/${id}`;
+    if (location) {
+        url = `${url}&lat=${location.latitude}&lng=${location.longitude}&detailed=true`;
+    }
+
+    return await axiosGet(url);
+};
 
 export const getPrivateRoutes = async (
     location: Coords,

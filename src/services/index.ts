@@ -7,6 +7,7 @@ export {getPlacesList} from './placesService';
 export {
     getMapsList,
     getPrivateMapsListService,
+    getMapsByTypeAndId,
     editPrivateMapMetadataService,
     removePrivateMapByIdService,
 } from './mapsService';

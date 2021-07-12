@@ -9,6 +9,7 @@ import {
     removePlannedRoute,
     removePrivateMapData,
     uploadImageToMapData,
+    getRoute,
 } from '../api';
 import {ImagesMetadataType} from '../interfaces/api';
 import {MapFormDataResult, PickedFilters} from '../interfaces/form';
@@ -32,6 +33,12 @@ export type CreatedPlannedMap = {
 
 export interface MapsResponse {
     data: MapsData;
+    status: number;
+    error: string;
+}
+
+export interface MapResponse {
+    data: MapType | null;
     status: number;
     error: string;
 }
@@ -362,6 +369,35 @@ export const removePlannedMapByIdService = async (
 
     return {
         data: '',
+        status: response.data?.statusCode || response.status,
+        error: '',
+    };
+};
+
+export const getMapsByTypeAndId = async (
+    location: Coords,
+    mapId: string,
+): Promise<MapResponse> => {
+    const response = await getRoute(mapId, location);
+
+    if (
+        !response?.data ||
+        response.status >= 400 ||
+        response.data?.statusCode >= 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: null,
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: response.data,
         status: response.data?.statusCode || response.status,
         error: '',
     };
