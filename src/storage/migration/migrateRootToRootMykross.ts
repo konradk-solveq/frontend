@@ -4,6 +4,13 @@ import {BikesState} from '../reducers/bikes';
 import {RootState} from '../storage';
 
 /**
+ * Remove 'root' data.
+ */
+const removeRootKey = async () => {
+    await AsyncStorage.removeItem('persist:root');
+};
+
+/**
  * Do migration if 'root' key exists. Migrate 'bikes' data.
  */
 export const migration = async (
@@ -38,6 +45,8 @@ export const migration = async (
              * Abort migration if there is no data to merge.
              */
             if (!rehydratedLvl2?.list?.length) {
+                await removeRootKey();
+
                 return newState;
             }
 
@@ -50,6 +59,8 @@ export const migration = async (
                     ...newState.bikes,
                     list: bikesListToMerge,
                 };
+
+                await removeRootKey();
 
                 return newState;
             }
@@ -76,6 +87,8 @@ export const migration = async (
             });
 
             if (!mergeBikesList?.length) {
+                await removeRootKey();
+
                 return state;
             }
 
@@ -84,10 +97,7 @@ export const migration = async (
                 list: mergeBikesList,
             };
 
-            /**
-             * Remove 'root' data.
-             */
-            await AsyncStorage.removeItem('persist:root');
+            await removeRootKey();
 
             return newState;
         }
