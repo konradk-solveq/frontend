@@ -1,10 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, SafeAreaView, View, Alert, ScrollView} from 'react-native';
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    ScrollView,
+    Platform,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
 import {trackerActiveSelector} from '../../../storage/selectors/routes';
 import {hasRecordedRoutesSelector} from '../../../storage/selectors/map';
+import {showedLocationInfoSelector} from '../../../storage/selectors/app';
+import {
+    onRecordTripActionHandler,
+    showLocationInfo,
+} from '../../../utils/showAndroidLlocationInfo';
 
 import {syncAppSelector} from '../../../storage/selectors';
 import {
@@ -15,21 +26,22 @@ import {
 } from '../../../helpers/layoutFoo';
 import Tile from './tile';
 
-import {useAppSelector} from '../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {I18n} from '../../../../I18n/I18n';
 import {nfcIsSupported} from '../../../helpers/nfc';
 import {BothStackRoute, RegularStackRoute} from '../../../navigation/route';
 
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import Loader from '../../onboarding/bikeAdding/loader/loader';
-import {requestGeolocationPermission} from '../../../utils/geolocation';
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
+    const dispatch = useAppDispatch();
     const trans: any = I18n.t('MainHome');
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
     const syncStatus = useAppSelector(syncAppSelector);
+    const isLocationInfoShowed = useAppSelector(showedLocationInfoSelector);
 
     /* TODO: move initialization to splashs screen or add loader */
     useEffect(() => {
@@ -88,9 +100,10 @@ const Home: React.FC = () => {
         navigation.navigate(RegularStackRoute.BIKE_SCREEN);
     };
 
-    const onRecordTripActionHandler = async () => {
-        await requestGeolocationPermission();
-        navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
+    const doAction = () => {
+        Platform.OS === 'ios' || isLocationInfoShowed
+            ? onRecordTripActionHandler(navigation)
+            : showLocationInfo(navigation, dispatch);
     };
 
     if (syncStatus) {
@@ -112,7 +125,7 @@ const Home: React.FC = () => {
                                 description={trans.thirdText}
                                 btnText={trans.thirdBtn}
                                 style={styles.tileSpace}
-                                onPress={onRecordTripActionHandler}
+                                onPress={doAction}
                             />
                         ) : (
                             <Tile
@@ -120,7 +133,7 @@ const Home: React.FC = () => {
                                 description={trans.fourthText}
                                 btnText={trans.fourthBtn}
                                 style={styles.tileSpace}
-                                onPress={onRecordTripActionHandler}
+                                onPress={doAction}
                             />
                         )}
                         <Tile

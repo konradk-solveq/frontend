@@ -3,6 +3,13 @@ import BackgroundGeolocation, {
     Location,
     LocationError,
 } from 'react-native-background-geolocation-android';
+import {
+    checkMultiple,
+    PERMISSIONS,
+    RESULTS,
+    request,
+} from 'react-native-permissions';
+import {I18n} from '../../I18n/I18n';
 
 import {LocationDataI} from '../interfaces/geolocation';
 
@@ -10,6 +17,8 @@ const isIOS = Platform.OS === 'ios';
 
 /* TODO: catch errors */
 export const initBGeolocalization = async (notificationTitle: string) => {
+    const trans: any = I18n.t('Geolocation.backgroundPermissionRationale');
+
     const state = await BackgroundGeolocation.ready({
         reset: true,
         stopOnTerminate: false,
@@ -19,17 +28,17 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             : BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
         locationAuthorizationRequest: 'Always',
         locationAuthorizationAlert: {
-            titleWhenNotEnabled: 'Location-services not enabled',
-            titleWhenOff: 'Location-services OFF',
-            instructions: "You must enable 'Always' in location-services",
-            cancelButton: 'Cancel',
-            settingsButton: 'Settings',
+            titleWhenNotEnabled: trans.titleWhenNotEnabled,
+            titleWhenOff: trans.titleWhenOff,
+            instructions: trans.instructions,
+            cancelButton: trans.cancelButton,
+            settingsButton: trans.settingsButton,
         },
         backgroundPermissionRationale: {
-            title: "Allow access to this device's location in the background?",
-            message:
-                "In order to allow track activity when app is in the background, please enable 'Allow all the time permission",
-            positiveAction: 'Change to Allow all the time',
+            title: trans.title,
+            message: trans.message,
+            positiveAction: trans.positiveAction,
+            negativeAction: trans.negativeAction,
         },
         distanceFilter: 10,
         stopTimeout: 1,
@@ -144,6 +153,17 @@ export const onLocationChange = async (
     BackgroundGeolocation.onLocation(onLocation, onError);
 };
 
+export const onPostitionWatch = async (
+    onLocation: (data: Location) => void,
+    onError: (error: LocationError) => void,
+) => {
+    BackgroundGeolocation.watchPosition(onLocation, onError);
+};
+
+export const cleaUpPositionWatcher = () => {
+    BackgroundGeolocation.stopWatchPosition();
+};
+
 export const transformGeoloCationData = (data: Location): LocationDataI => {
     const location = {
         uuid: data.uuid,
@@ -180,4 +200,48 @@ export const pauseTracingLocation = async () => {
 /* Set plugin to moving state */
 export const resumeTracingLocation = async () => {
     await BackgroundGeolocation.changePace(true);
+};
+
+export const askFineLocationPermission = async () => {
+    let permission = 'unavailable';
+    try {
+        const res = await request(
+            Platform.select({
+                android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+                ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+            }),
+        );
+        permission = res;
+    } catch (error) {}
+
+    return permission;
+};
+
+export const checkAndroidLocationPermission = async () => {
+    const locationPermissions = {fineLocation: false, coarseLocation: false};
+    try {
+        const result = await checkMultiple([
+            PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+            PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
+        ]);
+
+        switch (result[PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION]) {
+            case RESULTS.LIMITED:
+                locationPermissions.fineLocation = true;
+                break;
+            case RESULTS.GRANTED:
+                locationPermissions.fineLocation = true;
+                break;
+        }
+        switch (result[PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION]) {
+            case RESULTS.LIMITED:
+                locationPermissions.coarseLocation = true;
+                break;
+            case RESULTS.GRANTED:
+                locationPermissions.coarseLocation = true;
+                break;
+        }
+    } catch (error) {}
+
+    return locationPermissions;
 };
