@@ -4,6 +4,8 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '10.0'
 
 target 'myKROSS' do
+<<<<<<< HEAD
+=======
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => rn_maps_path
 
@@ -11,6 +13,7 @@ target 'myKROSS' do
   pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
 
+>>>>>>> 7a3c78f81e69f8f39cd5cf55de024ba1366a6e9c
   config = use_native_modules!
 
   use_react_native!(
