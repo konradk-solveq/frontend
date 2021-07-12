@@ -164,13 +164,6 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     const hendleValidationOk = (value: string, fieldName: string) => {
-        console.log(
-            userBikeValidationRules[fieldName as keyof BikeBaseData],
-            validateData(
-                userBikeValidationRules[fieldName as keyof BikeBaseData],
-                value,
-            ),
-        );
         return validateData(
             userBikeValidationRules[fieldName as keyof BikeBaseData],
             value,
