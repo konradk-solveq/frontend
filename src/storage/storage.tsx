@@ -4,32 +4,23 @@ import {persistReducer} from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import reducer from './reducer';
+import {PersistConfig} from 'redux-persist/es/types';
+import {migration} from './migration/migrateRootToRootMykross';
 
-const checkAppHasWrongPersistKey = async () => {
-    try {
-        const jsonValue = await AsyncStorage.getItem('persist:root_mykross');
-        if (jsonValue) {
-            return false;
-        }
-
-        return true;
-    } catch (error) {
-        return false;
-    }
-};
-
-const buildStore = async () => {
-    let pKey = 'root_mykross';
-    const persistKeyIsWrong = await checkAppHasWrongPersistKey();
-    if (persistKeyIsWrong) {
-        pKey = 'root';
-    }
-
-    const persistConfig = {
-        key: pKey,
+const buildStore = () => {
+    const persistConfig: PersistConfig<any, any> = {
+        key: 'root_mykross',
         storage: AsyncStorage,
         stateReconciler: autoMergeLevel2,
+        version: 1,
         timeout: 2000,
+        migrate: async state => {
+            const newState = await migration(state);
+            if (newState) {
+                return Promise.resolve(newState);
+            }
+            return Promise.resolve(state);
+        },
     };
 
     const persistedReducer = persistReducer<any, any>(persistConfig, reducer);

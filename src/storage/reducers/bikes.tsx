@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as actionTypes from '../actions/actionTypes';
 import {UserBike} from '../../models/userBike.model';
 
-interface BikesState {
+export interface BikesState {
     list: UserBike[];
     genericBike: UserBike | {};
     error: string;
