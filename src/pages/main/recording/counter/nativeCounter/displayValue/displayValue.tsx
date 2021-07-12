@@ -18,12 +18,12 @@ const DisplayValue: React.FC<IProps> = ({
     noSpace,
     style,
 }: IProps) => {
-    const displayFontSize = useRef(new Animated.Value(57)).current;
+    const valueFontSize = useRef(new Animated.Value(57)).current;
     const suffixFontSize = useRef(new Animated.Value(18)).current;
 
     useEffect(() => {
         if (fontSize) {
-            Animated.timing(displayFontSize, {
+            Animated.timing(valueFontSize, {
                 toValue: fontSize,
                 duration: 300,
                 useNativeDriver: false,
@@ -35,19 +35,15 @@ const DisplayValue: React.FC<IProps> = ({
                 useNativeDriver: false,
             }).start();
         }
-    }, [fontSize, displayFontSize, suffixFontSize]);
+    }, [fontSize, valueFontSize, suffixFontSize]);
 
     return (
-        <Animated.Text
-            style={[styles.displayValue, style, {fontSize: displayFontSize}]}>
+        <Animated.Text style={[styles.value, style, {fontSize: valueFontSize}]}>
             {value}
-            {noSpace ? '' : ' '}
             {suffix && (
                 <Animated.Text
-                    style={[
-                        styles.displayValueSuffix,
-                        {fontSize: suffixFontSize},
-                    ]}>
+                    style={[styles.valueSuffix, {fontSize: suffixFontSize}]}>
+                    {noSpace ? '' : ' '}
                     {suffix}
                 </Animated.Text>
             )}

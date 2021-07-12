@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {TextStyle} from 'react-native';
+import { getHorizontalPx } from '../../../../../../helpers/layoutFoo';
 
 import {convertToCounterFormat} from '../../../../../../utils/dateTime';
 import DisplayValue from '../displayValue/displayValue';
@@ -41,9 +42,12 @@ const DisplayTimer: React.FC<IProps> = ({
             value={
                 convertToCounterFormat(currentTime).hoursWithMinutes || '00:00'
             }
+            style={[
+                {marginLeft: fontSize > 23 ? getHorizontalPx(30) : 0},
+                style,
+            ]}
             suffix={`:${convertToCounterFormat(currentTime).dzSeconds}`}
-            noSpace
-            style={style}
+            noSpace={true}
             fontSize={fontSize}
         />
     );

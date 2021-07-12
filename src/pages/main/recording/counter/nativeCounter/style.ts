@@ -13,37 +13,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         zIndex: 1,
     },
-    displayContainer: {
+    wrap: {
         height: getVerticalPx(334),
         width: '100%',
-        paddingHorizontal: 40,
+        left: getVerticalPx(40),
     },
-    displayRow: {
+    row: {
         flexDirection: 'row',
         height: '50%',
         alignItems: 'center',
+        marginTop: 0,
     },
-    displayCell: {
+    cell: {
         width: '50%',
         height: '100%',
         justifyContent: 'center',
     },
-    displayRightCell: {
-        marginLeft: 20,
-    },
-    displayLeftTopCell: {
-        borderRightColor: 'rgba(49, 49, 49, 0.1)',
-        borderRightWidth: 1,
-        borderBottomColor: 'rgba(49, 49, 49, 0.1)',
-        borderBottomWidth: 1,
-    },
-    displayRightBottomCell: {
-        borderLeftColor: 'rgba(49, 49, 49, 0.1)',
-        borderLeftWidth: 1,
-        borderTopColor: 'rgba(49, 49, 49, 0.1)',
-        borderTopWidth: 1,
-    },
-    displayLabelContainer: {
+    labelWrap: {
         position: 'absolute',
         top: 21,
         fontFamily: 'DIN2014Narrow-Light',
@@ -51,39 +37,21 @@ const styles = StyleSheet.create({
         letterSpacing: 0.5,
         color: '#555555',
     },
-    displayLabel: {
+    label: {
         fontFamily: 'DIN2014Narrow-Light',
         fontSize: 18,
         letterSpacing: 0.5,
         color: '#555555',
     },
-    displayRightBottomLabel: {
-        marginLeft: 20,
+    rightLabel: {
+        marginLeft: 30,
     },
-    displayValue: {
-        fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 57,
-        color: '#313131',
-    },
-    displayValueSuffix: {
-        fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 18,
-        letterSpacing: 0.5,
-        color: '#555555',
-    },
-    arrowBtnContainer: {
+    arrowBtnWrap: {
         position: 'absolute',
         left: 0,
         right: 0,
         zIndex: 15,
-    },
-    backGround: {
-        position: 'absolute',
-        height: 20,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 1,
+        // opacity: .5,
     },
 });
 

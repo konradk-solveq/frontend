@@ -290,6 +290,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         },
         innerContainer: {
             flex: 1,
+            backgroundColor: 'red',
         },
         bikeList: {
             zIndex: 1,

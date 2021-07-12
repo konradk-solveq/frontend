@@ -1,7 +1,8 @@
 import React, {useRef, useState} from 'react';
 import {View, Text, Dimensions, Animated, Platform} from 'react-native';
-import {getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {ArrowBtn} from '../../../../../sharedComponents/buttons';
+import CrossBtn from './crossBtn';
 import DisplayAverageSpeed from './displayAverageSpeed/displayAveragaSpeed';
 import DisplayDistance from './displayDistance/displayDistance';
 import DisplaySpeed from './displaySpeed/displaySpeed';
@@ -12,7 +13,7 @@ import styles from './style';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
-const arrowPositionTop = height / 2 - getVerticalPx(isIOS ? 55 : 60);
+const arrowPositionTop =  getVerticalPx((isIOS ? 0 : 5) + 415);
 const arrowPositionBottom = getVerticalPx(isIOS ? -60 : -65);
 
 interface IProps {
@@ -32,7 +33,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
 
     const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
-            toValue: !revert ? 200 : height,
+            toValue: !revert ? getVerticalPx(200) : height,
             duration: 400,
             useNativeDriver: false,
         }).start();
@@ -56,34 +57,37 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
         }).start();
     };
 
-    const displayContainerInterpolation = displayContainer.interpolate({
+    const wrapHeight = displayContainer.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(334), 150],
+        outputRange: [getVerticalPx(334), getVerticalPx(100)],
     });
 
-    const displayCellWidthInterpolation = displayContainer.interpolate({
+    const LOWER_LINE_PROPORTIOMS = 1.08;
+
+    const cellWidth = displayContainer.interpolate({
         inputRange: [0, 1],
-        outputRange: [(width - 80) / 2, (width - 80) / 4],
+        outputRange: [
+            (width - getHorizontalPx(80)) / 2,
+            ((width - getHorizontalPx(80)) / 4) * LOWER_LINE_PROPORTIOMS,
+        ],
     });
 
-    const displayRowLeftDirectionInterpolation = displayContainer.interpolate({
+    const rowLeftDirection = displayContainer.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, (width - 80) / 2],
+        outputRange: [
+            0,
+            ((width - getHorizontalPx(80)) / 2) * LOWER_LINE_PROPORTIOMS,
+        ],
     });
 
-    const displayRowTopDirectionInterpolation = displayContainer.interpolate({
+    const rowTopPosition = displayContainer.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, -50],
+        outputRange: [0, getVerticalPx(-30)],
     });
 
-    const displayCellLeftMarginInterpolation = displayContainer.interpolate({
+    const rowBottomPosition = displayContainer.interpolate({
         inputRange: [0, 1],
-        outputRange: [20, 0],
-    });
-
-    const displayBorderWidthInterpolation = displayContainer.interpolate({
-        inputRange: [0, 1],
-        outputRange: [1, 0],
+        outputRange: [getVerticalPx(12), getVerticalPx(-80)],
     });
 
     const arrowBtnActionHandler = () => {
@@ -99,128 +103,107 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
     };
 
     return (
-        <>
-            <Animated.View
-                style={[styles.container, {height: containerHeight}]}>
-                <CurvedShape />
+        <Animated.View style={[styles.container, {height: containerHeight}]}>
+            <CurvedShape />
 
-                <Animated.View
-                    style={[
-                        styles.displayContainer,
-                        {height: displayContainerInterpolation},
-                    ]}>
-                    <View>
-                        <View style={styles.displayRow}>
-                            <Animated.View
-                                style={[
-                                    styles.displayCell,
-                                    styles.displayLeftTopCell,
-                                    {
-                                        borderRightWidth: displayBorderWidthInterpolation,
-                                        borderBottomWidth: displayBorderWidthInterpolation,
-                                        width: displayCellWidthInterpolation,
-                                    },
-                                ]}>
-                                <Animated.View
-                                    style={[
-                                        styles.displayLabelContainer,
-                                        {opacity: labelOpacity},
-                                    ]}>
-                                    <Animated.Text style={styles.displayLabel}>
-                                        Dystans
-                                    </Animated.Text>
-                                </Animated.View>
-                                <DisplayDistance fontSize={down ? 57 : 23} />
-                            </Animated.View>
-                            <Animated.View
-                                style={[
-                                    styles.displayCell,
-                                    styles.displayRightCell,
-                                    {
-                                        width: displayCellWidthInterpolation,
-                                        marginLeft: displayCellLeftMarginInterpolation,
-                                    },
-                                ]}>
-                                <Animated.View
-                                    style={[
-                                        styles.displayLabelContainer,
-                                        {opacity: labelOpacity},
-                                    ]}>
-                                    <Text style={styles.displayLabel}>
-                                        Czas
-                                    </Text>
-                                </Animated.View>
-                                <DisplayTimer
-                                    time={time}
-                                    isRunning={isRunning}
-                                    fontSize={down ? 57 : 23}
-                                />
-                            </Animated.View>
-                        </View>
+            <Animated.View style={[styles.wrap, {height: wrapHeight}]}>
+                <View style={[styles.row]}>
+                    <Animated.View
+                        style={[
+                            styles.cell,
+                            {
+                                top: rowTopPosition,
+                                width: cellWidth,
+                                // backgroundColor: 'khaki',
+                            },
+                        ]}>
                         <Animated.View
-                            style={[
-                                styles.displayRow,
-                                {
-                                    marginTop: displayRowTopDirectionInterpolation,
-                                    marginLeft: displayRowLeftDirectionInterpolation,
-                                },
-                            ]}>
-                            <Animated.View
-                                style={[
-                                    styles.displayCell,
-                                    {width: displayCellWidthInterpolation},
-                                ]}>
-                                <Animated.View
-                                    style={[
-                                        styles.displayLabelContainer,
-                                        {opacity: labelOpacity},
-                                    ]}>
-                                    <Text style={styles.displayLabel}>
-                                        Prędkość
-                                    </Text>
-                                </Animated.View>
-                                <DisplaySpeed fontSize={down ? 57 : 23} />
-                            </Animated.View>
-                            <Animated.View
-                                style={[
-                                    styles.displayCell,
-                                    styles.displayRightBottomCell,
-                                    {
-                                        borderLeftWidth: displayBorderWidthInterpolation,
-                                        borderTopWidth: displayBorderWidthInterpolation,
-                                        width: displayCellWidthInterpolation,
-                                    },
-                                ]}>
-                                <Animated.View
-                                    style={[
-                                        styles.displayLabelContainer,
-                                        styles.displayRightBottomLabel,
-                                        {opacity: labelOpacity},
-                                    ]}>
-                                    <Text style={[styles.displayLabel]}>
-                                        Średnia prędkość
-                                    </Text>
-                                </Animated.View>
-                                <DisplayAverageSpeed
-                                    time={time}
-                                    fontSize={down ? 57 : 23}
-                                />
-                            </Animated.View>
+                            style={[styles.labelWrap, {opacity: labelOpacity}]}>
+                            <Animated.Text style={styles.label}>
+                                Dystans
+                            </Animated.Text>
                         </Animated.View>
-                    </View>
-                </Animated.View>
+                        <DisplayDistance fontSize={down ? 57 : 23} />
+                    </Animated.View>
+                    <Animated.View
+                        style={[
+                            styles.cell,
+                            {
+                                top: rowTopPosition,
+                                width: cellWidth,
+                                // backgroundColor: 'green',
+                            },
+                        ]}>
+                        <Animated.View
+                            style={[styles.labelWrap, {opacity: labelOpacity}]}>
+                            <Text style={[styles.label, styles.rightLabel]}>
+                                Czas
+                            </Text>
+                        </Animated.View>
+                        <DisplayTimer
+                            time={time}
+                            isRunning={isRunning}
+                            fontSize={down ? 57 : 23}
+                        />
+                    </Animated.View>
+                </View>
                 <Animated.View
                     style={[
-                        styles.arrowBtnContainer,
+                        styles.row,
                         {
-                            top: arrowPos,
-                            transform: [{scaleY: arrowDirection}],
+                            marginLeft: rowLeftDirection,
                         },
                     ]}>
-                    <ArrowBtn onPress={arrowBtnActionHandler} down={down} />
+                    <Animated.View
+                        style={[
+                            styles.cell,
+                            {
+                                top: rowBottomPosition,
+                                width: cellWidth,
+                                // backgroundColor: 'orange',
+                            },
+                        ]}>
+                        <Animated.View
+                            style={[styles.labelWrap, {opacity: labelOpacity}]}>
+                            <Text style={styles.label}>Prędkość</Text>
+                        </Animated.View>
+                        <DisplaySpeed fontSize={down ? 57 : 23} />
+                    </Animated.View>
+                    <Animated.View
+                        style={[
+                            styles.cell,
+                            {
+                                top: rowBottomPosition,
+                                width: cellWidth,
+                                // backgroundColor: 'khaki',
+                            },
+                        ]}>
+                        <Animated.View
+                            style={[
+                                styles.labelWrap,
+                                styles.rightLabel,
+                                {opacity: labelOpacity},
+                            ]}>
+                            <Text style={[styles.label]}>Średnia prędkość</Text>
+                        </Animated.View>
+                        <DisplayAverageSpeed
+                            time={time}
+                            fontSize={down ? 57 : 23}
+                        />
+                    </Animated.View>
                 </Animated.View>
             </Animated.View>
-        </>
+            <Animated.View
+                style={[
+                    styles.arrowBtnWrap,
+                    {
+                        top: arrowPos,
+                        // transform: [{scaleY: arrowDirection}],
+                    },
+                ]}>
+                <CrossBtn onPress={arrowBtnActionHandler} down={down} />
+            </Animated.View>
+        </Animated.View>
     );
 };
 

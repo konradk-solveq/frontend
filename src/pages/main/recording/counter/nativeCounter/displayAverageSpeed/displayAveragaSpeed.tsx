@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {TextStyle} from 'react-native';
+import {getHorizontalPx} from '../../../../../../helpers/layoutFoo';
 import {getAverageSpeedFromDistanceAndTime} from '../../../../../../utils/speed';
 
 import {CounterDataContext} from '../counterContext/counterContext';
@@ -24,7 +25,10 @@ const DisplayAverageSpeed: React.FC<IProps> = ({
 
     return (
         <DisplayValue
-            style={[{marginLeft: fontSize > 23 ? 20 : 0}, style]}
+            style={[
+                {marginLeft: fontSize > 23 ? getHorizontalPx(30) : 0},
+                style,
+            ]}
             value={averageSpeed || '0,0'}
             suffix="km/h"
             fontSize={fontSize}
