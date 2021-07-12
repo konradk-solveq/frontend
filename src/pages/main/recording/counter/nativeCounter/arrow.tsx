@@ -10,7 +10,7 @@ interface Props {
     down?: boolean;
 }
 
-const AnimatedPath = Animated.createAnimatedComponent(Path);
+// const AnimatedPath = Animated.createAnimatedComponent(Path);
 
 const Arrow: React.FC<Props> = ({down}: Props) => {
     const arrowSides = [1.094, 6.929];
@@ -59,13 +59,13 @@ const Arrow: React.FC<Props> = ({down}: Props) => {
     // });
 
 
-    const animatedProps = useAnimatedProps(() => {
-        // draw a circle
-        const path = path_1;
-        return {
-            d: path,
-        };
-    });
+    // const animatedProps = useAnimatedProps(() => {
+    //     // draw a circle
+    //     const path = path_1;
+    //     return {
+    //         d: path,
+    //     };
+    // });
 
     const styles = StyleSheet.create({
         btnContainer: {
@@ -76,13 +76,14 @@ const Arrow: React.FC<Props> = ({down}: Props) => {
 
     return (
         <Svg viewBox="0 0 13.5 8" style={styles.btnContainer}>
-            <AnimatedPath
-                animatedProps={animatedProps}
+            <Path
+                // animatedProps={animatedProps}
                 fill="none"
                 stroke="#313131"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                d={path_1}
             />
         </Svg>
     );

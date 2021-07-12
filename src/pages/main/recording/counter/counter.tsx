@@ -83,6 +83,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         pauseTracker,
         resumeTracker,
         followedRouteId,
+        isActive,
     } = useLocalizationTracker(true, true);
 
     const bikeSelectorListPositionY = useRef(
