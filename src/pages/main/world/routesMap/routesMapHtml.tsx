@@ -440,8 +440,8 @@ function initMap() {
     setPosOnMap(pos)
 
     // dla chowania apli z adresem
-    map.addListener('click', (e) => {
-        window.ReactNativeWebView.postMessage("clickMap "+JSON.stringify(e));
+    map.addListener('click', () => {
+        window.ReactNativeWebView.postMessage("clickMap");
     });
 
     // dla zmiany pozycji regionu
@@ -483,7 +483,6 @@ const setMarks = places => {
 
     clusterShops = new MarkerClusterer(map, marks.shop, {
         ignoreHidden: true,
-        zoomOnClick: false,
         styles: [{
                 url: "shop_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
@@ -542,7 +541,6 @@ const setMarks = places => {
 
     clusterService = new MarkerClusterer(map, marks.service, {
         ignoreHidden: true,
-        zoomOnClick: false,
         styles: [{
                 url: "service_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
@@ -601,7 +599,6 @@ const setMarks = places => {
 
     clusterServiceShops = new MarkerClusterer(map, marks.serviceshop, {
         ignoreHidden: true,
-        zoomOnClick: false,
         styles: [{
                 url: "serviceshop_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",

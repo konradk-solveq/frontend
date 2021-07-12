@@ -101,7 +101,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         // if (adressDetails && Platform.OS === 'android') {
         //     setRegionData(undefined);
         // }
-        // setAdress(adressDetails);
+        setAdress(adressDetails);
     };
 
     const setJs = (foo: string) => mapRef.current?.injectJavaScript(foo);
@@ -161,38 +161,32 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
         switch (val[0]) {
             case 'changeRegion':
-                {
-                    console.log('[change region]', val[1]);
-                    const newBox = JSON.parse(val[1]);
-                    const bbox = [
-                        {lat: newBox.east, lng: newBox.north},
-                        {lat: newBox.west, lng: newBox.south},
-                    ];
-                    const getMapData = async () => {
-                        try {
-                            await dispatch(
-                                fetchPlacesData({
-                                    bbox: bbox,
-                                    width: 500,
-                                }),
-                            );
-                        } catch (error) {
-                            /* TODO: add ui info */
-                            console.log('[Get places error]', error);
-                        }
-                    };
-                    getMapData();
-                }
+                const newBox = JSON.parse(val[1]);
+                const bbox = [
+                    {lat: newBox.east, lng: newBox.north},
+                    {lat: newBox.west, lng: newBox.south},
+                ];
+                const getMapData = async () => {
+                    try {
+                        await dispatch(
+                            fetchPlacesData({
+                                bbox: bbox,
+                                width: 500,
+                            }),
+                        );
+                    } catch (error) {
+                        /* TODO: add ui info */
+                        console.log('[Get places error]', error);
+                    }
+                };
+
+                getMapData();
                 break;
             case 'clickMarker':
-                {
-                    heandleShowAdress(JSON.parse(val[1]));
-                }
+                heandleShowAdress(JSON.parse(val[1]));
                 break;
             case 'clickMap':
-                {
-                    heandleShowAdress(null);
-                }
+                heandleShowAdress(null);
                 break;
         }
     };
@@ -267,10 +261,12 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             </View>
             {adress && <AddressBox address={adress} />}
 
-            <BottomInfoTile
-                data={routesData?.[0]}
-                onPress={onNavigateDetails}
-            />
+            {adress && (
+                <BottomInfoTile
+                    data={routesData?.[0]}
+                    onPress={onNavigateDetails}
+                />
+            )}
 
             <StackHeader
                 hideBackArrow
