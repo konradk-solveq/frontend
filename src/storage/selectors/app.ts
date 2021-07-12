@@ -54,3 +54,6 @@ export const mapOptionsAndTagsSelector = (state: RootState): OptionType => ({
 });
 
 export const faqDataSelector = (state: RootState): FaqType[] => state.app.faq;
+
+export const showedLocationInfoSelector = (state: RootState): boolean =>
+    state.app.showedLocationInfo;

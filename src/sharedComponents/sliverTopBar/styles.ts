@@ -60,6 +60,15 @@ const styles = StyleSheet.create({
         width: width,
         transform: [{scaleX: 0.6}],
     },
+    gradient: {
+        position: 'absolute',
+        width: width,
+        height: width / 3,
+        transform: [{scaleX: 3}],
+        top: 0,
+        left: 0,
+        zIndex: 1,
+    },
 });
 
 export default styles;
