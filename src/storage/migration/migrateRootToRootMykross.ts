@@ -7,7 +7,7 @@ import {RootState} from '../storage';
  * Remove 'root' data.
  */
 const removeRootKey = async () => {
-    // await AsyncStorage.removeItem('persist:root');
+    await AsyncStorage.removeItem('persist:root');
 };
 
 /**
