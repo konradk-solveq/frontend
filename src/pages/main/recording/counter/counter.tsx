@@ -49,6 +49,7 @@ import CounterMapView from './counterMapView';
 import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 
 const {width} = Dimensions.get('window');
+const isIOS = Platform.OS === 'ios';
 
 interface Props {
     navigation: any;

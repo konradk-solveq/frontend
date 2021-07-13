@@ -14,6 +14,8 @@ import {
     showLocationInfo,
 } from '../../../../utils/showAndroidLlocationInfo';
 
+const isIOS = Platform.OS === 'ios';
+
 interface IProps {
     onPress: () => void;
 }
@@ -27,7 +29,7 @@ const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
 
     const doAction = () => {
         Platform.OS === 'ios' || isLocationInfoShowed
-            ? onRecordTripActionHandler(navigation)
+            ? onRecordTripActionHandler(navigation, isIOS)
             : showLocationInfo(navigation, dispatch);
     };
 
