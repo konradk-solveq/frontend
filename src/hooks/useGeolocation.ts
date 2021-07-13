@@ -3,6 +3,7 @@ import {
     Location,
     LocationError,
 } from 'react-native-background-geolocation-android';
+
 import {LocationDataI} from '../interfaces/geolocation';
 
 import {
@@ -11,10 +12,12 @@ import {
     transformGeoloCationData,
 } from '../utils/geolocation';
 import {useAppSelector} from './redux';
+import useOpenGPSSettings from './useOpenGPSSettings';
 
 const useGeolocation = () => {
     const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
 
+    const {isGPSEnabled} = useOpenGPSSettings();
     const [locations, setLocations] = useState<LocationDataI[]>([]);
     const [errors, setErrors] = useState<LocationError[]>([]);
 
@@ -23,17 +26,20 @@ const useGeolocation = () => {
 
         setLocations(prev => [...prev, location]);
     };
+
     const onLocationErrorHandler = (error: LocationError) => {
         setErrors(prev => [...prev, error]);
     };
 
     useEffect(() => {
-        onPostitionWatch(onLocationHandler, onLocationErrorHandler);
+        if (isGPSEnabled) {
+            onPostitionWatch(onLocationHandler, onLocationErrorHandler);
 
-        return () => {
-            cleaUpPositionWatcher();
-        };
-    }, []);
+            return () => {
+                cleaUpPositionWatcher();
+            };
+        }
+    }, [isGPSEnabled]);
 
     return {
         isOnline,

@@ -3,6 +3,7 @@ import BackgroundGeolocation, {
     Location,
     LocationError,
 } from 'react-native-background-geolocation-android';
+import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {
     checkMultiple,
     PERMISSIONS,
@@ -243,4 +244,19 @@ export const checkAndroidLocationPermission = async () => {
     } catch (error) {}
 
     return locationPermissions;
+};
+
+export const openGPSModule = async () => {
+    try {
+        const res = await RNAndroidLocationEnabler.promptForEnableLocationIfNeeded(
+            {
+                interval: 10000,
+                fastInterval: 5000,
+            },
+        );
+
+        return res;
+    } catch (error) {
+        return 'denied';
+    }
 };
