@@ -7,7 +7,7 @@ import {RootState} from '../storage';
  * Remove 'root' data.
  */
 const removeRootKey = async () => {
-    await AsyncStorage.removeItem('persist:root');
+    // await AsyncStorage.removeItem('persist:root');
 };
 
 /**
@@ -78,7 +78,7 @@ export const migration = async (
                 if (
                     !mergeBikesList.find(
                         e =>
-                            e?.description?.serial_number !==
+                            e?.description?.serial_number ===
                             l.description.serial_number,
                     )
                 ) {
