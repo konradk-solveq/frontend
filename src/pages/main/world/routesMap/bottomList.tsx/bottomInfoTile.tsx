@@ -19,28 +19,54 @@ const maxContainerHeight = getVerticalPx(400);
 interface IProps {
     data: Map;
     onPress: (mapID: string) => void;
+    onHidePress: () => void;
+    show: boolean;
 }
 
-const BottomInfoTile: React.FC<IProps> = ({data, onPress}: IProps) => {
-    const containerHeight = useRef(new Animated.Value(minContainerHeight))
-        .current;
+const BottomInfoTile: React.FC<IProps> = ({
+    data,
+    onPress,
+    show,
+    onHidePress,
+}: IProps) => {
+    const containerHeight = useRef(new Animated.Value(0)).current;
+    const [isVisible, setIsVisible] = useState(false);
     const [isUp, setIsUp] = useState(false);
 
     useEffect(() => {
-        const shoudMinimize = !data;
-        const shoudlMaximize =
-            containerHeight?.__getValue() < minContainerHeight;
-        if (shoudMinimize || shoudlMaximize) {
-            const previousHeigth = !isUp
-                ? minContainerHeight
-                : maxContainerHeight;
-            Animated.timing(containerHeight, {
-                toValue: shoudMinimize ? zeroContainerHeight : previousHeigth,
-                duration: 800,
-                useNativeDriver: false,
-            }).start();
+        Animated.timing(containerHeight, {
+            toValue: show ? minContainerHeight : 0,
+            duration: 800,
+            useNativeDriver: false,
+        }).start(() => {
+            setIsVisible(show);
+        });
+    }, [show]);
+
+    const topPositionInterpolation = containerHeight.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 1],
+    });
+
+    useEffect(() => {
+        if (isVisible) {
+            const shoudMinimize = !data;
+            const shoudlMaximize =
+                containerHeight?.__getValue() < minContainerHeight;
+            if (shoudMinimize || shoudlMaximize) {
+                const previousHeigth = !isUp
+                    ? minContainerHeight
+                    : maxContainerHeight;
+                Animated.timing(containerHeight, {
+                    toValue: shoudMinimize
+                        ? zeroContainerHeight
+                        : previousHeigth,
+                    duration: 800,
+                    useNativeDriver: false,
+                }).start();
+            }
         }
-    }, [data, containerHeight, isUp]);
+    }, [data, containerHeight, isUp, isVisible]);
 
     const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
@@ -53,6 +79,7 @@ const BottomInfoTile: React.FC<IProps> = ({data, onPress}: IProps) => {
     };
 
     const onSwipeFlatButton = () => {
+        onHidePress();
         if (!data) {
             return;
         }
@@ -61,7 +88,14 @@ const BottomInfoTile: React.FC<IProps> = ({data, onPress}: IProps) => {
     };
 
     return (
-        <Animated.View style={[styles.container, {height: containerHeight}]}>
+        <Animated.View
+            style={[
+                styles.container,
+                {
+                    height: containerHeight,
+                    opacity: topPositionInterpolation,
+                },
+            ]}>
             <Swipe direction={!isUp ? 4 : 8} onSwipeAction={onSwipeFlatButton}>
                 <View style={styles.flatButtonContainer}>
                     <View style={styles.flatButton} />

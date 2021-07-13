@@ -64,13 +64,14 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainRoutesMap');
 
     const [adress, setAdress] = useState<MapMarkerType | null>(null);
+    const [canHideAddress, setCanHideAddress] = useState(true);
     const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
         route.params.activeTab || RouteMapType.BIKE_MAP,
     );
     const [mapLoaded, setMapLoaded] = useState(false);
 
     const {locations} = useGeolocation();
-    const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers()
+    const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
 
     useEffect(() => {
         if (currentMapType === RouteMapType.MY_ROUTES) {
@@ -163,9 +164,15 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 break;
             case 'clickMarker':
                 heandleShowAdress(JSON.parse(val[1]));
+                setCanHideAddress(false);
                 break;
             case 'clickMap':
-                heandleShowAdress(null);
+                setTimeout(() => {
+                    if (canHideAddress) {
+                        heandleShowAdress(null);
+                    }
+                    setCanHideAddress(true);
+                }, 300);
                 break;
         }
     };
@@ -182,6 +189,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     const onNavigateDetails = (mapID: string) => {
+        setCanHideAddress(false);
         navigation.navigate(
             RegularStackRoute.ROUTE_DETAILS_SCREEN as keyof RootStackType,
             {mapID: mapID, private: false},
@@ -239,12 +247,14 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 />
             </View>
 
-            {adress && (
-                <BottomInfoTile
-                    data={routesData?.[0]}
-                    onPress={onNavigateDetails}
-                />
-            )}
+            <BottomInfoTile
+                data={routesData?.[0]}
+                onPress={onNavigateDetails}
+                show={!!adress}
+                onHidePress={() => {
+                    setCanHideAddress(false);
+                }}
+            />
 
             <StackHeader
                 hideBackArrow
