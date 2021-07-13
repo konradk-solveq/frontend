@@ -84,25 +84,27 @@ export interface MapDetails {
     mapUrl: string;
 }
 
-// export interface MapType {
-//     id: string;
-//     name: string;
-//     author?: string;
-//     difficulty?: SelectI;
-//     ownerId?: string;
-//     surface?: SelectI;
-//     description?: MapDescriptionType;
-//     tags?: SelectI;
-//     location?: string;
-//     path: Coords[];
-//     images?: Images[];
-//     date: Date;
-//     distance?: number;
-//     distanceToRoute?: number;
-//     time?: number;
-//     rating?: number;
-//     isPublish?: boolean;
-// }
+export enum MarkerType {
+    PUBLIC = 'PUBLIC',
+    PRIVATE = 'PRIVATE',
+    FAVOURITE = 'FAVOURITE',
+}
+
+export type MarkerDetailsType = {
+    id: string;
+    name: string;
+    distance: number;
+    distanceToRoute: number;
+    totalTime: number;
+};
+
+export type MapMarkerType = {
+    type: string;
+    lat: number;
+    lng: number;
+    details: MarkerDetailsType;
+    markerType: MarkerType[];
+};
 
 export class Map {
     @IsNotEmpty()
@@ -235,22 +237,4 @@ export class Map {
     }
 }
 
-export interface MapType extends Map {
-    // id: string;
-    // name: string;
-    // author?: string;
-    // difficulty?: SelectI;
-    // ownerId?: string;
-    // surface?: SelectI;
-    // description?: MapDescriptionType;
-    // tags?: SelectI;
-    // location?: string;
-    // path: Coords[];
-    // images?: Images[];
-    // date: Date;
-    // distance?: number;
-    // distanceToRoute?: number;
-    // time?: number;
-    // rating?: number;
-    // isPublish?: boolean;
-}
+export interface MapType extends Map {}

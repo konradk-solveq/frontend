@@ -5,11 +5,8 @@ import {SafeAreaView, View, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {
-    RouteMapType,
-    PointDetails,
-    Place,
-} from '../../../../models/places.model';
+import {RouteMapType, Point} from '../../../../models/places.model';
+import {MapMarkerType} from '../../../../models/map.model';
 import {
     RootStackType,
     RoutesMapNavigationPropI,
@@ -24,7 +21,8 @@ import {
 } from '../../../../storage/selectors/map';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
-import {fetchPlacesData} from '../../../../storage/actions';
+import {fetchMapIfNotExistsLocally} from '../../../../storage/actions/maps';
+import useGetRouteMapMarkers from '../../../../hooks/useGetRouteMapMarkers';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import AnimSvg from '../../../../helpers/animSvg';
@@ -33,12 +31,9 @@ import gradient from './gradientSvg';
 import {ListBtn} from '../../../../sharedComponents/buttons';
 import BottomInfoTile from './bottomList.tsx/bottomInfoTile';
 
-import AddressBox from './addressBox/addressBox';
-
 import mapSource from './routesMapHtml';
 
 import styles from './style';
-import { fetchMapIfNotExistsLocally } from '../../../../storage/actions/maps';
 
 interface Props {
     navigation: RoutesMapNavigationPropI;
@@ -66,17 +61,16 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     );
     // dodać listę tras
 
-    const places = useAppSelector<Place[]>(state => state.places.places);
-
     const trans: any = I18n.t('MainRoutesMap');
 
-    const [adress, setAdress] = useState<PointDetails | null>(null);
+    const [adress, setAdress] = useState<MapMarkerType | null>(null);
     const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
         route.params.activeTab || RouteMapType.BIKE_MAP,
     );
     const [mapLoaded, setMapLoaded] = useState(false);
 
     const {locations} = useGeolocation();
+    const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers()
 
     useEffect(() => {
         if (currentMapType === RouteMapType.MY_ROUTES) {
@@ -91,7 +85,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentMapType]);
 
-    const heandleShowAdress = (adressDetails: PointDetails | null) => {
+    const heandleShowAdress = (adressDetails: MapMarkerType | null) => {
         console.log('[ON PRESSED -- heandleShowAdress]', adressDetails);
         /* TODO: check if locally route exists, fetch if not */
         dispatch(fetchMapIfNotExistsLocally(adressDetails?.id, currentMapType));
@@ -127,14 +121,15 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     }, [locations, mapLoaded]);
 
     useEffect(() => {
-        if (mapLoaded && places.length > 0) {
-            let p = JSON.stringify(places);
+        if (mapLoaded && routeMarkres.length > 0) {
+            let p = JSON.stringify(routeMarkres);
             setJs(`setMarks(${p});`);
         }
-    }, [places]);
+    }, [routeMarkres]);
 
     /* TODO: extract as helper method */
     const setBtnRadio = (mapType: string) => {
+        setAdress(null);
         setCurrentMapType(mapType);
     };
 
@@ -156,25 +151,15 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         switch (val[0]) {
             case 'changeRegion':
                 const newBox = JSON.parse(val[1]);
-                const bbox = [
+                const bbox: [Point, Point] = [
                     {lat: newBox.east, lng: newBox.north},
                     {lat: newBox.west, lng: newBox.south},
                 ];
-                const getMapData = async () => {
-                    try {
-                        await dispatch(
-                            fetchPlacesData({
-                                bbox: bbox,
-                                width: 500,
-                            }),
-                        );
-                    } catch (error) {
-                        /* TODO: add ui info */
-                        console.log('[Get places error]', error);
-                    }
-                };
 
-                getMapData();
+                fetchRoutesMarkers({
+                    bbox: bbox,
+                    width: 500,
+                });
                 break;
             case 'clickMarker':
                 heandleShowAdress(JSON.parse(val[1]));
@@ -253,7 +238,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                     onpress={heandlePlanning}
                 />
             </View>
-            {adress && <AddressBox address={adress} />}
 
             {adress && (
                 <BottomInfoTile
