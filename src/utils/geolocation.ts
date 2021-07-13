@@ -35,6 +35,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             cancelButton: trans2.cancelButton,
             settingsButton: trans2.settingsButton,
         },
+        disableLocationAuthorizationAlert: isIOS,
         backgroundPermissionRationale: {
             title: trans.title,
             message: trans.message,
