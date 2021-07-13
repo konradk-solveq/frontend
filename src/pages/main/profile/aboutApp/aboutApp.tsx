@@ -30,7 +30,7 @@ const getAppVersion = () => {
 
 const AboutApp: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('AboutApp');
-    const myVersion = '1.2.0.k9 - serwer: P_R_O_D_U_K_C_Y_J_N_Y';
+    const myVersion = '1.2.0.k14 - serwer: P_R_O_D_U_K_C_Y_J_N_Y';
 
     const [headHeight, setHeadHeightt] = useState(0);
 

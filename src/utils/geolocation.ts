@@ -153,6 +153,17 @@ export const onLocationChange = async (
     BackgroundGeolocation.onLocation(onLocation, onError);
 };
 
+export const onPostitionWatch = async (
+    onLocation: (data: Location) => void,
+    onError: (error: LocationError) => void,
+) => {
+    BackgroundGeolocation.watchPosition(onLocation, onError);
+};
+
+export const cleaUpPositionWatcher = () => {
+    BackgroundGeolocation.stopWatchPosition();
+};
+
 export const transformGeoloCationData = (data: Location): LocationDataI => {
     const location = {
         uuid: data.uuid,
