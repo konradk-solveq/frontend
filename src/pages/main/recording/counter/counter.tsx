@@ -13,6 +13,7 @@ import I18n from 'react-native-i18n';
 import {
     getVerticalPx,
     getStackHeaderHeight,
+    getHorizontalPx,
 } from '../../../../helpers/layoutFoo';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
@@ -38,7 +39,6 @@ import CounterMapView from './counterMapView';
 import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
-import NativeTopInfo from './nativeTopInfo/nativeTopInfo';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -86,7 +86,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         isActive,
     } = useLocalizationTracker(true, true);
 
-    const bikeSelectorListPositionY = useRef(
+    const [mapHiden, setMapHiden] = useState(true);
+
+    const bileListTop = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
     ).current;
 
@@ -123,6 +125,16 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             dispatch(setCurrentRoutePauseTime(pauseTime.total));
         }
     }, [dispatch, pauseTime.total]);
+
+    useEffect(() => {
+        Animated.timing(bileListTop, {
+            toValue: mapHiden
+                ? headerHeight + getVerticalPx(50)
+                : headerHeight + getVerticalPx(-58),
+            duration: 400,
+            useNativeDriver: false,
+        }).start();
+    }, [mapHiden]);
 
     // zmiana stanu strony na lewym przycisku
     const heandleLeftBtnClick = useCallback(() => {
@@ -288,21 +300,18 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         stackHeader: {
             zIndex: 2,
         },
-        innerContainer: {
-            flex: 1,
-            backgroundColor: 'red',
-        },
         bikeList: {
             zIndex: 1,
             marginTop: marginTopOnIos,
             position: 'absolute',
+            zIndex: 5,
         },
     });
 
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />
-            <View style={styles.innerContainer}>
+            <View>
                 <CounterMapView
                     routeId={followedRouteId || route?.params?.mapID}
                     trackerData={trackerData}
@@ -315,18 +324,21 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     <NativeCounter
                         time={trackerStartTime}
                         isRunning={isActive}
+                        mapHiden={mapHiden}
+                        setMapHiden={setMapHiden}
                     />
                 </CounterDataContext.Provider>
 
                 <StackHeader
                     onpress={heandleGoBackClick}
                     inner={headerTitle}
-                    whiteArow={!pause && pageState !== 'endMessage'}
+                    whiteArow={!pause && pageState !== 'endMessage' && mapHiden}
                     titleOn={true}
                     style={styles.stackHeader}
                     started={
                         pageState === 'record' || pageState === 'cancelText'
                     }
+                    mapHiden={mapHiden}
                 />
 
                 {bikes && (
@@ -334,7 +346,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         style={[
                             styles.bikeList,
                             {
-                                top: bikeSelectorListPositionY,
+                                top: bileListTop,
                             },
                         ]}>
                         <BikeSelectorList
@@ -342,6 +354,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             callback={onChangeBikeHandler}
                             currentBike={bike?.description?.serial_number}
                             buttonText={'add'}
+                            mapHiden={mapHiden}
                         />
                     </Animated.View>
                 )}

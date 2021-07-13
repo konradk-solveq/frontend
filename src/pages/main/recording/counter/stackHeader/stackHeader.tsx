@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {StyleSheet, Text, View, Platform} from 'react-native';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
+import {StyleSheet, Text, View, Platform, Animated} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -22,6 +22,7 @@ interface Props {
     getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
     whiteArow: boolean;
     started?: boolean;
+    mapHiden: boolean;
 }
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
@@ -41,6 +42,31 @@ const StackHeader: React.FC<Props> = (props: Props) => {
         getHeight();
     }, [getHeight]);
 
+    const display = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        Animated.timing(display, {
+            toValue: props.mapHiden ? 1 : 0,
+            duration: 400,
+            useNativeDriver: false,
+        }).start();
+    }, [props.mapHiden, display]);
+
+    const titleTop = display.interpolate({
+        inputRange: [0, 1],
+        outputRange: [getVerticalPx(3 - 28 - 30), getVerticalPx(3 - 28)],
+    });
+
+    const arrowTop = display.interpolate({
+        inputRange: [0, 1],
+        outputRange: [getVerticalPx(-22), 0],
+    });
+
+    const arrowLeft = display.interpolate({
+        inputRange: [0, 1],
+        outputRange: [getVerticalPx(-32), 0],
+    });
+
     setObjSize(414, 34);
     const wrap = {
         position: 'absolute',
@@ -52,14 +78,15 @@ const StackHeader: React.FC<Props> = (props: Props) => {
 
     setObjSize(226, 23);
     const title = {
-        position: 'absolute',
-        width: getWidthPx(),
-        left: getCenterLeftPx(),
-        top: getVerticalPx(3 - 28),
         fontFamily: 'DIN2014Narrow-Light',
         textAlign: 'center',
         fontSize: 13,
         color: '#ffffff',
+    };
+    const titleWrap = {
+        position: 'absolute',
+        width: getWidthPx(),
+        left: getCenterLeftPx(),
     };
 
     const styles = StyleSheet.create({
@@ -71,12 +98,18 @@ const StackHeader: React.FC<Props> = (props: Props) => {
             height: height,
         },
         wrap,
-        title,
-        background: {
+        arrowWrap: {
             position: 'absolute',
             left: 0,
             top: 0,
-            width: getHorizontalPx(414),
+        },
+        title,
+        titleWrap,
+        background: {
+            position: 'absolute',
+            left: getHorizontalPx(-1),
+            top: 0,
+            width: getHorizontalPx(416),
             height: getVerticalPx(116),
         },
         fullView: {
@@ -92,16 +125,34 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                 <HeaderBacgroudShape
                     started={props.started}
                     style={styles.background}
+                    mapHiden={props.mapHiden}
                 />
 
                 <View style={styles.wrap}>
-                    <TopBackBtn
-                        onpress={props.onpress}
-                        color={props.whiteArow ? '#fff' : '#000'}
-                    />
+                    <Animated.View
+                        style={[
+                            styles.arrowWrap,
+                            {
+                                top: arrowTop,
+                                left: arrowLeft,
+                            },
+                        ]}>
+                        <TopBackBtn
+                            onpress={props.onpress}
+                            color={props.whiteArow ? '#fff' : '#000'}
+                        />
+                    </Animated.View>
 
                     {props.titleOn && (
-                        <Text style={styles.title}>{props.inner}</Text>
+                        <Animated.View
+                            style={[
+                                styles.titleWrap,
+                                {
+                                    top: titleTop,
+                                },
+                            ]}>
+                            <Text style={styles.title}>{props.inner}</Text>
+                        </Animated.View>
                     )}
                 </View>
             </View>

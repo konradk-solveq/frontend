@@ -1,7 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {View, Text, Dimensions, Animated, Platform} from 'react-native';
 import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
-import {ArrowBtn} from '../../../../../sharedComponents/buttons';
 import CrossBtn from './crossBtn';
 import DisplayAverageSpeed from './displayAverageSpeed/displayAveragaSpeed';
 import DisplayDistance from './displayDistance/displayDistance';
@@ -13,23 +12,27 @@ import styles from './style';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
-const arrowPositionTop =  getVerticalPx((isIOS ? 0 : 5) + 415);
+const arrowPositionTop = getVerticalPx((isIOS ? 0 : 5) + 415);
 const arrowPositionBottom = getVerticalPx(isIOS ? -60 : -65);
 
 interface IProps {
     time: Date;
     isRunning: boolean;
+    mapHiden: boolean;
+    setMapHiden: Function;
 }
 
 /* TODO: add context for values */
-const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
+const NativeCounter: React.FC<IProps> = ({
+    time,
+    isRunning,
+    mapHiden,
+    setMapHiden,
+}: IProps) => {
     const containerHeight = useRef(new Animated.Value(height)).current;
     const displayContainer = useRef(new Animated.Value(0)).current;
     const arrowPos = useRef(new Animated.Value(arrowPositionTop)).current;
-    const arrowDirection = useRef(new Animated.Value(1)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
-
-    const [down, setDown] = useState(true);
 
     const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
@@ -95,10 +98,10 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
 
         if (containerH >= 500) {
             startAnimation();
-            setDown(false);
+            setMapHiden(false);
         } else {
             startAnimation(true);
-            setDown(true);
+            setMapHiden(true);
         }
     };
 
@@ -123,7 +126,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                                 Dystans
                             </Animated.Text>
                         </Animated.View>
-                        <DisplayDistance fontSize={down ? 57 : 23} />
+                        <DisplayDistance fontSize={mapHiden ? 57 : 23} />
                     </Animated.View>
                     <Animated.View
                         style={[
@@ -143,7 +146,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                         <DisplayTimer
                             time={time}
                             isRunning={isRunning}
-                            fontSize={down ? 57 : 23}
+                            fontSize={mapHiden ? 57 : 23}
                         />
                     </Animated.View>
                 </View>
@@ -167,7 +170,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                             style={[styles.labelWrap, {opacity: labelOpacity}]}>
                             <Text style={styles.label}>Prędkość</Text>
                         </Animated.View>
-                        <DisplaySpeed fontSize={down ? 57 : 23} />
+                        <DisplaySpeed fontSize={mapHiden ? 57 : 23} />
                     </Animated.View>
                     <Animated.View
                         style={[
@@ -188,7 +191,7 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                         </Animated.View>
                         <DisplayAverageSpeed
                             time={time}
-                            fontSize={down ? 57 : 23}
+                            fontSize={mapHiden ? 57 : 23}
                         />
                     </Animated.View>
                 </Animated.View>
@@ -198,10 +201,9 @@ const NativeCounter: React.FC<IProps> = ({time, isRunning}: IProps) => {
                     styles.arrowBtnWrap,
                     {
                         top: arrowPos,
-                        // transform: [{scaleY: arrowDirection}],
                     },
                 ]}>
-                <CrossBtn onPress={arrowBtnActionHandler} down={down} />
+                <CrossBtn onPress={arrowBtnActionHandler} down={mapHiden} />
             </Animated.View>
         </Animated.View>
     );

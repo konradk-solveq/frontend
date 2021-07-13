@@ -14,38 +14,58 @@ const AnimatedPath = Animated.createAnimatedComponent(Path);
 interface IProps {
     started?: boolean;
     style?: any;
+    mapHiden: boolean;
 }
 
-const HeaderBacgroudShape: React.FC<IProps> = ({started, style}: IProps) => {
+const HeaderBacgroudShape: React.FC<IProps> = ({
+    started,
+    style,
+    mapHiden,
+}: IProps) => {
     const sh = useSharedValue(getVerticalPx(90)); // side height
     const ch = useSharedValue(getVerticalPx(116)); // center height
 
     const display = useSharedValue(-1);
 
-    const w = getHorizontalPx(414);
+    const lw = getHorizontalPx(-1);
+    const rw = getHorizontalPx(416);
     const cw = getHorizontalPx(81);
 
     useEffect(() => {
-        if (started) {
-            display.value = withTiming(0, {duration: 400});
-            sh.value = withTiming(getVerticalPx(90), {duration: 400});
-            ch.value = withTiming(getVerticalPx(116), {duration: 400});
-        } else {
-            if (display.value !== -1) {
-                display.value = withTiming(1, {duration: 400});
+        if (mapHiden) {
+            if (started) {
+                display.value = withTiming(0, {duration: 400});
+                sh.value = withTiming(getVerticalPx(90), {duration: 400});
+                ch.value = withTiming(getVerticalPx(116), {duration: 400});
+            } else {
+                if (display.value !== -1) {
+                    display.value = withTiming(1, {duration: 400});
+                }
+                sh.value = withTiming(getVerticalPx(60), {duration: 400});
+                ch.value = withTiming(getVerticalPx(60), {duration: 400});
             }
-            sh.value = withTiming(getVerticalPx(60), {duration: 400});
-            ch.value = withTiming(getVerticalPx(60), {duration: 400});
+        } else {
+            if (started) {
+                display.value = withTiming(0, {duration: 400});
+                sh.value = withTiming(getVerticalPx(20), {duration: 400});
+                ch.value = withTiming(getVerticalPx(36), {duration: 400});
+            } else {
+                if (display.value !== -1) {
+                    display.value = withTiming(1, {duration: 400});
+                }
+                sh.value = withTiming(getVerticalPx(30), {duration: 400});
+                ch.value = withTiming(getVerticalPx(30), {duration: 400});
+            }
         }
-    }, [started]);
+    }, [started, mapHiden]);
 
     const animatedProps = useAnimatedProps(() => {
         return {
-            d: `M 0,0 ${w},0 ${w},${sh.value} C ${w},${sh.value} ${w - cw},${
-                ch.value
-            } ${w / 2},${ch.value} C ${cw},${ch.value} 0,${sh.value} 0,${
+            d: `M ${lw},0 ${rw},0 ${rw},${sh.value} C ${rw},${sh.value} ${
+                rw - cw
+            },${ch.value} ${rw / 2},${ch.value} C ${cw},${ch.value} ${lw},${
                 sh.value
-            } Z`,
+            } ${lw},${sh.value} Z`,
             fill: interpolateColor(
                 display.value,
                 [-1, 0, 1],
