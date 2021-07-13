@@ -18,6 +18,7 @@ const isIOS = Platform.OS === 'ios';
 /* TODO: catch errors */
 export const initBGeolocalization = async (notificationTitle: string) => {
     const trans: any = I18n.t('Geolocation.backgroundPermissionRationale');
+    const trans2: any = I18n.t('Geolocation.locationAuthorizationAlert');
 
     const state = await BackgroundGeolocation.ready({
         reset: true,
@@ -28,11 +29,11 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             : BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
         locationAuthorizationRequest: 'Always',
         locationAuthorizationAlert: {
-            titleWhenNotEnabled: trans.titleWhenNotEnabled,
-            titleWhenOff: trans.titleWhenOff,
-            instructions: trans.instructions,
-            cancelButton: trans.cancelButton,
-            settingsButton: trans.settingsButton,
+            titleWhenNotEnabled: trans2.titleWhenNotEnabled,
+            titleWhenOff: trans2.titleWhenOff,
+            instructions: trans2.instructions,
+            cancelButton: trans2.cancelButton,
+            settingsButton: trans2.settingsButton,
         },
         backgroundPermissionRationale: {
             title: trans.title,

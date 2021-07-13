@@ -675,9 +675,9 @@
             "rightButton": "Włącz"
         },
         "locationAuthorizationAlert": {
-            "titleWhenNotEnabled": "Usługi lokalizacji są wyłączone",
+            "titleWhenNotEnabled": "Zezwól na dostęp do lokalizacji w tle",
             "titleWhenOff": "Usługi lokalizacji są wyłączone",
-            "instructions": "Włącz Zawsz zezwalaj w usługach lokalizacyjnych",
+            "instructions": "Włącz Zawsze zezwalaj w usługach lokalizacyjnych",
             "cancelButton": "Anuluj",
             "settingsButton": "Ustawienia"
         },

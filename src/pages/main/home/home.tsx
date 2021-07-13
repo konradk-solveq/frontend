@@ -34,6 +34,8 @@ import {BothStackRoute, RegularStackRoute} from '../../../navigation/route';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import Loader from '../../onboarding/bikeAdding/loader/loader';
 
+const isIOS = Platform.OS === 'ios';
+
 const Home: React.FC = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
@@ -102,7 +104,7 @@ const Home: React.FC = () => {
 
     const doAction = () => {
         Platform.OS === 'ios' || isLocationInfoShowed
-            ? onRecordTripActionHandler(navigation)
+            ? onRecordTripActionHandler(navigation, isIOS)
             : showLocationInfo(navigation, dispatch);
     };
 

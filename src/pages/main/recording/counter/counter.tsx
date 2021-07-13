@@ -49,6 +49,7 @@ import CounterMapView from './counterMapView';
 import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 
 const {width} = Dimensions.get('window');
+const isIOS = Platform.OS === 'ios';
 
 interface Props {
     navigation: any;
@@ -86,7 +87,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         pauseTracker,
         resumeTracker,
         followedRouteId,
-    } = useLocalizationTracker(true, true);
+    } = useLocalizationTracker(true, !isIOS);
 
     const bikeSelectorListPositionY = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
