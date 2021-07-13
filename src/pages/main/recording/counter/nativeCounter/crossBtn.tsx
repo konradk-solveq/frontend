@@ -1,9 +1,6 @@
 import React, {useRef} from 'react';
 import {StyleSheet, Dimensions, View, Platform, Animated} from 'react-native';
-import Svg, {G, Path} from 'react-native-svg';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-// import Animated as Anim from 'react-native-reanimated';
-// import {concat} from 'react-native-reanimated';
 
 import {
     setObjSize,
@@ -68,9 +65,7 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style}: Props) => {
         ],
     });
 
-    setObjSize(51, 51);
     const h = width * (40 / 120.8);
-    const w = getWidthPx();
     const styles = StyleSheet.create({
         container: {
             width: getHorizontalPx(51),
@@ -84,10 +79,10 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style}: Props) => {
         },
         button: {
             position: 'absolute',
-            width: w,
-            height: w,
-            left: getCenterLeftPx(),
-            top: 0,
+            width: getHorizontalPx(51),
+            height: getHorizontalPx(51),
+            left: getHorizontalPx((414 - 51) / 2 + 0.5),
+            top: getHorizontalPx(0.5),
             elevation: 20,
             shadowColor: 'grey',
             shadowOffset: {height: 0, width: 0},
@@ -95,12 +90,6 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style}: Props) => {
             shadowRadius: 10,
             shadowOpacity: isIOS ? 0.4 : 1,
             borderRadius: 50,
-        },
-        btnContainer: {
-            width: getHorizontalPx(16),
-            height: getHorizontalPx(9),
-            left: getHorizontalPx((51 - 16) / 2),
-            marginTop: getHorizontalPx((51 - 9) / 2),
         },
         touch: {
             width: '100%',
@@ -152,7 +141,7 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style}: Props) => {
                     onPress={onPress}
                     hitSlop={{top: 20, bottom: 20}}
                     style={styles.touch}>
-                    <Arrow />
+                    <Arrow down={down} />
                 </TouchableWithoutFeedback>
             </View>
         </Animated.View>
