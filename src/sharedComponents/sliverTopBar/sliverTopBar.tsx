@@ -1,9 +1,11 @@
 import React, {useEffect, useRef} from 'react';
 import {Animated, Image, View, ScrollView} from 'react-native';
+import AnimSvg from '../../helpers/animSvg';
 
 import {getVerticalPx} from '../../helpers/layoutFoo';
 import RouteImagePlaceholder from '../images/routeListImagePlaceholder';
 
+import gradient from './gradientSvg';
 import styles from './styles';
 
 const HEADER_EXPANDED_HEIGHT = 300;
@@ -80,11 +82,17 @@ const SliverTopBar: React.FC<IProps> = ({
                             {backgroundColor: styleForEmptyImg},
                         ]}>
                         {imgSrc ? (
-                            <Image
-                                style={styles.image}
-                                source={{uri: imgSrc}}
-                                resizeMode="cover"
-                            />
+                            <>
+                                <AnimSvg
+                                    style={styles.gradient}
+                                    source={gradient}
+                                />
+                                <Image
+                                    style={styles.image}
+                                    source={{uri: imgSrc}}
+                                    resizeMode="cover"
+                                />
+                            </>
                         ) : (
                             <View style={styles.placeholderWrapper}>
                                 <RouteImagePlaceholder

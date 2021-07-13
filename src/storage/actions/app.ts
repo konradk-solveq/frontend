@@ -29,6 +29,7 @@ import {
     NetInfoStateType,
 } from '@react-native-community/netinfo';
 import {AppState} from '../reducers/app';
+import {RoutesState} from '../reducers/routes';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -214,21 +215,26 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         await dispatch(fetchAppRegulations(true));
         await dispatch(fetchAppConfig(true));
 
-        if (onboardingFinished && showedRegulations) {
+        const {currentRoute}: RoutesState = getState().routes;
+
+        /* Omit synch map data if recording is active */
+        const isRecordingActive = currentRoute?.isActive;
+
+        if (onboardingFinished && showedRegulations && !isRecordingActive) {
             await dispatch(fetchMapsList());
         }
 
-        if (sessionData?.access_token) {
+        if (sessionData?.access_token && !isRecordingActive) {
             dispatch(fetchPrivateMapsList());
             dispatch(fetchPlannedMapsList());
         }
 
-        if (onboardingFinished) {
+        if (onboardingFinished && !isRecordingActive) {
             dispatch(fetchGenericBikeData());
             dispatch(setBikesListByFrameNumbers());
         }
 
-        if (sessionData?.access_token) {
+        if (sessionData?.access_token && !isRecordingActive) {
             dispatch(syncRouteDataFromQueue());
         }
 
