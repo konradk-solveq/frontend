@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useCallback, useRef} from 'react';
-import {StyleSheet, Text, View, Dimensions, Platform} from 'react-native';
+import React, {useState, useEffect, useCallback} from 'react';
+import {StyleSheet, Text, View, Platform} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -11,6 +11,7 @@ import {
     getHorizontalPx,
 } from '../../../../../helpers/layoutFoo';
 import {getStatusBarHeight} from '../../../../../utils/detectIOSDevice';
+import HeaderBacgroudShape from './headerBacgroudShape';
 
 interface Props {
     // * wartości wymagane
@@ -20,6 +21,7 @@ interface Props {
     titleOn: boolean; // czy nazwa w headerze ma się pokazać
     getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
     whiteArow: boolean;
+    started?: boolean;
 }
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
@@ -85,18 +87,25 @@ const StackHeader: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <View style={[styles.container, props.style]}>
-            <View style={styles.wrap}>
-                <TopBackBtn
-                    onpress={props.onpress}
-                    color={props.whiteArow ? '#fff' : '#000'}
+        <>
+            <View style={[styles.container, props.style]}>
+                <HeaderBacgroudShape
+                    started={props.started}
+                    style={styles.background}
                 />
 
-                {props.titleOn && (
-                    <Text style={styles.title}>{props.inner}</Text>
-                )}
+                <View style={styles.wrap}>
+                    <TopBackBtn
+                        onpress={props.onpress}
+                        color={props.whiteArow ? '#fff' : '#000'}
+                    />
+
+                    {props.titleOn && (
+                        <Text style={styles.title}>{props.inner}</Text>
+                    )}
+                </View>
             </View>
-        </View>
+        </>
     );
 };
 

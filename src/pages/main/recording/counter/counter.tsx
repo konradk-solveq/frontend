@@ -311,18 +311,23 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
                 <MarkPointer />
 
-                <NativeTopInfo
-                    started={
-                        pageState === 'record' || pageState === 'cancelText'
-                    }
-                />
-
                 <CounterDataContext.Provider value={trackerData}>
                     <NativeCounter
                         time={trackerStartTime}
                         isRunning={isActive}
                     />
                 </CounterDataContext.Provider>
+
+                <StackHeader
+                    onpress={heandleGoBackClick}
+                    inner={headerTitle}
+                    whiteArow={!pause && pageState !== 'endMessage'}
+                    titleOn={true}
+                    style={styles.stackHeader}
+                    started={
+                        pageState === 'record' || pageState === 'cancelText'
+                    }
+                />
 
                 {bikes && (
                     <Animated.View
@@ -354,14 +359,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             ? trans.cancelText
                             : trans.endText
                     }
-                />
-
-                <StackHeader
-                    onpress={heandleGoBackClick}
-                    inner={headerTitle}
-                    whiteArow={!pause && pageState !== 'endMessage'}
-                    titleOn={true}
-                    style={styles.stackHeader}
                 />
             </View>
         </>
