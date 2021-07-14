@@ -108,6 +108,21 @@ export default [
     },
     {
         type: 'marker',
+        lat: 50.2745689,
+        lng: 19.1342712,
+        details: {
+            id: 'reFyibbIm-8YW7Q0NRxYOwpo1i6OJxxi',
+            name: 'Private route 2',
+            distance: 1234,
+            distanceToRoute: 3123,
+            totalTime: 688,
+            mapImgUrl:
+                'https://public.pre.mykross.kross.pl/cycling-map/reFyibbIm-8YW7Q0NRxYOwpo1i6OJxxi/map_square_512.png',
+        },
+        markerType: [MarkerType.PUBLIC, MarkerType.PRIVATE],
+    },
+    {
+        type: 'marker',
         lat: 50.2745669,
         lng: 19.1342712,
         details: {
@@ -119,7 +134,22 @@ export default [
             mapImgUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
-        markerType: [MarkerType.PUBLIC, MarkerType.PRIVATE],
+        markerType: [MarkerType.PUBLIC],
+    },
+    {
+        type: 'marker',
+        lat: 53.710556,
+        lng: 16.702426,
+        details: {
+            id: 'zcvweIHU6fXwDUJZqqbF8ozuUkdANxGQ',
+            name: 'Private route 1',
+            distance: 1234,
+            distanceToRoute: 3123,
+            totalTime: 688,
+            mapImgUrl:
+                'https://public.pre.mykross.kross.pl/cycling-map/zcvweIHU6fXwDUJZqqbF8ozuUkdANxGQ/map_square_512.png',
+        },
+        markerType: [MarkerType.PRIVATE],
     },
     {
         type: 'marker',
@@ -134,7 +164,7 @@ export default [
             mapImgUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
-        markerType: [MarkerType.PUBLIC, MarkerType.PRIVATE],
+        markerType: [MarkerType.PUBLIC],
     },
     {
         type: 'marker',

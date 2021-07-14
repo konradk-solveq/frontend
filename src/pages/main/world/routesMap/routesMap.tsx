@@ -88,11 +88,25 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     }, [location, mapLoaded]);
 
     useEffect(() => {
-        if (mapLoaded && routeMarkres.length > 0) {
+        if (mapLoaded && routeMarkres.length > 0 && posRef.current) {
             let p = JSON.stringify(routeMarkres);
-            setJs(`setMarks(${p});`);
+            setJs(`setMarks(${p});true;`);
         }
     }, [routeMarkres]);
+
+    useEffect(() => {
+        switch (currentMapType) {
+            case RouteMapType.BIKE_MAP:
+                setJs('setPublic();true;');
+                break;
+            case RouteMapType.MY_ROUTES:
+                setJs('setPrivate();true;');
+                break;
+            case RouteMapType.PLANNING:
+                setJs('setFavourites(true);true;');
+                break;
+        }
+    }, [currentMapType]);
 
     /* TODO: extract as helper method */
     const setBtnRadio = (mapType: string) => {
@@ -117,7 +131,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     const heandleOnMessage = e => {
         let val = e.nativeEvent.data.split('#$#');
-
+        console.log(val);
         switch (val[0]) {
             case 'changeRegion':
                 const newBox = JSON.parse(val[1]);
@@ -161,7 +175,10 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         setCanHideAddress(false);
         navigation.navigate(
             RegularStackRoute.ROUTE_DETAILS_SCREEN as keyof RootStackType,
-            {mapID: mapID, private: false},
+            {
+                mapID: mapID,
+                private: currentMapType === RouteMapType.MY_ROUTES,
+            },
         );
     };
 
@@ -217,7 +234,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             </View>
 
             <BottomInfoTile
-                key={JSON.stringify(adress)}
+                key={adress?.id}
                 data={adress}
                 onPress={onNavigateDetails}
                 show={!!adress}

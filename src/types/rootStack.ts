@@ -9,7 +9,7 @@ export type RootStackType = {
         private?: boolean;
         favourite?: boolean;
     };
-    RouteDetails: {mapID: string; private: false};
+    RouteDetails: {mapID: string; private: boolean};
 };
 
 export type WorldRouteType = RouteProp<RootStackType, 'World'>;
