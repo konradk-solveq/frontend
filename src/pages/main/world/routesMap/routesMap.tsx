@@ -29,6 +29,7 @@ import BottomInfoTile from './bottomList.tsx/bottomInfoTile';
 import mapSource from './routesMapHtml';
 
 import styles from './style';
+import {useCallback} from 'react';
 
 interface Props {
     navigation: RoutesMapNavigationPropI;
@@ -54,8 +55,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
 
     const heandleShowAdress = (adressDetails: MarkerDetailsType | null) => {
-        console.log('[ON PRESSED -- heandleShowAdress]', adressDetails);
-        /* TODO: check if locally route exists, fetch if not */
         if (adressDetails) {
             dispatch(
                 fetchMapIfNotExistsLocally(adressDetails.id, currentMapType),
@@ -87,14 +86,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         }
     }, [location, mapLoaded]);
 
-    useEffect(() => {
-        if (mapLoaded && routeMarkres.length > 0 && posRef.current) {
-            let p = JSON.stringify(routeMarkres);
-            setJs(`setMarks(${p});true;`);
-        }
-    }, [routeMarkres]);
-
-    useEffect(() => {
+    const switchVisibleMarkers = useCallback(() => {
         switch (currentMapType) {
             case RouteMapType.BIKE_MAP:
                 setJs('setPublic();true;');
@@ -108,6 +100,19 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         }
     }, [currentMapType]);
 
+    useEffect(() => {
+        if (mapLoaded && routeMarkres.length > 0 && posRef.current) {
+            let p = JSON.stringify(routeMarkres);
+            setJs(`setMarks(${p});true;`);
+            switchVisibleMarkers();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [routeMarkres, mapLoaded]);
+
+    useEffect(() => {
+        switchVisibleMarkers();
+    }, [switchVisibleMarkers]);
+
     /* TODO: extract as helper method */
     const setBtnRadio = (mapType: string) => {
         setAdress(null);
@@ -115,23 +120,20 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     const heandleBikeMap = () => {
-        setAdress(null);
         setBtnRadio(RouteMapType.BIKE_MAP);
     };
 
     const heandleMyRoutes = () => {
-        setAdress(null);
         setBtnRadio(RouteMapType.MY_ROUTES);
     };
 
     const heandlePlanning = () => {
-        setAdress(null);
         setBtnRadio(RouteMapType.PLANNING);
     };
 
     const heandleOnMessage = e => {
         let val = e.nativeEvent.data.split('#$#');
-        console.log(val);
+
         switch (val[0]) {
             case 'changeRegion':
                 const newBox = JSON.parse(val[1]);
