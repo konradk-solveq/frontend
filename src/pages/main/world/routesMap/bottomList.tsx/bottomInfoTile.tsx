@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {useEffect} from 'react';
-import {Animated, View} from 'react-native';
+import {Animated, View, Text} from 'react-native';
 
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {MarkerDetailsType} from '../../../../../models/map.model';
@@ -14,7 +14,7 @@ import styles from './style';
 
 const zeroContainerHeight = 0;
 const minContainerHeight = getVerticalPx(148);
-const maxContainerHeight = getVerticalPx(400);
+const maxContainerHeight = getVerticalPx(600);
 
 interface IProps {
     data: MarkerDetailsType | null;
@@ -109,6 +109,7 @@ const BottomInfoTile: React.FC<IProps> = ({
                         onPressButton={onPress}
                     />
                     <View style={styles.imageWrapper}>
+                        <Text style={styles.imageHeader}>Sprawdź trasę na mapie</Text>
                         <View style={styles.imageContainer}>
                             {data?.mapImgUrl ? (
                                 <ImageBtn

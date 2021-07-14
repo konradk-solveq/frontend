@@ -471,7 +471,7 @@ const setMarks = places => {
         let mark = new google.maps.Marker({
             id,
             position: new google.maps.LatLng(p.lat, p.lng),
-            icon: type + '_marker.png',
+            icon: 'map_marker.png',
             map: map,
             details: p.details,
         });

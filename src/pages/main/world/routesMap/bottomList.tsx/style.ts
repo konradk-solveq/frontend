@@ -37,10 +37,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: getVerticalPx(20),
     },
+    imageHeader: {
+        fontFamily: 'DIN2014Narrow-Light',
+        fontSize: 18,
+        letterSpacing: 0.5,
+        color: '#555555',
+        width: '100%',
+        textAlign: 'left',
+    },
     imageContainer: {
+        marginTop: 15,
         borderRadius: 25,
-        height: 185,
-        width: 185,
+        height: getVerticalPx(334),
+        width: getVerticalPx(334),
     },
     imagePlaceholder: {
         borderRadius: 25,
