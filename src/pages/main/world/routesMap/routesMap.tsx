@@ -4,9 +4,9 @@ import {WebView} from 'react-native-webview';
 import {SafeAreaView, View, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
 
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {useAppDispatch} from '../../../../hooks/redux';
 import {RouteMapType, Point} from '../../../../models/places.model';
-import {MapMarkerType, MarkerDetailsType} from '../../../../models/map.model';
+import {MarkerDetailsType} from '../../../../models/map.model';
 import {
     RootStackType,
     RoutesMapNavigationPropI,
@@ -14,11 +14,6 @@ import {
 } from '../../../../types/rootStack';
 import {RegularStackRoute} from '../../../../navigation/route';
 import useGeolocation from '../../../../hooks/useGeolocation';
-import {mapsListSelector} from '../../../../storage/selectors';
-import {
-    favouritesMapsSelector,
-    privateMapsListSelector,
-} from '../../../../storage/selectors/map';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {fetchMapIfNotExistsLocally} from '../../../../storage/actions/maps';
@@ -46,21 +41,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const posRef = useRef(false);
     const statusBarHeight = useStatusBarHeight();
 
-    /* TODO: routes should be updated every tab change */
-    const regularRoutesData = useAppSelector(mapsListSelector);
-    const privateRoutesData = useAppSelector(privateMapsListSelector);
-    const favouriteRoutesData = useAppSelector(favouritesMapsSelector);
-
-    const privateData = route.params?.private ? privateRoutesData : undefined;
-    const favouriteData = route.params?.favourite
-        ? favouriteRoutesData
-        : undefined;
-
-    // const [routesData, setRoutesData] = useState(
-    //     privateData || favouriteData || regularRoutesData,
-    // );
-    // dodać listę tras
-
     const trans: any = I18n.t('MainRoutesMap');
 
     const [adress, setAdress] = useState<MarkerDetailsType | null>(null);
@@ -70,24 +50,8 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     );
     const [mapLoaded, setMapLoaded] = useState(false);
 
-    const {locations} = useGeolocation();
+    const {location} = useGeolocation();
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
-
-    // useEffect(() => {
-    //     if (currentMapType === RouteMapType.MY_ROUTES) {
-    //         // setAdress(null);
-    //         setRoutesData(privateRoutesData);
-    //     }
-    //     if (currentMapType === RouteMapType.PLANNING) {
-    //         // setAdress(null);
-    //         setRoutesData(favouriteRoutesData);
-    //     }
-    //     if (currentMapType === RouteMapType.BIKE_MAP) {
-    //         // setAdress(null);
-    //         setRoutesData(regularRoutesData);
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [currentMapType]);
 
     const heandleShowAdress = (adressDetails: MarkerDetailsType | null) => {
         console.log('[ON PRESSED -- heandleShowAdress]', adressDetails);
@@ -103,15 +67,10 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const setJs = (foo: string) => mapRef.current?.injectJavaScript(foo);
 
     useEffect(() => {
-        if (locations?.length && mapLoaded) {
-            const lastLocation = locations?.[locations.length - 1];
-            if (!lastLocation) {
-                return;
-            }
-
+        if (location && mapLoaded) {
             const pos = {
-                latitude: lastLocation.coords.latitude,
-                longitude: lastLocation.coords.longitude,
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
             };
 
             /**
@@ -126,7 +85,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
             }
         }
-    }, [locations, mapLoaded]);
+    }, [location, mapLoaded]);
 
     useEffect(() => {
         if (mapLoaded && routeMarkres.length > 0) {
@@ -258,6 +217,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             </View>
 
             <BottomInfoTile
+                key={JSON.stringify(adress)}
                 data={adress}
                 onPress={onNavigateDetails}
                 show={!!adress}

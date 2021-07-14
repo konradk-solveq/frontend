@@ -260,3 +260,13 @@ export const openGPSModule = async () => {
         return 'denied';
     }
 };
+
+export const areCoordsSame = (
+    oldCoords: LocationDataI | undefined,
+    newCoords: Location,
+) => {
+    return (
+        newCoords.coords.latitude === oldCoords?.coords.latitude &&
+        newCoords.coords.longitude === oldCoords?.coords.longitude
+    );
+};

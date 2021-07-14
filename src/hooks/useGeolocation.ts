@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {
     Location,
     LocationError,
@@ -7,6 +7,7 @@ import {
 import {LocationDataI} from '../interfaces/geolocation';
 
 import {
+    areCoordsSame,
     cleaUpPositionWatcher,
     onPostitionWatch,
     transformGeoloCationData,
@@ -18,14 +19,21 @@ const useGeolocation = () => {
     const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
 
     const {isGPSEnabled} = useOpenGPSSettings();
-    const [locations, setLocations] = useState<LocationDataI[]>([]);
+    const [location, setLocation] = useState<LocationDataI | undefined>();
     const [errors, setErrors] = useState<LocationError[]>([]);
 
-    const onLocationHandler = (data: Location) => {
-        const location = transformGeoloCationData(data);
+    const onLocationHandler = useCallback(
+        (data: Location) => {
+            if (areCoordsSame(location, data)) {
+                return;
+            }
 
-        setLocations(prev => [...prev, location]);
-    };
+            const loc = transformGeoloCationData(data);
+
+            setLocation(loc);
+        },
+        [location],
+    );
 
     const onLocationErrorHandler = (error: LocationError) => {
         setErrors(prev => [...prev, error]);
@@ -39,11 +47,11 @@ const useGeolocation = () => {
                 cleaUpPositionWatcher();
             };
         }
-    }, [isGPSEnabled]);
+    }, [isGPSEnabled, onLocationHandler]);
 
     return {
         isOnline,
-        locations,
+        location,
         errors,
     };
 };

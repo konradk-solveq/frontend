@@ -41,6 +41,9 @@ const BottomInfoTile: React.FC<IProps> = ({
             useNativeDriver: false,
         }).start(() => {
             setIsVisible(show);
+            if (!show) {
+                setIsUp(false);
+            }
         });
     }, [show, containerHeight]);
 
@@ -123,4 +126,4 @@ const BottomInfoTile: React.FC<IProps> = ({
     );
 };
 
-export default BottomInfoTile;
+export default React.memo(BottomInfoTile);
