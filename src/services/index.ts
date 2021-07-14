@@ -10,6 +10,7 @@ export {
     getMapsByTypeAndId,
     editPrivateMapMetadataService,
     removePrivateMapByIdService,
+    getMarkersList,
 } from './mapsService';
 export {syncRouteData, createNewRouteService} from './routesService';
 export {

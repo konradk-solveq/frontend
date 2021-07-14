@@ -454,14 +454,14 @@ function initMap() {
 
 // dodawanie punktów po zmianie regionu
 let marks = {};
-let clusterShops = null;
+let clusterPublic = null;
 let clusterService = null;
 let clusterServiceShops = null;
 
 const setMarks = places => {
     for (let p of places) {
-        let id = p.details.name.replace(/[\.\s]/g, '_');
-        let type = p.markerTypes.join('');
+        let id = p.details.id;
+        let type = p.markerType.join('').toLowerCase();
         if (typeof marks[type] == 'undefined') marks[type] = [];
         if (marks[type].some(e => e.id == id)) continue;
 
@@ -481,7 +481,7 @@ const setMarks = places => {
         });
     }
 
-    clusterShops = new MarkerClusterer(map, marks.shop, {
+    clusterPublic = new MarkerClusterer(map, marks.public, {
         ignoreHidden: true,
         styles: [{
                 url: "shop_empty.png",
@@ -531,7 +531,7 @@ const setMarks = places => {
         ]
     });
 
-    google.maps.event.addListener(clusterShops, 'clusterclick', function(cluster) {
+    google.maps.event.addListener(clusterPublic, 'clusterclick', function(cluster) {
         const markersData = cluster.getMarkers();
 
         let markersList = [];
@@ -648,9 +648,9 @@ const setMarks = places => {
     });
 }
 
-const setShops = visibility => {
-    marks.shop.forEach(e => e.setVisible(visibility));
-    clusterShops.repaint();
+const setPublic = visibility => {
+    marks.public.forEach(e => e.setVisible(visibility));
+    clusterPublic.repaint();
 }
 
 const setServices = visibility => {

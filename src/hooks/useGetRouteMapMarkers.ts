@@ -2,7 +2,7 @@ import {useState} from 'react';
 
 import {MapMarkerType} from '../models/map.model';
 import {BBox} from '../models/places.model';
-import {getPlacesList} from '../services';
+import {getMarkersList} from '../services';
 
 const useGetRouteMapMarkers = () => {
     const [routeMarkres, setRouteMarkers] = useState<MapMarkerType[]>([]);
@@ -10,8 +10,8 @@ const useGetRouteMapMarkers = () => {
 
     const fetchRoutesMarkers = async (bbox: BBox) => {
         try {
-            /* TODO: replace with proper method */
-            const response = await getPlacesList(bbox);
+            const response = await getMarkersList(bbox);
+
             if (response?.error || !response?.data) {
                 console.log(response?.error);
                 return;

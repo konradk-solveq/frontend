@@ -72,7 +72,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     const {locations} = useGeolocation();
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
-
+// console.log('[ROUTE MARKERS]', routeMarkres)
     useEffect(() => {
         if (currentMapType === RouteMapType.MY_ROUTES) {
             // setAdress(null);
@@ -154,7 +154,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     const heandleOnMessage = e => {
         let val = e.nativeEvent.data.split('#$#');
-
+console.log('[HANDLE MESSAGE]', val)
         switch (val[0]) {
             case 'changeRegion':
                 const newBox = JSON.parse(val[1]);

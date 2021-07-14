@@ -13,13 +13,16 @@ import {
 } from '../api';
 import {ImagesMetadataType} from '../interfaces/api';
 import {MapFormDataResult, PickedFilters} from '../interfaces/form';
-import {MapType, Coords} from '../models/map.model';
+import {MapType, Coords, MapMarkerType} from '../models/map.model';
 import {getFiltersParam} from '../utils/apiDataTransform/filters';
 import {
     createFileFormData,
     mapFormMetadataToAPIRequest,
 } from '../utils/apiDataTransform/prepareRequest';
 import {I18n} from '../../I18n/I18n';
+import {BBox} from '../models/places.model';
+
+import mapMarkers from './mock/mapMarkers';
 
 export interface MapsData {
     elements: MapType[] | [];
@@ -39,6 +42,12 @@ export interface MapsResponse {
 
 export interface MapResponse {
     data: MapType | null;
+    status: number;
+    error: string;
+}
+
+export interface MapMarkersResponse {
+    data: MapMarkerType[];
     status: number;
     error: string;
 }
@@ -399,6 +408,31 @@ export const getMapsByTypeAndId = async (
     return {
         data: response.data,
         status: response.data?.statusCode || response.status,
+        error: '',
+    };
+};
+
+export const getMarkersList = async (
+    bbox: BBox,
+): Promise<MapMarkersResponse> => {
+    // const response = await getPlaces(bbox);
+    const response = {data: mapMarkers, error: '', status: 200};
+
+    if (
+        !response?.data ||
+        response.status >= 400 ||
+        response?.data?.statusCode >= 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {data: [], status: response.status, error: errorMessage};
+    }
+
+    return {
+        data: response.data,
+        status: response.status,
         error: '',
     };
 };
