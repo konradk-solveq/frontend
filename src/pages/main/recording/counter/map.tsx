@@ -22,7 +22,7 @@ interface IProps {
     routeNumber: number;
 }
 
-const CounterMapView: React.FC<IProps> = ({
+const Map: React.FC<IProps> = ({
     routeId,
     trackerData,
     routeNumber,
@@ -202,4 +202,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CounterMapView;
+export default Map;

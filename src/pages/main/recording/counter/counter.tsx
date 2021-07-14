@@ -34,8 +34,8 @@ import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
 
 import MarkPointer from './markPointer';
-import CounterActionButtons from './counterActionButtons';
-import CounterMapView from './counterMapView';
+import ActionButtons from './actionButtons';
+import Map from './map';
 import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
@@ -241,48 +241,63 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     useEffect(() => {
         switch (pageState) {
             case 'start':
-                setLeftBtnTile(trans.btnCancel);
-                setRightBtnTile(trans.btnStart);
-                setHeaderTitle(trans.headerStart);
-                setPause(true);
+                // eslint-disable-next-line no-lone-blocks
+                {
+                    setLeftBtnTile(trans.btnCancel);
+                    setRightBtnTile(trans.btnStart);
+                    setHeaderTitle(trans.headerStart);
+                    setPause(true);
+                }
                 break;
             case 'record':
-                resumeTracker();
-                setLeftBtnTile(trans.btnPauza);
-                setRightBtnTile(trans.btnEnd);
-                setHeaderTitle(trans.headerRecord);
-                setPause(false);
-                setPauseTime(prevPT => {
-                    const newTotalTime = prevPT.start
-                        ? prevPT.total + (Date.now() - prevPT.start)
-                        : 0;
+                // eslint-disable-next-line no-lone-blocks
+                {
+                    resumeTracker();
+                    setLeftBtnTile(trans.btnPauza);
+                    setRightBtnTile(trans.btnEnd);
+                    setHeaderTitle(trans.headerRecord);
+                    setPause(false);
+                    setPauseTime(prevPT => {
+                        const newTotalTime = prevPT.start
+                            ? prevPT.total + (Date.now() - prevPT.start)
+                            : 0;
 
-                    return {
-                        ...prevPT,
-                        total: newTotalTime,
-                    };
-                });
+                        return {
+                            ...prevPT,
+                            total: newTotalTime,
+                        };
+                    });
+                }
                 break;
             case 'pause':
-                pauseTracker();
-                setLeftBtnTile(trans.btnPauzaOff);
-                setHeaderTitle(trans.headerPause);
-                setPause(true);
-                setPauseTime(prevPT => ({
-                    ...prevPT,
-                    start: Date.now(),
-                }));
+                // eslint-disable-next-line no-lone-blocks
+                {
+                    pauseTracker();
+                    setLeftBtnTile(trans.btnPauzaOff);
+                    setHeaderTitle(trans.headerPause);
+                    setPause(true);
+                    setPauseTime(prevPT => ({
+                        ...prevPT,
+                        start: Date.now(),
+                    }));
+                }
                 break;
             case 'cancelText':
-                setLeftBtnTile(trans.btnCancel);
-                setRightBtnTile(trans.btnBreak);
+                // eslint-disable-next-line no-lone-blocks
+                {
+                    setLeftBtnTile(trans.btnCancel);
+                    setRightBtnTile(trans.btnBreak);
+                }
                 break;
             case 'endMessage':
-                dispatch(setCurrentRoutePauseTime(pauseTime.total));
-                pauseTracker();
-                setLeftBtnTile(trans.btnCancel);
-                setRightBtnTile(trans.btnEnd);
-                setHeaderTitle(trans.headerPause);
+                // eslint-disable-next-line no-lone-blocks
+                {
+                    dispatch(setCurrentRoutePauseTime(pauseTime.total));
+                    pauseTracker();
+                    setLeftBtnTile(trans.btnCancel);
+                    setRightBtnTile(trans.btnEnd);
+                    setHeaderTitle(trans.headerPause);
+                }
                 break;
             default: {
                 Alert.alert('', 'błąd przypisania wartości "pageState"', [
@@ -312,7 +327,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         <>
             <StatusBar backgroundColor="#ffffff" />
             <View>
-                <CounterMapView
+                <Map
                     routeId={followedRouteId || route?.params?.mapID}
                     trackerData={trackerData}
                     routeNumber={myRouteNumber}
@@ -359,7 +374,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     </Animated.View>
                 )}
 
-                <CounterActionButtons
+                <ActionButtons
                     leftBtnTitle={leftBtnTile}
                     leftBtnCallback={heandleLeftBtnClick}
                     rightBtnTitle={rightBtnTile}

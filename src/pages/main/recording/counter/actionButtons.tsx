@@ -14,7 +14,7 @@ interface IProps {
     message: string;
 }
 
-const CounterActionButtons: React.FC<IProps> = ({
+const ActionButtons: React.FC<IProps> = ({
     leftBtnTitle,
     leftBtnCallback,
     rightBtnTitle,
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default React.memo(CounterActionButtons);
+export default React.memo(ActionButtons);
