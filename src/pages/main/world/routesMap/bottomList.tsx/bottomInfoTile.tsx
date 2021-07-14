@@ -12,7 +12,7 @@ import CurvedShape from '../../../../../sharedComponents/svg/curvedShape';
 
 import styles from './style';
 
-const zeroContainerHeight = getVerticalPx(50);
+const zeroContainerHeight = 0;
 const minContainerHeight = getVerticalPx(148);
 const maxContainerHeight = getVerticalPx(400);
 
@@ -29,19 +29,20 @@ const BottomInfoTile: React.FC<IProps> = ({
     show,
     onHidePress,
 }: IProps) => {
-    const containerHeight = useRef(new Animated.Value(0)).current;
+    const containerHeight = useRef(new Animated.Value(zeroContainerHeight))
+        .current;
     const [isVisible, setIsVisible] = useState(false);
     const [isUp, setIsUp] = useState(false);
 
     useEffect(() => {
         Animated.timing(containerHeight, {
-            toValue: show ? minContainerHeight : 0,
+            toValue: show ? minContainerHeight : zeroContainerHeight,
             duration: 800,
             useNativeDriver: false,
         }).start(() => {
             setIsVisible(show);
         });
-    }, [show]);
+    }, [show, containerHeight]);
 
     const topPositionInterpolation = containerHeight.interpolate({
         inputRange: [0, 1],
@@ -50,17 +51,12 @@ const BottomInfoTile: React.FC<IProps> = ({
 
     useEffect(() => {
         if (isVisible) {
-            const shoudMinimize = !data;
             const shoudlMaximize =
                 containerHeight?.__getValue() < minContainerHeight;
-            if (shoudMinimize || shoudlMaximize) {
-                const previousHeigth = !isUp
-                    ? minContainerHeight
-                    : maxContainerHeight;
+            if (shoudlMaximize) {
+                const heigh = !isUp ? minContainerHeight : maxContainerHeight;
                 Animated.timing(containerHeight, {
-                    toValue: shoudMinimize
-                        ? zeroContainerHeight
-                        : previousHeigth,
+                    toValue: heigh,
                     duration: 800,
                     useNativeDriver: false,
                 }).start();

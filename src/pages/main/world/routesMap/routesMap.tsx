@@ -75,12 +75,15 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     useEffect(() => {
         if (currentMapType === RouteMapType.MY_ROUTES) {
+            // setAdress(null);
             setRoutesData(privateRoutesData);
         }
         if (currentMapType === RouteMapType.PLANNING) {
+            // setAdress(null);
             setRoutesData(favouriteRoutesData);
         }
         if (currentMapType === RouteMapType.BIKE_MAP) {
+            // setAdress(null);
             setRoutesData(regularRoutesData);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -135,14 +138,17 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     const heandleBikeMap = () => {
+        setAdress(null);
         setBtnRadio(RouteMapType.BIKE_MAP);
     };
 
     const heandleMyRoutes = () => {
+        setAdress(null);
         setBtnRadio(RouteMapType.MY_ROUTES);
     };
 
     const heandlePlanning = () => {
+        setAdress(null);
         setBtnRadio(RouteMapType.PLANNING);
     };
 
@@ -248,7 +254,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             </View>
 
             <BottomInfoTile
-                data={routesData?.[0]}
+                data={adress}
                 onPress={onNavigateDetails}
                 show={!!adress}
                 onHidePress={() => {
