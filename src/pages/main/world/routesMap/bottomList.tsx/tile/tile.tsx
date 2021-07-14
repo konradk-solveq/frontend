@@ -1,16 +1,18 @@
 import React from 'react';
 import {View, Text, Pressable} from 'react-native';
+import {simplyTimer} from '../../../../../../helpers/stringFoo';
 
-import {Map} from '../../../../../../models/map.model';
+import {MarkerDetailsType} from '../../../../../../models/map.model';
 
 import {BigRedBtn} from '../../../../../../sharedComponents/buttons';
 import BikeIcon from '../../../../../../sharedComponents/svg/bikeIcon';
 import ClockIcon from '../../../../../../sharedComponents/svg/clockIcon';
+import {transformMetersToKilometersString} from '../../../../../../utils/metersToKilometers';
 
 import styles from './style';
 
 interface IProps {
-    data: Map;
+    data: MarkerDetailsType;
     onPressTile: (mapID: string) => void;
     onPressButton: (mapID: string) => void;
 }
@@ -30,26 +32,35 @@ const Tile: React.FC<IProps> = ({data, onPressTile, onPressButton}: IProps) => {
                 <Pressable onPress={onPressTileHandler}>
                     <View style={styles.leftTileCell}>
                         <Text style={styles.title} numberOfLines={1}>
-                            {data.name}
+                            {data?.name}
                         </Text>
                         <View style={styles.row}>
                             <View style={[styles.textRow, styles.leftCell]}>
                                 <BikeIcon containerStyle={styles.icon} />
                                 <Text style={styles.distance}>
-                                    {data.distanceInKilometers}
+                                    {transformMetersToKilometersString(
+                                        data?.distance,
+                                    )}
                                 </Text>
                                 <Text style={styles.suffix}>km</Text>
                             </View>
                             <View style={styles.textRow}>
                                 <ClockIcon containerStyle={styles.icon} />
                                 <Text style={styles.time}>
-                                    {data.formattedTimeString}
+                                    {simplyTimer(
+                                        data?.totalTime
+                                            ? data.totalTime * 1000
+                                            : 0,
+                                    )}
                                 </Text>
                                 <Text style={styles.suffix}>h</Text>
                             </View>
                         </View>
                         <Text style={styles.distanceToRoute}>
-                            {data.distanceToRouteInKilometers} km od Ciebie
+                            {transformMetersToKilometersString(
+                                data?.distanceToRoute,
+                            )}{' '}
+                            km od Ciebie
                         </Text>
                     </View>
                 </Pressable>

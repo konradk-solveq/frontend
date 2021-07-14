@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 import {Animated, View} from 'react-native';
 
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
-import {Map} from '../../../../../models/map.model';
+import {MarkerDetailsType} from '../../../../../models/map.model';
 
 import {ImageBtn} from '../../../../../sharedComponents/buttons';
 import Tile from './tile/tile';
@@ -17,7 +17,7 @@ const minContainerHeight = getVerticalPx(148);
 const maxContainerHeight = getVerticalPx(400);
 
 interface IProps {
-    data: Map;
+    data: MarkerDetailsType | null;
     onPress: (mapID: string) => void;
     onHidePress: () => void;
     show: boolean;
@@ -107,10 +107,10 @@ const BottomInfoTile: React.FC<IProps> = ({
                     />
                     <View style={styles.imageWrapper}>
                         <View style={styles.imageContainer}>
-                            {data?.url ? (
+                            {data?.mapImgUrl ? (
                                 <ImageBtn
-                                    imgUrl={data?.url}
-                                    onPress={onPress}
+                                    imgUrl={data.mapImgUrl}
+                                    onPress={() => onPress(data.id)}
                                 />
                             ) : (
                                 <View style={styles.imagePlaceholder} />

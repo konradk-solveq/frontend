@@ -6,7 +6,7 @@ import I18n from 'react-native-i18n';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {RouteMapType, Point} from '../../../../models/places.model';
-import {MapMarkerType} from '../../../../models/map.model';
+import {MapMarkerType, MarkerDetailsType} from '../../../../models/map.model';
 import {
     RootStackType,
     RoutesMapNavigationPropI,
@@ -56,14 +56,14 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         ? favouriteRoutesData
         : undefined;
 
-    const [routesData, setRoutesData] = useState(
-        privateData || favouriteData || regularRoutesData,
-    );
+    // const [routesData, setRoutesData] = useState(
+    //     privateData || favouriteData || regularRoutesData,
+    // );
     // dodać listę tras
 
     const trans: any = I18n.t('MainRoutesMap');
 
-    const [adress, setAdress] = useState<MapMarkerType | null>(null);
+    const [adress, setAdress] = useState<MarkerDetailsType | null>(null);
     const [canHideAddress, setCanHideAddress] = useState(true);
     const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
         route.params.activeTab || RouteMapType.BIKE_MAP,
@@ -72,27 +72,31 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     const {locations} = useGeolocation();
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
-// console.log('[ROUTE MARKERS]', routeMarkres)
-    useEffect(() => {
-        if (currentMapType === RouteMapType.MY_ROUTES) {
-            // setAdress(null);
-            setRoutesData(privateRoutesData);
-        }
-        if (currentMapType === RouteMapType.PLANNING) {
-            // setAdress(null);
-            setRoutesData(favouriteRoutesData);
-        }
-        if (currentMapType === RouteMapType.BIKE_MAP) {
-            // setAdress(null);
-            setRoutesData(regularRoutesData);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentMapType]);
+    console.log('[ROUTE MARKERS]', adress);
+    // useEffect(() => {
+    //     if (currentMapType === RouteMapType.MY_ROUTES) {
+    //         // setAdress(null);
+    //         setRoutesData(privateRoutesData);
+    //     }
+    //     if (currentMapType === RouteMapType.PLANNING) {
+    //         // setAdress(null);
+    //         setRoutesData(favouriteRoutesData);
+    //     }
+    //     if (currentMapType === RouteMapType.BIKE_MAP) {
+    //         // setAdress(null);
+    //         setRoutesData(regularRoutesData);
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [currentMapType]);
 
-    const heandleShowAdress = (adressDetails: MapMarkerType | null) => {
+    const heandleShowAdress = (adressDetails: MarkerDetailsType | null) => {
         console.log('[ON PRESSED -- heandleShowAdress]', adressDetails);
         /* TODO: check if locally route exists, fetch if not */
-        dispatch(fetchMapIfNotExistsLocally(adressDetails?.id, currentMapType));
+        if (adressDetails) {
+            dispatch(
+                fetchMapIfNotExistsLocally(adressDetails.id, currentMapType),
+            );
+        }
         setAdress(adressDetails);
     };
 
@@ -154,7 +158,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     const heandleOnMessage = e => {
         let val = e.nativeEvent.data.split('#$#');
-console.log('[HANDLE MESSAGE]', val)
+
         switch (val[0]) {
             case 'changeRegion':
                 const newBox = JSON.parse(val[1]);
