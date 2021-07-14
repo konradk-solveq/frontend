@@ -5,6 +5,7 @@ const mapExists = (mapId: string, maps: MapType[]) => {
     if (!maps?.length) {
         return false;
     }
+
     return maps.find(m => m.id === mapId);
 };
 
@@ -15,16 +16,16 @@ export const checkMapExists = (
     plannedMaps: MapType[],
     mapType?: RouteMapType,
 ) => {
-    if (!mapType) {
-        return mapExists(mapId, maps);
+    if (mapType === RouteMapType.BIKE_MAP) {
+        return !!mapExists(mapId, maps);
     }
 
     if (mapType === RouteMapType.MY_ROUTES) {
-        return mapExists(mapId, privateMaps);
+        return !!mapExists(mapId, privateMaps);
     }
 
     if (mapType === RouteMapType.PLANNING) {
-        return mapExists(mapId, plannedMaps);
+        return !!mapExists(mapId, plannedMaps);
     }
 
     return false;

@@ -72,7 +72,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     const {locations} = useGeolocation();
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
-    console.log('[ROUTE MARKERS]', adress);
+
     // useEffect(() => {
     //     if (currentMapType === RouteMapType.MY_ROUTES) {
     //         // setAdress(null);
