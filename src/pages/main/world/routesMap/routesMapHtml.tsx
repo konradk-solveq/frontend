@@ -744,8 +744,6 @@ const setPrivate = () => {
     marks?.public?.forEach(e => e.setVisible(false));
     marks?.favourite?.forEach(e => e.setVisible(false));
     marks?.publicfavourite?.forEach(e => e.setVisible(false));
-    // marks?.private?.forEach(e => e.setVisible(false));
-    // marks?.publicprivate?.forEach(e => e.setVisible(false));
     clusterPublic.repaint();
     clusterFavourite.repaint();
 
