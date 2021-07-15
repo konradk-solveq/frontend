@@ -94,7 +94,7 @@ const Map: React.FC<IProps> = ({
                     heading: compassHeading,
                     center: pos,
                 },
-                {duration: 600},
+                {duration: 1000},
             );
         }
     }, [trackerData, compassHeading]);
@@ -123,7 +123,7 @@ const Map: React.FC<IProps> = ({
         pitch: 0,
         altitude: 0,
         heading: compassHeading,
-        zoom: 18,
+        zoom: isIOS ? 18 : 16,
     };
 
     return (
