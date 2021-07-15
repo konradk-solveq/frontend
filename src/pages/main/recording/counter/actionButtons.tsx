@@ -3,15 +3,11 @@ import {StyleSheet, View} from 'react-native';
 import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
 import {BigRedBtn, BigWhiteBtn} from '../../../../sharedComponents/buttons';
 
-import ButtonBackground from './buttonBackground';
-
 interface IProps {
     leftBtnTitle: string;
     leftBtnCallback: () => void;
     rightBtnTitle: string;
     rightBtnCallback: () => void;
-    withBackground?: boolean;
-    message: string;
 }
 
 const ActionButtons: React.FC<IProps> = ({
@@ -19,8 +15,6 @@ const ActionButtons: React.FC<IProps> = ({
     leftBtnCallback,
     rightBtnTitle,
     rightBtnCallback,
-    withBackground,
-    message,
 }: IProps) => {
     return (
         <View style={styles.bottons}>
@@ -31,7 +25,6 @@ const ActionButtons: React.FC<IProps> = ({
             <View style={[styles.btn, styles.rightBtn]}>
                 <BigRedBtn title={rightBtnTitle} onpress={rightBtnCallback} />
             </View>
-            <ButtonBackground showModal={withBackground} text={message} />
         </View>
     );
 };

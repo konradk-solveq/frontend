@@ -13,6 +13,7 @@ import I18n from 'react-native-i18n';
 import {
     getVerticalPx,
     getStackHeaderHeight,
+    getHorizontalPx,
 } from '../../../../helpers/layoutFoo';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
@@ -38,6 +39,7 @@ import Map from './map';
 import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
+import Apla from './apla';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -222,7 +224,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     // zmiana funckji strzałki headera
     const heandleGoBackClick = async () => {
-        console.log('%c pageState:', 'background: #ffcc00; color: #003300', pageState)
+        console.log(
+            '%c pageState:',
+            'background: #ffcc00; color: #003300',
+            pageState,
+        );
         switch (pageState) {
             case 'start':
                 returnToPreviousScreen(navigation);
@@ -322,8 +328,15 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             position: 'absolute',
             zIndex: 5,
         },
+        apla: {
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: getHorizontalPx(414),
+            height: getVerticalPx(896),
+            zIndex: 5,
+        },
     });
-
 
     return (
         <>
@@ -379,19 +392,26 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     </Animated.View>
                 )}
 
+                <View style={styles.apla} pointerEvents="none">
+                    <Apla
+                        show={
+                            pageState === 'cancelText' ||
+                            pageState === 'endMessage'
+                        }
+                        message={
+                            pageState === 'cancelText'
+                                ? trans.cancelText
+                                : trans.endText
+                        }
+                        duration={ANIMATION_DURATION}
+                    />
+                </View>
+
                 <ActionButtons
                     leftBtnTitle={leftBtnTile}
                     leftBtnCallback={heandleLeftBtnClick}
                     rightBtnTitle={rightBtnTile}
                     rightBtnCallback={heandleRightBtnClick}
-                    withBackground={
-                        pageState === 'cancelText' || pageState === 'endMessage'
-                    }
-                    message={
-                        pageState === 'cancelText'
-                            ? trans.cancelText
-                            : trans.endText
-                    }
                 />
             </View>
         </>
