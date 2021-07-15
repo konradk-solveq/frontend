@@ -1,3 +1,5 @@
+import {I18n} from '../../I18n/I18n';
+
 export const getDateString = (date: Date, separator?: string) => {
     const sep = separator || '.';
     const year = date.getFullYear();
@@ -36,4 +38,19 @@ export const compareDates = (date1: Date, date2: Date | undefined) => {
     }
 
     return false;
+};
+
+export const translateDateToTodayAndYesterdayString = (date: Date) => {
+    const trans: any = I18n.t('MainWorld.MyRoutes');
+    const now = new Date();
+
+    if (date.getDate() === now.getDate()) {
+        return trans.todayDate;
+    }
+
+    if (date.getDate() === now.getDate() - 1) {
+        return trans.yestardayDate;
+    }
+
+    return getDateString(date);
 };
