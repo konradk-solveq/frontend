@@ -77,8 +77,6 @@ const ButtonBackground: React.FC<IProps> = ({
     const textOpacity = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
-        console.log('show:', show);
-
         if (show) {
             Animated.timing(backgroundPosition, {
                 toValue: 0,

@@ -56,6 +56,10 @@ const returnToPreviousScreen = (nav: any) => {
     nav.replace(BothStackRoute.MAIN_MENU_SCREEN);
 };
 
+const setTotalTime = (pTime: {start: number; total: number}) => {
+    return pTime.start > 0 ? pTime.total + (Date.now() - pTime.start) : 0;
+};
+
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
@@ -171,16 +175,20 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         }
     }, [myRouteNumber, navigation, pageState, pause]);
 
-    const navigateToTHPPage = useCallback(() => {
-        navigation.navigate({
-            name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
-            params: {
-                distance: trackerData?.distance,
-                time: Date.now() - Date.parse(trackerStartTime.toUTCString()),
-                pause: pauseTime.total,
-            },
-        });
-    }, [navigation, pauseTime, trackerStartTime, trackerData?.distance]);
+    const navigateToTHPPage = useCallback(
+        (pTime?: number) => {
+            navigation.navigate({
+                name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
+                params: {
+                    distance: trackerData?.distance,
+                    time:
+                        Date.now() - Date.parse(trackerStartTime.toUTCString()),
+                    pause: pTime || pauseTime.total,
+                },
+            });
+        },
+        [navigation, pauseTime, trackerStartTime, trackerData?.distance],
+    );
 
     // zmiana stanu strony na prawym przycisku
     const heandleRightBtnClick = useCallback(async () => {
@@ -200,9 +208,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 returnToPreviousScreen(navigation);
                 break;
             case 'endMessage':
-                // TODO
+                const totTime = setTotalTime(pauseTime);
+                dispatch(setCurrentRoutePauseTime(totTime));
                 await stopTracker();
-                navigateToTHPPage();
+                navigateToTHPPage(totTime);
                 // do ekranu zakończenia
                 break;
             default: {
@@ -214,6 +223,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             }
         }
     }, [
+        dispatch,
+        pauseTime,
         navigation,
         startTracker,
         stopTracker,
@@ -224,11 +235,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     // zmiana funckji strzałki headera
     const heandleGoBackClick = async () => {
-        console.log(
-            '%c pageState:',
-            'background: #ffcc00; color: #003300',
-            pageState,
-        );
         switch (pageState) {
             case 'start':
                 returnToPreviousScreen(navigation);
@@ -266,10 +272,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     setHeaderTitle(trans.headerRecord);
                     setPause(false);
                     setPauseTime(prevPT => {
-                        const newTotalTime = prevPT.start
-                            ? prevPT.total + (Date.now() - prevPT.start)
-                            : 0;
-
+                        const newTotalTime = setTotalTime(prevPT);
                         return {
                             ...prevPT,
                             total: newTotalTime,
@@ -300,11 +303,16 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             case 'endMessage':
                 // eslint-disable-next-line no-lone-blocks
                 {
-                    dispatch(setCurrentRoutePauseTime(pauseTime.total));
                     pauseTracker();
                     setLeftBtnTile(trans.btnCancel);
                     setRightBtnTile(trans.btnEnd);
                     setHeaderTitle(trans.headerPause);
+                    if (!pause) {
+                        setPauseTime(prevPT => ({
+                            ...prevPT,
+                            start: Date.now(),
+                        }));
+                    }
                 }
                 break;
             default: {
