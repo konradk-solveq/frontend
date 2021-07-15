@@ -1,6 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {StyleSheet, Dimensions, View, Animated} from 'react-native';
-import {useNavigation, StackActions} from '@react-navigation/native';
+import {StyleSheet, Dimensions, View, Animated, Platform} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {UserBike} from '../../../../../models/userBike.model';
@@ -24,6 +23,7 @@ interface Props {
 }
 
 const {width} = Dimensions.get('window');
+const isIOS = Platform.OS === 'ios'
 
 const BikeSelectorList: React.FC<Props> = ({
     style,
@@ -45,7 +45,7 @@ const BikeSelectorList: React.FC<Props> = ({
 
     const listLeft = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getHorizontalPx(50), 0],
+        outputRange: [getHorizontalPx(isIOS ? 65 : 50), 0],
     });
 
     const firstItemLeft = display.interpolate({
@@ -74,7 +74,7 @@ const BikeSelectorList: React.FC<Props> = ({
             flexDirection: 'row',
             justifyContent: 'flex-start',
             borderStartColor: 'red',
-            height: 50,
+            height: isIOS ? 60 : 50,
         },
         item: {
             marginLeft: 15,

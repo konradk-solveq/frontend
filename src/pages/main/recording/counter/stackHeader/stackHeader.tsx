@@ -13,6 +13,7 @@ import {
 import {getStatusBarHeight} from '../../../../../utils/detectIOSDevice';
 import HeaderBacgroudShape from './headerBacgroudShape';
 
+const isAndroid = Platform.OS === 'android';
 interface Props {
     // * wartości wymagane
     style?: any;
@@ -28,13 +29,13 @@ interface Props {
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = (props: Props) => {
-    const [height, setHeight] = useState(getVerticalPx(100));
+    const height = getVerticalPx(100);
+    const iosOpen = isAndroid ? 0 : 10;
+    const iosClose = isAndroid ? 0 : 30;
 
     const getHeight = useCallback(async () => {
         if (props.getHeight) {
-            const statusBarHeight = await getStatusBarHeight(
-                Platform.OS === 'android',
-            );
+            const statusBarHeight = await getStatusBarHeight(isAndroid);
             props.getHeight(height - statusBarHeight);
         }
     }, []);
@@ -55,17 +56,20 @@ const StackHeader: React.FC<Props> = (props: Props) => {
 
     const titleTop = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(3 - 28 - 30), getVerticalPx(3 - 28)],
+        outputRange: [
+            getVerticalPx(3 - 28 - 30) + iosClose,
+            getVerticalPx(3 - 28) + iosOpen,
+        ],
     });
 
     const arrowTop = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(-20), 0],
+        outputRange: [getVerticalPx(isAndroid ? -20 : -3), 0],
     });
 
     const arrowLeft = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(-25), 0],
+        outputRange: [getVerticalPx(isAndroid ? -25 : -5), 0],
     });
 
     setObjSize(414, 34);

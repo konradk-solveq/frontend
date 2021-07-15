@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import Animated, {
     useSharedValue,
@@ -8,8 +8,10 @@ import Animated, {
     interpolateColor,
 } from 'react-native-reanimated';
 import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
+import useStatusBarHeight from '../../../../../hooks/statusBarHeight';
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
+const isIOS = Platform.OS === 'ios';
 
 interface IProps {
     started?: boolean;
@@ -24,6 +26,9 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
     mapHiden,
     duration,
 }: IProps) => {
+    const statusBarHeight = useStatusBarHeight();
+    const iosHeightOpen = isIOS ? 5 : 0;
+    const iosHeightClose = isIOS ? statusBarHeight / 2 : 0;
     const sh = useSharedValue(getVerticalPx(90)); // side height
     const ch = useSharedValue(getVerticalPx(116)); // center height
 
@@ -43,23 +48,35 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
                 if (display.value !== -1) {
                     display.value = withTiming(1, {duration: duration});
                 }
-                sh.value = withTiming(getVerticalPx(60), {duration: duration});
-                ch.value = withTiming(getVerticalPx(60), {duration: duration});
+                sh.value = withTiming(getVerticalPx(60) + iosHeightOpen, {
+                    duration: duration,
+                });
+                ch.value = withTiming(getVerticalPx(60) + iosHeightOpen, {
+                    duration: duration,
+                });
             }
         } else {
             if (started) {
                 display.value = withTiming(0, {duration: duration});
-                sh.value = withTiming(getVerticalPx(20), {duration: duration});
-                ch.value = withTiming(getVerticalPx(36), {duration: duration});
+                sh.value = withTiming(getVerticalPx(20) + iosHeightClose, {
+                    duration: duration,
+                });
+                ch.value = withTiming(getVerticalPx(36) + iosHeightClose, {
+                    duration: duration,
+                });
             } else {
                 if (display.value !== -1) {
                     display.value = withTiming(1, {duration: duration});
                 }
-                sh.value = withTiming(getVerticalPx(30), {duration: duration});
-                ch.value = withTiming(getVerticalPx(30), {duration: duration});
+                sh.value = withTiming(getVerticalPx(30) + iosHeightClose, {
+                    duration: duration,
+                });
+                ch.value = withTiming(getVerticalPx(30) + iosHeightClose, {
+                    duration: duration,
+                });
             }
         }
-    }, [started, mapHiden]);
+    }, [started, mapHiden, iosHeightOpen, iosHeightClose]);
 
     const animatedProps = useAnimatedProps(() => {
         return {

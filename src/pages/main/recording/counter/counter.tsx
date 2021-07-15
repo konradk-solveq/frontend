@@ -72,7 +72,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
     const statusBarHeight = useStatusBarHeight();
     const headerHeight = getStackHeaderHeight() - statusBarHeight;
-    const marginTopOnIos = isIOS ? -statusBarHeight : 0;
 
     const [myRouteNumber, setMyRouteNumber] = useState(0);
     const [pauseTime, setPauseTime] = useState({
@@ -137,11 +136,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         Animated.timing(bileListTop, {
             toValue: mapHiden
                 ? headerHeight + getVerticalPx(50)
-                : headerHeight + getVerticalPx(-54),
+                : headerHeight + getVerticalPx(isIOS ? -22 : -54),
             duration: ANIMATION_DURATION,
             useNativeDriver: false,
         }).start();
-    }, [mapHiden]);
+    }, [mapHiden, headerHeight, bileListTop]);
 
     // zmiana stanu strony na lewym przycisku
     const heandleLeftBtnClick = useCallback(() => {
@@ -329,10 +328,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     // setObjSize(334, 50);
     const styles = StyleSheet.create({
         stackHeader: {
-            zIndex: 2,
+            zIndex: 6,
         },
         bikeList: {
-            marginTop: marginTopOnIos,
             position: 'absolute',
             zIndex: 5,
         },
@@ -348,7 +346,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     return (
         <>
-            <StatusBar backgroundColor="#ffffff" />
+            <StatusBar backgroundColor="#ffffff" translucent />
             <View>
                 <Map
                     routeId={followedRouteId || route?.params?.mapID}
