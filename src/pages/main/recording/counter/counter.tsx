@@ -328,7 +328,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     // setObjSize(334, 50);
     const styles = StyleSheet.create({
         stackHeader: {
-            zIndex: 6,
+            zIndex: 2,
         },
         bikeList: {
             position: 'absolute',
@@ -346,7 +346,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     return (
         <>
-            <StatusBar backgroundColor="#ffffff" translucent />
+            <StatusBar backgroundColor="#ffffff" />
             <View>
                 <Map
                     routeId={followedRouteId || route?.params?.mapID}
@@ -381,6 +381,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
                 {bikes && (
                     <Animated.View
+                        pointerEvents="box-none"
                         style={[
                             styles.bikeList,
                             {
