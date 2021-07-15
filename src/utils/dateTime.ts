@@ -23,3 +23,17 @@ export const convertToDateWithTime = (date: string | undefined) => {
 
     return `${d}, ${t}`;
 };
+
+export const compareDates = (date1: Date, date2: Date | undefined) => {
+    if (!date2) {
+        return true;
+    }
+
+    const d1 = getDateString(new Date(date1));
+    const d2 = getDateString(new Date(date2));
+    if (d1 !== d2) {
+        return true;
+    }
+
+    return false;
+};

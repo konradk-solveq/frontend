@@ -8,8 +8,10 @@ import {
     IsNumber,
     IsDate,
     IsBoolean,
+    IsDateString,
 } from 'class-validator';
 import {simplyTimer} from '../helpers/stringFoo';
+import {getDateString} from '../utils/dateTime';
 import {transformMetersToKilometersString} from '../utils/metersToKilometers';
 import validationRules from '../utils/validation/validationRules';
 
@@ -84,26 +86,6 @@ export interface MapDetails {
     mapUrl: string;
 }
 
-// export interface MapType {
-//     id: string;
-//     name: string;
-//     author?: string;
-//     difficulty?: SelectI;
-//     ownerId?: string;
-//     surface?: SelectI;
-//     description?: MapDescriptionType;
-//     tags?: SelectI;
-//     location?: string;
-//     path: Coords[];
-//     images?: Images[];
-//     date: Date;
-//     distance?: number;
-//     distanceToRoute?: number;
-//     time?: number;
-//     rating?: number;
-//     isPublish?: boolean;
-// }
-
 export class Map {
     @IsNotEmpty()
     @IsString()
@@ -121,8 +103,8 @@ export class Map {
     @IsDate()
     public date: Date;
 
-    @IsDate()
-    public createdAt: Date;
+    @IsDateString()
+    public createdAt: string;
 
     @IsDate()
     public publishedAt: Date;
@@ -192,7 +174,7 @@ export class Map {
         name: string,
         path: CoordsType[],
         date: Date,
-        createdAt: Date,
+        createdAt: string,
     ) {
         this.id = id;
         this.name = name;
@@ -233,24 +215,14 @@ export class Map {
         return this?.surface?.options?.find(o => values?.includes(o.enumValue))
             ?.i18nValue;
     }
+
+    public get createdAtDate(): Date {
+        return new Date(this.createdAt);
+    }
+
+    public get createdAtDateString(): string {
+        return getDateString(new Date(this.createdAt));
+    }
 }
 
-export interface MapType extends Map {
-    // id: string;
-    // name: string;
-    // author?: string;
-    // difficulty?: SelectI;
-    // ownerId?: string;
-    // surface?: SelectI;
-    // description?: MapDescriptionType;
-    // tags?: SelectI;
-    // location?: string;
-    // path: Coords[];
-    // images?: Images[];
-    // date: Date;
-    // distance?: number;
-    // distanceToRoute?: number;
-    // time?: number;
-    // rating?: number;
-    // isPublish?: boolean;
-}
+export interface MapType extends Map {}
