@@ -97,7 +97,6 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const onGoForward = useCallback(
         (prev?: boolean) => {
             dispatch(clearError());
-            console.log(goForward);
             if (goForward === Action.home) {
                 navigation.navigate(RegularStackRoute.HOME_SCREEN);
                 return;
