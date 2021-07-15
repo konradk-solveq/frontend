@@ -19,3 +19,6 @@ export const bikeDescriptionByFrameNumberSelector = (
     state: RootState,
     frameNr: string,
 ): BikeDescription | null => getDescription(state.bikes.list, frameNr);
+
+export const hasAnyBikeSelector = (state: RootState): boolean =>
+    !!state.bikes.list.length;

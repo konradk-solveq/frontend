@@ -1,11 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-    StyleSheet,
-    SafeAreaView,
-    View,
-    ScrollView,
-    Platform,
-} from 'react-native';
+import {SafeAreaView, View, ScrollView, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
@@ -16,14 +10,10 @@ import {
     onRecordTripActionHandler,
     showLocationInfo,
 } from '../../../utils/showAndroidLlocationInfo';
+import {hasAnyBikeSelector} from '../../../storage/selectors/bikes';
 
 import {syncAppSelector} from '../../../storage/selectors';
-import {
-    setObjSize,
-    getCenterLeftPx,
-    getVerticalPx,
-    getWidthPx,
-} from '../../../helpers/layoutFoo';
+import {setObjSize} from '../../../helpers/layoutFoo';
 import Tile from './tile';
 
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
@@ -33,6 +23,9 @@ import {BothStackRoute, RegularStackRoute} from '../../../navigation/route';
 
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import Loader from '../../onboarding/bikeAdding/loader/loader';
+
+import styles from './style';
+import NoBikeAddedModal from '../../../sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -44,6 +37,9 @@ const Home: React.FC = () => {
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
     const syncStatus = useAppSelector(syncAppSelector);
     const isLocationInfoShowed = useAppSelector(showedLocationInfoSelector);
+    const userHasAnyBike = useAppSelector(hasAnyBikeSelector);
+
+    const [showModal, setShowModal] = useState(false);
 
     /* TODO: move initialization to splashs screen or add loader */
     useEffect(() => {
@@ -58,37 +54,6 @@ const Home: React.FC = () => {
         setNfc(r);
     });
 
-    setObjSize(334, 50);
-    const styles = StyleSheet.create({
-        container1: {
-            flex: 1,
-            backgroundColor: '#ffffff',
-        },
-        container: {
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#fff',
-        },
-        header: {
-            position: 'absolute',
-            width: getWidthPx(),
-            height: getVerticalPx(20),
-            left: getCenterLeftPx(),
-            top: getVerticalPx(65),
-            zIndex: 1,
-            alignItems: 'center',
-        },
-        tileWrapper: {
-            top: getVerticalPx(138),
-            paddingBottom: getVerticalPx(260),
-        },
-        tileSpace: {
-            marginBottom: 25,
-        },
-    });
-
     const onAddActionHandler = () => {
         navigation.navigate({
             name: nfc
@@ -98,14 +63,24 @@ const Home: React.FC = () => {
         });
     };
 
-    const onCheckActionHandler = () => {
-        navigation.navigate(RegularStackRoute.BIKE_SCREEN);
-    };
-
     const doAction = () => {
+        if (!userHasAnyBike) {
+            setShowModal(true);
+            return;
+        }
+
         Platform.OS === 'ios' || isLocationInfoShowed
             ? onRecordTripActionHandler(navigation, isIOS)
             : showLocationInfo(navigation, dispatch);
+    };
+
+    const onContinueHandler = () => {
+        setShowModal(false);
+        onAddActionHandler();
+    };
+
+    const onCancelHandler = () => {
+        setShowModal(false);
     };
 
     if (syncStatus) {
@@ -157,6 +132,12 @@ const Home: React.FC = () => {
             </ScrollView>
 
             <TabBackGround />
+
+            <NoBikeAddedModal
+                showModal={showModal}
+                onContinue={onContinueHandler}
+                onClose={onCancelHandler}
+            />
         </SafeAreaView>
     );
 };
