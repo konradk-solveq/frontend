@@ -99,7 +99,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
             dispatch(clearError());
             console.log(goForward);
             if (goForward === Action.home) {
-                navigation.navigate(RegularStackRoute.MAIN_MENU_SCREEN);
+                navigation.navigate(RegularStackRoute.HOME_SCREEN);
                 return;
             }
             if (goForward === Action.next && !prev) {
