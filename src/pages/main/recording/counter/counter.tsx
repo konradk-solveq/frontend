@@ -330,6 +330,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         stackHeader: {
             zIndex: 2,
         },
+        container: {
+            width: '100%',
+            height: '100%',
+        },
         bikeList: {
             position: 'absolute',
             zIndex: 5,
@@ -347,25 +351,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />
-            <View>
-                <Map
-                    routeId={followedRouteId || route?.params?.mapID}
-                    trackerData={trackerData}
-                    routeNumber={myRouteNumber}
-                />
-
-                <MarkPointer />
-
-                <CounterDataContext.Provider value={trackerData}>
-                    <NativeCounter
-                        time={trackerStartTime}
-                        isRunning={isActive}
-                        mapHiden={mapHiden}
-                        setMapHiden={setMapHiden}
-                        duration={ANIMATION_DURATION}
-                    />
-                </CounterDataContext.Provider>
-
+            <View style={styles.container}>
                 <StackHeader
                     onpress={heandleGoBackClick}
                     inner={headerTitle}
@@ -399,6 +385,16 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     </Animated.View>
                 )}
 
+                <CounterDataContext.Provider value={trackerData}>
+                    <NativeCounter
+                        time={trackerStartTime}
+                        isRunning={isActive}
+                        mapHiden={mapHiden}
+                        setMapHiden={setMapHiden}
+                        duration={ANIMATION_DURATION}
+                    />
+                </CounterDataContext.Provider>
+
                 <View style={styles.apla} pointerEvents="none">
                     <Apla
                         show={
@@ -420,6 +416,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     rightBtnTitle={rightBtnTile}
                     rightBtnCallback={heandleRightBtnClick}
                 />
+
+                <Map
+                    routeId={followedRouteId || route?.params?.mapID}
+                    trackerData={trackerData}
+                    routeNumber={myRouteNumber}
+                />
+
+                <MarkPointer />
             </View>
         </>
     );

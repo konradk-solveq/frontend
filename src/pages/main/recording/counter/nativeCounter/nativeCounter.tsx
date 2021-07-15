@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {View, Text, Dimensions, Animated, Platform} from 'react-native';
 import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
 import CrossBtn from './crossBtn';
@@ -119,7 +119,6 @@ const NativeCounter: React.FC<IProps> = ({
                             {
                                 top: rowTopPosition,
                                 width: cellWidth,
-                                // backgroundColor: 'khaki',
                             },
                         ]}>
                         <Animated.View
@@ -136,7 +135,6 @@ const NativeCounter: React.FC<IProps> = ({
                             {
                                 top: rowTopPosition,
                                 width: cellWidth,
-                                // backgroundColor: 'green',
                             },
                         ]}>
                         <Animated.View
@@ -165,7 +163,6 @@ const NativeCounter: React.FC<IProps> = ({
                             {
                                 top: rowBottomPosition,
                                 width: cellWidth,
-                                // backgroundColor: 'orange',
                             },
                         ]}>
                         <Animated.View
@@ -180,7 +177,6 @@ const NativeCounter: React.FC<IProps> = ({
                             {
                                 top: rowBottomPosition,
                                 width: cellWidth,
-                                // backgroundColor: 'khaki',
                             },
                         ]}>
                         <Animated.View
