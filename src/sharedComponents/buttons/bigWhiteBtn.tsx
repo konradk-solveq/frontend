@@ -43,7 +43,7 @@ const BigWhiteBtn: React.FC<Props> = (props: Props) => {
     return (
         <TouchableOpacity
             style={[styles.btn, props.style]}
-            onPress={props.onpress}>
+            onPress={() => props.onpress()}>
             <Text style={styles.text}>
                 {props.neutralCase ? props.title : props.title.toUpperCase()}
             </Text>

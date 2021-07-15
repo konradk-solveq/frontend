@@ -44,7 +44,9 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
 
     return (
         <View style={props.style}>
-            <TouchableOpacity style={styles.btn} onPress={props.onpress}>
+            <TouchableOpacity
+                style={styles.btn}
+                onPress={() => props.onpress()}>
                 <Text style={[styles.text, props.textStyle]}>
                     {props.neutralCase
                         ? props.title

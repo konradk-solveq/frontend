@@ -76,7 +76,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         total: 0,
     });
 
-    const ANIMATION_DURATION = 1000;
+    const ANIMATION_DURATION = 666;
 
     // trakowanie
     const {
