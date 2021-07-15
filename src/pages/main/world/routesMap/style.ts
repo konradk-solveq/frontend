@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
     gradient: {
         position: 'absolute',
         width: width,
-        height: width - getVerticalPx(150),
-        transform: [{scaleX: 2}],
+        height: width - getVerticalPx(250),
+        transform: [{scaleX: 3}],
         top: 0,
         left: 0,
     },
