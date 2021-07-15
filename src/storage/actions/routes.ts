@@ -79,15 +79,18 @@ export const clearCurrentRouteData = (removeDuplicates?: boolean) => ({
     removeDuplicates: removeDuplicates,
 });
 
-export const clearCurrentRoute = () => ({
+export const clearCurrentRoute = (keepId?: boolean) => ({
     type: actionTypes.CLEAR_CURRENT_ROUTE,
+    keepId: keepId,
 });
 
 export const clearAverageSpeed = () => ({
     type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
 });
 
-/* Creates route ID in first step, because actions are asynch on backend side */
+/**
+ * Creates route ID in first step, because actions are asynch on backend side
+ */
 export const startRecordingRoute = (
     currRoute: CurrentRouteI,
     keep?: boolean,
@@ -97,7 +100,7 @@ export const startRecordingRoute = (
         const {currentRoute} = getState().routes;
         const {totalPrivateMaps}: MapsState = getState().maps;
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
-        let currentRouteData = {...currRoute};
+        let currentRouteToStore = {...currRoute};
 
         if (
             (!keep || !currentRoute?.remoteRouteId) &&
@@ -110,16 +113,26 @@ export const startRecordingRoute = (
                 let errorMessage = response.error;
 
                 dispatch(setError(errorMessage, response.status));
+                if (!response?.data?.id) {
+                    currentRouteToStore = {
+                        ...currentRouteToStore,
+                        remoteRouteId: currRoute.id,
+                    };
+                    dispatch(
+                        setCurrentRoute(keep ? undefined : currentRouteToStore),
+                    );
+                    dispatch(setLoadingState(false));
+                }
                 return;
             }
-            currentRouteData = {
-                ...currentRouteData,
+            currentRouteToStore = {
+                ...currentRouteToStore,
                 remoteRouteId: response.data.id,
             };
         }
 
         dispatch(clearError());
-        dispatch(setCurrentRoute(keep ? undefined : currentRouteData));
+        dispatch(setCurrentRoute(keep ? undefined : currentRouteToStore));
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[stopCurrentRoute]');
