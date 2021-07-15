@@ -123,7 +123,7 @@ const Map: React.FC<IProps> = ({
         pitch: 0,
         altitude: 0,
         heading: compassHeading,
-        zoom: isIOS ? 18 : 16,
+        zoom: isIOS ? 18 : 17,
     };
 
     return (
