@@ -141,6 +141,7 @@ const Map: React.FC<IProps> = ({
                         scrollEnabled={false}
                         zoomEnabled={false}
                         zoomTapEnabled={false}
+                        showsCompass={false}
                         {...(!isIOS && {
                             initialCamera: cameraInitObj,
                         })}
