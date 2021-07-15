@@ -20,6 +20,7 @@ interface IProps {
     isRunning: boolean;
     mapHiden: boolean;
     setMapHiden: Function;
+    duration: number;
 }
 
 /* TODO: add context for values */
@@ -28,6 +29,7 @@ const NativeCounter: React.FC<IProps> = ({
     isRunning,
     mapHiden,
     setMapHiden,
+    duration,
 }: IProps) => {
     const containerHeight = useRef(new Animated.Value(height)).current;
     const displayContainer = useRef(new Animated.Value(0)).current;
@@ -37,25 +39,25 @@ const NativeCounter: React.FC<IProps> = ({
     const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
             toValue: !revert ? getVerticalPx(200) : height,
-            duration: 400,
+            duration: duration,
             useNativeDriver: false,
         }).start();
 
         Animated.timing(displayContainer, {
             toValue: !revert ? 1 : 0,
-            duration: 300,
+            duration: duration * 0.75,
             useNativeDriver: false,
         }).start();
 
         Animated.timing(labelOpacity, {
             toValue: !revert ? 0 : 1,
-            duration: !revert ? 100 : 350,
+            duration: !revert ? duration * 0.25 : duration * 0.875,
             useNativeDriver: false,
         }).start();
 
         Animated.timing(arrowPos, {
             toValue: !revert ? arrowPositionBottom : arrowPositionTop,
-            duration: 400,
+            duration: duration,
             useNativeDriver: false,
         }).start();
     };

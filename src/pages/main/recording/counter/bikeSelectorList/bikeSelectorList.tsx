@@ -20,6 +20,7 @@ interface Props {
     currentBike: string | undefined;
     buttonText: string;
     mapHiden: boolean;
+    duration: number;
 }
 
 const {width} = Dimensions.get('window');
@@ -30,13 +31,14 @@ const BikeSelectorList: React.FC<Props> = ({
     callback,
     currentBike,
     mapHiden,
+    duration,
 }: Props) => {
     const display = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
         Animated.timing(display, {
             toValue: mapHiden ? 1 : 0,
-            duration: 400,
+            duration: duration,
             useNativeDriver: false,
         }).start();
     }, [mapHiden, display]);

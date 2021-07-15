@@ -23,6 +23,7 @@ interface Props {
     whiteArow: boolean;
     started?: boolean;
     mapHiden: boolean;
+    duration: number;
 }
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
@@ -47,7 +48,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         Animated.timing(display, {
             toValue: props.mapHiden ? 1 : 0,
-            duration: 400,
+            duration: props.duration,
             useNativeDriver: false,
         }).start();
     }, [props.mapHiden, display]);
@@ -59,12 +60,12 @@ const StackHeader: React.FC<Props> = (props: Props) => {
 
     const arrowTop = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(-22), 0],
+        outputRange: [getVerticalPx(-20), 0],
     });
 
     const arrowLeft = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(-32), 0],
+        outputRange: [getVerticalPx(-25), 0],
     });
 
     setObjSize(414, 34);
@@ -126,6 +127,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                     started={props.started}
                     style={styles.background}
                     mapHiden={props.mapHiden}
+                    duration={props.duration}
                 />
 
                 <View style={styles.wrap}>

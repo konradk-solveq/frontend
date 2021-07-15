@@ -15,12 +15,14 @@ interface IProps {
     started?: boolean;
     style?: any;
     mapHiden: boolean;
+    duration: number;
 }
 
 const HeaderBacgroudShape: React.FC<IProps> = ({
     started,
     style,
     mapHiden,
+    duration,
 }: IProps) => {
     const sh = useSharedValue(getVerticalPx(90)); // side height
     const ch = useSharedValue(getVerticalPx(116)); // center height
@@ -34,27 +36,27 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
     useEffect(() => {
         if (mapHiden) {
             if (started) {
-                display.value = withTiming(0, {duration: 400});
-                sh.value = withTiming(getVerticalPx(90), {duration: 400});
-                ch.value = withTiming(getVerticalPx(116), {duration: 400});
+                display.value = withTiming(0, {duration: duration});
+                sh.value = withTiming(getVerticalPx(90), {duration: duration});
+                ch.value = withTiming(getVerticalPx(116), {duration: duration});
             } else {
                 if (display.value !== -1) {
-                    display.value = withTiming(1, {duration: 400});
+                    display.value = withTiming(1, {duration: duration});
                 }
-                sh.value = withTiming(getVerticalPx(60), {duration: 400});
-                ch.value = withTiming(getVerticalPx(60), {duration: 400});
+                sh.value = withTiming(getVerticalPx(60), {duration: duration});
+                ch.value = withTiming(getVerticalPx(60), {duration: duration});
             }
         } else {
             if (started) {
-                display.value = withTiming(0, {duration: 400});
-                sh.value = withTiming(getVerticalPx(20), {duration: 400});
-                ch.value = withTiming(getVerticalPx(36), {duration: 400});
+                display.value = withTiming(0, {duration: duration});
+                sh.value = withTiming(getVerticalPx(20), {duration: duration});
+                ch.value = withTiming(getVerticalPx(36), {duration: duration});
             } else {
                 if (display.value !== -1) {
-                    display.value = withTiming(1, {duration: 400});
+                    display.value = withTiming(1, {duration: duration});
                 }
-                sh.value = withTiming(getVerticalPx(30), {duration: 400});
-                ch.value = withTiming(getVerticalPx(30), {duration: 400});
+                sh.value = withTiming(getVerticalPx(30), {duration: duration});
+                ch.value = withTiming(getVerticalPx(30), {duration: duration});
             }
         }
     }, [started, mapHiden]);

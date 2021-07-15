@@ -13,7 +13,6 @@ import I18n from 'react-native-i18n';
 import {
     getVerticalPx,
     getStackHeaderHeight,
-    getHorizontalPx,
 } from '../../../../helpers/layoutFoo';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
@@ -75,6 +74,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         total: 0,
     });
 
+    const ANIMATION_DURATION = 1000;
+
     // trakowanie
     const {
         trackerData,
@@ -130,8 +131,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         Animated.timing(bileListTop, {
             toValue: mapHiden
                 ? headerHeight + getVerticalPx(50)
-                : headerHeight + getVerticalPx(-58),
-            duration: 400,
+                : headerHeight + getVerticalPx(-54),
+            duration: ANIMATION_DURATION,
             useNativeDriver: false,
         }).start();
     }, [mapHiden]);
@@ -221,6 +222,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     // zmiana funckji strzałki headera
     const heandleGoBackClick = async () => {
+        console.log('%c pageState:', 'background: #ffcc00; color: #003300', pageState)
         switch (pageState) {
             case 'start':
                 returnToPreviousScreen(navigation);
@@ -316,12 +318,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             zIndex: 2,
         },
         bikeList: {
-            zIndex: 1,
             marginTop: marginTopOnIos,
             position: 'absolute',
             zIndex: 5,
         },
     });
+
 
     return (
         <>
@@ -341,6 +343,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         isRunning={isActive}
                         mapHiden={mapHiden}
                         setMapHiden={setMapHiden}
+                        duration={ANIMATION_DURATION}
                     />
                 </CounterDataContext.Provider>
 
@@ -354,6 +357,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         pageState === 'record' || pageState === 'cancelText'
                     }
                     mapHiden={mapHiden}
+                    duration={ANIMATION_DURATION}
                 />
 
                 {bikes && (
@@ -370,6 +374,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             currentBike={bike?.description?.serial_number}
                             buttonText={'add'}
                             mapHiden={mapHiden}
+                            duration={ANIMATION_DURATION}
                         />
                     </Animated.View>
                 )}
