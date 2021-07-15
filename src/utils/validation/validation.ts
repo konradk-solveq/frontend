@@ -84,7 +84,7 @@ export const validateData = (rules: any[], value: any) => {
         }
 
         if (containsRule(el, validationRules.boolean)) {
-            isValid = isBoolean(value);
+            isValid = value == false || value == true || isBoolean(value);
         }
     });
 

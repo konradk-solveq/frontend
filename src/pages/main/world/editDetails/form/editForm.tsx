@@ -85,6 +85,9 @@ const EditForm: React.FC<IProps> = ({
         const rules = publishMapValidationRules[fieldName];
         const isValid = validateData(rules, val);
 
+        if (!isValid) {
+            scrollTop();
+        }
         return isValid || validationMessages[fieldName];
     };
 
