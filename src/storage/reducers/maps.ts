@@ -189,7 +189,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 newMaps = {privateMaps: [...state.privateMaps, action.map]};
             }
 
-            if (action.mapType === RouteMapType.MY_ROUTES) {
+            if (action.mapType === RouteMapType.PLANNING) {
                 newMaps = {plannedMaps: [...state.plannedMaps, action.map]};
             }
 

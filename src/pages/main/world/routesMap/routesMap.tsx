@@ -63,7 +63,10 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 fetchMapIfNotExistsLocally(adressDetails.id, currentMapType),
             );
         }
-        setAdress(adressDetails);
+        /* Wait for HTTP request */
+        setTimeout(() => {
+            setAdress(adressDetails);
+        }, 200);
     };
 
     const setJs = (foo: string) => mapRef.current?.injectJavaScript(foo);
