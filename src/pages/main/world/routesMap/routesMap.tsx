@@ -87,7 +87,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
             }
         }
-    }, [location, mapLoaded]);
+    }, [location?.coords, mapLoaded]);
 
     const switchVisibleMarkers = useCallback(() => {
         switch (currentMapType) {
