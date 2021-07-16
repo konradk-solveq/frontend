@@ -117,7 +117,7 @@ const EditDetails = () => {
                 data,
                 imgsToChange,
                 publish,
-                newPrivateMapID,
+                mapID || newPrivateMapID,
             ),
         );
         setSubmit(true);
