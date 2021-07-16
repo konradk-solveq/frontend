@@ -159,7 +159,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 break;
             case 'clickMap':
                 setTimeout(() => {
-                    if (canHideAddress) {
+                    if (canHideAddress || isIOS) {
                         heandleShowAdress(null);
                     }
                     setCanHideAddress(true);
