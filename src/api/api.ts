@@ -3,7 +3,7 @@ import {API_URL} from '@env';
 import {getUserAgent} from './utils/headers';
 
 const config = {
-    timeout: 30000,
+    timeout: 60000,
 };
 
 const instance = axios.create({

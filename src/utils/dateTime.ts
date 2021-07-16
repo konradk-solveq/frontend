@@ -1,3 +1,5 @@
+export const twoDigits = (num: Number) => (num < 10 ? '0' + num : '' + num);
+
 export const getDateString = (date: Date, separator?: string) => {
     const sep = separator || '.';
     const year = date.getFullYear();
@@ -22,4 +24,21 @@ export const convertToDateWithTime = (date: string | undefined) => {
     const t = getTimeString(dat);
 
     return `${d}, ${t}`;
+};
+
+export const convertToCounterFormat = (time: number) => {
+    const date = new Date(time);
+    const hours = date.getHours() - 1;
+    const dzHours = twoDigits(hours);
+    const minutes = date.getMinutes();
+    const dzMinutes = twoDigits(minutes);
+    const seconds = date.getSeconds();
+    const dzSeconds = twoDigits(seconds);
+
+    const hoursWithMinutes = `${dzHours}:${dzMinutes}`;
+
+    return {
+        hoursWithMinutes,
+        dzSeconds,
+    };
 };

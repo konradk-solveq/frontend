@@ -36,7 +36,7 @@ import {
     startCurrentRoute,
 } from './utils/localizationTracker';
 
-interface DataI {
+export interface DataI {
     distance: string;
     speed: string;
     averageSpeed: string;
@@ -129,7 +129,7 @@ const useLocalizationTracker = (
         [dispatch, currentRouteId, stopTracker],
     );
 
-    const onPauseTracker = () => {
+    const onPauseTracker = useCallback(() => {
         setIsActive(false);
         pauseTracingLocation();
         setTrackerData(prev => {
@@ -141,12 +141,12 @@ const useLocalizationTracker = (
             }
             return undefined;
         });
-    };
+    }, []);
 
-    const onStartTracker = async () => {
+    const onStartTracker = useCallback(async () => {
         setIsActive(true);
         await resumeTracingLocation();
-    };
+    }, []);
 
     useEffect(() => {
         speed = [];

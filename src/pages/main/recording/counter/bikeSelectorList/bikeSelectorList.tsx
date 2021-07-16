@@ -1,16 +1,13 @@
-import React, {useState} from 'react';
-import {StyleSheet, Dimensions, View} from 'react-native';
-import {useNavigation, StackActions} from '@react-navigation/native';
+import React, {useEffect, useRef} from 'react';
+import {StyleSheet, Dimensions, View, Animated, Platform} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {UserBike} from '../../../../../models/userBike.model';
 import {
     setObjSize,
-    getCenterLeftPx,
     getVerticalPx,
     getHorizontalPx,
 } from '../../../../../helpers/layoutFoo';
-import {nfcIsSupported} from '../../../../../helpers/nfc';
 
 import BikeButton from '../../../../../sharedComponents/buttons/bikeButton';
 import BikeIcon from '../../../../../sharedComponents/svg/bikeIcon';
@@ -21,16 +18,46 @@ interface Props {
     callback: Function;
     currentBike: string | undefined;
     buttonText: string;
+    mapHiden: boolean;
+    duration: number;
 }
 
 const {width} = Dimensions.get('window');
+const isIOS = Platform.OS === 'ios'
 
 const BikeSelectorList: React.FC<Props> = ({
     style,
     list,
     callback,
     currentBike,
+    mapHiden,
+    duration,
 }: Props) => {
+    const display = useRef(new Animated.Value(0)).current;
+
+    useEffect(() => {
+        Animated.timing(display, {
+            toValue: mapHiden ? 1 : 0,
+            duration: duration,
+            useNativeDriver: false,
+        }).start();
+    }, [mapHiden, display]);
+
+    const listLeft = display.interpolate({
+        inputRange: [0, 1],
+        outputRange: [getHorizontalPx(isIOS ? 65 : 50), 0],
+    });
+
+    const firstItemLeft = display.interpolate({
+        inputRange: [0, 1],
+        outputRange: [getHorizontalPx(5), getHorizontalPx(40)],
+    });
+
+    const lastItemRight = display.interpolate({
+        inputRange: [0, 1],
+        outputRange: [getHorizontalPx(80), getHorizontalPx(40)],
+    });
+
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         container: {
@@ -47,13 +74,13 @@ const BikeSelectorList: React.FC<Props> = ({
             flexDirection: 'row',
             justifyContent: 'flex-start',
             borderStartColor: 'red',
-            height: 50,
+            height: isIOS ? 60 : 50,
         },
         item: {
             marginLeft: 15,
         },
         fitstItem: {
-            marginLeft: getCenterLeftPx(),
+            marginLeft: getHorizontalPx(40),
         },
         lastItem: {
             marginRight: getHorizontalPx(40),
@@ -73,11 +100,15 @@ const BikeSelectorList: React.FC<Props> = ({
             const isSame = currentBike === e.description.serial_number;
 
             return (
-                <View
+                <Animated.View
                     style={[
                         styles.item,
-                        isFirsEl && styles.fitstItem,
-                        isLastEl && styles.lastItem,
+                        isFirsEl && {
+                            marginLeft: firstItemLeft,
+                        },
+                        isLastEl && {
+                            marginRight: lastItemRight,
+                        },
                     ]}
                     key={e.description.serial_number}>
                     <BikeButton
@@ -85,7 +116,7 @@ const BikeSelectorList: React.FC<Props> = ({
                         onPress={() => callback(e.description.serial_number)}
                         {...(isSame && {icon: <BikeIcon />})}
                     />
-                </View>
+                </Animated.View>
             );
         });
 
@@ -93,7 +124,14 @@ const BikeSelectorList: React.FC<Props> = ({
     };
 
     return (
-        <View style={[styles.container, style]}>
+        <Animated.View
+            style={[
+                styles.container,
+                style,
+                {
+                    left: listLeft,
+                },
+            ]}>
             <ScrollView
                 horizontal={true}
                 style={styles.scroll}
@@ -101,7 +139,7 @@ const BikeSelectorList: React.FC<Props> = ({
                 showsHorizontalScrollIndicator={false}>
                 <View style={styles.list}>{renderList()}</View>
             </ScrollView>
-        </View>
+        </Animated.View>
     );
 };
 
