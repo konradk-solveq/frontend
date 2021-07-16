@@ -617,6 +617,12 @@
         "okBtn": "Ok",
         "errorTitle": "Coś poszło nie tak!"
     },
+    "NoBikeAddedModal": {
+        "okBtn": "Dodaj rower",
+        "cancelBtn": "Wróć",
+        "errorTitle": "Coś poszło nie tak!",
+        "errorMessage": "Dodaj rower, aby móc zapisywać przejechane trasy"
+    },
     "validation": {
         "isEmpty": "Pole {{property}} nie jest puste",
         "isNotEmpty": "Pole {{property}} jest puste",
