@@ -27,7 +27,11 @@ const useGeolocation = () => {
     const [errors, setErrors] = useState<LocationError[]>([]);
 
     const onLocationHandler = useCallback(
-        (data: Location) => {
+        (data: Location | undefined) => {
+            if (!data) {
+                return;
+            }
+
             if (areCoordsSame(location, data)) {
                 return;
             }
@@ -65,8 +69,7 @@ const useGeolocation = () => {
                 });
             } catch (error) {}
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [isGPSEnabled]);
 
     useEffect(() => {
         if (isIOS || isGPSEnabled) {
