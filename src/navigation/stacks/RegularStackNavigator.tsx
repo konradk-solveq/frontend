@@ -40,7 +40,7 @@ const RegularStackNavigator: React.FC = () => {
             initialRouteName={
                 !isActive
                     ? RegularStackRoute.SPLASH_SCREEN
-                    : RegularStackRoute.COUNTER_SCREEN
+                    : BothStackRoute.MAIN_MENU_SCREEN
             }
             mode="modal"
             screenOptions={horizontalAnim}>
