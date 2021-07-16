@@ -11,7 +11,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC, MarkerType.FAVOURITE],
@@ -26,7 +26,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC],
@@ -41,7 +41,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC],
@@ -56,7 +56,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC, MarkerType.FAVOURITE],
@@ -71,7 +71,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC],
@@ -86,7 +86,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC],
@@ -101,7 +101,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC],
@@ -116,7 +116,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/reFyibbIm-8YW7Q0NRxYOwpo1i6OJxxi/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC, MarkerType.PRIVATE],
@@ -131,7 +131,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC],
@@ -146,7 +146,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/zcvweIHU6fXwDUJZqqbF8ozuUkdANxGQ/map_square_512.png',
         },
         markerType: [MarkerType.PRIVATE],
@@ -161,7 +161,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC],
@@ -176,7 +176,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC],
@@ -191,7 +191,7 @@ export default [
             distance: 1234,
             distanceToRoute: 3123,
             totalTime: 688,
-            mapImgUrl:
+            mapImageUrl:
                 'https://public.pre.mykross.kross.pl/cycling-map/geBfainF5oLEFMyRyOjZZIedImdwfDyv/map_square_512.png',
         },
         markerType: [MarkerType.PUBLIC],

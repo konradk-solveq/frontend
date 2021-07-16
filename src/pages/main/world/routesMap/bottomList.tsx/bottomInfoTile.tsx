@@ -1,7 +1,7 @@
-import React, {useRef, useState} from 'react';
-import {useEffect} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {Animated, View, Text} from 'react-native';
 
+import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {MarkerDetailsType} from '../../../../../models/map.model';
 
@@ -29,6 +29,8 @@ const BottomInfoTile: React.FC<IProps> = ({
     show,
     onHidePress,
 }: IProps) => {
+    const trans: any = I18n.t('MainRoutesMap.bottomTile');
+
     const containerHeight = useRef(new Animated.Value(zeroContainerHeight))
         .current;
     const [isVisible, setIsVisible] = useState(false);
@@ -109,11 +111,13 @@ const BottomInfoTile: React.FC<IProps> = ({
                         onPressButton={onPress}
                     />
                     <View style={styles.imageWrapper}>
-                        <Text style={styles.imageHeader}>Sprawdź trasę na mapie</Text>
+                        <Text style={styles.imageHeader}>
+                            {trans.finMoreInfo}
+                        </Text>
                         <View style={styles.imageContainer}>
-                            {data?.mapImgUrl ? (
+                            {data?.mapImageUrl ? (
                                 <ImageBtn
-                                    imgUrl={data.mapImgUrl}
+                                    imgUrl={data.mapImageUrl}
                                     onPress={() => onPress(data.id)}
                                 />
                             ) : (

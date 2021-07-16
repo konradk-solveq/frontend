@@ -97,7 +97,7 @@ export type MarkerDetailsType = {
     distance: number;
     distanceToRoute: number;
     totalTime: number;
-    mapImgUrl: string;
+    mapImageUrl: string;
 };
 
 export type MapMarkerType = {

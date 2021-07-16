@@ -369,7 +369,10 @@
         "header": "Świat KROSS",
         "bikeMap": "Mapa rowerowa",
         "myRoutes": "Moje trasy",
-        "planning": "Planowane"
+        "planning": "Planowane",
+        "bottomTile": {
+            "finMoreInfo": "Sprawdź trasę na mapie"
+        }
 
     },
     "MainMyRoutes": {
