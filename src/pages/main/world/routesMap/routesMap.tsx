@@ -18,6 +18,7 @@ import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {fetchMapIfNotExistsLocally} from '../../../../storage/actions/maps';
 import useGetRouteMapMarkers from '../../../../hooks/useGetRouteMapMarkers';
+import {useCallback} from 'react';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import AnimSvg from '../../../../helpers/animSvg';
@@ -29,7 +30,8 @@ import BottomInfoTile from './bottomList.tsx/bottomInfoTile';
 import mapSource from './routesMapHtml';
 
 import styles from './style';
-import {useCallback} from 'react';
+
+const isIOS = Platform.OS === 'ios';
 
 interface Props {
     navigation: RoutesMapNavigationPropI;
@@ -41,6 +43,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const mapRef = useRef(null);
     const posRef = useRef(false);
     const statusBarHeight = useStatusBarHeight();
+    const headerTop = isIOS ? 0 : getVerticalPx(-statusBarHeight);
 
     const trans: any = I18n.t('MainRoutesMap');
 
@@ -252,7 +255,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 hideBackArrow
                 inner={trans.header}
                 style={{
-                    top: getVerticalPx(-statusBarHeight),
+                    top: headerTop,
                 }}
                 rightActions={
                     <View style={styles.actionButtonsContainer}>
