@@ -265,6 +265,10 @@ export const areCoordsSame = (
     oldCoords: LocationDataI | undefined,
     newCoords: Location,
 ) => {
+    if (!oldCoords) {
+        return false;
+    }
+
     return (
         newCoords.coords.latitude === oldCoords?.coords.latitude &&
         newCoords.coords.longitude === oldCoords?.coords.longitude

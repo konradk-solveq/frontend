@@ -69,7 +69,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const setJs = (foo: string) => mapRef.current?.injectJavaScript(foo);
 
     useEffect(() => {
-        if (location && mapLoaded) {
+        if (location?.coords && mapLoaded) {
             const pos = {
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
@@ -98,7 +98,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 setJs('setPrivate();true;');
                 break;
             case RouteMapType.PLANNING:
-                setJs('setFavourites(true);true;');
+                setJs('setFavourites();true;');
                 break;
         }
     }, [currentMapType]);

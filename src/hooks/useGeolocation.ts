@@ -1,8 +1,10 @@
 import {useCallback, useEffect, useState} from 'react';
+import {Platform} from 'react-native';
 import {
     Location,
     LocationError,
 } from 'react-native-background-geolocation-android';
+import GetLocation from 'react-native-get-location';
 
 import {LocationDataI} from '../interfaces/geolocation';
 
@@ -14,6 +16,8 @@ import {
 } from '../utils/geolocation';
 import {useAppSelector} from './redux';
 import useOpenGPSSettings from './useOpenGPSSettings';
+
+const isIOS = Platform.OS === 'ios';
 
 const useGeolocation = () => {
     const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
@@ -40,7 +44,32 @@ const useGeolocation = () => {
     };
 
     useEffect(() => {
-        if (isGPSEnabled) {
+        if (isIOS || isGPSEnabled) {
+            try {
+                GetLocation.getCurrentPosition({
+                    enableHighAccuracy: false,
+                    timeout: 15000,
+                }).then(l => {
+                    const initLoc: LocationDataI = {
+                        coords: {
+                            altitude: l.altitude,
+                            latitude: l.latitude,
+                            longitude: l.longitude,
+                            speed: l.speed,
+                        },
+                        odometer: 0,
+                        timestamp: '',
+                        uuid: `${l.time}`,
+                    };
+                    setLocation(initLoc);
+                });
+            } catch (error) {}
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        if (isIOS || isGPSEnabled) {
             onPostitionWatch(onLocationHandler, onLocationErrorHandler);
 
             return () => {
