@@ -29,7 +29,7 @@ const CurvedShape: React.FC = () => {
 
 const styles = StyleSheet.create({
     container: {
-        width: width,
+        width: width * 1.05,
         aspectRatio: isIOS
             ? shapeWidth / shapeHeight / 1.5
             : shapeWidth / shapeHeight,
