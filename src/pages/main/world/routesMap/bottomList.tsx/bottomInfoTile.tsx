@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
-import {Animated, View, Text} from 'react-native';
+import {Animated, View, Text, Platform} from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
@@ -11,9 +11,10 @@ import Swipe from '../../../../../sharedComponents/navi/swipe/swipe';
 import CurvedShape from '../../../../../sharedComponents/svg/curvedShape';
 
 import styles from './style';
+const isIOS = Platform.OS === 'ios';
 
 const zeroContainerHeight = 0;
-const minContainerHeight = getVerticalPx(148);
+const minContainerHeight = getVerticalPx(isIOS ? 168 : 148);
 const maxContainerHeight = getVerticalPx(600);
 
 interface IProps {
