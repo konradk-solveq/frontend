@@ -1,4 +1,5 @@
 export const twoDigits = (num: Number) => (num < 10 ? '0' + num : '' + num);
+import {I18n} from '../../I18n/I18n';
 
 export const getDateString = (date: Date, separator?: string) => {
     const sep = separator || '.';
@@ -41,4 +42,33 @@ export const convertToCounterFormat = (time: number) => {
         hoursWithMinutes,
         dzSeconds,
     };
+};
+
+export const compareDates = (date1: Date, date2: Date | undefined) => {
+    if (!date2) {
+        return true;
+    }
+
+    const d1 = getDateString(new Date(date1));
+    const d2 = getDateString(new Date(date2));
+    if (d1 !== d2) {
+        return true;
+    }
+
+    return false;
+};
+
+export const translateDateToTodayAndYesterdayString = (date: Date) => {
+    const trans: any = I18n.t('MainWorld.MyRoutes');
+    const now = new Date();
+
+    if (date.getDate() === now.getDate()) {
+        return trans.todayDate;
+    }
+
+    if (date.getDate() === now.getDate() - 1) {
+        return trans.yestardayDate;
+    }
+
+    return getDateString(date);
 };

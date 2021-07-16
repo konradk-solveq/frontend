@@ -362,7 +362,9 @@
             "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
             "emptyStateButton": "Pobierz trasę",
             "defaultUserName": "Rowerzysto",
-            "routesNumberTitle": "Ilość nagranych tras:"
+            "routesNumberTitle": "Ilość nagranych tras:",
+            "todayDate": "Dziś",
+            "yestardayDate": "Wczoraj"
         }
     },
     "MainMyRoutes": {

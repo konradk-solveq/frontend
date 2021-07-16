@@ -28,6 +28,13 @@ const styles = StyleSheet.create({
     backdrop: {
         marginTop: -getVerticalPx(250),
     },
+    separatorHeader: {
+        fontFamily: 'DIN2014Narrow-Light',
+        fontSize: 18,
+        letterSpacing: 0.5,
+        color: '#555555',
+        paddingBottom: getVerticalPx(15),
+    },
 });
 
 export default styles;
