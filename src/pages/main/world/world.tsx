@@ -178,12 +178,8 @@ const World: React.FC = () => {
                     <MyRoutes
                         onRefresh={onRefreshHandler}
                         onLoadMore={onLoadMoreHandler}
-<<<<<<< HEAD
                         onPress={() => setActiveTab(RouteMapType.BIKE_MAP)}
-=======
-                        onPress={() => setActiveTab(routesTab.BIKEMAP)}
                         sortedByDate={!!savedMapFilters?.order}
->>>>>>> 5d91caa24c31d33d5b2db35088de7e498722ffc2
                     />
                 );
             case RouteMapType.PLANNING:
