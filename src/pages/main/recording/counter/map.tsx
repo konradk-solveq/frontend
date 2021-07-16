@@ -1,5 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {StyleSheet, Platform} from 'react-native';
+import React, {useState, useRef, useEffect, useCallback} from 'react';
+import {StyleSheet, Platform, Dimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
 import {Coords} from 'react-native-background-geolocation-android';
 import CompassHeading from 'react-native-compass-heading';
@@ -10,15 +10,19 @@ import {getCurrentLocation} from '../../../../utils/geolocation';
 
 import mapStyle from '../../../../sharedComponents/maps/styles';
 import deepCopy from '../../../../helpers/deepCopy';
+import AnimSvg from '../../../../helpers/animSvg';
+
+import gradient from './gradientSvg';
 
 const isIOS = Platform.OS === 'ios';
+const {width} = Dimensions.get('window');
 interface IProps {
     routeId: string;
     trackerData: any;
     routeNumber: number;
 }
 
-const CounterMapView: React.FC<IProps> = ({
+const Map: React.FC<IProps> = ({
     routeId,
     trackerData,
     routeNumber,
@@ -79,7 +83,7 @@ const CounterMapView: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [trackerData]);
 
-    useEffect(() => {
+    const setMapCamera = useCallback(() => {
         if (mapRef.current && trackerData) {
             const pos = {
                 latitude: trackerData.coords.lat,
@@ -90,10 +94,14 @@ const CounterMapView: React.FC<IProps> = ({
                     heading: compassHeading,
                     center: pos,
                 },
-                {duration: 600},
+                {duration: 1000},
             );
         }
     }, [trackerData, compassHeading]);
+
+    useEffect(() => {
+        setMapCamera();
+    }, [setMapCamera]);
 
     useEffect(() => {
         const degree_update_rate = 3;
@@ -115,58 +123,65 @@ const CounterMapView: React.FC<IProps> = ({
         pitch: 0,
         altitude: 0,
         heading: compassHeading,
-        zoom: 18,
+        zoom: isIOS ? 18 : 17,
     };
 
     return (
         <>
             {location && (
-                <MapView
-                    provider={PROVIDER_GOOGLE}
-                    style={styles.map}
-                    customMapStyle={mapStyle}
-                    pitchEnabled={false}
-                    ref={mapRef}
-                    rotateEnabled={false}
-                    scrollEnabled={false}
-                    zoomEnabled={false}
-                    {...(!isIOS && {
-                        initialCamera: cameraInitObj,
-                    })}
-                    {...(isIOS && {
-                        onLayout: () => {
-                            if (mapRef.current) {
-                                mapRef.current.setCamera(cameraInitObj);
+                <>
+                    <AnimSvg style={styles.gradient} source={gradient} />
+                    <MapView
+                        provider={PROVIDER_GOOGLE}
+                        style={styles.map}
+                        customMapStyle={mapStyle}
+                        pitchEnabled={false}
+                        ref={mapRef}
+                        rotateEnabled={false}
+                        scrollEnabled={false}
+                        zoomEnabled={false}
+                        zoomTapEnabled={false}
+                        showsCompass={false}
+                        {...(!isIOS && {
+                            initialCamera: cameraInitObj,
+                        })}
+                        {...(isIOS && {
+                            onLayout: () => {
+                                if (mapRef.current) {
+                                    mapRef.current.setCamera(cameraInitObj);
+                                }
+                            },
+                        })}>
+                        {myRoute?.map((e, i) => {
+                            if (!e) {
+                                return null;
                             }
-                        },
-                    })}>
-                    {myRoute?.map((e, i) => {
-                        if (!e) {
-                            return null;
-                        }
-                        return (
+                            return (
+                                <Polyline
+                                    coordinates={e}
+                                    strokeColor="#d8232a"
+                                    strokeColors={['#d8232a']}
+                                    lineCap={'round'}
+                                    lineJoin={'round'}
+                                    strokeWidth={8}
+                                    tappable={false}
+                                    key={'route_' + i}
+                                />
+                            );
+                        })}
+                        {foreignRoute && (
                             <Polyline
-                                coordinates={e}
-                                strokeColor="#d8232a"
-                                strokeColors={['#d8232a']}
+                                coordinates={foreignRoute}
+                                strokeColor="#3583e4"
+                                strokeColors={['#3583e4']}
                                 lineCap={'round'}
                                 lineJoin={'round'}
+                                tappable={false}
                                 strokeWidth={8}
-                                key={'route_' + i}
                             />
-                        );
-                    })}
-                    {foreignRoute && (
-                        <Polyline
-                            coordinates={foreignRoute}
-                            strokeColor="#3583e4"
-                            strokeColors={['#3583e4']}
-                            lineCap={'round'}
-                            lineJoin={'round'}
-                            strokeWidth={8}
-                        />
-                    )}
-                </MapView>
+                        )}
+                    </MapView>
+                </>
             )}
         </>
     );
@@ -178,6 +193,14 @@ const styles = StyleSheet.create({
         // height: mapBtnPos + mapBtnSize,
         height: '100%',
     },
+    gradient: {
+        position: 'absolute',
+        width: width,
+        height: width,
+        top: 0,
+        left: 0,
+        zIndex: 1,
+    },
 });
 
-export default CounterMapView;
+export default Map;

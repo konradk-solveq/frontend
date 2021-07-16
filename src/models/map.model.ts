@@ -8,8 +8,10 @@ import {
     IsNumber,
     IsDate,
     IsBoolean,
+    IsDateString,
 } from 'class-validator';
 import {simplyTimer} from '../helpers/stringFoo';
+import {getDateString} from '../utils/dateTime';
 import {transformMetersToKilometersString} from '../utils/metersToKilometers';
 import validationRules from '../utils/validation/validationRules';
 
@@ -125,8 +127,8 @@ export class Map {
     @IsDate()
     public date: Date;
 
-    @IsDate()
-    public createdAt: Date;
+    @IsDateString()
+    public createdAt: string;
 
     @IsDate()
     public publishedAt: Date;
@@ -196,7 +198,7 @@ export class Map {
         name: string,
         path: CoordsType[],
         date: Date,
-        createdAt: Date,
+        createdAt: string,
     ) {
         this.id = id;
         this.name = name;
@@ -236,6 +238,14 @@ export class Map {
         const values = this?.surface?.values;
         return this?.surface?.options?.find(o => values?.includes(o.enumValue))
             ?.i18nValue;
+    }
+
+    public get createdAtDate(): Date {
+        return new Date(this.createdAt);
+    }
+
+    public get createdAtDateString(): string {
+        return getDateString(new Date(this.createdAt));
     }
 }
 

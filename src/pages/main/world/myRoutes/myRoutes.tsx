@@ -14,15 +14,16 @@ import {Map} from '../../../../models/map.model';
 import {I18n} from '../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {getImagesThumbs} from '../../../../utils/transformData';
+import {RegularStackRoute} from '../../../../navigation/route';
+import {translateDateToTodayAndYesterdayString} from '../../../../utils/dateTime';
 
+import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
 import EmptyList from './emptyList';
-
-import styles from './style';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../../sharedComponents/loader/loader';
-import FirstTile from '../components/tiles/firstTile';
-import { RegularStackRoute } from '../../../../navigation/route';
+
+import styles from './style';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -39,17 +40,19 @@ interface IProps {
     onPress: () => void;
     onRefresh: () => void;
     onLoadMore: () => void;
+    sortedByDate?: boolean;
 }
 
 const MyRoutes: React.FC<IProps> = ({
     onPress,
     onRefresh,
     onLoadMore,
+    sortedByDate,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.MyRoutes');
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
-    const privateMaps = useAppSelector(privateMapsListSelector);
+    const privateMaps = useAppSelector<Map[]>(privateMapsListSelector);
     const totalNumberOfPrivateMaps = useAppSelector(
         privateTotalMapsNumberSelector,
     );
@@ -76,14 +79,30 @@ const MyRoutes: React.FC<IProps> = ({
         [navigation],
     );
 
+    const shouldShowDate = useCallback(
+        (date: string, index: number) => {
+            const m = privateMaps?.[index];
+            return date !== m?.createdAtDateString;
+        },
+        [privateMaps],
+    );
+
     const renderItem = useCallback(
         ({item, index}: RenderItem) => {
             const lastItemStyle =
                 index === privateMaps?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
+
             if (index === 0) {
                 return (
                     <View style={[styles.tileWrapper, lastItemStyle]}>
+                        {sortedByDate && (
+                            <Text style={styles.separatorHeader}>
+                                {translateDateToTodayAndYesterdayString(
+                                    item.createdAtDate,
+                                )}
+                            </Text>
+                        )}
                         <FirstTile
                             mapData={item}
                             images={images}
@@ -94,8 +113,20 @@ const MyRoutes: React.FC<IProps> = ({
                     </View>
                 );
             }
+
+            const showDate = shouldShowDate(
+                item.createdAtDateString,
+                index - 1,
+            );
             return (
                 <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
+                    {sortedByDate && showDate && (
+                        <Text style={styles.separatorHeader}>
+                            {translateDateToTodayAndYesterdayString(
+                                item.createdAtDate,
+                            )}
+                        </Text>
+                    )}
                     <NextTile
                         mapData={item}
                         images={images}
@@ -106,7 +137,7 @@ const MyRoutes: React.FC<IProps> = ({
                 </View>
             );
         },
-        [privateMaps?.length, onPressTileHandler],
+        [privateMaps?.length, onPressTileHandler, shouldShowDate, sortedByDate],
     );
 
     if (!privateMaps?.length) {

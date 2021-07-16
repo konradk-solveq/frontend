@@ -5,7 +5,6 @@ import {
     SafeAreaView,
     Platform,
     ScrollView,
-    KeyboardAvoidingView,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
@@ -24,15 +23,16 @@ import {editPrivateMapMetaData} from '../../../../storage/actions/maps';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {getImagesThumbs} from '../../../../utils/transformData';
 import {ImageType, MapFormDataResult} from '../../../../interfaces/form';
+import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
 import EditForm from './form/editForm';
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
 import PublishRouteThankYouPageModal from '../../../../sharedComponents/modals/publishRouteThankYouPageModal/publishRouteThankYouPageModal';
+import WrongResponseModal from '../../../../sharedComponents/modals/fail/failedResponseModal';
 
 import styles from './style';
-import WrongResponseModal from '../../../../sharedComponents/modals/fail/failedResponseModal';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -75,6 +75,8 @@ const EditDetails = () => {
         navigation.goBack();
     }, [navigation, redirectToScreen]);
 
+    useCustomBackNavButton(onBackHandler, true);
+
     const onScrollToTopHandler = (p: boolean) => {
         setScrollToTop(p);
     };
@@ -115,7 +117,7 @@ const EditDetails = () => {
                 data,
                 imgsToChange,
                 publish,
-                newPrivateMapID,
+                mapID || newPrivateMapID,
             ),
         );
         setSubmit(true);
@@ -141,13 +143,6 @@ const EditDetails = () => {
                         resetScrollPosition={() => onScrollToTopHandler(false)}
                         imgSrc={images?.sliverImg || ''}>
                         <View style={styles.content}>
-                            {/* Bug - padding is not remove */}
-                            {/* <KeyboardAvoidingView
-                                style={styles.keyboard}
-                                behavior={
-                                    Platform.OS === 'ios' ? 'padding' : 'height'
-                                }
-                                enabled> */}
                             <ScrollView showsVerticalScrollIndicator={false}>
                                 <View style={styles.container}>
                                     <EditForm
@@ -160,7 +155,6 @@ const EditDetails = () => {
                                     />
                                 </View>
                             </ScrollView>
-                            {/* </KeyboardAvoidingView> */}
                         </View>
                     </SliverTopBar>
                     <PublishRouteThankYouPageModal

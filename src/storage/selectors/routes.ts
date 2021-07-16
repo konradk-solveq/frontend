@@ -15,6 +15,9 @@ export const trackerActiveSelector = (state: RootState): boolean =>
 export const trackerStartTimeSelector = (state: RootState): Date =>
     new Date(state.routes.currentRoute.startedAt);
 
+export const trackerPauseTimeSelector = (state: RootState): number =>
+    state.routes.currentRoute.pauseTime;
+
 export const trackerLoadingSelector = (state: RootState): boolean =>
     state.routes.loading;
 

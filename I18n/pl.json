@@ -362,7 +362,9 @@
             "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
             "emptyStateButton": "Pobierz trasę",
             "defaultUserName": "Rowerzysto",
-            "routesNumberTitle": "Ilość nagranych tras:"
+            "routesNumberTitle": "Ilość nagranych tras:",
+            "todayDate": "Dziś",
+            "yestardayDate": "Wczoraj"
         }
     },
     "MainRoutesMap": {
@@ -627,6 +629,12 @@
         "okBtn": "Ok",
         "errorTitle": "Coś poszło nie tak!"
     },
+    "NoBikeAddedModal": {
+        "okBtn": "Dodaj rower",
+        "cancelBtn": "Wróć",
+        "errorTitle": "Coś poszło nie tak!",
+        "errorMessage": "Dodaj rower, aby móc zapisywać przejechane trasy"
+    },
     "validation": {
         "isEmpty": "Pole {{property}} nie jest puste",
         "isNotEmpty": "Pole {{property}} jest puste",
@@ -685,9 +693,9 @@
             "rightButton": "Włącz"
         },
         "locationAuthorizationAlert": {
-            "titleWhenNotEnabled": "Usługi lokalizacji są wyłączone",
+            "titleWhenNotEnabled": "Zezwól na dostęp do lokalizacji w tle",
             "titleWhenOff": "Usługi lokalizacji są wyłączone",
-            "instructions": "Włącz Zawsz zezwalaj w usługach lokalizacyjnych",
+            "instructions": "Włącz Zawsze zezwalaj w usługach lokalizacyjnych",
             "cancelButton": "Anuluj",
             "settingsButton": "Ustawienia"
         },

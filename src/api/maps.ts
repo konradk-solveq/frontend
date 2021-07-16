@@ -86,7 +86,7 @@ export const removePrivateMapData = async (id: string) => {
 export const uploadImageToMapData = async (id: string, formData: FormData) => {
     return await instance.post(`${BASE_ROUTE_URL}/${id}/image`, formData, {
         headers: {'Content-Type': 'multipart/form-data'},
-        timeout: 60000,
+        timeout: 90000,
         cancelToken: source.token,
     });
 };

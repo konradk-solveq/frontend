@@ -3,7 +3,6 @@ import {
     StyleSheet,
     View,
     Text,
-    GestureResponderEvent,
     TextStyle,
     ViewStyle,
     TouchableOpacity as TouchableOpacityRN,
@@ -16,7 +15,7 @@ const TouchableOpacity =
 
 interface Props {
     title: string;
-    onpress: (event: GestureResponderEvent) => void;
+    onpress: () => void;
     style?: ViewStyle;
     textStyle?: TextStyle;
     disabled?: boolean;

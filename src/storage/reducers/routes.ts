@@ -9,6 +9,7 @@ export interface CurrentRouteI {
     isActive: boolean;
     startedAt: Date | undefined;
     endedAt: Date | undefined;
+    pauseTime: number;
     routeId?: string | undefined;
     remoteRouteId?: string | undefined;
 }
@@ -36,6 +37,7 @@ const initialStateList: RoutesState = {
         isActive: false,
         startedAt: undefined,
         endedAt: undefined,
+        pauseTime: 0,
         routeId: undefined,
         remoteRouteId: undefined,
     },
@@ -96,6 +98,15 @@ const routesReducer = (state = initialStateList, action: any) => {
                 currentRoute: route,
             };
         }
+        case actionTypes.SET_CURRENT_ROUTE_PAUSE_TIME: {
+            return {
+                ...state,
+                currentRoute: {
+                    ...state.currentRoute,
+                    pauseTime: action.pauseTime,
+                },
+            };
+        }
         case actionTypes.SET_REMOTE_ROUTE_ID: {
             return {
                 ...state,
@@ -124,9 +135,18 @@ const routesReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.CLEAR_CURRENT_ROUTE: {
+            if (!action.keepId) {
+                return {
+                    ...state,
+                    currentRoute: {...initialStateList.currentRoute},
+                };
+            }
             return {
                 ...state,
-                currentRoute: {...initialStateList.currentRoute},
+                currentRoute: {
+                    ...initialStateList.currentRoute,
+                    id: state.currentRoute.id,
+                },
             };
         }
         case actionTypes.CLEAR_CURRENT_ROUTE_DATA: {

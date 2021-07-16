@@ -10,7 +10,7 @@ interface IProps {
     rightBtnCallback: () => void;
 }
 
-const CounterActionButtons: React.FC<IProps> = ({
+const ActionButtons: React.FC<IProps> = ({
     leftBtnTitle,
     leftBtnCallback,
     rightBtnTitle,
@@ -22,7 +22,7 @@ const CounterActionButtons: React.FC<IProps> = ({
                 <BigWhiteBtn title={leftBtnTitle} onpress={leftBtnCallback} />
             </View>
 
-            <View style={styles.btn}>
+            <View style={[styles.btn, styles.rightBtn]}>
                 <BigRedBtn title={rightBtnTitle} onpress={rightBtnCallback} />
             </View>
         </View>
@@ -39,10 +39,14 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: getVerticalPx(65),
         height: 50,
+        zIndex: 10,
     },
     btn: {
         width: getHorizontalPx(157),
     },
+    rightBtn: {
+        marginLeft: 20,
+    },
 });
 
-export default React.memo(CounterActionButtons);
+export default React.memo(ActionButtons);

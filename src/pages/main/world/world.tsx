@@ -18,13 +18,12 @@ import {
     fetchPlannedMapsList,
     fetchPrivateMapsList,
 } from '../../../storage/actions/maps';
-import {requestGeolocationPermission} from '../../../utils/geolocation';
 import {PickedFilters} from '../../../interfaces/form';
 import {checkIfContainsFitlers} from '../../../utils/apiDataTransform/filters';
 import useFineWhenInUseLocationPermission from '../../../hooks/useFineWhenInUseLocationPermission';
 
 import FiltersModal from './components/filters/filtersModal';
-import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
+import {FiltersBtn} from '../../../sharedComponents/buttons';
 import BikeMap from './bikeMap/bikeMap';
 import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
@@ -179,7 +178,12 @@ const World: React.FC = () => {
                     <MyRoutes
                         onRefresh={onRefreshHandler}
                         onLoadMore={onLoadMoreHandler}
+<<<<<<< HEAD
                         onPress={() => setActiveTab(RouteMapType.BIKE_MAP)}
+=======
+                        onPress={() => setActiveTab(routesTab.BIKEMAP)}
+                        sortedByDate={!!savedMapFilters?.order}
+>>>>>>> 5d91caa24c31d33d5b2db35088de7e498722ffc2
                     />
                 );
             case RouteMapType.PLANNING:

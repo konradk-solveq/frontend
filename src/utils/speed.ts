@@ -32,3 +32,14 @@ export const msToKH = (speed: number | string | undefined | null) => {
     const speedToReturn = Math.abs(s * (3600 / 1000)).toFixed(1);
     return speedToReturn;
 };
+
+export const getAverageSpeedFromDistanceAndTime = (
+    distance: number,
+    startTime: number,
+    pauseTime: number,
+) => {
+    const duration = Date.now() - startTime - pauseTime;
+
+    const speed = (distance / (duration / 1000)).toFixed(2);
+    return msToKH(speed);
+};

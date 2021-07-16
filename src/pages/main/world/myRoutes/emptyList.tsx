@@ -1,18 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Text, ScrollView, Platform} from 'react-native';
 import I18n from 'react-native-i18n';
 import {useNavigation} from '@react-navigation/native';
 
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {showedLocationInfoSelector} from '../../../../storage/selectors/app';
-
+import {hasAnyBikeSelector} from '../../../../storage/selectors/bikes';
+import {BothStackRoute} from '../../../../navigation/route';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {
     onRecordTripActionHandler,
     showLocationInfo,
 } from '../../../../utils/showAndroidLlocationInfo';
+
+import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
+import NoBikeAddedModal from '../../../../sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
+
+const isIOS = Platform.OS === 'ios';
 
 interface IProps {
     onPress: () => void;
@@ -24,11 +29,34 @@ const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
     const dispatch = useAppDispatch();
 
     const isLocationInfoShowed = useAppSelector(showedLocationInfoSelector);
+    const userHasAnyBike = useAppSelector(hasAnyBikeSelector);
+
+    const [showModal, setShowModal] = useState(false);
 
     const doAction = () => {
+        if (!userHasAnyBike) {
+            setShowModal(true);
+            return;
+        }
         Platform.OS === 'ios' || isLocationInfoShowed
-            ? onRecordTripActionHandler(navigation)
+            ? onRecordTripActionHandler(navigation, isIOS)
             : showLocationInfo(navigation, dispatch);
+    };
+
+    const onAddActionHandler = () => {
+        navigation.navigate({
+            name: BothStackRoute.TURTORIAL_NFC_SCREEN,
+            params: {emptyFrame: true},
+        });
+    };
+
+    const onContinueHandler = () => {
+        setShowModal(false);
+        onAddActionHandler();
+    };
+
+    const onCancelHandler = () => {
+        setShowModal(false);
     };
 
     return (
@@ -50,6 +78,11 @@ const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
                     onpress={onPress}
                 />
             </ScrollView>
+            <NoBikeAddedModal
+                showModal={showModal}
+                onContinue={onContinueHandler}
+                onClose={onCancelHandler}
+            />
         </View>
     );
 };
