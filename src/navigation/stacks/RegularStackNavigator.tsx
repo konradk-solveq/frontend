@@ -97,6 +97,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN}
                 component={CounterThankYouPage}
+                options={{gestureEnabled: false}}
             />
             {/* End add bike */}
 
@@ -112,6 +113,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.EDIT_DETAILS_SCREEN}
                 component={EditDetails}
+                options={{gestureEnabled: false}}
             />
             {/* END KROSS WORLD */}
 
