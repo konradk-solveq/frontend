@@ -37,12 +37,6 @@ import {WorldRouteType} from '../../../types/rootStack';
 
 const isAndroid = Platform.OS === 'android';
 
-// enum routesTab {
-//     BIKEMAP = 'map',
-//     MYROUTES = 'routes',
-//     PLANED = 'planed',
-// }
-
 /* TODO: refresh data if position chagned more than 500 meters */
 const World: React.FC = () => {
     const dispatch = useAppDispatch();
