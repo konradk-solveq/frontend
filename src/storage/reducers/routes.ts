@@ -135,9 +135,18 @@ const routesReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.CLEAR_CURRENT_ROUTE: {
+            if (!action.keepId) {
+                return {
+                    ...state,
+                    currentRoute: {...initialStateList.currentRoute},
+                };
+            }
             return {
                 ...state,
-                currentRoute: {...initialStateList.currentRoute},
+                currentRoute: {
+                    ...initialStateList.currentRoute,
+                    id: state.currentRoute.id,
+                },
             };
         }
         case actionTypes.CLEAR_CURRENT_ROUTE_DATA: {
