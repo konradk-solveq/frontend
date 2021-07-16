@@ -23,7 +23,7 @@ import {checkIfContainsFitlers} from '../../../utils/apiDataTransform/filters';
 import useFineWhenInUseLocationPermission from '../../../hooks/useFineWhenInUseLocationPermission';
 
 import FiltersModal from './components/filters/filtersModal';
-import {FiltersBtn} from '../../../sharedComponents/buttons';
+import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
 import BikeMap from './bikeMap/bikeMap';
 import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
