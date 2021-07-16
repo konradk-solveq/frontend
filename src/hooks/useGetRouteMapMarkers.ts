@@ -1,16 +1,17 @@
 import {useState} from 'react';
 
+import {LocationDataI} from '../interfaces/geolocation';
 import {MapMarkerType} from '../models/map.model';
 import {BBox} from '../models/places.model';
-import {getMarkersList} from '../services';
+import {getMarkersListService} from '../services';
 
 const useGetRouteMapMarkers = () => {
     const [routeMarkres, setRouteMarkers] = useState<MapMarkerType[]>([]);
     const [error, setError] = useState<string>('');
 
-    const fetchRoutesMarkers = async (bbox: BBox) => {
+    const fetchRoutesMarkers = async (bbox: BBox, locaiton: LocationDataI) => {
         try {
-            const response = await getMarkersList(bbox);
+            const response = await getMarkersListService(bbox, locaiton);
 
             if (response?.error || !response?.data) {
                 console.log(response?.error);

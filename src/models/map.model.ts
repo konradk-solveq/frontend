@@ -84,10 +84,11 @@ export interface MapDetails {
     mapUrl: string;
 }
 
-export enum MarkerType {
+export enum MarkerTypes {
     PUBLIC = 'PUBLIC',
-    PRIVATE = 'PRIVATE',
-    FAVOURITE = 'FAVOURITE',
+    OWN = 'OWN',
+    FAVORITE = 'FAVORITE',
+    RECOMMENDED = 'RECOMMENDED',
 }
 
 export type MarkerDetailsType = {
@@ -104,7 +105,7 @@ export type MapMarkerType = {
     lat: number;
     lng: number;
     details: MarkerDetailsType;
-    markerType: MarkerType[];
+    markerType: MarkerTypes[];
 };
 
 export class Map {

@@ -142,10 +142,13 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                     {lat: newBox.west, lng: newBox.south},
                 ];
 
-                fetchRoutesMarkers({
-                    bbox: bbox,
-                    width: 500,
-                });
+                fetchRoutesMarkers(
+                    {
+                        bbox: bbox,
+                        width: 500,
+                    },
+                    location,
+                );
                 break;
             case 'clickMarker':
                 heandleShowAdress(JSON.parse(val[1]));

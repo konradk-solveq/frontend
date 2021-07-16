@@ -453,20 +453,13 @@ function initMap() {
 }
 
 // dodawanie punktów po zmianie regionu
-let marks = {};
+let marks = [];
 let clusterPublic = null;
-let clusterFavourite = null;
-let clustePrivate = null;
-let clustePublicPrivate = null;
 
 const setMarks = places => {
     for (let p of places) {
         let id = p.details.id;
-        let type = p.markerType.join('').toLowerCase();
-        window.ReactNativeWebView.postMessage("dsdsd#$#"+JSON.stringify(type));
-
-        if (typeof marks[type] == 'undefined') marks[type] = [];
-        if (marks[type].some(e => e.id == id)) continue;
+        if (marks.some(e => e.id == id)) continue;
 
         let mark = new google.maps.Marker({
             id,
@@ -474,17 +467,18 @@ const setMarks = places => {
             icon: 'map_marker.png',
             map: map,
             details: p.details,
+            markerTypes: [...p.markerTypes]
         });
 
-        marks[type].push(mark);
-
+        marks.push(mark);
+        window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+JSON.stringify(mark.markerTypes));
         // do pokazywania alpi z adresem
         google.maps.event.addDomListener(mark, 'click', function() {
             window.ReactNativeWebView.postMessage("clickMarker#$#"+JSON.stringify(mark.details));
         });
     }
 
-    clusterPublic = new MarkerClusterer(map, marks.public, {
+    clusterPublic = new MarkerClusterer(map, marks, {
         ignoreHidden: true,
         styles: [{
                 url: "shop_empty.png",
@@ -532,225 +526,34 @@ const setMarks = places => {
                 anchor:[22,22],
             },
         ]
-    });
-
-    google.maps.event.addListener(clusterPublic, 'clusterclick', function(cluster) {
-        const markersData = cluster.getMarkers();
-
-        let markersList = [];
-        markersData.forEach(e => markersList.push(e.details));
-        window.ReactNativeWebView.postMessage("sdddddd#$#"+JSON.stringify(markersList));
-    });
-
-    clusterFavourite = new MarkerClusterer(map, marks.publicfavourite, {
-        ignoreHidden: true,
-        styles: [{
-                url: "service_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "service_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "service_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "service_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "service_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-        ]
-    });
-
-    google.maps.event.addListener(clusterFavourite, 'clusterclick', function(cluster) {
-        const markersData = cluster.getMarkers();
-
-        let markersList = [];
-        markersData.forEach(e => markersList.push(e.details));
-        window.ReactNativeWebView.postMessage("sdddddd#$#"+JSON.stringify(markersList));
-    });
-
-    clustePrivate = new MarkerClusterer(map, marks.private, {
-        ignoreHidden: true,
-        styles: [{
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-        ]
-    });
-
-    google.maps.event.addListener(clusterPrivate, 'clusterclick', function(cluster) {
-        const markersData = cluster.getMarkers();
-
-        let markersList = [];
-        markersData.forEach(e => markersList.push(e.details));
-        window.ReactNativeWebView.postMessage("sdddddd#$#"+JSON.stringify(markersList));
-    });
-
-    clustePublicPrivate = new MarkerClusterer(map, marks.publicprivate, {
-        ignoreHidden: true,
-        styles: [{
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "serviceshop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-        ]
-    });
-
-    google.maps.event.addListener(clusterPublicPrivate, 'clusterclick', function(cluster) {
-        const markersData = cluster.getMarkers();
-
-        let markersList = [];
-        markersData.forEach(e => markersList.push(e.details));
-        window.ReactNativeWebView.postMessage("sdddddd#$#"+JSON.stringify(markersList));
     });
 }
 
 const setPublic = () => {
-    marks.public.forEach(e => e.setVisible(true));
-    clusterPublic.repaint();
-
-    marks?.private?.forEach(e => e.setVisible(false));
-    marks?.publicprivate?.forEach(e => e.setVisible(true));
-    marks?.favourite?.forEach(e => e.setVisible(false));
-    marks?.publicfavourite?.forEach(e => e.setVisible(true));
-    clusterPrivate.repaint();
-    clusterFavourite.repaint();
+    try{
+        marks?.forEach(m => m.markerTypes?.includes('PUBLIC') ? m.setVisible(true) : m.setVisible(false));
+        clusterPublic.repaint();
+    }catch (e){
+        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PUBLIC#$#"+JSON.stringify(e));
+    }
 }
 
 const setFavourites = () => {
-    marks?.publicfavourite?.forEach(e => e.setVisible(true));
-    clusterFavourite.repaint();
-
-    marks?.public?.forEach(e => e.setVisible(false));
-    clusterPublic.repaint();
-    marks?.private?.forEach(e => e.setVisible(false));
-    marks?.publicprivate?.forEach(e => e.setVisible(false));
-    clusterPrivate.repaint();
+    try{
+        marks?.forEach(m => m.markerTypes?.includes('FAVORITE') ? m.setVisible(true) : m.setVisible(false));
+        clusterPublic.repaint();
+    }catch (e){
+        window.ReactNativeWebView.postMessage("ERROR ON REPAINT FAVORITE#$#"+JSON.stringify(e));
+    }
 }
 
 const setPrivate = () => {
-    marks?.public?.forEach(e => e.setVisible(false));
-    marks?.favourite?.forEach(e => e.setVisible(false));
-    marks?.publicfavourite?.forEach(e => e.setVisible(false));
-    clusterPublic.repaint();
-    clusterFavourite.repaint();
-
-    marks?.publicprivate?.forEach(e => e.setVisible(true));
-    marks?.private?.forEach(e => e.setVisible(true));
-    clusterPrivate.repaint();
-    clusterPublicPrivate.repaint();
+    try{
+        marks?.forEach(m => m.markerTypes?.includes('OWN') ? m.setVisible(true) : m.setVisible(false));
+        clusterPublic.repaint();
+    }catch (e){
+        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#"+JSON.stringify(e));
+    }
 }
 </script>
 

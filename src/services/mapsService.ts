@@ -10,7 +10,9 @@ import {
     removePrivateMapData,
     uploadImageToMapData,
     getRoute,
+    getMarkersList,
 } from '../api';
+import {LocationDataI} from '../interfaces/geolocation';
 import {ImagesMetadataType} from '../interfaces/api';
 import {MapFormDataResult, PickedFilters} from '../interfaces/form';
 import {MapType, Coords, MapMarkerType} from '../models/map.model';
@@ -21,8 +23,6 @@ import {
 } from '../utils/apiDataTransform/prepareRequest';
 import {I18n} from '../../I18n/I18n';
 import {BBox} from '../models/places.model';
-
-import mapMarkers from './mock/mapMarkers';
 
 export interface MapsData {
     elements: MapType[] | [];
@@ -412,27 +412,35 @@ export const getMapsByTypeAndId = async (
     };
 };
 
-export const getMarkersList = async (
+export const getMarkersListService = async (
     bbox: BBox,
+    locaiton: LocationDataI,
 ): Promise<MapMarkersResponse> => {
-    // const response = await getPlaces(bbox);
-    const response = {data: mapMarkers, error: '', status: 200};
+    try {
+        const response = await getMarkersList(bbox, locaiton);
 
-    if (
-        !response?.data ||
-        response.status >= 400 ||
-        response?.data?.statusCode >= 400
-    ) {
-        let errorMessage = 'error';
-        if (response.data?.message || response.data?.error) {
-            errorMessage = response.data.message || response.data.error;
+        if (
+            !response?.data ||
+            response.status >= 400 ||
+            response?.data?.statusCode >= 400
+        ) {
+            let errorMessage = 'error';
+            if (response.data?.message || response.data?.error) {
+                errorMessage = response.data.message || response.data.error;
+            }
+            return {data: [], status: response.status, error: errorMessage};
         }
-        return {data: [], status: response.status, error: errorMessage};
-    }
 
-    return {
-        data: response.data,
-        status: response.status,
-        error: '',
-    };
+        return {
+            data: response.data,
+            status: response.status,
+            error: '',
+        };
+    } catch (error) {
+        return {
+            data: [],
+            status: 500,
+            error: error,
+        };
+    }
 };
