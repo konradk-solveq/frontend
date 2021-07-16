@@ -12,7 +12,7 @@ const shapeHeight = getVerticalPx(142);
 
 const CurvedShape: React.FC = () => {
     return (
-        <View style={styles.container}>
+        <View style={styles.container} pointerEvents="box-none">
             <Svg
                 height="100%"
                 width="100%"
@@ -30,9 +30,11 @@ const CurvedShape: React.FC = () => {
 const styles = StyleSheet.create({
     container: {
         width: width,
-        aspectRatio: shapeWidth / shapeHeight,
+        aspectRatio: isIOS
+            ? shapeWidth / shapeHeight / 1.5
+            : shapeWidth / shapeHeight,
         position: 'absolute',
-        top: getVerticalPx(isIOS ? -120 : -140),
+        top: getVerticalPx(isIOS ? -200 : -140),
         left: 0,
         right: 0,
     },

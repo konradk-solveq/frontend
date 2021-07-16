@@ -103,30 +103,32 @@ const BottomInfoTile: React.FC<IProps> = ({
                     <View style={styles.flatButton} />
                 </View>
             </Swipe>
-            <CurvedShape />
             {data && (
-                <View style={styles.listContainer}>
-                    <Tile
-                        data={data}
-                        onPressTile={onPress}
-                        onPressButton={onPress}
-                    />
-                    <View style={styles.imageWrapper}>
-                        <Text style={styles.imageHeader}>
-                            {trans.finMoreInfo}
-                        </Text>
-                        <View style={styles.imageContainer}>
-                            {data?.mapImageUrl ? (
-                                <ImageBtn
-                                    imgUrl={data.mapImageUrl}
-                                    onPress={() => onPress(data.id)}
-                                />
-                            ) : (
-                                <View style={styles.imagePlaceholder} />
-                            )}
+                <>
+                    <CurvedShape />
+                    <View style={styles.listContainer}>
+                        <Tile
+                            data={data}
+                            onPressTile={onPress}
+                            onPressButton={onPress}
+                        />
+                        <View style={styles.imageWrapper}>
+                            <Text style={styles.imageHeader}>
+                                {trans.finMoreInfo}
+                            </Text>
+                            <View style={styles.imageContainer}>
+                                {data?.mapImageUrl ? (
+                                    <ImageBtn
+                                        imgUrl={data.mapImageUrl}
+                                        onPress={() => onPress(data.id)}
+                                    />
+                                ) : (
+                                    <View style={styles.imagePlaceholder} />
+                                )}
+                            </View>
                         </View>
                     </View>
-                </View>
+                </>
             )}
         </Animated.View>
     );
