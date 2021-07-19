@@ -45,6 +45,7 @@ export interface DataI {
         lat: number;
         lon: number;
     };
+    timestamp: number;
 }
 
 let speed: number[] = [];

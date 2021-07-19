@@ -421,6 +421,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     routeId={followedRouteId || route?.params?.mapID}
                     trackerData={trackerData}
                     routeNumber={myRouteNumber}
+                    isRecordingActive={isActive}
                 />
 
                 <MarkPointer />

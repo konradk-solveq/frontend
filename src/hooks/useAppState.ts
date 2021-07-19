@@ -4,7 +4,10 @@ import {AppState, AppStateStatus} from 'react-native';
 const useAppState = () => {
     const appState = useRef<AppStateStatus>(AppState.currentState);
     const [appStateVisible, setAppStateVisible] = useState(appState.current);
-    const [appIsActive, setAppIsActive] = useState(false);
+    const [appPrevStateVisible, setAppPrevStateVisible] = useState(
+        appState.current,
+    );
+    const [appIsActive, setAppIsActive] = useState(true);
 
     const handleAppStateChange = (nextAppState: AppStateStatus) => {
         if (
@@ -15,6 +18,7 @@ const useAppState = () => {
         } else {
             setAppIsActive(false);
         }
+        setAppPrevStateVisible(appState.current);
         appState.current = nextAppState;
         setAppStateVisible(appState.current);
     };
@@ -27,7 +31,7 @@ const useAppState = () => {
         };
     }, []);
 
-    return {appStateVisible, appIsActive};
+    return {appStateVisible, appPrevStateVisible, appIsActive};
 };
 
 export default useAppState;
