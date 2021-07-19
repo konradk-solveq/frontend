@@ -9,6 +9,9 @@ import DisplayTimer from './displayTimer/displayTimer';
 import CurvedShape from './curvedShape/curvedShape';
 
 import styles from './style';
+import useAppState from '../../../../../hooks/useAppState';
+import {useState} from 'react';
+import {useEffect} from 'react';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
@@ -35,6 +38,20 @@ const NativeCounter: React.FC<IProps> = ({
     const displayContainer = useRef(new Animated.Value(0)).current;
     const arrowPos = useRef(new Animated.Value(arrowPositionTop)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
+
+    const [reloadCounter, setStateReloadCounter] = useState('stale');
+
+    const {appIsActive} = useAppState();
+
+    useEffect(() => {
+        if (appIsActive) {
+            setStateReloadCounter('reload');
+            return;
+        }
+        if (!appIsActive) {
+            setStateReloadCounter('stale');
+        }
+    }, [appIsActive]);
 
     const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
@@ -127,7 +144,10 @@ const NativeCounter: React.FC<IProps> = ({
                                 Dystans
                             </Animated.Text>
                         </Animated.View>
-                        <DisplayDistance fontSize={mapHiden ? 57 : 23} />
+                        <DisplayDistance
+                            key={reloadCounter}
+                            fontSize={mapHiden ? 57 : 23}
+                        />
                     </Animated.View>
                     <Animated.View
                         style={[
@@ -144,6 +164,7 @@ const NativeCounter: React.FC<IProps> = ({
                             </Text>
                         </Animated.View>
                         <DisplayTimer
+                            {...(!isIOS && {key: reloadCounter})}
                             time={time}
                             isRunning={isRunning}
                             fontSize={mapHiden ? 57 : 23}
@@ -169,7 +190,10 @@ const NativeCounter: React.FC<IProps> = ({
                             style={[styles.labelWrap, {opacity: labelOpacity}]}>
                             <Text style={styles.label}>Prędkość</Text>
                         </Animated.View>
-                        <DisplaySpeed fontSize={mapHiden ? 57 : 23} />
+                        <DisplaySpeed
+                            key={reloadCounter}
+                            fontSize={mapHiden ? 57 : 23}
+                        />
                     </Animated.View>
                     <Animated.View
                         style={[
@@ -188,6 +212,7 @@ const NativeCounter: React.FC<IProps> = ({
                             <Text style={[styles.label]}>Średnia prędkość</Text>
                         </Animated.View>
                         <DisplayAverageSpeed
+                            key={reloadCounter}
                             time={time}
                             fontSize={mapHiden ? 57 : 23}
                         />
