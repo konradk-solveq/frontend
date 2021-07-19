@@ -1,11 +1,18 @@
 import instance, {axiosGet, source} from './api';
 import {Coords} from '../models/map.model';
 import {MapMetadataType} from '../interfaces/api';
+import {LocationDataI} from '../interfaces/geolocation';
 import {OptionType} from '../interfaces/form';
+import {BBox} from '../models/places.model';
+import {
+    tranformParamsToBBoxRequest,
+    tranformParamsToLocationRequest,
+} from '../utils/apiDataTransform/prepareRequest';
 
 const BASE_URL = '/routes';
 const BASE_ROUTE_URL = `${BASE_URL}/route`;
 const PLANNED_ROUTE_URL = `${BASE_URL}/favorites`;
+const BASE_FIND_URL = `${BASE_URL}/find`;
 
 type MapFitlerType = {
     [k: string]: OptionType[];
@@ -28,8 +35,14 @@ export const getMaps = async (
     return await axiosGet(paginationUrl || url, params);
 };
 
-export const getRoute = async (id: string) =>
-    await axiosGet(`${BASE_ROUTE_URL}/${id}`);
+export const getRoute = async (id: string, location?: Coords) => {
+    let url = `${BASE_ROUTE_URL}/${id}`;
+    if (location) {
+        url = `${url}?lat=${location.latitude}&lng=${location.longitude}&detailed=true`;
+    }
+
+    return await axiosGet(url);
+};
 
 export const getPrivateRoutes = async (
     location: Coords,
@@ -114,6 +127,16 @@ export const addPlannedRoute = async (id: string) => {
 
 export const removePlannedRoute = async (id: string) => {
     return await instance.delete(`${PLANNED_ROUTE_URL}/${id}`, {
+        cancelToken: source.token,
+    });
+};
+
+export const getMarkersList = async (data: BBox, locaiton: LocationDataI) => {
+    const bboxParams = tranformParamsToBBoxRequest(data.bbox);
+    const loc = tranformParamsToLocationRequest(locaiton);
+    const query = `${loc}&${bboxParams}`;
+
+    return await axiosGet(`${BASE_FIND_URL}/map?${query}`, {
         cancelToken: source.token,
     });
 };

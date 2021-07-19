@@ -9,16 +9,20 @@ import {
     removePlannedRoute,
     removePrivateMapData,
     uploadImageToMapData,
+    getRoute,
+    getMarkersList,
 } from '../api';
+import {LocationDataI} from '../interfaces/geolocation';
 import {ImagesMetadataType} from '../interfaces/api';
 import {MapFormDataResult, PickedFilters} from '../interfaces/form';
-import {MapType, Coords} from '../models/map.model';
+import {MapType, Coords, MapMarkerType} from '../models/map.model';
 import {getFiltersParam} from '../utils/apiDataTransform/filters';
 import {
     createFileFormData,
     mapFormMetadataToAPIRequest,
 } from '../utils/apiDataTransform/prepareRequest';
 import {I18n} from '../../I18n/I18n';
+import {BBox} from '../models/places.model';
 
 export interface MapsData {
     elements: MapType[] | [];
@@ -32,6 +36,18 @@ export type CreatedPlannedMap = {
 
 export interface MapsResponse {
     data: MapsData;
+    status: number;
+    error: string;
+}
+
+export interface MapResponse {
+    data: MapType | null;
+    status: number;
+    error: string;
+}
+
+export interface MapMarkersResponse {
+    data: MapMarkerType[];
     status: number;
     error: string;
 }
@@ -365,4 +381,66 @@ export const removePlannedMapByIdService = async (
         status: response.data?.statusCode || response.status,
         error: '',
     };
+};
+
+export const getMapsByTypeAndId = async (
+    location: Coords,
+    mapId: string,
+): Promise<MapResponse> => {
+    const response = await getRoute(mapId, location);
+
+    if (
+        !response?.data ||
+        response.status >= 400 ||
+        response.data?.statusCode >= 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: null,
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: response.data,
+        status: response.data?.statusCode || response.status,
+        error: '',
+    };
+};
+
+export const getMarkersListService = async (
+    bbox: BBox,
+    locaiton: LocationDataI,
+): Promise<MapMarkersResponse> => {
+    try {
+        const response = await getMarkersList(bbox, locaiton);
+
+        if (
+            !response?.data ||
+            response.status >= 400 ||
+            response?.data?.statusCode >= 400
+        ) {
+            let errorMessage = 'error';
+            if (response.data?.message || response.data?.error) {
+                errorMessage = response.data.message || response.data.error;
+            }
+            return {data: [], status: response.status, error: errorMessage};
+        }
+
+        return {
+            data: response.data,
+            status: response.status,
+            error: '',
+        };
+    } catch (error) {
+        return {
+            data: [],
+            status: 500,
+            error: error,
+        };
+    }
 };

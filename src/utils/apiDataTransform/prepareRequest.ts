@@ -74,3 +74,12 @@ export const createFileFormData = (
 
     return formdata;
 };
+
+export const tranformParamsToLocationRequest = (
+    locaiton: LocationDataI,
+): string => {
+    const lat = `lat=${locaiton.coords.latitude}`;
+    const lng = `lng=${locaiton.coords.longitude}`;
+
+    return `${lat}&${lng}`;
+};

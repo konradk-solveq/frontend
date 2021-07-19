@@ -367,6 +367,16 @@
             "yestardayDate": "Wczoraj"
         }
     },
+    "MainRoutesMap": {
+        "header": "Świat KROSS",
+        "bikeMap": "Mapa rowerowa",
+        "myRoutes": "Moje trasy",
+        "planning": "Planowane",
+        "bottomTile": {
+            "finMoreInfo": "Sprawdź trasę na mapie"
+        }
+
+    },
     "MainMyRoutes": {
         "title": "Nie masz nagranych tras",
         "text": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",

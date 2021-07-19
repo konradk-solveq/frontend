@@ -28,6 +28,7 @@ import Regulations from '../../pages/onboarding/permitsDeclarations/regulations'
 import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
 import Help from '../../pages//main/profile/help/help';
 import Contact from '../../pages//main/profile/contact/contact';
+import RoutesMap from '../../pages/main/world/routesMap/routesMap';
 
 import {RegularStackRoute, BothStackRoute} from '../route';
 
@@ -114,6 +115,10 @@ const RegularStackNavigator: React.FC = () => {
                 name={RegularStackRoute.EDIT_DETAILS_SCREEN}
                 component={EditDetails}
                 options={{gestureEnabled: false}}
+            />
+            <Stack.Screen
+                name={RegularStackRoute.ROUTES_MAP_SCREEN}
+                component={RoutesMap}
             />
             {/* END KROSS WORLD */}
 

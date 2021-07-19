@@ -86,6 +86,30 @@ export interface MapDetails {
     mapUrl: string;
 }
 
+export enum MarkerTypes {
+    PUBLIC = 'PUBLIC',
+    OWN = 'OWN',
+    FAVORITE = 'FAVORITE',
+    RECOMMENDED = 'RECOMMENDED',
+}
+
+export type MarkerDetailsType = {
+    id: string;
+    name: string;
+    distance: number;
+    distanceToRoute: number;
+    totalTime: number;
+    mapImageUrl: string;
+};
+
+export type MapMarkerType = {
+    type: string;
+    lat: number;
+    lng: number;
+    details: MarkerDetailsType;
+    markerType: MarkerTypes[];
+};
+
 export class Map {
     @IsNotEmpty()
     @IsString()

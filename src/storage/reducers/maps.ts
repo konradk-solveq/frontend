@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as actionTypes from '../actions/actionTypes';
 import {MapType} from '../../models/map.model';
 import {MapPagination} from '../../interfaces/api';
+import {RouteMapType} from '../../models/places.model';
 
 export interface MapsState {
     maps: MapType[];
@@ -180,6 +181,22 @@ const mapsReducer = (state = initialStateList, action: any) => {
             return {
                 ...state,
                 privateMaps: newPriv,
+            };
+        }
+        case actionTypes.ADD_MAPS_DATA: {
+            let newMaps: any = {maps: [...state.maps, action.map]};
+            if (action.mapType === RouteMapType.MY_ROUTES) {
+                newMaps = {privateMaps: [...state.privateMaps, action.map]};
+            }
+
+            if (action.mapType === RouteMapType.PLANNING) {
+                newMaps = {plannedMaps: [...state.plannedMaps, action.map]};
+            }
+
+            return {
+                ...state,
+                ...newMaps,
+                statusCode: 200,
             };
         }
         case actionTypes.LOGOUT: {

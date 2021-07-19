@@ -15,10 +15,14 @@ import {MapFormDataResult, PickedFilters} from '../../interfaces/form';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {
     addPlannedMapsListService,
+    getMapsByTypeAndId,
     getPlannedMapsListService,
     removePlannedMapByIdService,
 } from '../../services/mapsService';
 import {AppState} from '../reducers/app';
+import {MapsState} from '../reducers/maps';
+import {RouteMapType} from '../../models/places.model';
+import {checkMapExists} from '../../utils/checkMapExists';
 
 export const setMapsData = (
     maps: MapType[],
@@ -66,10 +70,10 @@ export const clearPrivateMapId = () => ({
     type: actionTypes.CLEAR_PRIVATE_MAPID_TO_ADD,
 });
 
-export const addMapData = (map: MapType, ownerId?: string) => ({
-    type: actionTypes.SET_MAPS_DATA,
+export const addMapData = (map: MapType, mapType?: RouteMapType) => ({
+    type: actionTypes.ADD_MAPS_DATA,
     map: map,
-    ownerId: ownerId,
+    mapType: mapType,
 });
 
 export const clearError = () => ({
@@ -333,6 +337,51 @@ export const removePlanendMap = (
         dispatch(setLoadingState(false));
     } catch (error) {
         logger.log('[removePlanendMap]');
+        const err = convertToApiError(error);
+        logger.recordError(err);
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const fetchMapIfNotExistsLocally = (
+    mapId: string,
+    mapType?: RouteMapType,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    dispatch(setLoadingState(true));
+    try {
+        const {maps, privateMaps, plannedMaps}: MapsState = getState().maps;
+
+        const mapExists = checkMapExists(
+            mapId,
+            maps,
+            privateMaps,
+            plannedMaps,
+            mapType,
+        );
+
+        if (mapExists) {
+            dispatch(setLoadingState(false));
+            return;
+        }
+
+        const {lat, lng} = await getLatLngFromForeground();
+
+        const response = await getMapsByTypeAndId(
+            {latitude: lat, longitude: lng},
+            mapId,
+        );
+
+        if (response.error || !response.data || !response.data) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        dispatch(addMapData(response.data, mapType));
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        logger.log('[fetchMapsList]');
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
