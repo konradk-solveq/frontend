@@ -15,16 +15,11 @@ const Polyline: React.FC<IProps> = ({coords}: IProps) => {
 
     useEffect(() => {
         if (coords?.length) {
-            const t = setTimeout(() => {
-                if (polylineRef.current) {
-                    polylineRef.current.setNativeProps({
-                        coordinates: coords,
-                    });
-                }
-            }, 400);
-            return () => {
-                clearTimeout(t);
-            };
+            if (polylineRef.current) {
+                polylineRef.current.setNativeProps({
+                    coordinates: coords,
+                });
+            }
         }
     }, [coords]);
 

@@ -1,15 +1,21 @@
-import {routesData, routesDataToPersist} from './transformData';
+import {routesData} from './transformData';
 
 export const getCurrentRoutePathById = async (
     routeId: string,
+    pauses?: {start: number; end: number},
     oldRoutes?: {latitude: number; longitude: number; timestamp: number}[],
 ): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
-    let res = await routesData(routeId);
+    const timeStart = oldRoutes?.[oldRoutes?.length - 1]?.timestamp;
+
+    let res = await routesData(routeId, pauses, {
+        start: timeStart ? new Date(timeStart).getTime() : 0,
+        end: 0,
+    });
 
     if (oldRoutes) {
         res = [...oldRoutes, ...res];
     }
-    console.log('[res - get]', res[0]);
+
     const sorted = res.sort((a, b) => {
         if (new Date(a.timestamp) === new Date(b.timestamp)) {
             return 0;
@@ -17,7 +23,7 @@ export const getCurrentRoutePathById = async (
 
         return new Date(a.timestamp) > new Date(b.timestamp) ? 1 : -1;
     });
-    // console.log('[sorted]', sorted[0]);
+
     const newRoute: any = [];
 
     sorted.map(m => {

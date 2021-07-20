@@ -40,6 +40,7 @@ import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
+import deepCopy from '../../../../helpers/deepCopy';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -115,6 +116,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [rightBtnTile, setRightBtnTile] = useState('');
     const [headerTitle, setHeaderTitle] = useState('');
     const [pause, setPause] = useState(true);
+    const [pauseTimes, setPauseTimes] = useState<
+        {start: number; end: number | null}[]
+    >([]);
 
     /* Re-run counter after app restart */
     useEffect(() => {
@@ -265,6 +269,23 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             case 'record':
                 // eslint-disable-next-line no-lone-blocks
                 {
+                    setPauseTimes(prevPause => {
+                        const p: {
+                            start: number;
+                            end: number | null;
+                        }[] = deepCopy(prevPause);
+
+                        if (!p?.length) {
+                            return p;
+                        }
+
+                        p[p.length - 1] = {
+                            start: p[p.length - 1].start,
+                            end: Date.now(),
+                        };
+
+                        return p;
+                    });
                     resumeTracker();
                     setLeftBtnTile(trans.btnPauza);
                     setRightBtnTile(trans.btnEnd);
@@ -290,6 +311,16 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         ...prevPT,
                         start: Date.now(),
                     }));
+
+                    setPauseTimes(prevPause => {
+                        const p = deepCopy(prevPause);
+
+                        p[myRouteNumber] = {
+                            start: Date.now(),
+                            end: p?.[myRouteNumber]?.end || null,
+                        };
+                        return p;
+                    });
                 }
                 break;
             case 'cancelText':
@@ -422,6 +453,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     trackerData={trackerData}
                     routeNumber={myRouteNumber}
                     isRecordingActive={isActive}
+                    pauses={pauseTimes}
                 />
 
                 <MarkPointer />

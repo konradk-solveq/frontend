@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
+import {useRef} from 'react';
 import deepCopy from '../../../../../helpers/deepCopy';
 import {useAppSelector} from '../../../../../hooks/redux';
 import useAppState from '../../../../../hooks/useAppState';
@@ -16,79 +17,133 @@ interface IProps {
     routeSectionNumber: number;
     active: boolean;
     coords: ShortCoordsType;
+    pauses: {start: number; end: number | null}[];
 }
 
 const MultiPolyline: React.FC<IProps> = ({
     active,
     routeSectionNumber,
     coords,
+    pauses,
 }: IProps) => {
+    const restoreRef = useRef(false);
+    const routeRef = useRef<ShortCoordsType[][]>([]);
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
 
-    const [myRoute, setMyRoute] = useState<ShortCoordsType[][]>([]);
-    const {appIsActive, appStateVisible} = useAppState();
+    // const [myRoute, setMyRoute] = useState<ShortCoordsType[][]>([]);
+    const {appIsActive, appPrevStateVisible, appStateVisible} = useAppState();
+    const [previousState, setPrevoiusState] = useState(appPrevStateVisible);
 
     useEffect(() => {
-        if (appIsActive && appStateVisible === 'active' && currentRouteId) {
-            console.log('[SET ROUTE STATE]');
+        setPrevoiusState(appStateVisible);
+    }, [appStateVisible]);
 
-            const doIt = async () => {
-                const oldRoute = myRoute?.[routeSectionNumber] || [];
-                const newRoute = await getCurrentRoutePathById(
-                    currentRouteId,
-                    oldRoute,
-                );
+    const doSomeCrazyStuff = useCallback(async () => {
+        restoreRef.current = false;
+        const doIt = async () => {
+            try {
+                const bigDo = async () => {
+                    const result: ShortCoordsType[][] = [];
+                    pauses?.forEach((p, i) => {
+                        if (!result?.[i]) {
+                            result[i] = [];
+                        }
+                        const oldRoute = routeRef.current?.[i]
+                            ? deepCopy(routeRef.current[i])
+                            : [];
+                        result[i] = oldRoute;
+                    });
 
-                setMyRoute(prevRoute => {
-                    let currRouteArr = deepCopy(prevRoute);
-                    if (!currRouteArr?.[routeSectionNumber]) {
-                        currRouteArr[routeSectionNumber] = [];
+                    if (
+                        !pauses?.length ||
+                        pauses?.length === routeSectionNumber
+                    ) {
+                        const lastPause = pauses?.[routeSectionNumber - 1];
+
+                        const oldRoute = routeRef.current?.[routeSectionNumber]
+                            ? deepCopy(routeRef.current[routeSectionNumber])
+                            : [];
+
+                        const newRoute = getCurrentRoutePathById(
+                            currentRouteId,
+                            lastPause,
+                            // undefined,
+                            oldRoute,
+                        );
+
+                        const nn = await Promise.resolve(newRoute);
+
+                        result[routeSectionNumber] = nn;
                     }
-                    currRouteArr[routeSectionNumber] = newRoute;
 
-                    return [...currRouteArr];
-                });
-            };
-            doIt();
-        }
-    }, [appIsActive, appStateVisible, currentRouteId, routeSectionNumber]);
+                    routeRef.current = result;
+                };
+
+                bigDo();
+                setTimeout(() => {
+                    restoreRef.current = true;
+                }, 500);
+                // return pS;
+            } catch (error) {
+                console.log('[ERROR]', error);
+                // return pS;
+            }
+        };
+        doIt();
+    }, [currentRouteId, pauses, routeSectionNumber]);
 
     useEffect(() => {
-        if (coords && active) {
-            // console.log('[WHAT TO SET]', coords)
+        if (appIsActive && previousState === 'background' && currentRouteId) {
+            doSomeCrazyStuff();
+
+            setPrevoiusState('active');
+        }
+
+        setTimeout(() => {
+            restoreRef.current = true;
+        }, 500);
+
+        return () => {
+            restoreRef.current = false;
+        };
+    }, [appIsActive, previousState, currentRouteId, doSomeCrazyStuff]);
+
+    useEffect(() => {
+        if (coords?.coords && restoreRef.current) {
             const pos = {
-                latitude: coords.latitude,
-                longitude: coords.longitude,
+                latitude: coords.coords.lat,
+                longitude: coords.coords.lon,
                 timestamp: coords.timestamp,
             };
-            // zapisywanie trasy do vizualizacji
-            const newRure: ShortCoordsType[][] = deepCopy(myRoute);
-            if (typeof myRoute[routeSectionNumber] === 'undefined') {
+
+            const newRure = deepCopy(routeRef.current);
+            if (typeof routeRef.current[routeSectionNumber] === 'undefined') {
                 newRure[routeSectionNumber] = [];
             }
-
             newRure[routeSectionNumber].push(pos);
-            setMyRoute(newRure);
-        }
-    }, [coords, active, routeSectionNumber]);
 
-    if (!active || !myRoute?.length) {
+            routeRef.current = newRure;
+        }
+    }, [coords, pauses, routeSectionNumber]);
+
+    const renderItem = (e: ShortCoordsType[], i: number) => {
+        if (!e) {
+            return null;
+        }
+        return <Polyline key={`polyline_${i}`} coords={e} />;
+    };
+
+    if (!routeRef?.current?.length) {
         return null;
     }
 
-    return myRoute.map((e, i) => {
-        if (!e || !e?.length) {
-            return null;
-        }
-        return (
-            <Polyline
-                key={`route_${i}`}
-                coords={e}
-                active={active}
-                routeSectionNumber={i}
-            />
-        );
-    });
+    return (
+        <>
+            {routeRef.current.map((e, i) => {
+                return renderItem(e, i);
+            })}
+        </>
+    );
 };
 
-export default MultiPolyline;
+export default React.memo(MultiPolyline);

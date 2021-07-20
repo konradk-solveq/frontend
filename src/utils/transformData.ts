@@ -319,6 +319,8 @@ export const routesDataToPersist = async (
 
 export const routesData = async (
     routeId: string,
+    excludeTimestamp?: {start: number; end: number},
+    time?: {start: number; end: number},
 ): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
     const currRoutes: {
         latitude: number;
@@ -330,6 +332,13 @@ export const routesData = async (
     locations.forEach((l: any) => {
         if (!routeId || routeId !== l?.extras?.route_id) {
             return;
+        }
+
+        if (time && time.start !== 0) {
+            const t = new Date(l.timestamp).getTime();
+            if (t <= time.start) {
+                return;
+            }
         }
 
         const newRoute = {
