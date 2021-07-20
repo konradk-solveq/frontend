@@ -393,15 +393,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         mapHiden={mapHiden}
                         setMapHiden={setMapHiden}
                         duration={ANIMATION_DURATION}
+                        aplaShow={pageState === 'cancelText' || pageState === 'endMessage'}
                     />
                 </CounterDataContext.Provider>
 
                 <View style={styles.apla} pointerEvents="none">
                     <Apla
-                        show={
-                            pageState === 'cancelText' ||
-                            pageState === 'endMessage'
-                        }
+                        show={pageState === 'cancelText' || pageState === 'endMessage'}
                         message={
                             pageState === 'cancelText'
                                 ? trans.cancelText
