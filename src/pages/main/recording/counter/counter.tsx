@@ -79,6 +79,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         total: 0,
     });
 
+    const [aplaShow, setAplaShow] = useState(false);
+
     const ANIMATION_DURATION = 666;
 
     // trakowanie
@@ -141,6 +143,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             useNativeDriver: false,
         }).start();
     }, [mapHiden, headerHeight, bileListTop]);
+
+    useEffect(() => {
+        setAplaShow(pageState === 'cancelText' || pageState === 'endMessage');
+    }, [pageState]);
 
     // zmiana stanu strony na lewym przycisku
     const heandleLeftBtnClick = useCallback(() => {
@@ -392,15 +398,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         mapHiden={mapHiden}
                         setMapHiden={setMapHiden}
                         duration={ANIMATION_DURATION}
+                        aplaShow={aplaShow}
                     />
                 </CounterDataContext.Provider>
 
                 <View style={styles.apla} pointerEvents="none">
                     <Apla
-                        show={
-                            pageState === 'cancelText' ||
-                            pageState === 'endMessage'
-                        }
+                        show={aplaShow}
                         message={
                             pageState === 'cancelText'
                                 ? trans.cancelText

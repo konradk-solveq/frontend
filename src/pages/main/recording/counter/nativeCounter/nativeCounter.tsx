@@ -24,6 +24,7 @@ interface IProps {
     mapHiden: boolean;
     setMapHiden: Function;
     duration: number;
+    aplaShow: boolean;
 }
 
 /* TODO: add context for values */
@@ -33,8 +34,10 @@ const NativeCounter: React.FC<IProps> = ({
     mapHiden,
     setMapHiden,
     duration,
+    aplaShow,
 }: IProps) => {
     const containerHeight = useRef(new Animated.Value(height)).current;
+    const containerBottom = useRef(new Animated.Value(0)).current;
     const displayContainer = useRef(new Animated.Value(0)).current;
     const arrowPos = useRef(new Animated.Value(arrowPositionTop)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
@@ -78,6 +81,15 @@ const NativeCounter: React.FC<IProps> = ({
             useNativeDriver: false,
         }).start();
     };
+
+    useEffect(() => {
+        Animated.timing(containerBottom, {
+            toValue:
+                aplaShow && !mapHiden ? getVerticalPx(140) : getVerticalPx(0),
+            duration: duration,
+            useNativeDriver: false,
+        }).start();
+    }, [aplaShow, containerBottom, duration, mapHiden]);
 
     const wrapHeight = displayContainer.interpolate({
         inputRange: [0, 1],
@@ -125,110 +137,138 @@ const NativeCounter: React.FC<IProps> = ({
     };
 
     return (
-        <Animated.View style={[styles.container, {height: containerHeight}]}>
-            <CurvedShape />
+        <>
+            <Animated.View
+                style={[
+                    styles.container,
+                    {height: containerHeight, bottom: containerBottom},
+                ]}>
+                <CurvedShape />
 
-            <Animated.View style={[styles.wrap, {height: wrapHeight}]}>
-                <View style={[styles.row]}>
-                    <Animated.View
-                        style={[
-                            styles.cell,
-                            {
-                                top: rowTopPosition,
-                                width: cellWidth,
-                            },
-                        ]}>
+                <Animated.View style={[styles.wrap, {height: wrapHeight}]}>
+                    <View style={[styles.row]}>
                         <Animated.View
-                            style={[styles.labelWrap, {opacity: labelOpacity}]}>
-                            <Animated.Text style={styles.label}>
-                                Dystans
-                            </Animated.Text>
+                            style={[
+                                styles.cell,
+                                {
+                                    top: rowTopPosition,
+                                    width: cellWidth,
+                                },
+                            ]}>
+                            <Animated.View
+                                style={[
+                                    styles.labelWrap,
+                                    {opacity: labelOpacity},
+                                ]}>
+                                <Animated.Text style={styles.label}>
+                                    Dystans
+                                </Animated.Text>
+                            </Animated.View>
+                            <DisplayDistance
+                                key={reloadCounter}
+                                fontSize={mapHiden ? 57 : 23}
+                            />
                         </Animated.View>
-                        <DisplayDistance
-                            key={reloadCounter}
-                            fontSize={mapHiden ? 57 : 23}
-                        />
-                    </Animated.View>
-                    <Animated.View
-                        style={[
-                            styles.cell,
-                            {
-                                top: rowTopPosition,
-                                width: cellWidth,
-                            },
-                        ]}>
                         <Animated.View
-                            style={[styles.labelWrap, {opacity: labelOpacity}]}>
-                            <Text style={[styles.label, styles.rightLabel]}>
-                                Czas
-                            </Text>
+                            style={[
+                                styles.cell,
+                                {
+                                    top: rowTopPosition,
+                                    width: cellWidth,
+                                },
+                            ]}>
+                            <Animated.View
+                                style={[
+                                    styles.labelWrap,
+                                    {opacity: labelOpacity},
+                                ]}>
+                                <Text style={[styles.label, styles.rightLabel]}>
+                                    Czas
+                                </Text>
+                            </Animated.View>
+                            <DisplayTimer
+                                {...(!isIOS && {key: reloadCounter})}
+                                time={time}
+                                isRunning={isRunning}
+                                fontSize={mapHiden ? 57 : 23}
+                            />
                         </Animated.View>
-                        <DisplayTimer
-                            {...(!isIOS && {key: reloadCounter})}
-                            time={time}
-                            isRunning={isRunning}
-                            fontSize={mapHiden ? 57 : 23}
-                        />
-                    </Animated.View>
-                </View>
-                <Animated.View
-                    style={[
-                        styles.row,
-                        {
-                            marginLeft: rowLeftDirection,
-                        },
-                    ]}>
+                    </View>
                     <Animated.View
                         style={[
-                            styles.cell,
+                            styles.row,
                             {
-                                top: rowBottomPosition,
-                                width: cellWidth,
-                            },
-                        ]}>
-                        <Animated.View
-                            style={[styles.labelWrap, {opacity: labelOpacity}]}>
-                            <Text style={styles.label}>Prędkość</Text>
-                        </Animated.View>
-                        <DisplaySpeed
-                            key={reloadCounter}
-                            fontSize={mapHiden ? 57 : 23}
-                        />
-                    </Animated.View>
-                    <Animated.View
-                        style={[
-                            styles.cell,
-                            {
-                                top: rowBottomPosition,
-                                width: cellWidth,
+                                marginLeft: rowLeftDirection,
                             },
                         ]}>
                         <Animated.View
                             style={[
-                                styles.labelWrap,
-                                styles.rightLabel,
-                                {opacity: labelOpacity},
+                                styles.cell,
+                                {
+                                    top: rowBottomPosition,
+                                    width: cellWidth,
+                                },
                             ]}>
-                            <Text style={[styles.label]}>Średnia prędkość</Text>
+                            <Animated.View
+                                style={[
+                                    styles.labelWrap,
+                                    {opacity: labelOpacity},
+                                ]}>
+                                <Text style={styles.label}>Prędkość</Text>
+                            </Animated.View>
+                            <DisplaySpeed
+                                key={reloadCounter}
+                                fontSize={mapHiden ? 57 : 23}
+                            />
                         </Animated.View>
-                        <DisplayAverageSpeed
-                            key={reloadCounter}
-                            time={time}
-                            fontSize={mapHiden ? 57 : 23}
-                        />
+                        <Animated.View
+                            style={[
+                                styles.cell,
+                                {
+                                    top: rowBottomPosition,
+                                    width: cellWidth,
+                                },
+                            ]}>
+                            <Animated.View
+                                style={[
+                                    styles.labelWrap,
+                                    styles.rightLabel,
+                                    {opacity: labelOpacity},
+                                ]}>
+                                <Text style={[styles.label]}>
+                                    Średnia prędkość
+                                </Text>
+                            </Animated.View>
+                            <DisplayAverageSpeed
+                                key={reloadCounter}
+                                time={time}
+                                fontSize={mapHiden ? 57 : 23}
+                            />
+                        </Animated.View>
                     </Animated.View>
                 </Animated.View>
+                <Animated.View
+                    style={[
+                        styles.arrowBtnWrap,
+                        {
+                            top: arrowPos,
+                        },
+                    ]}>
+                    <CrossBtn onPress={arrowBtnActionHandler} down={mapHiden} />
+                </Animated.View>
             </Animated.View>
-            <Animated.View
-                style={[
-                    styles.arrowBtnWrap,
-                    {
-                        top: arrowPos,
-                    },
-                ]}>
-                <CrossBtn onPress={arrowBtnActionHandler} down={mapHiden} />
-            </Animated.View>
-        </Animated.View>
+
+            {!mapHiden && (
+                <Animated.View
+                    style={[
+                        styles.bottomPlug,
+                        {
+                            height: containerBottom,
+                        },
+                    ]}
+                />
+            )}
+        </>
     );
 };
 
