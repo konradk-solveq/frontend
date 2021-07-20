@@ -16,52 +16,51 @@ interface Props {
     style?: any;
     down?: boolean;
     onPress: () => void;
+    duration: number;
 }
 
 const {width} = Dimensions.get('window');
 const isIOS = Platform.OS === 'ios';
 
-const CrossBtn: React.FC<Props> = ({onPress, down, style}: Props) => {
-    const displayLines = useRef(
-        new Animated.Value(getHorizontalPx(334)),
-    ).current;
+const CrossBtn: React.FC<Props> = ({onPress, down, style, duration}: Props) => {
+    const displayLines = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
         Animated.timing(displayLines, {
-            toValue: down ? 1 : 0,
-            duration: 400,
+            toValue: down ? 0 : 1,
+            duration: duration,
             useNativeDriver: false,
         }).start();
     }, [down, displayLines]);
 
     const btnTop = displayLines.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(23), 0],
+        outputRange: [0, getVerticalPx(23)],
     });
 
     const lineWidth = displayLines.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, getHorizontalPx(334)],
+        outputRange: [getHorizontalPx(334), 0],
     });
 
     const lineLeftPos = displayLines.interpolate({
         inputRange: [0, 1],
         outputRange: [
-            getHorizontalPx(40 - 5 + 334 / 2),
             getHorizontalPx(40 - 5),
+            getHorizontalPx(40 - 5 + 334 / 2),
         ],
     });
 
     const lineHeight = displayLines.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, getVerticalPx(305)],
+        outputRange: [getVerticalPx(305), 0],
     });
 
     const lineTopPos = displayLines.interpolate({
         inputRange: [0, 1],
         outputRange: [
-            getVerticalPx(-(305 - 68) / 2 + 305 / 2),
             getVerticalPx(-(305 - 68) / 2),
+            getVerticalPx(-(305 - 68) / 2 + 305 / 2),
         ],
     });
 

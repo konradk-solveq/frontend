@@ -226,7 +226,11 @@ const NativeCounter: React.FC<IProps> = ({
                         top: arrowPos,
                     },
                 ]}>
-                <CrossBtn onPress={arrowBtnActionHandler} down={mapHiden} />
+                <CrossBtn
+                    onPress={arrowBtnActionHandler}
+                    down={mapHiden}
+                    duration={duration}
+                />
             </Animated.View>
         </Animated.View>
     );
