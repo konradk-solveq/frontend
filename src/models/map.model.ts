@@ -53,6 +53,11 @@ export interface Coords {
 }
 export type CoordsType = [latitude: number, longitude: number];
 
+export type PausePeriod = {
+    start: number;
+    end: number | null;
+};
+
 export type Image = {
     url: string;
     width: number;

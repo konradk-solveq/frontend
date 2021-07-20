@@ -1,10 +1,12 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {useRef} from 'react';
-import deepCopy from '../../../../../helpers/deepCopy';
+import React, {useRef, useEffect, useState, useCallback} from 'react';
+
 import {useAppSelector} from '../../../../../hooks/redux';
 import useAppState from '../../../../../hooks/useAppState';
+import {DataI} from '../../../../../hooks/useLocalizationTracker';
 import {trackerRouteIdSelector} from '../../../../../storage/selectors/routes';
-import {getCurrentRoutePathById} from '../../../../../utils/routePath';
+import deepCopy from '../../../../../helpers/deepCopy';
+import {restoreRouteDataFromSQL} from '../../../../../utils/routePath';
+
 import Polyline from './polyline';
 
 type ShortCoordsType = {
@@ -15,22 +17,25 @@ type ShortCoordsType = {
 
 interface IProps {
     routeSectionNumber: number;
-    active: boolean;
-    coords: ShortCoordsType;
+    coords: DataI;
     pauses: {start: number; end: number | null}[];
 }
 
 const MultiPolyline: React.FC<IProps> = ({
-    active,
     routeSectionNumber,
     coords,
     pauses,
 }: IProps) => {
+    /**
+     * Helper to prevent render current polyline faster then restored data from SQL.
+     */
     const restoreRef = useRef(false);
+    /**
+     * Routes can be separate with pause. Every pasue event creates new array.
+     */
     const routeRef = useRef<ShortCoordsType[][]>([]);
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
 
-    // const [myRoute, setMyRoute] = useState<ShortCoordsType[][]>([]);
     const {appIsActive, appPrevStateVisible, appStateVisible} = useAppState();
     const [previousState, setPrevoiusState] = useState(appPrevStateVisible);
 
@@ -40,74 +45,55 @@ const MultiPolyline: React.FC<IProps> = ({
 
     const doSomeCrazyStuff = useCallback(async () => {
         restoreRef.current = false;
-        const doIt = async () => {
-            try {
-                const bigDo = async () => {
-                    const result: ShortCoordsType[][] = [];
-                    pauses?.forEach((p, i) => {
-                        if (!result?.[i]) {
-                            result[i] = [];
-                        }
-                        const oldRoute = routeRef.current?.[i]
-                            ? deepCopy(routeRef.current[i])
-                            : [];
-                        result[i] = oldRoute;
-                    });
 
-                    if (
-                        !pauses?.length ||
-                        pauses?.length === routeSectionNumber
-                    ) {
-                        const lastPause = pauses?.[routeSectionNumber - 1];
+        if (!currentRouteId) {
+            restoreRef.current = true;
+            return;
+        }
 
-                        const oldRoute = routeRef.current?.[routeSectionNumber]
-                            ? deepCopy(routeRef.current[routeSectionNumber])
-                            : [];
+        const result: ShortCoordsType[][] = deepCopy(routeRef.current);
 
-                        const newRoute = getCurrentRoutePathById(
-                            currentRouteId,
-                            lastPause,
-                            // undefined,
-                            oldRoute,
-                        );
-
-                        const nn = await Promise.resolve(newRoute);
-
-                        result[routeSectionNumber] = nn;
-                    }
-
-                    routeRef.current = result;
-                };
-
-                bigDo();
-                setTimeout(() => {
-                    restoreRef.current = true;
-                }, 500);
-                // return pS;
-            } catch (error) {
-                console.log('[ERROR]', error);
-                // return pS;
+        if (!pauses?.length || pauses?.length === routeSectionNumber) {
+            const newRoute = await restoreRouteDataFromSQL(
+                currentRouteId,
+                routeSectionNumber,
+                routeRef.current,
+                pauses,
+            );
+            if (!newRoute.length) {
+                restoreRef.current = true;
+                return;
             }
-        };
-        doIt();
+
+            result[routeSectionNumber] = newRoute;
+        }
+
+        routeRef.current = result;
+        restoreRef.current = true;
     }, [currentRouteId, pauses, routeSectionNumber]);
 
+    /**
+     * Restore path from SQL only when app came from background.
+     */
     useEffect(() => {
         if (appIsActive && previousState === 'background' && currentRouteId) {
             doSomeCrazyStuff();
 
             setPrevoiusState('active');
+        } else {
+            setTimeout(() => {
+                restoreRef.current = true;
+            }, 200);
         }
-
-        setTimeout(() => {
-            restoreRef.current = true;
-        }, 500);
 
         return () => {
             restoreRef.current = false;
         };
     }, [appIsActive, previousState, currentRouteId, doSomeCrazyStuff]);
 
+    /**
+     * Render path after SQL data has been restored.
+     */
     useEffect(() => {
         if (coords?.coords && restoreRef.current) {
             const pos = {
@@ -127,7 +113,7 @@ const MultiPolyline: React.FC<IProps> = ({
     }, [coords, pauses, routeSectionNumber]);
 
     const renderItem = (e: ShortCoordsType[], i: number) => {
-        if (!e) {
+        if (!e || !e?.length) {
             return null;
         }
         return <Polyline key={`polyline_${i}`} coords={e} />;

@@ -1,3 +1,6 @@
+import deepCopy from '../helpers/deepCopy';
+import {PausePeriod} from '../models/map.model';
+import {ShortCoordsType} from '../types/coords';
 import {routesData} from './transformData';
 
 export const getCurrentRoutePathById = async (
@@ -36,4 +39,25 @@ export const getCurrentRoutePathById = async (
     });
 
     return newRoute;
+};
+
+export const restoreRouteDataFromSQL = async (
+    routeId: string,
+    routeNumber: number,
+    routes: ShortCoordsType[][],
+    pauses?: PausePeriod[],
+) => {
+    try {
+        const lastPause = pauses?.[routeNumber - 1];
+
+        const oldRoute = routes?.[routeNumber]
+            ? deepCopy(routes[routeNumber])
+            : [];
+
+        const newRoute = getCurrentRoutePathById(routeId, lastPause, oldRoute);
+
+        return await Promise.resolve(newRoute);
+    } catch (error) {
+        return [];
+    }
 };
