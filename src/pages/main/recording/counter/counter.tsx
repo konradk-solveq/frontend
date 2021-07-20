@@ -156,7 +156,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 setMyRouteNumber(myRouteNumber + 1);
                 break;
             case 'cancelText':
-                setPageState('record');
+                setPageState(pause ? 'pause' : 'record');
                 break;
             case 'endMessage':
                 setPageState(pause ? 'pause' : 'record');
@@ -359,7 +359,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     titleOn={true}
                     style={styles.stackHeader}
                     started={
-                        pageState === 'record' || pageState === 'cancelText'
+                        pageState === 'record' ||
+                        (pageState === 'cancelText' && !pause)
                     }
                     mapHiden={mapHiden}
                     duration={ANIMATION_DURATION}
