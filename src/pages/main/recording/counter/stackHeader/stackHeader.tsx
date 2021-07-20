@@ -48,7 +48,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         Animated.timing(display, {
-            toValue: props.mapHiden ? 1 : 0,
+            toValue: props.mapHiden ? 0 : 1,
             duration: props.duration,
             useNativeDriver: false,
         }).start();
@@ -57,19 +57,19 @@ const StackHeader: React.FC<Props> = (props: Props) => {
     const titleTop = display.interpolate({
         inputRange: [0, 1],
         outputRange: [
-            getVerticalPx(3 - 28 - 30) + iosClose,
             getVerticalPx(3 - 28) + iosOpen,
+            getVerticalPx(3 - 28 - 30) + iosClose,
         ],
     });
 
     const arrowTop = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(isAndroid ? -20 : -3), 0],
+        outputRange: [0, getVerticalPx(isAndroid ? -20 : -3)],
     });
 
     const arrowLeft = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(isAndroid ? -25 : -5), 0],
+        outputRange: [0, getVerticalPx(isAndroid ? -25 : -5)],
     });
 
     setObjSize(414, 34);

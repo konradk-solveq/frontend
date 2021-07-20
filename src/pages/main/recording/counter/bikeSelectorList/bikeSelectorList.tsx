@@ -37,7 +37,7 @@ const BikeSelectorList: React.FC<Props> = ({
 
     useEffect(() => {
         Animated.timing(display, {
-            toValue: mapHiden ? 1 : 0,
+            toValue: mapHiden ? 0 : 1,
             duration: duration,
             useNativeDriver: false,
         }).start();
@@ -45,17 +45,17 @@ const BikeSelectorList: React.FC<Props> = ({
 
     const listLeft = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getHorizontalPx(isIOS ? 65 : 50), 0],
+        outputRange: [0, getHorizontalPx(isIOS ? 65 : 50)],
     });
 
     const firstItemLeft = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getHorizontalPx(5), getHorizontalPx(40)],
+        outputRange: [getHorizontalPx(40), getHorizontalPx(5)],
     });
 
     const lastItemRight = display.interpolate({
         inputRange: [0, 1],
-        outputRange: [getHorizontalPx(80), getHorizontalPx(40)],
+        outputRange: [getHorizontalPx(40), getHorizontalPx(80)],
     });
 
     setObjSize(334, 50);

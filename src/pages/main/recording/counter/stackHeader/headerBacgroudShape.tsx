@@ -29,8 +29,8 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
     const statusBarHeight = useStatusBarHeight();
     const iosHeightOpen = isIOS ? 5 : 0;
     const iosHeightClose = isIOS ? statusBarHeight / 2 : 0;
-    const sh = useSharedValue(getVerticalPx(90)); // side height
-    const ch = useSharedValue(getVerticalPx(116)); // center height
+    const sh = useSharedValue(getVerticalPx(60)); // side height
+    const ch = useSharedValue(getVerticalPx(60)); // center height
 
     const display = useSharedValue(-1);
 
@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
         left: 0,
         width: getHorizontalPx(414),
         height: 100,
-        // backgroundColor: 'green',
     },
 });
 
