@@ -26,6 +26,7 @@ const MultiPolyline: React.FC<IProps> = ({
     coords,
     pauses,
 }: IProps) => {
+    const mountRef = useRef(false);
     /**
      * Helper to prevent render current polyline faster then restored data from SQL.
      */
@@ -71,6 +72,24 @@ const MultiPolyline: React.FC<IProps> = ({
         routeRef.current = result;
         restoreRef.current = true;
     }, [currentRouteId, pauses, routeSectionNumber]);
+
+    /**
+     * Restore path from SQL after re-launch.
+     */
+    useEffect(() => {
+        if (!mountRef.current) {
+            doSomeCrazyStuff();
+
+            setPrevoiusState('active');
+
+            mountRef.current = true;
+        }
+
+        return () => {
+            mountRef.current = false;
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     /**
      * Restore path from SQL only when app came from background.
