@@ -5,6 +5,7 @@ const worldStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        paddingTop: getVerticalPx(30),
     },
     headerWrapper: {
         position: 'absolute',
@@ -23,8 +24,6 @@ const worldStyles = StyleSheet.create({
     },
     headerButtons: {
         flexDirection: 'row',
-        right: getHorizontalPx(52),
-        // right: getHorizontalPx(60),
     },
     mapBtn: {
         marginLeft: getVerticalPx(22),
