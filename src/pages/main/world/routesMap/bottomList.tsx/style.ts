@@ -12,11 +12,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         zIndex: 10,
     },
+    innerContainer: {
+        width: '100%',
+    },
     flatButtonContainer: {
         position: 'absolute',
         top: -5,
+        left: 0,
+        right: 0,
         paddingTop: 20,
         paddingBottom: 20,
+        alignItems: 'center',
         zIndex: 10,
     },
     flatButton: {

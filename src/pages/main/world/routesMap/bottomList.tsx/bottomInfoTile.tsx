@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
-import {Animated, View, Text, Platform} from 'react-native';
+import {Animated, View, Text, Platform, Dimensions} from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
@@ -11,10 +11,13 @@ import Swipe from '../../../../../sharedComponents/navi/swipe/swipe';
 import CurvedShape from '../../../../../sharedComponents/svg/curvedShape';
 
 import styles from './style';
-const isIOS = Platform.OS === 'ios';
 
+const isIOS = Platform.OS === 'ios';
+const {height} = Dimensions.get('window');
+
+const IOSHeight = height > 680 ? 148 : 168;
 const zeroContainerHeight = 0;
-const minContainerHeight = getVerticalPx(isIOS ? 168 : 148);
+const minContainerHeight = getVerticalPx(isIOS ? IOSHeight : 148);
 const maxContainerHeight = getVerticalPx(600);
 
 interface IProps {
@@ -99,37 +102,41 @@ const BottomInfoTile: React.FC<IProps> = ({
                 },
             ]}>
             <Swipe direction={!isUp ? 4 : 8} onSwipeAction={onSwipeFlatButton}>
-                <View style={styles.flatButtonContainer}>
-                    <View style={styles.flatButton} />
+                <View style={styles.innerContainer}>
+                    <View style={styles.flatButtonContainer}>
+                        <View style={styles.flatButton} />
+                    </View>
+                    {data && (
+                        <>
+                            <CurvedShape />
+                            <View style={styles.listContainer}>
+                                <Tile
+                                    data={data}
+                                    onPressTile={onPress}
+                                    onPressButton={onPress}
+                                />
+                                <View style={styles.imageWrapper}>
+                                    <Text style={styles.imageHeader}>
+                                        {trans.finMoreInfo}
+                                    </Text>
+                                    <View style={styles.imageContainer}>
+                                        {data?.mapImageUrl ? (
+                                            <ImageBtn
+                                                imgUrl={data.mapImageUrl}
+                                                onPress={() => onPress(data.id)}
+                                            />
+                                        ) : (
+                                            <View
+                                                style={styles.imagePlaceholder}
+                                            />
+                                        )}
+                                    </View>
+                                </View>
+                            </View>
+                        </>
+                    )}
                 </View>
             </Swipe>
-            {data && (
-                <>
-                    <CurvedShape />
-                    <View style={styles.listContainer}>
-                        <Tile
-                            data={data}
-                            onPressTile={onPress}
-                            onPressButton={onPress}
-                        />
-                        <View style={styles.imageWrapper}>
-                            <Text style={styles.imageHeader}>
-                                {trans.finMoreInfo}
-                            </Text>
-                            <View style={styles.imageContainer}>
-                                {data?.mapImageUrl ? (
-                                    <ImageBtn
-                                        imgUrl={data.mapImageUrl}
-                                        onPress={() => onPress(data.id)}
-                                    />
-                                ) : (
-                                    <View style={styles.imagePlaceholder} />
-                                )}
-                            </View>
-                        </View>
-                    </View>
-                </>
-            )}
         </Animated.View>
     );
 };

@@ -4,9 +4,10 @@ import {View, Dimensions, StyleSheet} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import {getHorizontalPx, getVerticalPx} from '../../helpers/layoutFoo';
 
-const {width} = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const isIOS = Platform.OS === 'ios';
+const IOSTop = height > 680 ? 158 : 200;
 const shapeWidth = getHorizontalPx(414);
 const shapeHeight = getVerticalPx(142);
 
@@ -29,12 +30,12 @@ const CurvedShape: React.FC = () => {
 
 const styles = StyleSheet.create({
     container: {
-        width: width * 1.05,
+        width: width,
         aspectRatio: isIOS
             ? shapeWidth / shapeHeight / 1.5
             : shapeWidth / shapeHeight,
         position: 'absolute',
-        top: getVerticalPx(isIOS ? -200 : -140),
+        top: getVerticalPx(isIOS ? -IOSTop : -140),
         left: 0,
         right: 0,
     },

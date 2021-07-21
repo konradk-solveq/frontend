@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View, StyleSheet, SafeAreaView, Text, Platform} from 'react-native';
+import {View, StyleSheet, SafeAreaView, Platform} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import I18n from 'react-native-i18n';
 
@@ -33,6 +33,7 @@ import styles from './style';
 import {RegularStackRoute} from '../../../navigation/route';
 import {RouteMapType} from '../../../models/places.model';
 import {WorldRouteType} from '../../../types/rootStack';
+import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -224,24 +225,6 @@ const World: React.FC = () => {
                     RouteMapType.MY_ROUTES === activeTab ? ['order'] : undefined
                 }
             />
-            <View style={[styles.headerWrapper, dynamicStyles.headerWrapper]}>
-                <Text style={styles.header}>{trans.header}</Text>
-                <View style={styles.headerButtons}>
-                    <FiltersBtn
-                        onPress={onShowModalHanlder}
-                        iconStyle={[
-                            styles.headerButton,
-                            // styles.headerButtonLeft,
-                        ]}
-                    />
-                    <View style={styles.mapBtn}>
-                        <MapBtn
-                            onPress={navigateTouRouteMap}
-                            iconStyle={styles.headerButton}
-                        />
-                    </View>
-                </View>
-            </View>
 
             <View style={styles.wrap}>
                 <View style={[styles.btns, dynamicStyles.btns]}>
@@ -269,6 +252,25 @@ const World: React.FC = () => {
             <View style={styles.viewContainer}>{renderActiveScreen()}</View>
 
             <TabBackGround />
+
+            <StackHeader
+                hideBackArrow
+                inner={trans.header}
+                rightActions={
+                    <View style={styles.headerButtons}>
+                        <FiltersBtn
+                            onPress={onShowModalHanlder}
+                            iconStyle={styles.headerButton}
+                        />
+                        <View style={styles.mapBtn}>
+                            <MapBtn
+                                onPress={navigateTouRouteMap}
+                                iconStyle={styles.headerButton}
+                            />
+                        </View>
+                    </View>
+                }
+            />
         </SafeAreaView>
     );
 };

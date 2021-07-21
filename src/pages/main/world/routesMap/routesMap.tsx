@@ -14,8 +14,6 @@ import {
 } from '../../../../types/rootStack';
 import {RegularStackRoute} from '../../../../navigation/route';
 import useGeolocation from '../../../../hooks/useGeolocation';
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {fetchMapIfNotExistsLocally} from '../../../../storage/actions/maps';
 import useGetRouteMapMarkers from '../../../../hooks/useGetRouteMapMarkers';
 import {useCallback} from 'react';
@@ -42,8 +40,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
     const mapRef = useRef(null);
     const posRef = useRef(false);
-    const statusBarHeight = useStatusBarHeight();
-    const headerTop = isIOS ? 0 : getVerticalPx(-statusBarHeight);
 
     const trans: any = I18n.t('MainRoutesMap');
 
@@ -257,9 +253,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             <StackHeader
                 hideBackArrow
                 inner={trans.header}
-                style={{
-                    top: headerTop,
-                }}
                 rightActions={
                     <View style={styles.actionButtonsContainer}>
                         <ListBtn

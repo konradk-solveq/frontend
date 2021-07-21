@@ -2,7 +2,6 @@ import {Dimensions, Platform, StyleSheet} from 'react-native';
 import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
 
 const {width, height} = Dimensions.get('window');
-const isIOS = Platform.OS === 'ios';
 
 const styles = StyleSheet.create({
     container: {
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         width: '100%',
-        height: height,
+        height: height * 1.04,
         zIndex: 0,
     },
     gradient: {
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
     btns: {
         position: 'absolute',
         left: getHorizontalPx(40),
-        top: getVerticalPx(isIOS ? 148 : 108),
+        top: getVerticalPx(138),
         height: 41,
         display: 'flex',
         flexDirection: 'row',
