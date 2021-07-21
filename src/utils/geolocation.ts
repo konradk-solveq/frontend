@@ -206,6 +206,20 @@ export const resumeTracingLocation = async () => {
     await BackgroundGeolocation.changePace(true);
 };
 
+export const pauseBackgroundGeolocation = async () => {
+    await BackgroundGeolocation.changePace(false);
+    const state = await BackgroundGeolocation.stop();
+
+    return state;
+};
+
+export const resumeBackgroundGeolocation = async () => {
+    await BackgroundGeolocation.changePace(true);
+    const state = await BackgroundGeolocation.start();
+
+    return state;
+};
+
 export const askFineLocationPermission = async () => {
     let permission = 'unavailable';
     try {

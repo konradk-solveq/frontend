@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {StyleSheet, Platform, Dimensions} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {Coords} from 'react-native-background-geolocation-android';
 import CompassHeading from 'react-native-compass-heading';
 
@@ -9,24 +9,20 @@ import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
 import {getCurrentLocation} from '../../../../utils/geolocation';
 
 import mapStyle from '../../../../sharedComponents/maps/styles';
-import deepCopy from '../../../../helpers/deepCopy';
 import AnimSvg from '../../../../helpers/animSvg';
 
 import gradient from './gradientSvg';
+import Polyline from './polyline/polyline';
+import SinglePolyline from './polyline/singlePolyline';
 
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
 interface IProps {
     routeId: string;
     trackerData: any;
-    routeNumber: number;
 }
 
-const Map: React.FC<IProps> = ({
-    routeId,
-    trackerData,
-    routeNumber,
-}: IProps) => {
+const Map: React.FC<IProps> = ({routeId, trackerData}: IProps) => {
     const mapRef = useRef<MapView>(null);
 
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
@@ -36,7 +32,6 @@ const Map: React.FC<IProps> = ({
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [myRoute, setMyRoute] = useState([]);
 
     useEffect(() => {
         const loc = async () => {
@@ -58,30 +53,6 @@ const Map: React.FC<IProps> = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    useEffect(() => {
-        if (trackerData?.coords && mapRef.current) {
-            const pos = {
-                latitude: trackerData.coords.lat,
-                longitude: trackerData.coords.lon,
-            };
-
-            // zapisywanie trasy do vizualizacji
-            const newRure = deepCopy(myRoute);
-            if (typeof myRoute[routeNumber] === 'undefined') {
-                newRure[routeNumber] = [];
-            }
-            const t = setTimeout(() => {
-                newRure[routeNumber].push(pos);
-                setMyRoute(newRure);
-            }, 400);
-
-            return () => {
-                clearTimeout(t);
-            };
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [trackerData]);
 
     const setMapCamera = useCallback(() => {
         if (mapRef.current && trackerData) {
@@ -152,32 +123,14 @@ const Map: React.FC<IProps> = ({
                                 }
                             },
                         })}>
-                        {myRoute?.map((e, i) => {
-                            if (!e) {
-                                return null;
-                            }
-                            return (
-                                <Polyline
-                                    coordinates={e}
-                                    strokeColor="#d8232a"
-                                    strokeColors={['#d8232a']}
-                                    lineCap={'round'}
-                                    lineJoin={'round'}
-                                    strokeWidth={8}
-                                    tappable={false}
-                                    key={'route_' + i}
-                                />
-                            );
-                        })}
+                        {trackerData?.coords && (
+                            <SinglePolyline coords={trackerData} />
+                        )}
                         {foreignRoute && (
                             <Polyline
-                                coordinates={foreignRoute}
+                                coords={foreignRoute}
                                 strokeColor="#3583e4"
                                 strokeColors={['#3583e4']}
-                                lineCap={'round'}
-                                lineJoin={'round'}
-                                tappable={false}
-                                strokeWidth={8}
                             />
                         )}
                     </MapView>
@@ -190,7 +143,6 @@ const Map: React.FC<IProps> = ({
 const styles = StyleSheet.create({
     map: {
         width: '100%',
-        // height: mapBtnPos + mapBtnSize,
         height: '100%',
     },
     gradient: {

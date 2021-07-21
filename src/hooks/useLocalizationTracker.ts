@@ -45,6 +45,7 @@ export interface DataI {
         lat: number;
         lon: number;
     };
+    timestamp: number;
 }
 
 let speed: number[] = [];
@@ -129,9 +130,8 @@ const useLocalizationTracker = (
         [dispatch, currentRouteId, stopTracker],
     );
 
-    const onPauseTracker = useCallback(() => {
-        setIsActive(false);
-        pauseTracingLocation();
+    const onPauseTracker = useCallback(async () => {
+        await pauseTracingLocation();
         setTrackerData(prev => {
             if (prev) {
                 return {
@@ -141,11 +141,12 @@ const useLocalizationTracker = (
             }
             return undefined;
         });
+        setIsActive(false);
     }, []);
 
     const onStartTracker = useCallback(async () => {
-        setIsActive(true);
         await resumeTracingLocation();
+        setIsActive(true);
     }, []);
 
     useEffect(() => {

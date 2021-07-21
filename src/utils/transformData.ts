@@ -316,3 +316,38 @@ export const routesDataToPersist = async (
 
     return currRoutes;
 };
+
+export const getRoutesDataFromSQL = async (
+    routeId: string,
+    timeToExclude?: {start: number; end: number},
+): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
+    const currRoutes: {
+        latitude: number;
+        longitude: number;
+        timestamp: number;
+    }[] = [];
+    const locations = await getLocations();
+    /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
+    locations.forEach((l: any) => {
+        if (!routeId || routeId !== l?.extras?.route_id) {
+            return;
+        }
+
+        if (timeToExclude && timeToExclude.start !== 0) {
+            const t = new Date(l.timestamp).getTime();
+            if (t <= timeToExclude.start) {
+                return;
+            }
+        }
+
+        const newRoute = {
+            latitude: l.coords.latitude,
+            longitude: l.coords.longitude,
+            timestamp: l.timestamp,
+        };
+
+        currRoutes.push(newRoute);
+    });
+
+    return currRoutes;
+};
