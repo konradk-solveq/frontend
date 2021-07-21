@@ -1,5 +1,5 @@
 import React, {useRef, useEffect} from 'react';
-import {Text, ViewStyle, Animated} from 'react-native';
+import {View, Text, ViewStyle, Animated} from 'react-native';
 
 import AnimSvg from '../../../../helpers/animSvg';
 import {StyleSheet} from 'react-native';
@@ -36,6 +36,14 @@ const styles = StyleSheet.create({
         letterSpacing: 0,
         textAlign: 'center',
         marginTop: 30,
+    },
+    plug: {
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+        width: getHorizontalPx(414),
+        height: getHorizontalPx(150),
+        backgroundColor: '#fff',
     },
 });
 
@@ -109,6 +117,7 @@ const ButtonBackground: React.FC<IProps> = ({
                 style={[styles.textContainer, {opacity: textOpacity}]}>
                 <Text style={styles.message}>{currentMessage}</Text>
             </Animated.View>
+            <View style={styles.plug} />
             <AnimSvg style={styles.backGround} source={backGround} />
         </Animated.View>
     );

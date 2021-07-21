@@ -84,8 +84,7 @@ const NativeCounter: React.FC<IProps> = ({
 
     useEffect(() => {
         Animated.timing(containerBottom, {
-            toValue:
-                aplaShow && !mapHiden ? getVerticalPx(140) : getVerticalPx(0),
+            toValue: aplaShow && !mapHiden ? getHorizontalPx(130) : 0,
             duration: duration,
             useNativeDriver: false,
         }).start();
