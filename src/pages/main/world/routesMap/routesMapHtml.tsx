@@ -442,6 +442,11 @@ function initMap() {
     // dla chowania apli z adresem
     map.addListener('click', () => {
         window.ReactNativeWebView.postMessage("clickMap");
+        marks.forEach(m => {
+            m.setOptions({
+                icon: 'map_route_marker.png',
+            });
+        })
     });
 
     // dla zmiany pozycji regionu
@@ -475,6 +480,14 @@ const setMarks = places => {
         // do pokazywania alpi z adresem
         google.maps.event.addDomListener(mark, 'click', function() {
             window.ReactNativeWebView.postMessage("clickMarker#$#"+JSON.stringify(mark.details));
+            marks.forEach(m => {
+                m.setOptions({
+                    icon: 'map_route_marker.png',
+                });
+            })
+            mark.setOptions({
+                icon: 'current_map_route_marker.png',
+            }); 
         });
     }
 
