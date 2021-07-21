@@ -46,7 +46,7 @@ export const getTrackerData = (gpsData: any, averageSpeed: string) => {
             lat: gpsData?.coords?.latitude,
             lon: gpsData?.coords?.longitude,
         },
-        timestamp: gpsData.timestamp,
+        timestamp: gpsData?.timestamp,
     };
 
     return res;

@@ -20,9 +20,6 @@ const {width} = Dimensions.get('window');
 interface IProps {
     routeId: string;
     trackerData: any;
-    routeNumber: number;
-    isRecordingActive: boolean;
-    pauses: {start: number; end: number | null}[];
 }
 
 const Map: React.FC<IProps> = ({routeId, trackerData}: IProps) => {

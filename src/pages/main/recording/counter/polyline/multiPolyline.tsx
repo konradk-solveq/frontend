@@ -1,6 +1,6 @@
 /**
- * This component can draw multipolylines with separate sections.
- * Every section is separate by pause time.
+ * This component can draw multi-polylines with separate sections.
+ * Every section is separated by pause time.
  *
  * @author Sebastian Kasiński
  */
@@ -51,7 +51,7 @@ const MultiPolyline: React.FC<IProps> = ({
         setPrevoiusState(appStateVisible);
     }, [appStateVisible]);
 
-    const doSomeCrazyStuff = useCallback(async () => {
+    const redrawPolyline = useCallback(async () => {
         restoreRef.current = false;
 
         if (!currentRouteId) {
@@ -84,7 +84,7 @@ const MultiPolyline: React.FC<IProps> = ({
      */
     useEffect(() => {
         if (!mountRef.current) {
-            doSomeCrazyStuff();
+            redrawPolyline();
 
             setPrevoiusState('active');
 
@@ -102,7 +102,7 @@ const MultiPolyline: React.FC<IProps> = ({
      */
     useEffect(() => {
         if (appIsActive && previousState === 'background' && currentRouteId) {
-            doSomeCrazyStuff();
+            redrawPolyline();
 
             setPrevoiusState('active');
         } else {
@@ -114,7 +114,7 @@ const MultiPolyline: React.FC<IProps> = ({
         return () => {
             restoreRef.current = false;
         };
-    }, [appIsActive, previousState, currentRouteId, doSomeCrazyStuff]);
+    }, [appIsActive, previousState, currentRouteId, redrawPolyline]);
 
     /**
      * Render path after SQL data has been restored.

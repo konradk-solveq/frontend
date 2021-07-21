@@ -44,7 +44,7 @@ const MultiPolyline: React.FC<IProps> = ({coords}: IProps) => {
         setPrevoiusState(appStateVisible);
     }, [appStateVisible]);
 
-    const doSomeCrazyStuff = useCallback(async () => {
+    const redrawPolyline = useCallback(async () => {
         restoreRef.current = false;
 
         if (!currentRouteId) {
@@ -74,11 +74,11 @@ const MultiPolyline: React.FC<IProps> = ({coords}: IProps) => {
      */
     useEffect(() => {
         if (!mountRef.current) {
-            doSomeCrazyStuff();
+            redrawPolyline();
 
             setPrevoiusState('active');
 
-            mountRef.current = true;
+            // mountRef.current = true;
         }
 
         return () => {
@@ -92,7 +92,7 @@ const MultiPolyline: React.FC<IProps> = ({coords}: IProps) => {
      */
     useEffect(() => {
         if (appIsActive && previousState === 'background' && currentRouteId) {
-            doSomeCrazyStuff();
+            redrawPolyline();
 
             setPrevoiusState('active');
         } else {
@@ -104,7 +104,7 @@ const MultiPolyline: React.FC<IProps> = ({coords}: IProps) => {
         return () => {
             restoreRef.current = false;
         };
-    }, [appIsActive, previousState, currentRouteId, doSomeCrazyStuff]);
+    }, [appIsActive, previousState, currentRouteId, redrawPolyline]);
 
     /**
      * Render path after SQL data has been restored.

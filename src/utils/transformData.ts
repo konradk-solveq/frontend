@@ -317,7 +317,7 @@ export const routesDataToPersist = async (
     return currRoutes;
 };
 
-export const routesData = async (
+export const getRoutesDataFromSQL = async (
     routeId: string,
     timeToExclude?: {start: number; end: number},
 ): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
@@ -348,14 +348,6 @@ export const routesData = async (
 
         currRoutes.push(newRoute);
     });
-
-    // const sorted = currRoutes.sort((a, b) => {
-    //     if (new Date(a.timestamp) === new Date(b.timestamp)) {
-    //         return 0;
-    //     }
-
-    //     return new Date(a.timestamp) > new Date(b.timestamp) ? 1 : -1;
-    // });
 
     return currRoutes;
 };

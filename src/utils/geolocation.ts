@@ -208,12 +208,16 @@ export const resumeTracingLocation = async () => {
 
 export const pauseBackgroundGeolocation = async () => {
     await BackgroundGeolocation.changePace(false);
-    BackgroundGeolocation.stop();
+    const state = await BackgroundGeolocation.stop();
+
+    return state;
 };
 
 export const resumeBackgroundGeolocation = async () => {
     await BackgroundGeolocation.changePace(true);
-    BackgroundGeolocation.start();
+    const state = await BackgroundGeolocation.start();
+
+    return state;
 };
 
 export const askFineLocationPermission = async () => {

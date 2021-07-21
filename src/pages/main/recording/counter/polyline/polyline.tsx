@@ -8,8 +8,8 @@ type ShortCoordsType = {
 
 interface IProps {
     coords: ShortCoordsType[];
-    strokeColor: string;
-    strokeColors: string[];
+    strokeColor?: string;
+    strokeColors?: string[];
 }
 
 const Polyline: React.FC<IProps> = ({
@@ -22,7 +22,7 @@ const Polyline: React.FC<IProps> = ({
     useEffect(() => {
         if (coords?.length) {
             if (polylineRef.current) {
-                polylineRef.current.setNativeProps({
+                polylineRef.current?.setNativeProps({
                     coordinates: coords,
                 });
             }

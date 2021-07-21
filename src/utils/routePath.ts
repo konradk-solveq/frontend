@@ -1,14 +1,18 @@
 import deepCopy from '../helpers/deepCopy';
 import {ShortCoordsType} from '../types/coords';
-import {routesData} from './transformData';
+import {getRoutesDataFromSQL} from './transformData';
 
+/**
+ * Merge data from SQL with current path's data.
+ * Data will be sorted by timestamp.
+ */
 export const getCurrentRoutePathById = async (
     routeId: string,
     oldRoutes?: {latitude: number; longitude: number; timestamp: number}[],
 ): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
     const timeStart = oldRoutes?.[oldRoutes?.length - 1]?.timestamp;
 
-    let res = await routesData(routeId, {
+    let res = await getRoutesDataFromSQL(routeId, {
         start: timeStart ? new Date(timeStart).getTime() : 0,
         end: 0,
     });
