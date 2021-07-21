@@ -1,9 +1,6 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {StyleSheet, Platform, Dimensions} from 'react-native';
-import MapView, {
-    PROVIDER_GOOGLE,
-    Polyline as OriginalPolyline,
-} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {Coords} from 'react-native-background-geolocation-android';
 import CompassHeading from 'react-native-compass-heading';
 
@@ -16,7 +13,6 @@ import AnimSvg from '../../../../helpers/animSvg';
 
 import gradient from './gradientSvg';
 import Polyline from './polyline/polyline';
-import MultiPolyline from './polyline/multiPolyline';
 import SinglePolyline from './polyline/singlePolyline';
 
 const isIOS = Platform.OS === 'ios';
@@ -29,17 +25,10 @@ interface IProps {
     pauses: {start: number; end: number | null}[];
 }
 
-const Map: React.FC<IProps> = ({
-    routeId,
-    trackerData,
-    routeNumber,
-    pauses,
-    isRecordingActive,
-}: IProps) => {
+const Map: React.FC<IProps> = ({routeId, trackerData}: IProps) => {
     const mapRef = useRef<MapView>(null);
 
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
-    // const [mapReady, setMapReady] = useState(false);
 
     const [compassHeading, setCompassHeading] = useState(0);
     const [location, setLocaion] = useState<Coords | null>(null);
@@ -120,12 +109,12 @@ const Map: React.FC<IProps> = ({
                         provider={PROVIDER_GOOGLE}
                         style={styles.map}
                         customMapStyle={mapStyle}
-                        pitchEnabled={true}
+                        pitchEnabled={false}
                         ref={mapRef}
                         rotateEnabled={false}
-                        scrollEnabled={true}
-                        zoomEnabled={true}
-                        zoomTapEnabled={true}
+                        scrollEnabled={false}
+                        zoomEnabled={false}
+                        zoomTapEnabled={false}
                         showsCompass={false}
                         {...(!isIOS && {
                             initialCamera: cameraInitObj,
@@ -137,27 +126,14 @@ const Map: React.FC<IProps> = ({
                                 }
                             },
                         })}>
-                        {/* <InitialPolyline
-                            mapReady={mapReady}
-                            onRestore={s => setRestored(s)}
-                            onRouteRestored={r => {}}
-                        /> */}
                         {trackerData?.coords && (
-                            <SinglePolyline
-                                pauses={pauses}
-                                coords={trackerData}
-                                routeSectionNumber={routeNumber}
-                            />
+                            <SinglePolyline coords={trackerData} />
                         )}
                         {foreignRoute && (
-                            <OriginalPolyline
-                                coordinates={foreignRoute}
+                            <Polyline
+                                coords={foreignRoute}
                                 strokeColor="#3583e4"
                                 strokeColors={['#3583e4']}
-                                lineCap={'round'}
-                                lineJoin={'round'}
-                                tappable={false}
-                                strokeWidth={8}
                             />
                         )}
                     </MapView>

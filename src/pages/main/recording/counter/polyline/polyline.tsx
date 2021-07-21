@@ -8,9 +8,15 @@ type ShortCoordsType = {
 
 interface IProps {
     coords: ShortCoordsType[];
+    strokeColor: string;
+    strokeColors: string[];
 }
 
-const Polyline: React.FC<IProps> = ({coords}: IProps) => {
+const Polyline: React.FC<IProps> = ({
+    coords,
+    strokeColor,
+    strokeColors,
+}: IProps) => {
     const polylineRef = useRef<MapPolyline>(null);
 
     useEffect(() => {
@@ -27,8 +33,8 @@ const Polyline: React.FC<IProps> = ({coords}: IProps) => {
         <MapPolyline
             ref={polylineRef}
             coordinates={[]}
-            strokeColor="#d8232a"
-            strokeColors={['#d8232a']}
+            strokeColor={strokeColor || '#d8232a'}
+            strokeColors={strokeColors || ['#d8232a']}
             lineCap={'round'}
             lineJoin={'round'}
             strokeWidth={8}
