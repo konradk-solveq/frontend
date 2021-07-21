@@ -57,6 +57,13 @@ const styles = StyleSheet.create({
     actionButton: {
         margin: 0,
     },
+    findWrap: {
+        position: 'absolute',
+        right: getHorizontalPx(40),
+        // bottom: getHorizontalPx(40),
+        width: getHorizontalPx(41),
+        height: getHorizontalPx(41),
+    },
 });
 
 export default styles;

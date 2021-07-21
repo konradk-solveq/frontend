@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {WebView} from 'react-native-webview';
 
-import {SafeAreaView, View, Platform} from 'react-native';
+import {SafeAreaView, View, Platform, Animated} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {useAppDispatch} from '../../../../hooks/redux';
@@ -14,6 +14,7 @@ import {
 } from '../../../../types/rootStack';
 import {RegularStackRoute} from '../../../../navigation/route';
 import useGeolocation from '../../../../hooks/useGeolocation';
+import {getHorizontalPx} from '../../../../helpers/layoutFoo';
 import {fetchMapIfNotExistsLocally} from '../../../../storage/actions/maps';
 import useGetRouteMapMarkers from '../../../../hooks/useGetRouteMapMarkers';
 import {useCallback} from 'react';
@@ -28,6 +29,7 @@ import BottomInfoTile from './bottomList.tsx/bottomInfoTile';
 import mapSource from './routesMapHtml';
 
 import styles from './style';
+import FindMeButton from '../../../../sharedComponents/buttons/findMeBtn';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -52,6 +54,21 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     const {location} = useGeolocation();
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
+
+    const findBtnPosY = useRef(new Animated.Value(getHorizontalPx(40))).current;
+    const maxFindBtnPosY = isIOS
+        ? getHorizontalPx(148 + 16) + 20
+        : getHorizontalPx(148 + 16);
+
+    useEffect(() => {
+        console.log('%c adress:', adress);
+        Animated.timing(findBtnPosY, {
+            toValue:
+                adress === null ? getHorizontalPx(40) : maxFindBtnPosY,
+            duration: 800,
+            useNativeDriver: false,
+        }).start();
+    }, [adress, findBtnPosY, maxFindBtnPosY]);
 
     const heandleShowAdress = (adressDetails: MarkerDetailsType | null) => {
         if (adressDetails) {
@@ -189,6 +206,17 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         );
     };
 
+    const hendleFindMyLocation = () => {
+        if (location?.coords && mapLoaded) {
+            const pos = {
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+            };
+
+            setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+        }
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.fullView}>
@@ -239,6 +267,16 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                     onpress={heandlePlanning}
                 />
             </View>
+
+            <Animated.View
+                style={[
+                    styles.findWrap,
+                    {
+                        bottom: findBtnPosY,
+                    },
+                ]}>
+                <FindMeButton onpress={hendleFindMyLocation} />
+            </Animated.View>
 
             <BottomInfoTile
                 key={adress?.id}

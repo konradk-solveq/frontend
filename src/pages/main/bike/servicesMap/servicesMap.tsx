@@ -7,6 +7,7 @@ import {
     SafeAreaView,
     View,
     Platform,
+    TouchableOpacity,
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
@@ -44,6 +45,8 @@ import BackgroundGeolocation, {
     LocationError,
 } from 'react-native-background-geolocation-android';
 import {Region} from 'react-native-maps';
+
+import FindMeButton from '../../../../sharedComponents/buttons/findMeBtn';
 
 interface Props {
     navigation: any;
@@ -220,13 +223,17 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
         }
     };
 
-    const heandleMapLoaded = () => {
+    const hendleFindMyLocation = () => {
         let pos = {
             latitude: route.params.location.latitude,
             longitude: route.params.location.longitude,
         };
 
         setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+    };
+
+    const heandleMapLoaded = () => {
+        hendleFindMyLocation();
         setMapLoaded(true);
     };
 
@@ -284,10 +291,16 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
         btn: {
             marginRight: getHorizontalPx(5),
         },
+        findWrap: {
+            position: 'absolute',
+            right: getHorizontalPx(40),
+            width: getHorizontalPx(41),
+            height: getHorizontalPx(41),
+        },
     });
 
     return (
-        <SafeAreaView SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.fullView}>
                 <WebView
                     style={styles.fullView}
@@ -330,7 +343,20 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                     onpress={heandleShops}
                 />
             </View>
+
             {adress && <AddressBox address={adress} />}
+
+            <FindMeButton
+                style={[
+                    styles.findWrap,
+                    {
+                        bottom: adress
+                            ? getHorizontalPx(414 * 0.49 + 16)
+                            : getHorizontalPx(40),
+                    },
+                ]}
+                onpress={hendleFindMyLocation}
+            />
 
             <StackHeader onpress={() => props.navigation.goBack()} inner={''} />
         </SafeAreaView>
