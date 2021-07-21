@@ -61,7 +61,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         : getHorizontalPx(148 + 16);
 
     useEffect(() => {
-        console.log('%c adress:', adress);
         Animated.timing(findBtnPosY, {
             toValue:
                 adress === null ? getHorizontalPx(40) : maxFindBtnPosY,
