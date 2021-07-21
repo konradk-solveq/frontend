@@ -98,7 +98,7 @@ const BottomInfoTile: React.FC<IProps> = ({
                 styles.container,
                 {
                     height: containerHeight,
-                    opacity: topPositionInterpolation,
+                    // opacity: topPositionInterpolation,
                 },
             ]}>
             <Swipe direction={!isUp ? 4 : 8} onSwipeAction={onSwipeFlatButton}>
