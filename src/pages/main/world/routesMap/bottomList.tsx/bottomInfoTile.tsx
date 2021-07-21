@@ -99,37 +99,41 @@ const BottomInfoTile: React.FC<IProps> = ({
                 },
             ]}>
             <Swipe direction={!isUp ? 4 : 8} onSwipeAction={onSwipeFlatButton}>
-                <View style={styles.flatButtonContainer}>
-                    <View style={styles.flatButton} />
+                <View style={styles.innerContainer}>
+                    <View style={styles.flatButtonContainer}>
+                        <View style={styles.flatButton} />
+                    </View>
+                    {data && (
+                        <>
+                            <CurvedShape />
+                            <View style={styles.listContainer}>
+                                <Tile
+                                    data={data}
+                                    onPressTile={onPress}
+                                    onPressButton={onPress}
+                                />
+                                <View style={styles.imageWrapper}>
+                                    <Text style={styles.imageHeader}>
+                                        {trans.finMoreInfo}
+                                    </Text>
+                                    <View style={styles.imageContainer}>
+                                        {data?.mapImageUrl ? (
+                                            <ImageBtn
+                                                imgUrl={data.mapImageUrl}
+                                                onPress={() => onPress(data.id)}
+                                            />
+                                        ) : (
+                                            <View
+                                                style={styles.imagePlaceholder}
+                                            />
+                                        )}
+                                    </View>
+                                </View>
+                            </View>
+                        </>
+                    )}
                 </View>
             </Swipe>
-            {data && (
-                <>
-                    <CurvedShape />
-                    <View style={styles.listContainer}>
-                        <Tile
-                            data={data}
-                            onPressTile={onPress}
-                            onPressButton={onPress}
-                        />
-                        <View style={styles.imageWrapper}>
-                            <Text style={styles.imageHeader}>
-                                {trans.finMoreInfo}
-                            </Text>
-                            <View style={styles.imageContainer}>
-                                {data?.mapImageUrl ? (
-                                    <ImageBtn
-                                        imgUrl={data.mapImageUrl}
-                                        onPress={() => onPress(data.id)}
-                                    />
-                                ) : (
-                                    <View style={styles.imagePlaceholder} />
-                                )}
-                            </View>
-                        </View>
-                    </View>
-                </>
-            )}
         </Animated.View>
     );
 };
