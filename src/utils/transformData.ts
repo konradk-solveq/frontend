@@ -319,8 +319,7 @@ export const routesDataToPersist = async (
 
 export const routesData = async (
     routeId: string,
-    excludeTimestamp?: {start: number; end: number},
-    time?: {start: number; end: number},
+    timeToExclude?: {start: number; end: number},
 ): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
     const currRoutes: {
         latitude: number;
@@ -334,9 +333,9 @@ export const routesData = async (
             return;
         }
 
-        if (time && time.start !== 0) {
+        if (timeToExclude && timeToExclude.start !== 0) {
             const t = new Date(l.timestamp).getTime();
-            if (t <= time.start) {
+            if (t <= timeToExclude.start) {
                 return;
             }
         }

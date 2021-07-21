@@ -17,6 +17,7 @@ import AnimSvg from '../../../../helpers/animSvg';
 import gradient from './gradientSvg';
 import Polyline from './polyline/polyline';
 import MultiPolyline from './polyline/multiPolyline';
+import SinglePolyline from './polyline/singlePolyline';
 
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
@@ -142,9 +143,7 @@ const Map: React.FC<IProps> = ({
                             onRouteRestored={r => {}}
                         /> */}
                         {trackerData?.coords && (
-                            <MultiPolyline
-                                active={isRecordingActive}
-                                // active={restored}
+                            <SinglePolyline
                                 pauses={pauses}
                                 coords={trackerData}
                                 routeSectionNumber={routeNumber}
