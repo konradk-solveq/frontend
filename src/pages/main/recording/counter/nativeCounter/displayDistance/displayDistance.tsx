@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const DisplayDistance: React.FC<IProps> = ({style, fontSize}: IProps) => {
-    const distance = useContext(CounterDataContext)?.distance;
+    const distance = useContext(CounterDataContext).trackerData?.distance;
 
     return (
         <DisplayValue

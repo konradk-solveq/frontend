@@ -180,8 +180,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
                 params: {
                     distance: trackerData?.distance,
-                    time:
-                        Date.now() - Date.parse(trackerStartTime.toUTCString()),
+                    time: trackerStartTime
+                        ? Date.now() -
+                          Date.parse(trackerStartTime.toUTCString())
+                        : undefined,
                     pause: pTime || pauseTime.total,
                 },
             });
@@ -269,7 +271,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     setLeftBtnTile(trans.btnPauza);
                     setRightBtnTile(trans.btnEnd);
                     setHeaderTitle(trans.headerRecord);
-                    setPause(false);
+
                     setPauseTime(prevPT => {
                         const newTotalTime = setTotalTime(prevPT);
                         return {
@@ -277,6 +279,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             total: newTotalTime,
                         };
                     });
+                    setPause(false);
                 }
                 break;
             case 'pause':
@@ -285,11 +288,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     pauseTracker();
                     setLeftBtnTile(trans.btnPauzaOff);
                     setHeaderTitle(trans.headerPause);
-                    setPause(true);
                     setPauseTime(prevPT => ({
                         ...prevPT,
                         start: Date.now(),
                     }));
+                    setPause(true);
                 }
                 break;
             case 'cancelText':
@@ -386,20 +389,27 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     </Animated.View>
                 )}
 
-                <CounterDataContext.Provider value={trackerData}>
+                <CounterDataContext.Provider
+                    value={{trackerData, pauseTime: pauseTime.total}}>
                     <NativeCounter
                         time={trackerStartTime}
                         isRunning={isActive}
                         mapHiden={mapHiden}
                         setMapHiden={setMapHiden}
                         duration={ANIMATION_DURATION}
-                        aplaShow={pageState === 'cancelText' || pageState === 'endMessage'}
+                        aplaShow={
+                            pageState === 'cancelText' ||
+                            pageState === 'endMessage'
+                        }
                     />
                 </CounterDataContext.Provider>
 
                 <View style={styles.apla} pointerEvents="none">
                     <Apla
-                        show={pageState === 'cancelText' || pageState === 'endMessage'}
+                        show={
+                            pageState === 'cancelText' ||
+                            pageState === 'endMessage'
+                        }
                         message={
                             pageState === 'cancelText'
                                 ? trans.cancelText

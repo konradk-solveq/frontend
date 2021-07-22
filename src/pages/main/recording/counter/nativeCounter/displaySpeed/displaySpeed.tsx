@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const DisplaySpeed: React.FC<IProps> = ({style, fontSize}: IProps) => {
-    const speed = useContext(CounterDataContext)?.speed;
+    const speed = useContext(CounterDataContext).trackerData?.speed;
 
     return (
         <DisplayValue
