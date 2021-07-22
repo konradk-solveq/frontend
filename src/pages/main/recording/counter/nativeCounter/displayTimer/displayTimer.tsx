@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {TextStyle} from 'react-native';
-import { getHorizontalPx } from '../../../../../../helpers/layoutFoo';
+import {getHorizontalPx} from '../../../../../../helpers/layoutFoo';
 
 import {convertToCounterFormat} from '../../../../../../utils/dateTime';
 import DisplayValue from '../displayValue/displayValue';
 
 interface IProps {
-    time: Date;
+    time: Date | undefined;
     isRunning: boolean;
     style?: TextStyle;
     fontSize?: number;

@@ -19,7 +19,10 @@ export const getAverageSpeed = (speed: number[]) => {
     return speedToReturn;
 };
 
-export const msToKH = (speed: number | string | undefined | null) => {
+export const msToKH = (
+    speed: number | string | undefined | null,
+    ceil?: boolean,
+) => {
     if (!speed || speed < 0) {
         return null;
     }
@@ -29,8 +32,10 @@ export const msToKH = (speed: number | string | undefined | null) => {
         return null;
     }
 
-    const speedToReturn = Math.abs(s * (3600 / 1000)).toFixed(1);
-    return speedToReturn;
+    const speedVal = Math.abs(s * (3600 / 1000));
+    const speedToReturn = ceil ? Math.ceil(speedVal) : speedVal;
+
+    return speedToReturn.toFixed(1);
 };
 
 export const getAverageSpeedFromDistanceAndTime = (

@@ -8,7 +8,7 @@ import {CounterDataContext} from '../counterContext/counterContext';
 import DisplayValue from '../displayValue/displayValue';
 
 interface IProps {
-    time: Date;
+    time: Date | undefined;
     style?: TextStyle;
     fontSize?: number;
 }
@@ -18,10 +18,16 @@ const DisplayAverageSpeed: React.FC<IProps> = ({
     style,
     fontSize,
 }: IProps) => {
-    const distance = useContext(CounterDataContext)?.odometer || 0;
-    const cTime = Date.parse(time.toUTCString());
+    const distance = useContext(CounterDataContext).trackerData?.odometer || 0;
 
-    const averageSpeed = getAverageSpeedFromDistanceAndTime(distance, cTime, 0);
+    const pauseTime = useContext(CounterDataContext).pauseTime;
+    const cTime = time ? Date.parse(time.toUTCString()) : 0;
+
+    const averageSpeed = getAverageSpeedFromDistanceAndTime(
+        distance,
+        cTime,
+        pauseTime,
+    );
 
     return (
         <DisplayValue

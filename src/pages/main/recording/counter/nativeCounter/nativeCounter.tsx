@@ -19,7 +19,7 @@ const arrowPositionTop = getVerticalPx((isIOS ? 0 : 5) + 415);
 const arrowPositionBottom = getVerticalPx(isIOS ? -60 : -65);
 
 interface IProps {
-    time: Date;
+    time: Date | undefined;
     isRunning: boolean;
     mapHiden: boolean;
     setMapHiden: Function;
