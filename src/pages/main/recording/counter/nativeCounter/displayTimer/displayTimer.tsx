@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {TextStyle} from 'react-native';
 import {getHorizontalPx} from '../../../../../../helpers/layoutFoo';
+import useAppState from '../../../../../../hooks/useAppState';
 
 import {convertToCounterFormat} from '../../../../../../utils/dateTime';
 import DisplayValue from '../displayValue/displayValue';
@@ -10,6 +11,7 @@ interface IProps {
     isRunning: boolean;
     style?: TextStyle;
     fontSize?: number;
+    refresh?: boolean;
 }
 
 const DisplayTimer: React.FC<IProps> = ({
@@ -20,13 +22,32 @@ const DisplayTimer: React.FC<IProps> = ({
 }: IProps) => {
     const [currentTime, setCurrentTime] = useState(0);
 
+    const {appIsActive, appStateVisible} = useAppState();
+    const [previousState, setPrevoiusState] = useState(appStateVisible);
+
     useEffect(() => {
+        setPrevoiusState(appStateVisible);
+    }, [appStateVisible]);
+
+    const setTime = useCallback(() => {
         const startTime = time ? Date.parse(time.toUTCString()) : null;
         if (startTime) {
             setCurrentTime(Date.now() - startTime);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        setTime();
+    }, [setTime]);
+
+    useEffect(() => {
+        if (appIsActive && previousState === 'background') {
+            setTime();
+
+            setPrevoiusState('active');
+        }
+    }, [appIsActive, previousState, setTime]);
 
     useEffect(() => {
         if (isRunning) {
