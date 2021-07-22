@@ -11,7 +11,6 @@ interface IProps {
     isRunning: boolean;
     style?: TextStyle;
     fontSize?: number;
-    refresh?: boolean;
 }
 
 const DisplayTimer: React.FC<IProps> = ({
