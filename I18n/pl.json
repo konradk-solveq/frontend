@@ -528,7 +528,8 @@
     },
     "ServicesMap": {
         "services": "Serwisy",
-        "shops": "Sklepy"
+        "shops": "Sklepy",
+        "title": "Znajdź sklep lub serwis"
     },
     "MainProfile": {
         "header": " Konto",
