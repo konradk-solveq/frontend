@@ -358,7 +358,10 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                 onpress={hendleFindMyLocation}
             />
 
-            <StackHeader onpress={() => props.navigation.goBack()} inner={''} />
+            <StackHeader
+                onpress={() => props.navigation.goBack()}
+                inner={trans.title}
+            />
         </SafeAreaView>
     );
 };
