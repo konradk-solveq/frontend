@@ -267,7 +267,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             case 'record':
                 // eslint-disable-next-line no-lone-blocks
                 {
-                    if (isActive) {
+                    if (!isActive) {
                         resumeTracker();
                     }
                     setLeftBtnTile(trans.btnPauza);

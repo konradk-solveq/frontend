@@ -322,9 +322,8 @@ export const resumeTracingLocation = async () => {
     try {
         const state = await getBackgroundGeolocationState();
         if (state?.enabled) {
-            await BackgroundGeolocation.changePace(false);
+            await BackgroundGeolocation.changePace(true);
         }
-        await BackgroundGeolocation.changePace(true);
     } catch (e) {
         console.log('[resumeTracingLocation - error]', e);
         logger.log('[resumeTracingLocation]');
