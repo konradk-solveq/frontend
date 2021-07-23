@@ -683,7 +683,7 @@
             "fileUploadError": "Plik [ {{value}} ] nie został wysłany. Spróbuj ponownie później."
         },
         "locationData": {
-            "readSQLDataFailure": "Can't read location data"
+            "readSQLDataFailure": "Nie można odczytać danych geolokalizacyjnych."
         }
     },
     "Geolocation": {
