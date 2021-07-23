@@ -13,7 +13,7 @@ const useGetLocation = () => {
 
     useEffect(() => {
         getCurrentLocation().then(d => {
-            if (d.coords) {
+            if (d?.coords) {
                 setLocation({
                     lat: d.coords.latitude,
                     lon: d.coords.longitude,

@@ -25,6 +25,7 @@ export const startCurrentRoute = async (followByRoute?: string) => {
         startedAt: new Date(),
         endedAt: undefined,
         routeId: followByRoute || undefined,
+        pauseTime: 0,
     };
 };
 

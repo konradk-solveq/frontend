@@ -36,7 +36,9 @@ const Map: React.FC<IProps> = ({routeId, trackerData}: IProps) => {
     useEffect(() => {
         const loc = async () => {
             const l = await getCurrentLocation('', 1);
-            setLocaion(l.coords);
+            if (l?.coords) {
+                setLocaion(l.coords);
+            }
         };
         loc();
     }, []);

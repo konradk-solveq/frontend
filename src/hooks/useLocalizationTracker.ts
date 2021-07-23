@@ -99,7 +99,7 @@ const useLocalizationTracker = (
                 dispatch(persistCurrentRouteData());
             }
             const state = await stopBackgroundGeolocation();
-            if (!state.enabled) {
+            if (!state?.enabled) {
                 setIsActive(false);
             }
         },
@@ -112,7 +112,7 @@ const useLocalizationTracker = (
             /* TODO: error */
             const state = await getBackgroundGeolocationState();
 
-            if (state.enabled && !keep) {
+            if (state?.enabled && !keep) {
                 await stopTracker();
             }
 
@@ -192,7 +192,8 @@ const useLocalizationTracker = (
                     }
 
                     if (
-                        (d?.odometer - lastDistance > 10 || !lastDistance) &&
+                        ((d?.odometer && d?.odometer - lastDistance > 10) ||
+                            !lastDistance) &&
                         !notMoving &&
                         parseFloat(aSpeed) >= 0.1
                     ) {
