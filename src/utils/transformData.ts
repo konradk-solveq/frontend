@@ -291,6 +291,10 @@ export const routesDataToPersist = async (
 ): Promise<LocationDataI[]> => {
     const currRoutes = [...oldRoutes];
     const locations = await getLocations();
+    if (!locations) {
+        return currRoutes;
+    }
+
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
         if (!routeId || routeId !== l?.extras?.route_id) {
@@ -327,6 +331,10 @@ export const getRoutesDataFromSQL = async (
         timestamp: number;
     }[] = [];
     const locations = await getLocations();
+    if (!locations) {
+        return currRoutes;
+    }
+
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
         if (!routeId || routeId !== l?.extras?.route_id) {

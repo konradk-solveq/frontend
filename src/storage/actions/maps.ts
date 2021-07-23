@@ -113,6 +113,13 @@ export const fetchMapsList = (
     dispatch(setLoadingState(true));
     try {
         const {lat, lng} = await getLatLngFromForeground();
+        if (!lat || !lng) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
 
         const response = await getMapsList(
             {latitude: lat, longitude: lng},
@@ -152,6 +159,14 @@ export const fetchPrivateMapsList = (
     dispatch(setLoadingState(true));
     try {
         const {lat, lng} = await getLatLngFromForeground();
+        if (!lat || !lng) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
+
         const response = await getPrivateMapsListService(
             {latitude: lat, longitude: lng},
             page,
@@ -265,6 +280,14 @@ export const fetchPlannedMapsList = (
     try {
         /* TODO: move to global listener - locaiton */
         const {lat, lng} = await getLatLngFromForeground();
+        if (!lat || !lng) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
+
         const response = await getPlannedMapsListService(
             {latitude: lat, longitude: lng},
             page,
@@ -366,6 +389,13 @@ export const fetchMapIfNotExistsLocally = (
         }
 
         const {lat, lng} = await getLatLngFromForeground();
+        if (!lat || !lng) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
 
         const response = await getMapsByTypeAndId(
             {latitude: lat, longitude: lng},

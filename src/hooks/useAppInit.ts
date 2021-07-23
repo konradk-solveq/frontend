@@ -65,7 +65,9 @@ const useAppInit = () => {
     useEffect(() => {
         const init = async () => {
             const geolocation = await initBGeolocalization(trans.title);
-            setGeolocationState(geolocation);
+            if (geolocation) {
+                setGeolocationState(geolocation);
+            }
         };
         init();
 
