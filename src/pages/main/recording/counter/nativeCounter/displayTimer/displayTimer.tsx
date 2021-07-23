@@ -33,8 +33,7 @@ const DisplayTimer: React.FC<IProps> = ({
         if (startTime) {
             setCurrentTime(Date.now() - startTime);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [time]);
 
     useEffect(() => {
         setTime();
