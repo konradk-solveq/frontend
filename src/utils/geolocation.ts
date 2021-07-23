@@ -305,7 +305,10 @@ export const requestGeolocationPermission = async () => {
 /* Set plugin to stationary state - doesnt disable tracking permamently */
 export const pauseTracingLocation = async () => {
     try {
-        await BackgroundGeolocation.changePace(false);
+        const state = await getBackgroundGeolocationState();
+        if (state?.enabled) {
+            await BackgroundGeolocation.changePace(false);
+        }
     } catch (e) {
         console.log('[pauseTracingLocation - error]', e);
         logger.log('[pauseTracingLocation]');
@@ -317,6 +320,10 @@ export const pauseTracingLocation = async () => {
 /* Set plugin to moving state */
 export const resumeTracingLocation = async () => {
     try {
+        const state = await getBackgroundGeolocationState();
+        if (state?.enabled) {
+            await BackgroundGeolocation.changePace(false);
+        }
         await BackgroundGeolocation.changePace(true);
     } catch (e) {
         console.log('[resumeTracingLocation - error]', e);

@@ -93,6 +93,10 @@ const useLocalizationTracker = (
     const stopTracker = useCallback(
         async (omitPersist?: boolean) => {
             /* TODO: error */
+            if (!isActive) {
+                return;
+            }
+
             deactivateKeepAwake();
             dispatch(stopCurrentRoute(omitPersist));
             if (!omitPersist) {
@@ -103,7 +107,7 @@ const useLocalizationTracker = (
                 setIsActive(false);
             }
         },
-        [dispatch],
+        [dispatch, isActive],
     );
 
     const startTracker = useCallback(
