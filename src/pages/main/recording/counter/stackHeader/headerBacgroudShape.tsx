@@ -39,6 +39,11 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
     const cw = getHorizontalPx(81);
 
     useEffect(() => {
+        sh.value = getVerticalPx(60); // side height
+        ch.value = getVerticalPx(60); // center height
+    }, []);
+
+    useEffect(() => {
         if (mapHiden) {
             if (started) {
                 display.value = withTiming(0, {duration: duration});
