@@ -11,6 +11,7 @@ import {I18n} from '../../../I18n/I18n';
 import logger from '../../utils/crashlytics';
 import {setAutorizationHeader, setUserAgentHeader} from '../../api/api';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+import { API_URL } from '@env';
 
 export const setAuthError = (error: string, statusCode: number) => ({
     type: actionTypes.SET_AUTH_ERROR,
@@ -139,7 +140,7 @@ export const checkSession =
                 // dispatch(setAuthError(response.error, response.status));
                 logger.log('[checkSession]');
                 const error = new Error(
-                    '[checkSession] - an error occured. Cannot refresh session data or re-login.',
+                    `[checkSession] - an error occured. Cannot refresh session data or re-login. - ${API_URL}`,
                 );
                 logger.recordError(error);
                 dispatch(setAuthSyncState(false));
