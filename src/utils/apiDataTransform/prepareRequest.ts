@@ -32,7 +32,7 @@ export const getRouteDefaultName = (routeNumber?: number | null) => {
     const date = getDateString(new Date(), '/');
     const defaultName = `${I18n.t(
         'dataAction.routeData.defaultAlternativeRouteName',
-        {number: routeNumber || 1},
+        {number: routeNumber ? routeNumber + 1 : 1},
     )} ${date}`;
 
     return defaultName;
