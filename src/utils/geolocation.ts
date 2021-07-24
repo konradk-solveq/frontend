@@ -180,7 +180,7 @@ export const startBackgroundGeolocation = async (
         });
 
         const state = await BackgroundGeolocation.start();
-        await BackgroundGeolocation.changePace(true);
+        await resumeTracingLocation();
 
         return state;
     } catch (e) {
@@ -193,7 +193,7 @@ export const startBackgroundGeolocation = async (
 
 export const stopBackgroundGeolocation = async () => {
     try {
-        await BackgroundGeolocation.changePace(false);
+        await pauseTracingLocation();
         await BackgroundGeolocation.setConfig({
             isMoving: false,
             extras: {
