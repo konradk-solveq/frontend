@@ -29,18 +29,7 @@ export const getCurrentRoutePathById = async (
         return new Date(a.timestamp) > new Date(b.timestamp) ? 1 : -1;
     });
 
-    const newRoute: any = [];
-
-    sorted.map(m => {
-        const pos = {
-            latitude: m.latitude,
-            longitude: m.longitude,
-            timestamp: m.timestamp,
-        };
-        newRoute.push(pos);
-    });
-
-    return newRoute;
+    return sorted;
 };
 
 export const restoreMultipleRouteDataFromSQL = async (
