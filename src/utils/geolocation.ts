@@ -20,19 +20,19 @@ const isIOS = Platform.OS === 'ios';
 export const transformLocationErrorCode = (e: LocationError | any) => {
     let errorMessage = e;
     switch (e) {
-        case 0:
+        case 0 || '0':
             errorMessage = `Location unknown - [code: ${errorMessage}]`;
             break;
-        case 1:
+        case 1 || '1':
             errorMessage = `Location permission denied - [code: ${errorMessage}]`;
             break;
-        case 2:
+        case 2 || '2':
             errorMessage = `Network error - [code: ${errorMessage}]`;
             break;
-        case 408:
+        case 408 || '408':
             errorMessage = `Location timeout - [code: ${errorMessage}]`;
             break;
-        case 499:
+        case 499 || '499':
             errorMessage = `Location request cancelled - [code: ${errorMessage}]`;
             break;
     }
@@ -327,7 +327,8 @@ export const resumeTracingLocation = async () => {
     } catch (e) {
         console.log('[resumeTracingLocation - error]', e);
         logger.log('[resumeTracingLocation]');
-        const error = new Error(e);
+        const errorMessage = transformLocationErrorCode(e);
+        const error = new Error(errorMessage);
         logger.recordError(error);
     }
 };
@@ -341,7 +342,8 @@ export const pauseBackgroundGeolocation = async () => {
     } catch (e) {
         console.log('[pauseBackgroundGeolocation - error]', e);
         logger.log('[pauseBackgroundGeolocation]');
-        const error = new Error(e);
+        const errorMessage = transformLocationErrorCode(e);
+        const error = new Error(errorMessage);
         logger.recordError(error);
     }
 };
