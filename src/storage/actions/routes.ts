@@ -110,7 +110,7 @@ export const startRecordingRoute = (
         if (
             (!keep || !currentRoute?.remoteRouteId) &&
             !isOffline &&
-            internetConnectionInfo
+            internetConnectionInfo?.goodConnectionQuality
         ) {
             const response = await createNewRouteService(totalPrivateMaps);
 
@@ -154,9 +154,14 @@ export const stopCurrentRoute = (
     dispatch(setLoadingState(true));
     try {
         const {currentRoute}: RoutesState = getState().routes;
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         if (omitPersists) {
-            if (currentRoute.remoteRouteId) {
+            if (
+                currentRoute.remoteRouteId &&
+                !isOffline &&
+                internetConnectionInfo?.goodConnectionQuality
+            ) {
                 const response = await removeCeratedRouteIDService(
                     currentRoute.remoteRouteId,
                 );
