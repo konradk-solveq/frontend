@@ -208,7 +208,6 @@ export const stopBackgroundGeolocation = async () => {
         return state;
     } catch (e) {
         console.warn('[stopBackgroundGeolocation - error]', e);
-        console.log(typeof(e))
         logger.log('[stopBackgroundGeolocation]');
         const error = new Error(e);
         logger.recordError(error);
