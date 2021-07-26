@@ -44,7 +44,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData}: IProps) => {
     }, []);
 
     useEffect(() => {
-        if (mapData) {
+        if (mapData?.path?.length) {
             const fRoute = mapData.path.map(e => {
                 return {
                     latitude: e[0],
@@ -57,7 +57,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData}: IProps) => {
     }, []);
 
     const setMapCamera = useCallback(() => {
-        if (mapRef.current && trackerData) {
+        if (mapRef.current && trackerData?.coords) {
             const pos = {
                 latitude: trackerData.coords.lat,
                 longitude: trackerData.coords.lon,
