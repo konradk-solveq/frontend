@@ -555,6 +555,7 @@ const setFavourites = () => {
     try{
         marks?.forEach(m => m.markerTypes?.includes('FAVORITE') ? m.setVisible(true) : m.setVisible(false));
         clusterPublic.repaint();
+        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#");
     }catch (e){
         window.ReactNativeWebView.postMessage("ERROR ON REPAINT FAVORITE#$#"+JSON.stringify(e));
     }
@@ -567,6 +568,10 @@ const setPrivate = () => {
     }catch (e){
         window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#"+JSON.stringify(e));
     }
+}
+
+const clearMarkersCluster = () => {
+    clusterPublic.clearMarkers();
 }
 </script>
 
