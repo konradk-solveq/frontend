@@ -568,6 +568,10 @@ const setPrivate = () => {
         window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#"+JSON.stringify(e));
     }
 }
+
+const clearMarkersCluster = () => {
+    clusterPublic.clearMarkers();
+}
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcuDhYsJJqOBvWppdbLf5y75V8OdNOevQ&map_ids=2ffa275ecc610735&callback=initMap">

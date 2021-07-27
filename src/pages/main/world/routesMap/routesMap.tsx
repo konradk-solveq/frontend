@@ -46,7 +46,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainRoutesMap');
 
     const [adress, setAdress] = useState<MarkerDetailsType | null>(null);
-    const [canHideAddress, setCanHideAddress] = useState(true);
     const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
         route.params.activeTab || RouteMapType.BIKE_MAP,
     );
@@ -62,8 +61,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     useEffect(() => {
         Animated.timing(findBtnPosY, {
-            toValue:
-                adress === null ? getHorizontalPx(40) : maxFindBtnPosY,
+            toValue: adress === null ? getHorizontalPx(40) : maxFindBtnPosY,
             duration: 800,
             useNativeDriver: false,
         }).start();
@@ -121,6 +119,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     useEffect(() => {
         if (mapLoaded && routeMarkres.length > 0 && posRef.current) {
             let p = JSON.stringify(routeMarkres);
+            setJs('clearMarkersCluster();true;');
             setJs(`setMarks(${p});true;`);
             switchVisibleMarkers();
         }
@@ -170,14 +169,10 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 break;
             case 'clickMarker':
                 heandleShowAdress(JSON.parse(val[1]));
-                setCanHideAddress(false);
                 break;
             case 'clickMap':
                 setTimeout(() => {
-                    // if (canHideAddress || isIOS) {
                     heandleShowAdress(null);
-                    // }
-                    setCanHideAddress(true);
                 }, 300);
                 break;
         }
@@ -195,7 +190,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     const onNavigateDetails = (mapID: string) => {
-        setCanHideAddress(false);
         navigation.navigate(
             RegularStackRoute.ROUTE_DETAILS_SCREEN as keyof RootStackType,
             {
@@ -282,9 +276,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 data={adress}
                 onPress={onNavigateDetails}
                 show={!!adress}
-                onHidePress={() => {
-                    setCanHideAddress(false);
-                }}
+                onHidePress={() => {}}
             />
 
             <StackHeader

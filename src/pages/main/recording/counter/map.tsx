@@ -62,7 +62,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData}: IProps) => {
                 latitude: trackerData.coords.lat,
                 longitude: trackerData.coords.lon,
             };
-            mapRef.current.animateCamera(
+            mapRef.current?.animateCamera(
                 {
                     heading: compassHeading,
                     center: pos,
@@ -121,7 +121,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData}: IProps) => {
                         {...(isIOS && {
                             onLayout: () => {
                                 if (mapRef.current) {
-                                    mapRef.current.setCamera(cameraInitObj);
+                                    mapRef.current?.setCamera(cameraInitObj);
                                 }
                             },
                         })}>
