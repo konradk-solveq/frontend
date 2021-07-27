@@ -6,6 +6,7 @@ import {
     StyleSheet,
     ScrollView,
     Platform,
+    SafeAreaView,
 } from 'react-native';
 
 import useStatusBarHeight from '../../../hooks/statusBarHeight';
@@ -14,7 +15,9 @@ import {BigRedBtn} from '../../buttons';
 import {useAppSelector} from '../../../hooks/redux';
 import ImgSvg from './imgSvg';
 import {I18n} from '../../../../I18n/I18n';
-import {getVerticalPx} from '../../../helpers/layoutFoo';
+import {getHorizontalPx, getVerticalPx} from '../../../helpers/layoutFoo';
+
+const isIOS = Platform.OS === 'ios';
 
 interface IProps {
     showModal?: boolean;
@@ -38,17 +41,14 @@ const PublishRouteThankYouPageModal: React.FC<IProps> = ({
             statusBarTranslucent
             animationType="slide"
             transparent={true}
-            hardwareAccelerated={Platform.OS === 'android'}
+            hardwareAccelerated={!isIOS}
             visible={showModal}
             onRequestClose={onBackPress}>
             <View style={styles.container}>
-                <ScrollView
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={styles.scrollViewContent}>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.wrap}>
                         <View
                             style={[
-                                styles.headerWrapper,
                                 {
                                     marginTop:
                                         getVerticalPx(136) - statusBarHeight,
@@ -65,17 +65,23 @@ const PublishRouteThankYouPageModal: React.FC<IProps> = ({
                                 }`}
                             </Text>
                         </View>
-                        <ImgSvg />
-
-                        <View style={styles.buttonsWrapper}>
-                            <BigRedBtn
-                                title={trans.okBtn}
-                                onpress={onPress}
-                                style={styles.onPressBtn}
-                            />
-                        </View>
+                        <ImgSvg style={styles.imgage} />
                     </View>
                 </ScrollView>
+
+                <SafeAreaView>
+                    <View
+                        style={[
+                            styles.buttonsWrapper,
+                            {bottom: isIOS ? -10 : -statusBarHeight},
+                        ]}>
+                        <BigRedBtn
+                            title={trans.okBtn}
+                            onpress={onPress}
+                            style={styles.onPressBtn}
+                        />
+                    </View>
+                </SafeAreaView>
             </View>
         </Modal>
     );
@@ -83,38 +89,40 @@ const PublishRouteThankYouPageModal: React.FC<IProps> = ({
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
+        width: getHorizontalPx(414),
+        height: getVerticalPx(896),
         backgroundColor: 'white',
     },
-    scrollViewContent: {
-        flexGrow: 1,
-        justifyContent: 'space-between',
-    },
     wrap: {
-        height: '100%',
-        marginHorizontal: 40,
-        marginBottom: getVerticalPx(65),
-        justifyContent: 'space-between',
+        marginHorizontal: getHorizontalPx(40),
     },
-    headerWrapper: {
-        marginBottom: getVerticalPx(37),
-    },
+
     header: {
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'center',
-        fontSize: 30,
-        paddingVertical: 5,
+        fontSize: 40,
         color: '#2cba3f',
+        lineHeight: 54,
     },
     imgage: {
-        marginTop: getVerticalPx(20),
+        marginTop: getVerticalPx(61),
+        width: getHorizontalPx(414),
+        height: getHorizontalPx(368),
+        left: getHorizontalPx(-40),
+        marginBottom: getVerticalPx(65 + 20) + 50,
     },
     buttonsWrapper: {
-        marginBottom: getVerticalPx(65),
+        position: 'absolute',
+        left: 0,
+        width: getHorizontalPx(414),
+        height: getVerticalPx(65 + 20) + 50,
+        backgroundColor: 'white',
     },
     onPressBtn: {
+        position: 'absolute',
+        left: getHorizontalPx(40),
+        width: getHorizontalPx(334),
+        bottom: getVerticalPx(65),
         height: 50,
     },
 });
