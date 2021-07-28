@@ -93,8 +93,8 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
              * Follow only user position.
              * */
             if (!posRef.current) {
-                setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
                 setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
+                setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
                 posRef.current = true;
             } else {
                 setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
@@ -159,13 +159,15 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                     {lat: newBox.west, lng: newBox.south},
                 ];
 
-                fetchRoutesMarkers(
-                    {
-                        bbox: bbox,
-                        width: 500,
-                    },
-                    location,
-                );
+                if (location) {
+                    fetchRoutesMarkers(
+                        {
+                            bbox: bbox,
+                            width: 500,
+                        },
+                        location,
+                    );
+                }
                 break;
             case 'clickMarker':
                 heandleShowAdress(JSON.parse(val[1]));
