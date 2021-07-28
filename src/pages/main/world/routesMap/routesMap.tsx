@@ -45,6 +45,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     const trans: any = I18n.t('MainRoutesMap');
 
+    const [showWebView, setShowWebView] = useState(isIOS ? true : false);
     const [adress, setAdress] = useState<MarkerDetailsType | null>(null);
     const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
         route.params.activeTab || RouteMapType.BIKE_MAP,
@@ -130,6 +131,24 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         switchVisibleMarkers();
     }, [switchVisibleMarkers]);
 
+    /**
+     * On Android webView blocks location event (?).
+     * This is temporary workaround.
+     *
+     * TODO: find better solution.
+     */
+    useEffect(() => {
+        if (!isIOS) {
+            const t = setTimeout(() => {
+                setShowWebView(true);
+            }, 150);
+
+            return () => {
+                clearTimeout(t);
+            };
+        }
+    }, []);
+
     /* TODO: extract as helper method */
     const setBtnRadio = (mapType: string) => {
         setAdress(null);
@@ -213,29 +232,31 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.fullView}>
-                <WebView
-                    style={styles.fullView}
-                    originWhitelist={['*']}
-                    scalesPageToFit={true}
-                    useWebKit={Platform.OS === 'ios'}
-                    scrollEnabled={false}
-                    showsHorizontalScrollIndicator={false}
-                    showsVerticalScrollIndicator={false}
-                    onLoadEnd={() => heandleMapLoaded()}
-                    source={{
-                        html:
-                            '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>' +
-                            mapSource +
-                            '</body></html>',
-                        baseUrl:
-                            Platform.OS === 'ios'
-                                ? ''
-                                : 'file:///android_asset/',
-                    }}
-                    javaScriptEnabled={true}
-                    ref={mapRef}
-                    onMessage={heandleOnMessage}
-                />
+                {showWebView && (
+                    <WebView
+                        style={styles.fullView}
+                        originWhitelist={['*']}
+                        scalesPageToFit={true}
+                        useWebKit={Platform.OS === 'ios'}
+                        scrollEnabled={false}
+                        showsHorizontalScrollIndicator={false}
+                        showsVerticalScrollIndicator={false}
+                        onLoadEnd={() => heandleMapLoaded()}
+                        source={{
+                            html:
+                                '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>' +
+                                mapSource +
+                                '</body></html>',
+                            baseUrl:
+                                Platform.OS === 'ios'
+                                    ? ''
+                                    : 'file:///android_asset/',
+                        }}
+                        javaScriptEnabled={true}
+                        ref={mapRef}
+                        onMessage={heandleOnMessage}
+                    />
+                )}
             </View>
 
             <AnimSvg style={styles.gradient} source={gradient} />
