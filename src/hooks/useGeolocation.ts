@@ -19,7 +19,7 @@ import useOpenGPSSettings from './useOpenGPSSettings';
 
 const isIOS = Platform.OS === 'ios';
 
-const useGeolocation = () => {
+const useGeolocation = (stopWatchingPosition?: boolean) => {
     const isOnline = useAppSelector<boolean>(state => !state.app.isOffline);
 
     const {isGPSEnabled} = useOpenGPSSettings();
@@ -48,38 +48,38 @@ const useGeolocation = () => {
     };
 
     useEffect(() => {
-        if (isIOS || isGPSEnabled) {
-            try {
-                GetLocation.getCurrentPosition({
-                    enableHighAccuracy: false,
-                    timeout: 15000,
-                }).then(l => {
-                    const initLoc: LocationDataI = {
-                        coords: {
-                            altitude: l.altitude,
-                            latitude: l.latitude,
-                            longitude: l.longitude,
-                            speed: l.speed,
-                        },
-                        odometer: 0,
-                        timestamp: '',
-                        uuid: `${l.time}`,
-                    };
-                    setLocation(initLoc);
-                });
-            } catch (error) {}
+        try {
+            GetLocation.getCurrentPosition({
+                enableHighAccuracy: false,
+                timeout: 5000,
+            }).then(l => {
+                const initLoc: LocationDataI = {
+                    coords: {
+                        altitude: l.altitude,
+                        latitude: l.latitude,
+                        longitude: l.longitude,
+                        speed: l.speed,
+                    },
+                    odometer: 0,
+                    timestamp: '',
+                    uuid: `${l.time}`,
+                };
+                setLocation(initLoc);
+            });
+        } catch (error) {
+            console.log('[getCurrentPosition - error]', error);
         }
-    }, [isGPSEnabled]);
+    }, []);
 
     useEffect(() => {
-        if (isIOS || isGPSEnabled) {
+        if ((isIOS || isGPSEnabled) && !stopWatchingPosition) {
             onPostitionWatch(onLocationHandler, onLocationErrorHandler);
 
             return () => {
                 cleaUpPositionWatcher();
             };
         }
-    }, [isGPSEnabled, onLocationHandler]);
+    }, [isGPSEnabled, onLocationHandler, stopWatchingPosition]);
 
     return {
         isOnline,
