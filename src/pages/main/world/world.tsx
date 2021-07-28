@@ -77,7 +77,9 @@ const World: React.FC = () => {
     useEffect(() => {
         if (route.params?.activeTab) {
             setActiveTab(route.params.activeTab);
+            navigation.setParams({activeTab: null});
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [route.params?.activeTab]);
 
     const handleBikeMap = () => {
