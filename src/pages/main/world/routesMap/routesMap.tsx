@@ -202,7 +202,6 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     const hendleFindMyLocation = () => {
-        console.log('[coords]', location?.coords);
         if (location?.coords && mapLoaded) {
             const pos = {
                 latitude: location.coords.latitude,
