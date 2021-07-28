@@ -85,9 +85,11 @@ const EditDetails = () => {
         if (submit && !isLoading) {
             if (error?.statusCode < 400) {
                 setShowModal(true);
+                setSubmit(false);
                 return;
             }
             setShowErrorModal(true);
+            setSubmit(false);
         }
     }, [isLoading, error?.statusCode, submit, onBackHandler]);
 
