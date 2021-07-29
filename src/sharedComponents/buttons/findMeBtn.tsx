@@ -1,7 +1,16 @@
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {
+    StyleSheet,
+    View,
+    TouchableOpacity as TouchableOpacityRN,
+    Platform,
+} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import {getHorizontalPx} from '../../helpers/layoutFoo';
+import {TouchableOpacity as TouchableOpacityIOS} from 'react-native-gesture-handler';
+
+const TouchableOpacity =
+    Platform.OS === 'ios' ? TouchableOpacityIOS : TouchableOpacityRN;
 
 interface Props {
     style?: any;
@@ -22,7 +31,9 @@ const FindMeButton: React.FC<Props> = ({style, onpress, toggle}: Props) => {
 
     return (
         <View style={style}>
-            <TouchableOpacity onPress={onpress}>
+            <TouchableOpacity
+                onPress={onpress}
+                hitSlop={{left: 20, right: 20, top: 20, bottom: 20}}>
                 <View style={styles.findBtn}>
                     <Svg viewBox="0 0 20 20">
                         <Path
