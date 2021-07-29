@@ -88,7 +88,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
         return state;
     } catch (e) {
         console.warn('[initBGeolocalization - error]', e);
-        logger.log('[initBGeolocalization]');
+        logger.log(`[initBGeolocalization] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }
@@ -115,7 +115,7 @@ export const getCurrentLocation = async (
         return location;
     } catch (e) {
         console.log('[getCurrentLocation - e]', e);
-        logger.log('[getCurrentLocation]');
+        logger.log(`[getCurrentLocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
         const error = new Error(errorMessage);
         logger.recordError(error);
@@ -155,7 +155,7 @@ export const getBackgroundGeolocationState = async () => {
         return state;
     } catch (e) {
         console.log('[getBackgroundGeolocationState - error]', e);
-        logger.log('[getBackgroundGeolocationState]');
+        logger.log(`[getBackgroundGeolocationState] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }
@@ -185,7 +185,7 @@ export const startBackgroundGeolocation = async (
         return state;
     } catch (e) {
         console.warn('[startBackgroundGeolocation - error]', e);
-        logger.log('[startBackgroundGeolocation]');
+        logger.log(`[startBackgroundGeolocation] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }
@@ -208,7 +208,7 @@ export const stopBackgroundGeolocation = async () => {
         return state;
     } catch (e) {
         console.warn('[stopBackgroundGeolocation - error]', e);
-        logger.log('[stopBackgroundGeolocation]');
+        logger.log(`[stopBackgroundGeolocation] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }
@@ -226,7 +226,7 @@ export const onLocationChange = async (
         BackgroundGeolocation.onLocation(onLocation, onError);
     } catch (e) {
         console.log('[onLocationChange - error]', e);
-        logger.log('[onLocationChange]');
+        logger.log(`[onLocationChange] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
         const error = new Error(errorMessage);
         logger.recordError(error);
@@ -241,7 +241,7 @@ export const onPostitionWatch = async (
         BackgroundGeolocation.watchPosition(onLocation, onError);
     } catch (e) {
         console.log('[onPostitionWatch - error]', e);
-        logger.log('[onPostitionWatch]');
+        logger.log(`[onPostitionWatch] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
         const error = new Error(errorMessage);
         logger.recordError(error);
@@ -253,7 +253,7 @@ export const cleaUpPositionWatcher = () => {
         BackgroundGeolocation.stopWatchPosition();
     } catch (e) {
         console.warn('[cleaUpPositionWatcher - error]', e);
-        logger.log('[cleaUpPositionWatcher]');
+        logger.log(`[cleaUpPositionWatcher] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
         const error = new Error(errorMessage);
         logger.recordError(error);
@@ -283,7 +283,7 @@ export const getLocations = async () => {
         return locations;
     } catch (e) {
         console.warn('[getLocations - error]', e);
-        logger.log('[getLocations]');
+        logger.log(`[getLocations] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }
@@ -296,7 +296,7 @@ export const requestGeolocationPermission = async () => {
         return status;
     } catch (e) {
         console.warn('[requestGeolocationPermission - error]', e);
-        logger.log('[requestGeolocationPermission]');
+        logger.log(`[requestGeolocationPermission] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }
@@ -311,7 +311,7 @@ export const pauseTracingLocation = async () => {
         }
     } catch (e) {
         console.log('[pauseTracingLocation - error]', e);
-        logger.log('[pauseTracingLocation]');
+        logger.log(`[pauseTracingLocation] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }
@@ -326,7 +326,7 @@ export const resumeTracingLocation = async () => {
         }
     } catch (e) {
         console.log('[resumeTracingLocation - error]', e);
-        logger.log('[resumeTracingLocation]');
+        logger.log(`[resumeTracingLocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
         const error = new Error(errorMessage);
         logger.recordError(error);
@@ -341,7 +341,7 @@ export const pauseBackgroundGeolocation = async () => {
         return state;
     } catch (e) {
         console.log('[pauseBackgroundGeolocation - error]', e);
-        logger.log('[pauseBackgroundGeolocation]');
+        logger.log(`[pauseBackgroundGeolocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
         const error = new Error(errorMessage);
         logger.recordError(error);
@@ -374,7 +374,7 @@ export const askFineLocationPermission = async () => {
         permission = res;
     } catch (e) {
         console.log('[askFineLocationPermission - error]', e);
-        logger.log('[askFineLocationPermission]');
+        logger.log(`[askFineLocationPermission] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }
@@ -408,7 +408,7 @@ export const checkAndroidLocationPermission = async () => {
         }
     } catch (e) {
         console.log('[checkAndroidLocationPermission - error]', e);
-        logger.log('[checkAndroidLocationPermission]');
+        logger.log(`[checkAndroidLocationPermission] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }

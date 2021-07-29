@@ -126,7 +126,8 @@ export const fetchAppConfig = (
             dispatch(setSyncStatus(false));
         }
     } catch (error) {
-        logger.log('[fetchAppConfig]');
+        console.log(`[fetchAppConfig] - ${error}`);
+        logger.log(`[fetchAppConfig] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
 
@@ -180,7 +181,8 @@ export const fetchAppFaq = (
             dispatch(setSyncStatus(false));
         }
     } catch (error) {
-        logger.log('[fetchAppFaq]');
+        console.log(`[fetchAppFaq] - ${error}`);
+        logger.log(`[fetchAppFaq] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
 
@@ -242,7 +244,8 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
 
         dispatch(setSyncStatus(false));
     } catch (error) {
-        logger.log('[appSyncData]');
+        console.log(`[appSyncData] - ${error}`);
+        logger.log(`[appSyncData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -306,7 +309,8 @@ export const fetchAppRegulations = (
             dispatch(setSyncStatus(false));
         }
     } catch (error) {
-        logger.log('[fetchAppRegulations]');
+        console.log(`[fetchAppRegulations] - ${error}`);
+        logger.log(`[fetchAppRegulations] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
 

@@ -140,7 +140,8 @@ export const startRecordingRoute = (
         dispatch(setCurrentRoute(keep ? undefined : currentRouteToStore));
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[stopCurrentRoute]');
+        console.log(`[startRecordingRoute] - ${error}`);
+        logger.log(`[startRecordingRoute] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -166,7 +167,8 @@ export const stopCurrentRoute = (
                     currentRoute.remoteRouteId,
                 );
                 if (response.error) {
-                    logger.log('[stopCurrentRoute]');
+                    console.log(`[stopCurrentRoute] - ${response.error}`);
+                    logger.log(`[stopCurrentRoute] - ${response.error}`);
                     const err = convertToApiError(response.error);
                     logger.recordError(err);
                 }
@@ -188,7 +190,8 @@ export const stopCurrentRoute = (
         dispatch(setCurrentRoute(currentRouteToEnd));
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[stopCurrentRoute]');
+        console.log(`[stopCurrentRoute] - ${error}`);
+        logger.log(`[stopCurrentRoute] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -217,7 +220,8 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(setCurrentRouteData(currRoutes));
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[persistCurrentRouteData]');
+        console.log(`[persistCurrentRouteData] - ${error}`);
+        logger.log(`[persistCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -247,7 +251,8 @@ export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
         dispatch(setError(I18n.t('dataAction.dataSyncError'), 500));
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[addRoutesToSynchQueue]');
+        console.log(`[addRoutesToSynchQueue] - ${error}`);
+        logger.log(`[addRoutesToSynchQueue] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -332,7 +337,8 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(setLoadingState(false));
         dispatch(fetchPrivateMapsList());
     } catch (error) {
-        logger.log('[syncCurrentRouteData]');
+        console.log(`[syncCurrentRouteData] - ${error}`);
+        logger.log(`[syncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
 
@@ -396,7 +402,8 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[syncRouteDataFromQueue]');
+        console.log(`[syncRouteDataFromQueue] - ${error}`);
+        logger.log(`[syncRouteDataFromQueue] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
     }
@@ -431,7 +438,8 @@ export const abortSyncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(setLoadingState(false));
         dispatch(fetchPrivateMapsList());
     } catch (error) {
-        logger.log('[syncCurrentRouteData]');
+        console.log(`[abortSyncCurrentRouteData] - ${error}`);
+        logger.log(`[abortSyncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
     }
