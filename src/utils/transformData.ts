@@ -348,13 +348,15 @@ export const getRoutesDataFromSQL = async (
             }
         }
 
-        const newRoute = {
-            latitude: l.coords.latitude,
-            longitude: l.coords.longitude,
-            timestamp: l.timestamp,
-        };
+        if (l?.coords) {
+            const newRoute = {
+                latitude: l.coords.latitude,
+                longitude: l.coords.longitude,
+                timestamp: l.timestamp,
+            };
 
-        currRoutes.push(newRoute);
+            currRoutes.push(newRoute);
+        }
     });
 
     return currRoutes;
