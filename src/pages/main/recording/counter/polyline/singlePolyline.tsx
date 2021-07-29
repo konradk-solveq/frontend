@@ -54,10 +54,7 @@ const MultiPolyline: React.FC<IProps> = ({coords}: IProps) => {
 
         let result: ShortCoordsType[] = deepCopy(routeRef.current);
 
-        const newRoute = await restoreRouteDataFromSQL(
-            currentRouteId,
-            routeRef.current,
-        );
+        const newRoute = await restoreRouteDataFromSQL(currentRouteId, result);
         if (!newRoute.length) {
             restoreRef.current = true;
             return;
@@ -117,7 +114,9 @@ const MultiPolyline: React.FC<IProps> = ({coords}: IProps) => {
                 timestamp: coords.timestamp,
             };
 
-            const newRure = deepCopy(routeRef.current);
+            const newRure = routeRef.current.length
+                ? deepCopy(routeRef.current)
+                : [];
             newRure.push(pos);
 
             routeRef.current = newRure;
