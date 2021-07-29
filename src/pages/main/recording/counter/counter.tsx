@@ -74,6 +74,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const headerHeight = getStackHeaderHeight() - statusBarHeight;
 
     const [myRouteNumber, setMyRouteNumber] = useState(0);
+    const [autoFindMe, setAutoFindMe] = useState(true);
     const [pauseTime, setPauseTime] = useState({
         start: 0,
         total: 0,
@@ -333,7 +334,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     // setObjSize(334, 50);
     const styles = StyleSheet.create({
         stackHeader: {
-            zIndex: 2,
+            zIndex: 3,
         },
         container: {
             width: '100%',
@@ -403,6 +404,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             pageState === 'cancelText' ||
                             pageState === 'endMessage'
                         }
+                        autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
                     />
                 </CounterDataContext.Provider>
 
@@ -431,9 +433,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 <Map
                     routeId={followedRouteId || route?.params?.mapID}
                     trackerData={trackerData}
+                    autoFindMe={autoFindMe}
                 />
-
-                <MarkPointer />
             </View>
         </>
     );

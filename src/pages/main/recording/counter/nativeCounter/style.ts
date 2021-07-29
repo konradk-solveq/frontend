@@ -1,5 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {getHeightOfPx, getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {
+    getHeightOfPx,
+    getHorizontalPx,
+    getVerticalPx,
+} from '../../../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
@@ -11,7 +15,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         justifyContent: 'center',
         alignItems: 'center',
-        zIndex: 1,
+        zIndex: 2,
     },
     wrap: {
         height: getVerticalPx(334),
@@ -59,6 +63,13 @@ const styles = StyleSheet.create({
         bottom: 0,
         width: getHorizontalPx(414),
         backgroundColor: '#fff',
+        zIndex: 1,
+    },
+    findMeWrap: {
+        position: 'absolute',
+        right: getHorizontalPx(40),
+        width: getHorizontalPx(41),
+        height: getHorizontalPx(41),
         zIndex: 1,
     },
 });
