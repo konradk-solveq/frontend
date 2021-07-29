@@ -25,7 +25,7 @@ interface IProps {
     coords: DataI;
 }
 
-const MultiPolyline: React.FC<IProps> = ({coords}: IProps) => {
+const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
     const mountRef = useRef(false);
     /**
      * Helper to prevent render current polyline faster then restored data from SQL.
@@ -130,4 +130,4 @@ const MultiPolyline: React.FC<IProps> = ({coords}: IProps) => {
     return <Polyline coords={routeRef.current} />;
 };
 
-export default React.memo(MultiPolyline);
+export default React.memo(SinglePolyline);

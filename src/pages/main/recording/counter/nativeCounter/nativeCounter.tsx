@@ -9,6 +9,8 @@ import DisplayTimer from './displayTimer/displayTimer';
 import CurvedShape from './curvedShape/curvedShape';
 
 import styles from './style';
+import FindMeButton from '../../../../../sharedComponents/buttons/findMeBtn';
+import {useState} from 'react';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
@@ -22,6 +24,7 @@ interface IProps {
     setMapHiden: Function;
     duration: number;
     aplaShow: boolean;
+    autoFindMeSwith: (e: boolean) => void;
 }
 
 /* TODO: add context for values */
@@ -32,12 +35,20 @@ const NativeCounter: React.FC<IProps> = ({
     setMapHiden,
     duration,
     aplaShow,
+    autoFindMeSwith,
 }: IProps) => {
+    const FIND_ME_BTN_BOTTOM = 235;
+
     const containerHeight = useRef(new Animated.Value(height)).current;
     const containerBottom = useRef(new Animated.Value(0)).current;
+    const findMeBottom = useRef(
+        new Animated.Value(getHorizontalPx(FIND_ME_BTN_BOTTOM)),
+    ).current;
     const displayContainer = useRef(new Animated.Value(0)).current;
     const arrowPos = useRef(new Animated.Value(arrowPositionTop)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
+
+    const [autoFindMeOn, setAutoFindMeOn] = useState(true);
 
     const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
@@ -66,12 +77,20 @@ const NativeCounter: React.FC<IProps> = ({
     };
 
     useEffect(() => {
+        const condition = aplaShow && !mapHiden;
         Animated.timing(containerBottom, {
-            toValue: aplaShow && !mapHiden ? getHorizontalPx(130) : 0,
+            toValue: condition ? getHorizontalPx(130) : 0,
             duration: duration,
             useNativeDriver: false,
         }).start();
-    }, [aplaShow, containerBottom, duration, mapHiden]);
+        Animated.timing(findMeBottom, {
+            toValue: condition
+                ? getHorizontalPx(130 + FIND_ME_BTN_BOTTOM)
+                : getHorizontalPx(FIND_ME_BTN_BOTTOM),
+            duration: duration,
+            useNativeDriver: false,
+        }).start();
+    }, [aplaShow, containerBottom, findMeBottom, duration, mapHiden]);
 
     const wrapHeight = displayContainer.interpolate({
         inputRange: [0, 1],
@@ -116,6 +135,11 @@ const NativeCounter: React.FC<IProps> = ({
             startAnimation(true);
             setMapHiden(true);
         }
+    };
+
+    const handleAutoFindMeSwith = () => {
+        autoFindMeSwith(!autoFindMeOn);
+        setAutoFindMeOn(!autoFindMeOn);
     };
 
     return (
@@ -246,6 +270,19 @@ const NativeCounter: React.FC<IProps> = ({
                     ]}
                 />
             )}
+
+            <Animated.View
+                style={[
+                    styles.findMeWrap,
+                    {
+                        bottom: findMeBottom,
+                    },
+                ]}>
+                <FindMeButton
+                    onpress={handleAutoFindMeSwith}
+                    toggle={!autoFindMeOn}
+                />
+            </Animated.View>
         </>
     );
 };
