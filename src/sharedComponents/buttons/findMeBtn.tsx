@@ -33,7 +33,7 @@ const FindMeButton: React.FC<Props> = ({style, onpress, toggle}: Props) => {
         <View style={style}>
             <TouchableOpacity
                 onPress={onpress}
-                hitSlop={{left: 20, right: 20, top: 10, bottom: 10}}>
+                hitSlop={{left: 20, right: 20, top: 20, bottom: 20}}>
                 <View style={styles.findBtn}>
                     <Svg viewBox="0 0 20 20">
                         <Path
