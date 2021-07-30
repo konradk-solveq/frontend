@@ -97,6 +97,11 @@ const NativeCounter: React.FC<IProps> = ({
         outputRange: [getVerticalPx(334), getVerticalPx(100)],
     });
 
+    const findMeBottomZIndex = arrowPos.interpolate({
+        inputRange: [0, 1],
+        outputRange: [2, 1],
+    });
+
     const LOWER_LINE_PROPORTIOMS = 1.08;
 
     const cellWidth = displayContainer.interpolate({
@@ -276,6 +281,7 @@ const NativeCounter: React.FC<IProps> = ({
                     styles.findMeWrap,
                     {
                         bottom: findMeBottom,
+                        zIndex: findMeBottomZIndex,
                     },
                 ]}>
                 <FindMeButton
