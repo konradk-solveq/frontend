@@ -46,7 +46,7 @@ const NativeCounter: React.FC<IProps> = ({
     ).current;
     const displayContainer = useRef(new Animated.Value(0)).current;
     const arrowPos = useRef(new Animated.Value(arrowPositionTop)).current;
-    const findMeBottonZIndex = useRef(new Animated.Value(2)).current;
+    const findMeBottonZIndex = useRef(new Animated.Value(1)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
 
     const [autoFindMeOn, setAutoFindMeOn] = useState(true);
