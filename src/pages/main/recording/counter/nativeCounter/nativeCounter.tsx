@@ -46,6 +46,7 @@ const NativeCounter: React.FC<IProps> = ({
     ).current;
     const displayContainer = useRef(new Animated.Value(0)).current;
     const arrowPos = useRef(new Animated.Value(arrowPositionTop)).current;
+    const findMeBottonZIndex = useRef(new Animated.Value(2)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
 
     const [autoFindMeOn, setAutoFindMeOn] = useState(true);
@@ -66,6 +67,12 @@ const NativeCounter: React.FC<IProps> = ({
         Animated.timing(labelOpacity, {
             toValue: !revert ? 0 : 1,
             duration: !revert ? duration * 0.25 : duration * 0.875,
+            useNativeDriver: false,
+        }).start();
+
+        Animated.timing(findMeBottonZIndex, {
+            toValue: !revert ? 2 : 1,
+            duration: duration,
             useNativeDriver: false,
         }).start();
 
@@ -276,6 +283,7 @@ const NativeCounter: React.FC<IProps> = ({
                     styles.findMeWrap,
                     {
                         bottom: findMeBottom,
+                        zIndex: findMeBottonZIndex,
                     },
                 ]}>
                 <FindMeButton

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         right: getHorizontalPx(40),
         width: getHorizontalPx(41),
         height: getHorizontalPx(41),
-        zIndex: 1,
+        zIndex: 2,
     },
 });
 
