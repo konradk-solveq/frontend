@@ -77,6 +77,7 @@ yarn add redux
 yarn add redux-persist
 yarn add redux-thunk
 yarn add babel-plugin-transform-remove-console --dev
+yarn add babel-plugin-root-import --dev
 ```
 
 
