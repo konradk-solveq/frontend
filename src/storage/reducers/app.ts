@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import persistReducer from 'redux-persist/es/persistReducer';
+import {persistReducer} from 'redux-persist';
 import * as actionTypes from '../actions/actionTypes';
 
 import {AppConfigI} from '../../models/config.model';

@@ -158,60 +158,68 @@ const useLocalizationTracker = (
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const setCurrentTrackerData = useCallback(() => {
+        getCurrentLocation(currentRouteId).then(d => {
+            const notMoving = false;
+            const lowSpeed = speedToLow(d);
+
+            setAverageSpeedOnStart();
+            let aSpeed = getAverageSpeedData(speed);
+            if (notMoving || lowSpeed) {
+                setTrackerData(prev => {
+                    if (!prev) {
+                        return undefined;
+                    }
+                    return {
+                        ...prev,
+                        averageSpeed: getAverageSpeedData(
+                            speed,
+                            currentRouteAverrageSpeed,
+                        ),
+                        speed: '0,0',
+                    };
+                });
+                return;
+            }
+
+            if (d?.coords?.speed && d?.coords?.speed > 0) {
+                speed.push(d?.coords?.speed);
+            }
+
+            if (
+                ((d?.odometer && d?.odometer - lastDistance > 10) ||
+                    !lastDistance) &&
+                !notMoving &&
+                parseFloat(aSpeed) >= 0.1
+            ) {
+                aSpeed = getAverageSpeedData(speed, currentRouteAverrageSpeed);
+            }
+
+            const res = getTrackerData(d, aSpeed);
+
+            setTrackerData(res);
+            setCurrentAverageSpeed(parseFloat(aSpeed));
+
+            if (persist) {
+                /* TODO: High disk usage - to verify and eventually delete */
+                // onPersistData(d?.odometer);
+            }
+        });
+    }, [
+        persist,
+        currentRouteAverrageSpeed,
+        lastDistance,
+        setAverageSpeedOnStart,
+        currentRouteId,
+    ]);
+
     /* TODO: on motion change event */
     useEffect(() => {
         let interval: any;
         if (isActive) {
             interval = setInterval(() => {
-                getCurrentLocation(currentRouteId).then(d => {
-                    const notMoving = false;
-                    const lowSpeed = speedToLow(d);
-
-                    setAverageSpeedOnStart();
-                    let aSpeed = getAverageSpeedData(speed);
-                    if (notMoving || lowSpeed) {
-                        setTrackerData(prev => {
-                            if (!prev) {
-                                return undefined;
-                            }
-                            return {
-                                ...prev,
-                                averageSpeed: getAverageSpeedData(
-                                    speed,
-                                    currentRouteAverrageSpeed,
-                                ),
-                                speed: '0,0',
-                            };
-                        });
-                        return;
-                    }
-
-                    if (d?.coords?.speed && d?.coords?.speed > 0) {
-                        speed.push(d?.coords?.speed);
-                    }
-
-                    if (
-                        ((d?.odometer && d?.odometer - lastDistance > 10) ||
-                            !lastDistance) &&
-                        !notMoving &&
-                        parseFloat(aSpeed) >= 0.1
-                    ) {
-                        aSpeed = getAverageSpeedData(
-                            speed,
-                            currentRouteAverrageSpeed,
-                        );
-                    }
-
-                    const res = getTrackerData(d, aSpeed);
-
-                    setTrackerData(res);
-                    setCurrentAverageSpeed(parseFloat(aSpeed));
-
-                    if (persist) {
-                        /* TODO: High disk usage - to verify and eventually delete */
-                        // onPersistData(d?.odometer);
-                    }
-                });
+                setCurrentTrackerData();
             }, 1000);
         }
 
@@ -219,15 +227,7 @@ const useLocalizationTracker = (
             clearInterval(interval);
             cleanUp();
         };
-    }, [
-        isActive,
-        persist,
-        onPersistData,
-        currentRouteAverrageSpeed,
-        lastDistance,
-        setAverageSpeedOnStart,
-        currentRouteId,
-    ]);
+    }, [isActive, setCurrentTrackerData]);
 
     return {
         trackerData,
@@ -239,6 +239,7 @@ const useLocalizationTracker = (
         stopTracker,
         averageSpeed,
         followedRouteId,
+        setCurrentTrackerData,
     };
 };
 
