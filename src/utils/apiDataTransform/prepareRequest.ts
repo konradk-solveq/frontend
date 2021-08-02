@@ -29,15 +29,13 @@ export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
 };
 
 export const getRouteDefaultName = (routeNumber?: number | null) => {
-    const trans: any = I18n.t('dataAction.routeData');
     const date = getDateString(new Date(), '/');
-    const defaultName = `${trans.defaultRouteName} ${date}`;
-    const alternativeDefaultName = `${I18n.t(
+    const defaultName = `${I18n.t(
         'dataAction.routeData.defaultAlternativeRouteName',
-        {number: routeNumber},
+        {number: routeNumber ? routeNumber + 1 : 1},
     )} ${date}`;
 
-    return routeNumber ? alternativeDefaultName : defaultName;
+    return defaultName;
 };
 
 export const mapFormMetadataToAPIRequest = (
@@ -75,4 +73,13 @@ export const createFileFormData = (
     formdata.append(fieldName || 'image', img);
 
     return formdata;
+};
+
+export const tranformParamsToLocationRequest = (
+    locaiton: LocationDataI,
+): string => {
+    const lat = `lat=${locaiton.coords.latitude}`;
+    const lng = `lng=${locaiton.coords.longitude}`;
+
+    return `${lat}&${lng}`;
 };

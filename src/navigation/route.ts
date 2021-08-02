@@ -32,6 +32,7 @@ export const RegularStackRoute = {
     MAP_PREVIEW_SCREEN: 'MapPreview',
     COUNTER_SCREEN: 'Counter',
     COUNTER_THANK_YOU_PAGE_SCREEN: 'CounterThankYouPage',
+    ROUTES_MAP_SCREEN: 'RoutesMap',
 
     // Bike
     BIKE_SCREEN: 'Bike',

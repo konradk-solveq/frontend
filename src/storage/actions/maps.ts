@@ -15,10 +15,14 @@ import {MapFormDataResult, PickedFilters} from '../../interfaces/form';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {
     addPlannedMapsListService,
+    getMapsByTypeAndId,
     getPlannedMapsListService,
     removePlannedMapByIdService,
 } from '../../services/mapsService';
 import {AppState} from '../reducers/app';
+import {MapsState} from '../reducers/maps';
+import {RouteMapType} from '../../models/places.model';
+import {checkMapExists} from '../../utils/checkMapExists';
 
 export const setMapsData = (
     maps: MapType[],
@@ -66,10 +70,10 @@ export const clearPrivateMapId = () => ({
     type: actionTypes.CLEAR_PRIVATE_MAPID_TO_ADD,
 });
 
-export const addMapData = (map: MapType, ownerId?: string) => ({
-    type: actionTypes.SET_MAPS_DATA,
+export const addMapData = (map: MapType, mapType?: RouteMapType) => ({
+    type: actionTypes.ADD_MAPS_DATA,
     map: map,
-    ownerId: ownerId,
+    mapType: mapType,
 });
 
 export const clearError = () => ({
@@ -109,6 +113,13 @@ export const fetchMapsList = (
     dispatch(setLoadingState(true));
     try {
         const {lat, lng} = await getLatLngFromForeground();
+        if (!lat || !lng) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
 
         const response = await getMapsList(
             {latitude: lat, longitude: lng},
@@ -133,7 +144,8 @@ export const fetchMapsList = (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[fetchMapsList]');
+        console.log(`[fetchMapsList] - ${error}`);
+        logger.log(`[fetchMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -148,6 +160,14 @@ export const fetchPrivateMapsList = (
     dispatch(setLoadingState(true));
     try {
         const {lat, lng} = await getLatLngFromForeground();
+        if (!lat || !lng) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
+
         const response = await getPrivateMapsListService(
             {latitude: lat, longitude: lng},
             page,
@@ -171,7 +191,8 @@ export const fetchPrivateMapsList = (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[fetchPrivateMapsList]');
+        console.log(`[fetchPrivateMapsList] - ${error}`);
+        logger.log(`[fetchPrivateMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -218,7 +239,8 @@ export const editPrivateMapMetaData = (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[editPrivateMapMetaData]');
+        console.log(`[editPrivateMapMetaData] - ${error}`);
+        logger.log(`[editPrivateMapMetaData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -245,7 +267,8 @@ export const removePrivateMapMetaData = (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[removePrivateMapMetaData]');
+        console.log(`[removePrivateMapMetaData] - ${error}`);
+        logger.log(`[removePrivateMapMetaData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -261,6 +284,14 @@ export const fetchPlannedMapsList = (
     try {
         /* TODO: move to global listener - locaiton */
         const {lat, lng} = await getLatLngFromForeground();
+        if (!lat || !lng) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
+
         const response = await getPlannedMapsListService(
             {latitude: lat, longitude: lng},
             page,
@@ -283,7 +314,8 @@ export const fetchPlannedMapsList = (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[fetchPlannedMapsList]');
+        console.log(`[fetchPlannedMapsList] - ${error}`);
+        logger.log(`[fetchPlannedMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -307,7 +339,8 @@ export const addPlannedMap = (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[addPlannedMap]');
+        console.log(`[addPlannedMap] - ${error}`);
+        logger.log(`[addPlannedMap] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -332,7 +365,61 @@ export const removePlanendMap = (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[removePlanendMap]');
+        console.log(`[removePlanendMap] - ${error}`);
+        logger.log(`[removePlanendMap] - ${error}`);
+        const err = convertToApiError(error);
+        logger.recordError(err);
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const fetchMapIfNotExistsLocally = (
+    mapId: string,
+    mapType?: RouteMapType,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    dispatch(setLoadingState(true));
+    try {
+        const {maps, privateMaps, plannedMaps}: MapsState = getState().maps;
+
+        const mapExists = checkMapExists(
+            mapId,
+            maps,
+            privateMaps,
+            plannedMaps,
+            mapType,
+        );
+
+        if (mapExists) {
+            dispatch(setLoadingState(false));
+            return;
+        }
+
+        const {lat, lng} = await getLatLngFromForeground();
+        if (!lat || !lng) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
+
+        const response = await getMapsByTypeAndId(
+            {latitude: lat, longitude: lng},
+            mapId,
+        );
+
+        if (response.error || !response.data || !response.data) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        dispatch(addMapData(response.data, mapType));
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        console.log(`[fetchMapIfNotExistsLocally] - ${error}`);
+        logger.log(`[fetchMapIfNotExistsLocally] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');

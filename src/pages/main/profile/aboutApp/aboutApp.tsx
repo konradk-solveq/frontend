@@ -16,6 +16,7 @@ import {
     getWidthPx,
 } from '../../../../helpers/layoutFoo';
 import {version} from '../../../../../package.json';
+import {API_URL} from '@env';
 
 interface Props {
     navigation: any;
@@ -24,13 +25,13 @@ interface Props {
 
 const getAppVersion = () => {
     const appBuildNumber = DeviceInfo.getBuildNumber();
+    const serverVersion = API_URL.includes('.pre.') ? ' - serwer testowy' : '';
 
-    return `${version} (${appBuildNumber})`;
+    return `${version} (${appBuildNumber}) ${serverVersion}`;
 };
 
 const AboutApp: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('AboutApp');
-    const myVersion = '1.2.0.k14 - serwer: P_R_O_D_U_K_C_Y_J_N_Y';
 
     const [headHeight, setHeadHeightt] = useState(0);
 

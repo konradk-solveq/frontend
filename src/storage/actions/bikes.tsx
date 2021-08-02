@@ -89,7 +89,8 @@ export const setBikesListByFrameNumber =
                     });
                 }
             } catch (error) {
-                logger.log('[setBikesListByFrameNumber]');
+                console.log(`[setBikesListByFrameNumber] - ${error}`);
+                logger.log(`[setBikesListByFrameNumber] - ${error}`);
                 const err = convertToApiError(error);
                 logger.recordError(err);
                 const errorMessage = I18n.t('dataAction.apiError');
@@ -133,7 +134,8 @@ export const fetchGenericBikeData =
                 });
             }
         } catch (error) {
-            logger.log('[fetchGenericBikeData]');
+            console.log(`[fetchGenericBikeData] - ${error}`);
+            logger.log(`[fetchGenericBikeData] - ${error}`);
             const err = convertToApiError(error);
             logger.recordError(err);
             const errorMessage = I18n.t('dataAction.apiError');
@@ -232,7 +234,8 @@ export const setBikesListByFrameNumbers =
                     });
                 }
             } catch (error) {
-                logger.log('[setBikesListByFrameNumbers]');
+                console.log(`[setBikesListByFrameNumbers] - ${error}`);
+                logger.log(`[setBikesListByFrameNumbers] - ${error}`);
                 const err = convertToApiError(error);
                 logger.recordError(err);
                 const errorMessage = I18n.t('dataAction.apiError');

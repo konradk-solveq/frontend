@@ -45,6 +45,11 @@ export const setCurrentRouteData = (currentRouteData: LocationDataI[]) => ({
     currentRouteData: currentRouteData,
 });
 
+export const setCurrentRoutePauseTime = (pauseTime: number) => ({
+    type: actionTypes.SET_CURRENT_ROUTE_PAUSE_TIME,
+    pauseTime: pauseTime,
+});
+
 export const setAverageSpeed = (averageSpeed: number) => ({
     type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
     averageSpeed: averageSpeed,
@@ -79,15 +84,18 @@ export const clearCurrentRouteData = (removeDuplicates?: boolean) => ({
     removeDuplicates: removeDuplicates,
 });
 
-export const clearCurrentRoute = () => ({
+export const clearCurrentRoute = (keepId?: boolean) => ({
     type: actionTypes.CLEAR_CURRENT_ROUTE,
+    keepId: keepId,
 });
 
 export const clearAverageSpeed = () => ({
     type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
 });
 
-/* Creates route ID in first step, because actions are asynch on backend side */
+/**
+ * Creates route ID in first step, because actions are asynch on backend side
+ */
 export const startRecordingRoute = (
     currRoute: CurrentRouteI,
     keep?: boolean,
@@ -97,12 +105,12 @@ export const startRecordingRoute = (
         const {currentRoute} = getState().routes;
         const {totalPrivateMaps}: MapsState = getState().maps;
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
-        let currentRouteData = {...currRoute};
+        let currentRouteToStore = {...currRoute};
 
         if (
             (!keep || !currentRoute?.remoteRouteId) &&
             !isOffline &&
-            internetConnectionInfo
+            internetConnectionInfo?.goodConnectionQuality
         ) {
             const response = await createNewRouteService(totalPrivateMaps);
 
@@ -110,19 +118,30 @@ export const startRecordingRoute = (
                 let errorMessage = response.error;
 
                 dispatch(setError(errorMessage, response.status));
+                if (!response?.data?.id) {
+                    currentRouteToStore = {
+                        ...currentRouteToStore,
+                        remoteRouteId: currRoute.id,
+                    };
+                    dispatch(
+                        setCurrentRoute(keep ? undefined : currentRouteToStore),
+                    );
+                    dispatch(setLoadingState(false));
+                }
                 return;
             }
-            currentRouteData = {
-                ...currentRouteData,
+            currentRouteToStore = {
+                ...currentRouteToStore,
                 remoteRouteId: response.data.id,
             };
         }
 
         dispatch(clearError());
-        dispatch(setCurrentRoute(keep ? undefined : currentRouteData));
+        dispatch(setCurrentRoute(keep ? undefined : currentRouteToStore));
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[stopCurrentRoute]');
+        console.log(`[startRecordingRoute] - ${error}`);
+        logger.log(`[startRecordingRoute] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -136,14 +155,20 @@ export const stopCurrentRoute = (
     dispatch(setLoadingState(true));
     try {
         const {currentRoute}: RoutesState = getState().routes;
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         if (omitPersists) {
-            if (currentRoute.remoteRouteId) {
+            if (
+                currentRoute.remoteRouteId &&
+                !isOffline &&
+                internetConnectionInfo?.goodConnectionQuality
+            ) {
                 const response = await removeCeratedRouteIDService(
                     currentRoute.remoteRouteId,
                 );
                 if (response.error) {
-                    logger.log('[stopCurrentRoute]');
+                    console.log(`[stopCurrentRoute] - ${response.error}`);
+                    logger.log(`[stopCurrentRoute] - ${response.error}`);
                     const err = convertToApiError(response.error);
                     logger.recordError(err);
                 }
@@ -165,7 +190,8 @@ export const stopCurrentRoute = (
         dispatch(setCurrentRoute(currentRouteToEnd));
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[stopCurrentRoute]');
+        console.log(`[stopCurrentRoute] - ${error}`);
+        logger.log(`[stopCurrentRoute] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -194,7 +220,8 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(setCurrentRouteData(currRoutes));
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[persistCurrentRouteData]');
+        console.log(`[persistCurrentRouteData] - ${error}`);
+        logger.log(`[persistCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -224,7 +251,8 @@ export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
         dispatch(setError(I18n.t('dataAction.dataSyncError'), 500));
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[addRoutesToSynchQueue]');
+        console.log(`[addRoutesToSynchQueue] - ${error}`);
+        logger.log(`[addRoutesToSynchQueue] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -309,7 +337,8 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(setLoadingState(false));
         dispatch(fetchPrivateMapsList());
     } catch (error) {
-        logger.log('[syncCurrentRouteData]');
+        console.log(`[syncCurrentRouteData] - ${error}`);
+        logger.log(`[syncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
 
@@ -373,7 +402,8 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        logger.log('[syncRouteDataFromQueue]');
+        console.log(`[syncRouteDataFromQueue] - ${error}`);
+        logger.log(`[syncRouteDataFromQueue] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
     }
@@ -408,7 +438,8 @@ export const abortSyncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(setLoadingState(false));
         dispatch(fetchPrivateMapsList());
     } catch (error) {
-        logger.log('[syncCurrentRouteData]');
+        console.log(`[abortSyncCurrentRouteData] - ${error}`);
+        logger.log(`[abortSyncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
     }

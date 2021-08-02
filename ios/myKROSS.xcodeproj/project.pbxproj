@@ -38,6 +38,8 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9009F68626452075005FBC58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9009F68826452075005FBC58 /* InfoPlist.strings */; };
 		901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */; };
+		904F37B026A1875000371264 /* map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 904F37AF26A1875000371264 /* map_route_marker.png */; };
+		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
 		C4AB114C0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
 		D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */; };
@@ -96,6 +98,8 @@
 		9009F68726452075005FBC58 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9039C9492636A74E00C355DE /* myKROSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myKROSS.entitlements; sourceTree = "<group>"; };
+		904F37AF26A1875000371264 /* map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_route_marker.png; path = ../src/assets/images/map_route_marker.png; sourceTree = "<group>"; };
+		90B996A826A840580015E097 /* current_map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = current_map_route_marker.png; path = ../src/assets/images/current_map_route_marker.png; sourceTree = "<group>"; };
 		B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Regular.otf"; path = "../assets/fonts/DIN2014Narrow-Regular.otf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F3CBCB6581D1313A24607CB9 /* libPods-myKROSS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,9 +193,11 @@
 				1D4E869C266A669A006FF848 /* service_marker.png */,
 				1D4E869B266A669A006FF848 /* serviceshop_empty.png */,
 				1D4E869D266A669A006FF848 /* serviceshop_marker.png */,
+				904F37AF26A1875000371264 /* map_route_marker.png */,
 				1D4E869E266A669A006FF848 /* shop_empty.png */,
 				1D4E869F266A669B006FF848 /* shop_marker.png */,
 				1D13B1FF2657B97F00A4F34A /* DIN2014Narrow-Bold.svg */,
+				90B996A826A840580015E097 /* current_map_route_marker.png */,
 				1D13B1FA2657B97F00A4F34A /* DIN2014Narrow-Bold.ttf */,
 				1D13B2012657B97F00A4F34A /* DIN2014Narrow-Bold.woff */,
 				1D13B1FB2657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 */,
@@ -344,6 +350,7 @@
 				1D4E86A4266A669B006FF848 /* shop_empty.png in Resources */,
 				1D4E86A5266A669B006FF848 /* shop_marker.png in Resources */,
 				1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */,
+				904F37B026A1875000371264 /* map_route_marker.png in Resources */,
 				1D13B2042657B97F00A4F34A /* DIN2014Narrow-Regular.eot in Resources */,
 				1D13B2052657B97F00A4F34A /* DIN2014Narrow-Light.ttf in Resources */,
 				1D13B2062657B97F00A4F34A /* DIN2014Narrow-Regular.ttf in Resources */,
@@ -354,6 +361,7 @@
 				1D13B20B2657B97F00A4F34A /* DIN2014Narrow-Regular.woff in Resources */,
 				1D13B20C2657B97F00A4F34A /* DIN2014Narrow-Light.eot in Resources */,
 				1D13B20D2657B97F00A4F34A /* DIN2014Narrow-Bold.svg in Resources */,
+				90B996A926A840590015E097 /* current_map_route_marker.png in Resources */,
 				1D13B20E2657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 in Resources */,
 				1D13B20F2657B97F00A4F34A /* DIN2014Narrow-Bold.woff in Resources */,
 				1D13B2102657B97F00A4F34A /* DIN2014Narrow-Light.woff in Resources */,
@@ -643,7 +651,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = myKROSS/myKROSS.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = QC3LNKY272;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/myKROSS/Info.plist";
@@ -652,7 +660,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -673,7 +681,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = myKROSS/myKROSS.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = QC3LNKY272;
 				INFOPLIST_FILE = "$(SRCROOT)/myKROSS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -681,7 +689,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

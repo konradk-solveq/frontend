@@ -362,8 +362,20 @@
             "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
             "emptyStateButton": "Pobierz trasę",
             "defaultUserName": "Rowerzysto",
-            "routesNumberTitle": "Ilość nagranych tras:"
+            "routesNumberTitle": "Ilość nagranych tras:",
+            "todayDate": "Dziś",
+            "yestardayDate": "Wczoraj"
         }
+    },
+    "MainRoutesMap": {
+        "header": "Świat KROSS",
+        "bikeMap": "Mapa rowerowa",
+        "myRoutes": "Moje trasy",
+        "planning": "Planowane",
+        "bottomTile": {
+            "finMoreInfo": "Sprawdź trasę na mapie"
+        }
+
     },
     "MainMyRoutes": {
         "title": "Nie masz nagranych tras",
@@ -516,7 +528,8 @@
     },
     "ServicesMap": {
         "services": "Serwisy",
-        "shops": "Sklepy"
+        "shops": "Sklepy",
+        "title": "Znajdź sklep lub serwis"
     },
     "MainProfile": {
         "header": " Konto",
@@ -617,6 +630,12 @@
         "okBtn": "Ok",
         "errorTitle": "Coś poszło nie tak!"
     },
+    "NoBikeAddedModal": {
+        "okBtn": "Dodaj rower",
+        "cancelBtn": "Wróć",
+        "errorTitle": "Coś poszło nie tak!",
+        "errorMessage": "Dodaj rower, aby móc zapisywać przejechane trasy"
+    },
     "validation": {
         "isEmpty": "Pole {{property}} nie jest puste",
         "isNotEmpty": "Pole {{property}} jest puste",
@@ -662,6 +681,9 @@
         "mapData": {
             "publishError": "Trasa mie została opublikowana. Spróbuj ponownie później.",
             "fileUploadError": "Plik [ {{value}} ] nie został wysłany. Spróbuj ponownie później."
+        },
+        "locationData": {
+            "readSQLDataFailure": "Nie można odczytać danych geolokalizacyjnych."
         }
     },
     "Geolocation": {

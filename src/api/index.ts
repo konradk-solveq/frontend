@@ -13,6 +13,7 @@ export {
     addPlannedRoute,
     getPlannedRoutes,
     removePlannedRoute,
+    getMarkersList,
 } from './maps';
 export {createRoute, sendRouteData} from './routes';
 export {

@@ -8,5 +8,11 @@ module.exports = {
                 moduleName: '@env',
             },
         ],
+        'react-native-reanimated/plugin',
     ],
+    env: {
+        production: {
+            plugins: ['transform-remove-console'],
+        },
+    },
 };

@@ -25,8 +25,6 @@ const styles = StyleSheet.create({
     mark: {
         width: 31,
         height: 31,
-        left: -15.5,
-        top: -15.5,
     },
 });
 

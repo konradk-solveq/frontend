@@ -15,7 +15,7 @@ import {getHorizontalPx} from '../../helpers/layoutFoo';
 interface Props {
     style?: any;
     title: string;
-    onpress: Function;
+    onpress: () => void;
     neutralCase?: boolean;
 }
 
@@ -28,10 +28,9 @@ const BigWhiteBtn: React.FC<Props> = (props: Props) => {
             width: '100%',
             height: '100%',
             borderRadius: getHorizontalPx(50),
-            textAlign: 'center',
-            color: 'black',
             borderWidth: 1,
             borderColor: '#33555555',
+            backgroundColor: '#fff',
         },
         text: {
             fontFamily: 'DIN2014Narrow-Bold',

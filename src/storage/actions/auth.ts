@@ -11,6 +11,7 @@ import {I18n} from '../../../I18n/I18n';
 import logger from '../../utils/crashlytics';
 import {setAutorizationHeader, setUserAgentHeader} from '../../api/api';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+import { API_URL } from '@env';
 
 export const setAuthError = (error: string, statusCode: number) => ({
     type: actionTypes.SET_AUTH_ERROR,
@@ -71,7 +72,8 @@ export const register = (): AppThunk<Promise<void>> => async dispatch => {
         );
         dispatch(setAuthSyncState(false));
     } catch (error) {
-        logger.log('[register]');
+        console.log(`[register] - ${error}`);
+        logger.log(`[register] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
@@ -99,7 +101,8 @@ export const logIn =
             dispatch(setAuthorizationState());
             dispatch(setAuthSyncState(false));
         } catch (error) {
-            logger.log('[logIn]');
+            console.log(`[logIn] - ${error}`);
+            logger.log(`[logIn] - ${error}`);
             const err = convertToApiError(error);
             logger.recordError(err);
             const errorMessage = I18n.t('dataAction.apiError');
@@ -137,9 +140,10 @@ export const checkSession =
                  * kept for future usage.
                  */
                 // dispatch(setAuthError(response.error, response.status));
-                logger.log('[checkSession]');
+                console.log(`[checkSession] - ${response.error}`);
+                logger.log(`[checkSession] - ${response.error}`);
                 const error = new Error(
-                    '[checkSession] - an error occured. Cannot refresh session data or re-login.',
+                    `[checkSession] - an error occured. Cannot refresh session data or re-login. - ${API_URL}`,
                 );
                 logger.recordError(error);
                 dispatch(setAuthSyncState(false));
@@ -165,7 +169,8 @@ export const checkSession =
 
             dispatch(setAuthSyncState(false));
         } catch (error) {
-            logger.log('[checkSession]');
+            console.log(`[checkSession] - ${error}`);
+            logger.log(`[checkSession] - ${error}`);
             const err = convertToApiError(error);
             logger.recordError(err);
             const errorMessage = I18n.t('dataAction.apiError');

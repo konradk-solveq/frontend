@@ -25,6 +25,7 @@ export const startCurrentRoute = async (followByRoute?: string) => {
         startedAt: new Date(),
         endedAt: undefined,
         routeId: followByRoute || undefined,
+        pauseTime: 0,
     };
 };
 
@@ -46,6 +47,7 @@ export const getTrackerData = (gpsData: any, averageSpeed: string) => {
             lat: gpsData?.coords?.latitude,
             lon: gpsData?.coords?.longitude,
         },
+        timestamp: gpsData?.timestamp,
     };
 
     return res;

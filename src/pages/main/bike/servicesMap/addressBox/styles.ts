@@ -1,14 +1,13 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const {width, height} = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
+import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     addressContainer: {
         position: 'absolute',
-        width: width,
-        height: width,
+        width: getHorizontalPx(414),
+        height: getHorizontalPx(414),
         left: 0,
-        top: height - width * 0.65,
+        top: getVerticalPx(896) - getHorizontalPx(414 * 0.65),
     },
     address: {
         position: 'absolute',

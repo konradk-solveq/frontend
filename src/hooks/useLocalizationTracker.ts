@@ -36,7 +36,7 @@ import {
     startCurrentRoute,
 } from './utils/localizationTracker';
 
-interface DataI {
+export interface DataI {
     distance: string;
     speed: string;
     averageSpeed: string;
@@ -45,6 +45,7 @@ interface DataI {
         lat: number;
         lon: number;
     };
+    timestamp: number;
 }
 
 let speed: number[] = [];
@@ -91,14 +92,13 @@ const useLocalizationTracker = (
 
     const stopTracker = useCallback(
         async (omitPersist?: boolean) => {
-            /* TODO: error */
             deactivateKeepAwake();
             dispatch(stopCurrentRoute(omitPersist));
             if (!omitPersist) {
                 dispatch(persistCurrentRouteData());
             }
             const state = await stopBackgroundGeolocation();
-            if (!state.enabled) {
+            if (!state?.enabled) {
                 setIsActive(false);
             }
         },
@@ -111,7 +111,7 @@ const useLocalizationTracker = (
             /* TODO: error */
             const state = await getBackgroundGeolocationState();
 
-            if (state.enabled && !keep) {
+            if (state?.enabled && !keep) {
                 await stopTracker();
             }
 
@@ -129,9 +129,8 @@ const useLocalizationTracker = (
         [dispatch, currentRouteId, stopTracker],
     );
 
-    const onPauseTracker = () => {
-        setIsActive(false);
-        pauseTracingLocation();
+    const onPauseTracker = useCallback(async () => {
+        await pauseTracingLocation();
         setTrackerData(prev => {
             if (prev) {
                 return {
@@ -141,12 +140,13 @@ const useLocalizationTracker = (
             }
             return undefined;
         });
-    };
+        setIsActive(false);
+    }, []);
 
-    const onStartTracker = async () => {
-        setIsActive(true);
+    const onStartTracker = useCallback(async () => {
         await resumeTracingLocation();
-    };
+        setIsActive(true);
+    }, []);
 
     useEffect(() => {
         speed = [];
@@ -191,7 +191,8 @@ const useLocalizationTracker = (
                     }
 
                     if (
-                        (d?.odometer - lastDistance > 10 || !lastDistance) &&
+                        ((d?.odometer && d?.odometer - lastDistance > 10) ||
+                            !lastDistance) &&
                         !notMoving &&
                         parseFloat(aSpeed) >= 0.1
                     ) {

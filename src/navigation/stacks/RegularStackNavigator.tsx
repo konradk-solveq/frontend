@@ -28,6 +28,7 @@ import Regulations from '../../pages/onboarding/permitsDeclarations/regulations'
 import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
 import Help from '../../pages//main/profile/help/help';
 import Contact from '../../pages//main/profile/contact/contact';
+import RoutesMap from '../../pages/main/world/routesMap/routesMap';
 
 import {RegularStackRoute, BothStackRoute} from '../route';
 
@@ -40,7 +41,7 @@ const RegularStackNavigator: React.FC = () => {
             initialRouteName={
                 !isActive
                     ? RegularStackRoute.SPLASH_SCREEN
-                    : RegularStackRoute.COUNTER_SCREEN
+                    : BothStackRoute.MAIN_MENU_SCREEN
             }
             mode="modal"
             screenOptions={horizontalAnim}>
@@ -97,6 +98,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN}
                 component={CounterThankYouPage}
+                options={{gestureEnabled: false}}
             />
             {/* End add bike */}
 
@@ -112,6 +114,11 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.EDIT_DETAILS_SCREEN}
                 component={EditDetails}
+                options={{gestureEnabled: false}}
+            />
+            <Stack.Screen
+                name={RegularStackRoute.ROUTES_MAP_SCREEN}
+                component={RoutesMap}
             />
             {/* END KROSS WORLD */}
 

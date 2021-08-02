@@ -291,6 +291,9 @@ export const routesDataToPersist = async (
 ): Promise<LocationDataI[]> => {
     const currRoutes = [...oldRoutes];
     const locations = await getLocations();
+    if (!locations) {
+        return currRoutes;
+    }
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
@@ -308,6 +311,47 @@ export const routesDataToPersist = async (
                     speed: l.coords.speed,
                 },
                 odometer: l.odometer,
+                timestamp: l.timestamp,
+            };
+
+            currRoutes.push(newRoute);
+        }
+    });
+
+    return currRoutes;
+};
+
+export const getRoutesDataFromSQL = async (
+    routeId: string,
+    timeToExclude?: {start: number; end: number},
+): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
+    const currRoutes: {
+        latitude: number;
+        longitude: number;
+        timestamp: number;
+    }[] = [];
+    const locations = await getLocations();
+    if (!locations) {
+        return currRoutes;
+    }
+
+    /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
+    locations.forEach((l: any) => {
+        if (!routeId || routeId !== l?.extras?.route_id) {
+            return;
+        }
+
+        if (timeToExclude && timeToExclude.start !== 0) {
+            const t = new Date(l.timestamp).getTime();
+            if (t <= timeToExclude.start) {
+                return;
+            }
+        }
+
+        if (l?.coords) {
+            const newRoute = {
+                latitude: l.coords.latitude,
+                longitude: l.coords.longitude,
                 timestamp: l.timestamp,
             };
 

@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: '#f7f7f7',
+        borderRadius: 10,
+        overflow: 'hidden',
     },
     mImg: {
         width: '100%',

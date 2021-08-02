@@ -7,8 +7,10 @@ export {getPlacesList} from './placesService';
 export {
     getMapsList,
     getPrivateMapsListService,
+    getMapsByTypeAndId,
     editPrivateMapMetadataService,
     removePrivateMapByIdService,
+    getMarkersListService,
 } from './mapsService';
 export {syncRouteData, createNewRouteService} from './routesService';
 export {
