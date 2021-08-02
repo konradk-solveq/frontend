@@ -151,6 +151,7 @@ export const startRecordingRoute = (
 
 export const stopCurrentRoute = (
     omitPersists?: boolean,
+    endDate?: Date,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
@@ -183,7 +184,7 @@ export const stopCurrentRoute = (
         const currentRouteToEnd: CurrentRouteI = {
             ...currentRoute,
             isActive: false,
-            endedAt: new Date(),
+            endedAt: endDate || new Date(),
         };
 
         dispatch(clearError());

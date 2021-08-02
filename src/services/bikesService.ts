@@ -1,6 +1,14 @@
 import {getBike, getGenericBikeData, getBikesList} from '../api';
 
-export const getBikeByFrameNr = async (frameNr: string) => {
+export interface serviceResponse {
+    data: any | null;
+    status: number;
+    error: string;
+}
+
+export const getBikeByFrameNr = async (
+    frameNr: string,
+): Promise<serviceResponse> => {
     const response = await getBike(frameNr);
 
     if (!response?.data || response.status > 400) {

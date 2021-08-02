@@ -33,7 +33,6 @@ import {
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
 
-import MarkPointer from './markPointer';
 import ActionButtons from './actionButtons';
 import Map from './map';
 import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
