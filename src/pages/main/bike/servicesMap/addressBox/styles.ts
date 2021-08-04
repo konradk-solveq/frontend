@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     addressContainer: {
@@ -40,6 +40,17 @@ const styles = StyleSheet.create({
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'left',
         fontSize: 15,
+        color: '#555555',
+    },
+    openHoursContainer: {
+        width: '100%',
+        marginTop: getVerticalPx(26),
+    },
+    openHours: {
+        fontFamily: 'DIN2014Narrow-Regular',
+        textAlign: 'left',
+        fontSize: 15,
+        letterSpacing: 0.42,
         color: '#555555',
     },
 });

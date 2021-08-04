@@ -105,6 +105,7 @@ export type MarkerDetailsType = {
     distanceToRoute: number;
     totalTime: number;
     mapImageUrl: string;
+    openHours: string;
 };
 
 export type MapMarkerType = {
