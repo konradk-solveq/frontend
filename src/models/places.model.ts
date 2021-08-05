@@ -15,6 +15,7 @@ export type PointDetails = {
     city: string;
     street: string;
     country: string;
+    openHours: string;
 };
 
 export enum markerTypes {
