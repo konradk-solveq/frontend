@@ -18,7 +18,7 @@ import {
     selectorTypeEnum,
 } from '../../../../storage/selectors/map';
 import {userIdSelector} from '../../../../storage/selectors/auth';
-import {getImagesThumbs} from '../../../../utils/transformData';
+import {getImagesThumbs, getSliverImageToDisplay} from '@utils/transformData';
 import {removePrivateMapMetaData} from '../../../../storage/actions/maps';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -62,8 +62,9 @@ const RouteDetails = () => {
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
 
-    const headerBackgroundHeight =
-        getVerticalPx(100); /* equal to header height */
+    const headerBackgroundHeight = getVerticalPx(
+        100,
+    ); /* equal to header height */
 
     const onBackHandler = () => {
         navigation.goBack();
@@ -97,6 +98,8 @@ const RouteDetails = () => {
         setShowBottomModal(false);
     };
 
+    const sliverImage = getSliverImageToDisplay(images);
+
     return (
         <>
             <StatusBar translucent />
@@ -124,7 +127,7 @@ const RouteDetails = () => {
                             </View>
                         }
                     />
-                    <SliverTopBar imgSrc={images?.sliverImg || ''}>
+                    <SliverTopBar imgSrc={sliverImage || ''}>
                         <View style={styles.content}>
                             <Description
                                 mapData={mapData}
