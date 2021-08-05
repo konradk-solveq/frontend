@@ -8,28 +8,25 @@ import {
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import {I18n} from '../../../../../I18n/I18n';
-import useStatusBarHeight from '../../../../hooks/statusBarHeight';
-import {RegularStackRoute} from '../../../../navigation/route';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {RegularStackRoute} from '@navigation/route';
+import {removePrivateMapMetaData} from '@storage/actions/maps';
+import {userIdSelector} from '@storage/selectors/auth';
 import {
     selectMapDataByIDBasedOnTypeSelector,
     selectorTypeEnum,
-} from '../../../../storage/selectors/map';
-import {userIdSelector} from '../../../../storage/selectors/auth';
-import {getImagesThumbs} from '../../../../utils/transformData';
-import {removePrivateMapMetaData} from '../../../../storage/actions/maps';
+} from '@storage/selectors/map';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {RouteDetailsRouteType} from '@type/rootStack';
+import {getImagesThumbs} from '@utils/transformData';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import {
-    ShareBtn,
-    EditBtn,
-    BigRedBtn,
-} from '../../../../sharedComponents/buttons';
+import {I18n} from '@translations/I18n';
+import {getVerticalPx} from '@helpers/layoutFoo';
+import {EditBtn, BigRedBtn} from '@sharedComponents/buttons';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import SliverTopBar from '@sharedComponents/sliverTopBar/sliverTopBar';
+import BottomModal from '@sharedComponents/modals/bottomModal/bottomModal';
 import Description from './description/description';
-import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
-import BottomModal from '../../../../sharedComponents/modals/bottomModal/bottomModal';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -47,10 +44,10 @@ const RouteDetails = () => {
     const trans: any = I18n.t('RoutesDetails');
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const route = useRoute();
+    const route = useRoute<RouteDetailsRouteType>();
     const mapID: string = route?.params?.mapID;
-    const privateMap: boolean = route?.params?.private;
-    const favouriteMap: boolean = route?.params?.favourite;
+    const privateMap: boolean = !!route?.params?.private;
+    const favouriteMap: boolean = !!route?.params?.favourite;
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
@@ -62,8 +59,9 @@ const RouteDetails = () => {
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
 
-    const headerBackgroundHeight =
-        getVerticalPx(100); /* equal to header height */
+    const headerBackgroundHeight = getVerticalPx(
+        100,
+    ); /* equal to header height */
 
     const onBackHandler = () => {
         navigation.goBack();
