@@ -14,6 +14,7 @@ import {
 } from '../../../../../sharedComponents/svg/icons';
 import TileBackground from './tileBackground';
 import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
+import {getImageToDisplay} from '@utils/transformData';
 
 import styles from './style';
 
@@ -45,15 +46,17 @@ const FirstTile: React.FC<IProps> = ({
         onPress(true, mapData.id);
     };
 
+    const imagesToDisplay = getImageToDisplay(images);
+
     return (
         <Pressable onPress={onTilePressedHandler}>
             <TileBackground>
                 <View style={styles.container}>
                     <View style={styles.imageWrapper}>
-                        {images?.images?.length && images.images?.[0] ? (
+                        {imagesToDisplay ? (
                             <Image
                                 source={{
-                                    uri: images.images[0],
+                                    uri: imagesToDisplay,
                                 }}
                                 style={styles.image}
                                 resizeMode="cover"

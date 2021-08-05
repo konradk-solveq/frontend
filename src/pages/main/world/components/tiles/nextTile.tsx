@@ -14,6 +14,7 @@ import {
 } from '../../../../../sharedComponents/svg/icons';
 import TileBackground from './tileBackground';
 import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
+import {getImageToDisplay} from '@utils/transformData';
 
 import styles, {nextTileStyles} from './style';
 
@@ -45,6 +46,8 @@ const NextTile: React.FC<IProps> = ({
         onPress(true, mapData.id);
     };
 
+    const imagesToDisplay = getImageToDisplay(images);
+
     return (
         <Pressable onPress={onTilePressedHandler}>
             <TileBackground>
@@ -53,10 +56,10 @@ const NextTile: React.FC<IProps> = ({
                         <View style={nextTileStyles.firstSection}>
                             <View style={nextTileStyles.firstSectionLeftColumn}>
                                 <View style={nextTileStyles.imageWrapper}>
-                                    {images?.images?.[0] ? (
+                                    {imagesToDisplay ? (
                                         <Image
                                             source={{
-                                                uri: images.images[0],
+                                                uri: imagesToDisplay,
                                             }}
                                             style={nextTileStyles.image}
                                             resizeMode="cover"

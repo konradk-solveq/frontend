@@ -234,10 +234,19 @@ export const mapDataToFormData = (mapData: Map): FormData => {
     };
 };
 
-export const getImagesThumbs = (images: Images[]) => {
+export type ImagesUrlsToDisplay = {
+    images: string[];
+    mapImg: string;
+    fullSizeImages?: string[];
+    verticalMapImgUrl?: string;
+    sliverImg?: string;
+};
+
+export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
     const imgsUrls: string[] = [];
     const fullSizeImgsUrls: string[] = [];
     let mapImgUrl = '';
+    let verticalMapImgUrl = '';
     let sliverImgUrl = '';
 
     if (!images?.length) {
@@ -274,6 +283,10 @@ export const getImagesThumbs = (images: Images[]) => {
             if (url) {
                 mapImgUrl = url;
             }
+            const verticalUrl = i.variants?.vertical?.[2]?.url;
+            if (verticalUrl) {
+                verticalMapImgUrl = verticalUrl;
+            }
         }
     });
 
@@ -281,6 +294,7 @@ export const getImagesThumbs = (images: Images[]) => {
         images: imgsUrls,
         fullSizeImages: fullSizeImgsUrls,
         mapImg: mapImgUrl,
+        verticalMapImgUrl: verticalMapImgUrl,
         sliverImg: sliverImgUrl,
     };
 };
@@ -360,4 +374,18 @@ export const getRoutesDataFromSQL = async (
     });
 
     return currRoutes;
+};
+
+export const getImageToDisplay = (images: ImagesUrlsToDisplay) => {
+    const img = images?.images?.length && images.images?.[0];
+    const mapImg = images?.mapImg;
+
+    return img || mapImg;
+};
+
+export const getSliverImageToDisplay = (images: ImagesUrlsToDisplay) => {
+    const img = images?.sliverImg;
+    const mapImg = images?.verticalMapImgUrl;
+
+    return img || mapImg;
 };
