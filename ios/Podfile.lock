@@ -123,11 +123,11 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - OpenSSL-Universal (1.1.180)
-  - Permission-LocationAccuracy (3.0.3):
+  - Permission-LocationAccuracy (3.0.5):
     - RNPermissions
-  - Permission-LocationAlways (3.0.3):
+  - Permission-LocationAlways (3.0.5):
     - RNPermissions
-  - Permission-LocationWhenInUse (3.0.3):
+  - Permission-LocationWhenInUse (3.0.5):
     - RNPermissions
   - PromisesObjC (1.2.12)
   - RCT-Folly (2020.01.13.00):
@@ -343,7 +343,7 @@ PODS:
     - React-Core
   - react-native-netinfo (6.0.0):
     - React-Core
-  - react-native-nfc-manager (3.3.0):
+  - react-native-nfc-manager (3.10.0):
     - React
   - react-native-safe-area-context (3.2.0):
     - React-Core
@@ -437,7 +437,7 @@ PODS:
     - React-Core
   - RNI18n (2.0.15):
     - React
-  - RNPermissions (3.0.3):
+  - RNPermissions (3.0.5):
     - React-Core
   - RNReanimated (2.2.0):
     - DoubleConversion
@@ -723,9 +723,9 @@ SPEC CHECKSUMS:
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
-  Permission-LocationAccuracy: 2b5c6cb5c30b30450ff5e3ebed9215986f19878b
-  Permission-LocationAlways: 486c2078e03a601f4f8406444830a5ec6fe44827
-  Permission-LocationWhenInUse: 5c878c0de1a55558fe978cda69908327e6a07f31
+  Permission-LocationAccuracy: bdcb49d8a0112f5e09cb9860a28f69cbfa65fbbe
+  Permission-LocationAlways: 92bf7638da5852ddba7c29fda18ecd0ac246c813
+  Permission-LocationWhenInUse: 1c1f3c5dc7e33029c0a4a0846b97b4bf89d3244b
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: 6d3e854f0e7260a648badd0d44fc364bc9da9728
@@ -746,7 +746,7 @@ SPEC CHECKSUMS:
   react-native-keep-awake: e2941ac96fbddf3b407d0f316eba0b24ed067f56
   react-native-maps: 2d405b4e8cee0282e4c02bac434d81450dfea877
   react-native-netinfo: 34f4d7a42f49157f3b45c14217d256bce7dc9682
-  react-native-nfc-manager: 1ec3667963d7c6295b18a39f34829e7b07d255da
+  react-native-nfc-manager: e0889542676e1587791ca7b15cf41a7d1ba228e5
   react-native-safe-area-context: e471852c5ed67eea4b10c5d9d43c1cebae3b231d
   react-native-webview: 90ccc4add19f940dfe6c89d30659aed8134f234d
   React-perflogger: 25373e382fed75ce768a443822f07098a15ab737
@@ -771,7 +771,7 @@ SPEC CHECKSUMS:
   RNFBCrashlytics: 59d9ecfaacddbe10819d9071ee3b9921b79b8c6b
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
-  RNPermissions: d6679ecf0c21bf6de5a619b20df4304182792da8
+  RNPermissions: 3e5bb8afd93c787681bbacbf54d586a6272ecc92
   RNReanimated: 9c13c86454bfd54dab7505c1a054470bfecd2563
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
