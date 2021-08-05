@@ -119,6 +119,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.ROUTES_MAP_SCREEN}
                 component={RoutesMap}
+                options={{gestureEnabled: false}}
             />
             {/* END KROSS WORLD */}
 
