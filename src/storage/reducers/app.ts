@@ -1,14 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistReducer} from 'redux-persist';
-import * as actionTypes from '../actions/actionTypes';
 
-import {AppConfigI} from '../../models/config.model';
+import * as actionTypes from '@storage/actions/actionTypes';
+import {AppConfigI} from '@models/config.model';
+import {InternetConnectionInfoType} from '@interfaces/internetConnection';
+import {BasicCoordsType} from '@type/coords';
 import {
     FaqType,
     RegulationType,
     TermsAndConditionsType,
-} from '../../models/regulations.model';
-import {InternetConnectionInfoType} from '../../interfaces/internetConnection';
+} from '@models/regulations.model';
 
 export interface AppState {
     isOffline: boolean;
@@ -24,6 +25,7 @@ export interface AppState {
     regulation: RegulationType | {};
     policy: RegulationType | {};
     showedLocationInfo: boolean;
+    location: BasicCoordsType | undefined;
 }
 
 const initialState: AppState = {
@@ -54,6 +56,7 @@ const initialState: AppState = {
     showedRegulations: null,
     regulation: {},
     policy: {},
+    location: undefined,
 };
 
 const appReducer = (state = initialState, action: any) => {
@@ -202,6 +205,11 @@ const appReducer = (state = initialState, action: any) => {
                 ...state,
                 showedLocationInfo: true,
             };
+        case actionTypes.SET_GLOBAL_LOCATION:
+            return {
+                ...state,
+                location: action.coords,
+            };
         case actionTypes.CLEAR_APP_ERROR:
             return {
                 ...state,
@@ -225,6 +233,7 @@ const persistConfig = {
         'showedRegulations',
         'faq',
         'showedLocationInfo',
+        'location',
     ],
     timeout: 20000,
 };

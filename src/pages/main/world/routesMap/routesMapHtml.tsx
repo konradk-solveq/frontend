@@ -44,7 +44,7 @@ export default `
 <script>
 let map;
 const googleMap = document.getElementById('map');
-let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
+// let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
 
 let my_location = null;
 const setMyLocation = position => {
@@ -570,7 +570,9 @@ const setPrivate = () => {
 }
 
 const clearMarkersCluster = () => {
-    clusterPublic.clearMarkers();
+    if(clusterPublic){
+        clusterPublic.clearMarkers();
+    }
 }
 </script>
 

@@ -18,5 +18,6 @@ export const initState = {
         internetConnectionInfo: {
             goodConnectionQuality: true,
         },
+        location: undefined,
     },
 };

@@ -107,9 +107,9 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
             };
 
             let ratio = 1;
-            const latitudeDelta = mapRef?.current?.__lastRegion?.latitudeDelta;
+            const latitudeDelta = mapRef?.current?.__lastRegion?.latitudeDelta || 1;
             const longitudeDelta =
-                mapRef?.current?.__lastRegion?.longitudeDelta;
+                mapRef?.current?.__lastRegion?.longitudeDelta || 1;
             if (typeof latitudeDelta !== 'undefined') {
                 const zoom =
                     Math.log2(

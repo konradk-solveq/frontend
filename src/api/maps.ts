@@ -1,13 +1,13 @@
 import instance, {axiosGet, source} from './api';
-import {Coords} from '../models/map.model';
-import {MapMetadataType} from '../interfaces/api';
-import {LocationDataI} from '../interfaces/geolocation';
-import {OptionType} from '../interfaces/form';
-import {BBox} from '../models/places.model';
+import {Coords} from '@models/map.model';
+import {MapMetadataType} from '@interfaces/api';
+import {OptionType} from '@interfaces/form';
+import {BBox} from '@models/places.model';
 import {
+    tranformParamsToBasicLocationRequest,
     tranformParamsToBBoxRequest,
-    tranformParamsToLocationRequest,
-} from '../utils/apiDataTransform/prepareRequest';
+} from '@utils/apiDataTransform/prepareRequest';
+import {BasicCoordsType} from '@type/coords';
 
 const BASE_URL = '/routes';
 const BASE_ROUTE_URL = `${BASE_URL}/route`;
@@ -131,9 +131,9 @@ export const removePlannedRoute = async (id: string) => {
     });
 };
 
-export const getMarkersList = async (data: BBox, locaiton: LocationDataI) => {
+export const getMarkersList = async (data: BBox, location: BasicCoordsType) => {
     const bboxParams = tranformParamsToBBoxRequest(data.bbox);
-    const loc = tranformParamsToLocationRequest(locaiton);
+    const loc = tranformParamsToBasicLocationRequest(location);
     const query = `${loc}&${bboxParams}`;
 
     return await axiosGet(`${BASE_FIND_URL}/map?${query}`, {

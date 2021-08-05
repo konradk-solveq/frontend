@@ -6,14 +6,16 @@ import BackgroundGeolocation, {
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {
     checkMultiple,
+    check,
     PERMISSIONS,
     RESULTS,
     request,
 } from 'react-native-permissions';
-import logger from './crashlytics';
-import {I18n} from '../../I18n/I18n';
 
-import {LocationDataI} from '../interfaces/geolocation';
+import logger from '@utils/crashlytics';
+import {LocationDataI} from '@interfaces/geolocation';
+import {BasicCoordsType} from '@type/coords';
+import {I18n} from '@translations/I18n';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -79,6 +81,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             notification: {
                 text: notificationTitle,
                 smallIcon: 'drawable/ic_launcher_round',
+                priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
             },
             preventSuspend: true,
             heartbeatInterval: 60,
@@ -132,20 +135,18 @@ export const getLatLng = async () => {
     const lng = location.coords.longitude;
     return {lat, lng};
 };
-/**
- * TODO: change to listen for geofances constantly.
- * Loc should be reqested only on beginging and set geofacne (let say about 1km).
- * onExit event locaclization should be updated.
- */
-export const getLatLngFromForeground = async () => {
+
+export const getLatLngFromForeground = async (): Promise<
+    BasicCoordsType | undefined
+> => {
     const location = await getCurrentLocation('', 1, 10, true);
     if (!location) {
-        return {lat: undefined, lng: undefined};
+        return undefined;
     }
 
-    const lat = location.coords.latitude;
-    const lng = location.coords.longitude;
-    return {lat, lng};
+    const latitude = location.coords.latitude;
+    const longitude = location.coords.longitude;
+    return {latitude, longitude};
 };
 
 export const getBackgroundGeolocationState = async () => {
@@ -176,10 +177,11 @@ export const startBackgroundGeolocation = async (
             },
             notification: {
                 text: 'Nagrywanie trasy',
+                priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
             },
         });
 
-        const state = await BackgroundGeolocation.start();
+        const state = await startBackgroundGeolocationPlugin(true);
         await resumeTracingLocation();
 
         return state;
@@ -193,7 +195,6 @@ export const startBackgroundGeolocation = async (
 
 export const stopBackgroundGeolocation = async () => {
     try {
-        await pauseTracingLocation();
         await BackgroundGeolocation.setConfig({
             isMoving: false,
             extras: {
@@ -201,10 +202,11 @@ export const stopBackgroundGeolocation = async () => {
             },
             notification: {
                 text: 'Pobieranie lokalizacji',
+                priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
             },
         });
-        const state = await BackgroundGeolocation.stop();
 
+        const state = await stopBackgroundGeolocationPlugin();
         return state;
     } catch (e) {
         console.warn('[stopBackgroundGeolocation - error]', e);
@@ -216,6 +218,17 @@ export const stopBackgroundGeolocation = async () => {
 
 export const cleanUp = () => {
     BackgroundGeolocation.removeListeners();
+};
+
+export const cleanUpListener = (listener: string, handler: () => void) => {
+    try {
+        BackgroundGeolocation.removeListener(listener, handler);
+    } catch (e) {
+        console.warn(`[cleanUpListener - [${listener}] - error]`, e);
+        logger.log(`[cleanUpListener] - [${listener}] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
 };
 
 export const onLocationChange = async (
@@ -321,7 +334,7 @@ export const pauseTracingLocation = async () => {
 export const resumeTracingLocation = async () => {
     try {
         const state = await getBackgroundGeolocationState();
-        if (state?.enabled) {
+        if (state?.enabled && !state?.isMoving) {
             await BackgroundGeolocation.changePace(true);
         }
     } catch (e) {
@@ -416,6 +429,32 @@ export const checkAndroidLocationPermission = async () => {
     return locationPermissions;
 };
 
+export const checkDeviceHasLocationAlwaysPermission = async () => {
+    let locationPermission = false;
+    try {
+        if (isIOS) {
+            const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
+            if (result === RESULTS.GRANTED) {
+                locationPermission = true;
+            }
+        } else {
+            const result = await check(
+                PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+            );
+            if (result === RESULTS.GRANTED) {
+                locationPermission = true;
+            }
+        }
+    } catch (e) {
+        console.log('[checkDeviceHasLocationAlwaysPermission - error]', e);
+        logger.log(`[checkDeviceHasLocationAlwaysPermission] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+
+    return locationPermission;
+};
+
 export const openGPSModule = async () => {
     try {
         const res = await RNAndroidLocationEnabler.promptForEnableLocationIfNeeded(
@@ -443,4 +482,146 @@ export const areCoordsSame = (
         newCoords.coords.latitude === oldCoords?.coords.latitude &&
         newCoords.coords.longitude === oldCoords?.coords.longitude
     );
+};
+
+export const addGeofence = async (
+    coords: BasicCoordsType,
+    identifier: string,
+    radius?: number,
+    notifyOnEntry?: boolean,
+    notifyOnExit?: boolean,
+    notifyOnDwell?: boolean,
+) => {
+    try {
+        await BackgroundGeolocation.addGeofence({
+            identifier: identifier,
+            radius: radius || 1000,
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+            notifyOnEntry: notifyOnEntry || false,
+            notifyOnExit: notifyOnExit || false,
+            notifyOnDwell: notifyOnDwell || false,
+        });
+    } catch (e) {
+        console.log('[addGeofence - error]', e);
+        logger.log(`[addGeofence] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const onGeofenceChangeListener = async (
+    callback: () => void,
+    startPlugin: boolean,
+) => {
+    try {
+        /**
+         * Listener works only when plugin is started.
+         */
+        if (startPlugin) {
+            await startMonitoringGeofences();
+        }
+
+        BackgroundGeolocation.onGeofence(callback);
+    } catch (e) {
+        console.log('[onGeofenceChangeListener - error]', e);
+        logger.log(`[onGeofenceChangeListener] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const setGeofenceFromCurrentLocation = async (
+    identifier: string,
+    location?: BasicCoordsType,
+    radius?: number,
+    notifyOnEntry?: boolean,
+    notifyOnExit?: boolean,
+    notifyOnDwell?: boolean,
+    omit?: boolean,
+) => {
+    try {
+        const loc = location || (await getLatLngFromForeground());
+
+        if (loc?.latitude && loc?.longitude && !omit) {
+            await addGeofence(
+                {
+                    latitude: loc.latitude,
+                    longitude: loc.longitude,
+                },
+                identifier,
+                radius,
+                notifyOnEntry,
+                notifyOnExit,
+                notifyOnDwell,
+            );
+        }
+
+        return loc;
+    } catch (e) {
+        console.log('[setGeofenceFromCurrentLocation - error]', e);
+        logger.log(`[setGeofenceFromCurrentLocation] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const removeGeofence = async (identifier: string) => {
+    try {
+        await BackgroundGeolocation.removeGeofence(identifier);
+    } catch (e) {
+        console.log('[removeGeofence - error]', e);
+        logger.log(`[removeGeofence] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const startBackgroundGeolocationPlugin = async (force?: boolean) => {
+    try {
+        let state = await getBackgroundGeolocationState();
+        if (!state?.enabled || force) {
+            await BackgroundGeolocation.start();
+            state = await getBackgroundGeolocationState();
+        }
+
+        return state;
+    } catch (e) {
+        console.log('[startBackgroundGeolocationPlugin - error]', e);
+        logger.log(`[startBackgroundGeolocationPlugin] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const startMonitoringGeofences = async (forceToStart?: boolean) => {
+    try {
+        let state = await getBackgroundGeolocationState();
+        if (!state?.enabled || forceToStart) {
+            await BackgroundGeolocation.startGeofences();
+            state = await getBackgroundGeolocationState();
+        }
+
+        return state;
+    } catch (e) {
+        console.log('[startMonitoringGeofences - error]', e);
+        logger.log(`[startMonitoringGeofences] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const stopBackgroundGeolocationPlugin = async () => {
+    try {
+        let state = await getBackgroundGeolocationState();
+        if (state?.enabled) {
+            state = await BackgroundGeolocation.stop();
+        }
+        return state;
+    } catch (e) {
+        console.log('[stopBackgroundGeolocationPlugin - error]', e);
+        logger.log(`[stopBackgroundGeolocationPlugin] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
 };

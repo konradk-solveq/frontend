@@ -1,35 +1,40 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {
+    useEffect,
+    useState,
+    useRef,
+    useContext,
+    useCallback,
+} from 'react';
+import {SafeAreaView, View, Platform, Animated} from 'react-native';
 import {WebView} from 'react-native-webview';
 
-import {SafeAreaView, View, Platform, Animated} from 'react-native';
-import I18n from 'react-native-i18n';
+import {I18n} from '@translations/I18n';
 
-import {useAppDispatch} from '../../../../hooks/redux';
-import {RouteMapType, Point} from '../../../../models/places.model';
-import {MarkerDetailsType} from '../../../../models/map.model';
+import {useAppDispatch} from '@hooks/redux';
+import useGetRouteMapMarkers from '@hooks/useGetRouteMapMarkers';
+import {fetchMapIfNotExistsLocally} from '@storage/actions/maps';
+import {RouteMapType, Point} from '@models/places.model';
+import {MarkerDetailsType} from '@models/map.model';
+import {RegularStackRoute} from '@navigation/route';
+import {BasicCoordsType} from '@type/coords';
 import {
     RootStackType,
     RoutesMapNavigationPropI,
     RoutesMapRouteType,
-} from '../../../../types/rootStack';
-import {RegularStackRoute} from '../../../../navigation/route';
-import useGeolocation from '../../../../hooks/useGeolocation';
-import {getHorizontalPx} from '../../../../helpers/layoutFoo';
-import {fetchMapIfNotExistsLocally} from '../../../../storage/actions/maps';
-import useGetRouteMapMarkers from '../../../../hooks/useGetRouteMapMarkers';
-import {useCallback} from 'react';
+} from '@type/rootStack';
+import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
+import {getMapInitLocation} from '@utils/webView';
+import {getHorizontalPx} from '@helpers/layoutFoo';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import AnimSvg from '../../../../helpers/animSvg';
-import TypicalRedBtn from '../../../../sharedComponents/buttons/typicalRed';
-import gradient from './gradientSvg';
-import {ListBtn} from '../../../../sharedComponents/buttons';
+import AnimSvg from '@helpers/animSvg';
+import {FindMeButton, ListBtn, TypicalRedBtn} from '@sharedComponents/buttons';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+
 import BottomInfoTile from './bottomList.tsx/bottomInfoTile';
-
+import gradient from './gradientSvg';
 import mapSource from './routesMapHtml';
 
 import styles from './style';
-import FindMeButton from '../../../../sharedComponents/buttons/findMeBtn';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -43,22 +48,33 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const mapRef = useRef(null);
     const posRef = useRef(false);
 
+    const {location} = useLocationProvider();
+    const [initLocation, setInitLocation] = useState<
+        BasicCoordsType | undefined
+    >();
+
     const trans: any = I18n.t('MainRoutesMap');
 
-    const [showWebView, setShowWebView] = useState(isIOS ? true : false);
+    const [showWebView, setShowWebView] = useState(true);
     const [adress, setAdress] = useState<MarkerDetailsType | null>(null);
     const [currentMapType, setCurrentMapType] = useState<RouteMapType>(
         route.params.activeTab || RouteMapType.BIKE_MAP,
     );
     const [mapLoaded, setMapLoaded] = useState(false);
 
-    const {location} = useGeolocation();
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
 
     const findBtnPosY = useRef(new Animated.Value(getHorizontalPx(40))).current;
     const maxFindBtnPosY = isIOS
         ? getHorizontalPx(148 + 16) + 20
         : getHorizontalPx(148 + 16);
+
+    useEffect(() => {
+        if (location) {
+            setInitLocation(location);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         Animated.timing(findBtnPosY, {
@@ -83,10 +99,10 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     const setJs = (foo: string) => mapRef.current?.injectJavaScript(foo);
 
     useEffect(() => {
-        if (location?.coords && mapLoaded) {
+        if (location && mapLoaded) {
             const pos = {
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
+                latitude: location.latitude,
+                longitude: location.longitude,
             };
 
             /**
@@ -101,7 +117,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
             }
         }
-    }, [location?.coords, mapLoaded]);
+    }, [location, mapLoaded]);
 
     const switchVisibleMarkers = useCallback(() => {
         switch (currentMapType) {
@@ -221,15 +237,17 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     const hendleFindMyLocation = () => {
-        if (location?.coords && mapLoaded) {
+        if (location && mapLoaded) {
             const pos = {
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
+                latitude: location.latitude,
+                longitude: location.longitude,
             };
 
             setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
         }
     };
+
+    const initMapPos = getMapInitLocation(initLocation);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -247,6 +265,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                         source={{
                             html:
                                 '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>' +
+                                initMapPos +
                                 mapSource +
                                 '</body></html>',
                             baseUrl:

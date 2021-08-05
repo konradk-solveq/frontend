@@ -7,46 +7,25 @@ import {
     SafeAreaView,
     View,
     Platform,
-    TouchableOpacity,
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {fetchPlacesData} from '../../../../storage/actions';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {fetchPlacesData} from '@storage/actions';
 
-import {
-    markerTypes,
-    Place,
-    PointDetails,
-} from '../../../../models/places.model';
+import {markerTypes, Place, PointDetails} from '@models/places.model';
+import {BasicCoordsType} from '@type/coords';
+import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
+import {setObjSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {getMapInitLocation} from '@utils/webView';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import AnimSvg from '../../../../helpers/animSvg';
-import TypicalRedBtn from '../../../../sharedComponents/buttons/typicalRed';
+import AnimSvg from '@helpers/animSvg';
+import {FindMeButton, TypicalRedBtn} from '@sharedComponents/buttons';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+
 import gradient from './gradientSvg';
-
 import AddressBox from './addressBox/addressBox';
-
-import {
-    setObjSize,
-    getHorizontalPx,
-    getVerticalPx,
-} from '../../../../helpers/layoutFoo';
-
 import mapSource from './servicesMapHtml';
-import {useRoute} from '@react-navigation/core';
-import {
-    onLocationChange,
-    cleanUp,
-    transformGeoloCationData,
-} from '../../../../utils/geolocation';
-import BackgroundGeolocation, {
-    Location,
-    LocationError,
-} from 'react-native-background-geolocation-android';
-import {Region} from 'react-native-maps';
-
-import FindMeButton from '../../../../sharedComponents/buttons/findMeBtn';
 
 interface Props {
     navigation: any;
@@ -57,93 +36,44 @@ const {width, height} = Dimensions.get('window');
 
 const ServicesMap: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
-    const isFetching = useAppSelector<boolean>(state => state.places.loading);
-    const places = useAppSelector<Place[]>(state => state.places.places);
-
     const trans: any = I18n.t('ServicesMap');
-    const param = props.route.params;
-    const route = useRoute();
+
+    const {location} = useLocationProvider();
+    const [initLocation, setInitLocation] = useState<
+        BasicCoordsType | undefined
+    >();
+    const places = useAppSelector<Place[]>(state => state.places.places);
 
     const [markersFilters, setMarkersFilters] = useState<markerTypes[]>([
         markerTypes.SERVICE,
         markerTypes.SHOP,
     ]);
     const [adress, setAdress] = useState<PointDetails | null>(null);
-    const [regionData, setRegionData] = useState<Region>(param.region);
     const [mapLoaded, setMapLoaded] = useState<boolean>(false);
 
     useEffect(() => {
-        const onLocationHandler = (data: Location) => {
-            if (data && data?.coords) {
-                const pos = {
-                    latitude: data.coords.latitude,
-                    longitude: data.coords.longitude,
-                };
-
-                setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
-            }
-        };
-
-        BackgroundGeolocation.start();
-
-        onLocationChange(onLocationHandler, () => {});
-
-        return () => {
-            BackgroundGeolocation.stop();
-            cleanUp();
-        };
+        if (location) {
+            setInitLocation(location);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const heandleShowAdress = (adressDetails: PointDetails | null) => {
-        if (adressDetails && Platform.OS === 'android') {
-            setRegionData(undefined);
+    useEffect(() => {
+        if (location) {
+            const pos = {
+                latitude: location.latitude,
+                longitude: location.longitude,
+            };
+            setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
         }
+    }, [location]);
+
+    const heandleShowAdress = (adressDetails: PointDetails | null) => {
         setAdress(adressDetails);
     };
 
-    const onRegionChangeHandler = (region: Region) => {
-        if (isFetching) {
-            return;
-        }
-
-        // wyliczenie regionu widocznego na ekranie
-        const newBox = {
-            top: region.latitude - region.latitudeDelta * 0.5,
-            bottom: region.latitude + region.latitudeDelta * 0.5,
-            left: region.longitude - region.longitudeDelta * 0.5,
-            right: region.longitude + region.longitudeDelta * 0.5,
-        };
-
-        setRegionData(region);
-
-        const getMapData = async () => {
-            if (isFetching) {
-                return;
-            }
-
-            let bbox = [
-                {lat: newBox.left, lng: newBox.top},
-                {lat: newBox.right, lng: newBox.bottom},
-            ];
-
-            try {
-                await dispatch(
-                    fetchPlacesData({
-                        bbox,
-                        width: 2500,
-                    }),
-                );
-            } catch (error) {
-                /* TODO: add ui info */
-                console.log('[Get places error]', error);
-            }
-        };
-
-        getMapData();
-    };
-
     const mapRef = useRef();
-    const setJs = (foo: string) => mapRef.current.injectJavaScript(foo);
+    const setJs = (foo: string) => mapRef?.current?.injectJavaScript(foo);
 
     /* TODO: extract as helper method */
     const heandleShops = () => {
@@ -155,10 +85,10 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                 const newFilters = prevFilters.filter(
                     f => f !== markerTypes.SHOP,
                 );
-                setJs('setShops(false)');
+                setJs('setShops(false);true;');
                 return newFilters;
             }
-            setJs('setShops(true)');
+            setJs('setShops(true);true;');
             return [...prevFilters, markerTypes.SHOP];
         });
     };
@@ -172,10 +102,10 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                 const newFilters = prevFilters.filter(
                     f => f !== markerTypes.SERVICE,
                 );
-                setJs('setServices(false)');
+                setJs('setServices(false);true;');
                 return newFilters;
             }
-            setJs('setServices(true)');
+            setJs('setServices(true);true;');
             return [...prevFilters, markerTypes.SERVICE];
         });
     };
@@ -211,25 +141,23 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                 }
                 break;
             case 'clickMarker':
-                {
-                    heandleShowAdress(JSON.parse(val[1]));
-                }
+                heandleShowAdress(JSON.parse(val[1]));
                 break;
             case 'clickMap':
-                {
-                    heandleShowAdress(null);
-                }
+                heandleShowAdress(null);
                 break;
         }
     };
 
     const hendleFindMyLocation = () => {
-        let pos = {
-            latitude: route.params.location.latitude,
-            longitude: route.params.location.longitude,
-        };
+        if (location) {
+            let pos = {
+                latitude: location.latitude,
+                longitude: location.longitude,
+            };
 
-        setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+            setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+        }
     };
 
     const heandleMapLoaded = () => {
@@ -240,9 +168,9 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (mapLoaded && places.length > 0) {
             let p = JSON.stringify(places);
-            setJs(`setMarks(${p});`);
+            setJs(`setMarks(${p});true;`);
         }
-    }, [places]);
+    }, [places, mapLoaded]);
 
     setObjSize(350, 23);
     const styles = StyleSheet.create({
@@ -299,6 +227,8 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
         },
     });
 
+    const initMapPos = getMapInitLocation(initLocation);
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.fullView}>
@@ -310,10 +240,11 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                     scrollEnabled={false}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
-                    onLoadEnd={() => heandleMapLoaded()}
+                    onLoadEnd={heandleMapLoaded}
                     source={{
                         html:
                             '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>' +
+                            initMapPos +
                             mapSource +
                             '</body></html>',
                         baseUrl:

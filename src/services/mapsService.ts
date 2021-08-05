@@ -11,18 +11,20 @@ import {
     uploadImageToMapData,
     getRoute,
     getMarkersList,
-} from '../api';
-import {LocationDataI} from '../interfaces/geolocation';
-import {ImagesMetadataType} from '../interfaces/api';
-import {MapFormDataResult, PickedFilters} from '../interfaces/form';
-import {MapType, Coords, MapMarkerType} from '../models/map.model';
-import {getFiltersParam} from '../utils/apiDataTransform/filters';
+} from '@api/index';
+
+import {BBox} from '@models/places.model';
+import {MapType, Coords, MapMarkerType} from '@models/map.model';
+import {ImagesMetadataType} from '@interfaces/api';
+import {MapFormDataResult, PickedFilters} from '@interfaces/form';
+import {BasicCoordsType} from '@type/coords';
+import {I18n} from '@translations/I18n';
+
 import {
     createFileFormData,
     mapFormMetadataToAPIRequest,
-} from '../utils/apiDataTransform/prepareRequest';
-import {I18n} from '../../I18n/I18n';
-import {BBox} from '../models/places.model';
+} from '@utils/apiDataTransform/prepareRequest';
+import {getFiltersParam} from '@utils/apiDataTransform/filters';
 
 export interface MapsData {
     elements: MapType[] | [];
@@ -414,10 +416,10 @@ export const getMapsByTypeAndId = async (
 
 export const getMarkersListService = async (
     bbox: BBox,
-    locaiton: LocationDataI,
+    location: BasicCoordsType,
 ): Promise<MapMarkersResponse> => {
     try {
-        const response = await getMarkersList(bbox, locaiton);
+        const response = await getMarkersList(bbox, location);
 
         if (
             !response?.data ||

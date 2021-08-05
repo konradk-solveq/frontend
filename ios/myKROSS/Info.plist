@@ -45,6 +45,8 @@
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>The location allows constant access to the geolocation of the device for the purpose of recording user activity in the application.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>The location allows constant access to the geolocation of the device for the purpose of recording user activity in the application.</string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 	<dict>
 		<key>Recording a trip</key>
