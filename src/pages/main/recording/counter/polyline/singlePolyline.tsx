@@ -88,18 +88,20 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
      * Restore path from SQL only when app came from background.
      */
     useEffect(() => {
+        let t: NodeJS.Timeout;
         if (appIsActive && previousState === 'background' && currentRouteId) {
             redrawPolyline();
 
             setPrevoiusState('active');
         } else {
-            setTimeout(() => {
+            t = setTimeout(() => {
                 restoreRef.current = true;
             }, 200);
         }
 
         return () => {
             restoreRef.current = false;
+            clearTimeout(t);
         };
     }, [appIsActive, previousState, currentRouteId, redrawPolyline]);
 

@@ -7,39 +7,32 @@ import {
     Platform,
     StatusBar,
 } from 'react-native';
-import I18n from 'react-native-i18n';
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import {ScrollView} from 'react-native-gesture-handler';
-import GetLocation from 'react-native-get-location';
 
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
-import {getBike} from '../../../helpers/transformUserBikeData';
-import {removeBikeByNumber} from '../../../storage/actions';
-import {PERMISSIONS, request} from 'react-native-permissions';
-import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
-import {bikesListSelector} from '../../../storage/selectors';
-import {fetchPlacesData} from '../../../storage/actions';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {UserBike} from '@models/userBike.model';
+import {RegularStackRoute} from '@navigation/route';
+import {fetchPlacesData, removeBikeByNumber} from '@storage/actions';
+import {bikesListSelector} from '@storage/selectors';
+import {I18n} from '@translations/I18n';
+import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
+import geoBox from '@helpers/geoBox';
+import {getBike} from '@helpers/transformUserBikeData';
+import {countDaysToEnd} from '@helpers/warranty';
+import {getVerticalPx} from '@helpers/layoutFoo';
 
-import Warranty from './warranty';
-import Reviews from './reviews';
-import ComplaintsRepairs from './complaintsRepairs';
+import {CogBtn, BigRedBtn, ServiceMapBtn} from '@sharedComponents/buttons';
+import SliverImage from '@sharedComponents/sliverImage/sliverImage';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import TabBackGround from '@sharedComponents/navi/tabBackGround';
+
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
-import {countDaysToEnd} from '../../../helpers/warranty';
-import ServiceMapBtn from '../../../sharedComponents/buttons/serviceMap';
-import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+import ComplaintsRepairs from './complaintsRepairs';
+import Reviews from './reviews';
+import Warranty from './warranty';
 
-import geoBox from '../../../helpers/geoBox';
-
-import {UserBike} from '../../../models/userBike.model';
-
-import {CogBtn} from '../../../sharedComponents/buttons';
-
-import SliverImage from '../../../sharedComponents/sliverImage/sliverImage';
 import styles from './style';
-import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
-import {getVerticalPx} from '../../../helpers/layoutFoo';
-import useStatusBarHeight from '../../../hooks/statusBarHeight';
-import {RegularStackRoute} from '../../../navigation/route';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -57,8 +50,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     const scrollRef = useRef<null | ScrollView>(null);
     const statusBarHeight = useStatusBarHeight();
 
-    const headerBackgroundHeight =
-        getVerticalPx(100); /* equal to header height */
+    const loc = useLocationProvider()?.location;
 
     const dispatch = useAppDispatch();
     const bikes = useAppSelector(bikesListSelector);
@@ -77,89 +69,40 @@ const Bike: React.FC<Props> = (props: Props) => {
     });
     const [region, serRegion] = useState(defaultRegion);
     const [location, serLocation] = useState({
-        longitude: 20.89136063395526,
-        latitude: 53.008773556173104,
+        longitude: loc?.latitude || 20.89136063395526,
+        latitude: loc?.longitude || 53.008773556173104,
     });
-
-    const [hasPermissions, setHasPermission] = useState(false);
 
     const getCurrentLocationPositionHandler = useCallback(() => {
         let newBox;
-        if (!hasPermissions && Platform.OS === 'android') {
-            askLocationPermissionOnAndroid();
-            return;
-        }
-        GetLocation.getCurrentPosition({
-            enableHighAccuracy: true,
-            timeout: 15000,
-        })
-            .then(location => {
-                serLocation(location);
-                newBox = geoBox(
-                    {
-                        lon: location.longitude,
-                        lat: location.latitude,
-                    },
-                    35,
-                );
-                serBox(newBox);
-                serRegion({
-                    latitude: location.latitude,
-                    longitude: location.longitude,
-                    latitudeDelta: Math.abs((newBox.left - newBox.right) / 2),
-                    longitudeDelta: Math.abs((newBox.top - newBox.bottom) / 2),
-                });
-            })
-            .then(() => {
-                dispatch(
-                    fetchPlacesData({
-                        bbox: [
-                            {lat: newBox.left, lng: newBox.top},
-                            {lat: newBox.right, lng: newBox.bottom},
-                        ],
-                        width: 2000,
-                    }),
-                );
-            })
-            .catch(error => {
-                const {code, message} = error;
-                if (code === 'UNAVAILABLE' && Platform.OS === 'android') {
-                    openLocationSettings();
-                }
-                console.warn(code, message);
-            });
-    }, [hasPermissions]);
 
-    /* TODO: extract location methods to helper/custom hook */
-    const openLocationSettings = () => {
-        RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
-            interval: 10000,
-            fastInterval: 5000,
-        })
-            .then(data => {
-                getCurrentLocationPositionHandler();
-            })
-            .catch(err => {
-                console.log('location settings - error', err);
+        if (loc) {
+            serLocation(loc);
+            newBox = geoBox(
+                {
+                    lon: loc.longitude,
+                    lat: loc.latitude,
+                },
+                35,
+            );
+            serBox(newBox);
+            serRegion({
+                latitude: loc.latitude,
+                longitude: loc.longitude,
+                latitudeDelta: Math.abs((newBox.left - newBox.right) / 2),
+                longitudeDelta: Math.abs((newBox.top - newBox.bottom) / 2),
             });
-    };
-
-    const askLocationPermissionOnAndroid = async () => {
-        try {
-            request(
-                Platform.select({
-                    android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-                    ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
+            dispatch(
+                fetchPlacesData({
+                    bbox: [
+                        {lat: newBox.left, lng: newBox.top},
+                        {lat: newBox.right, lng: newBox.bottom},
+                    ],
+                    width: 2000,
                 }),
-            ).then(res => {
-                if (res === 'granted') {
-                    setHasPermission(true);
-                }
-            });
-        } catch (error) {
-            console.log('location set error:', error);
+            );
         }
-    };
+    }, [dispatch, loc]);
 
     useEffect(() => {
         getCurrentLocationPositionHandler();

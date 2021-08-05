@@ -2,11 +2,10 @@ import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
 import ReduxThunk from 'redux-thunk';
 
 import {startRecordingRoute, stopCurrentRoute} from '../routes';
-import * as actionTypes from '../actionTypes';
 import instance from '../../../api/api';
 
 import {initState} from './utils/state';
-import {endDate, startedRoute, stoppedRoute} from './utils/routeData';
+import {endDate, startedRoute} from './utils/routeData';
 import {
     startRecordingExpectedActions,
     stopRecordingExpectedActions,

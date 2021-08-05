@@ -1,9 +1,11 @@
-import {ApiPathI, LocationDataI} from '../../interfaces/geolocation';
-import {Point} from '../../models/places.model';
-import {MapMetadataType} from '../../interfaces/api';
-import {ImageType, MapFormDataResult} from '../../interfaces/form';
-import {I18n} from '../../../I18n/I18n';
-import {getDateString} from '../dateTime';
+import {Point} from '@models/places.model';
+import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
+import {MapMetadataType} from '@interfaces/api';
+import {ImageType, MapFormDataResult} from '@interfaces/form';
+import {BasicCoordsType} from '@type/coords';
+
+import {I18n} from '@translations/I18n';
+import {getDateString} from '@utils/dateTime';
 
 export const tranformParamsToBBoxRequest = (data: Point[]): string => {
     const first = `bbox=${data[0].lat}&bbox=${data[0].lng}`;
@@ -80,6 +82,15 @@ export const tranformParamsToLocationRequest = (
 ): string => {
     const lat = `lat=${locaiton.coords.latitude}`;
     const lng = `lng=${locaiton.coords.longitude}`;
+
+    return `${lat}&${lng}`;
+};
+
+export const tranformParamsToBasicLocationRequest = (
+    locaiton: BasicCoordsType,
+): string => {
+    const lat = `lat=${locaiton.latitude}`;
+    const lng = `lng=${locaiton.longitude}`;
 
     return `${lat}&${lng}`;
 };

@@ -1,4 +1,8 @@
-import {AppThunk} from '../thunk';
+import {
+    NetInfoCellularGeneration,
+    NetInfoStateType,
+} from '@react-native-community/netinfo';
+
 import * as actionTypes from './actionTypes';
 import {
     fetchGenericBikeData,
@@ -7,29 +11,27 @@ import {
     syncRouteDataFromQueue,
     fetchPrivateMapsList,
 } from './index';
-import {AppConfigI} from '../../models/config.model';
-
-import logger from '../../utils/crashlytics';
-import {I18n} from '../../../I18n/I18n';
-import {getAppConfigService, getFaqService} from '../../services';
-import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {fetchPlannedMapsList} from './maps';
+import {AppThunk} from '@storage/thunk';
+import {AppState} from '@storage/reducers/app';
+import {RoutesState} from '@storage/reducers/routes';
+import {AppConfigI} from '@models/config.model';
+import {BasicCoordsType} from '@type/coords';
 import {
     FaqType,
     RegulationType,
     TermsAndConditionsType,
-} from '../../models/regulations.model';
+} from '@models/regulations.model';
+import {setUserAgentHeader} from '@api/index';
 import {
+    getAppConfigService,
+    getFaqService,
     getAppTermsAndConditionsService,
     getNewRegulationsService,
-} from '../../services';
-import {setUserAgentHeader} from '../../api';
-import {
-    NetInfoCellularGeneration,
-    NetInfoStateType,
-} from '@react-native-community/netinfo';
-import {AppState} from '../reducers/app';
-import {RoutesState} from '../reducers/routes';
+} from '@services/index';
+import {I18n} from '@translations/I18n';
+import logger from '@utils/crashlytics';
+import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -100,6 +102,11 @@ export const setSyncError = (error: string, statusCode: number) => ({
 
 export const setLocationInfoShowed = () => ({
     type: actionTypes.SET_LOCATION_INFO_SHOWED,
+});
+
+export const setGlobalLocation = (coords: BasicCoordsType) => ({
+    type: actionTypes.SET_GLOBAL_LOCATION,
+    coords: coords,
 });
 
 export const clearAppError = () => ({

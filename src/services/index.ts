@@ -5,12 +5,15 @@ export {
 } from './bikesService';
 export {getPlacesList} from './placesService';
 export {
+    addPlannedMapsListService,
     getMapsList,
     getPrivateMapsListService,
     getMapsByTypeAndId,
     editPrivateMapMetadataService,
-    removePrivateMapByIdService,
     getMarkersListService,
+    getPlannedMapsListService,
+    removePlannedMapByIdService,
+    removePrivateMapByIdService,
 } from './mapsService';
 export {syncRouteData, createNewRouteService} from './routesService';
 export {
