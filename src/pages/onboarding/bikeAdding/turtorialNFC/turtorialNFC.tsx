@@ -46,6 +46,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const refTimer = useRef<any>();
     const trans: any = I18n.t('TurtorialNFC');
     const dispatch = useAppDispatch();
+    const nfcIsOnRef = useRef(false);
 
     const isLoading = useAppSelector(loadingBikesSelector);
     const bikesList = useAppSelector(bikesListSelector);
@@ -55,20 +56,21 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const [showScanModal, setShowScanModal] = useState<boolean>(false);
     const [startScanNFC, setStartScanNFC] = useState<boolean>(false);
 
-    const [nfcIsOn, setNfcIsoOn] = useState(false);
-
     useEffect(() => {
-        if (!nfcIsOn) {
+        if (!nfcIsOnRef.current) {
             nfcIsEnabled().then(r => {
                 if (r) {
                     initNfc().then(res => {
-                        setNfcIsoOn(res);
+                        nfcIsOnRef.current = res;
                     });
                 }
             });
         }
-        return () => cleanUp();
-    }, [nfcIsOn]);
+        return () => {
+            cleanUp();
+            nfcIsOnRef.current = false;
+        };
+    }, []);
 
     const goForwardHandler = useCallback(
         async (frame: string) => {
@@ -110,8 +112,8 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                 if (e === 'CANCELED') {
                     refTimer.current = setTimeout(
                         () => {
-                            setNfcIsoOn(false);
                             setStartScanNFC(false);
+                            nfcIsOnRef.current = false;
                         },
                         isAndroid ? 0 : 1500,
                     );
@@ -123,12 +125,12 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         setShowScanModal(false);
         if (startScanNFC) {
             setStartScanNFC(false);
-            setNfcIsoOn(false);
+            nfcIsOnRef.current = false;
         }
     }, [startScanNFC]);
 
     useEffect(() => {
-        if (nfcIsOn) {
+        if (nfcIsOnRef.current) {
             if (startScanNFC) {
                 readNFCTag();
             }
@@ -147,13 +149,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         }
 
         return () => clearTimeout(refTimer.current);
-    }, [
-        nfcIsOn,
-        readNFCTag,
-        trans.alertMessage,
-        startScanNFC,
-        cancelScanByNfcHandler,
-    ]);
+    }, [readNFCTag, trans.alertMessage, startScanNFC, cancelScanByNfcHandler]);
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -257,7 +253,8 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                             title={trans.btnHand}
                             onpress={() =>
                                 props.navigation.navigate({
-                                    name: BothStackRoute.ADDING_BY_NUMBER_SCREEN,
+                                    name:
+                                        BothStackRoute.ADDING_BY_NUMBER_SCREEN,
                                     params: {emptyFrame: true},
                                 })
                             }

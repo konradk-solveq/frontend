@@ -54,7 +54,6 @@ function readNdef() {
 
                 parsed = ndefRecords.map(decodeNdefRecord);
             }
-            // console.log('%c parsed:', 'background: #ffcc00; color: #003300', parsed)
 
             resolve(parsed);
             // NfcManager.setAlertMessageIOS('NDEF tag found');
