@@ -5,11 +5,15 @@ import {
     StatusBar,
     SafeAreaView,
     Platform,
+    Text,
 } from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {RegularStackRoute} from '@navigation/route';
-import {removePrivateMapMetaData} from '@storage/actions/maps';
+import {
+    removePlanendMap,
+    removePrivateMapMetaData,
+} from '@storage/actions/maps';
 import {userIdSelector} from '@storage/selectors/auth';
 import {
     selectMapDataByIDBasedOnTypeSelector,
@@ -22,7 +26,7 @@ import {getImagesThumbs} from '@utils/transformData';
 
 import {I18n} from '@translations/I18n';
 import {getVerticalPx} from '@helpers/layoutFoo';
-import {EditBtn, BigRedBtn} from '@sharedComponents/buttons';
+import {EditBtn, BigRedBtn, BigWhiteBtn} from '@sharedComponents/buttons';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import SliverTopBar from '@sharedComponents/sliverTopBar/sliverTopBar';
 import BottomModal from '@sharedComponents/modals/bottomModal/bottomModal';
@@ -95,6 +99,17 @@ const RouteDetails = () => {
         setShowBottomModal(false);
     };
 
+    const onPressStartRouteHandler = () => {
+        navigation.navigate({
+            name: RegularStackRoute.COUNTER_SCREEN,
+            params: {mapID: mapID, private: privateMap},
+        });
+    };
+    const onPressRemoveFromFacouritesHandler = () => {
+        dispatch(removePlanendMap(mapID));
+        navigation.goBack();
+    };
+
     return (
         <>
             <StatusBar translucent />
@@ -130,15 +145,44 @@ const RouteDetails = () => {
                                 isPrivateView={privateMap}
                                 isFavView={favouriteMap}
                             />
-                            <BigRedBtn
-                                title={
-                                    !privateMap
-                                        ? trans.reportButton
-                                        : trans.deleteButton
-                                }
-                                onpress={onPressHandler}
-                                style={styles.reportButton}
-                            />
+                            {!favouriteMap && (
+                                <BigRedBtn
+                                    title={
+                                        !privateMap
+                                            ? trans.reportButton
+                                            : trans.deleteButton
+                                    }
+                                    onpress={onPressHandler}
+                                    style={styles.reportButton}
+                                />
+                            )}
+                            {favouriteMap && (
+                                <>
+                                    <BigRedBtn
+                                        title={trans.startButton}
+                                        onpress={onPressStartRouteHandler}
+                                        style={styles.reportButton}
+                                    />
+                                    <BigWhiteBtn
+                                        title={trans.removeRouteButton}
+                                        onpress={
+                                            onPressRemoveFromFacouritesHandler
+                                        }
+                                        style={styles.removeRouteButton}
+                                    />
+                                    <View style={styles.textButtonContainer}>
+                                        <Text style={styles.textButton}>
+                                            {`${trans.textPrefix} `}
+                                            <Text
+                                                onPress={onPressHandler}
+                                                style={styles.textbuttonAction}>
+                                                {trans.textAction}
+                                            </Text>
+                                            {trans.textSuffix}
+                                        </Text>
+                                    </View>
+                                </>
+                            )}
                         </View>
                     </SliverTopBar>
                 </View>
@@ -188,6 +232,25 @@ const styles = StyleSheet.create({
     },
     reportButton: {
         height: 50,
+    },
+    removeRouteButton: {
+        marginTop: getVerticalPx(30),
+        marginBottom: getVerticalPx(30),
+        height: 50,
+    },
+    textButtonContainer: {
+        width: '100%',
+        height: '100%',
+    },
+    textButton: {
+        fontFamily: 'DIN2014Narrow-Light',
+        fontSize: 18,
+        letterSpacing: 0.5,
+        lineHeight: 24,
+        color: '#555555',
+    },
+    textbuttonAction: {
+        color: '#3587ea',
     },
 });
 

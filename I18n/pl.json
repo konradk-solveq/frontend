@@ -387,6 +387,11 @@
         "noInfo": "brak informacji",
         "deleteButton": "Usuń",
         "reportButton": "Zgłoś naruszenie",
+        "startButton": "Rozpocznij",
+        "removeRouteButton": "Usuń trasę",
+        "textPrefix": "Jeśli zauważysz coś, co w Twojej ocenie stanowi naruszenie regulaminu aplikacji myKROSS lub trasa zawiera błędne informacje -",
+        "textAction": "poinformuj nas o tym",
+        "textSuffix": ".",
         "details": {
             "author": "Autor",
             "defaultAuthor": "Rowerzysta",
