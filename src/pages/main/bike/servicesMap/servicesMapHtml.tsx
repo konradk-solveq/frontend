@@ -64,6 +64,12 @@ const setMyLocation = position => {
     }
 }
 
+// dodawanie punktów po zmianie regionu
+let marks = {};
+let clusterShops = null;
+let clusterService = null;
+let clusterServiceShops = null;
+
 const setPosOnMap = position => {
     let latLng = new google.maps.LatLng(position.latitude, position.longitude);
 
@@ -454,39 +460,10 @@ function initMap() {
     setTimeout(() => {
         getRgion();
     }, 1500);
-}
-
-// dodawanie punktów po zmianie regionu
-let marks = {};
-let clusterShops = null;
-let clusterService = null;
-let clusterServiceShops = null;
-
-const setMarks = places => {
-    for (let p of places) {
-        let id = p.details.name.replace(/[\.\s]/g, '_');
-        let type = p.markerTypes.join('');
-        if (typeof marks[type] == 'undefined') marks[type] = [];
-        if (marks[type].some(e => e.id == id)) continue;
-
-        let mark = new google.maps.Marker({
-            id,
-            position: new google.maps.LatLng(p.lat, p.lng),
-            icon: type + '_marker.png',
-            map: map,
-            details: p.details,
-        });
-
-        marks[type].push(mark);
-
-        // do pokazywania alpi z adresem
-        google.maps.event.addDomListener(mark, 'click', function() {
-            window.ReactNativeWebView.postMessage("clickMarker#$#"+JSON.stringify(mark.details));
-        });
-    }
 
     clusterShops = new MarkerClusterer(map, marks.shop, {
-        ignoreHidden: true,
+        ignoreHidden: false,
+        tracksViewChanges: true,
         styles: [{
                 url: "shop_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
@@ -536,7 +513,8 @@ const setMarks = places => {
     });
 
     clusterService = new MarkerClusterer(map, marks.service, {
-        ignoreHidden: true,
+        ignoreHidden: false,
+        tracksViewChanges: true,
         styles: [{
                 url: "service_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
@@ -587,6 +565,7 @@ const setMarks = places => {
 
     clusterServiceShops = new MarkerClusterer(map, marks.serviceshop, {
         ignoreHidden: true,
+        tracksViewChanges: true,
         styles: [{
                 url: "serviceshop_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
@@ -636,14 +615,154 @@ const setMarks = places => {
     });
 }
 
+
+const setMarks = places => {
+    for (let p of places) {
+        let id = p.details.name.replace(/[\.\s]/g, '_');
+        let type = p.markerTypes.join('');
+        if (typeof marks[type] == 'undefined') marks[type] = [];
+        if (marks[type].some(e => e.id == id)) continue;
+
+        let mark = new google.maps.Marker({
+            id,
+            position: new google.maps.LatLng(p.lat, p.lng),
+            icon: type + '_marker.png',
+            map: map,
+            details: p.details,
+        });
+
+        marks[type].push(mark);
+
+        // do pokazywania alpi z adresem
+        google.maps.event.addDomListener(mark, 'click', function() {
+            window.ReactNativeWebView.postMessage("clickMarker#$#"+JSON.stringify(mark.details));
+        });
+
+        switch (type) {
+            case 'shop': { clusterShops.addMarkers([mark]); }; break;
+            case 'service': { clusterService.addMarkers([mark]); }; break;
+            case 'serviceshop': { clusterServiceShops.addMarkers([mark]); }; break;
+        }
+    }
+}
+
+
 const setShops = visibility => {
     marks.shop.forEach(e => e.setVisible(visibility));
-    clusterShops.repaint();
+
+    if (visibility) {
+        clusterShops = new MarkerClusterer(map, marks.shop, {
+            ignoreHidden: false,
+            tracksViewChanges: true,
+            styles: [{
+                    url: "shop_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+                {
+                    url: "shop_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+                {
+                    url: "shop_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+                {
+                    url: "shop_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+                {
+                    url: "shop_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+            ]
+        });
+    } else {
+        clusterShops.clearMarkers();
+    }
 }
 
 const setServices = visibility => {
     marks.service.forEach(e => e.setVisible(visibility));
-    clusterService.repaint();
+
+    if (visibility) {
+        clusterService = new MarkerClusterer(map, marks.service, {
+            ignoreHidden: false,
+            tracksViewChanges: true,
+            styles: [{
+                    url: "service_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+                {
+                    url: "service_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+                {
+                    url: "service_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+                {
+                    url: "service_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+                {
+                    url: "service_empty.png",
+                    fontFamily: "DIN2014Narrow-Regular",
+                    textSize: 30,
+                    textColor: "#fff",
+                    width: 44,
+                    height: 44,
+                    anchor:[22,22],
+                },
+            ]
+        });
+    } else {
+        clusterService.clearMarkers();
+    }
 }
 </script>
 
