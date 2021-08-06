@@ -1,8 +1,10 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {
     getHorizontalPx,
     getVerticalPx,
 } from '../../../../../../helpers/layoutFoo';
+
+const isIOS = Platform.OS === 'ios';
 
 const stylesFourthSection = StyleSheet.create({
     firstColumn: {
@@ -20,7 +22,7 @@ const stylesFourthSection = StyleSheet.create({
         flexDirection: 'row',
     },
     secondColumnIcon: {
-        marginTop: getVerticalPx(8),
+        marginTop: getVerticalPx(isIOS ? 3 : 8),
         marginRight: getHorizontalPx(7),
         width: getHorizontalPx(16),
         height: getHorizontalPx(16),
