@@ -31,3 +31,4 @@ export {
     getRegulationService,
     getFaqService,
 } from './appService';
+export {modifyReactionService, removeReactionService} from './reactionsService';

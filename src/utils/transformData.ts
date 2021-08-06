@@ -119,6 +119,8 @@ export const transformToMapsType = (data: any): Map => {
         rating,
         isPublic,
         downloads,
+        reaction,
+        reactions,
     } = data;
 
     const newData = new Map(id, name, path, date, createdAt);
@@ -166,6 +168,12 @@ export const transformToMapsType = (data: any): Map => {
     }
     if (downloads) {
         newData.downloads = downloads;
+    }
+    if (reaction) {
+        newData.reaction = reaction;
+    }
+    if (reactions) {
+        newData.reactions = reactions;
     }
 
     return newData;

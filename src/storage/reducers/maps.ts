@@ -5,6 +5,7 @@ import * as actionTypes from '../actions/actionTypes';
 import {MapType} from '../../models/map.model';
 import {MapPagination} from '../../interfaces/api';
 import {RouteMapType} from '../../models/places.model';
+import {updateReactionsInMap} from '@utils/mapsData';
 
 export interface MapsState {
     maps: MapType[];
@@ -196,6 +197,19 @@ const mapsReducer = (state = initialStateList, action: any) => {
             return {
                 ...state,
                 ...newMaps,
+                statusCode: 200,
+            };
+        }
+        case actionTypes.MODIFY_MAP_REACTIONS: {
+            const modifiedMaps = updateReactionsInMap(
+                state.maps,
+                action.mapIdToModify,
+                action.reaction,
+            );
+
+            return {
+                ...state,
+                maps: modifiedMaps,
                 statusCode: 200,
             };
         }

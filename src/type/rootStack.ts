@@ -3,7 +3,9 @@ import {RouteProp} from '@react-navigation/native';
 import {RouteMapType} from '../models/places.model';
 
 export type RootStackType = {
-    World: {activeTab?: RouteMapType} | undefined;
+    World:
+        | {activeTab?: RouteMapType; refreshAfterReactioChanged?: boolean}
+        | undefined;
     RoutesMap: {
         activeTab: RouteMapType;
         private?: boolean;
