@@ -39,7 +39,7 @@
         "react-native": "^0.64.2",
         "react-native-android-location-enabler": "^1.2.2",
         "react-native-background-fetch": "^4.0.2",
-        "react-native-background-geolocation-android": "git+ssh://git@github.com-solveq:transistorsoft/react-native-background-geolocation-android.git",
+        "react-native-background-geolocation-android": "git+ssh://git@github.com:transistorsoft/react-native-background-geolocation-android.git",
         "react-native-compass-heading": "^1.2.1",
         "react-native-config": "^1.4.2",
         "react-native-device-info": "^8.1.0",
