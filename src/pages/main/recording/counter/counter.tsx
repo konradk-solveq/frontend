@@ -371,6 +371,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     duration={ANIMATION_DURATION}
                 />
 
+                <Map
+                    routeId={followedRouteId || route?.params?.mapID}
+                    trackerData={trackerData}
+                    autoFindMe={autoFindMe}
+                />
+
                 {bikes && (
                     <Animated.View
                         pointerEvents="box-none"
@@ -390,22 +396,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         />
                     </Animated.View>
                 )}
-
-                <CounterDataContext.Provider
-                    value={{trackerData, pauseTime: pauseTime.total}}>
-                    <NativeCounter
-                        time={trackerStartTime}
-                        isRunning={isActive}
-                        mapHiden={mapHiden}
-                        setMapHiden={setMapHiden}
-                        duration={ANIMATION_DURATION}
-                        aplaShow={
-                            pageState === 'cancelText' ||
-                            pageState === 'endMessage'
-                        }
-                        autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
-                    />
-                </CounterDataContext.Provider>
 
                 <View style={styles.apla} pointerEvents="none">
                     <Apla
@@ -429,11 +419,21 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     rightBtnCallback={heandleRightBtnClick}
                 />
 
-                <Map
-                    routeId={followedRouteId || route?.params?.mapID}
-                    trackerData={trackerData}
-                    autoFindMe={autoFindMe}
-                />
+                <CounterDataContext.Provider
+                    value={{trackerData, pauseTime: pauseTime.total}}>
+                    <NativeCounter
+                        time={trackerStartTime}
+                        isRunning={isActive}
+                        mapHiden={mapHiden}
+                        setMapHiden={setMapHiden}
+                        duration={ANIMATION_DURATION}
+                        aplaShow={
+                            pageState === 'cancelText' ||
+                            pageState === 'endMessage'
+                        }
+                        autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
+                    />
+                </CounterDataContext.Provider>
             </View>
         </>
     );

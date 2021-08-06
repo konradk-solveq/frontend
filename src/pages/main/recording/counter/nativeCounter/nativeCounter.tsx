@@ -14,8 +14,8 @@ import {useState} from 'react';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
-const arrowPositionTop = getVerticalPx((isIOS ? 0 : 5) + 415);
-const arrowPositionBottom = getVerticalPx(isIOS ? -60 : -65);
+const arrowPositionTop = getVerticalPx((isIOS ? 0 : 5) + 437);
+const arrowPositionBottom = getVerticalPx((isIOS ? -10 : 5) + 654);
 
 interface IProps {
     time: Date | undefined;
@@ -252,19 +252,20 @@ const NativeCounter: React.FC<IProps> = ({
                         </Animated.View>
                     </Animated.View>
                 </Animated.View>
-                <Animated.View
-                    style={[
-                        styles.arrowBtnWrap,
-                        {
-                            top: arrowPos,
-                        },
-                    ]}>
-                    <CrossBtn
-                        onPress={arrowBtnActionHandler}
-                        down={mapHiden}
-                        duration={duration}
-                    />
-                </Animated.View>
+            </Animated.View>
+
+            <Animated.View
+                style={[
+                    styles.arrowBtnWrap,
+                    {
+                        top: arrowPos,
+                    },
+                ]}>
+                <CrossBtn
+                    onPress={arrowBtnActionHandler}
+                    down={mapHiden}
+                    duration={duration}
+                />
             </Animated.View>
 
             {!mapHiden && (
