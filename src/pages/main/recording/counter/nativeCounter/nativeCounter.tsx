@@ -14,8 +14,8 @@ import {useState} from 'react';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
-const arrowPositionTop = getVerticalPx((isIOS ? 0 : 5) + 437);
-const arrowPositionBottom = getVerticalPx((isIOS ? -10 : 5) + 654);
+const arrowPositionTop = getVerticalPx((isIOS ? 0 : -25) + 437);
+const arrowPositionBottom = getVerticalPx((isIOS ? -10 : -25) + 654);
 
 interface IProps {
     time: Date | undefined;
