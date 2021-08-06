@@ -10,7 +10,11 @@ import {
     editPrivateMapMetadataService,
     getMapsList,
     getPrivateMapsListService,
+    modifyReactionService,
     removePrivateMapByIdService,
+    removeReactionService,
+} from '@services/index';
+import {
     addPlannedMapsListService,
     getMapsByTypeAndId,
     getPlannedMapsListService,
@@ -18,7 +22,7 @@ import {
 } from '@services/index';
 
 import {I18n} from '@translations/I18n';
-import logger from '@utils/crashlytics';
+import logger, {loggError} from '@utils/crashlytics';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {checkMapExists} from '@utils/checkMapExists';
 
@@ -97,6 +101,12 @@ export const addMapToFavourite = (mapID: string) => ({
 export const removeMapFromFavourite = (mapID: string) => ({
     type: actionTypes.REMOVE_MAP_FROM_FAVOURITES,
     mapID: mapID,
+});
+
+export const modifyMapReactions = (mapID: string, reaction: string) => ({
+    type: actionTypes.MODIFY_MAP_REACTIONS,
+    mapIdToModify: mapID,
+    reaction: reaction,
 });
 
 export const removeMapFromPrivates = (mapID: string) => ({
@@ -414,5 +424,31 @@ export const fetchMapIfNotExistsLocally = (
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const modifyReaction = (
+    routeId: string,
+    reaction: string,
+    remove?: boolean,
+): AppThunk<Promise<void>> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const response = !remove
+            ? await modifyReactionService(routeId, reaction)
+            : await removeReactionService(routeId);
+
+        if (response.error || !response.data) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        dispatch(modifyMapReactions(routeId, reaction));
+
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+        dispatch(fetchPrivateMapsList());
+    } catch (error) {
+        loggError(error, 'modifyReaction');
     }
 };

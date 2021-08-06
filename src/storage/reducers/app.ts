@@ -43,6 +43,7 @@ const initialState: AppState = {
         difficulties: [],
         surfaces: [],
         tags: [],
+        reactions: [],
     },
     terms: [],
     currentTerms: {

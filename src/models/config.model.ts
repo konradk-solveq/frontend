@@ -11,6 +11,7 @@ export class AppConfig {
         public tags: SelectOptionType[],
         public surfaces: SelectOptionType[],
         public difficulties: SelectOptionType[],
+        public reactions: SelectOptionType[],
     ) {
         this.name = name;
         this.lang = lang;
@@ -18,6 +19,7 @@ export class AppConfig {
         this.tags = tags;
         this.surfaces = surfaces;
         this.difficulties = difficulties;
+        this.reactions = reactions;
     }
 }
 

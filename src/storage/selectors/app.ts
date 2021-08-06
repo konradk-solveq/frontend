@@ -60,6 +60,10 @@ export const faqDataSelector = (state: RootState): FaqType[] => state.app.faq;
 export const showedLocationInfoSelector = (state: RootState): boolean =>
     state.app.showedLocationInfo;
 
+export const mapReactionsConfigSelector = (
+    state: RootState,
+): SelectOptionType[] => state.app.config.reactions;
+
 export const globalLocationSelector = (
     state: RootState,
 ): BasicCoordsType | undefined => state.app.location;

@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {I18n} from '../../../../../../I18n/I18n';
 
 import AnimSvg from '../../../../../helpers/animSvg';
 
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {ReactionsType} from '@models/map.model';
+import {mapReactionsConfigSelector} from '@storage/selectors/app';
+import {modifyReaction} from '@storage/actions/maps';
 import {
     setObjSize,
     getCenterLeftPx,
@@ -15,23 +19,40 @@ import BikeIcon from '../../../../../sharedComponents/svg/bikeIcon';
 import ClockIcon from '../../../../../sharedComponents/svg/clockIcon';
 import MountainIcon from '../../../../../sharedComponents/svg/mountainIcon';
 import WayIcon from '../../../../../sharedComponents/svg/wayIcon';
+import FourthSection from '../../components/tiles/sections/fourthSection';
 
 interface Props {
+    mapId?: string;
     distance?: string;
     time?: string;
     level?: string;
     type?: string;
     containerStyle?: any;
+    reactions?: ReactionsType;
+    reaction?: string;
 }
 
 const RideTile: React.FC<Props> = ({
+    mapId,
     distance,
     time,
     level,
     type,
     containerStyle,
+    reactions,
+    reaction,
 }: Props) => {
     const trans: any = I18n.t('RoutesDetails');
+    const dispatch = useAppDispatch();
+
+    const config = useAppSelector(mapReactionsConfigSelector);
+    const likeValue = config?.find(c => c.enumValue === 'like');
+    const likesNumber = likeValue?.enumValue
+        ? reactions?.[likeValue.enumValue as keyof ReactionsType] || 0
+        : 0;
+
+    const [currentLikeNumber, setCurrentLikeNumber] = useState(likesNumber);
+
     setObjSize(412, 50);
     const w = getWidthPx();
     const l = getCenterLeftPx();
@@ -103,7 +124,7 @@ const RideTile: React.FC<Props> = ({
         container: {
             left: l,
             width: getHorizontalPx(334),
-            height: 120,
+            height: getHorizontalPx(180),
             borderRadius: getHorizontalPx(32),
             backgroundColor: 'transparent',
         },
@@ -111,7 +132,7 @@ const RideTile: React.FC<Props> = ({
             width: '100%',
             flexDirection: 'row',
             alignItems: 'center',
-            height: 60,
+            height: getHorizontalPx(60),
             justifyContent: 'center',
         },
         textContainer: {
@@ -122,14 +143,14 @@ const RideTile: React.FC<Props> = ({
         },
         topText: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(23),
+            fontSize: 23,
             color: '#313131',
             textAlign: 'center',
         },
         bottomText: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getHorizontalPx(15),
+            fontSize: 15,
             letterSpacing: 0.42,
             color: '#555555',
         },
@@ -151,7 +172,7 @@ const RideTile: React.FC<Props> = ({
             borderRightWidth: 1,
         },
         iconContainer: {
-            marginRight: 7,
+            marginRight: getHorizontalPx(7),
         },
         icon: {
             marginLeft: 0,
@@ -160,7 +181,26 @@ const RideTile: React.FC<Props> = ({
             marginLeft: 0,
             marginTop: 5,
         },
+        likekSection: {
+            marginTop: getHorizontalPx(7),
+        },
     });
+
+    const onLikePressedHandler = useCallback(
+        (state: boolean) => {
+            setCurrentLikeNumber(prev => (!state ? prev - 1 : prev + 1));
+            if (mapId) {
+                dispatch(
+                    modifyReaction(
+                        mapId,
+                        likeValue?.enumValue || 'like',
+                        !state,
+                    ),
+                );
+            }
+        },
+        [dispatch, likeValue, mapId],
+    );
 
     return (
         <View
@@ -191,7 +231,7 @@ const RideTile: React.FC<Props> = ({
                     </View>
                 </View>
 
-                <View style={styles.textLine}>
+                <View style={[styles.textLine, styles.line]}>
                     <View style={styles.verticalLine} />
                     <View style={styles.textContainer}>
                         <MountainIcon
@@ -211,6 +251,14 @@ const RideTile: React.FC<Props> = ({
                             {type || trans.noInfo}
                         </Text>
                     </View>
+                </View>
+
+                <View style={styles.likekSection}>
+                    <FourthSection
+                        likeGaved={reaction === likeValue?.enumValue}
+                        onLikePress={onLikePressedHandler}
+                        likeValue={currentLikeNumber}
+                    />
                 </View>
             </View>
         </View>
