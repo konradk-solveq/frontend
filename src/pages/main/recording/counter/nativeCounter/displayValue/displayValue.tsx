@@ -1,3 +1,4 @@
+import {pointToComaString} from '@src/helpers/stringFoo';
 import React, {useEffect, useRef} from 'react';
 import {TextStyle, Animated} from 'react-native';
 
@@ -39,7 +40,7 @@ const DisplayValue: React.FC<IProps> = ({
 
     return (
         <Animated.Text style={[styles.value, style, {fontSize: valueFontSize}]}>
-            {value}
+            {pointToComaString(value)}
             {suffix && (
                 <Animated.Text
                     style={[styles.valueSuffix, {fontSize: suffixFontSize}]}>
