@@ -52,6 +52,10 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
+    const [autoFindMeLastState, setAutoFindMeLastState] =
+        useState<boolean>(autoFindMe);
+
+    const ZOOM_START_VALUE = isIOS ? 18 : 17;
 
     useEffect(() => {
         const loc = async () => {
@@ -83,16 +87,28 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
     }, []);
 
     const setMapCamera = useCallback(() => {
-        if (mapRef.current && trackerData?.coords) {
-            let animation: Partial<Camera> = {
-                heading: compassHeading,
-            };
+        if (
+            mapRef.current &&
+            (autoFindMe !== autoFindMeLastState || trackerData?.coords)
+        ) {
+            let animation: Partial<Camera> = {};
 
-            if (autoFindMe) {
-                animation.center = {
-                    latitude: trackerData.coords.lat,
-                    longitude: trackerData.coords.lon,
-                };
+            if (trackerData?.coords) {
+                animation.heading = compassHeading;
+
+                if (autoFindMe) {
+                    animation.center = {
+                        latitude: trackerData.coords.lat,
+                        longitude: trackerData.coords.lon,
+                    };
+                }
+            }
+
+            if (autoFindMe != autoFindMeLastState) {
+                if (autoFindMe) {
+                    animation.zoom = ZOOM_START_VALUE;
+                }
+                setAutoFindMeLastState(autoFindMe);
             }
 
             mapRef.current?.animateCamera(animation, {duration: 1000});
@@ -107,7 +123,8 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
             };
 
             let ratio = 1;
-            const latitudeDelta = mapRef?.current?.__lastRegion?.latitudeDelta || 1;
+            const latitudeDelta =
+                mapRef?.current?.__lastRegion?.latitudeDelta || 1;
             const longitudeDelta =
                 mapRef?.current?.__lastRegion?.longitudeDelta || 1;
             if (typeof latitudeDelta !== 'undefined') {
@@ -171,7 +188,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
         pitch: 0,
         altitude: 0,
         heading: compassHeading,
-        zoom: isIOS ? 18 : 17,
+        zoom: ZOOM_START_VALUE,
     };
 
     return (
