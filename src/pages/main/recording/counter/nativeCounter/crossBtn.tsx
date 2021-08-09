@@ -28,7 +28,7 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style, duration}: Props) => {
     useEffect(() => {
         Animated.timing(displayLines, {
             toValue: down ? 0 : 1,
-            duration: duration,
+            duration: duration * 0.7,
             useNativeDriver: false,
         }).start();
     }, [down, displayLines]);
