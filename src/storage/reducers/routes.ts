@@ -1,8 +1,8 @@
 import {persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import * as actionTypes from '../actions/actionTypes';
-import {LocationDataI} from '../../interfaces/geolocation';
+import * as actionTypes from '@storage/actions/actionTypes';
+import {LocationDataI} from '@interfaces/geolocation';
 
 export interface CurrentRouteI {
     id: string;
@@ -22,6 +22,7 @@ export interface RoutesI {
 
 export interface RoutesState {
     currentRoute: CurrentRouteI;
+    isMapVisible: boolean;
     currentRouteData: LocationDataI[];
     routes: RoutesI[];
     routesToSync: string[] /* uuids */;
@@ -41,6 +42,7 @@ const initialStateList: RoutesState = {
         routeId: undefined,
         remoteRouteId: undefined,
     },
+    isMapVisible: false,
     currentRouteData: [],
     routes: [],
     routesToSync: [],
@@ -134,6 +136,12 @@ const routesReducer = (state = initialStateList, action: any) => {
                 currentRouteData: action.currentRouteData,
             };
         }
+        case actionTypes.SET_ROUTE_MAP_VISIBILITY: {
+            return {
+                ...state,
+                isMapVisible: action.isMapVisible,
+            };
+        }
         case actionTypes.CLEAR_CURRENT_ROUTE: {
             if (!action.keepId) {
                 return {
@@ -208,7 +216,7 @@ const persistConfig = {
     key: 'routes',
     storage: AsyncStorage,
     whitelist: [
-        'currentRoute, currentRouteData, routes, routesToSync, averageSpeed',
+        'currentRoute, currentRouteData, routes, routesToSync, averageSpeed, isMapVisible',
     ],
     timeout: 20000,
 };

@@ -1,16 +1,19 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, Dimensions, Animated, Platform} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
-import CrossBtn from './crossBtn';
+
+import {trackerMapVisibilitySelector} from '@storage/selectors/routes';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {FindMeButton} from '@sharedComponents/buttons';
+
 import DisplayAverageSpeed from './displayAverageSpeed/displayAveragaSpeed';
 import DisplayDistance from './displayDistance/displayDistance';
 import DisplaySpeed from './displaySpeed/displaySpeed';
 import DisplayTimer from './displayTimer/displayTimer';
 import CurvedShape from './curvedShape/curvedShape';
+import CrossBtn from './crossBtn';
 
 import styles from './style';
-import FindMeButton from '../../../../../sharedComponents/buttons/findMeBtn';
-import {useState} from 'react';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
@@ -38,6 +41,9 @@ const NativeCounter: React.FC<IProps> = ({
     autoFindMeSwith,
 }: IProps) => {
     const FIND_ME_BTN_BOTTOM = 235;
+    const resotredRef = useRef(false);
+
+    const trackerMapVisibility = useAppSelector(trackerMapVisibilitySelector);
 
     const containerHeight = useRef(new Animated.Value(height)).current;
     const containerBottom = useRef(new Animated.Value(0)).current;
@@ -98,6 +104,27 @@ const NativeCounter: React.FC<IProps> = ({
             useNativeDriver: false,
         }).start();
     }, [aplaShow, containerBottom, findMeBottom, duration, mapHiden]);
+
+    /**
+     * Set previus state on app resume.
+     */
+    useEffect(() => {
+        let t: NodeJS.Timeout;
+        if (isRunning && trackerMapVisibility && !resotredRef.current) {
+            t = setTimeout(() => {
+                startAnimation();
+                setMapHiden(false);
+            }, 1500);
+
+            resotredRef.current = true;
+        }
+
+        return () => {
+            resotredRef.current = false;
+            clearTimeout(t);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isRunning]);
 
     const wrapHeight = displayContainer.interpolate({
         inputRange: [0, 1],

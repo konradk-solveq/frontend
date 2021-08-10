@@ -74,6 +74,11 @@ export const setRoutesToSynch = (routeIds: string[]) => ({
     routeIds: routeIds,
 });
 
+export const setRouteMapVisibility = (isMapVisible: boolean) => ({
+    type: actionTypes.SET_ROUTE_MAP_VISIBILITY,
+    isMapVisible: isMapVisible,
+});
+
 export const clearRoutesToSynch = (routeIds: string[]) => ({
     type: actionTypes.CLEAR_ROUTES_TO_SYNC,
     ids: routeIds,
@@ -189,6 +194,7 @@ export const stopCurrentRoute = (
 
         dispatch(clearError());
         dispatch(setCurrentRoute(currentRouteToEnd));
+        dispatch(setRouteMapVisibility(false));
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[stopCurrentRoute] - ${error}`);
