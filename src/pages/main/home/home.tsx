@@ -132,11 +132,13 @@ const Home: React.FC = () => {
 
             <TabBackGround />
 
-            <NoBikeAddedModal
-                showModal={showModal}
-                onContinue={onContinueHandler}
-                onClose={onCancelHandler}
-            />
+            {!isTrackerActive && (
+                <NoBikeAddedModal
+                    showModal={showModal}
+                    onContinue={onContinueHandler}
+                    onClose={onCancelHandler}
+                />
+            )}
         </SafeAreaView>
     );
 };

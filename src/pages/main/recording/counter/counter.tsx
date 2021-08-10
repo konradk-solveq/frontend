@@ -19,7 +19,10 @@ import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
-import {setCurrentRoutePauseTime} from '../../../../storage/actions/routes';
+import {
+    setCurrentRoutePauseTime,
+    setRouteMapVisibility,
+} from '../../../../storage/actions/routes';
 
 import StackHeader from './stackHeader/stackHeader';
 
@@ -330,6 +333,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageState, trans]);
 
+    const onHideMapHandler = (state: boolean) => {
+        setMapHiden(state);
+        dispatch(setRouteMapVisibility(!state));
+    };
+
     // setObjSize(334, 50);
     const styles = StyleSheet.create({
         stackHeader: {
@@ -425,7 +433,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         time={trackerStartTime}
                         isRunning={isActive}
                         mapHiden={mapHiden}
-                        setMapHiden={setMapHiden}
+                        setMapHiden={onHideMapHandler}
                         duration={ANIMATION_DURATION}
                         aplaShow={
                             pageState === 'cancelText' ||
