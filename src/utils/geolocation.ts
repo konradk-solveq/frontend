@@ -50,8 +50,8 @@ export const initBGeolocalization = async (notificationTitle: string) => {
     try {
         const state = await BackgroundGeolocation.ready({
             reset: true,
-            stopOnTerminate: false,
-            startOnBoot: true,
+            stopOnTerminate: true,
+            startOnBoot: false,
             desiredAccuracy: isIOS
                 ? BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION
                 : BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
@@ -171,6 +171,8 @@ export const startBackgroundGeolocation = async (
             await BackgroundGeolocation.resetOdometer();
         }
         await BackgroundGeolocation.setConfig({
+            stopOnTerminate: false,
+            startOnBoot: true,
             isMoving: true,
             extras: {
                 route_id: routeId,
@@ -196,6 +198,8 @@ export const startBackgroundGeolocation = async (
 export const stopBackgroundGeolocation = async () => {
     try {
         await BackgroundGeolocation.setConfig({
+            stopOnTerminate: true,
+            startOnBoot: false,
             isMoving: false,
             extras: {
                 route_id: '',
