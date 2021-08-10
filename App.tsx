@@ -8,6 +8,7 @@ import {persistStore} from 'redux-persist';
 import storage from '@storage/storage';
 import {I18n_init} from '@translations/I18n';
 import StaticLocationProvider from '@providers/staticLocationProvider/staticLocationProvider';
+import TopNotificationProvider from '@providers/topNotificationProvider/TopNotificationProvider';
 
 import {initAppSize} from '@helpers/layoutFoo';
 
@@ -26,9 +27,11 @@ const App: () => Node = () => {
             <Provider store={storage}>
                 <PersistGate persistor={persistor}>
                     <NetworkStatus />
-                    <StaticLocationProvider>
-                        <NavContainer />
-                    </StaticLocationProvider>
+                    <TopNotificationProvider>
+                        <StaticLocationProvider>
+                            <NavContainer />
+                        </StaticLocationProvider>
+                    </TopNotificationProvider>
                 </PersistGate>
             </Provider>
         </>

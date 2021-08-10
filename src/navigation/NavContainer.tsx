@@ -1,12 +1,12 @@
 import React from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
-import {useAppSelector} from '../hooks/redux';
-import useAuthorization from '../hooks/useAuthorization';
-import useAppInit from '../hooks/useAppInit';
 
-import OnboardingStackNavigator from './stacks/OnboardingStackNavigator';
-import RegularStackNavigator from './stacks/RegularStackNavigator';
-import {onboardingFinishedSelector} from '../storage/selectors';
+import {onboardingFinishedSelector} from '@storage/selectors';
+import {useAppSelector} from '@hooks/redux';
+import useAuthorization from '@hooks/useAuthorization';
+import useAppInit from '@hooks/useAppInit';
+import OnboardingStackNavigator from '@navigation/stacks/OnboardingStackNavigator';
+import RegularStackNavigator from '@navigation/stacks/RegularStackNavigator';
 
 const KrossTheme = {
     ...DefaultTheme,

@@ -2,7 +2,7 @@ import React, {createContext, useContext} from 'react';
 
 import {BasicCoordsType} from '@type/coords';
 
-import useProviderStaticLocation from '@src/hooks/staticLocationProvider/useProviderStaticLocation';
+import useProviderStaticLocation from '@hooks/staticLocationProvider/useProviderStaticLocation';
 
 type contType = {
     location: BasicCoordsType | undefined;

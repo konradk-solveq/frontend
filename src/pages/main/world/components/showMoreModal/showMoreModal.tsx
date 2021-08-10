@@ -2,17 +2,22 @@ import React from 'react';
 import {View, Text, Modal, Pressable, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
-import I18n from 'react-native-i18n';
+import {I18n} from '@translations/I18n';
 
 import AnimSvg from '../../../../../helpers/animSvg';
 
 import styles from './style';
-import {useAppDispatch} from '../../../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../../../hooks/redux';
 import {
     addPlannedMap,
     removePlanendMap,
 } from '../../../../../storage/actions/maps';
 import {RegularStackRoute} from '../../../../../navigation/route';
+import {useNotificationProvider} from '@providers/topNotificationProvider/TopNotificationProvider';
+import {
+    mapDataByIDSelector,
+    favouriteMapDataByIDSelector,
+} from '@src/storage/selectors/map';
 
 const backGround = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 332">
 <filter id="filter" x="-1" width="3" y="-1" height="3">
@@ -47,6 +52,11 @@ const ShowMoreModal: React.FC<IProps> = ({
     const trans: any = I18n.t('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
+    const norificationContext = useNotificationProvider();
+
+    const mapName = useAppSelector(mapDataByIDSelector(mapID))?.name;
+    const favMapName = useAppSelector(favouriteMapDataByIDSelector(mapID))
+        ?.name;
 
     const onDetailsButtonPressedHandler = () => {
         onPressCancel();
@@ -71,9 +81,20 @@ const ShowMoreModal: React.FC<IProps> = ({
     const onAddToFavRoutesHandler = () => {
         onPressCancel();
         if (removeFav) {
+            const message = I18n.t('MainWorld.BikeMap.removeRouteFromPlanned', {
+                name: favMapName || '',
+            });
+            norificationContext.setNotificationVisibility(message, true);
             dispatch(removePlanendMap(mapID));
             return;
         }
+        const addRouteToPlanned = I18n.t(
+            'MainWorld.BikeMap.addRouteToPlanned',
+            {
+                name: mapName || '',
+            },
+        );
+        norificationContext.setNotificationVisibility(addRouteToPlanned, true);
         dispatch(addPlannedMap(mapID));
     };
 
