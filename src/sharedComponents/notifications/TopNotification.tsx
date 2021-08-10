@@ -8,8 +8,8 @@ import React, {
 } from 'react';
 import {Platform, StyleSheet, Animated, View, ViewStyle} from 'react-native';
 
+import useStatusBarHeight from '@hooks/statusBarHeight';
 import {getVerticalPx} from '@helpers/layoutFoo';
-import useStatusBarHeight from '@src/hooks/statusBarHeight';
 
 type contType = {
     notificationContennt?: string;

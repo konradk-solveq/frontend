@@ -1,4 +1,5 @@
 import React, {createContext, useContext, useState} from 'react';
+
 import TopNotification from '@src/sharedComponents/notifications/TopNotification';
 
 type contType = {
@@ -23,7 +24,6 @@ const TopNotificationProvider: React.FC<IProps> = ({children}: IProps) => {
     const [notificationContent, setNotificationContent] = useState('');
 
     const onSetNotificationHandler = (content: string, state?: boolean) => {
-        console.log('[onNotificationHandler]');
         setNotificationContent(content);
     };
 
