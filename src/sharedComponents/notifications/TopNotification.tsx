@@ -6,9 +6,10 @@ import React, {
     useContext,
     useState,
 } from 'react';
-import {StyleSheet, Animated, View, ViewStyle} from 'react-native';
+import {Platform, StyleSheet, Animated, View, ViewStyle} from 'react-native';
 
 import {getVerticalPx} from '@helpers/layoutFoo';
+import useStatusBarHeight from '@src/hooks/statusBarHeight';
 
 type contType = {
     notificationContennt?: string;
@@ -22,6 +23,7 @@ export const NotificationContext = createContext<contType>({
 
 export const useNotificationProvider = () => useContext(NotificationContext);
 
+const isIOS = Platform.OS === 'ios';
 const expanded = getVerticalPx(60);
 const closed = 0;
 
@@ -45,20 +47,24 @@ const TopNotification: React.FC<IProps> = ({
     const animHeightRef = useRef(new Animated.Value(0)).current;
     const animContentOpacitytRef = useRef(new Animated.Value(0)).current;
 
-    const [isVisible, setIsVisible] = useState(false);
-    // const [notificationContent, setNotificationContent] = useState('');
+    const statusbarHeight = useStatusBarHeight();
+    const expandedHeight = isIOS ? expanded + statusbarHeight / 2 : expanded;
 
+    const [isVisible, setIsVisible] = useState(false);
+
+    /**
+     * Notification is visible when content exits.
+     */
     useEffect(() => {
         if (content) {
-            // setNotificationContent(content);
             setIsVisible(true);
         }
     }, [content]);
-    console.log('[VISIBILITY NOTIFICATION]', content, isVisible);
+
     const setNotificationVisibility = useCallback(
         (visibility: boolean) => {
             Animated.timing(animHeightRef, {
-                toValue: visibility ? expanded : closed,
+                toValue: visibility ? expandedHeight : closed,
                 duration: duration || 1000,
                 useNativeDriver: false,
             }).start();
@@ -68,14 +74,14 @@ const TopNotification: React.FC<IProps> = ({
                 useNativeDriver: false,
             }).start();
         },
-        [animHeightRef, animContentOpacitytRef, duration],
+        [animHeightRef, animContentOpacitytRef, duration, expandedHeight],
     );
 
     useEffect(() => {
         setNotificationVisibility(isVisible);
 
         /**
-         * Hide notification
+         * Auto hide notification
          */
         const hideAfter = (hideTimeout || 2000) + (duration || 1000);
         const t = setTimeout(() => {
