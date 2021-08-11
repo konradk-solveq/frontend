@@ -347,7 +347,9 @@
             "startTripAction": "Rozpocznij",
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
-            "routeDetailsAction": "Szczegóły"
+            "routeDetailsAction": "Szczegóły",
+            "addRouteToPlanned": "Trasa {{name}} została dodana do ulubionych.",
+            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z ulubionych."
         },
         "PlannedRoutes": {
             "title": ", odkryj Ciekawe trasy z KROSS",
