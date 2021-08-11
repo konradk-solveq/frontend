@@ -390,6 +390,8 @@
         "deleteButton": "Usuń",
         "reportButton": "Zgłoś naruszenie",
         "startButton": "Rozpocznij",
+        "addFavRouteButton": "Pobierz trasę",
+        "removeFavRouteButton": "Usuń trasę z planowanych",
         "removeRouteButton": "Usuń trasę",
         "textPrefix": "Jeśli zauważysz coś, co w Twojej ocenie stanowi naruszenie regulaminu aplikacji myKROSS lub trasa zawiera błędne informacje -",
         "textAction": "poinformuj nas o tym",
