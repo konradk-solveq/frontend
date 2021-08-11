@@ -32,6 +32,10 @@ export const stopRecordingExpectedActions = [
         currentRoute: stoppedRoute,
     },
     {
+        isMapVisible: false,
+        type: actionTypes.SET_ROUTE_MAP_VISIBILITY,
+    },
+    {
         state: false,
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
