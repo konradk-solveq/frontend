@@ -7,6 +7,8 @@ import {getVerticalPx} from '@helpers/layoutFoo';
 const isIOS = Platform.OS === 'ios';
 const expanded = getVerticalPx(60);
 const closed = 0;
+const defaultDuration = 800;
+const defaultHideoutTimeout = 1600;
 
 interface IProps {
     content: string;
@@ -46,12 +48,12 @@ const TopNotification: React.FC<IProps> = ({
         (visibility: boolean) => {
             Animated.timing(animHeightRef, {
                 toValue: visibility ? expandedHeight : closed,
-                duration: duration || 1000,
+                duration: duration || defaultDuration,
                 useNativeDriver: false,
             }).start();
             Animated.timing(animContentOpacitytRef, {
                 toValue: visibility ? 1 : 0,
-                duration: (duration || 1000) / 1.5,
+                duration: (duration || defaultDuration) / 1.5,
                 useNativeDriver: false,
             }).start();
         },
@@ -64,7 +66,9 @@ const TopNotification: React.FC<IProps> = ({
         /**
          * Auto hide notification
          */
-        const hideAfter = (hideTimeout || 2000) + (duration || 1000);
+        const hideAfter =
+            (hideTimeout || defaultHideoutTimeout) +
+            (duration || defaultDuration);
         const t = setTimeout(() => {
             setNotificationVisibility(false);
             setIsVisible(false);
