@@ -169,15 +169,12 @@ const RouteDetails = () => {
                                 isPrivateView={privateMap}
                                 isFavView={favouriteMap}
                             />
-                            {favouriteMap ? (
+                            {favouriteMap && (
                                 <>
                                     <BigRedBtn
                                         title={trans.startButton}
                                         onpress={onPressStartRouteHandler}
-                                        style={[
-                                            styles.reportButton,
-                                            styles.buttonBottomDistance,
-                                        ]}
+                                        style={styles.reportButton}
                                     />
                                     <BigWhiteBtn
                                         title={trans.removeRouteButton}
@@ -190,14 +187,22 @@ const RouteDetails = () => {
                                         ]}
                                     />
                                 </>
-                            ) : (
+                            )}
+
+                            {!favouriteMap && (
                                 <BigRedBtn
                                     title={
-                                        !favMapName
-                                            ? trans.addFavRouteButton
-                                            : trans.removeFavRouteButton
+                                        !privateMap
+                                            ? !favMapName
+                                                ? trans.addFavRouteButton
+                                                : trans.removeFavRouteButton
+                                            : trans.deleteButton
                                     }
-                                    onpress={onPressAddRouteHandler}
+                                    onpress={
+                                        !privateMap
+                                            ? onPressAddRouteHandler
+                                            : onPressHandler
+                                    }
                                     style={[
                                         styles.reportButton,
                                         styles.buttonBottomDistance,
