@@ -12,7 +12,7 @@ export const NotificationContext = createContext<contType>({
     setNotificationVisibility: (content: string, state?: boolean) => {},
 });
 
-export const useNotificationProvider = () => useContext(NotificationContext);
+export const useNotificationContext = () => useContext(NotificationContext);
 
 interface IProps {
     children?: React.ReactNode;

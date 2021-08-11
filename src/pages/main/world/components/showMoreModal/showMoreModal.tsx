@@ -13,7 +13,7 @@ import {
     removePlanendMap,
 } from '../../../../../storage/actions/maps';
 import {RegularStackRoute} from '../../../../../navigation/route';
-import {useNotificationProvider} from '@providers/topNotificationProvider/TopNotificationProvider';
+import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {
     mapDataByIDSelector,
     favouriteMapDataByIDSelector,
@@ -52,7 +52,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     const trans: any = I18n.t('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const norificationContext = useNotificationProvider();
+    const norificationContext = useNotificationContext();
 
     const mapName = useAppSelector(mapDataByIDSelector(mapID))?.name;
     const favMapName = useAppSelector(favouriteMapDataByIDSelector(mapID))

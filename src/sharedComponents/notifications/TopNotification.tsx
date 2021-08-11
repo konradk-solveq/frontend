@@ -1,27 +1,8 @@
-import React, {
-    useEffect,
-    useRef,
-    useCallback,
-    createContext,
-    useContext,
-    useState,
-} from 'react';
+import React, {useEffect, useRef, useCallback, useState} from 'react';
 import {Platform, StyleSheet, Animated, View, ViewStyle} from 'react-native';
 
 import useStatusBarHeight from '@hooks/statusBarHeight';
 import {getVerticalPx} from '@helpers/layoutFoo';
-
-type contType = {
-    notificationContennt?: string;
-    setNotificationVisibility: (content: string, state?: boolean) => void;
-};
-
-export const NotificationContext = createContext<contType>({
-    notificationContennt: undefined,
-    setNotificationVisibility: (content: string, state?: boolean) => {},
-});
-
-export const useNotificationProvider = () => useContext(NotificationContext);
 
 const isIOS = Platform.OS === 'ios';
 const expanded = getVerticalPx(60);
