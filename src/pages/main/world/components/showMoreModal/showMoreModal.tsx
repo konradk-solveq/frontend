@@ -84,7 +84,7 @@ const ShowMoreModal: React.FC<IProps> = ({
             const message = I18n.t('MainWorld.BikeMap.removeRouteFromPlanned', {
                 name: favMapName || '',
             });
-            norificationContext.setNotificationVisibility(message, true);
+            norificationContext.setNotificationVisibility(message);
             dispatch(removePlanendMap(mapID));
             return;
         }
@@ -94,7 +94,7 @@ const ShowMoreModal: React.FC<IProps> = ({
                 name: mapName || '',
             },
         );
-        norificationContext.setNotificationVisibility(addRouteToPlanned, true);
+        norificationContext.setNotificationVisibility(addRouteToPlanned);
         dispatch(addPlannedMap(mapID));
     };
 

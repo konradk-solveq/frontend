@@ -4,12 +4,12 @@ import TopNotification from '@src/sharedComponents/notifications/TopNotification
 
 type contType = {
     notificationContennt?: string;
-    setNotificationVisibility: (content: string, state?: boolean) => void;
+    setNotificationVisibility: (content: string) => void;
 };
 
 export const NotificationContext = createContext<contType>({
     notificationContennt: undefined,
-    setNotificationVisibility: (content: string, state?: boolean) => {},
+    setNotificationVisibility: (content: string) => {},
 });
 
 export const useNotificationContext = () => useContext(NotificationContext);
@@ -23,7 +23,7 @@ interface IProps {
 const TopNotificationProvider: React.FC<IProps> = ({children}: IProps) => {
     const [notificationContent, setNotificationContent] = useState('');
 
-    const onSetNotificationHandler = (content: string, state?: boolean) => {
+    const onSetNotificationHandler = (content: string) => {
         setNotificationContent(content);
     };
 
