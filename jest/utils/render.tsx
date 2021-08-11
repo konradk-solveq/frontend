@@ -1,4 +1,5 @@
 import React from 'react';
+import {Store} from 'redux';
 import {Provider} from 'react-redux';
 import {persistStore} from 'redux-persist';
 import {PersistGate} from 'redux-persist/integration/react';
@@ -6,7 +7,7 @@ import {render, RenderOptions} from '@testing-library/react-native';
 
 import storage from '@storage/storage';
 import StaticLocationProvider from '@providers/staticLocationProvider/staticLocationProvider';
-import {Store} from 'redux';
+import TopNotificationProvider from '@providers/topNotificationProvider/TopNotificationProvider';
 
 const persistor = persistStore(storage);
 
@@ -14,7 +15,9 @@ export const renderComponent = async (component: any) => {
     const wrappedComponent = await render(
         <Provider store={storage}>
             <PersistGate persistor={persistor}>
-                <StaticLocationProvider>{component}</StaticLocationProvider>
+                <TopNotificationProvider>
+                    <StaticLocationProvider>{component}</StaticLocationProvider>
+                </TopNotificationProvider>
             </PersistGate>
         </Provider>,
     );
