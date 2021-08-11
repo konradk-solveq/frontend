@@ -11,7 +11,10 @@ import TopNotificationProvider from '@providers/topNotificationProvider/TopNotif
 
 const persistor = persistStore(storage);
 
-export const renderComponent = async (component: any) => {
+export const renderComponent = async (
+    component: any,
+    renderOptions?: RenderOptions | undefined,
+) => {
     const wrappedComponent = await render(
         <Provider store={storage}>
             <PersistGate persistor={persistor}>
@@ -20,6 +23,7 @@ export const renderComponent = async (component: any) => {
                 </TopNotificationProvider>
             </PersistGate>
         </Provider>,
+        renderOptions,
     );
 
     return {
