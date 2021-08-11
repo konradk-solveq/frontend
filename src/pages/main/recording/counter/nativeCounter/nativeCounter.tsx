@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, Dimensions, Animated, Platform} from 'react-native';
 
 import {trackerMapVisibilitySelector} from '@storage/selectors/routes';
-import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {useAppSelector} from '@hooks/redux';
 import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 import {FindMeButton} from '@sharedComponents/buttons';
 
@@ -40,7 +40,7 @@ const NativeCounter: React.FC<IProps> = ({
     aplaShow,
     autoFindMeSwith,
 }: IProps) => {
-    const FIND_ME_BTN_BOTTOM = 235;
+    const FIND_ME_BTN_BOTTOM = 255;
     const resotredRef = useRef(false);
 
     const trackerMapVisibility = useAppSelector(trackerMapVisibilitySelector);

@@ -10,6 +10,7 @@ import {
 
 import I18n from 'react-native-i18n';
 
+import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {
     getVerticalPx,
     getStackHeaderHeight,
@@ -65,6 +66,7 @@ const setTotalTime = (pTime: {start: number; total: number}) => {
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
+    const notificationContext = useNotificationContext();
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
@@ -110,6 +112,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (newBike) {
             setBike(newBike);
         }
+        const message = I18n.t('MainCounter.bikeChanged', {
+            name: bike?.description.name || '',
+        });
+        notificationContext.setNotificationVisibility(message);
     };
 
     const [pageState, setPageState] = useState('start');
