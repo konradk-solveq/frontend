@@ -201,10 +201,10 @@ android {
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "pl.kross.mykross"
         }
-        qa {
+        qa { // test name is not allowed
             minSdkVersion rootProject.ext.minSdkVersion
             applicationId 'pl.kross.mykross'
-            applicationIdSuffix ".qa"
+            applicationIdSuffix ".test"
             versionNameSuffix "-test"
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "pl.kross.mykross"

@@ -1,4 +1,4 @@
-### Ogólne
+## Ogólne
 
 1. __src\helpers__ - Funkcje wspomagające implementację
 2. __src\pages__ - Poszczególne strony aplikacji, ułorzenie katalogów odpowiada schematowi may palikacji. Komponenty niepowtarzające się i potrzebne do wyświetania danej strony znajdują się bezpośrednio w kalalogu danej strony.
@@ -7,12 +7,12 @@
 5. __src\naviation__ - do przekazywania navigacji.
 
 
-### Translacje
+## Translacje
 
 znajdują się w katalogu: __I18n__
 
 
-### Instalacja dependencji
+## Instalacja dependencji
 
 ```
 cp .env.example .env
@@ -24,12 +24,16 @@ Copy `ios/GoogleService-Info.plist` into `ios/GoogleService-Info-Prod.plist` and
 
 Copy `google_maps_api.xml` file into `main/res/values`, `qa/res/values` and `dev/res/values`
 
-### FLAVORS
+## FLAVORS
 
-We can use different builds for different environments. To make it work copy `.env` file to `.env.development` and `.env.test` files. Replace variables with proper values.
+We can use different builds for different environments. To make it work copy `.env` file to `.env.prod`, `.env.development` and `.env.test` files. Replace variables with proper values.
 You can find scripts, to run specific build, inside `package.json` file.
 
-#### BackgroundGeolocation
+`qa` flavor means `test` for Android, because `test` word is not allowed.
+
+* ISSUES: For now different env files works only with xCode and terminal's commands. Android Studio reads only values from main env file.
+
+## BackgroundGeolocation
 
 We're using private repo. Follow these intructions [how to install](https://github.com/transistorsoft/react-native-background-geolocation-android/wiki/Migrating-your-installation-from-Public-package-to-Private-repo:)
 
@@ -89,7 +93,7 @@ yarn add babel-plugin-root-import --dev
 ```
 
 
-### Build aplikacji
+## Build aplikacji
 
 gdyby nie zadziałało:
 ```html
