@@ -13,9 +13,9 @@
         "dev-android-bash": "ENVFILE=.env.development react-native run-android --variant=devDebug --appIdSuffix=dev",
         "dev-ios-bash": "ENVFILE=.env.development react-native run-ios --variant=devDebug --appIdSuffix=dev",
         "dev-android-cmd": "SET ENVFILE=.env.development && react-native run-android --variant=devDebug --appIdSuffix=dev",
-        "test-android-bash": "ENVFILE=.env.test react-native run-android --variant=qaDebug --appIdSuffix=qa",
+        "test-android-bash": "ENVFILE=.env.test react-native run-android --variant=qaDebug --appIdSuffix=test",
         "test-ios-bash": "ENVFILE=.env.test react-native run-ios --variant=testDebug --appIdSuffix=test",
-        "test-android-cmd": "SET ENVFILE=.env.test && react-native run-android --variant=qaDebug --appIdSuffix=qa",
+        "test-android-cmd": "SET ENVFILE=.env.test && react-native run-android --variant=qaDebug --appIdSuffix=test",
         "prod-android-bash": "ENVFILE=.env react-native run-android --variant=prodDebug",
         "prod-ios-bash": "ENVFILE=.env react-native run-ios --variant=prodDebug",
         "prod-android-cmd": "SET ENVFILE=.env && react-native run-android --variant=prodDebug"
