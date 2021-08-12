@@ -42,8 +42,8 @@ target 'myKROSS' do
   ENVFILES = {
     'Dev.Debug' => '${PODS_ROOT}/../../.env.development',
     'Dev.Release' => '${PODS_ROOT}/../../.env.development', 
-    'Test.Debug' => '../.env.test',
-    'Test.Release' => '../.env.test', 
+    'Test.Debug' => '${PODS_ROOT}/../.env.test',
+    'Test.Release' => '${PODS_ROOT}/../.env.test', 
     'Prod.Debug' => '${PODS_ROOT}/../../.env.prod',
     'Prod.Release' => '${PODS_ROOT}/../../.env.prod'
   }
