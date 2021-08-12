@@ -6,8 +6,8 @@ platform :ios, '10.0'
 project 'myKROSS',
         'Dev.Debug' => :debug,
         'Dev.Release' => :release, 
-        'Qa.Debug' => :debug,
-        'Qa.Release' => :release, 
+        'Test.Debug' => :debug,
+        'Test.Release' => :release, 
         'Prod.Debug' => :debug,
         'Prod.Release' => :release
 
@@ -42,8 +42,8 @@ target 'myKROSS' do
   ENVFILES = {
     'Dev.Debug' => '${PODS_ROOT}/../../.env.development',
     'Dev.Release' => '${PODS_ROOT}/../../.env.development', 
-    'Qa.Debug' => '../.env.test',
-    'Qa.Release' => '../.env.test', 
+    'Test.Debug' => '../.env.test',
+    'Test.Release' => '../.env.test', 
     'Prod.Debug' => '${PODS_ROOT}/../../.env.prod',
     'Prod.Release' => '${PODS_ROOT}/../../.env.prod'
   }
