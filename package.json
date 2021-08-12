@@ -10,14 +10,15 @@
         "test-watch": "jest --watch",
         "test-coverage": "jest --coverage",
         "lint": "eslint .",
-        "dev-android-bash": "ENVFILE=.env.development react-native run-android",
-        "dev-ios-bash": "ENVFILE=.env.development react-native run-ios",
-        "dev-android-cmd": "SET ENVFILE=.env.development && react-native run-android",
-        "dev-ios-cmd": "SET ENVFILE=.env.development && react-native run-ios",
-        "prod-android-bash": "ENVFILE=.env react-native run-android",
-        "prod-ios-bash": "ENVFILE=.env react-native run-ios",
-        "prod-android-cmd": "SET ENVFILE=.env && react-native run-android",
-        "prod-ios-cmd": "SET ENVFILE=.env && react-native run-ios"
+        "dev-android-bash": "ENVFILE=.env.development react-native run-android --variant=devDebug --appIdSuffix=dev",
+        "dev-ios-bash": "ENVFILE=.env.development react-native run-ios --variant=devDebug --appIdSuffix=dev",
+        "dev-android-cmd": "SET ENVFILE=.env.development && react-native run-android --variant=devDebug --appIdSuffix=dev",
+        "test-android-bash": "ENVFILE=.env.test react-native run-android --variant=qaDebug --appIdSuffix=qa",
+        "test-ios-bash": "ENVFILE=.env.test react-native run-ios --variant=qaDebug --appIdSuffix=qa",
+        "test-android-cmd": "SET ENVFILE=.env.test && react-native run-android --variant=qaDebug --appIdSuffix=qa",
+        "prod-android-bash": "ENVFILE=.env react-native run-android --variant=prodDebug",
+        "prod-ios-bash": "ENVFILE=.env react-native run-ios --variant=prodDebug",
+        "prod-android-cmd": "SET ENVFILE=.env && react-native run-android --variant=prodDebug"
     },
     "dependencies": {
         "@react-native-async-storage/async-storage": "^1.14.1",
