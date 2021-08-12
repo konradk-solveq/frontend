@@ -21,6 +21,13 @@ replace `API_URL` , `GOOGLE_API_KEY` and `TRANSISTORSOFT_BACKGROUND_GEOLOCATION_
 
 Put google-service.json in `android/app/google-services.json` path and GoogleService-Info.plist in `ios/GoogleService-Info.plist` (files comes from Firebase service).
 
+Copy `google_maps_api.xml` file into `main/res/values`, `qa/res/values` and `dev/res/values`
+
+### FLAVORS
+
+We can use different builds for different environments. To make it work copy `.env` file to `.env.development` and `.env.test` files. Replace variables with proper values.
+You can find scripts, to run specific build, inside `package.json` file.
+
 #### BackgroundGeolocation
 
 We're using private repo. Follow these intructions [how to install](https://github.com/transistorsoft/react-native-background-geolocation-android/wiki/Migrating-your-installation-from-Public-package-to-Private-repo:)
