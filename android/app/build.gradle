@@ -1,6 +1,14 @@
 apply plugin: "com.android.application"
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
+
+project.ext.envConfigFiles = [
+    debug: ".env.development",
+    qa: ".env.test",
+    dev: ".env.development",
+    prod: ".env",
+]
+
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
@@ -130,6 +138,8 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
+    flavorDimensions "default"
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -150,6 +160,7 @@ android {
             include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
+
     signingConfigs {
         debug {
             storeFile file('debug.keystore')
@@ -174,6 +185,32 @@ android {
             }
         }
     }
+
+    productFlavors {
+        prod {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'pl.kross.mykross'
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "pl.kross.mykross"
+        }
+        dev {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'pl.kross.mykross'
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "pl.kross.mykross"
+        }
+        qa {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'pl.kross.mykross'
+            applicationIdSuffix ".qa"
+            versionNameSuffix "-test"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "pl.kross.mykross"
+        }
+    }
+
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
