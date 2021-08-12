@@ -20,6 +20,7 @@ cp .env.example .env
 replace `API_URL` , `GOOGLE_API_KEY` and `TRANSISTORSOFT_BACKGROUND_GEOLOCATION_KEY` values
 
 Put google-service.json in `android/app/google-services.json` path and GoogleService-Info.plist in `ios/GoogleService-Info.plist` (files comes from Firebase service).
+Copy `ios/GoogleService-Info.plist` into `ios/GoogleService-Info-Prod.plist` and `ios/GoogleService-Info-Test.plist`.
 
 Copy `google_maps_api.xml` file into `main/res/values`, `qa/res/values` and `dev/res/values`
 
