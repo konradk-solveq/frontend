@@ -1,12 +1,14 @@
 apply plugin: "com.android.application"
+
+
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 project.ext.envConfigFiles = [
-    debug: ".env.development",
+    // // debug: ".env.development",
+    prod: ".env.prod",
+    dev: ".env.dev",
     qa: ".env.test",
-    dev: ".env.development",
-    prod: ".env",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
