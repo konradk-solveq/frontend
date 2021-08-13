@@ -228,6 +228,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
     });
 
     const initMapPos = getMapInitLocation(initLocation);
+    const withHours = adress?.openHours ? 414 * 0.57 + 16 : 414 * 0.49 + 16;
 
     return (
         <SafeAreaView style={styles.container}>
@@ -282,7 +283,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                     styles.findWrap,
                     {
                         bottom: adress
-                            ? getHorizontalPx(414 * 0.49 + 16)
+                            ? getHorizontalPx(withHours)
                             : getHorizontalPx(40),
                     },
                 ]}
