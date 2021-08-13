@@ -113,7 +113,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             setBike(newBike);
         }
         const message = I18n.t('MainCounter.bikeChanged', {
-            name: bike?.description.name || '',
+            name: newBike?.description.name || '',
         });
         notificationContext.setNotificationVisibility(message);
     };
