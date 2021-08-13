@@ -14,10 +14,13 @@
         "lint": "eslint .",
         "dev:ios-bash": "ENVFILE=.env.dev react-native run-ios --variant=devDebug --appIdSuffix=dev",
         "dev:android": "cp .env.dev .env && react-native run-android --variant=devDebug --appIdSuffix=dev",
+        "dev:android-cmd": "copy .env.dev .env && react-native run-android --variant=devDebug --appIdSuffix=dev",
         "test:ios-bash": "ENVFILE=.env.test react-native run-ios --variant=testDebug --appIdSuffix=test",
         "test:android": "cp .env.test .env && react-native run-android --variant=qaDebug --appIdSuffix=test",
+        "test:android-cmd": "copy .env.test .env && react-native run-android --variant=qaDebug --appIdSuffix=test",
         "prod:ios-bash": "ENVFILE=.env.production react-native run-ios --variant=prodDebug",
-        "prod:android": "cp .env.prod .env && npx react-native run-android --variant=prodDebug"
+        "prod:android": "cp .env.prod .env && npx react-native run-android --variant=prodDebug",
+        "prod:android-cmd": "copy .env.prod .env && npx react-native run-android --variant=prodDebug"
     },
     "dependencies": {
         "@react-native-async-storage/async-storage": "^1.14.1",
