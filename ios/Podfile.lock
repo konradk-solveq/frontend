@@ -335,7 +335,7 @@ PODS:
     - Google-Maps-iOS-Utils (= 2.1.0)
     - GoogleMaps (= 3.5.0)
     - React-Core
-  - react-native-image-picker (3.8.0):
+  - react-native-image-picker (3.8.1):
     - React-Core
   - react-native-keep-awake (1.0.4):
     - React
@@ -426,10 +426,10 @@ PODS:
     - React
   - RNDeviceInfo (8.1.2):
     - React-Core
-  - RNFBApp (11.4.1):
+  - RNFBApp (11.5.0):
     - Firebase/CoreOnly (= 7.11.0)
     - React-Core
-  - RNFBCrashlytics (11.4.1):
+  - RNFBCrashlytics (11.5.0):
     - Firebase/Crashlytics (= 7.11.0)
     - React-Core
     - RNFBApp
@@ -742,7 +742,7 @@ SPEC CHECKSUMS:
   react-native-config: c98128a72bc2c3a1ca72caec0b021f0fa944aa29
   react-native-get-random-values: 237bffb1c7e05fb142092681531810a29ba53015
   react-native-google-maps: 46dea4aa4acb7300beff508f64d9f8c84e9fb106
-  react-native-image-picker: a135b727a79e0f11423506994bfcdb96c6da4a06
+  react-native-image-picker: 5a7dd93d4f9dd0d910da5dde3707fd96f70d03b3
   react-native-keep-awake: e2941ac96fbddf3b407d0f316eba0b24ed067f56
   react-native-maps: 2d405b4e8cee0282e4c02bac434d81450dfea877
   react-native-netinfo: 34f4d7a42f49157f3b45c14217d256bce7dc9682
@@ -767,8 +767,8 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 502fbf425b9ee2d73ca6fa4b299dce0be411b422
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNDeviceInfo: 4f480456c7ac8c9919448375399c1a6f14479549
-  RNFBApp: 996860ad6832996faba79ef3f6ec2d3ea5870dd9
-  RNFBCrashlytics: 59d9ecfaacddbe10819d9071ee3b9921b79b8c6b
+  RNFBApp: 9c90f9d576861947ba75fe0830567c570bcbcf6d
+  RNFBCrashlytics: 8eafacfe3dc4aeb7733c3c3d65228f4e75861e72
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNPermissions: 3e5bb8afd93c787681bbacbf54d586a6272ecc92
