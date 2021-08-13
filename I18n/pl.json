@@ -348,8 +348,8 @@
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
             "routeDetailsAction": "Szczegóły",
-            "addRouteToPlanned": "Trasa {{name}} została dodana do ulubionych.",
-            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z ulubionych."
+            "addRouteToPlanned": "Trasa {{name}} została dodana do planowanych.",
+            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z planowanych."
         },
         "PlannedRoutes": {
             "title": ", odkryj Ciekawe trasy z KROSS",

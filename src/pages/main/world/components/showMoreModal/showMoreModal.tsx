@@ -54,10 +54,6 @@ const ShowMoreModal: React.FC<IProps> = ({
     const navigation = useNavigation();
     const norificationContext = useNotificationContext();
 
-    const mapName = useAppSelector(mapDataByIDSelector(mapID))?.name;
-    const favMapName = useAppSelector(favouriteMapDataByIDSelector(mapID))
-        ?.name;
-
     const onDetailsButtonPressedHandler = () => {
         onPressCancel();
         navigation.navigate({
@@ -82,7 +78,7 @@ const ShowMoreModal: React.FC<IProps> = ({
         onPressCancel();
         if (removeFav) {
             const message = I18n.t('MainWorld.BikeMap.removeRouteFromPlanned', {
-                name: favMapName || '',
+                name: '',
             });
             norificationContext.setNotificationVisibility(message);
             dispatch(removePlanendMap(mapID));
@@ -91,7 +87,7 @@ const ShowMoreModal: React.FC<IProps> = ({
         const addRouteToPlanned = I18n.t(
             'MainWorld.BikeMap.addRouteToPlanned',
             {
-                name: mapName || '',
+                name: '',
             },
         );
         norificationContext.setNotificationVisibility(addRouteToPlanned);
