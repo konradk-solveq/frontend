@@ -113,7 +113,7 @@ const RouteDetails = () => {
     const onPressAddRouteHandler = () => {
         if (favMapName) {
             const message = I18n.t('MainWorld.BikeMap.removeRouteFromPlanned', {
-                name: favMapName || '',
+                name: '',
             });
             norificationContext.setNotificationVisibility(message);
             dispatch(removePlanendMap(mapID));
@@ -122,7 +122,7 @@ const RouteDetails = () => {
         const addRouteToPlanned = I18n.t(
             'MainWorld.BikeMap.addRouteToPlanned',
             {
-                name: mapData?.name || '',
+                name: '',
             },
         );
         norificationContext.setNotificationVisibility(addRouteToPlanned);
