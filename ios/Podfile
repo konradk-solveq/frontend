@@ -3,6 +3,14 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
+project 'myKROSS',
+        'Dev.Debug' => :debug,
+        'Dev.Release' => :release, 
+        'Test.Debug' => :debug,
+        'Test.Release' => :release, 
+        'Prod.Debug' => :debug,
+        'Prod.Release' => :release
+
 target 'myKROSS' do
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => rn_maps_path
@@ -31,7 +39,23 @@ target 'myKROSS' do
   # you should disable the next line.
   use_flipper!()
 
+  ENVFILES = {
+    'Dev.Debug' => '${PODS_ROOT}/../../.env.development',
+    'Dev.Release' => '${PODS_ROOT}/../../.env.development', 
+    'Test.Debug' => '${PODS_ROOT}/../.env.test',
+    'Test.Release' => '${PODS_ROOT}/../.env.test', 
+    'Prod.Debug' => '${PODS_ROOT}/../../.env.prod',
+    'Prod.Release' => '${PODS_ROOT}/../../.env.prod'
+  }
+
   post_install do |installer|
     react_native_post_install(installer)
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+          if target.name == 'react-native-config'
+            config.build_settings['ENVFILE'] = ENVFILES[config.name]
+          end
+        end
+      end
   end
 end

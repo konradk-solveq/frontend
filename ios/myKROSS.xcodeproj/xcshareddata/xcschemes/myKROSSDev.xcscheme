@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cp &quot;${PROJECT_DIR}/../.env.prod&quot; &quot;${PROJECT_DIR}/../.env&quot;&#10;echo &quot;.env.prod&quot; &gt; /tmp/envfile&#10;">
+               scriptText = "cp &quot;${PROJECT_DIR}/../.env.dev&quot; &quot;${PROJECT_DIR}/../.env&quot;&#10;echo &quot;.env.dev&quot; &gt; /tmp/envfile&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -26,7 +26,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "#!/bin/bash&#10;&#10;GSI_PROD=${PROJECT_DIR}/GoogleService-Info-Prod.plist&#10;GSI_DEST=${PROJECT_DIR}/GoogleService-Info.plist&#10;&#10;if [ ! -f &quot;$GSI_PROD&quot; ]; then&#10;  echo &quot;File GoogleService-Info-Prod.plist does not exists.&quot;&#10;  exit 1&#10;fi&#10;&#10;cp &quot;${GSI_PROD}&quot; &quot;${GSI_DEST}&quot;&#10;">
+               scriptText = "#!/bin/bash&#10;&#10;GSI_DEV=${PROJECT_DIR}/GoogleService-Info-Dev.plist&#10;GSI_DEST=${PROJECT_DIR}/GoogleService-Info.plist&#10;&#10;if [ ! -f &quot;$GSI_DEV&quot; ]; then&#10;  echo &quot;File GoogleService-Info-Dev.plist does not exists.&quot;&#10;  exit 1&#10;fi&#10;&#10;cp &quot;${GSI_DEV}&quot; &quot;${GSI_DEST}&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -57,7 +57,7 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Dev.Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -75,7 +75,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Dev.Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -96,7 +96,7 @@
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Dev.Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -113,10 +113,10 @@
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug">
+      buildConfiguration = "Dev.Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Dev.Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
