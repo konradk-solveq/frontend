@@ -139,7 +139,7 @@ export const getLatLng = async () => {
 export const getLatLngFromForeground = async (): Promise<
     BasicCoordsType | undefined
 > => {
-    const location = await getCurrentLocation('', 1, 10, true);
+    const location = await getCurrentLocation('', 2, 10, true);
     if (!location) {
         return undefined;
     }

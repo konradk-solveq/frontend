@@ -323,7 +323,7 @@ export const routesDataToPersist = async (
             return;
         }
 
-        if (!oldRoutes.find(d => d.uuid === l.uuid)) {
+        if (!currRoutes.find(d => d.uuid === l.uuid)) {
             const newRoute: LocationDataI = {
                 uuid: l.uuid,
                 coords: {
