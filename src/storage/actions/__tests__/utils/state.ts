@@ -9,9 +9,11 @@ export const initState = {
             routeId: undefined,
             remoteRouteId: undefined,
         },
+        currentRouteData: [],
     },
     maps: {
         totalPrivateMaps: 0,
+        mapToAddId: '',
     },
     app: {
         isOffline: false,
