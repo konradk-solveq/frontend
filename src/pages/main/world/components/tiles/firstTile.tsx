@@ -1,21 +1,21 @@
-import React from 'react';
+import React, {useEffect, useCallback, useState} from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 
-import {I18n} from '../../../../../../I18n/I18n';
-import {Map} from '../../../../../models/map.model';
+import {mapReactionsConfigSelector} from '@storage/selectors/app';
+import {modifyReaction} from '@storage/actions/maps';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {I18n} from '@translations/I18n';
+import {Map, ReactionsType} from '@models/map.model';
 
-import {
-    BikeIcon,
-    ClockIcon,
-    MoreIcon,
-    MountainIcon,
-    WayIcon,
-    DownloadIcon,
-} from '../../../../../sharedComponents/svg/icons';
+import {BikeIcon, ClockIcon, DownloadIcon} from '@sharedComponents/svg/icons';
 import TileBackground from './tileBackground';
-import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
+import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
 
-import styles from './style';
+import styles from './styles/commonStyles';
+import {getImageToDisplay} from '@utils/transformData';
+
+import ThirdSection from './sections/thirdSection';
+import FourthSection from './sections/fourthSection';
 
 interface IProps {
     mapData: Map;
@@ -33,6 +33,19 @@ const FirstTile: React.FC<IProps> = ({
     tilePressable,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
+    const dispatch = useAppDispatch();
+
+    const config = useAppSelector(mapReactionsConfigSelector);
+    const likeValue = config?.find(c => c.enumValue === 'like');
+    const likesNumber = likeValue?.enumValue
+        ? mapData?.reactions?.[likeValue.enumValue as keyof ReactionsType] || 0
+        : 0;
+
+    const [currentLikeNumber, setCurrentLikeNumber] = useState(0);
+
+    useEffect(() => {
+        setCurrentLikeNumber(likesNumber);
+    }, [likesNumber]);
 
     const onTilePressedHandler = () => {
         if (!tilePressable || !onPressTile) {
@@ -45,21 +58,41 @@ const FirstTile: React.FC<IProps> = ({
         onPress(true, mapData.id);
     };
 
+    const onLikePressedHandler = useCallback(
+        (state: boolean) => {
+            setCurrentLikeNumber(prev => (!state ? prev - 1 : prev + 1));
+            if (mapData?.id) {
+                dispatch(
+                    modifyReaction(
+                        mapData?.id,
+                        likeValue?.enumValue || 'like',
+                        !state,
+                    ),
+                );
+            }
+        },
+        [dispatch, likeValue, mapData?.id],
+    );
+
+    const imagesToDisplay = getImageToDisplay(images);
+
     return (
         <Pressable onPress={onTilePressedHandler}>
             <TileBackground>
                 <View style={styles.container}>
                     <View style={styles.imageWrapper}>
-                        {images?.images?.length && images.images?.[0] ? (
+                        {imagesToDisplay ? (
                             <Image
                                 source={{
-                                    uri: images.images[0],
+                                    uri: imagesToDisplay,
                                 }}
                                 style={styles.image}
                                 resizeMode="cover"
                             />
                         ) : (
-                            <RouteImagePlaceholder />
+                            <View style={[styles.image, styles.noImage]}>
+                                <RouteImagePlaceholder />
+                            </View>
                         )}
                     </View>
                     <View style={styles.sectionsContainer}>
@@ -120,42 +153,26 @@ const FirstTile: React.FC<IProps> = ({
                             </View>
                         </View>
                         <View style={styles.borderLine} />
-                        <View style={styles.thirdSection}>
-                            <View style={styles.sectionContentRow}>
-                                <View style={styles.thirdSectionFirstColumn}>
-                                    <View
-                                        style={[
-                                            styles.sectionTextRow,
-                                            styles.thirdSectionFirstColumnLeftValue,
-                                        ]}>
-                                        <MountainIcon
-                                            iconStyle={styles.mountainIcon}
-                                        />
-                                        <Text style={styles.thirdSectionText}>
-                                            {mapData?.firstPickedDifficulty ||
-                                                ''}
-                                        </Text>
-                                    </View>
-                                    <View
-                                        style={[
-                                            styles.sectionTextRow,
-                                            styles.thirdSectionFirstColumnRightValue,
-                                        ]}>
-                                        <WayIcon iconStyle={styles.wayIcon} />
-                                        <Text style={styles.thirdSectionText}>
-                                            {mapData?.firstPickedSurface || ''}
-                                        </Text>
-                                    </View>
-                                </View>
-                                <View style={styles.thirdSectionSecondColumn}>
-                                    <Pressable
-                                        onPress={onDetailsButtonPressedHandler}
-                                        hitSlop={20}>
-                                        <MoreIcon />
-                                    </Pressable>
-                                </View>
-                            </View>
-                        </View>
+
+                        <ThirdSection
+                            firstPickedDifficulty={
+                                mapData?.firstPickedDifficulty
+                            }
+                            firstPickedSurface={mapData?.firstPickedSurface}
+                        />
+                        <View style={styles.borderLine} />
+
+                        <FourthSection
+                            key={`${JSON.stringify(mapData?.reactions)}-${
+                                mapData?.id
+                            }`}
+                            likeGaved={
+                                mapData.reaction === likeValue?.enumValue
+                            }
+                            likeValue={currentLikeNumber}
+                            onLikePress={onLikePressedHandler}
+                            onDetails={onDetailsButtonPressedHandler}
+                        />
                     </View>
                 </View>
             </TileBackground>

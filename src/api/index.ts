@@ -30,3 +30,4 @@ export {
     getConfig,
     checkInternetConnectionQuality,
 } from './app';
+export {modifyReaction, removeReaction} from './reactions';

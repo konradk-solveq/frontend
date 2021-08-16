@@ -38,6 +38,7 @@ export {
     removeMapFromFavourite,
     fetchPrivateMapsList,
     setPrivateMapId,
+    fetchPlannedMapsList,
 } from './maps';
 
 export {

@@ -3,37 +3,36 @@ import {View, StyleSheet, SafeAreaView, Platform} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import I18n from 'react-native-i18n';
 
-import MyRoutes from './myRoutes/myRoutes';
-import {getVerticalPx} from '../../../helpers/layoutFoo';
-import useStatusBarHeight from '../../../hooks/statusBarHeight';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
+import {RegularStackRoute} from '@navigation/route';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {RouteMapType} from '@models/places.model';
+import {PickedFilters} from '@interfaces/form';
+import {WorldRouteType} from '@type/rootStack';
 import {
     loadingMapsSelector,
     nextPaginationCoursor,
     nextPlannedPaginationCoursor,
     nextPrivatePaginationCoursor,
-} from '../../../storage/selectors/map';
-import {fetchMapsList} from '../../../storage/actions';
+} from '@storage/selectors/map';
 import {
+    fetchMapsList,
     fetchPlannedMapsList,
     fetchPrivateMapsList,
-} from '../../../storage/actions/maps';
-import {PickedFilters} from '../../../interfaces/form';
-import {checkIfContainsFitlers} from '../../../utils/apiDataTransform/filters';
-import useFineWhenInUseLocationPermission from '../../../hooks/useFineWhenInUseLocationPermission';
+} from '@storage/actions';
+import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
+import {getVerticalPx} from '@helpers/layoutFoo';
+
+import {FiltersBtn, MapBtn, TypicalRedBtn} from '@sharedComponents/buttons';
+import TabBackGround from '@sharedComponents/navi/tabBackGround';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 
 import FiltersModal from './components/filters/filtersModal';
-import {FiltersBtn, MapBtn} from '../../../sharedComponents/buttons';
 import BikeMap from './bikeMap/bikeMap';
-import TypicalRedBtn from '../../../sharedComponents/buttons/typicalRed';
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import MyRoutes from './myRoutes/myRoutes';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
 import styles from './style';
-import {RegularStackRoute} from '../../../navigation/route';
-import {RouteMapType} from '../../../models/places.model';
-import {WorldRouteType} from '../../../types/rootStack';
-import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -55,8 +54,6 @@ const World: React.FC = () => {
     const [activeTab, setActiveTab] = useState<RouteMapType>(
         RouteMapType.BIKE_MAP,
     );
-
-    useFineWhenInUseLocationPermission();
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);

@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
 
-import {askFineLocationPermission} from '../utils/geolocation';
-import useOpenGPSSettings from './useOpenGPSSettings';
+import useOpenGPSSettings from '@hooks/useOpenGPSSettings';
+import {askFineLocationPermission} from '@utils/geolocation';
 
-const useFineWhenInUseLocationPermission = () => {
+const useFineWhenInUseLocationPermission = (omitCheck?: boolean) => {
     const {openLocationSettings} = useOpenGPSSettings(true);
 
     const [permissionResult, setPermissionResult] = useState<string>('');
@@ -26,8 +26,10 @@ const useFineWhenInUseLocationPermission = () => {
             setPermissionResult(resp);
         };
 
-        perm();
-    }, []);
+        if (!omitCheck) {
+            perm();
+        }
+    }, [omitCheck]);
 
     return {permissionResult, openLocationSettings};
 };

@@ -1,28 +1,30 @@
 import * as actionTypes from './actionTypes';
-import {I18n} from '../../../I18n/I18n';
-import {AppThunk} from '../thunk';
+import {AppThunk} from '@storage/thunk';
+import {MapType} from '@models/map.model';
+import {AppState} from '@storage/reducers/app';
+import {MapsState} from '@storage/reducers/maps';
+import {RouteMapType} from '@models/places.model';
+import {ImagesMetadataType, MapPagination} from '@interfaces/api';
+import {MapFormDataResult, PickedFilters} from '@interfaces/form';
 import {
     editPrivateMapMetadataService,
     getMapsList,
     getPrivateMapsListService,
+    modifyReactionService,
     removePrivateMapByIdService,
-} from '../../services';
-import {MapType} from '../../models/map.model';
-import logger from '../../utils/crashlytics';
-import {ImagesMetadataType, MapPagination} from '../../interfaces/api';
-import {getLatLngFromForeground} from '../../utils/geolocation';
-import {MapFormDataResult, PickedFilters} from '../../interfaces/form';
-import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+    removeReactionService,
+} from '@services/index';
 import {
     addPlannedMapsListService,
     getMapsByTypeAndId,
     getPlannedMapsListService,
     removePlannedMapByIdService,
-} from '../../services/mapsService';
-import {AppState} from '../reducers/app';
-import {MapsState} from '../reducers/maps';
-import {RouteMapType} from '../../models/places.model';
-import {checkMapExists} from '../../utils/checkMapExists';
+} from '@services/index';
+
+import {I18n} from '@translations/I18n';
+import logger, {loggError} from '@utils/crashlytics';
+import {convertToApiError} from '@utils/apiDataTransform/communicationError';
+import {checkMapExists} from '@utils/checkMapExists';
 
 export const setMapsData = (
     maps: MapType[],
@@ -101,6 +103,12 @@ export const removeMapFromFavourite = (mapID: string) => ({
     mapID: mapID,
 });
 
+export const modifyMapReactions = (mapID: string, reaction: string) => ({
+    type: actionTypes.MODIFY_MAP_REACTIONS,
+    mapIdToModify: mapID,
+    reaction: reaction,
+});
+
 export const removeMapFromPrivates = (mapID: string) => ({
     type: actionTypes.REMOVE_MAP_FROM_PRIVATES,
     mapID: mapID,
@@ -109,11 +117,11 @@ export const removeMapFromPrivates = (mapID: string) => ({
 export const fetchMapsList = (
     page?: string,
     filters?: PickedFilters,
-): AppThunk<Promise<void>> => async dispatch => {
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        const {lat, lng} = await getLatLngFromForeground();
-        if (!lat || !lng) {
+        const {location}: AppState = getState().app;
+        if (!location?.latitude || !location.longitude) {
             const message = I18n.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
@@ -121,11 +129,7 @@ export const fetchMapsList = (
             return;
         }
 
-        const response = await getMapsList(
-            {latitude: lat, longitude: lng},
-            page,
-            filters,
-        );
+        const response = await getMapsList(location, page, filters);
 
         if (response.error || !response.data || !response.data.elements) {
             dispatch(setError(response.error, response.status));
@@ -156,11 +160,11 @@ export const fetchMapsList = (
 export const fetchPrivateMapsList = (
     page?: string,
     filters?: PickedFilters,
-): AppThunk<Promise<void>> => async dispatch => {
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        const {lat, lng} = await getLatLngFromForeground();
-        if (!lat || !lng) {
+        const {location}: AppState = getState().app;
+        if (!location?.latitude || !location.longitude) {
             const message = I18n.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
@@ -169,7 +173,7 @@ export const fetchPrivateMapsList = (
         }
 
         const response = await getPrivateMapsListService(
-            {latitude: lat, longitude: lng},
+            location,
             page,
             filters,
         );
@@ -279,12 +283,11 @@ export const removePrivateMapMetaData = (
 export const fetchPlannedMapsList = (
     page?: string,
     filters?: PickedFilters,
-): AppThunk<Promise<void>> => async dispatch => {
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        /* TODO: move to global listener - locaiton */
-        const {lat, lng} = await getLatLngFromForeground();
-        if (!lat || !lng) {
+        const {location}: AppState = getState().app;
+        if (!location?.latitude || !location.longitude) {
             const message = I18n.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
@@ -293,7 +296,7 @@ export const fetchPlannedMapsList = (
         }
 
         const response = await getPlannedMapsListService(
-            {latitude: lat, longitude: lng},
+            location,
             page,
             filters,
         );
@@ -395,8 +398,8 @@ export const fetchMapIfNotExistsLocally = (
             return;
         }
 
-        const {lat, lng} = await getLatLngFromForeground();
-        if (!lat || !lng) {
+        const {location}: AppState = getState().app;
+        if (!location?.latitude || !location.longitude) {
             const message = I18n.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
@@ -404,10 +407,7 @@ export const fetchMapIfNotExistsLocally = (
             return;
         }
 
-        const response = await getMapsByTypeAndId(
-            {latitude: lat, longitude: lng},
-            mapId,
-        );
+        const response = await getMapsByTypeAndId(location, mapId);
 
         if (response.error || !response.data || !response.data) {
             dispatch(setError(response.error, response.status));
@@ -424,5 +424,31 @@ export const fetchMapIfNotExistsLocally = (
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const modifyReaction = (
+    routeId: string,
+    reaction: string,
+    remove?: boolean,
+): AppThunk<Promise<void>> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const response = !remove
+            ? await modifyReactionService(routeId, reaction)
+            : await removeReactionService(routeId);
+
+        if (response.error || !response.data) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        dispatch(modifyMapReactions(routeId, reaction));
+
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+        dispatch(fetchPrivateMapsList());
+    } catch (error) {
+        loggError(error, 'modifyReaction');
     }
 };

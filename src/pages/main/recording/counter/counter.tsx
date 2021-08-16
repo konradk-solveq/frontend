@@ -10,6 +10,7 @@ import {
 
 import I18n from 'react-native-i18n';
 
+import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {
     getVerticalPx,
     getStackHeaderHeight,
@@ -19,7 +20,10 @@ import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
-import {setCurrentRoutePauseTime} from '../../../../storage/actions/routes';
+import {
+    setCurrentRoutePauseTime,
+    setRouteMapVisibility,
+} from '../../../../storage/actions/routes';
 
 import StackHeader from './stackHeader/stackHeader';
 
@@ -33,7 +37,6 @@ import {
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
 
-import MarkPointer from './markPointer';
 import ActionButtons from './actionButtons';
 import Map from './map';
 import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
@@ -63,6 +66,7 @@ const setTotalTime = (pTime: {start: number; total: number}) => {
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
+    const notificationContext = useNotificationContext();
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
@@ -108,6 +112,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (newBike) {
             setBike(newBike);
         }
+        const message = I18n.t('MainCounter.bikeChanged', {
+            name: newBike?.description.name || '',
+        });
+        notificationContext.setNotificationVisibility(message);
     };
 
     const [pageState, setPageState] = useState('start');
@@ -268,7 +276,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             case 'record':
                 // eslint-disable-next-line no-lone-blocks
                 {
-                    if (!isActive) {
+                    if (!isActive && isTrackerActive) {
                         resumeTracker();
                     }
                     setLeftBtnTile(trans.btnPauza);
@@ -331,6 +339,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageState, trans]);
 
+    const onHideMapHandler = (state: boolean) => {
+        setMapHiden(state);
+        dispatch(setRouteMapVisibility(!state));
+    };
+
     // setObjSize(334, 50);
     const styles = StyleSheet.create({
         stackHeader: {
@@ -372,6 +385,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     duration={ANIMATION_DURATION}
                 />
 
+                <Map
+                    routeId={followedRouteId || route?.params?.mapID}
+                    trackerData={trackerData}
+                    autoFindMe={autoFindMe}
+                />
+
                 {bikes && (
                     <Animated.View
                         pointerEvents="box-none"
@@ -391,22 +410,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         />
                     </Animated.View>
                 )}
-
-                <CounterDataContext.Provider
-                    value={{trackerData, pauseTime: pauseTime.total}}>
-                    <NativeCounter
-                        time={trackerStartTime}
-                        isRunning={isActive}
-                        mapHiden={mapHiden}
-                        setMapHiden={setMapHiden}
-                        duration={ANIMATION_DURATION}
-                        aplaShow={
-                            pageState === 'cancelText' ||
-                            pageState === 'endMessage'
-                        }
-                        autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
-                    />
-                </CounterDataContext.Provider>
 
                 <View style={styles.apla} pointerEvents="none">
                     <Apla
@@ -430,11 +433,21 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     rightBtnCallback={heandleRightBtnClick}
                 />
 
-                <Map
-                    routeId={followedRouteId || route?.params?.mapID}
-                    trackerData={trackerData}
-                    autoFindMe={autoFindMe}
-                />
+                <CounterDataContext.Provider
+                    value={{trackerData, pauseTime: pauseTime.total}}>
+                    <NativeCounter
+                        time={trackerStartTime}
+                        isRunning={isActive}
+                        mapHiden={mapHiden}
+                        setMapHiden={onHideMapHandler}
+                        duration={ANIMATION_DURATION}
+                        aplaShow={
+                            pageState === 'cancelText' ||
+                            pageState === 'endMessage'
+                        }
+                        autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
+                    />
+                </CounterDataContext.Provider>
             </View>
         </>
     );

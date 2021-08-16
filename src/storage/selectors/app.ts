@@ -1,8 +1,10 @@
 import {createSelector} from 'reselect';
-import {OptionType} from '../../interfaces/form';
-import {SelectOptionType} from '../../models/map.model';
-import {FaqType} from '../../models/regulations.model';
-import {RootState} from '../storage';
+
+import {OptionType} from '@interfaces/form';
+import {SelectOptionType} from '@models/map.model';
+import {FaqType} from '@models/regulations.model';
+import {BasicCoordsType} from '@type/coords';
+import {RootState} from '@storage/storage';
 
 export const syncAppSelector = (state: RootState): boolean => state.app.sync;
 
@@ -57,3 +59,11 @@ export const faqDataSelector = (state: RootState): FaqType[] => state.app.faq;
 
 export const showedLocationInfoSelector = (state: RootState): boolean =>
     state.app.showedLocationInfo;
+
+export const mapReactionsConfigSelector = (
+    state: RootState,
+): SelectOptionType[] => state.app.config.reactions;
+
+export const globalLocationSelector = (
+    state: RootState,
+): BasicCoordsType | undefined => state.app.location;

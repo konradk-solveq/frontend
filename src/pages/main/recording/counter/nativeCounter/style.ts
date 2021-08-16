@@ -1,15 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {
-    getHeightOfPx,
-    getHorizontalPx,
-    getVerticalPx,
-} from '../../../../../helpers/layoutFoo';
+import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         position: 'absolute',
-        // bottom:  0,
         left: 0,
         right: 0,
         backgroundColor: '#ffffff',
@@ -55,7 +50,6 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         zIndex: 15,
-        // opacity: .5,
     },
     bottomPlug: {
         position: 'absolute',

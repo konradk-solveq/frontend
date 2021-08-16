@@ -1,5 +1,5 @@
 import deepCopy from '../helpers/deepCopy';
-import {ShortCoordsType} from '../types/coords';
+import {ShortCoordsType} from '../type/coords';
 import {getRoutesDataFromSQL} from './transformData';
 
 /**

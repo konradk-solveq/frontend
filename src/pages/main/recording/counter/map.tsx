@@ -6,10 +6,11 @@ import MapView, {
     MarkerAnimated,
     AnimatedRegion,
     Camera,
+    LatLng,
 } from 'react-native-maps';
-import {Coords} from 'react-native-background-geolocation-android';
 import CompassHeading from 'react-native-compass-heading';
 
+import useAppState from '@hooks/useAppState';
 import {useAppSelector} from '../../../../hooks/redux';
 import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
 import {getCurrentLocation} from '../../../../utils/geolocation';
@@ -31,10 +32,41 @@ interface IProps {
     autoFindMe: boolean;
 }
 
+const initCompasHeading = {
+    center: {
+        latitude: 53.020817,
+        longitude: 20.866278,
+    },
+    pitch: 0,
+    altitude: 0,
+    heading: 0,
+    zoom: isIOS ? 18 : 17,
+};
+const ZOOM_START_VALUE = isIOS ? 18 : 17;
+
 const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
     const mapRef = useRef<MapView>(null);
     const markerRef = useRef<Marker>(null);
+    const mountedRef = useRef(false);
+    const compasHeadingdRef = useRef(0);
+    const restoreRef = useRef(false);
     const animatedMarkerRef = useRef<MarkerAnimated>(null);
+
+    const {appIsActive, appStateVisible} = useAppState();
+
+    useEffect(() => {
+        mountedRef.current = true;
+
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!appIsActive && appStateVisible === 'background') {
+            restoreRef.current = false;
+        }
+    }, [appIsActive, appStateVisible]);
 
     const animatedPostion = useRef<AnimatedRegion>(
         new AnimatedRegion({
@@ -48,29 +80,55 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
 
     const [compassHeading, setCompassHeading] = useState(0);
-    const [location, setLocaion] = useState<Coords | null>(null);
+    const [location, setLocaion] = useState<LatLng | null>(null);
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
+    const [autoFindMeLastState, setAutoFindMeLastState] = useState<boolean>(
+        autoFindMe,
+    );
 
     useEffect(() => {
         const loc = async () => {
             const l = await getCurrentLocation('', 1);
             if (l?.coords) {
-                setLocaion(l.coords);
-                animatedPostion?.setValue({
+                const c = {
                     latitude: l.coords.latitude,
                     longitude: l.coords.longitude,
+                };
+                setLocaion(c);
+                animatedPostion?.setValue({
+                    latitude: c.latitude,
+                    longitude: c.longitude,
                     latitudeDelta: 0.0092,
                     longitudeDelta: 0.0092,
                 });
             }
         };
         loc();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        if (mapData?.path?.length) {
+        const degree_update_rate = 5;
+
+        if (mountedRef.current) {
+            CompassHeading.start(degree_update_rate, ({heading}) => {
+                const lastHeading = compasHeadingdRef.current;
+                compasHeadingdRef.current = heading;
+                if (Math.abs(lastHeading - heading) >= degree_update_rate) {
+                    setCompassHeading(heading);
+                }
+            });
+        }
+
+        return () => {
+            CompassHeading.stop();
+        };
+    }, []);
+
+    useEffect(() => {
+        if (mapData?.path?.length && mountedRef.current) {
             const fRoute = mapData.path.map(e => {
                 return {
                     latitude: e[0],
@@ -83,33 +141,61 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
     }, []);
 
     const setMapCamera = useCallback(() => {
-        if (mapRef.current && trackerData?.coords) {
+        const hasLocation = trackerData?.coords || location;
+        const shouldResetZoom = autoFindMe !== autoFindMeLastState;
+
+        if (mapRef.current && (hasLocation || shouldResetZoom)) {
             let animation: Partial<Camera> = {
                 heading: compassHeading,
             };
 
-            if (autoFindMe) {
-                animation.center = {
-                    latitude: trackerData.coords.lat,
-                    longitude: trackerData.coords.lon,
-                };
+            const coords = {latitude: 0, longitude: 0};
+            if (trackerData?.coords) {
+                coords.latitude = trackerData.coords.lat;
+                coords.longitude = trackerData.coords.lon;
+            } else if (location) {
+                coords.latitude = location.latitude;
+                coords.longitude = location.longitude;
+            }
+
+            if (hasLocation) {
+                if (autoFindMe) {
+                    animation.center = {
+                        latitude: coords.latitude,
+                        longitude: coords.longitude,
+                    };
+                }
+            }
+
+            if (autoFindMe !== autoFindMeLastState) {
+                if (autoFindMe) {
+                    animation.zoom = ZOOM_START_VALUE;
+                }
+                setAutoFindMeLastState(autoFindMe);
             }
 
             mapRef.current?.animateCamera(animation, {duration: 1000});
         }
-    }, [autoFindMe, trackerData?.coords, compassHeading]);
+    }, [
+        autoFindMe,
+        autoFindMeLastState,
+        trackerData?.coords,
+        location,
+        compassHeading,
+    ]);
 
-    const setMarker = useCallback(() => {
-        if (trackerData?.coords && mapRef?.current) {
+    const setMarker = useCallback(async () => {
+        if (trackerData?.coords && mapRef?.current && mountedRef.current) {
             const pos = {
                 latitude: trackerData.coords.lat,
                 longitude: trackerData.coords.lon,
             };
 
             let ratio = 1;
-            const latitudeDelta = mapRef?.current?.__lastRegion?.latitudeDelta;
+            const latitudeDelta =
+                mapRef?.current?.__lastRegion?.latitudeDelta || 1;
             const longitudeDelta =
-                mapRef?.current?.__lastRegion?.longitudeDelta;
+                mapRef?.current?.__lastRegion?.longitudeDelta || 1;
             if (typeof latitudeDelta !== 'undefined') {
                 const zoom =
                     Math.log2(
@@ -124,6 +210,14 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
                 }
             }
 
+            if (!restoreRef.current) {
+                setLocaion(pos);
+                markerRef.current?.redraw();
+
+                restoreRef.current = true;
+                return;
+            }
+            // restoreRef.current = true
             if (Platform.OS === 'android') {
                 markerRef?.current?.animateMarkerToCoordinate(
                     pos,
@@ -151,19 +245,8 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
         setMarker();
     }, [setMarker]);
 
-    useEffect(() => {
-        const degree_update_rate = 3;
-
-        CompassHeading.start(degree_update_rate, ({heading}) => {
-            setCompassHeading(heading);
-        });
-
-        return () => {
-            CompassHeading.stop();
-        };
-    }, []);
-
     const cameraInitObj = {
+        ...initCompasHeading,
         center: {
             latitude: location?.latitude || 53.020817,
             longitude: location?.longitude || 20.866278,
@@ -171,8 +254,27 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
         pitch: 0,
         altitude: 0,
         heading: compassHeading,
-        zoom: isIOS ? 18 : 17,
+        zoom: ZOOM_START_VALUE,
     };
+
+    const MarkerToDisplay =
+        Platform.OS === 'android' ? (
+            location && (
+                <Marker
+                    ref={markerRef}
+                    coordinate={location}
+                    anchor={{x: 0.3, y: 0.3}}>
+                    <MarkPointer />
+                </Marker>
+            )
+        ) : (
+            <MarkerAnimated
+                ref={animatedMarkerRef}
+                anchor={{x: 0.5, y: 0.3}}
+                coordinate={animatedPostion || location}>
+                <MarkPointer />
+            </MarkerAnimated>
+        );
 
     return (
         <>
@@ -200,21 +302,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
                                 }
                             },
                         })}>
-                        {Platform.OS === 'android' ? (
-                            <Marker
-                                ref={markerRef}
-                                coordinate={location}
-                                anchor={{x: 0.3, y: 0.3}}>
-                                <MarkPointer />
-                            </Marker>
-                        ) : (
-                            <MarkerAnimated
-                                ref={animatedMarkerRef}
-                                anchor={{x: 0.5, y: 0.3}}
-                                coordinate={animatedPostion || location}>
-                                <MarkPointer />
-                            </MarkerAnimated>
-                        )}
+                        {mountedRef.current && MarkerToDisplay}
                         {trackerData?.coords && (
                             <SinglePolyline coords={trackerData} />
                         )}

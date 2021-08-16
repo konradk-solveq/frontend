@@ -2,30 +2,29 @@ import React, {useEffect, useState} from 'react';
 import {SafeAreaView, View, ScrollView, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import KroosLogo from '../../../sharedComponents/svg/krossLogo';
-import {trackerActiveSelector} from '../../../storage/selectors/routes';
-import {hasRecordedRoutesSelector} from '../../../storage/selectors/map';
-import {showedLocationInfoSelector} from '../../../storage/selectors/app';
+import KroosLogo from '@sharedComponents/svg/krossLogo';
+import {trackerActiveSelector} from '@storage/selectors/routes';
+import {hasRecordedRoutesSelector} from '@storage/selectors/map';
+import {showedLocationInfoSelector} from '@storage/selectors/app';
 import {
     onRecordTripActionHandler,
     showLocationInfo,
-} from '../../../utils/showAndroidLlocationInfo';
-import {hasAnyBikeSelector} from '../../../storage/selectors/bikes';
+} from '@utils/showAndroidLlocationInfo';
+import {hasAnyBikeSelector} from '@storage/selectors/bikes';
 
-import {syncAppSelector} from '../../../storage/selectors';
-import {setObjSize} from '../../../helpers/layoutFoo';
+import {syncAppSelector} from '@storage/selectors';
 import Tile from './tile';
 
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
-import {I18n} from '../../../../I18n/I18n';
-import {nfcIsSupported} from '../../../helpers/nfc';
-import {BothStackRoute, RegularStackRoute} from '../../../navigation/route';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {I18n} from '@translations/I18n';
+import {nfcIsSupported} from '@helpers/nfc';
+import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import Loader from '../../onboarding/bikeAdding/loader/loader';
+import TabBackGround from '@sharedComponents/navi/tabBackGround';
+import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 
 import styles from './style';
-import NoBikeAddedModal from '../../../sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -133,11 +132,13 @@ const Home: React.FC = () => {
 
             <TabBackGround />
 
-            <NoBikeAddedModal
-                showModal={showModal}
-                onContinue={onContinueHandler}
-                onClose={onCancelHandler}
-            />
+            {!isTrackerActive && (
+                <NoBikeAddedModal
+                    showModal={showModal}
+                    onContinue={onContinueHandler}
+                    onClose={onCancelHandler}
+                />
+            )}
         </SafeAreaView>
     );
 };

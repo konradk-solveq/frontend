@@ -18,7 +18,8 @@ const useAppState = () => {
         } else {
             setAppIsActive(false);
         }
-        setAppPrevStateVisible(appState.current);
+        const previousState = appState.current;
+        setAppPrevStateVisible(previousState);
         appState.current = nextAppState;
         setAppStateVisible(appState.current);
     };

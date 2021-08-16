@@ -74,6 +74,11 @@ export const setRoutesToSynch = (routeIds: string[]) => ({
     routeIds: routeIds,
 });
 
+export const setRouteMapVisibility = (isMapVisible: boolean) => ({
+    type: actionTypes.SET_ROUTE_MAP_VISIBILITY,
+    isMapVisible: isMapVisible,
+});
+
 export const clearRoutesToSynch = (routeIds: string[]) => ({
     type: actionTypes.CLEAR_ROUTES_TO_SYNC,
     ids: routeIds,
@@ -151,6 +156,7 @@ export const startRecordingRoute = (
 
 export const stopCurrentRoute = (
     omitPersists?: boolean,
+    endDate?: Date,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
@@ -183,11 +189,12 @@ export const stopCurrentRoute = (
         const currentRouteToEnd: CurrentRouteI = {
             ...currentRoute,
             isActive: false,
-            endedAt: new Date(),
+            endedAt: endDate || new Date(),
         };
 
         dispatch(clearError());
         dispatch(setCurrentRoute(currentRouteToEnd));
+        dispatch(setRouteMapVisibility(false));
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[stopCurrentRoute] - ${error}`);

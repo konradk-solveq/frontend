@@ -48,7 +48,6 @@ const ListPageInput: React.FC<Props> = (props: Props) => {
     // dla sprawdzenia czy kliknięto w ostatni, bo ostani otwiera możliwośś wpisania własnej wartości
     const hendleOnpress = (value: string) => {
         if (last && value == last) {
-            // console.log('last:', last);
             props.navigation.navigate(BothStackRoute.INPUT_PAGE_SCREEN, {
                 header: other.header,
                 btn: other.btn,

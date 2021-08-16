@@ -82,6 +82,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.SERVICES_MAP_SCREEN}
                 component={ServicesMap}
+                options={{gestureEnabled: false}}
             />
             <Stack.Screen
                 name={RegularStackRoute.REVIEWS_DETAILS_SCREEN}
@@ -110,6 +111,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.MAP_PREVIEW_SCREEN}
                 component={MapPreview}
+                options={{gestureEnabled: false}}
             />
             <Stack.Screen
                 name={RegularStackRoute.EDIT_DETAILS_SCREEN}
@@ -119,6 +121,7 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.ROUTES_MAP_SCREEN}
                 component={RoutesMap}
+                options={{gestureEnabled: false}}
             />
             {/* END KROSS WORLD */}
 

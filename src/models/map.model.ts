@@ -98,6 +98,12 @@ export enum MarkerTypes {
     RECOMMENDED = 'RECOMMENDED',
 }
 
+export type ReactionsType = {
+    like: number;
+    wow: number;
+    love: number;
+};
+
 export type MarkerDetailsType = {
     id: string;
     name: string;
@@ -105,6 +111,7 @@ export type MarkerDetailsType = {
     distanceToRoute: number;
     totalTime: number;
     mapImageUrl: string;
+    openHours: string;
 };
 
 export type MapMarkerType = {
@@ -197,6 +204,14 @@ export class Map {
     @IsNumber()
     @IsOptional()
     public downloads?: number;
+
+    @IsString()
+    @IsOptional()
+    public reaction?: string;
+
+    @IsString()
+    @IsOptional()
+    public reactions?: ReactionsType;
 
     constructor(
         id: string,

@@ -1,7 +1,6 @@
-import {createSelector} from 'reselect';
-import {LocationDataI} from '../../interfaces/geolocation';
-import {RoutesI} from '../reducers/routes';
-import {RootState} from '../storage';
+import {LocationDataI} from '@interfaces/geolocation';
+import {RoutesI} from '@storage/reducers/routes';
+import {RootState} from '@storage/storage';
 
 export const trackerFollowedRouteIdSelector = (state: RootState): string =>
     state.routes.currentRoute.routeId;
@@ -43,3 +42,6 @@ export const trackerCurrentRoutesDataSelector = (
 export const trackerCurrentRouteAverrageSpeedSelector = (
     state: RootState,
 ): number => state.routes.averageSpeed;
+
+export const trackerMapVisibilitySelector = (state: RootState): boolean =>
+    state.routes.isMapVisible;

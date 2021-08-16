@@ -347,7 +347,9 @@
             "startTripAction": "Rozpocznij",
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
-            "routeDetailsAction": "Szczegóły"
+            "routeDetailsAction": "Szczegóły",
+            "addRouteToPlanned": "Trasa {{name}} została dodana do planowanych.",
+            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z planowanych."
         },
         "PlannedRoutes": {
             "title": ", odkryj Ciekawe trasy z KROSS",
@@ -387,6 +389,13 @@
         "noInfo": "brak informacji",
         "deleteButton": "Usuń",
         "reportButton": "Zgłoś naruszenie",
+        "startButton": "Rozpocznij",
+        "addFavRouteButton": "Pobierz trasę",
+        "removeFavRouteButton": "Usuń trasę z planowanych",
+        "removeRouteButton": "Usuń trasę",
+        "textPrefix": "Jeśli zauważysz coś, co w Twojej ocenie stanowi naruszenie regulaminu aplikacji myKROSS lub trasa zawiera błędne informacje -",
+        "textAction": "poinformuj nas o tym",
+        "textSuffix": ".",
         "details": {
             "author": "Autor",
             "defaultAuthor": "Rowerzysta",
@@ -506,7 +515,8 @@
         "cancelText": "Czy chcesz przerwać nagrywanie trasy bez jej zapisywania?",
         "endText": "Czy chcesz zakończyć nagrywanie trasy?",
         "btnCancel": "ANULUJ",
-        "btnBreak": "PRZERWIJ"
+        "btnBreak": "PRZERWIJ",
+        "bikeChanged": "Zmieniono rower na {{name}}"
     },
     "CounterThankYouPage": {
         "title": ", brawo!",

@@ -1,9 +1,13 @@
 import {StyleSheet, Platform, Dimensions} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {
+    getHorizontalPx,
+    getVerticalPx,
+} from '../../../../../../helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
-const {height} = Dimensions.get('window');
-const ichForAndroid = height < 600 ? 200 : 190;
+const ichForAndroid = getVerticalPx(270);
+// TODO nie wiem jaka wartość powinna być dla ios-a,
+// TODO ale napewno powinna być ujęta w funkcji: getVerticalPx()
 const imageContainerHeight = isIOS ? 180 : ichForAndroid;
 
 const fontLight = 'DIN2014Narrow-Light';
@@ -18,7 +22,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     sectionsContainer: {
-        marginTop: getVerticalPx(120),
+        // marginTop: getVerticalPx(120),
     },
     raitingContainer: {
         flexDirection: 'row',
@@ -109,140 +113,28 @@ const styles = StyleSheet.create({
         height: getVerticalPx(12),
         width: getHorizontalPx(12),
     },
-    thirdSection: {
+    section: {
         marginHorizontal: 20,
         marginBottom: 0,
     },
-    thirdSectionText: {
-        fontFamily: fontLight,
-        color: darkerText,
-        fontSize: getVerticalPx(15),
-        letterSpacing: 0.42,
-    },
-    thirdSectionFirstColumn: {
-        flexDirection: 'row',
-        width: '70%',
-        justifyContent: 'flex-start',
-    },
-    thirdSectionFirstColumnLeftValue: {
-        width: 'auto',
-    },
-    thirdSectionFirstColumnRightValue: {
-        width: 'auto',
-        marginLeft: 20,
-    },
-    thirdSectionSecondColumn: {
-        width: '30%',
-        alignItems: 'flex-end',
-        justifyContent: 'center',
-    },
     imageWrapper: {
-        bottom: getVerticalPx(imageContainerHeight),
-        position: 'absolute',
-        height: '100%',
+        height: getVerticalPx(120),
         width: '100%',
         overflow: 'hidden',
         backgroundColor: '#f1f1f1',
     },
     image: {
-        marginTop: getVerticalPx(106),
         height: '100%',
         width: '100%',
     },
-    mImg: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#f7f7f7',
+    noImage: {
+        marginTop: getVerticalPx(-106),
     },
     column: {
         width: '50%',
     },
     placeholderLogo: {
         marginTop: 0,
-    },
-});
-
-export const secondTileStyles = StyleSheet.create({
-    container: {
-        borderRadius: 25,
-        overflow: 'hidden',
-        backgroundColor: '#ffffff',
-    },
-    sectionsContainer: {},
-    firstSection: {
-        flexDirection: 'row',
-        marginHorizontal: 20,
-        paddingTop: getVerticalPx(20),
-        paddingBottom: getVerticalPx(10),
-    },
-    firstSectionLeftColumn: {
-        width: '30%',
-        marginRight: getHorizontalPx(14),
-    },
-    firstSectionRightColumn: {
-        flexDirection: 'column',
-        width: '70%',
-    },
-    thirdSection: {
-        marginHorizontal: 20,
-        marginBottom: 0,
-    },
-    imageWrapper: {
-        width: getVerticalPx(95),
-        height: getVerticalPx(95),
-        overflow: 'hidden',
-        backgroundColor: '#f1f1f1',
-        borderRadius: 16,
-    },
-    image: {
-        height: '100%',
-        width: '100%',
-    },
-});
-
-export const nextTileStyles = StyleSheet.create({
-    container: {
-        borderRadius: 25,
-        overflow: 'hidden',
-        backgroundColor: '#ffffff',
-    },
-    sectionsContainer: {},
-    firstSection: {
-        flexDirection: 'row',
-        marginHorizontal: 20,
-        paddingTop: getVerticalPx(20),
-        paddingBottom: getVerticalPx(5),
-    },
-    firstSectionContent: {
-        flexDirection: 'row',
-        paddingBottom: getVerticalPx(7),
-    },
-    firstSectionLeftColumn: {
-        width: '30%',
-        marginRight: getHorizontalPx(14),
-    },
-    firstSectionRightColumn: {
-        flexDirection: 'column',
-        width: '70%',
-    },
-    secondtSection: {
-        marginLeft: 0,
-        marginRight: 20,
-    },
-    thirdSection: {
-        marginHorizontal: 20,
-        marginBottom: 0,
-    },
-    imageWrapper: {
-        width: getVerticalPx(95),
-        height: getVerticalPx(95),
-        overflow: 'hidden',
-        backgroundColor: '#f1f1f1',
-        borderRadius: 16,
-    },
-    image: {
-        height: '100%',
-        width: '100%',
     },
 });
 

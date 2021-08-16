@@ -14,6 +14,9 @@ import RemoveBtn from './removeButton';
 import ArrowBtn from './arrowBtn';
 import ImageBtn from './imageBtn';
 import ListBtn from './listButton';
+import ServiceMapBtn from './serviceMap';
+import FindMeButton from './findMeBtn';
+import TypicalRedBtn from './typicalRed';
 
 export {
     BigRedBtn,
@@ -32,4 +35,7 @@ export {
     ArrowBtn,
     ImageBtn,
     ListBtn,
+    ServiceMapBtn,
+    FindMeButton,
+    TypicalRedBtn,
 };

@@ -1,21 +1,24 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, Dimensions, Animated, Platform} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
-import CrossBtn from './crossBtn';
+
+import {trackerMapVisibilitySelector} from '@storage/selectors/routes';
+import {useAppSelector} from '@hooks/redux';
+import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {FindMeButton} from '@sharedComponents/buttons';
+
 import DisplayAverageSpeed from './displayAverageSpeed/displayAveragaSpeed';
 import DisplayDistance from './displayDistance/displayDistance';
 import DisplaySpeed from './displaySpeed/displaySpeed';
 import DisplayTimer from './displayTimer/displayTimer';
 import CurvedShape from './curvedShape/curvedShape';
+import CrossBtn from './crossBtn';
 
 import styles from './style';
-import FindMeButton from '../../../../../sharedComponents/buttons/findMeBtn';
-import {useState} from 'react';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
-const arrowPositionTop = getVerticalPx((isIOS ? 0 : 5) + 415);
-const arrowPositionBottom = getVerticalPx(isIOS ? -60 : -65);
+const arrowPositionTop = getVerticalPx((isIOS ? 0 : -25) + 437);
+const arrowPositionBottom = getVerticalPx((isIOS ? -10 : -25) + 654);
 
 interface IProps {
     time: Date | undefined;
@@ -37,7 +40,10 @@ const NativeCounter: React.FC<IProps> = ({
     aplaShow,
     autoFindMeSwith,
 }: IProps) => {
-    const FIND_ME_BTN_BOTTOM = 235;
+    const FIND_ME_BTN_BOTTOM = 255;
+    const resotredRef = useRef(false);
+
+    const trackerMapVisibility = useAppSelector(trackerMapVisibilitySelector);
 
     const containerHeight = useRef(new Animated.Value(height)).current;
     const containerBottom = useRef(new Animated.Value(0)).current;
@@ -98,6 +104,27 @@ const NativeCounter: React.FC<IProps> = ({
             useNativeDriver: false,
         }).start();
     }, [aplaShow, containerBottom, findMeBottom, duration, mapHiden]);
+
+    /**
+     * Set previus state on app resume.
+     */
+    useEffect(() => {
+        let t: NodeJS.Timeout;
+        if (isRunning && trackerMapVisibility && !resotredRef.current) {
+            t = setTimeout(() => {
+                startAnimation();
+                setMapHiden(false);
+            }, 1500);
+
+            resotredRef.current = true;
+        }
+
+        return () => {
+            resotredRef.current = false;
+            clearTimeout(t);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isRunning]);
 
     const wrapHeight = displayContainer.interpolate({
         inputRange: [0, 1],
@@ -252,19 +279,20 @@ const NativeCounter: React.FC<IProps> = ({
                         </Animated.View>
                     </Animated.View>
                 </Animated.View>
-                <Animated.View
-                    style={[
-                        styles.arrowBtnWrap,
-                        {
-                            top: arrowPos,
-                        },
-                    ]}>
-                    <CrossBtn
-                        onPress={arrowBtnActionHandler}
-                        down={mapHiden}
-                        duration={duration}
-                    />
-                </Animated.View>
+            </Animated.View>
+
+            <Animated.View
+                style={[
+                    styles.arrowBtnWrap,
+                    {
+                        top: arrowPos,
+                    },
+                ]}>
+                <CrossBtn
+                    onPress={arrowBtnActionHandler}
+                    down={mapHiden}
+                    duration={duration}
+                />
             </Animated.View>
 
             {!mapHiden && (

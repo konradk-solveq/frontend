@@ -88,10 +88,13 @@ const Description: React.FC<IProps> = ({
                     {mapData?.location || ''}
                 </Text>
                 <RideTile
+                    mapId={mapData?.id}
                     distance={mapData?.distanceInKilometers}
                     level={mapData?.firstPickedDifficulty}
                     type={mapData?.firstPickedSurface}
                     time={mapData?.formattedTimeString}
+                    reactions={mapData?.reactions}
+                    reaction={mapData?.reaction}
                 />
             </View>
             {mapData?.description?.short ? (

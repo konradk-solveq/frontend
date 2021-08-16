@@ -3,3 +3,8 @@ export type ShortCoordsType = {
     longitude: number;
     timestamp: number;
 };
+
+export type BasicCoordsType = {
+    latitude: number;
+    longitude: number;
+};

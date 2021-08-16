@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ColorLabel /> Rendering Should match snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "flexDirection": "row",
+        "height": 52.53623188405797,
+        "justifyContent": "flex-start",
+        "marginTop": 29.776785714285715,
+      },
+      undefined,
+    ]
+  }
+>
+  <RNSVGSvgView
+    align="xMidYMid"
+    bbHeight={43.47826086956522}
+    bbWidth={43.47826086956522}
+    focusable={false}
+    meetOrSlice={0}
+    minX={0}
+    minY={0}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        Object {
+          "borderRadius": 21.73913043478261,
+          "height": 43.47826086956522,
+          "marginRight": 39.85507246376812,
+          "paddingLeft": 27.17391304347826,
+          "width": 43.47826086956522,
+        },
+        Object {
+          "flex": 0,
+          "height": 43,
+          "width": 43,
+        },
+      ]
+    }
+    vbHeight={24}
+    vbWidth={24}
+  >
+    <RNSVGGroup>
+      <RNSVGPath
+        d="M20.48 3.52L3.52 20.48A12 12 0 0012 24a12 12 0 0012-12 12 12 0 00-3.52-8.48z"
+        fill={4294901760}
+        propList={
+          Array [
+            "fill",
+          ]
+        }
+      />
+      <RNSVGPath
+        d="M12 0A12 12 0 000 12a12 12 0 003.52 8.48L20.48 3.52A12 12 0 0012 0z"
+        fill={4278190335}
+        propList={
+          Array [
+            "fill",
+          ]
+        }
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+  <Text
+    style={
+      Object {
+        "color": "#555555",
+        "fontFamily": "DIN2014Narrow-Regular",
+        "fontSize": 18,
+        "paddingRight": 27.17391304347826,
+      }
+    }
+  >
+    Label text
+  </Text>
+</View>
+`;

@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         width: width,
         aspectRatio: shapeWidth / shapeHeight,
         position: 'absolute',
-        top: getVerticalPx(isIOS ? -120 : -140),
+        top: getVerticalPx(isIOS ? -125 : -140),
         left: 0,
         right: 0,
     },
