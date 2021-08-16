@@ -126,7 +126,7 @@ export const startRecordingRoute = (
                 if (!response?.data?.id) {
                     currentRouteToStore = {
                         ...currentRouteToStore,
-                        remoteRouteId: currRoute.id,
+                        remoteRouteId: undefined,
                     };
                     dispatch(
                         setCurrentRoute(keep ? undefined : currentRouteToStore),
