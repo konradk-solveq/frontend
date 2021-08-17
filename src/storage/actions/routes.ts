@@ -128,11 +128,11 @@ export const startRecordingRoute = (
                         ...currentRouteToStore,
                         remoteRouteId: undefined,
                     };
-                    dispatch(
-                        setCurrentRoute(keep ? undefined : currentRouteToStore),
-                    );
-                    dispatch(setLoadingState(false));
                 }
+                dispatch(
+                    setCurrentRoute(keep ? undefined : currentRouteToStore),
+                );
+                dispatch(setLoadingState(false));
                 return;
             }
             currentRouteToStore = {
