@@ -330,14 +330,16 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             dispatch(clearCurrentRoute());
             dispatch(clearAverageSpeed());
             dispatch(setError(errorMessage, response.status));
-            console.log(
-                `[syncCurrentRouteData - error during sync] - ${errorMessage}`,
-            );
-            logger.log(
-                `[syncCurrentRouteData - error during sync] - ${errorMessage}`,
-            );
-            const err = convertToApiError(errorMessage);
-            logger.recordError(err);
+            if (currRoutesDat?.length >= 2) {
+                console.log(
+                    `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
+                );
+                logger.log(
+                    `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
+                );
+                const err = convertToApiError(errorMessage);
+                logger.recordError(err);
+            }
             return;
         }
 
@@ -347,6 +349,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(clearAverageSpeed());
         dispatch(clearError());
         dispatch(setLoadingState(false));
+
         dispatch(fetchPrivateMapsList());
     } catch (error) {
         console.log(`[syncCurrentRouteData] - ${error}`);

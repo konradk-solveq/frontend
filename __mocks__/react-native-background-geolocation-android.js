@@ -11098,7 +11098,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11155,7 +11155,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11183,7 +11183,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11211,7 +11211,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11239,7 +11239,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11267,7 +11267,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11295,7 +11295,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11323,7 +11323,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11351,7 +11351,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11379,7 +11379,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11407,7 +11407,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11435,7 +11435,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11463,7 +11463,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11491,7 +11491,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11519,7 +11519,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11547,7 +11547,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11575,7 +11575,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11603,7 +11603,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11631,7 +11631,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11659,7 +11659,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11687,7 +11687,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11715,7 +11715,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11743,7 +11743,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11771,7 +11771,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11799,7 +11799,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11827,7 +11827,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11855,7 +11855,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11883,7 +11883,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11911,7 +11911,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11939,7 +11939,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11967,7 +11967,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -11995,7 +11995,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12023,7 +12023,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12051,7 +12051,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12079,7 +12079,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12107,7 +12107,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12135,7 +12135,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12163,7 +12163,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12191,7 +12191,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12219,7 +12219,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12247,7 +12247,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12275,7 +12275,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12303,7 +12303,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12331,7 +12331,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12359,7 +12359,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12387,7 +12387,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12415,7 +12415,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12443,7 +12443,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12471,7 +12471,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12499,7 +12499,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12527,7 +12527,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12555,7 +12555,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12583,7 +12583,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12611,7 +12611,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12639,7 +12639,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12667,7 +12667,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12695,7 +12695,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12723,7 +12723,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12751,7 +12751,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12779,7 +12779,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12807,7 +12807,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12835,7 +12835,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12863,7 +12863,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12891,7 +12891,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12919,7 +12919,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12947,7 +12947,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -12975,7 +12975,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13003,7 +13003,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13031,7 +13031,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13059,7 +13059,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13087,7 +13087,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13115,7 +13115,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13171,7 +13171,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13200,7 +13200,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13228,7 +13228,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13256,7 +13256,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13284,7 +13284,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13312,7 +13312,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13340,7 +13340,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13368,7 +13368,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13396,7 +13396,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13424,7 +13424,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13452,7 +13452,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13480,7 +13480,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13508,7 +13508,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13536,7 +13536,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13564,7 +13564,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13592,7 +13592,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13620,7 +13620,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13648,7 +13648,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13676,7 +13676,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13704,7 +13704,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13760,7 +13760,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13788,7 +13788,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13816,7 +13816,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13844,7 +13844,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13872,7 +13872,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13900,7 +13900,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13928,7 +13928,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -13984,7 +13984,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14013,7 +14013,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14041,7 +14041,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14069,7 +14069,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14097,7 +14097,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14125,7 +14125,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14153,7 +14153,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14181,7 +14181,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14209,7 +14209,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14237,7 +14237,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14265,7 +14265,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14293,7 +14293,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14321,7 +14321,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14349,7 +14349,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14377,7 +14377,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14405,7 +14405,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14433,7 +14433,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14461,7 +14461,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14489,7 +14489,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14517,7 +14517,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14545,7 +14545,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14573,7 +14573,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14601,7 +14601,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14629,7 +14629,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14657,7 +14657,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14685,7 +14685,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14713,7 +14713,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14741,7 +14741,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14769,7 +14769,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14797,7 +14797,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14825,7 +14825,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14853,7 +14853,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14881,7 +14881,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14909,7 +14909,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14937,7 +14937,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14965,7 +14965,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -14993,7 +14993,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15021,7 +15021,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15049,7 +15049,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15077,7 +15077,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15105,7 +15105,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15133,7 +15133,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15161,7 +15161,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15189,7 +15189,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15217,7 +15217,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15245,7 +15245,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15273,7 +15273,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15301,7 +15301,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15329,7 +15329,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15357,7 +15357,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15385,7 +15385,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15413,7 +15413,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15441,7 +15441,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15469,7 +15469,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15497,7 +15497,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15525,7 +15525,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15553,7 +15553,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15581,7 +15581,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15609,7 +15609,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15637,7 +15637,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15665,7 +15665,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15693,7 +15693,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15721,7 +15721,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15749,7 +15749,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15777,7 +15777,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15805,7 +15805,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15833,7 +15833,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15862,7 +15862,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15890,7 +15890,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15918,7 +15918,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15946,7 +15946,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -15974,7 +15974,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16002,7 +16002,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16030,7 +16030,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16058,7 +16058,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16086,7 +16086,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16114,7 +16114,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16142,7 +16142,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16170,7 +16170,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16198,7 +16198,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16226,7 +16226,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16254,7 +16254,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16282,7 +16282,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16310,7 +16310,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16338,7 +16338,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16366,7 +16366,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16394,7 +16394,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16422,7 +16422,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16450,7 +16450,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16478,7 +16478,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16506,7 +16506,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16534,7 +16534,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16562,7 +16562,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16618,7 +16618,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16646,7 +16646,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16674,7 +16674,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16702,7 +16702,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16730,7 +16730,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16787,7 +16787,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16844,7 +16844,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16872,7 +16872,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16900,7 +16900,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16928,7 +16928,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16956,7 +16956,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -16984,7 +16984,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17012,7 +17012,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17040,7 +17040,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17068,7 +17068,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17096,7 +17096,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17124,7 +17124,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17152,7 +17152,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17180,7 +17180,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17208,7 +17208,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17264,7 +17264,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17292,7 +17292,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17320,7 +17320,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17348,7 +17348,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17376,7 +17376,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17404,7 +17404,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17432,7 +17432,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17460,7 +17460,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17488,7 +17488,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17516,7 +17516,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17544,7 +17544,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17572,7 +17572,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17600,7 +17600,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17628,7 +17628,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17656,7 +17656,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17684,7 +17684,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17712,7 +17712,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17740,7 +17740,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17768,7 +17768,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17796,7 +17796,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17824,7 +17824,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17852,7 +17852,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17880,7 +17880,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17908,7 +17908,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17936,7 +17936,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17964,7 +17964,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -17992,7 +17992,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18020,7 +18020,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18048,7 +18048,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18076,7 +18076,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18104,7 +18104,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18132,7 +18132,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18160,7 +18160,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18188,7 +18188,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18216,7 +18216,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18244,7 +18244,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18272,7 +18272,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18301,7 +18301,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18329,7 +18329,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18385,7 +18385,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18413,7 +18413,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18441,7 +18441,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18469,7 +18469,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18497,7 +18497,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18525,7 +18525,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18581,7 +18581,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18610,7 +18610,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18638,7 +18638,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18666,7 +18666,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18694,7 +18694,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18722,7 +18722,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18750,7 +18750,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,
@@ -18806,7 +18806,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
         },
         {
             extras: {
-                route_id: 'c09f8c27-9910-4202-8971-e3c5d669f910',
+                route_id: 'current-route-test-id-with-no-distance',
             },
             battery: {
                 level: 1,

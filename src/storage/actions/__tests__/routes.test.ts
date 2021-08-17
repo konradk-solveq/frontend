@@ -13,9 +13,21 @@ import {endDate, endedRoute, startedRoute} from './utils/routeData';
 import {
     startRecordingExpectedActions,
     stopRecordingExpectedActions,
-    synchRecordingExpectedActions,
-    synchRecordingWhenOfflineExpectedActions,
 } from './utils/expectedAxtions';
+import {
+    compareResultsWhenOfflineFirstCase,
+    compareResultsWhenOfflineSecondCase,
+    compareResultsWhenOfflineThirdCase,
+    compareResultsWhenOfflineFourthCase,
+    compareResultsWhenOnlineFirstCase,
+    compareResultsWhenOnlineSecondCase,
+    compareResultsWhenOnlineThirdCase,
+    compareResultsWhenOnlineFourthCase,
+    compareResultsWhenOnlineFifthCase,
+    compareResultsWhenOnlineSixthCase,
+    compareResultsWhenOnlineSeventhCase,
+    compareResultsWhenOnlineEigthCase,
+} from './utils/compareRouteDispatchResults';
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
@@ -86,125 +98,523 @@ describe('[Recording Route actions]', () => {
             });
     });
 
-    describe('[syncCurrentRouteData] - should synch route data', () => {
-        it('when is online', async () => {
-            store = mockStore({
-                ...initState,
-                routes: {
-                    ...initState.routes,
-                    currentRoute: endedRoute /* set started state */,
-                },
-            });
-            /**
-             * Mock create route api call
-             */
-            const getSpySuccess = jest
-                .spyOn(instance, 'patch')
-                .mockImplementation(() => {
-                    return new Promise((resolve, reject) => {
-                        return resolve({
-                            data: {id: 'remote-route-test-id'},
+    describe('[syncCurrentRouteData]', () => {
+        describe('when is offline', () => {
+            it('should success when remote route Id exists and trying to store data to synch later', async () => {
+                store = mockStore({
+                    ...initState,
+                    app: {
+                        ...initState.app,
+                        isOffline: true,
+                    },
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            remoteRouteId: undefined,
+                        } /* set started state */,
+                    },
+                });
+                /**
+                 * Mock API call
+                 */
+                /* synch data */
+                const patchSynchDataSuccessSpy = jest
+                    .spyOn(instance, 'patch')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {id: 'remote-route-test-id'},
+                            });
                         });
                     });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(patchSynchDataSuccessSpy).not.toBeCalled();
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOfflineFirstCase(actionsLog);
                 });
-            actionsLog = store.getActions();
+            });
 
-            return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                expect(getSpySuccess).toBeCalledTimes(1);
-
+            it('should fail with route data with no distance when trying to synch route data with API', async () => {
+                store = mockStore({
+                    ...initState,
+                    app: {
+                        ...initState.app,
+                        isOffline: true,
+                    },
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            id: 'current-route-test-id-with-no-distance',
+                        } /* set started state */,
+                    },
+                });
                 /**
-                 * Check if all expected actions have been called.
+                 * Mock create route api call
                  */
-                /* loading - start */
-                expect(actionsLog[0]).toEqual(synchRecordingExpectedActions[0]);
-                /* set private map id */
-                expect(actionsLog[1]).toEqual(synchRecordingExpectedActions[1]);
-                /* clear current route location data */
-                expect(actionsLog[2]).toEqual(synchRecordingExpectedActions[2]);
-                /* clear current route data */
-                expect(actionsLog[3]).toEqual(synchRecordingExpectedActions[3]);
-                /* reset average speed data */
-                expect(actionsLog[4]).toEqual(synchRecordingExpectedActions[4]);
-                /* clear errors */
-                expect(actionsLog[5]).toEqual(synchRecordingExpectedActions[5]);
-                /* loading - end */
-                expect(actionsLog[6]).toEqual(synchRecordingExpectedActions[6]);
+                /* synch data */
+                const patchSynchDataSuccessSpy = jest
+                    .spyOn(instance, 'patch')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {id: 'remote-route-test-id'},
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(patchSynchDataSuccessSpy).not.toBeCalled();
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOfflineSecondCase(actionsLog);
+                });
+            });
+
+            it('should fail with with no route data when trying to synch with API and fail trying to delete existing  remote route id', async () => {
+                store = mockStore({
+                    ...initState,
+                    app: {
+                        ...initState.app,
+                        isOffline: true,
+                    },
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            id: 'current-route-test-id-with-no-data-to-synch',
+                        } /* set started state */,
+                    },
+                });
+                /**
+                 * Mock create route api call
+                 */
+                /* delete remoute route id */
+                const deletePrivateMapIdFailureSpy = jest
+                    .spyOn(instance, 'delete')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {
+                                    error: 'Route id not exists',
+                                    statusCode: 404,
+                                },
+                                status: 404,
+                                error: 'Route id not exists',
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(deletePrivateMapIdFailureSpy).not.toBeCalled();
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOfflineThirdCase(actionsLog);
+                });
+            });
+
+            it('should fail with with no route data when trying to synch with API and should fail when trying to remove none-existing remote route ID', async () => {
+                store = mockStore({
+                    ...initState,
+                    app: {
+                        ...initState.app,
+                        isOffline: true,
+                    },
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            id: 'current-route-test-id-with-no-data-to-synch',
+                            remouteRouteId: undefined,
+                        } /* set started state */,
+                    },
+                });
+                /**
+                 * Mock create route api call
+                 */
+                /* delete remoute route id */
+                const deletePrivateMapIdFailureSpy = jest
+                    .spyOn(instance, 'delete')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {
+                                    error: 'Route id not exists',
+                                    statusCode: 404,
+                                },
+                                status: 404,
+                                error: 'Route id not exists',
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(deletePrivateMapIdFailureSpy).not.toBeCalled();
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOfflineFourthCase(actionsLog);
+                });
+            });
+
+            afterEach(() => {
+                jest.clearAllMocks();
             });
         });
 
-        it('when is offline', async () => {
-            store = mockStore({
-                ...initState,
-                app: {
-                    ...initState.app,
-                    isOffline: true,
-                },
-                routes: {
-                    ...initState.routes,
-                    currentRoute: {
-                        ...endedRoute,
-                        remoteRouteId: undefined,
-                    } /* set started state */,
-                },
+        describe('when is online', () => {
+            it('should success synch route data with API when remote route Id exists', async () => {
+                store = mockStore({
+                    ...initState,
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: endedRoute /* set started state */,
+                    },
+                });
+                /**
+                 * Mock create route api call
+                 */
+                /* synch data */
+                const patchSynchDataSuccessSpy = jest
+                    .spyOn(instance, 'patch')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {id: 'remote-route-test-id'},
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(patchSynchDataSuccessSpy).toBeCalledTimes(1);
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineFirstCase(actionsLog);
+                });
             });
-            actionsLog = store.getActions();
 
-            return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+            it('should succes when create new remote route ID and should success on sending route data to API', async () => {
+                store = mockStore({
+                    ...initState,
+                    app: {
+                        ...initState.app,
+                        location: {
+                            latitude: 50.691728031513534,
+                            longitude: 17.79613619421019,
+                        },
+                    },
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            remoteRouteId: undefined,
+                        } /* set started state */,
+                    },
+                });
                 /**
-                 * Check if all expected actions have been called.
+                 * Mock create route api call
                  */
-                /* loading - start */
-                expect(actionsLog[0]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[0],
-                );
+                /* create remout route data id */
+                const createRemoteRouteIdSuccessSpy = jest
+                    .spyOn(instance, 'post')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {
+                                    id: 'remote-route-test-id',
+                                },
+                                status: 200,
+                                error: '',
+                            });
+                        });
+                    });
+                /* synch data */
+                const patchSynchRouteDataSuccessSpy = jest
+                    .spyOn(instance, 'patch')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {
+                                    id: 'remote-route-test-id',
+                                },
+                                status: 200,
+                                error: '',
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(createRemoteRouteIdSuccessSpy).toBeCalledTimes(1);
+                    expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineSecondCase(actionsLog);
+                });
+            });
 
+            it('should fail when sending route data to API and tries to delete existing remote route ID with error', async () => {
+                store = mockStore({
+                    ...initState,
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: endedRoute /* set started state */,
+                    },
+                });
                 /**
-                 * add routes to synch - START
+                 * Mock create route api call
                  */
-                /* loading - start [internal] */
-                expect(actionsLog[1]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[1],
-                );
-                /* set route id to synch after online */
-                expect(actionsLog[2]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[2],
-                );
-                /* set route data to synch after online */
-                expect(actionsLog[3]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[3],
-                );
-                /* reset average speed data */
-                expect(actionsLog[4]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[4],
-                );
-                /* set connection error */
-                expect(actionsLog[5]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[5],
-                );
-                /* loading - sop [internal] */
-                expect(actionsLog[6]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[6],
-                );
-                /**
-                 * add routes to synch - STOP
-                 */
+                /* synch data */
+                const patchSynchRouteDataFailureSpy = jest
+                    .spyOn(instance, 'patch')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {
+                                    statusCode: 400,
+                                    error:
+                                        'Trasa nie została zaktualizowana. Spróbuj ponownie.',
+                                },
+                                status: 400,
+                                error:
+                                    'Trasa nie została zaktualizowana. Spróbuj ponownie.',
+                            });
+                        });
+                    });
+                /* delete remoute route id */
+                const deletePrivateMapIdFailureSpy = jest
+                    .spyOn(instance, 'delete')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {error: 'Error on remove data'},
+                                status: 400,
+                                error: 'Error on remove data',
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(patchSynchRouteDataFailureSpy).toBeCalledTimes(1);
+                    expect(deletePrivateMapIdFailureSpy).toBeCalledTimes(1);
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineThirdCase(actionsLog);
+                });
+            });
 
-                /** clear current route data */
-                expect(actionsLog[7]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[7],
-                );
-                /** clear current route */
-                expect(actionsLog[8]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[8],
-                );
-                /* set synch error */
-                expect(actionsLog[9]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[9],
-                );
-                /* loading - stop */
-                expect(actionsLog[10]).toEqual(
-                    synchRecordingWhenOfflineExpectedActions[10],
-                );
+            it('should fail when sending route data to API but should success when removing remote ID', async () => {
+                store = mockStore({
+                    ...initState,
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: endedRoute /* set started state */,
+                    },
+                });
+                /**
+                 * Mock create route api call
+                 */
+                /* synch data */
+                const patchSynchRouteDataSuccessSpy = jest
+                    .spyOn(instance, 'patch')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {
+                                    statusCode: 400,
+                                    error:
+                                        'Trasa nie została zaktualizowana. Spróbuj ponownie.',
+                                },
+                                status: 400,
+                                error:
+                                    'Trasa nie została zaktualizowana. Spróbuj ponownie.',
+                            });
+                        });
+                    });
+                /* delete remoute route id */
+                const deletePrivateMapIdSuccessSpy = jest
+                    .spyOn(instance, 'delete')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {id: 'remote-route-test-id'},
+                                status: 200,
+                                error: '',
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
+                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(1);
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineFourthCase(actionsLog);
+                });
+            });
+
+            it('should fail with route data with no distance when trying to synch route data with API and should success when trying to remove existing remote route ID', async () => {
+                store = mockStore({
+                    ...initState,
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            id: 'current-route-test-id-with-no-distance',
+                        } /* set started state */,
+                    },
+                });
+                /**
+                 * Mock create route api call
+                 */
+                /* delete remoute route id */
+                const patchSynchRouteDataSuccessSpy = jest
+                    .spyOn(instance, 'delete')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {id: 'remote-route-test-id'},
+                                status: 200,
+                                error: '',
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineFifthCase(actionsLog);
+                });
+            });
+
+            it('should fail with route data with no distance when trying to synch route data with API and should fail when trying to remove none-existing remote route ID', async () => {
+                store = mockStore({
+                    ...initState,
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            id: 'current-route-test-id-with-no-distance',
+                        } /* set started state */,
+                    },
+                });
+                /**
+                 * Mock create route api call
+                 */
+                /* delete remoute route id */
+                const deletePrivateMapIdFailureSpy = jest
+                    .spyOn(instance, 'delete')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {
+                                    error: 'Route id not exists',
+                                    statusCode: 404,
+                                },
+                                status: 404,
+                                error: 'Route id not exists',
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(deletePrivateMapIdFailureSpy).toBeCalledTimes(1);
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineSixthCase(actionsLog);
+                });
+            });
+
+            it('should fail with with no route data when trying to synch with API and should success when trying to remove existing remote route ID', async () => {
+                store = mockStore({
+                    ...initState,
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            id: 'current-route-test-id-with-no-data-to-synch',
+                        } /* set started state */,
+                    },
+                });
+                /**
+                 * Mock create route api call
+                 */
+                /* delete remoute route id */
+                const deletePrivateMapIdSuccessSpy = jest
+                    .spyOn(instance, 'delete')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {id: 'remote-route-test-id'},
+                                status: 200,
+                                error: '',
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(1);
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineSeventhCase(actionsLog);
+                });
+            });
+
+            it('should fail with with no route data when trying to synch with API and should fail when trying to remove none-existing remote route ID', async () => {
+                store = mockStore({
+                    ...initState,
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            id: 'current-route-test-id-with-no-data-to-synch',
+                            remoteRouteId: undefined,
+                        } /* set started state */,
+                    },
+                });
+                /**
+                 * Mock create route api call
+                 */
+                /* delete remoute route id */
+                const deletePrivateMapIdFailureSpy = jest
+                    .spyOn(instance, 'delete')
+                    .mockImplementation(() => {
+                        return new Promise((resolve, reject) => {
+                            return resolve({
+                                data: {
+                                    error: 'Route id not exists',
+                                    statusCode: 404,
+                                },
+                                status: 404,
+                                error: 'Route id not exists',
+                            });
+                        });
+                    });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(deletePrivateMapIdFailureSpy).not.toBeCalled();
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineEigthCase(actionsLog);
+                });
+            });
+
+            afterEach(() => {
+                jest.clearAllMocks();
             });
         });
     });

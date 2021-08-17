@@ -69,7 +69,7 @@ export const removeCeratedRouteIDService = async (
 
         return {
             data: {id: routeId},
-            status: response.status,
+            status: response.data?.statusCode || response.status,
             error: errorMessage,
         };
     }
