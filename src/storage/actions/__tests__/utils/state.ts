@@ -12,8 +12,14 @@ export const initState = {
         currentRouteData: [],
     },
     maps: {
-        totalPrivateMaps: 0,
+        totalPrivateMaps: null,
         mapToAddId: '',
+        loading: false,
+        privateMaps: [],
+        paginationCoursorPrivate: {},
+        statusCode: 200,
+        refresh: false,
+        error: '',
     },
     app: {
         isOffline: false,

@@ -350,7 +350,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(clearError());
         dispatch(setLoadingState(false));
 
-        dispatch(fetchPrivateMapsList());
+        await dispatch(fetchPrivateMapsList());
     } catch (error) {
         console.log(`[syncCurrentRouteData] - ${error}`);
         logger.log(`[syncCurrentRouteData] - ${error}`);

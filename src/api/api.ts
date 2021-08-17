@@ -35,18 +35,18 @@ export const setUserAgentHeader = () => {
 export const source = axios.CancelToken.source();
 export const isCancel = (c: any) => axios.isCancel(c);
 
-export const axiosGet = (url: string, options = {}) => {
+export const axiosGet = async (url: string, options = {}) => {
     const abort = axios.CancelToken.source();
     const id = setTimeout(
         () => abort.cancel(`Timeout of ${config.timeout}ms.`),
         config.timeout,
     );
-    return instance
-        .get(url, {cancelToken: abort.token, ...options})
-        .then(response => {
-            clearTimeout(id);
-            return response;
-        });
+    const response = await instance.get(url, {
+        cancelToken: abort.token,
+        ...options,
+    });
+    clearTimeout(id);
+    return response;
 };
 
 export default instance;

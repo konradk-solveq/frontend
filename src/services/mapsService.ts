@@ -111,23 +111,23 @@ export const getPrivateMapsListService = async (
 
     const response = await getPrivateRoutes(location, page, f);
 
-    if (!response?.data || response.status >= 400) {
+    if (!response?.data || response?.status >= 400) {
         let errorMessage = 'error';
-        if (response.data?.message || response.data?.error) {
+        if (response?.data?.message || response?.data?.error) {
             errorMessage = response.data.message || response.data.error;
         }
         return {
             data: {elements: [], links: {prev: ''}, total: 0},
-            status: response.data?.statusCode || response.status,
+            status: response?.data?.statusCode || response?.status,
             error: errorMessage,
         };
     }
 
     return {
         data: {
-            elements: response.data.elements,
-            links: response.data.links,
-            total: response.data.total,
+            elements: response.data?.elements,
+            links: response.data?.links,
+            total: response.data?.total,
         },
         status: response.data?.statusCode || response.status,
         error: '',
