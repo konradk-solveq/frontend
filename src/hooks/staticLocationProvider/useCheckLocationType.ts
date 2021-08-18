@@ -6,7 +6,7 @@ import {useAppSelector} from '@hooks/redux';
 import useFineWhenInUseLocationPermission from '@hooks/useFineWhenInUseLocationPermission';
 import {checkDeviceHasLocationAlwaysPermission} from '@utils/geolocation';
 
-const useCheckLocationType = (isEnabled?: boolean) => {
+const useCheckLocationType = (isEnabled?: boolean, skipChecking?: boolean) => {
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
 
     const {permissionResult} = useFineWhenInUseLocationPermission(
@@ -18,7 +18,7 @@ const useCheckLocationType = (isEnabled?: boolean) => {
     );
 
     const checkLocationType = useCallback(async () => {
-        if (permissionResult !== 'granted') {
+        if (permissionResult !== 'granted' && !skipChecking) {
             return false;
         }
 
@@ -34,7 +34,7 @@ const useCheckLocationType = (isEnabled?: boolean) => {
         );
 
         return true;
-    }, [isEnabled, permissionResult]);
+    }, [isEnabled, permissionResult, skipChecking]);
 
     useEffect(() => {
         checkLocationType();
