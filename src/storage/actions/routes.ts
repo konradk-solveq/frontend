@@ -126,13 +126,13 @@ export const startRecordingRoute = (
                 if (!response?.data?.id) {
                     currentRouteToStore = {
                         ...currentRouteToStore,
-                        remoteRouteId: currRoute.id,
+                        remoteRouteId: undefined,
                     };
-                    dispatch(
-                        setCurrentRoute(keep ? undefined : currentRouteToStore),
-                    );
-                    dispatch(setLoadingState(false));
                 }
+                dispatch(
+                    setCurrentRoute(keep ? undefined : currentRouteToStore),
+                );
+                dispatch(setLoadingState(false));
                 return;
             }
             currentRouteToStore = {
@@ -236,10 +236,9 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
     }
 };
 
-export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
-    dispatch,
-    getState,
-) => {
+export const addRoutesToSynchQueue = (
+    routeDataToSynch?: LocationDataI[],
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
@@ -249,7 +248,7 @@ export const addRoutesToSynchQueue = (): AppThunk<Promise<void>> => async (
         dispatch(
             setRoutesData({
                 id: currentRoute.id,
-                route: currentRouteData,
+                route: routeDataToSynch || currentRouteData,
                 remoteRouteId: currentRoute?.remoteRouteId,
             }),
         );
@@ -283,12 +282,17 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
         const {totalPrivateMaps}: MapsState = getState().maps;
 
+        const currRoutesDat = await routesDataToPersist(
+            currentRoute.id,
+            currentRouteData,
+        );
+
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             if (
-                currentRouteData?.length >= 2 &&
-                currentRouteData?.find(cr => cr?.odometer >= MIN_ROUTE_LENGTH)
+                currRoutesDat?.length >= 2 &&
+                currRoutesDat?.find(cr => cr?.odometer >= MIN_ROUTE_LENGTH)
             ) {
-                dispatch(addRoutesToSynchQueue());
+                dispatch(addRoutesToSynchQueue(currRoutesDat));
             }
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
@@ -297,11 +301,6 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             dispatch(setLoadingState(false));
             return;
         }
-
-        const currRoutesDat = await routesDataToPersist(
-            currentRoute.id,
-            currentRouteData,
-        );
 
         const response = await syncRouteData(
             currRoutesDat,
@@ -318,7 +317,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 currRoutesDat?.find(cr => cr?.odometer >= MIN_ROUTE_LENGTH) &&
                 response.status !== 406
             ) {
-                dispatch(addRoutesToSynchQueue());
+                dispatch(addRoutesToSynchQueue(currRoutesDat));
 
                 if (currentRoute?.remoteRouteId) {
                     await removeCeratedRouteIDService(
@@ -331,14 +330,16 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             dispatch(clearCurrentRoute());
             dispatch(clearAverageSpeed());
             dispatch(setError(errorMessage, response.status));
-            console.log(
-                `[syncCurrentRouteData - error during sync] - ${errorMessage}`,
-            );
-            logger.log(
-                `[syncCurrentRouteData - error during sync] - ${errorMessage}`,
-            );
-            const err = convertToApiError(errorMessage);
-            logger.recordError(err);
+            if (currRoutesDat?.length >= 2) {
+                console.log(
+                    `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
+                );
+                logger.log(
+                    `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
+                );
+                const err = convertToApiError(errorMessage);
+                logger.recordError(err);
+            }
             return;
         }
 
@@ -348,7 +349,8 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(clearAverageSpeed());
         dispatch(clearError());
         dispatch(setLoadingState(false));
-        dispatch(fetchPrivateMapsList());
+
+        await dispatch(fetchPrivateMapsList());
     } catch (error) {
         console.log(`[syncCurrentRouteData] - ${error}`);
         logger.log(`[syncCurrentRouteData] - ${error}`);

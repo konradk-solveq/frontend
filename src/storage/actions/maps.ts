@@ -178,7 +178,7 @@ export const fetchPrivateMapsList = (
             filters,
         );
 
-        if (response.error || !response.data || !response.data.elements) {
+        if (response?.error || !response?.data || !response?.data?.elements) {
             dispatch(setError(response.error, response.status));
             return;
         }
@@ -186,9 +186,9 @@ export const fetchPrivateMapsList = (
         const refresh = !page;
         dispatch(
             setPrivateMapsData(
-                response.data.elements,
-                response.data.links,
-                response.data.total,
+                response.data?.elements,
+                response.data?.links,
+                response.data?.total,
                 refresh,
             ),
         );
