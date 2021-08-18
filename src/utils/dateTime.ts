@@ -72,3 +72,15 @@ export const translateDateToTodayAndYesterdayString = (date: Date) => {
 
     return getDateString(date);
 };
+
+export const transformTimestampToDate = (tmestamp: number) => {
+    if (!tmestamp || !isNaN(tmestamp)) {
+        return tmestamp;
+    }
+
+    try {
+        return new Date(tmestamp);
+    } catch (error) {
+        return tmestamp;
+    }
+};

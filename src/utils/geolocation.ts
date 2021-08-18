@@ -70,8 +70,9 @@ export const initBGeolocalization = async (notificationTitle: string) => {
                 positiveAction: trans.positiveAction,
                 negativeAction: trans.negativeAction,
             },
+            enableTimestampMeta: !isIOS,
             distanceFilter: 10,
-            stopTimeout: 1,
+            stopTimeout: 5,
             debug: __DEV__ ? true : false,
             logLevel: __DEV__
                 ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
@@ -106,9 +107,9 @@ export const getCurrentLocation = async (
     try {
         const location = await BackgroundGeolocation.getCurrentPosition({
             timeout: 30,
-            maximumAge: 500,
-            desiredAccuracy: accuracy || 10,
-            samples: samples || 6,
+            maximumAge: 0,
+            desiredAccuracy: accuracy || 5,
+            samples: samples || 8,
             persist: !notPersist,
             extras: {
                 route_id: routeId || '',
@@ -139,7 +140,7 @@ export const getLatLng = async () => {
 export const getLatLngFromForeground = async (): Promise<
     BasicCoordsType | undefined
 > => {
-    const location = await getCurrentLocation('', 2, 10, true);
+    const location = await getCurrentLocation('', 4, 10, true);
     if (!location) {
         return undefined;
     }
