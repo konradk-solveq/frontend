@@ -297,9 +297,9 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				31EA7F903394F9400E19A579 /* [CP] Embed Pods Frameworks */,
 				87FB99C55FD78BED9277DC6D /* [CP] Copy Pods Resources */,
-				90BFD12926C5E8B700813DB1 /* FirebaseCrashlytics Symbols uploader */,
 				61D18BEB5FBBBCCE66613B85 /* [CP-User] [RNFB] Core Configuration */,
 				3BAB83B872C05C8611A6D104 /* [CP-User] [RNFB] Crashlytics Configuration */,
+				90BFD12926C5E8B700813DB1 /* FirebaseCrashlytics Symbols uploader */,
 			);
 			buildRules = (
 			);
