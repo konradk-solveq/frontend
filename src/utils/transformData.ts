@@ -9,6 +9,7 @@ import {
 import {Images, Map} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
+import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
 
 export const transfromToBikeDescription = (
@@ -324,6 +325,9 @@ export const routesDataToPersist = async (
         }
 
         if (!currRoutes.find(d => d.uuid === l.uuid)) {
+            const alterTimestamp = transformTimestampToDate(
+                l?.timestampMeta?.systemTime,
+            );
             const newRoute: LocationDataI = {
                 uuid: l.uuid,
                 coords: {
@@ -333,14 +337,22 @@ export const routesDataToPersist = async (
                     speed: l.coords.speed,
                 },
                 odometer: l.odometer,
-                timestamp: l.timestamp,
+                timestamp: alterTimestamp || l.timestamp,
             };
 
             currRoutes.push(newRoute);
         }
     });
 
-    return currRoutes;
+    const sorted = currRoutes.sort((a, b) => {
+        if (new Date(a.timestamp) === new Date(b.timestamp)) {
+            return 0;
+        }
+
+        return new Date(a.timestamp) < new Date(b.timestamp) ? -1 : 1;
+    });
+
+    return sorted;
 };
 
 export const getRoutesDataFromSQL = async (
@@ -371,17 +383,28 @@ export const getRoutesDataFromSQL = async (
         }
 
         if (l?.coords) {
+            const alterTimestamp = transformTimestampToDate(
+                l?.timestampMeta?.systemTime,
+            );
             const newRoute = {
                 latitude: l.coords.latitude,
                 longitude: l.coords.longitude,
-                timestamp: l.timestamp,
+                timestamp: alterTimestamp || l.timestamp,
             };
 
             currRoutes.push(newRoute);
         }
     });
 
-    return currRoutes;
+    const sorted = currRoutes.sort((a, b) => {
+        if (new Date(a.timestamp) === new Date(b.timestamp)) {
+            return 0;
+        }
+
+        return new Date(a.timestamp) < new Date(b.timestamp) ? -1 : 1;
+    });
+
+    return sorted;
 };
 
 export const getImageToDisplay = (images: ImagesUrlsToDisplay) => {
