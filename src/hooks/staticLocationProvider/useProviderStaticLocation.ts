@@ -14,7 +14,6 @@ import {
     setGeofenceFromCurrentLocation,
     stopBackgroundGeolocationPlugin,
 } from '@utils/geolocation';
-import useFineWhenInUseLocationPermission from '@hooks/useFineWhenInUseLocationPermission';
 import {
     onboardingFinishedSelector,
     trackerActiveSelector,
@@ -34,8 +33,6 @@ const useProviderStaticLocation = () => {
 
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const isRouteRecordingActive = useAppSelector(trackerActiveSelector);
-
-    useFineWhenInUseLocationPermission(!isOnboardingFinished);
 
     const {locationType} = useCheckLocationType();
 

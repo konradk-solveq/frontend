@@ -78,9 +78,16 @@ const useAppInit = () => {
     }, []);
 
     useEffect(() => {
+        let t: NodeJS.Timeout;
         if (isOnline && isGoodInternetConnectionQuality) {
-            synchData();
+            t = setTimeout(() => {
+                synchData();
+            }, 500);
         }
+
+        return () => {
+            clearTimeout(t);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOnline, isGoodInternetConnectionQuality]);
 
