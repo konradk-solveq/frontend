@@ -152,7 +152,7 @@ export const synchRecordingWhenOfflineExpectedActions = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.noInternetConnection'), //read from translation
+        error: I18n.t('dataAction.noInternetConnection'),
         statusCode: 500,
     },
     {
@@ -188,7 +188,7 @@ export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActions = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.dataSyncError'), //read from translation
+        error: I18n.t('dataAction.dataSyncError'),
         statusCode: 500,
     },
     {
@@ -208,7 +208,7 @@ export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActions = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.routeData.updateRouteError'), //read from translation
+        error: I18n.t('dataAction.routeData.updateRouteError'),
         statusCode: 400,
     },
     {
@@ -288,7 +288,7 @@ export const synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions = [
         type: actionTypes.SET_ROUTES_ERROR,
         error: I18n.t('dataAction.routeData.routeLengthError', {
             value: MIN_ROUTE_LENGTH,
-        }), //read from translation
+        }),
         statusCode: 400,
     },
 ];
