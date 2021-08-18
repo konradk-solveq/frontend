@@ -42,103 +42,103 @@ describe('[Recording Route actions]', () => {
     let store: MockStoreEnhanced<unknown, {}>;
     let actionsLog: any[];
 
-    // describe('[startRecordingRoute]', () => {
-    //     it('should start new route', async () => {
-    //         store = mockStore(initState);
-    //         const getSpySuccess = jest
-    //             .spyOn(instance, 'post')
-    //             .mockImplementation(() => {
-    //                 return new Promise(resolve => {
-    //                     return resolve({
-    //                         data: {id: 'remote-route-test-id'},
-    //                     });
-    //                 });
-    //             });
-    //         actionsLog = store.getActions();
+    describe('[startRecordingRoute]', () => {
+        it('should start new route', async () => {
+            store = mockStore(initState);
+            const getSpySuccess = jest
+                .spyOn(instance, 'post')
+                .mockImplementation(() => {
+                    return new Promise(resolve => {
+                        return resolve({
+                            data: {id: 'remote-route-test-id'},
+                        });
+                    });
+                });
+            actionsLog = store.getActions();
 
-    //         return store
-    //             .dispatch<any>(startRecordingRoute(startedRoute))
-    //             .then(() => {
-    //                 /**
-    //                  * Check http request has been made.
-    //                  */
-    //                 expect(getSpySuccess).toHaveBeenCalled();
+            return store
+                .dispatch<any>(startRecordingRoute(startedRoute))
+                .then(() => {
+                    /**
+                     * Check http request has been made.
+                     */
+                    expect(getSpySuccess).toHaveBeenCalled();
 
-    //                 /**
-    //                  * Check if all expected actions have been called.
-    //                  */
-    //                 compareResultsWhenStartRecordingFirstCase(actionsLog);
-    //             });
-    //     });
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenStartRecordingFirstCase(actionsLog);
+                });
+        });
 
-    //     it('should not override current route', async () => {
-    //         store = mockStore({
-    //             ...initState,
-    //             routes: {
-    //                 ...initState.routes,
-    //                 currentRoute: {
-    //                     ...initState.routes.currentRoute,
-    //                     remoteRouteId: 'different-remote-route-id',
-    //                 },
-    //             },
-    //         });
-    //         const getSpySuccess = jest
-    //             .spyOn(instance, 'post')
-    //             .mockImplementation(() => {
-    //                 return new Promise(resolve => {
-    //                     return resolve({
-    //                         data: {id: 'remote-route-test-id'},
-    //                     });
-    //                 });
-    //             });
-    //         actionsLog = store.getActions();
+        it('should not override current route', async () => {
+            store = mockStore({
+                ...initState,
+                routes: {
+                    ...initState.routes,
+                    currentRoute: {
+                        ...initState.routes.currentRoute,
+                        remoteRouteId: 'different-remote-route-id',
+                    },
+                },
+            });
+            const getSpySuccess = jest
+                .spyOn(instance, 'post')
+                .mockImplementation(() => {
+                    return new Promise(resolve => {
+                        return resolve({
+                            data: {id: 'remote-route-test-id'},
+                        });
+                    });
+                });
+            actionsLog = store.getActions();
 
-    //         return store
-    //             .dispatch<any>(startRecordingRoute(startedRoute, true))
-    //             .then(() => {
-    //                 /**
-    //                  * Check http request has been made.
-    //                  */
-    //                 expect(getSpySuccess).not.toHaveBeenCalled();
+            return store
+                .dispatch<any>(startRecordingRoute(startedRoute, true))
+                .then(() => {
+                    /**
+                     * Check http request has been made.
+                     */
+                    expect(getSpySuccess).not.toHaveBeenCalled();
 
-    //                 /**
-    //                  * Check if all expected actions have been called.
-    //                  */
-    //                 compareResultsWhenStartRecordingSecondCase(actionsLog);
-    //             });
-    //     });
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenStartRecordingSecondCase(actionsLog);
+                });
+        });
 
-    //     afterEach(() => {
-    //         jest.clearAllMocks();
-    //     });
-    // });
+        afterEach(() => {
+            jest.clearAllMocks();
+        });
+    });
 
-    // it('[stopCurrentRoute] - should stop new route', async () => {
-    //     store = mockStore({
-    //         ...initState,
-    //         routes: {
-    //             ...initState.routes,
-    //             currentRoute: startedRoute /* set started state */,
-    //         },
-    //     });
-    //     actionsLog = store.getActions();
+    it('[stopCurrentRoute] - should stop new route', async () => {
+        store = mockStore({
+            ...initState,
+            routes: {
+                ...initState.routes,
+                currentRoute: startedRoute /* set started state */,
+            },
+        });
+        actionsLog = store.getActions();
 
-    //     return store
-    //         .dispatch<any>(stopCurrentRoute(false, endDate))
-    //         .then(() => {
-    //             /**
-    //              * Check if all expected actions have been called.
-    //              */
-    //             /* loading - start */
-    //             expect(actionsLog[0]).toEqual(stopRecordingExpectedActions[0]);
-    //             /* clear errors */
-    //             expect(actionsLog[1]).toEqual(stopRecordingExpectedActions[1]);
-    //             /* set route data */
-    //             expect(actionsLog[2]).toEqual(stopRecordingExpectedActions[2]);
-    //             /* loading - end */
-    //             expect(actionsLog[3]).toEqual(stopRecordingExpectedActions[3]);
-    //         });
-    // });
+        return store
+            .dispatch<any>(stopCurrentRoute(false, endDate))
+            .then(() => {
+                /**
+                 * Check if all expected actions have been called.
+                 */
+                /* loading - start */
+                expect(actionsLog[0]).toEqual(stopRecordingExpectedActions[0]);
+                /* clear errors */
+                expect(actionsLog[1]).toEqual(stopRecordingExpectedActions[1]);
+                /* set route data */
+                expect(actionsLog[2]).toEqual(stopRecordingExpectedActions[2]);
+                /* loading - end */
+                expect(actionsLog[3]).toEqual(stopRecordingExpectedActions[3]);
+            });
+    });
 
     describe('[syncCurrentRouteData]', () => {
         describe('when is offline', () => {
