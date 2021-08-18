@@ -1,4 +1,6 @@
 import {
+    startRecordingExpectedActions,
+    startRecordingWhenKeepExpectedActions,
     synchRecordingExpectedActions,
     synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActions,
     synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions,
@@ -6,6 +8,32 @@ import {
     synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions,
     synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions,
 } from './expectedAxtions';
+
+export const compareResultsWhenStartRecordingFirstCase = (
+    actionsLog: any[],
+) => {
+    /* loading - start */
+    expect(actionsLog[0]).toEqual(startRecordingExpectedActions[0]);
+    /* clear errors */
+    expect(actionsLog[1]).toEqual(startRecordingExpectedActions[1]);
+    /* set route data */
+    expect(actionsLog[2]).toEqual(startRecordingExpectedActions[2]);
+    /* loading - end */
+    expect(actionsLog[3]).toEqual(startRecordingExpectedActions[3]);
+};
+
+export const compareResultsWhenStartRecordingSecondCase = (
+    actionsLog: any[],
+) => {
+    /* loading - start */
+    expect(actionsLog[0]).toEqual(startRecordingWhenKeepExpectedActions[0]);
+    /* clear errors */
+    expect(actionsLog[1]).toEqual(startRecordingWhenKeepExpectedActions[1]);
+    /* set route data */
+    expect(actionsLog[2]).toEqual(startRecordingWhenKeepExpectedActions[2]);
+    /* loading - end */
+    expect(actionsLog[3]).toEqual(startRecordingWhenKeepExpectedActions[3]);
+};
 
 export const compareResultsWhenOfflineFirstCase = (actionsLog: any[]) => {
     /* loading - start */

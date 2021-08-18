@@ -21,6 +21,24 @@ export const startRecordingExpectedActions = [
     },
 ];
 
+export const startRecordingWhenKeepExpectedActions = [
+    {
+        type: actionTypes.SET_ROUTES_LOADING_STATE,
+        state: true,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
+        type: actionTypes.SET_CURRENT_ROUTE,
+        currentRoute: undefined,
+    },
+    {
+        state: false,
+        type: actionTypes.SET_ROUTES_LOADING_STATE,
+    },
+];
+
 export const stopRecordingExpectedActions = [
     {
         state: true,
