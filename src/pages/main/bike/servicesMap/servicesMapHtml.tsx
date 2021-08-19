@@ -42,6 +42,18 @@ export default `
 <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
 
 <script>
+const customJsonStringify = (value: any, fallback?: any) => {
+    if (!value) {
+        return value;
+    }
+
+    try {
+        return JSON.stringify(value);
+    } catch (error) {
+        return fallback || undefined;
+    }
+};
+
 let map;
 const googleMap = document.getElementById('map');
 // let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
@@ -84,7 +96,7 @@ const setPosOnMap = position => {
 const getRgion = () => {
     const bounds = map.getBounds();
 
-    window.ReactNativeWebView.postMessage("changeRegion#$#"+JSON.stringify(bounds));
+    window.ReactNativeWebView.postMessage("changeRegion#$#"+customJsonStringify(bounds, ''));
 }
 
 function initMap() {
@@ -635,7 +647,7 @@ const setMarks = places => {
 
         // do pokazywania alpi z adresem
         google.maps.event.addDomListener(mark, 'click', function() {
-            window.ReactNativeWebView.postMessage("clickMarker#$#"+JSON.stringify(mark.details));
+            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify(mark?.details, ''));
         });
 
         switch (type) {
