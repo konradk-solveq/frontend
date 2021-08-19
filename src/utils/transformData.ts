@@ -14,7 +14,7 @@ import {getLocations} from './geolocation';
 
 const getTimeInUTCMilliseconds = (date: string | number) => {
     try {
-        return new Date(date).getUTCMilliseconds();
+        return new Date(date).valueOf();
     } catch (error) {
         return date;
     }
@@ -373,7 +373,7 @@ export const routesDataToPersist = async (
             ? -1
             : 1;
     });
-console.log('[SORTED]', JSON.stringify(sorted))
+
     return sorted;
 };
 
