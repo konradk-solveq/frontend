@@ -31,18 +31,14 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
      * Helper to prevent render current polyline faster then restored data from SQL.
      */
     const restoreRef = useRef(false);
+    const currentRouteId = useAppSelector(trackerRouteIdSelector);
+
     /**
      * Routes can be separate with pause. Every pasue event creates new array.
      */
-    const routeRef = useRef<ShortCoordsType[]>([]);
-    const currentRouteId = useAppSelector(trackerRouteIdSelector);
+    const [route, setRoute] = useState<ShortCoordsType[]>([]);
 
-    const {appIsActive, appPrevStateVisible, appStateVisible} = useAppState();
-    const [previousState, setPrevoiusState] = useState(appPrevStateVisible);
-
-    useEffect(() => {
-        setPrevoiusState(appStateVisible);
-    }, [appStateVisible]);
+    const {appIsActive, appPrevStateVisible} = useAppState();
 
     const redrawPolyline = useCallback(async () => {
         restoreRef.current = false;
@@ -52,7 +48,7 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
             return;
         }
 
-        let result: ShortCoordsType[] = deepCopy(routeRef.current);
+        let result: ShortCoordsType[] = deepCopy(route);
 
         const newRoute = await restoreRouteDataFromSQL(currentRouteId, result);
         if (!newRoute.length) {
@@ -62,9 +58,9 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
 
         result = newRoute;
 
-        routeRef.current = result;
+        setRoute(result);
         restoreRef.current = true;
-    }, [currentRouteId]);
+    }, [currentRouteId, route]);
 
     /**
      * Restore path from SQL after re-launch.
@@ -73,9 +69,7 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
         if (!mountRef.current) {
             redrawPolyline();
 
-            setPrevoiusState('active');
-
-            // mountRef.current = true;
+            mountRef.current = true;
         }
 
         return () => {
@@ -89,10 +83,13 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
      */
     useEffect(() => {
         let t: NodeJS.Timeout;
-        if (appIsActive && previousState === 'background' && currentRouteId) {
+        if (
+            appIsActive &&
+            appPrevStateVisible === 'background' &&
+            currentRouteId &&
+            mountRef.current
+        ) {
             redrawPolyline();
-
-            setPrevoiusState('active');
         } else {
             t = setTimeout(() => {
                 restoreRef.current = true;
@@ -103,7 +100,7 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
             restoreRef.current = false;
             clearTimeout(t);
         };
-    }, [appIsActive, previousState, currentRouteId, redrawPolyline]);
+    }, [appIsActive, appPrevStateVisible, currentRouteId, redrawPolyline]);
 
     /**
      * Render path after SQL data has been restored.
@@ -116,20 +113,18 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
                 timestamp: coords.timestamp,
             };
 
-            const newRure = routeRef.current.length
-                ? deepCopy(routeRef.current)
-                : [];
+            const newRure = route.length ? deepCopy(route) : [];
             newRure.push(pos);
 
-            routeRef.current = newRure;
+            setRoute(newRure);
         }
-    }, [coords]);
+    }, [coords, route]);
 
-    if (!routeRef?.current?.length) {
+    if (!route.length) {
         return null;
     }
 
-    return <Polyline coords={routeRef.current} />;
+    return <Polyline coords={route} />;
 };
 
 export default React.memo(SinglePolyline);

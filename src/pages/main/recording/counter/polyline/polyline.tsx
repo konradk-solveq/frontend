@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {Polyline as MapPolyline} from 'react-native-maps';
 
 type ShortCoordsType = {
@@ -18,18 +18,21 @@ const Polyline: React.FC<IProps> = ({
     strokeColors,
 }: IProps) => {
     const polylineRef = useRef<MapPolyline>(null);
-    const [newCoords, setNewCoords] = useState<ShortCoordsType[]>([]);
 
     useEffect(() => {
         if (coords?.length) {
-            setNewCoords(coords);
+            if (polylineRef.current) {
+                polylineRef.current?.setNativeProps({
+                    coordinates: coords,
+                });
+            }
         }
     }, [coords]);
 
     return (
         <MapPolyline
             ref={polylineRef}
-            coordinates={newCoords}
+            coordinates={[]}
             strokeColor={strokeColor || '#d8232a'}
             strokeColors={strokeColors || ['#d8232a']}
             lineCap={'round'}
