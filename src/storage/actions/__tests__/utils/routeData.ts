@@ -145,17 +145,6 @@ export const dataToSynch: LocationDataI[] = [
         timestamp: '2021-08-16T11:29:01.835Z',
     },
     {
-        uuid: '26f979df-a801-4f5e-bf23-6bb4dc6056c6',
-        coords: {
-            latitude: 50.665124729586815,
-            longitude: 17.887586214215336,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 172.3,
-        timestamp: '2021-08-16T11:29:03.085Z',
-    },
-    {
         uuid: '7f9aaa9d-25df-4825-bca1-e9cd4c1e1b4e',
         coords: {
             latitude: 50.665124729586815,
@@ -244,17 +233,6 @@ export const dataToSynch: LocationDataI[] = [
         timestamp: '2021-08-16T11:29:07.464Z',
     },
     {
-        uuid: '0235a717-0be0-40c2-9c1f-72501b30d96b',
-        coords: {
-            latitude: 50.66468016584335,
-            longitude: 17.88673938210618,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 254.8,
-        timestamp: '2021-08-16T11:29:08.067Z',
-    },
-    {
         uuid: 'ec4e2a22-d3a6-42af-a89a-a6e77302faef',
         coords: {
             latitude: 50.66468016584335,
@@ -319,17 +297,6 @@ export const dataToSynch: LocationDataI[] = [
         },
         odometer: 328.5,
         timestamp: '2021-08-16T11:29:12.493Z',
-    },
-    {
-        uuid: '0d4bc3b5-08f9-4f9b-8c3a-07b039fe3ac5',
-        coords: {
-            latitude: 50.663978153016735,
-            longitude: 17.886335852241338,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 338.1,
-        timestamp: '2021-08-16T11:29:13.076Z',
     },
     {
         uuid: '704dc125-3eec-46ac-82f5-c536acb52691',
@@ -794,17 +761,6 @@ export const dataToSynch: LocationDataI[] = [
         timestamp: '2021-08-16T11:29:35.284Z',
     },
     {
-        uuid: '03eb772b-f7b8-4163-a808-fa2c65a1d02b',
-        coords: {
-            latitude: 50.66142441469084,
-            longitude: 17.88581589516512,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 716.9,
-        timestamp: '2021-08-16T11:29:36.081Z',
-    },
-    {
         uuid: '2b7b361f-7ed0-4a14-a4b1-463a4dbb47b4',
         coords: {
             latitude: 50.66142441469084,
@@ -948,17 +904,6 @@ export const dataToSynch: LocationDataI[] = [
         timestamp: '2021-08-16T11:29:45.276Z',
     },
     {
-        uuid: '0ddce138-bb34-45e5-acd5-153207984d25',
-        coords: {
-            latitude: 50.661576473163684,
-            longitude: 17.88352055861769,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 880.1,
-        timestamp: '2021-08-16T11:29:45.873Z',
-    },
-    {
         uuid: '52c6ba50-4651-4659-9c2a-63a2d809c67b',
         coords: {
             latitude: 50.661576473163684,
@@ -1056,17 +1001,6 @@ export const dataToSynch: LocationDataI[] = [
         },
         odometer: 986,
         timestamp: '2021-08-16T11:29:52.225Z',
-    },
-    {
-        uuid: '8e4155cc-f608-4474-a2a8-06d5071fe9d4',
-        coords: {
-            latitude: 50.66172214981364,
-            longitude: 17.881813314596542,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 1001.9,
-        timestamp: '2021-08-16T11:29:53.182Z',
     },
     {
         uuid: 'cf766b61-3120-409b-919c-8b9c67265341',
@@ -1333,17 +1267,6 @@ export const dataToSynch: LocationDataI[] = [
         timestamp: '2021-08-16T11:30:10.181Z',
     },
     {
-        uuid: '1fa1a70f-bff2-421c-aa05-4373f4420caf',
-        coords: {
-            latitude: 50.662399549440934,
-            longitude: 17.878073261565387,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 1291.2,
-        timestamp: '2021-08-16T11:30:10.620Z',
-    },
-    {
         uuid: '6c72aa16-5e6b-44d0-a8dd-2cd5419b6359',
         coords: {
             latitude: 50.662399549440934,
@@ -1410,17 +1333,6 @@ export const dataToSynch: LocationDataI[] = [
         timestamp: '2021-08-16T11:30:15.220Z',
     },
     {
-        uuid: '88fad258-dcde-4565-af21-736e8b334da4',
-        coords: {
-            latitude: 50.66304834338755,
-            longitude: 17.87787444923217,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 1375.6,
-        timestamp: '2021-08-16T11:30:15.779Z',
-    },
-    {
         uuid: 'b625d1a9-7b04-437e-bcca-a4971df8957b',
         coords: {
             latitude: 50.66304834338755,
@@ -1441,17 +1353,6 @@ export const dataToSynch: LocationDataI[] = [
         },
         odometer: 1399.2,
         timestamp: '2021-08-16T11:30:17.198Z',
-    },
-    {
-        uuid: '87909619-4eb0-4cd4-be15-2bc7c7a67bab',
-        coords: {
-            latitude: 50.66339056318947,
-            longitude: 17.87809413719276,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 1416.7,
-        timestamp: '2021-08-16T11:30:18.247Z',
     },
     {
         uuid: 'fd42aa40-b7a0-4add-87ec-3598b87656a8',
@@ -1485,17 +1386,6 @@ export const dataToSynch: LocationDataI[] = [
         },
         odometer: 1447.7,
         timestamp: '2021-08-16T11:30:20.106Z',
-    },
-    {
-        uuid: '95d369f4-89b1-4c06-af36-0c93d301c6c0',
-        coords: {
-            latitude: 50.66371683509792,
-            longitude: 17.878361965176364,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 1457.7,
-        timestamp: '2021-08-16T11:30:20.708Z',
     },
     {
         uuid: 'd0bd8dd4-a91b-4db5-8581-12dfe3e64426',
@@ -1617,17 +1507,6 @@ export const dataToSynch: LocationDataI[] = [
         },
         odometer: 1564.9,
         timestamp: '2021-08-16T11:30:27.143Z',
-    },
-    {
-        uuid: '0c7c1c99-95de-4ed0-a3c6-a9972fea1084',
-        coords: {
-            latitude: 50.66470055484073,
-            longitude: 17.87905833313838,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 1578.4,
-        timestamp: '2021-08-16T11:30:27.952Z',
     },
     {
         uuid: '9c86eb9c-6a0c-46d6-990c-1e1be739ef71',
@@ -1771,17 +1650,6 @@ export const dataToSynch: LocationDataI[] = [
         },
         odometer: 1730.5,
         timestamp: '2021-08-16T11:30:37.085Z',
-    },
-    {
-        uuid: '5adcae38-8d02-4b3d-a58c-ee4689754590',
-        coords: {
-            latitude: 50.66614336116621,
-            longitude: 17.87875253592178,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 1742.2,
-        timestamp: '2021-08-16T11:30:37.783Z',
     },
     {
         uuid: '63dca34f-7257-4477-8cd3-579f6000212d',
