@@ -23,7 +23,7 @@ const PoorConnectionModal: React.FC<IProps> = ({onAbort}: IProps) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowModal(true);
-        }, 120000);
+        }, 30000);
 
         return () => {
             clearTimeout(timer);
