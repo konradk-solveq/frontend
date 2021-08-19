@@ -326,11 +326,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 }
             }
 
-            dispatch(clearCurrentRouteData());
-            dispatch(clearCurrentRoute());
-            dispatch(clearAverageSpeed());
-            dispatch(setError(errorMessage, response.status));
-            if (currRoutesDat?.length >= 2) {
+            if (currRoutesDat?.length > 3) {
                 console.log(
                     `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
                 );
@@ -340,6 +336,10 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 const err = convertToApiError(errorMessage);
                 logger.recordError(err);
             }
+            dispatch(clearCurrentRouteData());
+            dispatch(clearCurrentRoute());
+            dispatch(clearAverageSpeed());
+            dispatch(setError(errorMessage, response.status));
             return;
         }
 
