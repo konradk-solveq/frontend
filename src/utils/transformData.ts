@@ -368,9 +368,12 @@ export const routesDataToPersist = async (
             return a.coords.latitude < b.coords.latitude ? -1 : 1;
         }
 
-        return getTimeInUTCMilliseconds(a.timestamp) < b.timestamp ? -1 : 1;
+        return getTimeInUTCMilliseconds(a.timestamp) <
+            getTimeInUTCMilliseconds(b.timestamp)
+            ? -1
+            : 1;
     });
-
+console.log('[SORTED]', JSON.stringify(sorted))
     return sorted;
 };
 
