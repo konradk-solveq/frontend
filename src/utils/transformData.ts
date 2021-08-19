@@ -359,7 +359,11 @@ export const routesDataToPersist = async (
         ) {
             if (a.coords.latitude === b.coords.latitude) {
                 if (a.coords.longitude === b.coords.longitude) {
-                    return 0;
+                    if (a.uuid === b.uuid) {
+                        return 0;
+                    }
+
+                    return a.uuid < b.uuid ? -1 : 1;
                 }
 
                 return a.coords.longitude < b.coords.longitude ? -1 : 1;
@@ -380,11 +384,14 @@ export const routesDataToPersist = async (
 export const getRoutesDataFromSQL = async (
     routeId: string,
     timeToExclude?: {start: number; end: number},
-): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
+): Promise<
+    {latitude: number; longitude: number; timestamp: number; uuid: string}[]
+> => {
     const currRoutes: {
         latitude: number;
         longitude: number;
         timestamp: number;
+        uuid: string;
     }[] = [];
     const locations = await getLocations();
     if (!locations) {
@@ -412,6 +419,7 @@ export const getRoutesDataFromSQL = async (
                 latitude: l.coords.latitude,
                 longitude: l.coords.longitude,
                 timestamp: alterTimestamp || l.timestamp,
+                uuid: l.uuid,
             };
 
             currRoutes.push(newRoute);
@@ -425,7 +433,11 @@ export const getRoutesDataFromSQL = async (
         ) {
             if (a.latitude === b.latitude) {
                 if (a.longitude === b.longitude) {
-                    return 0;
+                    if (a.uuid === b.uuid) {
+                        return 0;
+                    }
+
+                    return a.uuid < b.uuid ? -1 : 1;
                 }
 
                 return a.longitude < b.longitude ? -1 : 1;
