@@ -99,16 +99,28 @@ export const initBGeolocalization = async (notificationTitle: string) => {
     }
 };
 
+/**
+ *
+ * @param routeId
+ * @param samples
+ * @param accuracy
+ * @param notPersist
+ * @param timeout - in sedonds
+ * @param maximumAge - in milliseconds
+ * @returns
+ */
 export const getCurrentLocation = async (
     routeId?: string,
     samples?: number,
     accuracy?: number,
     notPersist?: boolean,
+    timeout?: number,
+    maximumAge?: number,
 ) => {
     try {
         const location = await BackgroundGeolocation.getCurrentPosition({
-            timeout: 30,
-            maximumAge: 0,
+            timeout: timeout || 30,
+            maximumAge: maximumAge || 0,
             desiredAccuracy: accuracy || 5,
             samples: samples || 8,
             persist: !notPersist,
