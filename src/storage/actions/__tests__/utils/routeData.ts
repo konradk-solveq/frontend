@@ -1509,17 +1509,6 @@ export const dataToSynch: LocationDataI[] = [
         timestamp: '2021-08-16T11:30:20.708Z',
     },
     {
-        uuid: '404bd1af-23da-4291-8b99-05c397bdc77f',
-        coords: {
-            latitude: 50.66390523870147,
-            longitude: 17.87852639013946,
-            altitude: -1,
-            speed: 16.67,
-        },
-        odometer: 1481.7,
-        timestamp: '2021-08-16T11:30:22.147Z',
-    },
-    {
         uuid: 'd36f9019-8715-466e-9d5b-dbf72f9d9bf4',
         coords: {
             latitude: 50.6642819,
@@ -1529,6 +1518,17 @@ export const dataToSynch: LocationDataI[] = [
         },
         odometer: 1481.7,
         timestamp: '2021-08-16T11:30:21.310Z',
+    },
+    {
+        uuid: '404bd1af-23da-4291-8b99-05c397bdc77f',
+        coords: {
+            latitude: 50.66390523870147,
+            longitude: 17.87852639013946,
+            altitude: -1,
+            speed: 16.67,
+        },
+        odometer: 1481.7,
+        timestamp: '2021-08-16T11:30:22.147Z',
     },
     {
         uuid: '2261e090-2f4b-45f8-9586-2a01a6abf18c',

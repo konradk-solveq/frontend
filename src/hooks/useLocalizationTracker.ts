@@ -167,52 +167,57 @@ const useLocalizationTracker = (
     }, []);
 
     const setCurrentTrackerData = useCallback(() => {
-        getCurrentLocation(currentRouteId).then(d => {
-            const notMoving = false;
-            const lowSpeed = speedToLow(d);
+        getCurrentLocation(currentRouteId, undefined, undefined, true).then(
+            d => {
+                const notMoving = false;
+                const lowSpeed = speedToLow(d);
 
-            setAverageSpeedOnStart();
-            let aSpeed = getAverageSpeedData(speed);
-            if (notMoving || lowSpeed) {
-                setTrackerData(prev => {
-                    if (!prev) {
-                        return undefined;
-                    }
-                    return {
-                        ...prev,
-                        averageSpeed: getAverageSpeedData(
-                            speed,
-                            currentRouteAverrageSpeed,
-                        ),
-                        speed: '0,0',
-                    };
-                });
-                return;
-            }
+                setAverageSpeedOnStart();
+                let aSpeed = getAverageSpeedData(speed);
+                if (notMoving || lowSpeed) {
+                    setTrackerData(prev => {
+                        if (!prev) {
+                            return undefined;
+                        }
+                        return {
+                            ...prev,
+                            averageSpeed: getAverageSpeedData(
+                                speed,
+                                currentRouteAverrageSpeed,
+                            ),
+                            speed: '0,0',
+                        };
+                    });
+                    return;
+                }
 
-            if (d?.coords?.speed && d?.coords?.speed > 0) {
-                speed.push(d?.coords?.speed);
-            }
+                if (d?.coords?.speed && d?.coords?.speed > 0) {
+                    speed.push(d?.coords?.speed);
+                }
 
-            if (
-                ((d?.odometer && d?.odometer - lastDistance > 10) ||
-                    !lastDistance) &&
-                !notMoving &&
-                parseFloat(aSpeed) >= 0.1
-            ) {
-                aSpeed = getAverageSpeedData(speed, currentRouteAverrageSpeed);
-            }
+                if (
+                    ((d?.odometer && d?.odometer - lastDistance > 10) ||
+                        !lastDistance) &&
+                    !notMoving &&
+                    parseFloat(aSpeed) >= 0.1
+                ) {
+                    aSpeed = getAverageSpeedData(
+                        speed,
+                        currentRouteAverrageSpeed,
+                    );
+                }
 
-            const res = getTrackerData(d, aSpeed);
+                const res = getTrackerData(d, aSpeed);
 
-            setTrackerData(res);
-            setCurrentAverageSpeed(parseFloat(aSpeed));
+                setTrackerData(res);
+                setCurrentAverageSpeed(parseFloat(aSpeed));
 
-            if (persist) {
-                /* TODO: High disk usage - to verify and eventually delete */
-                // onPersistData(d?.odometer);
-            }
-        });
+                if (persist) {
+                    /* TODO: High disk usage - to verify and eventually delete */
+                    // onPersistData(d?.odometer);
+                }
+            },
+        );
     }, [
         persist,
         currentRouteAverrageSpeed,

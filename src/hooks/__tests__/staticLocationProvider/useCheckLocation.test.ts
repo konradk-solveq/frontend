@@ -10,7 +10,7 @@ describe('[useCheckLocation]', () => {
             Promise.resolve(Permissions.RESULTS.LIMITED),
         );
         const {result, waitForNextUpdate} = renderHook(
-            () => useCheckLocationType(false),
+            () => useCheckLocationType(false, true),
             {
                 wrapper: hookWrapper,
             },
@@ -26,7 +26,7 @@ describe('[useCheckLocation]', () => {
             Promise.resolve(Permissions.RESULTS.GRANTED),
         );
         const {result, waitForNextUpdate} = renderHook(
-            () => useCheckLocationType(),
+            () => useCheckLocationType(undefined, true),
             {
                 wrapper: hookWrapper,
             },

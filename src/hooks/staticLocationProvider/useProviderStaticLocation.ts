@@ -1,4 +1,4 @@
-import {useEffect, useState, useCallback} from 'react';
+import {useEffect, useState, useCallback, useRef} from 'react';
 import {Platform} from 'react-native';
 
 import {GeofenceEvent} from '@interfaces/geolocation';
@@ -9,12 +9,12 @@ import {setGlobalLocation} from '@storage/actions/app';
 import {
     cleanUpListener,
     getLatLngFromForeground,
+    getLocationWithLowAccuracy,
     onGeofenceChangeListener,
     removeGeofence,
     setGeofenceFromCurrentLocation,
     stopBackgroundGeolocationPlugin,
 } from '@utils/geolocation';
-import useFineWhenInUseLocationPermission from '@hooks/useFineWhenInUseLocationPermission';
 import {
     onboardingFinishedSelector,
     trackerActiveSelector,
@@ -31,16 +31,46 @@ const intervalToRefreshLocation = __DEV__ ? 12000 : 120000;
 
 const useProviderStaticLocation = () => {
     const dispatch = useAppDispatch();
+    const initLocationRef = useRef(false);
 
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const isRouteRecordingActive = useAppSelector(trackerActiveSelector);
 
-    useFineWhenInUseLocationPermission(!isOnboardingFinished);
-
-    const {locationType} = useCheckLocationType();
+    const {locationType, permissionGranted} = useCheckLocationType();
 
     const [location, setLocation] = useState<BasicCoordsType | undefined>();
     const [isTrackingActivated, setIsTrackingActivated] = useState(false);
+
+    /**
+     * Get initial location with low accuracy
+     */
+    useEffect(() => {
+        if (
+            !initLocationRef.current &&
+            isOnboardingFinished &&
+            permissionGranted
+        ) {
+            const getLocation = async () => {
+                const loc = await getLocationWithLowAccuracy();
+                if (loc?.coords) {
+                    const l: BasicCoordsType = {
+                        latitude: loc?.coords?.latitude,
+                        longitude: loc?.coords?.longitude,
+                    };
+                    setLocation(l);
+                    dispatch(setGlobalLocation(l));
+                }
+            };
+
+            getLocation();
+
+            initLocationRef.current = true;
+        }
+
+        return () => {
+            initLocationRef.current = false;
+        };
+    }, [dispatch, permissionGranted, isOnboardingFinished]);
 
     const storeCurrentLocation = useCallback(
         (loc: BasicCoordsType) => {
@@ -53,7 +83,10 @@ const useProviderStaticLocation = () => {
     const setGofenceToMonitor = useCallback(
         (event?: GeofenceEvent) => {
             const setLoc = async () => {
-                if (event?.action === 'EXIT' || !event?.action) {
+                if (
+                    event?.action === 'EXIT' ||
+                    (!event?.action && initLocationRef.current)
+                ) {
                     const omit = shouldOmit(event?.identifier);
 
                     const geofenceLocation = transfromToProperFormat(
@@ -82,6 +115,10 @@ const useProviderStaticLocation = () => {
     );
 
     const setLocationWithInterval = useCallback(async () => {
+        if (!initLocationRef.current) {
+            return;
+        }
+
         const loc = await getLatLngFromForeground();
 
         if (loc) {
@@ -90,7 +127,7 @@ const useProviderStaticLocation = () => {
     }, [storeCurrentLocation]);
 
     const setInitLocationWithInterval = useCallback(async () => {
-        if (!location) {
+        if (!location && initLocationRef.current) {
             setLocationWithInterval();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
