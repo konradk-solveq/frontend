@@ -6,20 +6,18 @@ import {modifyReaction} from '@storage/actions/maps';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {I18n} from '@translations/I18n';
 import {Map, ReactionsType} from '@models/map.model';
-
-import {
-    BikeIcon,
-    ClockIcon,
-    DownloadIcon,
-} from '../../../../../sharedComponents/svg/icons';
-import TileBackground from './tileBackground';
-import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
 import {getImageToDisplay} from '@utils/transformData';
+import {jsonStringify} from '@utils/transformJson';
 
-import styles from './styles/commonStyles';
+import {BikeIcon, ClockIcon, DownloadIcon} from '@sharedComponents/svg/icons';
+import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
+
+import TileBackground from './tileBackground';
 import secondTileStyles from './styles/styleSecondTile';
 import FourthSection from './sections/fourthSection';
 import ThirdSection from './sections/thirdSection';
+
+import styles from './styles/commonStyles';
 
 interface IProps {
     mapData: Map;
@@ -199,9 +197,9 @@ const SecondTile: React.FC<IProps> = ({
 
                         <View style={styles.fourthSectionWrap}>
                             <FourthSection
-                                key={`${JSON.stringify(mapData?.reactions)}-${
-                                    mapData?.id
-                                }`}
+                                key={`${jsonStringify(
+                                    mapData?.reactions || 'reactions',
+                                )}-${mapData?.id}`}
                                 likeGaved={
                                     mapData.reaction === likeValue?.enumValue
                                 }

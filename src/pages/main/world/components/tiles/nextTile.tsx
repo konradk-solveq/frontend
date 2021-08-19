@@ -15,6 +15,7 @@ import {
 import TileBackground from './tileBackground';
 import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
 import {getImageToDisplay} from '@utils/transformData';
+import {jsonStringify} from '@utils/transformJson';
 
 import styles from './styles/commonStyles';
 import nextTileStyles from './styles/styleNextTile';
@@ -202,9 +203,10 @@ const NextTile: React.FC<IProps> = ({
                         <View style={styles.borderLine} />
 
                         <FourthSection
-                            key={`${JSON.stringify(mapData?.reactions)}-${
-                                mapData?.id
-                            }`}
+                            key={`${jsonStringify(
+                                mapData?.reactions,
+                                'reactions',
+                            )}-${mapData?.id}`}
                             likeGaved={
                                 mapData.reaction === likeValue?.enumValue
                             }
