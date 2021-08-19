@@ -76,22 +76,7 @@ describe('[useLocalizationTracker]', () => {
             }
 
             const trackerData = renderedHook.result.current?.trackerData;
-            expect(trackerData).toBe(undefined);
-
-            /**
-             * Read current loaction position.
-             */
-            await asyncEvent(
-                renderedHook.result.current.setCurrentTrackerData(),
-            );
-
-            await renderedHook?.waitForValueToChange(
-                async () => renderedHook?.result.current?.trackerData,
-            );
-
-            const updatedTrackerData = renderedHook.result.current?.trackerData;
-
-            expect(updatedTrackerData).toEqual(trackerDataResult);
+            expect(trackerData).toStrictEqual(trackerDataResult);
         }, 5000);
 
         afterEach(() => {

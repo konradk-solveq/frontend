@@ -154,6 +154,9 @@ const useProviderStaticLocation = () => {
         cleanUpListener('geofence', setGofenceToMonitor);
         if (!isTrackingActivated && !isRouteRecordingActive) {
             stopBackgroundGeolocationPlugin();
+            console.log(
+                '[=== STATIIC LOCATION PROVIDER -- plugin stopped ===]',
+            );
         }
     }, [isTrackingActivated, isRouteRecordingActive, setGofenceToMonitor]);
 
