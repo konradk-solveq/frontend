@@ -11,6 +11,7 @@ import {
     RESULTS,
     request,
 } from 'react-native-permissions';
+import GetLocation from 'react-native-get-location';
 
 import logger from '@utils/crashlytics';
 import {LocationDataI} from '@interfaces/geolocation';
@@ -630,5 +631,33 @@ export const stopBackgroundGeolocationPlugin = async () => {
         logger.log(`[stopBackgroundGeolocationPlugin] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+    }
+};
+
+export const getLocationWithLowAccuracy = async () => {
+    try {
+        const location = await GetLocation.getCurrentPosition({
+            enableHighAccuracy: false,
+            timeout: 5000,
+        });
+        if (!location) {
+            return undefined;
+        }
+
+        const loc: LocationDataI = {
+            coords: {
+                altitude: location.altitude,
+                latitude: location.latitude,
+                longitude: location.longitude,
+                speed: location.speed,
+            },
+            odometer: 0,
+            timestamp: '',
+            uuid: `${location.time}`,
+        };
+
+        return loc;
+    } catch (error) {
+        console.warn('[getLocationWithLowAccuracy - error]', error);
     }
 };

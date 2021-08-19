@@ -229,7 +229,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         /* Omit synch map data if recording is active */
         const isRecordingActive = currentRoute?.isActive;
 
-        if (onboardingFinished && showedRegulations && !isRecordingActive) {
+        if (onboardingFinished && !isRecordingActive) {
             await dispatch(fetchMapsList());
         }
 

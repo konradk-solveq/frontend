@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useEffect, useRef} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -7,14 +7,12 @@ import {Map} from '../../../../models/map.model';
 import {I18n} from '../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {getImagesThumbs} from '../../../../utils/transformData';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {globalLocationSelector} from '@storage/selectors/app';
+import {useAppSelector} from '../../../../hooks/redux';
 import {
     loadingMapsSelector,
     mapsListSelector,
     refreshMapsSelector,
 } from '../../../../storage/selectors/map';
-import {fetchMapsList} from '@storage/actions';
 
 import FirstTile from '../components/tiles/firstTile';
 import SecondTile from '../components/tiles/secondTile';
@@ -42,25 +40,14 @@ interface IProps {
 
 const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
-    const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const initMapsLoadRef = useRef(false);
 
     const mapsData = useAppSelector(mapsListSelector);
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
-    const location = useAppSelector(globalLocationSelector);
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
-
-    useEffect(() => {
-        if (!initMapsLoadRef.current && !mapsData?.length && location) {
-            initMapsLoadRef.current = true;
-
-            dispatch(fetchMapsList());
-        }
-    }, [dispatch, mapsData?.length, location]);
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);

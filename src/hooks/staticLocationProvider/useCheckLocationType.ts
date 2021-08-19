@@ -40,7 +40,12 @@ const useCheckLocationType = (isEnabled?: boolean, skipChecking?: boolean) => {
         checkLocationType();
     }, [checkLocationType]);
 
-    return {locationType, setLocationType, checkLocationType};
+    return {
+        locationType,
+        setLocationType,
+        checkLocationType,
+        permissionGranted: permissionResult === 'granted',
+    };
 };
 
 export default useCheckLocationType;
