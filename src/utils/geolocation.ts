@@ -118,9 +118,9 @@ export const getCurrentLocation = async (
 
         return location;
     } catch (e) {
-        console.log('[getCurrentLocation - e]', e);
-        logger.log(`[getCurrentLocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[getCurrentLocation - e]', errorMessage);
+        logger.log(`[getCurrentLocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -189,9 +189,10 @@ export const startBackgroundGeolocation = async (
 
         return state;
     } catch (e) {
-        console.warn('[startBackgroundGeolocation - error]', e);
-        logger.log(`[startBackgroundGeolocation] - ${e}`);
-        const error = new Error(e);
+        const errorMessage = transformLocationErrorCode(e);
+        console.warn('[startBackgroundGeolocation - error]', errorMessage);
+        logger.log(`[startBackgroundGeolocation] - ${errorMessage}`);
+        const error = new Error(errorMessage);
         logger.recordError(error);
     }
 };
@@ -243,9 +244,9 @@ export const onLocationChange = async (
     try {
         BackgroundGeolocation.onLocation(onLocation, onError);
     } catch (e) {
-        console.log('[onLocationChange - error]', e);
-        logger.log(`[onLocationChange] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[onLocationChange - error]', errorMessage);
+        logger.log(`[onLocationChange] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -258,9 +259,9 @@ export const onPostitionWatch = async (
     try {
         BackgroundGeolocation.watchPosition(onLocation, onError);
     } catch (e) {
-        console.log('[onPostitionWatch - error]', e);
-        logger.log(`[onPostitionWatch] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[onPostitionWatch - error]', errorMessage);
+        logger.log(`[onPostitionWatch] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -270,9 +271,9 @@ export const cleaUpPositionWatcher = () => {
     try {
         BackgroundGeolocation.stopWatchPosition();
     } catch (e) {
-        console.warn('[cleaUpPositionWatcher - error]', e);
-        logger.log(`[cleaUpPositionWatcher] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.warn('[cleaUpPositionWatcher - error]', errorMessage);
+        logger.log(`[cleaUpPositionWatcher] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -343,9 +344,9 @@ export const resumeTracingLocation = async () => {
             await BackgroundGeolocation.changePace(true);
         }
     } catch (e) {
-        console.log('[resumeTracingLocation - error]', e);
-        logger.log(`[resumeTracingLocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[resumeTracingLocation - error]', errorMessage);
+        logger.log(`[resumeTracingLocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -358,9 +359,9 @@ export const pauseBackgroundGeolocation = async () => {
 
         return state;
     } catch (e) {
-        console.log('[pauseBackgroundGeolocation - error]', e);
-        logger.log(`[pauseBackgroundGeolocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[pauseBackgroundGeolocation - error]', errorMessage);
+        logger.log(`[pauseBackgroundGeolocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -373,9 +374,10 @@ export const resumeBackgroundGeolocation = async () => {
 
         return state;
     } catch (e) {
-        console.log('[resumeBackgroundGeolocation - error]', e);
-        logger.log('[resumeBackgroundGeolocation]');
-        const error = new Error(e);
+        const errorMessage = transformLocationErrorCode(e);
+        console.log('[resumeBackgroundGeolocation - error]', errorMessage);
+        logger.log(`[resumeBackgroundGeolocation] ${errorMessage}`);
+        const error = new Error(errorMessage);
         logger.recordError(error);
     }
 };
