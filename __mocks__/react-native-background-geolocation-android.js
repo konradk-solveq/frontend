@@ -19919,35 +19919,6 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             mock: true,
             is_moving: true,
-            uuid: '6e63768c-e2fb-4aef-9b63-fda1e4423654',
-            odometer: 151.5,
-            coords: {
-                altitude: -1,
-                altitude_accuracy: -1,
-                heading_accuracy: -1,
-                heading: 271.37,
-                speed: 16.67,
-                accuracy: 1,
-                longitude: 17.887880352035182,
-                speed_accuracy: -1,
-                latitude: 50.665126661332806,
-            },
-            timestamp: '2021-08-16T11:29:01.835Z',
-        },
-        {
-            extras: {
-                route_id: 'current-route-test-id',
-            },
-            battery: {
-                level: 1,
-                is_charging: true,
-            },
-            activity: {
-                confidence: 100,
-                type: 'still',
-            },
-            mock: true,
-            is_moving: true,
             uuid: 'a211c2b6-4c3b-4916-a2be-6d17d91ca242',
             odometer: 151.5,
             coords: {
@@ -19962,35 +19933,6 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
                 latitude: 50.665126661332806,
             },
             timestamp: '2021-08-16T11:29:01.835Z',
-        },
-        {
-            extras: {
-                route_id: 'current-route-test-id',
-            },
-            battery: {
-                level: 1,
-                is_charging: true,
-            },
-            activity: {
-                confidence: 100,
-                type: 'still',
-            },
-            mock: true,
-            is_moving: true,
-            uuid: '7f9aaa9d-25df-4825-bca1-e9cd4c1e1b4e',
-            odometer: 172.3,
-            coords: {
-                altitude: -1,
-                altitude_accuracy: -1,
-                heading_accuracy: -1,
-                heading: 263.59,
-                speed: 16.67,
-                accuracy: 1,
-                longitude: 17.887586214215336,
-                speed_accuracy: -1,
-                latitude: 50.665124729586815,
-            },
-            timestamp: '2021-08-16T11:29:03.085Z',
         },
         {
             extras: {
@@ -21016,35 +20958,6 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             is_moving: true,
             uuid: '68655a80-2593-4914-be78-47c3442e077c',
             odometer: 542.4,
-        },
-        {
-            extras: {
-                route_id: 'current-route-test-id',
-            },
-            battery: {
-                level: 1,
-                is_charging: true,
-            },
-            activity: {
-                confidence: 100,
-                type: 'still',
-            },
-            mock: true,
-            is_moving: true,
-            uuid: 'cacce423-d6a4-4600-8e07-2f872c535633',
-            odometer: 556.5,
-            coords: {
-                altitude: -1,
-                altitude_accuracy: -1,
-                heading_accuracy: -1,
-                heading: 163.8,
-                speed: 16.67,
-                accuracy: 1,
-                longitude: 17.886668754829657,
-                speed_accuracy: -1,
-                latitude: 50.66203147381014,
-            },
-            timestamp: '2021-08-16T11:29:26.180Z',
         },
         {
             extras: {
@@ -24307,35 +24220,6 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             mock: true,
             is_moving: true,
-            uuid: '6e63768c-e2fb-4aef-9b63-fda1e4423654',
-            odometer: 151.5,
-            coords: {
-                altitude: -1,
-                altitude_accuracy: -1,
-                heading_accuracy: -1,
-                heading: 271.37,
-                speed: 16.67,
-                accuracy: 1,
-                longitude: 17.887880352035182,
-                speed_accuracy: -1,
-                latitude: 50.665126661332806,
-            },
-            timestamp: '2021-08-17T11:29:01.835Z',
-        },
-        {
-            extras: {
-                route_id: 'current-route-test-id-twosk',
-            },
-            battery: {
-                level: 1,
-                is_charging: true,
-            },
-            activity: {
-                confidence: 100,
-                type: 'still',
-            },
-            mock: true,
-            is_moving: true,
             uuid: 'a211c2b6-4c3b-4916-a2be-6d17d91ca242',
             odometer: 151.5,
             coords: {
@@ -24350,35 +24234,6 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
                 latitude: 50.665126661332806,
             },
             timestamp: '2021-08-17T11:29:01.835Z',
-        },
-        {
-            extras: {
-                route_id: 'current-route-test-id-twosk',
-            },
-            battery: {
-                level: 1,
-                is_charging: true,
-            },
-            activity: {
-                confidence: 100,
-                type: 'still',
-            },
-            mock: true,
-            is_moving: true,
-            uuid: '7f9aaa9d-25df-4825-bca1-e9cd4c1e1b4e',
-            odometer: 172.3,
-            coords: {
-                altitude: -1,
-                altitude_accuracy: -1,
-                heading_accuracy: -1,
-                heading: 263.59,
-                speed: 16.67,
-                accuracy: 1,
-                longitude: 17.887586214215336,
-                speed_accuracy: -1,
-                latitude: 50.665124729586815,
-            },
-            timestamp: '2021-08-17T11:29:03.085Z',
         },
         {
             extras: {
@@ -25404,35 +25259,6 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             is_moving: true,
             uuid: '68655a80-2593-4914-be78-47c3442e077c',
             odometer: 542.4,
-        },
-        {
-            extras: {
-                route_id: 'current-route-test-id-twosk',
-            },
-            battery: {
-                level: 1,
-                is_charging: true,
-            },
-            activity: {
-                confidence: 100,
-                type: 'still',
-            },
-            mock: true,
-            is_moving: true,
-            uuid: 'cacce423-d6a4-4600-8e07-2f872c535633',
-            odometer: 556.5,
-            coords: {
-                altitude: -1,
-                altitude_accuracy: -1,
-                heading_accuracy: -1,
-                heading: 163.8,
-                speed: 16.67,
-                accuracy: 1,
-                longitude: 17.886668754829657,
-                speed_accuracy: -1,
-                latitude: 50.66203147381014,
-            },
-            timestamp: '2021-08-17T11:29:26.180Z',
         },
         {
             extras: {
