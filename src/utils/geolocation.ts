@@ -11,6 +11,7 @@ import {
     RESULTS,
     request,
 } from 'react-native-permissions';
+import GetLocation from 'react-native-get-location';
 
 import logger from '@utils/crashlytics';
 import {LocationDataI} from '@interfaces/geolocation';
@@ -70,8 +71,9 @@ export const initBGeolocalization = async (notificationTitle: string) => {
                 positiveAction: trans.positiveAction,
                 negativeAction: trans.negativeAction,
             },
+            enableTimestampMeta: !isIOS,
             distanceFilter: 10,
-            stopTimeout: 1,
+            stopTimeout: 5,
             debug: __DEV__ ? true : false,
             logLevel: __DEV__
                 ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
@@ -106,9 +108,9 @@ export const getCurrentLocation = async (
     try {
         const location = await BackgroundGeolocation.getCurrentPosition({
             timeout: 30,
-            maximumAge: 500,
-            desiredAccuracy: accuracy || 10,
-            samples: samples || 6,
+            maximumAge: 0,
+            desiredAccuracy: accuracy || 5,
+            samples: samples || 8,
             persist: !notPersist,
             extras: {
                 route_id: routeId || '',
@@ -117,9 +119,9 @@ export const getCurrentLocation = async (
 
         return location;
     } catch (e) {
-        console.log('[getCurrentLocation - e]', e);
-        logger.log(`[getCurrentLocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[getCurrentLocation - e]', errorMessage);
+        logger.log(`[getCurrentLocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -139,7 +141,7 @@ export const getLatLng = async () => {
 export const getLatLngFromForeground = async (): Promise<
     BasicCoordsType | undefined
 > => {
-    const location = await getCurrentLocation('', 2, 10, true);
+    const location = await getCurrentLocation('', 4, 10, true);
     if (!location) {
         return undefined;
     }
@@ -188,9 +190,10 @@ export const startBackgroundGeolocation = async (
 
         return state;
     } catch (e) {
-        console.warn('[startBackgroundGeolocation - error]', e);
-        logger.log(`[startBackgroundGeolocation] - ${e}`);
-        const error = new Error(e);
+        const errorMessage = transformLocationErrorCode(e);
+        console.warn('[startBackgroundGeolocation - error]', errorMessage);
+        logger.log(`[startBackgroundGeolocation] - ${errorMessage}`);
+        const error = new Error(errorMessage);
         logger.recordError(error);
     }
 };
@@ -242,9 +245,9 @@ export const onLocationChange = async (
     try {
         BackgroundGeolocation.onLocation(onLocation, onError);
     } catch (e) {
-        console.log('[onLocationChange - error]', e);
-        logger.log(`[onLocationChange] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[onLocationChange - error]', errorMessage);
+        logger.log(`[onLocationChange] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -257,9 +260,9 @@ export const onPostitionWatch = async (
     try {
         BackgroundGeolocation.watchPosition(onLocation, onError);
     } catch (e) {
-        console.log('[onPostitionWatch - error]', e);
-        logger.log(`[onPostitionWatch] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[onPostitionWatch - error]', errorMessage);
+        logger.log(`[onPostitionWatch] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -269,9 +272,9 @@ export const cleaUpPositionWatcher = () => {
     try {
         BackgroundGeolocation.stopWatchPosition();
     } catch (e) {
-        console.warn('[cleaUpPositionWatcher - error]', e);
-        logger.log(`[cleaUpPositionWatcher] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.warn('[cleaUpPositionWatcher - error]', errorMessage);
+        logger.log(`[cleaUpPositionWatcher] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -342,9 +345,9 @@ export const resumeTracingLocation = async () => {
             await BackgroundGeolocation.changePace(true);
         }
     } catch (e) {
-        console.log('[resumeTracingLocation - error]', e);
-        logger.log(`[resumeTracingLocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[resumeTracingLocation - error]', errorMessage);
+        logger.log(`[resumeTracingLocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -357,9 +360,9 @@ export const pauseBackgroundGeolocation = async () => {
 
         return state;
     } catch (e) {
-        console.log('[pauseBackgroundGeolocation - error]', e);
-        logger.log(`[pauseBackgroundGeolocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[pauseBackgroundGeolocation - error]', errorMessage);
+        logger.log(`[pauseBackgroundGeolocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
     }
@@ -372,9 +375,10 @@ export const resumeBackgroundGeolocation = async () => {
 
         return state;
     } catch (e) {
-        console.log('[resumeBackgroundGeolocation - error]', e);
-        logger.log('[resumeBackgroundGeolocation]');
-        const error = new Error(e);
+        const errorMessage = transformLocationErrorCode(e);
+        console.log('[resumeBackgroundGeolocation - error]', errorMessage);
+        logger.log(`[resumeBackgroundGeolocation] ${errorMessage}`);
+        const error = new Error(errorMessage);
         logger.recordError(error);
     }
 };
@@ -627,5 +631,33 @@ export const stopBackgroundGeolocationPlugin = async () => {
         logger.log(`[stopBackgroundGeolocationPlugin] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+    }
+};
+
+export const getLocationWithLowAccuracy = async () => {
+    try {
+        const location = await GetLocation.getCurrentPosition({
+            enableHighAccuracy: false,
+            timeout: 5000,
+        });
+        if (!location) {
+            return undefined;
+        }
+
+        const loc: LocationDataI = {
+            coords: {
+                altitude: location.altitude,
+                latitude: location.latitude,
+                longitude: location.longitude,
+                speed: location.speed,
+            },
+            odometer: 0,
+            timestamp: '',
+            uuid: `${location.time}`,
+        };
+
+        return loc;
+    } catch (error) {
+        console.warn('[getLocationWithLowAccuracy - error]', error);
     }
 };
