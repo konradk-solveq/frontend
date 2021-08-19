@@ -42,7 +42,7 @@ export default `
 <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
 
 <script>
-const customJsonStringify = (value: any, fallback?: any) => {
+const customJsonStringify = (value, fallback) => {
     if (!value) {
         return value;
     }
