@@ -19,6 +19,7 @@ const Like: React.FC<IProps> = ({style, gaved, onpress, iconSize}: IProps) => {
 
     return (
         <TouchableOpacity
+            testID="like-btn"
             style={[style, alterSize]}
             onPress={onpress}
             hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
