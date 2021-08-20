@@ -19,6 +19,7 @@ interface IProps {
     downloadGaved?: boolean;
     downloadValue?: number;
     onDetails?: () => void | null;
+    likeSize?: number;
 }
 
 const FourthSection: React.FC<IProps> = ({
@@ -30,6 +31,7 @@ const FourthSection: React.FC<IProps> = ({
     downloadGaved,
     downloadValue,
     onDetails,
+    likeSize,
 }: IProps) => {
     const [likeState, setLikeState] = useState(likeGaved);
     const [commentState, setCommentState] = useState(commentGaved);
@@ -55,7 +57,13 @@ const FourthSection: React.FC<IProps> = ({
             <View style={stylesFourthSection.firstColumn}>
                 <View style={stylesFourthSection.secondColumnItem}>
                     <Like
-                        style={stylesFourthSection.secondColumnIcon}
+                        style={[
+                            stylesFourthSection.secondColumnIcon,
+                            likeSize && likeSize > 16
+                                ? stylesFourthSection.secondColumnIconLower
+                                : {},
+                        ]}
+                        iconSize={likeSize}
                         gaved={likeState} // określa czy daliśmy lajka
                         onpress={heandleLikeOnPress}
                     />

@@ -258,6 +258,7 @@ const RideTile: React.FC<Props> = ({
                         likeGaved={reaction === likeValue?.enumValue}
                         onLikePress={onLikePressedHandler}
                         likeValue={currentLikeNumber}
+                        likeSize={22}
                     />
                 </View>
             </View>

@@ -27,6 +27,9 @@ const stylesFourthSection = StyleSheet.create({
         width: getHorizontalPx(16),
         height: getHorizontalPx(16),
     },
+    secondColumnIconLower: {
+        marginTop: getVerticalPx(isIOS ? 3 : 3),
+    },
 });
 
 export default stylesFourthSection;
