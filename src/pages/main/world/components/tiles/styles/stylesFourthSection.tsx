@@ -28,7 +28,7 @@ const stylesFourthSection = StyleSheet.create({
         height: getHorizontalPx(16),
     },
     secondColumnIconLower: {
-        marginTop: getVerticalPx(isIOS ? 3 : 3),
+        marginTop: getVerticalPx(isIOS ? 0 : 3),
     },
 });
 
