@@ -242,6 +242,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             {
                 mapID: mapID,
                 private: currentMapType === RouteMapType.MY_ROUTES,
+                favourite: currentMapType === RouteMapType.PLANNING,
             },
         );
     };
