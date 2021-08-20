@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {API_URL} from '@env';
 import {getUserAgent} from './utils/headers';
+import logger from '@src/utils/crashlytics';
 
 const config = {
     timeout: 60000,
@@ -30,6 +31,7 @@ export const setUserAgentHeader = () => {
     if (uaHeader) {
         instance.defaults.headers.common['User-Agent'] = uaHeader;
     }
+    logger.log(`[SERVER URL - ${API_URL}]`);
 };
 
 export const source = axios.CancelToken.source();
