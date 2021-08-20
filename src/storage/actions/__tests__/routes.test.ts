@@ -212,6 +212,7 @@ describe('[Recording Route actions]', () => {
                     compareResultsWhenOfflineSecondCase(actionsLog);
                 });
             });
+
             it('should fail with with no route data when trying to synch with API and fail trying to delete existing  remote route id', async () => {
                 store = mockStore({
                     ...initState,
@@ -252,6 +253,7 @@ describe('[Recording Route actions]', () => {
                     compareResultsWhenOfflineThirdCase(actionsLog);
                 });
             });
+
             it('should fail with with no route data when trying to synch with API and should fail when trying to remove none-existing remote route ID', async () => {
                 store = mockStore({
                     ...initState,

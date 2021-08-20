@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import {
     activateKeepAwake,
     deactivateKeepAwake,
@@ -33,6 +33,7 @@ import {
     startCurrentRoute,
 } from './utils/localizationTracker';
 import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
+import useAppState from './useAppState';
 
 export interface DataI {
     distance: string;
@@ -53,7 +54,11 @@ const useLocalizationTracker = (
     omitRequestingPermission?: boolean,
 ) => {
     const dispatch = useAppDispatch();
+    const fastTrackerDataRef = useRef(false);
+    const initialTrackerDataRef = useRef(false);
+
     const {isTrackingActivatedHandler} = useLocationProvider();
+    const {appPrevStateVisible, appStateVisible} = useAppState();
 
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
@@ -166,9 +171,16 @@ const useLocalizationTracker = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const setCurrentTrackerData = useCallback(() => {
-        getCurrentLocation(currentRouteId, undefined, undefined, true).then(
-            d => {
+    const setCurrentTrackerData = useCallback(
+        (fastTimeout?: boolean) => {
+            getCurrentLocation(
+                currentRouteId,
+                undefined,
+                undefined,
+                true,
+                fastTimeout ? 3 : 15,
+                fastTimeout ? 2000 : 500,
+            ).then(d => {
                 const notMoving = false;
                 const lowSpeed = speedToLow(d);
 
@@ -216,28 +228,58 @@ const useLocalizationTracker = (
                     /* TODO: High disk usage - to verify and eventually delete */
                     // onPersistData(d?.odometer);
                 }
-            },
-        );
-    }, [
-        persist,
-        currentRouteAverrageSpeed,
-        lastDistance,
-        setAverageSpeedOnStart,
-        currentRouteId,
-    ]);
+            });
+        },
+        [
+            persist,
+            currentRouteAverrageSpeed,
+            lastDistance,
+            setAverageSpeedOnStart,
+            currentRouteId,
+        ],
+    );
+
+    /**
+     * Set tracker data after return from background
+     */
+    useEffect(() => {
+        if (
+            appPrevStateVisible === 'background' &&
+            !fastTrackerDataRef.current &&
+            initialTrackerDataRef.current
+        ) {
+            setCurrentTrackerData(true);
+
+            fastTrackerDataRef.current = true;
+        }
+    }, [appPrevStateVisible, setCurrentTrackerData]);
+
+    useEffect(() => {
+        if (appStateVisible === 'background') {
+            fastTrackerDataRef.current = false;
+        }
+    }, [appStateVisible]);
 
     /* TODO: on motion change event */
     useEffect(() => {
         let interval: any;
         if (isActive) {
+            /**
+             * Initial tracker data
+             */
+            setCurrentTrackerData(true);
+
             interval = setInterval(() => {
                 setCurrentTrackerData();
             }, 1000);
+
+            initialTrackerDataRef.current = true;
         }
 
         return () => {
             clearInterval(interval);
             cleanUp();
+            initialTrackerDataRef.current = false;
         };
     }, [isActive, setCurrentTrackerData]);
 

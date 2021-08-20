@@ -12,6 +12,14 @@ import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
 
+const getTimeInUTCMilliseconds = (date: string | number) => {
+    try {
+        return new Date(date).valueOf();
+    } catch (error) {
+        return date;
+    }
+};
+
 export const transfromToBikeDescription = (
     description: BikeDescription,
 ): BikeDescription => {
@@ -345,11 +353,25 @@ export const routesDataToPersist = async (
     });
 
     const sorted = currRoutes.sort((a, b) => {
-        if (new Date(a.timestamp) === new Date(b.timestamp)) {
-            return 0;
+        if (
+            getTimeInUTCMilliseconds(a.timestamp) ===
+            getTimeInUTCMilliseconds(b.timestamp)
+        ) {
+            if (a.coords.latitude === b.coords.latitude) {
+                if (a.coords.longitude === b.coords.longitude) {
+                    return 0;
+                }
+
+                return a.coords.longitude < b.coords.longitude ? -1 : 1;
+            }
+
+            return a.coords.latitude < b.coords.latitude ? -1 : 1;
         }
 
-        return new Date(a.timestamp) < new Date(b.timestamp) ? -1 : 1;
+        return getTimeInUTCMilliseconds(a.timestamp) <
+            getTimeInUTCMilliseconds(b.timestamp)
+            ? -1
+            : 1;
     });
 
     return sorted;
@@ -397,11 +419,24 @@ export const getRoutesDataFromSQL = async (
     });
 
     const sorted = currRoutes.sort((a, b) => {
-        if (new Date(a.timestamp) === new Date(b.timestamp)) {
-            return 0;
-        }
+        if (
+            getTimeInUTCMilliseconds(a.timestamp) ===
+            getTimeInUTCMilliseconds(b.timestamp)
+        ) {
+            if (a.latitude === b.latitude) {
+                if (a.longitude === b.longitude) {
+                    return 0;
+                }
 
-        return new Date(a.timestamp) < new Date(b.timestamp) ? -1 : 1;
+                return a.longitude < b.longitude ? -1 : 1;
+            }
+
+            return a.latitude < b.latitude ? -1 : 1;
+        }
+        return getTimeInUTCMilliseconds(a.timestamp) <
+            getTimeInUTCMilliseconds(b.timestamp)
+            ? -1
+            : 1;
     });
 
     return sorted;
