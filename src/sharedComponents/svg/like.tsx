@@ -1,3 +1,4 @@
+import {getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {ViewStyle, TouchableOpacity} from 'react-native';
 import Svg, {G, Path} from 'react-native-svg';
@@ -6,12 +7,20 @@ interface IProps {
     style?: ViewStyle;
     gaved: boolean;
     onpress: () => void;
+    iconSize?: number;
 }
 
-const Like: React.FC<IProps> = ({style, gaved, onpress}: IProps) => {
+const Like: React.FC<IProps> = ({style, gaved, onpress, iconSize}: IProps) => {
+    const size = iconSize || 16;
+
+    const alterSize = size
+        ? {width: getHorizontalPx(size), height: getHorizontalPx(size)}
+        : {};
+
     return (
         <TouchableOpacity
-            style={style}
+            testID="like-btn"
+            style={[style, alterSize]}
             onPress={onpress}
             hitSlop={{top: 15, bottom: 15, left: 15, right: 15}}>
             <Svg viewBox="0 0 16 16">
