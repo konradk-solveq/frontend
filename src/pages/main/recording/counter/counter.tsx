@@ -51,6 +51,7 @@ import {CounterDataContext} from './nativeCounter/counterContext/counterContext'
 import Apla from './apla';
 import DataPreview from '../../../../sharedComponents/dataPreview/dataPreview';
 import {getAverageSpeedFromDistanceAndTime} from '@src/utils/speed';
+import {TESTING_MODE} from '@env';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -471,7 +472,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     />
                 </CounterDataContext.Provider>
 
-                {__DEV__ && (
+                {TESTING_MODE && (
                     <DataPreview
                         title={'podgląd danych'}
                         dataList={[
