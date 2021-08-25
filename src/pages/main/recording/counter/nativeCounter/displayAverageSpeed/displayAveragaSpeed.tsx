@@ -21,11 +21,11 @@ const DisplayAverageSpeed: React.FC<IProps> = ({
     const distance = useContext(CounterDataContext).trackerData?.odometer || 0;
 
     const pauseTime = useContext(CounterDataContext).pauseTime;
-    const cTime = time ? Date.parse(time.toUTCString()) : 0;
+    const startTime = time ? Date.parse(time.toUTCString()) : 0;
 
     const averageSpeed = getAverageSpeedFromDistanceAndTime(
         distance,
-        cTime,
+        startTime,
         pauseTime,
     );
 
