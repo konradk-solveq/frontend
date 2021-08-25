@@ -56,7 +56,7 @@ const DataPreview: React.FC<Props> = ({title, dataList, style}: IProps) => {
             left: getHorizontalPx(20),
             top: getVerticalPx(40),
             width: getHorizontalPx(374),
-            maxHeight: getVerticalPx(874-60),
+            maxHeight: getVerticalPx(874 - 60),
             backgroundColor: '#313131',
             zIndex: 1000,
             opacity: opacity,
@@ -73,8 +73,7 @@ const DataPreview: React.FC<Props> = ({title, dataList, style}: IProps) => {
             color: 'white',
             paddingBottom: getVerticalPx(10),
         },
-        dataWrap: {
-        },
+        dataWrap: {},
         textLine: {
             display: 'flex',
             flexDirection: 'row',
@@ -211,7 +210,9 @@ const DataPreview: React.FC<Props> = ({title, dataList, style}: IProps) => {
                                                     {e.name}:
                                                 </Text>
                                                 <Text style={styles.textValue}>
-                                                    {e.value
+                                                    {typeof e.value !==
+                                                        'undefined' &&
+                                                    e.value !== null
                                                         ? e.value.toString()
                                                         : '--- null ---'}
                                                 </Text>
