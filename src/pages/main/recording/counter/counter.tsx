@@ -376,20 +376,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         },
     });
 
-    const distanceData =
-        useContext(CounterDataContext).trackerData?.odometer || 0;
-    const speed = useContext(CounterDataContext).trackerData?.speed;
-    const pauseTimeRedux = useContext(CounterDataContext).pauseTime;
-    const startTime = trackerStartTime
-        ? Date.parse(trackerStartTime.toUTCString())
-        : 0;
-
-    const averageSpeed = getAverageSpeedFromDistanceAndTime(
-        distanceData,
-        startTime,
-        pauseTimeRedux,
-    );
-
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />
@@ -470,125 +456,94 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         }
                         autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
                     />
-                </CounterDataContext.Provider>
 
-                {TESTING_MODE && (
-                    <DataPreview
-                        title={'podgląd danych'}
-                        dataList={[
-                            {
-                                name: 'myRouteNumber',
-                                value: myRouteNumber,
-                            },
-                            {
-                                name: 'route params mapID',
-                                value: route?.params?.mapID,
-                            },
-                            // {},
-                            // {section: 'layout'},
-                            // {
-                            //     name: 'statusBarHeight',
-                            //     value: statusBarHeight,
-                            // },
-                            // {
-                            //     name: 'headerHeight',
-                            //     value: headerHeight,
-                            // },
-                            {},
-                            {section: 'page states'},
-                            {
-                                name: 'page State',
-                                value: pageState,
-                            },
-                            {
-                                name: 'map Hiden',
-                                value: mapHiden,
-                            },
-                            {
-                                name: 'auto Find Me',
-                                value: autoFindMe,
-                            },
-                            {},
-                            {section: 'data from tracker'},
-                            {
-                                name: 'is Active',
-                                value: isActive,
-                            },
-                            {
-                                name: 'is Tracker Active',
-                                value: isTrackerActive,
-                            },
-                            {
-                                name: 'Start Time',
-                                value: trackerStartTime,
-                            },
-                            {
-                                name: 'Pause Time',
-                                value: trackerPauseTime,
-                            },
-                            {
-                                name: 'Total Time',
-                                value: setTotalTime(pauseTime),
-                            },
-                            {
-                                name: 'followed Route Id',
-                                value: followedRouteId,
-                            },
-                            {
-                                name: 'distance',
-                                value: trackerData?.distance,
-                            },
-                            {
-                                name: 'coords.lat',
-                                value: trackerData?.coords.lat,
-                            },
-                            {
-                                name: 'coords.lon',
-                                value: trackerData?.coords.lon,
-                            },
-                            {},
-                            {section: 'data form redux'},
-                            {
-                                name: 'distance',
-                                value: distanceData,
-                            },
-                            {
-                                name: 'speed',
-                                value: speed,
-                            },
-                            {
-                                name: 'average Speed',
-                                value: averageSpeed,
-                            },
-                            {
-                                name: 'pause',
-                                value: pauseTimeRedux,
-                            },
-                            {},
-                            {section: 'pause'},
-                            {
-                                name: 'is on',
-                                value: pause,
-                            },
-                            {
-                                name: 'state',
-                                value: pageState,
-                            },
-                            {
-                                name: 'start time',
-                                value: pauseTime.start,
-                            },
-                            {
-                                name: 'total time',
-                                value: pauseTime.total,
-                            },
-                            {
-                                name: 'headerHeight',
-                                value: headerHeight,
-                            },
-                        ]}
-                    />
-                )}
+                    {TESTING_MODE && (
+                        <DataPreview
+                            title={'podgląd danych'}
+                            trackerStartTime={trackerStartTime}
+                            dataList={[
+                                {
+                                    name: 'my Route Number',
+                                    value: myRouteNumber,
+                                },
+                                {
+                                    name: 'route params mapID',
+                                    value: route?.params?.mapID,
+                                },
+                                {},
+                                {section: 'page states'},
+                                {
+                                    name: 'page State',
+                                    value: pageState,
+                                },
+                                {
+                                    name: 'map Hiden',
+                                    value: mapHiden,
+                                },
+                                {
+                                    name: 'auto Find Me',
+                                    value: autoFindMe,
+                                },
+                                {},
+                                {section: 'data from tracker'},
+                                {
+                                    name: 'is Active',
+                                    value: isActive,
+                                },
+                                {
+                                    name: 'is Tracker Active',
+                                    value: isTrackerActive,
+                                },
+                                {
+                                    name: 'Start Time',
+                                    value: trackerStartTime,
+                                },
+                                {
+                                    name: 'Pause Time',
+                                    value: trackerPauseTime,
+                                },
+                                {
+                                    name: 'Total Time',
+                                    value: setTotalTime(pauseTime),
+                                },
+                                {
+                                    name: 'followed Route Id',
+                                    value: followedRouteId,
+                                },
+                                {
+                                    name: 'distance',
+                                    value: trackerData?.distance,
+                                },
+                                {
+                                    name: 'coords.lat',
+                                    value: trackerData?.coords.lat,
+                                },
+                                {
+                                    name: 'coords.lon',
+                                    value: trackerData?.coords.lon,
+                                },
+                                {},
+                                {section: 'pause'},
+                                {
+                                    name: 'is on',
+                                    value: pause,
+                                },
+                                {
+                                    name: 'state',
+                                    value: pageState,
+                                },
+                                {
+                                    name: 'start time',
+                                    value: pauseTime.start,
+                                },
+                                {
+                                    name: 'total time',
+                                    value: pauseTime.total,
+                                },
+                            ]}
+                        />
+                    )}
+                </CounterDataContext.Provider>
             </View>
         </>
     );

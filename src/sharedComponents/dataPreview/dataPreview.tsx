@@ -1,6 +1,5 @@
 import {getHorizontalPx, getVerticalPx} from '@src/helpers/layoutFoo';
-import React from 'react';
-import {useState} from 'react';
+import React, {useState, useContext, useRef} from 'react';
 import {
     StyleSheet,
     View,
@@ -11,14 +10,23 @@ import {
     Platform,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {getAverageSpeedFromDistanceAndTime} from '@src/utils/speed';
+import {CounterDataContext} from '@src/pages/main/recording/counter/nativeCounter/counterContext/counterContext';
+import {useEffect} from 'react';
 
 interface Props {
     title: string;
     dataList: any;
     style?: ViewStyle;
+    trackerStartTime: any;
 }
 
-const DataPreview: React.FC<Props> = ({title, dataList, style}: IProps) => {
+const DataPreview: React.FC<Props> = ({
+    title,
+    dataList,
+    style,
+    trackerStartTime,
+}: IProps) => {
     const [opacity, setOpacity] = useState(0.8);
     const [show, setShow] = useState(true);
     const [scrollAble, setscrollAble] = useState(false);
@@ -56,7 +64,7 @@ const DataPreview: React.FC<Props> = ({title, dataList, style}: IProps) => {
             left: getHorizontalPx(20),
             top: getVerticalPx(40),
             width: getHorizontalPx(374),
-            maxHeight: getVerticalPx(874-60),
+            maxHeight: getVerticalPx(874 - 60),
             backgroundColor: '#313131',
             zIndex: 1000,
             opacity: opacity,
@@ -73,8 +81,7 @@ const DataPreview: React.FC<Props> = ({title, dataList, style}: IProps) => {
             color: 'white',
             paddingBottom: getVerticalPx(10),
         },
-        dataWrap: {
-        },
+        dataWrap: {},
         textLine: {
             display: 'flex',
             flexDirection: 'row',
@@ -176,6 +183,48 @@ const DataPreview: React.FC<Props> = ({title, dataList, style}: IProps) => {
         },
     });
 
+    let distanceData =
+        useContext(CounterDataContext).trackerData?.odometer || 0;
+    const speed = useContext(CounterDataContext).trackerData?.speed;
+    const pauseTimeRedux = useContext(CounterDataContext).pauseTime;
+    const startTime = trackerStartTime
+        ? Date.parse(trackerStartTime.toUTCString())
+        : 0;
+
+    const averageSpeed = getAverageSpeedFromDistanceAndTime(
+        distanceData,
+        startTime,
+        pauseTimeRedux,
+    );
+
+    const [reduxList, setReduxList] = useState([]);
+    useEffect(() => {
+        setReduxList([
+            {},
+            {section: 'redux data'},
+            {
+                name: 'distance',
+                value: distanceData,
+            },
+            {
+                name: 'speed',
+                value: speed,
+            },
+            {
+                name: 'pause Time',
+                value: pauseTimeRedux,
+            },
+            {
+                name: 'start Time',
+                value: startTime,
+            },
+            {
+                name: 'average Speed',
+                value: averageSpeed,
+            },
+        ]);
+    }, [distanceData]);
+
     return (
         <>
             {show && (
@@ -211,7 +260,49 @@ const DataPreview: React.FC<Props> = ({title, dataList, style}: IProps) => {
                                                     {e.name}:
                                                 </Text>
                                                 <Text style={styles.textValue}>
-                                                    {e.value
+                                                    {typeof e.value !==
+                                                        'undefined' &&
+                                                    e.value !== null
+                                                        ? e.value.toString()
+                                                        : '--- null ---'}
+                                                </Text>
+                                            </View>
+                                        </View>
+                                    );
+                                case 'section':
+                                    return (
+                                        <View
+                                            key={'dataPreview_' + i}
+                                            style={styles.section}>
+                                            <Text style={styles.textSection}>
+                                                &#8658; {e.section} &#8656;
+                                            </Text>
+                                        </View>
+                                    );
+                                default:
+                                    return (
+                                        <View
+                                            style={styles.separator}
+                                            key={'dataPreview_' + i}
+                                        />
+                                    );
+                            }
+                        })}
+
+                        {reduxList.map((e: any, i: number) => {
+                            const keys = Object.keys(e);
+                            switch (keys[0]) {
+                                case 'name':
+                                    return (
+                                        <View key={'dataPreview_' + i}>
+                                            <View style={styles.textLine}>
+                                                <Text style={styles.textName}>
+                                                    {e.name}:
+                                                </Text>
+                                                <Text style={styles.textValue}>
+                                                    {typeof e.value !==
+                                                        'undefined' &&
+                                                    e.value !== null
                                                         ? e.value.toString()
                                                         : '--- null ---'}
                                                 </Text>
