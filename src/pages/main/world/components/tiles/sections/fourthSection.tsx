@@ -57,21 +57,11 @@ const FourthSection: React.FC<IProps> = ({
             <View style={stylesFourthSection.firstColumn}>
                 <View style={stylesFourthSection.secondColumnItem}>
                     <Like
-                        style={[
-                            stylesFourthSection.secondColumnIcon,
-                            likeSize && likeSize > 16
-                                ? stylesFourthSection.secondColumnIconLower
-                                : {},
-                        ]}
                         iconSize={likeSize}
                         gaved={likeState} // określa czy daliśmy lajka
                         onpress={heandleLikeOnPress}
+                        value={likeValue}
                     />
-                    <Text
-                        style={styles.secondSectionText}
-                        onPress={heandleLikeOnPress}>
-                        {likeValue}
-                    </Text>
                 </View>
 
                 {commentValue && (
