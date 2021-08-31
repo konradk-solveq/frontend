@@ -28,6 +28,10 @@ export const convertToDateWithTime = (date: string | undefined) => {
 };
 
 export const convertToCounterFormat = (time: number) => {
+    if (time < 0) {
+        time = 0;
+    }
+
     const date = new Date(time);
     const hours = date.getHours() - 1;
     const dzHours = twoDigits(hours);
