@@ -18,7 +18,8 @@ interface Props {
     title: string;
     dataList: any;
     style?: ViewStyle;
-    trackerStartTime: any;
+    trackerStartTime?: any;
+    reduxData?: Array<string>;
 }
 
 const DataPreview: React.FC<Props> = ({
@@ -26,6 +27,7 @@ const DataPreview: React.FC<Props> = ({
     dataList,
     style,
     trackerStartTime,
+    reduxData,
 }: IProps) => {
     const [opacity, setOpacity] = useState(0.8);
     const [show, setShow] = useState(true);
@@ -289,45 +291,52 @@ const DataPreview: React.FC<Props> = ({
                             }
                         })}
 
-                        {reduxList.map((e: any, i: number) => {
-                            const keys = Object.keys(e);
-                            switch (keys[0]) {
-                                case 'name':
-                                    return (
-                                        <View key={'dataPreview_' + i}>
-                                            <View style={styles.textLine}>
-                                                <Text style={styles.textName}>
-                                                    {e.name}:
-                                                </Text>
-                                                <Text style={styles.textValue}>
-                                                    {typeof e.value !==
-                                                        'undefined' &&
-                                                    e.value !== null
-                                                        ? e.value.toString()
-                                                        : '--- null ---'}
+                        {reduxData &&
+                            reduxData.some((e: string) => e === 'counter') &&
+                            reduxList.map((e: any, i: number) => {
+                                const keys = Object.keys(e);
+                                switch (keys[0]) {
+                                    case 'name':
+                                        return (
+                                            <View key={'dataPreview_' + i}>
+                                                <View style={styles.textLine}>
+                                                    <Text
+                                                        style={styles.textName}>
+                                                        {e.name}:
+                                                    </Text>
+                                                    <Text
+                                                        style={
+                                                            styles.textValue
+                                                        }>
+                                                        {typeof e.value !==
+                                                            'undefined' &&
+                                                        e.value !== null
+                                                            ? e.value.toString()
+                                                            : '--- null ---'}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                        );
+                                    case 'section':
+                                        return (
+                                            <View
+                                                key={'dataPreview_' + i}
+                                                style={styles.section}>
+                                                <Text
+                                                    style={styles.textSection}>
+                                                    &#8658; {e.section} &#8656;
                                                 </Text>
                                             </View>
-                                        </View>
-                                    );
-                                case 'section':
-                                    return (
-                                        <View
-                                            key={'dataPreview_' + i}
-                                            style={styles.section}>
-                                            <Text style={styles.textSection}>
-                                                &#8658; {e.section} &#8656;
-                                            </Text>
-                                        </View>
-                                    );
-                                default:
-                                    return (
-                                        <View
-                                            style={styles.separator}
-                                            key={'dataPreview_' + i}
-                                        />
-                                    );
-                            }
-                        })}
+                                        );
+                                    default:
+                                        return (
+                                            <View
+                                                style={styles.separator}
+                                                key={'dataPreview_' + i}
+                                            />
+                                        );
+                                }
+                            })}
                     </ScrollView>
                 </View>
             )}

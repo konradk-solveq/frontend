@@ -28,6 +28,9 @@ import {
 
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
 import PoorConnectionModal from '../../../../sharedComponents/modals/poorConnectionModal/poorConnectionModal';
+import DataPreview from '@src/sharedComponents/dataPreview/dataPreview';
+
+import {TESTING_MODE} from '@env';
 
 enum Action {
     next = 'next',
@@ -251,6 +254,58 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                         </View>
                     </View>
                 </ScrollView>
+
+                {TESTING_MODE && (
+                    <DataPreview
+                        title={'podgląd danych'}
+                        dataList={[
+                            {
+                                name: 'is Sync Data',
+                                value: isSyncData,
+                            },
+                            {
+                                name: 'user Name',
+                                value: userName,
+                            },
+                            {
+                                name: 'show',
+                                value: show,
+                            },
+                            {
+                                name: 'title Type',
+                                value: titleType,
+                            },
+                            {
+                                name: 'go Forward',
+                                value: goForward,
+                            },
+                            {},
+                            {section: 'error'},
+                            {
+                                name: 'message',
+                                value: error.message,
+                            },
+                            {
+                                name: 'status Code',
+                                value: error.statusCode,
+                            },
+                            {},
+                            {section: 'route'},
+                            {
+                                name: 'distance',
+                                value: route?.params?.distance,
+                            },
+                            {
+                                name: 'time',
+                                value: route?.params?.time,
+                            },
+                            {
+                                name: 'pause',
+                                value: route?.params?.pause,
+                            },
+                        ]}
+                    />
+                )}
             </View>
         </SafeAreaView>
     );
