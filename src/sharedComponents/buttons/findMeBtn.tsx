@@ -26,13 +26,19 @@ const FindMeButton: React.FC<Props> = ({style, onpress, toggle}: Props) => {
             backgroundColor: toggle ? 'red' : '#fff',
             borderRadius: getHorizontalPx(41 / 2),
             padding: getHorizontalPx((41 - 20) / 2),
+            zIndex: 100000,
         },
     });
+
+    const heandle = () => {
+        onpress();
+        console.log('onpress');
+    };
 
     return (
         <View style={style}>
             <TouchableOpacity
-                onPress={onpress}
+                onPress={() => heandle()}
                 hitSlop={{left: 20, right: 20, top: 20, bottom: 20}}>
                 <View style={styles.findBtn}>
                     <Svg viewBox="0 0 20 20">

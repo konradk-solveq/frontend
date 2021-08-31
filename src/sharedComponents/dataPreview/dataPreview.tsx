@@ -30,7 +30,7 @@ const DataPreview: React.FC<Props> = ({
     reduxData,
 }: IProps) => {
     const [opacity, setOpacity] = useState(0.8);
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     const [scrollAble, setscrollAble] = useState(false);
 
     const heandleOpacityPlus = () => {
