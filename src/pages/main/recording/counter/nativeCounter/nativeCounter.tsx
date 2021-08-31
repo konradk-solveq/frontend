@@ -14,6 +14,7 @@ import CurvedShape from './curvedShape/curvedShape';
 import CrossBtn from './crossBtn';
 
 import styles from './style';
+import CompassButton from '@src/sharedComponents/buttons/compassBtn';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
@@ -40,7 +41,7 @@ const NativeCounter: React.FC<IProps> = ({
     aplaShow,
     autoFindMeSwith,
 }: IProps) => {
-    const FIND_ME_BTN_BOTTOM = 255;
+    const FIND_ME_BTN_BOTTOM = 230;
     const resotredRef = useRef(false);
 
     const trackerMapVisibility = useAppSelector(trackerMapVisibilitySelector);
@@ -314,6 +315,7 @@ const NativeCounter: React.FC<IProps> = ({
                         zIndex: findMeBottonZIndex,
                     },
                 ]}>
+                <CompassButton />
                 <FindMeButton
                     onpress={handleAutoFindMeSwith}
                     toggle={!autoFindMeOn}

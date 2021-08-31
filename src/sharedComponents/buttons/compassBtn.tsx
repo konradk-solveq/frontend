@@ -18,7 +18,7 @@ interface Props {
     toggle?: boolean;
 }
 
-const FindMeButton: React.FC<Props> = ({style, onpress, toggle}: Props) => {
+const CompassButton: React.FC<Props> = ({style, onpress, toggle}: Props) => {
     const styles = StyleSheet.create({
         findBtn: {
             width: getHorizontalPx(41),
@@ -26,27 +26,20 @@ const FindMeButton: React.FC<Props> = ({style, onpress, toggle}: Props) => {
             backgroundColor: toggle ? 'red' : '#fff',
             borderRadius: getHorizontalPx(41 / 2),
             padding: getHorizontalPx((41 - 20) / 2),
-            zIndex: 100000,
+            marginBottom: getHorizontalPx(20),
         },
     });
-
-    const heandle = () => {
-        onpress();
-        console.log('onpress');
-    };
 
     return (
         <View style={style}>
             <TouchableOpacity
-                onPress={() => heandle()}
+                onPress={onpress}
                 hitSlop={{left: 20, right: 20, top: 20, bottom: 20}}>
                 <View style={styles.findBtn}>
                     <Svg viewBox="0 0 20 20">
                         <Path
-                            fill={toggle ? '#fff' : '#313131'}
-                            fill-rule="nonzero"
-                            d="M10 0c.513 0 .936.386.993.883L11 1v2l-.003.07c3.068.438 5.496 2.865 5.933 5.934L17 9h2c.552 0 1 .448 1 1 0 .513-.386.936-.883.993L19 11h-2l-.07-.003c-.438 3.068-2.865 5.495-5.934 5.933L11 17v2c0 .552-.448 1-1 1-.513 0-.936-.386-.993-.883L9 19v-2l.005-.07c-3.07-.437-5.497-2.864-5.935-5.933L3 11H1c-.552 0-1-.448-1-1 0-.513.386-.936.883-.993L1 9h2l.07.004c.437-3.069 2.865-5.497 5.934-5.934L9 3V1c0-.552.448-1 1-1zm0 5c-2.761 0-5 2.239-5 5s2.239 5 5 5 5-2.239 5-5-2.239-5-5-5zm0 2c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0 2c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1z"
-                            transform="translate(-344.000000, -572.000000) translate(333.000000, 561.000000) translate(11.000000, 11.000000)"
+                            d="M3.053 2.807c3.973-3.837 10.304-3.726 14.14.246 3.837 3.973 3.726 10.304-.246 14.14-3.973 3.837-10.304 3.726-14.14-.246-3.837-3.973-3.726-10.304.246-14.14zm12.702 1.636a8 8 0 10-11.51 11.114 8 8 0 0011.51-11.114zM9.212 3.88a1 1 0 011.789.031l2.73 5.706a1 1 0 01-.017.894l-2.926 5.607a1 1 0 01-1.789-.031l-2.73-5.706a1 1 0 01.017-.894zm-.923 6.09l1.651 3.45 1.77-3.391-3.42-.06z"
+                            fill={toggle ? '#D8232A' : '#313131'}
                         />
                     </Svg>
                 </View>
@@ -55,4 +48,4 @@ const FindMeButton: React.FC<Props> = ({style, onpress, toggle}: Props) => {
     );
 };
 
-export default FindMeButton;
+export default CompassButton;

@@ -84,9 +84,8 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [autoFindMeLastState, setAutoFindMeLastState] = useState<boolean>(
-        autoFindMe,
-    );
+    const [autoFindMeLastState, setAutoFindMeLastState] =
+        useState<boolean>(autoFindMe);
 
     useEffect(() => {
         const loc = async () => {
@@ -167,7 +166,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
                 }
             }
 
-            if (autoFindMe !== autoFindMeLastState) {
+            if (autoFindMe != autoFindMeLastState) {
                 if (autoFindMe) {
                     animation.zoom = ZOOM_START_VALUE;
                 }
@@ -176,13 +175,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
 
             mapRef.current?.animateCamera(animation, {duration: 1000});
         }
-    }, [
-        autoFindMe,
-        autoFindMeLastState,
-        trackerData?.coords,
-        location,
-        compassHeading,
-    ]);
+    }, [autoFindMe, trackerData?.coords, location, compassHeading]);
 
     const setMarker = useCallback(async () => {
         if (trackerData?.coords && mapRef?.current && mountedRef.current) {

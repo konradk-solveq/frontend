@@ -376,6 +376,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         },
     });
 
+    const heandleAutoFindMe = val => {
+        setAutoFindMe(val);
+        console.log('%c val:', 'background: #ffcc00; color: #003300', val);
+    };
+
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />
@@ -454,7 +459,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             pageState === 'cancelText' ||
                             pageState === 'endMessage'
                         }
-                        autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
+                        autoFindMeSwith={e => heandleAutoFindMe(e)}
                     />
 
                     {TESTING_MODE && (
