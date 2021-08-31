@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
         width: getHorizontalPx(41),
         height: getHorizontalPx(41 + 41 + 20),
         zIndex: 1,
-        backgroundColor: 'green',
     },
 });
 

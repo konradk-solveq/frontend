@@ -29,6 +29,8 @@ interface IProps {
     duration: number;
     aplaShow: boolean;
     autoFindMeSwith: (e: boolean) => void;
+    headingSwitch: (e: boolean) => void;
+    compassHeading: any;
 }
 
 /* TODO: add context for values */
@@ -40,6 +42,8 @@ const NativeCounter: React.FC<IProps> = ({
     duration,
     aplaShow,
     autoFindMeSwith,
+    headingSwitch,
+    compassHeading,
 }: IProps) => {
     const FIND_ME_BTN_BOTTOM = 230;
     const resotredRef = useRef(false);
@@ -57,6 +61,7 @@ const NativeCounter: React.FC<IProps> = ({
     const labelOpacity = useRef(new Animated.Value(1)).current;
 
     const [autoFindMeOn, setAutoFindMeOn] = useState(true);
+    const [headingOn, setHeadingOn] = useState(true);
 
     const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
@@ -175,6 +180,11 @@ const NativeCounter: React.FC<IProps> = ({
     const handleAutoFindMeSwith = () => {
         autoFindMeSwith(!autoFindMeOn);
         setAutoFindMeOn(!autoFindMeOn);
+    };
+
+    const heandleHeadingSwitch = () => {
+        headingSwitch(!headingOn);
+        setHeadingOn(!headingOn);
     };
 
     return (
@@ -315,7 +325,11 @@ const NativeCounter: React.FC<IProps> = ({
                         zIndex: findMeBottonZIndex,
                     },
                 ]}>
-                <CompassButton />
+                <CompassButton
+                    onpress={heandleHeadingSwitch}
+                    toggle={!headingOn}
+                    compassHeading={compassHeading}
+                 />
                 <FindMeButton
                     onpress={handleAutoFindMeSwith}
                     toggle={!autoFindMeOn}

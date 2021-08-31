@@ -50,7 +50,8 @@ import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
 import DataPreview from '../../../../sharedComponents/dataPreview/dataPreview';
-import {getAverageSpeedFromDistanceAndTime} from '@src/utils/speed';
+import CompassHeading from 'react-native-compass-heading';
+
 import {TESTING_MODE} from '@env';
 
 const isIOS = Platform.OS === 'ios';
@@ -88,6 +89,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const [myRouteNumber, setMyRouteNumber] = useState(0);
     const [autoFindMe, setAutoFindMe] = useState(true);
+    const [headingOn, setHeadingOn] = useState<boolean>(true);
     const [pauseTime, setPauseTime] = useState({
         start: 0,
         total: 0,
@@ -353,6 +355,36 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         dispatch(setRouteMapVisibility(!state));
     };
 
+    // kompas mapy - przeniesiony z mapy, żby spuścić do innych komponentów
+    const mountedRef = useRef(false);
+    const compasHeadingdRef = useRef(0);
+
+    const [compassHeading, setCompassHeading] = useState(0);
+
+    useEffect(() => {
+        mountedRef.current = true;
+
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        const degree_update_rate = 5;
+        if (mountedRef.current) {
+            CompassHeading.start(degree_update_rate, ({heading}) => {
+                const lastHeading = compasHeadingdRef.current;
+                compasHeadingdRef.current = heading;
+                if (Math.abs(lastHeading - heading) >= degree_update_rate) {
+                    setCompassHeading(heading);
+                }
+            });
+        }
+        return () => {
+            CompassHeading.stop();
+        };
+    }, []);
+
     // setObjSize(334, 50);
     const styles = StyleSheet.create({
         stackHeader: {
@@ -376,11 +408,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         },
     });
 
-    const heandleAutoFindMe = val => {
-        setAutoFindMe(val);
-        console.log('%c val:', 'background: #ffcc00; color: #003300', val);
-    };
-
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />
@@ -403,6 +430,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     routeId={followedRouteId || route?.params?.mapID}
                     trackerData={trackerData}
                     autoFindMe={autoFindMe}
+                    headingOn={headingOn}
+                    compassHeading={compassHeading}
+                    mountedRef={mountedRef}
                 />
 
                 {bikes && (
@@ -459,7 +489,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             pageState === 'cancelText' ||
                             pageState === 'endMessage'
                         }
-                        autoFindMeSwith={e => heandleAutoFindMe(e)}
+                        autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
+                        headingSwitch={(e: boolean) => setHeadingOn(e)}
+                        compassHeading={compassHeading}
                     />
 
                     {TESTING_MODE && (
