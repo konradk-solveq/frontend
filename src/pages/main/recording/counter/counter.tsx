@@ -461,6 +461,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         <DataPreview
                             title={'podgląd danych'}
                             trackerStartTime={trackerStartTime}
+                            reduxData={['counter']}
                             dataList={[
                                 {
                                     name: 'my Route Number',
