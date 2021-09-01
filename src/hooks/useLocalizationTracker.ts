@@ -19,6 +19,7 @@ import {
     cleanUp,
     getBackgroundGeolocationState,
     getCurrentLocation,
+    getLocations,
     pauseTracingLocation,
     requestGeolocationPermission,
     resumeTracingLocation,
@@ -67,6 +68,7 @@ const useLocalizationTracker = (
     const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
+    const [initTrackerData, setInitTrackerData] = useState<DataI>();
     const [lastDistance, setLastDistance] = useState<number>(0);
     const [averageSpeed, setCurrentAverageSpeed] = useState<
         number | undefined
@@ -122,21 +124,21 @@ const useLocalizationTracker = (
                 await stopTracker();
             }
 
-            setIsActive(true);
             activateKeepAwake();
+            const currRoute = await startCurrentRoute(routeIdToFollow);
+            const routeID =
+                keep && currentRouteId ? currentRouteId : currRoute.id;
+            if (!keep) {
+                dispatch(startRecordingRoute(currRoute, keep));
+            }
+            setIsActive(true);
 
             /**
              * Should update state befeore change redux.
              */
             isTrackingActivatedHandler(true);
 
-            const currRoute = await startCurrentRoute(routeIdToFollow);
-            const routeID =
-                keep && currentRouteId ? currentRouteId : currRoute.id;
             await startBackgroundGeolocation(routeID, keep);
-            if (!keep) {
-                dispatch(startRecordingRoute(currRoute, keep));
-            }
         },
         [dispatch, currentRouteId, stopTracker, isTrackingActivatedHandler],
     );
@@ -172,63 +174,68 @@ const useLocalizationTracker = (
     }, []);
 
     const setCurrentTrackerData = useCallback(
-        (fastTimeout?: boolean) => {
-            getCurrentLocation(
+        async (fastTimeout?: boolean) => {
+            const currentLocationData = await getCurrentLocation(
                 currentRouteId,
-                undefined,
+                fastTimeout ? 3 : undefined,
                 undefined,
                 true,
+                // fastTimeout ? true : false,
                 fastTimeout ? 3 : 15,
                 fastTimeout ? 2000 : 500,
-            ).then(d => {
-                const notMoving = false;
-                const lowSpeed = speedToLow(d);
+            );
+            if (!currentLocationData) {
+                return;
+            }
 
-                setAverageSpeedOnStart();
-                let aSpeed = getAverageSpeedData(speed);
-                if (notMoving || lowSpeed) {
-                    setTrackerData(prev => {
-                        if (!prev) {
-                            return undefined;
-                        }
-                        return {
-                            ...prev,
-                            averageSpeed: getAverageSpeedData(
-                                speed,
-                                currentRouteAverrageSpeed,
-                            ),
-                            speed: '0,0',
-                        };
-                    });
-                    return;
-                }
+            const notMoving = false;
+            const lowSpeed = speedToLow(currentLocationData);
 
-                if (d?.coords?.speed && d?.coords?.speed > 0) {
-                    speed.push(d?.coords?.speed);
-                }
+            setAverageSpeedOnStart();
+            let aSpeed = getAverageSpeedData(speed);
+            if (notMoving || lowSpeed) {
+                setTrackerData(prev => {
+                    if (!prev) {
+                        return undefined;
+                    }
+                    return {
+                        ...prev,
+                        averageSpeed: getAverageSpeedData(
+                            speed,
+                            currentRouteAverrageSpeed,
+                        ),
+                        speed: '0,0',
+                    };
+                });
+                return;
+            }
 
-                if (
-                    ((d?.odometer && d?.odometer - lastDistance > 10) ||
-                        !lastDistance) &&
-                    !notMoving &&
-                    parseFloat(aSpeed) >= 0.1
-                ) {
-                    aSpeed = getAverageSpeedData(
-                        speed,
-                        currentRouteAverrageSpeed,
-                    );
-                }
+            if (
+                currentLocationData?.coords?.speed &&
+                currentLocationData?.coords?.speed > 0
+            ) {
+                speed.push(currentLocationData?.coords?.speed);
+            }
 
-                const res = getTrackerData(d, aSpeed);
+            if (
+                ((currentLocationData?.odometer &&
+                    currentLocationData?.odometer - lastDistance > 10) ||
+                    !lastDistance) &&
+                !notMoving &&
+                parseFloat(aSpeed) >= 0.1
+            ) {
+                aSpeed = getAverageSpeedData(speed, currentRouteAverrageSpeed);
+            }
 
-                setTrackerData(res);
-                setCurrentAverageSpeed(parseFloat(aSpeed));
+            const res = getTrackerData(currentLocationData, aSpeed);
 
-                if (persist) {
-                    /* TODO: High disk usage - to verify and eventually delete */
-                    // onPersistData(d?.odometer);
-                }
-            });
+            setTrackerData(res);
+            setCurrentAverageSpeed(parseFloat(aSpeed));
+
+            if (persist) {
+                /* TODO: High disk usage - to verify and eventually delete */
+                // onPersistData(d?.odometer);
+            }
         },
         [
             persist,
@@ -238,6 +245,46 @@ const useLocalizationTracker = (
             currentRouteId,
         ],
     );
+
+    useEffect(() => {
+        if (!trackerData && currentRouteId) {
+            const asyncAction = async () => {
+                const locations = await getLocations();
+                if (!locations?.length) {
+                    return;
+                }
+
+                let lastLocation: any;
+                for (let index = locations.length - 1; index > 0; index--) {
+                    const l: any = locations[index];
+                    if (l?.extras?.route_id === currentRouteId) {
+                        lastLocation = {
+                            ...l,
+                            coords: {
+                                ...l?.coords,
+                                speed: undefined,
+                            },
+                        };
+                        break;
+                    }
+                }
+
+                if (!lastLocation) {
+                    return;
+                }
+                const td = getTrackerData(lastLocation);
+                setInitTrackerData(td);
+            };
+
+            asyncAction();
+        }
+    }, [currentRouteId, trackerData]);
+
+    useEffect(() => {
+        if (isActive && !trackerData && initTrackerData) {
+            setTrackerData(initTrackerData);
+        }
+    }, [isActive, initTrackerData, trackerData]);
 
     /**
      * Set tracker data after return from background

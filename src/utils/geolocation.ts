@@ -88,6 +88,8 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             preventSuspend: true,
             heartbeatInterval: 60,
             activityType: BackgroundGeolocation.ACTIVITY_TYPE_FITNESS,
+            // speedJumpFilter: 150,
+            stationaryRadius: 25,
         });
 
         return state;
@@ -184,6 +186,7 @@ export const startBackgroundGeolocation = async (
         if (!keep) {
             await BackgroundGeolocation.resetOdometer();
         }
+        const state = await startBackgroundGeolocationPlugin(true);
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: false,
             startOnBoot: true,
@@ -196,8 +199,6 @@ export const startBackgroundGeolocation = async (
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
             },
         });
-
-        const state = await startBackgroundGeolocationPlugin(true);
         await resumeTracingLocation();
 
         return state;
@@ -216,9 +217,7 @@ export const stopBackgroundGeolocation = async () => {
             stopOnTerminate: true,
             startOnBoot: false,
             isMoving: false,
-            extras: {
-                route_id: '',
-            },
+            extras: undefined,
             notification: {
                 text: 'Pobieranie lokalizacji',
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
