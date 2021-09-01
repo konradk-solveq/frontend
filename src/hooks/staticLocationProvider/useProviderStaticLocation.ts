@@ -232,6 +232,7 @@ const useProviderStaticLocation = () => {
 
     return {
         location,
+        locationType,
         setLocationWithInterval,
         isTrackingActivated,
         isTrackingActivatedHandler,
