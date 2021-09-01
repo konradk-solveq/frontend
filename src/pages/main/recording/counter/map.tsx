@@ -1,9 +1,13 @@
-import React, {useState, useRef, useEffect, useCallback} from 'react';
+import React, {
+    useState,
+    useRef,
+    useEffect,
+    useCallback,
+    useContext,
+} from 'react';
 import {StyleSheet, Platform, Dimensions} from 'react-native';
 import MapView, {
     PROVIDER_GOOGLE,
-    Marker,
-    MarkerAnimated,
     AnimatedRegion,
     Camera,
     LatLng,
@@ -20,9 +24,8 @@ import AnimSvg from '../../../../helpers/animSvg';
 
 import gradient from './gradientSvg';
 import Polyline from './polyline/polyline';
-import SinglePolyline from './polyline/singlePolyline';
-import MarkPointer from './markPointer';
-import {getHorizontalPx} from '../../../../helpers/layoutFoo';
+import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
+import AnimatedMarker from './animatedMarker/AnimatedMarker';
 
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
@@ -46,11 +49,11 @@ const ZOOM_START_VALUE = isIOS ? 18 : 17;
 
 const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
     const mapRef = useRef<MapView>(null);
-    const markerRef = useRef<Marker>(null);
     const mountedRef = useRef(false);
     const compasHeadingdRef = useRef(0);
     const restoreRef = useRef(false);
-    const animatedMarkerRef = useRef<MarkerAnimated>(null);
+
+    const routeData = useContext(CounterDataContext).treackerDataAgregator;
 
     const {appIsActive, appStateVisible} = useAppState();
 
@@ -184,66 +187,9 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
         compassHeading,
     ]);
 
-    const setMarker = useCallback(async () => {
-        if (trackerData?.coords && mapRef?.current && mountedRef.current) {
-            const pos = {
-                latitude: trackerData.coords.lat,
-                longitude: trackerData.coords.lon,
-            };
-
-            let ratio = 1;
-            const latitudeDelta =
-                mapRef?.current?.__lastRegion?.latitudeDelta || 1;
-            const longitudeDelta =
-                mapRef?.current?.__lastRegion?.longitudeDelta || 1;
-            if (typeof latitudeDelta !== 'undefined') {
-                const zoom =
-                    Math.log2(
-                        360 * (getHorizontalPx(414) / 256 / latitudeDelta),
-                    ) + 1;
-
-                if (zoom > 17 && zoom < 20) {
-                    ratio = -((zoom - 20) / 3);
-                }
-                if (zoom >= 20) {
-                    ratio = 0;
-                }
-            }
-
-            if (!restoreRef.current) {
-                setLocaion(pos);
-                markerRef.current?.redraw();
-
-                restoreRef.current = true;
-                return;
-            }
-            // restoreRef.current = true
-            if (Platform.OS === 'android') {
-                markerRef?.current?.animateMarkerToCoordinate(
-                    pos,
-                    1000 + 500 * ratio,
-                );
-            } else {
-                animatedPostion
-                    ?.timing({
-                        ...pos,
-                        latitudeDelta: latitudeDelta,
-                        longitudeDelta: longitudeDelta,
-                        duration: 1000 + 500 * ratio,
-                        useNativeDriver: false,
-                    })
-                    .start();
-            }
-        }
-    }, [trackerData?.coords, animatedPostion]);
-
     useEffect(() => {
         setMapCamera();
     }, [setMapCamera]);
-
-    useEffect(() => {
-        setMarker();
-    }, [setMarker]);
 
     const cameraInitObj = {
         ...initCompasHeading,
@@ -257,24 +203,13 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
         zoom: ZOOM_START_VALUE,
     };
 
-    const MarkerToDisplay =
-        Platform.OS === 'android' ? (
-            location && (
-                <Marker
-                    ref={markerRef}
-                    coordinate={location}
-                    anchor={{x: 0.3, y: 0.3}}>
-                    <MarkPointer />
-                </Marker>
-            )
-        ) : (
-            <MarkerAnimated
-                ref={animatedMarkerRef}
-                anchor={{x: 0.5, y: 0.3}}
-                coordinate={animatedPostion || location}>
-                <MarkPointer />
-            </MarkerAnimated>
-        );
+    const onSetLocationHanlder = (pos: LatLng) => {
+        setLocaion(pos);
+    };
+
+    const onSetIsRestoredHandler = () => {
+        restoreRef.current = true;
+    };
 
     return (
         <>
@@ -302,9 +237,20 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
                                 }
                             },
                         })}>
-                        {mountedRef.current && MarkerToDisplay}
+                        {mountedRef.current && (
+                            <AnimatedMarker
+                                coords={trackerData?.coords}
+                                mapRegion={mapRef?.current?.__lastRegion}
+                                setLocation={onSetLocationHanlder}
+                                isRestored={restoreRef.current}
+                                setIsRestored={onSetIsRestoredHandler}
+                                show={!!(mapRef?.current && mountedRef.current)}
+                                location={location}
+                            />
+                        )}
                         {trackerData?.coords && (
-                            <SinglePolyline coords={trackerData} />
+                            // <SinglePolyline coords={trackerData} />
+                            <Polyline coords={routeData} />
                         )}
                         {foreignRoute && (
                             <Polyline
