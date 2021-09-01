@@ -17,6 +17,7 @@ import logger from '@utils/crashlytics';
 import {LocationDataI} from '@interfaces/geolocation';
 import {BasicCoordsType} from '@type/coords';
 import {I18n} from '@translations/I18n';
+import {getTrackerData} from '@hooks/utils/localizationTracker';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -238,7 +239,10 @@ export const cleanUp = () => {
     BackgroundGeolocation.removeListeners();
 };
 
-export const cleanUpListener = (listener: string, handler: () => void) => {
+export const cleanUpListener = (
+    listener: string,
+    handler: (param?: any) => void,
+) => {
     try {
         BackgroundGeolocation.removeListener(listener, handler);
     } catch (e) {
@@ -331,6 +335,42 @@ export const requestGeolocationPermission = async () => {
         const error = new Error(e);
         logger.recordError(error);
     }
+};
+
+/**
+ *
+ * @param routeId
+ * @returns
+ */
+export const getLastLocationByRoutId = async (routeId: string) => {
+    const locations = await getLocations();
+    if (!locations?.length || !routeId) {
+        return;
+    }
+
+    let lastLocation: any;
+    for (let index = locations.length - 1; index > 0; index--) {
+        const l: any = locations[index];
+        if (!l || !l?.coords) {
+            continue;
+        }
+
+        if (l?.extras?.route_id === routeId) {
+            lastLocation = {
+                ...l,
+                coords: {
+                    ...l.coords,
+                    speed: undefined,
+                },
+            };
+            break;
+        }
+    }
+
+    if (!lastLocation) {
+        return;
+    }
+    return getTrackerData(lastLocation);
 };
 
 /* Set plugin to stationary state - doesnt disable tracking permamently */
@@ -670,5 +710,37 @@ export const getLocationWithLowAccuracy = async () => {
         return loc;
     } catch (error) {
         console.warn('[getLocationWithLowAccuracy - error]', error);
+    }
+};
+
+export const onWatchPostionChangeListener = async (
+    callback: (location: Location) => void,
+    interval?: number,
+    timeout?: number,
+    notPersist?: boolean,
+) => {
+    try {
+        BackgroundGeolocation.watchPosition(callback, () => {}, {
+            interval: interval || 1000,
+            timeout: timeout || 30,
+            desiredAccuracy: isIOS ? -2 : -1,
+            persist: !notPersist,
+        });
+    } catch (e) {
+        console.log('[onWatchPostionChangeListener - error]', e);
+        logger.log(`[onWatchPostionChangeListener] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const stopWatchPostionChangeListener = async () => {
+    try {
+        await BackgroundGeolocation.stopWatchPosition();
+    } catch (e) {
+        console.log('[stopWatchPostionChangeListener - error]', e);
+        logger.log(`[stopWatchPostionChangeListener] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
     }
 };

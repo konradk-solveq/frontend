@@ -146,7 +146,7 @@ const routesReducer = (state = initialStateList, action: any) => {
             if (!action.keepId) {
                 return {
                     ...state,
-                    currentRoute: {...initialStateList.currentRoute},
+                    currentRoute: initialStateList.currentRoute,
                 };
             }
             return {

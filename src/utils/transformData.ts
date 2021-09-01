@@ -328,7 +328,7 @@ export const routesDataToPersist = async (
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || routeId !== l?.extras?.route_id) {
+        if (!routeId || routeId !== l?.extras?.route_id || l?.sample === true) {
             return;
         }
 
@@ -393,7 +393,7 @@ export const getRoutesDataFromSQL = async (
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || routeId !== l?.extras?.route_id) {
+        if (!routeId || routeId !== l?.extras?.route_id || l?.sample === true) {
             return;
         }
 

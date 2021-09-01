@@ -17,14 +17,19 @@ import {
 } from '../storage/actions/routes';
 import {
     cleanUp,
+    // cleanUpListener,
     getBackgroundGeolocationState,
     getCurrentLocation,
-    getLocations,
+    getLastLocationByRoutId,
+    // getLocations,
+    // onLocationChangeListener,
+    onWatchPostionChangeListener,
     pauseTracingLocation,
     requestGeolocationPermission,
     resumeTracingLocation,
     startBackgroundGeolocation,
     stopBackgroundGeolocation,
+    stopWatchPostionChangeListener,
 } from '../utils/geolocation';
 import {
     DEFAULT_SPEED,
@@ -35,6 +40,7 @@ import {
 } from './utils/localizationTracker';
 import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
 import useAppState from './useAppState';
+import {Location} from '@interfaces/geolocation';
 
 export interface DataI {
     distance: string;
@@ -55,11 +61,11 @@ const useLocalizationTracker = (
     omitRequestingPermission?: boolean,
 ) => {
     const dispatch = useAppDispatch();
-    const fastTrackerDataRef = useRef(false);
+    // const fastTrackerDataRef = useRef(false);
     const initialTrackerDataRef = useRef(false);
 
     const {isTrackingActivatedHandler} = useLocationProvider();
-    const {appPrevStateVisible, appStateVisible} = useAppState();
+    const {appPrevStateVisible, appStateVisible, appIsActive} = useAppState();
 
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
@@ -106,6 +112,7 @@ const useLocalizationTracker = (
             }
             const state = await stopBackgroundGeolocation();
             if (!state || !state?.enabled) {
+                // await stopWatchPostionChangeListener();
                 setIsActive(false);
             }
 
@@ -174,16 +181,18 @@ const useLocalizationTracker = (
     }, []);
 
     const setCurrentTrackerData = useCallback(
-        async (fastTimeout?: boolean) => {
-            const currentLocationData = await getCurrentLocation(
-                currentRouteId,
-                fastTimeout ? 3 : undefined,
-                undefined,
-                true,
-                // fastTimeout ? true : false,
-                fastTimeout ? 3 : 15,
-                fastTimeout ? 2000 : 500,
-            );
+        async (fastTimeout?: boolean, withLocation?: Location) => {
+            const currentLocationData =
+                withLocation ||
+                (await getCurrentLocation(
+                    currentRouteId,
+                    fastTimeout ? 3 : undefined,
+                    undefined,
+                    true,
+                    // fastTimeout ? true : false,
+                    fastTimeout ? 3 : 15,
+                    fastTimeout ? 2000 : 500,
+                ));
             if (!currentLocationData) {
                 return;
             }
@@ -236,6 +245,10 @@ const useLocalizationTracker = (
                 /* TODO: High disk usage - to verify and eventually delete */
                 // onPersistData(d?.odometer);
             }
+
+            if (withLocation) {
+                initialTrackerDataRef.current = true;
+            }
         },
         [
             persist,
@@ -249,31 +262,10 @@ const useLocalizationTracker = (
     useEffect(() => {
         if (!trackerData && currentRouteId) {
             const asyncAction = async () => {
-                const locations = await getLocations();
-                if (!locations?.length) {
-                    return;
+                const td = await getLastLocationByRoutId(currentRouteId);
+                if (!undefined) {
+                    setInitTrackerData(td);
                 }
-
-                let lastLocation: any;
-                for (let index = locations.length - 1; index > 0; index--) {
-                    const l: any = locations[index];
-                    if (l?.extras?.route_id === currentRouteId) {
-                        lastLocation = {
-                            ...l,
-                            coords: {
-                                ...l?.coords,
-                                speed: undefined,
-                            },
-                        };
-                        break;
-                    }
-                }
-
-                if (!lastLocation) {
-                    return;
-                }
-                const td = getTrackerData(lastLocation);
-                setInitTrackerData(td);
             };
 
             asyncAction();
@@ -286,47 +278,38 @@ const useLocalizationTracker = (
         }
     }, [isActive, initTrackerData, trackerData]);
 
-    /**
-     * Set tracker data after return from background
-     */
     useEffect(() => {
         if (
-            appPrevStateVisible === 'background' &&
-            !fastTrackerDataRef.current &&
+            appStateVisible === 'background' &&
+            isActive &&
             initialTrackerDataRef.current
         ) {
-            setCurrentTrackerData(true);
-
-            fastTrackerDataRef.current = true;
+            // stopWatchPostionChangeListener();
+            console.log('[STOP LISTENER]');
         }
-    }, [appPrevStateVisible, setCurrentTrackerData]);
+    }, [appStateVisible, isActive]);
 
     useEffect(() => {
-        if (appStateVisible === 'background') {
-            fastTrackerDataRef.current = false;
-        }
-    }, [appStateVisible]);
-
-    /* TODO: on motion change event */
-    useEffect(() => {
-        let interval: any;
         if (isActive) {
             /**
              * Initial tracker data
              */
             setCurrentTrackerData(true);
 
-            interval = setInterval(() => {
-                setCurrentTrackerData();
-            }, 1000);
+            console.log('[RESUME LISTENER]');
+            const setLocation = (location: Location) => {
+                setCurrentTrackerData(undefined, location);
+            };
+            onWatchPostionChangeListener(setLocation);
 
-            initialTrackerDataRef.current = true;
+            // initialTrackerDataRef.current = true;
         }
 
         return () => {
-            clearInterval(interval);
+            stopWatchPostionChangeListener();
             cleanUp();
             initialTrackerDataRef.current = false;
+            console.log('[==CLEANUP ALL LISTENERS==]');
         };
     }, [isActive, setCurrentTrackerData]);
 

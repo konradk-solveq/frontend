@@ -15,7 +15,10 @@ const useAppState = () => {
             nextAppState === 'active'
         ) {
             setAppIsActive(true);
-        } else {
+        } else if (
+            appState.current === 'active' &&
+            nextAppState.match(/inactive|background/)
+        ) {
             setAppIsActive(false);
         }
         const previousState = appState.current;
