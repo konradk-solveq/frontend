@@ -358,12 +358,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             },
             !state ? 0 : 300,
         );
-        setTimeout(
-            () => {
-                setMapHiden(state);
-            },
-            state ? 0 : 200,
-        );
+        setMapHiden(state);
         dispatch(setRouteMapVisibility(!state));
     };
 

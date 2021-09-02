@@ -163,7 +163,9 @@ const NativeCounter: React.FC<IProps> = ({
         const containerH = containerHeight?.__getValue();
 
         if (containerH >= 500) {
-            startAnimation();
+            setTimeout(() => {
+                startAnimation();
+            }, 200);
             setMapHiden(false);
         } else {
             startAnimation(true);
