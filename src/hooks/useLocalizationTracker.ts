@@ -109,7 +109,6 @@ const useLocalizationTracker = (
             }
             const state = await stopBackgroundGeolocation();
             if (!state || !state?.enabled) {
-                // await stopWatchPostionChangeListener();
                 setIsActive(false);
             }
 
@@ -178,9 +177,9 @@ const useLocalizationTracker = (
     }, []);
 
     const setCurrentTrackerData = useCallback(
-        async (fastTimeout?: boolean, withLocation?: Location) => {
+        async (fastTimeout?: boolean, lcoationData?: Location) => {
             const currentLocationData =
-                withLocation ||
+                lcoationData ||
                 (await getCurrentLocation(
                     currentRouteId,
                     fastTimeout ? 3 : undefined,
@@ -242,7 +241,7 @@ const useLocalizationTracker = (
                 // onPersistData(d?.odometer);
             }
 
-            if (withLocation) {
+            if (lcoationData) {
                 initialTrackerDataRef.current = true;
             }
         },
@@ -257,14 +256,14 @@ const useLocalizationTracker = (
 
     useEffect(() => {
         if (!trackerData && currentRouteId) {
-            const asyncAction = async () => {
+            const runInitLocationSet = async () => {
                 const td = await getLastLocationByRoutId(currentRouteId);
-                if (!td) {
+                if (td) {
                     setInitTrackerData(td);
                 }
             };
 
-            asyncAction();
+            runInitLocationSet();
         }
     }, [currentRouteId, trackerData]);
 
@@ -282,7 +281,6 @@ const useLocalizationTracker = (
         ) {
             if (locationType === locationTypeEnum.ALWAYS) {
                 stopWatchPostionChangeListener();
-                // initialTrackerDataRef.current = false;
                 console.log('[STOP WATCH POSITION LISTENER]');
             }
         }
@@ -290,7 +288,6 @@ const useLocalizationTracker = (
 
     useEffect(() => {
         if (isActive) {
-            console.log('[RESUME LISTENER]');
             const setLocation = (location: Location) => {
                 setCurrentTrackerData(undefined, location);
                 setInitTrackerData(undefined);
