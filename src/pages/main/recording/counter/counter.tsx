@@ -432,7 +432,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />
-            <ErrorBoundary>
+            <ErrorBoundary onError={() => onHideMapHandler(true)}>
                 <View style={styles.container}>
                     <StackHeader
                         onpress={heandleGoBackClick}
