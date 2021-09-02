@@ -36,6 +36,7 @@ import {
 } from '../../../../storage/selectors/routes';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
+import ErrorBoundary from '@providers/errorBoundary/ErrorBoundary';
 
 import ActionButtons from './actionButtons';
 import Map from './map';
@@ -432,90 +433,97 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />
-            <View style={styles.container}>
-                <StackHeader
-                    onpress={heandleGoBackClick}
-                    inner={headerTitle}
-                    whiteArow={!pause && pageState !== 'endMessage' && mapHiden}
-                    titleOn={true}
-                    style={styles.stackHeader}
-                    started={
-                        pageState === 'record' ||
-                        (pageState === 'cancelText' && !pause)
-                    }
-                    mapHiden={mapHiden}
-                    duration={ANIMATION_DURATION}
-                />
+            <ErrorBoundary>
+                <View style={styles.container}>
+                    <StackHeader
+                        onpress={heandleGoBackClick}
+                        inner={headerTitle}
+                        whiteArow={
+                            !pause && pageState !== 'endMessage' && mapHiden
+                        }
+                        titleOn={true}
+                        style={styles.stackHeader}
+                        started={
+                            pageState === 'record' ||
+                            (pageState === 'cancelText' && !pause)
+                        }
+                        mapHiden={mapHiden}
+                        duration={ANIMATION_DURATION}
+                    />
 
-                {bikes && (
-                    <Animated.View
-                        pointerEvents="box-none"
-                        style={[
-                            styles.bikeList,
-                            {
-                                top: bileListTop,
-                            },
-                        ]}>
-                        <BikeSelectorList
-                            list={bikes}
-                            callback={onChangeBikeHandler}
-                            currentBike={bike?.description?.serial_number}
-                            buttonText={'add'}
-                            mapHiden={mapHiden}
+                    {bikes && (
+                        <Animated.View
+                            pointerEvents="box-none"
+                            style={[
+                                styles.bikeList,
+                                {
+                                    top: bileListTop,
+                                },
+                            ]}>
+                            <BikeSelectorList
+                                list={bikes}
+                                callback={onChangeBikeHandler}
+                                currentBike={bike?.description?.serial_number}
+                                buttonText={'add'}
+                                mapHiden={mapHiden}
+                                duration={ANIMATION_DURATION}
+                            />
+                        </Animated.View>
+                    )}
+
+                    <View style={styles.apla} pointerEvents="none">
+                        <Apla
+                            show={
+                                pageState === 'cancelText' ||
+                                pageState === 'endMessage'
+                            }
+                            message={
+                                pageState === 'cancelText'
+                                    ? trans.cancelText
+                                    : trans.endText
+                            }
                             duration={ANIMATION_DURATION}
                         />
-                    </Animated.View>
-                )}
+                    </View>
 
-                <View style={styles.apla} pointerEvents="none">
-                    <Apla
-                        show={
-                            pageState === 'cancelText' ||
-                            pageState === 'endMessage'
-                        }
-                        message={
-                            pageState === 'cancelText'
-                                ? trans.cancelText
-                                : trans.endText
-                        }
-                        duration={ANIMATION_DURATION}
+                    <ActionButtons
+                        leftBtnTitle={leftBtnTile}
+                        leftBtnCallback={heandleLeftBtnClick}
+                        rightBtnTitle={rightBtnTile}
+                        rightBtnCallback={heandleRightBtnClick}
                     />
-                </View>
 
-                <ActionButtons
-                    leftBtnTitle={leftBtnTile}
-                    leftBtnCallback={heandleLeftBtnClick}
-                    rightBtnTitle={rightBtnTile}
-                    rightBtnCallback={heandleRightBtnClick}
-                />
-
-                <CounterDataContext.Provider
-                    value={{
-                        trackerData,
-                        treackerDataAgregator: trackerDataAgregatorRef.current,
-                        pauseTime: pauseTime.total,
-                    }}>
-                    <NativeCounter
-                        time={trackerStartTime}
-                        isRunning={isActive}
-                        mapHiden={mapHiden}
-                        setMapHiden={onHideMapHandler}
-                        duration={ANIMATION_DURATION}
-                        aplaShow={
-                            pageState === 'cancelText' ||
-                            pageState === 'endMessage'
-                        }
-                        autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
-                    />
-                    {renderMap && (
-                        <Map
-                            routeId={followedRouteId || route?.params?.mapID}
-                            trackerData={trackerData}
-                            autoFindMe={autoFindMe}
+                    <CounterDataContext.Provider
+                        value={{
+                            trackerData,
+                            treackerDataAgregator:
+                                trackerDataAgregatorRef.current,
+                            pauseTime: pauseTime.total,
+                        }}>
+                        <NativeCounter
+                            time={trackerStartTime}
+                            isRunning={isActive}
+                            mapHiden={mapHiden}
+                            setMapHiden={onHideMapHandler}
+                            duration={ANIMATION_DURATION}
+                            aplaShow={
+                                pageState === 'cancelText' ||
+                                pageState === 'endMessage'
+                            }
+                            autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
                         />
-                    )}
-                </CounterDataContext.Provider>
-            </View>
+                        {renderMap && (
+                            <Map
+                                routeId={
+                                    followedRouteId || route?.params?.mapID
+                                }
+                                trackerData={trackerData}
+                                autoFindMe={autoFindMe}
+                            />
+                        )}
+                    </CounterDataContext.Provider>
+                </View>
+            </ErrorBoundary>
         </>
     );
 };
