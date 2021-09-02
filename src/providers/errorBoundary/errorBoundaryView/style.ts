@@ -14,12 +14,14 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 38,
+        color: '#313131',
+        fontSize: 32,
         paddingBottom: 16,
         marginHorizontal: 40,
     },
     body: {
         fontFamily: 'DIN2014Narrow-Light',
+        color: '#313131',
         fontSize: 24,
         fontWeight: '800',
         marginHorizontal: 40,
