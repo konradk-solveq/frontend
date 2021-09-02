@@ -87,7 +87,7 @@ const AnimatedMarker: React.FC<IProps> = ({
                         ...pos,
                         latitudeDelta: latitudeDelta,
                         longitudeDelta: longitudeDelta,
-                        duration: 1000 + 500 * ratio,
+                        duration: 1000 * ratio,
                         useNativeDriver: false,
                     })
                     .start();
@@ -106,6 +106,28 @@ const AnimatedMarker: React.FC<IProps> = ({
     useEffect(() => {
         setMarker();
     }, [setMarker]);
+
+    /**
+     * Initial marker coords for IOS
+     */
+    useEffect(() => {
+        if (isIOS && location) {
+            const pos = {
+                latitude: location?.latitude,
+                longitude: location?.longitude,
+            };
+            animatedPostion
+                ?.timing({
+                    ...pos,
+                    latitudeDelta: 1,
+                    longitudeDelta: 1,
+                    duration: 50,
+                    useNativeDriver: false,
+                })
+                .start();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     if (isIOS) {
         if (!location && !animatedPostion) {

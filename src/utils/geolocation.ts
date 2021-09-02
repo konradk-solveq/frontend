@@ -225,6 +225,7 @@ export const stopBackgroundGeolocation = async () => {
             },
         });
 
+        await BackgroundGeolocation.resetOdometer();
         const state = await stopBackgroundGeolocationPlugin();
         return state;
     } catch (e) {

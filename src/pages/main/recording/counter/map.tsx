@@ -6,12 +6,7 @@ import React, {
     useContext,
 } from 'react';
 import {StyleSheet, Platform, Dimensions} from 'react-native';
-import MapView, {
-    PROVIDER_GOOGLE,
-    AnimatedRegion,
-    Camera,
-    LatLng,
-} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Camera, LatLng} from 'react-native-maps';
 import CompassHeading from 'react-native-compass-heading';
 
 import useAppState from '@hooks/useAppState';
@@ -71,15 +66,6 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
         }
     }, [appIsActive, appStateVisible]);
 
-    const animatedPostion = useRef<AnimatedRegion>(
-        new AnimatedRegion({
-            latitude: 51.023,
-            longitude: 17.23,
-            latitudeDelta: 0.0092,
-            longitudeDelta: 0.0092,
-        }),
-    ).current;
-
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
 
     const [compassHeading, setCompassHeading] = useState(0);
@@ -100,16 +86,9 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
                     longitude: l.coords.longitude,
                 };
                 setLocaion(c);
-                animatedPostion?.setValue({
-                    latitude: c.latitude,
-                    longitude: c.longitude,
-                    latitudeDelta: 0.0092,
-                    longitudeDelta: 0.0092,
-                });
             }
         };
         loc();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {

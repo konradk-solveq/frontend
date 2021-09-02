@@ -392,7 +392,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 longitude: trackerData.coords.lon,
                 timestamp: trackerData.timestamp,
             };
-            console.log('new ref', trackerDataAgregatorRef?.current?.length);
+
             trackerDataAgregatorRef.current = [
                 ...trackerDataAgregatorRef.current,
                 pos,
@@ -406,14 +406,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
      */
     useEffect(() => {
         if (!mountRef.current) {
-            console.log('[redrawing]');
             if (currentRouteId && isTrackerActive) {
                 const asynchFetchPath = async () => {
-                    const result: ShortCoordsType[] =
-                        trackerDataAgregatorRef.current;
                     const newRoute = await restoreRouteDataFromSQL(
                         currentRouteId,
-                        // result,
                         [],
                     );
                     if (newRoute?.length) {
