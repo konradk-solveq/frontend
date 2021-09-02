@@ -91,9 +91,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const mountRef = useRef(false);
 
-    // const [trackerDataAgregatorRef, setTrackerDataAgregatorRef] = useState<
-    //     ShortCoordsType[]
-    // >([]);
     const trackerDataAgregatorRef = useRef<ShortCoordsType[]>([]);
 
     // trakowanie
@@ -397,7 +394,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 ...trackerDataAgregatorRef.current,
                 pos,
             ];
-            // setTrackerDataAgregatorRef(prev => [...prev, pos]);
         }
     }, [trackerData]);
 

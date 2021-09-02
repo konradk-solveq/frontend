@@ -1,9 +1,9 @@
 import React, {createContext, useContext} from 'react';
 
 import {BasicCoordsType} from '@type/coords';
+import {locationTypeEnum} from '@type/location';
 
 import useProviderStaticLocation from '@hooks/staticLocationProvider/useProviderStaticLocation';
-import {locationTypeEnum} from '@src/type/location';
 
 type contType = {
     location: BasicCoordsType | undefined;

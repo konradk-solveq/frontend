@@ -353,29 +353,33 @@ export const getLastLocationByRoutId = async (routeId: string) => {
         return;
     }
 
-    let lastLocation: any;
-    for (let index = locations.length - 1; index > 0; index--) {
-        const l: any = locations[index];
-        if (!l || !l?.coords) {
-            continue;
+    try {
+        let lastLocation: any;
+        for (let index = locations.length - 1; index > 0; index--) {
+            const l: any = locations[index];
+            if (!l || !l?.coords) {
+                continue;
+            }
+
+            if (l?.extras?.route_id === routeId) {
+                lastLocation = {
+                    ...l,
+                    coords: {
+                        ...l.coords,
+                        speed: undefined,
+                    },
+                };
+                break;
+            }
         }
 
-        if (l?.extras?.route_id === routeId) {
-            lastLocation = {
-                ...l,
-                coords: {
-                    ...l.coords,
-                    speed: undefined,
-                },
-            };
-            break;
+        if (!lastLocation) {
+            return;
         }
+        return getTrackerData(lastLocation);
+    } catch (error) {
+        console.warn('[getLastLocationByRoutId - error]', error);
     }
-
-    if (!lastLocation) {
-        return;
-    }
-    return getTrackerData(lastLocation);
 };
 
 /* Set plugin to stationary state - doesnt disable tracking permamently */

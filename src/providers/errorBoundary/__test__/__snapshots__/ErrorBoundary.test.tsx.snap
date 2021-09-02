@@ -118,8 +118,9 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
       <Text
         style={
           Object {
+            "color": "#313131",
             "fontFamily": "DIN2014Narrow-Regular",
-            "fontSize": 38,
+            "fontSize": 32,
             "marginHorizontal": 40,
             "paddingBottom": 16,
           }
@@ -130,6 +131,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
       <Text
         style={
           Object {
+            "color": "#313131",
             "fontFamily": "DIN2014Narrow-Light",
             "fontSize": 24,
             "fontWeight": "800",
@@ -355,8 +357,9 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
       <Text
         style={
           Object {
+            "color": "#313131",
             "fontFamily": "DIN2014Narrow-Regular",
-            "fontSize": 38,
+            "fontSize": 32,
             "marginHorizontal": 40,
             "paddingBottom": 16,
           }
@@ -367,6 +370,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
       <Text
         style={
           Object {
+            "color": "#313131",
             "fontFamily": "DIN2014Narrow-Light",
             "fontSize": 24,
             "fontWeight": "800",
