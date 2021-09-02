@@ -47,7 +47,7 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
             <TouchableOpacity
                 style={styles.btn}
                 onPress={props.onpress}
-                testID={props.testID}>
+                testID={props.testID || 'big-red-btn'}>
                 <Text style={[styles.text, props.textStyle]}>
                     {props.neutralCase
                         ? props.title
