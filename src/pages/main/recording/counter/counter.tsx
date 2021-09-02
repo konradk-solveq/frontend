@@ -43,6 +43,8 @@ import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
+import {ShortCoordsType} from '@type/coords';
+import {restoreRouteDataFromSQL} from '@utils/routePath';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -86,6 +88,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const ANIMATION_DURATION = 666;
 
+    const mountRef = useRef(false);
+
+    // const [trackerDataAgregatorRef, setTrackerDataAgregatorRef] = useState<
+    //     ShortCoordsType[]
+    // >([]);
+    const trackerDataAgregatorRef = useRef<ShortCoordsType[]>([]);
+
     // trakowanie
     const {
         trackerData,
@@ -95,9 +104,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         resumeTracker,
         followedRouteId,
         isActive,
+        currentRouteId,
     } = useLocalizationTracker(true, true);
 
     const [mapHiden, setMapHiden] = useState(true);
+    const [renderMap, setRenderMap] = useState(false);
 
     const bileListTop = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
@@ -340,7 +351,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     }, [pageState, trans]);
 
     const onHideMapHandler = (state: boolean) => {
+        setRenderMap(!state);
+        // setTimeout(() => {
         setMapHiden(state);
+        // }, 500);
         dispatch(setRouteMapVisibility(!state));
     };
 
@@ -367,6 +381,54 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         },
     });
 
+    useEffect(() => {
+        if (trackerData && trackerData?.coords) {
+            const pos = {
+                latitude: trackerData.coords.lat,
+                longitude: trackerData.coords.lon,
+                timestamp: trackerData.timestamp,
+            };
+            console.log('new ref', trackerDataAgregatorRef?.current?.length);
+            trackerDataAgregatorRef.current = [
+                ...trackerDataAgregatorRef.current,
+                pos,
+            ];
+            // setTrackerDataAgregatorRef(prev => [...prev, pos]);
+        }
+    }, [trackerData]);
+
+    /**
+     * Restore path from SQL after re-launch.
+     */
+    useEffect(() => {
+        if (!mountRef.current) {
+            console.log('[redrawing]');
+            if (currentRouteId && isTrackerActive) {
+                const asynchFetchPath = async () => {
+                    const result: ShortCoordsType[] =
+                        trackerDataAgregatorRef.current;
+                    const newRoute = await restoreRouteDataFromSQL(
+                        currentRouteId,
+                        // result,
+                        [],
+                    );
+                    if (newRoute?.length) {
+                        trackerDataAgregatorRef.current = newRoute;
+                    }
+                };
+
+                asynchFetchPath();
+            }
+
+            mountRef.current = true;
+        }
+
+        return () => {
+            mountRef.current = false;
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />
@@ -383,12 +445,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     }
                     mapHiden={mapHiden}
                     duration={ANIMATION_DURATION}
-                />
-
-                <Map
-                    routeId={followedRouteId || route?.params?.mapID}
-                    trackerData={trackerData}
-                    autoFindMe={autoFindMe}
                 />
 
                 {bikes && (
@@ -434,7 +490,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 />
 
                 <CounterDataContext.Provider
-                    value={{trackerData, pauseTime: pauseTime.total}}>
+                    value={{
+                        trackerData,
+                        treackerDataAgregator: trackerDataAgregatorRef.current,
+                        pauseTime: pauseTime.total,
+                    }}>
                     <NativeCounter
                         time={trackerStartTime}
                         isRunning={isActive}
@@ -447,6 +507,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         }
                         autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
                     />
+                    {renderMap && (
+                        <Map
+                            routeId={followedRouteId || route?.params?.mapID}
+                            trackerData={trackerData}
+                            autoFindMe={autoFindMe}
+                        />
+                    )}
                 </CounterDataContext.Provider>
             </View>
         </>

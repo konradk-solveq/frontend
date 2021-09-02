@@ -17,12 +17,9 @@ import {
 } from '../storage/actions/routes';
 import {
     cleanUp,
-    // cleanUpListener,
     getBackgroundGeolocationState,
     getCurrentLocation,
     getLastLocationByRoutId,
-    // getLocations,
-    // onLocationChangeListener,
     onWatchPostionChangeListener,
     pauseTracingLocation,
     requestGeolocationPermission,
@@ -41,6 +38,7 @@ import {
 import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
 import useAppState from './useAppState';
 import {Location} from '@interfaces/geolocation';
+import {locationTypeEnum} from '@src/type/location';
 
 export interface DataI {
     distance: string;
@@ -61,11 +59,10 @@ const useLocalizationTracker = (
     omitRequestingPermission?: boolean,
 ) => {
     const dispatch = useAppDispatch();
-    // const fastTrackerDataRef = useRef(false);
     const initialTrackerDataRef = useRef(false);
 
-    const {isTrackingActivatedHandler} = useLocationProvider();
-    const {appPrevStateVisible, appStateVisible, appIsActive} = useAppState();
+    const {isTrackingActivatedHandler, locationType} = useLocationProvider();
+    const {appStateVisible} = useAppState();
 
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
@@ -188,8 +185,7 @@ const useLocalizationTracker = (
                     currentRouteId,
                     fastTimeout ? 3 : undefined,
                     undefined,
-                    true,
-                    // fastTimeout ? true : false,
+                    fastTimeout ? true : false,
                     fastTimeout ? 3 : 15,
                     fastTimeout ? 2000 : 500,
                 ));
@@ -263,7 +259,7 @@ const useLocalizationTracker = (
         if (!trackerData && currentRouteId) {
             const asyncAction = async () => {
                 const td = await getLastLocationByRoutId(currentRouteId);
-                if (!undefined) {
+                if (!td) {
                     setInitTrackerData(td);
                 }
             };
@@ -284,10 +280,32 @@ const useLocalizationTracker = (
             isActive &&
             initialTrackerDataRef.current
         ) {
-            // stopWatchPostionChangeListener();
-            console.log('[STOP LISTENER]');
+            if (locationType === locationTypeEnum.ALWAYS) {
+                stopWatchPostionChangeListener();
+                initialTrackerDataRef.current = false;
+                console.log('[STOP WATCH POSITION LISTENER]');
+            }
         }
-    }, [appStateVisible, isActive]);
+    }, [appStateVisible, isActive, locationType]);
+
+    useEffect(() => {
+        if (isActive) {
+            console.log('[RESUME LISTENER]');
+            const setLocation = (location: Location) => {
+                setCurrentTrackerData(undefined, location);
+            };
+            if (
+                appStateVisible === 'active' &&
+                !initialTrackerDataRef.current
+            ) {
+                onWatchPostionChangeListener(setLocation);
+            }
+        }
+
+        return () => {
+            initialTrackerDataRef.current = false;
+        };
+    }, [isActive, setCurrentTrackerData, appStateVisible]);
 
     useEffect(() => {
         if (isActive) {
@@ -295,20 +313,10 @@ const useLocalizationTracker = (
              * Initial tracker data
              */
             setCurrentTrackerData(true);
-
-            console.log('[RESUME LISTENER]');
-            const setLocation = (location: Location) => {
-                setCurrentTrackerData(undefined, location);
-            };
-            onWatchPostionChangeListener(setLocation);
-
-            // initialTrackerDataRef.current = true;
         }
 
         return () => {
-            stopWatchPostionChangeListener();
             cleanUp();
-            initialTrackerDataRef.current = false;
             console.log('[==CLEANUP ALL LISTENERS==]');
         };
     }, [isActive, setCurrentTrackerData]);
@@ -324,6 +332,7 @@ const useLocalizationTracker = (
         averageSpeed,
         followedRouteId,
         setCurrentTrackerData,
+        currentRouteId,
     };
 };
 
