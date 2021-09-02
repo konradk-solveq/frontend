@@ -211,59 +211,55 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
         restoreRef.current = true;
     };
 
-    return (
+    /* TODO: error boundary */
+    return location ? (
         <>
-            {location && (
-                <>
-                    <AnimSvg style={styles.gradient} source={gradient} />
-                    <MapView
-                        provider={PROVIDER_GOOGLE}
-                        style={styles.map}
-                        customMapStyle={mapStyle}
-                        pitchEnabled={true}
-                        ref={mapRef}
-                        rotateEnabled={true}
-                        scrollEnabled={true}
-                        zoomEnabled={true}
-                        zoomTapEnabled={true}
-                        showsCompass={false}
-                        {...(!isIOS && {
-                            initialCamera: cameraInitObj,
-                        })}
-                        {...(isIOS && {
-                            onLayout: () => {
-                                if (mapRef.current) {
-                                    mapRef.current?.setCamera(cameraInitObj);
-                                }
-                            },
-                        })}>
-                        {mountedRef.current && (
-                            <AnimatedMarker
-                                coords={trackerData?.coords}
-                                mapRegion={mapRef?.current?.__lastRegion}
-                                setLocation={onSetLocationHanlder}
-                                isRestored={restoreRef.current}
-                                setIsRestored={onSetIsRestoredHandler}
-                                show={!!(mapRef?.current && mountedRef.current)}
-                                location={location}
-                            />
-                        )}
-                        {trackerData?.coords && (
-                            // <SinglePolyline coords={trackerData} />
-                            <Polyline coords={routeData} />
-                        )}
-                        {foreignRoute && (
-                            <Polyline
-                                coords={foreignRoute}
-                                strokeColor="#3583e4"
-                                strokeColors={['#3583e4']}
-                            />
-                        )}
-                    </MapView>
-                </>
-            )}
+            <AnimSvg style={styles.gradient} source={gradient} />
+            <MapView
+                provider={PROVIDER_GOOGLE}
+                style={styles.map}
+                customMapStyle={mapStyle}
+                pitchEnabled={true}
+                ref={mapRef}
+                rotateEnabled={true}
+                scrollEnabled={true}
+                zoomEnabled={true}
+                zoomTapEnabled={true}
+                showsCompass={false}
+                {...(!isIOS && {
+                    initialCamera: cameraInitObj,
+                })}
+                {...(isIOS && {
+                    onLayout: () => {
+                        if (mapRef.current) {
+                            mapRef.current?.setCamera(cameraInitObj);
+                        }
+                    },
+                })}>
+                {mountedRef.current ? (
+                    <AnimatedMarker
+                        coords={trackerData?.coords}
+                        mapRegion={mapRef?.current?.__lastRegion}
+                        setLocation={onSetLocationHanlder}
+                        isRestored={restoreRef.current}
+                        setIsRestored={onSetIsRestoredHandler}
+                        show={!!(mapRef?.current && mountedRef.current)}
+                        location={location}
+                    />
+                ) : null}
+                {trackerData?.coords && routeData?.length ? (
+                    <Polyline coords={routeData} />
+                ) : null}
+                {foreignRoute && (
+                    <Polyline
+                        coords={foreignRoute}
+                        strokeColor="#3583e4"
+                        strokeColors={['#3583e4']}
+                    />
+                )}
+            </MapView>
         </>
-    );
+    ) : null;
 };
 
 const styles = StyleSheet.create({

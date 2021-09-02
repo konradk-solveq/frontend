@@ -61,6 +61,7 @@ export const restoreRouteDataFromSQL = async (
 
         return await Promise.resolve(newRoute);
     } catch (error) {
+        console.log('[restoreRouteDataFromSQL - error]', error);
         return [];
     }
 };
