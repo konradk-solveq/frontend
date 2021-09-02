@@ -53,9 +53,6 @@ const Map: React.FC<IProps> = ({
     mountedRef,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
-    const mountedRef = useRef(false);
-    const compasHeadingdRef = useRef(0);
-    const markerRef = useRef<Marker>(null);
     const restoreRef = useRef(false);
 
     const routeData = useContext(CounterDataContext).treackerDataAgregator;
