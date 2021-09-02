@@ -282,7 +282,7 @@ const useLocalizationTracker = (
         ) {
             if (locationType === locationTypeEnum.ALWAYS) {
                 stopWatchPostionChangeListener();
-                initialTrackerDataRef.current = false;
+                // initialTrackerDataRef.current = false;
                 console.log('[STOP WATCH POSITION LISTENER]');
             }
         }
