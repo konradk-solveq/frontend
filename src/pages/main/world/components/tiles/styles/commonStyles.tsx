@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     localizationDescription: {
         marginTop: getVerticalPx(8),
         fontFamily: fontLight,
-        fontSize: getVerticalPx(18),
+        fontSize: 18,
         letterSpacing: 0.42,
         color: darkText,
     },
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     tileSectionTitle: {
         fontFamily: fontRegular,
-        fontSize: getVerticalPx(23),
+        fontSize: 23,
     },
     firstSection: {
         marginHorizontal: 20,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     },
     distanceToStart: {
         fontFamily: fontLight,
-        fontSize: getVerticalPx(15),
+        fontSize: 15,
         letterSpacing: 0.42,
         color: darkText,
     },
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
     secondSectionText: {
         fontFamily: fontRegular,
         color: darkerText,
-        fontSize: getVerticalPx(23),
+        fontSize: 23,
     },
     secondSectionSuffix: {
         fontFamily: fontRegular,
-        fontSize: getVerticalPx(18),
+        fontSize: 18,
         letterSpacing: 0.5,
         color: darkText,
     },

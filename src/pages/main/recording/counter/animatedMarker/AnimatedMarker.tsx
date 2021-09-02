@@ -21,6 +21,8 @@ interface IProps {
     setIsRestored: () => void;
     show?: boolean;
     location?: LatLng | null;
+    compassHeading: number;
+    headingOn?: boolean;
 }
 
 const AnimatedMarker: React.FC<IProps> = ({
@@ -31,6 +33,8 @@ const AnimatedMarker: React.FC<IProps> = ({
     setIsRestored,
     show,
     location,
+    headingOn,
+    compassHeading,
 }: IProps) => {
     const markerRef = useRef<Marker>(null);
 
@@ -139,7 +143,7 @@ const AnimatedMarker: React.FC<IProps> = ({
                 ref={animatedMarkerRef}
                 anchor={{x: 0.5, y: 0.3}}
                 coordinate={animatedPostion || location}>
-                <MarkPointer />
+                <MarkPointer heading={!headingOn ? compassHeading : 0} />
             </MarkerAnimated>
         );
     }
@@ -150,7 +154,7 @@ const AnimatedMarker: React.FC<IProps> = ({
 
     return (
         <Marker ref={markerRef} coordinate={location} anchor={{x: 0.3, y: 0.3}}>
-            <MarkPointer />
+            <MarkPointer heading={!headingOn ? compassHeading : 0} />
         </Marker>
     );
 };
