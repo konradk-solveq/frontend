@@ -17,6 +17,7 @@ interface Props {
     title: string;
     onpress: () => void;
     neutralCase?: boolean;
+    testID?: string;
 }
 
 const BigWhiteBtn: React.FC<Props> = (props: Props) => {
@@ -43,7 +44,8 @@ const BigWhiteBtn: React.FC<Props> = (props: Props) => {
     return (
         <TouchableOpacity
             style={[styles.btn, props.style]}
-            onPress={props.onpress}>
+            onPress={props.onpress}
+            testID={props.testID}>
             <Text style={styles.text}>
                 {props.neutralCase ? props.title : props.title.toUpperCase()}
             </Text>

@@ -42,11 +42,13 @@ const ErrorBoundaryView = ({resetError}: IProps) => {
                         onpress={resetError}
                         title={trans.resetButton}
                         style={styles.button}
+                        testID="error-boundary-reset-button"
                     />
                     <BigWhiteBtn
                         onpress={restartView}
                         title={trans.restartButton}
                         style={[styles.button, styles.restartButton]}
+                        testID="error-boundary-restart-button"
                     />
                 </View>
             </View>

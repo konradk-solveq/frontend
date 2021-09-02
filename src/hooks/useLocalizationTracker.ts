@@ -293,6 +293,7 @@ const useLocalizationTracker = (
             console.log('[RESUME LISTENER]');
             const setLocation = (location: Location) => {
                 setCurrentTrackerData(undefined, location);
+                setInitTrackerData(undefined);
             };
             if (
                 appStateVisible === 'active' &&
