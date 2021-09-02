@@ -352,10 +352,18 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     }, [pageState, trans]);
 
     const onHideMapHandler = (state: boolean) => {
-        setRenderMap(!state);
-        // setTimeout(() => {
-        setMapHiden(state);
-        // }, 500);
+        setTimeout(
+            () => {
+                setRenderMap(!state);
+            },
+            !state ? 0 : 300,
+        );
+        setTimeout(
+            () => {
+                setMapHiden(state);
+            },
+            state ? 0 : 200,
+        );
         dispatch(setRouteMapVisibility(!state));
     };
 
