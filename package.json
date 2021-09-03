@@ -54,7 +54,7 @@
         "react-native-i18n": "^2.0.15",
         "react-native-image-picker": "^3.8.1",
         "react-native-keyboard-aware-scroll-view": "^0.9.3",
-        "react-native-maps": "^0.28.0",
+        "react-native-maps": "^0.29.3",
         "react-native-nfc-manager": "^3.10.0",
         "react-native-permissions": "^3.0.5",
         "react-native-reanimated": "^2.1.0",
