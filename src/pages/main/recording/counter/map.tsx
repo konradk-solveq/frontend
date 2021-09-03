@@ -8,7 +8,6 @@ import MapView, {
     Camera,
     LatLng,
 } from 'react-native-maps';
-import CompassHeading from 'react-native-compass-heading';
 
 import useAppState from '@hooks/useAppState';
 import {useAppSelector} from '../../../../hooks/redux';
@@ -30,6 +29,9 @@ interface IProps {
     routeId: string;
     trackerData: any;
     autoFindMe: boolean;
+    headingOn: boolean;
+    compassHeading: any;
+    mountedRef: any;
 }
 
 const initCompasHeading = {
@@ -44,23 +46,20 @@ const initCompasHeading = {
 };
 const ZOOM_START_VALUE = isIOS ? 18 : 17;
 
-const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
+const Map: React.FC<IProps> = ({
+    routeId,
+    trackerData,
+    autoFindMe,
+    headingOn,
+    compassHeading,
+    mountedRef,
+}: IProps) => {
     const mapRef = useRef<MapView>(null);
     const markerRef = useRef<Marker>(null);
-    const mountedRef = useRef(false);
-    const compasHeadingdRef = useRef(0);
     const restoreRef = useRef(false);
     const animatedMarkerRef = useRef<MarkerAnimated>(null);
 
     const {appIsActive, appStateVisible} = useAppState();
-
-    useEffect(() => {
-        mountedRef.current = true;
-
-        return () => {
-            mountedRef.current = false;
-        };
-    }, []);
 
     useEffect(() => {
         if (!appIsActive && appStateVisible === 'background') {
@@ -79,14 +78,12 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
 
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
 
-    const [compassHeading, setCompassHeading] = useState(0);
     const [location, setLocaion] = useState<LatLng | null>(null);
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [autoFindMeLastState, setAutoFindMeLastState] = useState<boolean>(
-        autoFindMe,
-    );
+    const [autoFindMeLastState, setAutoFindMeLastState] =
+        useState<boolean>(autoFindMe);
 
     useEffect(() => {
         const loc = async () => {
@@ -110,24 +107,6 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
     }, []);
 
     useEffect(() => {
-        const degree_update_rate = 5;
-
-        if (mountedRef.current) {
-            CompassHeading.start(degree_update_rate, ({heading}) => {
-                const lastHeading = compasHeadingdRef.current;
-                compasHeadingdRef.current = heading;
-                if (Math.abs(lastHeading - heading) >= degree_update_rate) {
-                    setCompassHeading(heading);
-                }
-            });
-        }
-
-        return () => {
-            CompassHeading.stop();
-        };
-    }, []);
-
-    useEffect(() => {
         if (mapData?.path?.length && mountedRef.current) {
             const fRoute = mapData.path.map(e => {
                 return {
@@ -146,7 +125,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
 
         if (mapRef.current && (hasLocation || shouldResetZoom)) {
             let animation: Partial<Camera> = {
-                heading: compassHeading,
+                heading: headingOn ? compassHeading : 0,
             };
 
             const coords = {latitude: 0, longitude: 0};
@@ -167,7 +146,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
                 }
             }
 
-            if (autoFindMe !== autoFindMeLastState) {
+            if (autoFindMe != autoFindMeLastState) {
                 if (autoFindMe) {
                     animation.zoom = ZOOM_START_VALUE;
                 }
@@ -176,13 +155,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
 
             mapRef.current?.animateCamera(animation, {duration: 1000});
         }
-    }, [
-        autoFindMe,
-        autoFindMeLastState,
-        trackerData?.coords,
-        location,
-        compassHeading,
-    ]);
+    }, [autoFindMe, headingOn, trackerData?.coords, location, compassHeading]);
 
     const setMarker = useCallback(async () => {
         if (trackerData?.coords && mapRef?.current && mountedRef.current) {
@@ -264,7 +237,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
                     ref={markerRef}
                     coordinate={location}
                     anchor={{x: 0.3, y: 0.3}}>
-                    <MarkPointer />
+                    <MarkPointer heading={!headingOn ? compassHeading : 0} />
                 </Marker>
             )
         ) : (
@@ -272,7 +245,7 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
                 ref={animatedMarkerRef}
                 anchor={{x: 0.5, y: 0.3}}
                 coordinate={animatedPostion || location}>
-                <MarkPointer />
+                <MarkPointer heading={!headingOn ? compassHeading : 0} />
             </MarkerAnimated>
         );
 

@@ -2,7 +2,24 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Svg, {Circle, Path} from 'react-native-svg';
 
-const MarkPointer: React.FC = () => {
+interface IProps {
+    heading: number;
+}
+
+const MarkPointer: React.FC<IProps> = ({heading}: IProps) => {
+    const styles = StyleSheet.create({
+        markWrap: {
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+        },
+        mark: {
+            width: 31,
+            height: 31,
+            transform: [{rotate: -heading + 'deg'}],
+        },
+    });
+
     return (
         <View style={styles.markWrap} pointerEvents="none">
             <Svg viewBox="0 0 31 31" style={styles.mark}>
@@ -15,17 +32,5 @@ const MarkPointer: React.FC = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    markWrap: {
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-    },
-    mark: {
-        width: 31,
-        height: 31,
-    },
-});
 
 export default React.memo(MarkPointer);

@@ -1,4 +1,10 @@
-import React, {useEffect, useState, useRef, useCallback} from 'react';
+import React, {
+    useEffect,
+    useState,
+    useRef,
+    useCallback,
+    useContext,
+} from 'react';
 import {
     StyleSheet,
     View,
@@ -43,6 +49,10 @@ import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
+import DataPreview from '../../../../sharedComponents/dataPreview/dataPreview';
+import CompassHeading from 'react-native-compass-heading';
+
+import {TESTING_MODE} from '@env';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -79,6 +89,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const [myRouteNumber, setMyRouteNumber] = useState(0);
     const [autoFindMe, setAutoFindMe] = useState(true);
+    const [headingOn, setHeadingOn] = useState<boolean>(true);
     const [pauseTime, setPauseTime] = useState({
         start: 0,
         total: 0,
@@ -344,6 +355,36 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         dispatch(setRouteMapVisibility(!state));
     };
 
+    // kompas mapy - przeniesiony z mapy, żby spuścić do innych komponentów
+    const mountedRef = useRef(false);
+    const compasHeadingdRef = useRef(0);
+
+    const [compassHeading, setCompassHeading] = useState(0);
+
+    useEffect(() => {
+        mountedRef.current = true;
+
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        const degree_update_rate = 5;
+        if (mountedRef.current) {
+            CompassHeading.start(degree_update_rate, ({heading}) => {
+                const lastHeading = compasHeadingdRef.current;
+                compasHeadingdRef.current = heading;
+                if (Math.abs(lastHeading - heading) >= degree_update_rate) {
+                    setCompassHeading(heading);
+                }
+            });
+        }
+        return () => {
+            CompassHeading.stop();
+        };
+    }, []);
+
     // setObjSize(334, 50);
     const styles = StyleSheet.create({
         stackHeader: {
@@ -389,6 +430,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     routeId={followedRouteId || route?.params?.mapID}
                     trackerData={trackerData}
                     autoFindMe={autoFindMe}
+                    headingOn={headingOn}
+                    compassHeading={compassHeading}
+                    mountedRef={mountedRef}
                 />
 
                 {bikes && (
@@ -446,7 +490,97 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             pageState === 'endMessage'
                         }
                         autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
+                        headingSwitch={(e: boolean) => setHeadingOn(e)}
+                        compassHeading={compassHeading}
                     />
+
+                    {TESTING_MODE && (
+                        <DataPreview
+                            title={'podgląd danych'}
+                            trackerStartTime={trackerStartTime}
+                            reduxData={['counter']}
+                            dataList={[
+                                {
+                                    name: 'my Route Number',
+                                    value: myRouteNumber,
+                                },
+                                {
+                                    name: 'route params mapID',
+                                    value: route?.params?.mapID,
+                                },
+                                {},
+                                {section: 'page states'},
+                                {
+                                    name: 'page State',
+                                    value: pageState,
+                                },
+                                {
+                                    name: 'map Hiden',
+                                    value: mapHiden,
+                                },
+                                {
+                                    name: 'auto Find Me',
+                                    value: autoFindMe,
+                                },
+                                {},
+                                {section: 'data from tracker'},
+                                {
+                                    name: 'is Active',
+                                    value: isActive,
+                                },
+                                {
+                                    name: 'is Tracker Active',
+                                    value: isTrackerActive,
+                                },
+                                {
+                                    name: 'Start Time',
+                                    value: trackerStartTime,
+                                },
+                                {
+                                    name: 'Pause Time',
+                                    value: trackerPauseTime,
+                                },
+                                {
+                                    name: 'Total Time',
+                                    value: setTotalTime(pauseTime),
+                                },
+                                {
+                                    name: 'followed Route Id',
+                                    value: followedRouteId,
+                                },
+                                {
+                                    name: 'distance',
+                                    value: trackerData?.distance,
+                                },
+                                {
+                                    name: 'coords.lat',
+                                    value: trackerData?.coords.lat,
+                                },
+                                {
+                                    name: 'coords.lon',
+                                    value: trackerData?.coords.lon,
+                                },
+                                {},
+                                {section: 'pause'},
+                                {
+                                    name: 'is on',
+                                    value: pause,
+                                },
+                                {
+                                    name: 'state',
+                                    value: pageState,
+                                },
+                                {
+                                    name: 'start time',
+                                    value: pauseTime.start,
+                                },
+                                {
+                                    name: 'total time',
+                                    value: pauseTime.total,
+                                },
+                            ]}
+                        />
+                    )}
                 </CounterDataContext.Provider>
             </View>
         </>
