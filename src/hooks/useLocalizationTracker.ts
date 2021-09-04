@@ -127,19 +127,21 @@ const useLocalizationTracker = (
                 await stopTracker();
             }
 
-            activateKeepAwake();
-            const currRoute = await startCurrentRoute(routeIdToFollow);
-            const routeID =
-                keep && currentRouteId ? currentRouteId : currRoute.id;
-            if (!keep) {
-                dispatch(startRecordingRoute(currRoute, keep));
-            }
             setIsActive(true);
+            activateKeepAwake();
 
             /**
              * Should update state befeore change redux.
              */
             isTrackingActivatedHandler(true);
+
+            const currRoute = await startCurrentRoute(routeIdToFollow);
+            const routeID =
+                keep && currentRouteId ? currentRouteId : currRoute.id;
+            await startBackgroundGeolocation(routeID, keep);
+            if (!keep) {
+                dispatch(startRecordingRoute(currRoute, keep));
+            }
 
             await startBackgroundGeolocation(routeID, keep);
         },

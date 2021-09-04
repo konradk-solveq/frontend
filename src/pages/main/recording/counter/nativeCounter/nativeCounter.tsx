@@ -181,10 +181,10 @@ const NativeCounter: React.FC<IProps> = ({
             });
             setMapHiden(false);
         } else {
+            setMapHiden(true);
             InteractionManager.runAfterInteractions(() => {
                 startAnimation(true);
             });
-            setMapHiden(true);
         }
     };
 
