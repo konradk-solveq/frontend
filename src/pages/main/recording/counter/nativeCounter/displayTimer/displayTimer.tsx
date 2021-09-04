@@ -1,5 +1,4 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import {TextStyle} from 'react-native';
 import {getHorizontalPx} from '../../../../../../helpers/layoutFoo';
 import useAppState from '../../../../../../hooks/useAppState';
 
@@ -48,12 +47,13 @@ const DisplayTimer: React.FC<IProps> = ({
     }, [appIsActive, previousState, setTime]);
 
     useEffect(() => {
+        let interval: NodeJS.Timeout;
         if (isRunning) {
-            const interval = setInterval(() => {
+            interval = setInterval(() => {
                 setCurrentTime(prevTime => prevTime + 1000);
             }, 1000);
-            return () => clearInterval(interval);
         }
+        return () => clearInterval(interval);
     }, [isRunning]);
 
     return (

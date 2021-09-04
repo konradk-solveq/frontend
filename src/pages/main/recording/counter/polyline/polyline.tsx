@@ -1,5 +1,7 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
+import {InteractionManager} from 'react-native';
 import {Polyline as MapPolyline} from 'react-native-maps';
+import {CounterDataContext} from '../nativeCounter/counterContext/counterContext';
 
 type ShortCoordsType = {
     latitude: number;
@@ -7,7 +9,7 @@ type ShortCoordsType = {
 };
 
 interface IProps {
-    coords: ShortCoordsType[];
+    coords?: ShortCoordsType[];
     strokeColor?: string;
     strokeColors?: string[];
 }
@@ -17,17 +19,39 @@ const Polyline: React.FC<IProps> = ({
     strokeColor,
     strokeColors,
 }: IProps) => {
+    const currentLengthRef = useRef(0);
     const polylineRef = useRef<MapPolyline>(null);
+    const routeData = useContext(CounterDataContext).treackerDataAgregator;
+
+    const setCoords = (c: ShortCoordsType[]) => {
+        if (polylineRef.current) {
+            polylineRef.current?.setNativeProps({
+                coordinates: c,
+            });
+        }
+    };
 
     useEffect(() => {
-        if (coords?.length) {
-            if (polylineRef.current) {
-                polylineRef.current?.setNativeProps({
-                    coordinates: coords,
-                });
+        InteractionManager.runAfterInteractions(() => {
+            if (coords?.length) {
+                if (polylineRef.current) {
+                    setCoords(coords);
+                }
+            } else if (routeData?.length) {
+                if (
+                    currentLengthRef?.current !== 0 &&
+                    currentLengthRef?.current + 10 > routeData.length
+                ) {
+                    return;
+                }
+
+                if (polylineRef.current) {
+                    setCoords(routeData);
+                    currentLengthRef.current = routeData.length;
+                }
             }
-        }
-    }, [coords]);
+        });
+    }, [coords, routeData]);
 
     return (
         <MapPolyline

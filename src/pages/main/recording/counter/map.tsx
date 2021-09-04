@@ -1,10 +1,4 @@
-import React, {
-    useState,
-    useRef,
-    useEffect,
-    useCallback,
-    useContext,
-} from 'react';
+import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {StyleSheet, Platform, Dimensions} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Camera, LatLng} from 'react-native-maps';
 
@@ -18,7 +12,6 @@ import AnimSvg from '../../../../helpers/animSvg';
 
 import gradient from './gradientSvg';
 import Polyline from './polyline/polyline';
-import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 
 const isIOS = Platform.OS === 'ios';
@@ -55,8 +48,6 @@ const Map: React.FC<IProps> = ({
     const mapRef = useRef<MapView>(null);
     const restoreRef = useRef(false);
 
-    const routeData = useContext(CounterDataContext).treackerDataAgregator;
-
     const {appIsActive, appStateVisible} = useAppState();
 
     useEffect(() => {
@@ -71,8 +62,9 @@ const Map: React.FC<IProps> = ({
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [autoFindMeLastState, setAutoFindMeLastState] =
-        useState<boolean>(autoFindMe);
+    const [autoFindMeLastState, setAutoFindMeLastState] = useState<boolean>(
+        autoFindMe,
+    );
 
     useEffect(() => {
         const loc = async () => {
@@ -201,9 +193,7 @@ const Map: React.FC<IProps> = ({
                         compassHeading={compassHeading}
                     />
                 ) : null}
-                {trackerData?.coords && routeData?.length ? (
-                    <Polyline coords={routeData} />
-                ) : null}
+                {trackerData?.coords ? <Polyline /> : null}
                 {foreignRoute && (
                     <Polyline
                         coords={foreignRoute}

@@ -1,5 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Dimensions, Animated, Platform} from 'react-native';
+import {
+    View,
+    Text,
+    Dimensions,
+    Animated,
+    Platform,
+    InteractionManager,
+} from 'react-native';
 
 import {trackerMapVisibilitySelector} from '@storage/selectors/routes';
 import {useAppSelector} from '@hooks/redux';
@@ -45,7 +52,7 @@ const NativeCounter: React.FC<IProps> = ({
     headingSwitch,
     compassHeading,
 }: IProps) => {
-    const FIND_ME_BTN_BOTTOM = 230;
+    const FIND_ME_BTN_BOTTOM = 250;
     const resotredRef = useRef(false);
 
     const trackerMapVisibility = useAppSelector(trackerMapVisibilitySelector);
@@ -169,12 +176,14 @@ const NativeCounter: React.FC<IProps> = ({
         const containerH = containerHeight?.__getValue();
 
         if (containerH >= 500) {
-            setTimeout(() => {
+            InteractionManager.runAfterInteractions(() => {
                 startAnimation();
-            }, 200);
+            });
             setMapHiden(false);
         } else {
-            startAnimation(true);
+            InteractionManager.runAfterInteractions(() => {
+                startAnimation(true);
+            });
             setMapHiden(true);
         }
     };
@@ -331,7 +340,7 @@ const NativeCounter: React.FC<IProps> = ({
                     onpress={heandleHeadingSwitch}
                     toggle={!headingOn}
                     compassHeading={compassHeading}
-                 />
+                />
                 <FindMeButton
                     onpress={handleAutoFindMeSwith}
                     toggle={!autoFindMeOn}
