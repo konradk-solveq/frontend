@@ -6,6 +6,7 @@ import {
     Platform,
     StatusBar,
     Alert,
+    InteractionManager,
 } from 'react-native';
 
 import I18n from 'react-native-i18n';
@@ -50,6 +51,7 @@ import DataPreview from '../../../../sharedComponents/dataPreview/dataPreview';
 import CompassHeading from 'react-native-compass-heading';
 
 import {TESTING_MODE} from '@env';
+import useAppState from '@src/hooks/useAppState';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -358,7 +360,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             () => {
                 setRenderMap(!state);
             },
-            !state ? 0 : 300,
+            !state ? 0 : 1000,
         );
         setMapHiden(state);
         dispatch(setRouteMapVisibility(!state));
@@ -439,13 +441,18 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (!mountRef.current) {
             if (currentRouteId && isTrackerActive) {
                 const asynchFetchPath = async () => {
-                    const newRoute = await restoreRouteDataFromSQL(
-                        currentRouteId,
-                        [],
-                    );
-                    if (newRoute?.length) {
-                        trackerDataAgregatorRef.current = newRoute;
-                    }
+                    InteractionManager.runAfterInteractions(async () => {
+                        const newRoute = await restoreRouteDataFromSQL(
+                            currentRouteId,
+                            [],
+                        );
+                        if (newRoute?.length) {
+                            trackerDataAgregatorRef.current = [newRoute[0]];
+                            setTimeout(() => {
+                                trackerDataAgregatorRef.current = newRoute;
+                            }, 500);
+                        }
+                    });
                 };
 
                 asynchFetchPath();
@@ -459,6 +466,21 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const {appIsActive} = useAppState();
+    /**
+     * On IOS there is memory leak issue,
+     * so we disable map when app goss to background.
+     */
+    useEffect(() => {
+        if (isActive && isIOS) {
+            if (!appIsActive) {
+                setRenderMap(false);
+            } else {
+                setRenderMap(true);
+            }
+        }
+    }, [isActive, appIsActive]);
 
     return (
         <>
@@ -557,7 +579,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             />
                         )}
 
-                        {TESTING_MODE && (
+                        {TESTING_MODE === true && (
                             <DataPreview
                                 title={'podgląd danych'}
                                 trackerStartTime={trackerStartTime}
