@@ -187,7 +187,6 @@ export const startBackgroundGeolocation = async (
         if (!keep) {
             await BackgroundGeolocation.resetOdometer();
         }
-        const state = await startBackgroundGeolocationPlugin(true);
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: false,
             startOnBoot: true,
@@ -200,6 +199,7 @@ export const startBackgroundGeolocation = async (
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
             },
         });
+        const state = await startBackgroundGeolocationPlugin(true);
         await resumeTracingLocation();
 
         return state;

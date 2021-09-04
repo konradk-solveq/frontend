@@ -41,7 +41,7 @@ const Polyline: React.FC<IProps> = ({
         } else if (routeData?.length) {
             if (
                 currentLengthRef?.current !== 0 &&
-                currentLengthRef?.current + 10 > routeData.length
+                currentLengthRef?.current + 5 > routeData.length
             ) {
                 return;
             }

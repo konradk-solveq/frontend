@@ -467,20 +467,20 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const {appIsActive} = useAppState();
-    /**
-     * On IOS there is memory leak issue,
-     * so we disable map when app goss to background.
-     */
-    useEffect(() => {
-        if (isActive && isIOS) {
-            if (!appIsActive) {
-                setRenderMap(false);
-            } else {
-                setRenderMap(true);
-            }
-        }
-    }, [isActive, appIsActive]);
+    // const {appIsActive} = useAppState();
+    // /**
+    //  * On IOS there is memory leak issue,
+    //  * so we disable map when app goss to background.
+    //  */
+    // useEffect(() => {
+    //     if (isActive && isIOS) {
+    //         if (!appIsActive) {
+    //             setRenderMap(false);
+    //         } else {
+    //             setRenderMap(true);
+    //         }
+    //     }
+    // }, [isActive, appIsActive]);
 
     return (
         <>
