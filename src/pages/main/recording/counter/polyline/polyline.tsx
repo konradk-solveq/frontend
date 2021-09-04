@@ -27,12 +27,6 @@ const Polyline: React.FC<IProps> = ({
     const polylineRef = useRef<MapPolyline>(null);
     const odometer = useContext(CounterDataContext).trackerData?.odometer;
 
-    useEffect(() => {
-        if (odometer) {
-            currentDistanceRef.current = odometer;
-        }
-    }, [odometer]);
-
     const setCoords = (c: ShortCoordsType[]) => {
         if (polylineRef.current) {
             polylineRef.current?.setNativeProps({
@@ -43,11 +37,15 @@ const Polyline: React.FC<IProps> = ({
 
     const setPolyline = useCallback(() => {
         if (coords?.length) {
+            /**
+             * Delay drawing new polyline because of performance issue
+             */
             if (
                 currentLengthRef?.current !== 0 &&
-                currentLengthRef?.current + 5 > coords.length &&
+                currentLengthRef?.current + 8 > coords.length &&
                 odometer &&
-                currentDistanceRef.current + 20 > odometer
+                currentDistanceRef.current !== 0 &&
+                currentDistanceRef.current + 10 > odometer
             ) {
                 return;
             }
@@ -55,6 +53,9 @@ const Polyline: React.FC<IProps> = ({
             if (polylineRef.current) {
                 setCoords(coords);
                 currentLengthRef.current = coords.length;
+                if (odometer) {
+                    currentDistanceRef.current = odometer;
+                }
             }
         }
     }, [coords, odometer]);

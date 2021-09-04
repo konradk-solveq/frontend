@@ -5,6 +5,7 @@
  */
 
 import React, {useRef, useEffect, useState, useCallback} from 'react';
+import {InteractionManager} from 'react-native';
 
 import {useAppSelector} from '../../../../../hooks/redux';
 import useAppState from '../../../../../hooks/useAppState';
@@ -68,11 +69,11 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
      */
     useEffect(() => {
         if (!mountRef.current) {
-            // InteractionManager.runAfterInteractions(() => {
-            setTimeout(() => {
-                redrawPolyline();
-            }, 1000);
-            // });
+            InteractionManager.runAfterInteractions(() => {
+                setTimeout(() => {
+                    redrawPolyline();
+                }, 1000);
+            });
 
             mountRef.current = true;
         }

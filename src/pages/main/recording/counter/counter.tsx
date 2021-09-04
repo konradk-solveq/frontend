@@ -6,7 +6,6 @@ import {
     Platform,
     StatusBar,
     Alert,
-    InteractionManager,
 } from 'react-native';
 
 import I18n from 'react-native-i18n';
@@ -45,13 +44,10 @@ import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
-import {ShortCoordsType} from '@type/coords';
-import {restoreRouteDataFromSQL} from '@utils/routePath';
 import DataPreview from '../../../../sharedComponents/dataPreview/dataPreview';
 import CompassHeading from 'react-native-compass-heading';
 
 import {TESTING_MODE} from '@env';
-import useAppState from '@src/hooks/useAppState';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -96,10 +92,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const ANIMATION_DURATION = 666;
 
-    const mountRef = useRef(false);
-
-    const trackerDataAgregatorRef = useRef<ShortCoordsType[]>([]);
-
     // trakowanie
     const {
         trackerData,
@@ -109,7 +101,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         resumeTracker,
         followedRouteId,
         isActive,
-        currentRouteId,
     } = useLocalizationTracker(true, true);
 
     const [mapHiden, setMapHiden] = useState(true);
@@ -368,7 +359,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 });
                 setTimeout(() => {
                     setRenderPath(!state);
-                }, 500);
+                }, 50);
             },
             !state ? 0 : 1000,
         );
@@ -428,21 +419,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             zIndex: 5,
         },
     });
-
-    useEffect(() => {
-        if (trackerData && trackerData?.coords) {
-            const pos = {
-                latitude: trackerData.coords.lat,
-                longitude: trackerData.coords.lon,
-                timestamp: trackerData.timestamp,
-            };
-
-            trackerDataAgregatorRef.current = [
-                ...trackerDataAgregatorRef.current,
-                pos,
-            ];
-        }
-    }, [trackerData]);
 
     return (
         <>
@@ -510,8 +486,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     <CounterDataContext.Provider
                         value={{
                             trackerData,
-                            treackerDataAgregator:
-                                trackerDataAgregatorRef.current,
                             pauseTime: pauseTime.total,
                         }}>
                         <NativeCounter

@@ -83,7 +83,7 @@ const AnimatedMarker: React.FC<IProps> = ({
             if (!isIOS) {
                 markerRef?.current?.animateMarkerToCoordinate(
                     pos,
-                    1000 + 500 * ratio,
+                    1200 + 500 * ratio,
                 );
             } else {
                 animatedPostion
@@ -91,7 +91,7 @@ const AnimatedMarker: React.FC<IProps> = ({
                         ...pos,
                         latitudeDelta: latitudeDelta,
                         longitudeDelta: longitudeDelta,
-                        duration: 1000 * ratio,
+                        duration: 1200 * ratio,
                         useNativeDriver: true,
                     })
                     .start();

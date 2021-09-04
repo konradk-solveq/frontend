@@ -60,6 +60,7 @@ const useLocalizationTracker = (
 ) => {
     const dispatch = useAppDispatch();
     const initialTrackerDataRef = useRef(false);
+    const mountedRef = useRef(false);
 
     const {isTrackingActivatedHandler, locationType} = useLocationProvider();
     const {appStateVisible} = useAppState();
@@ -166,6 +167,14 @@ const useLocalizationTracker = (
     const onStartTracker = useCallback(async () => {
         await resumeTracingLocation();
         setIsActive(true);
+    }, []);
+
+    useEffect(() => {
+        mountedRef.current = true;
+
+        return () => {
+            mountedRef.current = false;
+        };
     }, []);
 
     useEffect(() => {
@@ -292,6 +301,10 @@ const useLocalizationTracker = (
     useEffect(() => {
         if (isActive) {
             const setLocation = (location: Location) => {
+                if (!mountedRef.current) {
+                    return;
+                }
+
                 setCurrentTrackerData(undefined, location);
                 setInitTrackerData(undefined);
             };
