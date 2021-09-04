@@ -331,7 +331,7 @@ PODS:
     - React-Core
   - react-native-get-random-values (1.7.0):
     - React-Core
-  - react-native-google-maps (0.28.0):
+  - react-native-google-maps (0.29.3):
     - Google-Maps-iOS-Utils (= 2.1.0)
     - GoogleMaps (= 3.5.0)
     - React-Core
@@ -339,7 +339,7 @@ PODS:
     - React-Core
   - react-native-keep-awake (1.0.4):
     - React
-  - react-native-maps (0.28.0):
+  - react-native-maps (0.29.3):
     - React-Core
   - react-native-netinfo (6.0.0):
     - React-Core
@@ -746,10 +746,10 @@ SPEC CHECKSUMS:
   react-native-compass-heading: bb83f8472786ad730947624f2a75a6563aa80b27
   react-native-config: c98128a72bc2c3a1ca72caec0b021f0fa944aa29
   react-native-get-random-values: 237bffb1c7e05fb142092681531810a29ba53015
-  react-native-google-maps: 46dea4aa4acb7300beff508f64d9f8c84e9fb106
+  react-native-google-maps: d6a30377b40a338bd09d6ad36ce48dc5d12b5792
   react-native-image-picker: 5a7dd93d4f9dd0d910da5dde3707fd96f70d03b3
   react-native-keep-awake: e2941ac96fbddf3b407d0f316eba0b24ed067f56
-  react-native-maps: 2d405b4e8cee0282e4c02bac434d81450dfea877
+  react-native-maps: 41d01d8e0afcebe32bec9eea3bd945adc1b18f7a
   react-native-netinfo: 34f4d7a42f49157f3b45c14217d256bce7dc9682
   react-native-nfc-manager: e0889542676e1587791ca7b15cf41a7d1ba228e5
   react-native-restart: d4ea7637e193da7558d229b3704d500ec0d75f9c
