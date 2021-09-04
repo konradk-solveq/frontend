@@ -107,6 +107,7 @@ const useLocalizationTracker = (
             if (!omitPersist) {
                 dispatch(persistCurrentRouteData());
             }
+            await stopWatchPostionChangeListener();
             const state = await stopBackgroundGeolocation();
             if (!state || !state?.enabled) {
                 setIsActive(false);
