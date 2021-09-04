@@ -9,7 +9,7 @@ type ShortCoordsType = {
 };
 
 interface IProps {
-    coords?: ShortCoordsType[];
+    coords: ShortCoordsType[];
     strokeColor?: string;
     strokeColors?: string[];
 }
@@ -25,7 +25,6 @@ const Polyline: React.FC<IProps> = ({
     const currentDistanceRef = useRef(0);
 
     const polylineRef = useRef<MapPolyline>(null);
-    const routeData = useContext(CounterDataContext).treackerDataAgregator;
     const odometer = useContext(CounterDataContext).trackerData?.odometer;
 
     useEffect(() => {
@@ -44,14 +43,9 @@ const Polyline: React.FC<IProps> = ({
 
     const setPolyline = useCallback(() => {
         if (coords?.length) {
-            if (polylineRef.current) {
-                setCoords(coords);
-                currentLengthRef.current = coords.length;
-            }
-        } else if (routeData?.length) {
             if (
                 currentLengthRef?.current !== 0 &&
-                currentLengthRef?.current + 5 > routeData.length &&
+                currentLengthRef?.current + 5 > coords.length &&
                 odometer &&
                 currentDistanceRef.current + 20 > odometer
             ) {
@@ -59,11 +53,11 @@ const Polyline: React.FC<IProps> = ({
             }
 
             if (polylineRef.current) {
-                setCoords(routeData);
-                currentLengthRef.current = routeData.length;
+                setCoords(coords);
+                currentLengthRef.current = coords.length;
             }
         }
-    }, [coords, routeData, odometer]);
+    }, [coords, odometer]);
 
     useEffect(() => {
         if (isIOS) {

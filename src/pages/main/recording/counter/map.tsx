@@ -13,6 +13,7 @@ import AnimSvg from '../../../../helpers/animSvg';
 import gradient from './gradientSvg';
 import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
+import SinglePolyline from './polyline/singlePolyline';
 
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
@@ -23,6 +24,7 @@ interface IProps {
     headingOn: boolean;
     compassHeading: any;
     mountedRef: any;
+    renderPath?: boolean;
 }
 
 const initCompasHeading = {
@@ -44,6 +46,7 @@ const Map: React.FC<IProps> = ({
     headingOn,
     compassHeading,
     mountedRef,
+    renderPath,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const restoreRef = useRef(false);
@@ -193,7 +196,12 @@ const Map: React.FC<IProps> = ({
                         compassHeading={compassHeading}
                     />
                 ) : null}
-                {trackerData?.coords ? <Polyline /> : null}
+                {trackerData?.coords ? (
+                    <SinglePolyline
+                        coords={trackerData}
+                        renderPath={renderPath}
+                    />
+                ) : null}
                 {foreignRoute && (
                     <Polyline
                         coords={foreignRoute}

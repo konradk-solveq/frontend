@@ -200,7 +200,9 @@ export const startBackgroundGeolocation = async (
             },
         });
         const state = await startBackgroundGeolocationPlugin(true);
-        await resumeTracingLocation();
+        setTimeout(async () => {
+            await resumeTracingLocation();
+        }, 1000);
 
         return state;
     } catch (e) {

@@ -114,6 +114,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const [mapHiden, setMapHiden] = useState(true);
     const [renderMap, setRenderMap] = useState(false);
+    const [renderPath, setRenderPath] = useState(false);
 
     const bileListTop = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
@@ -358,7 +359,16 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const onHideMapHandler = (state: boolean) => {
         setTimeout(
             () => {
-                setRenderMap(!state);
+                setRenderMap(prev => {
+                    if (!state && !prev) {
+                        return true;
+                    }
+
+                    return prev;
+                });
+                setTimeout(() => {
+                    setRenderPath(!state);
+                }, 500);
             },
             !state ? 0 : 1000,
         );
@@ -433,54 +443,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             ];
         }
     }, [trackerData]);
-
-    /**
-     * Restore path from SQL after re-launch.
-     */
-    useEffect(() => {
-        if (!mountRef.current) {
-            if (currentRouteId && isTrackerActive) {
-                const asynchFetchPath = async () => {
-                    InteractionManager.runAfterInteractions(async () => {
-                        const newRoute = await restoreRouteDataFromSQL(
-                            currentRouteId,
-                            [],
-                        );
-                        if (newRoute?.length) {
-                            trackerDataAgregatorRef.current = [newRoute[0]];
-                            setTimeout(() => {
-                                trackerDataAgregatorRef.current = newRoute;
-                            }, 500);
-                        }
-                    });
-                };
-
-                asynchFetchPath();
-            }
-
-            mountRef.current = true;
-        }
-
-        return () => {
-            mountRef.current = false;
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    // const {appIsActive} = useAppState();
-    // /**
-    //  * On IOS there is memory leak issue,
-    //  * so we disable map when app goss to background.
-    //  */
-    // useEffect(() => {
-    //     if (isActive && isIOS) {
-    //         if (!appIsActive) {
-    //             setRenderMap(false);
-    //         } else {
-    //             setRenderMap(true);
-    //         }
-    //     }
-    // }, [isActive, appIsActive]);
 
     return (
         <>
@@ -576,6 +538,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                                 headingOn={headingOn}
                                 compassHeading={compassHeading}
                                 mountedRef={mountedRef}
+                                renderPath={renderPath}
                             />
                         )}
 

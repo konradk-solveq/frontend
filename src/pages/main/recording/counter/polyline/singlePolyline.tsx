@@ -23,9 +23,10 @@ type ShortCoordsType = {
 
 interface IProps {
     coords: DataI;
+    renderPath?: boolean;
 }
 
-const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
+const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
     const mountRef = useRef(false);
     /**
      * Helper to prevent render current polyline faster then restored data from SQL.
@@ -67,7 +68,11 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
      */
     useEffect(() => {
         if (!mountRef.current) {
-            redrawPolyline();
+            // InteractionManager.runAfterInteractions(() => {
+            setTimeout(() => {
+                redrawPolyline();
+            }, 1000);
+            // });
 
             mountRef.current = true;
         }
@@ -120,7 +125,7 @@ const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
         }
     }, [coords, route]);
 
-    if (!route.length) {
+    if (!route.length || !renderPath) {
         return null;
     }
 
