@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useRef} from 'react';
-import {InteractionManager} from 'react-native';
+import React, {useCallback, useContext, useEffect, useRef} from 'react';
+import {InteractionManager, Platform} from 'react-native';
 import {Polyline as MapPolyline} from 'react-native-maps';
 import {CounterDataContext} from '../nativeCounter/counterContext/counterContext';
 
@@ -13,6 +13,8 @@ interface IProps {
     strokeColor?: string;
     strokeColors?: string[];
 }
+
+const isIOS = Platform.OS === 'ios';
 
 const Polyline: React.FC<IProps> = ({
     coords,
@@ -31,27 +33,33 @@ const Polyline: React.FC<IProps> = ({
         }
     };
 
-    useEffect(() => {
-        InteractionManager.runAfterInteractions(() => {
-            if (coords?.length) {
-                if (polylineRef.current) {
-                    setCoords(coords);
-                }
-            } else if (routeData?.length) {
-                if (
-                    currentLengthRef?.current !== 0 &&
-                    currentLengthRef?.current + 10 > routeData.length
-                ) {
-                    return;
-                }
-
-                if (polylineRef.current) {
-                    setCoords(routeData);
-                    currentLengthRef.current = routeData.length;
-                }
+    const setPolyline = useCallback(() => {
+        if (coords?.length) {
+            if (polylineRef.current) {
+                setCoords(coords);
             }
-        });
+        } else if (routeData?.length) {
+            if (
+                currentLengthRef?.current !== 0 &&
+                currentLengthRef?.current + 10 > routeData.length
+            ) {
+                return;
+            }
+
+            if (polylineRef.current) {
+                setCoords(routeData);
+                currentLengthRef.current = routeData.length;
+            }
+        }
     }, [coords, routeData]);
+
+    useEffect(() => {
+        if (isIOS) {
+            setPolyline();
+            return;
+        }
+        InteractionManager.runAfterInteractions(setPolyline);
+    }, [setPolyline]);
 
     return (
         <MapPolyline
