@@ -228,6 +228,10 @@ export const stopBackgroundGeolocation = async () => {
         });
 
         const state = await stopBackgroundGeolocationPlugin();
+        if (state?.odometer && state?.odometer > 0) {
+            await BackgroundGeolocation.resetOdometer();
+        }
+
         return state;
     } catch (e) {
         console.warn('[stopBackgroundGeolocation - error]', e);
