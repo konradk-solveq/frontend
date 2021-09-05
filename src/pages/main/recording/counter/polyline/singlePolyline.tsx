@@ -39,8 +39,6 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
      */
     const routeRef = useRef<ShortCoordsType[]>([]);
 
-    // const {appIsActive, appPrevStateVisible} = useAppState();
-
     const redrawPolyline = useCallback(async () => {
         restoreRef.current = false;
 

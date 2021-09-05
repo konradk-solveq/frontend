@@ -154,7 +154,7 @@ const Map: React.FC<IProps> = ({
     useEffect(() => {
         setMapCamera();
     }, [setMapCamera]);
-    console.log('location', location);
+
     const cameraInitObj = {
         ...initCompasHeading,
         center: {
