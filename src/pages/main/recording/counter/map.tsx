@@ -14,6 +14,7 @@ import gradient from './gradientSvg';
 import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
+import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
 
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
@@ -49,9 +50,11 @@ const Map: React.FC<IProps> = ({
     const mapRef = useRef<MapView>(null);
     const mountedRef = useRef(false);
     const restoreRef = useRef(false);
+    const globalLocation = useLocationProvider()?.location;
 
     const {appIsActive, appStateVisible} = useAppState();
     const [showWebView, setShowWebView] = useState(false);
+    const [showMap, setShowMap] = useState(false);
 
     useEffect(() => {
         mountedRef.current = true;
@@ -79,6 +82,10 @@ const Map: React.FC<IProps> = ({
 
     useEffect(() => {
         const loc = async () => {
+            if (globalLocation) {
+                setLocaion(globalLocation);
+                setShowMap(true);
+            }
             const l = await getCurrentLocation('', 1);
             if (l?.coords) {
                 const c = {
@@ -87,8 +94,10 @@ const Map: React.FC<IProps> = ({
                 };
                 setLocaion(c);
             }
+            setShowMap(true);
         };
         loc();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -104,7 +113,7 @@ const Map: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const setMapCamera = useCallback(async () => {
+    const setMapCamera = useCallback(() => {
         const hasLocation = trackerData?.coords || location;
         const shouldResetZoom = autoFindMe !== autoFindMeLastState;
 
@@ -138,12 +147,6 @@ const Map: React.FC<IProps> = ({
                 setAutoFindMeLastState(autoFindMe);
             }
 
-            /**
-             * https://github.com/react-native-maps/react-native-maps/issues/3621#issuecomment-784827846
-             */
-            if (isIOS) {
-                await mapRef.current?.getCamera();
-            }
             mapRef.current?.animateCamera(animation, {duration: 1000});
         }
     }, [autoFindMe, headingOn, trackerData?.coords, location, compassHeading]);
@@ -151,7 +154,7 @@ const Map: React.FC<IProps> = ({
     useEffect(() => {
         setMapCamera();
     }, [setMapCamera]);
-
+    console.log('location', location);
     const cameraInitObj = {
         ...initCompasHeading,
         center: {
@@ -173,7 +176,7 @@ const Map: React.FC<IProps> = ({
     };
 
     /* TODO: error boundary */
-    return location ? (
+    return showMap ? (
         <>
             {showWebView && (
                 <AnimSvg style={styles.gradient} source={gradient} />
@@ -202,7 +205,7 @@ const Map: React.FC<IProps> = ({
                         }
                     },
                 })}>
-                {mountedRef.current ? (
+                {mountedRef.current && location ? (
                     <AnimatedMarker
                         coords={trackerData?.coords}
                         mapRegion={mapRef?.current?.__lastRegion}
