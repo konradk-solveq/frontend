@@ -65,7 +65,11 @@ const Polyline: React.FC<IProps> = ({
             setPolyline();
             return;
         }
-        InteractionManager.runAfterInteractions(setPolyline);
+        const task = InteractionManager.runAfterInteractions(setPolyline);
+
+        return () => {
+            task.cancel();
+        };
     }, [setPolyline]);
 
     return (

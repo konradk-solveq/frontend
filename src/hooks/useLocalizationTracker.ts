@@ -59,8 +59,9 @@ const useLocalizationTracker = (
     omitRequestingPermission?: boolean,
 ) => {
     const dispatch = useAppDispatch();
+
     const initialTrackerDataRef = useRef(false);
-    const mountedRef = useRef(false);
+    const mountedRef = useRef(true);
 
     const {isTrackingActivatedHandler, locationType} = useLocationProvider();
     const {appStateVisible} = useAppState();
@@ -103,12 +104,12 @@ const useLocalizationTracker = (
 
     const stopTracker = useCallback(
         async (omitPersist?: boolean) => {
-            deactivateKeepAwake();
             dispatch(stopCurrentRoute(omitPersist));
+            deactivateKeepAwake();
             if (!omitPersist) {
                 dispatch(persistCurrentRouteData());
             }
-            await stopWatchPostionChangeListener();
+            stopWatchPostionChangeListener();
             const state = await stopBackgroundGeolocation();
             if (!state || !state?.enabled) {
                 setIsActive(false);
@@ -126,7 +127,7 @@ const useLocalizationTracker = (
             const state = await getBackgroundGeolocationState();
 
             if (state?.enabled && !keep) {
-                await stopTracker();
+                // await stopTracker();
             }
 
             setIsActive(true);
@@ -144,10 +145,8 @@ const useLocalizationTracker = (
             if (!keep) {
                 dispatch(startRecordingRoute(currRoute, keep));
             }
-
-            await startBackgroundGeolocation(routeID, keep);
         },
-        [dispatch, currentRouteId, stopTracker, isTrackingActivatedHandler],
+        [dispatch, currentRouteId, isTrackingActivatedHandler],
     );
 
     const onPauseTracker = useCallback(async () => {
@@ -170,8 +169,6 @@ const useLocalizationTracker = (
     }, []);
 
     useEffect(() => {
-        mountedRef.current = true;
-
         return () => {
             mountedRef.current = false;
         };
@@ -331,7 +328,7 @@ const useLocalizationTracker = (
 
         return () => {
             cleanUp();
-            console.log('[==CLEANUP ALL LISTENERS==]');
+            console.log('[==CLEANUP ALL LISTENERS - useLocationTracker==]');
         };
     }, [isActive, setCurrentTrackerData]);
 

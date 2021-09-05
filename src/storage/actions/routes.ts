@@ -164,14 +164,17 @@ export const stopCurrentRoute = (
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         if (omitPersists) {
+            const currRouteID = currentRoute.remoteRouteId;
+            dispatch(clearCurrentRoute());
+            dispatch(clearCurrentRouteData(true));
+            dispatch(clearAverageSpeed());
+
             if (
-                currentRoute.remoteRouteId &&
+                currRouteID &&
                 !isOffline &&
                 internetConnectionInfo?.goodConnectionQuality
             ) {
-                const response = await removeCeratedRouteIDService(
-                    currentRoute.remoteRouteId,
-                );
+                const response = await removeCeratedRouteIDService(currRouteID);
                 if (response.error) {
                     console.log(`[stopCurrentRoute] - ${response.error}`);
                     logger.log(`[stopCurrentRoute] - ${response.error}`);
@@ -179,9 +182,8 @@ export const stopCurrentRoute = (
                     logger.recordError(err);
                 }
             }
-            dispatch(clearCurrentRouteData(true));
-            dispatch(clearCurrentRoute());
-            dispatch(clearAverageSpeed());
+
+            dispatch(setRouteMapVisibility(false));
             dispatch(setLoadingState(false));
             return;
         }

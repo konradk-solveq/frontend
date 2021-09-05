@@ -8,7 +8,6 @@ import React, {useRef, useEffect, useCallback} from 'react';
 import {InteractionManager} from 'react-native';
 
 import {useAppSelector} from '../../../../../hooks/redux';
-import useAppState from '../../../../../hooks/useAppState';
 import {DataI} from '../../../../../hooks/useLocalizationTracker';
 import {trackerRouteIdSelector} from '../../../../../storage/selectors/routes';
 import deepCopy from '../../../../../helpers/deepCopy';
@@ -68,8 +67,9 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
      * Restore path from SQL after re-launch.
      */
     useEffect(() => {
+        let task: any;
         if (!mountRef.current) {
-            InteractionManager.runAfterInteractions(() => {
+            task = InteractionManager.runAfterInteractions(() => {
                 setTimeout(() => {
                     redrawPolyline();
                 }, 500);
@@ -79,6 +79,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
         }
 
         return () => {
+            task?.cancel();
             mountRef.current = false;
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -35,6 +35,7 @@ import {
     trackerActiveSelector,
     trackerPauseTimeSelector,
     trackerStartTimeSelector,
+    trackerLoadingSelector,
 } from '../../../../storage/selectors/routes';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
@@ -73,9 +74,11 @@ const setTotalTime = (pTime: {start: number; total: number}) => {
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
+    const mountedRef = useRef(false);
     const notificationContext = useNotificationContext();
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
+    const isTrackerLoading = useAppSelector(trackerLoadingSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
     const trackerPauseTime = useAppSelector(trackerPauseTimeSelector);
 
@@ -135,6 +138,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [headerTitle, setHeaderTitle] = useState('');
     const [pause, setPause] = useState(true);
 
+    useEffect(() => {
+        mountedRef.current = true;
+
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
+
     /* Re-run counter after app restart */
     useEffect(() => {
         if (isTrackerActive) {
@@ -163,6 +174,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     // zmiana stanu strony na lewym przycisku
     const heandleLeftBtnClick = useCallback(() => {
+        if (!mountedRef.current) {
+            return;
+        }
+
         switch (pageState) {
             case 'start':
                 returnToPreviousScreen(navigation);
@@ -212,6 +227,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     // zmiana stanu strony na prawym przycisku
     const heandleRightBtnClick = useCallback(async () => {
+        if (!mountedRef.current) {
+            return;
+        }
+
         switch (pageState) {
             case 'start':
                 setPageState('record');
@@ -370,33 +389,26 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     };
 
     // kompas mapy - przeniesiony z mapy, żby spuścić do innych komponentów
-    const mountedRef = useRef(false);
     const compasHeadingdRef = useRef(0);
 
     const [compassHeading, setCompassHeading] = useState(0);
 
     useEffect(() => {
-        mountedRef.current = true;
-
-        return () => {
-            mountedRef.current = false;
-        };
-    }, []);
-
-    useEffect(() => {
         const degree_update_rate = 5;
+        let task: any;
         if (mountedRef.current) {
             CompassHeading.start(degree_update_rate, ({heading}) => {
                 const lastHeading = compasHeadingdRef.current;
                 compasHeadingdRef.current = heading;
                 if (Math.abs(lastHeading - heading) >= degree_update_rate) {
-                    InteractionManager.runAfterInteractions(() => {
+                    task = InteractionManager.runAfterInteractions(() => {
                         setCompassHeading(heading);
                     });
                 }
             });
         }
         return () => {
+            task?.cancel();
             CompassHeading.stop();
         };
     }, []);
@@ -501,6 +513,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         leftBtnCallback={heandleLeftBtnClick}
                         rightBtnTitle={rightBtnTile}
                         rightBtnCallback={heandleRightBtnClick}
+                        disabled={!!isTrackerLoading}
                     />
 
                     <CounterDataContext.Provider
