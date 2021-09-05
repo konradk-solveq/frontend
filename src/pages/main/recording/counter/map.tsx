@@ -23,7 +23,6 @@ interface IProps {
     autoFindMe: boolean;
     headingOn: boolean;
     compassHeading: any;
-    mountedRef: any;
     renderPath?: boolean;
 }
 
@@ -45,13 +44,22 @@ const Map: React.FC<IProps> = ({
     autoFindMe,
     headingOn,
     compassHeading,
-    mountedRef,
     renderPath,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
+    const mountedRef = useRef(false);
     const restoreRef = useRef(false);
 
     const {appIsActive, appStateVisible} = useAppState();
+    const [showWebView, setShowWebView] = useState(false);
+
+    useEffect(() => {
+        mountedRef.current = true;
+
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
 
     useEffect(() => {
         if (!appIsActive && appStateVisible === 'background') {
@@ -96,7 +104,7 @@ const Map: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const setMapCamera = useCallback(() => {
+    const setMapCamera = useCallback(async () => {
         const hasLocation = trackerData?.coords || location;
         const shouldResetZoom = autoFindMe !== autoFindMeLastState;
 
@@ -130,6 +138,12 @@ const Map: React.FC<IProps> = ({
                 setAutoFindMeLastState(autoFindMe);
             }
 
+            /**
+             * https://github.com/react-native-maps/react-native-maps/issues/3621#issuecomment-784827846
+             */
+            if (isIOS) {
+                await mapRef.current?.getCamera();
+            }
             mapRef.current?.animateCamera(animation, {duration: 1000});
         }
     }, [autoFindMe, headingOn, trackerData?.coords, location, compassHeading]);
@@ -161,18 +175,23 @@ const Map: React.FC<IProps> = ({
     /* TODO: error boundary */
     return location ? (
         <>
-            <AnimSvg style={styles.gradient} source={gradient} />
+            {showWebView && (
+                <AnimSvg style={styles.gradient} source={gradient} />
+            )}
             <MapView
+                ref={mapRef}
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
                 customMapStyle={mapStyle}
                 pitchEnabled={true}
-                ref={mapRef}
                 rotateEnabled={true}
                 scrollEnabled={true}
                 zoomEnabled={true}
                 zoomTapEnabled={true}
                 showsCompass={false}
+                onMapLoaded={() => {
+                    setShowWebView(true);
+                }}
                 {...(!isIOS && {
                     initialCamera: cameraInitObj,
                 })}

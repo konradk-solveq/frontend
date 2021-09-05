@@ -141,8 +141,11 @@ const AnimatedMarker: React.FC<IProps> = ({
         return (
             <MarkerAnimated
                 ref={animatedMarkerRef}
+                identifier="direction_arrow"
                 anchor={{x: 0.5, y: 0.3}}
-                coordinate={animatedPostion || location}>
+                coordinate={animatedPostion || location}
+                tracksViewChanges={true}
+                tracksInfoWindowChanges={false}>
                 <MarkPointer heading={!headingOn ? compassHeading : 0} />
             </MarkerAnimated>
         );
@@ -153,10 +156,16 @@ const AnimatedMarker: React.FC<IProps> = ({
     }
 
     return (
-        <Marker ref={markerRef} coordinate={location} anchor={{x: 0.3, y: 0.3}}>
+        <Marker
+            ref={markerRef}
+            identifier="direction_arrow"
+            coordinate={location}
+            anchor={{x: 0.4, y: 0.3}}
+            tracksViewChanges={false}
+            tracksInfoWindowChanges={false}>
             <MarkPointer heading={!headingOn ? compassHeading : 0} />
         </Marker>
     );
 };
 
-export default AnimatedMarker;
+export default React.memo(AnimatedMarker);

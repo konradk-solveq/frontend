@@ -6,6 +6,7 @@ import {
     Platform,
     StatusBar,
     Alert,
+    InteractionManager,
 } from 'react-native';
 
 import I18n from 'react-native-i18n';
@@ -17,6 +18,7 @@ import {
     getHorizontalPx,
 } from '../../../../helpers/layoutFoo';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import useAppState from '@hooks/useAppState';
 import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
@@ -388,7 +390,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 const lastHeading = compasHeadingdRef.current;
                 compasHeadingdRef.current = heading;
                 if (Math.abs(lastHeading - heading) >= degree_update_rate) {
-                    setCompassHeading(heading);
+                    InteractionManager.runAfterInteractions(() => {
+                        setCompassHeading(heading);
+                    });
                 }
             });
         }
@@ -396,6 +400,22 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             CompassHeading.stop();
         };
     }, []);
+
+    /**
+     * Do not render path when app is not active
+     */
+    const {appIsActive} = useAppState();
+    useEffect(() => {
+        if (!isActive || !renderMap) {
+            return;
+        }
+
+        if (!appIsActive) {
+            setRenderPath(false);
+        } else {
+            setRenderPath(true);
+        }
+    }, [appIsActive, isActive, renderMap]);
 
     // setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -511,7 +531,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                                 autoFindMe={autoFindMe}
                                 headingOn={headingOn}
                                 compassHeading={compassHeading}
-                                mountedRef={mountedRef}
                                 renderPath={renderPath}
                             />
                         )}
