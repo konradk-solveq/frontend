@@ -40,7 +40,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
      */
     const routeRef = useRef<ShortCoordsType[]>([]);
 
-    const {appIsActive, appPrevStateVisible} = useAppState();
+    // const {appIsActive, appPrevStateVisible} = useAppState();
 
     const redrawPolyline = useCallback(async () => {
         restoreRef.current = false;
@@ -87,26 +87,26 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
     /**
      * Restore path from SQL only when app came from background.
      */
-    useEffect(() => {
-        let t: NodeJS.Timeout;
-        if (
-            appIsActive &&
-            appPrevStateVisible === 'background' &&
-            currentRouteId &&
-            mountRef.current
-        ) {
-            redrawPolyline();
-        } else {
-            t = setTimeout(() => {
-                restoreRef.current = true;
-            }, 200);
-        }
+    // useEffect(() => {
+    //     let t: NodeJS.Timeout;
+    //     if (
+    //         appIsActive &&
+    //         appPrevStateVisible === 'background' &&
+    //         currentRouteId &&
+    //         mountRef.current
+    //     ) {
+    //         redrawPolyline();
+    //     } else {
+    //         t = setTimeout(() => {
+    //             restoreRef.current = true;
+    //         }, 200);
+    //     }
 
-        return () => {
-            restoreRef.current = false;
-            clearTimeout(t);
-        };
-    }, [appIsActive, appPrevStateVisible, currentRouteId, redrawPolyline]);
+    //     return () => {
+    //         restoreRef.current = false;
+    //         clearTimeout(t);
+    //     };
+    // }, [appIsActive, appPrevStateVisible, currentRouteId, redrawPolyline]);
 
     /**
      * Render path after SQL data has been restored.
