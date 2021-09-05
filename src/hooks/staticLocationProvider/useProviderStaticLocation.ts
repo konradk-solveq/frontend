@@ -74,6 +74,9 @@ const useProviderStaticLocation = () => {
 
     const storeCurrentLocation = useCallback(
         (loc: BasicCoordsType) => {
+            if (!initLocationRef.current) {
+                return;
+            }
             setLocation(loc);
             dispatch(setGlobalLocation(loc));
         },
