@@ -50,6 +50,7 @@ const Map: React.FC<IProps> = ({
     const mapRef = useRef<MapView>(null);
     const mountedRef = useRef(false);
     const restoreRef = useRef(false);
+    const isAnimatingCameraRef = useRef(false);
     const globalLocation = useLocationProvider()?.location;
 
     const {appIsActive, appStateVisible} = useAppState();
@@ -113,6 +114,27 @@ const Map: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const animateCam = (animation: Partial<Camera>, duration?: number) => {
+        mapRef.current?.animateCamera(animation, {duration: duration || 1000});
+    };
+
+    const animateCameraOnIOS = useCallback(
+        async (animation: Partial<Camera>) => {
+            if (!isAnimatingCameraRef.current) {
+                isAnimatingCameraRef.current = true;
+                animateCam(animation, 1000);
+
+                setTimeout(
+                    () => {
+                        isAnimatingCameraRef.current = false;
+                    },
+                    headingOn ? 1000 : headingOn,
+                );
+            }
+        },
+        [headingOn],
+    );
+
     const setMapCamera = useCallback(() => {
         const hasLocation = trackerData?.coords || location;
         const shouldResetZoom = autoFindMe !== autoFindMeLastState;
@@ -147,9 +169,13 @@ const Map: React.FC<IProps> = ({
                 setAutoFindMeLastState(autoFindMe);
             }
 
-            mapRef.current?.animateCamera(animation, {duration: 1000});
+            if (isIOS) {
+                animateCameraOnIOS(animation);
+                return;
+            }
+            animateCam(animation);
         }
-    }, [autoFindMe, headingOn, trackerData?.coords, location, compassHeading]);
+    }, [autoFindMe, headingOn, trackerData?.coords, location, compassHeading, animateCameraOnIOS]);
 
     useEffect(() => {
         setMapCamera();

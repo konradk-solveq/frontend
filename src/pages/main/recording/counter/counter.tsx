@@ -6,7 +6,6 @@ import {
     Platform,
     StatusBar,
     Alert,
-    InteractionManager,
 } from 'react-native';
 
 import I18n from 'react-native-i18n';
@@ -395,20 +394,16 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     useEffect(() => {
         const degree_update_rate = 5;
-        let task: any;
         if (mountedRef.current) {
             CompassHeading.start(degree_update_rate, ({heading}) => {
                 const lastHeading = compasHeadingdRef.current;
                 compasHeadingdRef.current = heading;
                 if (Math.abs(lastHeading - heading) >= degree_update_rate) {
-                    task = InteractionManager.runAfterInteractions(() => {
-                        setCompassHeading(heading);
-                    });
+                    setCompassHeading(heading);
                 }
             });
         }
         return () => {
-            task?.cancel();
             CompassHeading.stop();
         };
     }, []);
