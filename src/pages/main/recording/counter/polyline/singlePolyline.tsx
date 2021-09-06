@@ -4,7 +4,7 @@
  * @author Sebastian Kasiński
  */
 
-import React, {useRef, useEffect, useCallback} from 'react';
+import React, {useRef, useEffect, useCallback, useState} from 'react';
 import {InteractionManager} from 'react-native';
 
 import {useAppSelector} from '../../../../../hooks/redux';
@@ -37,7 +37,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
     /**
      * Routes can be separate with pause. Every pasue event creates new array.
      */
-    const routeRef = useRef<ShortCoordsType[]>([]);
+    const [route, setRoute] = useState<ShortCoordsType[]>([]);
 
     const redrawPolyline = useCallback(async () => {
         restoreRef.current = false;
@@ -47,7 +47,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
             return;
         }
 
-        let result: ShortCoordsType[] = deepCopy(routeRef.current);
+        let result: ShortCoordsType[] = deepCopy(route);
 
         const newRoute = await restoreRouteDataFromSQL(currentRouteId, result);
         if (!newRoute.length) {
@@ -56,10 +56,9 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
         }
 
         result = newRoute;
-
-        routeRef.current = result;
+        setRoute(result);
         restoreRef.current = true;
-    }, [currentRouteId]);
+    }, [currentRouteId, route]);
 
     /**
      * Restore path from SQL after re-launch.
@@ -88,13 +87,17 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
      */
     // useEffect(() => {
     //     let t: NodeJS.Timeout;
+    //     let task: any;
     //     if (
     //         appIsActive &&
     //         appPrevStateVisible === 'background' &&
     //         currentRouteId &&
     //         mountRef.current
     //     ) {
-    //         redrawPolyline();
+    //         console.log('[is redrawing path]')
+    //         task = InteractionManager.runAfterInteractions(() => {
+    //             redrawPolyline();
+    //         });
     //     } else {
     //         t = setTimeout(() => {
     //             restoreRef.current = true;
@@ -104,6 +107,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
     //     return () => {
     //         restoreRef.current = false;
     //         clearTimeout(t);
+    //         task?.cancel();
     //     };
     // }, [appIsActive, appPrevStateVisible, currentRouteId, redrawPolyline]);
 
@@ -118,20 +122,15 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
                 timestamp: coords.timestamp,
             };
 
-            const newRure = routeRef.current.length
-                ? deepCopy(routeRef.current)
-                : [];
-            newRure.push(pos);
-
-            routeRef.current = newRure;
+            setRoute(prev => [...prev, pos]);
         }
     }, [coords]);
 
-    if (!routeRef.current.length) {
+    if (!route.length || !renderPath) {
         return null;
     }
 
-    return <Polyline coords={routeRef.current} hidePath={!renderPath} />;
+    return <Polyline coords={route} />;
 };
 
 export default React.memo(SinglePolyline);
