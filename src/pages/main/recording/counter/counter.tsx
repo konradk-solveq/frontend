@@ -413,15 +413,21 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
      */
     const {appIsActive} = useAppState();
     useEffect(() => {
+        let t: NodeJS.Timeout;
         if (!isActive || !renderMap) {
             return;
         }
-
         if (!appIsActive) {
-            setRenderPath(false);
+            t = setTimeout(() => {
+                setRenderPath(false);
+            }, 500);
         } else {
             setRenderPath(true);
         }
+
+        return () => {
+            clearTimeout(t);
+        };
     }, [appIsActive, isActive, renderMap]);
 
     // setObjSize(334, 50);

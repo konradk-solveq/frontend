@@ -127,11 +127,11 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
         }
     }, [coords]);
 
-    if (!routeRef.current.length || !renderPath) {
+    if (!routeRef.current.length) {
         return null;
     }
 
-    return <Polyline coords={routeRef.current} />;
+    return <Polyline coords={routeRef.current} hidePath={!renderPath} />;
 };
 
 export default React.memo(SinglePolyline);

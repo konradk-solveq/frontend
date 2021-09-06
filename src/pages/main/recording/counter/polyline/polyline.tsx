@@ -12,6 +12,7 @@ interface IProps {
     coords: ShortCoordsType[];
     strokeColor?: string;
     strokeColors?: string[];
+    hidePath?: boolean;
 }
 
 const isIOS = Platform.OS === 'ios';
@@ -20,6 +21,7 @@ const Polyline: React.FC<IProps> = ({
     coords,
     strokeColor,
     strokeColors,
+    hidePath,
 }: IProps) => {
     const currentLengthRef = useRef(0);
     const currentDistanceRef = useRef(0);
@@ -27,13 +29,20 @@ const Polyline: React.FC<IProps> = ({
     const polylineRef = useRef<MapPolyline>(null);
     const odometer = useContext(CounterDataContext).trackerData?.odometer;
 
-    const setCoords = (c: ShortCoordsType[]) => {
-        if (polylineRef.current) {
-            polylineRef.current?.setNativeProps({
-                coordinates: c,
-            });
-        }
-    };
+    const setCoords = useCallback(
+        (c: ShortCoordsType[]) => {
+            if (hidePath) {
+                return;
+            }
+
+            if (polylineRef.current) {
+                polylineRef.current?.setNativeProps({
+                    coordinates: c,
+                });
+            }
+        },
+        [hidePath],
+    );
 
     const setPolyline = useCallback(() => {
         if (coords?.length) {
@@ -58,7 +67,7 @@ const Polyline: React.FC<IProps> = ({
                 }
             }
         }
-    }, [coords, odometer]);
+    }, [coords, odometer, setCoords]);
 
     useEffect(() => {
         if (isIOS) {
