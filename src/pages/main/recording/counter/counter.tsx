@@ -377,11 +377,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
                     return prev;
                 });
-                setTimeout(() => {
-                    setRenderPath(!state);
-                }, 50);
             },
             !state ? 0 : 1000,
+        );
+        setTimeout(
+            () => {
+                setRenderPath(!state);
+            },
+            !state ? 0 : 250,
         );
         setMapHiden(state);
         dispatch(setRouteMapVisibility(!state));
@@ -411,13 +414,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     /**
      * Do not render path when app is not active
      */
-    const {appIsActive} = useAppState();
+    const {appStateVisible} = useAppState();
     useEffect(() => {
         let t: NodeJS.Timeout;
         if (!isActive || !renderMap) {
             return;
         }
-        if (!appIsActive) {
+        if (appStateVisible === 'background') {
             t = setTimeout(() => {
                 setRenderPath(false);
             }, 500);
@@ -428,7 +431,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         return () => {
             clearTimeout(t);
         };
-    }, [appIsActive, isActive, renderMap]);
+    }, [appStateVisible, isActive, renderMap]);
 
     // setObjSize(334, 50);
     const styles = StyleSheet.create({

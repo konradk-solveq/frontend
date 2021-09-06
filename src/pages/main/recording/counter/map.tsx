@@ -175,7 +175,14 @@ const Map: React.FC<IProps> = ({
             }
             animateCam(animation);
         }
-    }, [autoFindMe, headingOn, trackerData?.coords, location, compassHeading, animateCameraOnIOS]);
+    }, [
+        autoFindMe,
+        headingOn,
+        trackerData?.coords,
+        location,
+        compassHeading,
+        animateCameraOnIOS,
+    ]);
 
     useEffect(() => {
         setMapCamera();

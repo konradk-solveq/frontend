@@ -10,7 +10,6 @@ import {InteractionManager} from 'react-native';
 import {useAppSelector} from '../../../../../hooks/redux';
 import {DataI} from '../../../../../hooks/useLocalizationTracker';
 import {trackerRouteIdSelector} from '../../../../../storage/selectors/routes';
-import deepCopy from '../../../../../helpers/deepCopy';
 import {restoreRouteDataFromSQL} from '../../../../../utils/routePath';
 
 import Polyline from './polyline';
@@ -47,7 +46,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
             return;
         }
 
-        let result: ShortCoordsType[] = deepCopy(route);
+        let result: ShortCoordsType[] = route;
 
         const newRoute = await restoreRouteDataFromSQL(currentRouteId, result);
         if (!newRoute.length) {
@@ -57,6 +56,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
 
         result = newRoute;
         setRoute(result);
+
         restoreRef.current = true;
     }, [currentRouteId, route]);
 
@@ -65,11 +65,12 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
      */
     useEffect(() => {
         let task: any;
+        let t: NodeJS.Timeout;
         if (!mountRef.current) {
             task = InteractionManager.runAfterInteractions(() => {
-                setTimeout(() => {
+                t = setTimeout(() => {
                     redrawPolyline();
-                }, 500);
+                }, 350);
             });
 
             mountRef.current = true;
@@ -77,6 +78,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
 
         return () => {
             task?.cancel();
+            clearTimeout(t);
             mountRef.current = false;
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
