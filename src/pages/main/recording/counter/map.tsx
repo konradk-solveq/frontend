@@ -15,7 +15,7 @@ import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
 import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
-import { ShortCoordsType } from '@src/type/coords';
+import {ShortCoordsType} from '@src/type/coords';
 
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
@@ -26,7 +26,7 @@ interface IProps {
     headingOn: boolean;
     compassHeading: any;
     renderPath?: boolean;
-    restoredPath?: ShortCoordsType[]
+    restoredPath?: ShortCoordsType[];
 }
 
 const initCompasHeading = {
@@ -48,7 +48,7 @@ const Map: React.FC<IProps> = ({
     headingOn,
     compassHeading,
     renderPath,
-    restoredPath
+    restoredPath,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const mountedRef = useRef(false);
@@ -56,7 +56,7 @@ const Map: React.FC<IProps> = ({
     const isAnimatingCameraRef = useRef(false);
     const globalLocation = useLocationProvider()?.location;
 
-    const {appIsActive, appStateVisible} = useAppState();
+    const {appStateVisible, appPrevStateVisible} = useAppState();
     const [showWebView, setShowWebView] = useState(false);
     const [showMap, setShowMap] = useState(false);
 
@@ -69,10 +69,13 @@ const Map: React.FC<IProps> = ({
     }, []);
 
     useEffect(() => {
-        if (!appIsActive && appStateVisible === 'background') {
+        if (
+            appPrevStateVisible === 'active' &&
+            appStateVisible === 'background'
+        ) {
             restoreRef.current = false;
         }
-    }, [appIsActive, appStateVisible]);
+    }, [appPrevStateVisible, appStateVisible]);
 
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
 
@@ -248,7 +251,15 @@ const Map: React.FC<IProps> = ({
                         setLocation={onSetLocationHanlder}
                         isRestored={restoreRef.current}
                         setIsRestored={onSetIsRestoredHandler}
-                        show={!!(mapRef?.current && mountedRef.current)}
+                        show={
+                            !!(
+                                (
+                                    mapRef?.current &&
+                                    mountedRef.current &&
+                                    renderPath
+                                ) //check if renderPath should stay
+                            )
+                        }
                         location={location}
                         headingOn={headingOn}
                         compassHeading={compassHeading}
