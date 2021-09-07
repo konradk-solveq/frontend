@@ -328,7 +328,10 @@ export const routesDataToPersist = async (
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || routeId !== l?.extras?.route_id || l?.sample === true) {
+        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
+            return;
+        }
+        if (routeId !== l?.extras?.route_id) {
             return;
         }
 
@@ -393,7 +396,10 @@ export const getRoutesDataFromSQL = async (
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || routeId !== l?.extras?.route_id || l?.sample === true) {
+        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
+            return;
+        }
+        if (routeId !== l?.extras?.route_id) {
             return;
         }
 
@@ -476,7 +482,10 @@ export const getRoutesDataFromSQLWithLastRecord = async (
     let lastRecord: any;
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || routeId !== l?.extras?.route_id || l?.sample === true) {
+        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
+            return;
+        }
+        if (routeId !== l?.extras?.route_id) {
             return;
         }
 
