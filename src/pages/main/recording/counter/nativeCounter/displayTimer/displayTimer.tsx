@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback, useRef} from 'react';
 import {getHorizontalPx} from '../../../../../../helpers/layoutFoo';
 import useAppState from '../../../../../../hooks/useAppState';
 
@@ -20,7 +20,9 @@ const DisplayTimer: React.FC<IProps> = ({
 }: IProps) => {
     const [currentTime, setCurrentTime] = useState(0);
 
-    const {appStateVisible, appPrevStateVisible} = useAppState();
+    const interval = useRef<NodeJS.Timeout | null>(null);
+
+    const {appStateVisible} = useAppState();
     const [previousState, setPrevoiusState] = useState(appStateVisible);
 
     useEffect(() => {
@@ -39,24 +41,23 @@ const DisplayTimer: React.FC<IProps> = ({
     }, [setTime]);
 
     useEffect(() => {
-        if (
-            appPrevStateVisible === 'active' &&
-            previousState === 'background'
-        ) {
+        if (appStateVisible === 'active' && previousState === 'background') {
             setTime();
 
             setPrevoiusState('active');
         }
-    }, [appPrevStateVisible, previousState, setTime]);
+    }, [appStateVisible, previousState, setTime]);
 
     useEffect(() => {
-        let interval: NodeJS.Timeout;
         if (isRunning) {
-            interval = setInterval(() => {
+            interval.current = setInterval(() => {
                 setCurrentTime(prevTime => prevTime + 1000);
             }, 1000);
         }
-        return () => clearInterval(interval);
+
+        return () => {
+            clearInterval(interval.current as NodeJS.Timeout);
+        };
     }, [isRunning]);
 
     return (

@@ -56,7 +56,6 @@ const AnimatedMarker: React.FC<IProps> = ({
     }, [isRestored]);
 
     const setMarker = useCallback(async () => {
-        let t: NodeJS.Timeout;
         if (coords?.lat && show) {
             const pos = {
                 latitude: coords?.lat,
@@ -104,17 +103,14 @@ const AnimatedMarker: React.FC<IProps> = ({
                             duration: 1200 * ratio,
                             useNativeDriver: true,
                         })
-                        .start();
-                    t = setTimeout(() => {
-                        canAnimateIOSMarker.current = true;
-                    }, 1200 * ratio);
+                        .start(({finished}) => {
+                            if (finished) {
+                                canAnimateIOSMarker.current = true;
+                            }
+                        });
                 }
             }
         }
-
-        return () => {
-            clearTimeout(t);
-        };
     }, [
         coords,
         animatedPostion,
@@ -148,6 +144,10 @@ const AnimatedMarker: React.FC<IProps> = ({
                 })
                 .start();
         }
+
+        return () => {
+            animatedPostion?.stopAnimation();
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

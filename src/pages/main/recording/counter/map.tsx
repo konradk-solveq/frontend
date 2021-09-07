@@ -51,9 +51,11 @@ const Map: React.FC<IProps> = ({
     restoredPath,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
     const mountedRef = useRef(false);
     const restoreRef = useRef(false);
     const isAnimatingCameraRef = useRef(false);
+
     const globalLocation = useLocationProvider()?.location;
 
     const {appStateVisible, appPrevStateVisible} = useAppState();
@@ -104,6 +106,10 @@ const Map: React.FC<IProps> = ({
             setShowMap(true);
         };
         loc();
+
+        return () => {
+            clearTimeout(timerRef.current as NodeJS.Timeout);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -128,13 +134,13 @@ const Map: React.FC<IProps> = ({
         async (animation: Partial<Camera>) => {
             if (!isAnimatingCameraRef.current) {
                 isAnimatingCameraRef.current = true;
-                animateCam(animation, 1000);
+                animateCam(animation, 850);
 
-                setTimeout(
+                timerRef.current = setTimeout(
                     () => {
                         isAnimatingCameraRef.current = false;
                     },
-                    headingOn ? 1000 : headingOn,
+                    headingOn ? 900 : 0,
                 );
             }
         },
