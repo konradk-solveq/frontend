@@ -80,7 +80,7 @@ const SinglePolyline: React.FC<IProps> = ({
     useEffect(() => {
         let task: any;
         let t: NodeJS.Timeout;
-        if (!mountRef.current) {
+        if (!mountRef.current && restoredPath) {
             task = InteractionManager.runAfterInteractions(() => {
                 t = setTimeout(() => {
                     redrawPolyline(true, restoredPath);
@@ -96,7 +96,7 @@ const SinglePolyline: React.FC<IProps> = ({
             mountRef.current = false;
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [restoredPath]);
 
     /**
      * Restore path from SQL only when app came from background.
