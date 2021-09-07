@@ -15,6 +15,7 @@ import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
 import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
+import { ShortCoordsType } from '@src/type/coords';
 
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
@@ -25,6 +26,7 @@ interface IProps {
     headingOn: boolean;
     compassHeading: any;
     renderPath?: boolean;
+    restoredPath?: ShortCoordsType[]
 }
 
 const initCompasHeading = {
@@ -46,6 +48,7 @@ const Map: React.FC<IProps> = ({
     headingOn,
     compassHeading,
     renderPath,
+    restoredPath
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const mountedRef = useRef(false);
@@ -255,6 +258,7 @@ const Map: React.FC<IProps> = ({
                     <SinglePolyline
                         coords={trackerData}
                         renderPath={renderPath}
+                        restoredPath={restoredPath}
                     />
                 ) : null}
                 {foreignRoute && (

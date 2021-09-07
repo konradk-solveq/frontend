@@ -455,3 +455,76 @@ export const getSliverImageToDisplay = (images: ImagesUrlsToDisplay) => {
 
     return img || mapImg;
 };
+
+export const getRoutesDataFromSQLWithLastRecord = async (
+    routeId: string,
+    timeToExclude?: {start: number; end: number},
+): Promise<{
+    data: {latitude: number; longitude: number; timestamp: number}[];
+    lastRecord?: any;
+}> => {
+    const currRoutes: {
+        latitude: number;
+        longitude: number;
+        timestamp: number;
+    }[] = [];
+    const locations = await getLocations();
+    if (!locations?.length) {
+        return {data: currRoutes};
+    }
+
+    let lastRecord: any;
+    /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
+    locations.forEach((l: any) => {
+        if (!routeId || routeId !== l?.extras?.route_id || l?.sample === true) {
+            return;
+        }
+
+        if (timeToExclude && timeToExclude.start !== 0) {
+            const t = new Date(l.timestamp).getTime();
+            if (t <= timeToExclude.start) {
+                return;
+            }
+        }
+
+        if (l?.coords) {
+            const alterTimestamp = transformTimestampToDate(
+                l?.timestampMeta?.systemTime,
+            );
+            const newRoute = {
+                latitude: l.coords.latitude,
+                longitude: l.coords.longitude,
+                timestamp: alterTimestamp || l.timestamp,
+            };
+
+            currRoutes.push(newRoute);
+            lastRecord = l;
+        }
+    });
+
+    const sorted = currRoutes.sort((a, b) => {
+        if (
+            getTimeInUTCMilliseconds(a.timestamp) ===
+            getTimeInUTCMilliseconds(b.timestamp)
+        ) {
+            if (a.latitude === b.latitude) {
+                if (a.longitude === b.longitude) {
+                    return 0;
+                }
+
+                return a.longitude < b.longitude ? -1 : 1;
+            }
+
+            return a.latitude < b.latitude ? -1 : 1;
+        }
+        return getTimeInUTCMilliseconds(a.timestamp) <
+            getTimeInUTCMilliseconds(b.timestamp)
+            ? -1
+            : 1;
+    });
+
+    return {
+        data: sorted,
+        lastRecord: lastRecord,
+    };
+};

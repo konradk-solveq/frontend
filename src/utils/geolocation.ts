@@ -348,12 +348,15 @@ export const requestGeolocationPermission = async () => {
  * @param routeId
  * @returns
  */
-export const getLastLocationByRoutId = async (routeId: string) => {
+export const getLastLocationByRoutId = async (
+    routeId: string,
+    locationsData?: any[],
+) => {
     if (!routeId) {
         return;
     }
 
-    const locations = await getLocations();
+    const locations = locationsData || (await getLocations());
     if (!locations?.length) {
         return;
     }

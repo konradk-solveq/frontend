@@ -105,6 +105,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         resumeTracker,
         followedRouteId,
         isActive,
+        restoredPath,
     } = useLocalizationTracker(true, true);
 
     const [mapHiden, setMapHiden] = useState(true);
@@ -549,6 +550,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                                 headingOn={headingOn}
                                 compassHeading={compassHeading}
                                 renderPath={renderPath}
+                                restoredPath={restoredPath}
                             />
                         )}
 
