@@ -16,6 +16,23 @@ interface IProps {
 
 const isIOS = Platform.OS === 'ios';
 
+const getShortRoute = (c: ShortCoordsType[]) => {
+    if (c?.length > 20000) {
+        const newC: ShortCoordsType[] = [];
+
+        for (let index = 0; index <= 20000; index++) {
+            const l = c?.[c?.length - (index + 1)];
+            if (l) {
+                newC.unshift(l);
+            }
+        }
+
+        return newC;
+    }
+
+    return c;
+};
+
 const Polyline: React.FC<IProps> = ({
     coords,
     strokeColor,
@@ -29,8 +46,9 @@ const Polyline: React.FC<IProps> = ({
 
     const setCoords = (c: ShortCoordsType[]) => {
         if (polylineRef.current) {
+            const cToAdd = getShortRoute(c);
             polylineRef.current?.setNativeProps({
-                coordinates: c,
+                coordinates: cToAdd,
             });
         }
     };

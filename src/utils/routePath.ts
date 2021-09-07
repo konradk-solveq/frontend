@@ -9,6 +9,7 @@ import {getRoutesDataFromSQL} from './transformData';
 export const getCurrentRoutePathById = async (
     routeId: string,
     oldRoutes?: {latitude: number; longitude: number; timestamp: number}[],
+    skipSort?: boolean,
 ): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
     const timeStart = oldRoutes?.[oldRoutes?.length - 1]?.timestamp;
 
@@ -19,6 +20,10 @@ export const getCurrentRoutePathById = async (
 
     if (oldRoutes) {
         res = [...oldRoutes, ...res];
+    }
+
+    if (skipSort) {
+        return res;
     }
 
     const sorted = res.sort((a, b) => {
@@ -53,11 +58,12 @@ export const restoreMultipleRouteDataFromSQL = async (
 export const restoreRouteDataFromSQL = async (
     routeId: string,
     route: ShortCoordsType[],
+    skipSort?: boolean,
 ) => {
     try {
-        const oldRoute = route?.length ? deepCopy(route) : [];
+        const oldRoute = route?.length ? route : [];
 
-        const newRoute = getCurrentRoutePathById(routeId, oldRoute);
+        const newRoute = getCurrentRoutePathById(routeId, oldRoute, skipSort);
 
         return await Promise.resolve(newRoute);
     } catch (error) {

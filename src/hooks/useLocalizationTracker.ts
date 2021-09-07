@@ -263,18 +263,18 @@ const useLocalizationTracker = (
         ],
     );
 
-    useEffect(() => {
-        if (!trackerData && currentRouteId) {
-            const runInitLocationSet = async () => {
-                const td = await getLastLocationByRoutId(currentRouteId);
-                if (td) {
-                    setInitTrackerData(td);
-                }
-            };
+    // useEffect(() => {
+    //     if (!trackerData && currentRouteId) {
+    //         const runInitLocationSet = async () => {
+    //             const td = await getLastLocationByRoutId(currentRouteId);
+    //             if (td) {
+    //                 setInitTrackerData(td);
+    //             }
+    //         };
 
-            runInitLocationSet();
-        }
-    }, [currentRouteId, trackerData]);
+    //         runInitLocationSet();
+    //     }
+    // }, [currentRouteId, trackerData]);
 
     useEffect(() => {
         if (isActive && !trackerData && initTrackerData) {

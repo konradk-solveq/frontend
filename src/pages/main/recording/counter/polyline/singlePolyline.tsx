@@ -38,27 +38,34 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
      */
     const [route, setRoute] = useState<ShortCoordsType[]>([]);
 
-    const redrawPolyline = useCallback(async () => {
-        restoreRef.current = false;
+    const redrawPolyline = useCallback(
+        async (skipSorting: boolean) => {
+            restoreRef.current = false;
 
-        if (!currentRouteId) {
+            if (!currentRouteId) {
+                restoreRef.current = true;
+                return;
+            }
+
+            let result: ShortCoordsType[] = route;
+
+            const newRoute = await restoreRouteDataFromSQL(
+                currentRouteId,
+                result,
+                skipSorting,
+            );
+            if (!newRoute.length) {
+                restoreRef.current = true;
+                return;
+            }
+
+            result = newRoute;
+            setRoute(result);
+
             restoreRef.current = true;
-            return;
-        }
-
-        let result: ShortCoordsType[] = route;
-
-        const newRoute = await restoreRouteDataFromSQL(currentRouteId, result);
-        if (!newRoute.length) {
-            restoreRef.current = true;
-            return;
-        }
-
-        result = newRoute;
-        setRoute(result);
-
-        restoreRef.current = true;
-    }, [currentRouteId, route]);
+        },
+        [currentRouteId, route],
+    );
 
     /**
      * Restore path from SQL after re-launch.
@@ -69,8 +76,8 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
         if (!mountRef.current) {
             task = InteractionManager.runAfterInteractions(() => {
                 t = setTimeout(() => {
-                    redrawPolyline();
-                }, 350);
+                    redrawPolyline(true);
+                }, 500);
             });
 
             mountRef.current = true;

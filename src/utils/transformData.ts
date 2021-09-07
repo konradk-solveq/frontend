@@ -387,7 +387,7 @@ export const getRoutesDataFromSQL = async (
         timestamp: number;
     }[] = [];
     const locations = await getLocations();
-    if (!locations) {
+    if (!locations?.length) {
         return currRoutes;
     }
 
