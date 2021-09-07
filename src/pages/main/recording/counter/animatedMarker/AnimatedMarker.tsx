@@ -37,6 +37,7 @@ const AnimatedMarker: React.FC<IProps> = ({
     compassHeading,
 }: IProps) => {
     const markerRef = useRef<Marker>(null);
+    const canAnimateIOSMarker = useRef(true);
 
     const animatedMarkerRef = useRef<MarkerAnimated>(null);
     const animatedPostion = useRef<AnimatedRegion>(
@@ -48,7 +49,14 @@ const AnimatedMarker: React.FC<IProps> = ({
         }),
     ).current;
 
+    useEffect(() => {
+        if (isIOS && isRestored && markerRef.current) {
+            markerRef.current?.redraw();
+        }
+    }, [isRestored]);
+
     const setMarker = useCallback(async () => {
+        let t: NodeJS.Timeout;
         if (coords?.lat && show) {
             const pos = {
                 latitude: coords?.lat,
@@ -72,7 +80,7 @@ const AnimatedMarker: React.FC<IProps> = ({
                 }
             }
 
-            if (!isRestored) {
+            if (!isRestored && markerRef.current) {
                 setLocation(pos);
                 markerRef.current?.redraw();
 
@@ -86,17 +94,27 @@ const AnimatedMarker: React.FC<IProps> = ({
                     1200 + 500 * ratio,
                 );
             } else {
-                animatedPostion
-                    ?.timing({
-                        ...pos,
-                        latitudeDelta: latitudeDelta,
-                        longitudeDelta: longitudeDelta,
-                        duration: 1200 * ratio,
-                        useNativeDriver: true,
-                    })
-                    .start();
+                if (canAnimateIOSMarker.current) {
+                    canAnimateIOSMarker.current = false;
+                    animatedPostion
+                        ?.timing({
+                            ...pos,
+                            latitudeDelta: latitudeDelta,
+                            longitudeDelta: longitudeDelta,
+                            duration: 1200 * ratio,
+                            useNativeDriver: true,
+                        })
+                        .start();
+                    t = setTimeout(() => {
+                        canAnimateIOSMarker.current = true;
+                    }, 1200 * ratio);
+                }
             }
         }
+
+        return () => {
+            clearTimeout(t);
+        };
     }, [
         coords,
         animatedPostion,

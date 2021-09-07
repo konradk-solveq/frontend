@@ -20,7 +20,7 @@ const DisplayTimer: React.FC<IProps> = ({
 }: IProps) => {
     const [currentTime, setCurrentTime] = useState(0);
 
-    const {appIsActive, appStateVisible} = useAppState();
+    const {appStateVisible, appPrevStateVisible} = useAppState();
     const [previousState, setPrevoiusState] = useState(appStateVisible);
 
     useEffect(() => {
@@ -39,12 +39,15 @@ const DisplayTimer: React.FC<IProps> = ({
     }, [setTime]);
 
     useEffect(() => {
-        if (appIsActive && previousState === 'background') {
+        if (
+            appPrevStateVisible === 'active' &&
+            previousState === 'background'
+        ) {
             setTime();
 
             setPrevoiusState('active');
         }
-    }, [appIsActive, previousState, setTime]);
+    }, [appPrevStateVisible, previousState, setTime]);
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
