@@ -39,6 +39,11 @@ import {useLocationProvider} from '@src/providers/staticLocationProvider/staticL
 import useAppState from './useAppState';
 import {Location} from '@interfaces/geolocation';
 import {locationTypeEnum} from '@src/type/location';
+import {
+    getCurrentRoutePathByIdWithLastRecord,
+    restoreRouteDataFromSQL,
+} from '@src/utils/routePath';
+import {ShortCoordsType} from '@src/type/coords';
 
 export interface DataI {
     distance: string;
@@ -78,6 +83,8 @@ const useLocalizationTracker = (
     const [averageSpeed, setCurrentAverageSpeed] = useState<
         number | undefined
     >();
+
+    const [restoredPath, setRestoredPath] = useState<ShortCoordsType[]>([]);
 
     const setAverageSpeedOnStart = useCallback(() => {
         if (!averageSpeed && currentRouteAverrageSpeed) {
@@ -263,18 +270,34 @@ const useLocalizationTracker = (
         ],
     );
 
-    // useEffect(() => {
-    //     if (!trackerData && currentRouteId) {
-    //         const runInitLocationSet = async () => {
-    //             const td = await getLastLocationByRoutId(currentRouteId);
-    //             if (td) {
-    //                 setInitTrackerData(td);
-    //             }
-    //         };
+    useEffect(() => {
+        if (!trackerData && currentRouteId) {
+            const runInitLocationSet = async () => {
+                console.log('[STARTED READING]', new Date(), Date.now());
+                const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
+                    currentRouteId,
+                    [],
+                    true,
+                );
+                const td: DataI | undefined = recordedPath?.lastRecord;
+                // const td = await getLastLocationByRoutId(currentRouteId);
+                if (td) {
+                    setInitTrackerData(td);
+                }
+                if (recordedPath?.data?.length) {
+                    console.log(
+                        '[ENDED READING]',
+                        new Date(),
+                        Date.now(),
+                        recordedPath?.data?.length,
+                    );
+                    setRestoredPath(recordedPath.data);
+                }
+            };
 
-    //         runInitLocationSet();
-    //     }
-    // }, [currentRouteId, trackerData]);
+            runInitLocationSet();
+        }
+    }, [currentRouteId, trackerData]);
 
     useEffect(() => {
         if (isActive && !trackerData && initTrackerData) {
@@ -344,6 +367,7 @@ const useLocalizationTracker = (
         followedRouteId,
         setCurrentTrackerData,
         currentRouteId,
+        restoredPath,
     };
 };
 

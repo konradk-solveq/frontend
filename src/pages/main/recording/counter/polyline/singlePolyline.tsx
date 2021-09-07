@@ -23,9 +23,14 @@ type ShortCoordsType = {
 interface IProps {
     coords: DataI;
     renderPath?: boolean;
+    restoredPath?: ShortCoordsType[];
 }
 
-const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
+const SinglePolyline: React.FC<IProps> = ({
+    coords,
+    renderPath,
+    restoredPath,
+}: IProps) => {
     const mountRef = useRef(false);
     /**
      * Helper to prevent render current polyline faster then restored data from SQL.
@@ -39,7 +44,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
     const [route, setRoute] = useState<ShortCoordsType[]>([]);
 
     const redrawPolyline = useCallback(
-        async (skipSorting: boolean) => {
+        async (skipSorting: boolean, resPath?: ShortCoordsType[]) => {
             restoreRef.current = false;
 
             if (!currentRouteId) {
@@ -49,11 +54,13 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
 
             let result: ShortCoordsType[] = route;
 
-            const newRoute = await restoreRouteDataFromSQL(
-                currentRouteId,
-                result,
-                skipSorting,
-            );
+            const newRoute =
+                resPath ||
+                (await restoreRouteDataFromSQL(
+                    currentRouteId,
+                    result,
+                    skipSorting,
+                ));
             if (!newRoute.length) {
                 restoreRef.current = true;
                 return;
@@ -76,7 +83,7 @@ const SinglePolyline: React.FC<IProps> = ({coords, renderPath}: IProps) => {
         if (!mountRef.current) {
             task = InteractionManager.runAfterInteractions(() => {
                 t = setTimeout(() => {
-                    redrawPolyline(true);
+                    redrawPolyline(true, restoredPath);
                 }, 500);
             });
 
