@@ -421,3 +421,26 @@ export const compareResultsWhenOnlineEigthCase = (actionsLog: any[]) => {
         synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions[4],
     );
 };
+
+export const compareResultsWhenOnlineNineCase = (actionsLog: any[]) => {
+    /* loading - start */
+    expect(actionsLog[0]).toEqual(
+        synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions[0],
+    );
+    /* clear current route data */
+    expect(actionsLog[1]).toEqual(
+        synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions[1],
+    );
+    /* clear current route */
+    expect(actionsLog[2]).toEqual(
+        synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions[2],
+    );
+    /* set connection error */
+    expect(actionsLog[3]).toEqual(
+        synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions[3],
+    );
+    /* loading - stop */
+    expect(actionsLog[4]).toEqual(
+        synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions[4],
+    );
+};

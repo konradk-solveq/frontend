@@ -320,12 +320,10 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 response.status !== 406
             ) {
                 dispatch(addRoutesToSynchQueue(currRoutesDat));
+            }
 
-                if (currentRoute?.remoteRouteId) {
-                    await removeCeratedRouteIDService(
-                        currentRoute.remoteRouteId,
-                    );
-                }
+            if (currentRoute?.remoteRouteId) {
+                await removeCeratedRouteIDService(currentRoute.remoteRouteId);
             }
 
             if (currRoutesDat?.length > 3) {
