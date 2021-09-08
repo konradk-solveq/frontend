@@ -6,20 +6,22 @@ import {BasicCoordsType} from '@type/coords';
 import {locationTypeEnum} from '@type/location';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {setGlobalLocation} from '@storage/actions/app';
+import {showedLocationInfoSelector} from '@storage/selectors/app';
 import {
     cleanUpListener,
     getLatLngFromForeground,
     getLocationWithLowAccuracy,
     onGeofenceChangeListener,
     removeGeofence,
+    setConfigWithLocationPermission,
     setGeofenceFromCurrentLocation,
     stopBackgroundGeolocationPlugin,
 } from '@utils/geolocation';
 import {
     onboardingFinishedSelector,
     trackerActiveSelector,
-} from '@src/storage/selectors';
-import useCheckLocationType from '@src/hooks/staticLocationProvider/useCheckLocationType';
+} from '@storage/selectors';
+import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import {
     IDENTIFIER,
     shouldOmit,
@@ -35,6 +37,9 @@ const useProviderStaticLocation = () => {
 
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const isRouteRecordingActive = useAppSelector(trackerActiveSelector);
+    const locationDialogHasBeenShown = useAppSelector(
+        showedLocationInfoSelector,
+    );
 
     const {locationType, permissionGranted} = useCheckLocationType();
 
@@ -71,6 +76,25 @@ const useProviderStaticLocation = () => {
             initLocationRef.current = false;
         };
     }, [dispatch, permissionGranted, isOnboardingFinished]);
+
+    useEffect(() => {
+        //if dialog has been shown
+        if (!locationDialogHasBeenShown) {
+            return;
+        }
+        const setLocationConfig = async () => {
+            if (locationType === locationTypeEnum.ALWAYS) {
+                await setConfigWithLocationPermission('Always');
+                return;
+            }
+            if (locationType === locationTypeEnum.WHEN_IN_USE) {
+                await setConfigWithLocationPermission('WhenInUse');
+                return;
+            }
+        };
+
+        setLocationConfig();
+    }, [locationType, locationDialogHasBeenShown]);
 
     const storeCurrentLocation = useCallback(
         (loc: BasicCoordsType) => {
@@ -172,7 +196,11 @@ const useProviderStaticLocation = () => {
 
     useEffect(() => {
         let t: NodeJS.Timeout;
-        if (locationType === locationTypeEnum.ALWAYS && isOnboardingFinished) {
+        if (
+            locationType === locationTypeEnum.ALWAYS &&
+            isOnboardingFinished &&
+            !isTrackingActivated
+        ) {
             startGeofenceMonitoring();
             /**
              * BackgroundGeolocation plugin returns Promise.resolved even it still shuts down.
@@ -199,6 +227,7 @@ const useProviderStaticLocation = () => {
         locationType,
         startGeofenceMonitoring,
         stopGeofenceMonitoring,
+        isTrackingActivated,
     ]);
 
     useEffect(() => {
@@ -206,31 +235,33 @@ const useProviderStaticLocation = () => {
         let interval: NodeJS.Timeout;
         if (
             locationType === locationTypeEnum.WHEN_IN_USE &&
-            isOnboardingFinished
+            isOnboardingFinished &&
+            !isTrackingActivated
         ) {
             t = setTimeout(() => {
                 setInitLocationWithInterval();
             }, 1000);
 
             interval = setInterval(async () => {
-                setLocationWithInterval();
+                await setLocationWithInterval();
             }, intervalToRefreshLocation);
         }
 
         return () => {
-            if (locationType === locationTypeEnum.WHEN_IN_USE) {
-                clearTimeout(t);
-                clearInterval(interval);
-                console.log(
-                    '[=== STATIIC LOCATION PROVIDER -- cleanup interval finished ===]',
-                );
-            }
+            // if (locationType === locationTypeEnum.WHEN_IN_USE) {
+            clearTimeout(t);
+            clearInterval(interval);
+            console.log(
+                '[=== STATIIC LOCATION PROVIDER -- cleanup interval finished ===]',
+            );
+            // }
         };
     }, [
         isOnboardingFinished,
         locationType,
         setLocationWithInterval,
         setInitLocationWithInterval,
+        isTrackingActivated,
     ]);
 
     return {
