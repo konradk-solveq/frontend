@@ -11,7 +11,7 @@ import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
-import { isLocationValidate } from './locationData';
+import {isLocationValidate} from './locationData';
 
 const getTimeInUTCMilliseconds = (date: string | number) => {
     try {

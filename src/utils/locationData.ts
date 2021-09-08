@@ -1,11 +1,11 @@
 import {Location} from '@interfaces/geolocation';
 
 export const isLocationValidate = (location: Location) => {
-    const isLatitudeWrong =
-        location?.coords?.latitude > -1 && location?.coords?.latitude < 1;
+    const latitude = location?.coords?.latitude;
+    const isLatitudeWrong = !latitude || (latitude > -1 && latitude < 1);
 
-    const isLongitudeWrong =
-        location?.coords?.longitude > -1 && location?.coords?.longitude < 1;
+    const longitude = location?.coords?.longitude;
+    const isLongitudeWrong = !longitude || (longitude > -1 && longitude < 1);
 
     return !isLatitudeWrong && !isLongitudeWrong;
 };
