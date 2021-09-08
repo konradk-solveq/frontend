@@ -28,6 +28,7 @@ import {
 
 import StackHeader from './stackHeader/stackHeader';
 
+import {getHaversineDistance} from '@utils/locationData';
 import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {
@@ -456,7 +457,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             zIndex: 5,
         },
     });
-
+    // console.log(
+    //     getHaversineDistance(
+    //         {latitude: 50.81407940668416, longitude: 19.122473771680998},
+    //         {latitude: 50.26334827721723, longitude: 19.01947695044757},
+    //     ),
+    // );
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />

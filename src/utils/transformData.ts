@@ -1,5 +1,5 @@
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
-import {LocationDataI} from '../interfaces/geolocation';
+import {Location, LocationDataI} from '../interfaces/geolocation';
 import {
     BikeBaseData,
     BikeDescription,
@@ -11,7 +11,7 @@ import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
-import {isLocationValidate} from './locationData';
+import {getHaversineDistance, isLocationValidate} from './locationData';
 
 const getTimeInUTCMilliseconds = (date: string | number) => {
     try {
@@ -327,6 +327,10 @@ export const routesDataToPersist = async (
         return currRoutes;
     }
 
+    let loc1: Location;
+    let loc2: Location;
+    let loc3: Location;
+
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
         if (!routeId || !l?.extras?.route_id || l?.sample === true) {
@@ -340,6 +344,33 @@ export const routesDataToPersist = async (
         }
 
         if (!currRoutes.find(d => d.uuid === l.uuid)) {
+            if (!loc1) {
+                loc1 = l;
+            } else if (!loc2) {
+                loc2 = l;
+            } else if (!loc3) {
+                loc3 = l;
+            }
+
+            //distance per time => m/s
+            const loc1Time = new Date(loc1?.timestamp).getSeconds();
+            const loc2Time = new Date(loc1?.timestamp).getSeconds();
+            const loc3Time = new Date(loc1?.timestamp).getSeconds();
+
+            const distance1 = getHaversineDistance(loc1?.coords, loc2?.coords);
+            const distance2 = getHaversineDistance(loc2?.coords, loc3?.coords);
+            //count from points
+            if (
+                distance1 &&
+                distance1 > 50 &&
+                Math.abs(loc2Time - loc1Time) <= 1 &&
+                distance2 &&
+                distance2 > 50 &&
+                Math.abs(loc3Time - loc2Time) <= 1
+            ) {
+                return;
+            }
+
             const alterTimestamp = transformTimestampToDate(
                 l?.timestampMeta?.systemTime,
             );
