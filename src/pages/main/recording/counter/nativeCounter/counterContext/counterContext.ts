@@ -1,5 +1,6 @@
 import React from 'react';
-import {DataI} from '../../../../../../hooks/useLocalizationTracker';
+
+import {DataI} from '@hooks/useLocalizationTracker';
 
 type CounterDataType = {
     trackerData: DataI | undefined;

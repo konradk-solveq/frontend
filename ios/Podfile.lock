@@ -331,7 +331,7 @@ PODS:
     - React-Core
   - react-native-get-random-values (1.7.0):
     - React-Core
-  - react-native-google-maps (0.28.0):
+  - react-native-google-maps (0.29.3):
     - Google-Maps-iOS-Utils (= 2.1.0)
     - GoogleMaps (= 3.5.0)
     - React-Core
@@ -339,12 +339,14 @@ PODS:
     - React-Core
   - react-native-keep-awake (1.0.4):
     - React
-  - react-native-maps (0.28.0):
+  - react-native-maps (0.29.3):
     - React-Core
   - react-native-netinfo (6.0.0):
     - React-Core
   - react-native-nfc-manager (3.10.0):
     - React
+  - react-native-restart (0.0.22):
+    - React-Core
   - react-native-safe-area-context (3.2.0):
     - React-Core
   - react-native-webview (11.4.2):
@@ -417,7 +419,7 @@ PODS:
     - React
   - RNBackgroundFetch (4.0.2):
     - React-Core
-  - RNBackgroundGeolocation (4.2.1):
+  - RNBackgroundGeolocation (4.2.2):
     - CocoaLumberjack (~> 3.7.2)
     - React-Core
   - RNCAsyncStorage (1.15.2):
@@ -525,6 +527,7 @@ DEPENDENCIES:
   - react-native-maps (from `../node_modules/react-native-maps`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-nfc-manager (from `../node_modules/react-native-nfc-manager`)
+  - react-native-restart (from `../node_modules/react-native-restart`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -637,6 +640,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-nfc-manager:
     :path: "../node_modules/react-native-nfc-manager"
+  react-native-restart:
+    :path: "../node_modules/react-native-restart"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-webview:
@@ -741,12 +746,13 @@ SPEC CHECKSUMS:
   react-native-compass-heading: bb83f8472786ad730947624f2a75a6563aa80b27
   react-native-config: c98128a72bc2c3a1ca72caec0b021f0fa944aa29
   react-native-get-random-values: 237bffb1c7e05fb142092681531810a29ba53015
-  react-native-google-maps: 46dea4aa4acb7300beff508f64d9f8c84e9fb106
+  react-native-google-maps: d6a30377b40a338bd09d6ad36ce48dc5d12b5792
   react-native-image-picker: 5a7dd93d4f9dd0d910da5dde3707fd96f70d03b3
   react-native-keep-awake: e2941ac96fbddf3b407d0f316eba0b24ed067f56
-  react-native-maps: 2d405b4e8cee0282e4c02bac434d81450dfea877
+  react-native-maps: 41d01d8e0afcebe32bec9eea3bd945adc1b18f7a
   react-native-netinfo: 34f4d7a42f49157f3b45c14217d256bce7dc9682
   react-native-nfc-manager: e0889542676e1587791ca7b15cf41a7d1ba228e5
+  react-native-restart: d4ea7637e193da7558d229b3704d500ec0d75f9c
   react-native-safe-area-context: e471852c5ed67eea4b10c5d9d43c1cebae3b231d
   react-native-webview: 90ccc4add19f940dfe6c89d30659aed8134f234d
   React-perflogger: 25373e382fed75ce768a443822f07098a15ab737
@@ -763,7 +769,7 @@ SPEC CHECKSUMS:
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   ReactNativeGetLocation: 7ed719807f65206e20b6793896372b11ad835d6d
   RNBackgroundFetch: 1efac9adb6daac367819488f0c8b201d780a08bf
-  RNBackgroundGeolocation: 5c59fb9db92ee244c02462e1f30497a21697b28f
+  RNBackgroundGeolocation: 31676370175f0e70d1a0f05961faebe621d98d76
   RNCAsyncStorage: 502fbf425b9ee2d73ca6fa4b299dce0be411b422
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNDeviceInfo: 4f480456c7ac8c9919448375399c1a6f14479549

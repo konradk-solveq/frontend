@@ -19,11 +19,14 @@ import {
     cleanUp,
     getBackgroundGeolocationState,
     getCurrentLocation,
+    getLastLocationByRoutId,
+    onWatchPostionChangeListener,
     pauseTracingLocation,
     requestGeolocationPermission,
     resumeTracingLocation,
     startBackgroundGeolocation,
     stopBackgroundGeolocation,
+    stopWatchPostionChangeListener,
 } from '../utils/geolocation';
 import {
     DEFAULT_SPEED,
@@ -34,6 +37,14 @@ import {
 } from './utils/localizationTracker';
 import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
 import useAppState from './useAppState';
+import {Location} from '@interfaces/geolocation';
+import {locationTypeEnum} from '@src/type/location';
+import {
+    getCurrentRoutePathByIdWithLastRecord,
+    restoreRouteDataFromSQL,
+} from '@src/utils/routePath';
+import {ShortCoordsType} from '@src/type/coords';
+import {isLocationValidate} from '@src/utils/locationData';
 
 export interface DataI {
     distance: string;
@@ -54,11 +65,13 @@ const useLocalizationTracker = (
     omitRequestingPermission?: boolean,
 ) => {
     const dispatch = useAppDispatch();
-    const fastTrackerDataRef = useRef(false);
-    const initialTrackerDataRef = useRef(false);
 
-    const {isTrackingActivatedHandler} = useLocationProvider();
-    const {appPrevStateVisible, appStateVisible} = useAppState();
+    const initialTrackerDataRef = useRef(false);
+    const mountedRef = useRef(true);
+    const restoredRef = useRef(false);
+
+    const {isTrackingActivatedHandler, locationType} = useLocationProvider();
+    const {appStateVisible} = useAppState();
 
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
@@ -67,10 +80,13 @@ const useLocalizationTracker = (
     const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
+    const [initTrackerData, setInitTrackerData] = useState<DataI>();
     const [lastDistance, setLastDistance] = useState<number>(0);
     const [averageSpeed, setCurrentAverageSpeed] = useState<
         number | undefined
     >();
+
+    const [restoredPath, setRestoredPath] = useState<ShortCoordsType[]>([]);
 
     const setAverageSpeedOnStart = useCallback(() => {
         if (!averageSpeed && currentRouteAverrageSpeed) {
@@ -97,11 +113,12 @@ const useLocalizationTracker = (
 
     const stopTracker = useCallback(
         async (omitPersist?: boolean) => {
-            deactivateKeepAwake();
             dispatch(stopCurrentRoute(omitPersist));
+            deactivateKeepAwake();
             if (!omitPersist) {
                 dispatch(persistCurrentRouteData());
             }
+            stopWatchPostionChangeListener();
             const state = await stopBackgroundGeolocation();
             if (!state || !state?.enabled) {
                 setIsActive(false);
@@ -119,7 +136,7 @@ const useLocalizationTracker = (
             const state = await getBackgroundGeolocationState();
 
             if (state?.enabled && !keep) {
-                await stopTracker();
+                // await stopTracker();
             }
 
             setIsActive(true);
@@ -138,7 +155,7 @@ const useLocalizationTracker = (
                 dispatch(startRecordingRoute(currRoute, keep));
             }
         },
-        [dispatch, currentRouteId, stopTracker, isTrackingActivatedHandler],
+        [dispatch, currentRouteId, isTrackingActivatedHandler],
     );
 
     const onPauseTracker = useCallback(async () => {
@@ -161,6 +178,12 @@ const useLocalizationTracker = (
     }, []);
 
     useEffect(() => {
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
+
+    useEffect(() => {
         speed = [];
     }, []);
 
@@ -172,63 +195,77 @@ const useLocalizationTracker = (
     }, []);
 
     const setCurrentTrackerData = useCallback(
-        (fastTimeout?: boolean) => {
-            getCurrentLocation(
-                currentRouteId,
-                undefined,
-                undefined,
-                true,
-                fastTimeout ? 3 : 15,
-                fastTimeout ? 2000 : 500,
-            ).then(d => {
-                const notMoving = false;
-                const lowSpeed = speedToLow(d);
+        async (fastTimeout?: boolean, lcoationData?: Location) => {
+            const currentLocationData =
+                lcoationData ||
+                (await getCurrentLocation(
+                    currentRouteId,
+                    fastTimeout ? 3 : undefined,
+                    undefined,
+                    fastTimeout ? true : false,
+                    fastTimeout ? 3 : 15,
+                    fastTimeout ? 2000 : 500,
+                ));
+            if (!currentLocationData) {
+                return;
+            }
 
-                setAverageSpeedOnStart();
-                let aSpeed = getAverageSpeedData(speed);
-                if (notMoving || lowSpeed) {
-                    setTrackerData(prev => {
-                        if (!prev) {
-                            return undefined;
-                        }
-                        return {
-                            ...prev,
-                            averageSpeed: getAverageSpeedData(
-                                speed,
-                                currentRouteAverrageSpeed,
-                            ),
-                            speed: '0,0',
-                        };
-                    });
-                    return;
-                }
+            if (!isLocationValidate(currentLocationData)) {
+                return;
+            }
 
-                if (d?.coords?.speed && d?.coords?.speed > 0) {
-                    speed.push(d?.coords?.speed);
-                }
+            const notMoving = false;
+            const lowSpeed = speedToLow(currentLocationData);
 
-                if (
-                    ((d?.odometer && d?.odometer - lastDistance > 10) ||
-                        !lastDistance) &&
-                    !notMoving &&
-                    parseFloat(aSpeed) >= 0.1
-                ) {
-                    aSpeed = getAverageSpeedData(
-                        speed,
-                        currentRouteAverrageSpeed,
-                    );
-                }
+            setAverageSpeedOnStart();
+            let aSpeed = getAverageSpeedData(speed);
+            if (notMoving || lowSpeed) {
+                setTrackerData(prev => {
+                    if (!prev) {
+                        return undefined;
+                    }
+                    return {
+                        ...prev,
+                        averageSpeed: getAverageSpeedData(
+                            speed,
+                            currentRouteAverrageSpeed,
+                        ),
+                        speed: '0,0',
+                    };
+                });
+                return;
+            }
 
-                const res = getTrackerData(d, aSpeed);
+            if (
+                currentLocationData?.coords?.speed &&
+                currentLocationData?.coords?.speed > 0
+            ) {
+                speed.push(currentLocationData?.coords?.speed);
+            }
 
-                setTrackerData(res);
-                setCurrentAverageSpeed(parseFloat(aSpeed));
+            if (
+                ((currentLocationData?.odometer &&
+                    currentLocationData?.odometer - lastDistance > 10) ||
+                    !lastDistance) &&
+                !notMoving &&
+                parseFloat(aSpeed) >= 0.1
+            ) {
+                aSpeed = getAverageSpeedData(speed, currentRouteAverrageSpeed);
+            }
 
-                if (persist) {
-                    /* TODO: High disk usage - to verify and eventually delete */
-                    // onPersistData(d?.odometer);
-                }
-            });
+            const res = getTrackerData(currentLocationData, aSpeed);
+
+            setTrackerData(res);
+            setCurrentAverageSpeed(parseFloat(aSpeed));
+
+            if (persist) {
+                /* TODO: High disk usage - to verify and eventually delete */
+                // onPersistData(d?.odometer);
+            }
+
+            if (lcoationData) {
+                initialTrackerDataRef.current = true;
+            }
         },
         [
             persist,
@@ -239,47 +276,92 @@ const useLocalizationTracker = (
         ],
     );
 
-    /**
-     * Set tracker data after return from background
-     */
+    useEffect(() => {
+        if (!restoredRef.current && currentRouteId) {
+            const runInitLocationSet = async () => {
+                console.log('[STARTED READING]', new Date(), Date.now());
+                const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
+                    currentRouteId,
+                    [],
+                    true,
+                );
+                const td: DataI | undefined = getTrackerData(
+                    recordedPath?.lastRecord,
+                );
+
+                if (td && !trackerData) {
+                    setInitTrackerData(td);
+                }
+                if (recordedPath?.data?.length) {
+                    console.log(
+                        '[ENDED READING]',
+                        new Date(),
+                        Date.now(),
+                        recordedPath?.data?.length,
+                    );
+                    setRestoredPath(recordedPath.data);
+                }
+
+                restoredRef.current = true;
+            };
+
+            runInitLocationSet();
+        }
+    }, [currentRouteId, trackerData]);
+
+    useEffect(() => {
+        if (isActive && !trackerData && initTrackerData) {
+            setTrackerData(initTrackerData);
+        }
+    }, [isActive, initTrackerData, trackerData]);
+
     useEffect(() => {
         if (
-            appPrevStateVisible === 'background' &&
-            !fastTrackerDataRef.current &&
+            appStateVisible === 'background' &&
+            isActive &&
             initialTrackerDataRef.current
         ) {
-            setCurrentTrackerData(true);
-
-            fastTrackerDataRef.current = true;
+            if (locationType === locationTypeEnum.ALWAYS) {
+                stopWatchPostionChangeListener();
+                console.log('[STOP WATCH POSITION LISTENER]');
+            }
         }
-    }, [appPrevStateVisible, setCurrentTrackerData]);
+    }, [appStateVisible, isActive, locationType]);
 
     useEffect(() => {
-        if (appStateVisible === 'background') {
-            fastTrackerDataRef.current = false;
-        }
-    }, [appStateVisible]);
+        if (isActive) {
+            const setLocation = (location: Location) => {
+                if (!mountedRef.current) {
+                    return;
+                }
 
-    /* TODO: on motion change event */
+                setCurrentTrackerData(undefined, location);
+                setInitTrackerData(undefined);
+            };
+            if (
+                appStateVisible === 'active' &&
+                !initialTrackerDataRef.current
+            ) {
+                onWatchPostionChangeListener(setLocation);
+            }
+        }
+
+        return () => {
+            initialTrackerDataRef.current = false;
+        };
+    }, [isActive, setCurrentTrackerData, appStateVisible]);
+
     useEffect(() => {
-        let interval: any;
         if (isActive) {
             /**
              * Initial tracker data
              */
             setCurrentTrackerData(true);
-
-            interval = setInterval(() => {
-                setCurrentTrackerData();
-            }, 1000);
-
-            initialTrackerDataRef.current = true;
         }
 
         return () => {
-            clearInterval(interval);
             cleanUp();
-            initialTrackerDataRef.current = false;
+            console.log('[==CLEANUP ALL LISTENERS - useLocationTracker==]');
         };
     }, [isActive, setCurrentTrackerData]);
 
@@ -294,6 +376,8 @@ const useLocalizationTracker = (
         averageSpeed,
         followedRouteId,
         setCurrentTrackerData,
+        currentRouteId,
+        restoredPath,
     };
 };
 

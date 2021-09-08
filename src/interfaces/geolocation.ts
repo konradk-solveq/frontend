@@ -1,6 +1,7 @@
 import {
     GeofenceEvent as GE,
     Location as OL,
+    Coords,
 } from 'react-native-background-geolocation-android';
 
 export interface LocationDataI {
@@ -26,3 +27,5 @@ export interface ApiPathI {
 export interface GeofenceEvent extends GE {}
 
 export interface Location extends OL {}
+
+export interface LocationCoords extends Coords {}

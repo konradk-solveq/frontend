@@ -11,6 +11,7 @@ import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
+import {isLocationValidate} from './locationData';
 
 const getTimeInUTCMilliseconds = (date: string | number) => {
     try {
@@ -328,7 +329,13 @@ export const routesDataToPersist = async (
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || routeId !== l?.extras?.route_id) {
+        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
+            return;
+        }
+        if (routeId !== l?.extras?.route_id) {
+            return;
+        }
+        if (!isLocationValidate(l)) {
             return;
         }
 
@@ -387,13 +394,19 @@ export const getRoutesDataFromSQL = async (
         timestamp: number;
     }[] = [];
     const locations = await getLocations();
-    if (!locations) {
+    if (!locations?.length) {
         return currRoutes;
     }
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || routeId !== l?.extras?.route_id) {
+        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
+            return;
+        }
+        if (routeId !== l?.extras?.route_id) {
+            return;
+        }
+        if (!isLocationValidate(l)) {
             return;
         }
 
@@ -454,4 +467,83 @@ export const getSliverImageToDisplay = (images: ImagesUrlsToDisplay) => {
     const mapImg = images?.verticalMapImgUrl;
 
     return img || mapImg;
+};
+
+export const getRoutesDataFromSQLWithLastRecord = async (
+    routeId: string,
+    timeToExclude?: {start: number; end: number},
+): Promise<{
+    data: {latitude: number; longitude: number; timestamp: number}[];
+    lastRecord?: any;
+}> => {
+    const currRoutes: {
+        latitude: number;
+        longitude: number;
+        timestamp: number;
+    }[] = [];
+    const locations = await getLocations();
+    if (!locations?.length) {
+        return {data: currRoutes};
+    }
+
+    let lastRecord: any;
+    /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
+    locations.forEach((l: any) => {
+        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
+            return;
+        }
+        if (routeId !== l?.extras?.route_id) {
+            return;
+        }
+        if (!isLocationValidate(l)) {
+            return;
+        }
+
+        if (timeToExclude && timeToExclude.start !== 0) {
+            const t = new Date(l.timestamp).getTime();
+            if (t <= timeToExclude.start) {
+                return;
+            }
+        }
+
+        if (l?.coords) {
+            const alterTimestamp = transformTimestampToDate(
+                l?.timestampMeta?.systemTime,
+            );
+            const newRoute = {
+                latitude: l.coords.latitude,
+                longitude: l.coords.longitude,
+                timestamp: alterTimestamp || l.timestamp,
+            };
+
+            currRoutes.push(newRoute);
+            lastRecord = l;
+        }
+    });
+
+    const sorted = currRoutes.sort((a, b) => {
+        if (
+            getTimeInUTCMilliseconds(a.timestamp) ===
+            getTimeInUTCMilliseconds(b.timestamp)
+        ) {
+            if (a.latitude === b.latitude) {
+                if (a.longitude === b.longitude) {
+                    return 0;
+                }
+
+                return a.longitude < b.longitude ? -1 : 1;
+            }
+
+            return a.latitude < b.latitude ? -1 : 1;
+        }
+        return getTimeInUTCMilliseconds(a.timestamp) <
+            getTimeInUTCMilliseconds(b.timestamp)
+            ? -1
+            : 1;
+    });
+
+    return {
+        data: sorted,
+        lastRecord: isLocationValidate(lastRecord) ? lastRecord : undefined,
+    };
 };

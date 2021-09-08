@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {SafeAreaView, View, ScrollView, Platform} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
 import KroosLogo from '@sharedComponents/svg/krossLogo';
 import {trackerActiveSelector} from '@storage/selectors/routes';
@@ -32,6 +32,8 @@ const Home: React.FC = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
     const trans: any = I18n.t('MainHome');
+    const mountedRef = useRef(false);
+
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
     const syncStatus = useAppSelector(syncAppSelector);
@@ -40,12 +42,21 @@ const Home: React.FC = () => {
 
     const [showModal, setShowModal] = useState(false);
 
-    /* TODO: move initialization to splashs screen or add loader */
     useEffect(() => {
-        if (isTrackerActive) {
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
+
+    /* TODO: move initialization to splashs screen or add loader */
+    const redirectToCoutnerScreen = useCallback(() => {
+        if (isTrackerActive && !mountedRef.current) {
+            mountedRef.current = true;
             navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
         }
     }, [isTrackerActive, navigation]);
+
+    useFocusEffect(redirectToCoutnerScreen);
 
     const [nfc, setNfc] = useState();
 

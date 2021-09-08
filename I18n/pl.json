@@ -720,5 +720,11 @@
             "negativeAction": "Anuluj"
         }
     },
+    "ErrorBoundary": {
+        "header": "Wystąpił błąd",
+        "body": "Przepraszamy...",
+        "resetButton": "Spróbuj ponownie",
+        "restartButton": "Uruchom ponownie aplikację"
+    },
     "aaaaaaa-aaaaaa": "_____"
 }

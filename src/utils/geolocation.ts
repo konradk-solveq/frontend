@@ -17,6 +17,8 @@ import logger from '@utils/crashlytics';
 import {LocationDataI} from '@interfaces/geolocation';
 import {BasicCoordsType} from '@type/coords';
 import {I18n} from '@translations/I18n';
+import {getTrackerData} from '@hooks/utils/localizationTracker';
+import {isLocationValidate} from './locationData';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -88,6 +90,8 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             preventSuspend: true,
             heartbeatInterval: 60,
             activityType: BackgroundGeolocation.ACTIVITY_TYPE_FITNESS,
+            // speedJumpFilter: 150,
+            stationaryRadius: 25,
         });
 
         return state;
@@ -129,6 +133,10 @@ export const getCurrentLocation = async (
             },
         });
 
+        if (!location || !isLocationValidate(location)) {
+            return;
+        }
+
         return location;
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
@@ -141,7 +149,7 @@ export const getCurrentLocation = async (
 
 export const getLatLng = async () => {
     const location = await getCurrentLocation();
-    if (!location) {
+    if (!location || !isLocationValidate(location)) {
         return {lat: undefined, lng: undefined};
     }
 
@@ -154,7 +162,7 @@ export const getLatLngFromForeground = async (): Promise<
     BasicCoordsType | undefined
 > => {
     const location = await getCurrentLocation('', 4, 10, true);
-    if (!location) {
+    if (!location || !isLocationValidate(location)) {
         return undefined;
     }
 
@@ -196,9 +204,10 @@ export const startBackgroundGeolocation = async (
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
             },
         });
-
         const state = await startBackgroundGeolocationPlugin(true);
-        await resumeTracingLocation();
+        setTimeout(async () => {
+            await resumeTracingLocation();
+        }, 1000);
 
         return state;
     } catch (e) {
@@ -216,9 +225,7 @@ export const stopBackgroundGeolocation = async () => {
             stopOnTerminate: true,
             startOnBoot: false,
             isMoving: false,
-            extras: {
-                route_id: '',
-            },
+            extras: undefined,
             notification: {
                 text: 'Pobieranie lokalizacji',
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
@@ -226,6 +233,10 @@ export const stopBackgroundGeolocation = async () => {
         });
 
         const state = await stopBackgroundGeolocationPlugin();
+        if (state?.odometer && state?.odometer > 0) {
+            await BackgroundGeolocation.resetOdometer();
+        }
+
         return state;
     } catch (e) {
         console.warn('[stopBackgroundGeolocation - error]', e);
@@ -239,7 +250,10 @@ export const cleanUp = () => {
     BackgroundGeolocation.removeListeners();
 };
 
-export const cleanUpListener = (listener: string, handler: () => void) => {
+export const cleanUpListener = (
+    listener: string,
+    handler: (param?: any) => void,
+) => {
     try {
         BackgroundGeolocation.removeListener(listener, handler);
     } catch (e) {
@@ -331,6 +345,53 @@ export const requestGeolocationPermission = async () => {
         logger.log(`[requestGeolocationPermission] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+    }
+};
+
+/**
+ *
+ * @param routeId
+ * @returns
+ */
+export const getLastLocationByRoutId = async (
+    routeId: string,
+    locationsData?: any[],
+) => {
+    if (!routeId) {
+        return;
+    }
+
+    const locations = locationsData || (await getLocations());
+    if (!locations?.length) {
+        return;
+    }
+
+    try {
+        let lastLocation: any;
+        for (let index = locations.length - 1; index > 0; index--) {
+            const l: any = locations[index];
+            if (!l || !l?.coords) {
+                continue;
+            }
+
+            if (l?.extras?.route_id === routeId) {
+                lastLocation = {
+                    ...l,
+                    coords: {
+                        ...l.coords,
+                        speed: undefined,
+                    },
+                };
+                break;
+            }
+        }
+
+        if (!lastLocation) {
+            return;
+        }
+        return getTrackerData(lastLocation);
+    } catch (error) {
+        console.warn('[getLastLocationByRoutId - error]', error);
     }
 };
 
@@ -671,5 +732,37 @@ export const getLocationWithLowAccuracy = async () => {
         return loc;
     } catch (error) {
         console.warn('[getLocationWithLowAccuracy - error]', error);
+    }
+};
+
+export const onWatchPostionChangeListener = async (
+    callback: (location: Location) => void,
+    interval?: number,
+    timeout?: number,
+    notPersist?: boolean,
+) => {
+    try {
+        BackgroundGeolocation.watchPosition(callback, () => {}, {
+            interval: interval || 1000,
+            timeout: timeout || 30,
+            desiredAccuracy: isIOS ? -2 : -1,
+            persist: !notPersist,
+        });
+    } catch (e) {
+        console.log('[onWatchPostionChangeListener - error]', e);
+        logger.log(`[onWatchPostionChangeListener] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const stopWatchPostionChangeListener = async () => {
+    try {
+        await BackgroundGeolocation.stopWatchPosition();
+    } catch (e) {
+        console.log('[stopWatchPostionChangeListener - error]', e);
+        logger.log(`[stopWatchPostionChangeListener] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
     }
 };

@@ -19,11 +19,12 @@ const useCustomBackNavButton = (
 
             BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
-            return () =>
+            return () => {
                 BackHandler.removeEventListener(
                     'hardwareBackPress',
                     onBackPress,
                 );
+            };
         }, [callback, abortActionDefault]),
     );
 };

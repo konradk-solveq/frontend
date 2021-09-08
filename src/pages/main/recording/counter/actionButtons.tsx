@@ -8,6 +8,7 @@ interface IProps {
     leftBtnCallback: () => void;
     rightBtnTitle: string;
     rightBtnCallback: () => void;
+    disabled?: boolean;
 }
 
 const ActionButtons: React.FC<IProps> = ({
@@ -15,15 +16,24 @@ const ActionButtons: React.FC<IProps> = ({
     leftBtnCallback,
     rightBtnTitle,
     rightBtnCallback,
+    disabled,
 }: IProps) => {
     return (
         <View style={styles.bottons}>
             <View style={styles.btn}>
-                <BigWhiteBtn title={leftBtnTitle} onpress={leftBtnCallback} />
+                <BigWhiteBtn
+                    title={leftBtnTitle}
+                    onpress={leftBtnCallback}
+                    disabled={!!disabled}
+                />
             </View>
 
             <View style={[styles.btn, styles.rightBtn]}>
-                <BigRedBtn title={rightBtnTitle} onpress={rightBtnCallback} />
+                <BigRedBtn
+                    title={rightBtnTitle}
+                    onpress={rightBtnCallback}
+                    disabled={!!disabled}
+                />
             </View>
         </View>
     );

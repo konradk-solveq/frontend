@@ -20,6 +20,7 @@ interface Props {
     textStyle?: TextStyle;
     disabled?: boolean;
     neutralCase?: boolean;
+    testID?: string;
 }
 
 const BigRedBtn: React.FC<Props> = (props: Props) => {
@@ -43,7 +44,11 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
 
     return (
         <View style={props.style}>
-            <TouchableOpacity style={styles.btn} onPress={props.onpress}>
+            <TouchableOpacity
+                style={styles.btn}
+                onPress={props.onpress}
+                disabled={props.disabled}
+                testID={props.testID || 'big-red-btn'}>
                 <Text style={[styles.text, props.textStyle]}>
                     {props.neutralCase
                         ? props.title

@@ -32,6 +32,7 @@ import {
     compareResultsWhenOnlineEigthCase,
     compareResultsWhenStartRecordingFirstCase,
     compareResultsWhenStartRecordingSecondCase,
+    compareResultsWhenOnlineNineCase,
 } from './utils/compareRouteDispatchResults';
 import {routesDataToAPIRequest} from '@src/utils/apiDataTransform/prepareRequest';
 
@@ -487,7 +488,7 @@ describe('[Recording Route actions]', () => {
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
                     expect(patchSynchRouteDataFailureSpy).toBeCalledTimes(1);
-                    expect(deletePrivateMapIdFailureSpy).toBeCalledTimes(1);
+                    expect(deletePrivateMapIdFailureSpy).toBeCalled();
                     expect(patchSynchRouteDataFailureSpy).toBeCalledWith(
                         '/routes/route/remote-route-test-id/path',
                         dataToCompare,
@@ -590,7 +591,7 @@ describe('[Recording Route actions]', () => {
                     );
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
+                    expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(2);
                     /**
                      * Check if all expected actions have been called.
                      */
@@ -627,7 +628,7 @@ describe('[Recording Route actions]', () => {
                     );
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(deletePrivateMapIdFailureSpy).toBeCalledTimes(1);
+                    expect(deletePrivateMapIdFailureSpy).toBeCalledTimes(2);
                     /**
                      * Check if all expected actions have been called.
                      */
@@ -661,7 +662,7 @@ describe('[Recording Route actions]', () => {
                     );
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(1);
+                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(2);
                     /**
                      * Check if all expected actions have been called.
                      */
@@ -704,6 +705,53 @@ describe('[Recording Route actions]', () => {
                      * Check if all expected actions have been called.
                      */
                     compareResultsWhenOnlineEigthCase(actionsLog);
+                });
+            });
+
+            it('should fail synch route data with API when route Id is empty', async () => {
+                store = mockStore({
+                    ...initState,
+                    app: {
+                        ...initState.app,
+                        location: {
+                            latitude: 50.691728031513534,
+                            longitude: 17.79613619421019,
+                        },
+                    },
+                    routes: {
+                        ...initState.routes,
+                        currentRoute: {
+                            ...endedRoute,
+                            id: '',
+                        } /* set started state */,
+                    },
+                });
+                /**
+                 * Mock create route api call
+                 */
+                /* synch data */
+                const patchSynchDataSuccessSpy = jest
+                    .spyOn(instance, 'patch')
+                    .mockImplementation(() =>
+                        Promise.resolve({
+                            data: {id: 'remote-route-test-id'},
+                        }),
+                    );
+                const deleteSynchDataSuccessSpy = jest
+                    .spyOn(instance, 'delete')
+                    .mockImplementation(() =>
+                        Promise.resolve({
+                            data: {id: 'remote-route-test-id'},
+                        }),
+                    );
+                actionsLog = store.getActions();
+                return store.dispatch<any>(syncCurrentRouteData()).then(() => {
+                    expect(patchSynchDataSuccessSpy).not.toBeCalled();
+                    expect(deleteSynchDataSuccessSpy).toBeCalled();
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineNineCase(actionsLog);
                 });
             });
 

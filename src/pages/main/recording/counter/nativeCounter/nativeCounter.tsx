@@ -45,7 +45,7 @@ const NativeCounter: React.FC<IProps> = ({
     headingSwitch,
     compassHeading,
 }: IProps) => {
-    const FIND_ME_BTN_BOTTOM = 230;
+    const FIND_ME_BTN_BOTTOM = 250;
     const resotredRef = useRef(false);
 
     const trackerMapVisibility = useAppSelector(trackerMapVisibilitySelector);
@@ -172,8 +172,8 @@ const NativeCounter: React.FC<IProps> = ({
             startAnimation();
             setMapHiden(false);
         } else {
-            startAnimation(true);
             setMapHiden(true);
+            startAnimation(true);
         }
     };
 
@@ -329,7 +329,7 @@ const NativeCounter: React.FC<IProps> = ({
                     onpress={heandleHeadingSwitch}
                     toggle={!headingOn}
                     compassHeading={compassHeading}
-                 />
+                />
                 <FindMeButton
                     onpress={handleAutoFindMeSwith}
                     toggle={!autoFindMeOn}
