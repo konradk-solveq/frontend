@@ -16,6 +16,7 @@ export const onRecordTripActionHandler = async (
 ) => {
     if (askPermission) {
         await requestGeolocationPermission();
+        await setConfigWithLocationPermission('Always');
     } else {
         await setConfigWithLocationPermission('WhenInUse');
     }

@@ -9,7 +9,7 @@ import {
     trackerCurrentRouteAverrageSpeedSelector,
     trackerFollowedRouteIdSelector,
     trackerRouteIdSelector,
-    trackerActiveSelector
+    trackerActiveSelector,
 } from '../storage/selectors/routes';
 import {
     persistCurrentRouteData,
@@ -135,8 +135,14 @@ const useLocalizationTracker = (
     );
 
     const startTracker = useCallback(
-        async (keep?: boolean, routeIdToFollow?: string) => {
-            setProcessing(true);
+        async (
+            keep?: boolean,
+            routeIdToFollow?: string,
+            skipProcessing?: boolean,
+        ) => {
+            if (!skipProcessing) {
+                setProcessing(true);
+            }
 
             speed = [];
             /* TODO: error */
@@ -166,12 +172,14 @@ const useLocalizationTracker = (
                 routeID,
                 keep,
             );
-
+console.log('[get state]', startedState)
             if (!startedState?.enabled) {
                 await stopTracker(true);
             }
 
-            setProcessing(false);
+            if (!skipProcessing) {
+                setProcessing(false);
+            }
         },
         [dispatch, currentRouteId, isTrackingActivatedHandler, stopTracker],
     );

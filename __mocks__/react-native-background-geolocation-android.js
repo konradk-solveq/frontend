@@ -23,6 +23,13 @@ BackgroundGeolocation.getCurrentPosition = jest.fn().mockImplementation(() =>
         uuid: '1d14d48d-a92c-45fb-981b-b300c7ef7a4c',
     }),
 );
+
+BackgroundGeolocation.getState = jest.fn().mockImplementation(() =>
+    Promise.resolve({
+        enabled: true,
+    }),
+);
+
 BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
     Promise.resolve([
         {
@@ -23769,7 +23776,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             timestamp: '2021-08-16T11:30:40.104Z',
         },
-        
+
         {
             extras: {
                 route_id: 'current-route-test-id-twosk',
@@ -27866,7 +27873,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
                 latitude: 50.666477001858006,
             },
             timestamp: '2021-08-17T11:30:40.104Z',
-        }
+        },
     ]),
 );
 
