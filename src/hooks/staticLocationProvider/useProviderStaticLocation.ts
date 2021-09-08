@@ -77,8 +77,10 @@ const useProviderStaticLocation = () => {
         };
     }, [dispatch, permissionGranted, isOnboardingFinished]);
 
+    /**
+     * Set BacgkroundGeolocation config based on user's choice
+     */
     useEffect(() => {
-        //if dialog has been shown
         if (!locationDialogHasBeenShown) {
             return;
         }
