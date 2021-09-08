@@ -22,8 +22,6 @@ export const onRecordTripActionHandler = async (
         if (perm !== BackgroundGeolocation.AUTHORIZATION_STATUS_ALWAYS) {
             await setConfigWithLocationPermission('WhenInUse');
         }
-    } else {
-        await setConfigWithLocationPermission('WhenInUse');
     }
     navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
 };

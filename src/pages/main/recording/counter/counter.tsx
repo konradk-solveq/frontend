@@ -404,7 +404,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         }
 
         return () => {
-            setRenderMap(false);
             clearTimeout(t);
         };
     }, [renderMap]);
