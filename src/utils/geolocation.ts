@@ -18,6 +18,7 @@ import {LocationDataI} from '@interfaces/geolocation';
 import {BasicCoordsType} from '@type/coords';
 import {I18n} from '@translations/I18n';
 import {getTrackerData} from '@hooks/utils/localizationTracker';
+import {isLocationValidate} from './locationData';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -132,6 +133,10 @@ export const getCurrentLocation = async (
             },
         });
 
+        if (!location || !isLocationValidate(location)) {
+            return;
+        }
+
         return location;
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
@@ -144,7 +149,7 @@ export const getCurrentLocation = async (
 
 export const getLatLng = async () => {
     const location = await getCurrentLocation();
-    if (!location) {
+    if (!location || !isLocationValidate(location)) {
         return {lat: undefined, lng: undefined};
     }
 
@@ -157,7 +162,7 @@ export const getLatLngFromForeground = async (): Promise<
     BasicCoordsType | undefined
 > => {
     const location = await getCurrentLocation('', 4, 10, true);
-    if (!location) {
+    if (!location || !isLocationValidate(location)) {
         return undefined;
     }
 

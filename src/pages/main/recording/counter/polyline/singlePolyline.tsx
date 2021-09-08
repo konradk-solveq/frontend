@@ -132,6 +132,9 @@ const SinglePolyline: React.FC<IProps> = ({
      */
     useEffect(() => {
         if (coords?.coords && restoreRef.current) {
+            if (!coords.coords?.lat || !coords.coords?.lon) {
+                return;
+            }
             const pos = {
                 latitude: coords.coords.lat,
                 longitude: coords.coords.lon,

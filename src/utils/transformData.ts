@@ -544,6 +544,6 @@ export const getRoutesDataFromSQLWithLastRecord = async (
 
     return {
         data: sorted,
-        lastRecord: lastRecord,
+        lastRecord: isLocationValidate(lastRecord) ? lastRecord : undefined,
     };
 };

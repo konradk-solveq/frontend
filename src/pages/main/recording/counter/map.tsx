@@ -14,8 +14,9 @@ import gradient from './gradientSvg';
 import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
-import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
-import {ShortCoordsType} from '@src/type/coords';
+import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
+import {ShortCoordsType} from '@type/coords';
+import {isLocationValidate} from '@utils/locationData';
 
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
@@ -95,7 +96,10 @@ const Map: React.FC<IProps> = ({
                 setLocaion(globalLocation);
                 setShowMap(true);
             }
-            const l = await getCurrentLocation('', 1);
+            const l = await getCurrentLocation('', 3);
+            if (!l || !isLocationValidate(l)) {
+                return;
+            }
             if (l?.coords) {
                 const c = {
                     latitude: l.coords.latitude,
