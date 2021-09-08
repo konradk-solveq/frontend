@@ -279,26 +279,17 @@ const useLocalizationTracker = (
     useEffect(() => {
         if (!restoredRef.current && currentRouteId) {
             const runInitLocationSet = async () => {
-                console.log('[STARTED READING]', new Date(), Date.now());
                 const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
                     currentRouteId,
                     [],
                     true,
                 );
-                const td: DataI | undefined = getTrackerData(
-                    recordedPath?.lastRecord,
-                );
+                const td = getTrackerData(recordedPath?.lastRecord);
 
                 if (td && !trackerData) {
                     setInitTrackerData(td);
                 }
                 if (recordedPath?.data?.length) {
-                    console.log(
-                        '[ENDED READING]',
-                        new Date(),
-                        Date.now(),
-                        recordedPath?.data?.length,
-                    );
                     setRestoredPath(recordedPath.data);
                 }
 

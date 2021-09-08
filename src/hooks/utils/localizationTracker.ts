@@ -1,3 +1,4 @@
+import { isLocationValidate } from '@src/utils/locationData';
 import {v4 as uuidv4} from 'uuid';
 
 import {transformMetersToKilometersString} from '../../utils/metersToKilometers';
@@ -30,7 +31,7 @@ export const startCurrentRoute = async (followByRoute?: string) => {
 };
 
 export const getTrackerData = (gpsData: any, averageSpeed?: string) => {
-    if (!gpsData) {
+    if (!gpsData || !isLocationValidate(gpsData)) {
         return;
     }
 
