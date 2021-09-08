@@ -766,3 +766,18 @@ export const stopWatchPostionChangeListener = async () => {
         logger.recordError(error);
     }
 };
+
+export const setConfigWithLocationPermission = async (
+    type: 'Always' | 'WhenInUse' | 'Any',
+) => {
+    try {
+        await BackgroundGeolocation.setConfig({
+            locationAuthorizationRequest: type,
+        });
+    } catch (e) {
+        console.log('[setLocationPermission - error]', e);
+        logger.log(`[setLocationPermission] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
