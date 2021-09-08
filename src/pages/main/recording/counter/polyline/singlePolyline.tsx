@@ -80,14 +80,18 @@ const SinglePolyline: React.FC<IProps> = ({
     useEffect(() => {
         let task: any;
         let t: NodeJS.Timeout;
-        if (!mountRef.current && restoredPath) {
+        if (!mountRef.current && restoredPath?.length) {
             task = InteractionManager.runAfterInteractions(() => {
                 t = setTimeout(async () => {
                     await redrawPolyline(true, restoredPath);
                     mountRef.current = true;
                 }, 500);
             });
+            return;
         }
+
+        mountRef.current = true;
+        restoreRef.current = true;
 
         return () => {
             task?.cancel();
@@ -109,7 +113,7 @@ const SinglePolyline: React.FC<IProps> = ({
     //         currentRouteId &&
     //         mountRef.current
     //     ) {
-    //         console.log('[is redrawing path]')
+    //         console.log('[is redrawing path]');
     //         task = InteractionManager.runAfterInteractions(() => {
     //             redrawPolyline();
     //         });
@@ -142,7 +146,7 @@ const SinglePolyline: React.FC<IProps> = ({
 
             setRoute(prev => [...prev, pos]);
         }
-    }, [coords]);
+    }, [coords?.coords, coords?.timestamp]);
 
     if (!route.length || !renderPath) {
         return null;
