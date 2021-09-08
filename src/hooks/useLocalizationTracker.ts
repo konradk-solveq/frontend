@@ -44,6 +44,7 @@ import {
     restoreRouteDataFromSQL,
 } from '@src/utils/routePath';
 import {ShortCoordsType} from '@src/type/coords';
+import {isLocationValidate} from '@src/utils/locationData';
 
 export interface DataI {
     distance: string;
@@ -205,6 +206,10 @@ const useLocalizationTracker = (
                     fastTimeout ? 2000 : 500,
                 ));
             if (!currentLocationData) {
+                return;
+            }
+
+            if (!isLocationValidate(currentLocationData)) {
                 return;
             }
 

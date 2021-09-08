@@ -11,6 +11,7 @@ import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
+import { isLocationValidate } from './locationData';
 
 const getTimeInUTCMilliseconds = (date: string | number) => {
     try {
@@ -334,6 +335,9 @@ export const routesDataToPersist = async (
         if (routeId !== l?.extras?.route_id) {
             return;
         }
+        if (!isLocationValidate(l)) {
+            return;
+        }
 
         if (!currRoutes.find(d => d.uuid === l.uuid)) {
             const alterTimestamp = transformTimestampToDate(
@@ -400,6 +404,9 @@ export const getRoutesDataFromSQL = async (
             return;
         }
         if (routeId !== l?.extras?.route_id) {
+            return;
+        }
+        if (!isLocationValidate(l)) {
             return;
         }
 
@@ -486,6 +493,9 @@ export const getRoutesDataFromSQLWithLastRecord = async (
             return;
         }
         if (routeId !== l?.extras?.route_id) {
+            return;
+        }
+        if (!isLocationValidate(l)) {
             return;
         }
 
