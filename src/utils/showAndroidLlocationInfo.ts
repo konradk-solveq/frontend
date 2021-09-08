@@ -7,6 +7,7 @@ import {
     askFineLocationPermission,
     checkAndroidLocationPermission,
     requestGeolocationPermission,
+    setConfigWithLocationPermission,
 } from './geolocation';
 
 export const onRecordTripActionHandler = async (
@@ -15,6 +16,8 @@ export const onRecordTripActionHandler = async (
 ) => {
     if (askPermission) {
         await requestGeolocationPermission();
+    } else {
+        await setConfigWithLocationPermission('WhenInUse');
     }
     navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
 };

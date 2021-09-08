@@ -9,6 +9,7 @@ import {
     trackerCurrentRouteAverrageSpeedSelector,
     trackerFollowedRouteIdSelector,
     trackerRouteIdSelector,
+    trackerActiveSelector
 } from '../storage/selectors/routes';
 import {
     persistCurrentRouteData,
@@ -77,6 +78,7 @@ const useLocalizationTracker = (
         trackerCurrentRouteAverrageSpeedSelector,
     );
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
+    const isTrackerActive = useAppSelector(trackerActiveSelector);
     const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
@@ -300,18 +302,18 @@ const useLocalizationTracker = (
     );
 
     useEffect(() => {
-        if (!restoredRef.current && currentRouteId) {
+        if (!restoredRef.current && currentRouteId && isTrackerActive) {
             const runInitLocationSet = async () => {
                 const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
                     currentRouteId,
                     [],
                     true,
                 );
-                const td = getTrackerData(recordedPath?.lastRecord);
+                // const td = getTrackerData(recordedPath?.lastRecord);
 
-                if (td && !trackerData) {
-                    // setInitTrackerData(td);
-                }
+                // if (td && !trackerData) {
+                //     // setInitTrackerData(td);
+                // }
                 if (recordedPath?.data?.length) {
                     setRestoredPath(recordedPath.data);
                 }
@@ -325,8 +327,7 @@ const useLocalizationTracker = (
         return () => {
             restoredRef.current = false;
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentRouteId]);
+    }, [currentRouteId, isTrackerActive]);
 
     useEffect(() => {
         if (isActive && !trackerData && initTrackerData) {
