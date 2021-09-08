@@ -68,6 +68,7 @@ const useLocalizationTracker = (
 
     const initialTrackerDataRef = useRef(false);
     const mountedRef = useRef(true);
+    const restoredRef = useRef(false);
 
     const {isTrackingActivatedHandler, locationType} = useLocationProvider();
     const {appStateVisible} = useAppState();
@@ -276,7 +277,7 @@ const useLocalizationTracker = (
     );
 
     useEffect(() => {
-        if (!trackerData && currentRouteId) {
+        if (!restoredRef.current && currentRouteId) {
             const runInitLocationSet = async () => {
                 console.log('[STARTED READING]', new Date(), Date.now());
                 const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
@@ -284,9 +285,11 @@ const useLocalizationTracker = (
                     [],
                     true,
                 );
-                const td: DataI | undefined = recordedPath?.lastRecord;
-                // const td = await getLastLocationByRoutId(currentRouteId);
-                if (td) {
+                const td: DataI | undefined = getTrackerData(
+                    recordedPath?.lastRecord,
+                );
+
+                if (td && !trackerData) {
                     setInitTrackerData(td);
                 }
                 if (recordedPath?.data?.length) {
@@ -298,6 +301,8 @@ const useLocalizationTracker = (
                     );
                     setRestoredPath(recordedPath.data);
                 }
+
+                restoredRef.current = true;
             };
 
             runInitLocationSet();

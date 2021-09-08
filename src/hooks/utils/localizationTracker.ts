@@ -30,6 +30,10 @@ export const startCurrentRoute = async (followByRoute?: string) => {
 };
 
 export const getTrackerData = (gpsData: any, averageSpeed?: string) => {
+    if (!gpsData) {
+        return;
+    }
+
     const speed = msToKH(gpsData?.coords?.speed) || DEFAULT_SPEED;
     const distance = transformMetersToKilometersString(
         gpsData?.odometer,
