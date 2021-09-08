@@ -44,10 +44,10 @@ const SinglePolyline: React.FC<IProps> = ({
     const [route, setRoute] = useState<ShortCoordsType[]>([]);
 
     const redrawPolyline = useCallback(
-        async (skipSorting: boolean, resPath?: ShortCoordsType[]) => {
+        async (skipSorting?: boolean, resPath?: ShortCoordsType[]) => {
             restoreRef.current = false;
 
-            if (!currentRouteId) {
+            if (!currentRouteId || !resPath?.length) {
                 restoreRef.current = true;
                 return;
             }
@@ -67,9 +67,9 @@ const SinglePolyline: React.FC<IProps> = ({
             }
 
             result = newRoute;
-            setRoute(result);
 
             restoreRef.current = true;
+            setRoute(result);
         },
         [currentRouteId, route],
     );
@@ -82,12 +82,11 @@ const SinglePolyline: React.FC<IProps> = ({
         let t: NodeJS.Timeout;
         if (!mountRef.current && restoredPath) {
             task = InteractionManager.runAfterInteractions(() => {
-                t = setTimeout(() => {
-                    redrawPolyline(true, restoredPath);
+                t = setTimeout(async () => {
+                    await redrawPolyline(true, restoredPath);
+                    mountRef.current = true;
                 }, 500);
             });
-
-            mountRef.current = true;
         }
 
         return () => {
