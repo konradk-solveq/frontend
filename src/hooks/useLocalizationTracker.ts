@@ -255,6 +255,9 @@ const useLocalizationTracker = (
 
             const res = getTrackerData(currentLocationData, aSpeed);
 
+            if (!res) {
+                return;
+            }
             setTrackerData(res);
             setCurrentAverageSpeed(parseFloat(aSpeed));
 
