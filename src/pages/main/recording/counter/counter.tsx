@@ -396,14 +396,18 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
      * Delay map loading because of performance issue
      */
     useEffect(() => {
-        const t = setTimeout(() => {
-            setRenderMap(true);
-        }, 2000);
+        let t: NodeJS.Timeout;
+        if (!renderMap) {
+            t = setTimeout(() => {
+                setRenderMap(true);
+            }, 2000);
+        }
 
         return () => {
+            setRenderMap(false);
             clearTimeout(t);
         };
-    }, []);
+    }, [renderMap]);
 
     // kompas mapy - przeniesiony z mapy, żby spuścić do innych komponentów
     const compasHeadingdRef = useRef(0);

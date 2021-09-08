@@ -3,7 +3,7 @@ import {I18n} from '../../../I18n/I18n';
 
 export const showAndroidLocationAlert = async (
     leftActionCallback: () => void,
-    rightActionCallback: () => void,
+    rightActionCallback: () => Promise<void>,
 ) => {
     const trans: any = I18n.t('Geolocation.locationPermission');
 
@@ -14,7 +14,7 @@ export const showAndroidLocationAlert = async (
         },
         {
             text: trans.rightButton,
-            onPress: () => rightActionCallback(),
+            onPress: async () => await rightActionCallback(),
         },
     ]);
 };
