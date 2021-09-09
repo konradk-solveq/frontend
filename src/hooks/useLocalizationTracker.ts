@@ -314,7 +314,11 @@ const useLocalizationTracker = (
             };
 
             runInitLocationSet();
+
+            return;
         }
+
+        restoredRef.current = true;
 
         return () => {
             restoredRef.current = false;
