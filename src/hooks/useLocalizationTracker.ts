@@ -215,7 +215,7 @@ const useLocalizationTracker = (
                     fastTimeout ? 3 : undefined,
                     undefined,
                     fastTimeout ? true : false,
-                    fastTimeout ? 5 : 15,
+                    fastTimeout ? 3 : 15,
                     fastTimeout ? 2000 : 500,
                 ));
 
