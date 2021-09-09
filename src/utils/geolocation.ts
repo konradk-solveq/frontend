@@ -2,7 +2,6 @@ import {Platform} from 'react-native';
 import BackgroundGeolocation, {
     Location,
     LocationError,
-    ProviderChangeEvent,
 } from 'react-native-background-geolocation-android';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {
