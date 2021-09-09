@@ -71,8 +71,7 @@ const useLocalizationTracker = (
     const mountedRef = useRef(true);
     const restoredRef = useRef(false);
 
-    const {isTrackingActivatedHandler, locationType} = useLocationProvider();
-    const {appStateVisible} = useAppState();
+    const {isTrackingActivatedHandler} = useLocationProvider();
 
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
@@ -98,21 +97,6 @@ const useLocalizationTracker = (
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    // const onPersistData = useCallback(
-    //     async (d: number) => {
-    //         if (d - lastDistance < 1500) {
-    //             return;
-    //         }
-
-    //         dispatch(persistCurrentRouteData());
-    //         if (averageSpeed) {
-    //             dispatch(setAverageSpeed(averageSpeed));
-    //         }
-    //         setLastDistance(d);
-    //     },
-    //     [dispatch, lastDistance, averageSpeed],
-    // );
 
     const stopTracker = useCallback(
         async (omitPersist?: boolean) => {
@@ -172,7 +156,7 @@ const useLocalizationTracker = (
                 routeID,
                 keep,
             );
-console.log('[get state]', startedState)
+
             if (!startedState?.enabled) {
                 await stopTracker(true);
             }
@@ -342,19 +326,6 @@ console.log('[get state]', startedState)
             setTrackerData(initTrackerData);
         }
     }, [isActive, initTrackerData, trackerData]);
-
-    useEffect(() => {
-        if (
-            appStateVisible === 'background' &&
-            isActive &&
-            initialTrackerDataRef.current
-        ) {
-            if (locationType === locationTypeEnum.ALWAYS) {
-                stopWatchPostionChangeListener();
-                console.log('[STOP WATCH POSITION LISTENER]');
-            }
-        }
-    }, [appStateVisible, isActive, locationType]);
 
     useEffect(() => {
         if (isActive) {

@@ -2,6 +2,7 @@ import {Platform} from 'react-native';
 import BackgroundGeolocation, {
     Location,
     LocationError,
+    ProviderChangeEvent,
 } from 'react-native-background-geolocation-android';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {
@@ -189,9 +190,6 @@ export const startBackgroundGeolocation = async (
     keep?: boolean,
 ) => {
     try {
-        if (!keep) {
-            await BackgroundGeolocation.resetOdometer();
-        }
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: false,
             startOnBoot: true,
@@ -205,6 +203,10 @@ export const startBackgroundGeolocation = async (
             },
         });
         const state = await startBackgroundGeolocationPlugin(true);
+
+        if (!keep) {
+            BackgroundGeolocation.resetOdometer();
+        }
         setTimeout(async () => {
             await resumeTracingLocation();
         }, 1000);
@@ -777,6 +779,17 @@ export const setConfigWithLocationPermission = async (
     } catch (e) {
         console.log('[setLocationPermission - error]', e);
         logger.log(`[setLocationPermission] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const resetOdometer = async () => {
+    try {
+        await BackgroundGeolocation.resetOdometer();
+    } catch (e) {
+        console.log('[resetOdometer - error]', e);
+        logger.log(`[resetOdometer] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }

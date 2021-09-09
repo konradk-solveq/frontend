@@ -250,13 +250,13 @@ const useProviderStaticLocation = () => {
         }
 
         return () => {
-            // if (locationType === locationTypeEnum.WHEN_IN_USE) {
-            clearTimeout(t);
-            clearInterval(interval);
-            console.log(
-                '[=== STATIIC LOCATION PROVIDER -- cleanup interval finished ===]',
-            );
-            // }
+            if (locationType === locationTypeEnum.WHEN_IN_USE) {
+                clearTimeout(t);
+                clearInterval(interval);
+                console.log(
+                    '[=== STATIIC LOCATION PROVIDER -- cleanup interval finished ===]',
+                );
+            }
         };
     }, [
         isOnboardingFinished,
