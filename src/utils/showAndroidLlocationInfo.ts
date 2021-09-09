@@ -1,4 +1,5 @@
 import {Dispatch} from 'redux';
+import BackgroundGeolocation from 'react-native-background-geolocation-android';
 
 import {RegularStackRoute} from '../navigation/route';
 import {showAndroidLocationAlert} from '../sharedComponents/alerts/androidLocationInfoAlert';
@@ -7,6 +8,7 @@ import {
     askFineLocationPermission,
     checkAndroidLocationPermission,
     requestGeolocationPermission,
+    setConfigWithLocationPermission,
 } from './geolocation';
 
 export const onRecordTripActionHandler = async (
@@ -14,7 +16,12 @@ export const onRecordTripActionHandler = async (
     askPermission?: boolean,
 ) => {
     if (askPermission) {
-        await requestGeolocationPermission();
+        await setConfigWithLocationPermission('Always');
+        const perm = await requestGeolocationPermission();
+
+        if (perm !== BackgroundGeolocation.AUTHORIZATION_STATUS_ALWAYS) {
+            await setConfigWithLocationPermission('WhenInUse');
+        }
     }
     navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
 };

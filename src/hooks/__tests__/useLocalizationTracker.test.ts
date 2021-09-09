@@ -5,6 +5,7 @@ import {hookWrapper} from '../../../jest/utils/render';
 import asyncEvent from '../../../jest/utils/asyncEvent';
 import {trackerDataResult} from './utils/trackerDataResult';
 import {renderHookType} from './utils/renderedHook';
+import {act} from 'react-test-renderer';
 
 let renderedHook: renderHookType;
 
@@ -15,9 +16,9 @@ describe('[useLocalizationTracker]', () => {
             {wrapper: hookWrapper},
         );
 
-        await waitForNextUpdate();
+        await act(async () => await waitForNextUpdate());
 
-        await asyncEvent(result.current.startTracker());
+        await act(async () => await result.current.startTracker());
 
         expect(result.current.isActive).toBe(true);
     }, 5000);

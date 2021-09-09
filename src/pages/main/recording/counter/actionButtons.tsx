@@ -9,6 +9,7 @@ interface IProps {
     rightBtnTitle: string;
     rightBtnCallback: () => void;
     disabled?: boolean;
+    loading?: boolean;
 }
 
 const ActionButtons: React.FC<IProps> = ({
@@ -17,6 +18,7 @@ const ActionButtons: React.FC<IProps> = ({
     rightBtnTitle,
     rightBtnCallback,
     disabled,
+    loading,
 }: IProps) => {
     return (
         <View style={styles.bottons}>
@@ -33,6 +35,7 @@ const ActionButtons: React.FC<IProps> = ({
                     title={rightBtnTitle}
                     onpress={rightBtnCallback}
                     disabled={!!disabled}
+                    withLoader={loading}
                 />
             </View>
         </View>

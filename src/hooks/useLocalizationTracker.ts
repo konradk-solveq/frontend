@@ -9,6 +9,7 @@ import {
     trackerCurrentRouteAverrageSpeedSelector,
     trackerFollowedRouteIdSelector,
     trackerRouteIdSelector,
+    trackerActiveSelector,
 } from '../storage/selectors/routes';
 import {
     persistCurrentRouteData,
@@ -70,13 +71,13 @@ const useLocalizationTracker = (
     const mountedRef = useRef(true);
     const restoredRef = useRef(false);
 
-    const {isTrackingActivatedHandler, locationType} = useLocationProvider();
-    const {appStateVisible} = useAppState();
+    const {isTrackingActivatedHandler} = useLocationProvider();
 
     const currentRouteAverrageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
     );
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
+    const isTrackerActive = useAppSelector(trackerActiveSelector);
     const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
@@ -85,6 +86,7 @@ const useLocalizationTracker = (
     const [averageSpeed, setCurrentAverageSpeed] = useState<
         number | undefined
     >();
+    const [processing, setProcessing] = useState(false);
 
     const [restoredPath, setRestoredPath] = useState<ShortCoordsType[]>([]);
 
@@ -96,23 +98,9 @@ const useLocalizationTracker = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // const onPersistData = useCallback(
-    //     async (d: number) => {
-    //         if (d - lastDistance < 1500) {
-    //             return;
-    //         }
-
-    //         dispatch(persistCurrentRouteData());
-    //         if (averageSpeed) {
-    //             dispatch(setAverageSpeed(averageSpeed));
-    //         }
-    //         setLastDistance(d);
-    //     },
-    //     [dispatch, lastDistance, averageSpeed],
-    // );
-
     const stopTracker = useCallback(
         async (omitPersist?: boolean) => {
+            setProcessing(true);
             dispatch(stopCurrentRoute(omitPersist));
             deactivateKeepAwake();
             if (!omitPersist) {
@@ -122,21 +110,30 @@ const useLocalizationTracker = (
             const state = await stopBackgroundGeolocation();
             if (!state || !state?.enabled) {
                 setIsActive(false);
+                isTrackingActivatedHandler(false);
             }
 
-            isTrackingActivatedHandler(false);
+            setProcessing(false);
         },
         [dispatch, isTrackingActivatedHandler],
     );
 
     const startTracker = useCallback(
-        async (keep?: boolean, routeIdToFollow?: string) => {
+        async (
+            keep?: boolean,
+            routeIdToFollow?: string,
+            skipProcessing?: boolean,
+        ) => {
+            if (!skipProcessing) {
+                setProcessing(true);
+            }
+
             speed = [];
             /* TODO: error */
             const state = await getBackgroundGeolocationState();
 
             if (state?.enabled && !keep) {
-                // await stopTracker();
+                // await stopTracker(false, true);
             }
 
             setIsActive(true);
@@ -150,12 +147,25 @@ const useLocalizationTracker = (
             const currRoute = await startCurrentRoute(routeIdToFollow);
             const routeID =
                 keep && currentRouteId ? currentRouteId : currRoute.id;
-            await startBackgroundGeolocation(routeID, keep);
+
             if (!keep) {
                 dispatch(startRecordingRoute(currRoute, keep));
             }
+
+            const startedState = await startBackgroundGeolocation(
+                routeID,
+                keep,
+            );
+
+            if (!startedState?.enabled) {
+                await stopTracker(true);
+            }
+
+            if (!skipProcessing) {
+                setProcessing(false);
+            }
         },
-        [dispatch, currentRouteId, isTrackingActivatedHandler],
+        [dispatch, currentRouteId, isTrackingActivatedHandler, stopTracker],
     );
 
     const onPauseTracker = useCallback(async () => {
@@ -178,6 +188,8 @@ const useLocalizationTracker = (
     }, []);
 
     useEffect(() => {
+        mountedRef.current = true;
+
         return () => {
             mountedRef.current = false;
         };
@@ -206,6 +218,7 @@ const useLocalizationTracker = (
                     fastTimeout ? 3 : 15,
                     fastTimeout ? 2000 : 500,
                 ));
+
             if (!currentLocationData) {
                 return;
             }
@@ -258,6 +271,7 @@ const useLocalizationTracker = (
             if (!res) {
                 return;
             }
+
             setTrackerData(res);
             setCurrentAverageSpeed(parseFloat(aSpeed));
 
@@ -280,47 +294,43 @@ const useLocalizationTracker = (
     );
 
     useEffect(() => {
-        if (!restoredRef.current && currentRouteId) {
+        if (!restoredRef.current && currentRouteId && isTrackerActive) {
             const runInitLocationSet = async () => {
                 const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
                     currentRouteId,
                     [],
                     true,
                 );
-                const td = getTrackerData(recordedPath?.lastRecord);
 
-                if (td && !trackerData) {
-                    setInitTrackerData(td);
-                }
                 if (recordedPath?.data?.length) {
                     setRestoredPath(recordedPath.data);
+                }
+
+                if (!trackerData) {
+                    setCurrentTrackerData(true);
                 }
 
                 restoredRef.current = true;
             };
 
             runInitLocationSet();
+
+            return;
         }
-    }, [currentRouteId, trackerData]);
+
+        restoredRef.current = true;
+
+        return () => {
+            // restoredRef.current = false;
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentRouteId, isTrackerActive]);
 
     useEffect(() => {
         if (isActive && !trackerData && initTrackerData) {
             setTrackerData(initTrackerData);
         }
     }, [isActive, initTrackerData, trackerData]);
-
-    useEffect(() => {
-        if (
-            appStateVisible === 'background' &&
-            isActive &&
-            initialTrackerDataRef.current
-        ) {
-            if (locationType === locationTypeEnum.ALWAYS) {
-                stopWatchPostionChangeListener();
-                console.log('[STOP WATCH POSITION LISTENER]');
-            }
-        }
-    }, [appStateVisible, isActive, locationType]);
 
     useEffect(() => {
         if (isActive) {
@@ -332,10 +342,8 @@ const useLocalizationTracker = (
                 setCurrentTrackerData(undefined, location);
                 setInitTrackerData(undefined);
             };
-            if (
-                appStateVisible === 'active' &&
-                !initialTrackerDataRef.current
-            ) {
+
+            if (!initialTrackerDataRef.current) {
                 onWatchPostionChangeListener(setLocation);
             }
         }
@@ -343,7 +351,7 @@ const useLocalizationTracker = (
         return () => {
             initialTrackerDataRef.current = false;
         };
-    }, [isActive, setCurrentTrackerData, appStateVisible]);
+    }, [isActive, setCurrentTrackerData]);
 
     useEffect(() => {
         if (isActive) {
@@ -372,6 +380,7 @@ const useLocalizationTracker = (
         setCurrentTrackerData,
         currentRouteId,
         restoredPath,
+        processing,
     };
 };
 

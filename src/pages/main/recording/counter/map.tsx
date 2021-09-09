@@ -91,6 +91,10 @@ const Map: React.FC<IProps> = ({
     );
 
     useEffect(() => {
+        if (!mountedRef.current) {
+            return;
+        }
+
         const loc = async () => {
             if (globalLocation) {
                 setLocaion(globalLocation);
@@ -201,7 +205,9 @@ const Map: React.FC<IProps> = ({
     ]);
 
     useEffect(() => {
-        setMapCamera();
+        if (mountedRef.current) {
+            setMapCamera();
+        }
     }, [setMapCamera]);
 
     const cameraInitObj = {
