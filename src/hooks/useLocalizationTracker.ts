@@ -301,13 +301,13 @@ const useLocalizationTracker = (
                     [],
                     true,
                 );
-                // const td = getTrackerData(recordedPath?.lastRecord);
 
-                // if (td && !trackerData) {
-                //     // setInitTrackerData(td);
-                // }
                 if (recordedPath?.data?.length) {
                     setRestoredPath(recordedPath.data);
+                }
+
+                if (!trackerData) {
+                    setCurrentTrackerData(true);
                 }
 
                 restoredRef.current = true;
