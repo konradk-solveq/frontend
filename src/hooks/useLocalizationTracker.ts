@@ -321,8 +321,9 @@ const useLocalizationTracker = (
         restoredRef.current = true;
 
         return () => {
-            restoredRef.current = false;
+            // restoredRef.current = false;
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentRouteId, isTrackerActive]);
 
     useEffect(() => {
