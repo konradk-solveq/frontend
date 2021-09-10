@@ -7,6 +7,7 @@ import {
     ViewStyle,
     TouchableOpacity as TouchableOpacityRN,
     Platform,
+    ActivityIndicator,
 } from 'react-native';
 import {TouchableOpacity as TouchableOpacityIOS} from 'react-native-gesture-handler';
 
@@ -19,6 +20,7 @@ interface Props {
     style?: ViewStyle;
     textStyle?: TextStyle;
     disabled?: boolean;
+    withLoader?: boolean;
     neutralCase?: boolean;
     testID?: string;
 }
@@ -29,7 +31,7 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#d8232a',
+            backgroundColor: !props.disabled ? '#d8232a' : '#db4f54',
             width: '100%',
             height: '100%',
             borderRadius: 50,
@@ -49,11 +51,17 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
                 onPress={props.onpress}
                 disabled={props.disabled}
                 testID={props.testID || 'big-red-btn'}>
-                <Text style={[styles.text, props.textStyle]}>
-                    {props.neutralCase
-                        ? props.title
-                        : props.title.toUpperCase()}
-                </Text>
+                <>
+                    {!props.withLoader ? (
+                        <Text style={[styles.text, props.textStyle]}>
+                            {props.neutralCase
+                                ? props.title
+                                : props.title.toUpperCase()}
+                        </Text>
+                    ) : (
+                        <ActivityIndicator size="small" color="white" />
+                    )}
+                </>
             </TouchableOpacity>
         </View>
     );

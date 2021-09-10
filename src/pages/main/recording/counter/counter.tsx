@@ -107,6 +107,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         followedRouteId,
         isActive,
         restoredPath,
+        processing,
     } = useLocalizationTracker(true, true);
 
     const [mapHiden, setMapHiden] = useState(true);
@@ -392,6 +393,22 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         dispatch(setRouteMapVisibility(!state));
     };
 
+    /**
+     * Delay map loading because of performance issue
+     */
+    useEffect(() => {
+        let t: NodeJS.Timeout;
+        if (!renderMap) {
+            t = setTimeout(() => {
+                setRenderMap(true);
+            }, 2000);
+        }
+
+        return () => {
+            clearTimeout(t);
+        };
+    }, [renderMap]);
+
     // kompas mapy - przeniesiony z mapy, żby spuścić do innych komponentów
     const compasHeadingdRef = useRef(0);
 
@@ -524,7 +541,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         leftBtnCallback={heandleLeftBtnClick}
                         rightBtnTitle={rightBtnTile}
                         rightBtnCallback={heandleRightBtnClick}
-                        disabled={!!isTrackerLoading}
+                        disabled={processing}
+                        loading={processing}
                     />
 
                     <CounterDataContext.Provider

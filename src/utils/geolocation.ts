@@ -189,9 +189,6 @@ export const startBackgroundGeolocation = async (
     keep?: boolean,
 ) => {
     try {
-        if (!keep) {
-            await BackgroundGeolocation.resetOdometer();
-        }
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: false,
             startOnBoot: true,
@@ -205,6 +202,10 @@ export const startBackgroundGeolocation = async (
             },
         });
         const state = await startBackgroundGeolocationPlugin(true);
+
+        if (!keep) {
+            BackgroundGeolocation.resetOdometer();
+        }
         setTimeout(async () => {
             await resumeTracingLocation();
         }, 1000);
@@ -234,7 +235,7 @@ export const stopBackgroundGeolocation = async () => {
 
         const state = await stopBackgroundGeolocationPlugin();
         if (state?.odometer && state?.odometer > 0) {
-            await BackgroundGeolocation.resetOdometer();
+            BackgroundGeolocation.resetOdometer();
         }
 
         return state;
@@ -762,6 +763,32 @@ export const stopWatchPostionChangeListener = async () => {
     } catch (e) {
         console.log('[stopWatchPostionChangeListener - error]', e);
         logger.log(`[stopWatchPostionChangeListener] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const setConfigWithLocationPermission = async (
+    type: 'Always' | 'WhenInUse' | 'Any',
+) => {
+    try {
+        await BackgroundGeolocation.setConfig({
+            locationAuthorizationRequest: type,
+        });
+    } catch (e) {
+        console.log('[setLocationPermission - error]', e);
+        logger.log(`[setLocationPermission] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+    }
+};
+
+export const resetOdometer = async () => {
+    try {
+        await BackgroundGeolocation.resetOdometer();
+    } catch (e) {
+        console.log('[resetOdometer - error]', e);
+        logger.log(`[resetOdometer] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
     }
