@@ -1,4 +1,6 @@
-import {Location} from '@interfaces/geolocation';
+import {Location, LocationDataI} from '@interfaces/geolocation';
+import {ShortCoordsType} from '@src/type/coords';
+import {getTimeInUTCMilliseconds} from './transformData';
 
 export const isLocationValidate = (location: Location) => {
     const latitude = location?.coords?.latitude;
@@ -81,4 +83,148 @@ export const getHaversineDistance = (coord1: CoordType, coord2: CoordType) => {
         Math.cos(lat1) * Math.cos(lat2) * haversine(lon2 - lon1);
 
     return 2 * R * Math.asin(Math.sqrt(ht));
+};
+
+/**
+ * Function removes extreme points from coords array.
+ * Point can't be collected faster than 70m/1s
+ * and cannot be longer than 1000m (measured from previous point)
+ *
+ * @param coords
+ * @returns
+ */
+export const removeExtremes = (coords: ShortCoordsType[]) => {
+    const filtered: ShortCoordsType[] = [];
+
+    let indexToRemove = null;
+    try {
+        for (let index = 0; index < coords.length; ) {
+            const l = coords?.[index];
+            const l2 = coords?.[index + 1];
+            if (!l || !l2) {
+                index++;
+                continue;
+            }
+
+            const d1 = getHaversineDistance(l, l2);
+            const t1 = getTimeInUTCMilliseconds(l.timestamp, true);
+            const t2 = getTimeInUTCMilliseconds(l2.timestamp, true);
+            const t = Math.abs(t2 - t1);
+            const tIsToLow = t <= 1000;
+
+            /**
+             * Distans shouldn't be longer than 50m per 1s
+             */
+            if (d1 && d1 > 50 && tIsToLow) {
+                const l3 = coords?.[index + 2];
+
+                if (l3) {
+                    /**
+                     * Remove if distance is extremly big
+                     */
+                    if (d1 > 1000) {
+                        indexToRemove = index + 1;
+
+                        index++;
+                        continue;
+                    }
+
+                    const d2 = getHaversineDistance(l2, l3);
+                    const t3 = getTimeInUTCMilliseconds(l3.timestamp, true);
+                    const tN = Math.abs(t3 - t2);
+                    const tNIsToLow = tN <= 1000;
+                    if (d2 && d2 > 50 && tNIsToLow) {
+                        indexToRemove = index + 1;
+
+                        index++;
+                        continue;
+                    }
+                }
+            }
+
+            if (!indexToRemove || indexToRemove !== index) {
+                indexToRemove = null;
+                filtered.push(l);
+            }
+
+            index++;
+        }
+
+        return filtered;
+    } catch (error) {
+        console.warn('[removeExtremes - error]', error);
+        return coords;
+    }
+};
+
+/**
+ * Function removes extreme points from coords array.
+ * Point can't be collected faster than 70m/1s
+ * and cannot be longer than 1000m (measured from previous point)
+ *
+ * @param coords
+ * @returns
+ */
+export const removeExtremeLocations = (coords: LocationDataI[]) => {
+    const filtered: LocationDataI[] = [];
+
+    let indexToRemove = null;
+    try {
+        for (let index = 0; index < coords.length; ) {
+            const l = coords?.[index];
+            const l2 = coords?.[index + 1];
+            if (!l || !l2) {
+                index++;
+                continue;
+            }
+
+            const d1 = getHaversineDistance(l?.coords, l2?.coords);
+            const t1 = getTimeInUTCMilliseconds(l.timestamp, true);
+            const t2 = getTimeInUTCMilliseconds(l2.timestamp, true);
+            const t = Math.abs(t2 - t1);
+            const tIsToLow = t <= 1000;
+
+            /**
+             * Distans shouldn't be longer than 50m per 1s
+             */
+            if (d1 && d1 > 50 && tIsToLow) {
+                const l3 = coords?.[index + 2];
+
+                if (l3) {
+                    /**
+                     * Remove if distance is extremly big
+                     */
+                    if (d1 > 1000) {
+                        indexToRemove = index + 1;
+
+                        index++;
+                        continue;
+                    }
+
+                    const d2 = getHaversineDistance(l2?.coords, l3?.coords);
+                    const t3 = getTimeInUTCMilliseconds(l3.timestamp, true);
+                    const tN = Math.abs(t3 - t2);
+                    const tNIsToLow = tN <= 1000;
+                    if (d2 && d2 > 50 && tNIsToLow) {
+                        indexToRemove = index + 1;
+
+                        index++;
+                        continue;
+                    }
+                }
+            }
+
+            if (!indexToRemove || indexToRemove !== index) {
+                indexToRemove = null;
+                filtered.push(l);
+            }
+
+            index++;
+        }
+
+        return filtered;
+    } catch (error) {
+        console.warn('[removeExtremes - error]', error);
+        return coords;
+    }
 };

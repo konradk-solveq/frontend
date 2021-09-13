@@ -11,14 +11,27 @@ import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
-import {getHaversineDistance, isLocationValidate} from './locationData';
+import {
+    getHaversineDistance,
+    isLocationValidate,
+    removeExtremeLocations,
+    removeExtremes,
+} from './locationData';
 
-const getTimeInUTCMilliseconds = (date: string | number) => {
-    try {
-        return new Date(date).valueOf();
-    } catch (error) {
-        return date;
+export const getTimeInUTCMilliseconds = (
+    date: string | number,
+    returnAsNumber?: boolean,
+) => {
+    // try {
+    const time = new Date(date).valueOf();
+    if (returnAsNumber && typeof time === 'string') {
+        return parseInt(time, 10);
     }
+
+    return time;
+    //     } catch (error) {
+    //         return date;
+    //     }
 };
 
 export const transfromToBikeDescription = (
@@ -391,10 +404,9 @@ export const routesDataToPersist = async (
     });
 
     const sorted = currRoutes.sort((a, b) => {
-        if (
-            getTimeInUTCMilliseconds(a.timestamp) ===
-            getTimeInUTCMilliseconds(b.timestamp)
-        ) {
+        const timeA = getTimeInUTCMilliseconds(a.timestamp);
+        const timeB = getTimeInUTCMilliseconds(b.timestamp);
+        if (timeA === timeB) {
             if (a.coords.latitude === b.coords.latitude) {
                 if (a.coords.longitude === b.coords.longitude) {
                     return 0;
@@ -406,13 +418,12 @@ export const routesDataToPersist = async (
             return a.coords.latitude < b.coords.latitude ? -1 : 1;
         }
 
-        return getTimeInUTCMilliseconds(a.timestamp) <
-            getTimeInUTCMilliseconds(b.timestamp)
-            ? -1
-            : 1;
+        return timeA < timeB ? -1 : 1;
     });
 
-    return sorted;
+    const cleanedArr = removeExtremeLocations(sorted);
+
+    return cleanedArr;
 };
 
 export const getRoutesDataFromSQL = async (
@@ -463,10 +474,9 @@ export const getRoutesDataFromSQL = async (
     });
 
     const sorted = currRoutes.sort((a, b) => {
-        if (
-            getTimeInUTCMilliseconds(a.timestamp) ===
-            getTimeInUTCMilliseconds(b.timestamp)
-        ) {
+        const timeA = getTimeInUTCMilliseconds(a.timestamp);
+        const timeB = getTimeInUTCMilliseconds(b.timestamp);
+        if (timeA === timeB) {
             if (a.latitude === b.latitude) {
                 if (a.longitude === b.longitude) {
                     return 0;
@@ -477,13 +487,12 @@ export const getRoutesDataFromSQL = async (
 
             return a.latitude < b.latitude ? -1 : 1;
         }
-        return getTimeInUTCMilliseconds(a.timestamp) <
-            getTimeInUTCMilliseconds(b.timestamp)
-            ? -1
-            : 1;
+        return timeA < timeB ? -1 : 1;
     });
 
-    return sorted;
+    const cleanedArr = removeExtremes(sorted);
+
+    return cleanedArr;
 };
 
 export const getImageToDisplay = (images: ImagesUrlsToDisplay) => {
@@ -553,10 +562,9 @@ export const getRoutesDataFromSQLWithLastRecord = async (
     });
 
     const sorted = currRoutes.sort((a, b) => {
-        if (
-            getTimeInUTCMilliseconds(a.timestamp) ===
-            getTimeInUTCMilliseconds(b.timestamp)
-        ) {
+        const timeA = getTimeInUTCMilliseconds(a.timestamp);
+        const timeB = getTimeInUTCMilliseconds(b.timestamp);
+        if (timeA === timeB) {
             if (a.latitude === b.latitude) {
                 if (a.longitude === b.longitude) {
                     return 0;
@@ -567,14 +575,13 @@ export const getRoutesDataFromSQLWithLastRecord = async (
 
             return a.latitude < b.latitude ? -1 : 1;
         }
-        return getTimeInUTCMilliseconds(a.timestamp) <
-            getTimeInUTCMilliseconds(b.timestamp)
-            ? -1
-            : 1;
+        return timeA < timeB ? -1 : 1;
     });
 
+    const cleanedArr = removeExtremes(sorted);
+
     return {
-        data: sorted,
+        data: cleanedArr,
         lastRecord: isLocationValidate(lastRecord) ? lastRecord : undefined,
     };
 };
