@@ -15,7 +15,6 @@ import {
 } from '../../../../storage/selectors/map';
 
 import FirstTile from '../components/tiles/firstTile';
-import SecondTile from '../components/tiles/secondTile';
 import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../../sharedComponents/loader/loader';
@@ -87,19 +86,6 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                 return (
                     <View style={styles.tileWrapper}>
                         <FirstTile
-                            mapData={item}
-                            images={images}
-                            onPress={onPressHandler}
-                            onPressTile={onPressTileHandler}
-                            tilePressable
-                        />
-                    </View>
-                );
-            }
-            if (index === 1) {
-                return (
-                    <View style={[styles.tileWrapper, lastItemStyle]}>
-                        <SecondTile
                             mapData={item}
                             images={images}
                             onPress={onPressHandler}

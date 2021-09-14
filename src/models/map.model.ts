@@ -273,13 +273,18 @@ export class Map {
     }
 
     public get mapDescription(): string {
+        console.log('[1]')
         if (version < '1.4.0') {
+            console.log('[2]')
+            console.log('[2]')
             return this.mapDescriptionLong;
         }
-
+        console.log('[typof]', typeof this.description)
         if (typeof this?.description === 'string') {
+            console.log('[3]')
             return this.description;
         }
+        console.log('[4]')
 
         return '';
     }
