@@ -121,7 +121,8 @@ const FirstTile: React.FC<IProps> = ({
                             <Text
                                 numberOfLines={1}
                                 style={styles.localizationDescription}>
-                                {mapData?.description?.short || ''}
+                                {mapData.mapDescription ||
+                                    mapData.mapDescriptionShort}
                             </Text>
                         </View>
                         <View style={styles.borderLine} />

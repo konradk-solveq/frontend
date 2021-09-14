@@ -14,6 +14,7 @@ import {simplyTimer} from '../helpers/stringFoo';
 import {getDateString} from '../utils/dateTime';
 import {transformMetersToKilometersString} from '../utils/metersToKilometers';
 import validationRules from '../utils/validation/validationRules';
+import {version} from '../../package.json';
 
 export const publishMapValidationRules = {
     name: [
@@ -76,6 +77,9 @@ export interface Images {
     variants: ImagesVariants;
 }
 
+/**
+ * Legacy properties. They haven't exists since version 1.4.0 for new objects.
+ */
 export type MapDescriptionType = {
     short?: string;
     long?: string;
@@ -187,7 +191,7 @@ export class Map {
 
     @IsOptional()
     @IsArray()
-    public description?: MapDescriptionType;
+    public description?: MapDescriptionType | string;
 
     @IsOptional()
     @IsString()
@@ -266,6 +270,34 @@ export class Map {
 
     public get createdAtDateString(): string {
         return getDateString(new Date(this.createdAt));
+    }
+
+    public get mapDescription(): string {
+        if (version < '1.4.0') {
+            return this.mapDescriptionLong;
+        }
+
+        if (typeof this?.description === 'string') {
+            return this.description;
+        }
+
+        return '';
+    }
+
+    public get mapDescriptionShort(): string {
+        if (typeof this?.description === 'string') {
+            return '';
+        }
+
+        return this?.description?.short || '';
+    }
+
+    public get mapDescriptionLong(): string {
+        if (typeof this?.description === 'string') {
+            return '';
+        }
+
+        return this?.description?.long || '';
     }
 }
 
