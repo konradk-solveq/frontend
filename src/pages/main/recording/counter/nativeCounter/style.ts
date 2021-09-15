@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
         width: getHorizontalPx(414),
         backgroundColor: '#fff',
         zIndex: 1,
+
     },
     findMeWrap: {
         position: 'absolute',
