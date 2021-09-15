@@ -10,8 +10,15 @@ export type RootStackType = {
         activeTab: RouteMapType;
         private?: boolean;
         favourite?: boolean;
+        featured?: boolean;
     };
-    RouteDetails: {mapID: string; private?: boolean; favourite?: boolean};
+    RouteDetails: {
+        mapID: string;
+        sectionID?: string;
+        private?: boolean;
+        favourite?: boolean;
+        featured?: boolean;
+    };
 };
 
 export type WorldRouteType = RouteProp<RootStackType, 'World'>;

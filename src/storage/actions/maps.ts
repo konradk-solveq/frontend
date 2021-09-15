@@ -1,13 +1,18 @@
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '@storage/thunk';
-import {MapType} from '@models/map.model';
+import {FeaturedMapType, MapType} from '@models/map.model';
 import {AppState} from '@storage/reducers/app';
 import {MapsState} from '@storage/reducers/maps';
 import {RouteMapType} from '@models/places.model';
-import {ImagesMetadataType, MapPagination} from '@interfaces/api';
+import {
+    ImagesMetadataType,
+    MapPagination,
+    NestedPaginationType,
+} from '@interfaces/api';
 import {MapFormDataResult, PickedFilters} from '@interfaces/form';
 import {
     editPrivateMapMetadataService,
+    getFeaturedMapsListService,
     getMapsList,
     getPrivateMapsListService,
     modifyReactionService,
@@ -60,6 +65,15 @@ export const setPlannedMapsData = (
     type: actionTypes.SET_PLANNED_MAPS_DATA,
     plannedMaps: plannedMaps,
     paginationCoursor: paginationCoursor,
+    refresh: refresh,
+});
+
+export const setFeaturedMapsData = (
+    featuredMaps: FeaturedMapType[],
+    refresh: boolean,
+) => ({
+    type: actionTypes.SET_FEATURED_MAPS_DATA,
+    featuredMaps: featuredMaps,
     refresh: refresh,
 });
 
@@ -450,5 +464,40 @@ export const modifyReaction = (
         dispatch(fetchPrivateMapsList());
     } catch (error) {
         loggError(error, 'modifyReaction');
+    }
+};
+
+export const fetchFeaturedMapsList = (
+    page?: string,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    dispatch(setLoadingState(true));
+    try {
+        const {location}: AppState = getState().app;
+        if (!location?.latitude || !location.longitude) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
+
+        const response = await getFeaturedMapsListService(location, page);
+
+        if (response.error || !response.data || !response.data?.length) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        const refresh = !page;
+        dispatch(setFeaturedMapsData(response.data, refresh));
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        console.log(`[fetchFeaturedMapsList] - ${error}`);
+        logger.log(`[fetchFeaturedMapsList] - ${error}`);
+        const err = convertToApiError(error);
+        logger.recordError(err);
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
     }
 };
