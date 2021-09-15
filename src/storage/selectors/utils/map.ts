@@ -5,6 +5,10 @@ export const getMapFromFeaturedSections = (
     mapID: string,
 ) => {
     let mapToReturn: MapType | undefined;
+    if (!mapData?.length) {
+        return;
+    }
+
     for (let fm of mapData) {
         const el = fm?.routes?.elements?.find(m => m.id === mapID);
         if (el) {

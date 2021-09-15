@@ -7,6 +7,7 @@ import {MapPagination, NestedPaginationType} from '../../interfaces/api';
 import {RouteMapType} from '../../models/places.model';
 import {updateReactionsInMap} from '@utils/mapsData';
 import {NestedTotalMapsType} from '@src/type/maps';
+import {mergeFeaturedMapsListData} from './utils/maps';
 
 export interface MapsState {
     maps: MapType[];
@@ -134,99 +135,23 @@ const mapsReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.SET_FEATURED_MAPS_DATA: {
-            let newFeaturedMaps = [...state.featuredMaps];
+            const oldState = {
+                oldFeaturedMaps: [...state.featuredMaps],
+                oldPaginationCoursorFeatured: [
+                    ...state.paginationCoursorFeatured,
+                ],
+                oldTotalFeaturedMaps: [...state.totalFeaturedMaps],
+            };
 
-            let paginationCoursorFeatured: NestedPaginationType[] =
-                state.paginationCoursorFeatured;
-            let totalFeaturedMaps: NestedTotalMapsType[] =
-                state.totalFeaturedMaps;
+            const updatedState = mergeFeaturedMapsListData(action, oldState);
 
-            if (action.refresh) {
-                newFeaturedMaps = action.featuredMaps;
-                paginationCoursorFeatured = [];
-                totalFeaturedMaps = [];
-
-                // newFeaturedMaps.forEach(c => {
-                //     paginationCoursorFeatured.push({
-                //         id: c?.section?.id,
-                //         pagination: c?.routes?.links,
-                //     });
-
-                //     totalFeaturedMaps.push({
-                //         id: c?.section?.id,
-                //         value: c?.routes?.total || 0,
-                //     });
-                // });
-            }
-
-            if (!action.refresh && newFeaturedMaps?.length) {
-                // newFeaturedMaps = [...newFeaturedMaps, ...action.featuredMaps];
-            }
-
-            if (!action.refresh && newFeaturedMaps?.length) {
-                const newMaps: FeaturedMapType[] = action.featuredMaps;
-                const newMapsId = newMaps?.[0]?.section?.id;
-                const el = newFeaturedMaps?.find(
-                    fm => fm.section.id !== newMapsId,
-                );
-
-                if (!newMapsId || !el) {
-                    if (!el) {
-                        newFeaturedMaps = [
-                            ...newFeaturedMaps,
-                            ...action.featuredMaps,
-                        ];
-                    } else {
-                        const indexToReplace = newFeaturedMaps.indexOf(el);
-                        newFeaturedMaps[indexToReplace] = el;
-                    }
-                } else {
-                    newFeaturedMaps = [
-                        ...newFeaturedMaps,
-                        ...action.featuredMaps,
-                    ];
-                }
-            }
-
-            newFeaturedMaps.forEach(c => {
-                const newPag = {
-                    id: c?.section?.id,
-                    pagination: c?.routes?.links,
-                };
-                const newTotal = {
-                    id: c?.section?.id,
-                    value: c?.routes?.total || 0,
-                };
-                const el = paginationCoursorFeatured.find(
-                    p => p.id === c?.section?.id,
-                );
-                const el2 = totalFeaturedMaps.find(
-                    p => p.id === c?.section?.id,
-                );
-                if (!el || !paginationCoursorFeatured?.length) {
-                    console.log('[NEW PAGE TO SET]', newPag)
-                    paginationCoursorFeatured.push(newPag);
-                } else {
-                    const indexToReplace = paginationCoursorFeatured?.indexOf(
-                        el,
-                    );
-                    paginationCoursorFeatured[indexToReplace] = newPag;
-                }
-
-                if (!el2 || !totalFeaturedMaps?.length) {
-                    totalFeaturedMaps.push(newTotal);
-                } else {
-                    const indexToReplace = totalFeaturedMaps?.indexOf(el2);
-                    totalFeaturedMaps[indexToReplace] = newTotal;
-                }
-            });
-console.log('[HOLE PAGINATION TO SET]', newFeaturedMaps?.[0]?.routes?.elements?.length)
             return {
                 ...state,
                 loading: false,
-                featuredMaps: newFeaturedMaps,
-                paginationCoursorFeatured: paginationCoursorFeatured,
-                totalFeaturedMaps: totalFeaturedMaps,
+                featuredMaps: updatedState.newFeaturedMaps,
+                paginationCoursorFeatured:
+                    updatedState.paginationCoursorFeatured,
+                totalFeaturedMaps: updatedState.totalFeaturedMaps,
                 statusCode: 200,
                 refresh: action.refresh,
             };

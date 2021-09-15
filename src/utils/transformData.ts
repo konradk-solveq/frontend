@@ -13,7 +13,7 @@ import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
 import {isLocationValidate} from './locationData';
 
-const getTimeInUTCMilliseconds = (date: string | number) => {
+export const getTimeInUTCMilliseconds = (date: string | number) => {
     try {
         return new Date(date).valueOf();
     } catch (error) {

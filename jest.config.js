@@ -2,7 +2,11 @@ module.exports = {
     preset: 'react-native',
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     setupFiles: ['./jest.setup.js'],
-    modulePathIgnorePatterns: ['./jest.setup.js', '__tests__/utils'],
+    modulePathIgnorePatterns: [
+        './jest.setup.js',
+        '__tests__/utils',
+        // '__test__/mocks',
+    ],
     globals: {
         window: {},
     },
