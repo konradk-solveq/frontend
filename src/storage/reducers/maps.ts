@@ -135,27 +135,67 @@ const mapsReducer = (state = initialStateList, action: any) => {
         }
         case actionTypes.SET_FEATURED_MAPS_DATA: {
             let newFeaturedMaps = [...state.featuredMaps];
+            console.log('[REFRESH ]', action.refresh, action.featuredMaps);
+
+            let paginationCoursorFeatured: NestedPaginationType[] = [
+                ...state.paginationCoursorFeatured,
+            ];
+            let totalFeaturedMaps: NestedTotalMapsType[] = [
+                ...state.totalFeaturedMaps,
+            ];
             if (action.refresh) {
                 newFeaturedMaps = action.featuredMaps;
+                paginationCoursorFeatured = [];
+                totalFeaturedMaps = [];
+
+                // newFeaturedMaps.forEach(c => {
+                //     paginationCoursorFeatured.push({
+                //         id: c?.section?.id,
+                //         pagination: c?.routes?.links,
+                //     });
+
+                //     totalFeaturedMaps.push({
+                //         id: c?.section?.id,
+                //         value: c?.routes?.total || 0,
+                //     });
+                // });
             }
 
-            if (!action.refresh || !newFeaturedMaps?.length) {
+            if (!action.refresh && newFeaturedMaps?.length) {
                 newFeaturedMaps = [...newFeaturedMaps, ...action.featuredMaps];
             }
 
-            const paginationCoursorFeatured: NestedPaginationType[] = [];
-            const totalFeaturedMaps: NestedTotalMapsType[] = [];
-
             newFeaturedMaps.forEach(c => {
-                paginationCoursorFeatured.push({
+                const newPag = {
                     id: c?.section?.id,
                     pagination: c?.routes?.links,
-                });
-
-                totalFeaturedMaps.push({
+                };
+                const newTotal = {
                     id: c?.section?.id,
                     value: c?.routes?.total || 0,
-                });
+                };
+                const el = paginationCoursorFeatured.find(
+                    p => p.id === c?.section?.id,
+                );
+                const el2 = totalFeaturedMaps.find(
+                    p => p.id === c?.section?.id,
+                );
+
+                if (!el || !paginationCoursorFeatured?.length) {
+                    paginationCoursorFeatured.push(newPag);
+                } else {
+                    const indexToReplace = paginationCoursorFeatured.indexOf(
+                        el,
+                    );
+                    paginationCoursorFeatured[indexToReplace] = newPag;
+                }
+
+                if (!el2 || !totalFeaturedMaps?.length) {
+                    totalFeaturedMaps.push(newTotal);
+                } else {
+                    const indexToReplace = totalFeaturedMaps.indexOf(el2);
+                    totalFeaturedMaps[indexToReplace] = newTotal;
+                }
             });
 
             return {
