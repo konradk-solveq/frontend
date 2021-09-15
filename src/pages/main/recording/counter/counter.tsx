@@ -572,7 +572,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             />
                         )}
 
-                        {TESTING_MODE === true && (
+                        {TESTING_MODE && (
                             <DataPreview
                                 title={'podgląd danych'}
                                 trackerStartTime={trackerStartTime}
