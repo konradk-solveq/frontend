@@ -8,7 +8,7 @@ import {I18n} from '@translations/I18n';
 
 import {TextBtn} from '@sharedComponents/buttons';
 
-import NextTile from '../../components/tiles/nextTile';
+import NextTile from '../../../components/tiles/nextTile';
 
 import styles, {horizontalStyles} from './style';
 

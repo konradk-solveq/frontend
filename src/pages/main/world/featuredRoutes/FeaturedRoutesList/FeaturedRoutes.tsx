@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/core';
 
-import {featuredMapsSelector} from '../../../../storage/selectors';
-import {useAppSelector} from '../../../../hooks/redux';
-import {Map} from '../../../../models/map.model';
-import {I18n} from '../../../../../I18n/I18n';
+import {featuredMapsSelector} from '../../../../../storage/selectors';
+import {useAppSelector} from '../../../../../hooks/redux';
+import {Map} from '../../../../../models/map.model';
+import {I18n} from '../../../../../../I18n/I18n';
 
 import styles from './style';
-import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-import {RegularStackRoute} from '../../../../navigation/route';
-import FeaturedRoutesList from './FeaturedRoutesList/FeaturedRoutesHorizontalList';
+import ShowMoreModal from '../../components/showMoreModal/showMoreModal';
+import {RegularStackRoute} from '../../../../../navigation/route';
+import FeaturedRoutesList from './horizontalList/FeaturedRoutesHorizontalList';
 
 interface RenderItem {
     item: Map;

@@ -21,7 +21,7 @@ import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../../sharedComponents/loader/loader';
 
 import styles from './style';
-import FeaturedRoutes from '../featuredRoutes/FeaturedRoutes';
+import FeaturedRoutes from '../featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
