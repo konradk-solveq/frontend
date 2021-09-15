@@ -109,7 +109,7 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 ...state,
                 loading: false,
                 privateMaps: newPrivateMaps,
-                paginationCoursorFeatured: action.paginationCoursor,
+                paginationCoursorPrivate: action.paginationCoursor,
                 totalPrivateMaps: action.totalPrivateMaps,
                 statusCode: 200,
                 refresh: action.refresh,
@@ -135,14 +135,12 @@ const mapsReducer = (state = initialStateList, action: any) => {
         }
         case actionTypes.SET_FEATURED_MAPS_DATA: {
             let newFeaturedMaps = [...state.featuredMaps];
-            console.log('[REFRESH ]', action.refresh, action.featuredMaps);
 
-            let paginationCoursorFeatured: NestedPaginationType[] = [
-                ...state.paginationCoursorFeatured,
-            ];
-            let totalFeaturedMaps: NestedTotalMapsType[] = [
-                ...state.totalFeaturedMaps,
-            ];
+            let paginationCoursorFeatured: NestedPaginationType[] =
+                state.paginationCoursorFeatured;
+            let totalFeaturedMaps: NestedTotalMapsType[] =
+                state.totalFeaturedMaps;
+
             if (action.refresh) {
                 newFeaturedMaps = action.featuredMaps;
                 paginationCoursorFeatured = [];
@@ -162,7 +160,32 @@ const mapsReducer = (state = initialStateList, action: any) => {
             }
 
             if (!action.refresh && newFeaturedMaps?.length) {
-                newFeaturedMaps = [...newFeaturedMaps, ...action.featuredMaps];
+                // newFeaturedMaps = [...newFeaturedMaps, ...action.featuredMaps];
+            }
+
+            if (!action.refresh && newFeaturedMaps?.length) {
+                const newMaps: FeaturedMapType[] = action.featuredMaps;
+                const newMapsId = newMaps?.[0]?.section?.id;
+                const el = newFeaturedMaps?.find(
+                    fm => fm.section.id !== newMapsId,
+                );
+
+                if (!newMapsId || !el) {
+                    if (!el) {
+                        newFeaturedMaps = [
+                            ...newFeaturedMaps,
+                            ...action.featuredMaps,
+                        ];
+                    } else {
+                        const indexToReplace = newFeaturedMaps.indexOf(el);
+                        newFeaturedMaps[indexToReplace] = el;
+                    }
+                } else {
+                    newFeaturedMaps = [
+                        ...newFeaturedMaps,
+                        ...action.featuredMaps,
+                    ];
+                }
             }
 
             newFeaturedMaps.forEach(c => {
@@ -180,11 +203,11 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 const el2 = totalFeaturedMaps.find(
                     p => p.id === c?.section?.id,
                 );
-
                 if (!el || !paginationCoursorFeatured?.length) {
+                    console.log('[NEW PAGE TO SET]', newPag)
                     paginationCoursorFeatured.push(newPag);
                 } else {
-                    const indexToReplace = paginationCoursorFeatured.indexOf(
+                    const indexToReplace = paginationCoursorFeatured?.indexOf(
                         el,
                     );
                     paginationCoursorFeatured[indexToReplace] = newPag;
@@ -193,11 +216,11 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 if (!el2 || !totalFeaturedMaps?.length) {
                     totalFeaturedMaps.push(newTotal);
                 } else {
-                    const indexToReplace = totalFeaturedMaps.indexOf(el2);
+                    const indexToReplace = totalFeaturedMaps?.indexOf(el2);
                     totalFeaturedMaps[indexToReplace] = newTotal;
                 }
             });
-
+console.log('[HOLE PAGINATION TO SET]', newFeaturedMaps?.[0]?.routes?.elements?.length)
             return {
                 ...state,
                 loading: false,

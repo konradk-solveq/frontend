@@ -28,7 +28,11 @@ interface IProps {
     sectionID?: string;
     onPressMore: (state: boolean, mapID: string) => void;
     onPressElement: (mapID?: string) => void;
-    onShowMore: (sectionID: string) => void;
+    onShowMore: (
+        sectionID: string,
+        sectionName?: string,
+        data: MapType[],
+    ) => void;
     sectionHeader?: string;
 }
 
@@ -50,7 +54,7 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
 
     const onShowMoreHandler = () => {
         if (sectionID) {
-            onShowMore(sectionID);
+            onShowMore(sectionID, sectionHeader, data);
         }
     };
 

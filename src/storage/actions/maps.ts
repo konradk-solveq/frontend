@@ -483,7 +483,7 @@ export const fetchFeaturedMapsList = (
 
         const response = await getFeaturedMapsListService(location, page);
 
-        if (response.error || !response.data || !response.data?.length) {
+        if (response.error || !response.data) {
             dispatch(setError(response.error, response.status));
             return;
         }

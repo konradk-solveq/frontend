@@ -4,6 +4,7 @@ import {FeaturedMapType, Map} from '../../models/map.model';
 import {mapsListToClass} from '../../utils/transformData';
 import routes from '../reducers/routes';
 import {getMapFromFeaturedSections} from './utils/map';
+import {NestedPaginationType} from '@src/interfaces/api';
 
 export enum selectorTypeEnum {
     regular = 'regular',
@@ -138,6 +139,11 @@ export const featuredMapDataByIdSelector = (mapID: string) =>
         getMapFromFeaturedSections(fMaps, mapID),
     );
 
+export const featuredMapDataBySectionIdSelector = (sectionID: string) =>
+    createSelector(featuredMapsSelector, maps =>
+        maps.find(m => m.section.id === sectionID),
+    );
+
 export const nextPaginationCoursor = (state: RootState): string | undefined =>
     state.maps.paginationCoursor?.next;
 
@@ -159,6 +165,16 @@ export const nextPlannedPaginationCoursor = (
 export const prevPlannedPaginationCoursor = (
     state: RootState,
 ): string | undefined => state.maps.paginationCoursorPlanned?.prev;
+
+export const nextFeaturedPaginationCoursors = (
+    state: RootState,
+): NestedPaginationType[] => state.maps.paginationCoursorFeatured;
+
+export const nextFeaturedPaginationCoursor = (sectionID: string) =>
+    createSelector(
+        nextFeaturedPaginationCoursors,
+        cursors => cursors?.find(c => c.id === sectionID)?.pagination?.next,
+    );
 
 export const hasRecordedRoutesSelector = (state: RootState): boolean =>
     state.maps.privateMaps?.length > 0;

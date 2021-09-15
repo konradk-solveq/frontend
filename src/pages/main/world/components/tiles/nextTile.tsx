@@ -225,4 +225,4 @@ const NextTile: React.FC<IProps> = ({
     );
 };
 
-export default NextTile;
+export default React.memo(NextTile);

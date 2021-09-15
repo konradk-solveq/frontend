@@ -3,8 +3,8 @@ import {useNavigation} from '@react-navigation/core';
 
 import {featuredMapsSelector} from '../../../../../storage/selectors';
 import {useAppSelector} from '../../../../../hooks/redux';
-import {Map} from '../../../../../models/map.model';
-import {I18n} from '../../../../../../I18n/I18n';
+import {Map, MapType} from '../../../../../models/map.model';
+// import {I18n} from '../../../../../../I18n/I18n';
 
 import styles from './style';
 import ShowMoreModal from '../../components/showMoreModal/showMoreModal';
@@ -20,7 +20,7 @@ interface RenderItem {
 interface IProps {}
 
 const FeaturedRoutes: React.FC<IProps> = ({}: IProps) => {
-    const trans: any = I18n.t('MainWorld.PlannedRoutes');
+    // const trans: any = I18n.t('MainWorld.PlannedRoutes');
     const navigation = useNavigation();
 
     const featuredMaps = useAppSelector(featuredMapsSelector);
@@ -47,8 +47,14 @@ const FeaturedRoutes: React.FC<IProps> = ({}: IProps) => {
         });
     };
 
-    const onShowMoreHandler = (sectionID: string) => {
-        console.log('[onShowMoreHandler -- pressed]');
+    const onShowMoreHandler = (sectionID: string, sectionName?: string) => {
+        navigation.navigate({
+            name: RegularStackRoute.FEATURED_ROUTES_SCRREN,
+            params: {
+                sectionID: sectionID,
+                sectionName: sectionName || '',
+            },
+        });
     };
 
     if (!featuredMaps?.length) {

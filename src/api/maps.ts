@@ -10,7 +10,7 @@ import {
 import {BasicCoordsType} from '@type/coords';
 
 import {AxiosResponse} from 'axios';
-import featuredData from './mocks/featuredRoutesData';
+// import featuredData from './mocks/featuredRoutesData';
 
 const BASE_URL = '/routes';
 const BASE_ROUTE_URL = `${BASE_URL}/route`;
@@ -147,13 +147,13 @@ export const getMarkersList = async (data: BBox, location: BasicCoordsType) => {
 export const getFeaturedMaps = async (
     location: Coords,
     paginationUrl?: string,
-): Promise<Partial<AxiosResponse<any>>> => {
-    // let url = `${BASE_URL}/find/featured?lat=${location.latitude}&lng=${location.longitude}`;
+): Promise<AxiosResponse<any>> => {
+    let url = `${BASE_URL}/featured?lat=${location.latitude}&lng=${location.longitude}`;
 
-    // return await axiosGet(paginationUrl || url, {});
-    return Promise.resolve({
-        data: featuredData,
-        status: 200,
-        error: '',
-    });
+    return await axiosGet(paginationUrl || url, {});
+    // return Promise.resolve({
+    //     data: featuredData,
+    //     status: 200,
+    //     error: '',
+    // });
 };

@@ -80,4 +80,4 @@ const styles = StyleSheet.create({
     logo: {},
 });
 
-export default Loader;
+export default React.memo(Loader);
