@@ -23,6 +23,7 @@ interface IProps {
     images: {images: string[]; mapImg: string; fullSizeImages: string[]};
     isPrivateView?: boolean;
     isFavView?: boolean;
+    isFeaturedView?: boolean;
 }
 
 const Description: React.FC<IProps> = ({
@@ -30,6 +31,7 @@ const Description: React.FC<IProps> = ({
     images,
     isPrivateView,
     isFavView,
+    isFeaturedView,
 }: IProps) => {
     const trans: any = I18n.t('RoutesDetails.details');
     const navigation = useNavigation();
@@ -46,6 +48,7 @@ const Description: React.FC<IProps> = ({
                 mapId: mapData?.id,
                 private: isPrivateView,
                 favourite: isFavView,
+                featured: isFeaturedView,
             },
         });
     };

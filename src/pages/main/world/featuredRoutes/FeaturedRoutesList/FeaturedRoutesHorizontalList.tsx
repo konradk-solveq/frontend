@@ -1,9 +1,7 @@
 import React from 'react';
 import {View, FlatList} from 'react-native';
 
-import {featuredMapsSelector} from '@storage/selectors';
-import {Map, FeaturedMapType} from '@models/map.model';
-import {useAppSelector} from '@hooks/redux';
+import {Map, MapType} from '@models/map.model';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import {I18n} from '@translations/I18n';
@@ -26,7 +24,7 @@ interface RenderItem {
 }
 
 interface IProps {
-    data: FeaturedMapType;
+    data: MapType[];
     sectionID?: string;
     onPressMore: (state: boolean, mapID: string) => void;
     onPressElement: (mapID?: string) => void;
@@ -43,7 +41,6 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
     sectionHeader,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.FeaturedRoutes');
-    const featuredMaps = useAppSelector(featuredMapsSelector);
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         if (onPressMore && mapID) {
@@ -80,7 +77,7 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
         );
     };
 
-    if (!featuredMaps?.length) {
+    if (!data?.length) {
         return null;
     }
 
@@ -89,7 +86,7 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
             <View>
                 <FlatList
                     keyExtractor={item => item.id}
-                    data={data?.routes?.elements}
+                    data={data}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
                     getItemLayout={getItemLayout}

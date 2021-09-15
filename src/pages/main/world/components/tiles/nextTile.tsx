@@ -21,6 +21,7 @@ import styles from './styles/commonStyles';
 import nextTileStyles from './styles/styleNextTile';
 import FourthSection from './sections/fourthSection';
 import ThirdSection from './sections/thirdSection';
+import NextTileHeader from './NextTileHeader';
 
 interface IProps {
     mapData: Map;
@@ -28,6 +29,7 @@ interface IProps {
     onPress: (state: boolean, mapID: string) => void;
     onPressTile?: (mapID: string) => void;
     tilePressable?: boolean;
+    headerTitle?: string;
 }
 
 const NextTile: React.FC<IProps> = ({
@@ -36,6 +38,7 @@ const NextTile: React.FC<IProps> = ({
     onPress,
     onPressTile,
     tilePressable,
+    headerTitle,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
@@ -85,6 +88,7 @@ const NextTile: React.FC<IProps> = ({
         <Pressable onPress={onTilePressedHandler}>
             <TileBackground>
                 <View style={styles.container}>
+                    {headerTitle && <NextTileHeader text={headerTitle} />}
                     <View>
                         <View
                             style={[

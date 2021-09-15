@@ -1,4 +1,4 @@
-import {StyleSheet, Platform, Dimensions} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import {
     getHorizontalPx,
     getVerticalPx,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
     tileSectionTitle: {
         fontFamily: fontRegular,
-        fontSize: 23,
+        fontSize: 20,
     },
     firstSection: {
         marginHorizontal: 20,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     },
     distanceToStart: {
         fontFamily: fontLight,
-        fontSize: 15,
+        fontSize: 13,
         letterSpacing: 0.42,
         color: darkText,
     },
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
     secondSectionText: {
         fontFamily: fontRegular,
         color: darkerText,
-        fontSize: 23,
+        fontSize: 18,
     },
     secondSectionSuffix: {
         fontFamily: fontRegular,
-        fontSize: 18,
+        fontSize: 15,
         letterSpacing: 0.5,
         color: darkText,
     },

@@ -65,12 +65,15 @@ const FeaturedRoutes: React.FC<IProps> = ({}: IProps) => {
                 isFeatured
             />
             {featuredMaps.map(fm => {
+                if (!fm?.routes?.elements?.length) {
+                    return null;
+                }
+
                 const sectionHeader = fm?.section?.title;
-                console.log('[FM_SECTIon]', fm?.section);
                 return (
                     <FeaturedRoutesList
                         key={fm?.section?.id}
-                        data={fm}
+                        data={fm?.routes?.elements}
                         sectionID={fm?.section?.id}
                         sectionHeader={sectionHeader}
                         onPressMore={onPressHandler}
