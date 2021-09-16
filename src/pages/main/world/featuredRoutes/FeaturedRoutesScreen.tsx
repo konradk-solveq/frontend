@@ -68,7 +68,12 @@ const FeaturedRoutesScreen: React.FC = () => {
         (mapID?: string) => {
             navigation.navigate({
                 name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-                params: {mapID: mapID, private: false},
+                params: {
+                    mapID: mapID,
+                    private: false,
+                    favourite: false,
+                    featured: true,
+                },
             });
         },
         [navigation],
@@ -97,7 +102,7 @@ const FeaturedRoutesScreen: React.FC = () => {
             const lastItemStyle =
                 index === mapsData?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
-
+            console.log('[ITEM TO RENDER]', item?.createdAt, sectionID);
             return (
                 <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
                     <NextTile
