@@ -4,10 +4,12 @@
  * @author Sebastian Kasiński
  */
 
+import {FeaturedMapType, MapType} from '@models/map.model';
 import {NestedPaginationType} from '@interfaces/api';
-import {FeaturedMapType} from '@models/map.model';
-import {getTimeInUTCMilliseconds} from '@src/utils/transformData';
 import {NestedTotalMapsType} from '@type/maps';
+
+import {getTimeInUTCMilliseconds} from '@utils/transformData';
+import deepCopy from '@helpers/deepCopy';
 
 interface FeaturedMapsDataI {
     refresh: boolean;
@@ -30,6 +32,32 @@ export interface MergedFeaturedMapsI {
     totalFeaturedMaps: NestedTotalMapsType[];
     newFeaturedMaps: FeaturedMapType[];
 }
+
+export const sortByDistance = (data: MapType[]) => {
+    const m: MapType[] = deepCopy(data);
+
+    return m?.sort((a, b) => {
+        const distanceA = a.distanceToRoute || 0;
+        const distanceB = b.distanceToRoute || 0;
+
+        if (distanceA === distanceB) {
+            const createdAtA = getTimeInUTCMilliseconds(a.createdAt);
+            const createdAtB = getTimeInUTCMilliseconds(b.createdAt);
+
+            if (createdAtA === createdAtB) {
+                if (createdAtA === createdAtB) {
+                    return 0;
+                }
+
+                return createdAtA < createdAtB ? -1 : 1;
+            }
+
+            return createdAtA < createdAtB ? -1 : 1;
+        }
+
+        return distanceA < distanceB ? -1 : 1;
+    });
+};
 
 /**
  *
@@ -62,36 +90,36 @@ export const getFeaturedMapsListPaginations = (
     totalFeaturedMaps: NestedTotalMapsType[],
     mapsData: FeaturedMapType[],
 ): MergedPaginationI => {
-    const pcf = paginationCoursorFeatured;
-    const tfm = totalFeaturedMaps;
+    /** src: paginationCoursorFeatured */
+    const pcf: NestedPaginationType[] = deepCopy(paginationCoursorFeatured);
+    /** src: totalFeaturedMaps */
+    const tfm: NestedTotalMapsType[] = deepCopy(totalFeaturedMaps);
 
     mapsData?.forEach(c => {
-        const newPag = {
+        const newPagination = {
             id: c?.section?.id,
             pagination: c?.routes?.links,
         };
-        const newTotal = {
+        const newTotalNumber = {
             id: c?.section?.id,
             value: c?.routes?.total || 0,
         };
-        
-        const ele = pcf.find(p => p.id === c?.section?.id);
-        const el2 = tfm.find(p => p.id === c?.section?.id);
-        if (!ele || !pcf?.length) {
-            
-            pcf.push(newPag);
+
+        const sectionPagination = pcf.find(p => p.id === c?.section?.id);
+        if (!sectionPagination || !pcf?.length) {
+            pcf.push(newPagination);
         } else {
-            
-            const indexToReplace = pcf?.indexOf(ele);
-            
-            pcf[indexToReplace] = newPag;
+            const indexToReplace = pcf?.indexOf(sectionPagination);
+
+            pcf[indexToReplace] = newPagination;
         }
 
-        if (!el2 || !tfm?.length) {
-            tfm.push(newTotal);
+        const sectionTotalNumber = tfm.find(p => p.id === c?.section?.id);
+        if (!sectionTotalNumber || !tfm?.length) {
+            tfm.push(newTotalNumber);
         } else {
-            const indexToReplace = tfm?.indexOf(el2);
-            tfm[indexToReplace] = newTotal;
+            const indexToReplace = tfm?.indexOf(sectionTotalNumber);
+            tfm[indexToReplace] = newTotalNumber;
         }
     });
 
@@ -145,108 +173,77 @@ export const mergeFeaturedMapsListData = (
         oldTotalFeaturedMaps,
     }: FeaturedMapsOldDataI,
 ): MergedFeaturedMapsI => {
-    let newFeaturedMaps = oldFeaturedMaps;
-    let pcf = oldPaginationCoursorFeatured;
-    let tfm = oldTotalFeaturedMaps;
+    /** src: oldFeaturedMaps */
+    let newFeaturedMaps: FeaturedMapType[] = deepCopy(oldFeaturedMaps);
+    /** src: oldPaginationCoursorFeatured */
+    let pcf: NestedPaginationType[] = deepCopy(oldPaginationCoursorFeatured);
+    /** src: oldTotalFeaturedMaps */
+    let tfm: NestedTotalMapsType[] = deepCopy(oldTotalFeaturedMaps);
+
+    const newMaps: FeaturedMapType | FeaturedMapType[] = deepCopy(featuredMaps);
 
     if (refresh) {
-        if (Array.isArray(featuredMaps)) {
-            newFeaturedMaps = [...featuredMaps];
+        if (Array.isArray(newMaps)) {
+            newFeaturedMaps = [...newMaps];
         } else {
-            newFeaturedMaps = [featuredMaps];
+            newFeaturedMaps = [newMaps];
         }
         pcf = [];
         tfm = [];
     }
 
-    if (!refresh && newFeaturedMaps?.length && !Array.isArray(featuredMaps)) {
+    if (!refresh && newFeaturedMaps?.length && !Array.isArray(newMaps)) {
         /**
          * Pagintaion returns single object
          */
-        const newMaps: FeaturedMapType = featuredMaps;
         const newMapsId = newMaps?.section?.id;
-        const el = newFeaturedMaps?.find(fm => fm.section.id === newMapsId);
-        if (newMapsId && el) {
-            const indexToReplace = newFeaturedMaps?.indexOf(el);
+        /** Check if section with such ID exists */
+        const oldFeaturedMap = newFeaturedMaps?.find(
+            fm => fm.section.id === newMapsId,
+        );
+        if (newMapsId && oldFeaturedMap) {
+            /** Find index of section */
+            const indexToReplace = newFeaturedMaps?.indexOf(oldFeaturedMap);
             if (indexToReplace === undefined) {
                 newFeaturedMaps = [...newFeaturedMaps, newMaps];
             } else {
                 const elementsToAdd = newMaps?.routes?.elements || [];
-                const newLinks = newMaps?.routes?.links;
+                const newPaginationLinks = newMaps?.routes?.links;
                 const oldMap = newFeaturedMaps[indexToReplace];
-                const sorted = [
+
+                const sorted = sortByDistance([
                     ...oldMap.routes.elements,
                     ...elementsToAdd,
-                ]?.sort((a, b) => {
-                    const distanceA = a.distanceToRoute || 0;
-                    const distanceB = b.distanceToRoute || 0;
-        
-                    if (distanceA === distanceB) {
-                        const createdAtA = getTimeInUTCMilliseconds(
-                            a.createdAt,
-                        );
-                        const createdAtB = getTimeInUTCMilliseconds(
-                            b.createdAt,
-                        );
-        
-                        if (createdAtA === createdAtB) {
-                            if (createdAtA === createdAtB) {
-                                return 0;
-                            }
-        
-                            return createdAtA < createdAtB ? -1 : 1;
-                        }
-        
-                        return createdAtA < createdAtB ? -1 : 1;
-                    }
-        
-                    return distanceA < distanceB ? -1 : 1;
-                });
+                ]);
 
                 newFeaturedMaps[indexToReplace] = {
                     ...oldMap,
                     routes: {
                         ...oldMap.routes,
                         elements: sorted,
-                        links: newLinks
+                        links: newPaginationLinks,
                     },
                 };
             }
         } else {
-            console.log('[SET HERE]')
             newFeaturedMaps = [...newFeaturedMaps, newMaps]?.map(m => {
-                return m?.sort((a, b) => {
-                    const distanceA = a.distanceToRoute || 0;
-                    const distanceB = b.distanceToRoute || 0;
-        
-                    if (distanceA === distanceB) {
-                        const createdAtA = getTimeInUTCMilliseconds(
-                            a.createdAt,
-                        );
-                        const createdAtB = getTimeInUTCMilliseconds(
-                            b.createdAt,
-                        );
-        
-                        if (createdAtA === createdAtB) {
-                            if (createdAtA === createdAtB) {
-                                return 0;
-                            }
-        
-                            return createdAtA < createdAtB ? -1 : 1;
-                        }
-        
-                        return createdAtA < createdAtB ? -1 : 1;
-                    }
-        
-                    return distanceA < distanceB ? -1 : 1;
-                });
+                const sortedElements = sortByDistance(m.routes.elements);
+                return {
+                    ...m,
+                    routes: {
+                        ...m.routes,
+                        elements: sortedElements,
+                    },
+                };
             });
         }
     }
 
-    // const mToAdd = Array.isArray(featuredMaps) ? featuredMaps : [featuredMaps];
-
-    const additionalData = getFeaturedMapsListPaginations(pcf, tfm, newFeaturedMaps);
+    const additionalData = getFeaturedMapsListPaginations(
+        pcf,
+        tfm,
+        newFeaturedMaps,
+    );
 
     return {
         newFeaturedMaps: newFeaturedMaps,
