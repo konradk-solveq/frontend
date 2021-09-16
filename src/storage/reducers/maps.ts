@@ -269,7 +269,7 @@ const persistConfig = {
     key: 'maps',
     storage: AsyncStorage,
     whitelist: [
-        'maps, favourites, ownes, privateMaps, plannedMaps, paginationCoursorPrivate, paginationCoursorPlanned, totalMaps, totalPrivateMaps',
+        'maps, favourites, ownes, privateMaps, plannedMaps, paginationCoursorPrivate, paginationCoursorPlanned, totalMaps, totalPrivateMaps, featuredMaps, paginationCoursorFeatured, totalFeaturedMaps',
     ],
     timeout: 20000,
 };
