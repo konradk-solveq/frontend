@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Modal, Pressable, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -29,6 +29,7 @@ interface IProps {
     onPressCancel: () => void;
     removeFav?: boolean;
     isPrivate?: boolean;
+    isPublic?: boolean;
     isFavourite?: boolean;
     isFeatured?: boolean;
     backdropStyle?: ViewStyle;
@@ -40,6 +41,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     showModal,
     removeFav,
     isPrivate,
+    isPublic,
     isFavourite,
     isFeatured,
     backdropStyle,
@@ -123,7 +125,16 @@ const ShowMoreModal: React.FC<IProps> = ({
                         {isPrivate && (
                             <Pressable onPress={onPublishRouteHandler}>
                                 <Text style={styles.text}>
-                                    {trans.publishTripAction}
+                                    {isPublic
+                                        ? trans.editTripAction
+                                        : trans.publishTripAction}
+                                </Text>
+                            </Pressable>
+                        )}
+                        {!isPrivate && (
+                            <Pressable onPress={onPublishRouteHandler}>
+                                <Text style={styles.text}>
+                                    {trans.editTripAction}
                                 </Text>
                             </Pressable>
                         )}
