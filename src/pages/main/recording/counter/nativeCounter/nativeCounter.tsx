@@ -29,7 +29,8 @@ interface IProps {
     setMapHiden: Function;
     duration: number;
     aplaShow: boolean;
-    autoFindMeSwith: (e: boolean) => void;
+    autoFindMeSwith: (e: number) => void;
+    autoFindMe: number;
     headingSwitch: (e: boolean) => void;
     compassHeading: any;
 }
@@ -43,6 +44,7 @@ const NativeCounter: React.FC<IProps> = ({
     duration,
     aplaShow,
     autoFindMeSwith,
+    autoFindMe,
     headingSwitch,
     compassHeading,
 }: IProps) => {
@@ -61,7 +63,6 @@ const NativeCounter: React.FC<IProps> = ({
     const findMeBottonZIndex = useRef(new Animated.Value(1)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
 
-    const [autoFindMeOn, setAutoFindMeOn] = useState(true);
     const [headingOn, setHeadingOn] = useState(true);
 
     const startAnimation = (revert?: boolean) => {
@@ -182,8 +183,7 @@ const NativeCounter: React.FC<IProps> = ({
     };
 
     const handleAutoFindMeSwith = () => {
-        autoFindMeSwith(!autoFindMeOn);
-        setAutoFindMeOn(!autoFindMeOn);
+        autoFindMeSwith(autoFindMe + 1);
     };
 
     const heandleHeadingSwitch = () => {
@@ -336,7 +336,7 @@ const NativeCounter: React.FC<IProps> = ({
                 />
                 <FindMeButton
                     onpress={handleAutoFindMeSwith}
-                    toggle={!autoFindMeOn}
+                    toggle={!autoFindMe}
                 />
             </Animated.View>
         </>

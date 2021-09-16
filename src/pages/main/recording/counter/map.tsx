@@ -1,11 +1,11 @@
-import React, {useState, useRef, useEffect, useCallback} from 'react';
-import {StyleSheet, Platform, Dimensions} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Camera, LatLng} from 'react-native-maps';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { StyleSheet, Platform, Dimensions, PanResponder, View } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Camera, LatLng } from 'react-native-maps';
 
 import useAppState from '@hooks/useAppState';
-import {useAppSelector} from '../../../../hooks/redux';
-import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
-import {getCurrentLocation} from '../../../../utils/geolocation';
+import { useAppSelector } from '../../../../hooks/redux';
+import { favouriteMapDataByIDSelector } from '../../../../storage/selectors/map';
+import { getCurrentLocation } from '../../../../utils/geolocation';
 
 import mapStyle from '../../../../sharedComponents/maps/styles';
 import AnimSvg from '../../../../helpers/animSvg';
@@ -14,20 +14,22 @@ import gradient from './gradientSvg';
 import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
-import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
-import {ShortCoordsType} from '@type/coords';
-import {isLocationValidate} from '@utils/locationData';
+import { useLocationProvider } from '@providers/staticLocationProvider/staticLocationProvider';
+import { ShortCoordsType } from '@type/coords';
+import { isLocationValidate } from '@utils/locationData';
+import { getHorizontalPx } from '@src/helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 interface IProps {
     routeId: string;
     trackerData: any;
-    autoFindMe: boolean;
+    autoFindMe: number;
     headingOn: boolean;
     compassHeading: any;
     renderPath?: boolean;
     restoredPath?: ShortCoordsType[];
+    autoFindMeSwith: (e: number) => void;
 }
 
 const initCompasHeading = {
@@ -42,6 +44,8 @@ const initCompasHeading = {
 };
 const ZOOM_START_VALUE = isIOS ? 18 : 17;
 
+const ACTIVE_MOVE = getHorizontalPx(414 * .03);
+
 const Map: React.FC<IProps> = ({
     routeId,
     trackerData,
@@ -50,6 +54,7 @@ const Map: React.FC<IProps> = ({
     compassHeading,
     renderPath,
     restoredPath,
+    autoFindMeSwith,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -59,7 +64,7 @@ const Map: React.FC<IProps> = ({
 
     const globalLocation = useLocationProvider()?.location;
 
-    const {appStateVisible, appPrevStateVisible} = useAppState();
+    const { appStateVisible, appPrevStateVisible } = useAppState();
     const [showWebView, setShowWebView] = useState(false);
     const [showMap, setShowMap] = useState(false);
 
@@ -84,7 +89,7 @@ const Map: React.FC<IProps> = ({
 
     const [location, setLocaion] = useState<LatLng | null>(null);
     const [foreignRoute, setForeignRoute] = useState<
-        {latitude: number; longitude: number}[] | null
+        { latitude: number; longitude: number }[] | null
     >(null);
     const [autoFindMeLastState, setAutoFindMeLastState] = useState<boolean>(
         autoFindMe,
@@ -135,7 +140,7 @@ const Map: React.FC<IProps> = ({
     }, []);
 
     const animateCam = (animation: Partial<Camera>, duration?: number) => {
-        mapRef.current?.animateCamera(animation, {duration: duration || 1000});
+        mapRef.current?.animateCamera(animation, { duration: duration || 1000 });
     };
 
     const animateCameraOnIOS = useCallback(
@@ -157,14 +162,14 @@ const Map: React.FC<IProps> = ({
 
     const setMapCamera = useCallback(() => {
         const hasLocation = trackerData?.coords || location;
-        const shouldResetZoom = autoFindMe !== autoFindMeLastState;
+        const shouldResetZoom = autoFindMe > 0 && autoFindMe !== autoFindMeLastState;
 
         if (mapRef.current && (hasLocation || shouldResetZoom)) {
             let animation: Partial<Camera> = {
                 heading: headingOn ? compassHeading : 0,
             };
 
-            const coords = {latitude: 0, longitude: 0};
+            const coords = { latitude: 0, longitude: 0 };
             if (trackerData?.coords) {
                 coords.latitude = trackerData.coords.lat;
                 coords.longitude = trackerData.coords.lon;
@@ -230,13 +235,43 @@ const Map: React.FC<IProps> = ({
         restoreRef.current = true;
     };
 
+    const [startMoving, setStartMoving] = useState([0, 0]);
+    const [onMoving, setOnMoving] = useState([0, 0]);
+    const panResponder = PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onStartShouldSetPanResponderCapture: () => true,
+        onMoveShouldSetPanResponder: () => false,
+        onMoveShouldSetPanResponderCapture: () => false,
+        onPanResponderGrant: () => false,
+        onPanResponderMove: (event: any) => {
+            setOnMoving([
+                event.nativeEvent.locationX,
+                event.nativeEvent.locationY,
+            ]);
+        },
+        onPanResponderGrant: (event: any) => {
+            setStartMoving([
+                event.nativeEvent.locationX,
+                event.nativeEvent.locationY,
+            ]);
+        },
+    });
+
+    const handleCameraChange = () => {
+        const move = Math.sqrt(Math.pow((startMoving[0] - onMoving[0]), 2) + Math.pow((startMoving[1] - onMoving[1]), 2));
+        if (move > ACTIVE_MOVE) {
+            autoFindMeSwith(0);
+        }
+    }
+
     /* TODO: error boundary */
     return showMap ? (
-        <>
+        <View {...panResponder.panHandlers}>
             {showWebView && (
                 <AnimSvg style={styles.gradient} source={gradient} />
             )}
             <MapView
+
                 ref={mapRef}
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
@@ -247,6 +282,7 @@ const Map: React.FC<IProps> = ({
                 zoomEnabled={true}
                 zoomTapEnabled={true}
                 showsCompass={false}
+                onPanDrag={() => handleCameraChange()}
                 onMapLoaded={() => {
                     setShowWebView(true);
                 }}
@@ -296,7 +332,8 @@ const Map: React.FC<IProps> = ({
                     />
                 )}
             </MapView>
-        </>
+
+        </View>
     ) : null;
 };
 
