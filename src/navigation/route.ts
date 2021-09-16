@@ -33,6 +33,7 @@ export const RegularStackRoute = {
     COUNTER_SCREEN: 'Counter',
     COUNTER_THANK_YOU_PAGE_SCREEN: 'CounterThankYouPage',
     ROUTES_MAP_SCREEN: 'RoutesMap',
+    FEATURED_ROUTES_SCRREN: 'FeaturedRoutesScreen',
 
     // Bike
     BIKE_SCREEN: 'Bike',

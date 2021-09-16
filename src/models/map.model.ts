@@ -270,3 +270,17 @@ export class Map {
 }
 
 export interface MapType extends Map {}
+
+export interface MapsData {
+    elements: MapType[] | [];
+    links: {prev: string};
+    total: number;
+}
+
+export type FeaturedMapType = {
+    section: {
+        id: string;
+        title: string;
+    };
+    routes: MapsData;
+};

@@ -22,6 +22,7 @@ import {
     isGoodConnectionQualitySelector,
 } from '../storage/selectors/app';
 import {fetchMapsList} from '@src/storage/actions';
+import { fetchFeaturedMapsList } from '@src/storage/actions/maps';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
@@ -106,6 +107,7 @@ const useAppInit = () => {
             initMapsLoadRef.current = true;
 
             dispatch(fetchMapsList());
+            dispatch(fetchFeaturedMapsList());
         }
     }, [dispatch, location]);
 

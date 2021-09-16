@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     header: {
         fontFamily: fontLight,
         fontSize: getVerticalPx(30),
+        marginTop: getVerticalPx(30),
         color: darkText,
         marginHorizontal: 40,
     },

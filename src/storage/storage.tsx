@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import reducer from './reducer';
 import {PersistConfig} from 'redux-persist/es/types';
 import {migration} from './migration/migrateRootToRootMykross';
+import {FLIPPER_REDUX_DEBUGGER} from '@env';
 
 const buildStore = () => {
     const persistConfig: PersistConfig<any, any> = {
@@ -28,9 +29,16 @@ const buildStore = () => {
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+    const middlewares = [ReduxThunk];
+
+    if (__DEV__ && FLIPPER_REDUX_DEBUGGER && !process.env.JEST_WORKER_ID) {
+        const createDebugger = require('redux-flipper').default;
+        middlewares.push(createDebugger());
+    }
+
     const store = createStore(
         persistedReducer,
-        composeEnhancers(applyMiddleware(ReduxThunk)),
+        composeEnhancers(applyMiddleware(...middlewares)),
     );
 
     return store;

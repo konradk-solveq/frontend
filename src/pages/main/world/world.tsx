@@ -33,6 +33,7 @@ import MyRoutes from './myRoutes/myRoutes';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
 import styles from './style';
+// import FeaturedRoutes from './featuredRoutes/FeaturedRoutes';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -64,9 +65,11 @@ const World: React.FC = () => {
             }
             if (activeTab === RouteMapType.MY_ROUTES) {
                 dispatch(fetchPrivateMapsList(undefined, savedMapFilters));
+                return;
             }
             if (activeTab === RouteMapType.PLANNING) {
                 dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
+                return;
             }
         }
     }, [dispatch, savedMapFilters, activeTab]);

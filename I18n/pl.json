@@ -367,6 +367,9 @@
             "routesNumberTitle": "Ilość nagranych tras:",
             "todayDate": "Dziś",
             "yestardayDate": "Wczoraj"
+        },
+        "FeaturedRoutes": {
+            "showMoreBtn": "Pokaż więcej"
         }
     },
     "MainRoutesMap": {

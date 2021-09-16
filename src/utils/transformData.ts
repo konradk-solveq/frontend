@@ -6,14 +6,14 @@ import {
     Complaint,
     Parameters,
 } from '../models/bike.model';
-import {Images, Map} from '../models/map.model';
+import {Images, Map, MapType} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
 import {isLocationValidate} from './locationData';
 
-const getTimeInUTCMilliseconds = (date: string | number) => {
+export const getTimeInUTCMilliseconds = (date: string | number) => {
     try {
         return new Date(date).valueOf();
     } catch (error) {
@@ -189,7 +189,7 @@ export const transformToMapsType = (data: any): Map => {
     return newData;
 };
 
-export const mapsListToClass = (maps: []): Map[] => {
+export const mapsListToClass = (maps: MapType[] | []): Map[] => {
     const result: Map[] = [];
     maps.forEach(b => {
         result.push(transformToMapsType(b));

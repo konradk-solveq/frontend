@@ -1,12 +1,16 @@
 import {createSelector} from 'reselect';
 import {RootState} from '../storage';
-import {Map} from '../../models/map.model';
+import {FeaturedMapType, Map} from '../../models/map.model';
 import {mapsListToClass} from '../../utils/transformData';
+import routes from '../reducers/routes';
+import {getMapFromFeaturedSections} from './utils/map';
+import {NestedPaginationType} from '@src/interfaces/api';
 
 export enum selectorTypeEnum {
     regular = 'regular',
     private = 'private',
     favourite = 'favourite',
+    featured = 'featured',
 }
 
 export const mapsListSelector = (state: RootState): Map[] =>
@@ -17,6 +21,26 @@ export const privateMapsListSelector = (state: RootState): Map[] =>
 
 export const favouritesMapsSelector = (state: RootState): Map[] =>
     mapsListToClass(state.maps.plannedMaps);
+
+export const featuredMapsSelector = (state: RootState): FeaturedMapType[] =>
+    state.maps.featuredMaps.map((e: FeaturedMapType) => {
+        let elements: Map[] = [];
+        if (e?.routes?.elements?.length) {
+            elements = mapsListToClass(e.routes.elements);
+        }
+
+        if (!elements?.length) {
+            return e;
+        }
+
+        return {
+            ...e,
+            routes: {
+                ...routes,
+                elements: elements,
+            },
+        };
+    });
 
 export const favouritesMapsIDSSelector = (state: RootState): string[] =>
     state.maps.favourites;
@@ -67,6 +91,9 @@ export const selectMapDataByIDBasedOnTypeSelector = (
     if (type === selectorTypeEnum.favourite) {
         selectorType = favouritesMapsSelector;
     }
+    if (type === selectorTypeEnum.featured) {
+        return featuredMapDataByIdSelector(mapID);
+    }
 
     return createSelector(selectorType, maps => maps.find(m => m.id === mapID));
 };
@@ -107,6 +134,16 @@ export const selectMapPathByIDBasedOnTypeSelector = (
     );
 };
 
+export const featuredMapDataByIdSelector = (mapID: string) =>
+    createSelector(featuredMapsSelector, fMaps =>
+        getMapFromFeaturedSections(fMaps, mapID),
+    );
+
+export const featuredMapDataBySectionIdSelector = (sectionID: string) =>
+    createSelector(featuredMapsSelector, maps =>
+        maps.find(m => m.section.id === sectionID),
+    );
+
 export const nextPaginationCoursor = (state: RootState): string | undefined =>
     state.maps.paginationCoursor?.next;
 
@@ -128,6 +165,16 @@ export const nextPlannedPaginationCoursor = (
 export const prevPlannedPaginationCoursor = (
     state: RootState,
 ): string | undefined => state.maps.paginationCoursorPlanned?.prev;
+
+export const nextFeaturedPaginationCoursors = (
+    state: RootState,
+): NestedPaginationType[] => state.maps.paginationCoursorFeatured;
+
+export const nextFeaturedPaginationCoursor = (sectionID: string) =>
+    createSelector(
+        nextFeaturedPaginationCoursors,
+        cursors => cursors?.find(c => c.id === sectionID)?.pagination?.next,
+    );
 
 export const hasRecordedRoutesSelector = (state: RootState): boolean =>
     state.maps.privateMaps?.length > 0;

@@ -39,6 +39,9 @@ const getMapType = (params: any) => {
     if (params?.favourite) {
         return selectorTypeEnum.favourite;
     }
+    if (params?.featured) {
+        return selectorTypeEnum.featured;
+    }
     return selectorTypeEnum.regular;
 };
 
@@ -51,9 +54,11 @@ const RouteDetails = () => {
     const mapID: string = route?.params?.mapID;
     const privateMap: boolean = !!route?.params?.private;
     const favouriteMap: boolean = !!route?.params?.favourite;
+    const featuredMap: boolean = !!route?.params?.featured;
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
+
     const favMapName = useAppSelector(favouriteMapDataByIDSelector(mapID))
         ?.name;
 
@@ -168,6 +173,7 @@ const RouteDetails = () => {
                                 images={images}
                                 isPrivateView={privateMap}
                                 isFavView={favouriteMap}
+                                isFeaturedView={featuredMap}
                             />
                             {favouriteMap && (
                                 <>

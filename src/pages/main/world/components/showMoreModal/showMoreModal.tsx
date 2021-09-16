@@ -4,20 +4,13 @@ import {useNavigation} from '@react-navigation/core';
 
 import {I18n} from '@translations/I18n';
 
-import AnimSvg from '../../../../../helpers/animSvg';
+import AnimSvg from '@helpers/animSvg';
 
 import styles from './style';
-import {useAppDispatch, useAppSelector} from '../../../../../hooks/redux';
-import {
-    addPlannedMap,
-    removePlanendMap,
-} from '../../../../../storage/actions/maps';
-import {RegularStackRoute} from '../../../../../navigation/route';
+import {useAppDispatch} from '@hooks/redux';
+import {addPlannedMap, removePlanendMap} from '@storage/actions/maps';
+import {RegularStackRoute} from '@navigation/route';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
-import {
-    mapDataByIDSelector,
-    favouriteMapDataByIDSelector,
-} from '@src/storage/selectors/map';
 
 const backGround = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 332">
 <filter id="filter" x="-1" width="3" y="-1" height="3">
@@ -37,6 +30,7 @@ interface IProps {
     removeFav?: boolean;
     isPrivate?: boolean;
     isFavourite?: boolean;
+    isFeatured?: boolean;
     backdropStyle?: ViewStyle;
 }
 
@@ -47,6 +41,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     removeFav,
     isPrivate,
     isFavourite,
+    isFeatured,
     backdropStyle,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
@@ -58,7 +53,7 @@ const ShowMoreModal: React.FC<IProps> = ({
         onPressCancel();
         navigation.navigate({
             name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-            params: {mapID: mapID, private: isPrivate},
+            params: {mapID: mapID, private: isPrivate, isFeatured: isFeatured},
         });
     };
 
@@ -70,6 +65,7 @@ const ShowMoreModal: React.FC<IProps> = ({
                 mapId: mapID,
                 private: isPrivate,
                 favourite: isFavourite,
+                featured: isFeatured,
             },
         });
     };
