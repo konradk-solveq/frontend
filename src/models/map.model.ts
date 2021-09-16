@@ -236,6 +236,7 @@ export class Map {
     }
 
     public get distanceInKilometers(): string {
+        console.log('[DISTANCE]', transformMetersToKilometersString(2412226.349611576))
         return transformMetersToKilometersString(this.distance);
     }
 
