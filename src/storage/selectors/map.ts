@@ -10,13 +10,13 @@ export enum selectorTypeEnum {
 }
 
 export const mapsListSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.maps);
+    mapsListToClass(state.maps.maps, state.app.config);
 
 export const privateMapsListSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.privateMaps);
+    mapsListToClass(state.maps.privateMaps, state.app.config);
 
 export const favouritesMapsSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.plannedMaps);
+    mapsListToClass(state.maps.plannedMaps, state.app.config);
 
 export const favouritesMapsIDSSelector = (state: RootState): string[] =>
     state.maps.favourites;

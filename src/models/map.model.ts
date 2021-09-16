@@ -43,11 +43,6 @@ export type SelectOptionType = {
     i18nValue: string;
 };
 
-export interface SelectI {
-    options: SelectOptionType[];
-    values: string[];
-}
-
 export interface Coords {
     latitude: number;
     longitude: number;
@@ -126,6 +121,13 @@ export type MapMarkerType = {
     markerType: MarkerTypes[];
 };
 
+export type OptionsEnumsT = {
+    difficultyOptions: SelectOptionType[];
+    surfacesOptions: SelectOptionType[];
+    tagsOptions: SelectOptionType[];
+    reactions: SelectOptionType[];
+};
+
 export class Map {
     @IsNotEmpty()
     @IsString()
@@ -172,14 +174,14 @@ export class Map {
     public rating?: number;
 
     @IsOptional()
-    public tags?: SelectI;
+    public tags?: string[];
 
     @IsOptional()
     public images?: Images[];
 
     @IsOptional()
     @IsArray()
-    public difficulty?: SelectI;
+    public difficulty?: string[];
 
     @IsOptional()
     @IsString()
@@ -187,7 +189,7 @@ export class Map {
 
     @IsOptional()
     @IsArray()
-    surface?: SelectI;
+    surface?: string[];
 
     @IsOptional()
     @IsArray()
@@ -217,6 +219,8 @@ export class Map {
     @IsOptional()
     public reactions?: ReactionsType;
 
+    private optionsEnums: OptionsEnumsT | undefined;
+
     constructor(
         id: string,
         name: string,
@@ -244,24 +248,34 @@ export class Map {
     }
 
     public get firstDifficulty(): string | undefined {
-        return this?.difficulty?.options?.[0]?.i18nValue;
+        const difficultyOptions = this.optionsEnums?.difficultyOptions?.[0]
+            ?.i18nValue;
+        return difficultyOptions;
     }
 
     public get firstPickedDifficulty(): string | undefined {
-        const values = this?.difficulty?.values;
-        return this?.difficulty?.options?.find(o =>
-            values?.includes(o.enumValue),
+        const values = this?.difficulty;
+        const difficultyOptions = this?.optionsEnums?.difficultyOptions?.find(
+            o => values?.includes(o?.enumValue),
         )?.i18nValue;
+
+        return difficultyOptions;
     }
 
     public get firstSurface(): string | undefined {
-        return this?.surface?.options?.[0]?.i18nValue;
+        const surfaceOptions = this.optionsEnums?.surfacesOptions?.[0]
+            ?.i18nValue;
+
+        return surfaceOptions;
     }
 
     public get firstPickedSurface(): string | undefined {
-        const values = this?.surface?.values;
-        return this?.surface?.options?.find(o => values?.includes(o.enumValue))
-            ?.i18nValue;
+        const values = this?.surface;
+        const surfaceOptions = this?.optionsEnums?.surfacesOptions?.find(o =>
+            values?.includes(o?.enumValue),
+        )?.i18nValue;
+
+        return surfaceOptions;
     }
 
     public get createdAtDate(): Date {
@@ -273,18 +287,13 @@ export class Map {
     }
 
     public get mapDescription(): string {
-        console.log('[1]')
         if (version < '1.4.0') {
-            console.log('[2]')
-            console.log('[2]')
             return this.mapDescriptionLong;
         }
-        console.log('[typof]', typeof this.description)
+        console.log('[typof]', typeof this.description);
         if (typeof this?.description === 'string') {
-            console.log('[3]')
             return this.description;
         }
-        console.log('[4]')
 
         return '';
     }
@@ -303,6 +312,23 @@ export class Map {
         }
 
         return this?.description?.long || '';
+    }
+
+    public set optionsEnumsValues(opt: OptionsEnumsT | undefined) {
+        if (!opt) {
+            return;
+        }
+
+        this.optionsEnums = {
+            difficultyOptions: opt.difficultyOptions,
+            surfacesOptions: opt.surfacesOptions,
+            tagsOptions: opt.tagsOptions,
+            reactions: opt.reactions,
+        };
+    }
+
+    public get optionsEnumsValues(): OptionsEnumsT | undefined {
+        return this.optionsEnums;
     }
 }
 
