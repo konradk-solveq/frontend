@@ -5,8 +5,8 @@ import deepCopy from '@helpers/deepCopy';
 
 import {MergedFeaturedMapsI, mergeFeaturedMapsListData} from '../maps';
 
-import mockedDataInit from './mocks/featuredRoutesDataInit';
-import mockedDataNext from './mocks/featuredRoutesDataNext';
+import mockedDataInit from '@api/mocks/featuredRoutesDataInit';
+import mockedDataNext from '@api/mocks/featuredRoutesDataNext';
 import mockedTransformedData from './mocks/transformedFeaturedRouteData';
 import mockedTransformedDataNext from './mocks/transformedFeaturedRouteDataNext';
 

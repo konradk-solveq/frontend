@@ -13,9 +13,12 @@ export const initState = {
     },
     maps: {
         totalPrivateMaps: null,
+        totalFeaturedMaps: [],
         mapToAddId: '',
         loading: false,
         privateMaps: [],
+        featuredMaps: [],
+        paginationCoursorFeatured: [],
         paginationCoursorPrivate: {},
         statusCode: 200,
         refresh: false,
