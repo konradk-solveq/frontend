@@ -30,6 +30,7 @@ interface IProps {
     onPressTile?: (mapID: string) => void;
     tilePressable?: boolean;
     headerTitle?: string;
+    sectionID?: string;
 }
 
 const NextTile: React.FC<IProps> = ({
@@ -39,6 +40,7 @@ const NextTile: React.FC<IProps> = ({
     onPressTile,
     tilePressable,
     headerTitle,
+    sectionID,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
@@ -75,11 +77,12 @@ const NextTile: React.FC<IProps> = ({
                         mapData?.id,
                         likeValue?.enumValue || 'like',
                         !state,
+                        sectionID,
                     ),
                 );
             }
         },
-        [dispatch, likeValue, mapData?.id],
+        [dispatch, likeValue, mapData?.id, sectionID],
     );
 
     const imagesToDisplay = getImageToDisplay(images);

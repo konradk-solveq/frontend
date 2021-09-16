@@ -76,6 +76,7 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
                     onPressTile={onPressElement}
                     tilePressable
                     headerTitle={sectionHeader}
+                    sectionID={sectionID}
                 />
             </View>
         );

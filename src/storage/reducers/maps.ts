@@ -5,7 +5,10 @@ import * as actionTypes from '../actions/actionTypes';
 import {FeaturedMapType, MapType} from '../../models/map.model';
 import {MapPagination, NestedPaginationType} from '../../interfaces/api';
 import {RouteMapType} from '../../models/places.model';
-import {updateReactionsInMap} from '@utils/mapsData';
+import {
+    updateReactionsInFeatueedMap,
+    updateReactionsInMap,
+} from '@utils/mapsData';
 import {NestedTotalMapsType} from '@src/type/maps';
 import {mergeFeaturedMapsListData} from './utils/maps';
 
@@ -237,9 +240,20 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 action.reaction,
             );
 
+            let modifiedFeaturedMaps = state.featuredMaps;
+            if (action.sectionID) {
+                modifiedFeaturedMaps = updateReactionsInFeatueedMap(
+                    modifiedFeaturedMaps,
+                    action.mapIdToModify,
+                    action.reaction,
+                    action.sectionID,
+                );
+            }
+
             return {
                 ...state,
                 maps: modifiedMaps,
+                featuredMaps: modifiedFeaturedMaps,
                 statusCode: 200,
             };
         }

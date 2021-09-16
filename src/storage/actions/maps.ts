@@ -117,10 +117,15 @@ export const removeMapFromFavourite = (mapID: string) => ({
     mapID: mapID,
 });
 
-export const modifyMapReactions = (mapID: string, reaction: string) => ({
+export const modifyMapReactions = (
+    mapID: string,
+    reaction: string,
+    sectionID?: string,
+) => ({
     type: actionTypes.MODIFY_MAP_REACTIONS,
     mapIdToModify: mapID,
     reaction: reaction,
+    sectionID: sectionID,
 });
 
 export const removeMapFromPrivates = (mapID: string) => ({
@@ -445,6 +450,7 @@ export const modifyReaction = (
     routeId: string,
     reaction: string,
     remove?: boolean,
+    sectionId?: string,
 ): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {
@@ -457,7 +463,7 @@ export const modifyReaction = (
             return;
         }
 
-        dispatch(modifyMapReactions(routeId, reaction));
+        dispatch(modifyMapReactions(routeId, reaction, sectionId));
 
         dispatch(clearError());
         dispatch(setLoadingState(false));

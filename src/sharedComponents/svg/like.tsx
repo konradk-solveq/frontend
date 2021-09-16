@@ -1,4 +1,3 @@
-import {getHorizontalPx, getVerticalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {
     ViewStyle,
@@ -8,6 +7,7 @@ import {
     StyleSheet,
 } from 'react-native';
 import Svg, {G, Path} from 'react-native-svg';
+import {getHorizontalPx} from '@helpers/layoutFoo';
 
 interface IProps {
     style?: ViewStyle;

@@ -106,11 +106,12 @@ const FeaturedRoutesScreen: React.FC = () => {
                         onPress={onPressHandler}
                         onPressTile={onPressTileHandler}
                         tilePressable
+                        sectionID={sectionID}
                     />
                 </View>
             );
         },
-        [mapsData?.length, onPressTileHandler],
+        [mapsData?.length, onPressTileHandler, sectionID],
     );
 
     const renderListLoader = useCallback(() => {
