@@ -31,7 +31,7 @@ const buildStore = () => {
 
     const middlewares = [ReduxThunk];
 
-    if (__DEV__ && FLIPPER_REDUX_DEBUGGER) {
+    if (__DEV__ && FLIPPER_REDUX_DEBUGGER && !process.env.JEST_WORKER_ID) {
         const createDebugger = require('redux-flipper').default;
         middlewares.push(createDebugger());
     }

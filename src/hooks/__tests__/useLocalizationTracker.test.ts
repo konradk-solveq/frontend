@@ -24,19 +24,19 @@ describe('[useLocalizationTracker]', () => {
     }, 5000);
 
     describe('When recording has been started', () => {
-        beforeEach(async () => {
+        const {result, waitForNextUpdate} = (async () => {
             renderedHook = renderHook(
                 () => useLocalizationTracker(true, true),
                 {wrapper: hookWrapper},
             );
 
-            if (!renderedHook) {
+            if (!result && !waitForNextUpdate) {
                 return;
             }
 
-            await renderedHook.waitForNextUpdate();
+            await act(async () => await waitForNextUpdate());
 
-            await asyncEvent(renderedHook.result.current.startTracker());
+            await asyncEvent(result.current.startTracker());
         });
 
         it('Should stop route recording', async () => {
