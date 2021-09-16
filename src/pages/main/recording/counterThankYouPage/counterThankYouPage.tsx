@@ -89,9 +89,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         const t = setTimeout(() => {
-            scrollRef.current?.scrollToEnd({
-                animated: true,
-            });
+            scrollRef.current?.scrollToEnd({animated: true, duration: 1000});
         }, 2000);
 
         return () => clearTimeout(t);
@@ -255,7 +253,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     </View>
                 </ScrollView>
 
-                {TESTING_MODE === true && (
+                {TESTING_MODE && (
                     <DataPreview
                         title={'podgląd danych'}
                         dataList={[
