@@ -1,32 +1,36 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {useNavigation} from '@react-navigation/core';
 
-import {featuredMapsSelector} from '../../../../../storage/selectors';
-import {useAppSelector} from '../../../../../hooks/redux';
-import {Map, MapType} from '../../../../../models/map.model';
-// import {I18n} from '../../../../../../I18n/I18n';
+import {featuredMapsSelector} from '@storage/selectors';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {fetchFeaturedMapsList} from '@storage/actions/maps';
+import {RegularStackRoute} from '@navigation/route';
 
-import styles from './style';
 import ShowMoreModal from '../../components/showMoreModal/showMoreModal';
-import {RegularStackRoute} from '../../../../../navigation/route';
 import FeaturedRoutesList from './horizontalList/FeaturedRoutesHorizontalList';
 
-interface RenderItem {
-    item: Map;
-    index: number;
-    sectionHeader?: string;
-}
+import styles from './style';
 
-interface IProps {}
-
-const FeaturedRoutes: React.FC<IProps> = ({}: IProps) => {
-    // const trans: any = I18n.t('MainWorld.PlannedRoutes');
+const FeaturedRoutes: React.FC = () => {
+    const mountedRef = useRef(false);
+    const dispatch = useAppDispatch();
     const navigation = useNavigation();
 
     const featuredMaps = useAppSelector(featuredMapsSelector);
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
+
+    useEffect(() => {
+        if (!featuredMaps?.length && !mountedRef.current) {
+            mountedRef.current = true;
+            dispatch(fetchFeaturedMapsList());
+        }
+
+        return () => {
+            mountedRef.current = false;
+        };
+    }, [dispatch, featuredMaps?.length]);
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);

@@ -10,7 +10,6 @@ import {
 import {BasicCoordsType} from '@type/coords';
 
 import {AxiosResponse} from 'axios';
-// import featuredData from './mocks/featuredRoutesData';
 
 const BASE_URL = '/routes';
 const BASE_ROUTE_URL = `${BASE_URL}/route`;
@@ -151,9 +150,4 @@ export const getFeaturedMaps = async (
     let url = `${BASE_URL}/featured?lat=${location.latitude}&lng=${location.longitude}`;
 
     return await axiosGet(paginationUrl || url, {});
-    // return Promise.resolve({
-    //     data: featuredData,
-    //     status: 200,
-    //     error: '',
-    // });
 };
