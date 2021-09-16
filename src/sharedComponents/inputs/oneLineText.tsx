@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'left',
         color: 'black',
-        height: 50,
+        minHeight: 50,
         marginTop: 6,
         paddingLeft: 30,
         paddingTop: 10,
