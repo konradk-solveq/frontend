@@ -75,7 +75,7 @@ const FeaturedRoutesScreen: React.FC = () => {
     );
 
     const onLoadMoreHandler = useCallback(() => {
-        if (!isLoading) {
+        if (!isLoading && nextFeaturedCoursor) {
             dispatch(fetchFeaturedMapsList(nextFeaturedCoursor));
         }
     }, [dispatch, isLoading, nextFeaturedCoursor]);
