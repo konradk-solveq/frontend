@@ -7,11 +7,20 @@ export const putSeparatorIntoNum = (
     separator: string,
     counter: number,
 ) => {
-    if (number.toString().length < counter) {
-        return number;
+    try {
+        if (number.toString().length < counter) {
+            return number;
+        }
+        const regex = `\\B(?=(\\d{${counter}})+(?!\\d))`;
+    
+        const reg = new RegExp(regex, 'g');
+        const regs = number.toString().replace(reg, separator);
+    
+        return regs;
+        
+    } catch (error) {
+        return number?.toString()
     }
-    const reg = new RegExp(`.{${counter}}`, 'g');
-    return number.toString().match(reg)?.join(separator);
 };
 
 export const transformMetersToKilometersString = (
