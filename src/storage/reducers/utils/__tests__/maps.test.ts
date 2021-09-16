@@ -7,8 +7,8 @@ import {MergedFeaturedMapsI, mergeFeaturedMapsListData} from '../maps';
 
 import mockedDataInit from '@api/mocks/featuredRoutesDataInit';
 import mockedDataNext from '@api/mocks/featuredRoutesDataNext';
-import mockedTransformedData from './mocks/transformedFeaturedRouteData';
-import mockedTransformedDataNext from './mocks/transformedFeaturedRouteDataNext';
+import mockedTransformedData from '../mocks/transformedFeaturedRouteData';
+import mockedTransformedDataNext from '../mocks/transformedFeaturedRouteDataNext';
 
 const mData: FeaturedMapType[] = deepCopy(mockedDataInit);
 const mDataNext: FeaturedMapType[] = deepCopy(mockedDataNext);
