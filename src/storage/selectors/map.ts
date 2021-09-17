@@ -26,7 +26,7 @@ export const featuredMapsSelector = (state: RootState): FeaturedMapType[] =>
     state.maps.featuredMaps.map((e: FeaturedMapType) => {
         let elements: Map[] = [];
         if (e?.routes?.elements?.length) {
-            elements = mapsListToClass(e.routes.elements);
+            elements = mapsListToClass(e.routes.elements, state.app.config);
         }
 
         if (!elements?.length) {

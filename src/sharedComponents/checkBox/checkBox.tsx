@@ -19,6 +19,7 @@ interface Props {
     checked: boolean;
     wrong: boolean;
     getCheck: Function;
+    disabled?: boolean;
 }
 
 const CheckBoxx: React.FC<Props> = (props: Props) => {
@@ -39,7 +40,8 @@ const CheckBoxx: React.FC<Props> = (props: Props) => {
     return (
         <TouchableWithoutFeedback
             style={styles.stretch}
-            onPress={() => hendlePress()}>
+            onPress={() => hendlePress()}
+            disabled={props.disabled}>
             <View style={styles.stretch}>
                 <View
                     style={[

@@ -14,7 +14,6 @@ import {simplyTimer} from '../helpers/stringFoo';
 import {getDateString} from '../utils/dateTime';
 import {transformMetersToKilometersString} from '../utils/metersToKilometers';
 import validationRules from '../utils/validation/validationRules';
-import {version} from '../../package.json';
 
 export type PublishMapValidationRuleT = (string | {[key: string]: number})[];
 export interface PublishMapValidationRulesI {
@@ -296,10 +295,6 @@ export class Map {
     }
 
     public get mapDescription(): string {
-        if (version < '1.4.0') {
-            return this.mapDescriptionLong;
-        }
-        console.log('[typof]', typeof this.description);
         if (typeof this?.description === 'string') {
             return this.description;
         }
@@ -307,6 +302,9 @@ export class Map {
         return '';
     }
 
+    /**
+     * Deprecated - legacy code, used before v1.4.0
+     */
     public get mapDescriptionShort(): string {
         if (typeof this?.description === 'string') {
             return '';
@@ -315,6 +313,9 @@ export class Map {
         return this?.description?.short || '';
     }
 
+    /**
+     * Deprecated - legacy code, used before v1.4.0
+     */
     public get mapDescriptionLong(): string {
         if (typeof this?.description === 'string') {
             return '';

@@ -49,7 +49,7 @@ const EditForm: React.FC<IProps> = ({
     const validationMessages: any = I18n.t(
         'validation.fields.mapDetails.formErrors',
     );
-    const userName = useAppSelector(userNameSelector);
+    const userName = useAppSelector(userNameSelector) || trans.defaultUser;
 
     const [images, setImages] = useState<string[]>(imagesData?.images || []);
     const [imagesToAdd, setImagesToAdd] = useState<ImageType[]>([]);
@@ -118,10 +118,11 @@ const EditForm: React.FC<IProps> = ({
                     control={control}
                     Input={({value, isValid, onChange}) => (
                         <Checkbox
-                            label={`Opublikuj jako ${userName}`}
+                            label={`${trans.publishAs} ${userName}`}
                             value={!!value}
                             isValid={isValid}
                             onCheck={onChange}
+                            disabled={mapData?.isPublic}
                         />
                     )}
                     onValidate={onValidateHanlder}
