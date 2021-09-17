@@ -102,7 +102,7 @@ const FeaturedRoutesScreen: React.FC = () => {
             const lastItemStyle =
                 index === mapsData?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
-            console.log('[ITEM TO RENDER]', item?.createdAt, sectionID);
+
             return (
                 <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
                     <NextTile

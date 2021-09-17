@@ -31,10 +31,13 @@ const buildStore = () => {
 
     const middlewares = [ReduxThunk];
 
-    if (__DEV__ && FLIPPER_REDUX_DEBUGGER && !process.env.JEST_WORKER_ID) {
-        const createDebugger = require('redux-flipper').default;
-        middlewares.push(createDebugger());
-    }
+    /**
+     * Temporary reomved - "react-native-flipper" on IOS error occures during the build
+     */
+    // if (__DEV__ && FLIPPER_REDUX_DEBUGGER && !process.env.JEST_WORKER_ID) {
+    //     const createDebugger = require('redux-flipper').default;
+    //     middlewares.push(createDebugger());
+    // }
 
     const store = createStore(
         persistedReducer,
