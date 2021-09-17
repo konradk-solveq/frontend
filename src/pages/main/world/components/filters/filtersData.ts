@@ -1,8 +1,8 @@
-import {OptionType, PickedFilters} from '../../../../../interfaces/form';
+import {OptionType, PickedFilters, SelectOptionType} from '@interfaces/form';
 
 export interface BaseFilter {
     name: string;
-    options: OptionType[];
+    options: OptionType[] | undefined;
 }
 
 export interface FilterI {
@@ -12,7 +12,7 @@ export interface FilterI {
 export interface FitlersI {
     [key: string]: {
         name: string;
-        options: {enumValue: string; i18nValue: string}[] | [];
+        options: SelectOptionType[] | [];
         radioType: boolean;
     };
 }
@@ -21,7 +21,7 @@ export const getFitlers = (
     mapOptions: OptionType,
     orderTranslations: string[],
 ): FitlersI => {
-    let filters = {
+    let filters: FitlersI = {
         order: {
             name: 'order',
             options: [
@@ -54,12 +54,8 @@ export const getFitlers = (
     };
 
     Object.keys(mapOptions)?.forEach((mo: string) => {
-        const options = mapOptions?.[mo as keyof OptionType]?.map(o => {
-            return {
-                ...o,
-                i18nValue: o.i18nValue,
-            };
-        }, []);
+        const options = mapOptions?.[mo as keyof OptionType] || [];
+
         filters[mo as keyof FitlersI] = {
             name: mo,
             options: options,
@@ -73,7 +69,7 @@ export const getFitlers = (
 export const updateFilters = (
     filters: PickedFilters,
     filterToUpdate: string,
-    filtersToUpdate: OptionType[],
+    filtersToUpdate: string[],
 ) => {
     let filterToReturn = {...filters};
     if (filtersToUpdate?.length < 1) {

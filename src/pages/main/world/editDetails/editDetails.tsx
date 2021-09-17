@@ -37,7 +37,6 @@ import styles from './style';
 const isIOS = Platform.OS === 'ios';
 
 const EditDetails = () => {
-    const trans: any = I18n.t('RoutesDetails');
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const route = useRoute();
@@ -134,7 +133,11 @@ const EditDetails = () => {
         <>
             <StatusBar translucent />
             <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
-                <View style={{paddingTop: headerBackgroundHeight, flex: 1}}>
+                <View
+                    style={[
+                        styles.innerContainer,
+                        {paddingTop: headerBackgroundHeight},
+                    ]}>
                     <StackHeader
                         onpress={onBackHandler}
                         inner=""

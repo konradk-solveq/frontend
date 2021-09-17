@@ -16,7 +16,17 @@ import {transformMetersToKilometersString} from '../utils/metersToKilometers';
 import validationRules from '../utils/validation/validationRules';
 import {version} from '../../package.json';
 
-export const publishMapValidationRules = {
+export type PublishMapValidationRuleT = (string | {[key: string]: number})[];
+export interface PublishMapValidationRulesI {
+    name: PublishMapValidationRuleT;
+    publishWithName: PublishMapValidationRuleT;
+    description: PublishMapValidationRuleT;
+    difficulty: PublishMapValidationRuleT;
+    surface: PublishMapValidationRuleT;
+    tags: PublishMapValidationRuleT;
+}
+
+export const publishMapValidationRules: PublishMapValidationRulesI = {
     name: [
         validationRules.required,
         validationRules.string,
@@ -24,8 +34,7 @@ export const publishMapValidationRules = {
         {[validationRules.max]: 150},
     ],
     publishWithName: [validationRules.boolean],
-    short: [validationRules.string, {[validationRules.max]: 1000}],
-    long: [validationRules.string, {[validationRules.max]: 5000}],
+    description: [validationRules.string, {[validationRules.max]: 10000}],
     difficulty: [validationRules.isArray],
     surface: [validationRules.isArray],
     tags: [validationRules.isArray],
@@ -149,7 +158,7 @@ export class Map {
     public createdAt: string;
 
     @IsDate()
-    public publishedAt: Date;
+    public publishedAt?: Date;
 
     @IsOptional()
     @IsNumber()
@@ -236,7 +245,6 @@ export class Map {
     }
 
     public get distanceInKilometers(): string {
-        console.log('[DISTANCE]', transformMetersToKilometersString(2412226.349611576))
         return transformMetersToKilometersString(this.distance);
     }
 

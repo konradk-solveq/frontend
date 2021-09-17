@@ -57,6 +57,7 @@ const initialState: AppState = {
     showedRegulations: null,
     regulation: {},
     policy: {},
+    showedLocationInfo: false,
     location: undefined,
 };
 
