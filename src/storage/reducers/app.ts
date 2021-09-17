@@ -94,14 +94,14 @@ const appReducer = (state = initialState, action: any) => {
                 showedRegulations: action.showedRegulations,
             };
         case actionTypes.SET_APP_REGULATION: {
-            const getVersion = v => {
+            const getVersion = (v: string) => {
                 let splited = v.split('.');
                 let num = '';
                 for (let s of splited) {
-                    if (s.length == 2) {
+                    if (s.length === 2) {
                         num += '0' + s;
                     }
-                    if (s.length == 1) {
+                    if (s.length === 1) {
                         num += '00' + s;
                     }
                 }
@@ -143,14 +143,14 @@ const appReducer = (state = initialState, action: any) => {
         }
 
         case actionTypes.SET_APP_POLICY: {
-            const getVersion = v => {
+            const getVersion = (v: string) => {
                 let splited = v.split('.');
                 let num = '';
                 for (let s of splited) {
-                    if (s.length == 2) {
+                    if (s.length === 2) {
                         num += '0' + s;
                     }
-                    if (s.length == 1) {
+                    if (s.length === 1) {
                         num += '00' + s;
                     }
                 }

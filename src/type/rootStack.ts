@@ -20,6 +20,11 @@ export type RootStackType = {
         favourite?: boolean;
         featured?: boolean;
     };
+    EditDetails: {
+        mapID?: string;
+        private?: boolean;
+        redirectTo?: string;
+    };
     FeaturedMapsScreen: {
         sectionID: string;
         sectionName: string;
@@ -40,6 +45,12 @@ export type RouteDetailsRouteType = RouteProp<RootStackType, 'RouteDetails'>;
 export type RouteDetailsNavigationPropI = StackNavigationProp<
     RootStackType,
     'RouteDetails'
+>;
+
+export type EditDetailsRouteType = RouteProp<RootStackType, 'EditDetails'>;
+export type EditDetailsNavigationPropI = StackNavigationProp<
+    RootStackType,
+    'EditDetails'
 >;
 
 export type FeaturedMapsScreenRouteType = RouteProp<

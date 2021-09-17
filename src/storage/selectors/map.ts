@@ -67,7 +67,7 @@ export const mapIdToAddSelector = (state: RootState): string =>
 //     (fav, maps) => maps.filter(m => fav.includes(m.id)),
 // );
 
-export const mapDataByIDSelector = (mapID: string) =>
+export const mapDataByIDSelector = (mapID?: string) =>
     createSelector(mapsListSelector, maps => maps.find(m => m.id === mapID));
 
 export const favouriteMapDataByIDSelector = (mapID: string) =>

@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
     aligned: {
         justifyContent: 'center',
     },
+    absolute: {
+        position: 'absolute',
+    },
 });
 
 interface Props {
@@ -43,14 +46,7 @@ const CheckBoxx: React.FC<Props> = (props: Props) => {
             onPress={() => hendlePress()}
             disabled={props.disabled}>
             <View style={styles.stretch}>
-                <View
-                    style={[
-                        styles.stretch,
-                        styles.aligned,
-                        {
-                            position: 'absolute',
-                        },
-                    ]}>
+                <View style={[styles.stretch, styles.aligned, styles.absolute]}>
                     {props.wrong ? <ChecboxWrong /> : <ChecboxOff />}
                 </View>
 

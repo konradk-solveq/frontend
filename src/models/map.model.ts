@@ -81,7 +81,7 @@ export interface Images {
 }
 
 /**
- * Legacy properties. They haven't exists since version 1.4.0 for new objects.
+ * Deprecated - legacy code, used before v1.5.0
  */
 export type MapDescriptionType = {
     short?: string;
@@ -303,7 +303,7 @@ export class Map {
     }
 
     /**
-     * Deprecated - legacy code, used before v1.4.0
+     * Deprecated - legacy code, used before v1.5.0
      */
     public get mapDescriptionShort(): string {
         if (typeof this?.description === 'string') {
@@ -314,7 +314,7 @@ export class Map {
     }
 
     /**
-     * Deprecated - legacy code, used before v1.4.0
+     * Deprecated - legacy code, used before v1.5.0
      */
     public get mapDescriptionLong(): string {
         if (typeof this?.description === 'string') {
