@@ -5,6 +5,8 @@ export type SentryLogLevelT = Sentry.Severity;
 type ContextT = {[key: string]: any} | null;
 export type SentryContextT = {name: string; context: ContextT};
 
+export const sentryLogLevel = Sentry.Severity;
+
 export const sentryMessager = (message: string, level?: SentryLogLevelT) => {
     Sentry.captureMessage(message, level);
 };
