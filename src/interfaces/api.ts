@@ -3,6 +3,7 @@ import {ImageType} from './form';
 export type MapPagination = {
     next?: string | undefined;
     prev?: string | undefined;
+    self?: string | undefined;
 };
 
 export interface actionAsyncResponse {
@@ -39,3 +40,5 @@ export type ImagesMetadataType = {
     save: ImageType[] | undefined;
     delete: string[] | undefined;
 };
+
+export type NestedPaginationType = {id: string; pagination: MapPagination};

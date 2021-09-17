@@ -2,21 +2,29 @@ import {persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '../actions/actionTypes';
-import {MapType} from '../../models/map.model';
-import {MapPagination} from '../../interfaces/api';
+import {FeaturedMapType, MapType} from '../../models/map.model';
+import {MapPagination, NestedPaginationType} from '../../interfaces/api';
 import {RouteMapType} from '../../models/places.model';
-import {updateReactionsInMap} from '@utils/mapsData';
+import {
+    updateReactionsInFeatueedMap,
+    updateReactionsInMap,
+} from '@utils/mapsData';
+import {NestedTotalMapsType} from '@src/type/maps';
+import {mergeFeaturedMapsListData} from './utils/maps';
 
 export interface MapsState {
     maps: MapType[];
     totalMaps: number | null;
     privateMaps: MapType[];
     totalPrivateMaps: number | null;
+    totalFeaturedMaps: NestedTotalMapsType[];
     plannedMaps: MapType[];
+    featuredMaps: FeaturedMapType[];
     paginationCoursor: MapPagination;
     mapToAddId: string;
     paginationCoursorPrivate: MapPagination;
     paginationCoursorPlanned: MapPagination;
+    paginationCoursorFeatured: NestedPaginationType[];
     favourites: string[];
     ownes: string[];
     error: string;
@@ -30,10 +38,13 @@ const initialStateList: MapsState = {
     totalMaps: null,
     privateMaps: [],
     totalPrivateMaps: null,
+    totalFeaturedMaps: [],
     plannedMaps: [],
+    featuredMaps: [],
     paginationCoursor: {},
     paginationCoursorPrivate: {},
     paginationCoursorPlanned: {},
+    paginationCoursorFeatured: [],
     mapToAddId: '',
     favourites: [],
     ownes: [],
@@ -126,6 +137,28 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 refresh: action.refresh,
             };
         }
+        case actionTypes.SET_FEATURED_MAPS_DATA: {
+            const oldState = {
+                oldFeaturedMaps: [...state.featuredMaps],
+                oldPaginationCoursorFeatured: [
+                    ...state.paginationCoursorFeatured,
+                ],
+                oldTotalFeaturedMaps: [...state.totalFeaturedMaps],
+            };
+
+            const updatedState = mergeFeaturedMapsListData(action, oldState);
+
+            return {
+                ...state,
+                loading: false,
+                featuredMaps: updatedState.newFeaturedMaps,
+                paginationCoursorFeatured:
+                    updatedState.paginationCoursorFeatured,
+                totalFeaturedMaps: updatedState.totalFeaturedMaps,
+                statusCode: 200,
+                refresh: action.refresh,
+            };
+        }
         case actionTypes.SET_MAP_DATA: {
             const o = [...state.ownes];
             if (action.ownerId) {
@@ -207,9 +240,20 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 action.reaction,
             );
 
+            let modifiedFeaturedMaps = state.featuredMaps;
+            if (action.sectionID) {
+                modifiedFeaturedMaps = updateReactionsInFeatueedMap(
+                    modifiedFeaturedMaps,
+                    action.mapIdToModify,
+                    action.reaction,
+                    action.sectionID,
+                );
+            }
+
             return {
                 ...state,
                 maps: modifiedMaps,
+                featuredMaps: modifiedFeaturedMaps,
                 statusCode: 200,
             };
         }
@@ -225,7 +269,7 @@ const persistConfig = {
     key: 'maps',
     storage: AsyncStorage,
     whitelist: [
-        'maps, favourites, ownes, privateMaps, plannedMaps, paginationCoursorPrivate, paginationCoursorPlanned, totalMaps, totalPrivateMaps',
+        'maps, favourites, ownes, privateMaps, plannedMaps, paginationCoursorPrivate, paginationCoursorPlanned, totalMaps, totalPrivateMaps, featuredMaps, paginationCoursorFeatured, totalFeaturedMaps',
     ],
     timeout: 20000,
 };

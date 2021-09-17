@@ -14,6 +14,7 @@ export {
     getPlannedMapsListService,
     removePlannedMapByIdService,
     removePrivateMapByIdService,
+    getFeaturedMapsListService,
 } from './mapsService';
 export {syncRouteData, createNewRouteService} from './routesService';
 export {

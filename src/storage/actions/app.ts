@@ -11,7 +11,7 @@ import {
     syncRouteDataFromQueue,
     fetchPrivateMapsList,
 } from './index';
-import {fetchPlannedMapsList} from './maps';
+import {fetchFeaturedMapsList, fetchPlannedMapsList} from './maps';
 import {AppThunk} from '@storage/thunk';
 import {AppState} from '@storage/reducers/app';
 import {RoutesState} from '@storage/reducers/routes';
@@ -231,6 +231,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
 
         if (onboardingFinished && !isRecordingActive) {
             await dispatch(fetchMapsList());
+            dispatch(fetchFeaturedMapsList());
         }
 
         if (sessionData?.access_token && !isRecordingActive) {

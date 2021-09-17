@@ -20,6 +20,7 @@ import AboutApp from '../../pages/main/profile/aboutApp/aboutApp';
 import ReviewsDetails from '../../pages/main/bike/reviewsDetails/reviewsDetails';
 import NameChange from '../../pages/main/profile/nameChange/nameChange';
 import Counter from '../../pages/main/recording/counter/counter';
+import FeaturedRoutesScreen from '@pages/main/world/featuredRoutes/FeaturedRoutesScreen';
 import RouteDetails from '../../pages/main/world/routeDetails/routeDetails';
 import CounterThankYouPage from '../../pages/main/recording/counterThankYouPage/counterThankYouPage';
 import EditDetails from '../../pages/main/world/editDetails/editDetails';
@@ -104,6 +105,10 @@ const RegularStackNavigator: React.FC = () => {
             {/* End add bike */}
 
             {/* START KROSS WORLD */}
+            <Stack.Screen
+                name={RegularStackRoute.FEATURED_ROUTES_SCRREN}
+                component={FeaturedRoutesScreen}
+            />
             <Stack.Screen
                 name={RegularStackRoute.ROUTE_DETAILS_SCREEN}
                 component={RouteDetails}

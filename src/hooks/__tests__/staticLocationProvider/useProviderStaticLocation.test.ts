@@ -11,6 +11,9 @@ import asyncEvent from '@jestUtils/asyncEvent';
 import {trackerDataResult} from '../utils/trackerDataResult';
 
 const initState = {
+    app: {
+        showedLocationInfo: false,
+    },
     user: {
         onboardingFinished: true,
     },

@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Dimensions, Animated, Platform} from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, Text, Dimensions, Animated, Platform } from 'react-native';
 
-import {trackerMapVisibilitySelector} from '@storage/selectors/routes';
-import {useAppSelector} from '@hooks/redux';
-import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
-import {FindMeButton} from '@sharedComponents/buttons';
+import { trackerMapVisibilitySelector } from '@storage/selectors/routes';
+import { useAppSelector } from '@hooks/redux';
+import { getHorizontalPx, getVerticalPx } from '@helpers/layoutFoo';
+import { FindMeButton } from '@sharedComponents/buttons';
 
 import DisplayAverageSpeed from './displayAverageSpeed/displayAveragaSpeed';
 import DisplayDistance from './displayDistance/displayDistance';
@@ -17,9 +17,10 @@ import styles from './style';
 import CompassButton from '@src/sharedComponents/buttons/compassBtn';
 
 const isIOS = Platform.OS === 'ios';
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const arrowPositionTop = getVerticalPx((isIOS ? 0 : -25) + 437);
 const arrowPositionBottom = getVerticalPx((isIOS ? -10 : -25) + 654);
+const arrowPositionAplaShow = getVerticalPx((isIOS ? -10 : -25) + 654 - 30);
 
 interface IProps {
     time: Date | undefined;
@@ -28,7 +29,8 @@ interface IProps {
     setMapHiden: Function;
     duration: number;
     aplaShow: boolean;
-    autoFindMeSwith: (e: boolean) => void;
+    autoFindMeSwith: (e: number) => void;
+    autoFindMe: number;
     headingSwitch: (e: boolean) => void;
     compassHeading: any;
 }
@@ -42,6 +44,7 @@ const NativeCounter: React.FC<IProps> = ({
     duration,
     aplaShow,
     autoFindMeSwith,
+    autoFindMe,
     headingSwitch,
     compassHeading,
 }: IProps) => {
@@ -60,7 +63,6 @@ const NativeCounter: React.FC<IProps> = ({
     const findMeBottonZIndex = useRef(new Animated.Value(1)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
 
-    const [autoFindMeOn, setAutoFindMeOn] = useState(true);
     const [headingOn, setHeadingOn] = useState(true);
 
     const startAnimation = (revert?: boolean) => {
@@ -89,7 +91,7 @@ const NativeCounter: React.FC<IProps> = ({
         }).start();
 
         Animated.timing(arrowPos, {
-            toValue: !revert ? arrowPositionBottom : arrowPositionTop,
+            toValue: !revert ? (aplaShow ? arrowPositionAplaShow : arrowPositionBottom) : arrowPositionTop,
             duration: duration,
             useNativeDriver: false,
         }).start();
@@ -102,6 +104,7 @@ const NativeCounter: React.FC<IProps> = ({
             duration: duration,
             useNativeDriver: false,
         }).start();
+
         Animated.timing(findMeBottom, {
             toValue: condition
                 ? getHorizontalPx(130 + FIND_ME_BTN_BOTTOM)
@@ -109,6 +112,8 @@ const NativeCounter: React.FC<IProps> = ({
             duration: duration,
             useNativeDriver: false,
         }).start();
+
+        startAnimation(mapHiden);
     }, [aplaShow, containerBottom, findMeBottom, duration, mapHiden]);
 
     /**
@@ -118,7 +123,7 @@ const NativeCounter: React.FC<IProps> = ({
         let t: NodeJS.Timeout;
         if (isRunning && trackerMapVisibility && !resotredRef.current) {
             t = setTimeout(() => {
-                startAnimation();
+                startAnimation(mapHiden);
                 setMapHiden(false);
             }, 1500);
 
@@ -178,8 +183,7 @@ const NativeCounter: React.FC<IProps> = ({
     };
 
     const handleAutoFindMeSwith = () => {
-        autoFindMeSwith(!autoFindMeOn);
-        setAutoFindMeOn(!autoFindMeOn);
+        autoFindMeSwith(autoFindMe + 1);
     };
 
     const heandleHeadingSwitch = () => {
@@ -192,11 +196,11 @@ const NativeCounter: React.FC<IProps> = ({
             <Animated.View
                 style={[
                     styles.container,
-                    {height: containerHeight, bottom: containerBottom},
+                    { height: containerHeight, bottom: containerBottom },
                 ]}>
                 <CurvedShape />
 
-                <Animated.View style={[styles.wrap, {height: wrapHeight}]}>
+                <Animated.View style={[styles.wrap, { height: wrapHeight }]}>
                     <View style={[styles.row]}>
                         <Animated.View
                             style={[
@@ -209,7 +213,7 @@ const NativeCounter: React.FC<IProps> = ({
                             <Animated.View
                                 style={[
                                     styles.labelWrap,
-                                    {opacity: labelOpacity},
+                                    { opacity: labelOpacity },
                                 ]}>
                                 <Animated.Text style={styles.label}>
                                     Dystans
@@ -228,7 +232,7 @@ const NativeCounter: React.FC<IProps> = ({
                             <Animated.View
                                 style={[
                                     styles.labelWrap,
-                                    {opacity: labelOpacity},
+                                    { opacity: labelOpacity },
                                 ]}>
                                 <Text style={[styles.label, styles.rightLabel]}>
                                     Czas
@@ -259,7 +263,7 @@ const NativeCounter: React.FC<IProps> = ({
                             <Animated.View
                                 style={[
                                     styles.labelWrap,
-                                    {opacity: labelOpacity},
+                                    { opacity: labelOpacity },
                                 ]}>
                                 <Text style={styles.label}>Prędkość</Text>
                             </Animated.View>
@@ -277,7 +281,7 @@ const NativeCounter: React.FC<IProps> = ({
                                 style={[
                                     styles.labelWrap,
                                     styles.rightLabel,
-                                    {opacity: labelOpacity},
+                                    { opacity: labelOpacity },
                                 ]}>
                                 <Text style={[styles.label]}>
                                     Średnia prędkość
@@ -332,7 +336,7 @@ const NativeCounter: React.FC<IProps> = ({
                 />
                 <FindMeButton
                     onpress={handleAutoFindMeSwith}
-                    toggle={!autoFindMeOn}
+                    toggle={!autoFindMe}
                 />
             </Animated.View>
         </>

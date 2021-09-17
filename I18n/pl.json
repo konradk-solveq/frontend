@@ -344,6 +344,7 @@
             "distanceToStart": " km od Ciebie",
             "addToFavAction": "Pobierz trasę",
             "publishTripAction": "Upublicznij",
+            "editTripAction": "Edytuj",
             "startTripAction": "Rozpocznij",
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
@@ -367,6 +368,9 @@
             "routesNumberTitle": "Ilość nagranych tras:",
             "todayDate": "Dziś",
             "yestardayDate": "Wczoraj"
+        },
+        "FeaturedRoutes": {
+            "showMoreBtn": "Pokaż więcej"
         }
     },
     "MainRoutesMap": {

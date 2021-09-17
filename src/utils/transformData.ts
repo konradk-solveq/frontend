@@ -7,14 +7,14 @@ import {
     Complaint,
     Parameters,
 } from '../models/bike.model';
-import {Images, Map, OptionsEnumsT} from '../models/map.model';
+import {Images, Map, MapType, OptionsEnumsT} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
 import {isLocationValidate} from './locationData';
 
-const getTimeInUTCMilliseconds = (date: string | number) => {
+export const getTimeInUTCMilliseconds = (date: string | number) => {
     try {
         return new Date(date).valueOf();
     } catch (error) {
@@ -213,8 +213,12 @@ export const transformToMapsType = (
     return newData;
 };
 
-export const mapsListToClass = (maps: [], appConfig: AppConfigI): Map[] => {
+export const mapsListToClass = (
+    maps: MapType[] | [],
+    appConfig: AppConfigI,
+): Map[] => {
     const tranformed = transformToOptionEnumValues(appConfig);
+
     const result: Map[] = [];
     maps.forEach(b => {
         result.push(transformToMapsType(b, tranformed));

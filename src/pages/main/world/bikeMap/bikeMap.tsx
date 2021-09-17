@@ -20,6 +20,7 @@ import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../../sharedComponents/loader/loader';
 
 import styles from './style';
+import FeaturedRoutes from '../featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -65,17 +66,17 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
         [navigation],
     );
 
-    const onEndReachedHandler = () => {
-        if (!isLoading && !isRefreshing) {
+    const onEndReachedHandler = useCallback(() => {
+        if (!isLoading && !isRefreshing && mapsData?.length > 1) {
             onLoadMore();
         }
-    };
+    }, [isLoading, isRefreshing, mapsData?.length, onLoadMore]);
 
-    const onRefreshHandler = () => {
-        if (!isLoading && !isRefreshing) {
+    const onRefreshHandler = useCallback(() => {
+        if (!isLoading && !isRefreshing && mapsData?.length > 1) {
             onRefresh();
         }
-    };
+    }, [isLoading, isRefreshing, mapsData?.length, onRefresh]);
 
     const renderItem = useCallback(
         ({item, index}: RenderItem) => {
@@ -110,7 +111,7 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
         [mapsData?.length, onPressTileHandler],
     );
 
-    const renderListLoader = () => {
+    const renderListLoader = useCallback(() => {
         if (isLoading && mapsData.length > 3) {
             return (
                 <View style={styles.loaderContainer}>
@@ -119,7 +120,7 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
             );
         }
         return null;
-    };
+    }, [isLoading, mapsData?.length]);
 
     return (
         <>
@@ -133,7 +134,10 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                     />
                     <FlatList
                         ListHeaderComponent={
-                            <Text style={styles.header}>{trans.title}</Text>
+                            <>
+                                <FeaturedRoutes key={mapsData?.length} />
+                                <Text style={styles.header}>{trans.title}</Text>
+                            </>
                         }
                         keyExtractor={item => item.id}
                         data={mapsData}
@@ -154,4 +158,4 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
     );
 };
 
-export default BikeMap;
+export default React.memo(BikeMap);
