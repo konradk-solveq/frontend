@@ -26,9 +26,6 @@ const useFormDataWithMapData = (mapData: Map | undefined) => {
             Object.keys(newMapData).forEach(md => {
                 const k: any = md;
                 let v: ValueType = newMapData[k as keyof FormData];
-                if (typeof v === 'object' && !Array.isArray(v)) {
-                    v = v;
-                }
 
                 setValue(k, v);
             });
