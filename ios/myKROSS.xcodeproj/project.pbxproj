@@ -41,7 +41,7 @@
 		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
 		B835DD198FF74E433AB1258D /* libPods-myKROSS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C2E81EA4D13BC1AEF05685 /* libPods-myKROSS.a */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
-		C4AB114C0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
+		C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
 		D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */; };
 /* End PBXBuildFile section */
 
@@ -387,7 +387,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */,
-				C4AB114C0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */,
+				C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */,
 				BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */,
 				901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */,
 			);
@@ -695,7 +695,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -724,7 +724,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -933,7 +933,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1043,7 +1043,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1161,7 +1161,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1283,7 +1283,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
