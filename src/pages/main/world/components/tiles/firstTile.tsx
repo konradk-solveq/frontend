@@ -118,11 +118,6 @@ const FirstTile: React.FC<IProps> = ({
                                     </Text>
                                 </View>
                             </View>
-                            <Text
-                                numberOfLines={1}
-                                style={styles.localizationDescription}>
-                                {mapData?.description?.short || ''}
-                            </Text>
                         </View>
                         <View style={styles.borderLine} />
                         <View style={styles.secondtSection}>

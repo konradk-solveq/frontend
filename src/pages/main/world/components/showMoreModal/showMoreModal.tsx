@@ -131,13 +131,6 @@ const ShowMoreModal: React.FC<IProps> = ({
                                 </Text>
                             </Pressable>
                         )}
-                        {!isPrivate && (
-                            <Pressable onPress={onPublishRouteHandler}>
-                                <Text style={styles.text}>
-                                    {trans.editTripAction}
-                                </Text>
-                            </Pressable>
-                        )}
                         {removeFav && !isPrivate && (
                             <Pressable onPress={onStartRouteHandler}>
                                 <Text style={styles.text}>

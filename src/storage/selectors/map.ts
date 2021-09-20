@@ -14,19 +14,19 @@ export enum selectorTypeEnum {
 }
 
 export const mapsListSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.maps);
+    mapsListToClass(state.maps.maps, state.app.config);
 
 export const privateMapsListSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.privateMaps);
+    mapsListToClass(state.maps.privateMaps, state.app.config);
 
 export const favouritesMapsSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.plannedMaps);
+    mapsListToClass(state.maps.plannedMaps, state.app.config);
 
 export const featuredMapsSelector = (state: RootState): FeaturedMapType[] =>
     state.maps.featuredMaps.map((e: FeaturedMapType) => {
         let elements: Map[] = [];
         if (e?.routes?.elements?.length) {
-            elements = mapsListToClass(e.routes.elements);
+            elements = mapsListToClass(e.routes.elements, state.app.config);
         }
 
         if (!elements?.length) {
@@ -67,7 +67,7 @@ export const mapIdToAddSelector = (state: RootState): string =>
 //     (fav, maps) => maps.filter(m => fav.includes(m.id)),
 // );
 
-export const mapDataByIDSelector = (mapID: string) =>
+export const mapDataByIDSelector = (mapID?: string) =>
     createSelector(mapsListSelector, maps => maps.find(m => m.id === mapID));
 
 export const favouriteMapDataByIDSelector = (mapID: string) =>
