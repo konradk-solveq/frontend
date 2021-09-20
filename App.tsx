@@ -5,7 +5,6 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistStore} from 'redux-persist';
 
-import {initSentry} from '@sentryLogger/initSentry';
 import storage from '@storage/storage';
 import {I18n_init} from '@translations/I18n';
 import StaticLocationProvider from '@providers/staticLocationProvider/staticLocationProvider';
@@ -15,8 +14,6 @@ import {initAppSize} from '@helpers/layoutFoo';
 
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
-
-initSentry();
 
 const App: () => Node = () => {
     I18n_init();

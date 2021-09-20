@@ -1,5 +1,3 @@
-import React from 'react';
-
 import * as Sentry from '@sentry/react-native';
 import {ENVIRONMENT_TYPE, SENTRY_DSN} from '@env';
 import {LogLevel} from '@sentry/types';
@@ -18,8 +16,6 @@ export const initSentry = () => {
         debug: debugMode,
         logLevel: logLvl,
     });
-
-    // throw new Error("My first Sentry error!");
 };
 
 export const sentryAutoMonitoring = (component: React.ComponentType) => {
