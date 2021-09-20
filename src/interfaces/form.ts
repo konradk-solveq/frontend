@@ -1,25 +1,26 @@
-import {SelectI, SelectOptionType} from '../models/map.model';
-
 export type MapFormData = {
     id: string;
     name: string;
     publishWithName: boolean;
-    short?: string;
-    long?: string;
-    difficulty?: SelectI;
-    surface?: SelectI;
-    tags?: SelectI;
+    description?: string;
+    difficulty?: string[];
+    surface?: string[];
+    tags?: string[];
 };
 
 export type MapFormDataResult = {
     id: string;
     name: string;
     publishWithName: boolean;
-    short?: string;
-    long?: string;
+    description?: string;
     difficulty?: string[];
     surface?: string[];
     tags?: string[];
+};
+
+export type SelectOptionType = {
+    enumValue: string;
+    i18nValue: string;
 };
 
 export type OptionType = {
@@ -38,5 +39,5 @@ export type ImageType = {
 };
 
 export type PickedFilters = {
-    [key: string]: OptionType[];
+    [key: string]: string[];
 };

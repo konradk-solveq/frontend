@@ -1,5 +1,5 @@
 export type TermsAndConditionsType = {
-    version: string;
+    version: string | undefined;
     showDate: Date | undefined;
     publishDate: Date | undefined;
     title: string;

@@ -10,7 +10,6 @@ import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import {I18n} from '../../../../../I18n/I18n';
 import {ImagesMetadataType} from '../../../../interfaces/api';
 import {
     loadingMapsSelector,
@@ -24,6 +23,7 @@ import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {getImagesThumbs} from '../../../../utils/transformData';
 import {ImageType, MapFormDataResult} from '../../../../interfaces/form';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
+import {EditDetailsRouteType} from '@type/rootStack';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
@@ -37,13 +37,13 @@ import styles from './style';
 const isIOS = Platform.OS === 'ios';
 
 const EditDetails = () => {
-    const trans: any = I18n.t('RoutesDetails');
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const route = useRoute();
-    const mapID: string = route?.params?.mapID;
-    const privateMap: string = route?.params?.private;
-    const redirectToScreen: string = route?.params?.redirectTo;
+    const route = useRoute<EditDetailsRouteType>();
+    const mapID = route?.params?.mapID;
+    const privateMap = route?.params?.private;
+    const redirectToScreen = route?.params?.redirectTo;
+
     const newPrivateMapID = useAppSelector(mapIdToAddSelector);
     const mapData = useAppSelector(
         !privateMap
@@ -134,7 +134,11 @@ const EditDetails = () => {
         <>
             <StatusBar translucent />
             <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
-                <View style={{paddingTop: headerBackgroundHeight, flex: 1}}>
+                <View
+                    style={[
+                        styles.innerContainer,
+                        {paddingTop: headerBackgroundHeight},
+                    ]}>
                     <StackHeader
                         onpress={onBackHandler}
                         inner=""

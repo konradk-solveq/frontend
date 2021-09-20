@@ -51,10 +51,7 @@ export const mapFormMetadataToAPIRequest = (
         name: data.name,
         difficulty: data.difficulty || [],
         surface: data.surface || [],
-        description: {
-            short: data.short || '',
-            long: data.long || '',
-        },
+        description: data.description || '',
         author: author || trans.defaultAuthorName,
         tags: data.tags || [],
     };

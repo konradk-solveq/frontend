@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#ffffff',
     },
+    innerContainer: {
+        flex: 1,
+    },
     headerContainer: {
         flexDirection: 'row',
     },

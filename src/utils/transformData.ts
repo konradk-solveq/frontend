@@ -1,3 +1,4 @@
+import {AppConfigI} from '@src/models/config.model';
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
 import {LocationDataI} from '../interfaces/geolocation';
 import {
@@ -6,7 +7,7 @@ import {
     Complaint,
     Parameters,
 } from '../models/bike.model';
-import {Images, Map, MapType} from '../models/map.model';
+import {Images, Map, MapType, OptionsEnumsT} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
@@ -107,7 +108,26 @@ export const getBikesBaseData = (
     };
 };
 
-export const transformToMapsType = (data: any): Map => {
+export const transformToOptionEnumValues = (
+    options: AppConfigI,
+): OptionsEnumsT | undefined => {
+    try {
+        return {
+            difficultyOptions: options.difficulties,
+            reactions: options.reactions,
+            surfacesOptions: options.surfaces,
+            tagsOptions: options.tags,
+        };
+    } catch (error) {
+        console.warn('[transformToOptionEnumValues -- error]', error);
+        return undefined;
+    }
+};
+
+export const transformToMapsType = (
+    data: any,
+    options: OptionsEnumsT | undefined,
+): Map => {
     const {
         id,
         name,
@@ -186,13 +206,22 @@ export const transformToMapsType = (data: any): Map => {
         newData.reactions = reactions;
     }
 
+    if (options) {
+        newData.optionsEnumsValues = options;
+    }
+
     return newData;
 };
 
-export const mapsListToClass = (maps: MapType[] | []): Map[] => {
+export const mapsListToClass = (
+    maps: MapType[] | [],
+    appConfig: AppConfigI,
+): Map[] => {
+    const tranformed = transformToOptionEnumValues(appConfig);
+
     const result: Map[] = [];
     maps.forEach(b => {
-        result.push(transformToMapsType(b));
+        result.push(transformToMapsType(b, tranformed));
     });
 
     return result;
@@ -218,8 +247,8 @@ const findEnumsFromValues = (values: string[], trans: string[]) => {
     const lcTrans = trans.map(t => t?.toLowerCase());
     const result: any[] = [];
     lcTrans.forEach(t => {
-        if (values.includes(t)) {
-            const index = values.indexOf(t?.toLowerCase());
+        if (values?.includes(t)) {
+            const index = values?.indexOf(t?.toLowerCase());
             result.push(index);
         }
     });
@@ -244,8 +273,7 @@ export const mapDataToFormData = (mapData: Map): FormData => {
         id: mapData.id,
         name: mapData.name,
         publishWithName: mapData?.isPublic || false,
-        short: mapData?.description?.short || '',
-        long: mapData?.description?.long || '',
+        description: mapData?.mapDescription || '',
         difficulty: mapData?.difficulty || undefined,
         surface: mapData?.surface || undefined,
         tags: mapData?.tags || undefined,

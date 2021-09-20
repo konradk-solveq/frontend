@@ -25,7 +25,11 @@ const Tile: React.FC<IProps> = ({data, onPressTile, onPressButton}: IProps) => {
     const onPressButtonHandler = () => {
         onPressButton(data.id);
     };
-
+    console.log('dist');
+    console.log(
+        '[distane to route], ',
+        transformMetersToKilometersString(2412226.349611576),
+    );
     return (
         <View style={styles.container}>
             <View style={[styles.row, styles.tile]}>
