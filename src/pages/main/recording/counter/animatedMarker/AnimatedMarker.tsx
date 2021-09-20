@@ -6,6 +6,11 @@ import {
     AnimatedRegion,
     LatLng,
 } from 'react-native-maps';
+import Animated, {
+    useSharedValue,
+    useAnimatedProps,
+    withTiming,
+} from 'react-native-reanimated';
 
 import {getHorizontalPx} from '@helpers/layoutFoo';
 
@@ -160,11 +165,12 @@ const AnimatedMarker: React.FC<IProps> = ({
             <MarkerAnimated
                 ref={animatedMarkerRef}
                 identifier="direction_arrow"
-                anchor={{x: 0.5, y: 0.3}}
+                anchor={{x: 0.5, y: 0.5}}
                 coordinate={animatedPostion || location}
                 tracksViewChanges={true}
-                tracksInfoWindowChanges={false}>
-                <MarkPointer heading={!headingOn ? compassHeading : 0} />
+                tracksInfoWindowChanges={false}
+                rotation={!headingOn ? compassHeading : 0}>
+                <MarkPointer />
             </MarkerAnimated>
         );
     }
@@ -178,10 +184,11 @@ const AnimatedMarker: React.FC<IProps> = ({
             ref={markerRef}
             identifier="direction_arrow"
             coordinate={location}
-            anchor={{x: 0.4, y: 0.3}}
+            anchor={{x: 0.5, y: 0.5}}
             tracksViewChanges={false}
-            tracksInfoWindowChanges={false}>
-            <MarkPointer heading={!headingOn ? compassHeading : 0} />
+            tracksInfoWindowChanges={false}
+            rotation={!headingOn ? compassHeading : 0}>
+            <MarkPointer />
         </Marker>
     );
 };

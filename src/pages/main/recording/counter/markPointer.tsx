@@ -1,34 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { StyleSheet, View, Animated } from 'react-native';
-import Svg, { Circle, Path } from 'react-native-svg';
+import React from 'react';
+import {StyleSheet, View, Animated} from 'react-native';
+import Svg, {Circle, Path} from 'react-native-svg';
 
-interface IProps {
-    heading: number;
-}
-
-const MarkPointer: React.FC<IProps> = ({ heading }: IProps) => {
-
-    const rotation = useRef(new Animated.Value(0)).current;
-
-    Animated.timing(rotation, {
-        toValue: heading,
-        duration: 200,
-        useNativeDriver: false,
-    }).start();
-
-    const interpolateRotating = rotation.interpolate({
-        inputRange: [0, 360],
-        outputRange: ['0deg', '360deg'],
-    });
-
-    const animatedStyle = {
-        transform: [
-            {
-                rotate: interpolateRotating,
-            },
-        ],
-    };
-
+const MarkPointer: React.FC = () => {
     const styles = StyleSheet.create({
         markWrap: {
             position: 'absolute',
@@ -43,7 +17,7 @@ const MarkPointer: React.FC<IProps> = ({ heading }: IProps) => {
 
     return (
         <View style={styles.markWrap} pointerEvents="none">
-            <Animated.View style={[styles.mark, animatedStyle]}>
+            <Animated.View style={styles.mark}>
                 <Svg viewBox="0 0 31 31">
                     <Circle cx="15.5" cy="15.5" r="15.5" fill="#fff" />
                     <Path
