@@ -155,7 +155,7 @@ export const startRecordingRoute = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'startRecordingRoute');
+        loggErrorWithScope(err, 'startRecordingRoute');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -218,7 +218,7 @@ export const stopCurrentRoute = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'stopCurrentRoute');
+        loggErrorWithScope(err, 'stopCurrentRoute');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -251,7 +251,7 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'persistCurrentRouteData');
+        loggErrorWithScope(err, 'persistCurrentRouteData');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -284,7 +284,7 @@ export const addRoutesToSynchQueue = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'addRoutesToSynchQueue');
+        loggErrorWithScope(err, 'addRoutesToSynchQueue');
 
         const errorMessage = I18n.t('dataAction.apiError');
 
@@ -386,7 +386,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'syncCurrentRouteData');
+        loggErrorWithScope(err, 'syncCurrentRouteData');
 
         dispatch(addRoutesToSynchQueue());
     }
@@ -453,7 +453,7 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'syncRouteDataFromQueue');
+        loggErrorWithScope(err, 'syncRouteDataFromQueue');
     }
 };
 
@@ -491,6 +491,6 @@ export const abortSyncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'abortSyncCurrentRouteData');
+        loggErrorWithScope(err, 'abortSyncCurrentRouteData');
     }
 };

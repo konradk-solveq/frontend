@@ -37,6 +37,10 @@ export const loggErrorMessage = (
 
 const getErrorObject = (error: any) => {
     try {
+        if (error instanceof Error) {
+            return error;
+        }
+
         return new Error(error);
     } catch (e) {
         return error;

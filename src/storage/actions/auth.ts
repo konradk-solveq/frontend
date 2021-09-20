@@ -12,11 +12,7 @@ import logger from '../../utils/crashlytics';
 import {setAutorizationHeader, setUserAgentHeader} from '../../api/api';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {API_URL} from '@env';
-import {
-    loggErrorWithScope,
-    sentryLogLevel,
-    SentryLogLevelT,
-} from '@sentryLogger/sentryLogger';
+import {loggErrorWithScope, sentryLogLevel} from '@sentryLogger/sentryLogger';
 
 export const setAuthError = (error: string, statusCode: number) => ({
     type: actionTypes.SET_AUTH_ERROR,
@@ -82,7 +78,7 @@ export const register = (): AppThunk<Promise<void>> => async dispatch => {
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'register');
+        loggErrorWithScope(err, 'register');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
@@ -116,7 +112,7 @@ export const logIn = (): AppThunk<Promise<void>> => async (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'logIn');
+        loggErrorWithScope(err, 'logIn');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
@@ -197,7 +193,7 @@ export const checkSession = (): AppThunk<Promise<void>> => async (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'checkSession');
+        loggErrorWithScope(err, 'checkSession');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));

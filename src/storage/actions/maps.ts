@@ -173,7 +173,7 @@ export const fetchMapsList = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'fetchMapsList');
+        loggErrorWithScope(err, 'fetchMapsList');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -223,7 +223,7 @@ export const fetchPrivateMapsList = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'fetchPrivateMapsList');
+        loggErrorWithScope(err, 'fetchPrivateMapsList');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -274,7 +274,7 @@ export const editPrivateMapMetaData = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'editPrivateMapMetaData');
+        loggErrorWithScope(err, 'editPrivateMapMetaData');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -305,7 +305,7 @@ export const removePrivateMapMetaData = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'removePrivateMapMetaData');
+        loggErrorWithScope(err, 'removePrivateMapMetaData');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -354,7 +354,7 @@ export const fetchPlannedMapsList = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'fetchPlannedMapsList');
+        loggErrorWithScope(err, 'fetchPlannedMapsList');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -382,7 +382,7 @@ export const addPlannedMap = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'addPlannedMap');
+        loggErrorWithScope(err, 'addPlannedMap');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -411,7 +411,7 @@ export const removePlanendMap = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'removePlanendMap');
+        loggErrorWithScope(err, 'removePlanendMap');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -464,7 +464,7 @@ export const fetchMapIfNotExistsLocally = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'fetchMapIfNotExistsLocally');
+        loggErrorWithScope(err, 'fetchMapIfNotExistsLocally');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
@@ -530,7 +530,7 @@ export const fetchFeaturedMapsList = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'fetchFeaturedMapsList');
+        loggErrorWithScope(err, 'fetchFeaturedMapsList');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));

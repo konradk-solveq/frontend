@@ -95,7 +95,7 @@ export const setBikesListByFrameNumber = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'setBikesListByFrameNumber');
+        loggErrorWithScope(err, 'setBikesListByFrameNumber');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage));
@@ -144,7 +144,7 @@ export const fetchGenericBikeData = (): AppThunk<
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'fetchGenericBikeData');
+        loggErrorWithScope(err, 'fetchGenericBikeData');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage));
@@ -247,7 +247,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<
         const err = convertToApiError(error);
         logger.recordError(err);
 
-        loggErrorWithScope(error, 'setBikesListByFrameNumbers');
+        loggErrorWithScope(err, 'setBikesListByFrameNumbers');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage));
