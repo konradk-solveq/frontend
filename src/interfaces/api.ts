@@ -27,10 +27,7 @@ export type MapMetadataType = {
     name: string;
     difficulty: string[];
     surface: string[];
-    description: {
-        short: string;
-        long: string;
-    };
+    description: string;
     author: string;
     tags: string[];
     location?: string;

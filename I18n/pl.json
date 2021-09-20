@@ -425,6 +425,8 @@
             "imagesTitle": "Zdjęcia z trasy",
             "removeRouteBtn": "Tak, usuń",
             "cancelRemoveRouteBtn": "Anuluj",
+            "defaultUser": "Rowerzysta",
+            "publishAs": "Opublikuj jako",
             "attributes": {
                 "level": {
                     "name": "Poziom trudności",

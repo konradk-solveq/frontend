@@ -13,9 +13,16 @@ interface IProps {
     value: boolean;
     isValid: boolean;
     onCheck: (v: boolean) => void;
+    disabled?: boolean;
 }
 
-const Checkbox: React.FC<IProps> = ({label, value, isValid, onCheck}) => {
+const Checkbox: React.FC<IProps> = ({
+    label,
+    value,
+    isValid,
+    onCheck,
+    disabled,
+}) => {
     return (
         <View style={styles.row}>
             <View style={styles.checkbox}>
@@ -23,6 +30,7 @@ const Checkbox: React.FC<IProps> = ({label, value, isValid, onCheck}) => {
                     checked={!!value}
                     wrong={isValid}
                     getCheck={onCheck}
+                    disabled={disabled}
                 />
             </View>
             <Text style={styles.label}>{label}</Text>

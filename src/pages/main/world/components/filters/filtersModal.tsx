@@ -11,8 +11,7 @@ import {
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../../../hooks/redux';
-import useStatusBarHeight from '../../../../../hooks/statusBarHeight';
-import {OptionType, PickedFilters} from '../../../../../interfaces/form';
+import {PickedFilters} from '../../../../../interfaces/form';
 
 import {
     BigRedBtn,
@@ -43,14 +42,10 @@ const FiltersModal: React.FC<IProps> = ({
     const mapOptions = useAppSelector(mapOptionsAndTagsSelector);
     const filters = getFitlers(mapOptions, trans?.filters?.order?.options);
     const contentStyle = allowedFilters ? {minHeight: '90%'} : undefined;
-    const statusBarHeight = useStatusBarHeight();
 
     const [pickedFilters, setPickedFilters] = useState<PickedFilters>({});
 
-    const onSaveFiltersHanlder = (
-        filterName: string,
-        filtersArr: OptionType[],
-    ) => {
+    const onSaveFiltersHanlder = (filterName: string, filtersArr: string[]) => {
         setPickedFilters(prev => updateFilters(prev, filterName, filtersArr));
     };
 
@@ -91,6 +86,10 @@ const FiltersModal: React.FC<IProps> = ({
                                         !allowedFilters.includes(f)
                                     ) {
                                         return null;
+                                    }
+
+                                    if (f === 'reactions') {
+                                        return;
                                     }
 
                                     return (

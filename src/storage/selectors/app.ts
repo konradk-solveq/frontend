@@ -1,10 +1,10 @@
 import {createSelector} from 'reselect';
 
-import {OptionType} from '@interfaces/form';
 import {SelectOptionType} from '@models/map.model';
 import {FaqType} from '@models/regulations.model';
 import {BasicCoordsType} from '@type/coords';
 import {RootState} from '@storage/storage';
+import {SelectEnumOptionsT} from '@src/models/config.model';
 
 export const syncAppSelector = (state: RootState): boolean => state.app.sync;
 
@@ -49,10 +49,13 @@ export const mapOptionsSelector = () => {
     );
 };
 
-export const mapOptionsAndTagsSelector = (state: RootState): OptionType => ({
-    tags: state.app.config.tags,
+export const mapOptionsAndTagsSelector = (
+    state: RootState,
+): SelectEnumOptionsT => ({
     difficulties: state.app.config.difficulties,
+    reactions: state.app.config.reactions,
     surfaces: state.app.config.surfaces,
+    tags: state.app.config.tags,
 });
 
 export const faqDataSelector = (state: RootState): FaqType[] => state.app.faq;
