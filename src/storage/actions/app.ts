@@ -32,6 +32,7 @@ import {
 import {I18n} from '@translations/I18n';
 import logger from '@utils/crashlytics';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
+import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -138,6 +139,8 @@ export const fetchAppConfig = (
         const err = convertToApiError(error);
         logger.recordError(err);
 
+        loggErrorWithScope(err, 'fetchAppConfig');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
     }
@@ -192,6 +195,8 @@ export const fetchAppFaq = (
         logger.log(`[fetchAppFaq] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchAppFaq');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
@@ -258,6 +263,8 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
 
+        loggErrorWithScope(err, 'appSyncData');
+
         dispatch(setSyncError(errorMessage, 500));
     }
 };
@@ -321,6 +328,8 @@ export const fetchAppRegulations = (
         logger.log(`[fetchAppRegulations] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchAppRegulations');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));

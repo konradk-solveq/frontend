@@ -8,6 +8,7 @@ import React from 'react';
 import logger from '@src/utils/crashlytics';
 
 import ErrorBoundaryView from './errorBoundaryView/ErrorBoundaryView';
+import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 interface IProps {
     children: React.ReactNode;
@@ -39,6 +40,15 @@ class ErrorBoundary extends React.Component<IProps, IState> {
         });
         logger.log('[ErrorBoundary]');
         logger.recordError(error);
+        loggErrorWithScope(
+            error,
+            '[ErrorBoundary]',
+            {
+                name: 'errorInfo',
+                context: errorInfo,
+            },
+            true,
+        );
 
         if (this.props.onError && typeof this.props.onError === 'function') {
             this.props.onError.call(this, error, errorInfo.componentStack);

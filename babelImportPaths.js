@@ -71,4 +71,8 @@ module.exports = [
         rootPathSuffix: './jest/utils',
         rootPathPrefix: '@jestUtils',
     },
+    {
+        rootPathSuffix: './sentry',
+        rootPathPrefix: '@sentryLogger',
+    },
 ];

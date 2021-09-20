@@ -95,6 +95,7 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/@sentry/react-native/sentry.gradle"
 Project background_geolocation = project(":react-native-background-geolocation-android")
 apply from: "${background_geolocation.projectDir}/app.gradle"
 
@@ -151,8 +152,8 @@ android {
         applicationId "pl.kross.mykross"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 27
-        versionName "1.5.0"
+        versionCode 34
+        versionName "1.5.1"
     }
     splits {
         abi {

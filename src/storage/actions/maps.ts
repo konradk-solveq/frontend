@@ -30,6 +30,7 @@ import {I18n} from '@translations/I18n';
 import logger, {loggError} from '@utils/crashlytics';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {checkMapExists} from '@utils/checkMapExists';
+import {loggErrorMessage, loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 export const setMapsData = (
     maps: MapType[],
@@ -171,6 +172,9 @@ export const fetchMapsList = (
         logger.log(`[fetchMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchMapsList');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -218,6 +222,9 @@ export const fetchPrivateMapsList = (
         logger.log(`[fetchPrivateMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchPrivateMapsList');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -266,6 +273,9 @@ export const editPrivateMapMetaData = (
         logger.log(`[editPrivateMapMetaData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'editPrivateMapMetaData');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -294,6 +304,9 @@ export const removePrivateMapMetaData = (
         logger.log(`[removePrivateMapMetaData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'removePrivateMapMetaData');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -340,6 +353,9 @@ export const fetchPlannedMapsList = (
         logger.log(`[fetchPlannedMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchPlannedMapsList');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -365,6 +381,9 @@ export const addPlannedMap = (
         logger.log(`[addPlannedMap] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'addPlannedMap');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -391,6 +410,9 @@ export const removePlanendMap = (
         logger.log(`[removePlanendMap] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'removePlanendMap');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -441,6 +463,9 @@ export const fetchMapIfNotExistsLocally = (
         logger.log(`[fetchMapIfNotExistsLocally] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchMapIfNotExistsLocally');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -470,6 +495,7 @@ export const modifyReaction = (
         dispatch(fetchPrivateMapsList());
     } catch (error) {
         loggError(error, 'modifyReaction');
+        loggErrorMessage(error, 'modifyReaction');
     }
 };
 
@@ -503,6 +529,9 @@ export const fetchFeaturedMapsList = (
         logger.log(`[fetchFeaturedMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchFeaturedMapsList');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }

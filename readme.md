@@ -33,6 +33,10 @@ You can find scripts, to run specific build, inside `package.json` file.
 
 * ISSUES: For now different env files works only with xCode and terminal's commands. Android Studio reads only values from main env file.
 
+## LOGGER - SENTRY
+
+We use Sentry for monitoring app health. To make it work add proper values in your env files. (`SENTRY_DSN` , `SENTRY_AUTH_TOKEN`)
+
 ## BackgroundGeolocation
 
 We're using private repo. Follow these intructions [how to install](https://github.com/transistorsoft/react-native-background-geolocation-android/wiki/Migrating-your-installation-from-Public-package-to-Private-repo:)

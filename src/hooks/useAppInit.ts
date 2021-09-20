@@ -22,7 +22,8 @@ import {
     isGoodConnectionQualitySelector,
 } from '../storage/selectors/app';
 import {fetchMapsList} from '@src/storage/actions';
-import { fetchFeaturedMapsList } from '@src/storage/actions/maps';
+import {fetchFeaturedMapsList} from '@src/storage/actions/maps';
+import {sentrySetUserInfo} from '../../sentry/sentryLogger';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
@@ -64,6 +65,10 @@ const useAppInit = () => {
     }, [authToken]);
 
     useEffect(() => {
+        sentrySetUserInfo({
+            id: userId,
+            username: userName,
+        });
         /* Logs will be send after app restarted */
         initCrashlytics(userName, userId);
         setCrashlyticsInitialized(true);
