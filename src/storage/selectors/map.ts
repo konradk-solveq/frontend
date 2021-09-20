@@ -127,6 +127,9 @@ export const selectMapPathByIDBasedOnTypeSelector = (
     if (type === selectorTypeEnum.favourite) {
         selectorType = favouritesMapsSelector;
     }
+    if (type === selectorTypeEnum.featured) {
+        return featuredMapPathDataByIdSelector(mapID);
+    }
 
     return createSelector(
         selectorType,
@@ -137,6 +140,12 @@ export const selectMapPathByIDBasedOnTypeSelector = (
 export const featuredMapDataByIdSelector = (mapID: string) =>
     createSelector(featuredMapsSelector, fMaps =>
         getMapFromFeaturedSections(fMaps, mapID),
+    );
+
+export const featuredMapPathDataByIdSelector = (mapID: string) =>
+    createSelector(
+        featuredMapsSelector,
+        fMaps => getMapFromFeaturedSections(fMaps, mapID)?.path,
     );
 
 export const featuredMapDataBySectionIdSelector = (sectionID: string) =>
