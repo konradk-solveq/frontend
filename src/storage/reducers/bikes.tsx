@@ -36,8 +36,9 @@ const bikesReducer = (state = initialStateList, action: any) => {
         }
         case actionTypes.SET_BIKE_DATA: {
             const newBikeToAdd = action.bikeData;
-            let removedExisted: UserBike[] = deepCopy(state.list);
+            let removedExisted: UserBike[] = state.list;
             try {
+                removedExisted = deepCopy(state.list);
                 removedExisted = removedExisted?.filter((el: UserBike) => {
                     const frameNrExists =
                         el.description.serial_number ===
