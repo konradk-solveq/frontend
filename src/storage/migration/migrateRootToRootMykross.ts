@@ -24,9 +24,12 @@ export const migration = async (
         /**
          * Abort if persistConfig version is newer than '1'
          */
+        console.log('[MIGRATION]')
         if (state?._persist?.version > 1 || newerAppVersion) {
+            console.log('[MIGRATION - return]')
             return state;
         }
+        console.log('[MIGRATION - run]')
 
         /**
          * Check 'root' key exists. Abort migration if not.

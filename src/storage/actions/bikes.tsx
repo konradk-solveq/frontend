@@ -29,7 +29,7 @@ export const setBikeData = (data: Bike) => {
 export const setGenericBikeData = (data: Bike) => {
     return {
         type: actionTypes.SET_GENERIC_BIKE_DATA,
-        bikeData: data,
+        genericBikeData: data,
     };
 };
 

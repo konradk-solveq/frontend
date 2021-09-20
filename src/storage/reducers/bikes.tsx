@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '../actions/actionTypes';
 import {UserBike} from '../../models/userBike.model';
+import deepCopy from '@src/helpers/deepCopy';
 
 export interface BikesState {
     list: UserBike[];
@@ -35,17 +36,20 @@ const bikesReducer = (state = initialStateList, action: any) => {
         }
         case actionTypes.SET_BIKE_DATA: {
             const newBikeToAdd = action.bikeData;
-            const removedExisted = [...state.list].filter(el => {
-                const frameNrExists =
-                    el.description.serial_number ===
-                    newBikeToAdd.description.serial_number;
-                const idExists =
-                    el.description.id === newBikeToAdd.description.id;
+            let removedExisted: UserBike[] = deepCopy(state.list);
+            try {
+                removedExisted = removedExisted?.filter((el: UserBike) => {
+                    const frameNrExists =
+                        el.description.serial_number ===
+                        newBikeToAdd.description.serial_number;
+                    const idExists =
+                        el.description.id === newBikeToAdd.description.id;
 
-                return !idExists || !frameNrExists;
-            });
+                    return !idExists || !frameNrExists;
+                });
 
-            removedExisted.push(newBikeToAdd);
+                removedExisted.push(newBikeToAdd);
+            } catch (error) {}
 
             return {
                 ...state,
@@ -59,7 +63,7 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 ...state,
                 error: '',
                 loading: false,
-                genericBike: action.bikeData,
+                genericBike: action.genericBikeData,
             };
         }
         case actionTypes.SET_BIKES_DATA: {
