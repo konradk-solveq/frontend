@@ -1,0 +1,11 @@
+{
+    "description": {
+        "name": "Custom Model",
+        "id": null,
+        "sku": "",
+        "producer": "Custom Manufature",
+        "serial_number": "1456790",
+        "size": "cSize",
+        "color": "cColour"
+    }
+}
