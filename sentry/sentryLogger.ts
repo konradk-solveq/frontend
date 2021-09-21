@@ -1,5 +1,4 @@
 import * as Sentry from '@sentry/react-native';
-import {convertToApiError} from '@src/utils/apiDataTransform/communicationError';
 
 export type SentryLogLevelT = Sentry.Severity;
 type ContextT = {[key: string]: any} | null;

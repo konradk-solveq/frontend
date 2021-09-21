@@ -9,7 +9,7 @@ import App from './App';
 import {name as appName} from './app.json';
 import {initSentry} from '@sentryLogger/initSentry';
 
-if (!__DEV__) {
+if (!__DEV__ && !process.env.JEST_WORKER_ID) {
     initSentry();
 }
 
