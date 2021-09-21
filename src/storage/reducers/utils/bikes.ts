@@ -4,8 +4,8 @@
  * @author Sebastian Kasiński
  */
 
-import deepCopy from '@src/helpers/deepCopy';
-import {UserBike} from '@src/models/userBike.model';
+import {UserBike} from '@models/userBike.model';
+import deepCopy from '@helpers/deepCopy';
 
 export const addNewBikeDataOrReplaceIfExists = (
     oldBikesList: UserBike[],

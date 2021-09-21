@@ -50,6 +50,7 @@ export const transfromToBikeDescription = (
     return desc;
 };
 
+/* TODO: try catch */
 export const transformToUserBikeType = (data: any): UserBike => {
     const {description, images, warranty, params, complaintsRepairs} = data;
 

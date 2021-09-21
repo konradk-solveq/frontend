@@ -79,12 +79,6 @@ export const setBikesListByFrameNumber = (
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage));
-
-        return Promise.reject({
-            success: false,
-            errorMessage: errorMessage,
-            data: null,
-        });
     }
 };
 
@@ -136,7 +130,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<Promise<void>> => async (
 
         const response = await getBikesListByFrameNrs(numbers);
 
-        if (response.error || !response.data) {
+        if (response.error || !response?.data) {
             dispatch(setError(response.error));
             return;
         } else {
@@ -147,6 +141,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<Promise<void>> => async (
             const notFound: string[] = [];
             const bikesData: {[key: string]: UserBikeI} = response.data;
             const dataToUpdate: UserBikeI[] = [];
+
             if (numbers?.length < 1) {
                 dispatch(setError(''));
                 return;
