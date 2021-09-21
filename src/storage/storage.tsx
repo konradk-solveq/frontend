@@ -6,14 +6,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import reducer from './reducer';
 import {PersistConfig} from 'redux-persist/es/types';
 import {migration} from './migration/migrateRootToRootMykross';
-import {FLIPPER_REDUX_DEBUGGER} from '@env';
+// import {FLIPPER_REDUX_DEBUGGER} from '@env';
 
 const buildStore = () => {
     const persistConfig: PersistConfig<any, any> = {
         key: 'root_mykross',
         storage: AsyncStorage,
         stateReconciler: autoMergeLevel2,
-        version: 1,
+        version: 2,
         timeout: 2000,
         migrate: async state => {
             const newState = await migration(state);
