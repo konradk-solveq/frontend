@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as actionTypes from '../actions/actionTypes';
 import {UserBike} from '../../models/userBike.model';
 import deepCopy from '@src/helpers/deepCopy';
+import {addNewBikeDataOrReplaceIfExists, updateBikesList} from './utils/bikes';
 
 export interface BikesState {
     list: UserBike[];
@@ -35,22 +36,10 @@ const bikesReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.SET_BIKE_DATA: {
-            const newBikeToAdd = action.bikeData;
-            let removedExisted: UserBike[] = state.list;
-            try {
-                removedExisted = deepCopy(state.list);
-                removedExisted = removedExisted?.filter((el: UserBike) => {
-                    const frameNrExists =
-                        el.description.serial_number ===
-                        newBikeToAdd.description.serial_number;
-                    const idExists =
-                        el.description.id === newBikeToAdd.description.id;
-
-                    return !idExists || !frameNrExists;
-                });
-
-                removedExisted.push(newBikeToAdd);
-            } catch (error) {}
+            const removedExisted = addNewBikeDataOrReplaceIfExists(
+                state.list,
+                action.bikeData,
+            );
 
             return {
                 ...state,
@@ -68,18 +57,17 @@ const bikesReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.SET_BIKES_DATA: {
-            const newBikesToAdd = action.bikeData;
-            const bikesToRemove = action.numbersToUpdate;
-
-            const removedExisted: UserBike[] = [...state.list].filter(
-                el => !bikesToRemove.includes(el.description.serial_number),
+            const updatedBikes = updateBikesList(
+                state.list,
+                action.bikeData,
+                action.numbersToUpdate,
             );
 
             return {
                 ...state,
                 error: '',
                 loading: false,
-                list: [...newBikesToAdd, ...removedExisted],
+                list: updatedBikes,
             };
         }
         case actionTypes.SET_BIKES_ERROR: {
