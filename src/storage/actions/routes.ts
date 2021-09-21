@@ -18,6 +18,7 @@ import {
     loggErrorMessage,
     loggErrorWithScope,
     sentryLogLevel,
+    sentryMessager,
 } from '@sentryLogger/sentryLogger';
 
 export const clearError = () => ({
@@ -359,11 +360,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 const err = convertToApiError(errorMessage);
                 logger.recordError(err);
 
-                loggErrorMessage(
-                    errorMessage,
-                    'syncCurrentRouteData - error during sync',
-                    sentryLogLevel.Log,
-                );
+                sentryMessager(errorMessage, sentryLogLevel.Log);
             }
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());

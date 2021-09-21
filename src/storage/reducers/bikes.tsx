@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '../actions/actionTypes';
 import {UserBike} from '../../models/userBike.model';
-import deepCopy from '@src/helpers/deepCopy';
 import {addNewBikeDataOrReplaceIfExists, updateBikesList} from './utils/bikes';
 
 export interface BikesState {

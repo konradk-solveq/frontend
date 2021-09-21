@@ -4,18 +4,19 @@ import ReduxThunk from 'redux-thunk';
 import instance from '@api/api';
 
 import deepCopy from '@helpers/deepCopy';
-import { FeaturedMapType } from '@models/map.model';
+import {FeaturedMapType} from '@models/map.model';
 import {initState} from './utils/state';
 import {
-    compareResultsWhenOnlineFirstCase, compareResultsWhenOnlineSecondCase,
+    compareResultsWhenOnlineFirstCase,
+    compareResultsWhenOnlineSecondCase,
 } from './utils/compareMapsDispatchResults';
-import frdMock from '@api/mocks/featuredRoutesDataInit'
-import frdNextMock from '@api/mocks/featuredRoutesDataNext'
+import frdMock from '@api/mocks/featuredRoutesDataInit';
+import frdNextMock from '@api/mocks/featuredRoutesDataNext';
 
-import { fetchFeaturedMapsList } from '../maps';
+import {fetchFeaturedMapsList} from '../maps';
 
-const featuredRoutesDataMock: FeaturedMapType[] = deepCopy(frdMock)
-const featuredRoutesDataNextMock: FeaturedMapType[] = deepCopy(frdNextMock)
+const featuredRoutesDataMock: FeaturedMapType[] = deepCopy(frdMock);
+const featuredRoutesDataNextMock: FeaturedMapType[] = deepCopy(frdNextMock);
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
@@ -92,7 +93,7 @@ describe('[Maps actions]', () => {
                     /**
                      * Check if all expected actions have been called.
                      */
-                     compareResultsWhenOnlineSecondCase(actionsLog);
+                    compareResultsWhenOnlineSecondCase(actionsLog);
                 });
             });
 
