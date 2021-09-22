@@ -14,7 +14,7 @@ const buildStore = () => {
         storage: AsyncStorage,
         stateReconciler: autoMergeLevel2,
         version: 2,
-        timeout: 0,
+        timeout: 5000,
         migrate: async state => {
             const newState = await migration(state);
             if (newState) {
