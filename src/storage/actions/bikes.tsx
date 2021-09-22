@@ -69,6 +69,7 @@ export const setBikesListByFrameNumber = (
 
         if (response.error || !response.data?.description) {
             dispatch(setError(response.error));
+            /* TODO: reove promise and refactor addingByNumber.tsx */
             return Promise.reject({
                 success: false,
                 errorMessage: response.error,
