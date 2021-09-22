@@ -77,3 +77,14 @@ export const synchBikesListWhenOnlineExpectedActions = [
         state: false,
     },
 ];
+
+export const synchBikesListWhenOnlineAndNoDataFromAPIExpectedActions = [
+    {
+        type: actionTypes.LOADING_BIKE_DATA_STATUS,
+        state: true,
+    },
+    {
+        type: actionTypes.SET_BIKES_ERROR,
+        error: 'error',
+    },
+];

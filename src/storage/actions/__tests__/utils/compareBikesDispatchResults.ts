@@ -2,7 +2,8 @@ import {
     synchRecordingWhenOnlineExpectedActions,
     synchRecordingWhenOnlineAndReturnIncompliteDataExpectedActions,
     synchRecordingWhenOnlineAndReturnsNoDataExpectedActions,
-    synchBikesListWhenOnlineExpectedActions
+    synchBikesListWhenOnlineExpectedActions,
+    synchBikesListWhenOnlineAndNoDataFromAPIExpectedActions,
 } from './expectedActionsBikes';
 
 export const compareResultsWhenOnlineFirstCase = (actionsLog: any[]) => {
@@ -71,4 +72,25 @@ export const compareResultsWhenOnlineFourthCase = (actionsLog: any[]) => {
 
     /* loading - end */
     expect(actionsLog[3]).toEqual(synchBikesListWhenOnlineExpectedActions[3]);
+};
+
+export const compareResultsWhenOnlineFifthCase = (actionsLog: any[]) => {
+    /* loading - start */
+    expect(actionsLog[0]).toEqual(
+        synchBikesListWhenOnlineAndNoDataFromAPIExpectedActions[0],
+    );
+
+    /* setting new data */
+    expect(actionsLog[1]).toEqual(
+        synchBikesListWhenOnlineAndNoDataFromAPIExpectedActions[1],
+    );
+    /* clear error */
+    expect(actionsLog[2]).toEqual(
+        synchBikesListWhenOnlineAndNoDataFromAPIExpectedActions[2],
+    );
+
+    /* loading - end */
+    expect(actionsLog[3]).toEqual(
+        synchBikesListWhenOnlineAndNoDataFromAPIExpectedActions[3],
+    );
 };

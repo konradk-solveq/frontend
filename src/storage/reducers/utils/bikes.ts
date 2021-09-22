@@ -43,6 +43,10 @@ export const updateBikesList = (
     bikeNumbersList: string[],
 ) => {
     try {
+        if (!bikesToUpdateList?.length) {
+            return oldBikesList;
+        }
+
         if (!oldBikesList?.length) {
             return bikesToUpdateList;
         }
@@ -50,14 +54,6 @@ export const updateBikesList = (
 
         if (!oldBikes?.length) {
             return bikesToUpdateList;
-        }
-
-        if (!bikeNumbersList?.length) {
-            return oldBikes;
-        }
-
-        if (!bikesToUpdateList?.length) {
-            return oldBikes;
         }
 
         const filteredBikes = oldBikes?.filter(

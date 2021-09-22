@@ -5,7 +5,7 @@ module.exports = {
     modulePathIgnorePatterns: [
         './jest.setup.js',
         '__tests__/utils',
-        '__test__/mocks',
+        '__tests__/mocks',
     ],
     globals: {
         window: {},

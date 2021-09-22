@@ -19,7 +19,7 @@ const initialStateList: BikesState = {
     loading: false,
 };
 
-const bikesReducer = (state = initialStateList, action: any) => {
+const bikesReducer = (state = {...initialStateList}, action: any) => {
     switch (action.type) {
         case actionTypes.LOADING_BIKE_DATA_STATUS: {
             return {
@@ -42,17 +42,17 @@ const bikesReducer = (state = initialStateList, action: any) => {
 
             return {
                 ...state,
-                error: '',
-                loading: false,
                 list: removedExisted,
+                loading: false,
+                error: '',
             };
         }
         case actionTypes.SET_GENERIC_BIKE_DATA: {
             return {
                 ...state,
-                error: '',
-                loading: false,
                 genericBike: action.genericBikeData,
+                loading: false,
+                error: '',
             };
         }
         case actionTypes.SET_BIKES_DATA: {
@@ -64,9 +64,9 @@ const bikesReducer = (state = initialStateList, action: any) => {
 
             return {
                 ...state,
-                error: '',
-                loading: false,
                 list: updatedBikes,
+                loading: false,
+                error: '',
             };
         }
         case actionTypes.SET_BIKES_ERROR: {
@@ -83,8 +83,8 @@ const bikesReducer = (state = initialStateList, action: any) => {
 
             return {
                 ...state,
-                loading: false,
                 list: filteredList,
+                loading: false,
             };
         }
     }
@@ -96,7 +96,7 @@ const persistConfig = {
     key: 'bikes',
     storage: AsyncStorage,
     whitelist: ['list, genericBike'],
-    timeout: 20000,
+    timeout: 40000,
 };
 
 export default persistReducer(persistConfig, bikesReducer);
