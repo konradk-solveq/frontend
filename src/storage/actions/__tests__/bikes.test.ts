@@ -107,6 +107,7 @@ describe('[Bikes actions]', () => {
                 );
 
             actionsLog = store.getActions();
+
             return store
                 .dispatch<any>(setBikesListByFrameNumber(bikeNumberTwo))
                 .then(() => {
@@ -115,6 +116,14 @@ describe('[Bikes actions]', () => {
                      * Check if all expected actions have been called.
                      */
                     compareResultsWhenOnlineThirdCase(actionsLog);
+                })
+                .catch((e: any) => {
+                    expect(e).toEqual({
+                        success: false,
+                        errorMessage: 'error',
+                        notFound: true,
+                        data: null,
+                    });
                 });
         });
 
