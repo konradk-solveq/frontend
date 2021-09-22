@@ -1,8 +1,8 @@
 import * as actionTypes from '@storage/actions/actionTypes';
 
-import bikesMock from '@api/mocks/bikes/lookupBIke';
+import {I18n} from '@translations/I18n';
+import bikesMock from '@src/api/mocks/bikes/lookupBike';
 import updatedData from '../mocks/bikesListToUpdate';
-import { I18n } from '@translations/I18n';
 
 const bikeNumber = '1003196015';
 const bikeNumberTwo = '1234567890';

@@ -140,12 +140,22 @@ export const fetchMapsList = (
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        const {location}: AppState = getState().app;
+        const {
+            location,
+            isOffline,
+            internetConnectionInfo,
+        }: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
             const message = I18n.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
             dispatch(setError(message, 400));
+            return;
+        }
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setLoadingState(false));
             return;
         }
 
@@ -504,12 +514,22 @@ export const fetchFeaturedMapsList = (
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        const {location}: AppState = getState().app;
+        const {
+            location,
+            isOffline,
+            internetConnectionInfo,
+        }: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
             const message = I18n.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
             dispatch(setError(message, 400));
+            return;
+        }
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setLoadingState(false));
             return;
         }
 

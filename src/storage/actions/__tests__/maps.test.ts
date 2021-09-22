@@ -1,17 +1,18 @@
 import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
 import ReduxThunk from 'redux-thunk';
 
+import {FeaturedMapType} from '@models/map.model';
 import instance from '@api/api';
+import frdMock from '@api/mocks/featuredRoutesDataInit';
+import frdNextMock from '@api/mocks/featuredRoutesDataNext';
 
 import deepCopy from '@helpers/deepCopy';
-import {FeaturedMapType} from '@models/map.model';
+
 import {initState} from './utils/state';
 import {
     compareResultsWhenOnlineFirstCase,
     compareResultsWhenOnlineSecondCase,
 } from './utils/compareMapsDispatchResults';
-import frdMock from '@api/mocks/featuredRoutesDataInit';
-import frdNextMock from '@api/mocks/featuredRoutesDataNext';
 
 import {fetchFeaturedMapsList} from '../maps';
 
@@ -39,7 +40,7 @@ describe('[Maps actions]', () => {
                     },
                 });
                 /**
-                 * Mock create route api call
+                 * Mock fetching routes api call
                  */
                 /* synch data */
                 const getFeaturedMapsDataSuccessSpy = jest
@@ -74,7 +75,7 @@ describe('[Maps actions]', () => {
                     },
                 });
                 /**
-                 * Mock create route api call
+                 * Mock fetching routes api call
                  */
                 /* synch data */
                 const getFeaturedMapsDataSuccessSpy = jest

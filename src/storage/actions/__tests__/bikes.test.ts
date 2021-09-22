@@ -1,9 +1,14 @@
 import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
 import ReduxThunk from 'redux-thunk';
 
+import {UserBikeI} from '@models/userBike.model';
+import dataMock from '@storage/reducers/utils/mocks/bikes/bikesListData';
 import instance from '@api/api';
+import bikeDataMock from '@api/mocks/bikes/lookupBike';
+import apiBikeData from '@api/mocks/bikes/bikesToUpdate';
 
 import deepCopy from '@helpers/deepCopy';
+
 import {initState} from './utils/state';
 import {
     compareResultsWhenOnlineFirstCase,
@@ -15,18 +20,11 @@ import {
 
 import {setBikesListByFrameNumber, setBikesListByFrameNumbers} from '../index';
 
-import bikeDataMock from '@api/mocks/bikes/lookupBIke';
-import apiBikeData from '@api/mocks/bikes/bikesToUpdate';
-import {UserBikeI} from '@models/userBike.model';
-
-import dataMock from '@storage/reducers/utils/mocks/bikes/bikesListData';
-
 const bikeOne: UserBikeI = deepCopy(bikeDataMock.bikeOneComplete);
 const bikeOneIncomplite: UserBikeI = deepCopy(bikeDataMock.bikeOneIncomplite);
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
-
 
 const bikeNumber = '1003196015';
 const bikeNumberTwo = '1234567890';

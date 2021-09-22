@@ -126,6 +126,12 @@ export const checkSession = (): AppThunk<Promise<void>> => async (
 ) => {
     dispatch(setAuthSyncState(true));
     try {
+        const {isOffline, internetConnectionInfo} = getState().app;
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(setAuthSyncState(false));
+            return;
+        }
+
         const {userId, deviceToken, sessionData} = getState().auth;
         const token: string = sessionData?.access_token;
         const expirationDate: Date = sessionData?.expiration_date;
