@@ -14,7 +14,7 @@ const buildStore = () => {
         storage: AsyncStorage,
         stateReconciler: autoMergeLevel2,
         version: 2,
-        timeout: 2000,
+        timeout: 0,
         migrate: async state => {
             const newState = await migration(state);
             if (newState) {
@@ -22,6 +22,7 @@ const buildStore = () => {
             }
             return Promise.resolve(state);
         },
+        debug: __DEV__,
     };
 
     const persistedReducer = persistReducer<any, any>(persistConfig, reducer);

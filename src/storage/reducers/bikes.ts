@@ -19,7 +19,7 @@ const initialStateList: BikesState = {
     loading: false,
 };
 
-const bikesReducer = (state = {...initialStateList}, action: any) => {
+const bikesReducer = (state = initialStateList, action: any) => {
     switch (action.type) {
         case actionTypes.LOADING_BIKE_DATA_STATUS: {
             return {
@@ -95,8 +95,8 @@ const bikesReducer = (state = {...initialStateList}, action: any) => {
 const persistConfig = {
     key: 'bikes',
     storage: AsyncStorage,
-    whitelist: ['list, genericBike'],
-    timeout: 40000,
+    whitelist: ['list', 'genericBike'],
+    timeout: 20000,
 };
 
 export default persistReducer(persistConfig, bikesReducer);

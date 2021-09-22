@@ -216,7 +216,12 @@ const persistConfig = {
     key: 'routes',
     storage: AsyncStorage,
     whitelist: [
-        'currentRoute, currentRouteData, routes, routesToSync, averageSpeed, isMapVisible',
+        'currentRoute',
+        'currentRouteData',
+        'routes',
+        'routesToSync',
+        'averageSpeed',
+        'isMapVisible',
     ],
     timeout: 20000,
 };
