@@ -15,6 +15,12 @@ import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 import {BikesState} from '@storage/reducers/bikes';
 import {getNumbersToUpdate} from './utils/bikes';
 
+interface actionAsyncResponse {
+    success: boolean;
+    errorMessage: string;
+    data: any;
+}
+
 export const setBikeData = (data: Bike) => {
     return {
         type: actionTypes.SET_BIKE_DATA,
@@ -54,7 +60,7 @@ export const removeBikeByNumber = (frameNr: string) => ({
 
 export const setBikesListByFrameNumber = (
     num: string,
-): AppThunk<Promise<void>> => async dispatch => {
+): AppThunk<Promise<void | actionAsyncResponse>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {
         const response = await getBikeByFrameNr(num);
@@ -63,7 +69,12 @@ export const setBikesListByFrameNumber = (
 
         if (response.error || !response.data?.description) {
             dispatch(setError(response.error));
-            return;
+            return Promise.reject({
+                success: false,
+                errorMessage: response.error,
+                notFound: true,
+                data: null,
+            });
         }
 
         const newData: UserBikeI = response.data;
