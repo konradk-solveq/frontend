@@ -118,6 +118,19 @@ const useLocalizationTracker = (
         [dispatch, isTrackingActivatedHandler],
     );
 
+    const startLocalize = () => {
+        const setLocation = (location: Location) => {
+            if (!mountedRef.current) {
+                return;
+            }
+
+            setCurrentTrackerData(undefined, location);
+            // setInitTrackerData(undefined);
+        };
+
+        onWatchPostionChangeListener(setLocation);
+    };
+
     const startTracker = useCallback(
         async (
             keep?: boolean,
@@ -296,11 +309,12 @@ const useLocalizationTracker = (
     useEffect(() => {
         if (!restoredRef.current && currentRouteId && isTrackerActive) {
             const runInitLocationSet = async () => {
-                const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
-                    currentRouteId,
-                    [],
-                    true,
-                );
+                const recordedPath =
+                    await getCurrentRoutePathByIdWithLastRecord(
+                        currentRouteId,
+                        [],
+                        true,
+                    );
 
                 if (recordedPath?.data?.length) {
                     setRestoredPath(recordedPath.data);
@@ -343,9 +357,7 @@ const useLocalizationTracker = (
                 setInitTrackerData(undefined);
             };
 
-            if (!initialTrackerDataRef.current) {
-                onWatchPostionChangeListener(setLocation);
-            }
+            onWatchPostionChangeListener(setLocation);
         }
 
         return () => {
@@ -373,6 +385,7 @@ const useLocalizationTracker = (
         isActive,
         pauseTracker: onPauseTracker,
         resumeTracker: onStartTracker,
+        startLocalize,
         startTracker,
         stopTracker,
         averageSpeed,
