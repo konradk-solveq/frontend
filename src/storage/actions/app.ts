@@ -276,7 +276,21 @@ export const fetchAppRegulations = (
         dispatch(setSyncStatus(true));
     }
     try {
-        const {terms, currentTerms} = getState().app;
+        const {
+            terms,
+            currentTerms,
+            isOffline,
+            internetConnectionInfo,
+        } = getState().app;
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(
+                setSyncError(I18n.t('dataAction.noInternetConnection'), 500),
+            );
+            dispatch(setSyncStatus(false));
+            return;
+        }
+
         const response = await getAppTermsAndConditionsService();
 
         if (response.error || response.status >= 400 || !response.data) {

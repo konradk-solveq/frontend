@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {PersistedState} from 'redux-persist/es/types';
 import {BikesState} from '../reducers/bikes';
 import {RootState} from '../storage';
-import {version} from '../../../package.json';
 
 import {jsonParse} from '@utils/transformJson';
 
@@ -20,11 +19,10 @@ export const migration = async (
     state: PersistedState | RootState,
 ): Promise<PersistedState | undefined> => {
     try {
-        const newerAppVersion = version && version > '1.3.1';
         /**
          * Abort if persistConfig version is newer than '1'
          */
-        if (state?._persist?.version > 1 || newerAppVersion) {
+        if (state?._persist?.version > 1) {
             return state;
         }
 

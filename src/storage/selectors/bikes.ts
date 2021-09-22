@@ -15,6 +15,9 @@ export const bikeByFrameNumberSelector = (
 export const loadingBikesSelector = (state: RootState): boolean =>
     state.bikes.loading;
 
+export const errorBikesSelector = (state: RootState): string =>
+    state.bikes.error;
+
 export const bikeDescriptionByFrameNumberSelector = (
     state: RootState,
     frameNr: string,

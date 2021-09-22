@@ -27,29 +27,40 @@ export const transfromToBikeDescription = (
 ): BikeDescription => {
     const {name, id, sku, producer, serial_number} = description;
 
-    const desc = new BikeDescription(name, id, sku, producer, serial_number);
-    if (description?.color) {
-        desc.color = description.color;
-    }
-    if (description?.bought) {
-        desc.bought = description.bought;
-    }
-    if (description?.bought) {
-        desc.bought = description.bought;
-    }
-    if (description?.colorCodes) {
-        desc.colorCodes = description.colorCodes;
-    }
-    if (description?.purpose) {
-        desc.purpose = description.purpose;
-    }
-    if (description?.size) {
-        desc.size = description.size;
-    }
+    try {
+        const desc = new BikeDescription(
+            name,
+            id,
+            sku,
+            producer,
+            serial_number,
+        );
+        if (description?.color) {
+            desc.color = description.color;
+        }
+        if (description?.bought) {
+            desc.bought = description.bought;
+        }
+        if (description?.bought) {
+            desc.bought = description.bought;
+        }
+        if (description?.colorCodes) {
+            desc.colorCodes = description.colorCodes;
+        }
+        if (description?.purpose) {
+            desc.purpose = description.purpose;
+        }
+        if (description?.size) {
+            desc.size = description.size;
+        }
 
-    return desc;
+        return desc;
+    } catch (error) {
+        return description;
+    }
 };
 
+/* TODO: try catch */
 export const transformToUserBikeType = (data: any): UserBike => {
     const {description, images, warranty, params, complaintsRepairs} = data;
 

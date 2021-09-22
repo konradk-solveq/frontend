@@ -31,3 +31,5 @@ export class UserBike implements Bike {
         this.description = description;
     }
 }
+
+export interface UserBikeI extends UserBike {}

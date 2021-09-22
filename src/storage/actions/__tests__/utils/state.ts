@@ -31,4 +31,10 @@ export const initState = {
         },
         location: undefined,
     },
+    bikes: {
+        list: [],
+        genericBike: {},
+        error: '',
+        loading: false,
+    },
 };
