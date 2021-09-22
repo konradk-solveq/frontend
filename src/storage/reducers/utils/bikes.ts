@@ -53,7 +53,11 @@ export const updateBikesList = (
         }
 
         if (!bikeNumbersList?.length) {
-            return [...bikesToUpdateList, ...oldBikes];
+            return oldBikes;
+        }
+
+        if (!bikesToUpdateList?.length) {
+            return oldBikes;
         }
 
         const filteredBikes = oldBikes?.filter(
