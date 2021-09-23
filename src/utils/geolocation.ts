@@ -19,7 +19,11 @@ import {BasicCoordsType} from '@type/coords';
 import {I18n} from '@translations/I18n';
 import {getTrackerData} from '@hooks/utils/localizationTracker';
 import {isLocationValidate} from './locationData';
-import { loggErrorMessage, loggErrorWithScope, sentryLogLevel } from '@sentryLogger/sentryLogger';
+import {
+    loggErrorMessage,
+    loggErrorWithScope,
+    sentryLogLevel,
+} from '@sentryLogger/sentryLogger';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -125,6 +129,11 @@ export const getCurrentLocation = async (
     maximumAge?: number,
 ) => {
     try {
+        const state = await getBackgroundGeolocationState();
+        if (!state?.enabled) {
+            return;
+        }
+
         const location = await BackgroundGeolocation.getCurrentPosition({
             timeout: timeout || 30,
             maximumAge: maximumAge || 0,
