@@ -129,6 +129,11 @@ export const getCurrentLocation = async (
     maximumAge?: number,
 ) => {
     try {
+        const state = await getBackgroundGeolocationState();
+        if (!state?.enabled) {
+            return;
+        }
+
         const location = await BackgroundGeolocation.getCurrentPosition({
             timeout: timeout || 30,
             maximumAge: maximumAge || 0,
