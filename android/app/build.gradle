@@ -152,8 +152,8 @@ android {
         applicationId "pl.kross.mykross"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 34
-        versionName "1.5.1"
+        versionCode 35
+        versionName "1.5.2"
     }
     splits {
         abi {
@@ -254,6 +254,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "com.facebook.soloader:soloader:0.9.0+"
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
