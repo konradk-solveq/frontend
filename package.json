@@ -1,10 +1,6 @@
 {
     "name": "kross_app",
-<<<<<<< HEAD
-    "version": "1.5.2",
-=======
     "version": "1.5.3",
->>>>>>> bugfix/MK-778-recording-without-added-bike-shouldnt-be-possible
     "private": true,
     "scripts": {
         "android": "react-native run-android",
