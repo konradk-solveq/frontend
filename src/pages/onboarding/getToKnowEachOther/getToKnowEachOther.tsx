@@ -26,11 +26,24 @@ import {userUserValidationRules} from '../../../models/user.model';
 import {nfcIsSupported} from '../../../helpers/nfc';
 
 import KroosLogo from '../../../sharedComponents/svg/krossLogo';
-import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
+import {OneLineText} from '@sharedComponents/inputs';
+
+const getErrorMessage = (value: string, rules: any[]) => {
+    const trans: any = I18n.t('GetToKnowEachOther');
+
+    const minLength = rules.find(r => r?.min)?.min;
+    const maxLength = rules.find(r => r?.max)?.max;
+    const errMessateShort =
+        value && minLength > value?.length && trans.toShortValue;
+    const errMessateLong = maxLength < value?.length && trans.toLongValue;
+    const errorMessageEmpty = trans.emptyValue;
+
+    return errMessateShort || errMessateLong || errorMessageEmpty;
+};
 
 interface Props {
     navigation: any;
@@ -38,12 +51,13 @@ interface Props {
 
 const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     const dispatch = useAppDispatch();
-    const trans = I18n.t('GetToKnowEachOther');
+    const trans: any = I18n.t('GetToKnowEachOther');
 
     const name: string = useAppSelector(state => state.user.userName);
 
     const [inputName, setInputName] = useState('');
-    const [validationStatus, setValidationStatus] = useState(false);
+    const [isInputValid, setIsInputValid] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [nfc, setNfc] = useState();
 
     nfcIsSupported().then(r => {
@@ -73,8 +87,15 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         };
     }, []);
 
-    const hendleValidationOk = (value: string) => {
-        return validateData(userUserValidationRules.userName, value);
+    const onValidateInput = (value: string) => {
+        setInputName(value);
+        const rules: any[] = userUserValidationRules.userName;
+        const valid = validateData(rules, value);
+
+        const errMessage = getErrorMessage(value, rules);
+
+        setErrorMessage(valid ? '' : errMessage);
+        setIsInputValid(valid);
     };
 
     const goFoward = () => {
@@ -90,11 +111,13 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         goFoward();
     };
 
-    const hadleOnpressWithName = (inputName: string) => {
-        if (!validationStatus) {
+    const hadleOnpressWithName = (value: string) => {
+        if (!isInputValid) {
+            onValidateInput(value);
             return;
         }
-        dispatch(setUserName(inputName));
+
+        dispatch(setUserName(value));
         goFoward();
     };
 
@@ -162,13 +185,14 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
                     <Text style={styles.title}>{trans.title}</Text>
 
                     <View style={[styles.inputAndPlaceholder, styles.input]}>
-                        <OneLineTekst
+                        <OneLineText
                             placeholder={trans.placeholder}
-                            onChangeText={setInputName}
-                            validationOk={hendleValidationOk}
                             value={inputName}
-                            maxLength={20}
-                            validationStatus={setValidationStatus}
+                            validationOk={isInputValid}
+                            validationWrong={!!errorMessage}
+                            messageWrong={errorMessage}
+                            onChangeText={onValidateInput}
+                            maxLength={30}
                         />
                     </View>
 

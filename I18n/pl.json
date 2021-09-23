@@ -17,7 +17,10 @@
         "title": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
         "placeholder": "Podaj imię lub pseudonim",
         "skip": "POMIŃ",
-        "goFoward": "DALEJ"
+        "goFoward": "DALEJ",
+        "emptyValue": "Uzupełnij pole",
+        "toShortValue": "Podane imię lub pseudonim jest zbyt krótkie",
+        "toLongValue": "Podane imię lub pseudonim jest zbyt długie"
     },
     "OneLineTekst-error-null": "Wartość nie może być null-em",
     "TurtorialNFC": {
