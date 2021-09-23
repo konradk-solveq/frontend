@@ -1,16 +1,18 @@
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 import {View, Text, Modal, Pressable, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
 import {I18n} from '@translations/I18n';
-
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {hasAnyBikeSelector} from '@storage/selectors/bikes';
+import {addPlannedMap, removePlanendMap} from '@storage/actions/maps';
+import {BothStackRoute, RegularStackRoute} from '@navigation/route';
+import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import AnimSvg from '@helpers/animSvg';
 
+import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
+
 import styles from './style';
-import {useAppDispatch} from '@hooks/redux';
-import {addPlannedMap, removePlanendMap} from '@storage/actions/maps';
-import {RegularStackRoute} from '@navigation/route';
-import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 
 const backGround = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 332">
 <filter id="filter" x="-1" width="3" y="-1" height="3">
@@ -50,6 +52,9 @@ const ShowMoreModal: React.FC<IProps> = ({
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const norificationContext = useNotificationContext();
+    const userHasAnyBike = useAppSelector(hasAnyBikeSelector);
+
+    const [showMissingBikeModal, setShowMissingBikeModal] = useState(false);
 
     const onDetailsButtonPressedHandler = () => {
         onPressCancel();
@@ -94,6 +99,11 @@ const ShowMoreModal: React.FC<IProps> = ({
 
     const onStartRouteHandler = () => {
         onPressCancel();
+        if (!userHasAnyBike) {
+            setShowMissingBikeModal(true);
+            return;
+        }
+
         navigation.navigate({
             name: RegularStackRoute.COUNTER_SCREEN,
             params: {mapID: mapID, private: isPrivate},
@@ -106,6 +116,22 @@ const ShowMoreModal: React.FC<IProps> = ({
             name: RegularStackRoute.EDIT_DETAILS_SCREEN,
             params: {mapID: mapID, private: isPrivate},
         });
+    };
+
+    const onAddActionHandler = () => {
+        navigation.navigate({
+            name: BothStackRoute.TURTORIAL_NFC_SCREEN,
+            params: {emptyFrame: true},
+        });
+    };
+
+    const onContinueHandler = () => {
+        setShowMissingBikeModal(false);
+        onAddActionHandler();
+    };
+
+    const onCancelHandler = () => {
+        setShowMissingBikeModal(false);
     };
 
     return (
@@ -163,6 +189,13 @@ const ShowMoreModal: React.FC<IProps> = ({
                 </View>
             </Modal>
             {showModal && <View style={[styles.backdrop, backdropStyle]} />}
+            {isPrivate && (
+                <NoBikeAddedModal
+                    showModal={showMissingBikeModal}
+                    onContinue={onContinueHandler}
+                    onClose={onCancelHandler}
+                />
+            )}
         </>
     );
 };
