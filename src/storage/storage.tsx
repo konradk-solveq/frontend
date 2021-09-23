@@ -6,14 +6,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import reducer from './reducer';
 import {PersistConfig} from 'redux-persist/es/types';
 import {migration} from './migration/migrateRootToRootMykross';
+// import {FLIPPER_REDUX_DEBUGGER} from '@env';
 
 const buildStore = () => {
     const persistConfig: PersistConfig<any, any> = {
         key: 'root_mykross',
         storage: AsyncStorage,
         stateReconciler: autoMergeLevel2,
-        version: 1,
-        timeout: 2000,
+        version: 2,
+        timeout: 5000,
         migrate: async state => {
             const newState = await migration(state);
             if (newState) {
@@ -21,12 +22,23 @@ const buildStore = () => {
             }
             return Promise.resolve(state);
         },
+        debug: __DEV__,
     };
 
     const persistedReducer = persistReducer<any, any>(persistConfig, reducer);
 
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+    // const middlewares = [ReduxThunk];
+
+    /**
+     * Temporary reomved - "react-native-flipper" on IOS error occures during the build
+     */
+    // if (__DEV__ && FLIPPER_REDUX_DEBUGGER && !process.env.JEST_WORKER_ID) {
+    //     const createDebugger = require('redux-flipper').default;
+    //     middlewares.push(createDebugger());
+    // }
 
     const store = createStore(
         persistedReducer,

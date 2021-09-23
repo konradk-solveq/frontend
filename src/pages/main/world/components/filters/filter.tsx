@@ -3,7 +3,6 @@ import {StyleSheet, View} from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../../helpers/layoutFoo';
-import {OptionType} from '../../../../../interfaces/form';
 import {SelectOptionType} from '../../../../../models/map.model';
 
 import {MultiSelect} from '../../../../../sharedComponents/inputs';
@@ -11,7 +10,7 @@ import {firstLetterToUpperCase} from '../../../../../utils/strings';
 
 interface IProps {
     name: string;
-    predefined: OptionType[];
+    predefined: string[];
     options: SelectOptionType[];
     isRadioType: boolean;
     onSave: (name: string, filters: string[]) => void;

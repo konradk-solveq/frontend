@@ -8,6 +8,7 @@ import {
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import logger from '@utils/crashlytics';
 import {I18n} from '@translations/I18n';
+import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 export type CreatedRouteType = {
     id: string;
@@ -60,6 +61,8 @@ export const createNewRouteService = async (
         const err = convertToApiError(error);
         logger.recordError(err);
 
+        loggErrorWithScope(err, 'createNewRouteService');
+
         return {
             data: null,
             status: 500,
@@ -101,6 +104,8 @@ export const removeCeratedRouteIDService = async (
         logger.log(`[removeCeratedRouteIDService] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'removeCeratedRouteIDService');
 
         return {
             data: null,
@@ -213,6 +218,8 @@ export const syncRouteData = async (
         logger.log(`[syncRouteDataService] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'syncRouteDataService');
 
         return {
             data: null,

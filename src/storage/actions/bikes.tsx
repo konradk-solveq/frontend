@@ -1,7 +1,7 @@
 import {I18n} from '../../../I18n/I18n';
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
-import {UserBike} from '../../models/userBike.model';
+import {UserBikeI} from '../../models/userBike.model';
 import {Bike} from '../../models/bike.model';
 import {
     getBikeByFrameNr,
@@ -9,9 +9,11 @@ import {
     getBikesListByFrameNrs,
 } from '../../services';
 import {setFrameNumber} from './index';
-import {transformToUserBikeType} from '../../utils/transformData';
 import logger from '../../utils/crashlytics';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
+import {BikesState} from '@storage/reducers/bikes';
+import {getNumbersToUpdate} from './utils/bikes';
 
 interface actionAsyncResponse {
     success: boolean;
@@ -26,14 +28,14 @@ export const setBikeData = (data: Bike) => {
     };
 };
 
-export const setGenericBikeData = (data: Bike) => {
+export const setGenericBikeData = (data: UserBikeI) => {
     return {
         type: actionTypes.SET_GENERIC_BIKE_DATA,
-        bikeData: data,
+        genericBikeData: data,
     };
 };
 
-export const setBikesData = (data: Bike[], numbers: string[]) => {
+export const setBikesData = (data: UserBikeI[], numbers: string[]) => {
     return {
         type: actionTypes.SET_BIKES_DATA,
         bikeData: data,
@@ -56,195 +58,148 @@ export const removeBikeByNumber = (frameNr: string) => ({
     frameNr: frameNr,
 });
 
-export const setBikesListByFrameNumber =
-    (num: string): AppThunk<Promise<actionAsyncResponse>> =>
-        async dispatch => {
-            dispatch(setLoadingState(true));
-            try {
-                const response = await getBikeByFrameNr(num);
+export const setBikesListByFrameNumber = (
+    num: string,
+): AppThunk<Promise<void | actionAsyncResponse>> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const response = await getBikeByFrameNr(num);
 
-                dispatch(setFrameNumber(num));
+        dispatch(setFrameNumber(num));
 
-                if (response.error || !response.data?.description) {
-                    dispatch(setError(response.error));
-
-                    return Promise.reject({
-                        success: false,
-                        errorMessage: response.error,
-                        notFound: true,
-                        data: null,
-                    });
-                } else {
-                /**
-                 * TODO: fix class-transformer
-                 * */
-                    const newData = transformToUserBikeType(response.data);
-
-                    dispatch(setBikeData(newData));
-
-                    return Promise.resolve({
-                        success: true,
-                        errorMessage: '',
-                        data: newData,
-                    });
-                }
-            } catch (error) {
-                console.log(`[setBikesListByFrameNumber] - ${error}`);
-                logger.log(`[setBikesListByFrameNumber] - ${error}`);
-                const err = convertToApiError(error);
-                logger.recordError(err);
-                const errorMessage = I18n.t('dataAction.apiError');
-                dispatch(setError(errorMessage));
-
-                return Promise.reject({
-                    success: false,
-                    errorMessage: errorMessage,
-                    data: null,
-                });
-            }
-        };
-
-export const fetchGenericBikeData =
-    (): AppThunk<Promise<actionAsyncResponse>> => async dispatch => {
-        dispatch(setLoadingState(true));
-        try {
-            const response = await getGenericDataforBike();
-
-            if (response?.error || !response?.data) {
-                dispatch(setError(response.error));
-
-                return Promise.reject({
-                    success: false,
-                    errorMessage: response.error,
-                    notFound: true,
-                    data: null,
-                });
-            } else {
-                /**
-                 * TODO: fix class-transformer
-                 * */
-                const newData = transformToUserBikeType(response.data);
-
-                dispatch(setGenericBikeData(newData));
-
-                return Promise.resolve({
-                    success: true,
-                    errorMessage: '',
-                    data: newData,
-                });
-            }
-        } catch (error) {
-            console.log(`[fetchGenericBikeData] - ${error}`);
-            logger.log(`[fetchGenericBikeData] - ${error}`);
-            const err = convertToApiError(error);
-            logger.recordError(err);
-            const errorMessage = I18n.t('dataAction.apiError');
-            dispatch(setError(errorMessage));
-
+        if (response.error || !response.data?.description) {
+            dispatch(setError(response.error));
+            /* TODO: reove promise and refactor addingByNumber.tsx */
             return Promise.reject({
                 success: false,
-                errorMessage: errorMessage,
+                errorMessage: response.error,
+                notFound: true,
                 data: null,
             });
         }
-    };
 
-export const setBikesListByFrameNumbers =
-    (): AppThunk<Promise<actionAsyncResponse>> =>
-        async (dispatch, getState) => {
-            dispatch(setLoadingState(true));
-            try {
-                const {list} = getState().bikes;
-                const numbers: string[] = [];
+        const newData: UserBikeI = response.data;
 
-                if (list?.length < 1) {
-                    dispatch(setLoadingState(false));
-                    return Promise.resolve({
-                        success: true,
-                        errorMessage: '',
-                        data: null,
-                    });
-                }
+        dispatch(setBikeData(newData));
+    } catch (error) {
+        console.log(`[setBikesListByFrameNumber] - ${error}`);
+        logger.log(`[setBikesListByFrameNumber] - ${error}`);
+        const err = convertToApiError(error);
+        logger.recordError(err);
 
-                list.forEach((el: UserBike) => {
-                    numbers.push(el.description.serial_number);
-                });
-                const response = await getBikesListByFrameNrs(numbers);
+        loggErrorWithScope(err, 'setBikesListByFrameNumber');
 
-                if (response.error || !response.data) {
-                    dispatch(setError(response.error));
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage));
+    }
+};
 
-                    return Promise.reject({
-                        success: false,
-                        errorMessage: response.error,
-                        notFound: true,
-                        data: null,
-                    });
-                } else {
-                /**
-                 * TODO: fix class-transformer => external data has no standarization,
-                 * maybe it should stay in loose comparison
-                 * */
-                    // const newData = plainToClass(UserBike, response.data);
-                    const notFound: string[] = [];
-                    const bikesData = response.data;
-                    const dataToUpdate: UserBike[] = [];
-                    if (numbers?.length < 1) {
-                        return Promise.resolve({
-                            success: true,
-                            errorMessage: '',
-                            data: null,
-                        });
-                    }
+export const fetchGenericBikeData = (): AppThunk<
+    Promise<void>
+> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const response = await getGenericDataforBike();
 
-                    numbers.forEach(nr => {
-                        if (!bikesData[nr]) {
-                            notFound.push(nr);
-                            return;
-                        }
+        if (response?.error || !response?.data) {
+            dispatch(setError(response.error));
+            return;
+        }
+        const newData: UserBikeI = response.data;
 
-                        /* TODO: change to validation process. Should not store class into redux */
-                        const newData = transformToUserBikeType(bikesData[nr]);
+        dispatch(setGenericBikeData(newData));
+    } catch (error) {
+        console.error(`[fetchGenericBikeData] - ${error}`);
+        logger.log(`[fetchGenericBikeData] - ${error}`);
+        const err = convertToApiError(error);
+        logger.recordError(err);
 
-                        dataToUpdate.push(newData);
-                    });
+        loggErrorWithScope(err, 'fetchGenericBikeData');
 
-                    let errorMessage = '';
-                    if (notFound.length > 0) {
-                        const prefix = I18n.t('dataAction.dataSyncError');
-                        errorMessage = `${prefix}: ${notFound.join(', ')}`;
-                    }
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage));
+    }
+};
 
-                    const numbersToUpdate: string[] = numbers.filter(
-                        el => !notFound.includes(el),
-                    );
+export const setBikesListByFrameNumbers = (): AppThunk<Promise<void>> => async (
+    dispatch,
+    getState,
+) => {
+    dispatch(setLoadingState(true));
+    try {
+        const {list}: BikesState = getState().bikes;
 
-                    if (numbersToUpdate.length > 0 && dataToUpdate?.length > 0) {
-                        dispatch(setBikesData(dataToUpdate, numbersToUpdate));
-                    }
+        if (list?.length < 1) {
+            dispatch(setLoadingState(false));
+            return;
+        }
 
-                    if (errorMessage) {
-                        dispatch(setError(errorMessage));
-                    }
-                    dispatch(setLoadingState(false));
-                    return Promise.resolve({
-                        success: !errorMessage,
-                        errorMessage: errorMessage,
-                        data: dataToUpdate, //TODO: serialize data before store in redux
-                    });
-                }
-            } catch (error) {
-                console.log(`[setBikesListByFrameNumbers] - ${error}`);
-                logger.log(`[setBikesListByFrameNumbers] - ${error}`);
-                const err = convertToApiError(error);
-                logger.recordError(err);
-                const errorMessage = I18n.t('dataAction.apiError');
-                dispatch(setError(errorMessage));
+        const numbers = getNumbersToUpdate(list);
+        if (!numbers?.length) {
+            dispatch(setLoadingState(false));
+            return;
+        }
 
-                return Promise.reject({
-                    success: false,
-                    errorMessage: errorMessage,
-                    data: null,
-                });
+        const response = await getBikesListByFrameNrs(numbers);
+
+        if (response.error || !response?.data) {
+            dispatch(setError(response.error));
+            return;
+        } else {
+            /* TODO: move to reducer logic - start */
+            /**
+             * Numbers which not exists in Kross DB
+             */
+            const notFound: string[] = [];
+            const bikesData: {[key: string]: UserBikeI} = response.data;
+            const dataToUpdate: UserBikeI[] = [];
+
+            if (numbers?.length < 1) {
+                dispatch(setError(''));
+                return;
             }
-        };
+
+            numbers.forEach(nr => {
+                const el = bikesData?.[nr];
+                if (!el) {
+                    notFound.push(nr);
+                    return;
+                }
+
+                const newData = el;
+
+                dataToUpdate.push(newData);
+            });
+
+            let errorMessage = '';
+            if (notFound.length > 0) {
+                const prefix = I18n.t('dataAction.dataSyncError');
+                errorMessage = `${prefix}: ${notFound.join(', ')}`;
+            }
+
+            const numbersToUpdate: string[] = numbers.filter(
+                el => !notFound.includes(el),
+            );
+            /* TODO: move to reducer logic - end */
+
+            if (numbersToUpdate.length > 0 && dataToUpdate?.length > 0) {
+                dispatch(setBikesData(dataToUpdate, numbersToUpdate));
+            }
+
+            if (errorMessage) {
+                dispatch(setError(errorMessage));
+            }
+            dispatch(setLoadingState(false));
+        }
+    } catch (error) {
+        console.error(`[setBikesListByFrameNumbers] - ${error}`);
+        logger.log(`[setBikesListByFrameNumbers] - ${error}`);
+        const err = convertToApiError(error);
+        logger.recordError(err);
+
+        loggErrorWithScope(err, 'setBikesListByFrameNumbers');
+
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage));
+    }
+};

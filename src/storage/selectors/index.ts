@@ -17,6 +17,8 @@ export {
     loadingMapsSelector,
     mapDataByIDSelector,
     mapsListSelector,
+    featuredMapsSelector,
+    refreshMapsSelector,
 } from './map';
 export {
     trackerActiveSelector,

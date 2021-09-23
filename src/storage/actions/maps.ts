@@ -1,13 +1,18 @@
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '@storage/thunk';
-import {MapType} from '@models/map.model';
+import {FeaturedMapType, MapType} from '@models/map.model';
 import {AppState} from '@storage/reducers/app';
 import {MapsState} from '@storage/reducers/maps';
 import {RouteMapType} from '@models/places.model';
-import {ImagesMetadataType, MapPagination} from '@interfaces/api';
+import {
+    ImagesMetadataType,
+    MapPagination,
+    NestedPaginationType,
+} from '@interfaces/api';
 import {MapFormDataResult, PickedFilters} from '@interfaces/form';
 import {
     editPrivateMapMetadataService,
+    getFeaturedMapsListService,
     getMapsList,
     getPrivateMapsListService,
     modifyReactionService,
@@ -25,6 +30,7 @@ import {I18n} from '@translations/I18n';
 import logger, {loggError} from '@utils/crashlytics';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {checkMapExists} from '@utils/checkMapExists';
+import {loggErrorMessage, loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 export const setMapsData = (
     maps: MapType[],
@@ -60,6 +66,15 @@ export const setPlannedMapsData = (
     type: actionTypes.SET_PLANNED_MAPS_DATA,
     plannedMaps: plannedMaps,
     paginationCoursor: paginationCoursor,
+    refresh: refresh,
+});
+
+export const setFeaturedMapsData = (
+    featuredMaps: FeaturedMapType[],
+    refresh: boolean,
+) => ({
+    type: actionTypes.SET_FEATURED_MAPS_DATA,
+    featuredMaps: featuredMaps,
     refresh: refresh,
 });
 
@@ -103,10 +118,15 @@ export const removeMapFromFavourite = (mapID: string) => ({
     mapID: mapID,
 });
 
-export const modifyMapReactions = (mapID: string, reaction: string) => ({
+export const modifyMapReactions = (
+    mapID: string,
+    reaction: string,
+    sectionID?: string,
+) => ({
     type: actionTypes.MODIFY_MAP_REACTIONS,
     mapIdToModify: mapID,
     reaction: reaction,
+    sectionID: sectionID,
 });
 
 export const removeMapFromPrivates = (mapID: string) => ({
@@ -120,12 +140,22 @@ export const fetchMapsList = (
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        const {location}: AppState = getState().app;
+        const {
+            location,
+            isOffline,
+            internetConnectionInfo,
+        }: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
             const message = I18n.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
             dispatch(setError(message, 400));
+            return;
+        }
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setLoadingState(false));
             return;
         }
 
@@ -152,6 +182,9 @@ export const fetchMapsList = (
         logger.log(`[fetchMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchMapsList');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -199,6 +232,9 @@ export const fetchPrivateMapsList = (
         logger.log(`[fetchPrivateMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchPrivateMapsList');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -247,6 +283,9 @@ export const editPrivateMapMetaData = (
         logger.log(`[editPrivateMapMetaData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'editPrivateMapMetaData');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -275,6 +314,9 @@ export const removePrivateMapMetaData = (
         logger.log(`[removePrivateMapMetaData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'removePrivateMapMetaData');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -321,6 +363,9 @@ export const fetchPlannedMapsList = (
         logger.log(`[fetchPlannedMapsList] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchPlannedMapsList');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -346,6 +391,9 @@ export const addPlannedMap = (
         logger.log(`[addPlannedMap] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'addPlannedMap');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -372,6 +420,9 @@ export const removePlanendMap = (
         logger.log(`[removePlanendMap] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'removePlanendMap');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -422,6 +473,9 @@ export const fetchMapIfNotExistsLocally = (
         logger.log(`[fetchMapIfNotExistsLocally] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchMapIfNotExistsLocally');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -431,6 +485,7 @@ export const modifyReaction = (
     routeId: string,
     reaction: string,
     remove?: boolean,
+    sectionId?: string,
 ): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {
@@ -443,12 +498,61 @@ export const modifyReaction = (
             return;
         }
 
-        dispatch(modifyMapReactions(routeId, reaction));
+        dispatch(modifyMapReactions(routeId, reaction, sectionId));
 
         dispatch(clearError());
         dispatch(setLoadingState(false));
         dispatch(fetchPrivateMapsList());
     } catch (error) {
         loggError(error, 'modifyReaction');
+        loggErrorMessage(error, 'modifyReaction');
+    }
+};
+
+export const fetchFeaturedMapsList = (
+    page?: string,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    dispatch(setLoadingState(true));
+    try {
+        const {
+            location,
+            isOffline,
+            internetConnectionInfo,
+        }: AppState = getState().app;
+        if (!location?.latitude || !location.longitude) {
+            const message = I18n.t(
+                'dataAction.locationData.readSQLDataFailure',
+            );
+            dispatch(setError(message, 400));
+            return;
+        }
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setLoadingState(false));
+            return;
+        }
+
+        const response = await getFeaturedMapsListService(location, page);
+
+        if (response.error || !response.data) {
+            dispatch(setError(response.error, response.status));
+            return;
+        }
+
+        const refresh = !page;
+        dispatch(setFeaturedMapsData(response.data, refresh));
+        dispatch(clearError());
+        dispatch(setLoadingState(false));
+    } catch (error) {
+        console.log(`[fetchFeaturedMapsList] - ${error}`);
+        logger.log(`[fetchFeaturedMapsList] - ${error}`);
+        const err = convertToApiError(error);
+        logger.recordError(err);
+
+        loggErrorWithScope(err, 'fetchFeaturedMapsList');
+
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setError(errorMessage, 500));
     }
 };

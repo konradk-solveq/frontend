@@ -32,6 +32,9 @@ const getMapType = (params: any) => {
     if (params?.favourite) {
         return selectorTypeEnum.favourite;
     }
+    if (params?.featured) {
+        return selectorTypeEnum.featured;
+    }
     return selectorTypeEnum.regular;
 };
 

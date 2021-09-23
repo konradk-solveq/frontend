@@ -6,12 +6,21 @@ export const putSeparatorIntoNum = (
     number: number | string,
     separator: string,
     counter: number,
+    convertToString?: boolean,
 ) => {
-    if (number.toString().length < counter) {
-        return number;
+    try {
+        if (number.toString().length < counter) {
+            return convertToString ? number.toString() : number;
+        }
+        const regex = `\\B(?=(\\d{${counter}})+(?!\\d))`;
+
+        const reg = new RegExp(regex, 'g');
+        const result = number.toString().replace(reg, separator);
+
+        return convertToString ? result?.toString() : result;
+    } catch (error) {
+        return convertToString ? number.toString() : number;
     }
-    const reg = new RegExp(`.{${counter}}`, 'g');
-    return number.toString().match(reg)?.join(separator);
 };
 
 export const transformMetersToKilometersString = (
@@ -31,7 +40,7 @@ export const transformMetersToKilometersString = (
     const kmSuffix = km.substr(kmDot, km.length).replace('.', ',');
     const kmPrefix = km.substr(0, kmDot);
 
-    const transformedKm = putSeparatorIntoNum(kmPrefix, ' ', 3);
+    const transformedKm = putSeparatorIntoNum(kmPrefix, ' ', 3, true);
     const kilometers = `${transformedKm}${kmSuffix}`;
 
     return kilometers;

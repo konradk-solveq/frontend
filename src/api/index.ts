@@ -14,6 +14,7 @@ export {
     getPlannedRoutes,
     removePlannedRoute,
     getMarkersList,
+    getFeaturedMaps,
 } from './maps';
 export {createRoute, sendRouteData} from './routes';
 export {

@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
-import {StyleSheet, Platform, Dimensions} from 'react-native';
+import {StyleSheet, Platform, Dimensions, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Camera, LatLng} from 'react-native-maps';
 
 import useAppState from '@hooks/useAppState';
@@ -23,11 +23,12 @@ const {width} = Dimensions.get('window');
 interface IProps {
     routeId: string;
     trackerData: any;
-    autoFindMe: boolean;
+    autoFindMe: number;
     headingOn: boolean;
     compassHeading: any;
     renderPath?: boolean;
     restoredPath?: ShortCoordsType[];
+    autoFindMeSwith: (e: number) => void;
 }
 
 const initCompasHeading = {
@@ -50,6 +51,7 @@ const Map: React.FC<IProps> = ({
     compassHeading,
     renderPath,
     restoredPath,
+    autoFindMeSwith,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -86,9 +88,8 @@ const Map: React.FC<IProps> = ({
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [autoFindMeLastState, setAutoFindMeLastState] = useState<boolean>(
-        autoFindMe,
-    );
+    const [autoFindMeLastState, setAutoFindMeLastState] =
+        useState<boolean>(autoFindMe);
 
     useEffect(() => {
         if (!mountedRef.current) {
@@ -157,7 +158,8 @@ const Map: React.FC<IProps> = ({
 
     const setMapCamera = useCallback(() => {
         const hasLocation = trackerData?.coords || location;
-        const shouldResetZoom = autoFindMe !== autoFindMeLastState;
+        const shouldResetZoom =
+            autoFindMe > 0 && autoFindMe !== autoFindMeLastState;
 
         if (mapRef.current && (hasLocation || shouldResetZoom)) {
             let animation: Partial<Camera> = {
@@ -230,9 +232,13 @@ const Map: React.FC<IProps> = ({
         restoreRef.current = true;
     };
 
+    const handleCameraChange = e => {
+        autoFindMeSwith(0);
+    };
+
     /* TODO: error boundary */
     return showMap ? (
-        <>
+        <View>
             {showWebView && (
                 <AnimSvg style={styles.gradient} source={gradient} />
             )}
@@ -247,6 +253,7 @@ const Map: React.FC<IProps> = ({
                 zoomEnabled={true}
                 zoomTapEnabled={true}
                 showsCompass={false}
+                onPanDrag={(e: any) => handleCameraChange(e)}
                 onMapLoaded={() => {
                     setShowWebView(true);
                 }}
@@ -296,7 +303,7 @@ const Map: React.FC<IProps> = ({
                     />
                 )}
             </MapView>
-        </>
+        </View>
     ) : null;
 };
 
