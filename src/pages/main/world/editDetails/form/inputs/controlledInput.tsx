@@ -1,6 +1,5 @@
 import React from 'react';
 import {Controller, Control} from 'react-hook-form';
-import {SelectI} from '../../../../../../models/map.model';
 import GenericInput from './genericInput';
 import {FCPropsI, FormData} from './types';
 
@@ -9,7 +8,7 @@ interface IProps {
     control: Control<FormData>;
     Input: React.FunctionComponent<FCPropsI>;
     onValidate: (
-        val: string | number | boolean | SelectI | undefined,
+        val: string | number | boolean | string[] | undefined,
         fieldName: string,
     ) => any;
 }
@@ -23,10 +22,7 @@ const ControlledInput: React.FC<IProps> = ({
     return (
         <Controller
             control={control}
-            render={({
-                field: {onChange, onBlur, value, name},
-                formState: {errors},
-            }) => {
+            render={({field: {onChange, value, name}, formState: {errors}}) => {
                 const errMsg = errors?.[name]?.message;
                 const isValid = !errMsg && !!value;
 

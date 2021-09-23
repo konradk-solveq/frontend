@@ -1,4 +1,5 @@
 import {modifyReaction, removeReaction} from '@api/index';
+import {loggErrorMessage} from '@sentryLogger/sentryLogger';
 
 import {loggError} from '@utils/crashlytics';
 
@@ -24,6 +25,7 @@ export const modifyReactionService = async (
         };
     } catch (error) {
         loggError(error, 'modifyReactionService -- reactions');
+        loggErrorMessage(error, 'modifyReactionService -- reactions');
         return {
             data: null,
             status: 500,
@@ -51,6 +53,7 @@ export const removeReactionService = async (routeId: string) => {
         };
     } catch (error) {
         loggError(error, 'removeReactionService -- reactions');
+        loggErrorMessage(error, 'removeReactionService -- reactions');
         return {
             data: null,
             status: 500,

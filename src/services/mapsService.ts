@@ -33,6 +33,7 @@ import {
 } from '@utils/apiDataTransform/prepareRequest';
 import {getFiltersParam} from '@utils/apiDataTransform/filters';
 import {loggError} from '@utils/crashlytics';
+import {loggErrorMessage} from '@sentryLogger/sentryLogger';
 
 export type CreatedPlannedMap = {
     id: string;
@@ -484,6 +485,7 @@ export const getFeaturedMapsListService = async (
         };
     } catch (error) {
         loggError(error, 'getFeaturedMapsList -- maps');
+        loggErrorMessage(error, 'getFeaturedMapsList -- maps');
         return {
             data: [],
             status: 500,

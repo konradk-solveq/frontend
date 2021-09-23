@@ -14,6 +14,12 @@ import {createNewRouteService, syncRouteData} from '../../services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {MIN_ROUTE_LENGTH} from '../../helpers/global';
+import {
+    loggErrorMessage,
+    loggErrorWithScope,
+    sentryLogLevel,
+    sentryMessager,
+} from '@sentryLogger/sentryLogger';
 
 export const clearError = () => ({
     type: actionTypes.CLEAR_ROUTES_ERROR,
@@ -149,6 +155,9 @@ export const startRecordingRoute = (
         logger.log(`[startRecordingRoute] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'startRecordingRoute');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -180,6 +189,12 @@ export const stopCurrentRoute = (
                     logger.log(`[stopCurrentRoute] - ${response.error}`);
                     const err = convertToApiError(response.error);
                     logger.recordError(err);
+
+                    loggErrorMessage(
+                        response.error,
+                        'stopCurrentRoute',
+                        sentryLogLevel.Log,
+                    );
                 }
             }
 
@@ -203,6 +218,9 @@ export const stopCurrentRoute = (
         logger.log(`[stopCurrentRoute] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'stopCurrentRoute');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -233,6 +251,9 @@ export const persistCurrentRouteData = (): AppThunk<Promise<void>> => async (
         logger.log(`[persistCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'persistCurrentRouteData');
+
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
@@ -263,6 +284,9 @@ export const addRoutesToSynchQueue = (
         logger.log(`[addRoutesToSynchQueue] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'addRoutesToSynchQueue');
+
         const errorMessage = I18n.t('dataAction.apiError');
 
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
@@ -335,6 +359,8 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 );
                 const err = convertToApiError(errorMessage);
                 logger.recordError(err);
+
+                sentryMessager(errorMessage, sentryLogLevel.Log);
             }
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
@@ -356,6 +382,8 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         logger.log(`[syncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'syncCurrentRouteData');
 
         dispatch(addRoutesToSynchQueue());
     }
@@ -421,6 +449,8 @@ export const syncRouteDataFromQueue = (): AppThunk<Promise<void>> => async (
         logger.log(`[syncRouteDataFromQueue] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'syncRouteDataFromQueue');
     }
 };
 
@@ -457,5 +487,7 @@ export const abortSyncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         logger.log(`[abortSyncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
         logger.recordError(err);
+
+        loggErrorWithScope(err, 'abortSyncCurrentRouteData');
     }
 };

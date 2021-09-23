@@ -19,9 +19,10 @@ import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../../sharedComponents/loader/loader';
 
 import styles from './style';
-import {FeaturedMapsScreenRouteType} from '@type/rootStack';
+import {FeaturedMapsScreenRouteType, RootStackType} from '@type/rootStack';
 import {fetchFeaturedMapsList} from '@storage/actions/maps';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -37,7 +38,7 @@ interface RenderItem {
 const FeaturedRoutesScreen: React.FC = () => {
     const dispatch = useAppDispatch();
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<RootStackType>>();
     const route = useRoute<FeaturedMapsScreenRouteType>();
     const sectionID = route.params.sectionID;
     const sectionName = route.params.sectionName;
@@ -66,8 +67,11 @@ const FeaturedRoutesScreen: React.FC = () => {
 
     const onPressTileHandler = useCallback(
         (mapID?: string) => {
+            if (!mapID) {
+                return;
+            }
             navigation.navigate({
-                name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
+                name: RegularStackRoute.ROUTE_DETAILS_SCREEN as keyof RootStackType,
                 params: {
                     mapID: mapID,
                     private: false,
@@ -102,7 +106,7 @@ const FeaturedRoutesScreen: React.FC = () => {
             const lastItemStyle =
                 index === mapsData?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
-            console.log('[ITEM TO RENDER]', item?.createdAt, sectionID);
+
             return (
                 <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
                     <NextTile
@@ -135,7 +139,9 @@ const FeaturedRoutesScreen: React.FC = () => {
             navigation.goBack();
             return;
         }
-        navigation?.replace(BothStackRoute.MAIN_MENU_SCREEN);
+        navigation?.replace(
+            BothStackRoute.MAIN_MENU_SCREEN as keyof RootStackType,
+        );
     };
 
     return (

@@ -1,21 +1,23 @@
 import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
 import ReduxThunk from 'redux-thunk';
 
+import {FeaturedMapType} from '@models/map.model';
 import instance from '@api/api';
+import frdMock from '@api/mocks/featuredRoutesDataInit';
+import frdNextMock from '@api/mocks/featuredRoutesDataNext';
 
 import deepCopy from '@helpers/deepCopy';
-import { FeaturedMapType } from '@models/map.model';
+
 import {initState} from './utils/state';
 import {
-    compareResultsWhenOnlineFirstCase, compareResultsWhenOnlineSecondCase,
+    compareResultsWhenOnlineFirstCase,
+    compareResultsWhenOnlineSecondCase,
 } from './utils/compareMapsDispatchResults';
-import frdMock from '@api/mocks/featuredRoutesDataInit'
-import frdNextMock from '@api/mocks/featuredRoutesDataNext'
 
-import { fetchFeaturedMapsList } from '../maps';
+import {fetchFeaturedMapsList} from '../maps';
 
-const featuredRoutesDataMock: FeaturedMapType[] = deepCopy(frdMock)
-const featuredRoutesDataNextMock: FeaturedMapType[] = deepCopy(frdNextMock)
+const featuredRoutesDataMock: FeaturedMapType[] = deepCopy(frdMock);
+const featuredRoutesDataNextMock: FeaturedMapType[] = deepCopy(frdNextMock);
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
@@ -38,7 +40,7 @@ describe('[Maps actions]', () => {
                     },
                 });
                 /**
-                 * Mock create route api call
+                 * Mock fetching routes api call
                  */
                 /* synch data */
                 const getFeaturedMapsDataSuccessSpy = jest
@@ -73,7 +75,7 @@ describe('[Maps actions]', () => {
                     },
                 });
                 /**
-                 * Mock create route api call
+                 * Mock fetching routes api call
                  */
                 /* synch data */
                 const getFeaturedMapsDataSuccessSpy = jest
@@ -92,7 +94,7 @@ describe('[Maps actions]', () => {
                     /**
                      * Check if all expected actions have been called.
                      */
-                     compareResultsWhenOnlineSecondCase(actionsLog);
+                    compareResultsWhenOnlineSecondCase(actionsLog);
                 });
             });
 

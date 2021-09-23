@@ -1,6 +1,6 @@
 import {
     synchRecordingWhenOnlineExpectedActions,
-    synchRecordingWhenOnlinePaginationExpectedActions
+    synchRecordingWhenOnlinePaginationExpectedActions,
 } from './expectedActionsMaps';
 
 export const compareResultsWhenOnlineFirstCase = (actionsLog: any[]) => {
@@ -18,13 +18,21 @@ export const compareResultsWhenOnlineFirstCase = (actionsLog: any[]) => {
 
 export const compareResultsWhenOnlineSecondCase = (actionsLog: any[]) => {
     /* loading - start */
-    expect(actionsLog[0]).toEqual(synchRecordingWhenOnlinePaginationExpectedActions[0]);
+    expect(actionsLog[0]).toEqual(
+        synchRecordingWhenOnlinePaginationExpectedActions[0],
+    );
 
     /* setting new data */
-    expect(actionsLog[1]).toEqual(synchRecordingWhenOnlinePaginationExpectedActions[1]);
+    expect(actionsLog[1]).toEqual(
+        synchRecordingWhenOnlinePaginationExpectedActions[1],
+    );
     /* clear error */
-    expect(actionsLog[2]).toEqual(synchRecordingWhenOnlinePaginationExpectedActions[2]);
+    expect(actionsLog[2]).toEqual(
+        synchRecordingWhenOnlinePaginationExpectedActions[2],
+    );
 
     /* loading - end */
-    expect(actionsLog[3]).toEqual(synchRecordingWhenOnlinePaginationExpectedActions[3]);
+    expect(actionsLog[3]).toEqual(
+        synchRecordingWhenOnlinePaginationExpectedActions[3],
+    );
 };
