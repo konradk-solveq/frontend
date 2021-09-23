@@ -1,3 +1,10 @@
+/**
+ * Filter path before render or upload process
+ *
+ * @author Sebastian Kasiński
+ */
+/* TODO: tests */
+
 import {Location, LocationDataI} from '@interfaces/geolocation';
 import {ShortCoordsType} from '@src/type/coords';
 import {getTimeInUTCMilliseconds} from './transformData';
@@ -44,7 +51,6 @@ const haversine = (x: number) => {
 };
 
 const getLatitudeValue = (coord: CoordType) => {
-    // console.group('[get coord 1]', coord)
     return Array.isArray(coord) ? coord?.[0] : coord?.latitude || coord?.lat;
 };
 
@@ -224,7 +230,7 @@ export const removeExtremeLocations = (coords: LocationDataI[]) => {
 
         return filtered;
     } catch (error) {
-        console.warn('[removeExtremes - error]', error);
+        console.warn('[removeExtremeLocations - error]', error);
         return coords;
     }
 };

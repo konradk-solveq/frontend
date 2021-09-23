@@ -378,10 +378,7 @@ export const routesDataToPersist = async (
     if (!locations) {
         return currRoutes;
     }
-
-    let loc1: Location;
-    let loc2: Location;
-    let loc3: Location;
+    console.log('[== routesDataToPersist ==]');
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
@@ -396,33 +393,6 @@ export const routesDataToPersist = async (
         }
 
         if (!currRoutes.find(d => d.uuid === l.uuid)) {
-            if (!loc1) {
-                loc1 = l;
-            } else if (!loc2) {
-                loc2 = l;
-            } else if (!loc3) {
-                loc3 = l;
-            }
-
-            //distance per time => m/s
-            const loc1Time = new Date(loc1?.timestamp).getSeconds();
-            const loc2Time = new Date(loc1?.timestamp).getSeconds();
-            const loc3Time = new Date(loc1?.timestamp).getSeconds();
-
-            const distance1 = getHaversineDistance(loc1?.coords, loc2?.coords);
-            const distance2 = getHaversineDistance(loc2?.coords, loc3?.coords);
-            //count from points
-            if (
-                distance1 &&
-                distance1 > 50 &&
-                Math.abs(loc2Time - loc1Time) <= 1 &&
-                distance2 &&
-                distance2 > 50 &&
-                Math.abs(loc3Time - loc2Time) <= 1
-            ) {
-                return;
-            }
-
             const alterTimestamp = transformTimestampToDate(
                 l?.timestampMeta?.systemTime,
             );
@@ -478,7 +448,7 @@ export const getRoutesDataFromSQL = async (
     if (!locations?.length) {
         return currRoutes;
     }
-
+    console.log('[== getRoutesDataFromSQL ==]');
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
         if (!routeId || !l?.extras?.route_id || l?.sample === true) {
@@ -564,7 +534,7 @@ export const getRoutesDataFromSQLWithLastRecord = async (
     if (!locations?.length) {
         return {data: currRoutes};
     }
-
+    console.log('[== getRoutesDataFromSQLWithLastRecord ==]');
     let lastRecord: any;
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
