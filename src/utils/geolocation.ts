@@ -19,7 +19,11 @@ import {BasicCoordsType} from '@type/coords';
 import {I18n} from '@translations/I18n';
 import {getTrackerData} from '@hooks/utils/localizationTracker';
 import {isLocationValidate} from './locationData';
-import { loggErrorMessage, loggErrorWithScope, sentryLogLevel } from '@sentryLogger/sentryLogger';
+import {
+    loggErrorMessage,
+    loggErrorWithScope,
+    sentryLogLevel,
+} from '@sentryLogger/sentryLogger';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -427,9 +431,10 @@ export const pauseTracingLocation = async () => {
             await BackgroundGeolocation.changePace(false);
         }
     } catch (e) {
+        const errorMessage = transformLocationErrorCode(e);
         console.log('[pauseTracingLocation - error]', e);
         logger.log(`[pauseTracingLocation] - ${e}`);
-        const error = new Error(e);
+        const error = new Error(errorMessage);
         logger.recordError(error);
 
         loggErrorWithScope(error, 'pauseTracingLocation');
