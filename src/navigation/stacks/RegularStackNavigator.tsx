@@ -32,6 +32,7 @@ import Contact from '../../pages//main/profile/contact/contact';
 import RoutesMap from '../../pages/main/world/routesMap/routesMap';
 
 import {RegularStackRoute, BothStackRoute} from '../route';
+import {verticalAnim} from '@src/helpers/positioningVerical';
 
 const RegularStackNavigator: React.FC = () => {
     const isActive = useAppSelector(trackerActiveSelector);
@@ -126,7 +127,9 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.ROUTES_MAP_SCREEN}
                 component={RoutesMap}
-                options={{gestureEnabled: false}}
+                options={{
+                    ...verticalAnim,
+                }}
             />
             {/* END KROSS WORLD */}
 
