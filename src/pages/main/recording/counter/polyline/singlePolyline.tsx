@@ -7,12 +7,22 @@
 import React, {useRef, useEffect, useCallback, useState} from 'react';
 import {InteractionManager} from 'react-native';
 
+import {Decimate_STTrace} from '@solveq/path-decimation-sttrace';
+import {GeoPoint} from '@solveq/path-decimation-prelude';
+
 import {useAppSelector} from '../../../../../hooks/redux';
 import {DataI} from '../../../../../hooks/useLocalizationTracker';
 import {trackerRouteIdSelector} from '../../../../../storage/selectors/routes';
 import {restoreRouteDataFromSQL} from '../../../../../utils/routePath';
 
 import Polyline from './polyline';
+import {toTimestamp} from '@src/utils/persistLocationData';
+
+const toGeoPoint = (data: ShortCoordsType) => {
+    let date = new Date(data.timestamp);
+    const newPoint = new GeoPoint(data.latitude, data.longitude, date);
+    return newPoint;
+};
 
 type ShortCoordsType = {
     latitude: number;
@@ -68,8 +78,19 @@ const SinglePolyline: React.FC<IProps> = ({
 
             result = newRoute;
 
+            const data = result
+                .map(toGeoPoint)
+                .filter((r: GeoPoint | null) => r);
+            const decimatedPath = Decimate_STTrace(0.7)(data).map(gp => {
+                return {
+                    latitude: gp.getLatitude(),
+                    longitude: gp.getLongitude(),
+                    timestamp: toTimestamp(new Date(gp.getTime())) || 0,
+                };
+            });
             restoreRef.current = true;
-            setRoute(result);
+
+            setRoute(decimatedPath);
         },
         [currentRouteId, route],
     );
