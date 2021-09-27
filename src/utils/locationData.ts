@@ -119,16 +119,26 @@ export const removeExtremes = (coords: ShortCoordsType[]) => {
             const tIsToLow = t <= 1000;
 
             /**
+             * Omit coord with same values => no distance
+             */
+            if (!d1) {
+                indexToRemove = index + 1;
+
+                index++;
+                continue;
+            }
+
+            /**
              * Distans shouldn't be longer than 50m per 1s
              */
-            if (d1 && d1 > 50 && tIsToLow) {
+            if (d1 && d1 > 50) {
                 const l3 = coords?.[index + 2];
 
                 if (l3) {
                     /**
                      * Remove if distance is extremly big
                      */
-                    if (d1 > 1000) {
+                    if (d1 > 1000 && tIsToLow) {
                         indexToRemove = index + 1;
 
                         index++;
@@ -139,6 +149,13 @@ export const removeExtremes = (coords: ShortCoordsType[]) => {
                     const t3 = getTimeInUTCMilliseconds(l3.timestamp, true);
                     const tN = Math.abs(t3 - t2);
                     const tNIsToLow = tN <= 1000;
+
+                    if (!d2) {
+                        indexToRemove = index + 1;
+
+                        index++;
+                        continue;
+                    }
                     if (d2 && d2 > 50 && tNIsToLow) {
                         indexToRemove = index + 1;
 
@@ -191,16 +208,26 @@ export const removeExtremeLocations = (coords: LocationDataI[]) => {
             const tIsToLow = t <= 1000;
 
             /**
+             * Omit coord with same values => no distance
+             */
+            if (!d1) {
+                indexToRemove = index + 1;
+
+                index++;
+                continue;
+            }
+
+            /**
              * Distans shouldn't be longer than 50m per 1s
              */
-            if (d1 && d1 > 50 && tIsToLow) {
+            if (d1 && d1 > 50) {
                 const l3 = coords?.[index + 2];
 
                 if (l3) {
                     /**
                      * Remove if distance is extremly big
                      */
-                    if (d1 > 1000) {
+                    if (d1 > 1000 && tIsToLow) {
                         indexToRemove = index + 1;
 
                         index++;
@@ -211,6 +238,12 @@ export const removeExtremeLocations = (coords: LocationDataI[]) => {
                     const t3 = getTimeInUTCMilliseconds(l3.timestamp, true);
                     const tN = Math.abs(t3 - t2);
                     const tNIsToLow = tN <= 1000;
+                    if (!d2) {
+                        indexToRemove = index + 1;
+
+                        index++;
+                        continue;
+                    }
                     if (d2 && d2 > 50 && tNIsToLow) {
                         indexToRemove = index + 1;
 
