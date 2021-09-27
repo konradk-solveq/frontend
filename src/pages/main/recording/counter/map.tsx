@@ -89,7 +89,7 @@ const Map: React.FC<IProps> = ({
         {latitude: number; longitude: number}[] | null
     >(null);
     const [autoFindMeLastState, setAutoFindMeLastState] =
-        useState<boolean>(autoFindMe);
+        useState<number>(autoFindMe);
 
     useEffect(() => {
         if (!mountedRef.current) {
@@ -157,54 +157,37 @@ const Map: React.FC<IProps> = ({
     );
 
     const setMapCamera = useCallback(() => {
-        const hasLocation = trackerData?.coords || location;
-        const shouldResetZoom =
-            autoFindMe > 0 && autoFindMe !== autoFindMeLastState;
+        let animation: Partial<Camera> = {
+            heading: headingOn ? compassHeading : 0,
+        };
 
-        if (mapRef.current && (hasLocation || shouldResetZoom)) {
-            let animation: Partial<Camera> = {
-                heading: headingOn ? compassHeading : 0,
-            };
-
-            const coords = {latitude: 0, longitude: 0};
-            if (trackerData?.coords) {
-                coords.latitude = trackerData.coords.lat;
-                coords.longitude = trackerData.coords.lon;
-            } else if (location) {
-                coords.latitude = location.latitude;
-                coords.longitude = location.longitude;
-            }
-
-            if (hasLocation) {
-                if (autoFindMe) {
+        if (autoFindMe > 0 && mapRef.current) {
+            if ((trackerData && trackerData.coords) || location) {
+                if (trackerData && trackerData.coords) {
                     animation.center = {
-                        latitude: coords.latitude,
-                        longitude: coords.longitude,
+                        latitude: trackerData.coords.lat,
+                        longitude: trackerData.coords.lon,
+                    };
+                } else if (location) {
+                    animation.center = {
+                        latitude: location.latitude,
+                        longitude: location.longitude,
                     };
                 }
             }
 
-            if (autoFindMe != autoFindMeLastState) {
-                if (autoFindMe) {
-                    animation.zoom = ZOOM_START_VALUE;
-                }
-                setAutoFindMeLastState(autoFindMe);
+            if (autoFindMe !== autoFindMeLastState) {
+                animation.zoom = ZOOM_START_VALUE;
             }
+            setAutoFindMeLastState(autoFindMe);
+        }
 
-            if (isIOS) {
-                animateCameraOnIOS(animation);
-                return;
-            }
+        if (isIOS) {
+            animateCameraOnIOS(animation);
+        } else {
             animateCam(animation);
         }
-    }, [
-        autoFindMe,
-        headingOn,
-        trackerData?.coords,
-        location,
-        compassHeading,
-        animateCameraOnIOS,
-    ]);
+    }, [location, autoFindMe, headingOn, compassHeading]);
 
     useEffect(() => {
         if (mountedRef.current) {
