@@ -276,7 +276,6 @@ export const addRoutesToSynchQueue = (
             }),
         );
         dispatch(clearAverageSpeed());
-        // dispatch(clearCurrentRoute()); //TODO: add tests - check this because of merging routes bug
 
         dispatch(setError(I18n.t('dataAction.dataSyncError'), 500));
         dispatch(setLoadingState(false));
@@ -294,7 +293,6 @@ export const addRoutesToSynchQueue = (
         dispatch(setRouteToSynch(currentRoute.id));
         dispatch(setRoutesData({id: currentRoute.id, route: currentRouteData}));
         dispatch(clearAverageSpeed());
-        // dispatch(clearCurrentRoute());
 
         dispatch(setError(errorMessage, 500));
     }

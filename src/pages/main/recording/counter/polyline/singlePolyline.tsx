@@ -70,7 +70,7 @@ const SinglePolyline: React.FC<IProps> = ({
 
             restoreRef.current = true;
 
-            setRoute(newRoute);
+            setRoute(result);
         },
         [currentRouteId, route],
     );
