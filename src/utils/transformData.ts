@@ -388,6 +388,12 @@ export const routesDataToPersist = async (
         if (routeId !== l?.extras?.route_id) {
             return;
         }
+        if (l?.coords?.accuracy && l?.coords?.accuracy < 0.3) {
+            return;
+        }
+        if (l?.activity?.type === 'still' && l?.activity?.confidence >= 80) {
+            return;
+        }
         if (!isLocationValidate(l)) {
             return;
         }
@@ -455,6 +461,12 @@ export const getRoutesDataFromSQL = async (
             return;
         }
         if (routeId !== l?.extras?.route_id) {
+            return;
+        }
+        if (l?.coords?.accuracy && l?.coords?.accuracy < 0.3) {
+            return;
+        }
+        if (l?.activity?.type === 'still' && l?.activity?.confidence >= 80) {
             return;
         }
         if (!isLocationValidate(l)) {
@@ -539,6 +551,12 @@ export const getRoutesDataFromSQLWithLastRecord = async (
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
         if (!routeId || !l?.extras?.route_id || l?.sample === true) {
+            return;
+        }
+        if (l?.coords?.accuracy && l?.coords?.accuracy < 0.3) {
+            return;
+        }
+        if (l?.activity?.type === 'still' && l?.activity?.confidence >= 80) {
             return;
         }
         if (routeId !== l?.extras?.route_id) {
