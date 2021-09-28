@@ -134,10 +134,12 @@ export const removeLessAccuratePoints = (coords: ShortCoordsType[]) => {
             const l2 = coords?.[index + 1];
 
             if (!l) {
-                if (!l2) {
-                    filtered.push(l);
-                }
+                index++;
+                continue;
+            }
 
+            if (!l2) {
+                filtered.push(l);
                 index++;
                 continue;
             }
@@ -238,10 +240,12 @@ export const removeLessAccuratePointsLocations = (coords: LocationDataI[]) => {
             const l2 = coords?.[index + 1];
 
             if (!l) {
-                if (!l2) {
-                    filtered.push(l);
-                }
+                index++;
+                continue;
+            }
 
+            if (!l2) {
+                filtered.push(l);
                 index++;
                 continue;
             }
