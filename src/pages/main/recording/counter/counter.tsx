@@ -28,7 +28,6 @@ import {
 
 import StackHeader from './stackHeader/stackHeader';
 
-import {getHaversineDistance} from '@utils/locationData';
 import { UserBike } from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {

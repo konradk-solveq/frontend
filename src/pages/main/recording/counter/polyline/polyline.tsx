@@ -1,10 +1,10 @@
 import React, {useCallback, useContext, useEffect, useRef} from 'react';
 import {InteractionManager, Platform} from 'react-native';
 import {Polyline as MapPolyline} from 'react-native-maps';
-import {CounterDataContext} from '../nativeCounter/counterContext/counterContext';
 
-import {Decimate_STTrace} from '@solveq/path-decimation-sttrace';
-import {GeoPoint} from '@solveq/path-decimation-prelude';
+import {getShorterRoute} from '@utils/polyline';
+
+import {CounterDataContext} from '../nativeCounter/counterContext/counterContext';
 
 type ShortCoordsType = {
     latitude: number;
@@ -20,54 +20,6 @@ interface IProps {
 
 const isIOS = Platform.OS === 'ios';
 
-const toGeoPoint = (data: ShortCoordsType) => {
-    let date = data.timestamp ? new Date(data.timestamp) : new Date();
-    const newPoint = new GeoPoint(data.latitude, data.longitude, date);
-    return newPoint;
-};
-
-const getCompresionRatio = (length?: number) => {
-    if (!length || length < 1000) {
-        return 1.0;
-    }
-
-    if (length < 3000) {
-        return 0.7;
-    }
-
-    if (length < 5000) {
-        return 0.5;
-    }
-
-    return 0.3;
-};
-
-const getShortRoute = (c: ShortCoordsType[]) => {
-    const ratio = getCompresionRatio(c?.length);
-    console.log('[c length ----------]', ratio, c?.length, ratio < 1);
-
-    if (ratio < 1) {
-        const specialData = c.map(toGeoPoint).filter((r: GeoPoint | null) => r);
-
-        const decimatedPath: ShortCoordsType[] = Decimate_STTrace(0.5)(
-            specialData,
-        ).map(gp => {
-            return {
-                latitude: gp.getLatitude(),
-                longitude: gp.getLongitude(),
-            };
-        });
-
-        console.log('[shorter c]', decimatedPath?.length);
-        return decimatedPath;
-    }
-
-    return c;
-};
-
-const items = ['red', 'blue', 'green'];
-const color = items[Math.floor(Math.random() * items.length)];
-
 const Polyline: React.FC<IProps> = ({
     coords,
     strokeColor,
@@ -81,7 +33,8 @@ const Polyline: React.FC<IProps> = ({
 
     const setCoords = (c: ShortCoordsType[]) => {
         if (polylineRef.current) {
-            const cToAdd = getShortRoute(c);
+            const cToAdd = getShorterRoute(c);
+
             polylineRef.current?.setNativeProps({
                 coordinates: cToAdd,
             });
@@ -129,8 +82,8 @@ const Polyline: React.FC<IProps> = ({
         <MapPolyline
             ref={polylineRef}
             coordinates={[]}
-            strokeColor={color || '#d8232a'}
-            strokeColors={items || ['#d8232a']}
+            strokeColor={strokeColor || '#d8232a'}
+            strokeColors={strokeColors || ['#d8232a']}
             lineCap={'round'}
             lineJoin={'round'}
             strokeWidth={8}
