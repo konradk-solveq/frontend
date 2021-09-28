@@ -14,8 +14,8 @@ import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
 import {
     isLocationValidate,
-    removeExtremeLocations,
-    removeExtremes,
+    removeLessAccuratePointsLocations,
+    removeLessAccuratePoints,
 } from './locationData';
 
 export const getTimeInUTCMilliseconds = (
@@ -442,7 +442,7 @@ export const routesDataToPersist = async (
         return timeA < timeB ? -1 : 1;
     });
 
-    const cleanedArr = removeExtremeLocations(sorted);
+    const cleanedArr = removeLessAccuratePointsLocations(sorted);
 
     return cleanedArr;
 };
@@ -505,7 +505,7 @@ export const getRoutesDataFromSQL = async (
         return timeA < timeB ? -1 : 1;
     });
 
-    const cleanedArr = removeExtremes(sorted);
+    const cleanedArr = removeLessAccuratePoints(sorted);
 
     return cleanedArr;
 };
@@ -587,7 +587,7 @@ export const getRoutesDataFromSQLWithLastRecord = async (
         return timeA < timeB ? -1 : 1;
     });
 
-    const cleanedArr = removeExtremes(sorted);
+    const cleanedArr = removeLessAccuratePoints(sorted);
 
     return {
         data: cleanedArr,
