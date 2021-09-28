@@ -1,6 +1,6 @@
 import {AppConfigI} from '@src/models/config.model';
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
-import {Location, LocationDataI} from '../interfaces/geolocation';
+import {LocationDataI} from '../interfaces/geolocation';
 import {
     BikeBaseData,
     BikeDescription,
@@ -13,7 +13,6 @@ import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
 import {
-    getHaversineDistance,
     isLocationValidate,
     removeExtremeLocations,
     removeExtremes,
@@ -33,6 +32,26 @@ export const getTimeInUTCMilliseconds = (
     //     } catch (error) {
     //         return date;
     //     }
+};
+
+const isLocationValidToPass = (loc: any, routeId?: string) => {
+    if (!routeId || !loc?.extras?.route_id || loc?.sample === true) {
+        return false;
+    }
+    if (routeId !== loc?.extras?.route_id) {
+        return false;
+    }
+    if (loc?.coords?.accuracy && loc?.coords?.accuracy < 0.3) {
+        return false;
+    }
+    if (loc?.activity?.type === 'still' && loc?.activity?.confidence >= 80) {
+        return false;
+    }
+    if (!isLocationValidate(loc)) {
+        return false;
+    }
+
+    return true;
 };
 
 export const transfromToBikeDescription = (
@@ -378,23 +397,10 @@ export const routesDataToPersist = async (
     if (!locations) {
         return currRoutes;
     }
-    console.log('[== routesDataToPersist ==]');
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
-            return;
-        }
-        if (routeId !== l?.extras?.route_id) {
-            return;
-        }
-        if (l?.coords?.accuracy && l?.coords?.accuracy < 0.3) {
-            return;
-        }
-        if (l?.activity?.type === 'still' && l?.activity?.confidence >= 80) {
-            return;
-        }
-        if (!isLocationValidate(l)) {
+        if (!isLocationValidToPass(l, routeId)) {
             return;
         }
 
@@ -454,22 +460,10 @@ export const getRoutesDataFromSQL = async (
     if (!locations?.length) {
         return currRoutes;
     }
-    console.log('[== getRoutesDataFromSQL ==]');
+
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
-            return;
-        }
-        if (routeId !== l?.extras?.route_id) {
-            return;
-        }
-        if (l?.coords?.accuracy && l?.coords?.accuracy < 0.3) {
-            return;
-        }
-        if (l?.activity?.type === 'still' && l?.activity?.confidence >= 80) {
-            return;
-        }
-        if (!isLocationValidate(l)) {
+        if (!isLocationValidToPass(l, routeId)) {
             return;
         }
 
@@ -546,23 +540,11 @@ export const getRoutesDataFromSQLWithLastRecord = async (
     if (!locations?.length) {
         return {data: currRoutes};
     }
-    console.log('[== getRoutesDataFromSQLWithLastRecord ==]');
+
     let lastRecord: any;
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
-            return;
-        }
-        if (l?.coords?.accuracy && l?.coords?.accuracy < 0.3) {
-            return;
-        }
-        if (l?.activity?.type === 'still' && l?.activity?.confidence >= 80) {
-            return;
-        }
-        if (routeId !== l?.extras?.route_id) {
-            return;
-        }
-        if (!isLocationValidate(l)) {
+        if (!isLocationValidToPass(l, routeId)) {
             return;
         }
 
