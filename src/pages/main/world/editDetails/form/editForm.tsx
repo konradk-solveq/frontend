@@ -110,6 +110,8 @@ const EditForm: React.FC<IProps> = ({
         }
     };
 
+    const isRoutePublished = mapData?.isPublic;
+
     return (
         <View style={styles.container}>
             <View style={styles.checkboxContainer}>
@@ -238,16 +240,26 @@ const EditForm: React.FC<IProps> = ({
                 />
             </View>
             <View style={styles.buttonsWrapper}>
-                <BigRedBtn
-                    title={trans.publishButton}
-                    onpress={handleSubmit(onSubmitHandlerWithPublish)}
-                    style={styles.onPressBtn}
-                />
-                <BigWhiteBtn
-                    title={trans.saveButton}
-                    onpress={handleSubmit(onSubmitHandler)}
-                    style={[styles.onPressBtn, styles.bottomBtn]}
-                />
+                {!isRoutePublished ? (
+                    <>
+                        <BigRedBtn
+                            title={trans.publishButton}
+                            onpress={handleSubmit(onSubmitHandlerWithPublish)}
+                            style={styles.onPressBtn}
+                        />
+                        <BigWhiteBtn
+                            title={trans.saveButton}
+                            onpress={handleSubmit(onSubmitHandler)}
+                            style={[styles.onPressBtn, styles.bottomBtn]}
+                        />
+                    </>
+                ) : (
+                    <BigRedBtn
+                        title={trans.updateButton}
+                        onpress={handleSubmit(onSubmitHandlerWithPublish)}
+                        style={styles.onPressBtn}
+                    />
+                )}
             </View>
         </View>
     );
