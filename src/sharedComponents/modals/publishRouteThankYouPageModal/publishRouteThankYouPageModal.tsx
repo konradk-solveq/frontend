@@ -24,6 +24,7 @@ interface IProps {
     onPress: () => void;
     onBackPress: () => void;
     isPublished?: boolean;
+    wasPublished?: boolean;
 }
 
 const PublishRouteThankYouPageModal: React.FC<IProps> = ({
@@ -31,10 +32,15 @@ const PublishRouteThankYouPageModal: React.FC<IProps> = ({
     onPress,
     onBackPress,
     isPublished,
+    wasPublished,
 }: IProps) => {
     const userName = useAppSelector<string>(state => state.user.userName);
     const statusBarHeight = useStatusBarHeight();
     const trans: any = I18n.t('PublishThankYouPage');
+
+    const publishedText = wasPublished
+        ? trans.titleSufixUpdated
+        : trans.titleSufixPublished;
 
     return (
         <Modal
@@ -60,7 +66,7 @@ const PublishRouteThankYouPageModal: React.FC<IProps> = ({
                                 }`}
                                 {`${
                                     isPublished
-                                        ? trans.titleSufixPublished
+                                        ? publishedText
                                         : trans.titleSufixSaved
                                 }`}
                             </Text>

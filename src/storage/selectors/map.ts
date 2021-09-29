@@ -68,15 +68,17 @@ export const mapIdToAddSelector = (state: RootState): string =>
 // );
 
 export const mapDataByIDSelector = (mapID?: string) =>
-    createSelector(mapsListSelector, maps => maps.find(m => m.id === mapID));
+    createSelector(mapsListSelector, (maps: Map[]) =>
+        maps.find(m => m.id === mapID),
+    );
 
 export const favouriteMapDataByIDSelector = (mapID: string) =>
-    createSelector(favouritesMapsSelector, maps =>
+    createSelector(favouritesMapsSelector, (maps: Map[]) =>
         maps.find(m => m.id === mapID),
     );
 
 export const privateDataByIDSelector = (mapID: string) =>
-    createSelector(privateMapsListSelector, pMaps =>
+    createSelector(privateMapsListSelector, (pMaps: Map[]) =>
         pMaps.find(m => m.id === mapID),
     );
 
@@ -95,25 +97,27 @@ export const selectMapDataByIDBasedOnTypeSelector = (
         return featuredMapDataByIdSelector(mapID);
     }
 
-    return createSelector(selectorType, maps => maps.find(m => m.id === mapID));
+    return createSelector(selectorType, (maps: Map[]) =>
+        maps.find(m => m.id === mapID),
+    );
 };
 
 export const mapPathByIDSelector = (mapID: string) =>
     createSelector(
         mapsListSelector,
-        maps => maps.find(m => m.id === mapID)?.path,
+        (maps: Map[]) => maps.find(m => m.id === mapID)?.path,
     );
 
 export const privateMapPathByIDSelector = (mapID: string) =>
     createSelector(
         privateMapsListSelector,
-        maps => maps.find(m => m.id === mapID)?.path,
+        (maps: Map[]) => maps.find(m => m.id === mapID)?.path,
     );
 
 export const favouriteMapPathByIDSelector = (mapID: string) =>
     createSelector(
         favouritesMapsSelector,
-        maps => maps.find(m => m.id === mapID)?.path,
+        (maps: Map[]) => maps.find(m => m.id === mapID)?.path,
     );
 
 export const selectMapPathByIDBasedOnTypeSelector = (
