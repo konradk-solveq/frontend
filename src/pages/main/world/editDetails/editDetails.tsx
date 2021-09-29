@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
     View,
     StatusBar,
@@ -24,6 +24,7 @@ import {getImagesThumbs} from '../../../../utils/transformData';
 import {ImageType, MapFormDataResult} from '../../../../interfaces/form';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import {EditDetailsRouteType} from '@type/rootStack';
+import {MapType} from '@models/map.model';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
@@ -37,6 +38,8 @@ import styles from './style';
 const isIOS = Platform.OS === 'ios';
 
 const EditDetails = () => {
+    const wasPublishedBeforeRef = useRef(false);
+
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const route = useRoute<EditDetailsRouteType>();
@@ -45,7 +48,7 @@ const EditDetails = () => {
     const redirectToScreen = route?.params?.redirectTo;
 
     const newPrivateMapID = useAppSelector(mapIdToAddSelector);
-    const mapData = useAppSelector(
+    const mapData: MapType | undefined = useAppSelector(
         !privateMap
             ? mapDataByIDSelector(mapID)
             : privateDataByIDSelector(mapID || newPrivateMapID),
@@ -80,6 +83,13 @@ const EditDetails = () => {
     const onScrollToTopHandler = (p: boolean) => {
         setScrollToTop(p);
     };
+
+    useEffect(() => {
+        if (mapData?.isPublic) {
+            wasPublishedBeforeRef.current = true;
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (submit && !isLoading) {
@@ -167,6 +177,7 @@ const EditDetails = () => {
                         showModal={showModal}
                         onPress={onBackHandler}
                         isPublished={isPublished}
+                        wasPublished={wasPublishedBeforeRef.current}
                         onBackPress={() => setShowModal(false)}
                     />
                     <WrongResponseModal
