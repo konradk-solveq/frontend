@@ -1,5 +1,6 @@
-import {AppConfigI} from '@src/models/config.model';
+import {AppConfigI} from '@models/config.model';
 import {ShortCoordsType} from '@src/type/coords';
+import {Platform} from 'react-native';
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
 import {LocationDataI} from '../interfaces/geolocation';
 import {
@@ -18,6 +19,8 @@ import {
     removeLessAccuratePointsLocations,
     removeLessAccuratePoints,
 } from './locationData';
+
+const isIOS = Platform.OS === 'ios';
 
 export const getTimeInUTCMilliseconds = (
     date: string | number,
@@ -45,7 +48,14 @@ const isLocationValidToPass = (loc: any, routeId?: string) => {
     if (loc?.coords?.accuracy && loc?.coords?.accuracy < 0.3) {
         return false;
     }
-    if (loc?.activity?.type === 'still' && loc?.activity?.confidence >= 80) {
+    /**
+     * Deosn't work properly on Android devices
+     */
+    if (
+        loc?.activity?.type === 'still' &&
+        loc?.activity?.confidence >= 90 &&
+        isIOS
+    ) {
         return false;
     }
     if (!isLocationValidate(loc)) {
