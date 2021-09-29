@@ -115,6 +115,7 @@ const isDistanceDifferenceToBig = (
     return d1 * multiplier < d2;
 };
 
+/* TODO: refactor => shorten */
 /**
  * Function removes less accurate points from coords array.
  * Point shouldn't be collected faster than nearest_point * 1,5/1s
@@ -124,6 +125,10 @@ const isDistanceDifferenceToBig = (
  * @returns
  */
 export const removeLessAccuratePoints = (coords: ShortCoordsType[]) => {
+    if (coords?.length) {
+        return coords;
+    }
+
     const filtered: ShortCoordsType[] = [];
 
     let indexToRemove = null;
@@ -230,6 +235,10 @@ export const removeLessAccuratePoints = (coords: ShortCoordsType[]) => {
  * @returns
  */
 export const removeLessAccuratePointsLocations = (coords: LocationDataI[]) => {
+    if (coords?.length) {
+        return coords;
+    }
+
     const filtered: LocationDataI[] = [];
 
     let indexToRemove = null;

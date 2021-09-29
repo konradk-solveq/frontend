@@ -1,4 +1,5 @@
 import {AppConfigI} from '@src/models/config.model';
+import {ShortCoordsType} from '@src/type/coords';
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
 import {LocationDataI} from '../interfaces/geolocation';
 import {
@@ -22,16 +23,16 @@ export const getTimeInUTCMilliseconds = (
     date: string | number,
     returnAsNumber?: boolean,
 ) => {
-    // try {
-    const time = new Date(date).valueOf();
+    const time = new Date(date)?.valueOf();
     if (returnAsNumber && typeof time === 'string') {
-        return parseInt(time, 10);
+        try {
+            return parseInt(time, 10);
+        } catch (error) {
+            return time;
+        }
     }
 
     return time;
-    //     } catch (error) {
-    //         return date;
-    //     }
 };
 
 const isLocationValidToPass = (loc: any, routeId?: string) => {
@@ -52,6 +53,25 @@ const isLocationValidToPass = (loc: any, routeId?: string) => {
     }
 
     return true;
+};
+
+const sortLocationArrayByTime = (locations: ShortCoordsType[]) => {
+    return locations.sort((a, b) => {
+        const timeA = getTimeInUTCMilliseconds(a.timestamp);
+        const timeB = getTimeInUTCMilliseconds(b.timestamp);
+        if (timeA === timeB) {
+            if (a.latitude === b.latitude) {
+                if (a.longitude === b.longitude) {
+                    return 0;
+                }
+
+                return a.longitude < b.longitude ? -1 : 1;
+            }
+
+            return a.latitude < b.latitude ? -1 : 1;
+        }
+        return timeA < timeB ? -1 : 1;
+    });
 };
 
 export const transfromToBikeDescription = (
@@ -488,22 +508,7 @@ export const getRoutesDataFromSQL = async (
         }
     });
 
-    const sorted = currRoutes.sort((a, b) => {
-        const timeA = getTimeInUTCMilliseconds(a.timestamp);
-        const timeB = getTimeInUTCMilliseconds(b.timestamp);
-        if (timeA === timeB) {
-            if (a.latitude === b.latitude) {
-                if (a.longitude === b.longitude) {
-                    return 0;
-                }
-
-                return a.longitude < b.longitude ? -1 : 1;
-            }
-
-            return a.latitude < b.latitude ? -1 : 1;
-        }
-        return timeA < timeB ? -1 : 1;
-    });
+    const sorted = sortLocationArrayByTime(currRoutes);
 
     const cleanedArr = removeLessAccuratePoints(sorted);
 
@@ -570,22 +575,7 @@ export const getRoutesDataFromSQLWithLastRecord = async (
         }
     });
 
-    const sorted = currRoutes.sort((a, b) => {
-        const timeA = getTimeInUTCMilliseconds(a.timestamp);
-        const timeB = getTimeInUTCMilliseconds(b.timestamp);
-        if (timeA === timeB) {
-            if (a.latitude === b.latitude) {
-                if (a.longitude === b.longitude) {
-                    return 0;
-                }
-
-                return a.longitude < b.longitude ? -1 : 1;
-            }
-
-            return a.latitude < b.latitude ? -1 : 1;
-        }
-        return timeA < timeB ? -1 : 1;
-    });
+    const sorted = sortLocationArrayByTime(currRoutes);
 
     const cleanedArr = removeLessAccuratePoints(sorted);
 
