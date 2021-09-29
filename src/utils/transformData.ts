@@ -1,4 +1,5 @@
 import {AppConfigI} from '@src/models/config.model';
+import {ShortCoordsType} from '@src/type/coords';
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
 import {LocationDataI} from '../interfaces/geolocation';
 import {
@@ -12,14 +13,65 @@ import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {getLocations} from './geolocation';
-import {isLocationValidate} from './locationData';
+import {
+    isLocationValidate,
+    removeLessAccuratePointsLocations,
+    removeLessAccuratePoints,
+} from './locationData';
 
-export const getTimeInUTCMilliseconds = (date: string | number) => {
-    try {
-        return new Date(date).valueOf();
-    } catch (error) {
-        return date;
+export const getTimeInUTCMilliseconds = (
+    date: string | number,
+    returnAsNumber?: boolean,
+) => {
+    const time = new Date(date)?.valueOf();
+    if (returnAsNumber && typeof time === 'string') {
+        try {
+            return parseInt(time, 10);
+        } catch (error) {
+            return time;
+        }
     }
+
+    return time;
+};
+
+const isLocationValidToPass = (loc: any, routeId?: string) => {
+    if (!routeId || !loc?.extras?.route_id || loc?.sample === true) {
+        return false;
+    }
+    if (routeId !== loc?.extras?.route_id) {
+        return false;
+    }
+    if (loc?.coords?.accuracy && loc?.coords?.accuracy < 0.3) {
+        return false;
+    }
+    if (loc?.activity?.type === 'still' && loc?.activity?.confidence >= 80) {
+        return false;
+    }
+    if (!isLocationValidate(loc)) {
+        return false;
+    }
+
+    return true;
+};
+
+const sortLocationArrayByTime = (locations: ShortCoordsType[]) => {
+    return locations.sort((a, b) => {
+        const timeA = getTimeInUTCMilliseconds(a.timestamp);
+        const timeB = getTimeInUTCMilliseconds(b.timestamp);
+        if (timeA === timeB) {
+            if (a.latitude === b.latitude) {
+                if (a.longitude === b.longitude) {
+                    return 0;
+                }
+
+                return a.longitude < b.longitude ? -1 : 1;
+            }
+
+            return a.latitude < b.latitude ? -1 : 1;
+        }
+        return timeA < timeB ? -1 : 1;
+    });
 };
 
 export const transfromToBikeDescription = (
@@ -368,13 +420,7 @@ export const routesDataToPersist = async (
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
-            return;
-        }
-        if (routeId !== l?.extras?.route_id) {
-            return;
-        }
-        if (!isLocationValidate(l)) {
+        if (!isLocationValidToPass(l, routeId)) {
             return;
         }
 
@@ -399,10 +445,9 @@ export const routesDataToPersist = async (
     });
 
     const sorted = currRoutes.sort((a, b) => {
-        if (
-            getTimeInUTCMilliseconds(a.timestamp) ===
-            getTimeInUTCMilliseconds(b.timestamp)
-        ) {
+        const timeA = getTimeInUTCMilliseconds(a.timestamp);
+        const timeB = getTimeInUTCMilliseconds(b.timestamp);
+        if (timeA === timeB) {
             if (a.coords.latitude === b.coords.latitude) {
                 if (a.coords.longitude === b.coords.longitude) {
                     return 0;
@@ -414,13 +459,12 @@ export const routesDataToPersist = async (
             return a.coords.latitude < b.coords.latitude ? -1 : 1;
         }
 
-        return getTimeInUTCMilliseconds(a.timestamp) <
-            getTimeInUTCMilliseconds(b.timestamp)
-            ? -1
-            : 1;
+        return timeA < timeB ? -1 : 1;
     });
 
-    return sorted;
+    const cleanedArr = removeLessAccuratePointsLocations(sorted);
+
+    return cleanedArr;
 };
 
 export const getRoutesDataFromSQL = async (
@@ -439,13 +483,7 @@ export const getRoutesDataFromSQL = async (
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
-            return;
-        }
-        if (routeId !== l?.extras?.route_id) {
-            return;
-        }
-        if (!isLocationValidate(l)) {
+        if (!isLocationValidToPass(l, routeId)) {
             return;
         }
 
@@ -470,28 +508,11 @@ export const getRoutesDataFromSQL = async (
         }
     });
 
-    const sorted = currRoutes.sort((a, b) => {
-        if (
-            getTimeInUTCMilliseconds(a.timestamp) ===
-            getTimeInUTCMilliseconds(b.timestamp)
-        ) {
-            if (a.latitude === b.latitude) {
-                if (a.longitude === b.longitude) {
-                    return 0;
-                }
+    const sorted = sortLocationArrayByTime(currRoutes);
 
-                return a.longitude < b.longitude ? -1 : 1;
-            }
+    const cleanedArr = removeLessAccuratePoints(sorted);
 
-            return a.latitude < b.latitude ? -1 : 1;
-        }
-        return getTimeInUTCMilliseconds(a.timestamp) <
-            getTimeInUTCMilliseconds(b.timestamp)
-            ? -1
-            : 1;
-    });
-
-    return sorted;
+    return cleanedArr;
 };
 
 export const getImageToDisplay = (images: ImagesUrlsToDisplay) => {
@@ -528,13 +549,7 @@ export const getRoutesDataFromSQLWithLastRecord = async (
     let lastRecord: any;
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!routeId || !l?.extras?.route_id || l?.sample === true) {
-            return;
-        }
-        if (routeId !== l?.extras?.route_id) {
-            return;
-        }
-        if (!isLocationValidate(l)) {
+        if (!isLocationValidToPass(l, routeId)) {
             return;
         }
 
@@ -560,29 +575,12 @@ export const getRoutesDataFromSQLWithLastRecord = async (
         }
     });
 
-    const sorted = currRoutes.sort((a, b) => {
-        if (
-            getTimeInUTCMilliseconds(a.timestamp) ===
-            getTimeInUTCMilliseconds(b.timestamp)
-        ) {
-            if (a.latitude === b.latitude) {
-                if (a.longitude === b.longitude) {
-                    return 0;
-                }
+    const sorted = sortLocationArrayByTime(currRoutes);
 
-                return a.longitude < b.longitude ? -1 : 1;
-            }
-
-            return a.latitude < b.latitude ? -1 : 1;
-        }
-        return getTimeInUTCMilliseconds(a.timestamp) <
-            getTimeInUTCMilliseconds(b.timestamp)
-            ? -1
-            : 1;
-    });
+    const cleanedArr = removeLessAccuratePoints(sorted);
 
     return {
-        data: sorted,
+        data: cleanedArr,
         lastRecord: isLocationValidate(lastRecord) ? lastRecord : undefined,
     };
 };

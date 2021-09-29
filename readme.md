@@ -24,6 +24,20 @@ Copy `ios/GoogleService-Info.plist` into `ios/GoogleService-Info-Prod.plist`.
 
 Copy `google_maps_api.xml` file into `android/app/src/main/res/values`, `android/app/src/qa/res/values` and `android/app/src/dev/res/values`
 
+### Private Registry
+
+We use internal package so adding gitlab registry to npm config is must. Do the following:
+
+```bash
+npm config set @solveq:registry=https://gitlab.com/api/v4/packages/npm/
+```
+
+```bash
+npm config set -- '//gitlab.com/api/v4/packages/npm/:_authToken' "your_token"
+```
+
+For more details read [here](https://docs.gitlab.com/ee/user/packages/npm_registry/index.html#instance-level-npm-endpoint)
+
 ## FLAVORS
 
 We can use different builds for different environments. To make it work copy `.env` file to `.env.prod`, `.env.dev` and `.env.test` files. Replace variables with proper values.

@@ -318,7 +318,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 currRoutesDat?.length >= 2 &&
                 currRoutesDat?.find(cr => cr?.odometer >= MIN_ROUTE_LENGTH)
             ) {
-                dispatch(addRoutesToSynchQueue(currRoutesDat));
+                await dispatch(addRoutesToSynchQueue(currRoutesDat));
             }
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
@@ -343,7 +343,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 currRoutesDat?.find(cr => cr?.odometer >= MIN_ROUTE_LENGTH) &&
                 response.status !== 406
             ) {
-                dispatch(addRoutesToSynchQueue(currRoutesDat));
+                await dispatch(addRoutesToSynchQueue(currRoutesDat));
             }
 
             if (currentRoute?.remoteRouteId) {

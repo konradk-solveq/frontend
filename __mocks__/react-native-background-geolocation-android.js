@@ -2,7 +2,7 @@ import BackgroundGeolocation from 'react-native-background-geolocation-android';
 
 BackgroundGeolocation.getCurrentPosition = jest.fn().mockImplementation(() =>
     Promise.resolve({
-        activity: {confidence: 100, type: 'still'},
+        activity: {confidence: 100, type: 'on_bicycle'},
         battery: {is_charging: true, level: 1},
         coords: {
             accuracy: 1,
@@ -42,7 +42,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:17:51.713Z',
             coords: {
@@ -70,7 +70,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:18:08.888Z',
             coords: {
@@ -98,7 +98,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:18:24.787Z',
             coords: {
@@ -126,7 +126,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:18:41.345Z',
             coords: {
@@ -154,7 +154,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:52:18.230Z',
             coords: {
@@ -182,7 +182,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:52:24.744Z',
             coords: {
@@ -210,7 +210,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:53:06.079Z',
             coords: {
@@ -238,7 +238,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:53:19.118Z',
             coords: {
@@ -266,7 +266,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:53:42.241Z',
             coords: {
@@ -294,7 +294,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:07.284Z',
             coords: {
@@ -322,7 +322,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: 'f7598ec0-578f-44e6-aaf6-8702536cec01',
@@ -351,7 +351,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: false,
             uuid: '38232280-d8b9-4ca7-a0b7-1f796a379e6c',
@@ -380,7 +380,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: false,
             uuid: 'd7910f5d-3b32-4730-aea3-422155c82f77',
@@ -409,7 +409,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:10.939Z',
             coords: {
@@ -437,7 +437,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: false,
             uuid: 'a8c3a1bc-2ac5-47b5-bff5-c7fcebc1a19e',
@@ -466,7 +466,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: 'fdf4178c-c351-4b45-8909-110fb46c5b00',
@@ -495,7 +495,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:23.387Z',
             coords: {
@@ -523,7 +523,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:23.387Z',
             coords: {
@@ -551,7 +551,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:23.387Z',
             coords: {
@@ -579,7 +579,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:23.387Z',
             coords: {
@@ -607,7 +607,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:23.387Z',
             coords: {
@@ -635,7 +635,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:23.387Z',
             coords: {
@@ -663,7 +663,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:26.477Z',
             coords: {
@@ -691,7 +691,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:26.477Z',
             coords: {
@@ -719,7 +719,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:26.477Z',
             coords: {
@@ -747,7 +747,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:29.513Z',
             coords: {
@@ -775,7 +775,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:29.513Z',
             coords: {
@@ -803,7 +803,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:29.513Z',
             coords: {
@@ -831,7 +831,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:38.519Z',
             coords: {
@@ -859,7 +859,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:38.519Z',
             coords: {
@@ -887,7 +887,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:38.519Z',
             coords: {
@@ -915,7 +915,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:38.519Z',
             coords: {
@@ -943,7 +943,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:38.519Z',
             coords: {
@@ -971,7 +971,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:50.663Z',
             coords: {
@@ -999,7 +999,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:38.519Z',
             coords: {
@@ -1027,7 +1027,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:38.519Z',
             coords: {
@@ -1055,7 +1055,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:53.614Z',
             coords: {
@@ -1083,7 +1083,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:38.519Z',
             coords: {
@@ -1111,7 +1111,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:38.519Z',
             coords: {
@@ -1139,7 +1139,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:41.531Z',
             coords: {
@@ -1167,7 +1167,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:41.531Z',
             coords: {
@@ -1195,7 +1195,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:41.531Z',
             coords: {
@@ -1223,7 +1223,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:44.558Z',
             coords: {
@@ -1251,7 +1251,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:44.558Z',
             coords: {
@@ -1279,7 +1279,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:44.558Z',
             coords: {
@@ -1307,7 +1307,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:47.560Z',
             coords: {
@@ -1335,7 +1335,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:47.560Z',
             coords: {
@@ -1363,7 +1363,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:47.560Z',
             coords: {
@@ -1391,7 +1391,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:50.663Z',
             coords: {
@@ -1419,7 +1419,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:50.663Z',
             coords: {
@@ -1447,7 +1447,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:50.663Z',
             coords: {
@@ -1475,7 +1475,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:53.614Z',
             coords: {
@@ -1503,7 +1503,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:53.614Z',
             coords: {
@@ -1531,7 +1531,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:53.614Z',
             coords: {
@@ -1559,7 +1559,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:56.756Z',
             coords: {
@@ -1587,7 +1587,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:56.756Z',
             coords: {
@@ -1615,7 +1615,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:54:56.756Z',
             coords: {
@@ -1643,7 +1643,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:00.022Z',
             coords: {
@@ -1671,7 +1671,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:00.022Z',
             coords: {
@@ -1699,7 +1699,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:00.022Z',
             coords: {
@@ -1727,7 +1727,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:03.199Z',
             coords: {
@@ -1755,7 +1755,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:03.199Z',
             coords: {
@@ -1783,7 +1783,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:03.199Z',
             coords: {
@@ -1811,7 +1811,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:05.962Z',
             coords: {
@@ -1839,7 +1839,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:05.962Z',
             coords: {
@@ -1867,7 +1867,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:05.962Z',
             coords: {
@@ -1895,7 +1895,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: false,
             uuid: '4a64000d-959d-4ce2-8fe3-8d2391cdcc16',
@@ -1924,7 +1924,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:08.726Z',
             coords: {
@@ -1952,7 +1952,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:08.726Z',
             coords: {
@@ -1980,7 +1980,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:08.726Z',
             coords: {
@@ -2008,7 +2008,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:08.726Z',
             coords: {
@@ -2036,7 +2036,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:11.319Z',
             coords: {
@@ -2064,7 +2064,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:11.319Z',
             coords: {
@@ -2092,7 +2092,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:11.319Z',
             coords: {
@@ -2120,7 +2120,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:14.061Z',
             coords: {
@@ -2148,7 +2148,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:14.061Z',
             coords: {
@@ -2176,7 +2176,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:14.061Z',
             coords: {
@@ -2204,7 +2204,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:17.656Z',
             coords: {
@@ -2232,7 +2232,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:17.656Z',
             coords: {
@@ -2260,7 +2260,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:17.656Z',
             coords: {
@@ -2288,7 +2288,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:17.656Z',
             coords: {
@@ -2316,7 +2316,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:20.559Z',
             coords: {
@@ -2344,7 +2344,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:20.559Z',
             coords: {
@@ -2372,7 +2372,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:20.559Z',
             coords: {
@@ -2400,7 +2400,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:23.983Z',
             coords: {
@@ -2428,7 +2428,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:23.983Z',
             coords: {
@@ -2456,7 +2456,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:23.983Z',
             coords: {
@@ -2484,7 +2484,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:23.983Z',
             coords: {
@@ -2512,7 +2512,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:26.856Z',
             coords: {
@@ -2540,7 +2540,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:26.856Z',
             coords: {
@@ -2568,7 +2568,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:29.510Z',
             coords: {
@@ -2596,7 +2596,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:29.510Z',
             coords: {
@@ -2624,7 +2624,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:29.510Z',
             coords: {
@@ -2652,7 +2652,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:29.510Z',
             coords: {
@@ -2680,7 +2680,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2708,7 +2708,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2736,7 +2736,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2764,7 +2764,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2792,7 +2792,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2820,7 +2820,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2848,7 +2848,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2876,7 +2876,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2904,7 +2904,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2932,7 +2932,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:39.409Z',
             coords: {
@@ -2960,7 +2960,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:42.173Z',
             coords: {
@@ -2988,7 +2988,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:42.173Z',
             coords: {
@@ -3016,7 +3016,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:42.173Z',
             coords: {
@@ -3044,7 +3044,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:42.173Z',
             coords: {
@@ -3072,7 +3072,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:44.943Z',
             coords: {
@@ -3100,7 +3100,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:44.943Z',
             coords: {
@@ -3128,7 +3128,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:44.943Z',
             coords: {
@@ -3156,7 +3156,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:47.579Z',
             coords: {
@@ -3184,7 +3184,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:47.579Z',
             coords: {
@@ -3212,7 +3212,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:50.409Z',
             coords: {
@@ -3240,7 +3240,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:04.842Z',
             coords: {
@@ -3268,7 +3268,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:50.409Z',
             coords: {
@@ -3296,7 +3296,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:50.409Z',
             coords: {
@@ -3324,7 +3324,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:53.124Z',
             coords: {
@@ -3352,7 +3352,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:53.124Z',
             coords: {
@@ -3380,7 +3380,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:53.124Z',
             coords: {
@@ -3408,7 +3408,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:53.124Z',
             coords: {
@@ -3436,7 +3436,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:56.815Z',
             coords: {
@@ -3464,7 +3464,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:12.123Z',
             coords: {
@@ -3492,7 +3492,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '54a96505-32d5-4385-8d4f-da267886bdc5',
@@ -3521,7 +3521,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:56.815Z',
             coords: {
@@ -3549,7 +3549,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:58.553Z',
             coords: {
@@ -3577,7 +3577,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:58.553Z',
             coords: {
@@ -3605,7 +3605,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:58.553Z',
             coords: {
@@ -3633,7 +3633,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:55:58.553Z',
             coords: {
@@ -3661,7 +3661,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:02.111Z',
             coords: {
@@ -3689,7 +3689,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:02.111Z',
             coords: {
@@ -3717,7 +3717,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:02.111Z',
             coords: {
@@ -3745,7 +3745,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:02.111Z',
             coords: {
@@ -3773,7 +3773,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:12.123Z',
             coords: {
@@ -3801,7 +3801,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:12.123Z',
             coords: {
@@ -3829,7 +3829,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:12.123Z',
             coords: {
@@ -3857,7 +3857,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:12.123Z',
             coords: {
@@ -3885,7 +3885,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:12.123Z',
             coords: {
@@ -3913,7 +3913,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:12.123Z',
             coords: {
@@ -3941,7 +3941,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:15.387Z',
             coords: {
@@ -3969,7 +3969,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:15.387Z',
             coords: {
@@ -3997,7 +3997,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:15.387Z',
             coords: {
@@ -4025,7 +4025,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:15.387Z',
             coords: {
@@ -4053,7 +4053,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:18.357Z',
             coords: {
@@ -4081,7 +4081,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:18.357Z',
             coords: {
@@ -4109,7 +4109,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:18.357Z',
             coords: {
@@ -4137,7 +4137,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:21.189Z',
             coords: {
@@ -4165,7 +4165,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:21.189Z',
             coords: {
@@ -4193,7 +4193,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:21.189Z',
             coords: {
@@ -4221,7 +4221,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:21.189Z',
             coords: {
@@ -4249,7 +4249,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:24.709Z',
             coords: {
@@ -4277,7 +4277,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:24.709Z',
             coords: {
@@ -4305,7 +4305,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:24.709Z',
             coords: {
@@ -4333,7 +4333,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:27.494Z',
             coords: {
@@ -4361,7 +4361,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:27.494Z',
             coords: {
@@ -4389,7 +4389,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:27.494Z',
             coords: {
@@ -4417,7 +4417,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:30.372Z',
             coords: {
@@ -4445,7 +4445,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:30.372Z',
             coords: {
@@ -4473,7 +4473,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:30.372Z',
             coords: {
@@ -4501,7 +4501,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:30.372Z',
             coords: {
@@ -4529,7 +4529,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:33.031Z',
             coords: {
@@ -4557,7 +4557,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:33.031Z',
             coords: {
@@ -4585,7 +4585,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:33.031Z',
             coords: {
@@ -4613,7 +4613,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:35.854Z',
             coords: {
@@ -4641,7 +4641,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:35.854Z',
             coords: {
@@ -4669,7 +4669,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:38.632Z',
             coords: {
@@ -4697,7 +4697,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:38.632Z',
             coords: {
@@ -4725,7 +4725,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:38.632Z',
             coords: {
@@ -4753,7 +4753,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:38.632Z',
             coords: {
@@ -4781,7 +4781,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:41.295Z',
             coords: {
@@ -4809,7 +4809,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:41.295Z',
             coords: {
@@ -4837,7 +4837,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:41.295Z',
             coords: {
@@ -4865,7 +4865,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:44.880Z',
             coords: {
@@ -4893,7 +4893,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:44.880Z',
             coords: {
@@ -4921,7 +4921,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:46.770Z',
             coords: {
@@ -4949,7 +4949,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:46.770Z',
             coords: {
@@ -4977,7 +4977,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:01.323Z',
             coords: {
@@ -5005,7 +5005,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:46.770Z',
             coords: {
@@ -5033,7 +5033,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:49.663Z',
             coords: {
@@ -5061,7 +5061,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:49.663Z',
             coords: {
@@ -5089,7 +5089,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:49.663Z',
             coords: {
@@ -5117,7 +5117,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:06.335Z',
             coords: {
@@ -5145,7 +5145,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:53.276Z',
             coords: {
@@ -5173,7 +5173,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:11.150Z',
             coords: {
@@ -5201,7 +5201,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:53.276Z',
             coords: {
@@ -5229,7 +5229,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:53.276Z',
             coords: {
@@ -5257,7 +5257,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:55.134Z',
             coords: {
@@ -5285,7 +5285,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:14.090Z',
             coords: {
@@ -5313,7 +5313,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:55.134Z',
             coords: {
@@ -5341,7 +5341,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:55.134Z',
             coords: {
@@ -5369,7 +5369,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:55.134Z',
             coords: {
@@ -5397,7 +5397,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:17.094Z',
             coords: {
@@ -5425,7 +5425,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:56:58.128Z',
             coords: {
@@ -5453,7 +5453,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '418de642-6d79-42d6-b687-a74f0f163a69',
@@ -5482,7 +5482,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:22.858Z',
             coords: {
@@ -5510,7 +5510,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:22.858Z',
             coords: {
@@ -5538,7 +5538,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:11.150Z',
             coords: {
@@ -5566,7 +5566,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:11.150Z',
             coords: {
@@ -5594,7 +5594,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:14.090Z',
             coords: {
@@ -5622,7 +5622,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:14.090Z',
             coords: {
@@ -5650,7 +5650,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:14.090Z',
             coords: {
@@ -5678,7 +5678,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:17.094Z',
             coords: {
@@ -5706,7 +5706,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:17.094Z',
             coords: {
@@ -5734,7 +5734,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:17.094Z',
             coords: {
@@ -5762,7 +5762,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:17.094Z',
             coords: {
@@ -5790,7 +5790,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:19.732Z',
             coords: {
@@ -5818,7 +5818,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:22.858Z',
             coords: {
@@ -5846,7 +5846,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:22.858Z',
             coords: {
@@ -5874,7 +5874,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:22.858Z',
             coords: {
@@ -5902,7 +5902,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:25.993Z',
             coords: {
@@ -5930,7 +5930,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:25.993Z',
             coords: {
@@ -5958,7 +5958,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:25.993Z',
             coords: {
@@ -5986,7 +5986,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:25.993Z',
             coords: {
@@ -6014,7 +6014,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:28.911Z',
             coords: {
@@ -6042,7 +6042,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:28.911Z',
             coords: {
@@ -6070,7 +6070,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:31.978Z',
             coords: {
@@ -6098,7 +6098,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:47.210Z',
             coords: {
@@ -6126,7 +6126,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:31.978Z',
             coords: {
@@ -6154,7 +6154,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:31.978Z',
             coords: {
@@ -6182,7 +6182,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:34.949Z',
             coords: {
@@ -6210,7 +6210,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:34.949Z',
             coords: {
@@ -6238,7 +6238,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:50.216Z',
             coords: {
@@ -6266,7 +6266,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:34.949Z',
             coords: {
@@ -6294,7 +6294,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:19.732Z',
             coords: {
@@ -6322,7 +6322,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:57:58.262Z',
             coords: {
@@ -6350,7 +6350,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '51a8ace8-593f-4528-953b-109931459378',
@@ -6379,7 +6379,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:02.401Z',
             coords: {
@@ -6407,7 +6407,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:05.815Z',
             coords: {
@@ -6435,7 +6435,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:05.815Z',
             coords: {
@@ -6463,7 +6463,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:05.815Z',
             coords: {
@@ -6491,7 +6491,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:09.873Z',
             coords: {
@@ -6519,7 +6519,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:09.873Z',
             coords: {
@@ -6547,7 +6547,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:09.873Z',
             coords: {
@@ -6575,7 +6575,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:09.873Z',
             coords: {
@@ -6603,7 +6603,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:11.660Z',
             coords: {
@@ -6631,7 +6631,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:11.660Z',
             coords: {
@@ -6659,7 +6659,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:11.660Z',
             coords: {
@@ -6687,7 +6687,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:14.424Z',
             coords: {
@@ -6715,7 +6715,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:14.424Z',
             coords: {
@@ -6743,7 +6743,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:17.254Z',
             coords: {
@@ -6771,7 +6771,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:17.254Z',
             coords: {
@@ -6799,7 +6799,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:17.254Z',
             coords: {
@@ -6827,7 +6827,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:20.156Z',
             coords: {
@@ -6855,7 +6855,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:20.156Z',
             coords: {
@@ -6883,7 +6883,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:20.156Z',
             coords: {
@@ -6911,7 +6911,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:23.727Z',
             coords: {
@@ -6939,7 +6939,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:23.727Z',
             coords: {
@@ -6967,7 +6967,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:23.727Z',
             coords: {
@@ -6995,7 +6995,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:25.689Z',
             coords: {
@@ -7023,7 +7023,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:25.689Z',
             coords: {
@@ -7051,7 +7051,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:25.689Z',
             coords: {
@@ -7079,7 +7079,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:34.211Z',
             coords: {
@@ -7107,7 +7107,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:34.211Z',
             coords: {
@@ -7135,7 +7135,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:34.211Z',
             coords: {
@@ -7163,7 +7163,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:34.211Z',
             coords: {
@@ -7191,7 +7191,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:34.211Z',
             coords: {
@@ -7219,7 +7219,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:34.211Z',
             coords: {
@@ -7247,7 +7247,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:34.211Z',
             coords: {
@@ -7275,7 +7275,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:34.211Z',
             coords: {
@@ -7303,7 +7303,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:34.211Z',
             coords: {
@@ -7331,7 +7331,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:37.110Z',
             coords: {
@@ -7359,7 +7359,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:37.110Z',
             coords: {
@@ -7387,7 +7387,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:37.110Z',
             coords: {
@@ -7415,7 +7415,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:45.570Z',
             coords: {
@@ -7443,7 +7443,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:45.570Z',
             coords: {
@@ -7471,7 +7471,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:45.570Z',
             coords: {
@@ -7499,7 +7499,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:45.570Z',
             coords: {
@@ -7527,7 +7527,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:45.570Z',
             coords: {
@@ -7555,7 +7555,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:45.570Z',
             coords: {
@@ -7583,7 +7583,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:45.570Z',
             coords: {
@@ -7611,7 +7611,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:45.570Z',
             coords: {
@@ -7639,7 +7639,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:45.570Z',
             coords: {
@@ -7667,7 +7667,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:48.408Z',
             coords: {
@@ -7695,7 +7695,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:02.465Z',
             coords: {
@@ -7723,7 +7723,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:48.408Z',
             coords: {
@@ -7751,7 +7751,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:48.408Z',
             coords: {
@@ -7779,7 +7779,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:51.213Z',
             coords: {
@@ -7807,7 +7807,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:51.213Z',
             coords: {
@@ -7835,7 +7835,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:58:51.213Z',
             coords: {
@@ -7863,7 +7863,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -7891,7 +7891,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: 'df0484a6-a90e-4439-ac02-0bfc7a908eb6',
@@ -7920,7 +7920,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -7948,7 +7948,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -7976,7 +7976,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8004,7 +8004,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8032,7 +8032,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8060,7 +8060,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8088,7 +8088,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8116,7 +8116,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8144,7 +8144,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8172,7 +8172,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8200,7 +8200,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8228,7 +8228,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8256,7 +8256,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8284,7 +8284,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8312,7 +8312,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:09.697Z',
             coords: {
@@ -8340,7 +8340,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:24.171Z',
             coords: {
@@ -8368,7 +8368,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:13.718Z',
             coords: {
@@ -8396,7 +8396,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:13.718Z',
             coords: {
@@ -8424,7 +8424,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:13.718Z',
             coords: {
@@ -8452,7 +8452,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:13.718Z',
             coords: {
@@ -8480,7 +8480,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:13.718Z',
             coords: {
@@ -8508,7 +8508,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8536,7 +8536,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8564,7 +8564,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8592,7 +8592,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8620,7 +8620,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8648,7 +8648,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8676,7 +8676,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8704,7 +8704,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8732,7 +8732,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8760,7 +8760,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8788,7 +8788,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8816,7 +8816,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8844,7 +8844,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8872,7 +8872,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8900,7 +8900,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:31.406Z',
             coords: {
@@ -8928,7 +8928,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T07:59:55.292Z',
             coords: {
@@ -8956,7 +8956,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:00:12.582Z',
             coords: {
@@ -8984,7 +8984,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:01:04.128Z',
             coords: {
@@ -9012,7 +9012,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:01:31.629Z',
             coords: {
@@ -9040,7 +9040,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:01:50.797Z',
             coords: {
@@ -9068,7 +9068,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:01:58.455Z',
             coords: {
@@ -9096,7 +9096,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:02:18.455Z',
             coords: {
@@ -9124,7 +9124,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:02:53.071Z',
             coords: {
@@ -9152,7 +9152,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:03:03.985Z',
             coords: {
@@ -9180,7 +9180,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:03:03.985Z',
             coords: {
@@ -9208,7 +9208,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:03:12.829Z',
             coords: {
@@ -9236,7 +9236,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:03:15.672Z',
             coords: {
@@ -9264,7 +9264,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:04:05.138Z',
             coords: {
@@ -9292,7 +9292,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:04:12.983Z',
             coords: {
@@ -9320,7 +9320,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:04:21.392Z',
             coords: {
@@ -9348,7 +9348,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:04:27.744Z',
             coords: {
@@ -9376,7 +9376,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:04:40.427Z',
             coords: {
@@ -9404,7 +9404,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:04:45.292Z',
             coords: {
@@ -9432,7 +9432,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:04:51.420Z',
             coords: {
@@ -9460,7 +9460,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:05:02.853Z',
             coords: {
@@ -9488,7 +9488,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:06:45.595Z',
             coords: {
@@ -9516,7 +9516,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:07:02.045Z',
             coords: {
@@ -9544,7 +9544,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:07:16.414Z',
             coords: {
@@ -9572,7 +9572,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:07:28.205Z',
             coords: {
@@ -9600,7 +9600,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:07:31.813Z',
             coords: {
@@ -9628,7 +9628,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:07:45.837Z',
             coords: {
@@ -9656,7 +9656,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:07:48.380Z',
             coords: {
@@ -9684,7 +9684,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:08:35.122Z',
             coords: {
@@ -9712,7 +9712,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:08:40.763Z',
             coords: {
@@ -9740,7 +9740,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:08:52.678Z',
             coords: {
@@ -9768,7 +9768,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:08:57.522Z',
             coords: {
@@ -9796,7 +9796,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:09:04.058Z',
             coords: {
@@ -9824,7 +9824,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:09:10.697Z',
             coords: {
@@ -9852,7 +9852,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:09:16.183Z',
             coords: {
@@ -9880,7 +9880,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:10:21.486Z',
             coords: {
@@ -9908,7 +9908,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:10:25.855Z',
             coords: {
@@ -9936,7 +9936,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:10:42.247Z',
             coords: {
@@ -9964,7 +9964,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:11:05.193Z',
             coords: {
@@ -9992,7 +9992,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:11:11.149Z',
             coords: {
@@ -10020,7 +10020,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:12:19.095Z',
             coords: {
@@ -10048,7 +10048,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:12:21.976Z',
             coords: {
@@ -10076,7 +10076,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:12:33.277Z',
             coords: {
@@ -10104,7 +10104,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:13:06.895Z',
             coords: {
@@ -10132,7 +10132,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:13:10.629Z',
             coords: {
@@ -10160,7 +10160,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:13:22.509Z',
             coords: {
@@ -10188,7 +10188,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:13:49.866Z',
             coords: {
@@ -10216,7 +10216,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:13:54.877Z',
             coords: {
@@ -10244,7 +10244,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:14:03.562Z',
             coords: {
@@ -10272,7 +10272,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:14:07.971Z',
             coords: {
@@ -10300,7 +10300,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:14:13.182Z',
             coords: {
@@ -10328,7 +10328,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:18:49.599Z',
             coords: {
@@ -10356,7 +10356,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '50ca7bfa-f30a-4e9e-ab2a-510789c99b4f',
@@ -10385,7 +10385,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:02.297Z',
             coords: {
@@ -10413,7 +10413,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:02.297Z',
             coords: {
@@ -10441,7 +10441,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:02.297Z',
             coords: {
@@ -10469,7 +10469,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:02.297Z',
             coords: {
@@ -10497,7 +10497,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:20.436Z',
             coords: {
@@ -10525,7 +10525,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:20.436Z',
             coords: {
@@ -10553,7 +10553,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:20.436Z',
             coords: {
@@ -10581,7 +10581,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:24.269Z',
             coords: {
@@ -10609,7 +10609,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:24.269Z',
             coords: {
@@ -10637,7 +10637,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:29.270Z',
             coords: {
@@ -10665,7 +10665,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:29.270Z',
             coords: {
@@ -10693,7 +10693,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:29.270Z',
             coords: {
@@ -10721,7 +10721,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:29.270Z',
             coords: {
@@ -10749,7 +10749,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:29.270Z',
             coords: {
@@ -10777,7 +10777,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:29.270Z',
             coords: {
@@ -10805,7 +10805,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:29.270Z',
             coords: {
@@ -10833,7 +10833,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:38.276Z',
             coords: {
@@ -10861,7 +10861,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:19:29.270Z',
             coords: {
@@ -10889,7 +10889,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:20:43.439Z',
             coords: {
@@ -10917,7 +10917,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:20:34.647Z',
             coords: {
@@ -10945,7 +10945,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:20:34.647Z',
             coords: {
@@ -10973,7 +10973,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:20:37.388Z',
             coords: {
@@ -11001,7 +11001,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:20:37.388Z',
             coords: {
@@ -11029,7 +11029,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:20:37.388Z',
             coords: {
@@ -11057,7 +11057,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:20:40.249Z',
             coords: {
@@ -11085,7 +11085,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:15.108Z',
             coords: {
@@ -11113,7 +11113,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: 'f7df8edc-9e5d-46b0-9433-527131d27254',
@@ -11142,7 +11142,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:19.990Z',
             coords: {
@@ -11170,7 +11170,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:19.990Z',
             coords: {
@@ -11198,7 +11198,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:19.990Z',
             coords: {
@@ -11226,7 +11226,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:23.312Z',
             coords: {
@@ -11254,7 +11254,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:24.034Z',
             coords: {
@@ -11282,7 +11282,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:24.921Z',
             coords: {
@@ -11310,7 +11310,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:25.825Z',
             coords: {
@@ -11338,7 +11338,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:26.700Z',
             coords: {
@@ -11366,7 +11366,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:27.589Z',
             coords: {
@@ -11394,7 +11394,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:28.491Z',
             coords: {
@@ -11422,7 +11422,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:29.404Z',
             coords: {
@@ -11450,7 +11450,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:30.279Z',
             coords: {
@@ -11478,7 +11478,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:31.170Z',
             coords: {
@@ -11506,7 +11506,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:32.065Z',
             coords: {
@@ -11534,7 +11534,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:32.938Z',
             coords: {
@@ -11562,7 +11562,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:33.852Z',
             coords: {
@@ -11590,7 +11590,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:34.746Z',
             coords: {
@@ -11618,7 +11618,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:35.612Z',
             coords: {
@@ -11646,7 +11646,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:36.554Z',
             coords: {
@@ -11674,7 +11674,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:40.637Z',
             coords: {
@@ -11702,7 +11702,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:40.637Z',
             coords: {
@@ -11730,7 +11730,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:40.637Z',
             coords: {
@@ -11758,7 +11758,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:40.637Z',
             coords: {
@@ -11786,7 +11786,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:40.637Z',
             coords: {
@@ -11814,7 +11814,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:41.881Z',
             coords: {
@@ -11842,7 +11842,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:42.806Z',
             coords: {
@@ -11870,7 +11870,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:44.637Z',
             coords: {
@@ -11898,7 +11898,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:46.637Z',
             coords: {
@@ -11926,7 +11926,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:47.637Z',
             coords: {
@@ -11954,7 +11954,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:47.637Z',
             coords: {
@@ -11982,7 +11982,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:47.637Z',
             coords: {
@@ -12010,7 +12010,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:48.131Z',
             coords: {
@@ -12038,7 +12038,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:48.637Z',
             coords: {
@@ -12066,7 +12066,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:49.905Z',
             coords: {
@@ -12094,7 +12094,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:50.817Z',
             coords: {
@@ -12122,7 +12122,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:51.723Z',
             coords: {
@@ -12150,7 +12150,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:52.582Z',
             coords: {
@@ -12178,7 +12178,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:53.487Z',
             coords: {
@@ -12206,7 +12206,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:54.362Z',
             coords: {
@@ -12234,7 +12234,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:55.261Z',
             coords: {
@@ -12262,7 +12262,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:56.155Z',
             coords: {
@@ -12290,7 +12290,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:57.084Z',
             coords: {
@@ -12318,7 +12318,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:57.990Z',
             coords: {
@@ -12346,7 +12346,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:58.861Z',
             coords: {
@@ -12374,7 +12374,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:22:59.728Z',
             coords: {
@@ -12402,7 +12402,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:00.621Z',
             coords: {
@@ -12430,7 +12430,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:01.510Z',
             coords: {
@@ -12458,7 +12458,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:04.637Z',
             coords: {
@@ -12486,7 +12486,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:04.637Z',
             coords: {
@@ -12514,7 +12514,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:04.637Z',
             coords: {
@@ -12542,7 +12542,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:05.086Z',
             coords: {
@@ -12570,7 +12570,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:10.433Z',
             coords: {
@@ -12598,7 +12598,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:10.637Z',
             coords: {
@@ -12626,7 +12626,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:10.637Z',
             coords: {
@@ -12654,7 +12654,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:10.637Z',
             coords: {
@@ -12682,7 +12682,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:10.637Z',
             coords: {
@@ -12710,7 +12710,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:10.637Z',
             coords: {
@@ -12738,7 +12738,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:11.314Z',
             coords: {
@@ -12766,7 +12766,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:12.637Z',
             coords: {
@@ -12794,7 +12794,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:13.132Z',
             coords: {
@@ -12822,7 +12822,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:13.995Z',
             coords: {
@@ -12850,7 +12850,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:14.891Z',
             coords: {
@@ -12878,7 +12878,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:15.802Z',
             coords: {
@@ -12906,7 +12906,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:16.679Z',
             coords: {
@@ -12934,7 +12934,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:17.565Z',
             coords: {
@@ -12962,7 +12962,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:20.638Z',
             coords: {
@@ -12990,7 +12990,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:20.638Z',
             coords: {
@@ -13018,7 +13018,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:20.638Z',
             coords: {
@@ -13046,7 +13046,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:21.261Z',
             coords: {
@@ -13074,7 +13074,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:22.124Z',
             coords: {
@@ -13102,7 +13102,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:22.917Z',
             coords: {
@@ -13130,7 +13130,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:23.843Z',
             coords: {
@@ -13158,7 +13158,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:30.638Z',
             coords: {
@@ -13186,7 +13186,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: false,
             uuid: '4e3b460e-f7c0-41c8-ae8e-6e68e0f7f647',
@@ -13215,7 +13215,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:30.638Z',
             coords: {
@@ -13243,7 +13243,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:30.638Z',
             coords: {
@@ -13271,7 +13271,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:30.638Z',
             coords: {
@@ -13299,7 +13299,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:30.638Z',
             coords: {
@@ -13327,7 +13327,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:30.638Z',
             coords: {
@@ -13355,7 +13355,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:30.638Z',
             coords: {
@@ -13383,7 +13383,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:30.638Z',
             coords: {
@@ -13411,7 +13411,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:30.638Z',
             coords: {
@@ -13439,7 +13439,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:32.228Z',
             coords: {
@@ -13467,7 +13467,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:32.986Z',
             coords: {
@@ -13495,7 +13495,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:33.875Z',
             coords: {
@@ -13523,7 +13523,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:34.793Z',
             coords: {
@@ -13551,7 +13551,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:35.664Z',
             coords: {
@@ -13579,7 +13579,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:36.548Z',
             coords: {
@@ -13607,7 +13607,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:37.454Z',
             coords: {
@@ -13635,7 +13635,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:38.319Z',
             coords: {
@@ -13663,7 +13663,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:39.252Z',
             coords: {
@@ -13691,7 +13691,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:40.103Z',
             coords: {
@@ -13719,7 +13719,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:41.066Z',
             coords: {
@@ -13747,7 +13747,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:44.552Z',
             coords: {
@@ -13775,7 +13775,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:41.902Z',
             coords: {
@@ -13803,7 +13803,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:45.638Z',
             coords: {
@@ -13831,7 +13831,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:45.638Z',
             coords: {
@@ -13859,7 +13859,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:46.638Z',
             coords: {
@@ -13887,7 +13887,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:47.638Z',
             coords: {
@@ -13915,7 +13915,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:47.638Z',
             coords: {
@@ -13943,7 +13943,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:50.638Z',
             coords: {
@@ -13971,7 +13971,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:53.105Z',
             coords: {
@@ -13999,7 +13999,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '252abe98-0708-43ad-83a6-98b45d90999f',
@@ -14028,7 +14028,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:53.105Z',
             coords: {
@@ -14056,7 +14056,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:53.105Z',
             coords: {
@@ -14084,7 +14084,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:55.608Z',
             coords: {
@@ -14112,7 +14112,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:55.608Z',
             coords: {
@@ -14140,7 +14140,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:55.608Z',
             coords: {
@@ -14168,7 +14168,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:58.607Z',
             coords: {
@@ -14196,7 +14196,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:23:59.555Z',
             coords: {
@@ -14224,7 +14224,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:05.271Z',
             coords: {
@@ -14252,7 +14252,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:05.271Z',
             coords: {
@@ -14280,7 +14280,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:05.271Z',
             coords: {
@@ -14308,7 +14308,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:05.271Z',
             coords: {
@@ -14336,7 +14336,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:05.271Z',
             coords: {
@@ -14364,7 +14364,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:05.271Z',
             coords: {
@@ -14392,7 +14392,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:07.860Z',
             coords: {
@@ -14420,7 +14420,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:10.242Z',
             coords: {
@@ -14448,7 +14448,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:10.242Z',
             coords: {
@@ -14476,7 +14476,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:10.242Z',
             coords: {
@@ -14504,7 +14504,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:10.242Z',
             coords: {
@@ -14532,7 +14532,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:10.242Z',
             coords: {
@@ -14560,7 +14560,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:10.985Z',
             coords: {
@@ -14588,7 +14588,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:12.521Z',
             coords: {
@@ -14616,7 +14616,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:12.883Z',
             coords: {
@@ -14644,7 +14644,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:13.879Z',
             coords: {
@@ -14672,7 +14672,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:14.789Z',
             coords: {
@@ -14700,7 +14700,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:15.733Z',
             coords: {
@@ -14728,7 +14728,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:16.728Z',
             coords: {
@@ -14756,7 +14756,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:17.633Z',
             coords: {
@@ -14784,7 +14784,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:18.574Z',
             coords: {
@@ -14812,7 +14812,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:19.521Z',
             coords: {
@@ -14840,7 +14840,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:20.471Z',
             coords: {
@@ -14868,7 +14868,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:21.461Z',
             coords: {
@@ -14896,7 +14896,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:22.428Z',
             coords: {
@@ -14924,7 +14924,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:23.361Z',
             coords: {
@@ -14952,7 +14952,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:24.317Z',
             coords: {
@@ -14980,7 +14980,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:25.258Z',
             coords: {
@@ -15008,7 +15008,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:26.210Z',
             coords: {
@@ -15036,7 +15036,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:27.155Z',
             coords: {
@@ -15064,7 +15064,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:28.121Z',
             coords: {
@@ -15092,7 +15092,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:29.087Z',
             coords: {
@@ -15120,7 +15120,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:29.997Z',
             coords: {
@@ -15148,7 +15148,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:30.950Z',
             coords: {
@@ -15176,7 +15176,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:31.898Z',
             coords: {
@@ -15204,7 +15204,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:32.835Z',
             coords: {
@@ -15232,7 +15232,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:33.788Z',
             coords: {
@@ -15260,7 +15260,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:34.732Z',
             coords: {
@@ -15288,7 +15288,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:35.697Z',
             coords: {
@@ -15316,7 +15316,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:36.643Z',
             coords: {
@@ -15344,7 +15344,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:37.596Z',
             coords: {
@@ -15372,7 +15372,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:38.532Z',
             coords: {
@@ -15400,7 +15400,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:39.513Z',
             coords: {
@@ -15428,7 +15428,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:40.462Z',
             coords: {
@@ -15456,7 +15456,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:41.430Z',
             coords: {
@@ -15484,7 +15484,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:42.363Z',
             coords: {
@@ -15512,7 +15512,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:43.350Z',
             coords: {
@@ -15540,7 +15540,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:44.318Z',
             coords: {
@@ -15568,7 +15568,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:45.252Z',
             coords: {
@@ -15596,7 +15596,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:46.195Z',
             coords: {
@@ -15624,7 +15624,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:47.150Z',
             coords: {
@@ -15652,7 +15652,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:48.092Z',
             coords: {
@@ -15680,7 +15680,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:49.029Z',
             coords: {
@@ -15708,7 +15708,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:49.982Z',
             coords: {
@@ -15736,7 +15736,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:50.937Z',
             coords: {
@@ -15764,7 +15764,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:51.884Z',
             coords: {
@@ -15792,7 +15792,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:52.834Z',
             coords: {
@@ -15820,7 +15820,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:53.774Z',
             coords: {
@@ -15848,7 +15848,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: false,
             uuid: '2743a7f1-641a-40e4-a614-c3ca4f37dec0',
@@ -15877,7 +15877,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:54.732Z',
             coords: {
@@ -15905,7 +15905,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:55.672Z',
             coords: {
@@ -15933,7 +15933,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:56.635Z',
             coords: {
@@ -15961,7 +15961,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:57.579Z',
             coords: {
@@ -15989,7 +15989,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:58.560Z',
             coords: {
@@ -16017,7 +16017,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:24:59.467Z',
             coords: {
@@ -16045,7 +16045,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:00.421Z',
             coords: {
@@ -16073,7 +16073,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:01.367Z',
             coords: {
@@ -16101,7 +16101,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:02.313Z',
             coords: {
@@ -16129,7 +16129,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:03.307Z',
             coords: {
@@ -16157,7 +16157,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:04.206Z',
             coords: {
@@ -16185,7 +16185,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:05.161Z',
             coords: {
@@ -16213,7 +16213,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:06.101Z',
             coords: {
@@ -16241,7 +16241,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:10.620Z',
             coords: {
@@ -16269,7 +16269,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:10.620Z',
             coords: {
@@ -16297,7 +16297,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:11.620Z',
             coords: {
@@ -16325,7 +16325,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:11.620Z',
             coords: {
@@ -16353,7 +16353,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:12.620Z',
             coords: {
@@ -16381,7 +16381,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:13.620Z',
             coords: {
@@ -16409,7 +16409,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:14.620Z',
             coords: {
@@ -16437,7 +16437,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:15.620Z',
             coords: {
@@ -16465,7 +16465,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:15.620Z',
             coords: {
@@ -16493,7 +16493,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:15.620Z',
             coords: {
@@ -16521,7 +16521,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:15.620Z',
             coords: {
@@ -16549,7 +16549,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:16.913Z',
             coords: {
@@ -16577,7 +16577,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:16.913Z',
             coords: {
@@ -16605,7 +16605,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:16.913Z',
             coords: {
@@ -16633,7 +16633,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:19.680Z',
             coords: {
@@ -16661,7 +16661,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:19.680Z',
             coords: {
@@ -16689,7 +16689,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:19.680Z',
             coords: {
@@ -16717,7 +16717,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:25:22.414Z',
             coords: {
@@ -16745,7 +16745,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '0e41578c-02bf-44c4-8231-538c2bbb0000',
@@ -16774,7 +16774,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:01.376Z',
             coords: {
@@ -16802,7 +16802,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '3cbc95a5-e0d0-416f-a2dc-7ba330c40345',
@@ -16831,7 +16831,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:14.108Z',
             coords: {
@@ -16859,7 +16859,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:14.108Z',
             coords: {
@@ -16887,7 +16887,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:18.297Z',
             coords: {
@@ -16915,7 +16915,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:19.068Z',
             coords: {
@@ -16943,7 +16943,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:19.636Z',
             coords: {
@@ -16971,7 +16971,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:20.069Z',
             coords: {
@@ -16999,7 +16999,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:21.062Z',
             coords: {
@@ -17027,7 +17027,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:21.978Z',
             coords: {
@@ -17055,7 +17055,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:22.904Z',
             coords: {
@@ -17083,7 +17083,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:23.816Z',
             coords: {
@@ -17111,7 +17111,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:24.748Z',
             coords: {
@@ -17139,7 +17139,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:25.665Z',
             coords: {
@@ -17167,7 +17167,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:26.652Z',
             coords: {
@@ -17195,7 +17195,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:27.560Z',
             coords: {
@@ -17223,7 +17223,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:28.529Z',
             coords: {
@@ -17251,7 +17251,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:31.647Z',
             coords: {
@@ -17279,7 +17279,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:29.419Z',
             coords: {
@@ -17307,7 +17307,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:30.352Z',
             coords: {
@@ -17335,7 +17335,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:31.250Z',
             coords: {
@@ -17363,7 +17363,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:32.179Z',
             coords: {
@@ -17391,7 +17391,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:33.091Z',
             coords: {
@@ -17419,7 +17419,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:34.059Z',
             coords: {
@@ -17447,7 +17447,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:34.955Z',
             coords: {
@@ -17475,7 +17475,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:35.895Z',
             coords: {
@@ -17503,7 +17503,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:36.829Z',
             coords: {
@@ -17531,7 +17531,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:37.748Z',
             coords: {
@@ -17559,7 +17559,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:38.662Z',
             coords: {
@@ -17587,7 +17587,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:39.591Z',
             coords: {
@@ -17615,7 +17615,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:40.516Z',
             coords: {
@@ -17643,7 +17643,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:41.426Z',
             coords: {
@@ -17671,7 +17671,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:42.369Z',
             coords: {
@@ -17699,7 +17699,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:43.307Z',
             coords: {
@@ -17727,7 +17727,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:44.237Z',
             coords: {
@@ -17755,7 +17755,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:45.158Z',
             coords: {
@@ -17783,7 +17783,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:46.099Z',
             coords: {
@@ -17811,7 +17811,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:47.012Z',
             coords: {
@@ -17839,7 +17839,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:47.937Z',
             coords: {
@@ -17867,7 +17867,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:50.636Z',
             coords: {
@@ -17895,7 +17895,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:51.636Z',
             coords: {
@@ -17923,7 +17923,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:52.636Z',
             coords: {
@@ -17951,7 +17951,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:53.636Z',
             coords: {
@@ -17979,7 +17979,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:53.636Z',
             coords: {
@@ -18007,7 +18007,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:53.636Z',
             coords: {
@@ -18035,7 +18035,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:54.438Z',
             coords: {
@@ -18063,7 +18063,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:55.396Z',
             coords: {
@@ -18091,7 +18091,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:56.306Z',
             coords: {
@@ -18119,7 +18119,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:26:57.256Z',
             coords: {
@@ -18147,7 +18147,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:00.636Z',
             coords: {
@@ -18175,7 +18175,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:00.636Z',
             coords: {
@@ -18203,7 +18203,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:01.636Z',
             coords: {
@@ -18231,7 +18231,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:02.636Z',
             coords: {
@@ -18259,7 +18259,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:02.636Z',
             coords: {
@@ -18287,7 +18287,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: false,
             uuid: 'dd799314-f53d-497f-9227-a2203a0312f9',
@@ -18316,7 +18316,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:02.636Z',
             coords: {
@@ -18344,7 +18344,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:03.711Z',
             coords: {
@@ -18372,7 +18372,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:06.911Z',
             coords: {
@@ -18400,7 +18400,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:04.634Z',
             coords: {
@@ -18428,7 +18428,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:05.636Z',
             coords: {
@@ -18456,7 +18456,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:06.494Z',
             coords: {
@@ -18484,7 +18484,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:07.428Z',
             coords: {
@@ -18512,7 +18512,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:08.330Z',
             coords: {
@@ -18540,7 +18540,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:09.271Z',
             coords: {
@@ -18568,7 +18568,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:17.285Z',
             coords: {
@@ -18596,7 +18596,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '4841c033-a826-411c-95d1-b648dc01fbad',
@@ -18625,7 +18625,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:20.664Z',
             coords: {
@@ -18653,7 +18653,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:20.664Z',
             coords: {
@@ -18681,7 +18681,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:23.645Z',
             coords: {
@@ -18709,7 +18709,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:24.132Z',
             coords: {
@@ -18737,7 +18737,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:25.056Z',
             coords: {
@@ -18765,7 +18765,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:26.026Z',
             coords: {
@@ -18793,7 +18793,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:29.662Z',
             coords: {
@@ -18821,7 +18821,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:33.208Z',
             coords: {
@@ -18849,7 +18849,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:27:45.079Z',
             coords: {
@@ -18877,7 +18877,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:28:58.573Z',
             coords: {
@@ -18905,7 +18905,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:29:01.991Z',
             coords: {
@@ -18933,7 +18933,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:29:08.231Z',
             coords: {
@@ -18961,7 +18961,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T08:32:22.171Z',
             coords: {
@@ -18989,7 +18989,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:27:01.885Z',
             coords: {
@@ -19017,7 +19017,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: false,
@@ -19046,7 +19046,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: false,
@@ -19075,7 +19075,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19105,7 +19105,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19134,7 +19134,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19163,7 +19163,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19192,7 +19192,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19221,7 +19221,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19250,7 +19250,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19279,7 +19279,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19308,7 +19308,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             geofence: {
                 action: 'EXIT',
@@ -19342,7 +19342,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '6e43da23-d2c4-4085-948c-cbd972c27c03',
@@ -19378,7 +19378,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: 'a4b5d166-8d1f-44b5-bdf9-e4f26af1243a',
@@ -19407,7 +19407,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:27:52.057Z',
             coords: {
@@ -19435,7 +19435,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:28:07.295Z',
             coords: {
@@ -19463,7 +19463,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             is_moving: true,
             uuid: '54a3e21d-c3ef-423d-b743-b8a6ad57ceab',
@@ -19492,7 +19492,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:28:16.942Z',
             coords: {
@@ -19520,7 +19520,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:28:25.650Z',
             coords: {
@@ -19548,7 +19548,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:28:10.853Z',
             coords: {
@@ -19576,7 +19576,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:28:14.680Z',
             coords: {
@@ -19604,7 +19604,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:28:14.680Z',
             coords: {
@@ -19632,7 +19632,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:28:14.680Z',
             coords: {
@@ -19660,7 +19660,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19690,7 +19690,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19719,7 +19719,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19748,7 +19748,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19777,7 +19777,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19806,7 +19806,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19835,7 +19835,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19864,7 +19864,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19893,7 +19893,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19922,7 +19922,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19951,7 +19951,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -19980,7 +19980,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20009,7 +20009,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20038,7 +20038,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20067,7 +20067,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             geofence: {
                 action: 'EXIT',
@@ -20101,7 +20101,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20130,7 +20130,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20159,7 +20159,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20188,7 +20188,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20217,7 +20217,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20246,7 +20246,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20275,7 +20275,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20304,7 +20304,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20333,7 +20333,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20362,7 +20362,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20391,7 +20391,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20420,7 +20420,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20449,7 +20449,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20478,7 +20478,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20507,7 +20507,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20536,7 +20536,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20565,7 +20565,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20594,7 +20594,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20623,7 +20623,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20652,7 +20652,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             geofence: {
                 action: 'EXIT',
@@ -20686,7 +20686,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20716,7 +20716,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20745,7 +20745,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20774,7 +20774,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20803,7 +20803,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20832,7 +20832,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20861,7 +20861,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20890,7 +20890,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:29:26.148Z',
             coords: {
@@ -20918,7 +20918,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20947,7 +20947,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -20976,7 +20976,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:29:27.430Z',
             coords: {
@@ -21004,7 +21004,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21033,7 +21033,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21062,7 +21062,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21091,7 +21091,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:29:28.754Z',
             coords: {
@@ -21119,7 +21119,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21148,7 +21148,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21177,7 +21177,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:29:30.106Z',
             coords: {
@@ -21205,7 +21205,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21234,7 +21234,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21263,7 +21263,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21292,7 +21292,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21321,7 +21321,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21350,7 +21350,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21379,7 +21379,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21408,7 +21408,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21437,7 +21437,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21466,7 +21466,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21495,7 +21495,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21524,7 +21524,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21553,7 +21553,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21582,7 +21582,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21611,7 +21611,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21640,7 +21640,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21669,7 +21669,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21698,7 +21698,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21727,7 +21727,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21756,7 +21756,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21785,7 +21785,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21814,7 +21814,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21843,7 +21843,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21872,7 +21872,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21901,7 +21901,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21930,7 +21930,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21959,7 +21959,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -21988,7 +21988,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22017,7 +22017,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22046,7 +22046,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22075,7 +22075,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22104,7 +22104,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22133,7 +22133,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22162,7 +22162,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22191,7 +22191,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22220,7 +22220,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22249,7 +22249,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22278,7 +22278,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22307,7 +22307,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22336,7 +22336,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22365,7 +22365,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22394,7 +22394,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22423,7 +22423,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22452,7 +22452,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22481,7 +22481,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22510,7 +22510,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22539,7 +22539,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22568,7 +22568,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22597,7 +22597,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22626,7 +22626,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22655,7 +22655,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22684,7 +22684,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22713,7 +22713,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22742,7 +22742,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22771,7 +22771,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22800,7 +22800,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22829,7 +22829,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22858,7 +22858,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22887,7 +22887,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22916,7 +22916,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22945,7 +22945,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -22974,7 +22974,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23003,7 +23003,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23032,7 +23032,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23061,7 +23061,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-16T11:30:21.310Z',
             coords: {
@@ -23089,7 +23089,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23118,7 +23118,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23147,7 +23147,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23176,7 +23176,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23205,7 +23205,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23234,7 +23234,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23263,7 +23263,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23292,7 +23292,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23321,7 +23321,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23350,7 +23350,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23379,7 +23379,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23408,7 +23408,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23437,7 +23437,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23466,7 +23466,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23495,7 +23495,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23524,7 +23524,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23553,7 +23553,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23582,7 +23582,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23611,7 +23611,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23640,7 +23640,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23669,7 +23669,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23698,7 +23698,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23727,7 +23727,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: false,
@@ -23757,7 +23757,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: false,
@@ -23787,7 +23787,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23817,7 +23817,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23846,7 +23846,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23875,7 +23875,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23904,7 +23904,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23933,7 +23933,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23962,7 +23962,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -23991,7 +23991,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24020,7 +24020,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24049,7 +24049,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24078,7 +24078,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24107,7 +24107,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24136,7 +24136,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24165,7 +24165,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             geofence: {
                 action: 'EXIT',
@@ -24199,7 +24199,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24228,7 +24228,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24257,7 +24257,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24286,7 +24286,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24315,7 +24315,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24344,7 +24344,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24373,7 +24373,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24402,7 +24402,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24431,7 +24431,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24460,7 +24460,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24489,7 +24489,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24518,7 +24518,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24547,7 +24547,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24576,7 +24576,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24605,7 +24605,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24634,7 +24634,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24663,7 +24663,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24692,7 +24692,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24721,7 +24721,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24750,7 +24750,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             geofence: {
                 action: 'EXIT',
@@ -24784,7 +24784,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24814,7 +24814,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24843,7 +24843,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24872,7 +24872,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24901,7 +24901,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24930,7 +24930,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24959,7 +24959,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -24988,7 +24988,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-17T11:29:26.148Z',
             coords: {
@@ -25016,7 +25016,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25045,7 +25045,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25074,7 +25074,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-17T11:29:27.430Z',
             coords: {
@@ -25102,7 +25102,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25131,7 +25131,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25160,7 +25160,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25189,7 +25189,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-17T11:29:28.754Z',
             coords: {
@@ -25217,7 +25217,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25246,7 +25246,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25275,7 +25275,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-17T11:29:30.106Z',
             coords: {
@@ -25303,7 +25303,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25332,7 +25332,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25361,7 +25361,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25390,7 +25390,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25419,7 +25419,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25448,7 +25448,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25477,7 +25477,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25506,7 +25506,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25535,7 +25535,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25564,7 +25564,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25593,7 +25593,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25622,7 +25622,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25651,7 +25651,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25680,7 +25680,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25709,7 +25709,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25738,7 +25738,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25767,7 +25767,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25796,7 +25796,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25825,7 +25825,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25854,7 +25854,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25883,7 +25883,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25912,7 +25912,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25941,7 +25941,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25970,7 +25970,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -25999,7 +25999,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26028,7 +26028,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26057,7 +26057,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26086,7 +26086,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26115,7 +26115,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26144,7 +26144,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26173,7 +26173,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26202,7 +26202,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26231,7 +26231,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26260,7 +26260,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26289,7 +26289,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26318,7 +26318,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26347,7 +26347,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26376,7 +26376,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26405,7 +26405,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26434,7 +26434,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26463,7 +26463,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26492,7 +26492,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26521,7 +26521,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26550,7 +26550,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26579,7 +26579,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26608,7 +26608,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26637,7 +26637,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26666,7 +26666,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26695,7 +26695,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26724,7 +26724,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26753,7 +26753,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26782,7 +26782,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26811,7 +26811,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26840,7 +26840,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26869,7 +26869,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26898,7 +26898,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26927,7 +26927,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26956,7 +26956,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -26985,7 +26985,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27014,7 +27014,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27043,7 +27043,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27072,7 +27072,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27101,7 +27101,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27130,7 +27130,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27159,7 +27159,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             timestamp: '2021-08-17T11:30:21.310Z',
             coords: {
@@ -27187,7 +27187,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27216,7 +27216,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27245,7 +27245,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27274,7 +27274,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27303,7 +27303,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27332,7 +27332,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27361,7 +27361,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27390,7 +27390,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27419,7 +27419,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27448,7 +27448,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27477,7 +27477,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27506,7 +27506,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27535,7 +27535,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27564,7 +27564,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27593,7 +27593,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27622,7 +27622,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27651,7 +27651,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27680,7 +27680,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27709,7 +27709,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27738,7 +27738,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27767,7 +27767,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27796,7 +27796,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: true,
@@ -27825,7 +27825,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: false,
@@ -27855,7 +27855,7 @@ BackgroundGeolocation.getLocations = jest.fn().mockImplementation(() =>
             },
             activity: {
                 confidence: 100,
-                type: 'still',
+                type: 'on_bicycle',
             },
             mock: true,
             is_moving: false,
