@@ -88,8 +88,9 @@ const Map: React.FC<IProps> = ({
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [autoFindMeLastState, setAutoFindMeLastState] =
-        useState<number>(autoFindMe);
+    const [autoFindMeLastState, setAutoFindMeLastState] = useState<number>(
+        autoFindMe,
+    );
 
     useEffect(() => {
         if (!mountedRef.current) {
@@ -187,7 +188,15 @@ const Map: React.FC<IProps> = ({
         } else {
             animateCam(animation);
         }
-    }, [location, autoFindMe, headingOn, compassHeading]);
+    }, [
+        location,
+        autoFindMe,
+        headingOn,
+        compassHeading,
+        trackerData,
+        animateCameraOnIOS,
+        autoFindMeLastState,
+    ]);
 
     useEffect(() => {
         if (mountedRef.current) {
