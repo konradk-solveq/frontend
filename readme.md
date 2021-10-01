@@ -6,12 +6,12 @@
 4. __src\store__ - Redux i Local Storage.
 5. __src\naviation__ - do przekazywania navigacji.
 
-
+---
 ## Translacje
 
 znajdują się w katalogu: __I18n__
 
-
+---
 ## Instalacja dependencji
 
 ```
@@ -24,6 +24,7 @@ Copy `ios/GoogleService-Info.plist` into `ios/GoogleService-Info-Prod.plist`.
 
 Copy `google_maps_api.xml` file into `android/app/src/main/res/values`, `android/app/src/qa/res/values` and `android/app/src/dev/res/values`
 
+---
 ### Private Registry
 
 We use internal package so adding gitlab registry to npm config is must. Do the following:
@@ -33,11 +34,25 @@ npm config set @solveq:registry=https://gitlab.com/api/v4/packages/npm/
 ```
 
 ```bash
-npm config set -- '//gitlab.com/api/v4/packages/npm/:_authToken' "your_token"
+npm config set '//gitlab.com/api/v4/packages/npm/:_authToken' "your_token"
 ```
 
 For more details read [here](https://docs.gitlab.com/ee/user/packages/npm_registry/index.html#instance-level-npm-endpoint)
 
+and if it doesn't work:
+1. close VScode (because the terminal can corrupt this process)
+2. open cmd or PowerShel
+2. type: `npm config edit`
+3. on opened file add lines:
+```txt
+@solveq:registry=https://gitlab.com/api/v4/packages/npm/
+//gitlab.com/api/v4/packages/npm/:_authToken=<your_token>
+```
+4. save changes
+5. type: `npm install` - `yarn install` doest'n work
+6. if installation break down remove `node_modules` form project and try 5. again
+
+---
 ## FLAVORS
 
 We can use different builds for different environments. To make it work copy `.env` file to `.env.prod`, `.env.dev` and `.env.test` files. Replace variables with proper values.
@@ -47,6 +62,8 @@ You can find scripts, to run specific build, inside `package.json` file.
 
 * ISSUES: For now different env files works only with xCode and terminal's commands. Android Studio reads only values from main env file.
 
+
+---
 ## LOGGER - SENTRY
 
 We use Sentry for monitoring app health. To make it work add proper values in your env files. (`SENTRY_DSN` , `SENTRY_AUTH_TOKEN`)
@@ -56,60 +73,6 @@ We use Sentry for monitoring app health. To make it work add proper values in yo
 We're using private repo. Follow these intructions [how to install](https://github.com/transistorsoft/react-native-background-geolocation-android/wiki/Migrating-your-installation-from-Public-package-to-Private-repo:)
 
 ---
-
-gdyby nie zadziałało:
-```html
-yarn install
-```
-
-to:
-```html
-react-native init kross_app --variant=0.59.9 
-yarn add -D typescript @types/jest @types/react @types/react-native @types/react-test-renderer
-
-yarn add @react-native-async-storage/async-storage
-yarn add @react-native-community/masked-view
-yarn add @react-native-community/netinfo
-yarn add @react-native-firebase
-yarn add @react-native-firebase/app
-yarn add @react-native-firebase/crashlytics
-yarn add @react-navigation/bottom-tabs
-yarn add @react-navigation/native
-yarn add @react-navigation/stack
-yarn add axios
-yarn add class-transformer
-yarn add class-validator
-yarn add fetch
-yarn add react-devtools
-yarn add react-native-android-location-enabler
-yarn add react-native-background-fetch
-yarn add react-native-background-geolocation
-yarn add react-native-config
-yarn add react-native-device-info
-yarn add react-native-dotenv
-yarn add react-native-gesture-handler
-yarn add react-native-get-location
-yarn add react-native-hyperlink
-yarn add react-native-i18n
-yarn add react-native-keyboard-aware-scroll-view
-yarn add react-native-maps
-yarn add react-native-nfc-manager
-yarn add react-native-permissions
-yarn add react-native-reanimated
-yarn add react-native-safe-area-context
-yarn add react-native-safe-area-view
-yarn add react-native-screens
-yarn add react-native-svg
-yarn add react-native-swiper
-yarn add react-native-webview
-yarn add react-redux
-yarn add redux
-yarn add redux-persist
-yarn add redux-thunk
-yarn add babel-plugin-transform-remove-console --dev
-yarn add babel-plugin-root-import --dev
-```
-
 
 ## Build aplikacji
 
