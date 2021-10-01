@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, SafeAreaView, StyleSheet} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import Animated, {
     useSharedValue,
@@ -115,9 +115,11 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
     const viewBox = '0 0 ' + getHorizontalPx(414) + ' ' + getVerticalPx(116);
 
     return (
-        <Svg viewBox={viewBox} style={[styles.container, style]}>
-            <AnimatedPath animatedProps={animatedProps} stroke="none" />
-        </Svg>
+        <SafeAreaView>
+            <Svg viewBox={viewBox} style={[styles.container, style]}>
+                <AnimatedPath animatedProps={animatedProps} stroke="none" />
+            </Svg>
+        </SafeAreaView>
     );
 };
 

@@ -1,24 +1,16 @@
 import React, {useEffect, useRef, useCallback} from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    Platform,
-    Animated,
-    SafeAreaView,
-} from 'react-native';
+import {StyleSheet, Text, View, Platform, Animated} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
-    setObjSize,
     getCenterLeftPx,
     getVerticalPx,
     getWidthPx,
     getHeightPx,
     getHorizontalPx,
 } from '../../../../../helpers/layoutFoo';
-import {getStatusBarHeight} from '../../../../../utils/detectIOSDevice';
 import HeaderBacgroudShape from './headerBacgroudShape';
+import useStatusBarHeight from '@src/hooks/statusBarHeight';
 
 const isAndroid = Platform.OS === 'android';
 interface Props {
@@ -89,28 +81,6 @@ const StackHeader: React.FC<Props> = ({
         outputRange: [0, getVerticalPx(isAndroid ? -25 : -5)],
     });
 
-    setObjSize(414, 34);
-    const wrap = {
-        position: 'absolute',
-        left: 0,
-        top: height * 0.61,
-        width: getHorizontalPx(414),
-        height: getHeightPx(),
-    };
-
-    setObjSize(226, 23);
-    const title = {
-        fontFamily: 'DIN2014Narrow-Light',
-        textAlign: 'center',
-        fontSize: 13,
-        color: '#ffffff',
-    };
-    const titleWrap = {
-        position: 'absolute',
-        width: getWidthPx(),
-        left: getCenterLeftPx(),
-    };
-
     const styles = StyleSheet.create({
         container: {
             position: 'absolute',
@@ -119,14 +89,29 @@ const StackHeader: React.FC<Props> = ({
             width: '100%',
             height: height,
         },
-        wrap,
+        wrap: {
+            position: 'absolute',
+            left: 0,
+            top: height * 0.61,
+            width: getHorizontalPx(414),
+            height: getHeightPx(),
+        },
         arrowWrap: {
             position: 'absolute',
             left: 0,
             top: 0,
         },
-        title,
-        titleWrap,
+        title: {
+            fontFamily: 'DIN2014Narrow-Light',
+            textAlign: 'center',
+            fontSize: 13,
+            color: '#ffffff',
+        },
+        titleWrap: {
+            position: 'absolute',
+            width: getWidthPx(),
+            left: getCenterLeftPx(),
+        },
         background: {
             position: 'absolute',
             left: getHorizontalPx(-1),
@@ -135,14 +120,14 @@ const StackHeader: React.FC<Props> = ({
             height: getVerticalPx(116),
         },
         fullView: {
-            backgroundColor: 'transparent',
+            backgroundColor: 'red',
             width: '100%',
             height: '100%',
         },
     });
 
     return (
-        <SafeAreaView>
+        <>
             <View style={[styles.container, style]}>
                 <HeaderBacgroudShape
                     started={started}
@@ -179,7 +164,7 @@ const StackHeader: React.FC<Props> = ({
                     )}
                 </View>
             </View>
-        </SafeAreaView>
+        </>
     );
 };
 
