@@ -7,8 +7,9 @@ import Animated, {
     withTiming,
     interpolateColor,
 } from 'react-native-reanimated';
-import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
-import useStatusBarHeight from '../../../../../hooks/statusBarHeight';
+
+import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import useStatusBarHeight from '@hooks/statusBarHeight';
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const isIOS = Platform.OS === 'ios';
@@ -20,6 +21,13 @@ interface IProps {
     duration: number;
 }
 
+const sideHeight = getVerticalPx(60);
+const centerHeight = getVerticalPx(60);
+
+const lw = getHorizontalPx(-1);
+const rw = getHorizontalPx(416);
+const cw = getHorizontalPx(81);
+
 const HeaderBacgroudShape: React.FC<IProps> = ({
     started,
     style,
@@ -29,18 +37,15 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
     const statusBarHeight = useStatusBarHeight();
     const iosHeightOpen = isIOS ? 5 : 0;
     const iosHeightClose = isIOS ? statusBarHeight / 2 : 0;
-    const sh = useSharedValue(getVerticalPx(60)); // side height
-    const ch = useSharedValue(getVerticalPx(60)); // center height
+    const sh = useSharedValue(sideHeight); // side height
+    const ch = useSharedValue(centerHeight); // center height
 
     const display = useSharedValue(-1);
-
-    const lw = getHorizontalPx(-1);
-    const rw = getHorizontalPx(416);
-    const cw = getHorizontalPx(81);
 
     useEffect(() => {
         sh.value = getVerticalPx(60); // side height
         ch.value = getVerticalPx(60); // center height
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -81,7 +86,16 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
                 });
             }
         }
-    }, [started, mapHiden, iosHeightOpen, iosHeightClose]);
+    }, [
+        started,
+        mapHiden,
+        iosHeightOpen,
+        iosHeightClose,
+        ch,
+        sh,
+        display,
+        duration,
+    ]);
 
     const animatedProps = useAnimatedProps(() => {
         return {

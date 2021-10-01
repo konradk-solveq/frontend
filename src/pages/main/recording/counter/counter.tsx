@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {
     StyleSheet,
     View,
@@ -10,15 +10,15 @@ import {
 
 import I18n from 'react-native-i18n';
 
-import { useNotificationContext } from '@providers/topNotificationProvider/TopNotificationProvider';
+import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {
     getVerticalPx,
     getStackHeaderHeight,
     getHorizontalPx,
 } from '../../../../helpers/layoutFoo';
-import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import useAppState from '@hooks/useAppState';
-import { getBike } from '../../../../helpers/transformUserBikeData';
+import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
 import {
@@ -28,7 +28,7 @@ import {
 
 import StackHeader from './stackHeader/stackHeader';
 
-import { UserBike } from '../../../../models/userBike.model';
+import {UserBike} from '../../../../models/userBike.model';
 import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {
     trackerActiveSelector,
@@ -42,14 +42,14 @@ import ErrorBoundary from '@providers/errorBoundary/ErrorBoundary';
 
 import ActionButtons from './actionButtons';
 import Map from './map';
-import { BothStackRoute, RegularStackRoute } from '../../../../navigation/route';
+import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
-import { CounterDataContext } from './nativeCounter/counterContext/counterContext';
+import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
 import DataPreview from '../../../../sharedComponents/dataPreview/dataPreview';
 import CompassHeading from 'react-native-compass-heading';
 
-import { TESTING_MODE } from '@env';
+import {TESTING_MODE} from '@env';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -66,11 +66,11 @@ const returnToPreviousScreen = (nav: any) => {
     nav.replace(BothStackRoute.MAIN_MENU_SCREEN);
 };
 
-const setTotalTime = (pTime: { start: number; total: number }) => {
+const setTotalTime = (pTime: {start: number; total: number}) => {
     return pTime.start > 0 ? pTime.total + (Date.now() - pTime.start) : 0;
 };
 
-const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
+const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
     const mountedRef = useRef(false);
@@ -151,7 +151,7 @@ const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
     useEffect(() => {
         if (isTrackerActive) {
             setPageState('record');
-            setPauseTime({ start: 0, total: trackerPauseTime });
+            setPauseTime({start: 0, total: trackerPauseTime});
             startTracker(true, route?.params?.mapID);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -217,7 +217,7 @@ const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
                     distance: trackerData?.distance,
                     time: trackerStartTime
                         ? Date.now() -
-                        Date.parse(trackerStartTime.toUTCString())
+                          Date.parse(trackerStartTime.toUTCString())
                         : undefined,
                     pause: pTime || pauseTime.total,
                 },
@@ -416,7 +416,7 @@ const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
     useEffect(() => {
         const degree_update_rate = 5;
         if (mountedRef.current) {
-            CompassHeading.start(degree_update_rate, ({ heading }) => {
+            CompassHeading.start(degree_update_rate, ({heading}) => {
                 const lastHeading = compasHeadingdRef.current;
                 compasHeadingdRef.current = heading;
                 if (Math.abs(lastHeading - heading) >= degree_update_rate) {
@@ -432,7 +432,7 @@ const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
     /**
      * Do not render path when app is not active
      */
-    const { appStateVisible } = useAppState();
+    const {appStateVisible} = useAppState();
     useEffect(() => {
         let t: NodeJS.Timeout;
         if (!isActive || !renderMap) {
@@ -559,21 +559,6 @@ const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
                             headingSwitch={(e: boolean) => setHeadingOn(e)}
                             compassHeading={compassHeading}
                         />
-                        {renderMap && (
-                            <Map
-                                routeId={
-                                    followedRouteId || route?.params?.mapID
-                                }
-                                trackerData={trackerData}
-                                autoFindMe={autoFindMe}
-                                headingOn={headingOn}
-                                compassHeading={compassHeading}
-                                renderPath={renderPath}
-                                restoredPath={restoredPath}
-                                autoFindMeSwith={(e: number) => setAutoFindMe(e)}
-                            />
-                        )}
-
                         {TESTING_MODE && (
                             <DataPreview
                                 title={'podgląd danych'}
@@ -589,7 +574,7 @@ const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
                                         value: route?.params?.mapID,
                                     },
                                     {},
-                                    { section: 'page states' },
+                                    {section: 'page states'},
                                     {
                                         name: 'page State',
                                         value: pageState,
@@ -603,7 +588,7 @@ const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
                                         value: autoFindMe,
                                     },
                                     {},
-                                    { section: 'data from tracker' },
+                                    {section: 'data from tracker'},
                                     {
                                         name: 'is Active',
                                         value: isActive,
@@ -641,7 +626,7 @@ const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
                                         value: trackerData?.coords.lon,
                                     },
                                     {},
-                                    { section: 'pause' },
+                                    {section: 'pause'},
                                     {
                                         name: 'is on',
                                         value: pause,
@@ -662,6 +647,20 @@ const Counter: React.FC<Props> = ({ navigation, route }: Props) => {
                             />
                         )}
                     </CounterDataContext.Provider>
+
+                    {renderMap && (
+                        <Map
+                            routeId={followedRouteId || route?.params?.mapID}
+                            trackerData={trackerData}
+                            autoFindMe={autoFindMe}
+                            headingOn={headingOn}
+                            compassHeading={compassHeading}
+                            renderPath={renderPath}
+                            restoredPath={restoredPath}
+                            autoFindMeSwith={(e: number) => setAutoFindMe(e)}
+                        />
+                    )}
+
                 </View>
             </ErrorBoundary>
         </>

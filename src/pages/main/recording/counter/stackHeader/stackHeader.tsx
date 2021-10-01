@@ -1,5 +1,12 @@
-import React, {useState, useEffect, useRef, useCallback} from 'react';
-import {StyleSheet, Text, View, Platform, Animated} from 'react-native';
+import React, {useEffect, useRef, useCallback} from 'react';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Platform,
+    Animated,
+    SafeAreaView,
+} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -28,31 +35,41 @@ interface Props {
 }
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
-const StackHeader: React.FC<Props> = (props: Props) => {
+const StackHeader: React.FC<Props> = ({
+    getHeight,
+    mapHiden,
+    duration,
+    started,
+    style,
+    onpress,
+    whiteArow,
+    inner,
+    titleOn,
+}: Props) => {
     const height = getVerticalPx(100);
     const iosOpen = isAndroid ? 0 : 10;
     const iosClose = isAndroid ? 0 : 30;
 
-    const getHeight = useCallback(async () => {
-        if (props.getHeight) {
+    const getCurrentHeight = useCallback(async () => {
+        if (getHeight) {
             const statusBarHeight = await getStatusBarHeight(isAndroid);
-            props.getHeight(height - statusBarHeight);
+            getHeight(height - statusBarHeight);
         }
-    }, []);
+    }, [height, getHeight]);
 
     useEffect(() => {
-        getHeight();
-    }, [getHeight]);
+        getCurrentHeight();
+    }, [getCurrentHeight]);
 
     const display = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
         Animated.timing(display, {
-            toValue: props.mapHiden ? 0 : 1,
-            duration: props.duration,
+            toValue: mapHiden ? 0 : 1,
+            duration: duration,
             useNativeDriver: false,
         }).start();
-    }, [props.mapHiden, display]);
+    }, [mapHiden, display, duration]);
 
     const titleTop = display.interpolate({
         inputRange: [0, 1],
@@ -125,13 +142,13 @@ const StackHeader: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <>
-            <View style={[styles.container, props.style]}>
+        <SafeAreaView>
+            <View style={[styles.container, style]}>
                 <HeaderBacgroudShape
-                    started={props.started}
+                    started={started}
                     style={styles.background}
-                    mapHiden={props.mapHiden}
-                    duration={props.duration}
+                    mapHiden={mapHiden}
+                    duration={duration}
                 />
 
                 <View style={styles.wrap}>
@@ -144,12 +161,12 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                             },
                         ]}>
                         <TopBackBtn
-                            onpress={props.onpress}
-                            color={props.whiteArow ? '#fff' : '#000'}
+                            onpress={onpress}
+                            color={whiteArow ? '#fff' : '#000'}
                         />
                     </Animated.View>
 
-                    {props.titleOn && (
+                    {titleOn && (
                         <Animated.View
                             style={[
                                 styles.titleWrap,
@@ -157,12 +174,12 @@ const StackHeader: React.FC<Props> = (props: Props) => {
                                     top: titleTop,
                                 },
                             ]}>
-                            <Text style={styles.title}>{props.inner}</Text>
+                            <Text style={styles.title}>{inner}</Text>
                         </Animated.View>
                     )}
                 </View>
             </View>
-        </>
+        </SafeAreaView>
     );
 };
 
