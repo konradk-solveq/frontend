@@ -4,13 +4,14 @@
  * @author Sebastian Kasiński
  */
 
+import {chunk, flatten} from 'lodash';
 import {Decimate_STTrace} from '@solveq/path-decimation-sttrace';
 import {GeoPoint} from '@solveq/path-decimation-prelude';
 
 type ShortCoordsType = {
     latitude: number;
     longitude: number;
-    timestamp?: number;
+    timestamp: number;
 };
 
 export const toGeoPoint = (data: ShortCoordsType) => {
@@ -21,19 +22,48 @@ export const toGeoPoint = (data: ShortCoordsType) => {
 };
 
 export const getCompresionRatio = (length?: number) => {
-    if (!length || length < 1000) {
+    if (!length || length < 5000) {
         return 1.0;
     }
 
-    if (length < 3000) {
-        return 0.7;
+    if (length < 7000) {
+        return 0.8;
     }
 
-    if (length < 5000) {
+    if (length < 10000) {
+        return 0.6;
+    }
+
+    if (length < 20000) {
         return 0.5;
     }
 
     return 0.3;
+};
+
+const simplifyRoute = (c: ShortCoordsType[], ratio: number) => {
+    if (ratio < 1) {
+        try {
+            const transformed = c
+                .map(toGeoPoint)
+                .filter((r: GeoPoint | null) => r);
+            const decimatedPath = Decimate_STTrace(ratio)(transformed);
+
+            const transformed2: ShortCoordsType[] = decimatedPath.map(gp => {
+                return {
+                    latitude: gp.getLatitude(),
+                    longitude: gp.getLongitude(),
+                    timestamp: gp.getTime()?.getMilliseconds(),
+                };
+            });
+
+            return transformed2;
+        } catch (error) {
+            return c;
+        }
+    }
+
+    return c;
 };
 
 /**
@@ -47,25 +77,19 @@ export const getShorterRoute = (
 ): Array<ShortCoordsType> => {
     try {
         const ratio = getCompresionRatio(c?.length);
-        if (ratio < 1) {
-            const transformed = c
-                .map(toGeoPoint)
-                .filter((r: GeoPoint | null) => r);
 
-            const decimatedPath: ShortCoordsType[] = Decimate_STTrace(0.5)(
-                transformed,
-            ).map(gp => {
-                return {
-                    latitude: gp.getLatitude(),
-                    longitude: gp.getLongitude(),
-                };
-            });
+        const chunkes = chunk(c, 1000);
+        const res: ShortCoordsType[][] = [];
+        chunkes.forEach(ch => {
+            const result = simplifyRoute(ch, ratio);
+            res.push(result);
+        });
 
-            return decimatedPath;
-        }
+        const shorten = flatten(res);
 
-        return c;
+        return shorten;
     } catch (error) {
+        console.warn('[getShorterRoute - error]', error);
         return c;
     }
 };

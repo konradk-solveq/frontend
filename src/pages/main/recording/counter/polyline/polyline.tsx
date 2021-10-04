@@ -2,8 +2,6 @@ import React, {useCallback, useContext, useEffect, useRef} from 'react';
 import {InteractionManager, Platform} from 'react-native';
 import {Polyline as MapPolyline} from 'react-native-maps';
 
-import {getShorterRoute} from '@utils/polyline';
-
 import {CounterDataContext} from '../nativeCounter/counterContext/counterContext';
 
 type ShortCoordsType = {
@@ -33,10 +31,8 @@ const Polyline: React.FC<IProps> = ({
 
     const setCoords = (c: ShortCoordsType[]) => {
         if (polylineRef.current) {
-            const cToAdd = getShorterRoute(c);
-
             polylineRef.current?.setNativeProps({
-                coordinates: cToAdd,
+                coordinates: c,
             });
         }
     };
