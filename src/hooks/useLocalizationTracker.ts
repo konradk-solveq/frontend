@@ -20,7 +20,6 @@ import {
     cleanUp,
     getBackgroundGeolocationState,
     getCurrentLocation,
-    getLastLocationByRoutId,
     onWatchPostionChangeListener,
     pauseTracingLocation,
     requestGeolocationPermission,
@@ -37,15 +36,10 @@ import {
     startCurrentRoute,
 } from './utils/localizationTracker';
 import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
-import useAppState from './useAppState';
 import {Location} from '@interfaces/geolocation';
-import {locationTypeEnum} from '@src/type/location';
-import {
-    getCurrentRoutePathByIdWithLastRecord,
-    restoreRouteDataFromSQL,
-} from '@src/utils/routePath';
-import {ShortCoordsType} from '@src/type/coords';
-import {isLocationValidate} from '@src/utils/locationData';
+import {getCurrentRoutePathByIdWithLastRecord} from '@utils/routePath';
+import {ShortCoordsType} from '@type/coords';
+import {isLocationValidate} from '@utils/locationData';
 
 export interface DataI {
     distance: string;
@@ -296,11 +290,13 @@ const useLocalizationTracker = (
     useEffect(() => {
         if (!restoredRef.current && currentRouteId && isTrackerActive) {
             const runInitLocationSet = async () => {
+                console.log('[START - useLocalizationStracker]', new Date());
                 const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
                     currentRouteId,
                     [],
                     true,
                 );
+                console.log('[END - useLocalizationStracker]', new Date());
 
                 if (recordedPath?.data?.length) {
                     setRestoredPath(recordedPath.data);
