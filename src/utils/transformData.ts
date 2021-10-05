@@ -481,48 +481,53 @@ export const getRoutesDataFromSQL = async (
     routeId: string,
     timeToExclude?: {start: number; end: number},
 ): Promise<{latitude: number; longitude: number; timestamp: number}[]> => {
-    const currRoutes: {
-        latitude: number;
-        longitude: number;
-        timestamp: number;
-    }[] = [];
-    const locations = await getLocations();
-    if (!locations?.length) {
-        return currRoutes;
-    }
-
-    /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
-    locations.forEach((l: any) => {
-        if (!isLocationValidToPass(l, routeId)) {
-            return;
+    try {
+        const currRoutes: {
+            latitude: number;
+            longitude: number;
+            timestamp: number;
+        }[] = [];
+        const locations = await getLocations();
+        if (!locations?.length) {
+            return currRoutes;
         }
 
-        if (timeToExclude && timeToExclude.start !== 0) {
-            const t = new Date(l.timestamp).getTime();
-            if (t <= timeToExclude.start) {
+        /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
+        locations.forEach((l: any) => {
+            if (!isLocationValidToPass(l, routeId)) {
                 return;
             }
-        }
 
-        if (l?.coords) {
-            const alterTimestamp = transformTimestampToDate(
-                l?.timestampMeta?.systemTime,
-            );
-            const newRoute = {
-                latitude: l.coords.latitude,
-                longitude: l.coords.longitude,
-                timestamp: alterTimestamp || l.timestamp,
-            };
+            if (timeToExclude && timeToExclude.start !== 0) {
+                const t = new Date(l.timestamp).getTime();
+                if (t <= timeToExclude.start) {
+                    return;
+                }
+            }
 
-            currRoutes.push(newRoute);
-        }
-    });
+            if (l?.coords) {
+                const alterTimestamp = transformTimestampToDate(
+                    l?.timestampMeta?.systemTime,
+                );
+                const newRoute = {
+                    latitude: l.coords.latitude,
+                    longitude: l.coords.longitude,
+                    timestamp: alterTimestamp || l.timestamp,
+                };
 
-    const sorted = sortLocationArrayByTime(currRoutes);
+                currRoutes.push(newRoute);
+            }
+        });
 
-    const cleanedArr = removeLessAccuratePoints(sorted);
+        const sorted = sortLocationArrayByTime(currRoutes);
 
-    return cleanedArr;
+        const cleanedArr = removeLessAccuratePoints(sorted);
+
+        return cleanedArr;
+    } catch (error) {
+        console.error('[getRoutesDataFromSQL]', error);
+        return [];
+    }
 };
 
 export const getImageToDisplay = (images: ImagesUrlsToDisplay) => {
@@ -546,51 +551,59 @@ export const getRoutesDataFromSQLWithLastRecord = async (
     data: {latitude: number; longitude: number; timestamp: number}[];
     lastRecord?: any;
 }> => {
-    const currRoutes: {
-        latitude: number;
-        longitude: number;
-        timestamp: number;
-    }[] = [];
-    const locations = await getLocations();
-    if (!locations?.length) {
-        return {data: currRoutes};
-    }
-
-    let lastRecord: any;
-    /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
-    locations.forEach((l: any) => {
-        if (!isLocationValidToPass(l, routeId)) {
-            return;
+    try {
+        const currRoutes: {
+            latitude: number;
+            longitude: number;
+            timestamp: number;
+        }[] = [];
+        const locations = await getLocations();
+        if (!locations?.length) {
+            return {data: currRoutes};
         }
 
-        if (timeToExclude && timeToExclude.start !== 0) {
-            const t = new Date(l.timestamp).getTime();
-            if (t <= timeToExclude.start) {
+        let lastRecord: any;
+        /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
+        locations.forEach((l: any) => {
+            if (!isLocationValidToPass(l, routeId)) {
                 return;
             }
-        }
 
-        if (l?.coords) {
-            const alterTimestamp = transformTimestampToDate(
-                l?.timestampMeta?.systemTime,
-            );
-            const newRoute = {
-                latitude: l.coords.latitude,
-                longitude: l.coords.longitude,
-                timestamp: alterTimestamp || l.timestamp,
-            };
+            if (timeToExclude && timeToExclude.start !== 0) {
+                const t = new Date(l.timestamp).getTime();
+                if (t <= timeToExclude.start) {
+                    return;
+                }
+            }
 
-            currRoutes.push(newRoute);
-            lastRecord = l;
-        }
-    });
+            if (l?.coords) {
+                const alterTimestamp = transformTimestampToDate(
+                    l?.timestampMeta?.systemTime,
+                );
+                const newRoute = {
+                    latitude: l.coords.latitude,
+                    longitude: l.coords.longitude,
+                    timestamp: alterTimestamp || l.timestamp,
+                };
 
-    const sorted = sortLocationArrayByTime(currRoutes);
+                currRoutes.push(newRoute);
+                lastRecord = l;
+            }
+        });
 
-    const cleanedArr = removeLessAccuratePoints(sorted);
+        const sorted = sortLocationArrayByTime(currRoutes);
 
-    return {
-        data: cleanedArr,
-        lastRecord: isLocationValidate(lastRecord) ? lastRecord : undefined,
-    };
+        const cleanedArr = removeLessAccuratePoints(sorted);
+
+        return {
+            data: cleanedArr,
+            lastRecord: isLocationValidate(lastRecord) ? lastRecord : undefined,
+        };
+    } catch (error) {
+        console.error('[getRoutesDataFromSQLWithLastRecord]', error);
+        return {
+            data: [],
+            lastRecord: undefined,
+        };
+    }
 };

@@ -558,7 +558,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             autoFindMe={autoFindMe}
                             headingSwitch={(e: boolean) => setHeadingOn(e)}
                             compassHeading={compassHeading}
+                            // trackerData={trackerData}
                         />
+<<<<<<< HEAD
+=======
+
+>>>>>>> bugfix/MK-819-changes-to-sstrace-algorithm-which-is-too-expensive-with-large-arrays
                         {TESTING_MODE && (
                             <DataPreview
                                 title={'podgląd danych'}
@@ -660,7 +665,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             autoFindMeSwith={(e: number) => setAutoFindMe(e)}
                         />
                     )}
+<<<<<<< HEAD
 
+=======
+>>>>>>> bugfix/MK-819-changes-to-sstrace-algorithm-which-is-too-expensive-with-large-arrays
                 </View>
             </ErrorBoundary>
         </>

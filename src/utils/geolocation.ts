@@ -85,7 +85,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             logLevel: __DEV__
                 ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
                 : BackgroundGeolocation.LOG_LEVEL_OFF,
-            maxDaysToPersist: __DEV__ ? 1 : 5,
+            maxDaysToPersist: __DEV__ ? 1 : 3,
             desiredOdometerAccuracy: 10,
             notification: {
                 text: notificationTitle,

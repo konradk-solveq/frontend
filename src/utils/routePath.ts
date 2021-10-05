@@ -1,6 +1,7 @@
 import {getTrackerData} from '@src/hooks/utils/localizationTracker';
 import deepCopy from '../helpers/deepCopy';
 import {ShortCoordsType} from '../type/coords';
+import {getShorterRoute} from './polyline';
 import {
     getRoutesDataFromSQL,
     getRoutesDataFromSQLWithLastRecord,
@@ -96,8 +97,10 @@ export const getCurrentRoutePathByIdWithLastRecord = async (
         end: 0,
     });
 
+    const simplifiedRoute = getShorterRoute(res.data);
+
     if (oldRoutes) {
-        res.data = [...oldRoutes, ...res.data];
+        res.data = [...oldRoutes, ...simplifiedRoute];
     }
 
     if (skipSort) {

@@ -197,6 +197,12 @@ export const removeLessAccuratePoints = (coords: ShortCoordsType[]) => {
                     const tN = Math.abs(t3 - t2);
                     const tNIsToLow = tN <= TIME;
 
+                    if (!d2) {
+                        indexToRemove = index + 1;
+                        index++;
+                        continue;
+                    }
+
                     if (
                         d2 &&
                         d2 > POSSIBLE_DISTANCE &&
@@ -306,6 +312,12 @@ export const removeLessAccuratePointsLocations = (coords: LocationDataI[]) => {
                     const t3 = getTimeInUTCMilliseconds(l3.timestamp, true);
                     const tN = Math.abs(t3 - t2);
                     const tNIsToLow = tN <= TIME;
+
+                    if (!d2) {
+                        indexToRemove = index + 1;
+                        index++;
+                        continue;
+                    }
 
                     if (
                         d2 &&
