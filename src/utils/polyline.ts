@@ -22,19 +22,19 @@ export const toGeoPoint = (data: ShortCoordsType) => {
 };
 
 export const getCompresionRatio = (length?: number) => {
-    if (!length || length < 5000) {
+    if (!length || length < 3000) {
         return 1.0;
     }
 
-    if (length < 7000) {
+    if (length < 5000) {
         return 0.8;
     }
 
-    if (length < 10000) {
+    if (length < 8000) {
         return 0.6;
     }
 
-    if (length < 20000) {
+    if (length < 15000) {
         return 0.5;
     }
 
@@ -47,18 +47,19 @@ const simplifyRoute = (c: ShortCoordsType[], ratio: number) => {
             const transformed = c
                 .map(toGeoPoint)
                 .filter((r: GeoPoint | null) => r);
-            const decimatedPath = Decimate_STTrace(ratio)(transformed);
+            const decimatedPath = Decimate_STTrace(ratio)(transformed)?.map(
+                gp => {
+                    return {
+                        latitude: gp.getLatitude(),
+                        longitude: gp.getLongitude(),
+                        timestamp: gp.getTime()?.getMilliseconds(),
+                    };
+                },
+            );
 
-            const transformed2: ShortCoordsType[] = decimatedPath.map(gp => {
-                return {
-                    latitude: gp.getLatitude(),
-                    longitude: gp.getLongitude(),
-                    timestamp: gp.getTime()?.getMilliseconds(),
-                };
-            });
-
-            return transformed2;
+            return decimatedPath;
         } catch (error) {
+            console.error('[simplifyRoute]', error);
             return c;
         }
     }
@@ -89,7 +90,7 @@ export const getShorterRoute = (
 
         return shorten;
     } catch (error) {
-        console.warn('[getShorterRoute - error]', error);
+        console.error('[getShorterRoute]', error);
         return c;
     }
 };

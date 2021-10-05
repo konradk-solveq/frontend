@@ -290,13 +290,11 @@ const useLocalizationTracker = (
     useEffect(() => {
         if (!restoredRef.current && currentRouteId && isTrackerActive) {
             const runInitLocationSet = async () => {
-                console.log('[START - useLocalizationStracker]', new Date());
                 const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
                     currentRouteId,
                     [],
                     true,
                 );
-                console.log('[END - useLocalizationStracker]', new Date());
 
                 if (recordedPath?.data?.length) {
                     setRestoredPath(recordedPath.data);
