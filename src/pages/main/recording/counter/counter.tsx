@@ -34,7 +34,6 @@ import {
     trackerActiveSelector,
     trackerPauseTimeSelector,
     trackerStartTimeSelector,
-    trackerLoadingSelector,
 } from '../../../../storage/selectors/routes';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
@@ -77,7 +76,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const notificationContext = useNotificationContext();
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
-    const isTrackerLoading = useAppSelector(trackerLoadingSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
     const trackerPauseTime = useAppSelector(trackerPauseTimeSelector);
 
@@ -392,9 +390,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         dispatch(setRouteMapVisibility(!state));
     };
 
-    /**
-     * Delay map loading because of performance issue
-     */
+    // Delay map loading because of performance issue
     useEffect(() => {
         let t: NodeJS.Timeout;
         if (!renderMap) {
@@ -451,7 +447,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         };
     }, [appStateVisible, isActive, renderMap]);
 
-    // setObjSize(334, 50);
     const styles = StyleSheet.create({
         stackHeader: {
             zIndex: 3,
@@ -479,6 +474,41 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             <StatusBar backgroundColor="#ffffff" />
             <ErrorBoundary onError={() => onHideMapHandler(true)}>
                 <View style={styles.container}>
+                    {renderMap && (
+                        <Map
+                            routeId={followedRouteId || route?.params?.mapID}
+                            trackerData={trackerData}
+                            autoFindMe={autoFindMe}
+                            headingOn={headingOn}
+                            compassHeading={compassHeading}
+                            renderPath={renderPath}
+                            restoredPath={restoredPath}
+                            autoFindMeSwith={(e: number) => setAutoFindMe(e)}
+                        />
+                    )}
+
+                    <CounterDataContext.Provider
+                        value={{
+                            trackerData,
+                            pauseTime: pauseTime.total,
+                        }}>
+                        <NativeCounter
+                            time={trackerStartTime}
+                            isRunning={isActive}
+                            mapHiden={mapHiden}
+                            setMapHiden={onHideMapHandler}
+                            duration={ANIMATION_DURATION}
+                            aplaShow={
+                                pageState === 'cancelText' ||
+                                pageState === 'endMessage'
+                            }
+                            autoFindMeSwith={(e: number) => setAutoFindMe(e)}
+                            autoFindMe={autoFindMe}
+                            headingSwitch={(e: boolean) => setHeadingOn(e)}
+                            compassHeading={compassHeading}
+                        />
+                    </CounterDataContext.Provider>
+
                     <StackHeader
                         onpress={heandleGoBackClick}
                         inner={headerTitle}
@@ -539,128 +569,91 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         loading={processing}
                     />
 
-                    <CounterDataContext.Provider
-                        value={{
-                            trackerData,
-                            pauseTime: pauseTime.total,
-                        }}>
-                        <NativeCounter
-                            time={trackerStartTime}
-                            isRunning={isActive}
-                            mapHiden={mapHiden}
-                            setMapHiden={onHideMapHandler}
-                            duration={ANIMATION_DURATION}
-                            aplaShow={
-                                pageState === 'cancelText' ||
-                                pageState === 'endMessage'
-                            }
-                            autoFindMeSwith={(e: number) => setAutoFindMe(e)}
-                            autoFindMe={autoFindMe}
-                            headingSwitch={(e: boolean) => setHeadingOn(e)}
-                            compassHeading={compassHeading}
-                            // trackerData={trackerData}
-                        />
-
-                        {TESTING_MODE && (
-                            <DataPreview
-                                title={'podgląd danych'}
-                                trackerStartTime={trackerStartTime}
-                                reduxData={['counter']}
-                                dataList={[
-                                    {
-                                        name: 'my Route Number',
-                                        value: myRouteNumber,
-                                    },
-                                    {
-                                        name: 'route params mapID',
-                                        value: route?.params?.mapID,
-                                    },
-                                    {},
-                                    {section: 'page states'},
-                                    {
-                                        name: 'page State',
-                                        value: pageState,
-                                    },
-                                    {
-                                        name: 'map Hiden',
-                                        value: mapHiden,
-                                    },
-                                    {
-                                        name: 'auto Find Me',
-                                        value: autoFindMe,
-                                    },
-                                    {},
-                                    {section: 'data from tracker'},
-                                    {
-                                        name: 'is Active',
-                                        value: isActive,
-                                    },
-                                    {
-                                        name: 'is Tracker Active',
-                                        value: isTrackerActive,
-                                    },
-                                    {
-                                        name: 'Start Time',
-                                        value: trackerStartTime,
-                                    },
-                                    {
-                                        name: 'Pause Time',
-                                        value: trackerPauseTime,
-                                    },
-                                    {
-                                        name: 'Total Time',
-                                        value: setTotalTime(pauseTime),
-                                    },
-                                    {
-                                        name: 'followed Route Id',
-                                        value: followedRouteId,
-                                    },
-                                    {
-                                        name: 'distance',
-                                        value: trackerData?.distance,
-                                    },
-                                    {
-                                        name: 'coords.lat',
-                                        value: trackerData?.coords.lat,
-                                    },
-                                    {
-                                        name: 'coords.lon',
-                                        value: trackerData?.coords.lon,
-                                    },
-                                    {},
-                                    {section: 'pause'},
-                                    {
-                                        name: 'is on',
-                                        value: pause,
-                                    },
-                                    {
-                                        name: 'state',
-                                        value: pageState,
-                                    },
-                                    {
-                                        name: 'start time',
-                                        value: pauseTime.start,
-                                    },
-                                    {
-                                        name: 'total time',
-                                        value: pauseTime.total,
-                                    },
-                                ]}
-                            />
-                        )}
-
-                    </CounterDataContext.Provider>
-
-                    {renderMap && (
-                        <Map
-                            routeId={followedRouteId || route?.params?.mapID}
-                            trackerData={trackerData}
-                            autoFindMe={autoFindMe}
-                            headingOn={headingOn}
-                            compassHeading={compassHeading}
-                            renderPath={renderPath}
-                            restoredPath={restoredPath}
-                            autoFindMeSwith={(e: number) => setAutoFindMe(e)}
+                    {TESTING_MODE && (
+                        <DataPreview
+                            title={'podgląd danych'}
+                            trackerStartTime={trackerStartTime}
+                            reduxData={['counter']}
+                            dataList={[
+                                {
+                                    name: 'my Route Number',
+                                    value: myRouteNumber,
+                                },
+                                {
+                                    name: 'route params mapID',
+                                    value: route?.params?.mapID,
+                                },
+                                {},
+                                {section: 'page states'},
+                                {
+                                    name: 'page State',
+                                    value: pageState,
+                                },
+                                {
+                                    name: 'map Hiden',
+                                    value: mapHiden,
+                                },
+                                {
+                                    name: 'auto Find Me',
+                                    value: autoFindMe,
+                                },
+                                {},
+                                {section: 'data from tracker'},
+                                {
+                                    name: 'is Active',
+                                    value: isActive,
+                                },
+                                {
+                                    name: 'is Tracker Active',
+                                    value: isTrackerActive,
+                                },
+                                {
+                                    name: 'Start Time',
+                                    value: trackerStartTime,
+                                },
+                                {
+                                    name: 'Pause Time',
+                                    value: trackerPauseTime,
+                                },
+                                {
+                                    name: 'Total Time',
+                                    value: setTotalTime(pauseTime),
+                                },
+                                {
+                                    name: 'followed Route Id',
+                                    value: followedRouteId,
+                                },
+                                {
+                                    name: 'distance',
+                                    value: trackerData?.distance,
+                                },
+                                {
+                                    name: 'coords.lat',
+                                    value: trackerData?.coords.lat,
+                                },
+                                {
+                                    name: 'coords.lon',
+                                    value: trackerData?.coords.lon,
+                                },
+                                {},
+                                {section: 'pause'},
+                                {
+                                    name: 'is on',
+                                    value: pause,
+                                },
+                                {
+                                    name: 'state',
+                                    value: pageState,
+                                },
+                                {
+                                    name: 'start time',
+                                    value: pauseTime.start,
+                                },
+                                {
+                                    name: 'total time',
+                                    value: pauseTime.total,
+                                },
+                            ]}
                         />
                     )}
                 </View>
