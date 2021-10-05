@@ -120,7 +120,7 @@ const StackHeader: React.FC<Props> = ({
             height: getVerticalPx(116),
         },
         fullView: {
-            backgroundColor: 'red',
+            backgroundColor: 'transparent',
             width: '100%',
             height: '100%',
         },
