@@ -474,19 +474,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             <StatusBar backgroundColor="#ffffff" />
             <ErrorBoundary onError={() => onHideMapHandler(true)}>
                 <View style={styles.container}>
-                    {renderMap && (
-                        <Map
-                            routeId={followedRouteId || route?.params?.mapID}
-                            trackerData={trackerData}
-                            autoFindMe={autoFindMe}
-                            headingOn={headingOn}
-                            compassHeading={compassHeading}
-                            renderPath={renderPath}
-                            restoredPath={restoredPath}
-                            autoFindMeSwith={(e: number) => setAutoFindMe(e)}
-                        />
-                    )}
-
                     <CounterDataContext.Provider
                         value={{
                             trackerData,
@@ -568,6 +555,19 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         disabled={processing}
                         loading={processing}
                     />
+
+                    {renderMap && (
+                        <Map
+                            routeId={followedRouteId || route?.params?.mapID}
+                            trackerData={trackerData}
+                            autoFindMe={autoFindMe}
+                            headingOn={headingOn}
+                            compassHeading={compassHeading}
+                            renderPath={renderPath}
+                            restoredPath={restoredPath}
+                            autoFindMeSwith={(e: number) => setAutoFindMe(e)}
+                        />
+                    )}
 
                     {TESTING_MODE && (
                         <DataPreview
