@@ -370,18 +370,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const onHideMapHandler = (state: boolean) => {
         setTimeout(
             () => {
-                setRenderMap(prev => {
-                    if (!state && !prev) {
-                        return true;
-                    }
-
-                    return prev;
-                });
-            },
-            !state ? 0 : 1000,
-        );
-        setTimeout(
-            () => {
                 setRenderPath(!state);
             },
             !state ? 0 : 250,
