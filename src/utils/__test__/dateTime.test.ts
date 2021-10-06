@@ -50,6 +50,11 @@ describe('Converts time to desirable values -- utils', () => {
                 {hoursWithMinutes: '00:00', dzSeconds: '00'},
                 new Date('2021-10-06T07:16:25.000Z'),
             ],
+            [
+                26305000, //counterStart time from now (time value euqals to 0)
+                {hoursWithMinutes: '00:00', dzSeconds: '00'},
+                new Date('2021-10-06T07:18:25.000Z'),
+            ],
         ])(
             'Timestamp %s should be converted to counter format',
             (time: number, result: CounterTimeT, startTime?: Date) => {

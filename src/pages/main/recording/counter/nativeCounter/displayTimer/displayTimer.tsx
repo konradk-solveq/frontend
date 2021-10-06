@@ -18,9 +18,10 @@ const DisplayTimer: React.FC<IProps> = ({
     style,
     fontSize,
 }: IProps) => {
-    const [currentTime, setCurrentTime] = useState(0);
-
     const interval = useRef<NodeJS.Timeout | null>(null);
+    const timerStartedRef = useRef(false);
+
+    const [currentTime, setCurrentTime] = useState(0);
 
     const {appStateVisible} = useAppState();
     const [previousState, setPrevoiusState] = useState(appStateVisible);
@@ -32,15 +33,23 @@ const DisplayTimer: React.FC<IProps> = ({
     const setTime = useCallback(() => {
         if (time) {
             setCurrentTime(Date.now());
+
+            timerStartedRef.current = true;
         }
     }, [time]);
 
     useEffect(() => {
-        setTime();
+        if (!timerStartedRef.current) {
+            setTime();
+        }
     }, [setTime]);
 
     useEffect(() => {
-        if (appStateVisible === 'active' && previousState === 'background') {
+        if (
+            appStateVisible === 'active' &&
+            previousState === 'background' &&
+            timerStartedRef.current
+        ) {
             setTime();
 
             setPrevoiusState('active');
@@ -49,6 +58,7 @@ const DisplayTimer: React.FC<IProps> = ({
 
     useEffect(() => {
         if (isRunning) {
+            timerStartedRef.current = true;
             interval.current = setInterval(() => {
                 setCurrentTime(prevTime => prevTime + 1000);
             }, 1000);

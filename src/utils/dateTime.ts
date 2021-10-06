@@ -46,7 +46,7 @@ export const convertToCounterFormat = (
         dzSeconds: '00',
     };
 
-    if (time < 0 || !time || typeof time !== 'number') {
+    if (time < 0 || typeof time !== 'number') {
         return result;
     }
 
