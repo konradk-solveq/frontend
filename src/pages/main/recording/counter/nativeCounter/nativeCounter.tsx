@@ -199,25 +199,6 @@ const NativeCounter: React.FC<IProps> = ({
         <>
             <Animated.View
                 style={[
-                    styles.findMeWrap,
-                    {
-                        bottom: findMeBottom,
-                        zIndex: findMeBottonZIndex,
-                    },
-                ]}>
-                <CompassButton
-                    onpress={heandleHeadingSwitch}
-                    toggle={!headingOn}
-                    compassHeading={compassHeading}
-                />
-                <FindMeButton
-                    onpress={handleAutoFindMeSwith}
-                    toggle={!autoFindMe}
-                />
-            </Animated.View>
-
-            <Animated.View
-                style={[
                     styles.container,
                     {height: containerHeight, bottom: containerBottom},
                 ]}>
@@ -343,6 +324,25 @@ const NativeCounter: React.FC<IProps> = ({
                     ]}
                 />
             )}
+
+            <Animated.View
+                style={[
+                    styles.findMeWrap,
+                    {
+                        bottom: findMeBottom,
+                        zIndex: findMeBottonZIndex,
+                    },
+                ]}>
+                <CompassButton
+                    onpress={heandleHeadingSwitch}
+                    toggle={!headingOn}
+                    compassHeading={compassHeading}
+                />
+                <FindMeButton
+                    onpress={handleAutoFindMeSwith}
+                    toggle={!autoFindMe}
+                />
+            </Animated.View>
         </>
     );
 };
