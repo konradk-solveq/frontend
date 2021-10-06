@@ -30,19 +30,17 @@ const DisplayTimer: React.FC<IProps> = ({
         setPrevoiusState(appStateVisible);
     }, [appStateVisible]);
 
+    const startTimer = () => {
+        setCurrentTime(Date.now());
+
+        timerStartedRef.current = true;
+    };
+
     const setTime = useCallback(() => {
         if (time) {
-            setCurrentTime(Date.now());
-
-            timerStartedRef.current = true;
+            startTimer();
         }
     }, [time]);
-
-    useEffect(() => {
-        if (!timerStartedRef.current) {
-            setTime();
-        }
-    }, [setTime]);
 
     useEffect(() => {
         if (
@@ -58,7 +56,8 @@ const DisplayTimer: React.FC<IProps> = ({
 
     useEffect(() => {
         if (isRunning) {
-            timerStartedRef.current = true;
+            startTimer();
+
             interval.current = setInterval(() => {
                 setCurrentTime(prevTime => prevTime + 1000);
             }, 1000);

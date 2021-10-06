@@ -46,7 +46,7 @@ export const convertToCounterFormat = (
         dzSeconds: '00',
     };
 
-    if (time < 0 || typeof time !== 'number') {
+    if (time < 0 || typeof time !== 'number' || Number.isNaN(time)) {
         return result;
     }
 
@@ -56,16 +56,16 @@ export const convertToCounterFormat = (
          */
         const timeInMilliSeconds = new Date(time).valueOf();
 
-        if (timeInMilliSeconds < Date.now()) {
-            return result;
-        }
-
         /**
          * Start time of current recording
          */
         const sTimeInMilliSeconds = startTime
             ? new Date(startTime)?.valueOf()
             : null;
+
+        if (sTimeInMilliSeconds && sTimeInMilliSeconds > timeInMilliSeconds) {
+            return result;
+        }
 
         const timeToConvert = sTimeInMilliSeconds
             ? timeInMilliSeconds - sTimeInMilliSeconds
@@ -80,7 +80,7 @@ export const convertToCounterFormat = (
          * Number of hours from the begining
          */
         const hours =
-            timeToConvert !== 0 ? Math.floor(timeToConvert / 1000 / 3600) : 0;
+            timeToConvert > 0 ? Math.floor(timeToConvert / 1000 / 3600) : 0;
         const dzHours = twoDigits(hours);
 
         result.hoursWithMinutes = `${dzHours}:${dzMinutes}`;
