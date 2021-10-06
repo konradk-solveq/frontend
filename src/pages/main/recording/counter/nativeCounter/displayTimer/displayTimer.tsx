@@ -24,7 +24,7 @@ const DisplayTimer: React.FC<IProps> = ({
     const [currentTime, setCurrentTime] = useState(0);
 
     const {appStateVisible} = useAppState();
-    const [previousState, setPrevoiusState] = useState(appStateVisible);
+    const [previousState, setPrevoiusState] = useState('active');
 
     useEffect(() => {
         setPrevoiusState(appStateVisible);
