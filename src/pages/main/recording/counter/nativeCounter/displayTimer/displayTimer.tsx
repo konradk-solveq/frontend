@@ -18,30 +18,36 @@ const DisplayTimer: React.FC<IProps> = ({
     style,
     fontSize,
 }: IProps) => {
+    const interval = useRef<NodeJS.Timeout | null>(null);
+    const timerStartedRef = useRef(false);
+
     const [currentTime, setCurrentTime] = useState(0);
 
-    const interval = useRef<NodeJS.Timeout | null>(null);
-
     const {appStateVisible} = useAppState();
-    const [previousState, setPrevoiusState] = useState(appStateVisible);
+    const [previousState, setPrevoiusState] = useState('active');
 
     useEffect(() => {
         setPrevoiusState(appStateVisible);
     }, [appStateVisible]);
 
+    const startTimer = () => {
+        setCurrentTime(Date.now());
+
+        timerStartedRef.current = true;
+    };
+
     const setTime = useCallback(() => {
-        const startTime = time ? Date.parse(time.toUTCString()) : null;
-        if (startTime) {
-            setCurrentTime(Date.now() - startTime);
+        if (time) {
+            startTimer();
         }
     }, [time]);
 
     useEffect(() => {
-        setTime();
-    }, [setTime]);
-
-    useEffect(() => {
-        if (appStateVisible === 'active' && previousState === 'background') {
+        if (
+            appStateVisible === 'active' &&
+            previousState === 'background' &&
+            timerStartedRef.current
+        ) {
             setTime();
 
             setPrevoiusState('active');
@@ -50,6 +56,8 @@ const DisplayTimer: React.FC<IProps> = ({
 
     useEffect(() => {
         if (isRunning) {
+            startTimer();
+
             interval.current = setInterval(() => {
                 setCurrentTime(prevTime => prevTime + 1000);
             }, 1000);
@@ -60,16 +68,16 @@ const DisplayTimer: React.FC<IProps> = ({
         };
     }, [isRunning]);
 
+    const convertedTime = convertToCounterFormat(currentTime, time);
+
     return (
         <DisplayValue
-            value={
-                convertToCounterFormat(currentTime).hoursWithMinutes || '00:00'
-            }
+            value={convertedTime.hoursWithMinutes || '00:00'}
             style={[
                 {marginLeft: fontSize > 23 ? getHorizontalPx(30) : 0},
                 style,
             ]}
-            suffix={`:${convertToCounterFormat(currentTime).dzSeconds}`}
+            suffix={`:${convertedTime.dzSeconds}`}
             noSpace={true}
             fontSize={fontSize}
         />
