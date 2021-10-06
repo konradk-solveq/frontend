@@ -56,7 +56,7 @@ describe('Converts time to desirable values -- utils', () => {
                 new Date('2021-10-06T07:18:25.000Z'),
             ],
         ])(
-            'Timestamp %s should be converted to counter format',
+            'Timestamp %s should be converted to counter format [%s]',
             (time: number, result: CounterTimeT, startTime?: Date) => {
                 const counterTime = convertToCounterFormat(time, startTime);
 
