@@ -30,9 +30,8 @@ const DisplayTimer: React.FC<IProps> = ({
     }, [appStateVisible]);
 
     const setTime = useCallback(() => {
-        const startTime = time ? Date.parse(time.toUTCString()) : null;
-        if (startTime) {
-            setCurrentTime(Date.now() - startTime);
+        if (time) {
+            setCurrentTime(Date.now());
         }
     }, [time]);
 
@@ -60,16 +59,16 @@ const DisplayTimer: React.FC<IProps> = ({
         };
     }, [isRunning]);
 
+    const convertedTime = convertToCounterFormat(currentTime, time);
+
     return (
         <DisplayValue
-            value={
-                convertToCounterFormat(currentTime).hoursWithMinutes || '00:00'
-            }
+            value={convertedTime.hoursWithMinutes || '00:00'}
             style={[
                 {marginLeft: fontSize > 23 ? getHorizontalPx(30) : 0},
                 style,
             ]}
-            suffix={`:${convertToCounterFormat(currentTime).dzSeconds}`}
+            suffix={`:${convertedTime.dzSeconds}`}
             noSpace={true}
             fontSize={fontSize}
         />
