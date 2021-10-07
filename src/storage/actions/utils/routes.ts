@@ -14,3 +14,11 @@ export const stopRecording = async () => {
     const state = await stopBackgroundGeolocation();
     return state?.enabled ? true : false;
 };
+
+export const getNextRouteNumber = (
+    totalNumbers: number | null,
+    modifier = 0,
+) => {
+    const nextNumber = totalNumbers ? totalNumbers + 1 : 1;
+    return modifier === 0 ? nextNumber : nextNumber + modifier;
+};
