@@ -125,7 +125,7 @@ const isDistanceDifferenceToBig = (
  * @returns
  */
 export const removeLessAccuratePoints = (coords: ShortCoordsType[]) => {
-    if (coords?.length) {
+    if (!coords?.length) {
         return coords;
     }
 
@@ -241,7 +241,7 @@ export const removeLessAccuratePoints = (coords: ShortCoordsType[]) => {
  * @returns
  */
 export const removeLessAccuratePointsLocations = (coords: LocationDataI[]) => {
-    if (coords?.length) {
+    if (!coords?.length) {
         return coords;
     }
 
