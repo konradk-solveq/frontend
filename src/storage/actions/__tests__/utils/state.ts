@@ -9,9 +9,20 @@ export const initState = {
             routeId: undefined,
             remoteRouteId: undefined,
         },
+        currentRouteData: [],
     },
     maps: {
-        totalPrivateMaps: 0,
+        totalPrivateMaps: null,
+        totalFeaturedMaps: [],
+        mapToAddId: '',
+        loading: false,
+        privateMaps: [],
+        featuredMaps: [],
+        paginationCoursorFeatured: [],
+        paginationCoursorPrivate: {},
+        statusCode: 200,
+        refresh: false,
+        error: '',
     },
     app: {
         isOffline: false,
@@ -19,5 +30,11 @@ export const initState = {
             goodConnectionQuality: true,
         },
         location: undefined,
+    },
+    bikes: {
+        list: [],
+        genericBike: {},
+        error: '',
+        loading: false,
     },
 };

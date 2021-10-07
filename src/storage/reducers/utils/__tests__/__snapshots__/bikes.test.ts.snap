@@ -1,0 +1,1257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Return merged state of bikes reducer -- utils [addNewBikeDataOrReplaceIfExists] should add new bike to empty bikes list 1`] = `
+Array [
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "colorCodes": Array [],
+      "id": null,
+      "name": "Kross Polly biały",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "city",
+        "name": "miejski",
+      },
+      "serial_number": "123456789",
+      "sku": "0000",
+    },
+    "images": Array [],
+    "params": Array [],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+]
+`;
+
+exports[`Return merged state of bikes reducer -- utils [addNewBikeDataOrReplaceIfExists] should add new bike to exitings bikes list 1`] = `
+Array [
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "color": "czarny / czerwony / pomarańczowy mat",
+      "colorCodes": Array [
+        "#030303",
+        "#FF0000",
+        "#FFA500",
+      ],
+      "id": null,
+      "name": "HEXAGON 2.0 2018",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "recreational",
+        "name": "rekreacyjny",
+      },
+      "serial_number": "1003196015",
+      "size": "26\\"",
+      "sku": "KRHE2Z26X15M140003",
+    },
+    "images": Array [
+      "https://kross.eu/media/cache/gallery/images/31/31437/hexagon_2_0_black_red_orange_matte.png",
+    ],
+    "params": Array [
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WYKOŃCZENIE LAKIERU",
+            "value": "matowy",
+          },
+        ],
+        "name": "Rama i widelec",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "KORBY",
+            "value": "Cyclone (42/34/24T)",
+          },
+          Object {
+            "name": "KASETA/WOLNOBIEG",
+            "value": "Shimano Tourney MF-TZ21 (14-28T)",
+          },
+        ],
+        "name": "Napęd",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "HAMULEC PRZÓD",
+            "value": "V-BRAKE",
+          },
+          Object {
+            "name": "HAMULEC TYŁ",
+            "value": "V-BRAKE",
+          },
+        ],
+        "name": "Hamulce",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "CHWYTY",
+            "value": "KROSS HANDY",
+          },
+        ],
+        "name": "Komponenty",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WAGA [KG]",
+            "value": "XS: 14.64 kg; S: 13.8 kg; M: 13.93 kg; L: 14.2 kg",
+          },
+        ],
+        "name": "Informacje dodatkowe",
+      },
+    ],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "colorCodes": Array [],
+      "id": null,
+      "name": "MC Voyage D53 Shitake Grey Mat",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "city",
+        "name": "miejski",
+      },
+      "serial_number": "1234567890",
+      "sku": "MCVOZI28X53W001568",
+    },
+    "images": Array [],
+    "params": Array [],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+  Object {
+    "description": Object {
+      "color": "cColour",
+      "id": null,
+      "name": "Custom Model",
+      "producer": "Custom Manufature",
+      "serial_number": "1456790",
+      "size": "cSize",
+      "sku": "",
+    },
+  },
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "colorCodes": Array [],
+      "id": null,
+      "name": "Kross Polly biały",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "city",
+        "name": "miejski",
+      },
+      "serial_number": "123456789",
+      "sku": "0000",
+    },
+    "images": Array [],
+    "params": Array [],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+]
+`;
+
+exports[`Return merged state of bikes reducer -- utils [addNewBikeDataOrReplaceIfExists] should replace bike in existing bikes list when new bike has already existed 1`] = `
+Array [
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "colorCodes": Array [],
+      "id": null,
+      "name": "MC Voyage D53 Shitake Grey Mat",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "city",
+        "name": "miejski",
+      },
+      "serial_number": "1234567890",
+      "sku": "MCVOZI28X53W001568",
+    },
+    "images": Array [],
+    "params": Array [],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+  Object {
+    "description": Object {
+      "color": "cColour",
+      "id": null,
+      "name": "Custom Model",
+      "producer": "Custom Manufature",
+      "serial_number": "1456790",
+      "size": "cSize",
+      "sku": "",
+    },
+  },
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "color": "czarny / czerwony / pomarańczowy mat",
+      "colorCodes": Array [
+        "#030303",
+        "#FF0000",
+        "#FFA500",
+      ],
+      "id": null,
+      "name": "HEXAGON 2.0 2018",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "recreational",
+        "name": "rekreacyjny",
+      },
+      "serial_number": "1003196015",
+      "size": "26\\"",
+      "sku": "KRHE2Z26X15M140003",
+    },
+    "images": Array [
+      "https://kross.eu/media/cache/gallery/images/31/31437/hexagon_2_0_black_red_orange_matte.png",
+    ],
+    "params": Array [
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WYKOŃCZENIE LAKIERU",
+            "value": "matowy",
+          },
+        ],
+        "name": "Rama i widelec",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "KORBY",
+            "value": "Cyclone (42/34/24T)",
+          },
+          Object {
+            "name": "KASETA/WOLNOBIEG",
+            "value": "Shimano Tourney MF-TZ21 (14-28T)",
+          },
+        ],
+        "name": "Napęd",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "HAMULEC PRZÓD",
+            "value": "V-BRAKE",
+          },
+          Object {
+            "name": "HAMULEC TYŁ",
+            "value": "V-BRAKE",
+          },
+        ],
+        "name": "Hamulce",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "CHWYTY",
+            "value": "KROSS HANDY",
+          },
+        ],
+        "name": "Komponenty",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WAGA [KG]",
+            "value": "XS: 14.64 kg; S: 13.8 kg; M: 13.93 kg; L: 14.2 kg",
+          },
+        ],
+        "name": "Informacje dodatkowe",
+      },
+    ],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+]
+`;
+
+exports[`Return merged state of bikes reducer -- utils [updateBikesList] should add new bike data when update empty list 1`] = `
+Array [
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "color": "czarny / czerwony / pomarańczowy mat",
+      "colorCodes": Array [
+        "#030303",
+        "#FF0000",
+        "#FFA500",
+      ],
+      "id": null,
+      "name": "HEXAGON 2.0 2018",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "recreational",
+        "name": "rekreacyjny",
+      },
+      "serial_number": "1003196015",
+      "size": "26\\"",
+      "sku": "KRHE2Z26X15M140003",
+    },
+    "images": Array [
+      "https://kross.eu/media/cache/gallery/images/31/31437/hexagon_2_0_black_red_orange_matte.png",
+    ],
+    "params": Array [
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WYKOŃCZENIE LAKIERU",
+            "value": "matowy",
+          },
+        ],
+        "name": "Rama i widelec",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "KORBY",
+            "value": "Cyclone (42/34/24T)",
+          },
+          Object {
+            "name": "KASETA/WOLNOBIEG",
+            "value": "Shimano Tourney MF-TZ21 (14-28T)",
+          },
+        ],
+        "name": "Napęd",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "HAMULEC PRZÓD",
+            "value": "V-BRAKE",
+          },
+          Object {
+            "name": "HAMULEC TYŁ",
+            "value": "V-BRAKE",
+          },
+        ],
+        "name": "Hamulce",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "CHWYTY",
+            "value": "KROSS HANDY",
+          },
+        ],
+        "name": "Komponenty",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WAGA [KG]",
+            "value": "XS: 14.64 kg; S: 13.8 kg; M: 13.93 kg; L: 14.2 kg",
+          },
+        ],
+        "name": "Informacje dodatkowe",
+      },
+    ],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "colorCodes": Array [],
+      "id": null,
+      "name": "MC Voyage D53 Shitake Grey Mat",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "city",
+        "name": "miejski",
+      },
+      "serial_number": "1234567890",
+      "sku": "MCVOZI28X53W001568",
+    },
+    "images": Array [],
+    "params": Array [],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+]
+`;
+
+exports[`Return merged state of bikes reducer -- utils [updateBikesList] should add new bike instead of update existing list when wrong bikes numbers list passed 1`] = `
+Array [
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "color": "czarny / czerwony / pomarańczowy mat",
+      "colorCodes": Array [
+        "#030303",
+        "#FF0000",
+        "#FFA500",
+      ],
+      "id": null,
+      "name": "HEXAGON 2.0 2018",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "recreational",
+        "name": "rekreacyjny",
+      },
+      "serial_number": "1003196015",
+      "size": "26\\"",
+      "sku": "KRHE2Z26X15M140003",
+    },
+    "images": Array [
+      "https://kross.eu/media/cache/gallery/images/31/31437/hexagon_2_0_black_red_orange_matte.png",
+    ],
+    "params": Array [
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WYKOŃCZENIE LAKIERU",
+            "value": "matowy",
+          },
+        ],
+        "name": "Rama i widelec",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "KORBY",
+            "value": "Cyclone (42/34/24T)",
+          },
+          Object {
+            "name": "KASETA/WOLNOBIEG",
+            "value": "Shimano Tourney MF-TZ21 (14-28T)",
+          },
+        ],
+        "name": "Napęd",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "HAMULEC PRZÓD",
+            "value": "V-BRAKE",
+          },
+          Object {
+            "name": "HAMULEC TYŁ",
+            "value": "V-BRAKE",
+          },
+        ],
+        "name": "Hamulce",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "CHWYTY",
+            "value": "KROSS HANDY",
+          },
+        ],
+        "name": "Komponenty",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WAGA [KG]",
+            "value": "XS: 14.64 kg; S: 13.8 kg; M: 13.93 kg; L: 14.2 kg",
+          },
+        ],
+        "name": "Informacje dodatkowe",
+      },
+    ],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "colorCodes": Array [],
+      "id": null,
+      "name": "MC Voyage D53 Shitake Grey Mat",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "city",
+        "name": "miejski",
+      },
+      "serial_number": "1234567890",
+      "sku": "MCVOZI28X53W001568",
+    },
+    "images": Array [],
+    "params": Array [],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "color": "czarny / czerwony / pomarańczowy mat",
+      "colorCodes": Array [
+        "#030303",
+        "#FF0000",
+        "#FFA500",
+      ],
+      "id": null,
+      "name": "HEXAGON 2.0 2018",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "recreational",
+        "name": "rekreacyjny",
+      },
+      "serial_number": "1003196015",
+      "size": "26\\"",
+      "sku": "KRHE2Z26X15M140003",
+    },
+    "images": Array [
+      "https://kross.eu/media/cache/gallery/images/31/31437/hexagon_2_0_black_red_orange_matte.png",
+    ],
+    "params": Array [
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WYKOŃCZENIE LAKIERU",
+            "value": "matowy",
+          },
+        ],
+        "name": "Rama i widelec",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "KORBY",
+            "value": "Cyclone (42/34/24T)",
+          },
+          Object {
+            "name": "KASETA/WOLNOBIEG",
+            "value": "Shimano Tourney MF-TZ21 (14-28T)",
+          },
+        ],
+        "name": "Napęd",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "HAMULEC PRZÓD",
+            "value": "V-BRAKE",
+          },
+          Object {
+            "name": "HAMULEC TYŁ",
+            "value": "V-BRAKE",
+          },
+        ],
+        "name": "Hamulce",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "CHWYTY",
+            "value": "KROSS HANDY",
+          },
+        ],
+        "name": "Komponenty",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WAGA [KG]",
+            "value": "XS: 14.64 kg; S: 13.8 kg; M: 13.93 kg; L: 14.2 kg",
+          },
+        ],
+        "name": "Informacje dodatkowe",
+      },
+    ],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+  Object {
+    "description": Object {
+      "color": "cColour",
+      "id": null,
+      "name": "Custom Model",
+      "producer": "Custom Manufature",
+      "serial_number": "1456790",
+      "size": "cSize",
+      "sku": "",
+    },
+  },
+]
+`;
+
+exports[`Return merged state of bikes reducer -- utils [updateBikesList] should update bikes with existing bikes list 1`] = `
+Array [
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "color": "czarny / czerwony / pomarańczowy mat",
+      "colorCodes": Array [
+        "#030303",
+        "#FF0000",
+        "#FFA500",
+      ],
+      "id": null,
+      "name": "HEXAGON 2.0 2018",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "recreational",
+        "name": "rekreacyjny",
+      },
+      "serial_number": "1003196015",
+      "size": "26\\"",
+      "sku": "KRHE2Z26X15M140003",
+    },
+    "images": Array [
+      "https://kross.eu/media/cache/gallery/images/31/31437/hexagon_2_0_black_red_orange_matte.png",
+    ],
+    "params": Array [
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WYKOŃCZENIE LAKIERU",
+            "value": "matowy",
+          },
+        ],
+        "name": "Rama i widelec",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "KORBY",
+            "value": "Cyclone (42/34/24T)",
+          },
+          Object {
+            "name": "KASETA/WOLNOBIEG",
+            "value": "Shimano Tourney MF-TZ21 (14-28T)",
+          },
+        ],
+        "name": "Napęd",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "HAMULEC PRZÓD",
+            "value": "V-BRAKE",
+          },
+          Object {
+            "name": "HAMULEC TYŁ",
+            "value": "V-BRAKE",
+          },
+        ],
+        "name": "Hamulce",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "CHWYTY",
+            "value": "KROSS HANDY",
+          },
+        ],
+        "name": "Komponenty",
+      },
+      Object {
+        "customizable": false,
+        "list": Array [
+          Object {
+            "name": "WAGA [KG]",
+            "value": "XS: 14.64 kg; S: 13.8 kg; M: 13.93 kg; L: 14.2 kg",
+          },
+        ],
+        "name": "Informacje dodatkowe",
+      },
+    ],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+  Object {
+    "complaintsRepairs": Array [],
+    "description": Object {
+      "colorCodes": Array [],
+      "id": null,
+      "name": "MC Voyage D53 Shitake Grey Mat",
+      "producer": "Kross",
+      "purpose": Object {
+        "code": "city",
+        "name": "miejski",
+      },
+      "serial_number": "1234567890",
+      "sku": "MCVOZI28X53W001568",
+    },
+    "images": Array [],
+    "params": Array [],
+    "warranty": Object {
+      "end": null,
+      "id": null,
+      "info": "brak informacji",
+      "overviews": Array [
+        Object {
+          "date": "2021-10-31",
+          "info": "po sezonie",
+          "operations": Array [
+            "mycie roweru. Najskuteczniejszym sposobem jest użycie specjalistycznych środków do czyszczenia",
+            "sprawdzenie układu napędowego, łańcucha oraz konserwacja całego układu",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "post-season",
+        },
+        Object {
+          "date": "2022-04-01",
+          "info": "przed sezonem",
+          "operations": Array [
+            "regulacje układu napędowego, czyszczenie łańcucha i zębatek oraz ich nasmarowanie",
+            "kontrola ogumienia, ogólnego stanu kół oraz odpowiedniego ciśnienia w kołach",
+            "sprawdzenie stanu hamulców i ich regulacja, sprawdzenie działania dźwigni i okładzin ściernych bądź klocków. W przypadku hamulców tarczowych odtłuszczenie tarczy",
+            "kontrola stabilności roweru i podzespołów, tzw. regulacja luzów",
+            "sprawdzenie poprawności działania widelca (jeśli jest amortyzowany)",
+            "ogólne sprawdzenie stanu roweru, pęknięć oraz innych uszkodzeń na podzespołach bądź ramie roweru",
+            "w przypadku jazdy po drogach publicznych - sprawdzenie oraz uzupełnienie niezbędnego wyposażenia, którego wymagają przepisy ruchu drogowego – odblaski, dzwonek, oświetlenie",
+          ],
+          "style": Object {
+            "checkmark": false,
+            "color": "#FFFFFF",
+            "dashed": true,
+          },
+          "type": "pre-season",
+        },
+      ],
+      "type": "no-info",
+    },
+  },
+  Object {
+    "description": Object {
+      "color": "cColour",
+      "id": null,
+      "name": "Custom Model",
+      "producer": "Custom Manufature",
+      "serial_number": "1456790",
+      "size": "cSize",
+      "sku": "",
+    },
+  },
+]
+`;

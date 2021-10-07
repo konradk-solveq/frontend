@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
     View,
     StatusBar,
@@ -10,7 +10,6 @@ import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import {I18n} from '../../../../../I18n/I18n';
 import {ImagesMetadataType} from '../../../../interfaces/api';
 import {
     loadingMapsSelector,
@@ -24,6 +23,8 @@ import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {getImagesThumbs} from '../../../../utils/transformData';
 import {ImageType, MapFormDataResult} from '../../../../interfaces/form';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
+import {EditDetailsRouteType} from '@type/rootStack';
+import {MapType} from '@models/map.model';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
@@ -37,15 +38,17 @@ import styles from './style';
 const isIOS = Platform.OS === 'ios';
 
 const EditDetails = () => {
-    const trans: any = I18n.t('RoutesDetails');
+    const wasPublishedBeforeRef = useRef(false);
+
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const route = useRoute();
-    const mapID: string = route?.params?.mapID;
-    const privateMap: string = route?.params?.private;
-    const redirectToScreen: string = route?.params?.redirectTo;
+    const route = useRoute<EditDetailsRouteType>();
+    const mapID = route?.params?.mapID;
+    const privateMap = route?.params?.private;
+    const redirectToScreen = route?.params?.redirectTo;
+
     const newPrivateMapID = useAppSelector(mapIdToAddSelector);
-    const mapData = useAppSelector(
+    const mapData: MapType | undefined = useAppSelector(
         !privateMap
             ? mapDataByIDSelector(mapID)
             : privateDataByIDSelector(mapID || newPrivateMapID),
@@ -80,6 +83,13 @@ const EditDetails = () => {
     const onScrollToTopHandler = (p: boolean) => {
         setScrollToTop(p);
     };
+
+    useEffect(() => {
+        if (mapData?.isPublic) {
+            wasPublishedBeforeRef.current = true;
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (submit && !isLoading) {
@@ -134,7 +144,11 @@ const EditDetails = () => {
         <>
             <StatusBar translucent />
             <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
-                <View style={{paddingTop: headerBackgroundHeight, flex: 1}}>
+                <View
+                    style={[
+                        styles.innerContainer,
+                        {paddingTop: headerBackgroundHeight},
+                    ]}>
                     <StackHeader
                         onpress={onBackHandler}
                         inner=""
@@ -163,6 +177,7 @@ const EditDetails = () => {
                         showModal={showModal}
                         onPress={onBackHandler}
                         isPublished={isPublished}
+                        wasPublished={wasPublishedBeforeRef.current}
                         onBackPress={() => setShowModal(false)}
                     />
                     <WrongResponseModal

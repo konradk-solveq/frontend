@@ -20,6 +20,7 @@ import AboutApp from '../../pages/main/profile/aboutApp/aboutApp';
 import ReviewsDetails from '../../pages/main/bike/reviewsDetails/reviewsDetails';
 import NameChange from '../../pages/main/profile/nameChange/nameChange';
 import Counter from '../../pages/main/recording/counter/counter';
+import FeaturedRoutesScreen from '@pages/main/world/featuredRoutes/FeaturedRoutesScreen';
 import RouteDetails from '../../pages/main/world/routeDetails/routeDetails';
 import CounterThankYouPage from '../../pages/main/recording/counterThankYouPage/counterThankYouPage';
 import EditDetails from '../../pages/main/world/editDetails/editDetails';
@@ -31,6 +32,7 @@ import Contact from '../../pages//main/profile/contact/contact';
 import RoutesMap from '../../pages/main/world/routesMap/routesMap';
 
 import {RegularStackRoute, BothStackRoute} from '../route';
+import {verticalAnim} from '@src/helpers/positioningVerical';
 
 const RegularStackNavigator: React.FC = () => {
     const isActive = useAppSelector(trackerActiveSelector);
@@ -105,6 +107,10 @@ const RegularStackNavigator: React.FC = () => {
 
             {/* START KROSS WORLD */}
             <Stack.Screen
+                name={RegularStackRoute.FEATURED_ROUTES_SCRREN}
+                component={FeaturedRoutesScreen}
+            />
+            <Stack.Screen
                 name={RegularStackRoute.ROUTE_DETAILS_SCREEN}
                 component={RouteDetails}
             />
@@ -121,7 +127,9 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.ROUTES_MAP_SCREEN}
                 component={RoutesMap}
-                options={{gestureEnabled: false}}
+                options={{
+                    ...verticalAnim,
+                }}
             />
             {/* END KROSS WORLD */}
 

@@ -15,7 +15,17 @@ import {getDateString} from '../utils/dateTime';
 import {transformMetersToKilometersString} from '../utils/metersToKilometers';
 import validationRules from '../utils/validation/validationRules';
 
-export const publishMapValidationRules = {
+export type PublishMapValidationRuleT = (string | {[key: string]: number})[];
+export interface PublishMapValidationRulesI {
+    name: PublishMapValidationRuleT;
+    publishWithName: PublishMapValidationRuleT;
+    description: PublishMapValidationRuleT;
+    difficulty: PublishMapValidationRuleT;
+    surface: PublishMapValidationRuleT;
+    tags: PublishMapValidationRuleT;
+}
+
+export const publishMapValidationRules: PublishMapValidationRulesI = {
     name: [
         validationRules.required,
         validationRules.string,
@@ -23,8 +33,7 @@ export const publishMapValidationRules = {
         {[validationRules.max]: 150},
     ],
     publishWithName: [validationRules.boolean],
-    short: [validationRules.string, {[validationRules.max]: 1000}],
-    long: [validationRules.string, {[validationRules.max]: 5000}],
+    description: [validationRules.string, {[validationRules.max]: 10000}],
     difficulty: [validationRules.isArray],
     surface: [validationRules.isArray],
     tags: [validationRules.isArray],
@@ -41,11 +50,6 @@ export type SelectOptionType = {
     enumValue: string;
     i18nValue: string;
 };
-
-export interface SelectI {
-    options: SelectOptionType[];
-    values: string[];
-}
 
 export interface Coords {
     latitude: number;
@@ -76,6 +80,9 @@ export interface Images {
     variants: ImagesVariants;
 }
 
+/**
+ * Deprecated - legacy code, used before v1.5.0
+ */
 export type MapDescriptionType = {
     short?: string;
     long?: string;
@@ -122,6 +129,13 @@ export type MapMarkerType = {
     markerType: MarkerTypes[];
 };
 
+export type OptionsEnumsT = {
+    difficultyOptions: SelectOptionType[];
+    surfacesOptions: SelectOptionType[];
+    tagsOptions: SelectOptionType[];
+    reactions: SelectOptionType[];
+};
+
 export class Map {
     @IsNotEmpty()
     @IsString()
@@ -143,7 +157,7 @@ export class Map {
     public createdAt: string;
 
     @IsDate()
-    public publishedAt: Date;
+    public publishedAt?: Date;
 
     @IsOptional()
     @IsNumber()
@@ -168,14 +182,14 @@ export class Map {
     public rating?: number;
 
     @IsOptional()
-    public tags?: SelectI;
+    public tags?: string[];
 
     @IsOptional()
     public images?: Images[];
 
     @IsOptional()
     @IsArray()
-    public difficulty?: SelectI;
+    public difficulty?: string[];
 
     @IsOptional()
     @IsString()
@@ -183,11 +197,11 @@ export class Map {
 
     @IsOptional()
     @IsArray()
-    surface?: SelectI;
+    surface?: string[];
 
     @IsOptional()
     @IsArray()
-    public description?: MapDescriptionType;
+    public description?: MapDescriptionType | string;
 
     @IsOptional()
     @IsString()
@@ -212,6 +226,8 @@ export class Map {
     @IsString()
     @IsOptional()
     public reactions?: ReactionsType;
+
+    private optionsEnums: OptionsEnumsT | undefined;
 
     constructor(
         id: string,
@@ -240,24 +256,34 @@ export class Map {
     }
 
     public get firstDifficulty(): string | undefined {
-        return this?.difficulty?.options?.[0]?.i18nValue;
+        const difficultyOptions = this.optionsEnums?.difficultyOptions?.[0]
+            ?.i18nValue;
+        return difficultyOptions;
     }
 
     public get firstPickedDifficulty(): string | undefined {
-        const values = this?.difficulty?.values;
-        return this?.difficulty?.options?.find(o =>
-            values?.includes(o.enumValue),
+        const values = this?.difficulty;
+        const difficultyOptions = this?.optionsEnums?.difficultyOptions?.find(
+            o => values?.includes(o?.enumValue),
         )?.i18nValue;
+
+        return difficultyOptions;
     }
 
     public get firstSurface(): string | undefined {
-        return this?.surface?.options?.[0]?.i18nValue;
+        const surfaceOptions = this.optionsEnums?.surfacesOptions?.[0]
+            ?.i18nValue;
+
+        return surfaceOptions;
     }
 
     public get firstPickedSurface(): string | undefined {
-        const values = this?.surface?.values;
-        return this?.surface?.options?.find(o => values?.includes(o.enumValue))
-            ?.i18nValue;
+        const values = this?.surface;
+        const surfaceOptions = this?.optionsEnums?.surfacesOptions?.find(o =>
+            values?.includes(o?.enumValue),
+        )?.i18nValue;
+
+        return surfaceOptions;
     }
 
     public get createdAtDate(): Date {
@@ -267,6 +293,67 @@ export class Map {
     public get createdAtDateString(): string {
         return getDateString(new Date(this.createdAt));
     }
+
+    public get mapDescription(): string {
+        if (typeof this?.description === 'string') {
+            return this.description;
+        }
+
+        return '';
+    }
+
+    /**
+     * Deprecated - legacy code, used before v1.5.0
+     */
+    public get mapDescriptionShort(): string {
+        if (typeof this?.description === 'string') {
+            return '';
+        }
+
+        return this?.description?.short || '';
+    }
+
+    /**
+     * Deprecated - legacy code, used before v1.5.0
+     */
+    public get mapDescriptionLong(): string {
+        if (typeof this?.description === 'string') {
+            return '';
+        }
+
+        return this?.description?.long || '';
+    }
+
+    public set optionsEnumsValues(opt: OptionsEnumsT | undefined) {
+        if (!opt) {
+            return;
+        }
+
+        this.optionsEnums = {
+            difficultyOptions: opt.difficultyOptions,
+            surfacesOptions: opt.surfacesOptions,
+            tagsOptions: opt.tagsOptions,
+            reactions: opt.reactions,
+        };
+    }
+
+    public get optionsEnumsValues(): OptionsEnumsT | undefined {
+        return this.optionsEnums;
+    }
 }
 
 export interface MapType extends Map {}
+
+export interface MapsData {
+    elements: MapType[] | [];
+    links: {prev: string};
+    total: number;
+}
+
+export type FeaturedMapType = {
+    section: {
+        id: string;
+        title: string;
+    };
+    routes: MapsData;
+};

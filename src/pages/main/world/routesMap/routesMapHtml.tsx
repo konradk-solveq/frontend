@@ -42,6 +42,18 @@ export default `
 <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
 
 <script>
+const customJsonStringify = (value, fallback) => {
+    if (!value) {
+        return value;
+    }
+
+    try {
+        return JSON.stringify(value);
+    } catch (error) {
+        return fallback || undefined;
+    }
+};
+
 let map;
 const googleMap = document.getElementById('map');
 // let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
@@ -74,7 +86,7 @@ const setPosOnMap = position => {
 const getRgion = () => {
     const bounds = map.getBounds();
 
-    window.ReactNativeWebView.postMessage("changeRegion#$#"+JSON.stringify(bounds));
+    window.ReactNativeWebView.postMessage("changeRegion#$#"+customJsonStringify(bounds, ''));
 }
 
 function initMap() {
@@ -476,10 +488,10 @@ const setMarks = places => {
         });
 
         marks.push(mark);
-        window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+JSON.stringify(mark.markerTypes));
+        window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+customJsonStringify(mark?.markerTypes, ''));
         // do pokazywania alpi z adresem
         google.maps.event.addDomListener(mark, 'click', function() {
-            window.ReactNativeWebView.postMessage("clickMarker#$#"+JSON.stringify(mark.details));
+            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify(mark?.details, ''));
             marks.forEach(m => {
                 m.setOptions({
                     icon: 'map_route_marker.png',
@@ -547,7 +559,7 @@ const setPublic = () => {
         marks?.forEach(m => m.markerTypes?.includes('PUBLIC') ? m.setVisible(true) : m.setVisible(false));
         clusterPublic.repaint();
     }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PUBLIC#$#"+JSON.stringify(e));
+        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PUBLIC#$#"+customJsonStringify(e, ''));
     }
 }
 
@@ -556,7 +568,7 @@ const setFavourites = () => {
         marks?.forEach(m => m.markerTypes?.includes('FAVORITE') ? m.setVisible(true) : m.setVisible(false));
         clusterPublic.repaint();
     }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT FAVORITE#$#"+JSON.stringify(e));
+        window.ReactNativeWebView.postMessage("ERROR ON REPAINT FAVORITE#$#"+customJsonStringify(e, ''));
     }
 }
 
@@ -565,7 +577,7 @@ const setPrivate = () => {
         marks?.forEach(m => m.markerTypes?.includes('OWN') ? m.setVisible(true) : m.setVisible(false));
         clusterPublic.repaint();
     }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#"+JSON.stringify(e));
+        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#"+customJsonStringify(e, ''));
     }
 }
 

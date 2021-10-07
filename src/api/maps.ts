@@ -9,6 +9,8 @@ import {
 } from '@utils/apiDataTransform/prepareRequest';
 import {BasicCoordsType} from '@type/coords';
 
+import {AxiosResponse} from 'axios';
+
 const BASE_URL = '/routes';
 const BASE_ROUTE_URL = `${BASE_URL}/route`;
 const PLANNED_ROUTE_URL = `${BASE_URL}/favorites`;
@@ -139,4 +141,13 @@ export const getMarkersList = async (data: BBox, location: BasicCoordsType) => {
     return await axiosGet(`${BASE_FIND_URL}/map?${query}`, {
         cancelToken: source.token,
     });
+};
+
+export const getFeaturedMaps = async (
+    location: Coords,
+    paginationUrl?: string,
+): Promise<AxiosResponse<any>> => {
+    let url = `${BASE_URL}/featured?lat=${location.latitude}&lng=${location.longitude}`;
+
+    return await axiosGet(paginationUrl || url, {});
 };

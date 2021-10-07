@@ -1,22 +1,46 @@
 import {createSelector} from 'reselect';
 import {RootState} from '../storage';
-import {Map} from '../../models/map.model';
+import {FeaturedMapType, Map} from '../../models/map.model';
 import {mapsListToClass} from '../../utils/transformData';
+import routes from '../reducers/routes';
+import {getMapFromFeaturedSections} from './utils/map';
+import {NestedPaginationType} from '@src/interfaces/api';
 
 export enum selectorTypeEnum {
     regular = 'regular',
     private = 'private',
     favourite = 'favourite',
+    featured = 'featured',
 }
 
 export const mapsListSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.maps);
+    mapsListToClass(state.maps.maps, state.app.config);
 
 export const privateMapsListSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.privateMaps);
+    mapsListToClass(state.maps.privateMaps, state.app.config);
 
 export const favouritesMapsSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.plannedMaps);
+    mapsListToClass(state.maps.plannedMaps, state.app.config);
+
+export const featuredMapsSelector = (state: RootState): FeaturedMapType[] =>
+    state.maps.featuredMaps.map((e: FeaturedMapType) => {
+        let elements: Map[] = [];
+        if (e?.routes?.elements?.length) {
+            elements = mapsListToClass(e.routes.elements, state.app.config);
+        }
+
+        if (!elements?.length) {
+            return e;
+        }
+
+        return {
+            ...e,
+            routes: {
+                ...routes,
+                elements: elements,
+            },
+        };
+    });
 
 export const favouritesMapsIDSSelector = (state: RootState): string[] =>
     state.maps.favourites;
@@ -43,16 +67,18 @@ export const mapIdToAddSelector = (state: RootState): string =>
 //     (fav, maps) => maps.filter(m => fav.includes(m.id)),
 // );
 
-export const mapDataByIDSelector = (mapID: string) =>
-    createSelector(mapsListSelector, maps => maps.find(m => m.id === mapID));
+export const mapDataByIDSelector = (mapID?: string) =>
+    createSelector(mapsListSelector, (maps: Map[]) =>
+        maps.find(m => m.id === mapID),
+    );
 
 export const favouriteMapDataByIDSelector = (mapID: string) =>
-    createSelector(favouritesMapsSelector, maps =>
+    createSelector(favouritesMapsSelector, (maps: Map[]) =>
         maps.find(m => m.id === mapID),
     );
 
 export const privateDataByIDSelector = (mapID: string) =>
-    createSelector(privateMapsListSelector, pMaps =>
+    createSelector(privateMapsListSelector, (pMaps: Map[]) =>
         pMaps.find(m => m.id === mapID),
     );
 
@@ -67,26 +93,31 @@ export const selectMapDataByIDBasedOnTypeSelector = (
     if (type === selectorTypeEnum.favourite) {
         selectorType = favouritesMapsSelector;
     }
+    if (type === selectorTypeEnum.featured) {
+        return featuredMapDataByIdSelector(mapID);
+    }
 
-    return createSelector(selectorType, maps => maps.find(m => m.id === mapID));
+    return createSelector(selectorType, (maps: Map[]) =>
+        maps.find(m => m.id === mapID),
+    );
 };
 
 export const mapPathByIDSelector = (mapID: string) =>
     createSelector(
         mapsListSelector,
-        maps => maps.find(m => m.id === mapID)?.path,
+        (maps: Map[]) => maps.find(m => m.id === mapID)?.path,
     );
 
 export const privateMapPathByIDSelector = (mapID: string) =>
     createSelector(
         privateMapsListSelector,
-        maps => maps.find(m => m.id === mapID)?.path,
+        (maps: Map[]) => maps.find(m => m.id === mapID)?.path,
     );
 
 export const favouriteMapPathByIDSelector = (mapID: string) =>
     createSelector(
         favouritesMapsSelector,
-        maps => maps.find(m => m.id === mapID)?.path,
+        (maps: Map[]) => maps.find(m => m.id === mapID)?.path,
     );
 
 export const selectMapPathByIDBasedOnTypeSelector = (
@@ -100,12 +131,31 @@ export const selectMapPathByIDBasedOnTypeSelector = (
     if (type === selectorTypeEnum.favourite) {
         selectorType = favouritesMapsSelector;
     }
+    if (type === selectorTypeEnum.featured) {
+        return featuredMapPathDataByIdSelector(mapID);
+    }
 
     return createSelector(
         selectorType,
         maps => maps.find(m => m.id === mapID)?.path,
     );
 };
+
+export const featuredMapDataByIdSelector = (mapID: string) =>
+    createSelector(featuredMapsSelector, fMaps =>
+        getMapFromFeaturedSections(fMaps, mapID),
+    );
+
+export const featuredMapPathDataByIdSelector = (mapID: string) =>
+    createSelector(
+        featuredMapsSelector,
+        fMaps => getMapFromFeaturedSections(fMaps, mapID)?.path,
+    );
+
+export const featuredMapDataBySectionIdSelector = (sectionID: string) =>
+    createSelector(featuredMapsSelector, maps =>
+        maps.find(m => m.section.id === sectionID),
+    );
 
 export const nextPaginationCoursor = (state: RootState): string | undefined =>
     state.maps.paginationCoursor?.next;
@@ -128,6 +178,16 @@ export const nextPlannedPaginationCoursor = (
 export const prevPlannedPaginationCoursor = (
     state: RootState,
 ): string | undefined => state.maps.paginationCoursorPlanned?.prev;
+
+export const nextFeaturedPaginationCoursors = (
+    state: RootState,
+): NestedPaginationType[] => state.maps.paginationCoursorFeatured;
+
+export const nextFeaturedPaginationCoursor = (sectionID: string) =>
+    createSelector(
+        nextFeaturedPaginationCoursors,
+        cursors => cursors?.find(c => c.id === sectionID)?.pagination?.next,
+    );
 
 export const hasRecordedRoutesSelector = (state: RootState): boolean =>
     state.maps.privateMaps?.length > 0;

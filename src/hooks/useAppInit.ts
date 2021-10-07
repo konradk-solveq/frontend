@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import {State} from 'react-native-background-geolocation-android';
 
 import {I18n} from '../../I18n/I18n';
@@ -17,11 +17,19 @@ import {
     syncAppSelector,
 } from '../storage/selectors';
 import {setAutorizationHeader} from '../api/api';
-import {isGoodConnectionQualitySelector} from '../storage/selectors/app';
+import {
+    globalLocationSelector,
+    isGoodConnectionQualitySelector,
+} from '../storage/selectors/app';
+import {fetchMapsList} from '@src/storage/actions';
+import {fetchFeaturedMapsList} from '@src/storage/actions/maps';
+import {sentrySetUserInfo} from '../../sentry/sentryLogger';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
     const dispatch = useAppDispatch();
+    const initMapsLoadRef = useRef(false);
+
     const isOnline = useAppSelector<boolean>(isOnlineAppStatusSelector);
     const isGoodInternetConnectionQuality = useAppSelector(
         isGoodConnectionQualitySelector,
@@ -33,6 +41,7 @@ const useAppInit = () => {
     const error = useAppSelector(
         appErrorSelector,
     ); /* TODO: check all errors from sync requests */
+    const location = useAppSelector(globalLocationSelector);
 
     const [geolocationState, setGeolocationState] = useState<State>();
     const [crashlyticsInitialized, setCrashlyticsInitialized] = useState(false);
@@ -56,6 +65,10 @@ const useAppInit = () => {
     }, [authToken]);
 
     useEffect(() => {
+        sentrySetUserInfo({
+            id: userId,
+            username: userName,
+        });
         /* Logs will be send after app restarted */
         initCrashlytics(userName, userId);
         setCrashlyticsInitialized(true);
@@ -78,11 +91,30 @@ const useAppInit = () => {
     }, []);
 
     useEffect(() => {
+        let t: NodeJS.Timeout;
         if (isOnline && isGoodInternetConnectionQuality) {
-            synchData();
+            t = setTimeout(() => {
+                synchData();
+            }, 500);
         }
+
+        return () => {
+            clearTimeout(t);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOnline, isGoodInternetConnectionQuality]);
+
+    /**
+     * Get initially maps
+     */
+    useEffect(() => {
+        if (!initMapsLoadRef.current && location) {
+            initMapsLoadRef.current = true;
+
+            dispatch(fetchMapsList());
+            dispatch(fetchFeaturedMapsList());
+        }
+    }, [dispatch, location]);
 
     return {
         geolocationState,

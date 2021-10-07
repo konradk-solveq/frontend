@@ -1,10 +1,11 @@
+import { isLocationValidate } from '@src/utils/locationData';
 import {v4 as uuidv4} from 'uuid';
 
 import {transformMetersToKilometersString} from '../../utils/metersToKilometers';
 import {getAverageSpeed, msToKH} from '../../utils/speed';
 
 export const DEFAULT_SPEED = '0,0';
-export const DEFAULT_DISTANCE = '00,00';
+export const DEFAULT_DISTANCE = '0,00';
 
 export const getAverageSpeedData = (
     speedData: number[],
@@ -29,7 +30,11 @@ export const startCurrentRoute = async (followByRoute?: string) => {
     };
 };
 
-export const getTrackerData = (gpsData: any, averageSpeed: string) => {
+export const getTrackerData = (gpsData: any, averageSpeed?: string) => {
+    if (!gpsData || !isLocationValidate(gpsData)) {
+        return;
+    }
+
     const speed = msToKH(gpsData?.coords?.speed) || DEFAULT_SPEED;
     const distance = transformMetersToKilometersString(
         gpsData?.odometer,

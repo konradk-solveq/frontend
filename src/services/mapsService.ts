@@ -11,10 +11,17 @@ import {
     uploadImageToMapData,
     getRoute,
     getMarkersList,
+    getFeaturedMaps,
 } from '@api/index';
 
 import {BBox} from '@models/places.model';
-import {MapType, Coords, MapMarkerType} from '@models/map.model';
+import {
+    MapType,
+    Coords,
+    MapMarkerType,
+    MapsData,
+    FeaturedMapType,
+} from '@models/map.model';
 import {ImagesMetadataType} from '@interfaces/api';
 import {MapFormDataResult, PickedFilters} from '@interfaces/form';
 import {BasicCoordsType} from '@type/coords';
@@ -25,12 +32,8 @@ import {
     mapFormMetadataToAPIRequest,
 } from '@utils/apiDataTransform/prepareRequest';
 import {getFiltersParam} from '@utils/apiDataTransform/filters';
-
-export interface MapsData {
-    elements: MapType[] | [];
-    links: {prev: string};
-    total: number;
-}
+import {loggError} from '@utils/crashlytics';
+import {loggErrorMessage} from '@sentryLogger/sentryLogger';
 
 export type CreatedPlannedMap = {
     id: string;
@@ -38,6 +41,12 @@ export type CreatedPlannedMap = {
 
 export interface MapsResponse {
     data: MapsData;
+    status: number;
+    error: string;
+}
+
+export interface FeaturedMapsResponse {
+    data: FeaturedMapType[];
     status: number;
     error: string;
 }
@@ -111,23 +120,23 @@ export const getPrivateMapsListService = async (
 
     const response = await getPrivateRoutes(location, page, f);
 
-    if (!response?.data || response.status >= 400) {
+    if (!response?.data || response?.status >= 400) {
         let errorMessage = 'error';
-        if (response.data?.message || response.data?.error) {
+        if (response?.data?.message || response?.data?.error) {
             errorMessage = response.data.message || response.data.error;
         }
         return {
             data: {elements: [], links: {prev: ''}, total: 0},
-            status: response.data?.statusCode || response.status,
+            status: response?.data?.statusCode || response?.status,
             error: errorMessage,
         };
     }
 
     return {
         data: {
-            elements: response.data.elements,
-            links: response.data.links,
-            total: response.data.total,
+            elements: response.data?.elements,
+            links: response.data?.links,
+            total: response.data?.total,
         },
         status: response.data?.statusCode || response.status,
         error: '',
@@ -443,6 +452,44 @@ export const getMarkersListService = async (
             data: [],
             status: 500,
             error: error,
+        };
+    }
+};
+
+export const getFeaturedMapsListService = async (
+    location: Coords,
+    paginationUrl?: string,
+): Promise<FeaturedMapsResponse> => {
+    try {
+        const response = await getFeaturedMaps(location, paginationUrl);
+        if (
+            !response?.data ||
+            response.status >= 400 ||
+            response.data?.statusCode >= 400
+        ) {
+            let errorMessage = 'error';
+            if (response.data?.message || response.data?.error) {
+                errorMessage = response.data.message || response.data.error;
+            }
+            return {
+                data: [],
+                status: response.data?.statusCode || response.status,
+                error: errorMessage,
+            };
+        }
+
+        return {
+            data: response.data,
+            status: response.data?.statusCode || response.status,
+            error: '',
+        };
+    } catch (error) {
+        loggError(error, 'getFeaturedMapsList -- maps');
+        loggErrorMessage(error, 'getFeaturedMapsList -- maps');
+        return {
+            data: [],
+            status: 500,
+            error: 'Internal error',
         };
     }
 };

@@ -1,14 +1,6 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
-import {StyleSheet, Platform, Dimensions} from 'react-native';
-import MapView, {
-    PROVIDER_GOOGLE,
-    Marker,
-    MarkerAnimated,
-    AnimatedRegion,
-    Camera,
-    LatLng,
-} from 'react-native-maps';
-import CompassHeading from 'react-native-compass-heading';
+import {StyleSheet, Platform, Dimensions, View} from 'react-native';
+import MapView, {PROVIDER_GOOGLE, Camera, LatLng} from 'react-native-maps';
 
 import useAppState from '@hooks/useAppState';
 import {useAppSelector} from '../../../../hooks/redux';
@@ -20,16 +12,23 @@ import AnimSvg from '../../../../helpers/animSvg';
 
 import gradient from './gradientSvg';
 import Polyline from './polyline/polyline';
+import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
-import MarkPointer from './markPointer';
-import {getHorizontalPx} from '../../../../helpers/layoutFoo';
+import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
+import {ShortCoordsType} from '@type/coords';
+import {isLocationValidate} from '@utils/locationData';
 
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
 interface IProps {
     routeId: string;
     trackerData: any;
-    autoFindMe: boolean;
+    autoFindMe: number;
+    headingOn: boolean;
+    compassHeading: any;
+    renderPath?: boolean;
+    restoredPath?: ShortCoordsType[];
+    autoFindMeSwith: (e: number) => void;
 }
 
 const initCompasHeading = {
@@ -44,15 +43,27 @@ const initCompasHeading = {
 };
 const ZOOM_START_VALUE = isIOS ? 18 : 17;
 
-const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
+const Map: React.FC<IProps> = ({
+    routeId,
+    trackerData,
+    autoFindMe,
+    headingOn,
+    compassHeading,
+    renderPath,
+    restoredPath,
+    autoFindMeSwith,
+}: IProps) => {
     const mapRef = useRef<MapView>(null);
-    const markerRef = useRef<Marker>(null);
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
     const mountedRef = useRef(false);
-    const compasHeadingdRef = useRef(0);
     const restoreRef = useRef(false);
-    const animatedMarkerRef = useRef<MarkerAnimated>(null);
+    const isAnimatingCameraRef = useRef(false);
 
-    const {appIsActive, appStateVisible} = useAppState();
+    const globalLocation = useLocationProvider()?.location;
+
+    const {appStateVisible, appPrevStateVisible} = useAppState();
+    const [showWebView, setShowWebView] = useState(false);
+    const [showMap, setShowMap] = useState(false);
 
     useEffect(() => {
         mountedRef.current = true;
@@ -63,68 +74,53 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
     }, []);
 
     useEffect(() => {
-        if (!appIsActive && appStateVisible === 'background') {
+        if (
+            appPrevStateVisible === 'active' &&
+            appStateVisible === 'background'
+        ) {
             restoreRef.current = false;
         }
-    }, [appIsActive, appStateVisible]);
-
-    const animatedPostion = useRef<AnimatedRegion>(
-        new AnimatedRegion({
-            latitude: 51.023,
-            longitude: 17.23,
-            latitudeDelta: 0.0092,
-            longitudeDelta: 0.0092,
-        }),
-    ).current;
+    }, [appPrevStateVisible, appStateVisible]);
 
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
 
-    const [compassHeading, setCompassHeading] = useState(0);
     const [location, setLocaion] = useState<LatLng | null>(null);
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [autoFindMeLastState, setAutoFindMeLastState] = useState<boolean>(
+    const [autoFindMeLastState, setAutoFindMeLastState] = useState<number>(
         autoFindMe,
     );
 
     useEffect(() => {
+        if (!mountedRef.current) {
+            return;
+        }
+
         const loc = async () => {
-            const l = await getCurrentLocation('', 1);
+            if (globalLocation) {
+                setLocaion(globalLocation);
+                setShowMap(true);
+            }
+            const l = await getCurrentLocation('', 3);
+            if (!l || !isLocationValidate(l)) {
+                return;
+            }
             if (l?.coords) {
                 const c = {
                     latitude: l.coords.latitude,
                     longitude: l.coords.longitude,
                 };
                 setLocaion(c);
-                animatedPostion?.setValue({
-                    latitude: c.latitude,
-                    longitude: c.longitude,
-                    latitudeDelta: 0.0092,
-                    longitudeDelta: 0.0092,
-                });
             }
+            setShowMap(true);
         };
         loc();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        const degree_update_rate = 5;
-
-        if (mountedRef.current) {
-            CompassHeading.start(degree_update_rate, ({heading}) => {
-                const lastHeading = compasHeadingdRef.current;
-                compasHeadingdRef.current = heading;
-                if (Math.abs(lastHeading - heading) >= degree_update_rate) {
-                    setCompassHeading(heading);
-                }
-            });
-        }
 
         return () => {
-            CompassHeading.stop();
+            clearTimeout(timerRef.current as NodeJS.Timeout);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -140,110 +136,73 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const setMapCamera = useCallback(() => {
-        const hasLocation = trackerData?.coords || location;
-        const shouldResetZoom = autoFindMe !== autoFindMeLastState;
+    const animateCam = (animation: Partial<Camera>, duration?: number) => {
+        mapRef.current?.animateCamera(animation, {duration: duration || 1000});
+    };
 
-        if (mapRef.current && (hasLocation || shouldResetZoom)) {
-            let animation: Partial<Camera> = {
-                heading: compassHeading,
-            };
+    const animateCameraOnIOS = useCallback(
+        async (animation: Partial<Camera>) => {
+            if (!isAnimatingCameraRef.current) {
+                isAnimatingCameraRef.current = true;
+                animateCam(animation, 850);
 
-            const coords = {latitude: 0, longitude: 0};
-            if (trackerData?.coords) {
-                coords.latitude = trackerData.coords.lat;
-                coords.longitude = trackerData.coords.lon;
-            } else if (location) {
-                coords.latitude = location.latitude;
-                coords.longitude = location.longitude;
+                timerRef.current = setTimeout(
+                    () => {
+                        isAnimatingCameraRef.current = false;
+                    },
+                    headingOn ? 900 : 0,
+                );
             }
+        },
+        [headingOn],
+    );
 
-            if (hasLocation) {
-                if (autoFindMe) {
+    const setMapCamera = useCallback(() => {
+        let animation: Partial<Camera> = {
+            heading: headingOn ? compassHeading : 0,
+        };
+
+        if (autoFindMe > 0 && mapRef.current) {
+            if ((trackerData && trackerData.coords) || location) {
+                if (trackerData && trackerData.coords) {
                     animation.center = {
-                        latitude: coords.latitude,
-                        longitude: coords.longitude,
+                        latitude: trackerData.coords.lat,
+                        longitude: trackerData.coords.lon,
+                    };
+                } else if (location) {
+                    animation.center = {
+                        latitude: location.latitude,
+                        longitude: location.longitude,
                     };
                 }
             }
 
             if (autoFindMe !== autoFindMeLastState) {
-                if (autoFindMe) {
-                    animation.zoom = ZOOM_START_VALUE;
-                }
-                setAutoFindMeLastState(autoFindMe);
+                animation.zoom = ZOOM_START_VALUE;
             }
+            setAutoFindMeLastState(autoFindMe);
+        }
 
-            mapRef.current?.animateCamera(animation, {duration: 1000});
+        if (isIOS) {
+            animateCameraOnIOS(animation);
+        } else {
+            animateCam(animation);
         }
     }, [
-        autoFindMe,
-        autoFindMeLastState,
-        trackerData?.coords,
         location,
+        autoFindMe,
+        headingOn,
         compassHeading,
+        trackerData,
+        animateCameraOnIOS,
+        autoFindMeLastState,
     ]);
 
-    const setMarker = useCallback(async () => {
-        if (trackerData?.coords && mapRef?.current && mountedRef.current) {
-            const pos = {
-                latitude: trackerData.coords.lat,
-                longitude: trackerData.coords.lon,
-            };
-
-            let ratio = 1;
-            const latitudeDelta =
-                mapRef?.current?.__lastRegion?.latitudeDelta || 1;
-            const longitudeDelta =
-                mapRef?.current?.__lastRegion?.longitudeDelta || 1;
-            if (typeof latitudeDelta !== 'undefined') {
-                const zoom =
-                    Math.log2(
-                        360 * (getHorizontalPx(414) / 256 / latitudeDelta),
-                    ) + 1;
-
-                if (zoom > 17 && zoom < 20) {
-                    ratio = -((zoom - 20) / 3);
-                }
-                if (zoom >= 20) {
-                    ratio = 0;
-                }
-            }
-
-            if (!restoreRef.current) {
-                setLocaion(pos);
-                markerRef.current?.redraw();
-
-                restoreRef.current = true;
-                return;
-            }
-            // restoreRef.current = true
-            if (Platform.OS === 'android') {
-                markerRef?.current?.animateMarkerToCoordinate(
-                    pos,
-                    1000 + 500 * ratio,
-                );
-            } else {
-                animatedPostion
-                    ?.timing({
-                        ...pos,
-                        latitudeDelta: latitudeDelta,
-                        longitudeDelta: longitudeDelta,
-                        duration: 1000 + 500 * ratio,
-                        useNativeDriver: false,
-                    })
-                    .start();
-            }
+    useEffect(() => {
+        if (mountedRef.current) {
+            setMapCamera();
         }
-    }, [trackerData?.coords, animatedPostion]);
-
-    useEffect(() => {
-        setMapCamera();
     }, [setMapCamera]);
-
-    useEffect(() => {
-        setMarker();
-    }, [setMarker]);
 
     const cameraInitObj = {
         ...initCompasHeading,
@@ -257,67 +216,87 @@ const Map: React.FC<IProps> = ({routeId, trackerData, autoFindMe}: IProps) => {
         zoom: ZOOM_START_VALUE,
     };
 
-    const MarkerToDisplay =
-        Platform.OS === 'android' ? (
-            location && (
-                <Marker
-                    ref={markerRef}
-                    coordinate={location}
-                    anchor={{x: 0.3, y: 0.3}}>
-                    <MarkPointer />
-                </Marker>
-            )
-        ) : (
-            <MarkerAnimated
-                ref={animatedMarkerRef}
-                anchor={{x: 0.5, y: 0.3}}
-                coordinate={animatedPostion || location}>
-                <MarkPointer />
-            </MarkerAnimated>
-        );
+    const onSetLocationHanlder = (pos: LatLng) => {
+        setLocaion(pos);
+    };
 
-    return (
-        <>
-            {location && (
-                <>
-                    <AnimSvg style={styles.gradient} source={gradient} />
-                    <MapView
-                        provider={PROVIDER_GOOGLE}
-                        style={styles.map}
-                        customMapStyle={mapStyle}
-                        pitchEnabled={true}
-                        ref={mapRef}
-                        rotateEnabled={true}
-                        scrollEnabled={true}
-                        zoomEnabled={true}
-                        zoomTapEnabled={true}
-                        showsCompass={false}
-                        {...(!isIOS && {
-                            initialCamera: cameraInitObj,
-                        })}
-                        {...(isIOS && {
-                            onLayout: () => {
-                                if (mapRef.current) {
-                                    mapRef.current?.setCamera(cameraInitObj);
-                                }
-                            },
-                        })}>
-                        {mountedRef.current && MarkerToDisplay}
-                        {trackerData?.coords && (
-                            <SinglePolyline coords={trackerData} />
-                        )}
-                        {foreignRoute && (
-                            <Polyline
-                                coords={foreignRoute}
-                                strokeColor="#3583e4"
-                                strokeColors={['#3583e4']}
-                            />
-                        )}
-                    </MapView>
-                </>
+    const onSetIsRestoredHandler = () => {
+        restoreRef.current = true;
+    };
+
+    const handleCameraChange = e => {
+        autoFindMeSwith(0);
+    };
+
+    /* TODO: error boundary */
+    return showMap ? (
+        <View>
+            {showWebView && (
+                <AnimSvg style={styles.gradient} source={gradient} />
             )}
-        </>
-    );
+            <MapView
+                ref={mapRef}
+                provider={PROVIDER_GOOGLE}
+                style={styles.map}
+                customMapStyle={mapStyle}
+                pitchEnabled={true}
+                rotateEnabled={true}
+                scrollEnabled={true}
+                zoomEnabled={true}
+                zoomTapEnabled={true}
+                showsCompass={false}
+                onPanDrag={(e: any) => handleCameraChange(e)}
+                onMapLoaded={() => {
+                    setShowWebView(true);
+                }}
+                {...(!isIOS && {
+                    initialCamera: cameraInitObj,
+                })}
+                {...(isIOS && {
+                    onLayout: () => {
+                        if (mapRef.current) {
+                            mapRef.current?.setCamera(cameraInitObj);
+                        }
+                    },
+                })}>
+                {mountedRef.current && location ? (
+                    <AnimatedMarker
+                        coords={trackerData?.coords}
+                        mapRegion={mapRef?.current?.__lastRegion}
+                        setLocation={onSetLocationHanlder}
+                        isRestored={restoreRef.current}
+                        setIsRestored={onSetIsRestoredHandler}
+                        show={
+                            !!(
+                                (
+                                    mapRef?.current &&
+                                    mountedRef.current &&
+                                    renderPath
+                                ) //check if renderPath should stay
+                            )
+                        }
+                        location={location}
+                        headingOn={headingOn}
+                        compassHeading={compassHeading}
+                    />
+                ) : null}
+                {trackerData?.coords ? (
+                    <SinglePolyline
+                        coords={trackerData}
+                        renderPath={renderPath}
+                        restoredPath={restoredPath}
+                    />
+                ) : null}
+                {foreignRoute && (
+                    <Polyline
+                        coords={foreignRoute}
+                        strokeColor="#3583e4"
+                        strokeColors={['#3583e4']}
+                    />
+                )}
+            </MapView>
+        </View>
+    ) : null;
 };
 
 const styles = StyleSheet.create({

@@ -3,6 +3,8 @@ import {PersistedState} from 'redux-persist/es/types';
 import {BikesState} from '../reducers/bikes';
 import {RootState} from '../storage';
 
+import {jsonParse} from '@utils/transformJson';
+
 /**
  * Remove 'root' data.
  */
@@ -33,13 +35,13 @@ export const migration = async (
             return state;
         }
 
-        const rehydratedLvl1 = JSON.parse(storedState);
+        const rehydratedLvl1 = jsonParse(storedState);
         const newState = {...state};
         /**
          * Check bike data exists and rehydrate.
          */
         if (rehydratedLvl1?.bikes) {
-            const rehydratedLvl2: BikesState = JSON.parse(rehydratedLvl1.bikes);
+            const rehydratedLvl2: BikesState = jsonParse(rehydratedLvl1?.bikes);
 
             /**
              * Abort migration if there is no data to merge.

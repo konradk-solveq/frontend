@@ -19,13 +19,15 @@ const stylesFourthSection = StyleSheet.create({
     },
     secondColumnItem: {
         marginRight: getHorizontalPx(30),
-        flexDirection: 'row',
     },
     secondColumnIcon: {
         marginTop: getVerticalPx(isIOS ? 3 : 8),
         marginRight: getHorizontalPx(7),
         width: getHorizontalPx(16),
         height: getHorizontalPx(16),
+    },
+    secondColumnIconLower: {
+        marginTop: getVerticalPx(isIOS ? 0 : 3),
     },
 });
 

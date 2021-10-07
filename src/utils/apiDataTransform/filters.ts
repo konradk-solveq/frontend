@@ -5,8 +5,8 @@ export const checkIfContainsFitlers = (filters?: PickedFilters): boolean => {
         return false;
     }
 
-    if (Object.keys(filters)?.length === 0 || !Object.keys(filters)?.length) {
-        return true;
+    if (!Object.keys(filters)?.length || Object.keys(filters)?.length === 0) {
+        return false;
     }
 
     let isValid = false;

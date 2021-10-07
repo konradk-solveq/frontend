@@ -1,6 +1,13 @@
 import {SelectOptionType} from './map.model';
 
-export class AppConfig {
+export type SelectEnumOptionsT = {
+    difficulties: SelectOptionType[];
+    reactions: SelectOptionType[];
+    surfaces: SelectOptionType[];
+    tags: SelectOptionType[];
+};
+
+export class AppConfig implements SelectEnumOptionsT {
     constructor(
         public name: string,
         public lang: string,

@@ -11,11 +11,19 @@ import {
     RESULTS,
     request,
 } from 'react-native-permissions';
+import GetLocation from 'react-native-get-location';
 
 import logger from '@utils/crashlytics';
 import {LocationDataI} from '@interfaces/geolocation';
 import {BasicCoordsType} from '@type/coords';
 import {I18n} from '@translations/I18n';
+import {getTrackerData} from '@hooks/utils/localizationTracker';
+import {isLocationValidate} from './locationData';
+import {
+    loggErrorMessage,
+    loggErrorWithScope,
+    sentryLogLevel,
+} from '@sentryLogger/sentryLogger';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -70,13 +78,14 @@ export const initBGeolocalization = async (notificationTitle: string) => {
                 positiveAction: trans.positiveAction,
                 negativeAction: trans.negativeAction,
             },
+            enableTimestampMeta: !isIOS,
             distanceFilter: 10,
-            stopTimeout: 1,
+            stopTimeout: __DEV__ ? 1 : 5,
             debug: __DEV__ ? true : false,
             logLevel: __DEV__
                 ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
                 : BackgroundGeolocation.LOG_LEVEL_OFF,
-            maxDaysToPersist: 5,
+            maxDaysToPersist: __DEV__ ? 1 : 3,
             desiredOdometerAccuracy: 10,
             notification: {
                 text: notificationTitle,
@@ -86,6 +95,8 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             preventSuspend: true,
             heartbeatInterval: 60,
             activityType: BackgroundGeolocation.ACTIVITY_TYPE_FITNESS,
+            // speedJumpFilter: 150,
+            stationaryRadius: 25,
         });
 
         return state;
@@ -94,40 +105,65 @@ export const initBGeolocalization = async (notificationTitle: string) => {
         logger.log(`[initBGeolocalization] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'initBGeolocalization');
     }
 };
 
+/**
+ *
+ * @param routeId
+ * @param samples
+ * @param accuracy
+ * @param notPersist
+ * @param timeout - in sedonds
+ * @param maximumAge - in milliseconds
+ * @returns
+ */
 export const getCurrentLocation = async (
     routeId?: string,
     samples?: number,
     accuracy?: number,
     notPersist?: boolean,
+    timeout?: number,
+    maximumAge?: number,
 ) => {
     try {
+        const state = await getBackgroundGeolocationState();
+        if (!state?.enabled) {
+            return;
+        }
+
         const location = await BackgroundGeolocation.getCurrentPosition({
-            timeout: 30,
-            maximumAge: 500,
-            desiredAccuracy: accuracy || 10,
-            samples: samples || 6,
+            timeout: timeout || 30,
+            maximumAge: maximumAge || 0,
+            desiredAccuracy: accuracy || 5,
+            samples: samples || 8,
             persist: !notPersist,
             extras: {
                 route_id: routeId || '',
             },
         });
 
+        if (!location || !isLocationValidate(location)) {
+            return;
+        }
+
         return location;
     } catch (e) {
-        console.log('[getCurrentLocation - e]', e);
-        logger.log(`[getCurrentLocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[getCurrentLocation - e]', errorMessage);
+        logger.log(`[getCurrentLocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
+
+        loggErrorMessage(error, 'getCurrentLocation', sentryLogLevel.Log);
     }
 };
 
 export const getLatLng = async () => {
     const location = await getCurrentLocation();
-    if (!location) {
+    if (!location || !isLocationValidate(location)) {
         return {lat: undefined, lng: undefined};
     }
 
@@ -139,8 +175,8 @@ export const getLatLng = async () => {
 export const getLatLngFromForeground = async (): Promise<
     BasicCoordsType | undefined
 > => {
-    const location = await getCurrentLocation('', 1, 10, true);
-    if (!location) {
+    const location = await getCurrentLocation('', 4, 10, true);
+    if (!location || !isLocationValidate(location)) {
         return undefined;
     }
 
@@ -159,6 +195,8 @@ export const getBackgroundGeolocationState = async () => {
         logger.log(`[getBackgroundGeolocationState] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'getBackgroundGeolocationState');
     }
 };
 
@@ -167,9 +205,6 @@ export const startBackgroundGeolocation = async (
     keep?: boolean,
 ) => {
     try {
-        if (!keep) {
-            await BackgroundGeolocation.resetOdometer();
-        }
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: false,
             startOnBoot: true,
@@ -182,16 +217,24 @@ export const startBackgroundGeolocation = async (
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
             },
         });
-
         const state = await startBackgroundGeolocationPlugin(true);
-        await resumeTracingLocation();
+
+        if (!keep) {
+            BackgroundGeolocation.resetOdometer();
+        }
+        setTimeout(async () => {
+            await resumeTracingLocation();
+        }, 1000);
 
         return state;
     } catch (e) {
-        console.warn('[startBackgroundGeolocation - error]', e);
-        logger.log(`[startBackgroundGeolocation] - ${e}`);
-        const error = new Error(e);
+        const errorMessage = transformLocationErrorCode(e);
+        console.warn('[startBackgroundGeolocation - error]', errorMessage);
+        logger.log(`[startBackgroundGeolocation] - ${errorMessage}`);
+        const error = new Error(errorMessage);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'startBackgroundGeolocation');
     }
 };
 
@@ -201,9 +244,7 @@ export const stopBackgroundGeolocation = async () => {
             stopOnTerminate: true,
             startOnBoot: false,
             isMoving: false,
-            extras: {
-                route_id: '',
-            },
+            extras: undefined,
             notification: {
                 text: 'Pobieranie lokalizacji',
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
@@ -211,12 +252,18 @@ export const stopBackgroundGeolocation = async () => {
         });
 
         const state = await stopBackgroundGeolocationPlugin();
+        if (state?.odometer && state?.odometer > 0) {
+            BackgroundGeolocation.resetOdometer();
+        }
+
         return state;
     } catch (e) {
         console.warn('[stopBackgroundGeolocation - error]', e);
         logger.log(`[stopBackgroundGeolocation] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'stopBackgroundGeolocation');
     }
 };
 
@@ -224,7 +271,10 @@ export const cleanUp = () => {
     BackgroundGeolocation.removeListeners();
 };
 
-export const cleanUpListener = (listener: string, handler: () => void) => {
+export const cleanUpListener = (
+    listener: string,
+    handler: (param?: any) => void,
+) => {
     try {
         BackgroundGeolocation.removeListener(listener, handler);
     } catch (e) {
@@ -232,6 +282,8 @@ export const cleanUpListener = (listener: string, handler: () => void) => {
         logger.log(`[cleanUpListener] - [${listener}] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'cleanUpListener');
     }
 };
 
@@ -242,11 +294,13 @@ export const onLocationChange = async (
     try {
         BackgroundGeolocation.onLocation(onLocation, onError);
     } catch (e) {
-        console.log('[onLocationChange - error]', e);
-        logger.log(`[onLocationChange] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[onLocationChange - error]', errorMessage);
+        logger.log(`[onLocationChange] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'onLocationChange');
     }
 };
 
@@ -257,11 +311,13 @@ export const onPostitionWatch = async (
     try {
         BackgroundGeolocation.watchPosition(onLocation, onError);
     } catch (e) {
-        console.log('[onPostitionWatch - error]', e);
-        logger.log(`[onPostitionWatch] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[onPostitionWatch - error]', errorMessage);
+        logger.log(`[onPostitionWatch] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'onPostitionWatch');
     }
 };
 
@@ -269,11 +325,13 @@ export const cleaUpPositionWatcher = () => {
     try {
         BackgroundGeolocation.stopWatchPosition();
     } catch (e) {
-        console.warn('[cleaUpPositionWatcher - error]', e);
-        logger.log(`[cleaUpPositionWatcher] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.warn('[cleaUpPositionWatcher - error]', errorMessage);
+        logger.log(`[cleaUpPositionWatcher] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'cleaUpPositionWatcher');
     }
 };
 
@@ -303,6 +361,8 @@ export const getLocations = async () => {
         logger.log(`[getLocations] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'getLocations');
     }
 };
 
@@ -316,6 +376,55 @@ export const requestGeolocationPermission = async () => {
         logger.log(`[requestGeolocationPermission] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'requestGeolocationPermission');
+    }
+};
+
+/**
+ *
+ * @param routeId
+ * @returns
+ */
+export const getLastLocationByRoutId = async (
+    routeId: string,
+    locationsData?: any[],
+) => {
+    if (!routeId) {
+        return;
+    }
+
+    const locations = locationsData || (await getLocations());
+    if (!locations?.length) {
+        return;
+    }
+
+    try {
+        let lastLocation: any;
+        for (let index = locations.length - 1; index > 0; index--) {
+            const l: any = locations[index];
+            if (!l || !l?.coords) {
+                continue;
+            }
+
+            if (l?.extras?.route_id === routeId) {
+                lastLocation = {
+                    ...l,
+                    coords: {
+                        ...l.coords,
+                        speed: undefined,
+                    },
+                };
+                break;
+            }
+        }
+
+        if (!lastLocation) {
+            return;
+        }
+        return getTrackerData(lastLocation);
+    } catch (error) {
+        console.warn('[getLastLocationByRoutId - error]', error);
     }
 };
 
@@ -327,10 +436,13 @@ export const pauseTracingLocation = async () => {
             await BackgroundGeolocation.changePace(false);
         }
     } catch (e) {
+        const errorMessage = transformLocationErrorCode(e);
         console.log('[pauseTracingLocation - error]', e);
         logger.log(`[pauseTracingLocation] - ${e}`);
-        const error = new Error(e);
+        const error = new Error(errorMessage);
         logger.recordError(error);
+
+        loggErrorWithScope(error, 'pauseTracingLocation');
     }
 };
 
@@ -342,11 +454,13 @@ export const resumeTracingLocation = async () => {
             await BackgroundGeolocation.changePace(true);
         }
     } catch (e) {
-        console.log('[resumeTracingLocation - error]', e);
-        logger.log(`[resumeTracingLocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[resumeTracingLocation - error]', errorMessage);
+        logger.log(`[resumeTracingLocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
+
+        loggErrorWithScope(errorMessage, 'resumeTracingLocation');
     }
 };
 
@@ -357,11 +471,13 @@ export const pauseBackgroundGeolocation = async () => {
 
         return state;
     } catch (e) {
-        console.log('[pauseBackgroundGeolocation - error]', e);
-        logger.log(`[pauseBackgroundGeolocation] - ${e}`);
         const errorMessage = transformLocationErrorCode(e);
+        console.log('[pauseBackgroundGeolocation - error]', errorMessage);
+        logger.log(`[pauseBackgroundGeolocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
         logger.recordError(error);
+
+        loggErrorWithScope(errorMessage, 'pauseBackgroundGeolocation');
     }
 };
 
@@ -372,10 +488,13 @@ export const resumeBackgroundGeolocation = async () => {
 
         return state;
     } catch (e) {
-        console.log('[resumeBackgroundGeolocation - error]', e);
-        logger.log('[resumeBackgroundGeolocation]');
-        const error = new Error(e);
+        const errorMessage = transformLocationErrorCode(e);
+        console.log('[resumeBackgroundGeolocation - error]', errorMessage);
+        logger.log(`[resumeBackgroundGeolocation] ${errorMessage}`);
+        const error = new Error(errorMessage);
         logger.recordError(error);
+
+        loggErrorWithScope(errorMessage, 'resumeBackgroundGeolocation');
     }
 };
 
@@ -394,6 +513,8 @@ export const askFineLocationPermission = async () => {
         logger.log(`[askFineLocationPermission] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'askFineLocationPermission');
     }
 
     return permission;
@@ -428,6 +549,8 @@ export const checkAndroidLocationPermission = async () => {
         logger.log(`[checkAndroidLocationPermission] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'checkAndroidLocationPermission');
     }
 
     return locationPermissions;
@@ -454,6 +577,8 @@ export const checkDeviceHasLocationAlwaysPermission = async () => {
         logger.log(`[checkDeviceHasLocationAlwaysPermission] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'checkDeviceHasLocationAlwaysPermission');
     }
 
     return locationPermission;
@@ -511,6 +636,8 @@ export const addGeofence = async (
         logger.log(`[addGeofence] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'addGeofence');
     }
 };
 
@@ -532,6 +659,8 @@ export const onGeofenceChangeListener = async (
         logger.log(`[onGeofenceChangeListener] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'onGeofenceChangeListener');
     }
 };
 
@@ -567,6 +696,8 @@ export const setGeofenceFromCurrentLocation = async (
         logger.log(`[setGeofenceFromCurrentLocation] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'setGeofenceFromCurrentLocation');
     }
 };
 
@@ -578,6 +709,8 @@ export const removeGeofence = async (identifier: string) => {
         logger.log(`[removeGeofence] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'removeGeofence');
     }
 };
 
@@ -595,6 +728,8 @@ export const startBackgroundGeolocationPlugin = async (force?: boolean) => {
         logger.log(`[startBackgroundGeolocationPlugin] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'startBackgroundGeolocationPlugin');
     }
 };
 
@@ -612,6 +747,8 @@ export const startMonitoringGeofences = async (forceToStart?: boolean) => {
         logger.log(`[startMonitoringGeofences] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'startMonitoringGeofences');
     }
 };
 
@@ -627,5 +764,101 @@ export const stopBackgroundGeolocationPlugin = async () => {
         logger.log(`[stopBackgroundGeolocationPlugin] - ${e}`);
         const error = new Error(e);
         logger.recordError(error);
+
+        loggErrorWithScope(e, 'stopBackgroundGeolocationPlugin');
+    }
+};
+
+export const getLocationWithLowAccuracy = async () => {
+    try {
+        const location = await GetLocation.getCurrentPosition({
+            enableHighAccuracy: false,
+            timeout: 5000,
+        });
+        if (!location) {
+            return undefined;
+        }
+
+        const loc: LocationDataI = {
+            coords: {
+                altitude: location.altitude,
+                latitude: location.latitude,
+                longitude: location.longitude,
+                speed: location.speed,
+            },
+            odometer: 0,
+            timestamp: '',
+            uuid: `${location.time}`,
+        };
+
+        return loc;
+    } catch (error) {
+        console.warn('[getLocationWithLowAccuracy - error]', error);
+    }
+};
+
+export const onWatchPostionChangeListener = async (
+    callback: (location: Location) => void,
+    interval?: number,
+    timeout?: number,
+    notPersist?: boolean,
+) => {
+    try {
+        BackgroundGeolocation.watchPosition(callback, () => {}, {
+            interval: interval || 1000,
+            timeout: timeout || 30,
+            desiredAccuracy: isIOS ? -2 : -1,
+            persist: !notPersist,
+        });
+    } catch (e) {
+        console.log('[onWatchPostionChangeListener - error]', e);
+        logger.log(`[onWatchPostionChangeListener] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'onWatchPostionChangeListener');
+    }
+};
+
+export const stopWatchPostionChangeListener = async () => {
+    try {
+        await BackgroundGeolocation.stopWatchPosition();
+    } catch (e) {
+        console.log('[stopWatchPostionChangeListener - error]', e);
+        logger.log(`[stopWatchPostionChangeListener] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'stopWatchPostionChangeListener');
+    }
+};
+
+export const setConfigWithLocationPermission = async (
+    type: 'Always' | 'WhenInUse' | 'Any',
+) => {
+    try {
+        await BackgroundGeolocation.setConfig({
+            locationAuthorizationRequest: type,
+        });
+    } catch (e) {
+        console.log('[setLocationPermission - error]', e);
+        logger.log(`[setLocationPermission] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'setLocationPermission');
+    }
+};
+
+export const resetOdometer = async () => {
+    try {
+        await BackgroundGeolocation.resetOdometer();
+    } catch (e) {
+        console.log('[resetOdometer - error]', e);
+        logger.log(`[resetOdometer] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'resetOdometer');
     }
 };

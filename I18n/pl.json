@@ -17,7 +17,10 @@
         "title": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
         "placeholder": "Podaj imię lub pseudonim",
         "skip": "POMIŃ",
-        "goFoward": "DALEJ"
+        "goFoward": "DALEJ",
+        "emptyValue": "Uzupełnij pole",
+        "toShortValue": "Podane imię lub pseudonim jest zbyt krótkie",
+        "toLongValue": "Podane imię lub pseudonim jest zbyt długie"
     },
     "OneLineTekst-error-null": "Wartość nie może być null-em",
     "TurtorialNFC": {
@@ -344,6 +347,7 @@
             "distanceToStart": " km od Ciebie",
             "addToFavAction": "Pobierz trasę",
             "publishTripAction": "Upublicznij",
+            "editTripAction": "Edytuj",
             "startTripAction": "Rozpocznij",
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
@@ -367,6 +371,9 @@
             "routesNumberTitle": "Ilość nagranych tras:",
             "todayDate": "Dziś",
             "yestardayDate": "Wczoraj"
+        },
+        "FeaturedRoutes": {
+            "showMoreBtn": "Pokaż więcej"
         }
     },
     "MainRoutesMap": {
@@ -416,11 +423,14 @@
             "publishWithName": "Opublikuj jako",
             "intro": "Opis trasy",
             "description": "Szczegółowy opis trasy",
-            "publishButton": "Zapisz i upublicznij",
+            "publishButton": "Upublicznij",
+            "updateButton": "Aktualizuj",
             "saveButton": "Zapisz",
             "imagesTitle": "Zdjęcia z trasy",
             "removeRouteBtn": "Tak, usuń",
             "cancelRemoveRouteBtn": "Anuluj",
+            "defaultUser": "Rowerzysta",
+            "publishAs": "Opublikuj jako",
             "attributes": {
                 "level": {
                     "name": "Poziom trudności",
@@ -636,6 +646,7 @@
         "defaultName": "Rowerzysto",
         "titleSufix": ", trasa została ",
         "titleSufixPublished": "upubliczniona",
+        "titleSufixUpdated": "zaktualizowana",
         "titleSufixSaved": "zapisana",
         "okBtn": "Ok",
         "errorTitle": "Coś poszło nie tak!"
@@ -719,6 +730,12 @@
             "positiveAction": "Zmień na Zawsze zezwalaj",
             "negativeAction": "Anuluj"
         }
+    },
+    "ErrorBoundary": {
+        "header": "Wystąpił błąd",
+        "body": "Przepraszamy...",
+        "resetButton": "Spróbuj ponownie",
+        "restartButton": "Uruchom ponownie aplikację"
     },
     "aaaaaaa-aaaaaa": "_____"
 }

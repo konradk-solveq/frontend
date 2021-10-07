@@ -4,11 +4,11 @@ import {
     tagsFilter,
 } from '../../../../../enums/mapsFilters';
 
-export type OptionType = levelFilter | pavementFilter | tagsFilter;
+export type OptionFilterType = levelFilter | pavementFilter | tagsFilter;
 
 export interface BaseFilter {
     name: string;
-    options: OptionType[];
+    options: OptionFilterType[];
 }
 
 export interface FilterI {

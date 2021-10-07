@@ -17,6 +17,7 @@ import {
     getHorizontalPx,
 } from '../../../../helpers/layoutFoo';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import useAppState from '@hooks/useAppState';
 import {getBike} from '../../../../helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
@@ -36,6 +37,7 @@ import {
 } from '../../../../storage/selectors/routes';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
+import ErrorBoundary from '@providers/errorBoundary/ErrorBoundary';
 
 import ActionButtons from './actionButtons';
 import Map from './map';
@@ -43,6 +45,10 @@ import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
+import DataPreview from '../../../../sharedComponents/dataPreview/dataPreview';
+import CompassHeading from 'react-native-compass-heading';
+
+import {TESTING_MODE} from '@env';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -66,6 +72,7 @@ const setTotalTime = (pTime: {start: number; total: number}) => {
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
+    const mountedRef = useRef(false);
     const notificationContext = useNotificationContext();
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
@@ -78,7 +85,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const headerHeight = getStackHeaderHeight() - statusBarHeight;
 
     const [myRouteNumber, setMyRouteNumber] = useState(0);
-    const [autoFindMe, setAutoFindMe] = useState(true);
+    const [autoFindMe, setAutoFindMe] = useState<number>(1);
+    const [headingOn, setHeadingOn] = useState<boolean>(true);
     const [pauseTime, setPauseTime] = useState({
         start: 0,
         total: 0,
@@ -95,9 +103,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         resumeTracker,
         followedRouteId,
         isActive,
+        restoredPath,
+        processing,
     } = useLocalizationTracker(true, true);
 
     const [mapHiden, setMapHiden] = useState(true);
+    const [renderMap, setRenderMap] = useState(false);
+    const [renderPath, setRenderPath] = useState(false);
 
     const bileListTop = useRef(
         new Animated.Value(headerHeight + getVerticalPx(50)),
@@ -124,6 +136,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [rightBtnTile, setRightBtnTile] = useState('');
     const [headerTitle, setHeaderTitle] = useState('');
     const [pause, setPause] = useState(true);
+
+    useEffect(() => {
+        mountedRef.current = true;
+
+        return () => {
+            mountedRef.current = false;
+        };
+    }, []);
 
     /* Re-run counter after app restart */
     useEffect(() => {
@@ -153,6 +173,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     // zmiana stanu strony na lewym przycisku
     const heandleLeftBtnClick = useCallback(() => {
+        if (!mountedRef.current) {
+            return;
+        }
+
         switch (pageState) {
             case 'start':
                 returnToPreviousScreen(navigation);
@@ -202,6 +226,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     // zmiana stanu strony na prawym przycisku
     const heandleRightBtnClick = useCallback(async () => {
+        if (!mountedRef.current) {
+            return;
+        }
+
         switch (pageState) {
             case 'start':
                 setPageState('record');
@@ -340,11 +368,73 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     }, [pageState, trans]);
 
     const onHideMapHandler = (state: boolean) => {
+        setTimeout(
+            () => {
+                setRenderPath(!state);
+            },
+            !state ? 0 : 250,
+        );
         setMapHiden(state);
         dispatch(setRouteMapVisibility(!state));
     };
 
-    // setObjSize(334, 50);
+    // Delay map loading because of performance issue
+    useEffect(() => {
+        let t: NodeJS.Timeout;
+        if (!renderMap) {
+            t = setTimeout(() => {
+                setRenderMap(true);
+            }, 2000);
+        }
+
+        return () => {
+            clearTimeout(t);
+        };
+    }, [renderMap]);
+
+    // kompas mapy - przeniesiony z mapy, żby spuścić do innych komponentów
+    const compasHeadingdRef = useRef(0);
+
+    const [compassHeading, setCompassHeading] = useState(0);
+
+    useEffect(() => {
+        const degree_update_rate = 5;
+        if (mountedRef.current) {
+            CompassHeading.start(degree_update_rate, ({heading}) => {
+                const lastHeading = compasHeadingdRef.current;
+                compasHeadingdRef.current = heading;
+                if (Math.abs(lastHeading - heading) >= degree_update_rate) {
+                    setCompassHeading(heading);
+                }
+            });
+        }
+        return () => {
+            CompassHeading.stop();
+        };
+    }, []);
+
+    /**
+     * Do not render path when app is not active
+     */
+    const {appStateVisible} = useAppState();
+    useEffect(() => {
+        let t: NodeJS.Timeout;
+        if (!isActive || !renderMap) {
+            return;
+        }
+        if (appStateVisible === 'background') {
+            t = setTimeout(() => {
+                setRenderPath(false);
+            }, 500);
+        } else {
+            setRenderPath(true);
+        }
+
+        return () => {
+            clearTimeout(t);
+        };
+    }, [appStateVisible, isActive, renderMap]);
+
     const styles = StyleSheet.create({
         stackHeader: {
             zIndex: 3,
@@ -370,85 +460,192 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     return (
         <>
             <StatusBar backgroundColor="#ffffff" />
-            <View style={styles.container}>
-                <StackHeader
-                    onpress={heandleGoBackClick}
-                    inner={headerTitle}
-                    whiteArow={!pause && pageState !== 'endMessage' && mapHiden}
-                    titleOn={true}
-                    style={styles.stackHeader}
-                    started={
-                        pageState === 'record' ||
-                        (pageState === 'cancelText' && !pause)
-                    }
-                    mapHiden={mapHiden}
-                    duration={ANIMATION_DURATION}
-                />
-
-                <Map
-                    routeId={followedRouteId || route?.params?.mapID}
-                    trackerData={trackerData}
-                    autoFindMe={autoFindMe}
-                />
-
-                {bikes && (
-                    <Animated.View
-                        pointerEvents="box-none"
-                        style={[
-                            styles.bikeList,
-                            {
-                                top: bileListTop,
-                            },
-                        ]}>
-                        <BikeSelectorList
-                            list={bikes}
-                            callback={onChangeBikeHandler}
-                            currentBike={bike?.description?.serial_number}
-                            buttonText={'add'}
+            <ErrorBoundary onError={() => onHideMapHandler(true)}>
+                <View style={styles.container}>
+                    <CounterDataContext.Provider
+                        value={{
+                            trackerData,
+                            pauseTime: pauseTime.total,
+                        }}>
+                        <NativeCounter
+                            time={trackerStartTime}
+                            isRunning={isActive}
                             mapHiden={mapHiden}
+                            setMapHiden={onHideMapHandler}
+                            duration={ANIMATION_DURATION}
+                            aplaShow={
+                                pageState === 'cancelText' ||
+                                pageState === 'endMessage'
+                            }
+                            autoFindMeSwith={(e: number) => setAutoFindMe(e)}
+                            autoFindMe={autoFindMe}
+                            headingSwitch={(e: boolean) => setHeadingOn(e)}
+                            compassHeading={compassHeading}
+                        />
+                    </CounterDataContext.Provider>
+
+                    <StackHeader
+                        onpress={heandleGoBackClick}
+                        inner={headerTitle}
+                        whiteArow={
+                            !pause && pageState !== 'endMessage' && mapHiden
+                        }
+                        titleOn={true}
+                        style={styles.stackHeader}
+                        started={
+                            pageState === 'record' ||
+                            (pageState === 'cancelText' && !pause)
+                        }
+                        mapHiden={mapHiden}
+                        duration={ANIMATION_DURATION}
+                    />
+
+                    {bikes && (
+                        <Animated.View
+                            pointerEvents="box-none"
+                            style={[
+                                styles.bikeList,
+                                {
+                                    top: bileListTop,
+                                },
+                            ]}>
+                            <BikeSelectorList
+                                list={bikes}
+                                callback={onChangeBikeHandler}
+                                currentBike={bike?.description?.serial_number}
+                                buttonText={'add'}
+                                mapHiden={mapHiden}
+                                duration={ANIMATION_DURATION}
+                            />
+                        </Animated.View>
+                    )}
+
+                    <View style={styles.apla} pointerEvents="none">
+                        <Apla
+                            show={
+                                pageState === 'cancelText' ||
+                                pageState === 'endMessage'
+                            }
+                            message={
+                                pageState === 'cancelText'
+                                    ? trans.cancelText
+                                    : trans.endText
+                            }
                             duration={ANIMATION_DURATION}
                         />
-                    </Animated.View>
-                )}
+                    </View>
 
-                <View style={styles.apla} pointerEvents="none">
-                    <Apla
-                        show={
-                            pageState === 'cancelText' ||
-                            pageState === 'endMessage'
-                        }
-                        message={
-                            pageState === 'cancelText'
-                                ? trans.cancelText
-                                : trans.endText
-                        }
-                        duration={ANIMATION_DURATION}
+                    <ActionButtons
+                        leftBtnTitle={leftBtnTile}
+                        leftBtnCallback={heandleLeftBtnClick}
+                        rightBtnTitle={rightBtnTile}
+                        rightBtnCallback={heandleRightBtnClick}
+                        disabled={processing}
+                        loading={processing}
                     />
+
+                    {renderMap && (
+                        <Map
+                            routeId={followedRouteId || route?.params?.mapID}
+                            trackerData={trackerData}
+                            autoFindMe={autoFindMe}
+                            headingOn={headingOn}
+                            compassHeading={compassHeading}
+                            renderPath={renderPath}
+                            restoredPath={restoredPath}
+                            autoFindMeSwith={(e: number) => setAutoFindMe(e)}
+                        />
+                    )}
+
+                    {TESTING_MODE && (
+                        <DataPreview
+                            title={'podgląd danych'}
+                            trackerStartTime={trackerStartTime}
+                            reduxData={['counter']}
+                            dataList={[
+                                {
+                                    name: 'my Route Number',
+                                    value: myRouteNumber,
+                                },
+                                {
+                                    name: 'route params mapID',
+                                    value: route?.params?.mapID,
+                                },
+                                {},
+                                {section: 'page states'},
+                                {
+                                    name: 'page State',
+                                    value: pageState,
+                                },
+                                {
+                                    name: 'map Hiden',
+                                    value: mapHiden,
+                                },
+                                {
+                                    name: 'auto Find Me',
+                                    value: autoFindMe,
+                                },
+                                {},
+                                {section: 'data from tracker'},
+                                {
+                                    name: 'is Active',
+                                    value: isActive,
+                                },
+                                {
+                                    name: 'is Tracker Active',
+                                    value: isTrackerActive,
+                                },
+                                {
+                                    name: 'Start Time',
+                                    value: trackerStartTime,
+                                },
+                                {
+                                    name: 'Pause Time',
+                                    value: trackerPauseTime,
+                                },
+                                {
+                                    name: 'Total Time',
+                                    value: setTotalTime(pauseTime),
+                                },
+                                {
+                                    name: 'followed Route Id',
+                                    value: followedRouteId,
+                                },
+                                {
+                                    name: 'distance',
+                                    value: trackerData?.distance,
+                                },
+                                {
+                                    name: 'coords.lat',
+                                    value: trackerData?.coords.lat,
+                                },
+                                {
+                                    name: 'coords.lon',
+                                    value: trackerData?.coords.lon,
+                                },
+                                {},
+                                {section: 'pause'},
+                                {
+                                    name: 'is on',
+                                    value: pause,
+                                },
+                                {
+                                    name: 'state',
+                                    value: pageState,
+                                },
+                                {
+                                    name: 'start time',
+                                    value: pauseTime.start,
+                                },
+                                {
+                                    name: 'total time',
+                                    value: pauseTime.total,
+                                },
+                            ]}
+                        />
+                    )}
                 </View>
-
-                <ActionButtons
-                    leftBtnTitle={leftBtnTile}
-                    leftBtnCallback={heandleLeftBtnClick}
-                    rightBtnTitle={rightBtnTile}
-                    rightBtnCallback={heandleRightBtnClick}
-                />
-
-                <CounterDataContext.Provider
-                    value={{trackerData, pauseTime: pauseTime.total}}>
-                    <NativeCounter
-                        time={trackerStartTime}
-                        isRunning={isActive}
-                        mapHiden={mapHiden}
-                        setMapHiden={onHideMapHandler}
-                        duration={ANIMATION_DURATION}
-                        aplaShow={
-                            pageState === 'cancelText' ||
-                            pageState === 'endMessage'
-                        }
-                        autoFindMeSwith={(e: boolean) => setAutoFindMe(e)}
-                    />
-                </CounterDataContext.Provider>
-            </View>
+            </ErrorBoundary>
         </>
     );
 };

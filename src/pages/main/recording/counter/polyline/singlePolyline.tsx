@@ -4,14 +4,15 @@
  * @author Sebastian Kasiński
  */
 
-import React, {useRef, useEffect, useState, useCallback} from 'react';
+import React, {useRef, useEffect, useCallback, useState} from 'react';
+import {InteractionManager} from 'react-native';
 
-import {useAppSelector} from '../../../../../hooks/redux';
-import useAppState from '../../../../../hooks/useAppState';
-import {DataI} from '../../../../../hooks/useLocalizationTracker';
-import {trackerRouteIdSelector} from '../../../../../storage/selectors/routes';
-import deepCopy from '../../../../../helpers/deepCopy';
-import {restoreRouteDataFromSQL} from '../../../../../utils/routePath';
+import useAppState from '@hooks/useAppState';
+import {useAppSelector} from '@hooks/redux';
+import {DataI} from '@hooks/useLocalizationTracker';
+import {trackerRouteIdSelector} from '@storage/selectors/routes';
+import {restoreRouteDataFromSQL} from '@utils/routePath';
+import {getShorterRoute} from '@utils/polyline';
 
 import Polyline from './polyline';
 
@@ -23,113 +24,160 @@ type ShortCoordsType = {
 
 interface IProps {
     coords: DataI;
+    renderPath?: boolean;
+    restoredPath?: ShortCoordsType[];
 }
 
-const SinglePolyline: React.FC<IProps> = ({coords}: IProps) => {
+const SinglePolyline: React.FC<IProps> = ({
+    coords,
+    renderPath,
+    restoredPath,
+}: IProps) => {
     const mountRef = useRef(false);
     /**
      * Helper to prevent render current polyline faster then restored data from SQL.
      */
     const restoreRef = useRef(false);
+    const currentRouteId = useAppSelector(trackerRouteIdSelector);
+    /**
+     * Route simplified when app returnes from background
+     */
+    const restoredAfterBackground = useRef(true);
+
     /**
      * Routes can be separate with pause. Every pasue event creates new array.
      */
-    const routeRef = useRef<ShortCoordsType[]>([]);
-    const currentRouteId = useAppSelector(trackerRouteIdSelector);
+    const [route, setRoute] = useState<ShortCoordsType[]>([]);
 
-    const {appIsActive, appPrevStateVisible, appStateVisible} = useAppState();
-    const [previousState, setPrevoiusState] = useState(appPrevStateVisible);
+    const redrawPolyline = useCallback(
+        async (skipSorting?: boolean, resPath?: ShortCoordsType[]) => {
+            restoreRef.current = false;
 
-    useEffect(() => {
-        setPrevoiusState(appStateVisible);
-    }, [appStateVisible]);
+            let newRoute = resPath || [];
+            if (!currentRouteId) {
+                restoreRef.current = true;
+                return;
+            }
 
-    const redrawPolyline = useCallback(async () => {
-        restoreRef.current = false;
+            let result: ShortCoordsType[] = route;
+            if (!resPath?.length) {
+                newRoute = await restoreRouteDataFromSQL(
+                    currentRouteId,
+                    result,
+                    skipSorting,
+                );
+            }
 
-        if (!currentRouteId) {
+            if (!newRoute.length) {
+                restoreRef.current = true;
+                return;
+            }
+
+            result = newRoute;
+
             restoreRef.current = true;
-            return;
-        }
 
-        let result: ShortCoordsType[] = deepCopy(routeRef.current);
-
-        const newRoute = await restoreRouteDataFromSQL(currentRouteId, result);
-        if (!newRoute.length) {
-            restoreRef.current = true;
-            return;
-        }
-
-        result = newRoute;
-
-        routeRef.current = result;
-        restoreRef.current = true;
-    }, [currentRouteId]);
+            setRoute(result);
+        },
+        [currentRouteId, route],
+    );
 
     /**
      * Restore path from SQL after re-launch.
      */
     useEffect(() => {
-        if (!mountRef.current) {
-            redrawPolyline();
-
-            setPrevoiusState('active');
-
-            // mountRef.current = true;
+        let task: any;
+        let t: NodeJS.Timeout;
+        if (!mountRef.current && restoredPath?.length) {
+            task = InteractionManager.runAfterInteractions(() => {
+                t = setTimeout(async () => {
+                    await redrawPolyline(true, restoredPath);
+                    mountRef.current = true;
+                }, 500);
+            });
+            return;
         }
 
+        mountRef.current = true;
+        restoreRef.current = true;
+
         return () => {
+            task?.cancel();
+            clearTimeout(t);
             mountRef.current = false;
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [restoredPath]);
 
+    const {appIsActive, appPrevStateVisible, appStateVisible} = useAppState();
     /**
-     * Restore path from SQL only when app came from background.
+     * Simplify route only when app came from background.
      */
     useEffect(() => {
         let t: NodeJS.Timeout;
-        if (appIsActive && previousState === 'background' && currentRouteId) {
-            redrawPolyline();
+        let task: any;
+        if (
+            appIsActive &&
+            appPrevStateVisible === 'background' &&
+            currentRouteId &&
+            mountRef.current &&
+            restoreRef.current &&
+            !restoredAfterBackground.current
+        ) {
+            task = InteractionManager.runAfterInteractions(() => {
+                const shorterPath = getShorterRoute(route);
 
-            setPrevoiusState('active');
+                restoredAfterBackground.current = true;
+
+                setRoute(shorterPath);
+            });
         } else {
             t = setTimeout(() => {
-                restoreRef.current = true;
+                restoredAfterBackground.current = true;
             }, 200);
         }
 
         return () => {
-            restoreRef.current = false;
             clearTimeout(t);
+            task?.cancel();
         };
-    }, [appIsActive, previousState, currentRouteId, redrawPolyline]);
+    }, [
+        appIsActive,
+        appPrevStateVisible,
+        currentRouteId,
+        redrawPolyline,
+        route,
+    ]);
+
+    useEffect(() => {
+        if (appStateVisible === 'background') {
+            restoredAfterBackground.current = false;
+        }
+    });
 
     /**
      * Render path after SQL data has been restored.
      */
     useEffect(() => {
         if (coords?.coords && restoreRef.current) {
+            if (!coords.coords?.lat || !coords.coords?.lon) {
+                return;
+            }
             const pos = {
                 latitude: coords.coords.lat,
                 longitude: coords.coords.lon,
                 timestamp: coords.timestamp,
             };
 
-            const newRure = routeRef.current.length
-                ? deepCopy(routeRef.current)
-                : [];
-            newRure.push(pos);
-
-            routeRef.current = newRure;
+            setRoute(prev => [...prev, pos]);
         }
-    }, [coords]);
+    }, [coords?.coords, coords?.timestamp]);
 
-    if (!routeRef?.current?.length) {
+    if (!route.length || !renderPath) {
         return null;
     }
 
-    return <Polyline coords={routeRef.current} />;
+    return <Polyline coords={route} />;
 };
 
 export default React.memo(SinglePolyline);

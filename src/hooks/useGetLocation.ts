@@ -1,3 +1,4 @@
+import {isLocationValidate} from '@src/utils/locationData';
 import {useEffect, useState} from 'react';
 
 import {cleanUp, getCurrentLocation} from '../utils/geolocation';
@@ -13,6 +14,10 @@ const useGetLocation = () => {
 
     useEffect(() => {
         getCurrentLocation().then(d => {
+            if (!d || !isLocationValidate(d)) {
+                return;
+            }
+
             if (d?.coords) {
                 setLocation({
                     lat: d.coords.latitude,

@@ -23,6 +23,7 @@ interface IProps {
     images: {images: string[]; mapImg: string; fullSizeImages: string[]};
     isPrivateView?: boolean;
     isFavView?: boolean;
+    isFeaturedView?: boolean;
 }
 
 const Description: React.FC<IProps> = ({
@@ -30,6 +31,7 @@ const Description: React.FC<IProps> = ({
     images,
     isPrivateView,
     isFavView,
+    isFeaturedView,
 }: IProps) => {
     const trans: any = I18n.t('RoutesDetails.details');
     const navigation = useNavigation();
@@ -46,6 +48,7 @@ const Description: React.FC<IProps> = ({
                 mapId: mapData?.id,
                 private: isPrivateView,
                 favourite: isFavView,
+                featured: isFeaturedView,
             },
         });
     };
@@ -97,7 +100,7 @@ const Description: React.FC<IProps> = ({
                     reaction={mapData?.reaction}
                 />
             </View>
-            {mapData?.description?.short ? (
+            {mapData?.description ? (
                 <View>
                     <Text
                         style={[
@@ -114,13 +117,11 @@ const Description: React.FC<IProps> = ({
                                 styles.lightFont,
                                 styles.descriptionTitle,
                             ]}>
-                            {mapData?.description?.short
-                                ? `„${mapData.description.short}”`
-                                : ''}
+                            {mapData?.description ? mapData.description : ''}
                         </Text>
-                        <Text style={[styles.textStyle, styles.lightFont]}>
-                            {mapData?.description?.long || trans.noDescription}
-                        </Text>
+                        {/* <Text style={[styles.textStyle, styles.lightFont]}>
+                            {mapData?.description || trans.noDescription}
+                        </Text> */}
                     </View>
                 </View>
             ) : null}
@@ -164,20 +165,18 @@ const Description: React.FC<IProps> = ({
                     )}
                 </View>
             </View>
-            {mapData?.tags?.values?.length ? (
+            {mapData?.tags?.length ? (
                 <View style={styles.tagsContainer}>
                     <Text style={[styles.textStyle, styles.lightFont]}>
                         {trans.tagsTitle}
                     </Text>
                     <View style={styles.tagsWrapper}>
-                        {mapData?.tags?.options &&
-                            mapData.tags?.options.map(t => {
+                        {mapData?.optionsEnumsValues?.tagsOptions &&
+                            mapData.optionsEnumsValues?.tagsOptions?.map(t => {
                                 if (!t?.enumValue) {
                                     return null;
                                 }
-                                if (
-                                    !mapData.tags?.values.includes(t.enumValue)
-                                ) {
+                                if (!mapData.tags?.includes(t.enumValue)) {
                                     return null;
                                 }
 

@@ -134,6 +134,8 @@ export class Parameters {
     }
 }
 
+export interface ParametersI extends Parameters {}
+
 export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
     @IsNotEmpty()
     @IsString()
@@ -212,3 +214,5 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
         this.serial_number = serial_number;
     }
 }
+
+export interface BikeDescriptionI extends BikeDescription {}

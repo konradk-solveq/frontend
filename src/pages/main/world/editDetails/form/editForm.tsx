@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/core';
 import {View, Text} from 'react-native';
 import {SubmitHandler} from 'react-hook-form';
 
@@ -14,7 +13,7 @@ import {attributes} from './attributes';
 import {
     Map,
     publishMapValidationRules,
-    SelectI,
+    PublishMapValidationRulesI,
 } from '../../../../../models/map.model';
 import {userNameSelector} from '../../../../../storage/selectors';
 import {ImageType, MapFormDataResult} from '../../../../../interfaces/form';
@@ -46,43 +45,45 @@ const EditForm: React.FC<IProps> = ({
     mapData,
     scrollTop,
 }: IProps) => {
-    const navigation = useNavigation();
     const trans: any = I18n.t('RoutesDetails.EditScreen');
     const validationMessages: any = I18n.t(
         'validation.fields.mapDetails.formErrors',
     );
-    const userName = useAppSelector(userNameSelector);
+    const userName = useAppSelector(userNameSelector) || trans.defaultUser;
 
     const [images, setImages] = useState<string[]>(imagesData?.images || []);
     const [imagesToAdd, setImagesToAdd] = useState<ImageType[]>([]);
     const [imagesToRemove, setImagesToRemove] = useState<string[]>([]);
 
-    const {control, handleSubmit, setError, options} =
-        useFormDataWithMapData(mapData);
+    const {control, handleSubmit, setError, options} = useFormDataWithMapData(
+        mapData,
+    );
 
-    const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> =
-        data => {
-            const isValid = reValidateMapMetadataManually(
-                data,
-                validationMessages,
-                setError,
-                ['publishWithName'],
-            );
-            if (!isValid) {
-                scrollTop();
-                return;
-            }
-            onSubmit(data, true, imagesToAdd, imagesToRemove);
-        };
+    const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> = data => {
+        const isValid = reValidateMapMetadataManually(
+            data,
+            validationMessages,
+            setError,
+            ['publishWithName'],
+        );
+        if (!isValid) {
+            scrollTop();
+            return;
+        }
+        onSubmit(data, true, imagesToAdd, imagesToRemove);
+    };
     const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
         onSubmit(data, false, imagesToAdd, imagesToRemove);
     };
 
     const onValidateHanlder = (
-        val: string | number | boolean | SelectI | undefined,
+        val: string | number | boolean | string[] | undefined,
         fieldName: string,
     ) => {
-        const rules = publishMapValidationRules[fieldName];
+        const rules =
+            publishMapValidationRules[
+                fieldName as keyof PublishMapValidationRulesI
+            ];
         const isValid = validateData(rules, val);
 
         if (!isValid) {
@@ -94,7 +95,8 @@ const EditForm: React.FC<IProps> = ({
     const onAddImageHandler = (img: ImageType) => {
         if (img) {
             if (img.uri) {
-                setImages(prev => [img.uri, ...prev]);
+                const imgUrl = img.uri;
+                setImages(prev => [imgUrl, ...prev]);
             }
             setImagesToAdd(prev => [img, ...prev]);
         }
@@ -108,6 +110,8 @@ const EditForm: React.FC<IProps> = ({
         }
     };
 
+    const isRoutePublished = mapData?.isPublic;
+
     return (
         <View style={styles.container}>
             <View style={styles.checkboxContainer}>
@@ -116,10 +120,11 @@ const EditForm: React.FC<IProps> = ({
                     control={control}
                     Input={({value, isValid, onChange}) => (
                         <Checkbox
-                            label={`Opublikuj jako ${userName}`}
+                            label={`${trans.publishAs} ${userName}`}
                             value={!!value}
                             isValid={isValid}
                             onCheck={onChange}
+                            disabled={mapData?.isPublic}
                         />
                     )}
                     onValidate={onValidateHanlder}
@@ -183,7 +188,7 @@ const EditForm: React.FC<IProps> = ({
             </View>
             <View>
                 <ControlledInput
-                    fieldName="short"
+                    fieldName="description"
                     control={control}
                     Input={({value, isValid, onChange, errMsg}) => (
                         <OneLineText
@@ -194,29 +199,8 @@ const EditForm: React.FC<IProps> = ({
                             validationWrong={!!errMsg}
                             messageWrong={errMsg || 'Error'}
                             value={value}
-                            style={styles.nameInput}
                             isMultiline
                             maxLength={1000}
-                        />
-                    )}
-                    onValidate={onValidateHanlder}
-                />
-            </View>
-            <View>
-                <ControlledInput
-                    fieldName="long"
-                    control={control}
-                    Input={({value, isValid, onChange, errMsg}) => (
-                        <OneLineText
-                            placeholder={trans.description}
-                            keyboardType="default"
-                            onChangeText={(v: string) => onChange(v)}
-                            validationOk={isValid}
-                            validationWrong={!!errMsg}
-                            messageWrong={errMsg || 'Error'}
-                            value={value}
-                            isMultiline
-                            maxLength={5000}
                         />
                     )}
                     onValidate={onValidateHanlder}
@@ -256,16 +240,26 @@ const EditForm: React.FC<IProps> = ({
                 />
             </View>
             <View style={styles.buttonsWrapper}>
-                <BigRedBtn
-                    title={trans.publishButton}
-                    onpress={handleSubmit(onSubmitHandlerWithPublish)}
-                    style={styles.onPressBtn}
-                />
-                <BigWhiteBtn
-                    title={trans.saveButton}
-                    onpress={handleSubmit(onSubmitHandler)}
-                    style={[styles.onPressBtn, styles.bottomBtn]}
-                />
+                {!isRoutePublished ? (
+                    <>
+                        <BigRedBtn
+                            title={trans.publishButton}
+                            onpress={handleSubmit(onSubmitHandlerWithPublish)}
+                            style={styles.onPressBtn}
+                        />
+                        <BigWhiteBtn
+                            title={trans.saveButton}
+                            onpress={handleSubmit(onSubmitHandler)}
+                            style={[styles.onPressBtn, styles.bottomBtn]}
+                        />
+                    </>
+                ) : (
+                    <BigRedBtn
+                        title={trans.updateButton}
+                        onpress={handleSubmit(onSubmitHandlerWithPublish)}
+                        style={styles.onPressBtn}
+                    />
+                )}
             </View>
         </View>
     );

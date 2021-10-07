@@ -158,8 +158,18 @@ const MyRoutes: React.FC<IProps> = ({
     const basicTitle = `${userName || trans.defaultUserName} ${trans.title}`;
     const secondTitle = `${trans.routesNumberTitle} ${totalNumberOfPrivateMaps}`;
 
-    return (
-        <>
+    const rednerModal = () => {
+        const itemIsPublic = privateMaps.find(e => {
+            if (e.id === activeMapID) {
+                return e.isPublic;
+            }
+        });
+        let isPublic = false;
+        if (itemIsPublic) {
+            isPublic = !!itemIsPublic.isPublic;
+        }
+
+        return (
             <ShowMoreModal
                 showModal={showModal}
                 removeFav
@@ -167,7 +177,14 @@ const MyRoutes: React.FC<IProps> = ({
                 onPressCancel={() => onPressHandler(false)}
                 backdropStyle={styles.backdrop}
                 isPrivate
+                isPublic={isPublic}
             />
+        );
+    };
+
+    return (
+        <>
+            {rednerModal()}
             <View style={styles.horizontalSpace}>
                 <FlatList
                     keyExtractor={item => item.id}

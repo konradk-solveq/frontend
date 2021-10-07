@@ -19,7 +19,7 @@ const useCustomSwipeBackNav = (
         });
 
         return () => {
-            eventListener();
+            navigation.removeListener('beforeRemove', eventListener);
         };
     }, [abortActionDefault, callback, navigation]);
 };

@@ -1,10 +1,4 @@
-import React, {
-    useEffect,
-    useState,
-    useRef,
-    useContext,
-    useCallback,
-} from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {SafeAreaView, View, Platform, Animated} from 'react-native';
 import {WebView} from 'react-native-webview';
 
@@ -24,6 +18,7 @@ import {
 } from '@type/rootStack';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {getMapInitLocation} from '@utils/webView';
+import {jsonParse, jsonStringify} from '@utils/transformJson';
 import {getHorizontalPx} from '@helpers/layoutFoo';
 
 import AnimSvg from '@helpers/animSvg';
@@ -104,17 +99,21 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 latitude: location.latitude,
                 longitude: location.longitude,
             };
+            const p = jsonStringify(pos);
+            if (!p) {
+                return;
+            }
 
             /**
              * Initially set map and user position.
              * Follow only user position.
              * */
             if (!posRef.current) {
-                setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
-                setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+                setJs(`setMyLocation(${p});true;`);
+                setJs(`setPosOnMap(${p});true;`);
                 posRef.current = true;
             } else {
-                setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
+                setJs(`setMyLocation(${p});true;`);
             }
         }
     }, [location, mapLoaded]);
@@ -135,9 +134,11 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
     useEffect(() => {
         if (mapLoaded && routeMarkres.length > 0 && posRef.current) {
-            let p = JSON.stringify(routeMarkres);
+            let p = jsonStringify(routeMarkres);
             setJs('clearMarkersCluster();true;');
-            setJs(`setMarks(${p});true;`);
+            if (p) {
+                setJs(`setMarks(${p});true;`);
+            }
             switchVisibleMarkers();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -188,7 +189,11 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
         switch (val[0]) {
             case 'changeRegion':
-                const newBox = JSON.parse(val[1]);
+                const newBox = jsonParse(val?.[1]);
+                if (!newBox) {
+                    return;
+                }
+
                 const bbox: [Point, Point] = [
                     {lat: newBox.east, lng: newBox.north},
                     {lat: newBox.west, lng: newBox.south},
@@ -205,7 +210,12 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 }
                 break;
             case 'clickMarker':
-                heandleShowAdress(JSON.parse(val[1]));
+                const a = jsonParse(val?.[1]);
+                if (!a) {
+                    return;
+                }
+
+                heandleShowAdress(a);
                 break;
             case 'clickMap':
                 setTimeout(() => {
@@ -232,6 +242,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             {
                 mapID: mapID,
                 private: currentMapType === RouteMapType.MY_ROUTES,
+                favourite: currentMapType === RouteMapType.PLANNING,
             },
         );
     };
@@ -242,8 +253,10 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
                 latitude: location.latitude,
                 longitude: location.longitude,
             };
-
-            setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+            const p = jsonStringify(pos);
+            if (p) {
+                setJs(`setPosOnMap(${p});true;`);
+            }
         }
     };
 

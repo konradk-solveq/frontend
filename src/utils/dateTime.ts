@@ -1,5 +1,7 @@
+import {CounterTimeT} from '@type/dateTime';
+import {I18n} from '@translations/I18n';
+
 export const twoDigits = (num: Number) => (num < 10 ? '0' + num : '' + num);
-import {I18n} from '../../I18n/I18n';
 
 export const getDateString = (date: Date, separator?: string) => {
     const sep = separator || '.';
@@ -27,21 +29,66 @@ export const convertToDateWithTime = (date: string | undefined) => {
     return `${d}, ${t}`;
 };
 
-export const convertToCounterFormat = (time: number) => {
-    const date = new Date(time);
-    const hours = date.getHours() - 1;
-    const dzHours = twoDigits(hours);
-    const minutes = date.getMinutes();
-    const dzMinutes = twoDigits(minutes);
-    const seconds = date.getSeconds();
-    const dzSeconds = twoDigits(seconds);
-
-    const hoursWithMinutes = `${dzHours}:${dzMinutes}`;
-
-    return {
-        hoursWithMinutes,
-        dzSeconds,
+/**
+ * Converts seconds to display as counter values
+ *
+ * @param {number} time
+ * @param {Date} startTime
+ *
+ * @returns {CounterTimeT}
+ */
+export const convertToCounterFormat = (
+    time: number,
+    startTime?: Date,
+): CounterTimeT => {
+    const result = {
+        hoursWithMinutes: '00:00',
+        dzSeconds: '00',
     };
+
+    if (time < 0 || typeof time !== 'number' || Number.isNaN(time)) {
+        return result;
+    }
+
+    try {
+        /**
+         * Current time
+         */
+        const timeInMilliSeconds = new Date(time).valueOf();
+
+        /**
+         * Start time of current recording
+         */
+        const sTimeInMilliSeconds = startTime
+            ? new Date(startTime)?.valueOf()
+            : null;
+
+        if (sTimeInMilliSeconds && sTimeInMilliSeconds > timeInMilliSeconds) {
+            return result;
+        }
+
+        const timeToConvert = sTimeInMilliSeconds
+            ? timeInMilliSeconds - sTimeInMilliSeconds
+            : 0;
+
+        const date = new Date(timeToConvert);
+        const seconds = date.getSeconds();
+        result.dzSeconds = twoDigits(seconds % 60);
+        const minutes = date.getMinutes();
+        const dzMinutes = twoDigits(minutes);
+        /**
+         * Number of hours from the begining
+         */
+        const hours =
+            timeToConvert > 0 ? Math.floor(timeToConvert / 1000 / 3600) : 0;
+        const dzHours = twoDigits(hours);
+
+        result.hoursWithMinutes = `${dzHours}:${dzMinutes}`;
+
+        return result;
+    } catch (error) {
+        return result;
+    }
 };
 
 export const compareDates = (date1: Date, date2: Date | undefined) => {
@@ -71,4 +118,16 @@ export const translateDateToTodayAndYesterdayString = (date: Date) => {
     }
 
     return getDateString(date);
+};
+
+export const transformTimestampToDate = (tmestamp: number) => {
+    if (!tmestamp || !isNaN(tmestamp)) {
+        return tmestamp;
+    }
+
+    try {
+        return new Date(tmestamp);
+    } catch (error) {
+        return tmestamp;
+    }
 };

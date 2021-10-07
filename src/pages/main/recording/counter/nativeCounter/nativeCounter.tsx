@@ -14,11 +14,13 @@ import CurvedShape from './curvedShape/curvedShape';
 import CrossBtn from './crossBtn';
 
 import styles from './style';
+import CompassButton from '@src/sharedComponents/buttons/compassBtn';
 
 const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
 const arrowPositionTop = getVerticalPx((isIOS ? 0 : -25) + 437);
 const arrowPositionBottom = getVerticalPx((isIOS ? -10 : -25) + 654);
+const arrowPositionAplaShow = getVerticalPx((isIOS ? -10 : -25) + 654 - 30);
 
 interface IProps {
     time: Date | undefined;
@@ -27,7 +29,10 @@ interface IProps {
     setMapHiden: Function;
     duration: number;
     aplaShow: boolean;
-    autoFindMeSwith: (e: boolean) => void;
+    autoFindMeSwith: (e: number) => void;
+    autoFindMe: number;
+    headingSwitch: (e: boolean) => void;
+    compassHeading: any;
 }
 
 /* TODO: add context for values */
@@ -39,8 +44,11 @@ const NativeCounter: React.FC<IProps> = ({
     duration,
     aplaShow,
     autoFindMeSwith,
+    autoFindMe,
+    headingSwitch,
+    compassHeading,
 }: IProps) => {
-    const FIND_ME_BTN_BOTTOM = 255;
+    const FIND_ME_BTN_BOTTOM = 250;
     const resotredRef = useRef(false);
 
     const trackerMapVisibility = useAppSelector(trackerMapVisibilitySelector);
@@ -55,7 +63,7 @@ const NativeCounter: React.FC<IProps> = ({
     const findMeBottonZIndex = useRef(new Animated.Value(1)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
 
-    const [autoFindMeOn, setAutoFindMeOn] = useState(true);
+    const [headingOn, setHeadingOn] = useState(true);
 
     const startAnimation = (revert?: boolean) => {
         Animated.timing(containerHeight, {
@@ -83,7 +91,11 @@ const NativeCounter: React.FC<IProps> = ({
         }).start();
 
         Animated.timing(arrowPos, {
-            toValue: !revert ? arrowPositionBottom : arrowPositionTop,
+            toValue: !revert
+                ? aplaShow
+                    ? arrowPositionAplaShow
+                    : arrowPositionBottom
+                : arrowPositionTop,
             duration: duration,
             useNativeDriver: false,
         }).start();
@@ -96,6 +108,7 @@ const NativeCounter: React.FC<IProps> = ({
             duration: duration,
             useNativeDriver: false,
         }).start();
+
         Animated.timing(findMeBottom, {
             toValue: condition
                 ? getHorizontalPx(130 + FIND_ME_BTN_BOTTOM)
@@ -103,6 +116,8 @@ const NativeCounter: React.FC<IProps> = ({
             duration: duration,
             useNativeDriver: false,
         }).start();
+
+        startAnimation(mapHiden);
     }, [aplaShow, containerBottom, findMeBottom, duration, mapHiden]);
 
     /**
@@ -112,7 +127,7 @@ const NativeCounter: React.FC<IProps> = ({
         let t: NodeJS.Timeout;
         if (isRunning && trackerMapVisibility && !resotredRef.current) {
             t = setTimeout(() => {
-                startAnimation();
+                startAnimation(mapHiden);
                 setMapHiden(false);
             }, 1500);
 
@@ -166,14 +181,18 @@ const NativeCounter: React.FC<IProps> = ({
             startAnimation();
             setMapHiden(false);
         } else {
-            startAnimation(true);
             setMapHiden(true);
+            startAnimation(true);
         }
     };
 
     const handleAutoFindMeSwith = () => {
-        autoFindMeSwith(!autoFindMeOn);
-        setAutoFindMeOn(!autoFindMeOn);
+        autoFindMeSwith(autoFindMe + 1);
+    };
+
+    const heandleHeadingSwitch = () => {
+        headingSwitch(!headingOn);
+        setHeadingOn(!headingOn);
     };
 
     return (
@@ -314,9 +333,14 @@ const NativeCounter: React.FC<IProps> = ({
                         zIndex: findMeBottonZIndex,
                     },
                 ]}>
+                <CompassButton
+                    onpress={heandleHeadingSwitch}
+                    toggle={!headingOn}
+                    compassHeading={compassHeading}
+                />
                 <FindMeButton
                     onpress={handleAutoFindMeSwith}
-                    toggle={!autoFindMeOn}
+                    toggle={!autoFindMe}
                 />
             </Animated.View>
         </>

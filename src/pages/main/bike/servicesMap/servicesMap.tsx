@@ -18,6 +18,7 @@ import {BasicCoordsType} from '@type/coords';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {setObjSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 import {getMapInitLocation} from '@utils/webView';
+import {jsonParse, jsonStringify} from '@utils/transformJson';
 
 import AnimSvg from '@helpers/animSvg';
 import {FindMeButton, TypicalRedBtn} from '@sharedComponents/buttons';
@@ -64,7 +65,10 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                 latitude: location.latitude,
                 longitude: location.longitude,
             };
-            setJs(`setMyLocation(${JSON.stringify(pos)});true;`);
+            const p = jsonStringify(pos);
+            if (p) {
+                setJs(`setMyLocation(${p});true;`);
+            }
         }
     }, [location]);
 
@@ -116,7 +120,10 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
         switch (val[0]) {
             case 'changeRegion':
                 {
-                    const newBox = JSON.parse(val[1]);
+                    const newBox = jsonParse(val?.[1]);
+                    if (!newBox) {
+                        return;
+                    }
 
                     const bbox = [
                         {lat: newBox.east, lng: newBox.north},
@@ -141,7 +148,12 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                 }
                 break;
             case 'clickMarker':
-                heandleShowAdress(JSON.parse(val[1]));
+                const a = jsonParse(val?.[1]);
+                if (!a) {
+                    return;
+                }
+
+                heandleShowAdress(a);
                 break;
             case 'clickMap':
                 heandleShowAdress(null);
@@ -155,8 +167,10 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                 latitude: location.latitude,
                 longitude: location.longitude,
             };
-
-            setJs(`setPosOnMap(${JSON.stringify(pos)});true;`);
+            const p = jsonStringify(pos);
+            if (p) {
+                setJs(`setPosOnMap(${p});true;`);
+            }
         }
     };
 
@@ -167,8 +181,10 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         if (mapLoaded && places.length > 0) {
-            let p = JSON.stringify(places);
-            setJs(`setMarks(${p});true;`);
+            let p = jsonStringify(places);
+            if (p) {
+                setJs(`setMarks(${p});true;`);
+            }
         }
     }, [places, mapLoaded]);
 

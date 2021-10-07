@@ -1,16 +1,19 @@
 import React, {createContext, useContext} from 'react';
 
 import {BasicCoordsType} from '@type/coords';
+import {locationTypeEnum} from '@type/location';
 
 import useProviderStaticLocation from '@hooks/staticLocationProvider/useProviderStaticLocation';
 
 type contType = {
     location: BasicCoordsType | undefined;
+    locationType: locationTypeEnum;
     isTrackingActivatedHandler: (a: boolean) => void;
 };
 
 export const LocationDataContext = createContext<contType>({
     location: undefined,
+    locationType: locationTypeEnum.NONE,
     isTrackingActivatedHandler: (a: boolean) => {},
 });
 
@@ -21,7 +24,11 @@ interface IProps {
 }
 
 const StaticLocationProvider: React.FC<IProps> = ({children}: IProps) => {
-    const {location, isTrackingActivatedHandler} = useProviderStaticLocation();
+    const {
+        location,
+        locationType,
+        isTrackingActivatedHandler,
+    } = useProviderStaticLocation();
 
     if (!children) {
         return null;
@@ -29,7 +36,7 @@ const StaticLocationProvider: React.FC<IProps> = ({children}: IProps) => {
 
     return (
         <LocationDataContext.Provider
-            value={{location, isTrackingActivatedHandler}}>
+            value={{location, locationType, isTrackingActivatedHandler}}>
             {children}
         </LocationDataContext.Provider>
     );

@@ -1,7 +1,7 @@
 import crashlytics from '@react-native-firebase/crashlytics';
 
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
-
+/* TODO: remove crashlytics logger from project */
 export const initCrashlytics = async (username: string, userId: string) => {
     await Promise.all([
         crashlytics().setUserId(userId || 'undefined'),

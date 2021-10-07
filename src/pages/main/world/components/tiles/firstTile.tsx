@@ -6,13 +6,14 @@ import {modifyReaction} from '@storage/actions/maps';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {I18n} from '@translations/I18n';
 import {Map, ReactionsType} from '@models/map.model';
+import {jsonStringify} from '@utils/transformJson';
+import {getImageToDisplay} from '@utils/transformData';
 
 import {BikeIcon, ClockIcon, DownloadIcon} from '@sharedComponents/svg/icons';
 import TileBackground from './tileBackground';
 import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
 
 import styles from './styles/commonStyles';
-import {getImageToDisplay} from '@utils/transformData';
 
 import ThirdSection from './sections/thirdSection';
 import FourthSection from './sections/fourthSection';
@@ -117,11 +118,6 @@ const FirstTile: React.FC<IProps> = ({
                                     </Text>
                                 </View>
                             </View>
-                            <Text
-                                numberOfLines={1}
-                                style={styles.localizationDescription}>
-                                {mapData?.description?.short || ''}
-                            </Text>
                         </View>
                         <View style={styles.borderLine} />
                         <View style={styles.secondtSection}>
@@ -163,9 +159,10 @@ const FirstTile: React.FC<IProps> = ({
                         <View style={styles.borderLine} />
 
                         <FourthSection
-                            key={`${JSON.stringify(mapData?.reactions)}-${
-                                mapData?.id
-                            }`}
+                            key={`${jsonStringify(
+                                mapData?.reactions,
+                                'reactions',
+                            )}-${mapData?.id}`}
                             likeGaved={
                                 mapData.reaction === likeValue?.enumValue
                             }

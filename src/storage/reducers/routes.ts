@@ -146,7 +146,7 @@ const routesReducer = (state = initialStateList, action: any) => {
             if (!action.keepId) {
                 return {
                     ...state,
-                    currentRoute: {...initialStateList.currentRoute},
+                    currentRoute: initialStateList.currentRoute,
                 };
             }
             return {
@@ -216,7 +216,12 @@ const persistConfig = {
     key: 'routes',
     storage: AsyncStorage,
     whitelist: [
-        'currentRoute, currentRouteData, routes, routesToSync, averageSpeed, isMapVisible',
+        'currentRoute',
+        'currentRouteData',
+        'routes',
+        'routesToSync',
+        'averageSpeed',
+        'isMapVisible',
     ],
     timeout: 20000,
 };
