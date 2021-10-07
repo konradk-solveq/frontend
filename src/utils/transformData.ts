@@ -45,7 +45,8 @@ const isLocationValidToPass = (loc: any, routeId?: string) => {
     if (routeId !== loc?.extras?.route_id) {
         return false;
     }
-    if (loc?.coords?.accuracy && loc?.coords?.accuracy < 0.3) {
+
+    if (loc?.coords?.accuracy && loc?.coords?.accuracy > 60) {
         return false;
     }
     /**
