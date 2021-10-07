@@ -204,7 +204,6 @@ export const startRecordingRoute = (
 
 export const stopCurrentRoute = (
     omitPersists?: boolean,
-    endDate?: Date,
 ): AppThunk<Promise<ActionAsyncResponseI>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
@@ -247,7 +246,7 @@ export const stopCurrentRoute = (
         const currentRouteToEnd: CurrentRouteI = {
             ...currentRoute,
             isActive: false,
-            endedAt: endDate || new Date(),
+            endedAt: new Date(),
         };
 
         dispatch(setCurrentRoute(currentRouteToEnd));
@@ -360,7 +359,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         const currRoutesDat =
-            routes.find(r => r.id === currentRoute.id)?.route || [];
+            routes?.find(r => r.id === currentRoute.id)?.route || [];
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(clearCurrentRouteData());
@@ -408,11 +407,11 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         /**
          * If success remove data from synch queue.
          */
-        const reducedRoutesToSynch = routesToSync.filter(
+        const reducedRoutesToSynch = routesToSync?.filter(
             r => r !== currentRoute.id,
         );
-        console.log('[ROUTES TO SYNCH AFTER]', reducedRoutesToSynch);
-        const reducedRoutesDataToSynch = routes.filter(
+
+        const reducedRoutesDataToSynch = routes?.filter(
             r => r.id !== currentRoute.id,
         );
         dispatch(setRoutesToSynch(reducedRoutesToSynch));
