@@ -45,7 +45,7 @@ const isLocationValidToPass = (loc: any, routeId?: string) => {
     if (routeId !== loc?.extras?.route_id) {
         return false;
     }
-    if (loc?.coords?.accuracy && loc?.coords?.accuracy < 0.3) {
+    if (loc?.coords?.accuracy && loc?.coords?.accuracy > 60) {
         return false;
     }
     /**
@@ -420,9 +420,8 @@ export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
 
 export const routesDataToPersist = async (
     routeId: string,
-    oldRoutes: LocationDataI[],
 ): Promise<LocationDataI[]> => {
-    const currRoutes = [...oldRoutes];
+    const currRoutes: LocationDataI[] = [];
     const locations = await getLocations();
     if (!locations) {
         return currRoutes;
