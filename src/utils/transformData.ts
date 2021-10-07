@@ -13,7 +13,7 @@ import {Images, Map, MapType, OptionsEnumsT} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
-import {getLocations} from './geolocation';
+import {getLocations, transformGeoloCationData} from './geolocation';
 import {
     isLocationValidate,
     removeLessAccuratePointsLocations,
@@ -66,22 +66,46 @@ const isLocationValidToPass = (loc: any, routeId?: string) => {
 };
 
 const sortLocationArrayByTime = (locations: ShortCoordsType[]) => {
-    return locations.sort((a, b) => {
-        const timeA = getTimeInUTCMilliseconds(a.timestamp);
-        const timeB = getTimeInUTCMilliseconds(b.timestamp);
-        if (timeA === timeB) {
-            if (a.latitude === b.latitude) {
-                if (a.longitude === b.longitude) {
-                    return 0;
+    return (
+        locations?.sort((a, b) => {
+            const timeA = getTimeInUTCMilliseconds(a.timestamp);
+            const timeB = getTimeInUTCMilliseconds(b.timestamp);
+            if (timeA === timeB) {
+                if (a.latitude === b.latitude) {
+                    if (a.longitude === b.longitude) {
+                        return 0;
+                    }
+
+                    return a.longitude < b.longitude ? -1 : 1;
                 }
 
-                return a.longitude < b.longitude ? -1 : 1;
+                return a.latitude < b.latitude ? -1 : 1;
+            }
+            return timeA < timeB ? -1 : 1;
+        }) || []
+    );
+};
+
+const sortLocationDataByTime = (locations: LocationDataI[]) => {
+    return (
+        locations?.sort((a, b) => {
+            const timeA = getTimeInUTCMilliseconds(a.timestamp);
+            const timeB = getTimeInUTCMilliseconds(b.timestamp);
+            if (timeA === timeB) {
+                if (a.coords.latitude === b.coords.latitude) {
+                    if (a.coords.longitude === b.coords.longitude) {
+                        return 0;
+                    }
+
+                    return a.coords.longitude < b.coords.longitude ? -1 : 1;
+                }
+
+                return a.coords.latitude < b.coords.latitude ? -1 : 1;
             }
 
-            return a.latitude < b.latitude ? -1 : 1;
-        }
-        return timeA < timeB ? -1 : 1;
-    });
+            return timeA < timeB ? -1 : 1;
+        }) || []
+    );
 };
 
 export const transfromToBikeDescription = (
@@ -437,39 +461,17 @@ export const routesDataToPersist = async (
             const alterTimestamp = transformTimestampToDate(
                 l?.timestampMeta?.systemTime,
             );
-            const newRoute: LocationDataI = {
-                uuid: l.uuid,
-                coords: {
-                    latitude: l.coords.latitude,
-                    longitude: l.coords.longitude,
-                    altitude: l.coords.altitude,
-                    speed: l.coords.speed,
-                },
-                odometer: l.odometer,
-                timestamp: alterTimestamp || l.timestamp,
-            };
+
+            const newRoute: LocationDataI = transformGeoloCationData(l);
+            if (alterTimestamp) {
+                newRoute.timestamp = alterTimestamp.toUTCString();
+            }
 
             currRoutes.push(newRoute);
         }
     });
 
-    const sorted = currRoutes.sort((a, b) => {
-        const timeA = getTimeInUTCMilliseconds(a.timestamp);
-        const timeB = getTimeInUTCMilliseconds(b.timestamp);
-        if (timeA === timeB) {
-            if (a.coords.latitude === b.coords.latitude) {
-                if (a.coords.longitude === b.coords.longitude) {
-                    return 0;
-                }
-
-                return a.coords.longitude < b.coords.longitude ? -1 : 1;
-            }
-
-            return a.coords.latitude < b.coords.latitude ? -1 : 1;
-        }
-
-        return timeA < timeB ? -1 : 1;
-    });
+    const sorted = sortLocationDataByTime(currRoutes);
 
     const cleanedArr = removeLessAccuratePointsLocations(sorted);
 
