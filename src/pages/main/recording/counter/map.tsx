@@ -57,7 +57,6 @@ const Map: React.FC<IProps> = ({
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
-    const cooldownRef = useRef<NodeJS.Timeout | null>(null);
     const mountedRef = useRef(false);
     const restoreRef = useRef(false);
     const isAnimatingCameraRef = useRef(false);
@@ -67,8 +66,6 @@ const Map: React.FC<IProps> = ({
     const {appStateVisible, appPrevStateVisible} = useAppState();
     const [showWebView, setShowWebView] = useState(false);
     const [showMap, setShowMap] = useState(false);
-
-    const [cameraAnimCooldown, setCameraAnimCooldown] = useState(false);
 
     useEffect(() => {
         mountedRef.current = true;
@@ -93,9 +90,8 @@ const Map: React.FC<IProps> = ({
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [autoFindMeLastState, setAutoFindMeLastState] = useState<boolean>(
-        autoFindMe,
-    );
+    const [autoFindMeLastState, setAutoFindMeLastState] =
+        useState<boolean>(autoFindMe);
 
     useEffect(() => {
         if (!mountedRef.current) {
@@ -141,26 +137,15 @@ const Map: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const animateCam = (
-        animation: Partial<Camera>,
-        duration: number,
-        cooldown: boolean,
-    ) => {
-        mapRef.current?.animateCamera(animation, {duration: duration});
-
-        if (cooldown) {
-            setCameraAnimCooldown(true);
-            cooldownRef.current = setTimeout(() => {
-                setCameraAnimCooldown(false);
-            }, duration);
-        }
+    const animateCam = (animation: Partial<Camera>, duration?: number) => {
+        mapRef.current?.animateCamera(animation, {duration: duration || 1000});
     };
 
     const animateCameraOnIOS = useCallback(
-        async (animation: Partial<Camera>, cooldown: boolean) => {
+        async (animation: Partial<Camera>) => {
             if (!isAnimatingCameraRef.current) {
                 isAnimatingCameraRef.current = true;
-                animateCam(animation, 850, cooldown);
+                animateCam(animation, 850);
 
                 timerRef.current = setTimeout(
                     () => {
@@ -174,49 +159,52 @@ const Map: React.FC<IProps> = ({
     );
 
     const setMapCamera = useCallback(() => {
-        if (cameraAnimCooldown) {
-            return;
-        }
+        const hasLocation = trackerData?.coords || location;
+        const shouldResetZoom =
+            autoFindMe > 0 && autoFindMe !== autoFindMeLastState;
 
-        let animation: Partial<Camera> = {
-            heading: headingOn ? compassHeading : 0,
-        };
-        let cooldown = false;
-        if (autoFindMe > 0 && mapRef.current) {
-            if ((trackerData && trackerData.coords) || location) {
-                if (trackerData && trackerData.coords) {
+        if (mapRef.current && (hasLocation || shouldResetZoom)) {
+            let animation: Partial<Camera> = {
+                heading: headingOn ? compassHeading : 0,
+            };
+
+            const coords = {latitude: 0, longitude: 0};
+            if (trackerData?.coords) {
+                coords.latitude = trackerData.coords.lat;
+                coords.longitude = trackerData.coords.lon;
+            } else if (location) {
+                coords.latitude = location.latitude;
+                coords.longitude = location.longitude;
+            }
+
+            if (hasLocation) {
+                if (autoFindMe) {
                     animation.center = {
-                        latitude: trackerData.coords.lat,
-                        longitude: trackerData.coords.lon,
-                    };
-                } else if (location) {
-                    animation.center = {
-                        latitude: location.latitude,
-                        longitude: location.longitude,
+                        latitude: coords.latitude,
+                        longitude: coords.longitude,
                     };
                 }
             }
 
-            if (autoFindMe !== autoFindMeLastState) {
-                animation.zoom = ZOOM_START_VALUE;
-                cooldown = true;
+            if (autoFindMe != autoFindMeLastState) {
+                if (autoFindMe) {
+                    animation.zoom = ZOOM_START_VALUE;
+                }
+                setAutoFindMeLastState(autoFindMe);
             }
-        }
-        setAutoFindMeLastState(autoFindMe);
 
-        if (isIOS) {
-            animateCameraOnIOS(animation, cooldown);
-        } else {
-            animateCam(animation, 1000, cooldown);
+            if (isIOS) {
+                animateCameraOnIOS(animation);
+                return;
+            }
+            animateCam(animation);
         }
     }, [
-        cameraAnimCooldown,
-        headingOn,
-        compassHeading,
         autoFindMe,
-        trackerData,
+        headingOn,
+        trackerData?.coords,
         location,
-        autoFindMeLastState,
+        compassHeading,
         animateCameraOnIOS,
     ]);
 
