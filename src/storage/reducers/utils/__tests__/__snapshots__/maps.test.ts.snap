@@ -51288,10 +51288,10 @@ Object {
                 "easy",
               ],
             },
-            "distance": 925.7238318464848,
+            "distance": 921.7238318464848,
             "distanceToRoute": 3.921756306480021,
             "downloads": 0,
-            "id": "Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa",
+            "id": "Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSs",
             "images": Array [
               Object {
                 "id": "map",
@@ -51370,7 +51370,7 @@ Object {
             ],
             "isFeatured": true,
             "isPublic": true,
-            "name": "Trasa 2 z dnia 06/09/2021",
+            "name": "Trasa 2 z dnia 06/09/2021 - s",
             "ownerId": null,
             "path": Array [
               Array [
@@ -51792,10 +51792,10 @@ Object {
                 "easy",
               ],
             },
-            "distance": 921.7238318464848,
+            "distance": 925.7238318464848,
             "distanceToRoute": 3.921756306480021,
             "downloads": 0,
-            "id": "Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSs",
+            "id": "Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa",
             "images": Array [
               Object {
                 "id": "map",
@@ -51874,7 +51874,7 @@ Object {
             ],
             "isFeatured": true,
             "isPublic": true,
-            "name": "Trasa 2 z dnia 06/09/2021 - s",
+            "name": "Trasa 2 z dnia 06/09/2021",
             "ownerId": null,
             "path": Array [
               Array [
