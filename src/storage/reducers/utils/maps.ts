@@ -45,11 +45,7 @@ export const sortByDistance = (data: MapType[]) => {
             const createdAtB = getTimeInUTCMilliseconds(b.createdAt);
 
             if (createdAtA === createdAtB) {
-                if (createdAtA === createdAtB) {
-                    return 0;
-                }
-
-                return createdAtA < createdAtB ? -1 : 1;
+                return 0;
             }
 
             return createdAtA < createdAtB ? -1 : 1;
