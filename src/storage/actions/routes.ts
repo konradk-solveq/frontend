@@ -14,6 +14,7 @@ import {createNewRouteService, syncRouteData} from '../../services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {MIN_ROUTE_LENGTH} from '../../helpers/global';
+import {AppDispatch} from '@hooks/redux';
 import {
     loggErrorMessage,
     loggErrorWithScope,
@@ -26,7 +27,6 @@ import {
     startRecording,
     stopRecording,
 } from './utils/routes';
-import {AppDispatch} from '@src/hooks/redux';
 
 export interface ActionAsyncResponseI {
     success: boolean;

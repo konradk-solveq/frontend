@@ -84,7 +84,10 @@ describe('[Recording Route actions]', () => {
                 ...initState,
                 routes: {
                     ...initState.routes,
-                    currentRoute: startedRoute,
+                    currentRoute: {
+                        ...startedRoute,
+                        remoteRouteId: 'different-remote-route-id',
+                    },
                 },
             });
             const getSpySuccess = jest
@@ -92,7 +95,7 @@ describe('[Recording Route actions]', () => {
                 .mockImplementation(() => {
                     return new Promise(resolve => {
                         return resolve({
-                            data: {id: 'remote-route-test-id-2'},
+                            data: {id: 'remote-route-test-id'},
                         });
                     });
                 });
