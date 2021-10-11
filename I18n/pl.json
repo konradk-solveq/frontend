@@ -356,14 +356,14 @@
             "removeRouteFromPlanned": "Trasa {{name}} została usunięta z planowanych."
         },
         "PlannedRoutes": {
-            "title": ", odkryj Ciekawe trasy z KROSS",
+            "title": ", odkryj ciekawe trasy z KROSS",
             "emptyStateTitle": "Dobry plan to podstawa",
             "emptyStateContent": "Zaplanuj wycieczkę na podstawie tras rekomendowanych przez KROSS.",
             "emptyStateButton": "Pobierz trasę",
             "defaultUserName": "Rowerzysto"
         },
         "MyRoutes": {
-            "title": ", odkryj Ciekawe trasy z KROSS",
+            "title": ", odkryj ciekawe trasy z KROSS",
             "emptyStateTitle": "Nie masz nagranych tras",
             "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
             "emptyStateButton": "Pobierz trasę",
