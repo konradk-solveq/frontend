@@ -806,7 +806,7 @@ export const onWatchPostionChangeListener = async (
     try {
         BackgroundGeolocation.watchPosition(callback, () => {}, {
             interval: interval || 1000,
-            timeout: timeout || 30,
+            timeout: timeout || 30000,
             desiredAccuracy: isIOS ? -2 : -1,
             persist: !notPersist,
         });
