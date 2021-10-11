@@ -710,7 +710,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.5.13;
+=======
+				MARKETING_VERSION = 1.5.12;
+>>>>>>> 194b105e27e603771ac87c8137f6e74949cb274d
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -739,7 +743,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.5.13;
+=======
+				MARKETING_VERSION = 1.5.12;
+>>>>>>> 194b105e27e603771ac87c8137f6e74949cb274d
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -948,7 +956,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.5.13;
+=======
+				MARKETING_VERSION = 1.5.12;
+>>>>>>> 194b105e27e603771ac87c8137f6e74949cb274d
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1058,7 +1070,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.5.13;
+=======
+				MARKETING_VERSION = 1.5.12;
+>>>>>>> 194b105e27e603771ac87c8137f6e74949cb274d
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1176,7 +1192,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.5.13;
+=======
+				MARKETING_VERSION = 1.5.12;
+>>>>>>> 194b105e27e603771ac87c8137f6e74949cb274d
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1298,7 +1318,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				MARKETING_VERSION = 1.5.13;
+=======
+				MARKETING_VERSION = 1.5.12;
+>>>>>>> 194b105e27e603771ac87c8137f6e74949cb274d
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
