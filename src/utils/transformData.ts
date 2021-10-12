@@ -38,7 +38,7 @@ export const getTimeInUTCMilliseconds = (
     return time;
 };
 
-const isLocationValidToPass = (loc: any, routeId?: string) => {
+export const isLocationValidToPass = (loc: any, routeId?: string) => {
     if (!routeId || !loc?.extras?.route_id || loc?.sample === true) {
         return false;
     }
