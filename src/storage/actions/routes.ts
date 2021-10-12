@@ -381,10 +381,6 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         if ((response.error && response.status >= 400) || !response?.data?.id) {
             let errorMessage = response.error;
 
-            if (currentRoute?.remoteRouteId) {
-                await removeCeratedRouteIDService(currentRoute.remoteRouteId);
-            }
-
             if (currRoutesDat?.length > 3) {
                 console.log(
                     `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,

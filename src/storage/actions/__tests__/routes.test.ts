@@ -507,7 +507,7 @@ describe('[Recording Route actions]', () => {
                 });
             });
 
-            it('should fail when sending route data to API but should success when removing remote ID', async () => {
+            it('should fail when sending route data to API', async () => {
                 store = mockStore({
                     ...initState,
                     routes: {
@@ -538,16 +538,6 @@ describe('[Recording Route actions]', () => {
                             ),
                         }),
                     );
-                /* delete remoute route id */
-                const deletePrivateMapIdSuccessSpy = jest
-                    .spyOn(instance, 'delete')
-                    .mockImplementation(() =>
-                        Promise.resolve({
-                            data: {id: 'remote-route-test-id'},
-                            status: 200,
-                            error: '',
-                        }),
-                    );
                 const dataToCompare = routesDataToAPIRequest(
                     routesDataToUpdateMock,
                 );
@@ -555,7 +545,6 @@ describe('[Recording Route actions]', () => {
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
-                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(1);
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledWith(
                         '/routes/route/remote-route-test-id/path',
                         dataToCompare,
@@ -598,7 +587,7 @@ describe('[Recording Route actions]', () => {
                     );
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(2);
+                    expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
                     /**
                      * Check if all expected actions have been called.
                      */
@@ -635,7 +624,7 @@ describe('[Recording Route actions]', () => {
                     );
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(deletePrivateMapIdFailureSpy).toBeCalledTimes(2);
+                    expect(deletePrivateMapIdFailureSpy).toBeCalledTimes(1);
                     /**
                      * Check if all expected actions have been called.
                      */
@@ -669,7 +658,7 @@ describe('[Recording Route actions]', () => {
                     );
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(2);
+                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(1);
                     /**
                      * Check if all expected actions have been called.
                      */
