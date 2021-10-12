@@ -28,7 +28,7 @@ export const transformMetersToKilometersString = (
     fixedNumber?: number,
     emptyFalse?: boolean,
 ): string => {
-    if (!meters) {
+    if (meters === undefined || meters === null || isNaN(meters)) {
         if (emptyFalse) {
             return '';
         }
