@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, Pressable} from 'react-native';
 
-import {MoreIcon} from '../../../../../../sharedComponents/svg/icons';
-
 import styles from '../styles/commonStyles';
 import stylesFourthSection from '../styles/stylesFourthSection';
 
@@ -93,7 +91,11 @@ const FourthSection: React.FC<IProps> = ({
             {onDetails && (
                 <View style={stylesFourthSection.secondColumn}>
                     <Pressable onPress={onDetails} hitSlop={20}>
-                        <MoreIcon />
+                        <View style={stylesFourthSection.moreIconFontWrap}>
+                            <Text style={stylesFourthSection.moreIconFont}>
+                                N
+                            </Text>
+                        </View>
                     </Pressable>
                 </View>
             )}
