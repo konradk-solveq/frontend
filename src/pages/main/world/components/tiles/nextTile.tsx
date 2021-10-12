@@ -7,11 +7,6 @@ import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {I18n} from '@translations/I18n';
 import {Map, ReactionsType} from '@models/map.model';
 
-import {
-    BikeIcon,
-    ClockIcon,
-    DownloadIcon,
-} from '../../../../../sharedComponents/svg/icons';
 import TileBackground from './tileBackground';
 import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
 import {getImageToDisplay} from '@utils/transformData';
@@ -19,6 +14,7 @@ import {jsonStringify} from '@utils/transformJson';
 
 import styles from './styles/commonStyles';
 import nextTileStyles from './styles/styleNextTile';
+
 import FourthSection from './sections/fourthSection';
 import ThirdSection from './sections/thirdSection';
 import NextTileHeader from './NextTileHeader';
@@ -144,10 +140,14 @@ const NextTile: React.FC<IProps> = ({
                                         <View
                                             style={styles.borderVerticalLine}
                                         />
+                                        <View style={styles.raitingIconWrap}>
+                                            <Text
+                                                style={styles.raitingIconFont}>
+                                                f
+                                            </Text>
+                                        </View>
+
                                         <Text style={styles.ratingValue}>
-                                            <DownloadIcon
-                                                iconStyle={styles.raitingIcon}
-                                            />
                                             {mapData?.downloads || '-'}
                                         </Text>
                                     </View>
@@ -156,11 +156,17 @@ const NextTile: React.FC<IProps> = ({
                                 <View style={nextTileStyles.secondtSection}>
                                     <View style={styles.sectionContentRow}>
                                         <View style={styles.sectionTextRow}>
-                                            <BikeIcon
-                                                iconStyle={
-                                                    styles.secondSectionIcon
-                                                }
-                                            />
+                                            <View
+                                                style={
+                                                    nextTileStyles.bikeIconFontWrap
+                                                }>
+                                                <Text
+                                                    style={
+                                                        nextTileStyles.bikeIconFont
+                                                    }>
+                                                    i
+                                                </Text>
+                                            </View>
                                             <Text
                                                 style={
                                                     styles.secondSectionText
@@ -176,11 +182,17 @@ const NextTile: React.FC<IProps> = ({
                                             </Text>
                                         </View>
                                         <View style={styles.sectionTextRow}>
-                                            <ClockIcon
-                                                iconStyle={
-                                                    styles.secondSectionIcon
-                                                }
-                                            />
+                                            <View
+                                                style={
+                                                    nextTileStyles.clockIconFontWrap
+                                                }>
+                                                <Text
+                                                    style={
+                                                        nextTileStyles.clockIconFont
+                                                    }>
+                                                    j
+                                                </Text>
+                                            </View>
                                             <Text
                                                 style={
                                                     styles.secondSectionText
