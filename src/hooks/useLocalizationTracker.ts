@@ -30,6 +30,7 @@ import {Location} from '@interfaces/geolocation';
 import {getCurrentRoutePathByIdWithLastRecord} from '@utils/routePath';
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
+import {isLocationValidToPass} from '@src/utils/transformData';
 
 export interface DataI {
     distance: string;
@@ -193,6 +194,13 @@ const useLocalizationTracker = (
             }
 
             if (!isLocationValidate(currentLocationData)) {
+                return;
+            }
+
+            if (
+                !fastTimeout &&
+                !isLocationValidToPass(currentLocationData, currentRouteId)
+            ) {
                 return;
             }
 
