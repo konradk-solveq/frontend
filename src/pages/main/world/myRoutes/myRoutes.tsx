@@ -25,9 +25,10 @@ import Loader from '../../../../sharedComponents/loader/loader';
 
 import styles from './style';
 
+const length = getVerticalPx(175);
 const getItemLayout = (_: any, index: number) => ({
-    length: getVerticalPx(175),
-    offset: getVerticalPx(175) * index,
+    length: length,
+    offset: length * index,
     index,
 });
 
