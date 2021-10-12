@@ -1,4 +1,4 @@
-import {Platform, StyleSheet} from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import {
     getHorizontalPx,
     getVerticalPx,
@@ -16,6 +16,8 @@ const stylesFourthSection = StyleSheet.create({
         width: '30%',
         alignItems: 'flex-end',
         justifyContent: 'center',
+        left: 10,
+        top: 8,
     },
     secondColumnItem: {
         marginRight: getHorizontalPx(30),
@@ -28,6 +30,19 @@ const stylesFourthSection = StyleSheet.create({
     },
     secondColumnIconLower: {
         marginTop: getVerticalPx(isIOS ? 0 : 3),
+    },
+    moreIconFontWrap: {
+        height: 20,
+        width: 36,
+    },
+    moreIconFont: {
+        top: 8,
+        left: 4,
+        marginLeft: 0,
+        marginRight: 5,
+        fontFamily: 'mykross',
+        fontSize: 4.15,
+        textAlign: 'center',
     },
 });
 

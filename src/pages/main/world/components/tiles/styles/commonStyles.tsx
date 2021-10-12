@@ -37,6 +37,33 @@ const styles = StyleSheet.create({
         marginLeft: 0,
         marginRight: 5,
     },
+    raitingIconWrap: {
+        top: 0.4,
+    },
+    raitingIconFont: {
+        marginLeft: 0,
+        marginRight: 5,
+        fontFamily: 'mykross',
+        fontSize: 10.5,
+    },
+    bikeIconFontWrap: {
+        height: 16,
+    },
+    bikeIconFont: {
+        marginLeft: 0,
+        marginRight: 5,
+        fontFamily: 'mykross',
+        fontSize: 16,
+    },
+    clockIconFontWrap: {
+        top: 0.2,
+    },
+    clockIconFont: {
+        marginLeft: 0,
+        marginRight: 5,
+        fontFamily: 'mykross',
+        fontSize: 15,
+    },
     localizationDescription: {
         marginTop: getVerticalPx(8),
         fontFamily: fontLight,
@@ -101,11 +128,24 @@ const styles = StyleSheet.create({
         marginLeft: 0,
         marginRight: getVerticalPx(7),
     },
-    mountainIcon: {
-        marginLeft: 0,
+    mountainIconFontWrap: {
         marginRight: getVerticalPx(7),
-        height: getVerticalPx(8),
-        width: getHorizontalPx(12),
+    },
+    mountainIconFont: {
+        marginLeft: 0,
+        marginRight: 5,
+        fontFamily: 'mykross',
+        fontSize: 7.7,
+    },
+    wayIconFontWrap: {
+        top: 0.6,
+        marginRight: getVerticalPx(7),
+    },
+    wayIconFont: {
+        marginLeft: 0,
+        marginRight: 5,
+        fontFamily: 'mykross',
+        fontSize: 10,
     },
     wayIcon: {
         marginLeft: 0,

@@ -1,10 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-
-import {
-    MountainIcon,
-    WayIcon,
-} from '../../../../../../sharedComponents/svg/icons';
+import { View, Text } from 'react-native';
 
 import styles from '../styles/commonStyles';
 import stylesThirdSection from '../styles/styleThirdSection';
@@ -26,7 +21,9 @@ const ThirdSection: React.FC<IProps> = ({
                         styles.sectionTextRow,
                         stylesThirdSection.firstColumnLeftValue,
                     ]}>
-                    <MountainIcon iconStyle={styles.mountainIcon} />
+                    <View style={styles.mountainIconFontWrap}>
+                        <Text style={styles.mountainIconFont}>h</Text>
+                    </View>
                     <Text style={stylesThirdSection.text}>
                         {firstPickedDifficulty || ''}
                     </Text>
@@ -37,7 +34,9 @@ const ThirdSection: React.FC<IProps> = ({
                         styles.sectionTextRow,
                         stylesThirdSection.firstColumnRightValue,
                     ]}>
-                    <WayIcon iconStyle={styles.wayIcon} />
+                    <View style={styles.wayIconFontWrap}>
+                        <Text style={styles.wayIconFont}>g</Text>
+                    </View>
                     <Text style={stylesThirdSection.text}>
                         {firstPickedSurface || ''}
                     </Text>

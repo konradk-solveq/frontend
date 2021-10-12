@@ -23,6 +23,25 @@ export const nextTileStyles = StyleSheet.create({
         flexDirection: 'column',
         width: '70%',
     },
+    bikeIconFontWrap: {
+        top: -0.5,
+    },
+    bikeIconFont: {
+        marginLeft: 0,
+        marginRight: 5,
+        fontFamily: 'mykross',
+        fontSize: 15,
+    },
+    clockIconFontWrap: {
+        top: 0,
+        marginLeft: 5,
+    },
+    clockIconFont: {
+        marginLeft: 0,
+        marginRight: 5,
+        fontFamily: 'mykross',
+        fontSize: 15,
+    },
     secondtSection: {
         marginLeft: 0,
         marginRight: 20,
