@@ -262,9 +262,7 @@ export class Map {
     }
 
     public get firstPickedDifficulty(): string | undefined {
-        const values = Array.isArray(this?.difficulty)
-            ? this.difficulty
-            : undefined;
+        const values = Array.isArray(this?.difficulty) && this.difficulty;
         if (!values) {
             return;
         }
@@ -284,7 +282,7 @@ export class Map {
     }
 
     public get firstPickedSurface(): string | undefined {
-        const values = Array.isArray(this?.surface) ? this.surface : undefined;
+        const values = Array.isArray(this?.surface) && this.surface;
         if (!values) {
             return;
         }
