@@ -92,6 +92,13 @@ describe('Return meters number converted to kilometes -- utils', () => {
             expect(tNumber).toEqual('-');
         });
 
+        it('Return "-" character when no value is undefined', () => {
+            //@ts-ignore
+            const tNumber = transformMetersToKilometersString(undefined);
+
+            expect(tNumber).toEqual('-');
+        });
+
         it('Return empty string when allowed and no value', () => {
             //@ts-ignore
             const tNumber = transformMetersToKilometersString(null, 0, true);

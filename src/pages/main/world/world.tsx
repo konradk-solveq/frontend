@@ -120,7 +120,9 @@ const World: React.FC = () => {
     const onLoadMoreHandler = useCallback(() => {
         if (!isLoading) {
             if (nextPrivateCoursor && activeTab === RouteMapType.MY_ROUTES) {
-                dispatch(fetchPrivateMapsList(nextPrivateCoursor));
+                dispatch(
+                    fetchPrivateMapsList(nextPrivateCoursor, savedMapFilters),
+                );
                 return;
             }
             if (nextCoursor && activeTab === RouteMapType.BIKE_MAP) {
@@ -177,12 +179,15 @@ const World: React.FC = () => {
                     />
                 );
             case RouteMapType.MY_ROUTES:
+                /**
+                 * My routes should be ordered by date by default.
+                 */
                 return (
                     <MyRoutes
                         onRefresh={onRefreshHandler}
                         onLoadMore={onLoadMoreHandler}
                         onPress={() => setActiveTab(RouteMapType.BIKE_MAP)}
-                        sortedByDate={!!savedMapFilters?.order}
+                        sortedByDate={!!savedMapFilters?.order || true}
                     />
                 );
             case RouteMapType.PLANNING:
