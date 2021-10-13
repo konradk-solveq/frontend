@@ -5,8 +5,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 project.ext.envConfigFiles = [
-    // // debug: ".env.development",
-    prod: ".env.prod",
+    prod: ".env.production",
     dev: ".env.dev",
     qa: ".env.test",
 ]
