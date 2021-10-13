@@ -253,7 +253,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     </View>
                 </ScrollView>
 
-                {TESTING_MODE && (
+                {TESTING_MODE === 'true' && (
                     <DataPreview
                         title={'podgląd danych'}
                         dataList={[
