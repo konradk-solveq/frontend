@@ -162,8 +162,12 @@ const useLocalizationTracker = (
         [dispatch, currentRouteId, isTrackingActivatedHandler, stopTracker],
     );
 
+    /**
+     * Manual pause. Stops watching locations.
+     */
     const onPauseTracker = useCallback(async () => {
-        await pauseTracingLocation();
+        await pauseTracingLocation(true);
+        stopWatchPostionChangeListener();
         setTrackerData(prev => {
             if (prev) {
                 return {
@@ -177,9 +181,9 @@ const useLocalizationTracker = (
     }, []);
 
     const onStartTracker = useCallback(async () => {
-        await resumeTracingLocation();
+        await resumeTracingLocation(currentRouteId);
         setIsActive(true);
-    }, []);
+    }, [currentRouteId]);
 
     useEffect(() => {
         mountedRef.current = true;

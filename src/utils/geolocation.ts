@@ -428,11 +428,14 @@ export const getLastLocationByRoutId = async (
     }
 };
 
-/* Set plugin to stationary state - doesnt disable tracking permamently */
-export const pauseTracingLocation = async () => {
+/* Force plugin to stationary state - doesnt disable tracking permamently */
+export const pauseTracingLocation = async (clearRouteId?: boolean) => {
     try {
         const state = await getBackgroundGeolocationState();
         if (state?.enabled) {
+            if (clearRouteId) {
+                await BackgroundGeolocation.setConfig({extras: {}});
+            }
             await BackgroundGeolocation.changePace(false);
         }
     } catch (e) {
@@ -446,11 +449,18 @@ export const pauseTracingLocation = async () => {
     }
 };
 
-/* Set plugin to moving state */
-export const resumeTracingLocation = async () => {
+/* Force plugin to moving state */
+export const resumeTracingLocation = async (routeId?: string) => {
     try {
         const state = await getBackgroundGeolocationState();
         if (state?.enabled && !state?.isMoving) {
+            if (routeId) {
+                await BackgroundGeolocation.setConfig({
+                    extras: {
+                        route_id: routeId,
+                    },
+                });
+            }
             await BackgroundGeolocation.changePace(true);
         }
     } catch (e) {
@@ -502,6 +512,7 @@ export const askFineLocationPermission = async () => {
     let permission = 'unavailable';
     try {
         const res = await request(
+            //@ts-ignore
             Platform.select({
                 android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
                 ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
