@@ -95,6 +95,14 @@ const Map: React.FC<IProps> = ({
     );
 
     useEffect(() => {
+        console.log(
+            '%c location:',
+            'background: #ffcc00; color: #003300',
+            location,
+        );
+    }, [location]);
+
+    useEffect(() => {
         if (!mountedRef.current) {
             return;
         }

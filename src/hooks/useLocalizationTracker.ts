@@ -18,6 +18,7 @@ import {
     pauseTracingLocation,
     requestGeolocationPermission,
     resumeTracingLocation,
+    stopWatchPostionChangeListener,
 } from '../utils/geolocation';
 import {
     DEFAULT_SPEED,
@@ -58,7 +59,7 @@ const useLocalizationTracker = (
 
     const {isTrackingActivatedHandler} = useLocationProvider();
 
-    const currentRouteAverrageSpeed = useAppSelector(
+    const currentRouteAverageSpeed = useAppSelector(
         trackerCurrentRouteAverrageSpeedSelector,
     );
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
@@ -76,8 +77,8 @@ const useLocalizationTracker = (
     const [restoredPath, setRestoredPath] = useState<ShortCoordsType[]>([]);
 
     const setAverageSpeedOnStart = useCallback(() => {
-        if (!averageSpeed && currentRouteAverrageSpeed) {
-            const as = getAverageSpeedData([currentRouteAverrageSpeed]);
+        if (!averageSpeed && currentRouteAverageSpeed) {
+            const as = getAverageSpeedData([currentRouteAverageSpeed]);
             setCurrentAverageSpeed(parseFloat(as));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -110,8 +111,7 @@ const useLocalizationTracker = (
                 return;
             }
 
-            setCurrentTrackerData(undefined, location);
-            // setInitTrackerData(undefined);
+            setCurrentLocation(location);
         };
 
         onWatchPostionChangeListener(setLocation);
@@ -193,10 +193,28 @@ const useLocalizationTracker = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const setCurrentLocation = useCallback(async (locationData?: Location) => {
+        if (!locationData) {
+            return;
+        }
+
+        const res = getTrackerData(locationData, '0,0', true);
+
+        if (!res) {
+            return;
+        }
+
+        setTrackerData(res);
+
+        if (locationData) {
+            initialTrackerDataRef.current = true;
+        }
+    }, []);
+
     const setCurrentTrackerData = useCallback(
-        async (fastTimeout?: boolean, lcoationData?: Location) => {
+        async (fastTimeout?: boolean, locationData?: Location) => {
             const currentLocationData =
-                lcoationData ||
+                locationData ||
                 (await getCurrentLocation(
                     currentRouteId,
                     fastTimeout ? 4 : undefined,
@@ -235,7 +253,7 @@ const useLocalizationTracker = (
                         ...prev,
                         averageSpeed: getAverageSpeedData(
                             speed,
-                            currentRouteAverrageSpeed,
+                            currentRouteAverageSpeed,
                         ),
                         speed: '0,0',
                     };
@@ -259,7 +277,7 @@ const useLocalizationTracker = (
                 parseFloat(aSpeed) >= 0.1 &&
                 !fastTimeout
             ) {
-                aSpeed = getAverageSpeedData(speed, currentRouteAverrageSpeed);
+                aSpeed = getAverageSpeedData(speed, currentRouteAverageSpeed);
             }
 
             const res = getTrackerData(currentLocationData, aSpeed);
@@ -276,13 +294,13 @@ const useLocalizationTracker = (
                 // onPersistData(d?.odometer);
             }
 
-            if (lcoationData) {
+            if (locationData) {
                 initialTrackerDataRef.current = true;
             }
         },
         [
             persist,
-            currentRouteAverrageSpeed,
+            currentRouteAverageSpeed,
             lastDistance,
             setAverageSpeedOnStart,
             currentRouteId,
@@ -292,12 +310,11 @@ const useLocalizationTracker = (
     useEffect(() => {
         if (!restoredRef.current && currentRouteId && isTrackerActive) {
             const runInitLocationSet = async () => {
-                const recordedPath =
-                    await getCurrentRoutePathByIdWithLastRecord(
-                        currentRouteId,
-                        [],
-                        true,
-                    );
+                const recordedPath = await getCurrentRoutePathByIdWithLastRecord(
+                    currentRouteId,
+                    [],
+                    true,
+                );
 
                 if (recordedPath?.data?.length) {
                     setRestoredPath(recordedPath.data);

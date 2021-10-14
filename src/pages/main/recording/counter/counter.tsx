@@ -153,7 +153,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             setBeforeRecording(false);
             setPageState('record');
             setPauseTime({start: 0, total: trackerPauseTime});
-            startTracker(route?.params?.mapID);
+            startTracker(undefined, route?.params?.mapID);
         } else {
             startLocalize();
         }
@@ -239,7 +239,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             case 'start':
                 setPageState('record');
                 setBeforeRecording(false);
-                await startTracker(route?.params?.mapID);
+                await startTracker(undefined, route?.params?.mapID);
                 break;
             case 'record':
                 setPageState('endMessage');
