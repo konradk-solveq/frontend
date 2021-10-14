@@ -9,7 +9,6 @@ import {Map, ReactionsType} from '@models/map.model';
 import {getImageToDisplay} from '@utils/transformData';
 import {jsonStringify} from '@utils/transformJson';
 
-import {BikeIcon, ClockIcon, DownloadIcon} from '@sharedComponents/svg/icons';
 import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
 
 import TileBackground from './tileBackground';
@@ -141,10 +140,10 @@ const SecondTile: React.FC<IProps> = ({
                                         <View
                                             style={styles.borderVerticalLine}
                                         />
+                                        <Text style={styles.raitingIconFont}>
+                                            f
+                                        </Text>
                                         <Text style={styles.ratingValue}>
-                                            <DownloadIcon
-                                                iconStyle={styles.raitingIcon}
-                                            />
                                             {mapData?.downloads || '-'}
                                         </Text>
                                     </View>
@@ -160,9 +159,11 @@ const SecondTile: React.FC<IProps> = ({
                         <View style={styles.secondtSection}>
                             <View style={styles.sectionContentRow}>
                                 <View style={styles.sectionTextRow}>
-                                    <BikeIcon
-                                        iconStyle={styles.secondSectionIcon}
-                                    />
+                                    <View style={styles.bikeIconFontWrap}>
+                                        <Text style={styles.bikeIconFont}>
+                                            i
+                                        </Text>
+                                    </View>
                                     <Text style={styles.secondSectionText}>
                                         {mapData.distanceInKilometers || '-'}{' '}
                                         <Text
@@ -172,9 +173,11 @@ const SecondTile: React.FC<IProps> = ({
                                     </Text>
                                 </View>
                                 <View style={styles.sectionTextRow}>
-                                    <ClockIcon
-                                        iconStyle={styles.secondSectionIcon}
-                                    />
+                                    <View style={styles.clockIconFontWrap}>
+                                        <Text style={styles.clockIconFont}>
+                                            j
+                                        </Text>
+                                    </View>
                                     <Text style={styles.secondSectionText}>
                                         {mapData?.formattedTimeString || '-:--'}{' '}
                                         <Text

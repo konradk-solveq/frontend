@@ -1,26 +1,26 @@
-import React, {useEffect, useCallback, useState} from 'react';
-import {View, Text, Image, Pressable} from 'react-native';
+import React, { useEffect, useCallback, useState } from 'react';
+import { View, Text, Image, Pressable } from 'react-native';
 
-import {mapReactionsConfigSelector} from '@storage/selectors/app';
-import {modifyReaction} from '@storage/actions/maps';
-import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {I18n} from '@translations/I18n';
-import {Map, ReactionsType} from '@models/map.model';
-import {jsonStringify} from '@utils/transformJson';
-import {getImageToDisplay} from '@utils/transformData';
+import { mapReactionsConfigSelector } from '@storage/selectors/app';
+import { modifyReaction } from '@storage/actions/maps';
+import { useAppDispatch, useAppSelector } from '@hooks/redux';
+import { I18n } from '@translations/I18n';
+import { Map, ReactionsType } from '@models/map.model';
+import { jsonStringify } from '@utils/transformJson';
+import { getImageToDisplay } from '@utils/transformData';
 
-import {BikeIcon, ClockIcon, DownloadIcon} from '@sharedComponents/svg/icons';
 import TileBackground from './tileBackground';
 import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
 
 import styles from './styles/commonStyles';
+import firstTileStyles from './styles/styleFirstTile';
 
 import ThirdSection from './sections/thirdSection';
 import FourthSection from './sections/fourthSection';
 
 interface IProps {
     mapData: Map;
-    images: {images: string[]; mapImg: string};
+    images: { images: string[]; mapImg: string };
     onPress: (state: boolean, mapID: string) => void;
     onPressTile?: (mapID: string) => void;
     tilePressable?: boolean;
@@ -110,10 +110,10 @@ const FirstTile: React.FC<IProps> = ({
                                 </Text>
                                 <View style={styles.raitingContainer}>
                                     <View style={styles.borderVerticalLine} />
+                                    <Text style={styles.raitingIconFont}>
+                                        f
+                                    </Text>
                                     <Text style={styles.ratingValue}>
-                                        <DownloadIcon
-                                            iconStyle={styles.raitingIcon}
-                                        />
                                         {mapData?.downloads || '-'}
                                     </Text>
                                 </View>
@@ -123,9 +123,11 @@ const FirstTile: React.FC<IProps> = ({
                         <View style={styles.secondtSection}>
                             <View style={styles.sectionContentRow}>
                                 <View style={styles.sectionTextRow}>
-                                    <BikeIcon
-                                        iconStyle={styles.secondSectionIcon}
-                                    />
+                                    <View style={firstTileStyles.bikeIconFontWrap}>
+                                        <Text style={firstTileStyles.bikeIconFont}>
+                                            i
+                                        </Text>
+                                    </View>
                                     <Text style={styles.secondSectionText}>
                                         {mapData.distanceInKilometers || '-'}{' '}
                                         <Text
@@ -135,9 +137,11 @@ const FirstTile: React.FC<IProps> = ({
                                     </Text>
                                 </View>
                                 <View style={styles.sectionTextRow}>
-                                    <ClockIcon
-                                        iconStyle={styles.secondSectionIcon}
-                                    />
+                                    <View style={firstTileStyles.clockIconFontWrap}>
+                                        <Text style={firstTileStyles.clockIconFont}>
+                                            j
+                                        </Text>
+                                    </View>
                                     <Text style={styles.secondSectionText}>
                                         {mapData?.formattedTimeString || '-:--'}{' '}
                                         <Text

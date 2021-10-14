@@ -1,13 +1,13 @@
-import React, {useState, useCallback} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {I18n} from '../../../../../../I18n/I18n';
+import React, { useState, useCallback } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { I18n } from '../../../../../../I18n/I18n';
 
 import AnimSvg from '../../../../../helpers/animSvg';
 
-import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {ReactionsType} from '@models/map.model';
-import {mapReactionsConfigSelector} from '@storage/selectors/app';
-import {modifyReaction} from '@storage/actions/maps';
+import { useAppDispatch, useAppSelector } from '@hooks/redux';
+import { ReactionsType } from '@models/map.model';
+import { mapReactionsConfigSelector } from '@storage/selectors/app';
+import { modifyReaction } from '@storage/actions/maps';
 import {
     setObjSize,
     getCenterLeftPx,
@@ -15,10 +15,6 @@ import {
     getVerticalPx,
     getWidthPx,
 } from '../../../../../helpers/layoutFoo';
-import BikeIcon from '../../../../../sharedComponents/svg/bikeIcon';
-import ClockIcon from '../../../../../sharedComponents/svg/clockIcon';
-import MountainIcon from '../../../../../sharedComponents/svg/mountainIcon';
-import WayIcon from '../../../../../sharedComponents/svg/wayIcon';
 import FourthSection from '../../components/tiles/sections/fourthSection';
 
 interface Props {
@@ -181,6 +177,31 @@ const RideTile: React.FC<Props> = ({
             marginLeft: 0,
             marginTop: 5,
         },
+        bikeClockIconFontWrap: {
+            marginRight: getVerticalPx(7),
+            top: 2,
+        },
+        bikeIconFont: {
+            marginLeft: 0,
+            marginRight: 5,
+            fontFamily: 'mykross',
+            fontSize: 17,
+        },
+        clockIconFont: {
+            marginLeft: 0,
+            marginRight: 5,
+            fontFamily: 'mykross',
+            fontSize: 15.5,
+        },
+        iconFontWrap: {
+            marginRight: getVerticalPx(7),
+        },
+        iconFont: {
+            marginLeft: 0,
+            marginRight: 5,
+            fontFamily: 'mykross',
+            fontSize: 14.5,
+        },
         likekSection: {
             marginTop: getHorizontalPx(7),
         },
@@ -205,25 +226,23 @@ const RideTile: React.FC<Props> = ({
     return (
         <View
             style={[styles.container, containerStyle]}
-            onLayout={({nativeEvent}) => handleShadowBox(nativeEvent.layout)}>
+            onLayout={({ nativeEvent }) => handleShadowBox(nativeEvent.layout)}>
             <AnimSvg source={source} style={boxStyle} />
             <View>
                 <View style={[styles.textLine, styles.line]}>
                     <View style={styles.verticalLine} />
                     <View style={styles.textContainer}>
-                        <BikeIcon
-                            containerStyle={styles.iconContainer}
-                            iconStyle={styles.iconTop}
-                        />
+                        <View style={styles.bikeClockIconFontWrap}>
+                            <Text style={styles.bikeIconFont}>i</Text>
+                        </View>
                         <Text style={styles.topText}>
                             {distance} <Text style={styles.textSuffix}>km</Text>
                         </Text>
                     </View>
                     <View style={styles.textContainer}>
-                        <ClockIcon
-                            containerStyle={styles.iconContainer}
-                            iconStyle={styles.iconTop}
-                        />
+                        <View style={styles.bikeClockIconFontWrap}>
+                            <Text style={styles.clockIconFont}>j</Text>
+                        </View>
                         <Text style={styles.topText}>
                             {time || '-:--'}{' '}
                             <Text style={styles.textSuffix}>h</Text>
@@ -234,19 +253,17 @@ const RideTile: React.FC<Props> = ({
                 <View style={[styles.textLine, styles.line]}>
                     <View style={styles.verticalLine} />
                     <View style={styles.textContainer}>
-                        <MountainIcon
-                            containerStyle={styles.iconContainer}
-                            iconStyle={styles.icon}
-                        />
+                        <View style={styles.iconFontWrap}>
+                            <Text style={styles.iconFont}>h</Text>
+                        </View>
                         <Text style={styles.bottomText}>
                             {level || trans.noInfo}
                         </Text>
                     </View>
                     <View style={styles.textContainer}>
-                        <WayIcon
-                            containerStyle={styles.iconContainer}
-                            iconStyle={styles.icon}
-                        />
+                        <View style={styles.iconFontWrap}>
+                            <Text style={styles.iconFont}>g</Text>
+                        </View>
                         <Text style={styles.bottomText}>
                             {type || trans.noInfo}
                         </Text>
@@ -258,7 +275,7 @@ const RideTile: React.FC<Props> = ({
                         likeGaved={reaction === likeValue?.enumValue}
                         onLikePress={onLikePressedHandler}
                         likeValue={currentLikeNumber}
-                        likeSize={22}
+                        likeSize={16}
                     />
                 </View>
             </View>

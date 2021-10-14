@@ -679,7 +679,8 @@
                     "long": "Uzupełnij szczegółowy opis",
                     "difficulty": "Wybierz poziom trudności",
                     "surface": "Wybierz rodzaje nawierzchni",
-                    "tags": "Wybierz tagi"
+                    "tags": "Wybierz tagi",
+                    "description": "Uzupełnij opis"
                 }
             }
         }

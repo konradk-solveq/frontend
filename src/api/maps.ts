@@ -51,8 +51,13 @@ export const getPrivateRoutes = async (
     paginationUrl?: string,
     filters?: MapFitlerType,
 ) => {
+    /**
+     * Default: private routes are filtered by created_at.
+     */
     const params =
-        filters && Object.keys(filters)?.length > 0 ? {params: filters} : {};
+        filters && Object.keys(filters)?.length > 0
+            ? {params: filters}
+            : {params: {sortBy: 'created', order: 'desc'}};
     return await axiosGet(
         paginationUrl ||
             `${BASE_URL}/find/my?lat=${location.latitude}&lng=${location.longitude}&detailed=true`,

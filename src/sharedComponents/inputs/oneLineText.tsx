@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         marginTop: 6,
         height: 23,
+        marginBottom: 10,
     },
     iconContainer: {
         position: 'absolute',

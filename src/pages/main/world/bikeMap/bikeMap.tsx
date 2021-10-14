@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
 import {RegularStackRoute} from '@navigation/route';
@@ -21,6 +21,8 @@ import Loader from '../../../../sharedComponents/loader/loader';
 
 import styles from './style';
 import FeaturedRoutes from '../featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
+
+const isIOS = Platform.OS === 'ios';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -144,8 +146,8 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                         renderItem={renderItem}
                         showsVerticalScrollIndicator={false}
                         getItemLayout={getItemLayout}
-                        initialNumToRender={10}
-                        removeClippedSubviews
+                        initialNumToRender={mapsData?.length || 10}
+                        removeClippedSubviews={!isIOS}
                         onEndReached={onEndReachedHandler}
                         onEndReachedThreshold={0.2}
                         ListFooterComponent={renderListLoader}

@@ -1,5 +1,5 @@
 import {AppConfigI} from '@models/config.model';
-import {ShortCoordsType} from '@src/type/coords';
+import {ShortCoordsType} from '@type/coords';
 import {Platform} from 'react-native';
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
 import {LocationDataI} from '../interfaces/geolocation';
@@ -221,6 +221,14 @@ export const transformToOptionEnumValues = (
     }
 };
 
+const elementExists = (el: any) => {
+    if (el !== undefined) {
+        return true;
+    }
+
+    return false;
+};
+
 export const transformToMapsType = (
     data: any,
     options: OptionsEnumsT | undefined,
@@ -254,10 +262,10 @@ export const transformToMapsType = (
     if (publishedAt) {
         newData.publishedAt = publishedAt;
     }
-    if (distance) {
+    if (elementExists(distance)) {
         newData.distance = distance;
     }
-    if (distanceToRoute) {
+    if (elementExists(distanceToRoute)) {
         newData.distanceToRoute = distanceToRoute;
     }
     if (difficulty) {
@@ -272,16 +280,16 @@ export const transformToMapsType = (
     if (description) {
         newData.description = description;
     }
-    if (location) {
+    if (elementExists(location)) {
         newData.location = location;
     }
-    if (time) {
+    if (elementExists(time)) {
         newData.time = time;
     }
     if (author) {
         newData.author = author;
     }
-    if (rating) {
+    if (elementExists(rating)) {
         newData.rating = rating;
     }
     if (images) {
@@ -293,13 +301,13 @@ export const transformToMapsType = (
     if (isPublic) {
         newData.isPublic = isPublic;
     }
-    if (downloads) {
+    if (elementExists(downloads)) {
         newData.downloads = downloads;
     }
-    if (reaction) {
+    if (elementExists(reaction)) {
         newData.reaction = reaction;
     }
-    if (reactions) {
+    if (elementExists(reactions)) {
         newData.reactions = reactions;
     }
 
