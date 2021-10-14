@@ -1,5 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
+import {
+    StyleSheet,
+    SafeAreaView,
+    View,
+    Text,
+    ScrollView,
+    KeyboardAvoidingView,
+    Platform,
+} from 'react-native';
 import I18n from 'react-native-i18n';
 import {setUserName} from '../../../../storage/actions/index';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
@@ -7,7 +15,6 @@ import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
 import {
     setObjSize,
     getWidthPx,
-    getWidthPxOf,
     getHorizontalPx,
     getVerticalPx,
     getVertical,
@@ -21,6 +28,8 @@ import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 
+const isIOS = Platform.OS === 'ios';
+
 interface Props {
     navigation: any;
 }
@@ -32,7 +41,6 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
     const name: string = useAppSelector(state => state.user.userName);
 
     const [inputName, setInputName] = useState('');
-    const [areaHeigh, setAreaHeigh] = useState(0);
     const [validationStatus, setValidationStatus] = useState(false);
     const [forceMessageWrong, setForceMessageWrong] = useState('');
 
@@ -49,10 +57,6 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
 
     const hendleValidationOk = (value: string) => {
         return validateData(userUserValidationRules.userName, value);
-    };
-
-    const handleAreaHeight = (layout: any) => {
-        setAreaHeigh(layout.height);
     };
 
     const hadleOnpressWithName = (inputName: string) => {
@@ -77,16 +81,6 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
     const [headHeight, setHeadHeight] = useState(0);
 
     setObjSize(334, 50);
-    const bottons = {
-        position: 'absolute',
-        width: getWidthPx(),
-        height: 50,
-        left: getCenterLeftPx(),
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        bottom: getVerticalPx(65 + 100), // 100 - przesunięcie dla scroll o headera
-    };
 
     const styles = StyleSheet.create({
         container: {
@@ -97,9 +91,13 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
         scroll: {
             top: headHeight,
         },
+        outerArea: {
+            flex: 1,
+        },
         area: {
+            justifyContent: 'space-between',
             width: '100%',
-            height: areaHeigh,
+            height: '100%',
             minHeight: getVertical(414),
         },
         title: {
@@ -123,7 +121,6 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             height: 50,
             marginTop: getHorizontalPx(6),
         },
-        bottons,
         btn: {
             position: 'absolute',
             width: getWidthPx(),
@@ -131,40 +128,50 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             left: getCenterLeftPx(),
             bottom: getVerticalPx(65 + 100), // 100 - przesunięcie dla scroll o headera
         },
+        keyboardContainer: {
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0,
+        },
     });
 
     return (
-        <SafeAreaView
-            style={styles.container}
-            onLayout={({nativeEvent}) => handleAreaHeight(nativeEvent.layout)}>
-            <ScrollView
-                keyboardShouldPersistTaps={'always'}
-                style={styles.scroll}>
-                <View style={styles.area}>
-                    <Text style={styles.title}>
-                        {(name || trans.defaultName) + trans.title}
-                    </Text>
+        <SafeAreaView style={styles.container}>
+            <KeyboardAvoidingView
+                behavior={isIOS ? 'padding' : 'height'}
+                style={styles.keyboardContainer}>
+                <ScrollView
+                    keyboardShouldPersistTaps="handled"
+                    contentContainerStyle={styles.outerArea}
+                    style={styles.scroll}>
+                    <View style={styles.area}>
+                        <Text style={styles.title}>
+                            {(name || trans.defaultName) + trans.title}
+                        </Text>
 
-                    <View style={[styles.inputAndPlaceholder, styles.input]}>
-                        <OneLineTekst
-                            placeholder={trans.placeholder}
-                            onChangeText={handleSetInputName}
-                            validationOk={hendleValidationOk}
-                            value={inputName}
-                            maxLength={20}
-                            validationStatus={setValidationStatus}
-                            forceMessageWrong={forceMessageWrong}
+                        <View
+                            style={[styles.inputAndPlaceholder, styles.input]}>
+                            <OneLineTekst
+                                placeholder={trans.placeholder}
+                                onChangeText={handleSetInputName}
+                                validationOk={hendleValidationOk}
+                                value={inputName}
+                                maxLength={20}
+                                validationStatus={setValidationStatus}
+                                forceMessageWrong={forceMessageWrong}
+                            />
+                        </View>
+
+                        <BigRedBtn
+                            style={styles.btn}
+                            title={trans.btn}
+                            onpress={() => hadleOnpressWithName(inputName)}
                         />
                     </View>
-
-                    <BigRedBtn
-                        style={styles.btn}
-                        title={trans.btn}
-                        onpress={() => hadleOnpressWithName(inputName)}
-                    />
-                </View>
-            </ScrollView>
-
+                </ScrollView>
+            </KeyboardAvoidingView>
             <StackHeader
                 onpress={() => navigation.goBack()}
                 getHeight={setHeadHeight}
