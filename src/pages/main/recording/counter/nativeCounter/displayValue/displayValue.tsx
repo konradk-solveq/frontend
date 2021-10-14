@@ -1,8 +1,13 @@
 import {pointToComaString} from '@src/helpers/stringFoo';
 import React, {useEffect, useRef} from 'react';
-import {TextStyle, Animated} from 'react-native';
+import {TextStyle, Animated, Dimensions} from 'react-native';
 
 import styles from './style';
+
+const {width} = Dimensions.get('window');
+const bigFont = width > 365 ? 57 : 51;
+const smallFont = width > 365 ? 18 : 16;
+const smallestFont = width > 365 ? 14 : 12.5;
 
 interface IProps {
     value: string | number;
@@ -19,8 +24,8 @@ const DisplayValue: React.FC<IProps> = ({
     noSpace,
     style,
 }: IProps) => {
-    const valueFontSize = useRef(new Animated.Value(57)).current;
-    const suffixFontSize = useRef(new Animated.Value(18)).current;
+    const valueFontSize = useRef(new Animated.Value(bigFont)).current;
+    const suffixFontSize = useRef(new Animated.Value(smallFont)).current;
 
     useEffect(() => {
         if (fontSize) {
@@ -31,7 +36,7 @@ const DisplayValue: React.FC<IProps> = ({
             }).start();
 
             Animated.timing(suffixFontSize, {
-                toValue: fontSize === 57 ? 18 : 14,
+                toValue: fontSize === bigFont ? smallFont : smallestFont,
                 duration: 300,
                 useNativeDriver: false,
             }).start();
