@@ -121,7 +121,10 @@ export const syncRouteData = async (
     routeNumber?: number | null,
 ): Promise<RoutesResponse> => {
     try {
-        if (!path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)) {
+        if (
+            !path?.length ||
+            !path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)
+        ) {
             if (remoteRouteId) {
                 await removeCeratedRouteIDService(remoteRouteId);
             }

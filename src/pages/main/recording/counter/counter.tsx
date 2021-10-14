@@ -150,7 +150,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (isTrackerActive) {
             setPageState('record');
             setPauseTime({start: 0, total: trackerPauseTime});
-            startTracker(true, route?.params?.mapID);
+            startTracker(route?.params?.mapID);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -233,7 +233,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         switch (pageState) {
             case 'start':
                 setPageState('record');
-                await startTracker(false, route?.params?.mapID);
+                await startTracker(route?.params?.mapID);
                 break;
             case 'record':
                 setPageState('endMessage');

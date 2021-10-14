@@ -1,4 +1,4 @@
-import { isLocationValidate } from '@src/utils/locationData';
+import {isLocationValidate} from '@src/utils/locationData';
 import {v4 as uuidv4} from 'uuid';
 
 import {transformMetersToKilometersString} from '../../utils/metersToKilometers';
@@ -27,6 +27,7 @@ export const startCurrentRoute = async (followByRoute?: string) => {
         endedAt: undefined,
         routeId: followByRoute || undefined,
         pauseTime: 0,
+        remoteRouteId: undefined,
     };
 };
 
