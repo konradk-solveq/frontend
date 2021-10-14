@@ -22,6 +22,9 @@ const arrowPositionTop = getVerticalPx((isIOS ? 0 : -25) + 437);
 const arrowPositionBottom = getVerticalPx((isIOS ? -10 : -25) + 654);
 const arrowPositionAplaShow = getVerticalPx((isIOS ? -10 : -25) + 654 - 30);
 
+const bigFont = width > 365 ? 57 : 51;
+const smallFont = width > 365 ? 23 : 21;
+
 interface IProps {
     time: Date | undefined;
     isRunning: boolean;
@@ -223,7 +226,9 @@ const NativeCounter: React.FC<IProps> = ({
                                     Dystans
                                 </Animated.Text>
                             </Animated.View>
-                            <DisplayDistance fontSize={mapHiden ? 57 : 23} />
+                            <DisplayDistance
+                                fontSize={mapHiden ? bigFont : smallFont}
+                            />
                         </Animated.View>
                         <Animated.View
                             style={[
@@ -245,7 +250,7 @@ const NativeCounter: React.FC<IProps> = ({
                             <DisplayTimer
                                 time={time}
                                 isRunning={isRunning}
-                                fontSize={mapHiden ? 57 : 23}
+                                fontSize={mapHiden ? bigFont : smallFont}
                             />
                         </Animated.View>
                     </View>
@@ -271,7 +276,9 @@ const NativeCounter: React.FC<IProps> = ({
                                 ]}>
                                 <Text style={styles.label}>Prędkość</Text>
                             </Animated.View>
-                            <DisplaySpeed fontSize={mapHiden ? 57 : 23} />
+                            <DisplaySpeed
+                                fontSize={mapHiden ? bigFont : smallFont}
+                            />
                         </Animated.View>
                         <Animated.View
                             style={[
@@ -293,7 +300,7 @@ const NativeCounter: React.FC<IProps> = ({
                             </Animated.View>
                             <DisplayAverageSpeed
                                 time={time}
-                                fontSize={mapHiden ? 57 : 23}
+                                fontSize={mapHiden ? bigFont : smallFont}
                             />
                         </Animated.View>
                     </Animated.View>
