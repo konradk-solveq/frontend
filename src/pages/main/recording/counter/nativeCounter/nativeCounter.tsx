@@ -36,6 +36,7 @@ interface IProps {
     autoFindMe: number;
     headingSwitch: (e: boolean) => void;
     compassHeading: any;
+    beforeRecording: boolean;
 }
 
 /* TODO: add context for values */
@@ -50,6 +51,7 @@ const NativeCounter: React.FC<IProps> = ({
     autoFindMe,
     headingSwitch,
     compassHeading,
+    beforeRecording,
 }: IProps) => {
     const FIND_ME_BTN_BOTTOM = 250;
     const resotredRef = useRef(false);
@@ -278,6 +280,7 @@ const NativeCounter: React.FC<IProps> = ({
                             </Animated.View>
                             <DisplaySpeed
                                 fontSize={mapHiden ? bigFont : smallFont}
+                                beforeRecording={beforeRecording}
                             />
                         </Animated.View>
                         <Animated.View

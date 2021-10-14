@@ -29,6 +29,7 @@ interface IProps {
     renderPath?: boolean;
     restoredPath?: ShortCoordsType[];
     autoFindMeSwith: (e: number) => void;
+    beforeRecording: boolean;
 }
 
 const initCompasHeading = {
@@ -52,6 +53,7 @@ const Map: React.FC<IProps> = ({
     renderPath,
     restoredPath,
     autoFindMeSwith,
+    beforeRecording,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -280,7 +282,7 @@ const Map: React.FC<IProps> = ({
                         compassHeading={compassHeading}
                     />
                 ) : null}
-                {trackerData?.coords ? (
+                {!beforeRecording && trackerData?.coords ? (
                     <SinglePolyline
                         coords={trackerData}
                         renderPath={renderPath}

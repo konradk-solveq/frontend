@@ -91,12 +91,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         start: 0,
         total: 0,
     });
+    const [beforeRecording, setBeforeRecording] = useState<boolean>(true);
 
     const ANIMATION_DURATION = 666;
 
     // trakowanie
     const {
         trackerData,
+        startLocalize,
         startTracker,
         stopTracker,
         pauseTracker,
@@ -148,9 +150,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     /* Re-run counter after app restart */
     useEffect(() => {
         if (isTrackerActive) {
+            setBeforeRecording(false);
             setPageState('record');
             setPauseTime({start: 0, total: trackerPauseTime});
             startTracker(route?.params?.mapID);
+        } else {
+            startLocalize();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -233,6 +238,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         switch (pageState) {
             case 'start':
                 setPageState('record');
+                setBeforeRecording(false);
                 await startTracker(route?.params?.mapID);
                 break;
             case 'record':
@@ -554,6 +560,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             renderPath={renderPath}
                             restoredPath={restoredPath}
                             autoFindMeSwith={(e: number) => setAutoFindMe(e)}
+                            beforeRecording={beforeRecording}
                         />
                     )}
 
