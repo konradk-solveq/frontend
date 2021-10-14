@@ -18,6 +18,7 @@ import {
     pauseTracingLocation,
     requestGeolocationPermission,
     resumeTracingLocation,
+    stopWatchPostionChangeListener,
 } from '../utils/geolocation';
 import {
     DEFAULT_SPEED,
