@@ -33,6 +33,7 @@
             "@translations*": ["I18n*"],
             "@jestUtils*": ["jest/utils*"],
             "@sentryLogger*": ["sentry*"],
+            "@env*": ["src/env"],
         },
       "types": [ "node", "jest" ],
     },
