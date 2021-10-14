@@ -45,7 +45,7 @@ export {
     addRoutesToSynchQueue,
     clearCurrentRouteData,
     clearRoutesToSynch,
-    persistCurrentRouteData,
+    addToQueueByRouteIdRouteData,
     setCurrentRoute,
     setCurrentRouteData,
     setRouteToSynch,

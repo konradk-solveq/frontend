@@ -17416,510 +17416,6 @@ export default {
                         "isFeatured": true
                     },
                     {
-                        "id": "Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa",
-                        "name": "Trasa 2 z dnia 06/09/2021",
-                        "author": "Rowerzysta",
-                        "description": {
-                            "long": "Ff",
-                            "short": "Dd"
-                        },
-                        "images": [
-                            {
-                                "variants": {
-                                    "share": [
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_share_256.png",
-                                            "width": 256,
-                                            "height": 134
-                                        },
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_share_512.png",
-                                            "width": 512,
-                                            "height": 268
-                                        },
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_share_1024.png",
-                                            "width": 1024,
-                                            "height": 536
-                                        }
-                                    ],
-                                    "square": [
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_square_256.png",
-                                            "width": 256,
-                                            "height": 256
-                                        },
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_square_512.png",
-                                            "width": 512,
-                                            "height": 512
-                                        },
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_square_1024.png",
-                                            "width": 1024,
-                                            "height": 1024
-                                        }
-                                    ],
-                                    "vertical": [
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_vertical_256.png",
-                                            "width": 256,
-                                            "height": 320
-                                        },
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_vertical_512.png",
-                                            "width": 512,
-                                            "height": 640
-                                        },
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_vertical_1024.png",
-                                            "width": 1024,
-                                            "height": 1280
-                                        }
-                                    ],
-                                    "horizontal": [
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_horizontal_256.png",
-                                            "width": 256,
-                                            "height": 205
-                                        },
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_horizontal_512.png",
-                                            "width": 512,
-                                            "height": 410
-                                        },
-                                        {
-                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_horizontal_1024.png",
-                                            "width": 1024,
-                                            "height": 820
-                                        }
-                                    ]
-                                },
-                                "id": "map",
-                                "type": "map"
-                            }
-                        ],
-                        "path": [
-                            [
-                                50.6643292,
-                                17.8878063
-                            ],
-                            [
-                                50.664314,
-                                17.8878375
-                            ],
-                            [
-                                50.6643879,
-                                17.8878619
-                            ],
-                            [
-                                50.6645484,
-                                17.887448
-                            ],
-                            [
-                                50.6646433,
-                                17.8873587
-                            ],
-                            [
-                                50.6648582,
-                                17.8869579
-                            ],
-                            [
-                                50.6648267,
-                                17.8869148
-                            ],
-                            [
-                                50.6646739,
-                                17.8869125
-                            ],
-                            [
-                                50.6646084,
-                                17.8868585
-                            ],
-                            [
-                                50.6646303,
-                                17.88673
-                            ],
-                            [
-                                50.6647405,
-                                17.8864235
-                            ],
-                            [
-                                50.6648454,
-                                17.8858247
-                            ],
-                            [
-                                50.6648525,
-                                17.8856157
-                            ],
-                            [
-                                50.6647685,
-                                17.8853913
-                            ],
-                            [
-                                50.6646545,
-                                17.8852916
-                            ],
-                            [
-                                50.664593,
-                                17.885356
-                            ],
-                            [
-                                50.6645061,
-                                17.8853668
-                            ],
-                            [
-                                50.6644499,
-                                17.885312
-                            ],
-                            [
-                                50.6640888,
-                                17.8851561
-                            ],
-                            [
-                                50.6639739,
-                                17.8852279
-                            ],
-                            [
-                                50.6638779,
-                                17.8852162
-                            ],
-                            [
-                                50.6638313,
-                                17.8853019
-                            ],
-                            [
-                                50.6637078,
-                                17.8853742
-                            ],
-                            [
-                                50.6635904,
-                                17.8853295
-                            ],
-                            [
-                                50.6634277,
-                                17.8853637
-                            ],
-                            [
-                                50.6632815,
-                                17.8854273
-                            ],
-                            [
-                                50.6630525,
-                                17.8854242
-                            ],
-                            [
-                                50.6629436,
-                                17.8854486
-                            ],
-                            [
-                                50.6629157,
-                                17.8854255
-                            ],
-                            [
-                                50.6629556,
-                                17.8854174
-                            ],
-                            [
-                                50.6629602,
-                                17.8853395
-                            ],
-                            [
-                                50.6629259,
-                                17.8853229
-                            ],
-                            [
-                                50.6627602,
-                                17.885644
-                            ],
-                            [
-                                50.6626916,
-                                17.8856696
-                            ],
-                            [
-                                50.6626519,
-                                17.885809
-                            ],
-                            [
-                                50.6626562,
-                                17.8864254
-                            ],
-                            [
-                                50.6627467,
-                                17.8864373
-                            ],
-                            [
-                                50.6627619,
-                                17.8864584
-                            ],
-                            [
-                                50.6627677,
-                                17.8865872
-                            ],
-                            [
-                                50.6628255,
-                                17.8867353
-                            ],
-                            [
-                                50.6628748,
-                                17.8872167
-                            ],
-                            [
-                                50.6628394,
-                                17.887345
-                            ],
-                            [
-                                50.6627217,
-                                17.8875784
-                            ],
-                            [
-                                50.6627152,
-                                17.8876635
-                            ],
-                            [
-                                50.6627438,
-                                17.8877348
-                            ],
-                            [
-                                50.6627892,
-                                17.8878012
-                            ],
-                            [
-                                50.6628322,
-                                17.887788
-                            ],
-                            [
-                                50.6628675,
-                                17.8877291
-                            ],
-                            [
-                                50.6628447,
-                                17.887659
-                            ],
-                            [
-                                50.6628743,
-                                17.8875985
-                            ],
-                            [
-                                50.662987,
-                                17.887576
-                            ],
-                            [
-                                50.6630199,
-                                17.8875361
-                            ],
-                            [
-                                50.6630585,
-                                17.8875346
-                            ],
-                            [
-                                50.663124,
-                                17.8875943
-                            ],
-                            [
-                                50.6633031,
-                                17.8876153
-                            ],
-                            [
-                                50.6633886,
-                                17.8877463
-                            ],
-                            [
-                                50.6636222,
-                                17.8878212
-                            ],
-                            [
-                                50.6637792,
-                                17.8879847
-                            ],
-                            [
-                                50.6639577,
-                                17.8879946
-                            ],
-                            [
-                                50.6640348,
-                                17.8880298
-                            ],
-                            [
-                                50.6641614,
-                                17.8881874
-                            ],
-                            [
-                                50.6642026,
-                                17.8881772
-                            ],
-                            [
-                                50.6642709,
-                                17.8880136
-                            ],
-                            [
-                                50.6643402,
-                                17.8879763
-                            ],
-                            [
-                                50.6643677,
-                                17.8879228
-                            ],
-                            [
-                                50.664389,
-                                17.887826
-                            ],
-                            [
-                                50.6643488,
-                                17.8878214
-                            ]
-                        ],
-                        "difficulty": {
-                            "options": [
-                                {
-                                    "enumValue": "easy",
-                                    "i18nValue": "łatwa"
-                                },
-                                {
-                                    "enumValue": "moderate",
-                                    "i18nValue": "umiarkowana"
-                                },
-                                {
-                                    "enumValue": "hard",
-                                    "i18nValue": "trudna"
-                                }
-                            ],
-                            "values": [
-                                "easy"
-                            ]
-                        },
-                        "surface": {
-                            "options": [
-                                {
-                                    "enumValue": "gravel",
-                                    "i18nValue": "szutrowa"
-                                },
-                                {
-                                    "enumValue": "asphalt",
-                                    "i18nValue": "asfaltowa"
-                                },
-                                {
-                                    "enumValue": "paved",
-                                    "i18nValue": "utwardzona"
-                                },
-                                {
-                                    "enumValue": "unpaved",
-                                    "i18nValue": "nieutwardzona"
-                                },
-                                {
-                                    "enumValue": "bike_path",
-                                    "i18nValue": "ścieżka rowerowa"
-                                }
-                            ],
-                            "values": [
-                                "gravel"
-                            ]
-                        },
-                        "recommended": false,
-                        "time": 688,
-                        "distance": 925.7238318464848,
-                        "distanceToRoute": 3.921756306480021,
-                        "tags": {
-                            "options": [
-                                {
-                                    "enumValue": "scenic",
-                                    "i18nValue": "widokowa"
-                                },
-                                {
-                                    "enumValue": "weekend",
-                                    "i18nValue": "weekendowa"
-                                },
-                                {
-                                    "enumValue": "low-traffic",
-                                    "i18nValue": "mały ruch"
-                                },
-                                {
-                                    "enumValue": "high-traffic",
-                                    "i18nValue": "duży ruch"
-                                },
-                                {
-                                    "enumValue": "delicious-food",
-                                    "i18nValue": "dobre jedzenie"
-                                },
-                                {
-                                    "enumValue": "interesting-attractions",
-                                    "i18nValue": "ciekawe atrakcje"
-                                },
-                                {
-                                    "enumValue": "family",
-                                    "i18nValue": "rodzinna"
-                                },
-                                {
-                                    "enumValue": "trekking",
-                                    "i18nValue": "trekkingowa"
-                                },
-                                {
-                                    "enumValue": "forest",
-                                    "i18nValue": "leśna"
-                                },
-                                {
-                                    "enumValue": "city",
-                                    "i18nValue": "miejska"
-                                },
-                                {
-                                    "enumValue": "mountain",
-                                    "i18nValue": "górska"
-                                },
-                                {
-                                    "enumValue": "tourist",
-                                    "i18nValue": "turystyczna"
-                                },
-                                {
-                                    "enumValue": "relic",
-                                    "i18nValue": "zabytki"
-                                },
-                                {
-                                    "enumValue": "historic-trail",
-                                    "i18nValue": "szlak historyczny"
-                                },
-                                {
-                                    "enumValue": "overnight-stay",
-                                    "i18nValue": "nocleg"
-                                },
-                                {
-                                    "enumValue": "bike-park",
-                                    "i18nValue": "parking dla rowerów"
-                                },
-                                {
-                                    "enumValue": "professional",
-                                    "i18nValue": "profesjonalna"
-                                },
-                                {
-                                    "enumValue": "recreational",
-                                    "i18nValue": "rekreacyjna"
-                                },
-                                {
-                                    "enumValue": "singletrack",
-                                    "i18nValue": "singletrack"
-                                },
-                                {
-                                    "enumValue": "nature-monuments",
-                                    "i18nValue": "pomniki przyrody"
-                                }
-                            ],
-                            "values": [
-                                "weekend",
-                                "delicious-food"
-                            ]
-                        },
-                        "ownerId": null,
-                        "isPublic": true,
-                        "createdAt": "2021-09-06T11:43:38.071Z",
-                        "downloads": 0,
-                        "reactions": {
-                            "like": 0,
-                            "love": 0,
-                            "wow": 0
-                        },
-                        "reaction": null,
-                        "isFeatured": true
-                    },
-                    {
                         "id": "Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSs",
                         "name": "Trasa 2 z dnia 06/09/2021 - s",
                         "author": "Rowerzysta",
@@ -18322,6 +17818,510 @@ export default {
                         "recommended": false,
                         "time": 688,
                         "distance": 921.7238318464848,
+                        "distanceToRoute": 3.921756306480021,
+                        "tags": {
+                            "options": [
+                                {
+                                    "enumValue": "scenic",
+                                    "i18nValue": "widokowa"
+                                },
+                                {
+                                    "enumValue": "weekend",
+                                    "i18nValue": "weekendowa"
+                                },
+                                {
+                                    "enumValue": "low-traffic",
+                                    "i18nValue": "mały ruch"
+                                },
+                                {
+                                    "enumValue": "high-traffic",
+                                    "i18nValue": "duży ruch"
+                                },
+                                {
+                                    "enumValue": "delicious-food",
+                                    "i18nValue": "dobre jedzenie"
+                                },
+                                {
+                                    "enumValue": "interesting-attractions",
+                                    "i18nValue": "ciekawe atrakcje"
+                                },
+                                {
+                                    "enumValue": "family",
+                                    "i18nValue": "rodzinna"
+                                },
+                                {
+                                    "enumValue": "trekking",
+                                    "i18nValue": "trekkingowa"
+                                },
+                                {
+                                    "enumValue": "forest",
+                                    "i18nValue": "leśna"
+                                },
+                                {
+                                    "enumValue": "city",
+                                    "i18nValue": "miejska"
+                                },
+                                {
+                                    "enumValue": "mountain",
+                                    "i18nValue": "górska"
+                                },
+                                {
+                                    "enumValue": "tourist",
+                                    "i18nValue": "turystyczna"
+                                },
+                                {
+                                    "enumValue": "relic",
+                                    "i18nValue": "zabytki"
+                                },
+                                {
+                                    "enumValue": "historic-trail",
+                                    "i18nValue": "szlak historyczny"
+                                },
+                                {
+                                    "enumValue": "overnight-stay",
+                                    "i18nValue": "nocleg"
+                                },
+                                {
+                                    "enumValue": "bike-park",
+                                    "i18nValue": "parking dla rowerów"
+                                },
+                                {
+                                    "enumValue": "professional",
+                                    "i18nValue": "profesjonalna"
+                                },
+                                {
+                                    "enumValue": "recreational",
+                                    "i18nValue": "rekreacyjna"
+                                },
+                                {
+                                    "enumValue": "singletrack",
+                                    "i18nValue": "singletrack"
+                                },
+                                {
+                                    "enumValue": "nature-monuments",
+                                    "i18nValue": "pomniki przyrody"
+                                }
+                            ],
+                            "values": [
+                                "weekend",
+                                "delicious-food"
+                            ]
+                        },
+                        "ownerId": null,
+                        "isPublic": true,
+                        "createdAt": "2021-09-06T11:43:38.071Z",
+                        "downloads": 0,
+                        "reactions": {
+                            "like": 0,
+                            "love": 0,
+                            "wow": 0
+                        },
+                        "reaction": null,
+                        "isFeatured": true
+                    },
+                    {
+                        "id": "Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa",
+                        "name": "Trasa 2 z dnia 06/09/2021",
+                        "author": "Rowerzysta",
+                        "description": {
+                            "long": "Ff",
+                            "short": "Dd"
+                        },
+                        "images": [
+                            {
+                                "variants": {
+                                    "share": [
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_share_256.png",
+                                            "width": 256,
+                                            "height": 134
+                                        },
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_share_512.png",
+                                            "width": 512,
+                                            "height": 268
+                                        },
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_share_1024.png",
+                                            "width": 1024,
+                                            "height": 536
+                                        }
+                                    ],
+                                    "square": [
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_square_256.png",
+                                            "width": 256,
+                                            "height": 256
+                                        },
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_square_512.png",
+                                            "width": 512,
+                                            "height": 512
+                                        },
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_square_1024.png",
+                                            "width": 1024,
+                                            "height": 1024
+                                        }
+                                    ],
+                                    "vertical": [
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_vertical_256.png",
+                                            "width": 256,
+                                            "height": 320
+                                        },
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_vertical_512.png",
+                                            "width": 512,
+                                            "height": 640
+                                        },
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_vertical_1024.png",
+                                            "width": 1024,
+                                            "height": 1280
+                                        }
+                                    ],
+                                    "horizontal": [
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_horizontal_256.png",
+                                            "width": 256,
+                                            "height": 205
+                                        },
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_horizontal_512.png",
+                                            "width": 512,
+                                            "height": 410
+                                        },
+                                        {
+                                            "url": "https://public.pre.mykross.kross.pl/cycling-map/Jpr-H5zSO2gCeFzTUn3lqyHN7rKn5kSa/map_horizontal_1024.png",
+                                            "width": 1024,
+                                            "height": 820
+                                        }
+                                    ]
+                                },
+                                "id": "map",
+                                "type": "map"
+                            }
+                        ],
+                        "path": [
+                            [
+                                50.6643292,
+                                17.8878063
+                            ],
+                            [
+                                50.664314,
+                                17.8878375
+                            ],
+                            [
+                                50.6643879,
+                                17.8878619
+                            ],
+                            [
+                                50.6645484,
+                                17.887448
+                            ],
+                            [
+                                50.6646433,
+                                17.8873587
+                            ],
+                            [
+                                50.6648582,
+                                17.8869579
+                            ],
+                            [
+                                50.6648267,
+                                17.8869148
+                            ],
+                            [
+                                50.6646739,
+                                17.8869125
+                            ],
+                            [
+                                50.6646084,
+                                17.8868585
+                            ],
+                            [
+                                50.6646303,
+                                17.88673
+                            ],
+                            [
+                                50.6647405,
+                                17.8864235
+                            ],
+                            [
+                                50.6648454,
+                                17.8858247
+                            ],
+                            [
+                                50.6648525,
+                                17.8856157
+                            ],
+                            [
+                                50.6647685,
+                                17.8853913
+                            ],
+                            [
+                                50.6646545,
+                                17.8852916
+                            ],
+                            [
+                                50.664593,
+                                17.885356
+                            ],
+                            [
+                                50.6645061,
+                                17.8853668
+                            ],
+                            [
+                                50.6644499,
+                                17.885312
+                            ],
+                            [
+                                50.6640888,
+                                17.8851561
+                            ],
+                            [
+                                50.6639739,
+                                17.8852279
+                            ],
+                            [
+                                50.6638779,
+                                17.8852162
+                            ],
+                            [
+                                50.6638313,
+                                17.8853019
+                            ],
+                            [
+                                50.6637078,
+                                17.8853742
+                            ],
+                            [
+                                50.6635904,
+                                17.8853295
+                            ],
+                            [
+                                50.6634277,
+                                17.8853637
+                            ],
+                            [
+                                50.6632815,
+                                17.8854273
+                            ],
+                            [
+                                50.6630525,
+                                17.8854242
+                            ],
+                            [
+                                50.6629436,
+                                17.8854486
+                            ],
+                            [
+                                50.6629157,
+                                17.8854255
+                            ],
+                            [
+                                50.6629556,
+                                17.8854174
+                            ],
+                            [
+                                50.6629602,
+                                17.8853395
+                            ],
+                            [
+                                50.6629259,
+                                17.8853229
+                            ],
+                            [
+                                50.6627602,
+                                17.885644
+                            ],
+                            [
+                                50.6626916,
+                                17.8856696
+                            ],
+                            [
+                                50.6626519,
+                                17.885809
+                            ],
+                            [
+                                50.6626562,
+                                17.8864254
+                            ],
+                            [
+                                50.6627467,
+                                17.8864373
+                            ],
+                            [
+                                50.6627619,
+                                17.8864584
+                            ],
+                            [
+                                50.6627677,
+                                17.8865872
+                            ],
+                            [
+                                50.6628255,
+                                17.8867353
+                            ],
+                            [
+                                50.6628748,
+                                17.8872167
+                            ],
+                            [
+                                50.6628394,
+                                17.887345
+                            ],
+                            [
+                                50.6627217,
+                                17.8875784
+                            ],
+                            [
+                                50.6627152,
+                                17.8876635
+                            ],
+                            [
+                                50.6627438,
+                                17.8877348
+                            ],
+                            [
+                                50.6627892,
+                                17.8878012
+                            ],
+                            [
+                                50.6628322,
+                                17.887788
+                            ],
+                            [
+                                50.6628675,
+                                17.8877291
+                            ],
+                            [
+                                50.6628447,
+                                17.887659
+                            ],
+                            [
+                                50.6628743,
+                                17.8875985
+                            ],
+                            [
+                                50.662987,
+                                17.887576
+                            ],
+                            [
+                                50.6630199,
+                                17.8875361
+                            ],
+                            [
+                                50.6630585,
+                                17.8875346
+                            ],
+                            [
+                                50.663124,
+                                17.8875943
+                            ],
+                            [
+                                50.6633031,
+                                17.8876153
+                            ],
+                            [
+                                50.6633886,
+                                17.8877463
+                            ],
+                            [
+                                50.6636222,
+                                17.8878212
+                            ],
+                            [
+                                50.6637792,
+                                17.8879847
+                            ],
+                            [
+                                50.6639577,
+                                17.8879946
+                            ],
+                            [
+                                50.6640348,
+                                17.8880298
+                            ],
+                            [
+                                50.6641614,
+                                17.8881874
+                            ],
+                            [
+                                50.6642026,
+                                17.8881772
+                            ],
+                            [
+                                50.6642709,
+                                17.8880136
+                            ],
+                            [
+                                50.6643402,
+                                17.8879763
+                            ],
+                            [
+                                50.6643677,
+                                17.8879228
+                            ],
+                            [
+                                50.664389,
+                                17.887826
+                            ],
+                            [
+                                50.6643488,
+                                17.8878214
+                            ]
+                        ],
+                        "difficulty": {
+                            "options": [
+                                {
+                                    "enumValue": "easy",
+                                    "i18nValue": "łatwa"
+                                },
+                                {
+                                    "enumValue": "moderate",
+                                    "i18nValue": "umiarkowana"
+                                },
+                                {
+                                    "enumValue": "hard",
+                                    "i18nValue": "trudna"
+                                }
+                            ],
+                            "values": [
+                                "easy"
+                            ]
+                        },
+                        "surface": {
+                            "options": [
+                                {
+                                    "enumValue": "gravel",
+                                    "i18nValue": "szutrowa"
+                                },
+                                {
+                                    "enumValue": "asphalt",
+                                    "i18nValue": "asfaltowa"
+                                },
+                                {
+                                    "enumValue": "paved",
+                                    "i18nValue": "utwardzona"
+                                },
+                                {
+                                    "enumValue": "unpaved",
+                                    "i18nValue": "nieutwardzona"
+                                },
+                                {
+                                    "enumValue": "bike_path",
+                                    "i18nValue": "ścieżka rowerowa"
+                                }
+                            ],
+                            "values": [
+                                "gravel"
+                            ]
+                        },
+                        "recommended": false,
+                        "time": 688,
+                        "distance": 925.7238318464848,
                         "distanceToRoute": 3.921756306480021,
                         "tags": {
                             "options": [

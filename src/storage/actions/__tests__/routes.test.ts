@@ -10,12 +10,7 @@ import instance from '@api/api';
 import {I18n} from '@translations/I18n';
 
 import {initState} from './utils/state';
-import {
-    endDate,
-    endedRoute,
-    startedRoute,
-    dataToSynch,
-} from './utils/routeData';
+import {endedRoute, startedRoute} from './utils/routeData';
 import {stopRecordingExpectedActions} from './utils/expectedAxtions';
 import {
     compareResultsWhenOfflineFirstCase,
@@ -34,16 +29,28 @@ import {
     compareResultsWhenStartRecordingSecondCase,
     compareResultsWhenOnlineNineCase,
 } from './utils/compareRouteDispatchResults';
-import {routesDataToAPIRequest} from '@src/utils/apiDataTransform/prepareRequest';
+import {routesDataToAPIRequest} from '@utils/apiDataTransform/prepareRequest';
+
+import routesDataToUpdateMock from './mocks/routesDataToUpdate';
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
+
+jest.mock('uuid', () => ({
+    v4: () => 'current-route-test-id',
+}));
 
 describe('[Recording Route actions]', () => {
     let store: MockStoreEnhanced<unknown, {}>;
     let actionsLog: any[];
 
     describe('[startRecordingRoute]', () => {
+        beforeEach(() => {
+            const mockedDate = new Date('2021-07-28T07:08:41.000Z');
+            //@ts-ignore
+            jest.spyOn(global, 'Date').mockImplementation(() => mockedDate);
+        });
+
         it('should start new route', async () => {
             store = mockStore(initState);
             const getSpySuccess = jest
@@ -58,7 +65,7 @@ describe('[Recording Route actions]', () => {
             actionsLog = store.getActions();
 
             return store
-                .dispatch<any>(startRecordingRoute(startedRoute))
+                .dispatch<any>(startRecordingRoute('route-id'))
                 .then(() => {
                     /**
                      * Check http request has been made.
@@ -78,7 +85,7 @@ describe('[Recording Route actions]', () => {
                 routes: {
                     ...initState.routes,
                     currentRoute: {
-                        ...initState.routes.currentRoute,
+                        ...startedRoute,
                         remoteRouteId: 'different-remote-route-id',
                     },
                 },
@@ -94,51 +101,64 @@ describe('[Recording Route actions]', () => {
                 });
             actionsLog = store.getActions();
 
-            return store
-                .dispatch<any>(startRecordingRoute(startedRoute, true))
-                .then(() => {
-                    /**
-                     * Check http request has been made.
-                     */
-                    expect(getSpySuccess).not.toHaveBeenCalled();
+            return store.dispatch<any>(startRecordingRoute()).then(() => {
+                /**
+                 * Check http request has been made.
+                 */
+                expect(getSpySuccess).not.toHaveBeenCalled();
 
-                    /**
-                     * Check if all expected actions have been called.
-                     */
-                    compareResultsWhenStartRecordingSecondCase(actionsLog);
-                });
+                /**
+                 * Check if all expected actions have been called.
+                 */
+                compareResultsWhenStartRecordingSecondCase(actionsLog);
+            });
         });
 
         afterEach(() => {
             jest.clearAllMocks();
+            jest.restoreAllMocks();
         });
     });
 
-    it('[stopCurrentRoute] - should stop new route', async () => {
-        store = mockStore({
-            ...initState,
-            routes: {
-                ...initState.routes,
-                currentRoute: startedRoute /* set started state */,
-            },
+    describe('[stopCurrentRoute]', () => {
+        beforeEach(() => {
+            const mockedDate = new Date('2021-07-28T20:33:54.000Z');
+            //@ts-ignore
+            jest.spyOn(global, 'Date').mockImplementation(() => mockedDate);
         });
-        actionsLog = store.getActions();
 
-        return store
-            .dispatch<any>(stopCurrentRoute(false, endDate))
-            .then(() => {
+        it(' - should stop new route', async () => {
+            store = mockStore({
+                ...initState,
+                routes: {
+                    ...initState.routes,
+                    currentRoute: startedRoute /* set started state */,
+                },
+            });
+
+            actionsLog = store.getActions();
+
+            return store.dispatch<any>(stopCurrentRoute()).then(() => {
                 /**
                  * Check if all expected actions have been called.
                  */
                 /* loading - start */
                 expect(actionsLog[0]).toEqual(stopRecordingExpectedActions[0]);
-                /* clear errors */
-                expect(actionsLog[1]).toEqual(stopRecordingExpectedActions[1]);
                 /* set route data */
+                expect(actionsLog[1]).toEqual(stopRecordingExpectedActions[1]);
+                /* reset map visibility state */
                 expect(actionsLog[2]).toEqual(stopRecordingExpectedActions[2]);
-                /* loading - end */
+                /* clear errors */
                 expect(actionsLog[3]).toEqual(stopRecordingExpectedActions[3]);
+                /* loading - end */
+                expect(actionsLog[4]).toEqual(stopRecordingExpectedActions[4]);
             });
+        });
+
+        afterEach(() => {
+            jest.clearAllMocks();
+            jest.restoreAllMocks();
+        });
     });
 
     describe('[syncCurrentRouteData]', () => {
@@ -315,8 +335,11 @@ describe('[Recording Route actions]', () => {
                     },
                     routes: {
                         ...initState.routes,
-                        currentRoute: endedRoute /* set started state */,
-                    },
+                        currentRoute: endedRoute,
+                        routes: [
+                            {id: endedRoute.id, route: routesDataToUpdateMock},
+                        ],
+                    } /* set started state */,
                 });
                 /**
                  * Mock create route api call
@@ -342,7 +365,9 @@ describe('[Recording Route actions]', () => {
                             error: '',
                         }),
                     );
-                const dataToCompare = routesDataToAPIRequest(dataToSynch);
+                const dataToCompare = routesDataToAPIRequest(
+                    routesDataToUpdateMock,
+                );
 
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
@@ -379,8 +404,11 @@ describe('[Recording Route actions]', () => {
                         currentRoute: {
                             ...endedRoute,
                             remoteRouteId: undefined,
-                        } /* set started state */,
-                    },
+                        },
+                        routes: [
+                            {id: endedRoute.id, route: routesDataToUpdateMock},
+                        ],
+                    } /* set started state */,
                 });
                 /**
                  * Mock create route api call
@@ -422,7 +450,9 @@ describe('[Recording Route actions]', () => {
                             error: '',
                         }),
                     );
-                const dataToCompare = routesDataToAPIRequest(dataToSynch);
+                const dataToCompare = routesDataToAPIRequest(
+                    routesDataToUpdateMock,
+                );
 
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
@@ -456,23 +486,6 @@ describe('[Recording Route actions]', () => {
                 /**
                  * Mock create route api call
                  */
-                /* synch data */
-                const patchSynchRouteDataFailureSpy = jest
-                    .spyOn(instance, 'patch')
-                    .mockImplementation(() =>
-                        Promise.resolve({
-                            data: {
-                                statusCode: 400,
-                                error: I18n.t(
-                                    'dataAction.routeData.updateRouteError',
-                                ),
-                            },
-                            status: 400,
-                            error: I18n.t(
-                                'dataAction.routeData.updateRouteError',
-                            ),
-                        }),
-                    );
                 /* delete remoute route id */
                 const deletePrivateMapIdFailureSpy = jest
                     .spyOn(instance, 'delete')
@@ -483,21 +496,10 @@ describe('[Recording Route actions]', () => {
                             error: 'Error on remove data',
                         }),
                     );
-                const dataToCompare = routesDataToAPIRequest(dataToSynch);
 
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(patchSynchRouteDataFailureSpy).toBeCalledTimes(1);
                     expect(deletePrivateMapIdFailureSpy).toBeCalled();
-                    expect(patchSynchRouteDataFailureSpy).toBeCalledWith(
-                        '/routes/route/remote-route-test-id/path',
-                        dataToCompare,
-                        {
-                            cancelToken: {
-                                promise: {_U: 0, _V: 0, _W: null, _X: null},
-                            },
-                        },
-                    );
                     /**
                      * Check if all expected actions have been called.
                      */
@@ -505,13 +507,16 @@ describe('[Recording Route actions]', () => {
                 });
             });
 
-            it('should fail when sending route data to API but should success when removing remote ID', async () => {
+            it('should fail when sending route data to API', async () => {
                 store = mockStore({
                     ...initState,
                     routes: {
                         ...initState.routes,
-                        currentRoute: endedRoute /* set started state */,
-                    },
+                        currentRoute: endedRoute,
+                        routes: [
+                            {id: endedRoute.id, route: routesDataToUpdateMock},
+                        ],
+                    } /* set started state */,
                 });
                 /**
                  * Mock create route api call
@@ -533,22 +538,13 @@ describe('[Recording Route actions]', () => {
                             ),
                         }),
                     );
-                /* delete remoute route id */
-                const deletePrivateMapIdSuccessSpy = jest
-                    .spyOn(instance, 'delete')
-                    .mockImplementation(() =>
-                        Promise.resolve({
-                            data: {id: 'remote-route-test-id'},
-                            status: 200,
-                            error: '',
-                        }),
-                    );
-                const dataToCompare = routesDataToAPIRequest(dataToSynch);
+                const dataToCompare = routesDataToAPIRequest(
+                    routesDataToUpdateMock,
+                );
 
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
-                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(1);
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledWith(
                         '/routes/route/remote-route-test-id/path',
                         dataToCompare,
@@ -591,7 +587,7 @@ describe('[Recording Route actions]', () => {
                     );
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(2);
+                    expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
                     /**
                      * Check if all expected actions have been called.
                      */
@@ -628,7 +624,7 @@ describe('[Recording Route actions]', () => {
                     );
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(deletePrivateMapIdFailureSpy).toBeCalledTimes(2);
+                    expect(deletePrivateMapIdFailureSpy).toBeCalledTimes(1);
                     /**
                      * Check if all expected actions have been called.
                      */
@@ -662,7 +658,7 @@ describe('[Recording Route actions]', () => {
                     );
                 actionsLog = store.getActions();
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
-                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(2);
+                    expect(deletePrivateMapIdSuccessSpy).toBeCalledTimes(1);
                     /**
                      * Check if all expected actions have been called.
                      */

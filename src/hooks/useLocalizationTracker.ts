@@ -11,35 +11,26 @@ import {
     trackerRouteIdSelector,
     trackerActiveSelector,
 } from '../storage/selectors/routes';
+import {startRecordingRoute, stopCurrentRoute} from '../storage/actions/routes';
 import {
-    persistCurrentRouteData,
-    startRecordingRoute,
-    stopCurrentRoute,
-} from '../storage/actions/routes';
-import {
-    cleanUp,
-    getBackgroundGeolocationState,
     getCurrentLocation,
     onWatchPostionChangeListener,
     pauseTracingLocation,
     requestGeolocationPermission,
     resumeTracingLocation,
-    startBackgroundGeolocation,
-    stopBackgroundGeolocation,
-    stopWatchPostionChangeListener,
 } from '../utils/geolocation';
 import {
     DEFAULT_SPEED,
     getAverageSpeedData,
     getTrackerData,
     speedToLow,
-    startCurrentRoute,
 } from './utils/localizationTracker';
 import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
 import {Location} from '@interfaces/geolocation';
 import {getCurrentRoutePathByIdWithLastRecord} from '@utils/routePath';
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
+import {isLocationValidToPass} from '@src/utils/transformData';
 
 export interface DataI {
     distance: string;
@@ -95,17 +86,18 @@ const useLocalizationTracker = (
     const stopTracker = useCallback(
         async (omitPersist?: boolean) => {
             setProcessing(true);
-            dispatch(stopCurrentRoute(omitPersist));
-            deactivateKeepAwake();
-            if (!omitPersist) {
-                dispatch(persistCurrentRouteData());
-            }
-            stopWatchPostionChangeListener();
-            const state = await stopBackgroundGeolocation();
-            if (!state || !state?.enabled) {
+
+            /**
+             * Dispatch actions, stop GPS plugin
+             */
+            const stopAction = await dispatch(stopCurrentRoute(omitPersist));
+
+            if (stopAction?.finished) {
                 setIsActive(false);
                 isTrackingActivatedHandler(false);
             }
+
+            deactivateKeepAwake();
 
             setProcessing(false);
         },
@@ -113,22 +105,12 @@ const useLocalizationTracker = (
     );
 
     const startTracker = useCallback(
-        async (
-            keep?: boolean,
-            routeIdToFollow?: string,
-            skipProcessing?: boolean,
-        ) => {
+        async (routeIdToFollow?: string, skipProcessing?: boolean) => {
             if (!skipProcessing) {
                 setProcessing(true);
             }
 
             speed = [];
-            /* TODO: error */
-            const state = await getBackgroundGeolocationState();
-
-            if (state?.enabled && !keep) {
-                // await stopTracker(false, true);
-            }
 
             setIsActive(true);
             activateKeepAwake();
@@ -138,20 +120,14 @@ const useLocalizationTracker = (
              */
             isTrackingActivatedHandler(true);
 
-            const currRoute = await startCurrentRoute(routeIdToFollow);
-            const routeID =
-                keep && currentRouteId ? currentRouteId : currRoute.id;
-
-            if (!keep) {
-                dispatch(startRecordingRoute(currRoute, keep));
-            }
-
-            const startedState = await startBackgroundGeolocation(
-                routeID,
-                keep,
+            /**
+             * Dispatch actions, start GPS plugin
+             */
+            const startAction = await dispatch(
+                startRecordingRoute(routeIdToFollow),
             );
 
-            if (!startedState?.enabled) {
+            if (startAction?.finished && !startAction?.success) {
                 await stopTracker(true);
             }
 
@@ -159,11 +135,15 @@ const useLocalizationTracker = (
                 setProcessing(false);
             }
         },
-        [dispatch, currentRouteId, isTrackingActivatedHandler, stopTracker],
+        [dispatch, isTrackingActivatedHandler, stopTracker],
     );
 
+    /**
+     * Manual pause. Stops watching locations.
+     */
     const onPauseTracker = useCallback(async () => {
-        await pauseTracingLocation();
+        await pauseTracingLocation(true);
+        stopWatchPostionChangeListener();
         setTrackerData(prev => {
             if (prev) {
                 return {
@@ -177,9 +157,9 @@ const useLocalizationTracker = (
     }, []);
 
     const onStartTracker = useCallback(async () => {
-        await resumeTracingLocation();
+        await resumeTracingLocation(currentRouteId);
         setIsActive(true);
-    }, []);
+    }, [currentRouteId]);
 
     useEffect(() => {
         mountedRef.current = true;
@@ -206,10 +186,10 @@ const useLocalizationTracker = (
                 lcoationData ||
                 (await getCurrentLocation(
                     currentRouteId,
-                    fastTimeout ? 3 : undefined,
+                    fastTimeout ? 4 : undefined,
                     undefined,
                     fastTimeout ? true : false,
-                    fastTimeout ? 3 : 15,
+                    fastTimeout ? 5 : 15,
                     fastTimeout ? 2000 : 500,
                 ));
 
@@ -218,6 +198,13 @@ const useLocalizationTracker = (
             }
 
             if (!isLocationValidate(currentLocationData)) {
+                return;
+            }
+
+            if (
+                !fastTimeout &&
+                !isLocationValidToPass(currentLocationData, currentRouteId)
+            ) {
                 return;
             }
 
@@ -245,7 +232,8 @@ const useLocalizationTracker = (
 
             if (
                 currentLocationData?.coords?.speed &&
-                currentLocationData?.coords?.speed > 0
+                currentLocationData?.coords?.speed > 0 &&
+                !fastTimeout
             ) {
                 speed.push(currentLocationData?.coords?.speed);
             }
@@ -255,7 +243,8 @@ const useLocalizationTracker = (
                     currentLocationData?.odometer - lastDistance > 10) ||
                     !lastDistance) &&
                 !notMoving &&
-                parseFloat(aSpeed) >= 0.1
+                parseFloat(aSpeed) >= 0.1 &&
+                !fastTimeout
             ) {
                 aSpeed = getAverageSpeedData(speed, currentRouteAverrageSpeed);
             }
@@ -354,11 +343,6 @@ const useLocalizationTracker = (
              */
             setCurrentTrackerData(true);
         }
-
-        return () => {
-            cleanUp();
-            console.log('[==CLEANUP ALL LISTENERS - useLocationTracker==]');
-        };
     }, [isActive, setCurrentTrackerData]);
 
     return {

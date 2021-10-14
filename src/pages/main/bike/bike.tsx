@@ -73,7 +73,7 @@ const Bike: React.FC<Props> = (props: Props) => {
         latitude: loc?.longitude || 53.008773556173104,
     });
 
-    const getCurrentLocationPositionHandler = useCallback(() => {
+    const getCurrentLocationPositionHandler = useCallback(async () => {
         let newBox;
 
         if (loc) {
@@ -92,15 +92,21 @@ const Bike: React.FC<Props> = (props: Props) => {
                 latitudeDelta: Math.abs((newBox.left - newBox.right) / 2),
                 longitudeDelta: Math.abs((newBox.top - newBox.bottom) / 2),
             });
-            dispatch(
-                fetchPlacesData({
-                    bbox: [
-                        {lat: newBox.left, lng: newBox.top},
-                        {lat: newBox.right, lng: newBox.bottom},
-                    ],
-                    width: 2000,
-                }),
-            );
+            try {
+                await dispatch(
+                    fetchPlacesData({
+                        bbox: [
+                            {lat: newBox.left, lng: newBox.top},
+                            {lat: newBox.right, lng: newBox.bottom},
+                        ],
+                        width: 2000,
+                    }),
+                );
+            } catch (error) {
+                console.error('[getCurrentLocationPositionHandler]', error);
+                const errorMessage = error?.errorMessage || error;
+                Alert.alert('Error', errorMessage);
+            }
         }
     }, [dispatch, loc]);
 

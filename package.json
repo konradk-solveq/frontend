@@ -19,8 +19,8 @@
         "test:android": "cp .env.test .env && react-native run-android --variant=qaDebug --appIdSuffix=test",
         "test:android-cmd": "copy .env.test .env && react-native run-android --variant=qaDebug --appIdSuffix=test",
         "prod:ios-bash": "ENVFILE=.env.production react-native run-ios --variant=prodDebug",
-        "prod:android": "cp .env.prod .env && npx react-native run-android --variant=prodDebug",
-        "prod:android-cmd": "copy .env.prod .env && npx react-native run-android --variant=prodDebug"
+        "prod:android": "cp .env.production .env && npx react-native run-android --variant=prodDebug",
+        "prod:android-cmd": "copy .env.production .env && npx react-native run-android --variant=prodDebug"
     },
     "dependencies": {
         "@react-native-async-storage/async-storage": "^1.14.1",
