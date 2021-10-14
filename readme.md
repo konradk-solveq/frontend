@@ -55,7 +55,7 @@ and if it doesn't work:
 ---
 ## FLAVORS
 
-We can use different builds for different environments. To make it work copy `.env` file to `.env.prod`, `.env.dev` and `.env.test` files. Replace variables with proper values.
+We can use different builds for different environments. To make it work copy `.env` file to `.env.production`, `.env.dev` and `.env.test` files. Replace variables with proper values.
 You can find scripts, to run specific build, inside `package.json` file.
 
 `qa` flavor means `test` for Android, because `test` word is not allowed.

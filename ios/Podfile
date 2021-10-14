@@ -44,8 +44,8 @@ target 'myKROSS' do
     'Dev.Release' => '${PODS_ROOT}/../../.env.development', 
     'Test.Debug' => '${PODS_ROOT}/../.env.test',
     'Test.Release' => '${PODS_ROOT}/../.env.test', 
-    'Prod.Debug' => '${PODS_ROOT}/../../.env.prod',
-    'Prod.Release' => '${PODS_ROOT}/../../.env.prod'
+    'Prod.Debug' => '${PODS_ROOT}/../../.env.production',
+    'Prod.Release' => '${PODS_ROOT}/../../.env.production'
   }
 
   post_install do |installer|
