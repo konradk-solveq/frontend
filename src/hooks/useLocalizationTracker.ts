@@ -187,6 +187,12 @@ const useLocalizationTracker = (
     }, []);
 
     useEffect(() => {
+        if (!isActive) {
+            startLocalize();
+        }
+    }, []);
+
+    useEffect(() => {
         if (!omitRequestingPermission) {
             requestGeolocationPermission();
         }
@@ -357,6 +363,7 @@ const useLocalizationTracker = (
                 setInitTrackerData(undefined);
             };
 
+            stopWatchPostionChangeListener();
             onWatchPostionChangeListener(setLocation);
         }
 
