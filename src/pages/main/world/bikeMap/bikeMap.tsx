@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {View, Text, FlatList, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -41,6 +41,8 @@ interface IProps {
 }
 
 const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
+    const previousLength = useRef(0);
+
     const trans: any = I18n.t('MainWorld.BikeMap');
     const navigation = useNavigation();
 
@@ -50,6 +52,18 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
+    const [canLoad, setCanLoad] = useState(false);
+
+    useEffect(() => {
+        if (previousLength.current !== mapsData?.length) {
+            previousLength.current = mapsData?.length || 0;
+
+            setCanLoad(true);
+        }
+        return () => {
+            previousLength.current = 0;
+        };
+    }, [mapsData?.length]);
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
@@ -68,11 +82,18 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
         [navigation],
     );
 
-    const onEndReachedHandler = useCallback(() => {
-        if (!isLoading && !isRefreshing && mapsData?.length > 1) {
+    const onLoadMoreHandler = useCallback(() => {
+        if (canLoad) {
+            setCanLoad(false);
             onLoadMore();
         }
-    }, [isLoading, isRefreshing, mapsData?.length, onLoadMore]);
+    }, [canLoad, onLoadMore]);
+
+    const onEndReachedHandler = useCallback(() => {
+        if (!isLoading && !isRefreshing && mapsData?.length > 1) {
+            onLoadMoreHandler();
+        }
+    }, [isLoading, isRefreshing, mapsData?.length, onLoadMoreHandler]);
 
     const onRefreshHandler = useCallback(() => {
         if (!isLoading && !isRefreshing && mapsData?.length > 1) {

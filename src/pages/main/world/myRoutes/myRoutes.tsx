@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -50,6 +50,8 @@ const MyRoutes: React.FC<IProps> = ({
     onLoadMore,
     sortedByDate,
 }: IProps) => {
+    const previousLength = useRef(0);
+
     const trans: any = I18n.t('MainWorld.MyRoutes');
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
@@ -62,6 +64,18 @@ const MyRoutes: React.FC<IProps> = ({
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
+    const [canLoad, setCanLoad] = useState(false);
+
+    useEffect(() => {
+        if (previousLength.current !== privateMaps?.length) {
+            previousLength.current = privateMaps?.length || 0;
+
+            setCanLoad(true);
+        }
+        return () => {
+            previousLength.current = 0;
+        };
+    }, [privateMaps?.length]);
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
@@ -141,6 +155,19 @@ const MyRoutes: React.FC<IProps> = ({
         [privateMaps?.length, onPressTileHandler, shouldShowDate, sortedByDate],
     );
 
+    const onLoadMoreHandler = useCallback(() => {
+        if (canLoad) {
+            setCanLoad(false);
+            onLoadMore();
+        }
+    }, [canLoad, onLoadMore]);
+
+    const onEndReachedHandler = useCallback(() => {
+        if (!isLoading && !isRefreshing && privateMaps?.length > 1) {
+            onLoadMoreHandler();
+        }
+    }, [isLoading, isRefreshing, privateMaps?.length, onLoadMoreHandler]);
+
     if (!privateMaps?.length) {
         return <EmptyList onPress={onPress} />;
     }
@@ -203,7 +230,7 @@ const MyRoutes: React.FC<IProps> = ({
                     getItemLayout={getItemLayout}
                     initialNumToRender={10}
                     removeClippedSubviews
-                    onEndReached={onLoadMore}
+                    onEndReached={onEndReachedHandler}
                     onEndReachedThreshold={0.5}
                     ListFooterComponent={renderListLoader}
                     refreshing={isLoading && isRefreshing}
