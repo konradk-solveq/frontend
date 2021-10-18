@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -13,6 +13,7 @@ import {Map} from '../../../../models/map.model';
 import {I18n} from '../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {getImagesThumbs} from '../../../../utils/transformData';
+import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import NextTile from '../components/tiles/nextTile';
 import EmptyList from './emptyList';
@@ -44,8 +45,6 @@ const PlannedRoutes: React.FC<IProps> = ({
     onRefresh,
     onLoadMore,
 }: IProps) => {
-    const previousLengthRef = useRef(0);
-
     const trans: any = I18n.t('MainWorld.PlannedRoutes');
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
@@ -55,18 +54,10 @@ const PlannedRoutes: React.FC<IProps> = ({
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
-    const [canLoad, setCanLoad] = useState(false);
 
-    useEffect(() => {
-        if (previousLengthRef.current !== favouriteMaps?.length) {
-            previousLengthRef.current = favouriteMaps?.length || 0;
-
-            setCanLoad(true);
-        }
-        return () => {
-            previousLengthRef.current = 0;
-        };
-    }, [favouriteMaps?.length]);
+    const {onLoadMoreHandler} = useInfiniteScrollLoadMore(
+        favouriteMaps?.length,
+    );
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
@@ -82,18 +73,11 @@ const PlannedRoutes: React.FC<IProps> = ({
         });
     };
 
-    const onLoadMoreHandler = useCallback(() => {
-        if (canLoad) {
-            setCanLoad(false);
-            onLoadMore();
-        }
-    }, [canLoad, onLoadMore]);
-
     const onEndReachedHandler = useCallback(() => {
-        if (!isLoading && !isRefreshing && favouriteMaps?.length > 1) {
-            onLoadMoreHandler();
+        if (!isLoading && !isRefreshing) {
+            onLoadMoreHandler(onLoadMore);
         }
-    }, [isLoading, isRefreshing, favouriteMaps?.length, onLoadMoreHandler]);
+    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
 
     const renderItem = ({item, index}: RenderItem) => {
         const lastItemStyle =

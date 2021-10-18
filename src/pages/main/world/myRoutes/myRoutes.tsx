@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -16,6 +16,7 @@ import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {getImagesThumbs} from '../../../../utils/transformData';
 import {RegularStackRoute} from '../../../../navigation/route';
 import {translateDateToTodayAndYesterdayString} from '../../../../utils/dateTime';
+import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
@@ -50,8 +51,6 @@ const MyRoutes: React.FC<IProps> = ({
     onLoadMore,
     sortedByDate,
 }: IProps) => {
-    const previousLength = useRef(0);
-
     const trans: any = I18n.t('MainWorld.MyRoutes');
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
@@ -64,18 +63,8 @@ const MyRoutes: React.FC<IProps> = ({
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
-    const [canLoad, setCanLoad] = useState(false);
 
-    useEffect(() => {
-        if (previousLength.current !== privateMaps?.length) {
-            previousLength.current = privateMaps?.length || 0;
-
-            setCanLoad(true);
-        }
-        return () => {
-            previousLength.current = 0;
-        };
-    }, [privateMaps?.length]);
+    const {onLoadMoreHandler} = useInfiniteScrollLoadMore(privateMaps?.length);
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
@@ -155,18 +144,11 @@ const MyRoutes: React.FC<IProps> = ({
         [privateMaps?.length, onPressTileHandler, shouldShowDate, sortedByDate],
     );
 
-    const onLoadMoreHandler = useCallback(() => {
-        if (canLoad) {
-            setCanLoad(false);
-            onLoadMore();
-        }
-    }, [canLoad, onLoadMore]);
-
     const onEndReachedHandler = useCallback(() => {
-        if (!isLoading && !isRefreshing && privateMaps?.length > 1) {
-            onLoadMoreHandler();
+        if (!isLoading && !isRefreshing) {
+            onLoadMoreHandler(onLoadMore);
         }
-    }, [isLoading, isRefreshing, privateMaps?.length, onLoadMoreHandler]);
+    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
 
     if (!privateMaps?.length) {
         return <EmptyList onPress={onPress} />;

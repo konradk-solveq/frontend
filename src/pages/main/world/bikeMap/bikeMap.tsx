@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -13,6 +13,7 @@ import {
     mapsListSelector,
     refreshMapsSelector,
 } from '../../../../storage/selectors/map';
+import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
@@ -41,8 +42,6 @@ interface IProps {
 }
 
 const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
-    const previousLength = useRef(0);
-
     const trans: any = I18n.t('MainWorld.BikeMap');
     const navigation = useNavigation();
 
@@ -52,18 +51,8 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
-    const [canLoad, setCanLoad] = useState(false);
 
-    useEffect(() => {
-        if (previousLength.current !== mapsData?.length) {
-            previousLength.current = mapsData?.length || 0;
-
-            setCanLoad(true);
-        }
-        return () => {
-            previousLength.current = 0;
-        };
-    }, [mapsData?.length]);
+    const {onLoadMoreHandler} = useInfiniteScrollLoadMore(mapsData?.length);
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
@@ -82,18 +71,11 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
         [navigation],
     );
 
-    const onLoadMoreHandler = useCallback(() => {
-        if (canLoad) {
-            setCanLoad(false);
-            onLoadMore();
-        }
-    }, [canLoad, onLoadMore]);
-
     const onEndReachedHandler = useCallback(() => {
-        if (!isLoading && !isRefreshing && mapsData?.length > 1) {
-            onLoadMoreHandler();
+        if (!isLoading && !isRefreshing) {
+            onLoadMoreHandler(onLoadMore);
         }
-    }, [isLoading, isRefreshing, mapsData?.length, onLoadMoreHandler]);
+    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
 
     const onRefreshHandler = useCallback(() => {
         if (!isLoading && !isRefreshing && mapsData?.length > 1) {

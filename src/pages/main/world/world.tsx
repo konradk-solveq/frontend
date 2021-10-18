@@ -33,7 +33,6 @@ import MyRoutes from './myRoutes/myRoutes';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
 import styles from './style';
-// import FeaturedRoutes from './featuredRoutes/FeaturedRoutes';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -123,43 +122,22 @@ const World: React.FC = () => {
     const onLoadMoreHandler = useCallback(() => {
         if (!isLoading) {
             if (nextPrivateCoursor && activeTab === RouteMapType.MY_ROUTES) {
-                if (
-                    !nextPrivateCoursorRef.current ||
-                    nextPrivateCoursor !== nextPrivateCoursorRef.current
-                ) {
-                    nextPrivateCoursorRef.current = nextPrivateCoursor;
-                    dispatch(
-                        fetchPrivateMapsList(
-                            nextPrivateCoursor,
-                            savedMapFilters,
-                        ),
-                    );
-                }
+                nextPrivateCoursorRef.current = nextPrivateCoursor;
+                dispatch(
+                    fetchPrivateMapsList(nextPrivateCoursor, savedMapFilters),
+                );
                 return;
             }
             if (nextCoursor && activeTab === RouteMapType.BIKE_MAP) {
-                if (
-                    !nextCoursorRef.current ||
-                    nextCoursor !== nextCoursorRef.current
-                ) {
-                    nextCoursorRef.current = nextCoursor;
-                    dispatch(fetchMapsList(nextCoursor, savedMapFilters));
-                }
+                nextCoursorRef.current = nextCoursor;
+                dispatch(fetchMapsList(nextCoursor, savedMapFilters));
                 return;
             }
             if (nextCoursor && activeTab === RouteMapType.PLANNING) {
-                if (
-                    !nextPlannedCoursorRef.current ||
-                    nextPlannedCoursor !== nextPlannedCoursorRef.current
-                ) {
-                    nextPlannedCoursorRef.current = nextPlannedCoursor || '';
-                    dispatch(
-                        fetchPlannedMapsList(
-                            nextPlannedCoursor,
-                            savedMapFilters,
-                        ),
-                    );
-                }
+                nextPlannedCoursorRef.current = nextPlannedCoursor || '';
+                dispatch(
+                    fetchPlannedMapsList(nextPlannedCoursor, savedMapFilters),
+                );
                 return;
             }
         }
