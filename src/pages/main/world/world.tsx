@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View, StyleSheet, SafeAreaView, Platform} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import I18n from 'react-native-i18n';
@@ -45,11 +45,8 @@ const World: React.FC = () => {
 
     const statusBarHeight = useStatusBarHeight();
     const nextCoursor = useAppSelector(nextPaginationCoursor);
-    const nextCoursorRef = useRef('');
     const nextPrivateCoursor = useAppSelector(nextPrivatePaginationCoursor);
-    const nextPrivateCoursorRef = useRef('');
     const nextPlannedCoursor = useAppSelector(nextPlannedPaginationCoursor);
-    const nextPlannedCoursorRef = useRef('');
     const isLoading = useAppSelector(loadingMapsSelector);
 
     const [showModal, setShowModal] = useState<boolean>(false);
@@ -122,19 +119,16 @@ const World: React.FC = () => {
     const onLoadMoreHandler = useCallback(() => {
         if (!isLoading) {
             if (nextPrivateCoursor && activeTab === RouteMapType.MY_ROUTES) {
-                nextPrivateCoursorRef.current = nextPrivateCoursor;
                 dispatch(
                     fetchPrivateMapsList(nextPrivateCoursor, savedMapFilters),
                 );
                 return;
             }
             if (nextCoursor && activeTab === RouteMapType.BIKE_MAP) {
-                nextCoursorRef.current = nextCoursor;
                 dispatch(fetchMapsList(nextCoursor, savedMapFilters));
                 return;
             }
             if (nextPlannedCoursor && activeTab === RouteMapType.PLANNING) {
-                nextPlannedCoursorRef.current = nextPlannedCoursor || '';
                 dispatch(
                     fetchPlannedMapsList(nextPlannedCoursor, savedMapFilters),
                 );
