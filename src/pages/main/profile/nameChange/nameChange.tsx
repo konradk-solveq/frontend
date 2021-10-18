@@ -23,11 +23,11 @@ import {
 } from '../../../../helpers/layoutFoo';
 import {validateData} from '../../../../utils/validation/validation';
 import {userUserValidationRules} from '../../../../models/user.model';
+import useStatusBarHeight from '@hooks/statusBarHeight';
 
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import useStatusBarHeight from '@src/hooks/statusBarHeight';
 
 const isIOS = Platform.OS === 'ios';
 
