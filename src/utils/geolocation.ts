@@ -453,7 +453,7 @@ export const pauseTracingLocation = async (clearRouteId?: boolean) => {
 export const resumeTracingLocation = async (routeId?: string) => {
     try {
         const state = await getBackgroundGeolocationState();
-        if (state?.enabled && !state?.isMoving) {
+        if (state?.enabled) {
             if (routeId) {
                 await BackgroundGeolocation.setConfig({
                     extras: {
