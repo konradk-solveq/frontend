@@ -187,7 +187,7 @@ const useLocalizationTracker = (
     }, []);
 
     useEffect(() => {
-        if (!isActive) {
+        if (!isTrackerActive) {
             startLocalize();
         }
     }, []);
@@ -363,8 +363,11 @@ const useLocalizationTracker = (
                 setInitTrackerData(undefined);
             };
 
-            stopWatchPostionChangeListener();
-            onWatchPostionChangeListener(setLocation);
+            const runListener = async () => {
+                await stopWatchPostionChangeListener();
+                onWatchPostionChangeListener(setLocation);
+            };
+            runListener();
         }
 
         return () => {
