@@ -27,6 +27,7 @@ import {userUserValidationRules} from '../../../../models/user.model';
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
+import useStatusBarHeight from '@src/hooks/statusBarHeight';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -43,6 +44,8 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
     const [inputName, setInputName] = useState('');
     const [validationStatus, setValidationStatus] = useState(false);
     const [forceMessageWrong, setForceMessageWrong] = useState('');
+    const statusBarHeight = useStatusBarHeight();
+    const iosOffset = isIOS ? -(statusBarHeight || 40) : 0;
 
     useEffect(() => {
         if (typeof name === 'string') {
@@ -126,7 +129,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             width: getWidthPx(),
             height: 50,
             left: getCenterLeftPx(),
-            bottom: getVerticalPx(65 + 100), // 100 - przesunięcie dla scroll o headera
+            bottom: getVerticalPx((isIOS ? 20 : 65) + 100), // 100 - przesunięcie dla scroll o headera
         },
         keyboardContainer: {
             position: 'absolute',
@@ -141,6 +144,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView
                 behavior={isIOS ? 'padding' : 'height'}
+                keyboardVerticalOffset={iosOffset}
                 style={styles.keyboardContainer}>
                 <ScrollView
                     keyboardShouldPersistTaps="handled"
