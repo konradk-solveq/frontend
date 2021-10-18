@@ -55,7 +55,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Displaying a list of service points and Kross partner stores in the vicinity of the user. Locations displayed on the map.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>The accelerometer reduces battery consumption when using the device&apos;s location in the application.</string>
+	<string>The accelerometer reduces battery consumption when using the device's location in the application.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app requires access to the photo library to add to route description.</string>
 	<key>UIAppFonts</key>
