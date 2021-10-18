@@ -133,7 +133,7 @@ const World: React.FC = () => {
                 dispatch(fetchMapsList(nextCoursor, savedMapFilters));
                 return;
             }
-            if (nextCoursor && activeTab === RouteMapType.PLANNING) {
+            if (nextPlannedCoursor && activeTab === RouteMapType.PLANNING) {
                 nextPlannedCoursorRef.current = nextPlannedCoursor || '';
                 dispatch(
                     fetchPlannedMapsList(nextPlannedCoursor, savedMapFilters),
