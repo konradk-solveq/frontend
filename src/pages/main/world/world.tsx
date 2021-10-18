@@ -33,7 +33,6 @@ import MyRoutes from './myRoutes/myRoutes';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
 import styles from './style';
-// import FeaturedRoutes from './featuredRoutes/FeaturedRoutes';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -129,7 +128,7 @@ const World: React.FC = () => {
                 dispatch(fetchMapsList(nextCoursor, savedMapFilters));
                 return;
             }
-            if (nextCoursor && activeTab === RouteMapType.PLANNING) {
+            if (nextPlannedCoursor && activeTab === RouteMapType.PLANNING) {
                 dispatch(
                     fetchPlannedMapsList(nextPlannedCoursor, savedMapFilters),
                 );

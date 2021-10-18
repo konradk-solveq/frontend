@@ -34,7 +34,10 @@ export const getMaps = async (
     const params =
         filters && Object.keys(filters)?.length > 0 ? {params: filters} : {};
 
-    return await axiosGet(paginationUrl || url, params);
+    return await axiosGet(
+        paginationUrl || url,
+        paginationUrl ? undefined : params,
+    );
 };
 
 export const getRoute = async (id: string, location?: Coords) => {
@@ -61,7 +64,7 @@ export const getPrivateRoutes = async (
     return await axiosGet(
         paginationUrl ||
             `${BASE_URL}/find/my?lat=${location.latitude}&lng=${location.longitude}&detailed=true`,
-        params,
+        paginationUrl ? undefined : params,
     );
 };
 
@@ -118,7 +121,7 @@ export const getPlannedRoutes = async (
     return await axiosGet(
         paginationUrl ||
             `${PLANNED_ROUTE_URL}?lat=${location.latitude}&lng=${location.longitude}&detailed=true`,
-        params,
+        paginationUrl ? undefined : params,
     );
 };
 

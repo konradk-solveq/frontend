@@ -16,6 +16,7 @@ import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {getImagesThumbs} from '../../../../utils/transformData';
 import {RegularStackRoute} from '../../../../navigation/route';
 import {translateDateToTodayAndYesterdayString} from '../../../../utils/dateTime';
+import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
@@ -62,6 +63,8 @@ const MyRoutes: React.FC<IProps> = ({
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
+
+    const {onLoadMoreHandler} = useInfiniteScrollLoadMore(privateMaps?.length);
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
@@ -141,6 +144,12 @@ const MyRoutes: React.FC<IProps> = ({
         [privateMaps?.length, onPressTileHandler, shouldShowDate, sortedByDate],
     );
 
+    const onEndReachedHandler = useCallback(() => {
+        if (!isLoading && !isRefreshing) {
+            onLoadMoreHandler(onLoadMore);
+        }
+    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
+
     if (!privateMaps?.length) {
         return <EmptyList onPress={onPress} />;
     }
@@ -203,7 +212,7 @@ const MyRoutes: React.FC<IProps> = ({
                     getItemLayout={getItemLayout}
                     initialNumToRender={10}
                     removeClippedSubviews
-                    onEndReached={onLoadMore}
+                    onEndReached={onEndReachedHandler}
                     onEndReachedThreshold={0.5}
                     ListFooterComponent={renderListLoader}
                     refreshing={isLoading && isRefreshing}

@@ -13,6 +13,7 @@ import {
     mapsListSelector,
     refreshMapsSelector,
 } from '../../../../storage/selectors/map';
+import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
@@ -51,6 +52,8 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
 
+    const {onLoadMoreHandler} = useInfiniteScrollLoadMore(mapsData?.length);
+
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
         if (mapID) {
@@ -69,10 +72,10 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
     );
 
     const onEndReachedHandler = useCallback(() => {
-        if (!isLoading && !isRefreshing && mapsData?.length > 1) {
-            onLoadMore();
+        if (!isLoading && !isRefreshing) {
+            onLoadMoreHandler(onLoadMore);
         }
-    }, [isLoading, isRefreshing, mapsData?.length, onLoadMore]);
+    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
 
     const onRefreshHandler = useCallback(() => {
         if (!isLoading && !isRefreshing && mapsData?.length > 1) {

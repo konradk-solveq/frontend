@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -13,6 +13,7 @@ import {Map} from '../../../../models/map.model';
 import {I18n} from '../../../../../I18n/I18n';
 import {getVerticalPx} from '../../../../helpers/layoutFoo';
 import {getImagesThumbs} from '../../../../utils/transformData';
+import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import NextTile from '../components/tiles/nextTile';
 import EmptyList from './emptyList';
@@ -20,7 +21,7 @@ import EmptyList from './emptyList';
 import styles from './style';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
-import { RegularStackRoute } from '../../../../navigation/route';
+import {RegularStackRoute} from '../../../../navigation/route';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -54,6 +55,10 @@ const PlannedRoutes: React.FC<IProps> = ({
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
 
+    const {onLoadMoreHandler} = useInfiniteScrollLoadMore(
+        favouriteMaps?.length,
+    );
+
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
         if (mapID) {
@@ -67,6 +72,12 @@ const PlannedRoutes: React.FC<IProps> = ({
             params: {mapID: mapID, private: false, favourite: true},
         });
     };
+
+    const onEndReachedHandler = useCallback(() => {
+        if (!isLoading && !isRefreshing) {
+            onLoadMoreHandler(onLoadMore);
+        }
+    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
 
     const renderItem = ({item, index}: RenderItem) => {
         const lastItemStyle =
@@ -125,7 +136,7 @@ const PlannedRoutes: React.FC<IProps> = ({
                     getItemLayout={getItemLayout}
                     initialNumToRender={10}
                     removeClippedSubviews
-                    onEndReached={onLoadMore}
+                    onEndReached={onEndReachedHandler}
                     onEndReachedThreshold={0.5}
                     ListFooterComponent={renderListLoader}
                     refreshing={isLoading && isRefreshing}
