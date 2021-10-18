@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
-import {SubmitHandler} from 'react-hook-form';
+import {SubmitErrorHandler, SubmitHandler} from 'react-hook-form';
 
 import {I18n} from '../../../../../../I18n/I18n';
 import {
@@ -55,11 +55,15 @@ const EditForm: React.FC<IProps> = ({
     const [imagesToAdd, setImagesToAdd] = useState<ImageType[]>([]);
     const [imagesToRemove, setImagesToRemove] = useState<string[]>([]);
 
-    const {control, handleSubmit, setError, options} = useFormDataWithMapData(
-        mapData,
-    );
+    const {
+        control,
+        handleSubmit,
+        setError,
+        options,
+        getValues,
+    } = useFormDataWithMapData(mapData);
 
-    const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> = data => {
+    const validateFormData = (data: MapFormDataResult) => {
         const isValid = reValidateMapMetadataManually(
             data,
             validationMessages,
@@ -68,12 +72,24 @@ const EditForm: React.FC<IProps> = ({
         );
         if (!isValid) {
             scrollTop();
-            return;
         }
-        onSubmit(data, true, imagesToAdd, imagesToRemove);
+
+        return isValid;
+    };
+
+    const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> = data => {
+        const isValid = validateFormData(data);
+        if (isValid) {
+            onSubmit(data, true, imagesToAdd, imagesToRemove);
+        }
     };
     const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
         onSubmit(data, false, imagesToAdd, imagesToRemove);
+    };
+
+    const onInvalidSubmitHandlerWithPublish: SubmitErrorHandler<MapFormDataResult> = () => {
+        const formValues = getValues();
+        validateFormData(formValues);
     };
 
     const onValidateHanlder = (
@@ -244,7 +260,10 @@ const EditForm: React.FC<IProps> = ({
                     <>
                         <BigRedBtn
                             title={trans.publishButton}
-                            onpress={handleSubmit(onSubmitHandlerWithPublish)}
+                            onpress={handleSubmit(
+                                onSubmitHandlerWithPublish,
+                                onInvalidSubmitHandlerWithPublish,
+                            )}
                             style={styles.onPressBtn}
                         />
                         <BigWhiteBtn

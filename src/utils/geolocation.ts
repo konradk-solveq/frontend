@@ -28,26 +28,30 @@ import {
 const isIOS = Platform.OS === 'ios';
 
 export const transformLocationErrorCode = (e: LocationError | any) => {
-    let errorMessage = e;
-    switch (e) {
-        case 0 || '0':
-            errorMessage = `Location unknown - [code: ${errorMessage}]`;
-            break;
-        case 1 || '1':
-            errorMessage = `Location permission denied - [code: ${errorMessage}]`;
-            break;
-        case 2 || '2':
-            errorMessage = `Network error - [code: ${errorMessage}]`;
-            break;
-        case 408 || '408':
-            errorMessage = `Location timeout - [code: ${errorMessage}]`;
-            break;
-        case 499 || '499':
-            errorMessage = `Location request cancelled - [code: ${errorMessage}]`;
-            break;
-    }
+    try {
+        let errorMessage = e?.message || e;
+        switch (e) {
+            case 0 || '0':
+                errorMessage = `Location unknown - [code: ${errorMessage}]`;
+                break;
+            case 1 || '1':
+                errorMessage = `Location permission denied - [code: ${errorMessage}]`;
+                break;
+            case 2 || '2':
+                errorMessage = `Network error - [code: ${errorMessage}]`;
+                break;
+            case 408 || '408':
+                errorMessage = `Location timeout - [code: ${errorMessage}]`;
+                break;
+            case 499 || '499':
+                errorMessage = `Location request cancelled - [code: ${errorMessage}]`;
+                break;
+        }
 
-    return errorMessage;
+        return errorMessage;
+    } catch (error) {
+        return e;
+    }
 };
 
 /* TODO: catch errors */
