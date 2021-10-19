@@ -1,5 +1,12 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Dimensions, Animated, Platform} from 'react-native';
+import {
+    View,
+    Text,
+    Dimensions,
+    Animated,
+    Platform,
+    PixelRatio,
+} from 'react-native';
 
 import {trackerMapVisibilitySelector} from '@storage/selectors/routes';
 import {useAppSelector} from '@hooks/redux';
@@ -21,9 +28,10 @@ const {width, height} = Dimensions.get('window');
 const arrowPositionTop = getVerticalPx((isIOS ? 0 : -25) + 437);
 const arrowPositionBottom = getVerticalPx((isIOS ? -10 : -25) + 654);
 const arrowPositionAplaShow = getVerticalPx((isIOS ? -10 : -25) + 654 - 30);
+const smallAndroidRatio = isIOS ? false : PixelRatio.get() < 2;
 
-const bigFont = width > 365 ? 57 : 51;
-const smallFont = width > 365 ? 23 : 21;
+const bigFont = width > 365 && !smallAndroidRatio ? 57 : 51;
+const smallFont = width > 365 && !smallAndroidRatio ? 23 : 21;
 
 interface IProps {
     time: Date | undefined;

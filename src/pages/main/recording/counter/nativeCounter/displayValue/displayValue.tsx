@@ -1,13 +1,20 @@
 import {pointToComaString} from '@src/helpers/stringFoo';
 import React, {useEffect, useRef} from 'react';
-import {TextStyle, Animated, Dimensions} from 'react-native';
+import {
+    TextStyle,
+    Animated,
+    Dimensions,
+    Platform,
+    PixelRatio,
+} from 'react-native';
 
 import styles from './style';
 
 const {width} = Dimensions.get('window');
-const bigFont = width > 365 ? 57 : 51;
-const smallFont = width > 365 ? 18 : 16;
-const smallestFont = width > 365 ? 14 : 12.5;
+const smallAndroidRatio = Platform.OS === 'ios' ? false : PixelRatio.get() < 2;
+const bigFont = width > 365 && !smallAndroidRatio ? 57 : 51;
+const smallFont = width > 365 && !smallAndroidRatio ? 18 : 16;
+const smallestFont = width > 365 && !smallAndroidRatio ? 14 : 12.5;
 
 interface IProps {
     value: string | number;
