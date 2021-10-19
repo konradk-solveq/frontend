@@ -190,7 +190,7 @@ const useLocalizationTracker = (
         if (!isTrackerActive) {
             startLocalize();
         }
-        return stopWatchPostionChangeListener();
+        return () => stopWatchPostionChangeListener();
     }, []);
 
     useEffect(() => {
