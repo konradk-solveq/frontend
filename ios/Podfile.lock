@@ -340,9 +340,9 @@ PODS:
   - React-jsinspector (0.64.2)
   - react-native-compass-heading (1.2.1):
     - React
-  - react-native-config (1.4.2):
-    - react-native-config/App (= 1.4.2)
-  - react-native-config/App (1.4.2):
+  - react-native-config (1.4.4):
+    - react-native-config/App (= 1.4.4)
+  - react-native-config/App (1.4.4):
     - React-Core
   - react-native-get-random-values (1.7.0):
     - React-Core
@@ -775,7 +775,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 80c46bd381fd06e418e0d4f53672dc1d1945c4c3
   React-jsinspector: cc614ec18a9ca96fd275100c16d74d62ee11f0ae
   react-native-compass-heading: bb83f8472786ad730947624f2a75a6563aa80b27
-  react-native-config: c98128a72bc2c3a1ca72caec0b021f0fa944aa29
+  react-native-config: 72d948053a442779b3178fddd571e37f118ef606
   react-native-get-random-values: 237bffb1c7e05fb142092681531810a29ba53015
   react-native-google-maps: d6a30377b40a338bd09d6ad36ce48dc5d12b5792
   react-native-image-picker: 5a7dd93d4f9dd0d910da5dde3707fd96f70d03b3
