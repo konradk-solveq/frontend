@@ -6,6 +6,7 @@ import useAppState from '@hooks/useAppState';
 import {useAppSelector} from '../../../../hooks/redux';
 import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
 import {getCurrentLocation} from '../../../../utils/geolocation';
+import {DataI} from '@hooks/useLocalizationTracker';
 
 import mapStyle from '../../../../sharedComponents/maps/styles';
 import AnimSvg from '../../../../helpers/animSvg';
@@ -18,11 +19,40 @@ import {useLocationProvider} from '@providers/staticLocationProvider/staticLocat
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
 
+type latType = {latitude: number; longitude: number};
+
+const setLocationData = async (
+    coords: {lat: number; lon: number} | undefined,
+    setNewLocation: ({latitude, longitude}: latType) => void,
+) => {
+    const l = await getCurrentLocation('', 3);
+    if (!l || !isLocationValidate(l)) {
+        if (!coords) {
+            return false;
+        }
+        const c = {
+            latitude: coords.lat,
+            longitude: coords.lon,
+        };
+        setNewLocation(c);
+    }
+    if (l?.coords) {
+        const c = {
+            latitude: l.coords.latitude,
+            longitude: l.coords.longitude,
+        };
+        setNewLocation(c);
+    }
+
+    return true;
+};
+
 const isIOS = Platform.OS === 'ios';
 const {width} = Dimensions.get('window');
+
 interface IProps {
     routeId: string;
-    trackerData: any;
+    trackerData: DataI | undefined;
     autoFindMe: number;
     headingOn: boolean;
     compassHeading: any;
@@ -57,6 +87,7 @@ const Map: React.FC<IProps> = ({
     const timerRef = useRef<NodeJS.Timeout | null>(null);
     const mountedRef = useRef(false);
     const restoreRef = useRef(false);
+    const locationSetRef = useRef(false);
     const isAnimatingCameraRef = useRef(false);
 
     const globalLocation = useLocationProvider()?.location;
@@ -93,7 +124,7 @@ const Map: React.FC<IProps> = ({
     );
 
     useEffect(() => {
-        if (!mountedRef.current) {
+        if (!mountedRef.current || locationSetRef.current) {
             return;
         }
 
@@ -102,17 +133,16 @@ const Map: React.FC<IProps> = ({
                 setLocaion(globalLocation);
                 setShowMap(true);
             }
-            const l = await getCurrentLocation('', 3);
-            if (!l || !isLocationValidate(l)) {
+
+            const setLoc = await setLocationData(
+                trackerData?.coords,
+                setLocaion,
+            );
+            if (!setLoc) {
                 return;
             }
-            if (l?.coords) {
-                const c = {
-                    latitude: l.coords.latitude,
-                    longitude: l.coords.longitude,
-                };
-                setLocaion(c);
-            }
+
+            locationSetRef.current = true;
             setShowMap(true);
         };
         loc();
@@ -120,8 +150,7 @@ const Map: React.FC<IProps> = ({
         return () => {
             clearTimeout(timerRef.current as NodeJS.Timeout);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [globalLocation, trackerData?.coords]);
 
     useEffect(() => {
         if (mapData?.path?.length && mountedRef.current) {
