@@ -431,11 +431,12 @@ export const getLastLocationByRoutId = async (
 /* Force plugin to stationary state - doesnt disable tracking permamently */
 export const pauseTracingLocation = async (clearRouteId?: boolean) => {
     try {
+        if (clearRouteId) {
+            await BackgroundGeolocation.setConfig({extras: {}});
+        }
+
         const state = await getBackgroundGeolocationState();
         if (state?.enabled) {
-            if (clearRouteId) {
-                await BackgroundGeolocation.setConfig({extras: {}});
-            }
             await BackgroundGeolocation.changePace(false);
         }
     } catch (e) {
@@ -452,15 +453,16 @@ export const pauseTracingLocation = async (clearRouteId?: boolean) => {
 /* Force plugin to moving state */
 export const resumeTracingLocation = async (routeId?: string) => {
     try {
+        if (routeId) {
+            await BackgroundGeolocation.setConfig({
+                extras: {
+                    route_id: routeId,
+                },
+            });
+        }
+
         const state = await getBackgroundGeolocationState();
         if (state?.enabled) {
-            if (routeId) {
-                await BackgroundGeolocation.setConfig({
-                    extras: {
-                        route_id: routeId,
-                    },
-                });
-            }
             await BackgroundGeolocation.changePace(true);
         }
     } catch (e) {
