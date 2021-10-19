@@ -278,7 +278,13 @@
         "fourthText": "Bądź inspiracją dla innych. Nagraj kolejną trasę i upublicznij ją na Mapie Rowerowej.",
         "secondBtn": "DODAJ ROWER",
         "thirdBtn": "Nagraj trasę",
-        "fourthBtn": "Nagraj trasę"
+        "fourthBtn": "Nagraj trasę",
+        "counters": {
+            "distance": "Dystans",
+            "time": "Czas",
+            "speed": "Prędkość",
+            "averageSpeed": "Średnia prędkość"
+        }
     },
     "MainWorld": {
         "header": "Świat KROSS",

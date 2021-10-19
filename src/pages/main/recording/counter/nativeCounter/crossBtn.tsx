@@ -91,8 +91,9 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style, duration}: Props) => {
             borderRadius: 50,
         },
         touch: {
-            width: '100%',
-            height: '100%',
+            zIndex: 100,
+            width: getHorizontalPx(51),
+            height: getHorizontalPx(51),
         },
         horisontalLine: {
             position: 'absolute',

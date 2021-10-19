@@ -1,9 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Dimensions, Animated, Platform} from 'react-native';
+import {
+    View,
+    Text,
+    Dimensions,
+    Animated,
+    Platform,
+    PixelRatio,
+} from 'react-native';
+import I18n from 'react-native-i18n';
 
 import {trackerMapVisibilitySelector} from '@storage/selectors/routes';
 import {useAppSelector} from '@hooks/redux';
-import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {getHorizontalPx, getVerticalPx, getFontSize} from '@helpers/layoutFoo';
 import {FindMeButton} from '@sharedComponents/buttons';
 
 import DisplayAverageSpeed from './displayAverageSpeed/displayAveragaSpeed';
@@ -22,8 +30,9 @@ const arrowPositionTop = getVerticalPx((isIOS ? 0 : -25) + 437);
 const arrowPositionBottom = getVerticalPx((isIOS ? -10 : -25) + 654);
 const arrowPositionAplaShow = getVerticalPx((isIOS ? -10 : -25) + 654 - 30);
 
-const bigFont = width > 365 ? 57 : 51;
-const smallFont = width > 365 ? 23 : 21;
+const bigFont = getFontSize(57);
+const smallFont = getFontSize(23);
+const labelFont = getFontSize(18);
 
 interface IProps {
     time: Date | undefined;
@@ -51,6 +60,8 @@ const NativeCounter: React.FC<IProps> = ({
     headingSwitch,
     compassHeading,
 }: IProps) => {
+    const trans: any = I18n.t('MainHome.counters');
+
     const FIND_ME_BTN_BOTTOM = 250;
     const resotredRef = useRef(false);
 
@@ -180,7 +191,7 @@ const NativeCounter: React.FC<IProps> = ({
     const arrowBtnActionHandler = () => {
         const containerH = containerHeight?.__getValue();
 
-        if (containerH >= 500) {
+        if (containerH > getVerticalPx(200 + 1)) {
             startAnimation();
             setMapHiden(false);
         } else {
@@ -222,8 +233,12 @@ const NativeCounter: React.FC<IProps> = ({
                                     styles.labelWrap,
                                     {opacity: labelOpacity},
                                 ]}>
-                                <Animated.Text style={styles.label}>
-                                    Dystans
+                                <Animated.Text
+                                    style={[
+                                        styles.label,
+                                        {fontSize: labelFont},
+                                    ]}>
+                                    {trans.distance}
                                 </Animated.Text>
                             </Animated.View>
                             <DisplayDistance
@@ -243,8 +258,13 @@ const NativeCounter: React.FC<IProps> = ({
                                     styles.labelWrap,
                                     {opacity: labelOpacity},
                                 ]}>
-                                <Text style={[styles.label, styles.rightLabel]}>
-                                    Czas
+                                <Text
+                                    style={[
+                                        styles.label,
+                                        styles.rightLabel,
+                                        {fontSize: labelFont},
+                                    ]}>
+                                    {trans.time}
                                 </Text>
                             </Animated.View>
                             <DisplayTimer
@@ -274,7 +294,13 @@ const NativeCounter: React.FC<IProps> = ({
                                     styles.labelWrap,
                                     {opacity: labelOpacity},
                                 ]}>
-                                <Text style={styles.label}>Prędkość</Text>
+                                <Text
+                                    style={[
+                                        styles.label,
+                                        {fontSize: labelFont},
+                                    ]}>
+                                    {trans.speed}
+                                </Text>
                             </Animated.View>
                             <DisplaySpeed
                                 fontSize={mapHiden ? bigFont : smallFont}
@@ -294,8 +320,12 @@ const NativeCounter: React.FC<IProps> = ({
                                     styles.rightLabel,
                                     {opacity: labelOpacity},
                                 ]}>
-                                <Text style={[styles.label]}>
-                                    Średnia prędkość
+                                <Text
+                                    style={[
+                                        styles.label,
+                                        {fontSize: labelFont},
+                                    ]}>
+                                    {trans.averageSpeed}
                                 </Text>
                             </Animated.View>
                             <DisplayAverageSpeed

@@ -30,20 +30,16 @@ const styles = StyleSheet.create({
     },
     labelWrap: {
         position: 'absolute',
-        top: 21,
-        fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
-        letterSpacing: 0.5,
+        top: getVerticalPx(21),
         color: '#555555',
     },
     label: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
         letterSpacing: 0.5,
         color: '#555555',
     },
     rightLabel: {
-        marginLeft: 30,
+        marginLeft: getHorizontalPx(30),
     },
     arrowBtnWrap: {
         position: 'absolute',

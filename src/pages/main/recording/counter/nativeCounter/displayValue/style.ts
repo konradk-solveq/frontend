@@ -1,7 +1,8 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, PixelRatio, Platform} from 'react-native';
 
 const {width} = Dimensions.get('window');
-const biggerFont = width > 365;
+const smallAndroidRatio = Platform.OS === 'ios' ? false : PixelRatio.get() < 2;
+const biggerFont = width > 365 && !smallAndroidRatio;
 
 const styles = StyleSheet.create({
     value: {

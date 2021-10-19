@@ -245,6 +245,9 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     return res;
 };
 
+const fontRatio = width > 365 ? 1 : width / 414;
+const getFontSize = (h: number) => h * fontRatio;
+
 export {
     setAppSize,
     initAppSize,
@@ -272,4 +275,5 @@ export {
     getPosAndWid,
     getPosWithMinHeight,
     getStackHeaderHeight,
+    getFontSize,
 };
