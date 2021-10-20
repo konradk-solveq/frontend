@@ -31,12 +31,18 @@ export const startCurrentRoute = async (followByRoute?: string) => {
     };
 };
 
-export const getTrackerData = (gpsData: any, averageSpeed?: string) => {
+export const getTrackerData = (
+    gpsData: any,
+    averageSpeed?: string,
+    noSpeed?: boolean,
+) => {
     if (!gpsData || !isLocationValidate(gpsData)) {
         return;
     }
 
-    const speed = msToKH(gpsData?.coords?.speed) || DEFAULT_SPEED;
+    const speed = noSpeed
+        ? DEFAULT_SPEED
+        : msToKH(gpsData?.coords?.speed) || DEFAULT_SPEED;
     const distance = transformMetersToKilometersString(
         gpsData?.odometer,
         2,
