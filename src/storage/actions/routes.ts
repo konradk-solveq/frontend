@@ -42,10 +42,15 @@ export const setLoadingState = (state: boolean) => ({
     state: state,
 });
 
-export const setError = (error: string, statusCode: number) => ({
+export const setError = (
+    error: string,
+    statusCode: number,
+    routeToShort?: boolean,
+) => ({
     type: actionTypes.SET_ROUTES_ERROR,
     error: error,
     statusCode: statusCode,
+    routeToShort: routeToShort,
 });
 
 export const setCurrentRoute = (currentRoute?: Partial<CurrentRouteI>) => ({
@@ -381,7 +386,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         if ((response.error && response.status >= 400) || !response?.data?.id) {
             let errorMessage = response.error;
 
-            if (currRoutesDat?.length > 3) {
+            if (currRoutesDat?.length > 3 && response?.shortRoute) {
                 console.log(
                     `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
                 );
@@ -396,7 +401,9 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
             dispatch(clearAverageSpeed());
-            dispatch(setError(errorMessage, response.status));
+            dispatch(
+                setError(errorMessage, response.status, response?.shortRoute),
+            );
             return;
         }
 
@@ -420,7 +427,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(clearError());
         dispatch(setLoadingState(false));
 
-        await dispatch(fetchPrivateMapsList());
+        dispatch(fetchPrivateMapsList());
         syncRouteDataFromQueue(true);
     } catch (error) {
         console.log(`[syncCurrentRouteData] - ${error}`);

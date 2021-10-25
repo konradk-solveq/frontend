@@ -24,9 +24,10 @@ export const trackerLoadingSelector = (state: RootState): boolean =>
 
 export const trackerErrorSelector = (
     state: RootState,
-): {message: string; statusCode: number} => ({
+): {message: string; statusCode: number; routeToShort: boolean} => ({
     message: state.routes.error,
     statusCode: state.routes.statusCode,
+    routeToShort: state.routes?.routeToShort || false,
 });
 
 export const trackerRoutesToSyncSelector = (state: RootState): string[] =>

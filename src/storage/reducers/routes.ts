@@ -30,6 +30,7 @@ export interface RoutesState {
     error: string;
     loading: boolean;
     statusCode: number;
+    routeToShort: boolean;
 }
 
 const initialStateList: RoutesState = {
@@ -50,6 +51,7 @@ const initialStateList: RoutesState = {
     error: '',
     loading: false,
     statusCode: 200,
+    routeToShort: false,
 };
 
 const routesReducer = (state = initialStateList, action: any) => {
@@ -66,6 +68,7 @@ const routesReducer = (state = initialStateList, action: any) => {
                 loading: false,
                 error: action.error,
                 statusCode: action.statusCode,
+                routeToShort: action?.routeToShort || false,
             };
         }
         case actionTypes.SET_AVERAGE_ROUTE_SPEED: {
@@ -202,6 +205,7 @@ const routesReducer = (state = initialStateList, action: any) => {
                 loading: false,
                 error: '',
                 statusCode: 200,
+                routeToShort: false,
             };
         }
         case actionTypes.LOGOUT: {

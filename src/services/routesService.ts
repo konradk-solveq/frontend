@@ -17,6 +17,7 @@ export interface RoutesResponse {
     data: CreatedRouteType | null;
     status: number;
     error: string;
+    shortRoute?: boolean;
 }
 
 export const createNewRouteService = async (
@@ -134,6 +135,7 @@ export const syncRouteData = async (
                 error: I18n.t('dataAction.routeData.routeLengthError', {
                     value: MIN_ROUTE_LENGTH,
                 }),
+                shortRoute: true,
             };
         }
 

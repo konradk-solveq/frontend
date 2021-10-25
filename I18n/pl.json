@@ -550,7 +550,11 @@
         "break": "czas przerw",
         "breakUnit": "h",
         "btnSave": "UPUBLICZNIJ",
-        "btnCancel": "POWRÓT"
+        "btnCancel": "POWRÓT",
+        "errorCloseBtn": "Zamknij",
+        "errorTitle": "Coś poszło nie tak!",
+        "errorMessageTitle": "Przejechany dystans jest **zbyt krótki**.",
+        "errorMessageContent": "Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów)."
     },
     "ServicesMap": {
         "services": "Serwisy",
