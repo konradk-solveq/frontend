@@ -148,11 +148,13 @@ const Map: React.FC<IProps> = ({
             setShowMap(true);
         };
         loc();
+    }, [globalLocation, trackerData?.coords]);
 
+    useEffect(() => {
         return () => {
             clearTimeout(timerRef.current as NodeJS.Timeout);
         };
-    }, [globalLocation, trackerData?.coords]);
+    }, []);
 
     useEffect(() => {
         if (mapData?.path?.length && mountedRef.current) {
