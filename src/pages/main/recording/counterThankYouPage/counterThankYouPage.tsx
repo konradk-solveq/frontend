@@ -119,7 +119,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 return;
             }
 
-            navigation.navigate(RegularStackRoute.KROSS_WORLD_SCREEN);
+            navigation.navigate(RegularStackRoute.HOME_SCREEN);
         },
         [dispatch, goForward, navigation],
     );
