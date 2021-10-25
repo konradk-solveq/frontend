@@ -163,6 +163,7 @@ export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActions = [
             value: MIN_ROUTE_LENGTH,
         }),
         statusCode: 400,
+        routeToShort: true,
     },
 ];
 
@@ -269,6 +270,7 @@ export const synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions = [
             value: MIN_ROUTE_LENGTH,
         }),
         statusCode: 400,
+        routeToShort: true,
     },
 ];
 
