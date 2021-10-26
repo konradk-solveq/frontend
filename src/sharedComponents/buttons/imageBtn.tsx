@@ -1,3 +1,4 @@
+import {getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {StyleSheet, Image, Pressable} from 'react-native';
 
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: '#f7f7f7',
-        borderRadius: 10,
+        borderRadius: getHorizontalPx(10),
         overflow: 'hidden',
     },
     mImg: {

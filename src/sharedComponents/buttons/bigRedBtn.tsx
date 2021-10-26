@@ -1,4 +1,4 @@
-import { getFontSize } from '@src/helpers/layoutFoo';
+import {getFontSize, getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {
     StyleSheet,
@@ -35,7 +35,7 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
             backgroundColor: !props.disabled ? '#d8232a' : '#db4f54',
             width: '100%',
             height: '100%',
-            borderRadius: 50,
+            borderRadius: getHorizontalPx(50),
         },
         text: {
             fontFamily: 'DIN2014Narrow-Bold',

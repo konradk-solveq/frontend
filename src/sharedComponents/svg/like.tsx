@@ -7,7 +7,6 @@ import {
     StyleSheet,
     Platform,
 } from 'react-native';
-import Svg, {G, Path} from 'react-native-svg';
 import {getFontSize, getHorizontalPx} from '@helpers/layoutFoo';
 
 interface IProps {
@@ -25,7 +24,7 @@ const Like: React.FC<IProps> = ({
     iconSize,
     value,
 }: IProps) => {
-    const size = iconSize || 10;
+    const size = iconSize || 12;
 
     const styles = StyleSheet.create({
         wrap: {
@@ -42,7 +41,7 @@ const Like: React.FC<IProps> = ({
         text: {
             fontFamily: 'DIN2014Narrow-Regular',
             color: '#313131',
-            fontSize: getFontSize(23),
+            fontSize: getFontSize(20),
             position: 'relative',
             marginLeft: getHorizontalPx(5),
         },

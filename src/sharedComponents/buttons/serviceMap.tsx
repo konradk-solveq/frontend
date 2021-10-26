@@ -10,7 +10,11 @@ import {
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import Svg, {Path, Circle} from 'react-native-svg';
 
-import {getVerticalPx} from '../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+} from '../../helpers/layoutFoo';
 import mapStyle from '../../sharedComponents/maps/styles';
 
 interface Props {
@@ -35,7 +39,7 @@ const ServiceMapBtn: React.FC<Props> = (props: Props) => {
             position: 'relative',
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#555555',
         },
         container: {
@@ -43,7 +47,7 @@ const ServiceMapBtn: React.FC<Props> = (props: Props) => {
             justifyContent: 'flex-end',
             alignItems: 'center',
             position: 'relative',
-            borderRadius: 30,
+            borderRadius: getHorizontalPx(30),
             overflow: 'hidden',
             height: props.height,
         },
@@ -58,8 +62,8 @@ const ServiceMapBtn: React.FC<Props> = (props: Props) => {
             top: 0,
         },
         mark: {
-            width: 36,
-            height: 36,
+            width: getHorizontalPx(36),
+            height: getHorizontalPx(36),
         },
     });
 

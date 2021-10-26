@@ -9,7 +9,7 @@ import {
     GestureResponderEvent,
 } from 'react-native';
 
-import {getVerticalPx} from '@helpers/layoutFoo';
+import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 
 interface IProps {
     text: string;
@@ -35,12 +35,12 @@ const TextBtn: React.FC<IProps> = ({
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
         alignItems: 'flex-end',
         marginBottom: getVerticalPx(10),
     },
     text: {
-        fontSize: 16,
+        fontSize: getFontSize(16),
         fontFamily: 'DIN2014Narrow-Light',
         letterSpacing: 0.5,
         color: '#3587ea',
