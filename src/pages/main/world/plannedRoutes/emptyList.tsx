@@ -4,7 +4,11 @@ import I18n from 'react-native-i18n';
 
 import {BigRedBtn} from '../../../../sharedComponents/buttons';
 
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+} from '../../../../helpers/layoutFoo';
 
 interface IProsp {
     onPress: () => void;
@@ -34,28 +38,28 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 40,
-        lineHeight: 52,
+        fontSize: getFontSize(40),
+        lineHeight: getFontSize(52),
         color: '#d8232a',
         textAlign: 'center',
         marginTop: getVerticalPx(37),
     },
     text: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 23,
-        lineHeight: 30,
+        fontSize: getFontSize(23),
+        lineHeight: getFontSize(30),
         letterSpacing: 0.5,
         color: '#313131',
         textAlign: 'left',
         marginTop: getVerticalPx(20),
     },
     btnRecord: {
-        height: 50,
+        height: getHorizontalPx(50),
         width: '100%',
         marginTop: getVerticalPx(40),
     },
     btnCheck: {
-        height: 50,
+        height: getHorizontalPx(50),
         width: '100%',
         marginTop: getVerticalPx(30),
     },
