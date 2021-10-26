@@ -18,15 +18,15 @@ export const secondTileStyles = StyleSheet.create({
         width: '70%',
     },
     thirdSection: {
-        marginHorizontal: 20,
+        marginHorizontal: getHorizontalPx(20),
         marginBottom: 0,
     },
     imageWrapper: {
-        width: getVerticalPx(95),
-        height: getVerticalPx(95),
+        width: getHorizontalPx(95),
+        height: getHorizontalPx(95),
         overflow: 'hidden',
         backgroundColor: '#f1f1f1',
-        borderRadius: 16,
+        borderRadius: getHorizontalPx(16),
     },
     image: {
         height: '100%',

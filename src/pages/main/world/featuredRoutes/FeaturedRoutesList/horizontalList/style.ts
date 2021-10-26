@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     tileWrapper: {
         marginTop: getVerticalPx(30),
         marginBottom: getVerticalPx(18),
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
         width: getHorizontalPx(334),
     },
     // lastTile: {

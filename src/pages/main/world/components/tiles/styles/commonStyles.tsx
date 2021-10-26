@@ -1,5 +1,6 @@
-import {StyleSheet, Platform} from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import {
+    getFontSize,
     getHorizontalPx,
     getVerticalPx,
 } from '../../../../../../helpers/layoutFoo';
@@ -17,7 +18,7 @@ const darkText = '#555555';
 
 const styles = StyleSheet.create({
     container: {
-        borderRadius: 25,
+        borderRadius: getHorizontalPx(25),
         overflow: 'hidden',
         backgroundColor: '#ffffff',
     },
@@ -32,42 +33,43 @@ const styles = StyleSheet.create({
         fontFamily: fontLight,
         letterSpacing: 0.42,
         color: darkText,
+        fontSize: getFontSize(18),
     },
     raitingIcon: {
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: getHorizontalPx(5),
     },
     raitingIconWrap: {
-        top: 0.4,
+        top: getHorizontalPx(0.4),
     },
     raitingIconFont: {
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: getHorizontalPx(5),
         fontFamily: 'mykross',
-        fontSize: 10.5,
+        fontSize: getFontSize(10.5),
     },
     bikeIconFontWrap: {
         height: 16,
     },
     bikeIconFont: {
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: getHorizontalPx(5),
         fontFamily: 'mykross',
-        fontSize: 16,
+        fontSize: getFontSize(16),
     },
     clockIconFontWrap: {
         top: 0.2,
     },
     clockIconFont: {
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: getHorizontalPx(5),
         fontFamily: 'mykross',
-        fontSize: 15,
+        fontSize: getFontSize(15),
     },
     localizationDescription: {
         marginTop: getVerticalPx(8),
         fontFamily: fontLight,
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.42,
         color: darkText,
     },
@@ -78,15 +80,15 @@ const styles = StyleSheet.create({
     borderVerticalLine: {
         borderLeftColor: '#ebebeb',
         borderLeftWidth: 1,
-        height: 10,
-        marginRight: 5,
+        height: getHorizontalPx(10),
+        marginRight: getHorizontalPx(5),
     },
     tileSectionTitle: {
         fontFamily: fontRegular,
-        fontSize: 20,
+        fontSize: getFontSize(20),
     },
     firstSection: {
-        marginHorizontal: 20,
+        marginHorizontal: getHorizontalPx(20),
         paddingTop: getVerticalPx(20),
         paddingBottom: getVerticalPx(14),
     },
@@ -96,12 +98,12 @@ const styles = StyleSheet.create({
     },
     distanceToStart: {
         fontFamily: fontLight,
-        fontSize: 13,
+        fontSize: getFontSize(13),
         letterSpacing: 0.42,
         color: darkText,
     },
     secondtSection: {
-        marginHorizontal: 20,
+        marginHorizontal: getHorizontalPx(20),
     },
     sectionContentRow: {
         flexDirection: 'row',
@@ -116,36 +118,36 @@ const styles = StyleSheet.create({
     secondSectionText: {
         fontFamily: fontRegular,
         color: darkerText,
-        fontSize: 18,
+        fontSize: getFontSize(18),
     },
     secondSectionSuffix: {
         fontFamily: fontRegular,
-        fontSize: 15,
+        fontSize: getFontSize(15),
         letterSpacing: 0.5,
         color: darkText,
     },
     secondSectionIcon: {
         marginLeft: 0,
-        marginRight: getVerticalPx(7),
+        marginRight: getHorizontalPx(7),
     },
     mountainIconFontWrap: {
-        marginRight: getVerticalPx(7),
+        marginRight: getHorizontalPx(7),
     },
     mountainIconFont: {
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: getHorizontalPx(5),
         fontFamily: 'mykross',
-        fontSize: 7.7,
+        fontSize: getFontSize(7.7),
     },
     wayIconFontWrap: {
         top: 0.6,
-        marginRight: getVerticalPx(7),
+        marginRight: getHorizontalPx(7),
     },
     wayIconFont: {
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: getHorizontalPx(5),
         fontFamily: 'mykross',
-        fontSize: 10,
+        fontSize: getFontSize(10),
     },
     wayIcon: {
         marginLeft: 0,
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
         width: getHorizontalPx(12),
     },
     section: {
-        marginHorizontal: 20,
+        marginHorizontal: getFontSize(20),
         marginBottom: 0,
     },
     imageWrapper: {
