@@ -91,6 +91,8 @@ const Map: React.FC<IProps> = ({
     const restoreRef = useRef(false);
     const locationSetRef = useRef(false);
     const isAnimatingCameraRef = useRef(false);
+    const canAnimateRef = useRef(true);
+    const pastDistanceRef = useRef<number | null>(null);
 
     const globalLocation = useLocationProvider()?.location;
 
@@ -112,8 +114,26 @@ const Map: React.FC<IProps> = ({
             appStateVisible === 'background'
         ) {
             restoreRef.current = false;
+            canAnimateRef.current = false;
         }
     }, [appPrevStateVisible, appStateVisible]);
+
+    /**
+     * On background mode enable animation only for
+     * significian distance difference
+     */
+    useEffect(() => {
+        const distance = trackerData?.odometer || 0;
+        if (!pastDistanceRef.current) {
+            pastDistanceRef.current = distance;
+            canAnimateRef.current = true;
+            return;
+        }
+        if (pastDistanceRef.current + 200 <= distance) {
+            pastDistanceRef.current = distance;
+            canAnimateRef.current = true;
+        }
+    }, [trackerData?.odometer]);
 
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
 
@@ -236,7 +256,10 @@ const Map: React.FC<IProps> = ({
      * (app is in background)
      */
     useEffect(() => {
-        if (mountedRef.current && restoreRef.current) {
+        if (mountedRef.current && canAnimateRef.current) {
+            if (!restoreRef.current) {
+                canAnimateRef.current = false;
+            }
             setMapCamera();
         }
     }, [setMapCamera]);
@@ -259,6 +282,7 @@ const Map: React.FC<IProps> = ({
 
     const onSetIsRestoredHandler = () => {
         restoreRef.current = true;
+        canAnimateRef.current = true;
     };
 
     const handleCameraChange = e => {

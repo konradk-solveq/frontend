@@ -74,6 +74,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
     const mountedRef = useRef(false);
     const notificationContext = useNotificationContext();
+    const initShowMapRef = useRef(false);
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
@@ -372,6 +373,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     }, [pageState, trans]);
 
     const onHideMapHandler = (state: boolean) => {
+        initShowMapRef.current = true;
         setTimeout(
             () => {
                 setRenderPath(!state);
@@ -421,23 +423,22 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
      * Do not render path when app is not active
      */
     const {appStateVisible} = useAppState();
+    const prevAppStateRef = useRef('active');
     useEffect(() => {
-        let t: NodeJS.Timeout;
-        if (!isActive || !renderMap) {
+        if (!isActive || !initShowMapRef.current) {
             return;
         }
-        if (appStateVisible === 'background') {
-            t = setTimeout(() => {
-                setRenderPath(false);
-            }, 500);
+        if (
+            appStateVisible === 'background' &&
+            prevAppStateRef.current === 'active'
+        ) {
+            setRenderPath(false);
+            prevAppStateRef.current = 'background';
         } else {
             setRenderPath(true);
+            prevAppStateRef.current = 'active';
         }
-
-        return () => {
-            clearTimeout(t);
-        };
-    }, [appStateVisible, isActive, renderMap]);
+    }, [appStateVisible, isActive]);
 
     const styles = StyleSheet.create({
         stackHeader: {
