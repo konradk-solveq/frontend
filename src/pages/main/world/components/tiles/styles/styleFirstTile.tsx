@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import {
     getHorizontalPx,
-    getVerticalPx,
 } from '../../../../../../helpers/layoutFoo';
 
 export const firstTileStyles = StyleSheet.create({
@@ -11,18 +10,18 @@ export const firstTileStyles = StyleSheet.create({
     },
     bikeIconFont: {
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: getHorizontalPx(5),
         fontFamily: 'mykross',
-        fontSize: 16,
+        fontSize: getHorizontalPx(16),
     },
     clockIconFontWrap: {
         top: 0,
     },
     clockIconFont: {
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: getHorizontalPx(5),
         fontFamily: 'mykross',
-        fontSize: 15,
+        fontSize: getHorizontalPx(15),
     },
 });
 

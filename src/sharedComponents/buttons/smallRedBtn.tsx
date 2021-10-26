@@ -1,3 +1,4 @@
+import { getFontSize, getHorizontalPx } from '@src/helpers/layoutFoo';
 import React from 'react';
 import {
     StyleSheet,
@@ -23,13 +24,13 @@ const SmallRedBtn: React.FC<Props> = (props: Props) => {
             justifyContent: 'center',
             backgroundColor: '#d8232a',
             height: '100%',
-            borderRadius: 50,
-            paddingLeft: 15.5,
-            paddingRight: 15.5,
+            borderRadius: getHorizontalPx(50),
+            paddingLeft: getHorizontalPx(15.5),
+            paddingRight: getHorizontalPx(15.5),
         },
         text: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             textAlign: 'center',
             color: 'white',
         },

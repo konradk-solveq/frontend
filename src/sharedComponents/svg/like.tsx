@@ -8,7 +8,7 @@ import {
     Platform,
 } from 'react-native';
 import Svg, {G, Path} from 'react-native-svg';
-import {getHorizontalPx} from '@helpers/layoutFoo';
+import {getFontSize, getHorizontalPx} from '@helpers/layoutFoo';
 
 interface IProps {
     style?: ViewStyle;
@@ -31,7 +31,7 @@ const Like: React.FC<IProps> = ({
         wrap: {
             display: 'flex',
             flexDirection: 'row',
-            paddingHorizontal: 5,
+            paddingHorizontal: getHorizontalPx(5),
             justifyContent: 'center',
             alignItems: 'center',
         },
@@ -42,18 +42,18 @@ const Like: React.FC<IProps> = ({
         text: {
             fontFamily: 'DIN2014Narrow-Regular',
             color: '#313131',
-            fontSize: 23,
+            fontSize: getFontSize(23),
             position: 'relative',
-            marginLeft: 5,
+            marginLeft: getHorizontalPx(5),
         },
         iconFontWrap: {
-            top: Platform.OS === 'ios' ? -2 : 0,
+            top: getHorizontalPx(Platform.OS === 'ios' ? -2 : 0),
         },
         iconFont: {
             marginLeft: 0,
-            marginRight: 5,
+            marginRight: getHorizontalPx(5),
             fontFamily: 'mykross',
-            fontSize: iconSize,
+            fontSize: getFontSize(size),
             color: '#3587EA',
         },
     });

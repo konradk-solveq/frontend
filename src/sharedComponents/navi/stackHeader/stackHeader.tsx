@@ -15,6 +15,8 @@ import {
     getVerticalPx,
     getWidthPx,
     getHeightPx,
+    getFontSize,
+    getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
 
@@ -65,7 +67,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
         top: getVerticalPx(3),
         fontFamily: 'DIN2014Narrow-Light',
         textAlign: 'center',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         color: '#313131',
     };
 
@@ -80,9 +82,9 @@ const StackHeader: React.FC<Props> = (props: Props) => {
         wrap,
         title,
         actionButtons: {
-            marginTop: 3,
+            marginTop: getHorizontalPx(3),
             alignItems: 'flex-end',
-            marginRight: 40,
+            marginRight: getHorizontalPx(40),
         },
     });
 
