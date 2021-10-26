@@ -1,5 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+} from '../../../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
@@ -23,14 +27,14 @@ const styles = StyleSheet.create({
     wrap: {
         height: getVerticalPx(332),
         width: getHorizontalPx(334),
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
         position: 'absolute',
         bottom: 0,
         zIndex: 2,
     },
     text: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 23,
+        fontSize: getFontSize(23),
         color: '#313131',
         letterSpacing: 0,
         textAlign: 'left',
