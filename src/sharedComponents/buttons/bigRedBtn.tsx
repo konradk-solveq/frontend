@@ -1,3 +1,4 @@
+import { getFontSize } from '@src/helpers/layoutFoo';
 import React from 'react';
 import {
     StyleSheet,
@@ -38,7 +39,7 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
         },
         text: {
             fontFamily: 'DIN2014Narrow-Bold',
-            fontSize: 20,
+            fontSize: getFontSize(20),
             textAlign: 'center',
             color: 'white',
         },

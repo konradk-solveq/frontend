@@ -213,8 +213,8 @@ const World: React.FC = () => {
         },
         btns: {
             marginTop:
-                getVerticalPx(138) < 100
-                    ? 100
+                getVerticalPx(138) < getVerticalPx(100)
+                    ? getVerticalPx(100)
                     : getVerticalPx(138 - statusBarHeight),
         },
     });
