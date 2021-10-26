@@ -1,3 +1,4 @@
+import {getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {
     StyleSheet,
@@ -43,8 +44,8 @@ const AddBtn: React.FC<IProps> = ({
 
 const styles = StyleSheet.create({
     icon: {
-        width: 126,
-        height: 126,
+        width: getHorizontalPx(126),
+        height: getHorizontalPx(126),
     },
 });
 

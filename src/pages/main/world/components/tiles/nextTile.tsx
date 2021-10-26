@@ -18,6 +18,7 @@ import nextTileStyles from './styles/styleNextTile';
 import FourthSection from './sections/fourthSection';
 import ThirdSection from './sections/thirdSection';
 import NextTileHeader from './NextTileHeader';
+import {getHorizontalPx} from '@src/helpers/layoutFoo';
 
 interface IProps {
     mapData: Map;
@@ -110,7 +111,10 @@ const NextTile: React.FC<IProps> = ({
                                             containerStyles={
                                                 styles.placeholderLogo
                                             }
-                                            logoSize={{height: 22, width: 28}}
+                                            logoSize={{
+                                                height: getHorizontalPx(22),
+                                                width: getHorizontalPx(28),
+                                            }}
                                         />
                                     )}
                                 </View>

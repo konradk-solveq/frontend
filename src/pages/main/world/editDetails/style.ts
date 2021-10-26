@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+} from '../../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     safeAreaView: {
@@ -30,14 +34,14 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     leftActionButton: {
-        marginRight: 20,
+        marginRight: getHorizontalPx(20),
     },
     content: {
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
         marginBottom: getVerticalPx(35),
     },
     reportButton: {
-        height: 50,
+        height: getHorizontalPx(50),
     },
     container: {
         // paddingHorizontal: 40,
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
 
     title: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 30,
+        fontSize: getFontSize(30),
         color: '#313131',
     },
 
