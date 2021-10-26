@@ -231,8 +231,12 @@ const Map: React.FC<IProps> = ({
         autoFindMeLastState,
     ]);
 
+    /**
+     * Disable animation when path is not rendered
+     * (app is in background)
+     */
     useEffect(() => {
-        if (mountedRef.current) {
+        if (mountedRef.current && restoreRef.current) {
             setMapCamera();
         }
     }, [setMapCamera]);
