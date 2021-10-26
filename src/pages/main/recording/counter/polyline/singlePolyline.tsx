@@ -43,6 +43,7 @@ const SinglePolyline: React.FC<IProps> = ({
      * Route simplified when app returnes from background
      */
     const restoredAfterBackground = useRef(true);
+    const restoreTaskRef = useRef<any>();
 
     /**
      * Routes can be separate with pause. Every pasue event creates new array.
@@ -114,8 +115,6 @@ const SinglePolyline: React.FC<IProps> = ({
      * Simplify route only when app came from background.
      */
     useEffect(() => {
-        let t: NodeJS.Timeout;
-        let task: any;
         if (
             appIsActive &&
             appPrevStateVisible === 'background' &&
@@ -124,23 +123,16 @@ const SinglePolyline: React.FC<IProps> = ({
             restoreRef.current &&
             !restoredAfterBackground.current
         ) {
-            task = InteractionManager.runAfterInteractions(() => {
-                const shorterPath = getShorterRoute(route);
+            restoreTaskRef.current = InteractionManager.runAfterInteractions(
+                () => {
+                    restoredAfterBackground.current = true;
 
-                restoredAfterBackground.current = true;
+                    const shorterPath = getShorterRoute(route);
 
-                setRoute(shorterPath);
-            });
-        } else {
-            t = setTimeout(() => {
-                restoredAfterBackground.current = true;
-            }, 200);
+                    setRoute(shorterPath);
+                },
+            );
         }
-
-        return () => {
-            clearTimeout(t);
-            task?.cancel();
-        };
     }, [
         appIsActive,
         appPrevStateVisible,
@@ -150,10 +142,14 @@ const SinglePolyline: React.FC<IProps> = ({
     ]);
 
     useEffect(() => {
-        if (appStateVisible === 'background') {
+        if (
+            appStateVisible === 'background' &&
+            appPrevStateVisible !== 'background'
+        ) {
             restoredAfterBackground.current = false;
+            restoreTaskRef.current?.cancel();
         }
-    });
+    }, [appStateVisible, appPrevStateVisible]);
 
     /**
      * Render path after SQL data has been restored.
