@@ -1,5 +1,9 @@
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+} from '../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
@@ -29,19 +33,19 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 23,
+        fontSize: getFontSize(23),
         textAlign: 'center',
         color: '#313131',
     },
     btnsWrapper: {
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
         justifyContent: 'space-around',
         flexDirection: 'row',
         paddingBottom: getVerticalPx(65),
     },
     btn: {
         width: getHorizontalPx(157),
-        height: 50,
+        height: getHorizontalPx(50),
     },
     leftBtn: {
         marginRight: getHorizontalPx(20),

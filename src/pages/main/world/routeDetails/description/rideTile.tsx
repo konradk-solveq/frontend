@@ -1,19 +1,20 @@
-import React, { useState, useCallback } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { I18n } from '../../../../../../I18n/I18n';
+import React, {useState, useCallback} from 'react';
+import {StyleSheet, View, Text} from 'react-native';
+import {I18n} from '../../../../../../I18n/I18n';
 
 import AnimSvg from '../../../../../helpers/animSvg';
 
-import { useAppDispatch, useAppSelector } from '@hooks/redux';
-import { ReactionsType } from '@models/map.model';
-import { mapReactionsConfigSelector } from '@storage/selectors/app';
-import { modifyReaction } from '@storage/actions/maps';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {ReactionsType} from '@models/map.model';
+import {mapReactionsConfigSelector} from '@storage/selectors/app';
+import {modifyReaction} from '@storage/actions/maps';
 import {
     setObjSize,
     getCenterLeftPx,
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
 } from '../../../../../helpers/layoutFoo';
 import FourthSection from '../../components/tiles/sections/fourthSection';
 
@@ -139,19 +140,19 @@ const RideTile: React.FC<Props> = ({
         },
         topText: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 23,
+            fontSize: getFontSize(23),
             color: '#313131',
             textAlign: 'center',
         },
         bottomText: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 15,
+            fontSize: getFontSize(15),
             letterSpacing: 0.42,
             color: '#555555',
         },
         textSuffix: {
-            fontSize: 18,
+            fontSize: getFontSize(18),
             letterSpacing: 0.5,
             color: '#555555',
         },
@@ -178,29 +179,29 @@ const RideTile: React.FC<Props> = ({
             marginTop: 5,
         },
         bikeClockIconFontWrap: {
-            marginRight: getVerticalPx(7),
-            top: 2,
+            marginRight: getHorizontalPx(7),
+            top: getHorizontalPx(2),
         },
         bikeIconFont: {
             marginLeft: 0,
-            marginRight: 5,
+            marginRight: getHorizontalPx(5),
             fontFamily: 'mykross',
-            fontSize: 17,
+            fontSize: getFontSize(17),
         },
         clockIconFont: {
             marginLeft: 0,
-            marginRight: 5,
+            marginRight: getHorizontalPx(5),
             fontFamily: 'mykross',
-            fontSize: 15.5,
+            fontSize: getFontSize(15.5),
         },
         iconFontWrap: {
             marginRight: getVerticalPx(7),
         },
         iconFont: {
             marginLeft: 0,
-            marginRight: 5,
+            marginRight: getHorizontalPx(5),
             fontFamily: 'mykross',
-            fontSize: 14.5,
+            fontSize: getFontSize(14.5),
         },
         likekSection: {
             marginTop: getHorizontalPx(7),
@@ -226,7 +227,7 @@ const RideTile: React.FC<Props> = ({
     return (
         <View
             style={[styles.container, containerStyle]}
-            onLayout={({ nativeEvent }) => handleShadowBox(nativeEvent.layout)}>
+            onLayout={({nativeEvent}) => handleShadowBox(nativeEvent.layout)}>
             <AnimSvg source={source} style={boxStyle} />
             <View>
                 <View style={[styles.textLine, styles.line]}>
