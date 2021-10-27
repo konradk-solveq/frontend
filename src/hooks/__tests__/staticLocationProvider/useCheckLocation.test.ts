@@ -42,7 +42,6 @@ describe('[useCheckLocation]', () => {
             await waitForNextUpdate();
         });
 
-        console.log('location', result.current.locationType);
         expect(result.current.locationType).toBe('ALWAYS');
     }, 15000);
 
