@@ -3,6 +3,11 @@ import CompassHeading from 'react-native-compass-heading';
 
 import useAppState from '@hooks/useAppState';
 
+/**
+ * 'react-native-compass-heading' envet listener is limited to 1,
+ * so you can use only one useEffect at the same time.
+ * Every other listener will be stopped and removed by library.
+ */
 const useCompassHook = (disable?: boolean) => {
     const mountedRef = useRef(false);
     /**
