@@ -8,10 +8,10 @@ import useAppState from '@hooks/useAppState';
  * so you can use only one useEffect at the same time.
  * Every other listener will be stopped and removed by library.
  */
-const useCompassHook = (disable?: boolean) => {
+const useCompassHook = (disabled?: boolean) => {
     const mountedRef = useRef(false);
     /**
-     * Pause compass when app is background mode active
+     * Pause compass when app is on background mode
      */
     const pauseCompassRef = useRef(false);
     const prevCompassHeadingdRef = useRef(0);
@@ -40,7 +40,7 @@ const useCompassHook = (disable?: boolean) => {
     }, [appPrevStateVisible, appStateVisible]);
 
     useEffect(() => {
-        if (disable) {
+        if (disabled) {
             CompassHeading.stop();
             return;
         }
@@ -62,7 +62,7 @@ const useCompassHook = (disable?: boolean) => {
         return () => {
             CompassHeading.stop();
         };
-    }, [disable]);
+    }, [disabled]);
 
     return compassHeading;
 };

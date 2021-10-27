@@ -125,9 +125,9 @@ const SinglePolyline: React.FC<IProps> = ({
         ) {
             restoreTaskRef.current = InteractionManager.runAfterInteractions(
                 () => {
-                    restoredAfterBackground.current = true;
-
                     const shorterPath = getShorterRoute(route);
+
+                    restoredAfterBackground.current = true;
 
                     setRoute(shorterPath);
                 },
