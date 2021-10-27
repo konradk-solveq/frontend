@@ -580,7 +580,7 @@ export const checkDeviceHasLocationAlwaysPermission = async () => {
          * Logged some issues, so added temp solution
          * https://github.com/facebook/react-native/issues/10009#issuecomment-347839488
          */
-        return new Promise<boolean>(resolve => {
+        locationPermission = await new Promise<boolean>(resolve => {
             setTimeout(async () => {
                 if (isIOS) {
                     const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
