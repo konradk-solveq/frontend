@@ -338,7 +338,7 @@ const Map: React.FC<IProps> = ({
                         }
                         location={location}
                         headingOn={headingOn}
-                        compassHeading={compassHeading}
+                        compassHeading={headingOn ? compassHeading : 0}
                     />
                 ) : null}
                 {!beforeRecording && trackerData?.coords ? (

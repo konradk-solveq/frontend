@@ -144,9 +144,7 @@ const useLocalizationTracker = (
                 await stopTracker(true);
             }
 
-            if (!skipProcessing) {
-                setProcessing(false);
-            }
+            setProcessing(false);
         },
         [dispatch, isTrackingActivatedHandler, stopTracker],
     );

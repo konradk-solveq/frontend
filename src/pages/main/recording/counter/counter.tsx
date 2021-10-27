@@ -38,6 +38,7 @@ import {
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
 import ErrorBoundary from '@providers/errorBoundary/ErrorBoundary';
+import useCompassHook from '@hooks/useCompassHook';
 
 import ActionButtons from './actionButtons';
 import Map from './map';
@@ -46,7 +47,6 @@ import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
 import DataPreview from '../../../../sharedComponents/dataPreview/dataPreview';
-import CompassHeading from 'react-native-compass-heading';
 
 import {TESTING_MODE} from '@env';
 
@@ -398,27 +398,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         };
     }, [renderMap]);
 
-    // kompas mapy - przeniesiony z mapy, żby spuścić do innych komponentów
-    const compasHeadingdRef = useRef(0);
-
-    const [compassHeading, setCompassHeading] = useState(0);
-
-    useEffect(() => {
-        const degree_update_rate = 5;
-        if (mountedRef.current) {
-            CompassHeading.start(degree_update_rate, ({heading}) => {
-                const lastHeading = compasHeadingdRef.current;
-                compasHeadingdRef.current = heading;
-                if (Math.abs(lastHeading - heading) >= degree_update_rate) {
-                    setCompassHeading(heading);
-                }
-            });
-        }
-        return () => {
-            CompassHeading.stop();
-        };
-    }, []);
-
     /**
      * Do not render path when app is not active
      */
@@ -439,6 +418,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             prevAppStateRef.current = 'active';
         }
     }, [appStateVisible, isActive]);
+
+    const compassHeading = useCompassHook();
 
     const styles = StyleSheet.create({
         stackHeader: {
