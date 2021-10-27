@@ -40,27 +40,35 @@ const useCompassHook = (disabled?: boolean) => {
     }, [appPrevStateVisible, appStateVisible]);
 
     useEffect(() => {
-        if (disabled) {
-            CompassHeading.stop();
-            return;
-        }
-        const degree_update_rate = 5;
-        if (mountedRef.current) {
-            CompassHeading.start(degree_update_rate, ({heading}) => {
-                if (pauseCompassRef.current) {
-                    return;
-                }
+        try {
+            if (disabled) {
+                CompassHeading.stop();
+                return;
+            }
+            const degree_update_rate = 5;
+            if (mountedRef.current) {
+                CompassHeading.start(degree_update_rate, ({heading}) => {
+                    if (pauseCompassRef.current) {
+                        return;
+                    }
 
-                const lastHeading = prevCompassHeadingdRef.current;
-                prevCompassHeadingdRef.current = heading;
+                    const lastHeading = prevCompassHeadingdRef.current;
+                    prevCompassHeadingdRef.current = heading;
 
-                if (Math.abs(lastHeading - heading) >= degree_update_rate) {
-                    setCompassHeading(heading);
-                }
-            });
+                    if (Math.abs(lastHeading - heading) >= degree_update_rate) {
+                        setCompassHeading(heading);
+                    }
+                });
+            }
+        } catch (error) {
+            console.error(error);
         }
         return () => {
-            CompassHeading.stop();
+            try {
+                CompassHeading.stop();
+            } catch (error) {
+                console.error(error);
+            }
         };
     }, [disabled]);
 
