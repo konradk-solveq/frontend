@@ -580,21 +580,23 @@ export const checkDeviceHasLocationAlwaysPermission = async () => {
          * Logged some issues, so added temp solution
          * https://github.com/facebook/react-native/issues/10009#issuecomment-347839488
          */
-        setTimeout(async () => {
-            if (isIOS) {
-                const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
-                if (result === RESULTS.GRANTED) {
-                    locationPermission = true;
+        return new Promise<boolean>(resolve => {
+            setTimeout(async () => {
+                if (isIOS) {
+                    const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
+                    if (result === RESULTS.GRANTED) {
+                        resolve(true);
+                    }
+                } else {
+                    const result = await check(
+                        PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+                    );
+                    if (result === RESULTS.GRANTED) {
+                        resolve(true);
+                    }
                 }
-            } else {
-                const result = await check(
-                    PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
-                );
-                if (result === RESULTS.GRANTED) {
-                    locationPermission = true;
-                }
-            }
-        }, 0);
+            }, 0);
+        });
     } catch (e) {
         console.log('[checkDeviceHasLocationAlwaysPermission - error]', e);
         logger.log(`[checkDeviceHasLocationAlwaysPermission] - ${e}`);
