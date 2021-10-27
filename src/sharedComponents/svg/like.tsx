@@ -41,7 +41,7 @@ const Like: React.FC<IProps> = ({
         text: {
             fontFamily: 'DIN2014Narrow-Regular',
             color: '#313131',
-            fontSize: getFontSize(20),
+            fontSize: getFontSize(23),
             position: 'relative',
             marginLeft: getHorizontalPx(5),
         },
