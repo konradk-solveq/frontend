@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: getHorizontalPx(40),
         top: getVerticalPx(138),
-        height: 41,
+        height: getHorizontalPx(41),
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'flex-start',
