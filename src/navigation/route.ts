@@ -21,6 +21,7 @@ export const RegularStackRoute = {
 
     SPLASH_SCREEN: 'SplashScreen',
     NEW_REGULATIONS_SCREEN: 'newRegulations',
+    NEW_APP_VERSION_SCREEN: 'NewAppVersion',
 
     // Home
     HOME_SCREEN: 'Home',

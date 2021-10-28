@@ -26,6 +26,7 @@ import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {TermsAndConditionsType} from '../../../models/regulations.model';
 import {setAppShowedRegulationsNumber} from '../../../storage/actions';
 import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
+import {getIsNewVersion} from '../../../helpers/appVersion';
 
 interface Props {
     navigation: any;
@@ -45,6 +46,9 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
         state => state.app.terms,
     );
     const showed = useAppSelector<number>(state => state.app.showedRegulations);
+    const shopAppVersion = useAppSelector<string>(
+        state => state.app.config.version,
+    );
 
     const [headHeight, setHeadHeight] = useState<number>(0);
     const [pageType, setPageType] = useState<string | null>(null);
@@ -97,7 +101,16 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
 
     const handleGoForward = () => {
         dispatch(setAppShowedRegulationsNumber(shovedToSave));
-        props.navigation.navigate(BothStackRoute.MAIN_MENU_SCREEN);
+
+        const getPage = () => {
+            if (getIsNewVersion(shopAppVersion)) {
+                return RegularStackRoute.NEW_APP_VERSION_SCREEN;
+            }
+
+            return BothStackRoute.MAIN_MENU_SCREEN;
+        };
+
+        props.navigation.navigate(getPage());
     };
 
     const getHeight = useCallback(async () => {
