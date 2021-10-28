@@ -6,6 +6,7 @@ import {trackerActiveSelector} from '../../storage/selectors';
 
 import SplashScreen from '../../pages/main/splashScreen/splashScreen';
 import newRegulations from '../../pages/main/newRegulations/newRegulations';
+import NewAppVersion from '../../pages/main/newAppVersion/newAppVersion';
 import ListPageInput from '../../sharedComponents/inputs/listPageInput';
 import InputPage from '../../sharedComponents/inputs/inputPage';
 import MineMenu from '../../pages/main/mainMenu';
@@ -41,9 +42,9 @@ const RegularStackNavigator: React.FC = () => {
         <Stack.Navigator
             headerMode="none"
             initialRouteName={
-                !isActive
-                    ? RegularStackRoute.SPLASH_SCREEN
-                    : BothStackRoute.MAIN_MENU_SCREEN
+                 !isActive
+                     ? RegularStackRoute.SPLASH_SCREEN
+                     : BothStackRoute.MAIN_MENU_SCREEN
             }
             mode="modal"
             screenOptions={horizontalAnim}>
@@ -58,6 +59,10 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.NEW_REGULATIONS_SCREEN}
                 component={newRegulations}
+            />
+            <Stack.Screen
+                name={RegularStackRoute.NEW_APP_VERSION_SCREEN}
+                component={NewAppVersion}
             />
 
             {/* Start add bike */}
