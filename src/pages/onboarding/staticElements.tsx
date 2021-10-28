@@ -34,7 +34,7 @@ const StaticElements: React.FC<Props> = (props: Props) => {
         },
         panel: {
             position: 'absolute',
-            top: getHorizontalPx(67) - 8,
+            top: getHorizontalPx(67 - 8),
         },
         skip: {
             position: 'absolute',
@@ -44,7 +44,7 @@ const StaticElements: React.FC<Props> = (props: Props) => {
         redBtn: {
             position: 'absolute',
             width: getWidthPx(),
-            height: 50,
+            height: getHorizontalPx(50),
             left: getCenterLeftPx(),
             bottom: getVerticalPx(65),
         },
