@@ -105,7 +105,8 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
     const [linePosX, setLinePosX] = useState(0);
     const [lineSvg, setLineSvg] = useState('');
 
-    const wrapH = wh - getVerticalPx(138) - getVerticalPx(65) * 2 - 50;
+    const wrapH =
+        wh - getVerticalPx(138) - getVerticalPx(65) * 2 - getVerticalPx(50);
 
     let numTitle = 0;
     let numText = 0;
@@ -117,14 +118,14 @@ const NewBeginning: React.FC<Props> = (props: Props) => {
 
     const handleMeasurement = (layout, type) => {
         if (type == 'title') {
-            if (layout.height > title_h) {
-                title_h = layout.height;
+            if (getVerticalPx(layout.height) > title_h) {
+                title_h = getVerticalPx(layout.height);
             }
             numTitle++;
         }
 
         if (type == 'text') {
-            if (layout.height > text_h) {
+            if (getVerticalPx(layout.height) > text_h) {
                 text_h = layout.height;
             }
             numText++;
