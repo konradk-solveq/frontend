@@ -151,6 +151,15 @@
             }
         ]
     },
+    "newAppVersion": {
+        "header": "Nowa wersja aplikacji",
+        "title": "Nowa wersja aplikacji",
+        "text_1": "Dostępna jest ",
+        "text_2": "nowa wersja aplikacji myKROSS",
+        "text_3": " - nie zwlekaj pobierz najnowszą wersję.",
+        "btnLeft": "POMIŃ",
+        "btnRight": "AKTALIZUJ",
+    },
     "BikeData": {
         "header": "Identyfikacja roweru",
         "title": "Hej, to nie jest rower KROSS.\nNic nie szkodzi, podaj dane swojego roweru.",
