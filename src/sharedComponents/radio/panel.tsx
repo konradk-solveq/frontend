@@ -6,6 +6,7 @@ import {
     setObjSize,
     getWidthPxOf,
     getCenterLeftPx,
+    getHorizontalPx,
 } from '../../helpers/layoutFoo';
 
 interface Props {
@@ -25,8 +26,8 @@ const RadioPanel: React.FC<Props> = (props: Props) => {
             position: 'relative',
             justifyContent: 'space-between',
             alignItems: 'center',
-            width: w,
-            height: h,
+            width: getHorizontalPx(w),
+            height: getHorizontalPx(h),
             // top: -8,
             left: getCenterLeftPx(),
             // backgroundColor: 'khaki'

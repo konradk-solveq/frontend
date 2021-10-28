@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, SafeAreaView, Text} from 'react-native';
 import I18n from 'react-native-i18n';
 
-import {getHorizontalPx, getVerticalPx} from '../../../helpers/layoutFoo';
+import {getFontSize, getHorizontalPx, getVerticalPx} from '../../../helpers/layoutFoo';
 
 import Bike_1 from './bike_1';
 
@@ -44,8 +44,8 @@ const Screen_1: React.FC<Props> = (props: Props) => {
             width: '100%',
             // height: '100%',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
-            lineHeight: 46,
+            fontSize: getFontSize(40),
+            lineHeight: getFontSize(46),
             textAlign: 'center',
             color: '#313131',
             // backgroundColor: '#0099ff',
@@ -82,8 +82,8 @@ const Screen_1: React.FC<Props> = (props: Props) => {
         text: {
             width: '100%',
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            lineHeight: 20,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(20),
             textAlign: 'center',
             color: '#555555',
             // backgroundColor: '#0099ff',
