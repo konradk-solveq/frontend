@@ -12,6 +12,7 @@ import {
     getWidthPx,
     getVerticalPx,
     getHorizontalPx,
+    getFontSize,
 } from '../../../../../helpers/layoutFoo';
 
 interface IProps {
@@ -34,23 +35,25 @@ const Question: React.FC<IProps> = ({data}: IProps) => {
             borderTopWidth: 1,
         },
         question: {
-            width: getWidthPx() - 40,
+            width: getWidthPx() - getHorizontalPx(40),
             textAlign: 'left',
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            lineHeight: 30,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(30),
             color: '#3587ea',
         },
         arrow: {
             position: 'absolute',
             right: getVerticalPx(5),
             top: getHorizontalPx(11),
+            width: getHorizontalPx(15),
+            height: getHorizontalPx(9),
         },
         answer: {
             textAlign: 'left',
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            lineHeight: 30,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(30),
             color: '#313131',
         },
     });

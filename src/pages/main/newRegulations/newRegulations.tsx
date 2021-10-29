@@ -104,7 +104,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
         const statusBarHeight = await getStatusBarHeight(
             Platform.OS === 'android',
         );
-        setHeadHeight(getVerticalPx(100) - statusBarHeight);
+        setHeadHeight(getHorizontalPx(100) - statusBarHeight);
     }, []);
 
     useEffect(() => {

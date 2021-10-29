@@ -6,6 +6,7 @@ import {
     setObjSize,
     getHorizontalPx,
     getVerticalPx,
+    getFontSize,
 } from '../../../helpers/layoutFoo';
 
 interface Props {
@@ -26,7 +27,7 @@ const BlueButton: React.FC<Props> = (props: Props) => {
         },
         blueText: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#3587ea',
             textAlign: 'left',
             position: 'relative',
@@ -34,8 +35,8 @@ const BlueButton: React.FC<Props> = (props: Props) => {
             marginBottom: getVerticalPx(33 / 2),
         },
         arrow: {
-            width: 9,
-            height: 15,
+            width: getHorizontalPx(9),
+            height: getHorizontalPx(15),
             marginRight: getHorizontalPx(7),
         },
     });
