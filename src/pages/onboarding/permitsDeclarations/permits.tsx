@@ -15,6 +15,7 @@ import {
     getWidthPx,
     getHorizontalPx,
     getVerticalPx,
+    getFontSize,
 } from '../../../helpers/layoutFoo';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -64,7 +65,7 @@ const Permits: React.FC<Props> = (props: Props) => {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
             marginTop: getVerticalPx(50),
-            fontSize: 30,
+            fontSize: getFontSize(30),
             color: '#313131',
         },
 
@@ -72,14 +73,14 @@ const Permits: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(14),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#555555',
         },
         clauseTitle: {
             marginTop: getVerticalPx(50),
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#313131',
         },
         clause: {
@@ -87,13 +88,13 @@ const Permits: React.FC<Props> = (props: Props) => {
             marginBottom: getVerticalPx(40),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#555555',
         },
         btn: {
             width: getWidthPx(),
-            height: 50,
+            height: getHorizontalPx(50),
             top: getVerticalPx(11),
             marginBottom: headHeight + getVerticalPx(69),
         },

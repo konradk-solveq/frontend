@@ -12,6 +12,7 @@ import {
     getWidthPx,
     getVerticalPx,
     getCenterLeftPx,
+    getFontSize,
 } from '../../../../helpers/layoutFoo';
 import {BothStackRoute} from '../../../../navigation/route';
 
@@ -49,8 +50,8 @@ const Info: React.FC<Props> = (props: Props) => {
             width: getWidthPx(),
             left: getCenterLeftPx(),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             marginTop: getVerticalPx(44),
             marginBottom: getVerticalPx(100),
             color: '#555555',

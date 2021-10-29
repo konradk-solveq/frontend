@@ -4,7 +4,7 @@ import {useNavigation, StackActions} from '@react-navigation/native';
 import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 
-import {getVerticalPx} from '../../../helpers/layoutFoo';
+import {getFontSize, getVerticalPx} from '../../../helpers/layoutFoo';
 import {BothStackRoute} from '../../../navigation/route';
 
 interface Props {
@@ -22,8 +22,8 @@ const Paragraph: React.FC<Props> = (props: Props) => {
     const styles = StyleSheet.create({
         paragraph: {
             textAlign: 'left',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#555555',
         },
         regular: {

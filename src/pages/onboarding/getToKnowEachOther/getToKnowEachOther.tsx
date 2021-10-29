@@ -20,6 +20,7 @@ import {
     getVertical,
     getCenterLeftPx,
     getPosWithMinHeight,
+    getFontSize,
 } from '../../../helpers/layoutFoo';
 import {validateData} from '../../../utils/validation/validation';
 import {userUserValidationRules} from '../../../models/user.model';
@@ -154,8 +155,8 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             left: getCenterLeftPx(),
             top: getVertical(138 - 100),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
-            lineHeight: 38,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(38),
             color: '#313131',
         },
         logo: {
@@ -165,13 +166,14 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             width: getHorizontalPx(110),
             height: getHorizontalPx(20),
         },
-        inputAndPlaceholder: getPosWithMinHeight(334, 90, 380 - 100, 90),
+        inputAndPlaceholder: getPosWithMinHeight(334, 90, 380 - 150, 50),
         input: {
-            height: 50,
+            height: getHorizontalPx(50),
             marginTop: getHorizontalPx(6),
         },
         bottons,
         btn: {
+            height: getHorizontalPx(50),
             width: getWidthPxOf(157),
         },
     });

@@ -1,10 +1,11 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, ViewStyle} from 'react-native';
 
 import {
     setObjSize,
     getHorizontalPx,
     getVerticalPx,
+    getFontSize,
 } from '../../helpers/layoutFoo';
 
 interface IProps {
@@ -28,7 +29,7 @@ const SizeLabel: React.FC<IProps> = ({text, containerStyle}: IProps) => {
         },
         text: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(18),
+            fontSize: getFontSize(18),
             color: '#555555',
             paddingLeft: getHorizontalPx(15),
             paddingRight: getHorizontalPx(15),
