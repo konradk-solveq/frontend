@@ -35,7 +35,7 @@ const ww = Dimensions.get('window').width;
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = (props: Props) => {
-    const [height, setHeight] = useState(getVerticalPx(100));
+    const [height, setHeight] = useState(getHorizontalPx(100));
 
     const getHeight = useCallback(async () => {
         if (props.getHeight) {

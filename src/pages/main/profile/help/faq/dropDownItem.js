@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import PropTypes from 'prop-types';
+import {getFontSize, getHorizontalPx} from '@src/helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
@@ -21,10 +22,10 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     icons: {
-        width: 20,
-        height: 20,
+        width: getHorizontalPx(20),
+        height: getHorizontalPx(20),
         position: 'absolute',
-        right: 16,
+        right: getHorizontalPx(16),
     },
     underline: {
         width: '100%',
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     contentChild: {
-        padding: 12,
+        padding: getHorizontalPx(12),
     },
     contentView: {
         flexDirection: 'row',
@@ -48,16 +49,16 @@ const styles = StyleSheet.create({
     },
     contentTxt: {
         color: 'black',
-        marginLeft: 8,
-        fontSize: 12,
+        marginLeft: getHorizontalPx(8),
+        fontSize: getFontSize(12),
     },
     contentFooter: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        height: 48,
-        paddingHorizontal: 12,
+        height: getHorizontalPx(48),
+        paddingHorizontal: getHorizontalPx(12),
     },
 });
 
