@@ -87,6 +87,7 @@ const Map: React.FC<IProps> = ({
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const cooldownRef = useRef<NodeJS.Timeout | null>(null);
     const mountedRef = useRef(false);
     const restoreRef = useRef(false);
     const locationSetRef = useRef(false);
@@ -99,6 +100,8 @@ const Map: React.FC<IProps> = ({
     const {appStateVisible, appPrevStateVisible} = useAppState();
     const [showWebView, setShowWebView] = useState(false);
     const [showMap, setShowMap] = useState(false);
+
+    const [cameraAnimCooldown, setCameraAnimCooldown] = useState(false);
 
     useEffect(() => {
         mountedRef.current = true;
@@ -189,15 +192,26 @@ const Map: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const animateCam = (animation: Partial<Camera>, duration?: number) => {
-        mapRef.current?.animateCamera(animation, {duration: duration || 1000});
+    const animateCam = (
+        animation: Partial<Camera>,
+        duration: number,
+        cooldown: boolean,
+    ) => {
+        mapRef.current?.animateCamera(animation, {duration: duration});
+
+        if (cooldown) {
+            setCameraAnimCooldown(true);
+            cooldownRef.current = setTimeout(() => {
+                setCameraAnimCooldown(false);
+            }, duration);
+        }
     };
 
     const animateCameraOnIOS = useCallback(
-        async (animation: Partial<Camera>) => {
+        async (animation: Partial<Camera>, cooldown: boolean) => {
             if (!isAnimatingCameraRef.current) {
                 isAnimatingCameraRef.current = true;
-                animateCam(animation, 850);
+                animateCam(animation, 850, cooldown);
 
                 timerRef.current = setTimeout(
                     () => {
@@ -211,10 +225,14 @@ const Map: React.FC<IProps> = ({
     );
 
     const setMapCamera = useCallback(() => {
+        if (cameraAnimCooldown) {
+            return;
+        }
+
         let animation: Partial<Camera> = {
             heading: headingOn ? compassHeading : 0,
         };
-
+        let cooldown = false;
         if (autoFindMe > 0 && mapRef.current) {
             if ((trackerData && trackerData.coords) || location) {
                 if (trackerData && trackerData.coords) {
@@ -232,23 +250,25 @@ const Map: React.FC<IProps> = ({
 
             if (autoFindMe !== autoFindMeLastState) {
                 animation.zoom = ZOOM_START_VALUE;
+                cooldown = true;
             }
-            setAutoFindMeLastState(autoFindMe);
         }
+        setAutoFindMeLastState(autoFindMe);
 
         if (isIOS) {
-            animateCameraOnIOS(animation);
+            animateCameraOnIOS(animation, cooldown);
         } else {
-            animateCam(animation);
+            animateCam(animation, 1000, cooldown);
         }
     }, [
-        location,
-        autoFindMe,
+        cameraAnimCooldown,
         headingOn,
         compassHeading,
+        autoFindMe,
         trackerData,
-        animateCameraOnIOS,
+        location,
         autoFindMeLastState,
+        animateCameraOnIOS,
     ]);
 
     /**

@@ -96,6 +96,10 @@ const RouteDetails = () => {
         /* TODO: user can delete if creted route. For public routes can only make ticket */
     };
 
+    const onPressReportHandler = () => {
+        navigation.navigate(RegularStackRoute.CONTACT_SCREEN);
+    };
+
     const onPressDeleteHandler = () => {
         setShowBottomModal(false);
         dispatch(removePrivateMapMetaData(mapID));
@@ -219,7 +223,7 @@ const RouteDetails = () => {
                                 <Text style={styles.textButton}>
                                     {`${trans.textPrefix} `}
                                     <Text
-                                        onPress={onPressHandler}
+                                        onPress={onPressReportHandler}
                                         style={styles.textbuttonAction}>
                                         {trans.textAction}
                                     </Text>
