@@ -227,7 +227,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             left: getHorizontalPx(40),
             top: getVerticalPx(108),
-            height: 41,
+            height: getHorizontalPx(41),
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'flex-start',

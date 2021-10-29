@@ -12,6 +12,7 @@ import AnimSvg from '../../../helpers/animSvg';
 import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import BlueButton from './blueButton';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 
 import {useAppSelector} from '../../../hooks/redux';
 
@@ -21,6 +22,7 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
 } from '../../../helpers/layoutFoo';
 import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
 
@@ -81,6 +83,8 @@ const Profile: React.FC<Props> = (props: Props) => {
     const getUserName = name ? name : trans.defaultName;
     const [userName, setUserName] = useState<string>(getUserName);
 
+    const [headHeight, setHeadHeight] = useState<number>(0);
+
     useEffect(() => {
         if (typeof name === 'string') {
             setUserName(getUserName);
@@ -94,14 +98,10 @@ const Profile: React.FC<Props> = (props: Props) => {
             height: '100%',
             backgroundColor: '#fff',
         },
-        header: {
-            marginTop: getVerticalPx(65),
-            left: getCenterLeftPx(),
-            width: getWidthPx(),
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'center',
-            fontSize: getHorizontalPx(18),
-            color: '#313131',
+        scroll: {
+            width: '100%',
+            height: getVerticalPx(896) - headHeight,
+            top: headHeight,
         },
         wrap: {
             // position: 'absolute',
@@ -118,7 +118,7 @@ const Profile: React.FC<Props> = (props: Props) => {
         },
         title: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#555555',
             textAlign: 'left',
             position: 'relative',
@@ -133,7 +133,7 @@ const Profile: React.FC<Props> = (props: Props) => {
         },
         name: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 23,
+            fontSize: getFontSize(23),
             color: '#313131',
             textAlign: 'left',
             position: 'relative',
@@ -144,66 +144,76 @@ const Profile: React.FC<Props> = (props: Props) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>
-                <Text style={styles.header}>{trans.header}</Text>
-                <View style={styles.wrap}>
-                    <AnimSvg source={amatour_biker} style={styles.imgage} />
+            <View style={styles.scroll}>
+                <ScrollView>
+                    {/* <Text style={styles.header}>{trans.header}</Text> */}
+                    <View style={styles.wrap}>
+                        <AnimSvg source={amatour_biker} style={styles.imgage} />
 
-                    <TouchableOpacity
-                        onPress={() =>
-                            props.navigation.navigate(
-                                RegularStackRoute.NAME_CHANGE_SCREEN,
-                            )
-                        }>
-                        <View style={styles.nameWrap}>
-                            <Text style={styles.name}>{userName}</Text>
-                            <Text style={styles.name}>...</Text>
-                        </View>
-                    </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() =>
+                                props.navigation.navigate(
+                                    RegularStackRoute.NAME_CHANGE_SCREEN,
+                                )
+                            }>
+                            <View style={styles.nameWrap}>
+                                <Text style={styles.name}>{userName}</Text>
+                                <Text style={styles.name}>...</Text>
+                            </View>
+                        </TouchableOpacity>
 
-                    <Text style={styles.title}>{trans.title}</Text>
-                    <BlueButton
-                        onpress={() =>
-                            props.navigation.navigate(
-                                RegularStackRoute.ABOUT_APP_SCREEN,
-                            )
-                        }
-                        title={trans.app}
-                    />
-                    <BlueButton
-                        onpress={() =>
-                            props.navigation.navigate(
-                                BothStackRoute.REGULATIONS_SCREEN,
-                            )
-                        }
-                        title={trans.regulations}
-                    />
-                    <BlueButton
-                        onpress={() =>
-                            props.navigation.navigate(
-                                BothStackRoute.PRIVACY_POLICY_SCREEN,
-                            )
-                        }
-                        title={trans.privacyPolicy}
-                    />
-                    <BlueButton
-                        onpress={() =>
-                            props.navigation.navigate(
-                                RegularStackRoute.HELP_SCREEN,
-                            )
-                        }
-                        title={trans.help}
-                    />
-                    <BlueButton
-                        onpress={() =>
-                            props.navigation.navigate(
-                                RegularStackRoute.CONTACT_SCREEN,
-                            )
-                        }
-                        title={trans.contact}
-                    />
-                </View>
-            </ScrollView>
+                        <Text style={styles.title}>{trans.title}</Text>
+                        <BlueButton
+                            onpress={() =>
+                                props.navigation.navigate(
+                                    RegularStackRoute.ABOUT_APP_SCREEN,
+                                )
+                            }
+                            title={trans.app}
+                        />
+                        <BlueButton
+                            onpress={() =>
+                                props.navigation.navigate(
+                                    BothStackRoute.REGULATIONS_SCREEN,
+                                )
+                            }
+                            title={trans.regulations}
+                        />
+                        <BlueButton
+                            onpress={() =>
+                                props.navigation.navigate(
+                                    BothStackRoute.PRIVACY_POLICY_SCREEN,
+                                )
+                            }
+                            title={trans.privacyPolicy}
+                        />
+                        <BlueButton
+                            onpress={() =>
+                                props.navigation.navigate(
+                                    RegularStackRoute.HELP_SCREEN,
+                                )
+                            }
+                            title={trans.help}
+                        />
+                        <BlueButton
+                            onpress={() =>
+                                props.navigation.navigate(
+                                    RegularStackRoute.CONTACT_SCREEN,
+                                )
+                            }
+                            title={trans.contact}
+                        />
+                    </View>
+                </ScrollView>
+            </View>
+
+            <StackHeader
+                hideBackArrow
+                inner={trans.header}
+                // style={styles.header}
+                // titleStyle={styles.title}
+                getHeight={setHeadHeight}
+            />
 
             <TabBackGround />
         </SafeAreaView>
