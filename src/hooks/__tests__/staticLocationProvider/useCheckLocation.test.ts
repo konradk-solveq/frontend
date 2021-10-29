@@ -1,8 +1,10 @@
 import {renderHook, cleanup} from '@testing-library/react-hooks';
 import Permissions from 'react-native-permissions';
+import {act} from 'react-test-renderer';
 
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import {hookWrapper} from '@jestUtils/render';
+import asyncEvent from '@jestUtils/asyncEvent';
 
 describe('[useCheckLocation]', () => {
     it('Should check location permission type and set [WHEN_IN_USE]', async () => {
@@ -32,10 +34,16 @@ describe('[useCheckLocation]', () => {
             },
         );
 
-        await waitForNextUpdate();
+        await act(async () => {
+            jest.runAllTimers();
+        });
+
+        await asyncEvent(async () => {
+            await waitForNextUpdate();
+        });
 
         expect(result.current.locationType).toBe('ALWAYS');
-    }, 5000);
+    }, 15000);
 
     afterEach(() => {
         cleanup();

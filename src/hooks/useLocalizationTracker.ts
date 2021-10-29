@@ -144,9 +144,7 @@ const useLocalizationTracker = (
                 await stopTracker(true);
             }
 
-            if (!skipProcessing) {
-                setProcessing(false);
-            }
+            setProcessing(false);
         },
         [dispatch, isTrackingActivatedHandler, stopTracker],
     );
@@ -192,7 +190,8 @@ const useLocalizationTracker = (
         }
         return () => {
             stopWatchPostionChangeListener();
-        }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {

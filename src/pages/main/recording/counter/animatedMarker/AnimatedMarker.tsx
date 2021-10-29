@@ -6,11 +6,6 @@ import {
     AnimatedRegion,
     LatLng,
 } from 'react-native-maps';
-import Animated, {
-    useSharedValue,
-    useAnimatedProps,
-    withTiming,
-} from 'react-native-reanimated';
 
 import {getHorizontalPx} from '@helpers/layoutFoo';
 
@@ -84,9 +79,14 @@ const AnimatedMarker: React.FC<IProps> = ({
                 }
             }
 
-            if (!isRestored && markerRef.current) {
+            if (
+                !isRestored &&
+                (markerRef.current || animatedMarkerRef.current)
+            ) {
                 setLocation(pos);
-                markerRef.current?.redraw();
+                if (markerRef.current) {
+                    markerRef.current?.redraw();
+                }
 
                 setIsRestored();
                 return;
