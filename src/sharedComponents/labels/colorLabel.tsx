@@ -5,6 +5,7 @@ import {
     setObjSize,
     getHorizontalPx,
     getVerticalPx,
+    getFontSize,
 } from '../../helpers/layoutFoo';
 import ColorCircle from '../special/colorCircle';
 
@@ -38,7 +39,7 @@ const ColorLabel: React.FC<IProps> = ({
         },
         text: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#555555',
             paddingRight: getHorizontalPx(15),
         },

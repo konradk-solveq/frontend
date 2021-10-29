@@ -8,6 +8,7 @@ import {
     setObjSize,
     getHorizontalPx,
     getVerticalPx,
+    getFontSize,
 } from '../../../../helpers/layoutFoo';
 import backGround from '../../../../sharedComponents/modals/backGround';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
@@ -55,13 +56,13 @@ const ScanModal: React.FC<IProps> = ({
         },
         title: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getFontSize(40),
             color: '#313131',
             textAlign: 'center',
         },
         text: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 23,
+            fontSize: getFontSize(23),
             color: '#313131',
             textAlign: 'center',
         },
@@ -72,7 +73,7 @@ const ScanModal: React.FC<IProps> = ({
             marginTop: getVerticalPx(35),
         },
         cancelBtn: {
-            height: 50,
+            height: getHorizontalPx(50),
             marginTop: getVerticalPx(35),
         },
     });

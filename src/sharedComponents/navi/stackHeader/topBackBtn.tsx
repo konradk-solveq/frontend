@@ -15,7 +15,7 @@ const TopBackBtn: React.FC<Props> = (props: Props) => {
             alignItems: 'center',
             justifyContent: 'center',
             // backgroundColor: '#d8232a',
-            padding: 9,
+            padding: getWidthPxOf(9),
             position: 'absolute',
             width: getWidthPxOf(40),
             height: getWidthPxOf(34),
