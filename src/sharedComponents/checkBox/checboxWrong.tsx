@@ -2,7 +2,7 @@ import React from 'react';
 import Svg, {G, Rect} from 'react-native-svg';
 
 const ChecboxWrong = () => (
-    <Svg width="26" height="26" viewBox="0 0 26 26">
+    <Svg viewBox="0 0 26 26">
         <G
             fill="none"
             fillRule="evenodd"
