@@ -28,6 +28,8 @@ import {
     getCenterLeftPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
+    getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 import deepCopy from '../../../helpers/deepCopy';
 import {frameNumberSelector} from '../../../storage/selectors';
@@ -210,8 +212,8 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
             marginTop: getVerticalPx(45 + 20) + headHeight,
             marginBottom: getVerticalPx(30),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
-            lineHeight: 38,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(38),
             color: '#555555',
             textAlign: 'left',
         },
@@ -223,7 +225,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         },
         button: {
             width: getWidthPx(),
-            height: 50,
+            height: getHorizontalPx(50),
             left: getCenterLeftPx(),
             marginTop: getVerticalPx(10),
             marginBottom: getVerticalPx(65),

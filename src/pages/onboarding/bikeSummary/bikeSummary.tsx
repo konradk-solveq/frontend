@@ -19,6 +19,7 @@ import {
     getWidthPx,
     getWidthPxOf,
     getHorizontalPx,
+    getFontSize,
 } from '../../../helpers/layoutFoo';
 
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
@@ -65,12 +66,12 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             height: getVerticalPx(896),
         },
         contentContainer: {
-            marginTop: getVerticalPx(88),
+            marginTop: getHorizontalPx(88),
         },
         bottons: {
             position: 'absolute',
             width: getWidthPx(),
-            height: 50,
+            height: getHorizontalPx(50),
             left: getCenterLeftPx(),
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -83,7 +84,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(30),
+            fontSize: getFontSize(30),
             color: '#313131',
         },
         bikeName: {
@@ -91,7 +92,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(40),
+            fontSize: getFontSize(40),
             color: '#313131',
             textAlign: 'center',
         },
@@ -101,7 +102,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getHorizontalPx(15),
+            fontSize: getFontSize(15),
             color: '#555555',
         },
     });
