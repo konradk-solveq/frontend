@@ -26,6 +26,7 @@ import {
 } from '@sentryLogger/sentryLogger';
 
 const isIOS = Platform.OS === 'ios';
+export const LOCATION_ACCURACY = 60;
 
 export const transformLocationErrorCode = (e: LocationError | any) => {
     try {
@@ -90,7 +91,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
                 ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
                 : BackgroundGeolocation.LOG_LEVEL_OFF,
             maxDaysToPersist: __DEV__ ? 1 : 3,
-            desiredOdometerAccuracy: 10,
+            desiredOdometerAccuracy: LOCATION_ACCURACY,
             notification: {
                 text: notificationTitle,
                 smallIcon: 'drawable/ic_launcher_round',
@@ -348,8 +349,12 @@ export const transformGeoloCationData = (data: Location): LocationDataI => {
             longitude: data.coords.longitude,
             altitude: data.coords.altitude,
             speed: data.coords.speed,
+            accuracy: data.coords.accuracy,
         },
         odometer: data.odometer,
+        provider: data.provider,
+        is_moving: data.is_moving,
+        activity: data.activity,
     };
 
     return location;

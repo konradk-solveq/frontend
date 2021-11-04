@@ -34,6 +34,7 @@
             "@jestUtils*": ["jest/utils*"],
             "@sentryLogger*": ["sentry*"],
             "@env*": ["src/env"],
+            "@debugging*": ["src/debugging*"],
         },
       "types": [ "node", "jest" ],
     },

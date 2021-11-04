@@ -2,6 +2,8 @@ import {
     GeofenceEvent as GE,
     Location as OL,
     Coords,
+    MotionActivityEvent,
+    ProviderChangeEvent,
 } from 'react-native-background-geolocation-android';
 
 export interface LocationDataI {
@@ -12,8 +14,12 @@ export interface LocationDataI {
         longitude: number;
         altitude: number | undefined;
         speed: number | undefined;
+        accuracy: number;
     };
+    provider: ProviderChangeEvent | undefined;
     odometer: number;
+    is_moving: boolean;
+    activity: MotionActivityEvent;
 }
 
 export interface ApiPathI {
