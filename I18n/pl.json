@@ -757,5 +757,9 @@
         "resetButton": "Spróbuj ponownie",
         "restartButton": "Uruchom ponownie aplikację"
     },
+    "DebugRoute": {
+        "enableDebugging": "Włącz debugowanie trasy",
+        "disableDebugging": "Wyłącz debugowanie trasy"
+    },
     "aaaaaaa-aaaaaa": "_____"
 }
