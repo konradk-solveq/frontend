@@ -8,7 +8,7 @@ import {
     StyleSheet,
 } from 'react-native';
 import {I18n} from '../../../../I18n/I18n';
-import {getVerticalPx} from '../../../helpers/layoutFoo';
+import {getFontSize, getHorizontalPx, getVerticalPx, mainButtonsHeight} from '../../../helpers/layoutFoo';
 import useStatusBarHeight from '../../../hooks/statusBarHeight';
 import {BigRedBtn} from '../../../sharedComponents/buttons';
 import ImgSvg from './imgSvg';
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     },
     wrap: {
         flex: 1,
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
         marginBottom: getVerticalPx(65),
         justifyContent: 'space-between',
     },
@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
     header: {
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'center',
-        fontSize: 40,
-        paddingVertical: 5,
+        fontSize: getFontSize(40),
+        paddingVertical: getVerticalPx(5),
         color: '#d8232a',
     },
     imgage: {
@@ -110,14 +110,14 @@ const styles = StyleSheet.create({
     },
     content: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 23,
+        fontSize: getFontSize(23),
         color: '#414141',
     },
     buttonsWrapper: {
         marginTop: getVerticalPx(50),
     },
     onPressBtn: {
-        height: 50,
+        height: mainButtonsHeight(50),
     },
     bottomBtn: {
         marginTop: getVerticalPx(30),

@@ -1,3 +1,4 @@
+import { getHorizontalPx } from '@src/helpers/layoutFoo';
 import React from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
@@ -24,9 +25,9 @@ const BikeIcon: React.FC<IProps> = ({containerStyle, iconStyle}: IProps) => {
 
 const styles = StyleSheet.create({
     icon: {
-        width: 21,
-        height: 15,
-        marginLeft: 5,
+        width: getHorizontalPx(21),
+        height: getHorizontalPx(15),
+        marginLeft: getHorizontalPx(5),
     },
 });
 

@@ -20,6 +20,7 @@ import {
     getVertical,
     getCenterLeftPx,
     getPosWithMinHeight,
+    getFontSize,
 } from '../../../../helpers/layoutFoo';
 import {validateData} from '../../../../utils/validation/validation';
 import {userUserValidationRules} from '../../../../models/user.model';
@@ -108,8 +109,8 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             left: getCenterLeftPx(),
             top: getVertical(138 - 100),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
-            lineHeight: 38,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(38),
             color: '#313131',
         },
         logo: {
@@ -127,7 +128,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
         btn: {
             position: 'absolute',
             width: getWidthPx(),
-            height: 50,
+            height: getHorizontalPx(50),
             left: getCenterLeftPx(),
             bottom: getVerticalPx((isIOS ? 20 : 65) + 100), // 100 - przesunięcie dla scroll o headera
         },

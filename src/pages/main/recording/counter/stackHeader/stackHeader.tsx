@@ -8,6 +8,7 @@ import {
     getWidthPx,
     getHeightPx,
     getHorizontalPx,
+    getFontSize,
 } from '../../../../../helpers/layoutFoo';
 import HeaderBacgroudShape from './headerBacgroudShape';
 import useStatusBarHeight from '@src/hooks/statusBarHeight';
@@ -104,7 +105,7 @@ const StackHeader: React.FC<Props> = ({
         title: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 13,
+            fontSize: getFontSize(13),
             color: '#ffffff',
         },
         titleWrap: {

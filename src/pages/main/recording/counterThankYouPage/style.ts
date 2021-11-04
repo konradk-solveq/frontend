@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
@@ -16,8 +21,8 @@ const styles = StyleSheet.create({
         left: getHorizontalPx(40),
         marginTop: getVerticalPx(90),
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 40,
-        lineHeight: 52,
+        fontSize: getFontSize(40),
+        lineHeight: getFontSize(52),
         color: '#2cba3f',
         textAlign: 'center',
     },
@@ -26,8 +31,8 @@ const styles = StyleSheet.create({
         left: getHorizontalPx(40),
         marginTop: getVerticalPx(7),
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
-        lineHeight: 20,
+        fontSize: getFontSize(18),
+        lineHeight: getFontSize(20),
         letterSpacing: 0.5,
         color: '#555555',
         textAlign: 'center',
@@ -48,50 +53,50 @@ const styles = StyleSheet.create({
     },
     name: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
-        lineHeight: 22,
+        fontSize: getFontSize(18),
+        lineHeight: getFontSize(22),
         color: '#555555',
         textAlign: 'left',
     },
     value: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 57,
+        fontSize: getFontSize(57),
         color: '#555555',
         textAlign: 'left',
     },
     unit: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         color: '#555555',
         textAlign: 'left',
     },
     breakName: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         color: '#555555',
         textAlign: 'center',
         marginTop: getVerticalPx(32),
     },
     breakValue: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 23,
+        fontSize: getFontSize(23),
         color: '#555555',
         textAlign: 'left',
     },
     btnContainer: {
         marginBottom: getVerticalPx(65),
         flexDirection: 'row',
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
         justifyContent: 'space-between',
     },
     btnSave: {
         width: getHorizontalPx(157),
-        height: 50,
+        height: mainButtonsHeight(50),
         marginTop: getVerticalPx(42),
     },
     btnCancel: {
         width: getHorizontalPx(157),
-        height: 50,
+        height: mainButtonsHeight(50),
         marginRight: getHorizontalPx(20),
         marginTop: getVerticalPx(42),
     },
