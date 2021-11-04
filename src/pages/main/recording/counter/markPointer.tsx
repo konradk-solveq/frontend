@@ -1,17 +1,22 @@
+import {getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {StyleSheet, View, Animated} from 'react-native';
 import Svg, {Circle, Path} from 'react-native-svg';
 
+const size = getHorizontalPx(31);
+
 const MarkPointer: React.FC = () => {
     const styles = StyleSheet.create({
         markWrap: {
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
+            width: size * 2,
+            height: size * 2,
         },
         mark: {
-            width: 31,
-            height: 31,
+            position: 'absolute',
+            left: size * 0.5,
+            top: size * 0.5,
+            width: size,
+            height: size,
         },
     });
 

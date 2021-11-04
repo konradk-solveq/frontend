@@ -17,13 +17,11 @@ const CurvedShape: React.FC = () => {
     return (
         <View style={styles.container}>
             <Svg
-                height="100%"
-                width="100%"
-                viewBox={`0 0 ${shapeWidth} ${shapeHeight}`}>
+
+                viewBox={'0 0 ' + shapeWidth + ' ' + shapeHeight}>
                 <Path
-                    d="m 0,94.362406 c 0,0 82.50881,21.581224 207,21.581224 124.49119,0 207,-21.581224 207,-21.581224 V 180.06156 H 0 Z"
+                    d="M0 94.362s82.509 21.582 207 21.582 207-21.582 207-21.582v85.7H0z"
                     fill="white"
-                    stroke="white"
                 />
             </Svg>
         </View>
@@ -32,12 +30,17 @@ const CurvedShape: React.FC = () => {
 
 const styles = StyleSheet.create({
     container: {
-        width: width,
-        aspectRatio: shapeWidth / shapeHeight,
+        width: shapeWidth,
+        height: shapeHeight,
         position: 'absolute',
         top: getVerticalPx(isIOS ? -125 : -140),
         left: 0,
         right: 0,
+        // zIndex: 100,
+        // backgroundColor: 'khaki',
+    },
+    svg: {
+        // backgroundColor: 'red',
     },
 });
 

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import {getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {getFontSize, getHorizontalPx, getVerticalPx, mainButtonsHeight} from '../../../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
@@ -9,19 +9,19 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.5,
         color: '#313131',
     },
     smallText: {
         letterSpacing: 0.42,
-        fontSize: 15,
+        fontSize: getFontSize(15),
     },
     color555555: {
         color: '#555555',
     },
     title: {
-        fontSize: 40,
+        fontSize: getFontSize(40),
         letterSpacing: 0,
     },
     lightFont: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         marginBottom: getVerticalPx(30),
     },
     descriptionTitle: {
-        fontSize: 23,
+        fontSize: getFontSize(23),
         marginBottom: getVerticalPx(10),
     },
     imagesContainer: {
@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
         marginBottom: getVerticalPx(30),
     },
     mapImage: {
-        borderRadius: 25,
+        borderRadius: getHorizontalPx(25),
         overflow: 'hidden',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 285,
+        height: getVerticalPx(285),
     },
     mImg: {
         width: '100%',
@@ -72,11 +72,11 @@ const styles = StyleSheet.create({
     },
     tag: {
         marginTop: getVerticalPx(15),
-        paddingHorizontal: 10,
+        paddingHorizontal: getHorizontalPx(10),
         backgroundColor: '#f0f0f0',
-        marginRight: 5,
-        borderRadius: 14.5,
-        height: 29,
+        marginRight: getHorizontalPx(5),
+        borderRadius: getVerticalPx(14.5),
+        height: getVerticalPx(29),
         justifyContent: 'center',
     },
 
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     },
     forgotPasswordText: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.5,
         color: '#3587ea',
         textAlign: 'right',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         // marginTop: getVerticalPx(95),
     },
     onPressBtn: {
-        height: 50,
+        height: mainButtonsHeight(50),
     },
     bottomBtn: {
         marginTop: getVerticalPx(30),

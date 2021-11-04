@@ -1,3 +1,4 @@
+import { getHorizontalPx } from '@src/helpers/layoutFoo';
 import React, {useCallback, useContext, useEffect, useRef} from 'react';
 import {InteractionManager, Platform} from 'react-native';
 import {Polyline as MapPolyline} from 'react-native-maps';
@@ -82,7 +83,7 @@ const Polyline: React.FC<IProps> = ({
             strokeColors={strokeColors || ['#d8232a']}
             lineCap={'round'}
             lineJoin={'round'}
-            strokeWidth={8}
+            strokeWidth={getHorizontalPx(8)}
             tappable={false}
         />
     );

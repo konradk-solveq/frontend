@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     },
     horizontalSpace: {},
     loaderContainer: {
-        height: 50,
+        height: getHorizontalPx(50),
         width: '100%',
         // marginTop: -getVerticalPx(60),
         marginBottom: getVerticalPx(50),

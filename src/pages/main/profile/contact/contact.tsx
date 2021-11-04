@@ -6,6 +6,7 @@ import {
     Text,
     TouchableWithoutFeedback,
     Linking,
+    Platform,
 } from 'react-native';
 import I18n from 'react-native-i18n';
 import { useAppSelector } from '../../../../hooks/redux';
@@ -91,13 +92,21 @@ const Contact: React.FC<Props> = (props: Props) => {
         },
     });
 
+    const heandlePhone = () => {
+        if (Platform.OS !== 'android') {
+            return `telprompt:${trans.phone}`;
+        } else {
+            return `tel:${trans.phone}`;
+        }
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.wrap}>
                 <Text style={styles.title}>{userName + trans.title}</Text>
                 <View style={styles.poneEmail}>
                     <TouchableWithoutFeedback
-                        onPress={() => Linking.openURL(`tel:${trans.phone}`)}>
+                        onPress={() => Linking.openURL(heandlePhone())}>
                         <Text style={styles.phone}>{trans.phone}</Text>
                     </TouchableWithoutFeedback>
 
