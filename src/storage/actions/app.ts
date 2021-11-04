@@ -14,7 +14,7 @@ import {
 import {fetchFeaturedMapsList, fetchPlannedMapsList} from './maps';
 import {AppThunk} from '@storage/thunk';
 import {AppState} from '@storage/reducers/app';
-import {RoutesState} from '@storage/reducers/routes';
+import {CurrentRouteI, RoutesState} from '@storage/reducers/routes';
 import {AppConfigI} from '@models/config.model';
 import {BasicCoordsType} from '@type/coords';
 import {
@@ -33,6 +33,10 @@ import {I18n} from '@translations/I18n';
 import logger from '@utils/crashlytics';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
+
+import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
+import {RouteActionT, RouteAdditionalInfoT} from '@type/debugRoute';
+import {DebugRouteInstance} from '@debugging/debugRoute';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -108,6 +112,11 @@ export const setLocationInfoShowed = () => ({
 export const setGlobalLocation = (coords: BasicCoordsType) => ({
     type: actionTypes.SET_GLOBAL_LOCATION,
     coords: coords,
+});
+
+export const setRouteDebugMode = (routeDebugMode: boolean) => ({
+    type: actionTypes.SET_ROUTE_DEBUG_MODE,
+    routeDebugMode: routeDebugMode,
 });
 
 export const clearAppError = () => ({
@@ -347,5 +356,70 @@ export const fetchAppRegulations = (
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
+    }
+};
+
+/**
+ * Puts route data into json file
+ *
+ * @param {string} routeId
+ * @param {Object<RouteActionT>} actionType
+ * @param {Object<CurrentRouteI>} routeData
+ * @param {Object<RouteAdditionalInfoT>} routeAdditionalInfo
+ * @param {Array<LocationDataI>} routeLocationData
+ * @param {Array<ApiPathI>} dataSendToServer
+ *
+ * @returns {void}
+ */
+export const appendRouteDebuggInfoToFIle = (
+    routeId: string,
+    actionType: RouteActionT,
+    routeData: CurrentRouteI,
+    routeAdditionalInfo: RouteAdditionalInfoT,
+    routeLocationData?: LocationDataI[],
+    dataSendToServer?: ApiPathI[],
+): AppThunk<Promise<void>> => async (_, getState) => {
+    try {
+        const {
+            isOffline,
+            internetConnectionInfo,
+            routeDebugMode,
+        }: AppState = getState().app;
+
+        if (!routeDebugMode) {
+            return;
+        }
+
+        const routeDebugger = DebugRouteInstance.debugRouteInstance(
+            actionType,
+            routeId,
+            routeData.startedAt,
+        );
+
+        if (routeDebugger) {
+            routeDebugger.connectionState = {
+                isOffline: isOffline,
+                internetConnectionInfo: internetConnectionInfo,
+            };
+
+            if (routeAdditionalInfo) {
+                await routeDebugger.writeRouteDataIntoDebugFile(
+                    actionType,
+                    routeData,
+                    routeAdditionalInfo,
+                    routeLocationData,
+                    dataSendToServer,
+                );
+            }
+        }
+
+        DebugRouteInstance.clearRouteDebugInstance(actionType);
+    } catch (error) {
+        console.log(`[appendRouteDebuggInfoToFIle] - ${error}`);
+        logger.log(`[appendRouteDebuggInfoToFIle] - ${error}`);
+        const err = convertToApiError(error);
+        logger.recordError(err);
+
+        loggErrorWithScope(err, 'appendRouteDebuggInfoToFIle');
     }
 };
