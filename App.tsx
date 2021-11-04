@@ -14,12 +14,15 @@ import {initAppSize} from '@helpers/layoutFoo';
 
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
+import useRouteDebug from '@src/hooks/useRouteDebug';
 
 const App: () => Node = () => {
     I18n_init();
     const persistor = persistStore(storage);
 
     initAppSize();
+
+    useRouteDebug();
 
     return (
         <>
