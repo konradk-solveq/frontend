@@ -1,6 +1,12 @@
 import {Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
-import * as RNFS from 'react-native-fs';
+import {
+    mkdir,
+    unlink,
+    write,
+    DownloadDirectoryPath,
+    DocumentDirectoryPath,
+} from 'react-native-fs';
 
 import {GeneralDeviceT} from '@type/debugRoute';
 
@@ -27,15 +33,11 @@ export const generalDeviceInfo = (): GeneralDeviceT => {
 };
 
 const DOCUMENT_DIR_PATH =
-    Platform.OS === 'android'
-        ? RNFS.DownloadDirectoryPath
-        : RNFS.DocumentDirectoryPath;
+    Platform.OS === 'android' ? DownloadDirectoryPath : DocumentDirectoryPath;
 
 const FILES_DIR = 'myKROSS_debug';
 
 const FILES_PATH = `${DOCUMENT_DIR_PATH}/${FILES_DIR}`;
-
-export const checkFileExists = () => {};
 
 export const appendDataToFile = async (
     fileName: string,
@@ -44,7 +46,11 @@ export const appendDataToFile = async (
     prefix?: string,
     suffix?: string,
 ) => {
-    let dataToWrite = data || '';
+    if (!data) {
+        return;
+    }
+
+    let dataToWrite = data;
 
     try {
         if (typeof data !== 'string') {
@@ -63,12 +69,14 @@ export const appendDataToFile = async (
             dataToWrite = dataToWrite + suffix;
         }
 
-        await RNFS.write(
+        await write(
             `${FILES_PATH}/${fileName}.json`,
             dataToWrite,
             undefined,
             'utf8',
         );
+
+        return dataToWrite;
     } catch (error) {
         console.error('[=== ROUTE DATA UTILS - appendDataToFile ===]', error);
     }
@@ -77,14 +85,14 @@ export const appendDataToFile = async (
 export const removeFile = async (fileName: string) => {
     try {
         const filepath = `${FILES_PATH}/${fileName}.json`;
-        await RNFS.unlink(filepath);
+        await unlink(filepath);
     } catch (error) {
         console.error('[=== ROUTE DATA UTILS - removeFile ===]', error);
     }
 };
 
 export const createRootDir = async () => {
-    await RNFS.mkdir(FILES_PATH);
+    await mkdir(FILES_PATH);
 };
 
 export const getISODateString = () => {
