@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Svg, {Path} from 'react-native-svg';
 
-import {getWidthPxOf} from '../../../../../helpers/layoutFoo';
+import {getHorizontalPx, getWidthPxOf} from '../../../../../helpers/layoutFoo';
 
 interface Props {
     onpress: Function;
@@ -16,7 +16,7 @@ const TopBackBtn: React.FC<Props> = (props: Props) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: 9,
+            padding: getHorizontalPx(9),
             width: getWidthPxOf(40),
             height: getWidthPxOf(34),
             left: getWidthPxOf(30),
@@ -26,7 +26,7 @@ const TopBackBtn: React.FC<Props> = (props: Props) => {
         touch: {
             width: getWidthPxOf(40),
             height: getWidthPxOf(34),
-            padding: 9,
+            padding: getHorizontalPx(9),
         },
     });
 

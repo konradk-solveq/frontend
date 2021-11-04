@@ -15,7 +15,7 @@ import {BigRedBtn} from '../../buttons';
 import {useAppSelector} from '../../../hooks/redux';
 import ImgSvg from './imgSvg';
 import {I18n} from '../../../../I18n/I18n';
-import {getHorizontalPx, getVerticalPx} from '../../../helpers/layoutFoo';
+import {getFontSize, getHorizontalPx, getVerticalPx, mainButtonsHeight} from '../../../helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -106,16 +106,16 @@ const styles = StyleSheet.create({
     header: {
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'center',
-        fontSize: 40,
+        fontSize: getFontSize(40),
         color: '#2cba3f',
-        lineHeight: 54,
+        lineHeight: getFontSize(54),
     },
     imgage: {
         marginTop: getVerticalPx(61),
         width: getHorizontalPx(414),
         height: getHorizontalPx(368),
         left: getHorizontalPx(-40),
-        marginBottom: getVerticalPx(65 + 20) + 50,
+        marginBottom: getVerticalPx(65 + 20) + mainButtonsHeight(50),
     },
     buttonsWrapper: {
         position: 'absolute',
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         left: getHorizontalPx(40),
         width: getHorizontalPx(334),
         bottom: getVerticalPx(65),
-        height: 50,
+        height: mainButtonsHeight(50),
     },
 });
 

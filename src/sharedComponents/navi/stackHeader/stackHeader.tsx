@@ -35,26 +35,24 @@ const ww = Dimensions.get('window').width;
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = (props: Props) => {
-    const [height, setHeight] = useState(getHorizontalPx(100));
-
     const getHeight = useCallback(async () => {
         if (props.getHeight) {
             const statusBarHeight = await getStatusBarHeight(
                 Platform.OS === 'android',
             );
-            props.getHeight(height - statusBarHeight);
+            props.getHeight(getHorizontalPx(100) - statusBarHeight);
         }
     }, []);
 
     useEffect(() => {
         getHeight();
-    }, [getHeight]);
+    }, [props.getHeight]);
 
     setObjSize(414, 34);
     const wrap = {
         position: 'absolute',
         left: 0,
-        top: height * 0.61,
+        top: getHorizontalPx(61),
         width: ww,
         height: getHeightPx(),
     };
@@ -77,7 +75,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
             left: 0,
             top: 0,
             width: '100%',
-            height: height,
+            height: getHorizontalPx(100),
         },
         wrap,
         title,
