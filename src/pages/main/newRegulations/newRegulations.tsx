@@ -20,6 +20,8 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 import Loader from '../../onboarding/bikeAdding/loader/loader';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
@@ -120,7 +122,10 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
         },
         scroll: {
             width: '100%',
-            height: getVerticalPx(896 - 65 - 10) - headHeight - 50,
+            height:
+                getVerticalPx(896 - 65 - 10) -
+                headHeight -
+                mainButtonsHeight(50),
             top: headHeight,
         },
         wrap: {
@@ -131,8 +136,8 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
             marginTop: getVerticalPx(38),
-            fontSize: 30,
-            lineHeight: 40,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(40),
             color: '#313131',
         },
         svg: {
@@ -145,8 +150,8 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(37),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 23,
-            lineHeight: 30,
+            fontSize: getFontSize(23),
+            lineHeight: getFontSize(30),
             color: '#313131',
             marginBottom: getVerticalPx(60),
         },
@@ -164,7 +169,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
             textAlign: 'center',
             top: getVerticalPx(65),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#313131',
         },
         btns: {
@@ -181,7 +186,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
         },
         twoBtnsWrap: {
             marginTop: getVerticalPx(10),
-            height: 50,
+            height: mainButtonsHeight(50),
             width: '100%',
             display: 'flex',
             justifyContent: 'space-between',
