@@ -13,9 +13,9 @@ import AnimSvg from '../../../helpers/animSvg';
 import {
     setObjSize,
     getCenterLeftPx,
-    getHorizontalPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
 } from '../../../helpers/layoutFoo';
 import MapSvg from './mapSvg';
 
@@ -61,7 +61,7 @@ const World: React.FC = () => {
             top: getVerticalPx(65),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getHorizontalPx(18),
+            fontSize: getFontSize(18),
             color: '#313131',
         },
         title: {
@@ -70,7 +70,7 @@ const World: React.FC = () => {
             height: th,
             top: tt,
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(40),
+            fontSize: getFontSize(40),
             color: '#313131',
             textAlign: 'center',
             textAlignVertical: 'bottom',
@@ -80,7 +80,7 @@ const World: React.FC = () => {
             position: 'absolute',
             bottom: t - getVerticalPx(193),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(18),
+            fontSize: getFontSize(18),
             letterSpacing: 0.5,
             color: '#313131',
             textAlign: 'center',

@@ -9,6 +9,7 @@ import {
     getHorizontalPx,
     getWidthPx,
     getCenterLeftPx,
+    getFontSize,
 } from '../../../../helpers/layoutFoo';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -57,7 +58,7 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
         },
         title: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getFontSize(40),
             color: '#313131',
             textAlign: 'center',
         },

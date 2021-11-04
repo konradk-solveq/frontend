@@ -1,3 +1,4 @@
+import {getFontSize, getVerticalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
@@ -38,36 +39,36 @@ const StatsSummary = () => {
 const styles = StyleSheet.create({
     rowWrapper: {
         flexDirection: 'row',
-        marginTop: 35,
+        marginTop: getVerticalPx(35),
     },
     row: {
         width: '50%',
     },
     label: {
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.5,
         fontFamily: 'DIN2014Narrow-Light',
     },
     text: {
-        fontSize: 57,
+        fontSize: getFontSize(57),
         fontFamily: 'DIN2014Narrow-Regular',
     },
     sufix: {
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.5,
         fontFamily: 'DIN2014Narrow-Regular',
     },
     pauseSummaryWrapper: {
-        marginTop: 20,
+        marginTop: getVerticalPx(20),
     },
     pauseSummary: {
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.5,
         textAlign: 'center',
         fontFamily: 'DIN2014Narrow-Light',
     },
     pauseSummaryValue: {
-        fontSize: 23,
+        fontSize: getFontSize(23),
         fontFamily: 'DIN2014Narrow-Regular',
     },
 });

@@ -3,7 +3,12 @@ import {StyleSheet, TouchableWithoutFeedback, View, Text} from 'react-native';
 import I18n from 'react-native-i18n';
 import Svg, {Path} from 'react-native-svg';
 
-import {getHorizontalPx, getVerticalPx} from '../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../helpers/layoutFoo';
 
 interface Props {
     // * wartości wymagane
@@ -83,7 +88,7 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
     let styles = StyleSheet.create({
         light18: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(18),
+            fontSize: getFontSize(18),
             textAlign: 'left',
             color: '#555555',
         },
@@ -92,18 +97,16 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
             borderRadius: getHorizontalPx(150),
             borderWidth: borderWidth,
             borderColor: borderColor,
-            height: 50,
+            height: mainButtonsHeight(50),
             marginTop: getHorizontalPx(6),
         },
         title: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 20,
+            fontSize: getFontSize(20),
             textAlign: 'left',
             color: '#555555',
-            // position: 'absolute',
-            // marginTop: getHorizontalPx(10),
             left: getHorizontalPx(30),
-            paddingTop: 11,
+            paddingTop: getVerticalPx(11),
         },
         arrow: {
             position: 'absolute',
@@ -114,12 +117,12 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
         },
         error: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(18),
+            fontSize: getFontSize(18),
             textAlign: 'left',
             color: '#d8232a',
             position: 'relative',
-            marginTop: getHorizontalPx(6),
-            height: getHorizontalPx(23),
+            marginTop: getVerticalPx(6),
+            height: getVerticalPx(23),
         },
     });
 

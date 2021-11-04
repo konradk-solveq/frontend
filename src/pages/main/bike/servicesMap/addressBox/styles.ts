@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     addressContainer: {
@@ -19,19 +19,19 @@ const styles = StyleSheet.create({
     addressName: {
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'left',
-        fontSize: 23,
+        fontSize: getFontSize(23),
         color: '#313131',
     },
     addressPalce: {
-        marginTop: 2,
+        marginTop: getVerticalPx(2),
         fontFamily: 'DIN2014Narrow-Light',
         textAlign: 'left',
-        fontSize: 15,
-        lineHeight: 19,
+        fontSize: getFontSize(15),
+        lineHeight: getFontSize(19),
         color: '#555555',
     },
     addressContact: {
-        marginTop: 12,
+        marginTop: getVerticalPx(12),
         display: 'flex',
         flexDirection: 'row',
     },
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         width: '100%',
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'left',
-        fontSize: 15,
+        fontSize: getFontSize(15),
         color: '#555555',
     },
     openHoursContainer: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     openHours: {
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'left',
-        fontSize: 15,
+        fontSize: getFontSize(15),
         letterSpacing: 0.42,
         color: '#555555',
     },

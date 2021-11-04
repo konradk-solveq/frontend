@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {StyleSheet, View, Text, TextStyle} from 'react-native';
 
 import {SelectOptionType} from '../../models/map.model';
-import {getVerticalPx} from '../../helpers/layoutFoo';
+import {getFontSize, getVerticalPx} from '../../helpers/layoutFoo';
 
 import TypicalRedBtn from '../../sharedComponents/buttons/typicalRed';
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     name: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.5,
         color: '#555555',
         textAlign: 'left',
@@ -101,12 +101,12 @@ const styles = StyleSheet.create({
     },
     error: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         textAlign: 'left',
         color: '#d8232a',
         position: 'relative',
-        marginTop: 6,
-        height: 23,
+        marginTop: getVerticalPx(6),
+        height: getVerticalPx(23),
     },
 });
 

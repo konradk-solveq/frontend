@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 import {
+    getFontSize,
     getHorizontalPx,
     getVerticalPx,
 } from '../../../../../../helpers/layoutFoo';
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     label: {
         marginLeft: getHorizontalPx(25),
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.5,
         color: '#555555',
     },

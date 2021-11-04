@@ -1,3 +1,8 @@
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {
     Modal,
@@ -76,46 +81,46 @@ const styles = StyleSheet.create({
     },
     wrap: {
         flex: 1,
-        marginHorizontal: 40,
-        marginBottom: 65,
+        marginHorizontal: getHorizontalPx(40),
+        marginBottom: getVerticalPx(65),
         justifyContent: 'space-between',
     },
     headerWrapper: {
-        marginBottom: 30,
+        marginBottom: getVerticalPx(30),
     },
     header: {
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'center',
-        fontSize: 40,
-        paddingVertical: 5,
+        fontSize: getFontSize(40),
+        paddingVertical: getVerticalPx(5),
         color: '#d8232a',
     },
     imgage: {
-        marginTop: 20,
+        marginTop: getVerticalPx(20),
     },
     contentWrapper: {
-        marginTop: 20,
-        marginBottom: 108,
+        marginTop: getVerticalPx(20),
+        marginBottom: getVerticalPx(108),
     },
     content: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 23,
+        fontSize: getFontSize(23),
         color: '#414141',
     },
     buttonsWrapper: {
-        marginTop: 50,
+        marginTop: getVerticalPx(50),
     },
     onPressBtn: {
-        height: 50,
+        height: getVerticalPx(50),
     },
     bottomBtn: {
-        marginTop: 30,
+        marginTop: getVerticalPx(30),
     },
     iconContainer: {
         alignItems: 'flex-end',
     },
     icon: {
-        marginBottom: 30,
+        marginBottom: getVerticalPx(30),
     },
 });
 
