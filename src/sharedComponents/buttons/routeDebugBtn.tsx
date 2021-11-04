@@ -10,12 +10,20 @@ import {askFilePermissionsOnAndroid} from '@utils/writeFilePermission';
 
 import {BigRedBtn} from '@sharedComponents/buttons';
 
-const RouteDebugBtn: React.FC = () => {
+interface IProps {
+    onPress?: () => void;
+}
+
+const RouteDebugBtn: React.FC<IProps> = ({onPress}: IProps) => {
     const trans: any = I18n.t('DebugRoute');
     const dispatch = useAppDispatch();
     const routeDebugMode = useAppSelector(routeDebugModeSelector);
 
     const onPressHandler = async () => {
+        if (onPress) {
+            onPress();
+        }
+
         const res = await askFilePermissionsOnAndroid();
         if (!res) {
             return;
@@ -30,6 +38,7 @@ const RouteDebugBtn: React.FC = () => {
 
     return (
         <BigRedBtn
+            testID="route-debug-btn"
             onpress={onPressHandler}
             title={
                 routeDebugMode ? trans.disableDebugging : trans.enableDebugging
