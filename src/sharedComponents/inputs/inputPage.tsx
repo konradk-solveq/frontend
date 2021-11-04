@@ -13,6 +13,7 @@ import {
     getCenterLeftPx,
     getPosWithMinHeight,
     getHorizontalPx,
+    getFontSize,
 } from '../../helpers/layoutFoo';
 
 interface Props {
@@ -89,21 +90,21 @@ const InputPage: React.FC<Props> = (props: Props) => {
             left: getCenterLeftPx(),
             top: getVertical(138 - 100),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
-            lineHeight: 38,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(38),
             color: '#555555',
             textAlign: 'left',
         },
         infoBtn: {
             position: 'relative',
             height: getHorizontalPx(29),
-            marginTop: 3,
+            marginTop: getVerticalPx(3),
             width: getWidthPx(),
         },
         botton: {
             position: 'absolute',
             width: getWidthPx(),
-            height: 50,
+            height: getVerticalPx(50),
             left: getCenterLeftPx(),
             bottom: getVerticalPx(65 + 100),
         },

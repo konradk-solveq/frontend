@@ -12,6 +12,11 @@ import {useAppSelector} from '../../../../hooks/redux';
 import ImgSvg from './imgSvg';
 import StatsSummary from './statsSummary';
 import {I18n} from '../../../../../I18n/I18n';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+} from '@src/helpers/layoutFoo';
 
 interface IProps {
     showModal?: boolean;
@@ -51,7 +56,10 @@ const ThankYouPageModal: React.FC<IProps> = ({
                             containerStyle={styles.iconContainer}
                             iconStyle={[
                                 styles.icon,
-                                {marginTop: 66 - statusBarHeight},
+                                {
+                                    marginTop:
+                                        getVerticalPx(66) - statusBarHeight,
+                                },
                             ]}
                         />
                         <View style={styles.headerWrapper}>
@@ -91,37 +99,37 @@ const styles = StyleSheet.create({
     },
     wrap: {
         flex: 1,
-        marginHorizontal: 40,
-        marginBottom: 65,
+        marginHorizontal: getHorizontalPx(40),
+        marginBottom: getVerticalPx(65),
         justifyContent: 'space-between',
     },
     headerWrapper: {
-        marginBottom: 20,
+        marginBottom: getVerticalPx(20),
     },
     header: {
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'center',
-        fontSize: 40,
-        paddingVertical: 5,
+        fontSize: getFontSize(40),
+        paddingVertical: getVerticalPx(5),
         color: '#2cba3f',
     },
     imgage: {
-        marginTop: 20,
+        marginTop: getVerticalPx(20),
     },
     buttonsWrapper: {
-        marginTop: 50,
+        marginTop: getVerticalPx(50),
     },
     onPressBtn: {
-        height: 50,
+        height: getVerticalPx(50),
     },
     bottomBtn: {
-        marginTop: 30,
+        marginTop: getVerticalPx(30),
     },
     iconContainer: {
         alignItems: 'flex-end',
     },
     icon: {
-        marginBottom: 30,
+        marginBottom: getVerticalPx(30),
     },
 });
 

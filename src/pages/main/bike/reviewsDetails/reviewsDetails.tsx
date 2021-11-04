@@ -66,7 +66,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(5),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 15,
+            fontSize: getFontSize(15),
             color: '#555555',
         },
         map: {
