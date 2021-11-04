@@ -6,15 +6,21 @@ import {useAppSelector, useAppDispatch} from '@hooks/redux';
 import {routeDebugModeSelector} from '@storage/selectors/app';
 import {setRouteDebugMode} from '@storage/actions/app';
 import {I18n} from '@translations/I18n';
+import {askFilePermissionsOnAndroid} from '@utils/writeFilePermission';
 
 import {BigRedBtn} from '@sharedComponents/buttons';
 
-const RouteDebugBtn = () => {
+const RouteDebugBtn: React.FC = () => {
     const trans: any = I18n.t('DebugRoute');
     const dispatch = useAppDispatch();
     const routeDebugMode = useAppSelector(routeDebugModeSelector);
 
-    const onPressHandler = () => {
+    const onPressHandler = async () => {
+        const res = await askFilePermissionsOnAndroid();
+        if (!res) {
+            return;
+        }
+
         dispatch(setRouteDebugMode(!routeDebugMode));
     };
 
