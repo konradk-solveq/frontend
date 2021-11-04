@@ -79,4 +79,8 @@ module.exports = [
         rootPathSuffix: './src/env',
         rootPathPrefix: '@env',
     },
+    {
+        rootPathSuffix: './src/debugging',
+        rootPathPrefix: '@debugging',
+    },
 ];
