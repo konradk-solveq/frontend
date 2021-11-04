@@ -20,6 +20,26 @@ const ActionButtons: React.FC<IProps> = ({
     disabled,
     loading,
 }: IProps) => {
+    const styles = StyleSheet.create({
+        bottons: {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            position: 'absolute',
+            left: getHorizontalPx(40),
+            bottom: getVerticalPx(65),
+            width: getHorizontalPx(334),
+            height: getHorizontalPx(50),
+            zIndex: 10,
+        },
+        btn: {
+            width: getHorizontalPx(157),
+        },
+        rightBtn: {
+            marginLeft: getHorizontalPx(20),
+        },
+    });
+    
     return (
         <View style={styles.bottons}>
             <View style={styles.btn}>
@@ -41,25 +61,5 @@ const ActionButtons: React.FC<IProps> = ({
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    bottons: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: getHorizontalPx(334),
-        left: getHorizontalPx(40),
-        position: 'absolute',
-        bottom: getVerticalPx(65),
-        height: 50,
-        zIndex: 10,
-    },
-    btn: {
-        width: getHorizontalPx(157),
-    },
-    rightBtn: {
-        marginLeft: 20,
-    },
-});
 
 export default React.memo(ActionButtons);

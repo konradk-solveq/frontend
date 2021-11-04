@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     },
     horizontalSpace: {},
     loaderContainer: {
-        height: 50,
+        height: getHorizontalPx(50),
         width: '100%',
         marginTop: -getVerticalPx(120),
         marginBottom: getVerticalPx(150),
