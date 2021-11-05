@@ -58,7 +58,7 @@ describe('debugRoute -- debugging', () => {
             );
         });
 
-        it.each([[<RouteActionT>'cancelled'], [<RouteActionT>'synch']])(
+        it.each([[<RouteActionT>'cancel'], [<RouteActionT>'synch']])(
             'Should clear debugger instance when %s',
             async (actionType: RouteActionT) => {
                 const debuggerInstance = createDebugRouteInstance('start');
@@ -81,7 +81,7 @@ describe('debugRoute -- debugging', () => {
         );
 
         afterEach(() => {
-            DebugRouteInstance.clearRouteDebugInstance('cancelled');
+            DebugRouteInstance.clearRouteDebugInstance('cancel');
         });
     });
 

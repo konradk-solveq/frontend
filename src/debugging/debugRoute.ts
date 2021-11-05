@@ -272,7 +272,7 @@ export class DebugRoute implements DebugRouteI {
                     dataSendToServer,
                 );
                 break;
-            case 'cancelled':
+            case 'cancel':
                 await this._removeFileOnCancelRoute();
                 break;
         }
@@ -324,7 +324,7 @@ export class DebugRouteInstance {
 
     static clearRouteDebugInstance = (actionType: RouteActionT) => {
         if (
-            (actionType === 'cancelled' || actionType === 'synch') &&
+            (actionType === 'cancel' || actionType === 'synch') &&
             this._routeDebugger
         ) {
             this._routeDebugger = undefined;

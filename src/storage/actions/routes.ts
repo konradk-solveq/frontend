@@ -282,7 +282,7 @@ export const stopCurrentRoute = (
             await dispatch(
                 appendRouteDebuggInfoToFIle(
                     currentRoute.id,
-                    'cancelled',
+                    'cancel',
                     currentRoute,
                     {
                         distance: undefined,

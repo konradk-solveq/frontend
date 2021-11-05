@@ -32,4 +32,4 @@ export type RouteActionT =
     | 'resume'
     | 'persist'
     | 'synch'
-    | 'cancelled';
+    | 'cancel';
