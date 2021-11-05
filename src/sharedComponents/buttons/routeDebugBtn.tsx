@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 import {ROUTE_DEBUG_MODE} from '@env';
 import {useAppSelector, useAppDispatch} from '@hooks/redux';
@@ -24,9 +24,11 @@ const RouteDebugBtn: React.FC<IProps> = ({onPress}: IProps) => {
             onPress();
         }
 
-        const res = await askFilePermissionsOnAndroid();
-        if (!res) {
-            return;
+        if (Platform.OS === 'android') {
+            const res = await askFilePermissionsOnAndroid();
+            if (!res) {
+                return;
+            }
         }
 
         dispatch(setRouteDebugMode(!routeDebugMode));
