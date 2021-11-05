@@ -129,7 +129,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     const bottons = {
         position: 'absolute',
         width: getWidthPx(),
-        height: 50,
+        height: mainButtonsHeight(50),
         left: getCenterLeftPx(),
         display: 'flex',
         flexDirection: 'row',
