@@ -407,15 +407,13 @@ export const appendRouteDebuggInfoToFIle = (
                 internetConnectionInfo: internetConnectionInfo,
             };
 
-            if (routeAdditionalInfo) {
-                await routeDebugger.writeRouteDataIntoDebugFile(
-                    actionType,
-                    rd,
-                    routeAdditionalInfo,
-                    routeLocationData,
-                    dataSendToServer,
-                );
-            }
+            await routeDebugger.writeRouteDataIntoDebugFile(
+                actionType,
+                rd,
+                routeAdditionalInfo || {},
+                routeLocationData,
+                dataSendToServer,
+            );
         }
 
         DebugRouteInstance.clearRouteDebugInstance(actionType);

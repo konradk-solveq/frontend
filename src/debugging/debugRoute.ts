@@ -96,6 +96,44 @@ export class DebugRoute implements DebugRouteI {
         );
     };
 
+    private _writePauseRouteData = async (
+        actionType: RouteActionT,
+        actionDateTime: string,
+        routeData: CurrentRouteI,
+    ) => {
+        const deviceInfo = {deviceGeneralInfo: this._deviceGeneralInfo};
+        await appendDataToFile(
+            this._fileName,
+            {
+                actionType,
+                actionDateTime,
+                ...deviceInfo,
+                routeData,
+            },
+            true,
+            '',
+        );
+    };
+
+    private _writeResumeRouteData = async (
+        actionType: RouteActionT,
+        actionDateTime: string,
+        routeData: CurrentRouteI,
+    ) => {
+        const deviceInfo = {deviceGeneralInfo: this._deviceGeneralInfo};
+        await appendDataToFile(
+            this._fileName,
+            {
+                actionType,
+                actionDateTime,
+                ...deviceInfo,
+                routeData,
+            },
+            true,
+            '',
+        );
+    };
+
     private _writeStopRouteData = async (
         actionType: RouteActionT,
         actionDateTime: string,
@@ -194,20 +232,18 @@ export class DebugRoute implements DebugRouteI {
                 );
                 break;
             case 'pause':
-                // await this._writeRerunRouteData(
-                //     actionType,
-                //     actionDateTime,
-                //     routeData,
-                //     routeAdditionalInfo,
-                // );
+                await this._writePauseRouteData(
+                    actionType,
+                    actionDateTime,
+                    routeData,
+                );
                 break;
             case 'resume':
-                // await this._writeRerunRouteData(
-                //     actionType,
-                //     actionDateTime,
-                //     routeData,
-                //     routeAdditionalInfo,
-                // );
+                await this._writeResumeRouteData(
+                    actionType,
+                    actionDateTime,
+                    routeData,
+                );
                 break;
             case 'stop':
                 await this._writeStopRouteData(
