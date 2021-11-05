@@ -34,8 +34,16 @@ export class DebugRoute implements DebugRouteI {
         this._routeID = name;
     }
 
+    get routeID() {
+        return this._routeID;
+    }
+
     set fileName(name: string) {
         this._fileName = name;
+    }
+
+    get fileName() {
+        return this._fileName;
     }
 
     set deviceGeneralInfo(info: GeneralDeviceT) {
@@ -53,13 +61,6 @@ export class DebugRoute implements DebugRouteI {
         routeAdditionalInfo: RouteAdditionalInfoT,
     ) => {
         const deviceInfo = {deviceGeneralInfo: this._deviceGeneralInfo};
-        console.log({
-            actionType,
-            actionDateTime,
-            ...deviceInfo,
-            routeData,
-            routeAdditionalInfo,
-        });
         await appendDataToFile(
             this._fileName,
             {
