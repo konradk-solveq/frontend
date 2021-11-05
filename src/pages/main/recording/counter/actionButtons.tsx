@@ -1,6 +1,10 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
+import {
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../../helpers/layoutFoo';
 import {BigRedBtn, BigWhiteBtn} from '../../../../sharedComponents/buttons';
 
 interface IProps {
@@ -29,7 +33,7 @@ const ActionButtons: React.FC<IProps> = ({
             left: getHorizontalPx(40),
             bottom: getVerticalPx(65),
             width: getHorizontalPx(334),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             zIndex: 10,
         },
         btn: {
@@ -39,7 +43,7 @@ const ActionButtons: React.FC<IProps> = ({
             marginLeft: getHorizontalPx(20),
         },
     });
-    
+
     return (
         <View style={styles.bottons}>
             <View style={styles.btn}>

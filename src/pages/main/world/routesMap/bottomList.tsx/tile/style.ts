@@ -3,6 +3,7 @@ import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
+    mainButtonsHeight,
 } from '../../../../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: getHorizontalPx(39),
-        height: getVerticalPx(35),
+        height: mainButtonsHeight(35),
         marginTop: getVerticalPx(10),
     },
     buttonText: {

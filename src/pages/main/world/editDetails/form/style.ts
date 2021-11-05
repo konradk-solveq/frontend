@@ -1,6 +1,11 @@
 import {StyleSheet} from 'react-native';
 
-import {getFontSize, getHorizontalPx, getVerticalPx, mainButtonsHeight} from '../../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {

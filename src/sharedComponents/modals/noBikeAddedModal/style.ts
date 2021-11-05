@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {getVerticalPx} from '../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
@@ -14,7 +19,7 @@ const styles = StyleSheet.create({
     },
     wrap: {
         flex: 1,
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
         marginBottom: getVerticalPx(65),
         justifyContent: 'space-between',
     },
@@ -24,14 +29,14 @@ const styles = StyleSheet.create({
     header: {
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'center',
-        fontSize: 40,
-        paddingVertical: 5,
+        fontSize: getFontSize(40),
+        paddingVertical: getVerticalPx(5),
         color: '#d8232a',
     },
     imgage: {
         marginTop: -getVerticalPx(20),
         height: getVerticalPx(416),
-        marginHorizontal: -40,
+        marginHorizontal: getHorizontalPx(-40),
     },
     contentWrapper: {
         // marginTop: getVerticalPx(20),
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
         marginTop: getVerticalPx(50),
     },
     onPressBtn: {
-        height: 50,
+        height: mainButtonsHeight(50),
     },
     bottomBtn: {
         marginTop: getVerticalPx(30),

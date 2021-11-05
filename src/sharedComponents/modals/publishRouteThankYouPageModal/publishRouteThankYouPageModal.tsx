@@ -15,7 +15,12 @@ import {BigRedBtn} from '../../buttons';
 import {useAppSelector} from '../../../hooks/redux';
 import ImgSvg from './imgSvg';
 import {I18n} from '../../../../I18n/I18n';
-import {getFontSize, getHorizontalPx, getVerticalPx, mainButtonsHeight} from '../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -121,7 +126,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         left: 0,
         width: getHorizontalPx(414),
-        height: getVerticalPx(65 + 20) + 50,
+        height: getVerticalPx(65 + 20) + mainButtonsHeight(50),
         backgroundColor: 'white',
     },
     onPressBtn: {

@@ -20,6 +20,7 @@ import {
     getWidthPxOf,
     getHorizontalPx,
     getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
@@ -71,7 +72,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
         bottons: {
             position: 'absolute',
             width: getWidthPx(),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             flexDirection: 'row',
             justifyContent: 'space-between',
