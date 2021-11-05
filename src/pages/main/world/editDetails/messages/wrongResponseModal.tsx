@@ -2,6 +2,7 @@ import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
+    mainButtonsHeight,
 } from '@src/helpers/layoutFoo';
 import React from 'react';
 import {
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
         marginTop: getVerticalPx(50),
     },
     onPressBtn: {
-        height: getVerticalPx(50),
+        height: mainButtonsHeight(50),
     },
     bottomBtn: {
         marginTop: getVerticalPx(30),
