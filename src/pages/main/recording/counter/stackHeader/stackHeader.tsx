@@ -93,7 +93,6 @@ const StackHeader: React.FC<Props> = ({
             top: 0,
             width: '100%',
             height: height + (isAndroid ? statusBarHeight : 0),
-            backgroundColor: 'khaki',
         },
         wrap: {
             position: 'absolute',
