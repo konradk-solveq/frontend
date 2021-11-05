@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Platform, SafeAreaView, StyleSheet} from 'react-native';
+import {Platform, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import Animated, {
     useSharedValue,
@@ -126,10 +126,10 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        top: 0,
+        top: StatusBar.currentHeight ? StatusBar.currentHeight : 0,
         left: 0,
         width: getHorizontalPx(414),
-        height: 100,
+        height: getHorizontalPx(100),
     },
 });
 
