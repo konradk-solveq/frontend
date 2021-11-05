@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useCallback} from 'react';
+import React, {useEffect, useRef, useCallback, useState} from 'react';
 import {StyleSheet, Text, View, Platform, Animated} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
@@ -11,7 +11,8 @@ import {
     getFontSize,
 } from '../../../../../helpers/layoutFoo';
 import HeaderBacgroudShape from './headerBacgroudShape';
-import useStatusBarHeight from '@src/hooks/statusBarHeight';
+// import useStatusBarHeight from '@src/hooks/statusBarHeight';
+import {getStatusBarHeight} from '../../../../../utils/detectIOSDevice';
 
 const isAndroid = Platform.OS === 'android';
 interface Props {
@@ -43,10 +44,13 @@ const StackHeader: React.FC<Props> = ({
     const iosOpen = isAndroid ? 0 : 10;
     const iosClose = isAndroid ? 0 : 30;
 
+    const [statusBarHeight, setStatusBarHeight] = useState<number>(0);
+
     const getCurrentHeight = useCallback(async () => {
         if (getHeight) {
-            const statusBarHeight = await getStatusBarHeight(isAndroid);
-            getHeight(height - statusBarHeight);
+            const barH = await getStatusBarHeight(isAndroid);
+            setStatusBarHeight(barH);
+            getHeight(height - barH);
         }
     }, [height, getHeight]);
 
@@ -88,7 +92,8 @@ const StackHeader: React.FC<Props> = ({
             left: 0,
             top: 0,
             width: '100%',
-            height: height,
+            height: height + (isAndroid ? statusBarHeight : 0),
+            backgroundColor: 'khaki',
         },
         wrap: {
             position: 'absolute',
