@@ -434,7 +434,7 @@ PODS:
     - React
   - RNBackgroundFetch (4.0.2):
     - React-Core
-  - RNBackgroundGeolocation (4.4.0):
+  - RNBackgroundGeolocation (4.4.2):
     - CocoaLumberjack (~> 3.7.2)
     - React-Core
   - RNCAsyncStorage (1.15.2):
@@ -450,13 +450,15 @@ PODS:
     - Firebase/Crashlytics (= 7.11.0)
     - React-Core
     - RNFBApp
+  - RNFS (2.18.0):
+    - React
   - RNGestureHandler (1.10.3):
     - React-Core
   - RNI18n (2.0.15):
     - React
   - RNPermissions (3.0.5):
     - React-Core
-  - RNReanimated (2.2.0):
+  - RNReanimated (2.2.4):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -572,6 +574,7 @@ DEPENDENCIES:
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
+  - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNI18n (from `../node_modules/react-native-i18n`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
@@ -713,6 +716,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBCrashlytics:
     :path: "../node_modules/@react-native-firebase/crashlytics"
+  RNFS:
+    :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNI18n:
@@ -800,16 +805,17 @@ SPEC CHECKSUMS:
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   ReactNativeGetLocation: 7ed719807f65206e20b6793896372b11ad835d6d
   RNBackgroundFetch: 1efac9adb6daac367819488f0c8b201d780a08bf
-  RNBackgroundGeolocation: 093d192dc85dc68126bd7377dfeb4aa6276f208a
+  RNBackgroundGeolocation: 162413dff738d01ca16294cd06703a5b9f504d2e
   RNCAsyncStorage: 502fbf425b9ee2d73ca6fa4b299dce0be411b422
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNDeviceInfo: 4f480456c7ac8c9919448375399c1a6f14479549
   RNFBApp: 9c90f9d576861947ba75fe0830567c570bcbcf6d
   RNFBCrashlytics: 8eafacfe3dc4aeb7733c3c3d65228f4e75861e72
+  RNFS: 3ab21fa6c56d65566d1fb26c2228e2b6132e5e32
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNPermissions: 3e5bb8afd93c787681bbacbf54d586a6272ecc92
-  RNReanimated: 9c13c86454bfd54dab7505c1a054470bfecd2563
+  RNReanimated: 024eff8202342abf4b24e11575a16afc441dabfe
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
   RNSentry: a3c522c9f17f191e4972c3e4d6065aba253b593e
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
@@ -818,6 +824,6 @@ SPEC CHECKSUMS:
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: a0ea490810d3ea09aa65725991c1e2dda36e8498
+PODFILE CHECKSUM: 500fb45f0d19287b90f684b369ea7d7784edfa7a
 
 COCOAPODS: 1.11.2

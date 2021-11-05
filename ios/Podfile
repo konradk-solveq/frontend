@@ -20,6 +20,8 @@ target 'myKROSS' do
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
 
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   config = use_native_modules!
 
   use_react_native!(
