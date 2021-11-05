@@ -21,6 +21,7 @@ import {
     getCenterLeftPx,
     getPosWithMinHeight,
     getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 import {validateData} from '../../../utils/validation/validation';
 import {userUserValidationRules} from '../../../models/user.model';
@@ -173,7 +174,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         },
         bottons,
         btn: {
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             width: getWidthPxOf(157),
         },
     });

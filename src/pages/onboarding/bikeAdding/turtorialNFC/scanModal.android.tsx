@@ -9,6 +9,7 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getFontSize,
+    mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 import backGround from '../../../../sharedComponents/modals/backGround';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
@@ -73,7 +74,7 @@ const ScanModal: React.FC<IProps> = ({
             marginTop: getVerticalPx(35),
         },
         cancelBtn: {
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             marginTop: getVerticalPx(35),
         },
     });

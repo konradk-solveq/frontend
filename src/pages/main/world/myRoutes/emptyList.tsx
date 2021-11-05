@@ -11,6 +11,7 @@ import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
+    mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 import {
     onRecordTripActionHandler,
@@ -114,12 +115,12 @@ const styles = StyleSheet.create({
         marginTop: getVerticalPx(20),
     },
     btnRecord: {
-        height: getHorizontalPx(50),
+        height: mainButtonsHeight(50),
         width: '100%',
         marginTop: getVerticalPx(40),
     },
     btnCheck: {
-        height: getHorizontalPx(50),
+        height: mainButtonsHeight(50),
         width: '100%',
         marginTop: getVerticalPx(30),
         marginBottom: getVerticalPx(145),

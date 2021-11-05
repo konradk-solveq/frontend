@@ -10,6 +10,7 @@ import {
     getWidthPx,
     getCenterLeftPx,
     getFontSize,
+    mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -119,7 +120,7 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
         },
         btn: {
             marginTop: getVerticalPx(92),
-            height: getHeightPx(),
+            height: mainButtonsHeight(50),
             marginBottom: headHeight,
         },
         spaceOnEnd: {

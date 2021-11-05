@@ -16,6 +16,7 @@ import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
+    mainButtonsHeight,
 } from '@src/helpers/layoutFoo';
 
 interface IProps {
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
         marginTop: getVerticalPx(50),
     },
     onPressBtn: {
-        height: getVerticalPx(50),
+        height: mainButtonsHeight(50),
     },
     bottomBtn: {
         marginTop: getVerticalPx(30),

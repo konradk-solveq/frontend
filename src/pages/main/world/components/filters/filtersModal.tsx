@@ -9,7 +9,12 @@ import {
 } from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
-import {getFontSize, getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../../../hooks/redux';
 import {PickedFilters} from '../../../../../interfaces/form';
 
@@ -166,7 +171,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: '46%',
-        height: getHorizontalPx(50),
+        height: mainButtonsHeight(50),
     },
 });
 

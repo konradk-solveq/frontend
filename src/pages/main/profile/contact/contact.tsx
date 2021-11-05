@@ -9,7 +9,7 @@ import {
     Platform,
 } from 'react-native';
 import I18n from 'react-native-i18n';
-import { useAppSelector } from '../../../../hooks/redux';
+import {useAppSelector} from '../../../../hooks/redux';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
@@ -21,6 +21,7 @@ import {
     getWidthPx,
     getFontSize,
     getHorizontalPx,
+    mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -87,7 +88,7 @@ const Contact: React.FC<Props> = (props: Props) => {
         btn: {
             position: 'absolute',
             bottom: getVerticalPx(65),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             width: '100%',
         },
     });
@@ -129,7 +130,7 @@ const Contact: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.goBack()}
                 inner={trans.header}
-            // getHeight={setheadHeight}
+                // getHeight={setheadHeight}
             />
         </SafeAreaView>
     );

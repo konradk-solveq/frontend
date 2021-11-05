@@ -1,6 +1,11 @@
 import {StyleSheet} from 'react-native';
 
-import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '@helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     safeAreaView: {
@@ -34,11 +39,11 @@ const styles = StyleSheet.create({
         marginBottom: getVerticalPx(35),
     },
     reportButton: {
-        height: getHorizontalPx(50),
+        height: mainButtonsHeight(50),
     },
     removeRouteButton: {
         marginTop: getVerticalPx(30),
-        height: getHorizontalPx(50),
+        height: mainButtonsHeight(50),
     },
     textButtonContainer: {
         width: '100%',
