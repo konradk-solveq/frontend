@@ -1,5 +1,12 @@
 import React, {useEffect, useRef, useCallback, useState} from 'react';
-import {StyleSheet, Text, View, Platform, Animated} from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Platform,
+    Animated,
+    StatusBar,
+} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -46,17 +53,30 @@ const StackHeader: React.FC<Props> = ({
 
     const [statusBarHeight, setStatusBarHeight] = useState<number>(0);
 
-    const getCurrentHeight = useCallback(async () => {
-        if (getHeight) {
-            const barH = await getStatusBarHeight(isAndroid);
-            setStatusBarHeight(barH);
-            getHeight(height - barH);
-        }
-    }, [height, getHeight]);
+    // const getCurrentHeight = useCallback(async () => {
+    //     if (getHeight) {
+    //         const barH = await getStatusBarHeight(isAndroid);
+    //         setStatusBarHeight(barH);
+    //         getHeight(height - barH);
+    //     }
+    // }, [height, getHeight]);
 
+    // useEffect(() => {
+    //     getCurrentHeight();
+    // }, [getCurrentHeight]);
     useEffect(() => {
-        getCurrentHeight();
-    }, [getCurrentHeight]);
+        if (getHeight) {
+            getHeight(
+                height -
+                    (StatusBar.currentHeight ? StatusBar.currentHeight : 0),
+            );
+        }
+        console.log(
+            '%c StatusBar.currentHeight:',
+            'background: #ffcc00; color: #003300',
+            StatusBar.currentHeight,
+        );
+    }, []);
 
     const display = useRef(new Animated.Value(0)).current;
 
@@ -92,7 +112,14 @@ const StackHeader: React.FC<Props> = ({
             left: 0,
             top: 0,
             width: '100%',
-            height: height + (isAndroid ? statusBarHeight : 0),
+            height:
+                height +
+                (isAndroid
+                    ? StatusBar.currentHeight
+                        ? StatusBar.currentHeight
+                        : 0
+                    : 0),
+                    backgroundColor: 'khaki',
         },
         wrap: {
             position: 'absolute',
