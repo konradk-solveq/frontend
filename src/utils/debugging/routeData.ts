@@ -8,7 +8,9 @@ import {
     DocumentDirectoryPath,
 } from 'react-native-fs';
 
-import {GeneralDeviceT} from '@type/debugRoute';
+import {GeneralDeviceT, RouteActionT} from '@type/debugRoute';
+import {appendRouteDebuggInfoToFIle} from '@src/storage/actions/app';
+import {AppDispatch} from '@src/storage/storage';
 
 const platformName = Platform.OS === 'ios' ? 'IOS' : 'Android';
 
@@ -97,4 +99,21 @@ export const createRootDir = async () => {
 
 export const getISODateString = () => {
     return new Date().toISOString();
+};
+
+/**
+ * Fire route debug action to store data in json file
+ *
+ * @param dispatch
+ * @param actionType
+ * @param currentRouteId
+ */
+export const dispatchRouteDebugAction = (
+    dispatch: AppDispatch,
+    actionType: RouteActionT,
+    currentRouteId?: string,
+) => {
+    if (currentRouteId) {
+        dispatch(appendRouteDebuggInfoToFIle(currentRouteId, actionType));
+    }
 };

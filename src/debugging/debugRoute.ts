@@ -74,6 +74,7 @@ export class DebugRoute implements DebugRouteI {
             '[',
         );
     };
+
     private _writeRerunRouteData = async (
         actionType: RouteActionT,
         actionDateTime: string,

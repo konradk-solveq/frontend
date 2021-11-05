@@ -374,8 +374,8 @@ export const fetchAppRegulations = (
 export const appendRouteDebuggInfoToFIle = (
     routeId: string,
     actionType: RouteActionT,
-    routeData: CurrentRouteI,
-    routeAdditionalInfo: RouteAdditionalInfoT,
+    routeData?: CurrentRouteI,
+    routeAdditionalInfo?: RouteAdditionalInfoT,
     routeLocationData?: LocationDataI[],
     dataSendToServer?: ApiPathI[],
 ): AppThunk<Promise<void>> => async (_, getState) => {
@@ -385,15 +385,20 @@ export const appendRouteDebuggInfoToFIle = (
             internetConnectionInfo,
             routeDebugMode,
         }: AppState = getState().app;
+        const {currentRoute}: RoutesState = getState().routes;
 
         if (!routeDebugMode) {
             return;
         }
 
+        /**
+         * Pause and resume does not pass info about current route
+         */
+        const rd = routeData || currentRoute;
         const routeDebugger = DebugRouteInstance.debugRouteInstance(
             actionType,
             routeId,
-            routeData.startedAt,
+            rd.startedAt,
         );
 
         if (routeDebugger) {
@@ -405,7 +410,7 @@ export const appendRouteDebuggInfoToFIle = (
             if (routeAdditionalInfo) {
                 await routeDebugger.writeRouteDataIntoDebugFile(
                     actionType,
-                    routeData,
+                    rd,
                     routeAdditionalInfo,
                     routeLocationData,
                     dataSendToServer,
