@@ -34,14 +34,16 @@ describe('<RouteDebugBtn />', () => {
         it('Should fire onPressEvent', async () => {
             const onPressFun = jest.fn();
 
-            const {getByTestId} = await asyncEvent(
+            const component = await asyncEvent(
                 renderComponent(<RouteDebugBtn onPress={onPressFun} />),
             );
 
-            const likeBtn = getByTestId('route-debug-btn');
-            await asyncEvent(fireEvent.press(likeBtn));
+            const routeDebugBtn = component.getByTestId('route-debug-btn');
+            await asyncEvent(fireEvent.press(routeDebugBtn));
 
             expect(onPressFun).toBeCalled();
+
+            expect(component).toMatchSnapshot();
         });
 
         afterEach(() => {
