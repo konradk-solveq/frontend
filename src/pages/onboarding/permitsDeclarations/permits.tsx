@@ -16,6 +16,7 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -94,7 +95,7 @@ const Permits: React.FC<Props> = (props: Props) => {
         },
         btn: {
             width: getWidthPx(),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             top: getVerticalPx(11),
             marginBottom: headHeight + getVerticalPx(69),
         },

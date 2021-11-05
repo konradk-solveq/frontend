@@ -4,6 +4,7 @@ import {
     getVerticalPx,
     getHorizontalPx,
     getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: '100%',
-        height: getHorizontalPx(50),
+        height: mainButtonsHeight(50),
         marginTop: getVerticalPx(72),
         marginBottom: getVerticalPx(110),
     },

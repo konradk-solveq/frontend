@@ -1,5 +1,10 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '@helpers/layoutFoo';
 
 const {width} = Dimensions.get('window');
 
@@ -8,7 +13,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: '#ffffff',
-        paddingBottom: getVerticalPx(50 + 30 + 65),
+        paddingBottom: getVerticalPx(30 + 65) + mainButtonsHeight(50),
     },
     title: {
         width: getHorizontalPx(334),
@@ -16,7 +21,7 @@ const styles = StyleSheet.create({
         fontFamily: 'DIN2014Narrow-Regular',
         textAlign: 'center',
         fontSize: getFontSize(40),
-        paddingVertical: 5,
+        paddingVertical: getVerticalPx(5),
         color: '#d8232a',
     },
     imgage: {
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
         bottom: getVerticalPx(width > 365 ? 65 : 55),
     },
     btn: {
-        height: 50,
+        height: mainButtonsHeight(50),
         marginTop: getVerticalPx(30),
     },
     bolded: {

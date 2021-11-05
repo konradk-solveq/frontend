@@ -12,6 +12,8 @@ import {
     getWidthPx,
     getStandard,
     getFontSize,
+    mainButtonsHeight,
+    getHeightPx,
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -56,7 +58,13 @@ const WrongScan: React.FC<Props> = (props: Props) => {
             bottom: getVerticalPx(381),
         },
         text: getStandard(334, 174, 535),
-        btnAgain: getStandard(334, 50, 781),
+        btnAgain: {
+            position: 'absolute',
+            width: getWidthPx(334),
+            height: getHeightPx(50),
+            left: mainButtonsHeight(40),
+            top: getVerticalPx(781),
+        },
     });
 
     return (
