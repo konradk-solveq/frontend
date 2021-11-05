@@ -454,6 +454,24 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
             dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
             dispatch(setLoadingState(false));
+
+            /* Route debug - start */
+            await dispatch(
+                appendRouteDebuggInfoToFIle(
+                    currentRoute.id,
+                    'synch',
+                    currentRoute,
+                    {
+                        distance:
+                            currRoutesDat?.[currRoutesDat?.length - 1]
+                                ?.odometer,
+                        routesDataLength: currRoutesDat?.length,
+                        synchErrorMessage: 'Device was offline',
+                    },
+                    currRoutesDat,
+                ),
+            );
+            /* Route debug - end */
             return;
         }
 
