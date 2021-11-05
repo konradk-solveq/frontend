@@ -19,6 +19,7 @@ import {
     getWidthPxOf,
     getHeightPx,
     getHorizontalPx,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 import {BothStackRoute, CyclingProfileRoute} from '../../../navigation/route';
 
@@ -244,7 +245,7 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
         bottons: {
             position: 'absolute',
             width: getWidthPx(),
-            height: getHeightPx(),
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             display: 'flex',
             flexDirection: 'row',

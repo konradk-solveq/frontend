@@ -21,6 +21,7 @@ import {
     getCenterLeftPx,
     getPosWithMinHeight,
     getFontSize,
+    mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 import {validateData} from '../../../../utils/validation/validation';
 import {userUserValidationRules} from '../../../../models/user.model';
@@ -128,7 +129,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
         btn: {
             position: 'absolute',
             width: getWidthPx(),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             bottom: getVerticalPx((isIOS ? 20 : 65) + 100), // 100 - przesunięcie dla scroll o headera
         },

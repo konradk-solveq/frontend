@@ -8,7 +8,12 @@ import {
     StyleSheet,
 } from 'react-native';
 import {I18n} from '../../../../I18n/I18n';
-import {getFontSize, getHorizontalPx, getVerticalPx, mainButtonsHeight} from '../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../helpers/layoutFoo';
 import useStatusBarHeight from '../../../hooks/statusBarHeight';
 import {BigRedBtn} from '../../../sharedComponents/buttons';
 import ImgSvg from './imgSvg';

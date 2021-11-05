@@ -33,6 +33,7 @@ import {
     getPosWithMinHeight,
     getHorizontalPx,
     getFontSize,
+    mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 import Loader from '../loader/loader';
 import {BothStackRoute} from '../../../../navigation/route';
@@ -160,7 +161,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         botton: {
             position: 'absolute',
             width: getWidthPx(),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             bottom: getVerticalPx(65 + 100),
         },

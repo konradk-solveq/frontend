@@ -26,7 +26,12 @@ import {
     loadingBikesSelector,
     userNameSelector,
 } from '../../../../storage/selectors';
-import {getFontSize, getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../../helpers/layoutFoo';
 import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
 import {setBikesListByFrameNumber} from '../../../../storage/actions';
 import Loader from '../loader/loader';
@@ -205,14 +210,13 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         btnNfc: {
             width: getHorizontalPx(334),
             left: getHorizontalPx(40),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             marginTop: getVerticalPx(52),
         },
         btnHand: {
             width: getHorizontalPx(334),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             left: getHorizontalPx(40),
-            // marginTop: getVerticalPx(30),
             marginTop: getVerticalPx(30),
             marginBottom: getVerticalPx(65) + headHeight,
         },

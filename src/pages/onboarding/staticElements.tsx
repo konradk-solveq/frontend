@@ -9,6 +9,7 @@ import {
     getVerticalPx,
     getHeightPx,
     getWidthPx,
+    mainButtonsHeight,
 } from '../../helpers/layoutFoo';
 
 import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn';
@@ -44,7 +45,7 @@ const StaticElements: React.FC<Props> = (props: Props) => {
         redBtn: {
             position: 'absolute',
             width: getWidthPx(),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             bottom: getVerticalPx(65),
         },

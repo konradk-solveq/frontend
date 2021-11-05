@@ -30,6 +30,7 @@ import {
     getWidthPx,
     getFontSize,
     getHorizontalPx,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 import deepCopy from '../../../helpers/deepCopy';
 import {frameNumberSelector} from '../../../storage/selectors';
@@ -225,7 +226,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         },
         button: {
             width: getWidthPx(),
-            height: getHorizontalPx(50),
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             marginTop: getVerticalPx(10),
             marginBottom: getVerticalPx(65),

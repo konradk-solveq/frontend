@@ -14,6 +14,7 @@ import {
     getPosWithMinHeight,
     getHorizontalPx,
     getFontSize,
+    mainButtonsHeight,
 } from '../../helpers/layoutFoo';
 
 interface Props {
@@ -104,7 +105,7 @@ const InputPage: React.FC<Props> = (props: Props) => {
         botton: {
             position: 'absolute',
             width: getWidthPx(),
-            height: getVerticalPx(50),
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             bottom: getVerticalPx(65 + 100),
         },
