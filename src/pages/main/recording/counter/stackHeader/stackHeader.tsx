@@ -18,7 +18,7 @@ import {
     getFontSize,
 } from '../../../../../helpers/layoutFoo';
 import HeaderBacgroudShape from './headerBacgroudShape';
-// import useStatusBarHeight from '@src/hooks/statusBarHeight';
+import useStatusBarHeight from '@hooks/statusBarHeight';
 import {getStatusBarHeight} from '../../../../../utils/detectIOSDevice';
 
 const isAndroid = Platform.OS === 'android';
@@ -28,7 +28,7 @@ interface Props {
     onpress: Function; // po naciśnięciu strzałki
     inner: string; // nazwa headera
     titleOn: boolean; // czy nazwa w headerze ma się pokazać
-    getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
+    getHeight: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
     whiteArow: boolean;
     started?: boolean;
     mapHiden: boolean;
@@ -50,12 +50,11 @@ const StackHeader: React.FC<Props> = ({
     const height = getVerticalPx(100);
     const iosOpen = isAndroid ? 0 : 10;
     const iosClose = isAndroid ? 0 : 30;
+    const statusBarHeight = useStatusBarHeight();
+
     useEffect(() => {
         if (getHeight) {
-            getHeight(
-                height -
-                    (StatusBar.currentHeight ? StatusBar.currentHeight : 0),
-            );
+            getHeight(height);
         }
     }, []);
 
@@ -93,13 +92,7 @@ const StackHeader: React.FC<Props> = ({
             left: 0,
             top: 0,
             width: '100%',
-            height:
-                height +
-                (isAndroid
-                    ? StatusBar.currentHeight
-                        ? StatusBar.currentHeight
-                        : 0
-                    : 0),
+            height: height + statusBarHeight,
         },
         wrap: {
             position: 'absolute',
