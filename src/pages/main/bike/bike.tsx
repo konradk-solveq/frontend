@@ -190,7 +190,6 @@ const Bike: React.FC<Props> = (props: Props) => {
                         onpress={() => {}}
                         inner={trans.header}
                         style={styles.header}
-                        titleStyle={styles.title}
                     />
 
                     {bike?.description && (
