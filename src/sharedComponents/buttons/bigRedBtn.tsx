@@ -1,7 +1,4 @@
-import {
-    getFontSize,
-    mainButtonsHeight,
-} from '@src/helpers/layoutFoo';
+import {getFontSize, mainButtonsHeight} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {
     StyleSheet,
