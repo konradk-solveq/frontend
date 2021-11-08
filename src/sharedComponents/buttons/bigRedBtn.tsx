@@ -1,6 +1,5 @@
 import {
     getFontSize,
-    getHorizontalPx,
     mainButtonsHeight,
 } from '@src/helpers/layoutFoo';
 import React from 'react';

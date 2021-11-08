@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     loaderContainer: {
         height: getHorizontalPx(50),
         width: '100%',
-        // marginTop: -getVerticalPx(60),
         marginBottom: getVerticalPx(50),
     },
     backdrop: {
