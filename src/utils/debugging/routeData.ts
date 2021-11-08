@@ -1,4 +1,4 @@
-import {Platform} from 'react-native';
+import {Alert, Platform} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import {
     mkdir,
@@ -9,8 +9,9 @@ import {
 } from 'react-native-fs';
 
 import {GeneralDeviceT, RouteActionT} from '@type/debugRoute';
-import {appendRouteDebuggInfoToFIle} from '@src/storage/actions/app';
-import {AppDispatch} from '@src/storage/storage';
+import {appendRouteDebuggInfoToFIle} from '@storage/actions/app';
+import {AppDispatch} from '@storage/storage';
+import {I18n} from '@translations/I18n';
 
 const platformName = Platform.OS === 'ios' ? 'IOS' : 'Android';
 
@@ -37,7 +38,8 @@ export const generalDeviceInfo = (): GeneralDeviceT => {
 const DOCUMENT_DIR_PATH =
     Platform.OS === 'android' ? DownloadDirectoryPath : DocumentDirectoryPath;
 
-const FILES_DIR = 'myKROSS_debug';
+const appName = DeviceInfo.getApplicationName();
+const FILES_DIR = appName ? `${appName}_debug` : 'myKROSS_debug';
 
 const FILES_PATH = `${DOCUMENT_DIR_PATH}/${FILES_DIR}`;
 
@@ -94,7 +96,19 @@ export const removeFile = async (fileName: string) => {
 };
 
 export const createRootDir = async () => {
-    await mkdir(FILES_PATH);
+    try {
+        await mkdir(FILES_PATH);
+    } catch (error) {
+        console.error('[=== ROUTE DATA UTILS - createRootDir ===]', error);
+    }
+};
+
+export const removeDebugDir = async () => {
+    try {
+        await unlink(FILES_PATH);
+    } catch (error) {
+        console.error('[=== ROUTE DATA UTILS - removeDebugDir ===]', error);
+    }
 };
 
 export const getISODateString = () => {
@@ -116,4 +130,24 @@ export const dispatchRouteDebugAction = (
     if (currentRouteId) {
         dispatch(appendRouteDebuggInfoToFIle(currentRouteId, actionType));
     }
+};
+
+export const showRemoveFileAlert = async (
+    rightActionCallback?: () => Promise<void>,
+) => {
+    const trans: any = I18n.t('DebugRoute.removeDirAlert');
+
+    Alert.alert(trans.title, trans.message, [
+        {
+            text: trans.leftButton,
+            onPress: () => {},
+        },
+        {
+            text: trans.rightButton,
+            onPress: async () =>
+                rightActionCallback
+                    ? await rightActionCallback()
+                    : await removeDebugDir(),
+        },
+    ]);
 };
