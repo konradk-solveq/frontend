@@ -30,6 +30,7 @@ export type RootStackType = {
         sectionName: string;
         featuredMapData?: MapType[];
     };
+    ShortRouteScreen: {};
 };
 
 export type WorldRouteType = RouteProp<RootStackType, 'World'>;
@@ -60,4 +61,9 @@ export type FeaturedMapsScreenRouteType = RouteProp<
 export type FeaturedMapsScreenNavigationPropI = StackNavigationProp<
     RootStackType,
     'FeaturedMapsScreen'
+>;
+
+export type ShortRouteScreenNavigationPropI = StackNavigationProp<
+    RootStackType,
+    'ShortRouteScreen'
 >;

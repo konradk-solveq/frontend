@@ -213,6 +213,19 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const navigateToTHPPage = useCallback(
         (pTime?: number) => {
+            /**
+             * If distance isn't greater than 100m back to home screen.
+             */
+            if (
+                trackerData?.odometer === undefined ||
+                trackerData?.odometer <= 100
+            ) {
+                navigation.navigate({
+                    name: RegularStackRoute.SHORT_ROUTE_SCREEN,
+                });
+                return;
+            }
+
             navigation.navigate({
                 name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
                 params: {
@@ -225,7 +238,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 },
             });
         },
-        [navigation, pauseTime, trackerStartTime, trackerData?.distance],
+        [
+            navigation,
+            pauseTime,
+            trackerStartTime,
+            trackerData?.distance,
+            trackerData?.odometer,
+        ],
     );
 
     // zmiana stanu strony na prawym przycisku

@@ -31,6 +31,7 @@ import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPol
 import Help from '../../pages//main/profile/help/help';
 import Contact from '../../pages//main/profile/contact/contact';
 import RoutesMap from '../../pages/main/world/routesMap/routesMap';
+import ShortRouteScreen from '@pages/main/recording/shortRouteScreen/ShortRouteScreen';
 
 import {RegularStackRoute, BothStackRoute} from '../route';
 import {verticalAnim} from '@src/helpers/positioningVerical';
@@ -42,9 +43,9 @@ const RegularStackNavigator: React.FC = () => {
         <Stack.Navigator
             headerMode="none"
             initialRouteName={
-                 !isActive
-                     ? RegularStackRoute.SPLASH_SCREEN
-                     : BothStackRoute.MAIN_MENU_SCREEN
+                !isActive
+                    ? RegularStackRoute.SPLASH_SCREEN
+                    : BothStackRoute.MAIN_MENU_SCREEN
             }
             mode="modal"
             screenOptions={horizontalAnim}>
@@ -107,6 +108,13 @@ const RegularStackNavigator: React.FC = () => {
                 name={RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN}
                 component={CounterThankYouPage}
                 options={{gestureEnabled: false}}
+            />
+            <Stack.Screen
+                name={RegularStackRoute.SHORT_ROUTE_SCREEN}
+                component={ShortRouteScreen}
+                options={{
+                    ...verticalAnim,
+                }}
             />
             {/* End add bike */}
 
