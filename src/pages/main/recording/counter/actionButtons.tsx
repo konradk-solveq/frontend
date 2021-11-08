@@ -43,7 +43,6 @@ const ActionButtons: React.FC<IProps> = ({
             marginLeft: getHorizontalPx(20),
         },
     });
-
     return (
         <View style={styles.bottons}>
             <View style={styles.btn}>
