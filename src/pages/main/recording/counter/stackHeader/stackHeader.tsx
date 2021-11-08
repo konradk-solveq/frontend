@@ -119,7 +119,6 @@ const StackHeader: React.FC<Props> = ({
                         ? StatusBar.currentHeight
                         : 0
                     : 0),
-                    backgroundColor: 'khaki',
         },
         wrap: {
             position: 'absolute',
