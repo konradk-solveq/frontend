@@ -70,3 +70,6 @@ export const mapReactionsConfigSelector = (
 export const globalLocationSelector = (
     state: RootState,
 ): BasicCoordsType | undefined => state.app.location;
+
+export const routeDebugModeSelector = (state: RootState): boolean =>
+    state.app.routeDebugMode;

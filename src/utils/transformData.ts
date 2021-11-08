@@ -13,7 +13,7 @@ import {Images, Map, MapType, OptionsEnumsT} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
-import {getLocations, transformGeoloCationData} from './geolocation';
+import {getLocations, LOCATION_ACCURACY, transformGeoloCationData} from './geolocation';
 import {
     isLocationValidate,
     removeLessAccuratePointsLocations,
@@ -45,7 +45,7 @@ export const isLocationValidToPass = (loc: any, routeId?: string) => {
     if (routeId !== loc?.extras?.route_id) {
         return false;
     }
-    if (loc?.coords?.accuracy && loc?.coords?.accuracy > 60) {
+    if (loc?.coords?.accuracy && loc?.coords?.accuracy > LOCATION_ACCURACY) {
         return false;
     }
     /**

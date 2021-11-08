@@ -18,6 +18,7 @@ import ServiceMapBtn from './serviceMap';
 import FindMeButton from './findMeBtn';
 import TypicalRedBtn from './typicalRed';
 import TextBtn from './textBtn';
+import RouteDebugBtn from './routeDebugBtn';
 
 export {
     BigRedBtn,
@@ -40,4 +41,5 @@ export {
     FindMeButton,
     TypicalRedBtn,
     TextBtn,
+    RouteDebugBtn,
 };

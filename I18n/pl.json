@@ -158,7 +158,7 @@
         "text_2": "nowa wersja aplikacji myKROSS",
         "text_3": " - nie zwlekaj pobierz najnowszą wersję.",
         "btnLeft": "POMIŃ",
-        "btnRight": "AKTALIZUJ",
+        "btnRight": "AKTALIZUJ"
     },
     "BikeData": {
         "header": "Identyfikacja roweru",
@@ -756,6 +756,10 @@
         "body": "Przepraszamy...",
         "resetButton": "Spróbuj ponownie",
         "restartButton": "Uruchom ponownie aplikację"
+    },
+    "DebugRoute": {
+        "enableDebugging": "Włącz debugowanie trasy",
+        "disableDebugging": "Wyłącz debugowanie trasy"
     },
     "aaaaaaa-aaaaaa": "_____"
 }

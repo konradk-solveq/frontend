@@ -32,6 +32,8 @@ import {getCurrentRoutePathByIdWithLastRecord} from '@utils/routePath';
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
 import {isLocationValidToPass} from '@src/utils/transformData';
+import {appendRouteDebuggInfoToFIle} from '@src/storage/actions/app';
+import {dispatchRouteDebugAction} from '@src/utils/debugging/routeData';
 
 export interface DataI {
     distance: string;
@@ -164,13 +166,23 @@ const useLocalizationTracker = (
             }
             return undefined;
         });
+
+        /* Debug route - start */
+        dispatchRouteDebugAction(dispatch, 'pause', currentRouteId);
+        /* Debug route - end */
+
         setIsActive(false);
-    }, []);
+    }, [dispatch, currentRouteId]);
 
     const onStartTracker = useCallback(async () => {
         await resumeTracingLocation(currentRouteId);
+
+        /* Debug route - start */
+        dispatchRouteDebugAction(dispatch, 'resume', currentRouteId);
+        /* Debug route - end */
+
         setIsActive(true);
-    }, [currentRouteId]);
+    }, [dispatch, currentRouteId]);
 
     useEffect(() => {
         mountedRef.current = true;

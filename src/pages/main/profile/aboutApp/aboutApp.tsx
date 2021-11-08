@@ -17,6 +17,7 @@ import {
 } from '../../../../helpers/layoutFoo';
 import {version} from '../../../../../package.json';
 import {API_URL} from '@env';
+import {RouteDebugBtn} from '@sharedComponents/buttons';
 
 interface Props {
     navigation: any;
@@ -145,6 +146,8 @@ const AboutApp: React.FC<Props> = (props: Props) => {
                             style={
                                 styles.version
                             }>{`v. ${getAppVersion()}`}</Text>
+
+                        <RouteDebugBtn />
                     </View>
                 </ScrollView>
             </View>

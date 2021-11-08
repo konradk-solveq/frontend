@@ -8,6 +8,7 @@ import {LocationDataI} from '../../interfaces/geolocation';
 import {AppState} from '../reducers/app';
 import {MapsState} from '../reducers/maps';
 import {removeCeratedRouteIDService} from '../../services/routesService';
+import {appendRouteDebuggInfoToFIle} from '@storage/actions/app';
 
 import logger from '../../utils/crashlytics';
 import {createNewRouteService, syncRouteData} from '../../services';
@@ -176,7 +177,24 @@ export const startRecordingRoute = (
                     ),
                 );
 
+                /* Route debug - start */
+                await dispatch(
+                    appendRouteDebuggInfoToFIle(
+                        routeID,
+                        keepCurrentRecording ? 'rerun' : 'start',
+                        keepCurrentRecording
+                            ? currentRoute
+                            : currentRouteToStore,
+                        {
+                            distance: undefined,
+                            routesDataLength: undefined,
+                        },
+                    ),
+                );
+                /* Route debug - end */
+
                 dispatch(setLoadingState(false));
+
                 return {success: startedState, finished: true};
             }
 
@@ -189,6 +207,21 @@ export const startRecordingRoute = (
                 keepCurrentRecording ? undefined : currentRouteToStore,
             ),
         );
+
+        /* Route debug - start */
+        await dispatch(
+            appendRouteDebuggInfoToFIle(
+                routeID,
+                keepCurrentRecording ? 'rerun' : 'start',
+                keepCurrentRecording ? currentRoute : currentRouteToStore,
+                {
+                    distance: undefined,
+                    routesDataLength: undefined,
+                },
+            ),
+        );
+        /* Route debug - end */
+
         dispatch(setLoadingState(false));
 
         return {success: startedState, finished: true};
@@ -244,7 +277,23 @@ export const stopCurrentRoute = (
             const stoppedState = await stopRecording();
 
             dispatch(setRouteMapVisibility(false));
+
+            /* Route debug - start */
+            await dispatch(
+                appendRouteDebuggInfoToFIle(
+                    currentRoute.id,
+                    'cancel',
+                    currentRoute,
+                    {
+                        distance: undefined,
+                        routesDataLength: undefined,
+                    },
+                ),
+            );
+            /* Route debug - end */
+
             dispatch(setLoadingState(false));
+
             return {success: stoppedState, finished: true};
         }
 
@@ -258,6 +307,21 @@ export const stopCurrentRoute = (
         dispatch(setRouteMapVisibility(false));
 
         const stoppedState = await stopRecording();
+
+        /* Route debug - start */
+        await dispatch(
+            appendRouteDebuggInfoToFIle(
+                currentRouteToEnd.id,
+                'stop',
+                currentRouteToEnd,
+                {
+                    distance: undefined,
+                    routesDataLength: undefined,
+                },
+            ),
+        );
+        /* Route debug - end */
+
         /**
          * Added route will be synch with backend in the future.
          */
@@ -335,6 +399,24 @@ export const addRoutesToSynchQueue = (
         dispatch(clearAverageSpeed());
 
         dispatch(setError(I18n.t('dataAction.dataSyncError'), 500));
+
+        /* Route debug - start */
+        await dispatch(
+            appendRouteDebuggInfoToFIle(
+                currentRoute.id,
+                'persist',
+                currentRoute,
+                {
+                    distance:
+                        routeDataToSynch?.[routeDataToSynch?.length - 1]
+                            ?.odometer || 0,
+                    routesDataLength: routeDataToSynch?.length || 0,
+                },
+                routeDataToSynch,
+            ),
+        );
+        /* Route debug - end */
+
         setLoadState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[addRoutesToSynchQueue] - ${error}`);
@@ -372,6 +454,24 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
             dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
             dispatch(setLoadingState(false));
+
+            /* Route debug - start */
+            await dispatch(
+                appendRouteDebuggInfoToFIle(
+                    currentRoute.id,
+                    'synch',
+                    currentRoute,
+                    {
+                        distance:
+                            currRoutesDat?.[currRoutesDat?.length - 1]
+                                ?.odometer,
+                        routesDataLength: currRoutesDat?.length,
+                        synchErrorMessage: 'Device was offline',
+                    },
+                    currRoutesDat,
+                ),
+            );
+            /* Route debug - end */
             return;
         }
 
@@ -404,6 +504,26 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             dispatch(
                 setError(errorMessage, response.status, response?.shortRoute),
             );
+
+            /* Route debug - start */
+            await dispatch(
+                appendRouteDebuggInfoToFIle(
+                    currentRoute.id,
+                    'synch',
+                    currentRoute,
+                    {
+                        distance:
+                            currRoutesDat?.[currRoutesDat?.length - 1]
+                                ?.odometer,
+                        routesDataLength: currRoutesDat?.length,
+                        synchedDataLength: response?.sentData?.length,
+                        synchErrorMessage: response?.rawError,
+                    },
+                    currRoutesDat,
+                    response?.sentData,
+                ),
+            );
+            /* Route debug - end */
             return;
         }
 
@@ -425,9 +545,29 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(clearCurrentRoute());
         dispatch(clearAverageSpeed());
         dispatch(clearError());
+
+        /* Route debug - start */
+        await dispatch(
+            appendRouteDebuggInfoToFIle(
+                currentRoute.id,
+                'synch',
+                currentRoute,
+                {
+                    distance:
+                        currRoutesDat?.[currRoutesDat?.length - 1]?.odometer,
+                    routesDataLength: currRoutesDat?.length,
+                    synchedDataLength: response?.sentData?.length,
+                    synchErrorMessage: response?.rawError,
+                },
+                currRoutesDat,
+                response?.sentData,
+            ),
+        );
+        /* Route debug - emd */
+
         dispatch(setLoadingState(false));
 
-        dispatch(fetchPrivateMapsList());
+        await dispatch(fetchPrivateMapsList());
         syncRouteDataFromQueue(true);
     } catch (error) {
         console.log(`[syncCurrentRouteData] - ${error}`);

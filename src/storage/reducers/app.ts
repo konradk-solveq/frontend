@@ -26,6 +26,7 @@ export interface AppState {
     policy: RegulationType | {};
     showedLocationInfo: boolean;
     location: BasicCoordsType | undefined;
+    routeDebugMode: boolean;
 }
 
 const initialState: AppState = {
@@ -59,6 +60,7 @@ const initialState: AppState = {
     policy: {},
     showedLocationInfo: false,
     location: undefined,
+    routeDebugMode: false,
 };
 
 const appReducer = (state = initialState, action: any) => {
@@ -212,6 +214,11 @@ const appReducer = (state = initialState, action: any) => {
                 ...state,
                 location: action.coords,
             };
+        case actionTypes.SET_ROUTE_DEBUG_MODE:
+            return {
+                ...state,
+                routeDebugMode: action.routeDebugMode,
+            };
         case actionTypes.CLEAR_APP_ERROR:
             return {
                 ...state,
@@ -236,6 +243,7 @@ const persistConfig = {
         'faq',
         'showedLocationInfo',
         'location',
+        'routeDebugMode',
     ],
     timeout: 20000,
 };
