@@ -1,4 +1,4 @@
-import { getHorizontalPx } from '@src/helpers/layoutFoo';
+import {getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {View, Image, StyleSheet, ViewStyle, ImageStyle} from 'react-native';
 

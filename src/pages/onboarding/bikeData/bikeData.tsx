@@ -17,7 +17,6 @@ import {validateData} from '../../../utils/validation/validation';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
-import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {userBikeValidationRules} from '../../../models/bike.model';
@@ -29,14 +28,13 @@ import {
     getVerticalPx,
     getWidthPx,
     getFontSize,
-    getHorizontalPx,
     mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 import deepCopy from '../../../helpers/deepCopy';
 import {frameNumberSelector} from '../../../storage/selectors';
 import {bikeDescriptionByFrameNumberSelector} from '../../../storage/selectors/bikes';
 import {getBikesBaseData} from '../../../utils/transformData';
-import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
+import {BothStackRoute} from '../../../navigation/route';
 
 interface Message {
     serial_number: string;
