@@ -50,7 +50,7 @@ const StackHeader: React.FC<Props> = ({
     const height = getVerticalPx(100);
     const iosOpen = isAndroid ? 0 : 10;
     const iosClose = isAndroid ? 0 : 30;
-;
+
     useEffect(() => {
         if (getHeight) {
             getHeight(
