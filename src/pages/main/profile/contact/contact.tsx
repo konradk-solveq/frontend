@@ -20,7 +20,6 @@ import {
     getVerticalPx,
     getWidthPx,
     getFontSize,
-    getHorizontalPx,
     mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 

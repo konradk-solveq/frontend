@@ -14,7 +14,6 @@ const StatusBarHeight = !isIOS
         : 0
     : 0;
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
