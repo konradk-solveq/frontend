@@ -37,8 +37,8 @@ exports[`<TopNotification /> Rendering Should match snapshot 1`] = `
           "fontSize": 13,
           "letterSpacing": 0.4,
           "opacity": 0,
-          "paddingBottom": 5,
-          "paddingHorizontal": 20,
+          "paddingBottom": 7.444196428571429,
+          "paddingHorizontal": 36.231884057971016,
           "textAlign": "center",
         }
       }
@@ -86,8 +86,8 @@ exports[`<TopNotification /> Rendering Should not show notification without mess
           "fontSize": 13,
           "letterSpacing": 0.4,
           "opacity": 0,
-          "paddingBottom": 5,
-          "paddingHorizontal": 20,
+          "paddingBottom": 7.444196428571429,
+          "paddingHorizontal": 36.231884057971016,
           "textAlign": "center",
         }
       }
