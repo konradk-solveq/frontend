@@ -5,7 +5,6 @@ import I18n from 'react-native-i18n';
 import {
     setObjSize,
     getVerticalPx,
-    getHeightPx,
     getHorizontalPx,
     getWidthPx,
     getCenterLeftPx,
