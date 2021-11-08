@@ -59,11 +59,17 @@ const BigRedBtn: React.FC<Props> = (props: Props) => {
                                 : props.title.toUpperCase()}
                         </Text>
                     ) : (
-                        <ActivityIndicator size="small" color="white" />
+                        <Loader />
                     )}
                 </>
             </TouchableOpacity>
         </View>
+    );
+};
+
+const Loader = () => {
+    return (
+        <ActivityIndicator size="small" color="white" testID="red-btn-loader" />
     );
 };
 
