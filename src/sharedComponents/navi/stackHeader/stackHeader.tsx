@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {
     StyleSheet,
     Text,
@@ -6,7 +6,6 @@ import {
     Dimensions,
     Platform,
     TextStyle,
-    StatusBar,
 } from 'react-native';
 import TopBackBtn from './topBackBtn';
 
@@ -19,14 +18,7 @@ import {
     getFontSize,
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
-import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
-
-const isAndroid = Platform.OS === 'android';
-const StatusBarHeight = isAndroid
-    ? StatusBar.currentHeight
-        ? StatusBar.currentHeight
-        : 0
-    : 0;
+import useStatusBarHeight from '@hooks/statusBarHeight';
 
 interface Props {
     // * wartości wymagane
@@ -43,11 +35,10 @@ const ww = Dimensions.get('window').width;
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = (props: Props) => {
+    const statusBarHeight = useStatusBarHeight();
+
     const getHeight = useCallback(async () => {
         if (props.getHeight) {
-            const statusBarHeight = await getStatusBarHeight(
-                Platform.OS === 'android',
-            );
             props.getHeight(getHorizontalPx(100) - statusBarHeight);
         }
     }, []);
@@ -83,7 +74,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
             left: 0,
             top: 0,
             width: '100%',
-            height: getVerticalPx(100) + StatusBarHeight,
+            height: getVerticalPx(100) + statusBarHeight,
         },
         wrap,
         title,
