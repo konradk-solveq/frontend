@@ -24,16 +24,13 @@ import styles from './style';
 
 const HEADER_EXPANDED_HEIGHT = 450;
 const HEADER_COLLAPSED_HEIGHT = 80;
-
-const isIOS = Platform.OS === 'ios';
+const ARROW_POS = 310;
 
 interface IProps {
     children: React.ReactNode;
     minHeight?: number;
     maxHeight?: number;
     imgSrc?: string;
-    scrollToTopPosition?: boolean;
-    resetScrollPosition?: () => void;
     headerElement?: ReactElement;
     hideHeader?: boolean;
 }
@@ -43,8 +40,6 @@ const SliverImage: React.FC<IProps> = ({
     maxHeight = HEADER_EXPANDED_HEIGHT,
     children,
     imgSrc,
-    scrollToTopPosition,
-    resetScrollPosition,
     headerElement,
     hideHeader,
 }: IProps) => {
@@ -56,6 +51,7 @@ const SliverImage: React.FC<IProps> = ({
     const statusBarHeight = useStatusBarHeight();
 
     const [isArrowBtnOnBottom, setArrowBtnIsOnBottom] = useState(true);
+    const [arrowRotate, setArrowRotate] = useState(false);
 
     const interpolateOnImageHeight = (outputRange: Array<number>) => {
         const headerScrollDistance = maxHeight - minHeight;
@@ -71,7 +67,7 @@ const SliverImage: React.FC<IProps> = ({
     };
 
     const scale = scrollY.interpolate({
-        inputRange: [0, 20],
+        inputRange: [0, getVerticalPx(20)],
         outputRange: [HEADER_EXPANDED_HEIGHT, 0],
     });
 
@@ -79,13 +75,8 @@ const SliverImage: React.FC<IProps> = ({
         borderRadius: scale,
     };
 
-    const spin = spinValue.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '180deg'],
-    });
-
     const moveYAxisArrow = {
-        transform: [{translateY: arrowPos}, {rotate: spin}],
+        transform: [{translateY: arrowPos}],
     };
 
     const onScrollToPosition = (position: number) => {
@@ -94,15 +85,6 @@ const SliverImage: React.FC<IProps> = ({
             animated: true,
         });
     };
-
-    useEffect(() => {
-        if (scrollToTopPosition) {
-            onScrollToPosition(getVerticalPx(HEADER_EXPANDED_HEIGHT));
-            if (resetScrollPosition) {
-                resetScrollPosition();
-            }
-        }
-    }, [scrollToTopPosition, resetScrollPosition]);
 
     const onScrollToTopHandler = useCallback(
         (direction: number) => {
@@ -120,24 +102,28 @@ const SliverImage: React.FC<IProps> = ({
         event: NativeSyntheticEvent<NativeScrollEvent>,
     ) => {
         const currOffset = event.nativeEvent.contentOffset?.y;
-        const direction = currOffset > 200 ? 1 : 0;
+        const direction = currOffset > getVerticalPx(100) ? 1 : 0;
         const arrowPosVal = arrowPos?.__getValue();
 
         const shouldOpen =
-            arrowPosVal >= -3 && currOffset >= 0 && currOffset < 5;
+            arrowPosVal >= getVerticalPx(-3) &&
+            currOffset >= 0 &&
+            currOffset < 5;
         const shouldClose =
-            arrowPosVal > -getVerticalPx(341) &&
-            currOffset > getVerticalPx(341);
+            arrowPosVal > -getVerticalPx(ARROW_POS) &&
+            currOffset > getVerticalPx(ARROW_POS);
 
         onScrollToTopHandler(direction);
-        if (currOffset < getVerticalPx(341) || shouldOpen) {
+        if (currOffset < getVerticalPx(ARROW_POS) || shouldOpen) {
             arrowPos.setValue(-currOffset);
             setArrowBtnIsOnBottom(true);
+            setArrowRotate(false);
             return;
         }
         if (shouldClose) {
-            arrowPos.setValue(-getVerticalPx(341));
+            arrowPos.setValue(-getVerticalPx(ARROW_POS));
             setArrowBtnIsOnBottom(false);
+            setArrowRotate(true);
         }
     };
 
@@ -146,10 +132,14 @@ const SliverImage: React.FC<IProps> = ({
             if (!prev) {
                 onScrollToPosition(0);
                 onScrollToTopHandler(0);
+                setArrowRotate(false);
                 return true;
             }
-            onScrollToPosition(getVerticalPx(HEADER_EXPANDED_HEIGHT));
+            onScrollToPosition(
+                getVerticalPx(HEADER_EXPANDED_HEIGHT - 100) - statusBarHeight,
+            );
             onScrollToTopHandler(1);
+            setArrowRotate(true);
             return false;
         });
     };
@@ -201,7 +191,7 @@ const SliverImage: React.FC<IProps> = ({
                     styles.headerElement,
                     {
                         zIndex: isArrowBtnOnBottom ? 2 : 1,
-                        opacity: interpolateOnImageHeight([1, 0]),
+                        opacity: interpolateOnImageHeight([1, -0.4]),
                     },
                 ]}>
                 {headerElement}
@@ -221,7 +211,10 @@ const SliverImage: React.FC<IProps> = ({
                         },
                         moveYAxisArrow,
                     ]}>
-                    <ArrowBtn onPress={arrowBtnActionHandler} />
+                    <ArrowBtn
+                        onPress={arrowBtnActionHandler}
+                        rotate={arrowRotate}
+                    />
                 </Animated.View>
             )}
 

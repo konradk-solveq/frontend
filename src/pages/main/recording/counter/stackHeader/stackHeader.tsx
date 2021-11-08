@@ -50,20 +50,7 @@ const StackHeader: React.FC<Props> = ({
     const height = getVerticalPx(100);
     const iosOpen = isAndroid ? 0 : 10;
     const iosClose = isAndroid ? 0 : 30;
-
-    const [statusBarHeight, setStatusBarHeight] = useState<number>(0);
-
-    // const getCurrentHeight = useCallback(async () => {
-    //     if (getHeight) {
-    //         const barH = await getStatusBarHeight(isAndroid);
-    //         setStatusBarHeight(barH);
-    //         getHeight(height - barH);
-    //     }
-    // }, [height, getHeight]);
-
-    // useEffect(() => {
-    //     getCurrentHeight();
-    // }, [getCurrentHeight]);
+;
     useEffect(() => {
         if (getHeight) {
             getHeight(
@@ -71,11 +58,6 @@ const StackHeader: React.FC<Props> = ({
                     (StatusBar.currentHeight ? StatusBar.currentHeight : 0),
             );
         }
-        console.log(
-            '%c StatusBar.currentHeight:',
-            'background: #ffcc00; color: #003300',
-            StatusBar.currentHeight,
-        );
     }, []);
 
     const display = useRef(new Animated.Value(0)).current;
