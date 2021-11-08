@@ -7,7 +7,6 @@ import {
     getHorizontalPx,
     getCenterLeftPx,
     getVerticalPx,
-    getHeightPx,
     getWidthPx,
     mainButtonsHeight,
 } from '../../helpers/layoutFoo';
