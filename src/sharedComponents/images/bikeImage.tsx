@@ -30,9 +30,7 @@ const BikeImage: React.FC<IProps> = ({
 
 const styles = StyleSheet.create({
     container: {
-        width: getHorizontalPx(260),
-        height: getHorizontalPx(152),
-        marginHorizontal: getHorizontalPx(79),
+        height: getHorizontalPx(195),
         marginTop: getHorizontalPx(20),
     },
     image: {
