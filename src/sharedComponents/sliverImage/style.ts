@@ -1,5 +1,5 @@
 import {Dimensions, Platform, StyleSheet} from 'react-native';
-import {getVerticalPx} from '../../helpers/layoutFoo';
+import {getHorizontalPx, getVerticalPx} from '../../helpers/layoutFoo';
 
 const {width} = Dimensions.get('window');
 const isIOS = Platform.OS === 'ios';
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         height: getVerticalPx(40),
         width: '100%',
         position: 'absolute',
-        bottom: isIOS ? -40 : 0,
+        bottom: getVerticalPx(isIOS ? -40 : 0),
         left: 0,
         right: 0,
         zIndex: 30,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         backgroundColor: `rgba(255,0,0,${isIOS ? 0.1 : 0})`,
     },
     image: {
-        height: getVerticalPx(195),
+        height: getHorizontalPx(195),
         width: width,
         transform: [{scaleX: 0.6}],
     },
