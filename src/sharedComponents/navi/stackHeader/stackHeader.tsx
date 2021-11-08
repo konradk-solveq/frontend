@@ -6,6 +6,7 @@ import {
     Dimensions,
     Platform,
     TextStyle,
+    StatusBar,
 } from 'react-native';
 import TopBackBtn from './topBackBtn';
 
@@ -19,6 +20,13 @@ import {
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
+
+const isAndroid = Platform.OS === 'android';
+const StatusBarHeight = isAndroid
+    ? StatusBar.currentHeight
+        ? StatusBar.currentHeight
+        : 0
+    : 0;
 
 interface Props {
     // * wartości wymagane
@@ -75,7 +83,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
             left: 0,
             top: 0,
             width: '100%',
-            height: getHorizontalPx(100),
+            height: getVerticalPx(100) + StatusBarHeight,
         },
         wrap,
         title,
