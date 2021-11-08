@@ -107,7 +107,6 @@ const Home: React.FC = () => {
     }
 
     const scrollTop = getVerticalPx(100) - 0;
-    // (StatusBar.currentHeight ? StatusBar.currentHeight : 0);
     const styles = StyleSheet.create({
         scroll: {
             top: scrollTop,
