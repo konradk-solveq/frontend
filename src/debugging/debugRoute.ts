@@ -12,6 +12,7 @@ import {
     appendDataToFile,
     createRootDir,
     generalDeviceInfo,
+    getDateIOSStringAsTitle,
     getISODateString,
     removeFile,
 } from '@utils/debugging/routeData';
@@ -314,9 +315,7 @@ export class DebugRoute implements DebugRouteI {
             let suffix = '';
 
             if (createdAt) {
-                const withoutMilliseconds = createdAt.toISOString().split('.');
-                const reg = new RegExp(':', 'g');
-                const dToTitle = withoutMilliseconds[0].replace(reg, '-');
+                const dToTitle = getDateIOSStringAsTitle(createdAt);
 
                 suffix = `- createdAt - ${dToTitle} `;
             }

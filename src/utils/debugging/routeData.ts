@@ -151,3 +151,33 @@ export const showRemoveFileAlert = async (
         },
     ]);
 };
+
+const getTitle = (data?: string) => {
+    if (!data || typeof data !== 'string') {
+        return;
+    }
+
+    const reg = new RegExp(':', 'g');
+    return data?.replace(reg, '-');
+};
+
+export const getDateIOSStringAsTitle = (date?: Date) => {
+    if (!date) {
+        return '';
+    }
+
+    if (typeof date === 'string') {
+        return date;
+    }
+
+    try {
+        const withoutMilliseconds = date?.toISOString()?.split('.');
+        if (withoutMilliseconds?.length > 0) {
+            return getTitle(withoutMilliseconds?.[0]);
+        }
+        return '';
+    } catch (error) {
+        console.error('[=== ROUTE DATA UTILS - getDateIOSString ===]', error);
+        return '';
+    }
+};
