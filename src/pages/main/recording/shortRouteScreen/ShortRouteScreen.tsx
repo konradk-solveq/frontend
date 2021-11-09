@@ -17,7 +17,7 @@ const ShortRouteScreen: React.FC = () => {
 
     const onCloseHandler = async () => {
         setIsProcessing(true);
-        await dispatch(abortSyncCurrentRouteData(true));
+        await dispatch(abortSyncCurrentRouteData(true, true));
 
         navigation.navigate(
             RegularStackRoute.HOME_SCREEN as keyof RootStackType,

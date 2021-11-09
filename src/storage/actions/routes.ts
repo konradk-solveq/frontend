@@ -652,6 +652,7 @@ export const syncRouteDataFromQueue = (
 
 export const abortSyncCurrentRouteData = (
     endDebugFile?: boolean,
+    skipFetchingMaps?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
@@ -697,7 +698,9 @@ export const abortSyncCurrentRouteData = (
         dispatch(clearError());
 
         dispatch(setLoadingState(false));
-        dispatch(fetchPrivateMapsList());
+        if (!skipFetchingMaps) {
+            dispatch(fetchPrivateMapsList());
+        }
     } catch (error) {
         console.log(`[abortSyncCurrentRouteData] - ${error}`);
         logger.log(`[abortSyncCurrentRouteData] - ${error}`);

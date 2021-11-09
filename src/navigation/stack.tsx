@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RootStackType} from '@type/rootStack';
 
-enableScreens(false);
+enableScreens(true);
 
 const Stack = createStackNavigator<RootStackType>();
 const Tab = createBottomTabNavigator();
