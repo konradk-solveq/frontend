@@ -270,6 +270,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 returnToPreviousScreen(navigation);
                 break;
             case 'endMessage':
+                if (!isTrackerActive) {
+                    return;
+                }
                 const totTime = setTotalTime(pauseTime);
                 dispatch(setCurrentRoutePauseTime(totTime));
                 await stopTracker();
@@ -293,6 +296,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         navigateToTHPPage,
         pageState,
         route?.params?.mapID,
+        isTrackerActive,
     ]);
 
     // zmiana funckji strzałki headera
