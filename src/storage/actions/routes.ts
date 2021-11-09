@@ -658,24 +658,25 @@ export const abortSyncCurrentRouteData = (
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
+        let distance = 0;
         if (endDebugFile) {
-            const distance =
+            distance =
                 currentRouteData?.[currentRouteData?.length - 1]?.odometer;
-
-            /* Route debug - start */
-            await dispatch(
-                appendRouteDebuggInfoToFIle(
-                    currentRoute.id,
-                    'no-synch',
-                    currentRoute,
-                    {
-                        distance: distance,
-                        routesDataLength: currentRouteData?.length,
-                    },
-                ),
-            );
-            /* Route debug - end */
         }
+
+        /* Route debug - start */
+        await dispatch(
+            appendRouteDebuggInfoToFIle(
+                currentRoute.id,
+                endDebugFile ? 'no-synch' : 'cancel',
+                currentRoute,
+                {
+                    distance: distance,
+                    routesDataLength: currentRouteData?.length,
+                },
+            ),
+        );
+        /* Route debug - end */
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(clearCurrentRouteData());
