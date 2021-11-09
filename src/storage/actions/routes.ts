@@ -650,14 +650,32 @@ export const syncRouteDataFromQueue = (
     }
 };
 
-export const abortSyncCurrentRouteData = (): AppThunk<Promise<void>> => async (
-    dispatch,
-    getState,
-) => {
+export const abortSyncCurrentRouteData = (
+    endDebugFile?: boolean,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        const {currentRoute}: RoutesState = getState().routes;
+        const {currentRoute, currentRouteData}: RoutesState = getState().routes;
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
+
+        if (endDebugFile) {
+            const distance =
+                currentRouteData?.[currentRouteData?.length - 1]?.odometer;
+
+            /* Route debug - start */
+            await dispatch(
+                appendRouteDebuggInfoToFIle(
+                    currentRoute.id,
+                    'no-synch',
+                    currentRoute,
+                    {
+                        distance: distance,
+                        routesDataLength: currentRouteData?.length,
+                    },
+                ),
+            );
+            /* Route debug - end */
+        }
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(clearCurrentRouteData());
@@ -676,6 +694,7 @@ export const abortSyncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         dispatch(clearCurrentRoute());
         dispatch(clearAverageSpeed());
         dispatch(clearError());
+
         dispatch(setLoadingState(false));
         dispatch(fetchPrivateMapsList());
     } catch (error) {
