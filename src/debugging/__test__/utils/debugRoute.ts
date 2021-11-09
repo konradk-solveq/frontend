@@ -1,7 +1,7 @@
 import {DebugRouteInstance} from '@debugging/debugRoute';
 import {RouteActionT} from '@type/debugRoute';
 
-export const createDebugRouteInstance = (
+export const createDebugRouteInstance = async (
     actionType: RouteActionT,
     routeID?: string,
     date?: Date,
@@ -9,5 +9,5 @@ export const createDebugRouteInstance = (
     const d = date || new Date('2021-11-05');
     const routeId = routeID || 'route-id';
 
-    return DebugRouteInstance.debugRouteInstance(actionType, routeId, d);
+    return await DebugRouteInstance.debugRouteInstance(actionType, routeId, d);
 };
