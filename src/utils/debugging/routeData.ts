@@ -152,7 +152,7 @@ export const showRemoveFileAlert = async (
     ]);
 };
 
-const getTitle = (data?: string) => {
+export const getTitle = (data?: string) => {
     if (!data || typeof data !== 'string') {
         return;
     }
@@ -161,7 +161,7 @@ const getTitle = (data?: string) => {
     return data?.replace(reg, '-');
 };
 
-const getTimeStringWithoutMilliseconds = (dateTime: string) => {
+const getTimeStringWithoutMilliseconds = (dateTime?: string) => {
     if (!dateTime) {
         return '';
     }
@@ -179,7 +179,7 @@ const getTimeStringWithoutMilliseconds = (dateTime: string) => {
     }
 };
 
-export const getDateIOSStringAsTitle = (date?: Date) => {
+export const getDateIOSStringAsTitle = (date?: Date | string) => {
     if (!date) {
         return '';
     }

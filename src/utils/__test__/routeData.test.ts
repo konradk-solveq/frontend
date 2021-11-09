@@ -2,7 +2,9 @@ import {
     appendDataToFile,
     createRootDir,
     generalDeviceInfo,
+    getDateIOSStringAsTitle,
     getISODateString,
+    getTitle,
     removeFile,
 } from '../debugging/routeData';
 
@@ -17,6 +19,30 @@ describe('routeData -- utils', () => {
             const ISODateString = getISODateString();
 
             expect(ISODateString).toEqual(expectedDate);
+        });
+    });
+
+    describe('[getDateIOSStringAsTitle]', () => {
+        it.each([
+            [new Date('2021-11-04T13:00:26.831Z')],
+            ['2021-11-04T13:00:26.831Z'],
+        ])(
+            'Should returns ISO date string to a title format',
+            async (date: Date | string) => {
+                const expectedString = '2021-11-04T13-00-26';
+
+                const ISODateStringTitle = getDateIOSStringAsTitle(date);
+
+                expect(ISODateStringTitle).toEqual(expectedString);
+            },
+        );
+
+        it("Should return empty string when date doesn't exists", () => {
+            const expectedString = '';
+
+            const ISODateStringTitle = getDateIOSStringAsTitle();
+
+            expect(ISODateStringTitle).toEqual(expectedString);
         });
     });
 
@@ -119,6 +145,17 @@ describe('routeData -- utils', () => {
                 locationProviders: {},
                 powerState: {},
             });
+        });
+    });
+
+    describe('[getTitle]', () => {
+        it('Should return file name', () => {
+            const data = '2021-11-04T13:00:26';
+            const expectedString = '2021-11-04T13-00-26';
+
+            const fileName = getTitle(data);
+
+            expect(fileName).toEqual(expectedString);
         });
     });
 
