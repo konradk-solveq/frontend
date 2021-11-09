@@ -161,23 +161,48 @@ const getTitle = (data?: string) => {
     return data?.replace(reg, '-');
 };
 
+const getTimeStringWithoutMilliseconds = (dateTime: string) => {
+    if (!dateTime) {
+        return '';
+    }
+
+    let t = dateTime;
+    try {
+        const dt = dateTime?.split('.');
+        if (dt?.[0]) {
+            t = dt[0];
+        }
+    } catch (error) {
+        console.error('[=== ROUTE DATA UTILS - getDateIOSString ===]', error);
+    } finally {
+        return t;
+    }
+};
+
 export const getDateIOSStringAsTitle = (date?: Date) => {
     if (!date) {
         return '';
     }
 
-    if (typeof date === 'string') {
-        return date;
-    }
-
+    let t = '';
     try {
-        const withoutMilliseconds = date?.toISOString()?.split('.');
-        if (withoutMilliseconds?.length > 0) {
-            return getTitle(withoutMilliseconds?.[0]);
+        if (typeof date === 'string') {
+            t = getTimeStringWithoutMilliseconds(date);
+        } else {
+            const withoutMilliseconds = getTimeStringWithoutMilliseconds(
+                date?.toISOString(),
+            );
+            if (withoutMilliseconds) {
+                t = withoutMilliseconds;
+            }
         }
-        return '';
+
+        if (t) {
+            t = getTitle(t) || '';
+        }
     } catch (error) {
         console.error('[=== ROUTE DATA UTILS - getDateIOSString ===]', error);
-        return '';
+    } finally {
+        return t;
     }
 };

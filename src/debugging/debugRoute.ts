@@ -26,7 +26,7 @@ export class DebugRoute implements DebugRouteI {
         this._routeID = routeID;
 
         this._deviceGeneralInfo = this._getGeneralDeviceInfo();
-        this._fileName = this._createFileName(createdAt);
+        this._fileName = this._createFileName(routeID, createdAt);
 
         createRootDir();
     }
@@ -309,8 +309,8 @@ export class DebugRoute implements DebugRouteI {
         }
     };
 
-    private _createFileName = (createdAt?: Date) => {
-        let fileN = `Route - ${this._routeID}`;
+    private _createFileName = (routeID: string, createdAt?: Date) => {
+        let fileN = `Route - ${routeID}`;
         try {
             let suffix = '';
 
@@ -320,7 +320,7 @@ export class DebugRoute implements DebugRouteI {
                 suffix = `- createdAt - ${dToTitle} `;
             }
 
-            fileN = `Route ${suffix}- ${this._routeID}`;
+            fileN = `Route ${suffix}- ${routeID}`;
         } catch (error) {
             console.error('[=== DEBUG ROUTE - _createFileName ===]', error);
         } finally {
