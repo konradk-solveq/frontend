@@ -2,6 +2,7 @@ import {Platform} from 'react-native';
 import BackgroundGeolocation, {
     Location,
     LocationError,
+    State,
 } from 'react-native-background-geolocation-android';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {
@@ -209,6 +210,7 @@ export const startBackgroundGeolocation = async (
     routeId: string,
     keep?: boolean,
 ) => {
+    let state: State | undefined;
     try {
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: false,
@@ -222,7 +224,7 @@ export const startBackgroundGeolocation = async (
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
             },
         });
-        const state = await startBackgroundGeolocationPlugin(true);
+        state = await startBackgroundGeolocationPlugin(true);
 
         if (!keep) {
             BackgroundGeolocation.resetOdometer();
@@ -230,8 +232,6 @@ export const startBackgroundGeolocation = async (
         setTimeout(async () => {
             await resumeTracingLocation();
         }, 1000);
-
-        return state;
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.warn('[startBackgroundGeolocation - error]', errorMessage);
@@ -240,6 +240,8 @@ export const startBackgroundGeolocation = async (
         logger.recordError(error);
 
         loggErrorWithScope(error, 'startBackgroundGeolocation');
+    } finally {
+        return state;
     }
 };
 
@@ -745,14 +747,17 @@ export const removeGeofence = async (identifier: string) => {
 };
 
 export const startBackgroundGeolocationPlugin = async (force?: boolean) => {
+    let state;
     try {
-        let state = await getBackgroundGeolocationState();
+        state = await getBackgroundGeolocationState();
         if (!state?.enabled || force) {
-            await BackgroundGeolocation.start();
-            state = await getBackgroundGeolocationState();
+            const st = await BackgroundGeolocation.start();
+            if (!st) {
+                state = await getBackgroundGeolocationState();
+            } else {
+                state = st;
+            }
         }
-
-        return state;
     } catch (e) {
         console.log('[startBackgroundGeolocationPlugin - error]', e);
         logger.log(`[startBackgroundGeolocationPlugin] - ${e}`);
@@ -760,6 +765,8 @@ export const startBackgroundGeolocationPlugin = async (force?: boolean) => {
         logger.recordError(error);
 
         loggErrorWithScope(e, 'startBackgroundGeolocationPlugin');
+    } finally {
+        return state;
     }
 };
 
