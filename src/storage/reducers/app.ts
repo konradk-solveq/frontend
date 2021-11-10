@@ -22,6 +22,7 @@ export interface AppState {
     currentTerms: TermsAndConditionsType;
     faq: {faq: FaqType[]} | {};
     showedRegulations: number | null;
+    showedNewAppVersion: string | null;
     regulation: RegulationType | {};
     policy: RegulationType | {};
     showedLocationInfo: boolean;
@@ -56,6 +57,7 @@ const initialState: AppState = {
     },
     faq: {},
     showedRegulations: null,
+    showedNewAppVersion: '1.0.0',
     regulation: {},
     policy: {},
     showedLocationInfo: false,
@@ -94,6 +96,11 @@ const appReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 showedRegulations: action.showedRegulations,
+            };
+        case actionTypes.SET_APP_SHOWED_NEW_APP_VERSION:
+            return {
+                ...state,
+                showedNewAppVersion: action.showedNewAppVersion,
             };
         case actionTypes.SET_APP_REGULATION: {
             const getVersion = (v: string) => {

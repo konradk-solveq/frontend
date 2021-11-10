@@ -23,6 +23,8 @@ import {
 import {BothStackRoute} from '../../../navigation/route';
 
 import SvgVersion from './svgVersion';
+import {setNewAppVersion} from '@src/storage/actions';
+import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 
 interface Props {
     navigation: any;
@@ -32,17 +34,26 @@ interface Props {
 const NewAppVersion: React.FC<Props> = (props: Props) => {
     const trans: any = I18n.t('newAppVersion');
 
+    const dispatch = useAppDispatch();
+    const shopAppVersion = useAppSelector<string>(
+        state => state.app.config.version,
+    );
+
     const [headHeight, setHeadHeight] = useState<number>(0);
 
     const handleGoForward = () => {
+        dispatch(setNewAppVersion(shopAppVersion));
         props.navigation.navigate(BothStackRoute.MAIN_MENU_SCREEN);
     };
 
     const handleLinkToShop = () => {
+        dispatch(setNewAppVersion(shopAppVersion));
         if (Platform.OS === 'android') {
             Linking.openURL('market://details?id=pl.kross.mykross');
         } else {
-            Linking.openURL('itms-apps://apps.apple.com/id/app/mykross/id1561981216?l=pl');
+            Linking.openURL(
+                'itms-apps://apps.apple.com/id/app/mykross/id1561981216?l=pl',
+            );
         }
     };
 
