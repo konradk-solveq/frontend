@@ -208,9 +208,22 @@ export const getBackgroundGeolocationState = async () => {
     }
 };
 
+export const getDebugLevelMode = (active?: boolean) => {
+    if (__DEV__) {
+        return BackgroundGeolocation.LOG_LEVEL_VERBOSE;
+    }
+
+    if (active) {
+        return BackgroundGeolocation.LOG_LEVEL_DEBUG;
+    }
+
+    return BackgroundGeolocation.LOG_LEVEL_ERROR;
+};
+
 export const startBackgroundGeolocation = async (
     routeId: string,
     keep?: boolean,
+    debugModeActive?: boolean,
 ) => {
     let state: State | undefined;
     try {
@@ -218,6 +231,7 @@ export const startBackgroundGeolocation = async (
             stopOnTerminate: false,
             startOnBoot: true,
             isMoving: true,
+            logLevel: getDebugLevelMode(debugModeActive),
             extras: {
                 route_id: routeId,
             },
@@ -254,6 +268,7 @@ export const stopBackgroundGeolocation = async () => {
             startOnBoot: false,
             isMoving: false,
             extras: undefined,
+            logLevel: getDebugLevelMode(),
             notification: {
                 text: 'Pobieranie lokalizacji',
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,

@@ -3,16 +3,27 @@ import {
     stopBackgroundGeolocation,
     stopWatchPostionChangeListener,
 } from '@utils/geolocation';
-import {Alert} from 'react-native';
 
-export const startRecording = async (routeId: string, keep?: boolean) => {
-    let state = await startBackgroundGeolocation(routeId, keep);
+export const startRecording = async (
+    routeId: string,
+    keep?: boolean,
+    debugModeActive?: boolean,
+) => {
+    let state = await startBackgroundGeolocation(
+        routeId,
+        keep,
+        debugModeActive,
+    );
 
     /**
      * Plugin not always starts on first try
      */
     if (!state?.enabled) {
-        state = await startBackgroundGeolocation(routeId, keep);
+        state = await startBackgroundGeolocation(
+            routeId,
+            keep,
+            debugModeActive,
+        );
     }
 
     return state?.enabled ? true : false;

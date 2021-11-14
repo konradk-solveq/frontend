@@ -9,12 +9,9 @@ import {I18n} from '@translations/I18n';
 import {askFilePermissionsOnAndroid} from '@utils/writeFilePermission';
 
 import {BigRedBtn, BigWhiteBtn} from '@sharedComponents/buttons';
-import {getFontScale} from 'react-native-device-info';
-import {getFontSize} from '@src/helpers/layoutFoo';
-import {
-    removeDebugDir,
-    showRemoveFileAlert,
-} from '@src/utils/debugging/routeData';
+import {getFontSize} from '@helpers/layoutFoo';
+import {showRemoveFileAlert} from '@utils/debugging/routeData';
+import {setDebugLogLevel, setErrorLogLevel} from '@utils/geolocation';
 
 interface IProps {
     onPress?: () => void;
@@ -37,6 +34,11 @@ const RouteDebugBtn: React.FC<IProps> = ({onPress}: IProps) => {
             }
         }
 
+        if (!routeDebugMode) {
+            await setDebugLogLevel();
+        } else {
+            await setErrorLogLevel();
+        }
         dispatch(setRouteDebugMode(!routeDebugMode));
     };
 

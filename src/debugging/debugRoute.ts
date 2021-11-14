@@ -15,6 +15,7 @@ import {
     getDateIOSStringAsTitle,
     getISODateString,
     removeFile,
+    writeGeolocationLogsToFileToFile,
 } from '@utils/debugging/routeData';
 
 export class DebugRoute implements DebugRouteI {
@@ -294,6 +295,11 @@ export class DebugRoute implements DebugRouteI {
                     dataToSynch,
                     dataSendToServer,
                 );
+
+                await writeGeolocationLogsToFileToFile(this._fileName, {
+                    start: routeData.startedAt,
+                    end: routeData.endedAt,
+                });
                 break;
             case 'no-synch':
                 await this._writeNoSynchRouteData(
@@ -302,9 +308,19 @@ export class DebugRoute implements DebugRouteI {
                     routeData,
                     routeAdditionalInfo,
                 );
+
+                await writeGeolocationLogsToFileToFile(this._fileName, {
+                    start: routeData.startedAt,
+                    end: routeData.endedAt,
+                });
                 break;
             case 'cancel':
                 await this._removeFileOnCancelRoute();
+
+                await writeGeolocationLogsToFileToFile(this._fileName, {
+                    start: routeData.startedAt,
+                    end: routeData.endedAt,
+                });
                 break;
         }
     };
