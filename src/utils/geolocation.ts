@@ -1,5 +1,6 @@
 import {Platform} from 'react-native';
 import BackgroundGeolocation, {
+    Config,
     Location,
     LocationError,
     State,
@@ -25,6 +26,7 @@ import {
     loggErrorWithScope,
     sentryLogLevel,
 } from '@sentryLogger/sentryLogger';
+import {getTimeInUTCMilliseconds} from './transformData';
 
 const isIOS = Platform.OS === 'ios';
 export const LOCATION_ACCURACY = 60;
@@ -90,7 +92,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             debug: __DEV__ ? true : false,
             logLevel: __DEV__
                 ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
-                : BackgroundGeolocation.LOG_LEVEL_OFF,
+                : BackgroundGeolocation.LOG_LEVEL_ERROR,
             maxDaysToPersist: __DEV__ ? 1 : 3,
             desiredOdometerAccuracy: LOCATION_ACCURACY,
             notification: {
@@ -897,5 +899,75 @@ export const resetOdometer = async () => {
         logger.recordError(error);
 
         loggErrorWithScope(e, 'resetOdometer');
+    }
+};
+
+export const setConfig = async (config: Config) => {
+    try {
+        await BackgroundGeolocation.setConfig(config);
+    } catch (e) {
+        console.log('[geolocation - setConfig - error]', e);
+        logger.log(`[geolocation - setConfig] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'geolocation-setConfig');
+    }
+};
+
+export const setDebugLogLevel = async () => {
+    try {
+        await setConfig({
+            logLevel: BackgroundGeolocation.LOG_LEVEL_DEBUG,
+        });
+    } catch (e) {
+        console.log('[geolocation - setDebugLogLevel - error]', e);
+        logger.log(`[geolocation - setDebugLogLevel] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'geolocation-setDebugLogLevel');
+    }
+};
+
+export const setErrorLogLevel = async () => {
+    try {
+        await setConfig({
+            logLevel: BackgroundGeolocation.LOG_LEVEL_ERROR,
+        });
+    } catch (e) {
+        console.log('[geolocation - setErrorLogLevel - error]', e);
+        logger.log(`[geolocation - setErrorLogLevel] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'geolocation-setErrorLogLevel');
+    }
+};
+
+export const getGeolocationLogs = async (start?: string, end?: string) => {
+    try {
+        const Logger = BackgroundGeolocation.logger;
+
+        if (!start || !end) {
+            const log = await Logger.getLog();
+            return log;
+        }
+
+        const log = await Logger.getLog({
+            start: getTimeInUTCMilliseconds(start, true),
+            end: getTimeInUTCMilliseconds(end, true),
+            order: Logger.ORDER_ASC,
+            limit: 10000,
+        });
+
+        return log;
+    } catch (e) {
+        console.log('[geolocation - getGeolocationLogs - error]', e);
+        logger.log(`[geolocation - getGeolocationLogs] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'geolocation-getGeolocationLogs');
     }
 };
