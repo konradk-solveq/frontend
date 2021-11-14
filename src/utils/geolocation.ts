@@ -972,7 +972,7 @@ export const getGeolocationLogs = async (start?: string, end?: string) => {
         const log = await Logger.getLog({
             start: getTimeInUTCMilliseconds(start, true),
             end: getTimeInUTCMilliseconds(end, true),
-            order: Logger.ORDER_ASC,
+            order: Logger.ORDER_DESC,
             limit: 100000,
         });
 
