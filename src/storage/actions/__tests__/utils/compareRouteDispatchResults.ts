@@ -102,21 +102,25 @@ export const compareResultsWhenOfflineFourthCase = (actionsLog: any[]) => {
     expect(actionsLog[0]).toEqual(
         synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions[0],
     );
-    /* clear current route data */
+    /* clear error */
     expect(actionsLog[1]).toEqual(
         synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions[1],
     );
-    /* clear current route */
+    /* clear current route data */
     expect(actionsLog[2]).toEqual(
         synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions[2],
     );
-    /* set connection error */
+    /* clear current route */
     expect(actionsLog[3]).toEqual(
         synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions[3],
     );
-    /* loading - stop */
+    /* set connection error */
     expect(actionsLog[4]).toEqual(
         synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions[4],
+    );
+    /* loading - stop */
+    expect(actionsLog[5]).toEqual(
+        synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions[5],
     );
 };
 

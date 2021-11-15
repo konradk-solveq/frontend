@@ -45,6 +45,9 @@ export const stopRecordingExpectedActions = [
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
     {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
         type: actionTypes.SET_CURRENT_ROUTE,
         currentRoute: stoppedRoute,
     },
@@ -296,6 +299,9 @@ export const synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions = [
     {
         type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: true,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
