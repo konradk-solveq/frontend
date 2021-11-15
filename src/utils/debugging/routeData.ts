@@ -14,7 +14,6 @@ import {appendRouteDebuggInfoToFIle} from '@storage/actions/app';
 import {AppDispatch} from '@storage/storage';
 import {I18n} from '@translations/I18n';
 import {getGeolocationLogs} from '../geolocation';
-import logger from '../crashlytics';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 const platformName = Platform.OS === 'ios' ? 'IOS' : 'Android';
@@ -120,7 +119,14 @@ export const getISODateString = (date?: Date) => {
 
     try {
         if (date) {
-            d = date.toISOString();
+            if (typeof date === 'string') {
+                const nD = new Date(date);
+                d = nD.toISOString();
+            } else if (date instanceof Date) {
+                d = date.toISOString();
+            } else {
+                d = `${date}`;
+            }
         }
     } catch (error) {
         console.error('[=== ROUTE DATA UTILS - getISODateString ===]', error);
@@ -231,8 +237,9 @@ export const writeGeolocationLogsToFileToFile = async (
         end?: Date;
     },
 ) => {
-    const start = getISODateString(dates.start);
-    const end = getISODateString(dates.end);
+    console.log('[DATES ----]', dates);
+    const start = dates.start ? getISODateString(dates.start) : undefined;
+    const end = dates.end ? getISODateString(dates.end) : getISODateString();
 
     let dataToWrite = await getGeolocationLogs(start, end);
 
