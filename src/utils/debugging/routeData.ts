@@ -238,7 +238,7 @@ export const writeGeolocationLogsToFileToFile = async (
     },
 ) => {
     const start = dates.start ? getISODateString(dates.start) : undefined;
-    const end = dates.end ? getISODateString(dates.end) : getISODateString();
+    const end = getISODateString(dates.end);
 
     let dataToWrite = await getGeolocationLogs(start, end);
 
