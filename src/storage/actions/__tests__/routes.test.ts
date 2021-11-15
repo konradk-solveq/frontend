@@ -144,14 +144,16 @@ describe('[Recording Route actions]', () => {
                  */
                 /* loading - start */
                 expect(actionsLog[0]).toEqual(stopRecordingExpectedActions[0]);
-                /* set route data */
+                /* clear error */
                 expect(actionsLog[1]).toEqual(stopRecordingExpectedActions[1]);
-                /* reset map visibility state */
+                /* set route data */
                 expect(actionsLog[2]).toEqual(stopRecordingExpectedActions[2]);
-                /* clear errors */
+                /* reset map visibility state */
                 expect(actionsLog[3]).toEqual(stopRecordingExpectedActions[3]);
-                /* loading - end */
+                /* clear errors */
                 expect(actionsLog[4]).toEqual(stopRecordingExpectedActions[4]);
+                /* loading - end */
+                expect(actionsLog[5]).toEqual(stopRecordingExpectedActions[5]);
             });
         });
 

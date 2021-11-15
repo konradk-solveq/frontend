@@ -249,6 +249,7 @@ export const stopCurrentRoute = (
     omitPersists?: boolean,
 ): AppThunk<Promise<ActionAsyncResponseI>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
+    dispatch(clearError());
     try {
         const {currentRoute}: RoutesState = getState().routes;
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
@@ -444,6 +445,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
     getState,
 ) => {
     dispatch(setLoadingState(true));
+    dispatch(clearError());
     try {
         const {
             currentRoute,
@@ -583,6 +585,8 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         logger.recordError(err);
 
         loggErrorWithScope(err, 'syncCurrentRouteData');
+
+        dispatch(setError(I18n.t('dataAction.dataSyncError'), 500));
     }
 };
 

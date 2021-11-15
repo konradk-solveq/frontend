@@ -202,7 +202,6 @@ const routesReducer = (state = initialStateList, action: any) => {
         case actionTypes.CLEAR_ROUTES_ERROR: {
             return {
                 ...state,
-                loading: false,
                 error: '',
                 statusCode: 200,
                 routeToShort: false,
