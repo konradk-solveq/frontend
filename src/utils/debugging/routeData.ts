@@ -243,7 +243,7 @@ export const writeGeolocationLogsToFileToFile = async (
         }
 
         await write(
-            `${FILES_PATH}/logs_${fileName}.json`,
+            `${FILES_PATH}/logs_${fileName}.log`,
             dataToWrite,
             undefined,
             'utf8',
