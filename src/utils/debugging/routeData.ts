@@ -4,6 +4,7 @@ import {
     mkdir,
     unlink,
     write,
+    writeFile,
     DownloadDirectoryPath,
     DocumentDirectoryPath,
 } from 'react-native-fs';
@@ -13,6 +14,8 @@ import {appendRouteDebuggInfoToFIle} from '@storage/actions/app';
 import {AppDispatch} from '@storage/storage';
 import {I18n} from '@translations/I18n';
 import {getGeolocationLogs} from '../geolocation';
+import logger from '../crashlytics';
+import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 const platformName = Platform.OS === 'ios' ? 'IOS' : 'Android';
 
@@ -242,18 +245,24 @@ export const writeGeolocationLogsToFileToFile = async (
             dataToWrite = JSON.stringify(dataToWrite);
         }
 
-        await write(
+        await writeFile(
             `${FILES_PATH}/logs_${fileName}.log`,
             dataToWrite,
-            undefined,
             'utf8',
         );
 
         return dataToWrite;
-    } catch (error) {
+    } catch (e) {
         console.error(
             '[=== ROUTE DATA UTILS - writeGeolocationLogsToFileToFile ===]',
-            error,
+            e,
+        );
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(
+            e,
+            'ROUTE DATA UTILS - writeGeolocationLogsToFileToFile',
         );
     }
 };

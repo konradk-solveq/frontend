@@ -285,6 +285,11 @@ export class DebugRoute implements DebugRouteI {
                     routeAdditionalInfo,
                     dataToSynch,
                 );
+
+                await writeGeolocationLogsToFileToFile(this._fileName, {
+                    start: routeData.startedAt,
+                    end: routeData.endedAt,
+                });
                 break;
             case 'synch':
                 await this._writeSynchRouteData(
@@ -295,11 +300,6 @@ export class DebugRoute implements DebugRouteI {
                     dataToSynch,
                     dataSendToServer,
                 );
-
-                await writeGeolocationLogsToFileToFile(this._fileName, {
-                    start: routeData.startedAt,
-                    end: routeData.endedAt,
-                });
                 break;
             case 'no-synch':
                 await this._writeNoSynchRouteData(
@@ -308,19 +308,9 @@ export class DebugRoute implements DebugRouteI {
                     routeData,
                     routeAdditionalInfo,
                 );
-
-                await writeGeolocationLogsToFileToFile(this._fileName, {
-                    start: routeData.startedAt,
-                    end: routeData.endedAt,
-                });
                 break;
             case 'cancel':
                 await this._removeFileOnCancelRoute();
-
-                await writeGeolocationLogsToFileToFile(this._fileName, {
-                    start: routeData.startedAt,
-                    end: routeData.endedAt,
-                });
                 break;
         }
     };
