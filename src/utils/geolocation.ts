@@ -980,8 +980,6 @@ export const getGeolocationLogs = async (start?: string, end?: string) => {
     } catch (e) {
         console.log('[geolocation - getGeolocationLogs - error]', e);
         logger.log(`[geolocation - getGeolocationLogs] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'geolocation-getGeolocationLogs');
     }

@@ -257,8 +257,6 @@ export const writeGeolocationLogsToFileToFile = async (
             '[=== ROUTE DATA UTILS - writeGeolocationLogsToFileToFile ===]',
             e,
         );
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(
             e,
