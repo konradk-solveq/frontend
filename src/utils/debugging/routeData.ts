@@ -4,6 +4,7 @@ import {
     mkdir,
     unlink,
     write,
+    writeFile,
     DownloadDirectoryPath,
     DocumentDirectoryPath,
 } from 'react-native-fs';
@@ -13,6 +14,7 @@ import {appendRouteDebuggInfoToFIle} from '@storage/actions/app';
 import {AppDispatch} from '@storage/storage';
 import {I18n} from '@translations/I18n';
 import {getGeolocationLogs} from '../geolocation';
+import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 const platformName = Platform.OS === 'ios' ? 'IOS' : 'Android';
 
@@ -112,12 +114,19 @@ export const removeDebugDir = async () => {
     }
 };
 
-export const getISODateString = (date?: Date) => {
+export const getISODateString = (date?: Date | string) => {
     let d = new Date().toISOString();
 
     try {
         if (date) {
-            d = date.toISOString();
+            if (typeof date === 'string') {
+                const nD = new Date(date);
+                d = nD.toISOString();
+            } else if (date instanceof Date) {
+                d = date.toISOString();
+            } else {
+                d = `${date}`;
+            }
         }
     } catch (error) {
         console.error('[=== ROUTE DATA UTILS - getISODateString ===]', error);
@@ -228,13 +237,13 @@ export const writeGeolocationLogsToFileToFile = async (
         end?: Date;
     },
 ) => {
-    const start = getISODateString(dates.start);
+    const start = dates.start ? getISODateString(dates.start) : undefined;
     const end = getISODateString(dates.end);
 
     let dataToWrite = await getGeolocationLogs(start, end);
 
     if (!dataToWrite) {
-        return;
+        dataToWrite = `No data between dates [start]${dates.start} and [end]${dates.end}`;
     }
 
     try {
@@ -242,18 +251,22 @@ export const writeGeolocationLogsToFileToFile = async (
             dataToWrite = JSON.stringify(dataToWrite);
         }
 
-        await write(
+        await writeFile(
             `${FILES_PATH}/logs_${fileName}.log`,
             dataToWrite,
-            undefined,
             'utf8',
         );
 
         return dataToWrite;
-    } catch (error) {
+    } catch (e) {
         console.error(
             '[=== ROUTE DATA UTILS - writeGeolocationLogsToFileToFile ===]',
-            error,
+            e,
+        );
+
+        loggErrorWithScope(
+            e,
+            'ROUTE DATA UTILS - writeGeolocationLogsToFileToFile',
         );
     }
 };

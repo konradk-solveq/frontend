@@ -23,6 +23,8 @@ export class DebugRoute implements DebugRouteI {
     private _fileName: string;
     private _deviceGeneralInfo: GeneralDeviceT;
 
+    private _gpsLogWritten = false;
+
     constructor(routeID: string, createdAt?: Date) {
         this._routeID = routeID;
 
@@ -285,6 +287,12 @@ export class DebugRoute implements DebugRouteI {
                     routeAdditionalInfo,
                     dataToSynch,
                 );
+
+                await writeGeolocationLogsToFileToFile(this._fileName, {
+                    start: routeData.startedAt,
+                    end: routeData.endedAt,
+                });
+                this._gpsLogWritten = true;
                 break;
             case 'synch':
                 await this._writeSynchRouteData(
@@ -295,11 +303,6 @@ export class DebugRoute implements DebugRouteI {
                     dataToSynch,
                     dataSendToServer,
                 );
-
-                await writeGeolocationLogsToFileToFile(this._fileName, {
-                    start: routeData.startedAt,
-                    end: routeData.endedAt,
-                });
                 break;
             case 'no-synch':
                 await this._writeNoSynchRouteData(
@@ -309,18 +312,15 @@ export class DebugRoute implements DebugRouteI {
                     routeAdditionalInfo,
                 );
 
-                await writeGeolocationLogsToFileToFile(this._fileName, {
-                    start: routeData.startedAt,
-                    end: routeData.endedAt,
-                });
+                if (!this._gpsLogWritten) {
+                    await writeGeolocationLogsToFileToFile(this._fileName, {
+                        start: routeData.startedAt,
+                        end: routeData.endedAt,
+                    });
+                }
                 break;
             case 'cancel':
                 await this._removeFileOnCancelRoute();
-
-                await writeGeolocationLogsToFileToFile(this._fileName, {
-                    start: routeData.startedAt,
-                    end: routeData.endedAt,
-                });
                 break;
         }
     };
