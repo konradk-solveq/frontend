@@ -243,7 +243,7 @@ export const writeGeolocationLogsToFileToFile = async (
     let dataToWrite = await getGeolocationLogs(start, end);
 
     if (!dataToWrite) {
-        return;
+        dataToWrite = `No data between dates [start]${dates.start} and [end]${dates.end}`;
     }
 
     try {
