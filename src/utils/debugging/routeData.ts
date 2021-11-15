@@ -114,7 +114,7 @@ export const removeDebugDir = async () => {
     }
 };
 
-export const getISODateString = (date?: Date) => {
+export const getISODateString = (date?: Date | string) => {
     let d = new Date().toISOString();
 
     try {
