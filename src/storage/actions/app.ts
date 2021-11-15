@@ -395,7 +395,7 @@ export const appendRouteDebuggInfoToFIle = (
          * Pause and resume does not pass info about current route
          */
         const rd = routeData || currentRoute;
-        const routeDebugger = DebugRouteInstance.debugRouteInstance(
+        const routeDebugger = await DebugRouteInstance.debugRouteInstance(
             actionType,
             routeId,
             rd.startedAt,

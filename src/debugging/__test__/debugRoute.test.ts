@@ -10,7 +10,7 @@ describe('debugRoute -- debugging', () => {
                 const dateToFind = '2021-11-05';
                 const routeId = 'route-id';
 
-                const debuggerInstance = createDebugRouteInstance(
+                const debuggerInstance = await createDebugRouteInstance(
                     actionType,
                     routeId,
                 );
@@ -31,8 +31,8 @@ describe('debugRoute -- debugging', () => {
         describe('Keep instance', () => {
             let debuggerInstance: DebugRoute;
 
-            beforeEach(() => {
-                const instance = createDebugRouteInstance('start');
+            beforeEach(async () => {
+                const instance = await createDebugRouteInstance('start');
 
                 if (instance) {
                     debuggerInstance = instance;
@@ -47,7 +47,7 @@ describe('debugRoute -- debugging', () => {
             ])(
                 "Shouldn't create new debugger instance when %s",
                 async (actionType: RouteActionT) => {
-                    const newDebuggerInstance = createDebugRouteInstance(
+                    const newDebuggerInstance = await createDebugRouteInstance(
                         actionType,
                     );
 
@@ -58,10 +58,16 @@ describe('debugRoute -- debugging', () => {
             );
         });
 
-        it.each([[<RouteActionT>'cancel'], [<RouteActionT>'synch']])(
+        it.each([
+            [<RouteActionT>'cancel'],
+            [<RouteActionT>'synch'],
+            [<RouteActionT>'no-synch'],
+        ])(
             'Should clear debugger instance when %s',
             async (actionType: RouteActionT) => {
-                const debuggerInstance = createDebugRouteInstance('start');
+                const debuggerInstance = await createDebugRouteInstance(
+                    'start',
+                );
 
                 const isDebuggerInstance =
                     debuggerInstance instanceof DebugRoute;

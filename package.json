@@ -1,6 +1,6 @@
 {
     "name": "kross_app",
-    "version": "1.8.1",
+    "version": "1.8.2",
     "private": true,
     "scripts": {
         "android": "react-native run-android",
@@ -32,7 +32,7 @@
         "@react-navigation/native": "^5.9.6",
         "@react-navigation/stack": "^5.14.7",
         "@sayem314/react-native-keep-awake": "^1.0.4",
-        "@sentry/react-native": "^3.1.0",
+        "@sentry/react-native": "^3.2.3",
         "@solveq/path-decimation-sttrace": "0.0.0",
         "axios": "^0.21.1",
         "class-transformer": "^0.4.0",

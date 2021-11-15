@@ -12,8 +12,10 @@ import {
     appendDataToFile,
     createRootDir,
     generalDeviceInfo,
+    getDateIOSStringAsTitle,
     getISODateString,
     removeFile,
+    writeGeolocationLogsToFileToFile,
 } from '@utils/debugging/routeData';
 
 export class DebugRoute implements DebugRouteI {
@@ -25,7 +27,7 @@ export class DebugRoute implements DebugRouteI {
         this._routeID = routeID;
 
         this._deviceGeneralInfo = this._getGeneralDeviceInfo();
-        this._fileName = this._createFileName(createdAt);
+        this._fileName = this._createFileName(routeID, createdAt);
 
         createRootDir();
     }
@@ -201,6 +203,28 @@ export class DebugRoute implements DebugRouteI {
         await appendDataToFile(this._fileName, dataToWrite, false, '', ']');
     };
 
+    private _writeNoSynchRouteData = async (
+        actionType: RouteActionT,
+        actionDateTime: string,
+        routeData: CurrentRouteI,
+        routeAdditionalInfo: RouteAdditionalInfoT,
+    ) => {
+        const deviceInfo = {deviceGeneralInfo: this._deviceGeneralInfo};
+        await appendDataToFile(
+            this._fileName,
+            {
+                actionType,
+                actionDateTime,
+                ...deviceInfo,
+                routeData,
+                routeAdditionalInfo,
+            },
+            false,
+            undefined,
+            ']',
+        );
+    };
+
     private _removeFileOnCancelRoute = async () => {
         await removeFile(this._fileName);
     };
@@ -271,27 +295,48 @@ export class DebugRoute implements DebugRouteI {
                     dataToSynch,
                     dataSendToServer,
                 );
+
+                await writeGeolocationLogsToFileToFile(this._fileName, {
+                    start: routeData.startedAt,
+                    end: routeData.endedAt,
+                });
+                break;
+            case 'no-synch':
+                await this._writeNoSynchRouteData(
+                    actionType,
+                    actionDateTime,
+                    routeData,
+                    routeAdditionalInfo,
+                );
+
+                await writeGeolocationLogsToFileToFile(this._fileName, {
+                    start: routeData.startedAt,
+                    end: routeData.endedAt,
+                });
                 break;
             case 'cancel':
                 await this._removeFileOnCancelRoute();
+
+                await writeGeolocationLogsToFileToFile(this._fileName, {
+                    start: routeData.startedAt,
+                    end: routeData.endedAt,
+                });
                 break;
         }
     };
 
-    private _createFileName = (createdAt?: Date) => {
-        let fileN = `Route - ${this._routeID}`;
+    private _createFileName = (routeID: string, createdAt?: Date) => {
+        let fileN = `Route - ${routeID}`;
         try {
             let suffix = '';
 
             if (createdAt) {
-                const withoutMilliseconds = createdAt.toISOString().split('.');
-                const reg = new RegExp(':', 'g');
-                const dToTitle = withoutMilliseconds[0].replace(reg, '-');
+                const dToTitle = getDateIOSStringAsTitle(createdAt);
 
                 suffix = `- createdAt - ${dToTitle} `;
             }
 
-            fileN = `Route ${suffix}- ${this._routeID}`;
+            fileN = `Route ${suffix}- ${routeID}`;
         } catch (error) {
             console.error('[=== DEBUG ROUTE - _createFileName ===]', error);
         } finally {
@@ -307,7 +352,7 @@ export class DebugRoute implements DebugRouteI {
 export class DebugRouteInstance {
     private static _routeDebugger: DebugRoute | undefined;
 
-    static debugRouteInstance = (
+    static debugRouteInstance = async (
         actionType: RouteActionT,
         routeId: string,
         startedAt?: Date,
@@ -319,12 +364,19 @@ export class DebugRouteInstance {
             this._routeDebugger = new DebugRoute(routeId, startedAt);
         }
 
+        /**
+         * Try to recreate directory if doesn't exists
+         */
+        await createRootDir();
+
         return this._routeDebugger;
     };
 
     static clearRouteDebugInstance = (actionType: RouteActionT) => {
         if (
-            (actionType === 'cancel' || actionType === 'synch') &&
+            (actionType === 'cancel' ||
+                actionType === 'synch' ||
+                actionType === 'no-synch') &&
             this._routeDebugger
         ) {
             this._routeDebugger = undefined;
