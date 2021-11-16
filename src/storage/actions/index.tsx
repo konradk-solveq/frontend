@@ -23,6 +23,7 @@ export {
     fetchAppRegulations,
     setAppRegulation,
     setAppCurrentTerms,
+    setNewAppVersion,
     setAppPolicy,
     setAppShowedRegulationsNumber,
     setAppTerms,

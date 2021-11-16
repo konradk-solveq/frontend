@@ -34,10 +34,14 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
     const isLoading = useAppSelector<boolean>(state => state.app.sync);
     const showed = useAppSelector<number>(state => state.app.showedRegulations);
     const [showNewRegulations, setShowNewRegulations] = useState<boolean>();
+    const [showNewAppVersion, setShowNewAppVersion] = useState<boolean>(false);
     const dispatch = useAppDispatch();
 
     const shopAppVersion = useAppSelector<string>(
         state => state.app.config.version,
+    );
+    const showedNewAppVersion = useAppSelector<string>(
+        state => state.app.showedNewAppVersion,
     );
 
     useEffect(() => {
@@ -77,8 +81,16 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     }),
                 );
             }
+
+            // show New App Version
+            if (
+                showedNewAppVersion < shopAppVersion &&
+                getIsNewVersion(shopAppVersion)
+            ) {
+                setShowNewAppVersion(true);
+            }
         }
-    }, [currentVersion, showed, data]);
+    }, [currentVersion, shopAppVersion, showedNewAppVersion, showed, data]);
 
     useEffect(() => {
         if (!isLoading) {
@@ -87,7 +99,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     return RegularStackRoute.NEW_REGULATIONS_SCREEN;
                 }
 
-                if (getIsNewVersion(shopAppVersion)) {
+                if (showNewAppVersion) {
                     return RegularStackRoute.NEW_APP_VERSION_SCREEN;
                 }
 

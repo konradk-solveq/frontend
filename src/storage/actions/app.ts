@@ -66,6 +66,11 @@ export const setAppShowedRegulationsNumber = (showedRegulations: number) => ({
     showedRegulations: showedRegulations,
 });
 
+export const setNewAppVersion = (showedNewAppVersion: string) => ({
+    type: actionTypes.SET_APP_SHOWED_NEW_APP_VERSION,
+    showedNewAppVersion: showedNewAppVersion,
+});
+
 export const setAppCurrentTerms = (currentTerms: TermsAndConditionsType) => ({
     type: actionTypes.SET_APP_CURRENT_TERMS,
     currentTerms: currentTerms,

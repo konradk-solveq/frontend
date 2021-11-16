@@ -12,7 +12,6 @@ import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 
 import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
 import {
@@ -51,11 +50,25 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
     const shopAppVersion = useAppSelector<string>(
         state => state.app.config.version,
     );
+    const showedNewAppVersion = useAppSelector<string>(
+        state => state.app.showedNewAppVersion,
+    );
 
     const [headHeight, setHeadHeight] = useState<number>(0);
     const [pageType, setPageType] = useState<string | null>(null);
     const [shovedToSave, setShovedToSave] = useState<number>(0);
     const [content, setContent] = useState(null);
+    const [showNewAppVersion, setShowNewAppVersion] = useState<boolean>(false);
+
+    useEffect(() => {
+        // show New App Version
+        if (
+            showedNewAppVersion < shopAppVersion &&
+            getIsNewVersion(shopAppVersion)
+        ) {
+            setShowNewAppVersion(true);
+        }
+    }, [shopAppVersion, showedNewAppVersion]);
 
     useEffect(() => {
         if (terms && currentVersion) {
@@ -105,7 +118,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
         dispatch(setAppShowedRegulationsNumber(shovedToSave));
 
         const getPage = () => {
-            if (getIsNewVersion(shopAppVersion)) {
+            if (showNewAppVersion) {
                 return RegularStackRoute.NEW_APP_VERSION_SCREEN;
             }
 
