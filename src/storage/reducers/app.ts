@@ -22,7 +22,7 @@ export interface AppState {
     currentTerms: TermsAndConditionsType;
     faq: {faq: FaqType[]} | {};
     showedRegulations: number | null;
-    showedNewAppVersion: string | null;
+    showedNewAppVersion: string;
     regulation: RegulationType | {};
     policy: RegulationType | {};
     showedLocationInfo: boolean;
