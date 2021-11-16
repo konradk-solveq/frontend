@@ -1,4 +1,4 @@
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, StatusBar, StyleSheet} from 'react-native';
 
 import {
     getVerticalPx,
@@ -8,6 +8,12 @@ import {
 } from '../../../helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
+const StatusBarHeight = !isIOS
+    ? StatusBar.currentHeight
+        ? StatusBar.currentHeight
+        : 0
+    : 0;
+
 
 const styles = StyleSheet.create({
     container: {
