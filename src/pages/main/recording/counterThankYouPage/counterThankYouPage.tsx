@@ -176,7 +176,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     const onCancelRouteHandler = (forward: string) => {
         setGoForward(forward);
-        dispatch(abortSyncCurrentRouteData());
+        dispatch(abortSyncCurrentRouteData(true));
     };
 
     const onCloseErrorModalHandler = () => {

@@ -1,7 +1,9 @@
 import {Platform} from 'react-native';
 import BackgroundGeolocation, {
+    Config,
     Location,
     LocationError,
+    State,
 } from 'react-native-background-geolocation-android';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {
@@ -24,6 +26,7 @@ import {
     loggErrorWithScope,
     sentryLogLevel,
 } from '@sentryLogger/sentryLogger';
+import {getTimeInUTCMilliseconds} from './transformData';
 
 const isIOS = Platform.OS === 'ios';
 export const LOCATION_ACCURACY = 60;
@@ -89,7 +92,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             debug: __DEV__ ? true : false,
             logLevel: __DEV__
                 ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
-                : BackgroundGeolocation.LOG_LEVEL_OFF,
+                : BackgroundGeolocation.LOG_LEVEL_ERROR,
             maxDaysToPersist: __DEV__ ? 1 : 3,
             desiredOdometerAccuracy: LOCATION_ACCURACY,
             notification: {
@@ -205,15 +208,30 @@ export const getBackgroundGeolocationState = async () => {
     }
 };
 
+export const getDebugLevelMode = (active?: boolean) => {
+    if (__DEV__) {
+        return BackgroundGeolocation.LOG_LEVEL_VERBOSE;
+    }
+
+    if (active) {
+        return BackgroundGeolocation.LOG_LEVEL_DEBUG;
+    }
+
+    return BackgroundGeolocation.LOG_LEVEL_ERROR;
+};
+
 export const startBackgroundGeolocation = async (
     routeId: string,
     keep?: boolean,
+    debugModeActive?: boolean,
 ) => {
+    let state: State | undefined;
     try {
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: false,
             startOnBoot: true,
             isMoving: true,
+            logLevel: getDebugLevelMode(debugModeActive),
             extras: {
                 route_id: routeId,
             },
@@ -222,7 +240,7 @@ export const startBackgroundGeolocation = async (
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
             },
         });
-        const state = await startBackgroundGeolocationPlugin(true);
+        state = await startBackgroundGeolocationPlugin(true);
 
         if (!keep) {
             BackgroundGeolocation.resetOdometer();
@@ -230,8 +248,6 @@ export const startBackgroundGeolocation = async (
         setTimeout(async () => {
             await resumeTracingLocation();
         }, 1000);
-
-        return state;
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.warn('[startBackgroundGeolocation - error]', errorMessage);
@@ -240,6 +256,8 @@ export const startBackgroundGeolocation = async (
         logger.recordError(error);
 
         loggErrorWithScope(error, 'startBackgroundGeolocation');
+    } finally {
+        return state;
     }
 };
 
@@ -250,6 +268,7 @@ export const stopBackgroundGeolocation = async () => {
             startOnBoot: false,
             isMoving: false,
             extras: undefined,
+            logLevel: getDebugLevelMode(),
             notification: {
                 text: 'Pobieranie lokalizacji',
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
@@ -745,14 +764,17 @@ export const removeGeofence = async (identifier: string) => {
 };
 
 export const startBackgroundGeolocationPlugin = async (force?: boolean) => {
+    let state;
     try {
-        let state = await getBackgroundGeolocationState();
+        state = await getBackgroundGeolocationState();
         if (!state?.enabled || force) {
-            await BackgroundGeolocation.start();
-            state = await getBackgroundGeolocationState();
+            const st = await BackgroundGeolocation.start();
+            if (!st) {
+                state = await getBackgroundGeolocationState();
+            } else {
+                state = st;
+            }
         }
-
-        return state;
     } catch (e) {
         console.log('[startBackgroundGeolocationPlugin - error]', e);
         logger.log(`[startBackgroundGeolocationPlugin] - ${e}`);
@@ -760,6 +782,8 @@ export const startBackgroundGeolocationPlugin = async (force?: boolean) => {
         logger.recordError(error);
 
         loggErrorWithScope(e, 'startBackgroundGeolocationPlugin');
+    } finally {
+        return state;
     }
 };
 
@@ -890,5 +914,73 @@ export const resetOdometer = async () => {
         logger.recordError(error);
 
         loggErrorWithScope(e, 'resetOdometer');
+    }
+};
+
+export const setConfig = async (config: Config) => {
+    try {
+        await BackgroundGeolocation.setConfig(config);
+    } catch (e) {
+        console.log('[geolocation - setConfig - error]', e);
+        logger.log(`[geolocation - setConfig] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'geolocation-setConfig');
+    }
+};
+
+export const setDebugLogLevel = async () => {
+    try {
+        await setConfig({
+            logLevel: BackgroundGeolocation.LOG_LEVEL_DEBUG,
+        });
+    } catch (e) {
+        console.log('[geolocation - setDebugLogLevel - error]', e);
+        logger.log(`[geolocation - setDebugLogLevel] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'geolocation-setDebugLogLevel');
+    }
+};
+
+export const setErrorLogLevel = async () => {
+    try {
+        await setConfig({
+            logLevel: BackgroundGeolocation.LOG_LEVEL_ERROR,
+        });
+    } catch (e) {
+        console.log('[geolocation - setErrorLogLevel - error]', e);
+        logger.log(`[geolocation - setErrorLogLevel] - ${e}`);
+        const error = new Error(e);
+        logger.recordError(error);
+
+        loggErrorWithScope(e, 'geolocation-setErrorLogLevel');
+    }
+};
+
+export const getGeolocationLogs = async (start?: string, end?: string) => {
+    try {
+        const Logger = BackgroundGeolocation.logger;
+
+        if (!start || !end) {
+            const log = await Logger.getLog();
+            return log;
+        }
+
+        const log = await Logger.getLog({
+            start: getTimeInUTCMilliseconds(start, true),
+            end: getTimeInUTCMilliseconds(end, true),
+            order: Logger.ORDER_DESC,
+            limit: 100000,
+        });
+
+        return log;
+    } catch (e) {
+        console.log('[geolocation - getGeolocationLogs - error]', e);
+        logger.log(`[geolocation - getGeolocationLogs] - ${e}`);
+
+        loggErrorWithScope(e, 'geolocation-getGeolocationLogs');
     }
 };

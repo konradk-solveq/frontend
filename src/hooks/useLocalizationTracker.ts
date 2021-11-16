@@ -32,7 +32,6 @@ import {getCurrentRoutePathByIdWithLastRecord} from '@utils/routePath';
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
 import {isLocationValidToPass} from '@src/utils/transformData';
-import {appendRouteDebuggInfoToFIle} from '@src/storage/actions/app';
 import {dispatchRouteDebugAction} from '@src/utils/debugging/routeData';
 
 export interface DataI {

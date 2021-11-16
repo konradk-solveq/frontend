@@ -45,6 +45,9 @@ export const stopRecordingExpectedActions = [
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
     {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
         type: actionTypes.SET_CURRENT_ROUTE,
         currentRoute: stoppedRoute,
     },
@@ -65,6 +68,9 @@ export const synchRecordingExpectedActions = [
     {
         type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: true,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         type: actionTypes.SET_ROUTES_TO_SYNC,
@@ -123,6 +129,9 @@ export const synchRecordingWhenOfflineExpectedActions = [
         state: true,
     },
     {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
         removeDuplicates: undefined,
     },
@@ -145,6 +154,9 @@ export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActions = [
     {
         state: true,
         type: actionTypes.SET_ROUTES_LOADING_STATE,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
@@ -173,6 +185,9 @@ export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActionsB = [
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
     {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
         removeDuplicates: undefined,
     },
@@ -196,6 +211,9 @@ export const synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedAct
     {
         type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: true,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         type: actionTypes.SET_ROUTES_TO_SYNC,
@@ -254,6 +272,9 @@ export const synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions = [
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
     {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
         removeDuplicates: undefined,
     },
@@ -278,6 +299,9 @@ export const synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions = [
     {
         type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: true,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,

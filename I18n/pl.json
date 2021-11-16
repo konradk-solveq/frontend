@@ -759,7 +759,13 @@
     },
     "DebugRoute": {
         "enableDebugging": "Włącz debugowanie trasy",
-        "disableDebugging": "Wyłącz debugowanie trasy"
+        "disableDebugging": "Wyłącz debugowanie trasy",
+        "removeDirAlert": {
+            "title": "Usuwanie logów",
+            "message": "Zostaną usunięte wszystkie logi nagranych tras. Ta operacja jest niedwracalna!",
+            "leftButton": "Anuluj",
+            "rightButton": "Usuń"
+        }
     },
     "aaaaaaa-aaaaaa": "_____"
 }

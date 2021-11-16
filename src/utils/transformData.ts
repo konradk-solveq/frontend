@@ -13,7 +13,11 @@ import {Images, Map, MapType, OptionsEnumsT} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
-import {getLocations, LOCATION_ACCURACY, transformGeoloCationData} from './geolocation';
+import {
+    getLocations,
+    LOCATION_ACCURACY,
+    transformGeoloCationData,
+} from './geolocation';
 import {
     isLocationValidate,
     removeLessAccuratePointsLocations,
@@ -38,11 +42,26 @@ export const getTimeInUTCMilliseconds = (
     return time;
 };
 
-export const isLocationValidToPass = (loc: any, routeId?: string) => {
-    if (!routeId || !loc?.extras?.route_id || loc?.sample === true) {
+export const isLocationValidToPass = (
+    loc: any,
+    routeId?: string,
+    skipFiltering?: boolean,
+) => {
+    if (!routeId || !loc?.extras?.route_id) {
         return false;
     }
     if (routeId !== loc?.extras?.route_id) {
+        return false;
+    }
+    if (!isLocationValidate(loc)) {
+        return false;
+    }
+
+    if (skipFiltering) {
+        return true;
+    }
+
+    if (loc?.sample === true) {
         return false;
     }
     if (loc?.coords?.accuracy && loc?.coords?.accuracy > LOCATION_ACCURACY) {
@@ -56,9 +75,6 @@ export const isLocationValidToPass = (loc: any, routeId?: string) => {
         loc?.activity?.confidence >= 90 &&
         isIOS
     ) {
-        return false;
-    }
-    if (!isLocationValidate(loc)) {
         return false;
     }
 
@@ -452,6 +468,7 @@ export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
 
 export const routesDataToPersist = async (
     routeId: string,
+    withoutFiltering?: boolean,
 ): Promise<LocationDataI[]> => {
     const currRoutes: LocationDataI[] = [];
     const locations = await getLocations();
@@ -461,7 +478,7 @@ export const routesDataToPersist = async (
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!isLocationValidToPass(l, routeId)) {
+        if (!isLocationValidToPass(l, routeId, withoutFiltering)) {
             return;
         }
 
@@ -481,7 +498,9 @@ export const routesDataToPersist = async (
 
     const sorted = sortLocationDataByTime(currRoutes);
 
-    const cleanedArr = removeLessAccuratePointsLocations(sorted);
+    const cleanedArr = withoutFiltering
+        ? sorted
+        : removeLessAccuratePointsLocations(sorted);
 
     return cleanedArr;
 };
