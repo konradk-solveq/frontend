@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Platform, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {Platform, SafeAreaView, StyleSheet} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import Animated, {
     useSharedValue,

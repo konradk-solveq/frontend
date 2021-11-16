@@ -7,13 +7,8 @@ import {
     mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 
-const isIOS = Platform.OS === 'ios';
-const StatusBarHeight = !isIOS
-    ? StatusBar.currentHeight
-        ? StatusBar.currentHeight
-        : 0
-    : 0;
 
+const isIOS = Platform.OS === 'ios';
 
 const styles = StyleSheet.create({
     container: {

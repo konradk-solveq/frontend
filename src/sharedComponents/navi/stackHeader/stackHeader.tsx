@@ -6,7 +6,6 @@ import {
     Dimensions,
     Platform,
     TextStyle,
-    StatusBar,
 } from 'react-native';
 import TopBackBtn from './topBackBtn';
 
@@ -20,20 +19,6 @@ import {
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
 import useStatusBarHeight from '@hooks/statusBarHeight';
-
-const isAndroid = Platform.OS === 'android';
-const StatusBarHeight = isAndroid
-    ? StatusBar.currentHeight
-        ? StatusBar.currentHeight
-        : 0
-    : 0;
-
-const isAndroid = Platform.OS === 'android';
-const StatusBarHeight = isAndroid
-    ? StatusBar.currentHeight
-        ? StatusBar.currentHeight
-        : 0
-    : 0;
 
 interface Props {
     // * wartości wymagane
