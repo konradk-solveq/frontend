@@ -121,8 +121,8 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
             "color": "#313131",
             "fontFamily": "DIN2014Narrow-Regular",
             "fontSize": 32,
-            "marginHorizontal": 40,
-            "paddingBottom": 16,
+            "marginHorizontal": 72.46376811594203,
+            "paddingBottom": 23.821428571428573,
           }
         }
       >
@@ -133,9 +133,9 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
           Object {
             "color": "#313131",
             "fontFamily": "DIN2014Narrow-Light",
-            "fontSize": 24,
+            "fontSize": 43.47826086956522,
             "fontWeight": "800",
-            "marginHorizontal": 40,
+            "marginHorizontal": 72.46376811594203,
           }
         }
       >
@@ -145,14 +145,14 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
     <View
       style={
         Object {
-          "marginHorizontal": 40,
+          "marginHorizontal": 72.46376811594203,
         }
       }
     >
       <View
         style={
           Object {
-            "height": 60,
+            "height": 50,
           }
         }
       >
@@ -217,7 +217,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
               "borderRadius": 90.57971014492753,
               "borderWidth": 1,
               "display": "flex",
-              "height": 60,
+              "height": 50,
               "justifyContent": "center",
               "marginBottom": 89.33035714285715,
               "marginTop": 29.776785714285715,
@@ -360,8 +360,8 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
             "color": "#313131",
             "fontFamily": "DIN2014Narrow-Regular",
             "fontSize": 32,
-            "marginHorizontal": 40,
-            "paddingBottom": 16,
+            "marginHorizontal": 72.46376811594203,
+            "paddingBottom": 23.821428571428573,
           }
         }
       >
@@ -372,9 +372,9 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
           Object {
             "color": "#313131",
             "fontFamily": "DIN2014Narrow-Light",
-            "fontSize": 24,
+            "fontSize": 43.47826086956522,
             "fontWeight": "800",
-            "marginHorizontal": 40,
+            "marginHorizontal": 72.46376811594203,
           }
         }
       >
@@ -384,14 +384,14 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
     <View
       style={
         Object {
-          "marginHorizontal": 40,
+          "marginHorizontal": 72.46376811594203,
         }
       }
     >
       <View
         style={
           Object {
-            "height": 60,
+            "height": 50,
           }
         }
       >
@@ -456,7 +456,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
               "borderRadius": 90.57971014492753,
               "borderWidth": 1,
               "display": "flex",
-              "height": 60,
+              "height": 50,
               "justifyContent": "center",
               "marginBottom": 89.33035714285715,
               "marginTop": 29.776785714285715,

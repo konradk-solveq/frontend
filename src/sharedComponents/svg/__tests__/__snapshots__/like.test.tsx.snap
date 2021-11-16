@@ -25,14 +25,14 @@ exports[`<Like /> Rendering Should match snapshot - checked 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "center",
-        "paddingHorizontal": 5,
+        "paddingHorizontal": 9.057971014492754,
       }
     }
   >
     <View
       style={
         Object {
-          "top": -2,
+          "top": -3.6231884057971016,
         }
       }
     >
@@ -41,9 +41,9 @@ exports[`<Like /> Rendering Should match snapshot - checked 1`] = `
           Object {
             "color": "#3587EA",
             "fontFamily": "mykross",
-            "fontSize": undefined,
+            "fontSize": 12,
             "marginLeft": 0,
-            "marginRight": 5,
+            "marginRight": 9.057971014492754,
           }
         }
       >
@@ -56,7 +56,7 @@ exports[`<Like /> Rendering Should match snapshot - checked 1`] = `
           "color": "#313131",
           "fontFamily": "DIN2014Narrow-Regular",
           "fontSize": 23,
-          "marginLeft": 5,
+          "marginLeft": 9.057971014492754,
           "position": "relative",
         }
       }
@@ -90,14 +90,14 @@ exports[`<Like /> Rendering Should match snapshot - unchecked 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "center",
-        "paddingHorizontal": 5,
+        "paddingHorizontal": 9.057971014492754,
       }
     }
   >
     <View
       style={
         Object {
-          "top": -2,
+          "top": -3.6231884057971016,
         }
       }
     >
@@ -106,9 +106,9 @@ exports[`<Like /> Rendering Should match snapshot - unchecked 1`] = `
           Object {
             "color": "#3587EA",
             "fontFamily": "mykross",
-            "fontSize": undefined,
+            "fontSize": 12,
             "marginLeft": 0,
-            "marginRight": 5,
+            "marginRight": 9.057971014492754,
           }
         }
       >
@@ -121,7 +121,7 @@ exports[`<Like /> Rendering Should match snapshot - unchecked 1`] = `
           "color": "#313131",
           "fontFamily": "DIN2014Narrow-Regular",
           "fontSize": 23,
-          "marginLeft": 5,
+          "marginLeft": 9.057971014492754,
           "position": "relative",
         }
       }
@@ -155,14 +155,14 @@ exports[`<Like /> Rendering Should match snapshot - with custom size - unchecked
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "center",
-        "paddingHorizontal": 5,
+        "paddingHorizontal": 9.057971014492754,
       }
     }
   >
     <View
       style={
         Object {
-          "top": -2,
+          "top": -3.6231884057971016,
         }
       }
     >
@@ -173,7 +173,7 @@ exports[`<Like /> Rendering Should match snapshot - with custom size - unchecked
             "fontFamily": "mykross",
             "fontSize": 22,
             "marginLeft": 0,
-            "marginRight": 5,
+            "marginRight": 9.057971014492754,
           }
         }
       >
@@ -186,7 +186,7 @@ exports[`<Like /> Rendering Should match snapshot - with custom size - unchecked
           "color": "#313131",
           "fontFamily": "DIN2014Narrow-Regular",
           "fontSize": 23,
-          "marginLeft": 5,
+          "marginLeft": 9.057971014492754,
           "position": "relative",
         }
       }
