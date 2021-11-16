@@ -30,6 +30,7 @@ import {getTimeInUTCMilliseconds} from './transformData';
 
 const isIOS = Platform.OS === 'ios';
 export const LOCATION_ACCURACY = 60;
+const GPS_OFF_TIMEOUT = isIOS ? 30 : 15;
 
 export const transformLocationErrorCode = (e: LocationError | any) => {
     try {
@@ -88,7 +89,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             },
             enableTimestampMeta: !isIOS,
             distanceFilter: 10,
-            stopTimeout: __DEV__ ? 1 : 5,
+            stopTimeout: __DEV__ ? 1 : GPS_OFF_TIMEOUT,
             debug: __DEV__ ? true : false,
             logLevel: __DEV__
                 ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
@@ -979,7 +980,6 @@ export const getGeolocationLogs = async (start?: string, end?: string) => {
         return log;
     } catch (e) {
         console.log('[geolocation - getGeolocationLogs - error]', e);
-        logger.log(`[geolocation - getGeolocationLogs] - ${e}`);
 
         loggErrorWithScope(e, 'geolocation-getGeolocationLogs');
     }
