@@ -28,6 +28,13 @@ const StatusBarHeight = isAndroid
         : 0
     : 0;
 
+const isAndroid = Platform.OS === 'android';
+const StatusBarHeight = isAndroid
+    ? StatusBar.currentHeight
+        ? StatusBar.currentHeight
+        : 0
+    : 0;
+
 interface Props {
     // * wartości wymagane
     style?: any;
