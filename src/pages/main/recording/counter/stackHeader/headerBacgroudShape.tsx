@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Platform, SafeAreaView, StyleSheet} from 'react-native';
+import {Platform, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import Animated, {
     useSharedValue,
@@ -132,7 +132,6 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
         </SafeAreaView>
     );
 };
-
 
 
 export default React.memo(HeaderBacgroudShape);
