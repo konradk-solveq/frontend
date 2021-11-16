@@ -90,7 +90,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                 setShowNewAppVersion(true);
             }
         }
-    }, [currentVersion, shopAppVersion, showed, data]);
+    }, [currentVersion, shopAppVersion, showedNewAppVersion, showed, data]);
 
     useEffect(() => {
         if (!isLoading) {

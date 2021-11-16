@@ -59,16 +59,14 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
     const [showNewAppVersion, setShowNewAppVersion] = useState<boolean>(false);
 
     useEffect(() => {
-        if (data) {
-            // show New App Version
-            if (
-                showedNewAppVersion < shopAppVersion &&
-                getIsNewVersion(shopAppVersion)
-            ) {
-                setShowNewAppVersion(true);
-            }
+        // show New App Version
+        if (
+            showedNewAppVersion < shopAppVersion &&
+            getIsNewVersion(shopAppVersion)
+        ) {
+            setShowNewAppVersion(true);
         }
-    }, [shopAppVersion, showedNewAppVersion, data]);
+    }, [shopAppVersion, showedNewAppVersion]);
 
     useEffect(() => {
         if (terms && currentVersion) {
