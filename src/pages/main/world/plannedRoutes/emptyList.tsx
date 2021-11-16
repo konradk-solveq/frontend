@@ -35,7 +35,7 @@ const EmptyList: React.FC<IProsp> = ({onPress}: IProsp) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
     },
     title: {
         fontFamily: 'DIN2014Narrow-Regular',
@@ -58,11 +58,6 @@ const styles = StyleSheet.create({
         height: mainButtonsHeight(50),
         width: '100%',
         marginTop: getVerticalPx(40),
-    },
-    btnCheck: {
-        height: mainButtonsHeight(50),
-        width: '100%',
-        marginTop: getVerticalPx(30),
     },
 });
 
