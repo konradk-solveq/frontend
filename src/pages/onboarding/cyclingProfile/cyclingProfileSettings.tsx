@@ -25,6 +25,7 @@ import {
     getWidthPxOf,
     getHeightPx,
     getHorizontalPx,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 import deepCopy from '../../../helpers/deepCopy';
 import {CyclingProfileRoute} from '../../../navigation/route';
@@ -49,8 +50,9 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
     const view = I18n.t('Profile').view;
     const types = Object.keys(view.types);
 
-    const [dataSetting, setDataSetting] =
-        useState<RiderProfile>(riderProfileData); // dane poszczególnych pól
+    const [dataSetting, setDataSetting] = useState<RiderProfile>(
+        riderProfileData,
+    ); // dane poszczególnych pól
     const [active, setActive] = useState(
         initActiveState(lists, riderProfileData),
     ); // który element z listy jest aktywny
@@ -172,7 +174,7 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         bottons: {
             position: 'relative',
             width: getWidthPx(),
-            height: getHeightPx(),
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             display: 'flex',
             flexDirection: 'row',

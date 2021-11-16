@@ -10,6 +10,7 @@ import {
     getVerticalPx,
     getHorizontalPx,
     getWidthOf,
+    getFontSize,
 } from '../../../helpers/layoutFoo';
 import {BothStackRoute} from '../../../navigation/route';
 
@@ -55,8 +56,8 @@ const OnePermit: React.FC<Props> = (props: Props) => {
         },
         text: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             textAlign: 'left',
             color: '#555555',
         },
@@ -65,8 +66,8 @@ const OnePermit: React.FC<Props> = (props: Props) => {
         },
         wrong: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             textAlign: 'left',
             color: '#d8232a',
             marginTop: getVerticalPx(11),

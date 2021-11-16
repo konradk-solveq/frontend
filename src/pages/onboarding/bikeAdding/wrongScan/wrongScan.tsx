@@ -11,6 +11,9 @@ import {
     getVerticalPx,
     getWidthPx,
     getStandard,
+    getFontSize,
+    mainButtonsHeight,
+    getHeightPx,
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -24,7 +27,7 @@ const WrongScan: React.FC<Props> = (props: Props) => {
 
     const imgH = ww * (296 / 414);
     setObjSize(334, 51);
-    let styles = StyleSheet.create({
+    const styles = StyleSheet.create({
         container: {
             width: '100%',
             height: '100%',
@@ -38,13 +41,13 @@ const WrongScan: React.FC<Props> = (props: Props) => {
         },
         reg40: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getFontSize(40),
             textAlign: 'center',
             color: '#d8232a',
         },
         light18: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             textAlign: 'left',
             color: '#555555',
         },
@@ -55,7 +58,13 @@ const WrongScan: React.FC<Props> = (props: Props) => {
             bottom: getVerticalPx(381),
         },
         text: getStandard(334, 174, 535),
-        btnAgain: getStandard(334, 50, 781),
+        btnAgain: {
+            position: 'absolute',
+            width: getWidthPx(334),
+            height: getHeightPx(50),
+            left: mainButtonsHeight(40),
+            top: getVerticalPx(781),
+        },
     });
 
     return (
@@ -71,7 +80,7 @@ const WrongScan: React.FC<Props> = (props: Props) => {
             </Text>
 
             <View style={styles.btnAgain}>
-                <BigRedBtn title={trans.btnAgain} />
+                <BigRedBtn title={trans.btnAgain} onpress={() => {}} />
             </View>
         </SafeAreaView>
     );

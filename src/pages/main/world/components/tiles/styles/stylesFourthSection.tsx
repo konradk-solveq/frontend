@@ -1,5 +1,6 @@
 import { Platform, StyleSheet } from 'react-native';
 import {
+    getFontSize,
     getHorizontalPx,
     getVerticalPx,
 } from '../../../../../../helpers/layoutFoo';
@@ -16,8 +17,8 @@ const stylesFourthSection = StyleSheet.create({
         width: '30%',
         alignItems: 'flex-end',
         justifyContent: 'center',
-        left: 10,
-        top: 8,
+        left: getHorizontalPx(10),
+        top: getHorizontalPx(8),
     },
     secondColumnItem: {
         marginRight: getHorizontalPx(30),
@@ -32,16 +33,16 @@ const stylesFourthSection = StyleSheet.create({
         marginTop: getVerticalPx(isIOS ? 0 : 3),
     },
     moreIconFontWrap: {
-        height: 20,
-        width: 36,
+        height: getHorizontalPx(20),
+        width: getHorizontalPx(36),
     },
     moreIconFont: {
-        top: 8,
-        left: 4,
+        top: getHorizontalPx(8),
+        left: getHorizontalPx(4),
         marginLeft: 0,
-        marginRight: 5,
+        marginRight: getHorizontalPx(5),
         fontFamily: 'mykross',
-        fontSize: 4.15,
+        fontSize: getFontSize(4.15),
         textAlign: 'center',
     },
 });

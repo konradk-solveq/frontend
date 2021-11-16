@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
-import {getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {getFontSize, getVerticalPx} from '../../../../../helpers/layoutFoo';
 import {SelectOptionType} from '../../../../../models/map.model';
 
 import {MultiSelect} from '../../../../../sharedComponents/inputs';
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     },
     name: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.5,
         color: '#313131',
         textAlign: 'left',

@@ -14,6 +14,7 @@ import {
     getWidthPx,
     getVerticalPx,
     getHorizontalPx,
+    getFontSize,
 } from '../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../hooks/redux';
 
@@ -48,14 +49,14 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
         title: {
             textAlign: 'left',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 23,
-            lineHeight: 30,
+            fontSize: getFontSize(23),
+            lineHeight: getFontSize(30),
             color: '#313131',
         },
         paragraph: {
             textAlign: 'left',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#555555',
         },
         regular: {

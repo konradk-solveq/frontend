@@ -114,6 +114,16 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
 
     const viewBox = '0 0 ' + getHorizontalPx(414) + ' ' + getVerticalPx(116);
 
+    const styles = StyleSheet.create({
+        container: {
+            position: 'absolute',
+            top: statusBarHeight,
+            left: 0,
+            width: getHorizontalPx(414),
+            height: getHorizontalPx(100),
+        },
+    });
+
     return (
         <SafeAreaView>
             <Svg viewBox={viewBox} style={[styles.container, style]}>
@@ -123,14 +133,5 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: getHorizontalPx(414),
-        height: 100,
-    },
-});
 
 export default React.memo(HeaderBacgroudShape);

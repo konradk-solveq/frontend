@@ -6,6 +6,7 @@ import {
     Text,
     TouchableWithoutFeedback,
     Linking,
+    Platform,
 } from 'react-native';
 import I18n from 'react-native-i18n';
 import {useAppSelector} from '../../../../hooks/redux';
@@ -18,6 +19,8 @@ import {
     getCenterLeftPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
+    mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 
 interface Props {
@@ -49,7 +52,7 @@ const Contact: React.FC<Props> = (props: Props) => {
         },
         title: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
+            fontSize: getFontSize(30),
             color: '#555555',
             textAlign: 'left',
             position: 'absolute',
@@ -61,21 +64,21 @@ const Contact: React.FC<Props> = (props: Props) => {
         },
         phone: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getFontSize(40),
             color: '#313131',
             textAlign: 'left',
             marginBottom: getVerticalPx(16),
         },
         email: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getFontSize(40),
             color: '#3587ea',
             textAlign: 'left',
         },
         adress: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 24,
-            lineHeight: 30,
+            fontSize: getFontSize(24),
+            lineHeight: getFontSize(30),
             color: '#313131',
             textAlign: 'left',
             position: 'absolute',
@@ -84,17 +87,28 @@ const Contact: React.FC<Props> = (props: Props) => {
         btn: {
             position: 'absolute',
             bottom: getVerticalPx(65),
-            height: 50,
+            height: mainButtonsHeight(50),
             width: '100%',
         },
     });
+
+    const heandlePhone = () => {
+        if (Platform.OS !== 'android') {
+            return `telprompt:${trans.phone}`;
+        } else {
+            return `tel:${trans.phone}`;
+        }
+    };
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.wrap}>
                 <Text style={styles.title}>{userName + trans.title}</Text>
                 <View style={styles.poneEmail}>
-                    <Text style={styles.phone}>{trans.phone}</Text>
+                    <TouchableWithoutFeedback
+                        onPress={() => Linking.openURL(heandlePhone())}>
+                        <Text style={styles.phone}>{trans.phone}</Text>
+                    </TouchableWithoutFeedback>
 
                     <TouchableWithoutFeedback
                         onPress={() =>

@@ -3,7 +3,11 @@ import {View, Text, ViewStyle, Animated} from 'react-native';
 
 import AnimSvg from '../../../../helpers/animSvg';
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+} from '../../../../helpers/layoutFoo';
 import {useState} from 'react';
 
 const styles = StyleSheet.create({
@@ -22,20 +26,20 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         position: 'absolute',
-        height: getHorizontalPx(120) * 1.9,
+        height: getHorizontalPx(130) * 1.9,
         left: 0,
         width: getHorizontalPx(414 - 80),
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
         bottom: 0,
         zIndex: 2,
     },
     message: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 23,
+        fontSize: getFontSize(23),
         color: '#313131',
         letterSpacing: 0,
         textAlign: 'center',
-        marginTop: 30,
+        marginTop: getVerticalPx(65),
     },
     plug: {
         position: 'absolute',
@@ -79,9 +83,8 @@ const ButtonBackground: React.FC<IProps> = ({
         }
     }, [show, message]);
 
-    const backgroundPosition = useRef(
-        new Animated.Value(-startPosition),
-    ).current;
+    const backgroundPosition = useRef(new Animated.Value(-startPosition))
+        .current;
     const textOpacity = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {

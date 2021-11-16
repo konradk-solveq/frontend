@@ -190,7 +190,6 @@ const Bike: React.FC<Props> = (props: Props) => {
                         onpress={() => {}}
                         inner={trans.header}
                         style={styles.header}
-                        titleStyle={styles.title}
                     />
 
                     {bike?.description && (
@@ -200,6 +199,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                                 styles.params,
                                 {
                                     marginTop: getVerticalPx(40),
+                                    top: getVerticalPx(48) - statusBarHeight,
                                 },
                             ]}
                             iconStyle={styles.paramIcon}
@@ -234,26 +234,26 @@ const Bike: React.FC<Props> = (props: Props) => {
 
                                 {warrantyData &&
                                     warrantyData?.type !== 'no-info' && (
-                                        <Warranty
-                                        style={styles.warranty}
-                                            navigation={props.navigation}
-                                            type={warrantyData.info}
-                                        toEnd={
+                                    <Warranty
+                                            style={styles.warranty}
+                                        navigation={props.navigation}
+                                        type={warrantyData.info}
+                                            toEnd={
                                                 bike?.warranty
                                                     ? warrantyData?.end
                                                         ? countDaysToEnd(
-                                                            warrantyData.end,
-                                                        )
+                                                              warrantyData.end,
+                                                          )
                                                         : null
                                                     : undefined
-                                        }
-                                            warranty={trans.warranty}
-                                            details={{
-                                                description: bike?.description,
-                                                warranty: warrantyData,
-                                            }}
-                                        />
-                                    )}
+                                            }
+                                        warranty={trans.warranty}
+                                        details={{
+                                            description: bike?.description,
+                                            warranty: warrantyData,
+                                        }}
+                                    />
+                                )}
 
                                 {warrantyData?.overviews && (
                                     <Reviews

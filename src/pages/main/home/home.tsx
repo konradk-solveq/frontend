@@ -1,5 +1,14 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {SafeAreaView, View, ScrollView, Platform} from 'react-native';
+import {
+    SafeAreaView,
+    View,
+    ScrollView,
+    Platform,
+    Dimensions,
+    StyleSheet,
+    StatusBar,
+    StatusBarIOS,
+} from 'react-native';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
 import KroosLogo from '@sharedComponents/svg/krossLogo';
@@ -23,10 +32,10 @@ import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import TabBackGround from '@sharedComponents/navi/tabBackGround';
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
-
-import styles from './style';
+import {getVerticalPx} from '@src/helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
+const {width, height} = Dimensions.get('window');
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
@@ -97,49 +106,85 @@ const Home: React.FC = () => {
         return <Loader />;
     }
 
-    return (
-        <SafeAreaView style={styles.container1}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.header}>
-                    <KroosLogo />
-                </View>
+    const scrollTop = getVerticalPx(100) - 0;
+    const styles = StyleSheet.create({
+        scroll: {
+            top: scrollTop,
+            height: height - scrollTop,
+        },
+        container1: {
+            flex: 1,
+            backgroundColor: '#ffffff',
+        },
+        container: {
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#fff',
+        },
+        header: {
+            position: 'absolute',
+            width: width,
+            height: getVerticalPx(20),
+            top: getVerticalPx(70),
+            zIndex: 1,
+            alignItems: 'center',
+        },
+        tileWrapper: {
+            top: getVerticalPx(38),
+            paddingBottom: getVerticalPx(260),
+        },
+        tileSpace: {
+            marginBottom: 25,
+        },
+    });
 
-                <View style={styles.container}>
-                    <View style={styles.tileWrapper}>
-                        {!hasRecordedRoutes ? (
+    return (
+        <View style={styles.container1}>
+            <View style={styles.scroll}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={styles.container}>
+                        <View style={styles.tileWrapper}>
+                            {!hasRecordedRoutes ? (
+                                <Tile
+                                    title={trans.thirdTitle}
+                                    description={trans.thirdText}
+                                    btnText={trans.thirdBtn}
+                                    style={styles.tileSpace}
+                                    onPress={doAction}
+                                />
+                            ) : (
+                                <Tile
+                                    title={trans.fourthTitle}
+                                    description={trans.fourthText}
+                                    btnText={trans.fourthBtn}
+                                    style={styles.tileSpace}
+                                    onPress={doAction}
+                                />
+                            )}
                             <Tile
-                                title={trans.thirdTitle}
-                                description={trans.thirdText}
-                                btnText={trans.thirdBtn}
+                                title={trans.secondTitle}
+                                description={trans.secondText}
+                                btnText={trans.secondBtn}
                                 style={styles.tileSpace}
-                                onPress={doAction}
+                                onPress={onAddActionHandler}
                             />
-                        ) : (
-                            <Tile
-                                title={trans.fourthTitle}
-                                description={trans.fourthText}
-                                btnText={trans.fourthBtn}
-                                style={styles.tileSpace}
-                                onPress={doAction}
-                            />
-                        )}
-                        <Tile
-                            title={trans.secondTitle}
-                            description={trans.secondText}
-                            btnText={trans.secondBtn}
-                            style={styles.tileSpace}
-                            onPress={onAddActionHandler}
-                        />
-                        {/* <Tile
+                            {/* <Tile
                             title={trans.firstTitle}
                             description={trans.firstText}
                             btnText={trans.firstBtn}
                             style={styles.tileSpace}
                             onPress={onCheckActionHandler}
                         /> */}
+                        </View>
                     </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </View>
+
+            <View style={styles.header}>
+                <KroosLogo />
+            </View>
 
             <TabBackGround />
 
@@ -150,7 +195,7 @@ const Home: React.FC = () => {
                     onClose={onCancelHandler}
                 />
             )}
-        </SafeAreaView>
+        </View>
     );
 };
 

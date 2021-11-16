@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-import {getVerticalPx} from '@helpers/layoutFoo';
+import {getFontSize, getHorizontalPx} from '@helpers/layoutFoo';
 
 interface IProps {
     text: string;
@@ -20,13 +20,13 @@ const NextTileHeader: React.FC<IProps> = ({text}: IProps) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#f67e83',
-        height: getVerticalPx(29),
+        height: getHorizontalPx(29),
         paddingHorizontal: 20,
         justifyContent: 'center',
     },
     text: {
         color: '#ffffff',
-        fontSize: 15,
+        fontSize: getFontSize(15),
         letterSpacing: 0.42,
         fontFamily: 'DIN2014Narrow-Regular',
     },

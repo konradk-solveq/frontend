@@ -8,6 +8,7 @@ import {
     getHorizontalPx,
     getWidthPx,
     getCenterLeftPx,
+    getFontSize,
 } from '../../../../helpers/layoutFoo';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -57,7 +58,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
         },
         title: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getFontSize(40),
             color: '#313131',
             textAlign: 'center',
         },
@@ -65,7 +66,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(5),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 15,
+            fontSize: getFontSize(15),
             color: '#555555',
         },
         map: {
@@ -75,29 +76,29 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
         warning: {
             width: getHorizontalPx(334),
             left: getHorizontalPx(40),
-            padding: 20,
+            padding: getHorizontalPx(20),
             backgroundColor: '#d8232a',
-            borderRadius: 30,
+            borderRadius: getHorizontalPx(30),
             marginTop: getVerticalPx(33),
             marginBottom: getVerticalPx(123),
         },
         warningText: {
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'center',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#fff',
         },
         optionsTextWrapper: {
-            marginBottom: 15,
-            marginTop: 30,
-            fontSize: 18,
+            marginBottom: getHorizontalPx(15),
+            marginTop: getHorizontalPx(30),
+            fontSize: getFontSize(18),
             fontFamily: 'DIN2014Narrow-Light',
         },
         optionsText: {
-            paddingVertical: 0.2,
+            paddingVertical: getHorizontalPx(0.2),
             letterSpacing: 0.5,
-            fontSize: 18,
+            fontSize: getFontSize(18),
             fontFamily: 'DIN2014Narrow-Light',
         },
     });

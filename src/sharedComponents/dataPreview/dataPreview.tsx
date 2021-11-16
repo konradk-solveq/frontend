@@ -1,4 +1,4 @@
-import {getHorizontalPx, getVerticalPx} from '@src/helpers/layoutFoo';
+import {getFontSize, getHorizontalPx, getVerticalPx} from '@src/helpers/layoutFoo';
 import React, {useState, useContext, useRef} from 'react';
 import {
     StyleSheet,
@@ -78,7 +78,7 @@ const DataPreview: React.FC<Props> = ({
         },
         title: {
             fontFamily: 'DIN2014Narrow-Bold',
-            fontSize: 30,
+            fontSize: getFontSize(30),
             textAlign: 'center',
             color: 'white',
             paddingBottom: getVerticalPx(10),
@@ -91,14 +91,14 @@ const DataPreview: React.FC<Props> = ({
         textName: {
             paddingLeft: getHorizontalPx(16),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 16,
+            fontSize: getFontSize(16),
             textAlign: 'center',
             color: 'white',
         },
         textValue: {
             paddingLeft: getHorizontalPx(5),
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 16,
+            fontSize: getFontSize(16),
             textAlign: 'center',
             color: 'white',
         },
@@ -108,7 +108,7 @@ const DataPreview: React.FC<Props> = ({
         textSection: {
             paddingLeft: getHorizontalPx(5),
             fontFamily: 'DIN2014Narrow-Bold',
-            fontSize: 16,
+            fontSize: getFontSize(16),
             textAlign: 'center',
             color: 'white',
         },
@@ -123,7 +123,7 @@ const DataPreview: React.FC<Props> = ({
             backgroundColor: '#fff',
             width: getHorizontalPx(40),
             height: getHorizontalPx(40),
-            borderRadius: 50,
+            borderRadius: getHorizontalPx(50),
             position: 'absolute',
             right: getHorizontalPx(16 + 40),
             top: getHorizontalPx(16) + getVerticalPx(40),
@@ -134,7 +134,7 @@ const DataPreview: React.FC<Props> = ({
             backgroundColor: '#fff',
             width: getHorizontalPx(40),
             height: getHorizontalPx(40),
-            borderRadius: 50,
+            borderRadius: getHorizontalPx(50),
             position: 'absolute',
             left: getHorizontalPx(16 + 40),
             top: getHorizontalPx(16) + getVerticalPx(40),
@@ -145,7 +145,7 @@ const DataPreview: React.FC<Props> = ({
             backgroundColor: '#888',
             width: getHorizontalPx(40),
             height: getHorizontalPx(40),
-            borderRadius: 50,
+            borderRadius: getHorizontalPx(50),
             position: 'absolute',
             right: getHorizontalPx(0),
             top: getVerticalPx(874 / 2) - getHorizontalPx(25),
@@ -165,21 +165,21 @@ const DataPreview: React.FC<Props> = ({
         },
         textBtn: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
-            lineHeight: 42,
+            fontSize: getFontSize(40),
+            lineHeight: getFontSize(42),
             textAlign: 'center',
             color: '#000',
         },
         textBtn2: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 20,
-            lineHeight: 36,
+            fontSize: getFontSize(20),
+            lineHeight: getFontSize(36),
             textAlign: 'center',
             color: '#000',
         },
         text: {
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 20,
+            fontSize: getFontSize(20),
             textAlign: 'center',
             color: 'white',
         },

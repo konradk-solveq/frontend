@@ -1,5 +1,12 @@
-import React, {useEffect, useRef, useCallback} from 'react';
-import {StyleSheet, Text, View, Platform, Animated} from 'react-native';
+import React, {useEffect, useRef, useCallback, useState} from 'react';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Platform,
+    Animated,
+    StatusBar,
+} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -8,9 +15,11 @@ import {
     getWidthPx,
     getHeightPx,
     getHorizontalPx,
+    getFontSize,
 } from '../../../../../helpers/layoutFoo';
 import HeaderBacgroudShape from './headerBacgroudShape';
-import useStatusBarHeight from '@src/hooks/statusBarHeight';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {getStatusBarHeight} from '../../../../../utils/detectIOSDevice';
 
 const isAndroid = Platform.OS === 'android';
 interface Props {
@@ -19,7 +28,7 @@ interface Props {
     onpress: Function; // po naciśnięciu strzałki
     inner: string; // nazwa headera
     titleOn: boolean; // czy nazwa w headerze ma się pokazać
-    getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
+    getHeight: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
     whiteArow: boolean;
     started?: boolean;
     mapHiden: boolean;
@@ -41,17 +50,13 @@ const StackHeader: React.FC<Props> = ({
     const height = getVerticalPx(100);
     const iosOpen = isAndroid ? 0 : 10;
     const iosClose = isAndroid ? 0 : 30;
-
-    const getCurrentHeight = useCallback(async () => {
-        if (getHeight) {
-            const statusBarHeight = await getStatusBarHeight(isAndroid);
-            getHeight(height - statusBarHeight);
-        }
-    }, [height, getHeight]);
+    const statusBarHeight = useStatusBarHeight();
 
     useEffect(() => {
-        getCurrentHeight();
-    }, [getCurrentHeight]);
+        if (getHeight) {
+            getHeight(height);
+        }
+    }, []);
 
     const display = useRef(new Animated.Value(0)).current;
 
@@ -87,7 +92,7 @@ const StackHeader: React.FC<Props> = ({
             left: 0,
             top: 0,
             width: '100%',
-            height: height,
+            height: height + statusBarHeight,
         },
         wrap: {
             position: 'absolute',
@@ -104,7 +109,7 @@ const StackHeader: React.FC<Props> = ({
         title: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 13,
+            fontSize: getFontSize(13),
             color: '#ffffff',
         },
         titleWrap: {

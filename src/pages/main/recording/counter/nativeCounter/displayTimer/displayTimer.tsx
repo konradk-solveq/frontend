@@ -1,5 +1,8 @@
 import React, {useEffect, useState, useCallback, useRef} from 'react';
-import {getHorizontalPx} from '../../../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+} from '../../../../../../helpers/layoutFoo';
 import useAppState from '../../../../../../hooks/useAppState';
 
 import {convertToCounterFormat} from '../../../../../../utils/dateTime';
@@ -74,7 +77,10 @@ const DisplayTimer: React.FC<IProps> = ({
         <DisplayValue
             value={convertedTime.hoursWithMinutes || '00:00'}
             style={[
-                {marginLeft: fontSize > 23 ? getHorizontalPx(30) : 0},
+                {
+                    marginLeft:
+                        fontSize > getFontSize(23) ? getHorizontalPx(30) : 0,
+                },
                 style,
             ]}
             suffix={`:${convertedTime.dzSeconds}`}

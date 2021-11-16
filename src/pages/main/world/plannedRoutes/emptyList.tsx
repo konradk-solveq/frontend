@@ -4,7 +4,12 @@ import I18n from 'react-native-i18n';
 
 import {BigRedBtn} from '../../../../sharedComponents/buttons';
 
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../../helpers/layoutFoo';
 
 interface IProsp {
     onPress: () => void;
@@ -30,34 +35,29 @@ const EmptyList: React.FC<IProsp> = ({onPress}: IProsp) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
     },
     title: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 40,
-        lineHeight: 52,
+        fontSize: getFontSize(40),
+        lineHeight: getFontSize(52),
         color: '#d8232a',
         textAlign: 'center',
         marginTop: getVerticalPx(37),
     },
     text: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 23,
-        lineHeight: 30,
+        fontSize: getFontSize(23),
+        lineHeight: getFontSize(30),
         letterSpacing: 0.5,
         color: '#313131',
         textAlign: 'left',
         marginTop: getVerticalPx(20),
     },
     btnRecord: {
-        height: 50,
+        height: mainButtonsHeight(50),
         width: '100%',
         marginTop: getVerticalPx(40),
-    },
-    btnCheck: {
-        height: 50,
-        width: '100%',
-        marginTop: getVerticalPx(30),
     },
 });
 
