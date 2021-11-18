@@ -2,7 +2,7 @@ apply plugin: "com.android.application"
 
 
 apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
+
 
 project.ext.envConfigFiles = [
     prod: ".env.production",
@@ -171,14 +171,6 @@ android {
             keyPassword 'android'
         }
         release {
-            /* Add the firebaseCrashlytics extension (by default,
-            * it's disabled to improve build speeds) and set
-            * nativeSymbolUploadEnabled to true. */
-
-            firebaseCrashlytics {
-                nativeSymbolUploadEnabled true
-            }
-
             if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
                 storeFile file('../key2.jks')
                 storePassword MYAPP_RELEASE_STORE_PASSWORD

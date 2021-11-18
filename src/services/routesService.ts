@@ -6,7 +6,6 @@ import {
     routesDataToAPIRequest,
 } from '@utils/apiDataTransform/prepareRequest';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
-import logger from '@utils/crashlytics';
 import {I18n} from '@translations/I18n';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
@@ -59,10 +58,8 @@ export const createNewRouteService = async (
             error: '',
         };
     } catch (error) {
-        console.log(`[createNewRouteService] - ${error}`);
-        logger.log(`[createNewRouteService] - ${error}`);
+        console.error(`[createNewRouteService] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'createNewRouteService');
 
@@ -103,10 +100,8 @@ export const removeCeratedRouteIDService = async (
             error: '',
         };
     } catch (error) {
-        console.log(`[removeCeratedRouteIDService] - ${error}`);
-        logger.log(`[removeCeratedRouteIDService] - ${error}`);
+        console.error(`[removeCeratedRouteIDService] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'removeCeratedRouteIDService');
 
@@ -225,10 +220,8 @@ export const syncRouteData = async (
             sentData: pathToSend,
         };
     } catch (error) {
-        console.log(`[syncRouteDataService] - ${error}`);
-        logger.log(`[syncRouteDataService] - ${error}`);
+        console.error(`[syncRouteDataService] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'syncRouteDataService');
 

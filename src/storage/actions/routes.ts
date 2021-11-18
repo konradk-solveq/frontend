@@ -10,7 +10,6 @@ import {MapsState} from '../reducers/maps';
 import {removeCeratedRouteIDService} from '../../services/routesService';
 import {appendRouteDebuggInfoToFIle} from '@storage/actions/app';
 
-import logger from '../../utils/crashlytics';
 import {createNewRouteService, syncRouteData} from '../../services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
@@ -232,9 +231,7 @@ export const startRecordingRoute = (
         return {success: startedState, finished: true};
     } catch (error) {
         console.log(`[startRecordingRoute] - ${error}`);
-        logger.log(`[startRecordingRoute] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'startRecordingRoute');
 
@@ -268,9 +265,6 @@ export const stopCurrentRoute = (
                 const response = await removeCeratedRouteIDService(currRouteID);
                 if (response.error) {
                     console.log(`[stopCurrentRoute] - ${response.error}`);
-                    logger.log(`[stopCurrentRoute] - ${response.error}`);
-                    const err = convertToApiError(response.error);
-                    logger.recordError(err);
 
                     loggErrorMessage(
                         response.error,
@@ -338,9 +332,7 @@ export const stopCurrentRoute = (
         return {success: stoppedState, finished: true};
     } catch (error) {
         console.log(`[stopCurrentRoute] - ${error}`);
-        logger.log(`[stopCurrentRoute] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'stopCurrentRoute');
 
@@ -372,9 +364,7 @@ export const addToQueueByRouteIdRouteData = (
         setLoadState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[addToQueueByRouteIdRouteData] - ${error}`);
-        logger.log(`[addToQueueByRouteIdRouteData] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'addToQueueByRouteIdRouteData');
         const errorMessage = I18n.t('dataAction.apiError');
@@ -428,9 +418,7 @@ export const addRoutesToSynchQueue = (
         setLoadState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[addRoutesToSynchQueue] - ${error}`);
-        logger.log(`[addRoutesToSynchQueue] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'addRoutesToSynchQueue');
 
@@ -499,11 +487,6 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 console.log(
                     `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
                 );
-                logger.log(
-                    `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
-                );
-                const err = convertToApiError(errorMessage);
-                logger.recordError(err);
 
                 sentryMessager(errorMessage, sentryLogLevel.Log);
             }
@@ -580,9 +563,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         syncRouteDataFromQueue(true);
     } catch (error) {
         console.log(`[syncCurrentRouteData] - ${error}`);
-        logger.log(`[syncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'syncCurrentRouteData');
 
@@ -653,9 +634,7 @@ export const syncRouteDataFromQueue = (
         setLoadState(dispatch, true, skipLoadingState);
     } catch (error) {
         console.log(`[syncRouteDataFromQueue] - ${error}`);
-        logger.log(`[syncRouteDataFromQueue] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'syncRouteDataFromQueue');
     }
@@ -714,9 +693,7 @@ export const abortSyncCurrentRouteData = (
         }
     } catch (error) {
         console.log(`[abortSyncCurrentRouteData] - ${error}`);
-        logger.log(`[abortSyncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'abortSyncCurrentRouteData');
     }
