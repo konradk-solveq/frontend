@@ -2,7 +2,7 @@ import {enableScreens} from 'react-native-screens';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RootStackType} from '@type/rootStack';
-import {isAndroid} from '@pages/main/newAppVersion/platform';
+import {isAndroid} from '@src/utils/platform';
 
 /**
  * For further investigation. Crash on Android when set to true

@@ -83,7 +83,6 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
             }
 
             // show New App Version
-            console.log('[VERSION TO SHOW]', showedNewAppVersion, shopAppVersion, getIsNewVersion(shopAppVersion))
             if (
                 showedNewAppVersion < shopAppVersion &&
                 getIsNewVersion(shopAppVersion)
