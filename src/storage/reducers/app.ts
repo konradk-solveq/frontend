@@ -251,6 +251,7 @@ const persistConfig = {
         'showedLocationInfo',
         'location',
         'routeDebugMode',
+        'showedNewAppVersion',
     ],
     timeout: 20000,
 };
