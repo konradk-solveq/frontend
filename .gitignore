@@ -66,6 +66,7 @@ buck-out/
 .env.development
 .env.dev
 .env.test
+.env.feature
 
 android/gradle.properties
 android/key2.jks
@@ -73,6 +74,7 @@ android/app/release/
 android/app/prod/release/
 android/app/qa/release/
 android/app/dev/release/
+android/app/feat/release/
 android/app/src/main/res/values/google_maps_api.xml
 android/app/src/qa/res/values/google_maps_api.xml
 android/app/src/dev/res/values/google_maps_api.xml
