@@ -85,6 +85,7 @@ ios/GoogleService-Info.plist
 ios/GoogleService-Info-Prod.plist
 ios/GoogleService-Info-Test.plist
 ios/GoogleService-Info-Dev.plist
+ios/GoogleService-Info-Feature.plist
 .vscode
 
 coverage

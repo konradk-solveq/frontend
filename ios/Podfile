@@ -8,6 +8,8 @@ project 'myKROSS',
         'Dev.Release' => :release, 
         'Test.Debug' => :debug,
         'Test.Release' => :release, 
+        'Feat.Debug' => :debug,
+        'Feat.Release' => :release, 
         'Prod.Debug' => :debug,
         'Prod.Release' => :release
 
@@ -46,6 +48,8 @@ target 'myKROSS' do
     'Dev.Release' => '${PODS_ROOT}/../../.env.development', 
     'Test.Debug' => '${PODS_ROOT}/../.env.test',
     'Test.Release' => '${PODS_ROOT}/../.env.test', 
+    'Feat.Debug' => '${PODS_ROOT}/../.env.feature',
+    'Feat.Release' => '${PODS_ROOT}/../.env.feature', 
     'Prod.Debug' => '${PODS_ROOT}/../../.env.production',
     'Prod.Release' => '${PODS_ROOT}/../../.env.production'
   }
