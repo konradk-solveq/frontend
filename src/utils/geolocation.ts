@@ -240,6 +240,8 @@ export const startBackgroundGeolocation = async (
                 text: 'Nagrywanie trasy',
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
             },
+            pausesLocationUpdatesAutomatically: false,
+            showsBackgroundLocationIndicator: true,
         });
         state = await startBackgroundGeolocationPlugin(true);
 
@@ -274,6 +276,8 @@ export const stopBackgroundGeolocation = async () => {
                 text: 'Pobieranie lokalizacji',
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
             },
+            pausesLocationUpdatesAutomatically: undefined,
+            showsBackgroundLocationIndicator: undefined,
         });
 
         const state = await stopBackgroundGeolocationPlugin();
