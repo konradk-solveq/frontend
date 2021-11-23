@@ -496,7 +496,7 @@ export const resumeTracingLocation = async (routeId?: string) => {
                 },
             });
             await setConfig({
-                showsBackgroundLocationIndicator: false,
+                showsBackgroundLocationIndicator: true,
             });
         }
 
