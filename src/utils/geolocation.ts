@@ -466,6 +466,9 @@ export const pauseTracingLocation = async (clearRouteId?: boolean) => {
     try {
         if (clearRouteId) {
             await BackgroundGeolocation.setConfig({extras: {}});
+            await setConfig({
+                showsBackgroundLocationIndicator: false,
+            });
         }
 
         const state = await getBackgroundGeolocationState();
@@ -491,6 +494,9 @@ export const resumeTracingLocation = async (routeId?: string) => {
                 extras: {
                     route_id: routeId,
                 },
+            });
+            await setConfig({
+                showsBackgroundLocationIndicator: false,
             });
         }
 
