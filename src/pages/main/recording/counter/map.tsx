@@ -285,9 +285,6 @@ const Map: React.FC<IProps> = ({
      */
     useEffect(() => {
         if (mountedRef.current && canAnimateRef.current) {
-            if (!restoreRef.current) {
-                canAnimateRef.current = false;
-            }
             setMapCamera();
         }
     }, [setMapCamera]);
@@ -313,9 +310,9 @@ const Map: React.FC<IProps> = ({
         canAnimateRef.current = true;
     };
 
-    const handleCameraChange = () => {
+    const handleCameraChange = useCallback(() => {
         autoFindMeSwith(0);
-    };
+    }, [autoFindMeSwith]);
 
     /* TODO: error boundary */
     return showMap ? (
