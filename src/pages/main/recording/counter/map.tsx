@@ -195,6 +195,10 @@ const Map: React.FC<IProps> = ({
      * Backup location. If next will be undefined we use this one.
      */
     const peviousKnownLocation = useRef<LatLng | undefined>();
+
+    /**
+     * Deactivates cooldown system imidietly when findMeLocation btn has been triggered
+     */
     useEffect(() => {
         if (autoFindMe) {
             isAnimatingCameraRef.current = false;
