@@ -18,6 +18,7 @@ import SinglePolyline from './polyline/singlePolyline';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
+import {getCenterCameraCoords} from '@src/utils/mapCameraAnimation';
 
 type latType = {latitude: number; longitude: number};
 
@@ -144,9 +145,6 @@ const Map: React.FC<IProps> = ({
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [autoFindMeLastState, setAutoFindMeLastState] = useState<number>(
-        autoFindMe,
-    );
 
     useEffect(() => {
         if (!mountedRef.current || locationSetRef.current) {
@@ -192,20 +190,35 @@ const Map: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const animateCam = (
-        animation: Partial<Camera>,
-        duration: number,
-        cooldown: boolean,
-    ) => {
-        mapRef.current?.animateCamera(animation, {duration: duration});
+    const autoFindMeLastStateRef = useRef(0);
+    /**
+     * Backup location. If next will be undefined we use this one.
+     */
+    const peviousKnownLocation = useRef<LatLng | undefined>();
 
-        if (cooldown) {
-            setCameraAnimCooldown(true);
-            cooldownRef.current = setTimeout(() => {
-                setCameraAnimCooldown(false);
-            }, duration);
+    /**
+     * Deactivates cooldown system imidietly when findMeLocation btn has been triggered
+     */
+    useEffect(() => {
+        if (autoFindMe) {
+            isAnimatingCameraRef.current = false;
+            setCameraAnimCooldown(false);
         }
-    };
+    }, [autoFindMe]);
+
+    const animateCam = useCallback(
+        (animation: Partial<Camera>, duration: number, cooldown: boolean) => {
+            mapRef.current?.animateCamera(animation, {duration: duration});
+
+            if (cooldown) {
+                setCameraAnimCooldown(true);
+                cooldownRef.current = setTimeout(() => {
+                    setCameraAnimCooldown(false);
+                }, duration);
+            }
+        },
+        [],
+    );
 
     const animateCameraOnIOS = useCallback(
         async (animation: Partial<Camera>, cooldown: boolean) => {
@@ -221,7 +234,7 @@ const Map: React.FC<IProps> = ({
                 );
             }
         },
-        [headingOn],
+        [headingOn, animateCam],
     );
 
     const setMapCamera = useCallback(() => {
@@ -234,26 +247,21 @@ const Map: React.FC<IProps> = ({
         };
         let cooldown = false;
         if (autoFindMe > 0 && mapRef.current) {
-            if ((trackerData && trackerData.coords) || location) {
-                if (trackerData && trackerData.coords) {
-                    animation.center = {
-                        latitude: trackerData.coords.lat,
-                        longitude: trackerData.coords.lon,
-                    };
-                } else if (location) {
-                    animation.center = {
-                        latitude: location.latitude,
-                        longitude: location.longitude,
-                    };
-                }
+            const updatedLocation = getCenterCameraCoords(
+                trackerData?.coords,
+                location,
+                peviousKnownLocation.current,
+            );
+            if (updatedLocation) {
+                animation.center = updatedLocation;
+
+                peviousKnownLocation.current = updatedLocation;
             }
 
-            if (autoFindMe !== autoFindMeLastState) {
-                animation.zoom = ZOOM_START_VALUE;
-                cooldown = true;
-            }
+            animation.zoom = ZOOM_START_VALUE;
+            cooldown = true;
         }
-        setAutoFindMeLastState(autoFindMe);
+        autoFindMeLastStateRef.current = autoFindMe;
 
         if (isIOS) {
             animateCameraOnIOS(animation, cooldown);
@@ -267,7 +275,7 @@ const Map: React.FC<IProps> = ({
         autoFindMe,
         trackerData,
         location,
-        autoFindMeLastState,
+        animateCam,
         animateCameraOnIOS,
     ]);
 
@@ -277,9 +285,6 @@ const Map: React.FC<IProps> = ({
      */
     useEffect(() => {
         if (mountedRef.current && canAnimateRef.current) {
-            if (!restoreRef.current) {
-                canAnimateRef.current = false;
-            }
             setMapCamera();
         }
     }, [setMapCamera]);
@@ -305,9 +310,9 @@ const Map: React.FC<IProps> = ({
         canAnimateRef.current = true;
     };
 
-    const handleCameraChange = e => {
+    const handleCameraChange = useCallback(() => {
         autoFindMeSwith(0);
-    };
+    }, [autoFindMeSwith]);
 
     /* TODO: error boundary */
     return showMap ? (
@@ -326,7 +331,7 @@ const Map: React.FC<IProps> = ({
                 zoomEnabled={true}
                 zoomTapEnabled={true}
                 showsCompass={false}
-                onPanDrag={(e: any) => handleCameraChange(e)}
+                onPanDrag={handleCameraChange}
                 onMapLoaded={() => {
                     setShowWebView(true);
                 }}

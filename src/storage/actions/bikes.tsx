@@ -9,7 +9,6 @@ import {
     getBikesListByFrameNrs,
 } from '../../services';
 import {setFrameNumber} from './index';
-import logger from '../../utils/crashlytics';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 import {BikesState} from '@storage/reducers/bikes';
@@ -83,9 +82,7 @@ export const setBikesListByFrameNumber = (
         dispatch(setBikeData(newData));
     } catch (error) {
         console.log(`[setBikesListByFrameNumber] - ${error}`);
-        logger.log(`[setBikesListByFrameNumber] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'setBikesListByFrameNumber');
 
@@ -110,9 +107,7 @@ export const fetchGenericBikeData = (): AppThunk<
         dispatch(setGenericBikeData(newData));
     } catch (error) {
         console.error(`[fetchGenericBikeData] - ${error}`);
-        logger.log(`[fetchGenericBikeData] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchGenericBikeData');
 
@@ -193,9 +188,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<Promise<void>> => async (
         }
     } catch (error) {
         console.error(`[setBikesListByFrameNumbers] - ${error}`);
-        logger.log(`[setBikesListByFrameNumbers] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'setBikesListByFrameNumbers');
 

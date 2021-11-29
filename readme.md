@@ -102,3 +102,7 @@ gdyby okazało się, że coś nie działa to usunąć w __android/app/build.grad
         checkReleaseBuilds false
     }
 ```
+
+## Code Versioning
+
+We use semver [semantics](https://semver.org/). Project contains package `rnsemup` for easier versioning. Just use `npx rnsemup` command in your terminal. More info [here](https://github.com/zmnv/react-native-semver-update).
