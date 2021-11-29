@@ -17,7 +17,7 @@ import {
     getFontSize,
 } from '../../../../helpers/layoutFoo';
 import {version} from '../../../../../package.json';
-import {API_URL} from '@env';
+import {API_URL, ENVIRONMENT_TYPE} from '@env';
 import {RouteDebugBtn} from '@sharedComponents/buttons';
 
 interface Props {
@@ -28,8 +28,9 @@ interface Props {
 const getAppVersion = () => {
     const appBuildNumber = DeviceInfo.getBuildNumber();
     const serverVersion = API_URL.includes('.pre.') ? ' - serwer testowy' : '';
+    const buildType = API_URL.includes('.pre.') ? ` - ${ENVIRONMENT_TYPE}` : '';
 
-    return `${version} (${appBuildNumber}) ${serverVersion}`;
+    return `${version} (${appBuildNumber}) ${buildType} ${serverVersion}`;
 };
 
 const AboutApp: React.FC<Props> = (props: Props) => {

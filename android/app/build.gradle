@@ -8,6 +8,7 @@ project.ext.envConfigFiles = [
     prod: ".env.production",
     dev: ".env.dev",
     qa: ".env.test",
+    feat: ".env.feature",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
@@ -200,6 +201,14 @@ android {
             applicationId 'pl.kross.mykross'
             applicationIdSuffix ".test"
             versionNameSuffix "-test"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "pl.kross.mykross"
+        }
+        feat {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId 'pl.kross.mykross'
+            applicationIdSuffix ".development" //react-native-background-geolocation-android allowes only few idSuffixes, so this is used because of limits => https://github.com/transistorsoft/react-native-background-geolocation-android/issues/693#issuecomment-601216816
+            versionNameSuffix "-feature"
             targetSdkVersion rootProject.ext.targetSdkVersion
             resValue "string", "build_config_package", "pl.kross.mykross"
         }
