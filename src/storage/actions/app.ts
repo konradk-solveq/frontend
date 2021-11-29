@@ -30,7 +30,6 @@ import {
     getNewRegulationsService,
 } from '@services/index';
 import {I18n} from '@translations/I18n';
-import logger from '@utils/crashlytics';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
@@ -149,9 +148,7 @@ export const fetchAppConfig = (
         }
     } catch (error) {
         console.log(`[fetchAppConfig] - ${error}`);
-        logger.log(`[fetchAppConfig] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchAppConfig');
 
@@ -206,9 +203,7 @@ export const fetchAppFaq = (
         }
     } catch (error) {
         console.log(`[fetchAppFaq] - ${error}`);
-        logger.log(`[fetchAppFaq] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchAppFaq');
 
@@ -272,9 +267,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         dispatch(setSyncStatus(false));
     } catch (error) {
         console.log(`[appSyncData] - ${error}`);
-        logger.log(`[appSyncData] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
 
         loggErrorWithScope(err, 'appSyncData');
@@ -353,9 +346,7 @@ export const fetchAppRegulations = (
         }
     } catch (error) {
         console.log(`[fetchAppRegulations] - ${error}`);
-        logger.log(`[fetchAppRegulations] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchAppRegulations');
 
@@ -424,9 +415,7 @@ export const appendRouteDebuggInfoToFIle = (
         DebugRouteInstance.clearRouteDebugInstance(actionType);
     } catch (error) {
         console.log(`[appendRouteDebuggInfoToFIle] - ${error}`);
-        logger.log(`[appendRouteDebuggInfoToFIle] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'appendRouteDebuggInfoToFIle');
     }

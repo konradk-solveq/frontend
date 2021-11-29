@@ -6,7 +6,7 @@ exports[`<ShortRouteBody /> Rendering Should match snapshot 1`] = `
     Object {
       "backgroundColor": "#ffffff",
       "height": "100%",
-      "paddingBottom": 215.88169642857144,
+      "paddingBottom": 191.43973214285714,
       "width": "100%",
     }
   }
@@ -21,7 +21,7 @@ exports[`<ShortRouteBody /> Rendering Should match snapshot 1`] = `
               "fontFamily": "DIN2014Narrow-Regular",
               "fontSize": 40,
               "left": 72.46376811594203,
-              "paddingVertical": 5,
+              "paddingVertical": 7.444196428571429,
               "textAlign": "center",
               "width": 605.072463768116,
             },
@@ -309,7 +309,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with alternative m
     Object {
       "backgroundColor": "#ffffff",
       "height": "100%",
-      "paddingBottom": 215.88169642857144,
+      "paddingBottom": 191.43973214285714,
       "width": "100%",
     }
   }
@@ -324,7 +324,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with alternative m
               "fontFamily": "DIN2014Narrow-Regular",
               "fontSize": 40,
               "left": 72.46376811594203,
-              "paddingVertical": 5,
+              "paddingVertical": 7.444196428571429,
               "textAlign": "center",
               "width": 605.072463768116,
             },
@@ -594,7 +594,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with disabled btn 
     Object {
       "backgroundColor": "#ffffff",
       "height": "100%",
-      "paddingBottom": 215.88169642857144,
+      "paddingBottom": 191.43973214285714,
       "width": "100%",
     }
   }
@@ -609,7 +609,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with disabled btn 
               "fontFamily": "DIN2014Narrow-Regular",
               "fontSize": 40,
               "left": 72.46376811594203,
-              "paddingVertical": 5,
+              "paddingVertical": 7.444196428571429,
               "textAlign": "center",
               "width": 605.072463768116,
             },
@@ -896,7 +896,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with loader on btn
     Object {
       "backgroundColor": "#ffffff",
       "height": "100%",
-      "paddingBottom": 215.88169642857144,
+      "paddingBottom": 191.43973214285714,
       "width": "100%",
     }
   }
@@ -911,7 +911,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with loader on btn
               "fontFamily": "DIN2014Narrow-Regular",
               "fontSize": 40,
               "left": 72.46376811594203,
-              "paddingVertical": 5,
+              "paddingVertical": 7.444196428571429,
               "textAlign": "center",
               "width": 605.072463768116,
             },
