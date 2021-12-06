@@ -27,6 +27,9 @@ export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
             speed: p.coords.speed,
             time: p.timestamp,
         };
+        /**
+         * Backend searches for that value only in first element
+         */
         if (!addedDistance && distance) {
             np.displayDistance = distance;
             addedDistance = true;
