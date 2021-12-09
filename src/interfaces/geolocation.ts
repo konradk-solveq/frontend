@@ -28,6 +28,7 @@ export interface ApiPathI {
     altitude: number | undefined;
     speed: number | undefined;
     time: string;
+    displayDistance?: number;
 }
 
 export interface GeofenceEvent extends GE {}
