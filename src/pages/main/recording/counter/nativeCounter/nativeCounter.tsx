@@ -276,9 +276,8 @@ const NativeCounter: React.FC<IProps> = ({
             <Animated.View
                 style={[
                     styles.container,
-                    {height: containerHeight, bottom: containerTop},
+                    {height: containerHeight, bottom: containerBottom},
                 ]}>
-                <View style={styles.test} />
                 <CurvedShape />
 
                 <Animated.View
