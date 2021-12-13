@@ -1,15 +1,5 @@
-import React, {useState} from 'react';
-import {useEffect} from 'react';
-import {
-    StyleSheet,
-    Dimensions,
-    View,
-    Text,
-    ScrollView,
-    SafeAreaView,
-    Linking,
-} from 'react-native';
-import I18n from 'react-native-i18n';
+import React from 'react';
+import {StyleSheet, View, Text, ScrollView, SafeAreaView} from 'react-native';
 
 import {
     setObjSize,
@@ -19,6 +9,7 @@ import {
     getFontSize,
 } from '../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../hooks/redux';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import Paragraph from './paragraph';
@@ -27,21 +18,11 @@ interface Props {
     navigation: any;
 }
 
-const wh = Dimensions.get('window').height;
-
 const Regulations: React.FC<Props> = (props: Props) => {
     const data = useAppSelector(state => state.app.regulation);
 
-    const [headHeight, setheadHeight] = useState(0);
-
     setObjSize(334, 50);
     const styles = StyleSheet.create({
-        scroll: {
-            width: '100%',
-            height: wh - headHeight,
-            top: headHeight,
-            backgroundColor: '#fff',
-        },
         wrap: {
             marginTop: getVerticalPx(50),
             width: getWidthPx(),
@@ -55,23 +36,11 @@ const Regulations: React.FC<Props> = (props: Props) => {
             lineHeight: getFontSize(30),
             color: '#313131',
         },
-        paragraph: {
-            textAlign: 'left',
-            fontSize: getFontSize(18),
-            lineHeight: getFontSize(24),
-            color: '#555555',
-        },
-        regular: {
-            fontFamily: 'DIN2014Narrow-Regular',
-        },
-        light: {
-            fontFamily: 'DIN2014Narrow-Light',
-        },
     });
 
     return (
-        <SafeAreaView>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         {data.title && (
@@ -96,7 +65,6 @@ const Regulations: React.FC<Props> = (props: Props) => {
                 <StackHeader
                     onpress={() => props.navigation.goBack()}
                     inner={data.header}
-                    getHeight={setheadHeight}
                     style={{backgroundColor: '#fff'}}
                 />
             )}

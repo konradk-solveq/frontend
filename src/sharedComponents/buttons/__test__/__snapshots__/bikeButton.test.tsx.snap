@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BikeButton /> Rendering Should match snapshot - with icon 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f0f0f0",
+        "borderRadius": 27.17391304347826,
+        "flexDirection": "row",
+        "height": 52.53623188405797,
+        "justifyContent": "center",
+        "marginLeft": 0,
+        "paddingLeft": 18.115942028985508,
+        "width": "auto",
+      },
+      undefined,
+    ]
+  }
+  testID="bike-btn"
+>
+  <View
+    testID="bike-icon"
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={27.17391304347826}
+      bbWidth={38.04347826086956}
+      focusable={false}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Array [
+            Object {
+              "height": 27.17391304347826,
+              "marginLeft": 9.057971014492754,
+              "width": 38.04347826086956,
+            },
+            undefined,
+          ],
+          Object {
+            "flex": 0,
+            "height": 27,
+            "width": 38,
+          },
+        ]
+      }
+      vbHeight={15}
+      vbWidth={21}
+    >
+      <RNSVGGroup>
+        <RNSVGPath
+          d="M12.257 10.584c0 2.435 1.96 4.416 4.371 4.416C19.038 15 21 13.02 21 10.584c0-2.435-1.961-4.416-4.372-4.416-.612 0-1.184.124-1.716.351l-.735-1.444L12.939.97c0-.145-.081-.268-.204-.31L11 .02c-.164-.061-.348.021-.409.186s.02.351.184.413l1.532.578 1.238 3.65H7.21V3.013h.776c.184 0 .327-.144.327-.33 0-.186-.143-.33-.327-.33H5.965c-.184 0-.327.144-.327.33 0 .186.143.33.327.33h.592v2.083l-.633 1.362c-.49-.186-1-.289-1.552-.289C1.962 6.168 0 8.15 0 10.584 0 13.02 1.961 15 4.372 15c2.288 0 4.187-1.795 4.35-4.086h1.41c.102 0 .205-.062.266-.144l3.411-4.973.531 1.032c-1.246.784-2.083 2.166-2.083 3.755zM4.372 14.34c-2.043 0-3.718-1.692-3.718-3.756 0-2.063 1.675-3.755 3.718-3.755.449 0 .878.082 1.287.227L4.086 10.44v.02c-.02.042-.02.062-.02.104v.02c0 .041 0 .083.02.103 0 0 0 .021.02.021 0 .02 0 .02.02.041.02.02.02.041.041.041v.021c.02.02.062.041.082.062h.02c.041.02.082.02.103.02h3.697c-.163 1.94-1.757 3.447-3.697 3.447zM6.23 7.344c1.02.599 1.736 1.672 1.838 2.91H4.882l1.349-2.91zm3.738 2.91H8.723c-.102-1.506-.96-2.806-2.206-3.508l.572-1.238h6.128l-3.248 4.746zm6.66-3.425c2.042 0 3.717 1.692 3.717 3.755 0 2.064-1.675 3.756-3.718 3.756-2.042 0-3.717-1.692-3.717-3.756 0-1.32.694-2.497 1.715-3.157l1.716 3.322c.062.103.164.186.286.186.041 0 .103-.02.143-.041.164-.083.225-.29.143-.434l-1.716-3.342c.45-.186.92-.29 1.43-.29z"
+          fill={4281413937}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+  <Text
+    ellipsizeMode="clip"
+    numberOfLines={1}
+    style={
+      Array [
+        Object {
+          "color": "#555555",
+          "fontFamily": "DIN2014Narrow-Regular",
+          "fontSize": 28.985507246376812,
+          "marginLeft": 9.057971014492754,
+          "marginRight": 27.17391304347826,
+        },
+        undefined,
+      ]
+    }
+  >
+    bike button
+  </Text>
+</View>
+`;
+
+exports[`<BikeButton /> Rendering Should match snapshot - with set custom button style 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f0f0f0",
+        "borderRadius": 27.17391304347826,
+        "flexDirection": "row",
+        "height": 52.53623188405797,
+        "justifyContent": "center",
+        "marginLeft": 0,
+        "paddingLeft": 18.115942028985508,
+        "width": "auto",
+      },
+      Object {
+        "backgroundColor": "red",
+      },
+    ]
+  }
+  testID="bike-btn"
+>
+  <Text
+    ellipsizeMode="clip"
+    numberOfLines={1}
+    style={
+      Array [
+        Object {
+          "color": "#555555",
+          "fontFamily": "DIN2014Narrow-Regular",
+          "fontSize": 28.985507246376812,
+          "marginLeft": 9.057971014492754,
+          "marginRight": 27.17391304347826,
+        },
+        undefined,
+      ]
+    }
+  >
+    bike button
+  </Text>
+</View>
+`;
+
+exports[`<BikeButton /> Rendering Should match snapshot - with set custom text style 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f0f0f0",
+        "borderRadius": 27.17391304347826,
+        "flexDirection": "row",
+        "height": 52.53623188405797,
+        "justifyContent": "center",
+        "marginLeft": 0,
+        "paddingLeft": 18.115942028985508,
+        "width": "auto",
+      },
+      undefined,
+    ]
+  }
+  testID="bike-btn"
+>
+  <Text
+    ellipsizeMode="clip"
+    numberOfLines={1}
+    style={
+      Array [
+        Object {
+          "color": "#555555",
+          "fontFamily": "DIN2014Narrow-Regular",
+          "fontSize": 28.985507246376812,
+          "marginLeft": 9.057971014492754,
+          "marginRight": 27.17391304347826,
+        },
+        Object {
+          "color": "red",
+        },
+      ]
+    }
+  >
+    bike button
+  </Text>
+</View>
+`;
+
+exports[`<BikeButton /> Rendering Should match snapshot 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#f0f0f0",
+        "borderRadius": 27.17391304347826,
+        "flexDirection": "row",
+        "height": 52.53623188405797,
+        "justifyContent": "center",
+        "marginLeft": 0,
+        "paddingLeft": 18.115942028985508,
+        "width": "auto",
+      },
+      undefined,
+    ]
+  }
+  testID="bike-btn"
+>
+  <Text
+    ellipsizeMode="clip"
+    numberOfLines={1}
+    style={
+      Array [
+        Object {
+          "color": "#555555",
+          "fontFamily": "DIN2014Narrow-Regular",
+          "fontSize": 28.985507246376812,
+          "marginLeft": 9.057971014492754,
+          "marginRight": 27.17391304347826,
+        },
+        undefined,
+      ]
+    }
+  >
+    bike button
+  </Text>
+</View>
+`;

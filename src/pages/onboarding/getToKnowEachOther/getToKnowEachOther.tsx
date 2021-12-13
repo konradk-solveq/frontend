@@ -34,6 +34,7 @@ import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
 import {OneLineText} from '@sharedComponents/inputs';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 const getErrorMessage = (value: string, rules: any[]) => {
     const trans: any = I18n.t('GetToKnowEachOther');
@@ -124,8 +125,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         goFoward();
     };
 
-    const [headHeight, setHeadHeight] = useState(0);
-
     setObjSize(334, 50);
     const bottons = {
         position: 'absolute',
@@ -139,14 +138,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     };
 
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-        },
-        scroll: {
-            top: headHeight,
-        },
         area: {
             width: '100%',
             height: getVerticalPx(896) - keyboardHeight,
@@ -181,10 +172,10 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     });
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={comStyle.container}>
             <ScrollView
                 keyboardShouldPersistTaps={'always'}
-                style={styles.scroll}>
+                style={comStyle.scroll}>
                 <View style={styles.area}>
                     <Text style={styles.title}>{trans.title}</Text>
 
@@ -222,7 +213,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
                 onpress={() =>
                     navigation.navigate(OnboardingStackRoute.PERMITS_SCREEN)
                 }
-                getHeight={setHeadHeight}
                 inner={''}
             />
 

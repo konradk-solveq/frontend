@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import I18n from 'react-native-i18n';
 import {useAppSelector} from '../../../../hooks/redux';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
@@ -101,7 +102,7 @@ const Contact: React.FC<Props> = (props: Props) => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={comStyle.container}>
             <View style={styles.wrap}>
                 <Text style={styles.title}>{userName + trans.title}</Text>
                 <View style={styles.poneEmail}>

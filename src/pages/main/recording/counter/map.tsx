@@ -11,7 +11,7 @@ import {DataI} from '@hooks/useLocalizationTracker';
 import mapStyle from '../../../../sharedComponents/maps/styles';
 import AnimSvg from '../../../../helpers/animSvg';
 
-import gradient from './gradientSvg';
+import GradientSvg from './gradientSvg';
 import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
@@ -19,6 +19,8 @@ import {useLocationProvider} from '@providers/staticLocationProvider/staticLocat
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
 import {getCenterCameraCoords} from '@src/utils/mapCameraAnimation';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {getAppLayoutConfig} from '@src/helpers/appLayoutConfig';
 
 type latType = {latitude: number; longitude: number};
 
@@ -49,7 +51,6 @@ const setLocationData = async (
 };
 
 const isIOS = Platform.OS === 'ios';
-const {width} = Dimensions.get('window');
 
 interface IProps {
     routeId: string;
@@ -103,6 +104,7 @@ const Map: React.FC<IProps> = ({
     const [showMap, setShowMap] = useState(false);
 
     const [cameraAnimCooldown, setCameraAnimCooldown] = useState(false);
+    const {bottom} = useSafeAreaInsets();
 
     useEffect(() => {
         mountedRef.current = true;
@@ -318,7 +320,9 @@ const Map: React.FC<IProps> = ({
     return showMap ? (
         <View>
             {showWebView && (
-                <AnimSvg style={styles.gradient} source={gradient} />
+                <GradientSvg
+                    style={[{top: -(getAppLayoutConfig.statusBarH() + bottom)}]}
+                />
             )}
             <MapView
                 ref={mapRef}
@@ -389,14 +393,6 @@ const styles = StyleSheet.create({
     map: {
         width: '100%',
         height: '100%',
-    },
-    gradient: {
-        position: 'absolute',
-        width: width,
-        height: width,
-        top: 0,
-        left: 0,
-        zIndex: 1,
     },
 });
 

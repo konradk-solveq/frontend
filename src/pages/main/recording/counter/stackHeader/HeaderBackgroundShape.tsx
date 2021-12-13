@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Platform, SafeAreaView, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 import Animated, {
     useSharedValue,
@@ -8,11 +8,10 @@ import Animated, {
     interpolateColor,
 } from 'react-native-reanimated';
 
-import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
-import useStatusBarHeight from '@hooks/statusBarHeight';
+import {getHorizontalPx} from '@helpers/layoutFoo';
+import {isIOS} from '@utils/platform';
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
-const isIOS = Platform.OS === 'ios';
 
 interface IProps {
     started?: boolean;
@@ -21,11 +20,24 @@ interface IProps {
     duration: number;
 }
 
-const sideHeight = getVerticalPx(60);
-const centerHeight = getVerticalPx(60);
 
+const SIDE_HEIGHT_ROUND_BIG = getHorizontalPx(90);
+const CENTER_HEIGHT_ROUND_BIG = getHorizontalPx(116);
+
+const SIDE_HEIGHT_FLAT_BIG = getHorizontalPx(60);
+const CENTER_HEIGHT_FLAT_BIG = getHorizontalPx(60);
+
+const SIDE_HEIGHT_ROUND_SMALL = getHorizontalPx(20);
+const CENTER_HEIGHT_ROUND_SMALL = getHorizontalPx(36);
+
+const SIDE_HEIGHT_FLAT_SMALL = getHorizontalPx(30);
+const CENTER_HEIGHT_FLAT_SMALL = getHorizontalPx(30);
+
+/** Left Top Corner X Axis Position */
 const lw = getHorizontalPx(-1);
+/** Right Top Corner X Axis Position */
 const rw = getHorizontalPx(416);
+/** Bezier Point To Make Curve Draw From Center */
 const cw = getHorizontalPx(81);
 
 const HeaderBacgroudShape: React.FC<IProps> = ({
@@ -34,17 +46,18 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
     mapHiden,
     duration,
 }: IProps) => {
-    const statusBarHeight = useStatusBarHeight();
-    const iosHeightOpen = isIOS ? 5 : 0;
-    const iosHeightClose = isIOS ? statusBarHeight / 2 : 0;
-    const sh = useSharedValue(sideHeight); // side height
-    const ch = useSharedValue(centerHeight); // center height
+    const iosHeight = isIOS ? 0 : 0;
+
+    /** Left And Right Height On Sides */
+    const sh = useSharedValue(SIDE_HEIGHT_FLAT_BIG);
+    /** Central Height Bezier Point */
+    const ch = useSharedValue(CENTER_HEIGHT_FLAT_BIG);
 
     const display = useSharedValue(-1);
 
     useEffect(() => {
-        sh.value = getVerticalPx(60); // side height
-        ch.value = getVerticalPx(60); // center height
+        sh.value = SIDE_HEIGHT_FLAT_BIG;
+        ch.value = CENTER_HEIGHT_FLAT_BIG;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -52,52 +65,56 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
         if (mapHiden) {
             if (started) {
                 display.value = withTiming(0, {duration: duration});
-                sh.value = withTiming(getVerticalPx(90), {duration: duration});
-                ch.value = withTiming(getVerticalPx(116), {duration: duration});
+                sh.value = withTiming(SIDE_HEIGHT_ROUND_BIG, {
+                    duration: duration,
+                });
+                ch.value = withTiming(CENTER_HEIGHT_ROUND_BIG, {
+                    duration: duration,
+                });
             } else {
                 if (display.value !== -1) {
                     display.value = withTiming(1, {duration: duration});
                 }
-                sh.value = withTiming(getVerticalPx(60) + iosHeightOpen, {
+                sh.value = withTiming(SIDE_HEIGHT_FLAT_BIG, {
                     duration: duration,
                 });
-                ch.value = withTiming(getVerticalPx(60) + iosHeightOpen, {
+                ch.value = withTiming(CENTER_HEIGHT_FLAT_BIG, {
                     duration: duration,
                 });
             }
         } else {
             if (started) {
                 display.value = withTiming(0, {duration: duration});
-                sh.value = withTiming(getVerticalPx(20) + iosHeightClose, {
+                sh.value = withTiming(SIDE_HEIGHT_ROUND_SMALL, {
                     duration: duration,
                 });
-                ch.value = withTiming(getVerticalPx(36) + iosHeightClose, {
+                ch.value = withTiming(CENTER_HEIGHT_ROUND_SMALL, {
                     duration: duration,
                 });
             } else {
                 if (display.value !== -1) {
                     display.value = withTiming(1, {duration: duration});
                 }
-                sh.value = withTiming(getVerticalPx(30) + iosHeightClose, {
+                sh.value = withTiming(SIDE_HEIGHT_FLAT_SMALL, {
                     duration: duration,
                 });
-                ch.value = withTiming(getVerticalPx(30) + iosHeightClose, {
+                ch.value = withTiming(CENTER_HEIGHT_FLAT_SMALL, {
                     duration: duration,
                 });
             }
         }
-    }, [
-        started,
-        mapHiden,
-        iosHeightOpen,
-        iosHeightClose,
-        ch,
-        sh,
-        display,
-        duration,
-    ]);
+    }, [started, mapHiden, iosHeight, ch, sh, display, duration]);
 
     const animatedProps = useAnimatedProps(() => {
+        // start of drawing
+        // ↓
+        // lw-→→---------------------------------------------rw
+        // |                                                  ↓
+        // ↑                                                  |
+        // sh----____                                ____---←sh
+        //           --------_______  _______--------
+        //            cw............ch............cw
+
         return {
             d: `M ${lw},0 ${rw},0 ${rw},${sh.value} C ${rw},${sh.value} ${
                 rw - cw
@@ -112,26 +129,23 @@ const HeaderBacgroudShape: React.FC<IProps> = ({
         };
     });
 
-    const viewBox = '0 0 ' + getHorizontalPx(414) + ' ' + getVerticalPx(116);
+    const viewBox = '0 0 ' + getHorizontalPx(414) + ' ' + getHorizontalPx(116);
 
     const styles = StyleSheet.create({
         container: {
             position: 'absolute',
-            top: statusBarHeight,
+            top: 0,
             left: 0,
             width: getHorizontalPx(414),
-            height: getHorizontalPx(100),
+            height: getHorizontalPx(116),
         },
     });
 
     return (
-        <SafeAreaView>
-            <Svg viewBox={viewBox} style={[styles.container, style]}>
-                <AnimatedPath animatedProps={animatedProps} stroke="none" />
-            </Svg>
-        </SafeAreaView>
+        <Svg viewBox={viewBox} style={[styles.container, style]}>
+            <AnimatedPath animatedProps={animatedProps} stroke="none" />
+        </Svg>
     );
 };
-
 
 export default React.memo(HeaderBacgroudShape);

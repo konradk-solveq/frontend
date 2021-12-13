@@ -1,16 +1,15 @@
-import {Dimensions, Platform, StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 const {width, height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
+        ...comStyle.container,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#fff',
         flex: 1,
     },
     innerContainer: {

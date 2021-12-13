@@ -23,18 +23,21 @@ export const userBikeValidationRules = {
     color: [validationRules.required, validationRules.string, {min: 3}],
 };
 
+type OverviewStyleT = 'color' | 'dashed' | 'checkmark';
+
 export interface Warranty {
     id?: string;
     type: string;
-    end: Date;
+    end?: Date;
     overviews: {
         type: string;
         date: Date;
         info: string;
         operations: string[];
+        style?: Record<OverviewStyleT, string | boolean>;
     }[];
     info: string;
-    warning: string;
+    warning?: string;
 }
 
 export enum ComplaintStateType {

@@ -25,7 +25,7 @@ import {
 } from '../../../../helpers/layoutFoo';
 import {validateData} from '../../../../utils/validation/validation';
 import {userUserValidationRules} from '../../../../models/user.model';
-import useStatusBarHeight from '@hooks/statusBarHeight';
+import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
 
 import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
 import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
@@ -46,8 +46,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
     const [inputName, setInputName] = useState('');
     const [validationStatus, setValidationStatus] = useState(false);
     const [forceMessageWrong, setForceMessageWrong] = useState('');
-    const statusBarHeight = useStatusBarHeight();
-    const iosOffset = isIOS ? -(statusBarHeight || 40) : 0;
+    const iosOffset = isIOS ? -(getAppLayoutConfig.statusBarH() || 40) : 0;
 
     useEffect(() => {
         if (typeof name === 'string') {
@@ -83,8 +82,6 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
         navigation.goBack();
     };
 
-    const [headHeight, setHeadHeight] = useState(0);
-
     setObjSize(334, 50);
 
     const styles = StyleSheet.create({
@@ -94,7 +91,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             backgroundColor: 'white',
         },
         scroll: {
-            top: headHeight,
+            top: getAppLayoutConfig.headerH(),
         },
         outerArea: {
             flex: 1,
@@ -180,7 +177,6 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             </KeyboardAvoidingView>
             <StackHeader
                 onpress={() => navigation.goBack()}
-                getHeight={setHeadHeight}
                 inner={trans.header}
             />
         </SafeAreaView>

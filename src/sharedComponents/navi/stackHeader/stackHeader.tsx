@@ -1,12 +1,5 @@
 import React, {useEffect, useCallback} from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    Dimensions,
-    Platform,
-    TextStyle,
-} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, TextStyle} from 'react-native';
 import TopBackBtn from './topBackBtn';
 
 import {
@@ -18,7 +11,8 @@ import {
     getFontSize,
     getHorizontalPx,
 } from '../../../helpers/layoutFoo';
-import useStatusBarHeight from '@hooks/statusBarHeight';
+import {getAppLayoutConfig as get} from '@helpers/appLayoutConfig';
+import {isIOS} from '@utils/platform';
 
 interface Props {
     // * wartości wymagane
@@ -33,13 +27,10 @@ interface Props {
 
 const ww = Dimensions.get('window').width;
 
-// ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = (props: Props) => {
-    const statusBarHeight = useStatusBarHeight();
-
     const getHeight = useCallback(async () => {
         if (props.getHeight) {
-            props.getHeight(getHorizontalPx(100) - statusBarHeight);
+            props.getHeight(getHorizontalPx(100) - get.headerH());
         }
     }, []);
 
@@ -51,7 +42,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
     const wrap = {
         position: 'absolute',
         left: 0,
-        top: getHorizontalPx(61),
+        top: getHorizontalPx(61)- (isIOS ? 0 : get.statusBarH()),
         width: ww,
         height: getHeightPx(),
     };
@@ -61,7 +52,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
         position: 'absolute',
         width: getWidthPx(),
         left: getCenterLeftPx(),
-        top: getVerticalPx(3),
+        top: getVerticalPx(8) ,
         fontFamily: 'DIN2014Narrow-Light',
         textAlign: 'center',
         fontSize: getFontSize(18),
@@ -74,7 +65,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
             left: 0,
             top: 0,
             width: '100%',
-            height: getVerticalPx(100) + statusBarHeight,
+            height: getVerticalPx(100) - (isIOS ? 0 : get.statusBarH()),
         },
         wrap,
         title,
@@ -89,10 +80,7 @@ const StackHeader: React.FC<Props> = (props: Props) => {
         <View style={[styles.container, props.style]}>
             <View style={styles.wrap}>
                 {!props.hideBackArrow && (
-                    <TopBackBtn
-                        // style={styles.topBtn}
-                        onpress={() => props.onpress()}
-                    />
+                    <TopBackBtn onpress={() => props.onpress()} />
                 )}
 
                 <Text style={[styles.title, props.titleStyle]}>

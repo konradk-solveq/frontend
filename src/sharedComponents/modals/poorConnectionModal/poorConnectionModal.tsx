@@ -6,6 +6,7 @@ import useStatusBarHeight from '../../../hooks/statusBarHeight';
 import {BigWhiteBtn, BigRedBtn} from '../../../sharedComponents/buttons';
 import ImgSvg from './imgSvg';
 
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 import styles from './style';
 
 const isAndroid = Platform.OS === 'android';
@@ -47,7 +48,7 @@ const PoorConnectionModal: React.FC<IProps> = ({onAbort}: IProps) => {
             hardwareAccelerated={isAndroid}
             statusBarTranslucent
             onRequestClose={onCloseHandler}>
-            <View style={styles.container}>
+            <View style={comStyle.container}>
                 <ScrollView>
                     <Text
                         style={[
