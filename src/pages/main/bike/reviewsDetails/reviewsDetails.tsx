@@ -16,6 +16,7 @@ import AnimSvg from '../../../../helpers/animSvg';
 import {getCountedDaysText} from '../../../../helpers/reviews';
 import ServiceMapBtn from '../../../../sharedComponents/buttons/serviceMap';
 import {RegularStackRoute} from '../../../../navigation/route';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
     navigation: any;
@@ -29,8 +30,6 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
     const region = props.route.params.region;
     const location = props.route.params.location;
 
-    const [headHeight, setHeadHeightt] = useState(0);
-
     const [source, setSource] = useState(
         '<svg xmlns="http://www.w3.org/2000/svg"/>',
     ); // do odpalania animacji svg
@@ -38,11 +37,6 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
-        scroll: {
-            width: '100%',
-            height: '100%', // wh - headHeight,
-            top: headHeight,
-        },
         area: {
             width: getWidthPx(),
             left: getCenterLeftPx(),
@@ -53,7 +47,6 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
             paddingRight: getHorizontalPx(10),
             paddingBottom: getVerticalPx(20),
             paddingLeft: getHorizontalPx(10),
-            // backgroundColor: '#eee',
             borderRadius: getHorizontalPx(20),
         },
         title: {
@@ -164,8 +157,8 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
     };
 
     return (
-        <SafeAreaView style={{backgroundColor: 'white'}}>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.area}>
                         <AnimSvg
@@ -229,7 +222,6 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
                     props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
                 }
                 inner={trans.header}
-                getHeight={setHeadHeightt}
             />
         </SafeAreaView>
     );

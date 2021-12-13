@@ -1,42 +1,40 @@
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         position: 'absolute',
         left: 0,
-        right: 0,
-        backgroundColor: '#ffffff',
-        justifyContent: 'center',
-        alignItems: 'center',
+        width: getHorizontalPx(414),
+        backgroundColor: '#fff',
         zIndex: 2,
     },
     wrap: {
-        height: getVerticalPx(334),
-        width: '100%',
-        left: getVerticalPx(40),
+        position: 'absolute',
+        width: getHorizontalPx(334),
+        left: getHorizontalPx(40),
     },
     row: {
         flexDirection: 'row',
-        height: '50%',
         alignItems: 'center',
         marginTop: 0,
     },
     cell: {
+        top: 0,
         width: '50%',
         height: '100%',
         justifyContent: 'center',
+        // backgroundColor: 'red'
     },
     labelWrap: {
         position: 'absolute',
         top: getVerticalPx(21),
-        color: '#555555',
+        color: '#555',
     },
     label: {
         fontFamily: 'DIN2014Narrow-Light',
         letterSpacing: 0.5,
-        color: '#555555',
+        color: '#555',
     },
     rightLabel: {
         marginLeft: getHorizontalPx(30),
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
     bottomPlug: {
         position: 'absolute',
         left: 0,
-        bottom: 0,
+        height: getVerticalPx(896),
         width: getHorizontalPx(414),
         backgroundColor: '#fff',
         zIndex: 1,

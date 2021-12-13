@@ -19,7 +19,7 @@ import {
 import {version} from '../../../../../package.json';
 import {API_URL, ENVIRONMENT_TYPE} from '@env';
 import {RouteDebugBtn} from '@sharedComponents/buttons';
-
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 interface Props {
     navigation: any;
     route: any;
@@ -113,8 +113,8 @@ const AboutApp: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         <Text style={styles.title}>{trans.title}</Text>

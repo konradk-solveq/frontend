@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StatusBar, SafeAreaView, Platform, Text} from 'react-native';
+import {View, SafeAreaView, Platform, Text} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {RegularStackRoute} from '@navigation/route';
@@ -145,7 +145,6 @@ const RouteDetails = () => {
 
     return (
         <>
-            <StatusBar translucent />
             <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
                 <View style={{paddingTop: headerBackgroundHeight, flex: 1}}>
                     <StackHeader

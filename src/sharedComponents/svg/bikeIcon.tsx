@@ -1,7 +1,8 @@
-import { getHorizontalPx } from '@src/helpers/layoutFoo';
 import React from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
+
+import {getHorizontalPx} from '@helpers/layoutFoo';
 
 interface IProps {
     containerStyle?: ViewStyle;
@@ -10,7 +11,7 @@ interface IProps {
 
 const BikeIcon: React.FC<IProps> = ({containerStyle, iconStyle}: IProps) => {
     return (
-        <View style={containerStyle}>
+        <View style={containerStyle} testID="bike-icon">
             <Svg viewBox="0 0 21 15" style={[styles.icon, iconStyle]}>
                 <Path
                     fill="#313131"

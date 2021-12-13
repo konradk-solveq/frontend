@@ -16,6 +16,7 @@ import {
     getFontSize,
 } from '../../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../../hooks/redux';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 import Question from './faq/question';
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -72,8 +73,8 @@ const Help: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         {faqData?.faq?.map((e, i) => (

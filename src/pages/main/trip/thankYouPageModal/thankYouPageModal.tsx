@@ -18,6 +18,7 @@ import {
     getVerticalPx,
     mainButtonsHeight,
 } from '@src/helpers/layoutFoo';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface IProps {
     showModal?: boolean;
@@ -49,7 +50,7 @@ const ThankYouPageModal: React.FC<IProps> = ({
             transparent={true}
             visible={showModal}
             onRequestClose={onBackPress}>
-            <View style={styles.container}>
+            <View style={comStyle.container}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         <ShareBtn
@@ -93,11 +94,6 @@ const ThankYouPageModal: React.FC<IProps> = ({
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'white',
-    },
     wrap: {
         flex: 1,
         marginHorizontal: getHorizontalPx(40),

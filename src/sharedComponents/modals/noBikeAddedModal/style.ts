@@ -5,13 +5,12 @@ import {
     getVerticalPx,
     mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 const styles = StyleSheet.create({
     container: {
+        ...comStyle.container,
         flex: 1,
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'white',
     },
     scrollViewContent: {
         flexGrow: 1,

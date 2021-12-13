@@ -31,6 +31,7 @@ import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
 import Curve from '../../../sharedComponents/svg/curve';
 import useCustomBackNavButton from '../../../hooks/useCustomBackNavBtn';
 import {BothStackRoute} from '../../../navigation/route';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface IProps {
     navigation: any;
@@ -61,11 +62,6 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const w = getWidthPx();
     const l = getCenterLeftPx();
     const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            backgroundColor: 'white',
-            height: getVerticalPx(896),
-        },
         contentContainer: {
             marginTop: getHorizontalPx(110),
         },
@@ -119,7 +115,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={comStyle.container}>
             <StackHeader
                 onpress={() => {
                     removeBikeOnCancel();

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     StyleSheet,
     Dimensions,
@@ -7,7 +7,6 @@ import {
     ScrollView,
     SafeAreaView,
 } from 'react-native';
-import I18n from 'react-native-i18n';
 
 import {
     setObjSize,
@@ -17,6 +16,8 @@ import {
     getFontSize,
 } from '../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../hooks/redux';
+import {getAppLayoutConfig as get} from '@helpers/appLayoutConfig';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import Paragraph from './paragraph';
@@ -30,16 +31,8 @@ const wh = Dimensions.get('window').height;
 const PrivacyPolicy: React.FC<Props> = (props: Props) => {
     const data = useAppSelector(state => state.app.policy);
 
-    const [headHeight, setheadHeight] = useState(0);
-
     setObjSize(334, 50);
     const styles = StyleSheet.create({
-        scroll: {
-            width: '100%',
-            height: wh - headHeight - 20,
-            marginTop: headHeight + 20,
-            backgroundColor: '#fff',
-        },
         wrap: {
             marginTop: getVerticalPx(30),
             width: getWidthPx(),
@@ -47,29 +40,13 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
             marginBottom: getVerticalPx(100),
         },
         title: {
-            textAlign: 'left',
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getFontSize(23),
-            lineHeight: getFontSize(30),
-            color: '#313131',
-        },
-        paragraph: {
-            textAlign: 'left',
-            fontSize: getFontSize(18),
-            lineHeight: getFontSize(24),
-            color: '#555555',
-        },
-        regular: {
-            fontFamily: 'DIN2014Narrow-Regular',
-        },
-        light: {
-            fontFamily: 'DIN2014Narrow-Light',
+            top: getVerticalPx(-16),
         },
     });
 
     return (
-        <SafeAreaView>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         {data.title && (
@@ -94,8 +71,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
                 <StackHeader
                     onpress={() => props.navigation.goBack()}
                     inner={data.header}
-                    getHeight={setheadHeight}
-                    style={{backgroundColor: '#fff'}}
+                    titleStyle={styles.title}
                 />
             )}
         </SafeAreaView>

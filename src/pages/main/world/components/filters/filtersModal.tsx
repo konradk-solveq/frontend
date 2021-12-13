@@ -27,6 +27,7 @@ import {mapOptionsAndTagsSelector} from '../../../../../storage/selectors/app';
 import Filter from './filter';
 
 import {getFitlers, updateFilters} from './filtersData';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface IProps {
     onSave: (picked: PickedFilters) => void;
@@ -68,7 +69,7 @@ const FiltersModal: React.FC<IProps> = ({
             visible={showModal}
             onRequestClose={onClose}>
             <SafeAreaView>
-                <View style={styles.container}>
+                <View style={comStyle.container}>
                     <CloseBtn
                         onPress={onClose}
                         containerStyle={styles.buttonContainer}
@@ -134,11 +135,6 @@ const FiltersModal: React.FC<IProps> = ({
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'white',
-    },
     wrap: {
         flex: 1,
         marginHorizontal: getHorizontalPx(40),

@@ -17,7 +17,6 @@ import {BothStackRoute} from '../../../../navigation/route';
 
 interface Props {
     style?: any;
-    description: any;
     list: UserBike[];
     callback: Function;
     currentBike: string | undefined;
@@ -25,7 +24,6 @@ interface Props {
 }
 
 const {width} = Dimensions.get('window');
-const w = width * (110 / 414);
 
 const BikeSelectorList: React.FC<Props> = ({
     list,
@@ -91,7 +89,7 @@ const BikeSelectorList: React.FC<Props> = ({
                     />
                 </View>
             );
-        });
+        }, []);
 
         buttons.push(
             <View
@@ -117,6 +115,7 @@ const BikeSelectorList: React.FC<Props> = ({
                     }}
                     buttonStyle={styles.button}
                     textStyle={styles.text}
+                    testID="add-bike-btn"
                 />
             </View>,
         );

@@ -6,8 +6,6 @@ import {
     Platform,
     Dimensions,
     StyleSheet,
-    StatusBar,
-    StatusBarIOS,
 } from 'react-native';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
@@ -33,8 +31,10 @@ import TabBackGround from '@sharedComponents/navi/tabBackGround';
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 import {getVerticalPx} from '@src/helpers/layoutFoo';
+import {isIOS} from '@utils/platform';
+import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
-const isIOS = Platform.OS === 'ios';
 const {width, height} = Dimensions.get('window');
 
 const Home: React.FC = () => {
@@ -108,14 +108,6 @@ const Home: React.FC = () => {
 
     const scrollTop = getVerticalPx(100) - 0;
     const styles = StyleSheet.create({
-        scroll: {
-            top: scrollTop,
-            height: height - scrollTop,
-        },
-        container1: {
-            flex: 1,
-            backgroundColor: '#ffffff',
-        },
         container: {
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -127,7 +119,9 @@ const Home: React.FC = () => {
             position: 'absolute',
             width: width,
             height: getVerticalPx(20),
-            top: getVerticalPx(70),
+            top:
+                getVerticalPx(70) -
+                (isIOS ? 0 : getAppLayoutConfig.statusBarH()),
             zIndex: 1,
             alignItems: 'center',
         },
@@ -141,8 +135,8 @@ const Home: React.FC = () => {
     });
 
     return (
-        <View style={styles.container1}>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.container}>
                         <View style={styles.tileWrapper}>
@@ -195,7 +189,7 @@ const Home: React.FC = () => {
                     onClose={onCancelHandler}
                 />
             )}
-        </View>
+        </SafeAreaView>
     );
 };
 

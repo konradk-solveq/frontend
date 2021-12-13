@@ -1,11 +1,12 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+
 import {
     getHorizontalPx,
     getVerticalPx,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
-import {BigRedBtn, BigWhiteBtn} from '../../../../sharedComponents/buttons';
+} from '@helpers/layoutFoo';
+import {BigRedBtn, BigWhiteBtn} from '@sharedComponents/buttons';
 
 interface IProps {
     leftBtnTitle: string;
@@ -25,7 +26,7 @@ const ActionButtons: React.FC<IProps> = ({
     loading,
 }: IProps) => {
     const styles = StyleSheet.create({
-        bottons: {
+        buttons: {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -44,7 +45,7 @@ const ActionButtons: React.FC<IProps> = ({
         },
     });
     return (
-        <View style={styles.bottons}>
+        <View style={styles.buttons}>
             <View style={styles.btn}>
                 <BigWhiteBtn
                     title={leftBtnTitle}

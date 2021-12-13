@@ -11,6 +11,7 @@ import StaticLocationProvider from '@providers/staticLocationProvider/staticLoca
 import TopNotificationProvider from '@providers/topNotificationProvider/TopNotificationProvider';
 
 import {initAppSize} from '@helpers/layoutFoo';
+import {initConfig} from '@helpers/appLayoutConfig';
 
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
@@ -21,12 +22,17 @@ const App: () => Node = () => {
     const persistor = persistStore(storage);
 
     initAppSize();
+    initConfig();
 
     useRouteDebug();
 
     return (
         <>
-            <StatusBar backgroundColor="transparent" barStyle="dark-content" />
+            <StatusBar
+                backgroundColor="transparent"
+                barStyle="dark-content"
+                translucent={false}
+            />
             <Provider store={storage}>
                 <PersistGate persistor={persistor}>
                     <NetworkStatus />
