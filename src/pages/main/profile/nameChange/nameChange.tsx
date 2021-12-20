@@ -91,7 +91,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             backgroundColor: 'white',
         },
         scroll: {
-            top: getAppLayoutConfig.headerH(),
+            top: getVerticalPx(100),
         },
         outerArea: {
             flex: 1,
