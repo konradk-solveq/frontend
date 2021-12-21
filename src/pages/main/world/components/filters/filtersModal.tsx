@@ -9,7 +9,12 @@ import {
 } from 'react-native';
 
 import {I18n} from '../../../../../../I18n/I18n';
-import {getVerticalPx} from '../../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../../../hooks/redux';
 import {PickedFilters} from '../../../../../interfaces/form';
 
@@ -22,6 +27,7 @@ import {mapOptionsAndTagsSelector} from '../../../../../storage/selectors/app';
 import Filter from './filter';
 
 import {getFitlers, updateFilters} from './filtersData';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface IProps {
     onSave: (picked: PickedFilters) => void;
@@ -63,7 +69,7 @@ const FiltersModal: React.FC<IProps> = ({
             visible={showModal}
             onRequestClose={onClose}>
             <SafeAreaView>
-                <View style={styles.container}>
+                <View style={comStyle.container}>
                     <CloseBtn
                         onPress={onClose}
                         containerStyle={styles.buttonContainer}
@@ -129,28 +135,23 @@ const FiltersModal: React.FC<IProps> = ({
 };
 
 const styles = StyleSheet.create({
-    container: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'white',
-    },
     wrap: {
         flex: 1,
-        marginHorizontal: getVerticalPx(40),
+        marginHorizontal: getHorizontalPx(40),
         marginBottom: getVerticalPx(65),
         justifyContent: 'space-between',
     },
     headerWrapper: {
-        marginBottom: 8,
+        marginBottom: getVerticalPx(8),
     },
     header: {
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 23,
+        fontSize: getFontSize(23),
         color: '#313131',
     },
     description: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         letterSpacing: 0.5,
         color: '#313131',
         marginTop: getVerticalPx(8),
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: '46%',
-        height: 50,
+        height: mainButtonsHeight(50),
     },
 });
 

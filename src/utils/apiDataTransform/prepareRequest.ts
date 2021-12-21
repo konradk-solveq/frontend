@@ -16,6 +16,9 @@ export const tranformParamsToBBoxRequest = (data: Point[]): string => {
 
 export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
     const apiPathArr: ApiPathI[] = [];
+    const distance = path?.[path?.length - 1]?.odometer;
+    let addedDistance = false;
+
     path.forEach(p => {
         const np: ApiPathI = {
             lat: p.coords.latitude,
@@ -24,6 +27,14 @@ export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
             speed: p.coords.speed,
             time: p.timestamp,
         };
+        /**
+         * Backend searches for that value only in first element
+         */
+        if (!addedDistance && distance) {
+            np.displayDistance = distance;
+            addedDistance = true;
+        }
+
         apiPathArr.push(np);
     });
 
@@ -34,7 +45,7 @@ export const getRouteDefaultName = (routeNumber?: number | null) => {
     const date = getDateString(new Date(), '/');
     const defaultName = `${I18n.t(
         'dataAction.routeData.defaultAlternativeRouteName',
-        {number: routeNumber ? routeNumber + 1 : 1},
+        {number: routeNumber || 1},
     )} ${date}`;
 
     return defaultName;

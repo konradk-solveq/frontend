@@ -14,7 +14,7 @@ import {
 import {fetchFeaturedMapsList, fetchPlannedMapsList} from './maps';
 import {AppThunk} from '@storage/thunk';
 import {AppState} from '@storage/reducers/app';
-import {RoutesState} from '@storage/reducers/routes';
+import {CurrentRouteI, RoutesState} from '@storage/reducers/routes';
 import {AppConfigI} from '@models/config.model';
 import {BasicCoordsType} from '@type/coords';
 import {
@@ -30,9 +30,12 @@ import {
     getNewRegulationsService,
 } from '@services/index';
 import {I18n} from '@translations/I18n';
-import logger from '@utils/crashlytics';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
+
+import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
+import {RouteActionT, RouteAdditionalInfoT} from '@type/debugRoute';
+import {DebugRouteInstance} from '@debugging/debugRoute';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -60,6 +63,11 @@ export const setAppTerms = (terms: TermsAndConditionsType[]) => ({
 export const setAppShowedRegulationsNumber = (showedRegulations: number) => ({
     type: actionTypes.SET_APP_SHOWED_TERMS_VERSION,
     showedRegulations: showedRegulations,
+});
+
+export const setNewAppVersion = (showedNewAppVersion: string) => ({
+    type: actionTypes.SET_APP_SHOWED_NEW_APP_VERSION,
+    showedNewAppVersion: showedNewAppVersion,
 });
 
 export const setAppCurrentTerms = (currentTerms: TermsAndConditionsType) => ({
@@ -110,6 +118,11 @@ export const setGlobalLocation = (coords: BasicCoordsType) => ({
     coords: coords,
 });
 
+export const setRouteDebugMode = (routeDebugMode: boolean) => ({
+    type: actionTypes.SET_ROUTE_DEBUG_MODE,
+    routeDebugMode: routeDebugMode,
+});
+
 export const clearAppError = () => ({
     type: actionTypes.CLEAR_APP_ERROR,
 });
@@ -135,9 +148,7 @@ export const fetchAppConfig = (
         }
     } catch (error) {
         console.log(`[fetchAppConfig] - ${error}`);
-        logger.log(`[fetchAppConfig] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchAppConfig');
 
@@ -192,9 +203,7 @@ export const fetchAppFaq = (
         }
     } catch (error) {
         console.log(`[fetchAppFaq] - ${error}`);
-        logger.log(`[fetchAppFaq] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchAppFaq');
 
@@ -258,9 +267,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         dispatch(setSyncStatus(false));
     } catch (error) {
         console.log(`[appSyncData] - ${error}`);
-        logger.log(`[appSyncData] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
         const errorMessage = I18n.t('dataAction.apiError');
 
         loggErrorWithScope(err, 'appSyncData');
@@ -339,13 +346,77 @@ export const fetchAppRegulations = (
         }
     } catch (error) {
         console.log(`[fetchAppRegulations] - ${error}`);
-        logger.log(`[fetchAppRegulations] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchAppRegulations');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
+    }
+};
+
+/**
+ * Puts route data into json file
+ *
+ * @param {string} routeId
+ * @param {Object<RouteActionT>} actionType
+ * @param {Object<CurrentRouteI>} routeData
+ * @param {Object<RouteAdditionalInfoT>} routeAdditionalInfo
+ * @param {Array<LocationDataI>} routeLocationData
+ * @param {Array<ApiPathI>} dataSendToServer
+ *
+ * @returns {void}
+ */
+export const appendRouteDebuggInfoToFIle = (
+    routeId: string,
+    actionType: RouteActionT,
+    routeData?: CurrentRouteI,
+    routeAdditionalInfo?: RouteAdditionalInfoT,
+    routeLocationData?: LocationDataI[],
+    dataSendToServer?: ApiPathI[],
+): AppThunk<Promise<void>> => async (_, getState) => {
+    try {
+        const {
+            isOffline,
+            internetConnectionInfo,
+            routeDebugMode,
+        }: AppState = getState().app;
+        const {currentRoute}: RoutesState = getState().routes;
+
+        if (!routeDebugMode) {
+            return;
+        }
+
+        /**
+         * Pause and resume does not pass info about current route
+         */
+        const rd = routeData || currentRoute;
+        const routeDebugger = await DebugRouteInstance.debugRouteInstance(
+            actionType,
+            routeId,
+            rd.startedAt,
+        );
+
+        if (routeDebugger) {
+            routeDebugger.connectionState = {
+                isOffline: isOffline,
+                internetConnectionInfo: internetConnectionInfo,
+            };
+
+            await routeDebugger.writeRouteDataIntoDebugFile(
+                actionType,
+                rd,
+                routeAdditionalInfo || {},
+                routeLocationData,
+                dataSendToServer,
+            );
+        }
+
+        DebugRouteInstance.clearRouteDebugInstance(actionType);
+    } catch (error) {
+        console.log(`[appendRouteDebuggInfoToFIle] - ${error}`);
+        const err = convertToApiError(error);
+
+        loggErrorWithScope(err, 'appendRouteDebuggInfoToFIle');
     }
 };

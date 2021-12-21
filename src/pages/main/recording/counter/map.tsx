@@ -6,29 +6,62 @@ import useAppState from '@hooks/useAppState';
 import {useAppSelector} from '../../../../hooks/redux';
 import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
 import {getCurrentLocation} from '../../../../utils/geolocation';
+import {DataI} from '@hooks/useLocalizationTracker';
 
 import mapStyle from '../../../../sharedComponents/maps/styles';
 import AnimSvg from '../../../../helpers/animSvg';
 
-import gradient from './gradientSvg';
+import GradientSvg from './gradientSvg';
 import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
+import {getCenterCameraCoords} from '@src/utils/mapCameraAnimation';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {getAppLayoutConfig} from '@src/helpers/appLayoutConfig';
+
+type latType = {latitude: number; longitude: number};
+
+const setLocationData = async (
+    coords: {lat: number; lon: number} | undefined,
+    setNewLocation: ({latitude, longitude}: latType) => void,
+) => {
+    const l = await getCurrentLocation('', 3);
+    if (!l || !isLocationValidate(l)) {
+        if (!coords) {
+            return false;
+        }
+        const c = {
+            latitude: coords.lat,
+            longitude: coords.lon,
+        };
+        setNewLocation(c);
+    }
+    if (l?.coords) {
+        const c = {
+            latitude: l.coords.latitude,
+            longitude: l.coords.longitude,
+        };
+        setNewLocation(c);
+    }
+
+    return true;
+};
 
 const isIOS = Platform.OS === 'ios';
-const {width} = Dimensions.get('window');
+
 interface IProps {
     routeId: string;
-    trackerData: any;
+    trackerData: DataI | undefined;
     autoFindMe: number;
     headingOn: boolean;
     compassHeading: any;
     renderPath?: boolean;
     restoredPath?: ShortCoordsType[];
     autoFindMeSwith: (e: number) => void;
+    beforeRecording: boolean;
 }
 
 const initCompasHeading = {
@@ -52,18 +85,26 @@ const Map: React.FC<IProps> = ({
     renderPath,
     restoredPath,
     autoFindMeSwith,
+    beforeRecording,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const timerRef = useRef<NodeJS.Timeout | null>(null);
+    const cooldownRef = useRef<NodeJS.Timeout | null>(null);
     const mountedRef = useRef(false);
     const restoreRef = useRef(false);
+    const locationSetRef = useRef(false);
     const isAnimatingCameraRef = useRef(false);
+    const canAnimateRef = useRef(true);
+    const pastDistanceRef = useRef<number | null>(null);
 
     const globalLocation = useLocationProvider()?.location;
 
     const {appStateVisible, appPrevStateVisible} = useAppState();
     const [showWebView, setShowWebView] = useState(false);
     const [showMap, setShowMap] = useState(false);
+
+    const [cameraAnimCooldown, setCameraAnimCooldown] = useState(false);
+    const {bottom} = useSafeAreaInsets();
 
     useEffect(() => {
         mountedRef.current = true;
@@ -79,8 +120,26 @@ const Map: React.FC<IProps> = ({
             appStateVisible === 'background'
         ) {
             restoreRef.current = false;
+            canAnimateRef.current = false;
         }
     }, [appPrevStateVisible, appStateVisible]);
+
+    /**
+     * On background mode enable animation only for
+     * significian distance difference
+     */
+    useEffect(() => {
+        const distance = trackerData?.odometer || 0;
+        if (!pastDistanceRef.current) {
+            pastDistanceRef.current = distance;
+            canAnimateRef.current = true;
+            return;
+        }
+        if (pastDistanceRef.current + 200 <= distance) {
+            pastDistanceRef.current = distance;
+            canAnimateRef.current = true;
+        }
+    }, [trackerData?.odometer]);
 
     const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
 
@@ -88,12 +147,9 @@ const Map: React.FC<IProps> = ({
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
-    const [autoFindMeLastState, setAutoFindMeLastState] = useState<number>(
-        autoFindMe,
-    );
 
     useEffect(() => {
-        if (!mountedRef.current) {
+        if (!mountedRef.current || locationSetRef.current) {
             return;
         }
 
@@ -102,25 +158,25 @@ const Map: React.FC<IProps> = ({
                 setLocaion(globalLocation);
                 setShowMap(true);
             }
-            const l = await getCurrentLocation('', 3);
-            if (!l || !isLocationValidate(l)) {
+
+            const setLoc = await setLocationData(
+                trackerData?.coords,
+                setLocaion,
+            );
+            if (!setLoc) {
                 return;
             }
-            if (l?.coords) {
-                const c = {
-                    latitude: l.coords.latitude,
-                    longitude: l.coords.longitude,
-                };
-                setLocaion(c);
-            }
+
+            locationSetRef.current = true;
             setShowMap(true);
         };
         loc();
+    }, [globalLocation, trackerData?.coords]);
 
+    useEffect(() => {
         return () => {
             clearTimeout(timerRef.current as NodeJS.Timeout);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -136,15 +192,41 @@ const Map: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const animateCam = (animation: Partial<Camera>, duration?: number) => {
-        mapRef.current?.animateCamera(animation, {duration: duration || 1000});
-    };
+    const autoFindMeLastStateRef = useRef(0);
+    /**
+     * Backup location. If next will be undefined we use this one.
+     */
+    const peviousKnownLocation = useRef<LatLng | undefined>();
+
+    /**
+     * Deactivates cooldown system imidietly when findMeLocation btn has been triggered
+     */
+    useEffect(() => {
+        if (autoFindMe) {
+            isAnimatingCameraRef.current = false;
+            setCameraAnimCooldown(false);
+        }
+    }, [autoFindMe]);
+
+    const animateCam = useCallback(
+        (animation: Partial<Camera>, duration: number, cooldown: boolean) => {
+            mapRef.current?.animateCamera(animation, {duration: duration});
+
+            if (cooldown) {
+                setCameraAnimCooldown(true);
+                cooldownRef.current = setTimeout(() => {
+                    setCameraAnimCooldown(false);
+                }, duration);
+            }
+        },
+        [],
+    );
 
     const animateCameraOnIOS = useCallback(
-        async (animation: Partial<Camera>) => {
+        async (animation: Partial<Camera>, cooldown: boolean) => {
             if (!isAnimatingCameraRef.current) {
                 isAnimatingCameraRef.current = true;
-                animateCam(animation, 850);
+                animateCam(animation, 850, cooldown);
 
                 timerRef.current = setTimeout(
                     () => {
@@ -154,52 +236,57 @@ const Map: React.FC<IProps> = ({
                 );
             }
         },
-        [headingOn],
+        [headingOn, animateCam],
     );
 
     const setMapCamera = useCallback(() => {
+        if (cameraAnimCooldown) {
+            return;
+        }
+
         let animation: Partial<Camera> = {
             heading: headingOn ? compassHeading : 0,
         };
-
+        let cooldown = false;
         if (autoFindMe > 0 && mapRef.current) {
-            if ((trackerData && trackerData.coords) || location) {
-                if (trackerData && trackerData.coords) {
-                    animation.center = {
-                        latitude: trackerData.coords.lat,
-                        longitude: trackerData.coords.lon,
-                    };
-                } else if (location) {
-                    animation.center = {
-                        latitude: location.latitude,
-                        longitude: location.longitude,
-                    };
-                }
+            const updatedLocation = getCenterCameraCoords(
+                trackerData?.coords,
+                location,
+                peviousKnownLocation.current,
+            );
+            if (updatedLocation) {
+                animation.center = updatedLocation;
+
+                peviousKnownLocation.current = updatedLocation;
             }
 
-            if (autoFindMe !== autoFindMeLastState) {
-                animation.zoom = ZOOM_START_VALUE;
-            }
-            setAutoFindMeLastState(autoFindMe);
+            animation.zoom = ZOOM_START_VALUE;
+            cooldown = true;
         }
+        autoFindMeLastStateRef.current = autoFindMe;
 
         if (isIOS) {
-            animateCameraOnIOS(animation);
+            animateCameraOnIOS(animation, cooldown);
         } else {
-            animateCam(animation);
+            animateCam(animation, 1000, cooldown);
         }
     }, [
-        location,
-        autoFindMe,
+        cameraAnimCooldown,
         headingOn,
         compassHeading,
+        autoFindMe,
         trackerData,
+        location,
+        animateCam,
         animateCameraOnIOS,
-        autoFindMeLastState,
     ]);
 
+    /**
+     * Disable animation when path is not rendered
+     * (app is in background)
+     */
     useEffect(() => {
-        if (mountedRef.current) {
+        if (mountedRef.current && canAnimateRef.current) {
             setMapCamera();
         }
     }, [setMapCamera]);
@@ -222,17 +309,20 @@ const Map: React.FC<IProps> = ({
 
     const onSetIsRestoredHandler = () => {
         restoreRef.current = true;
+        canAnimateRef.current = true;
     };
 
-    const handleCameraChange = e => {
+    const handleCameraChange = useCallback(() => {
         autoFindMeSwith(0);
-    };
+    }, [autoFindMeSwith]);
 
     /* TODO: error boundary */
     return showMap ? (
         <View>
             {showWebView && (
-                <AnimSvg style={styles.gradient} source={gradient} />
+                <GradientSvg
+                    style={[{top: -(getAppLayoutConfig.statusBarH() + bottom)}]}
+                />
             )}
             <MapView
                 ref={mapRef}
@@ -245,7 +335,7 @@ const Map: React.FC<IProps> = ({
                 zoomEnabled={true}
                 zoomTapEnabled={true}
                 showsCompass={false}
-                onPanDrag={(e: any) => handleCameraChange(e)}
+                onPanDrag={handleCameraChange}
                 onMapLoaded={() => {
                     setShowWebView(true);
                 }}
@@ -277,10 +367,10 @@ const Map: React.FC<IProps> = ({
                         }
                         location={location}
                         headingOn={headingOn}
-                        compassHeading={compassHeading}
+                        compassHeading={headingOn ? compassHeading : 0}
                     />
                 ) : null}
-                {trackerData?.coords ? (
+                {!beforeRecording && trackerData?.coords ? (
                     <SinglePolyline
                         coords={trackerData}
                         renderPath={renderPath}
@@ -303,14 +393,6 @@ const styles = StyleSheet.create({
     map: {
         width: '100%',
         height: '100%',
-    },
-    gradient: {
-        position: 'absolute',
-        width: width,
-        height: width,
-        top: 0,
-        left: 0,
-        zIndex: 1,
     },
 });
 

@@ -1,12 +1,11 @@
 import {createRoute, removePrivateMapData, sendRouteData} from '@api/index';
-import {LocationDataI} from '@interfaces/geolocation';
+import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
 import {
     getRouteDefaultName,
     routesDataToAPIRequest,
 } from '@utils/apiDataTransform/prepareRequest';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
-import logger from '@utils/crashlytics';
 import {I18n} from '@translations/I18n';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
@@ -17,6 +16,9 @@ export interface RoutesResponse {
     data: CreatedRouteType | null;
     status: number;
     error: string;
+    rawError?: string;
+    shortRoute?: boolean;
+    sentData?: ApiPathI[];
 }
 
 export const createNewRouteService = async (
@@ -56,10 +58,8 @@ export const createNewRouteService = async (
             error: '',
         };
     } catch (error) {
-        console.log(`[createNewRouteService] - ${error}`);
-        logger.log(`[createNewRouteService] - ${error}`);
+        console.error(`[createNewRouteService] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'createNewRouteService');
 
@@ -100,10 +100,8 @@ export const removeCeratedRouteIDService = async (
             error: '',
         };
     } catch (error) {
-        console.log(`[removeCeratedRouteIDService] - ${error}`);
-        logger.log(`[removeCeratedRouteIDService] - ${error}`);
+        console.error(`[removeCeratedRouteIDService] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'removeCeratedRouteIDService');
 
@@ -121,7 +119,10 @@ export const syncRouteData = async (
     routeNumber?: number | null,
 ): Promise<RoutesResponse> => {
     try {
-        if (!path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)) {
+        if (
+            !path?.length ||
+            !path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)
+        ) {
             if (remoteRouteId) {
                 await removeCeratedRouteIDService(remoteRouteId);
             }
@@ -131,6 +132,7 @@ export const syncRouteData = async (
                 error: I18n.t('dataAction.routeData.routeLengthError', {
                     value: MIN_ROUTE_LENGTH,
                 }),
+                shortRoute: true,
             };
         }
 
@@ -160,16 +162,15 @@ export const syncRouteData = async (
                     data: null,
                     status: response?.data?.statusCode || response.status,
                     error: errorMessage,
+                    rawError: response.data?.error,
                 };
             }
         }
 
         const routeId = remoteRouteId || response?.data?.id;
 
-        const responseFromUpdate = await sendRouteData(
-            routeId,
-            routesDataToAPIRequest(path),
-        );
+        const pathToSend = routesDataToAPIRequest(path);
+        const responseFromUpdate = await sendRouteData(routeId, pathToSend);
 
         if (
             responseFromUpdate.status >= 400 ||
@@ -198,6 +199,8 @@ export const syncRouteData = async (
                     data: null,
                     status: 406,
                     error: errorMessage,
+                    rawError: response.data?.error,
+                    sentData: pathToSend,
                 };
             }
 
@@ -205,6 +208,8 @@ export const syncRouteData = async (
                 data: null,
                 status: responseFromUpdate.data?.statusCode || response?.status,
                 error: errorMessage,
+                rawError: responseFromUpdate.data?.error,
+                sentData: pathToSend,
             };
         }
 
@@ -212,12 +217,11 @@ export const syncRouteData = async (
             data: {id: routeId},
             status: responseFromUpdate.data?.statusCode || response?.status,
             error: '',
+            sentData: pathToSend,
         };
     } catch (error) {
-        console.log(`[syncRouteDataService] - ${error}`);
-        logger.log(`[syncRouteDataService] - ${error}`);
+        console.error(`[syncRouteDataService] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'syncRouteDataService');
 
@@ -225,6 +229,7 @@ export const syncRouteData = async (
             data: null,
             status: 500,
             error: I18n.t('dataAction.dataSyncError'),
+            rawError: err.message,
         };
     }
 };

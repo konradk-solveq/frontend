@@ -13,8 +13,10 @@ import {
     getWidthPx,
     getVerticalPx,
     getHorizontalPx,
+    getFontSize,
 } from '../../../../helpers/layoutFoo';
 import {useAppSelector} from '../../../../hooks/redux';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 import Question from './faq/question';
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -52,14 +54,14 @@ const Help: React.FC<Props> = (props: Props) => {
         title: {
             textAlign: 'left',
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 23,
-            lineHeight: 30,
+            fontSize: getFontSize(23),
+            lineHeight: getFontSize(30),
             color: '#313131',
         },
         paragraph: {
             textAlign: 'left',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#555555',
         },
         regular: {
@@ -71,8 +73,8 @@ const Help: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         {faqData?.faq?.map((e, i) => (

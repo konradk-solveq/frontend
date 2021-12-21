@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {TextStyle} from 'react-native';
 
 import {CounterDataContext} from '../counterContext/counterContext';
@@ -10,7 +10,10 @@ interface IProps {
     fontSize?: number;
 }
 
-const DisplaySpeed: React.FC<IProps> = ({style, fontSize}: IProps) => {
+const DisplaySpeed: React.FC<IProps> = ({
+    style,
+    fontSize,
+}: IProps) => {
     const speed = useContext(CounterDataContext).trackerData?.speed;
 
     return (

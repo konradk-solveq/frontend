@@ -1,9 +1,6 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import NetInfo, {
-    NetInfoState,
-    NetInfoStateType,
-} from '@react-native-community/netinfo';
+import NetInfo, {NetInfoState} from '@react-native-community/netinfo';
 
 import {setAppStatus} from '../../storage/actions';
 import {checkInternetConnectionQualityService} from '../../services/appService';
@@ -14,7 +11,6 @@ interface IProps {
 
 const NetworkStatus: React.FC<IProps> = ({children}: IProps) => {
     const dispatch = useDispatch();
-    const [isConnected, setIsConnected] = useState(false);
 
     const onChangeConnectivityState = useCallback(
         async (state: NetInfoState) => {
@@ -22,7 +18,6 @@ const NetworkStatus: React.FC<IProps> = ({children}: IProps) => {
             if (!state.isConnected || !state.isInternetReachable) {
                 isOffline = true;
             }
-            setIsConnected(isOffline);
 
             let goodInternetConnection = true;
             /* Check wifi too. Some hotspots may have poor connection quality */

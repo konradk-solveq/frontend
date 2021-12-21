@@ -32,9 +32,13 @@ import {
     getCenterLeftPx,
     getPosWithMinHeight,
     getHorizontalPx,
+    getFontSize,
+    mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 import Loader from '../loader/loader';
 import {BothStackRoute} from '../../../../navigation/route';
+import {getAppLayoutConfig as get} from '@helpers/appLayoutConfig';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
     navigation: any;
@@ -121,22 +125,12 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         }
     };
 
-    const [headHeight, setHeadHeight] = useState(0);
-
     setObjSize(334, 50);
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-        },
-        scroll: {
-            top: headHeight,
-        },
         area: {
             width: '100%',
             height: getVerticalPx(896) - keyboardHeight,
-            minHeight: getVerticalPx(450) + headHeight,
+            minHeight: getVerticalPx(450) + get.headerH(),
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351 - 100, 100),
         title: {
@@ -145,8 +139,8 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             left: getCenterLeftPx(),
             top: getVertical(138 - 100),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
-            lineHeight: 38,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(38),
             color: '#555555',
             textAlign: 'left',
         },
@@ -159,25 +153,21 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         botton: {
             position: 'absolute',
             width: getWidthPx(),
-            height: 50,
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             bottom: getVerticalPx(65 + 100),
         },
     });
 
     if (isLoading) {
-        return (
-            <SafeAreaView style={styles.container}>
-                <Loader />
-            </SafeAreaView>
-        );
+        return <Loader />;
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={comStyle.container}>
             <ScrollView
                 keyboardShouldPersistTaps={'always'}
-                style={styles.scroll}>
+                style={comStyle.scroll}>
                 <View style={styles.area}>
                     <Text style={styles.title}>{trans.text}</Text>
 
@@ -216,7 +206,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.goBack()}
-                getHeight={setHeadHeight}
                 inner={trans.head}
             />
         </SafeAreaView>

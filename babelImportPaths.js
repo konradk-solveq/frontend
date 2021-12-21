@@ -75,4 +75,12 @@ module.exports = [
         rootPathSuffix: './sentry',
         rootPathPrefix: '@sentryLogger',
     },
+    {
+        rootPathSuffix: './src/env',
+        rootPathPrefix: '@env',
+    },
+    {
+        rootPathSuffix: './src/debugging',
+        rootPathPrefix: '@debugging',
+    },
 ];

@@ -7,11 +7,7 @@ import {
     ViewStyle,
     TextStyle,
 } from 'react-native';
-import {
-    setObjSize,
-    getHorizontalPx,
-    getVerticalPx,
-} from '../../helpers/layoutFoo';
+import {setObjSize, getHorizontalPx} from '@helpers/layoutFoo';
 
 interface IProps {
     text: string;
@@ -19,14 +15,16 @@ interface IProps {
     buttonStyle?: ViewStyle;
     textStyle?: TextStyle;
     icon?: ReactElement;
+    testID?: string;
 }
 
-const Button: React.FC<IProps> = ({
+const BikeButton: React.FC<IProps> = ({
     text,
     onPress,
     buttonStyle,
     textStyle,
     icon,
+    testID,
 }: IProps) => {
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -38,9 +36,7 @@ const Button: React.FC<IProps> = ({
             marginRight: getHorizontalPx(15),
         },
         button: {
-            marginTop: getVerticalPx(20),
             paddingLeft: getHorizontalPx(10),
-            flex: 1,
             justifyContent: 'center',
             marginLeft: 0,
             alignItems: 'center',
@@ -53,7 +49,9 @@ const Button: React.FC<IProps> = ({
     });
 
     return (
-        <TouchableWithoutFeedback onPress={() => onPress()}>
+        <TouchableWithoutFeedback
+            onPress={() => onPress()}
+            testID={testID || 'bike-btn'}>
             <View style={[styles.button, buttonStyle]}>
                 {icon && icon}
                 <Text
@@ -67,4 +65,4 @@ const Button: React.FC<IProps> = ({
     );
 };
 
-export default Button;
+export default BikeButton;

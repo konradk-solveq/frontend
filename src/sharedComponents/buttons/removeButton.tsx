@@ -1,3 +1,4 @@
+import {getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {StyleSheet, Pressable, View, ViewStyle} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
@@ -31,8 +32,8 @@ const RemoveBtn: React.FC<IProps> = ({
 
 const styles = StyleSheet.create({
     icon: {
-        width: 16,
-        height: 16,
+        width: getHorizontalPx(16),
+        height: getHorizontalPx(16),
     },
 });
 

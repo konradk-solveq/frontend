@@ -19,6 +19,8 @@ import {
     getWidthPx,
     getWidthPxOf,
     getHorizontalPx,
+    getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 
 import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
@@ -29,6 +31,7 @@ import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
 import Curve from '../../../sharedComponents/svg/curve';
 import useCustomBackNavButton from '../../../hooks/useCustomBackNavBtn';
 import {BothStackRoute} from '../../../navigation/route';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface IProps {
     navigation: any;
@@ -59,18 +62,13 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const w = getWidthPx();
     const l = getCenterLeftPx();
     const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            backgroundColor: 'white',
-            height: getVerticalPx(896),
-        },
         contentContainer: {
-            marginTop: getVerticalPx(88),
+            marginTop: getHorizontalPx(110),
         },
         bottons: {
             position: 'absolute',
             width: getWidthPx(),
-            height: 50,
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -83,7 +81,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(30),
+            fontSize: getFontSize(30),
             color: '#313131',
         },
         bikeName: {
@@ -91,7 +89,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             left: l,
             width: w,
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(40),
+            fontSize: getFontSize(40),
             color: '#313131',
             textAlign: 'center',
         },
@@ -101,7 +99,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             width: w,
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: getHorizontalPx(15),
+            fontSize: getFontSize(15),
             color: '#555555',
         },
     });
@@ -117,7 +115,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={comStyle.container}>
             <StackHeader
                 onpress={() => {
                     removeBikeOnCancel();

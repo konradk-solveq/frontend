@@ -1,10 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View, StyleSheet, SafeAreaView, Platform} from 'react-native';
+import {View,  SafeAreaView, Platform} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import I18n from 'react-native-i18n';
 
 import {RegularStackRoute} from '@navigation/route';
-import useStatusBarHeight from '@hooks/statusBarHeight';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {RouteMapType} from '@models/places.model';
 import {PickedFilters} from '@interfaces/form';
@@ -21,7 +20,6 @@ import {
     fetchPrivateMapsList,
 } from '@storage/actions';
 import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
-import {getVerticalPx} from '@helpers/layoutFoo';
 
 import {FiltersBtn, MapBtn, TypicalRedBtn} from '@sharedComponents/buttons';
 import TabBackGround from '@sharedComponents/navi/tabBackGround';
@@ -32,10 +30,8 @@ import BikeMap from './bikeMap/bikeMap';
 import MyRoutes from './myRoutes/myRoutes';
 import PlannedRoutes from './plannedRoutes/plannedRoutes';
 
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 import styles from './style';
-// import FeaturedRoutes from './featuredRoutes/FeaturedRoutes';
-
-const isAndroid = Platform.OS === 'android';
 
 /* TODO: refresh data if position chagned more than 500 meters */
 const World: React.FC = () => {
@@ -44,7 +40,6 @@ const World: React.FC = () => {
     const navigation = useNavigation();
     const route = useRoute<WorldRouteType>();
 
-    const statusBarHeight = useStatusBarHeight();
     const nextCoursor = useAppSelector(nextPaginationCoursor);
     const nextPrivateCoursor = useAppSelector(nextPrivatePaginationCoursor);
     const nextPlannedCoursor = useAppSelector(nextPlannedPaginationCoursor);
@@ -120,14 +115,16 @@ const World: React.FC = () => {
     const onLoadMoreHandler = useCallback(() => {
         if (!isLoading) {
             if (nextPrivateCoursor && activeTab === RouteMapType.MY_ROUTES) {
-                dispatch(fetchPrivateMapsList(nextPrivateCoursor));
+                dispatch(
+                    fetchPrivateMapsList(nextPrivateCoursor, savedMapFilters),
+                );
                 return;
             }
             if (nextCoursor && activeTab === RouteMapType.BIKE_MAP) {
                 dispatch(fetchMapsList(nextCoursor, savedMapFilters));
                 return;
             }
-            if (nextCoursor && activeTab === RouteMapType.PLANNING) {
+            if (nextPlannedCoursor && activeTab === RouteMapType.PLANNING) {
                 dispatch(
                     fetchPlannedMapsList(nextPlannedCoursor, savedMapFilters),
                 );
@@ -177,12 +174,15 @@ const World: React.FC = () => {
                     />
                 );
             case RouteMapType.MY_ROUTES:
+                /**
+                 * My routes should be ordered by date by default.
+                 */
                 return (
                     <MyRoutes
                         onRefresh={onRefreshHandler}
                         onLoadMore={onLoadMoreHandler}
                         onPress={() => setActiveTab(RouteMapType.BIKE_MAP)}
-                        sortedByDate={!!savedMapFilters?.order}
+                        sortedByDate={!!savedMapFilters?.order || true}
                     />
                 );
             case RouteMapType.PLANNING:
@@ -203,57 +203,49 @@ const World: React.FC = () => {
         }
     }, [activeTab, onLoadMoreHandler, onRefreshHandler]);
 
-    const dynamicStyles = StyleSheet.create({
-        headerWrapper: {
-            top: getVerticalPx(isAndroid ? 65 - statusBarHeight : 65),
-        },
-        btns: {
-            marginTop:
-                getVerticalPx(138) < 100
-                    ? 100
-                    : getVerticalPx(138 - statusBarHeight),
-        },
-    });
-
     return (
-        <SafeAreaView style={styles.container}>
-            <FiltersModal
-                key={activeTab}
-                onClose={onHideModalHandler}
-                definedFilters={savedMapFilters}
-                onSave={onSetFiltersHandler}
-                showModal={showModal}
-                allowedFilters={
-                    RouteMapType.MY_ROUTES === activeTab ? ['order'] : undefined
-                }
-            />
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
+                <FiltersModal
+                    key={activeTab}
+                    onClose={onHideModalHandler}
+                    definedFilters={savedMapFilters}
+                    onSave={onSetFiltersHandler}
+                    showModal={showModal}
+                    allowedFilters={
+                        RouteMapType.MY_ROUTES === activeTab
+                            ? ['order']
+                            : undefined
+                    }
+                />
 
-            <View style={styles.wrap}>
-                <View style={[styles.btns, dynamicStyles.btns]}>
-                    <TypicalRedBtn
-                        style={styles.btn}
-                        title={trans.btnBikeMap}
-                        active={activeTab === RouteMapType.BIKE_MAP}
-                        onpress={handleBikeMap}
-                    />
-                    <TypicalRedBtn
-                        style={styles.btn}
-                        title={trans.btnMyRoutes}
-                        active={activeTab === RouteMapType.MY_ROUTES}
-                        onpress={handleMyRoutes}
-                    />
-                    <TypicalRedBtn
-                        style={styles.btn}
-                        title={trans.btnPlaned}
-                        active={activeTab === RouteMapType.PLANNING}
-                        onpress={handlePlaned}
-                    />
+                <View style={styles.wrap}>
+                    <View style={styles.btns}>
+                        <TypicalRedBtn
+                            style={styles.btn}
+                            title={trans.btnBikeMap}
+                            active={activeTab === RouteMapType.BIKE_MAP}
+                            onpress={handleBikeMap}
+                        />
+                        <TypicalRedBtn
+                            style={styles.btn}
+                            title={trans.btnMyRoutes}
+                            active={activeTab === RouteMapType.MY_ROUTES}
+                            onpress={handleMyRoutes}
+                        />
+                        <TypicalRedBtn
+                            style={styles.btn}
+                            title={trans.btnPlaned}
+                            active={activeTab === RouteMapType.PLANNING}
+                            onpress={handlePlaned}
+                        />
+                    </View>
                 </View>
+
+                <View style={styles.viewContainer}>{renderActiveScreen()}</View>
+
+                <TabBackGround />
             </View>
-
-            <View style={styles.viewContainer}>{renderActiveScreen()}</View>
-
-            <TabBackGround />
 
             <StackHeader
                 hideBackArrow

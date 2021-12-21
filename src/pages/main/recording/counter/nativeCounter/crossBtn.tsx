@@ -1,28 +1,30 @@
 import React, {useRef} from 'react';
-import {StyleSheet, Dimensions, View, Platform, Animated} from 'react-native';
+import {StyleSheet, View, Animated} from 'react-native';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
-import {
-    setObjSize,
-    getCenterLeftPx,
-    getVerticalPx,
-    getWidthPx,
-    getHorizontalPx,
-} from '../../../../../helpers/layoutFoo';
+import {getVerticalPx, getHorizontalPx} from '@helpers/layoutFoo';
 import {useEffect} from 'react';
 import Arrow from './arrow';
+import {isIOS} from '@utils/platform';
 
 interface Props {
-    style?: any;
     down?: boolean;
     onPress: () => void;
     duration: number;
 }
 
-const {width} = Dimensions.get('window');
-const isIOS = Platform.OS === 'ios';
+const HORIZONTAL_LINE_WIDTH = getHorizontalPx(334);
+const HORIZONTAL_LINE_POS_BIG_SIZE = getHorizontalPx(40);
+const HORIZONTAL_LINE_POS_SMALL_SIZE =
+    HORIZONTAL_LINE_POS_BIG_SIZE + HORIZONTAL_LINE_WIDTH / 2;
 
-const CrossBtn: React.FC<Props> = ({onPress, down, style, duration}: Props) => {
+const VERTICAL_LINE_HEIGHT = getVerticalPx(305);
+const VERTICAL_LINE_POS_BIG_SIZE =
+    -(VERTICAL_LINE_HEIGHT - getVerticalPx(68)) / 2;
+const VERTICAL_LINE_POS_SMALL_SIZE =
+    VERTICAL_LINE_POS_BIG_SIZE + VERTICAL_LINE_HEIGHT / 2;
+
+const CrossBtn: React.FC<Props> = ({onPress, down, duration}: Props) => {
     const displayLines = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
@@ -31,50 +33,37 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style, duration}: Props) => {
             duration: duration * 0.7,
             useNativeDriver: false,
         }).start();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [down, displayLines]);
 
-    const btnTop = displayLines.interpolate({
+    const horizontalLineWidth = displayLines.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, getVerticalPx(23)],
+        outputRange: [HORIZONTAL_LINE_WIDTH, 0],
     });
 
-    const lineWidth = displayLines.interpolate({
-        inputRange: [0, 1],
-        outputRange: [getHorizontalPx(334), 0],
-    });
-
-    const lineLeftPos = displayLines.interpolate({
+    const horizontalLineLeftPos = displayLines.interpolate({
         inputRange: [0, 1],
         outputRange: [
-            getHorizontalPx(40 - 5),
-            getHorizontalPx(40 - 5 + 334 / 2),
+            HORIZONTAL_LINE_POS_BIG_SIZE,
+            HORIZONTAL_LINE_POS_SMALL_SIZE,
         ],
     });
 
-    const lineHeight = displayLines.interpolate({
+    const verticalLineHeight = displayLines.interpolate({
         inputRange: [0, 1],
-        outputRange: [getVerticalPx(305), 0],
+        outputRange: [VERTICAL_LINE_HEIGHT, 0],
     });
 
-    const lineTopPos = displayLines.interpolate({
+    const verticalLineTopPos = displayLines.interpolate({
         inputRange: [0, 1],
-        outputRange: [
-            getVerticalPx(-(305 - 68) / 2),
-            getVerticalPx(-(305 - 68) / 2 + 305 / 2),
-        ],
+        outputRange: [VERTICAL_LINE_POS_BIG_SIZE, VERTICAL_LINE_POS_SMALL_SIZE],
     });
 
-    const h = width * (40 / 120.8);
     const styles = StyleSheet.create({
         container: {
-            width: getHorizontalPx(51),
+            width: getHorizontalPx(414),
             height: getHorizontalPx(51),
-        },
-        background: {
-            position: 'absolute',
-            width: width,
-            height: h,
-            marginBottom: getVerticalPx(40),
+            zIndex: 1000,
         },
         button: {
             position: 'absolute',
@@ -91,8 +80,8 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style, duration}: Props) => {
             borderRadius: 50,
         },
         touch: {
-            width: '100%',
-            height: '100%',
+            width: getHorizontalPx(51),
+            height: getHorizontalPx(51),
         },
         horisontalLine: {
             position: 'absolute',
@@ -103,26 +92,19 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style, duration}: Props) => {
         verticalLine: {
             position: 'absolute',
             width: 1,
-            left: getHorizontalPx(40 + 334 / 2),
+            left: getHorizontalPx(40) + HORIZONTAL_LINE_WIDTH / 2,
             backgroundColor: '#e0e0e0',
         },
     });
 
     return (
-        <Animated.View
-            style={[
-                styles.container,
-                style,
-                {
-                    marginTop: btnTop,
-                },
-            ]}>
+        <Animated.View style={[styles.container]}>
             <Animated.View
                 style={[
                     styles.horisontalLine,
                     {
-                        width: lineWidth,
-                        left: lineLeftPos,
+                        width: horizontalLineWidth,
+                        left: horizontalLineLeftPos,
                     },
                 ]}
             />
@@ -130,8 +112,8 @@ const CrossBtn: React.FC<Props> = ({onPress, down, style, duration}: Props) => {
                 style={[
                     styles.verticalLine,
                     {
-                        height: lineHeight,
-                        top: lineTopPos,
+                        height: verticalLineHeight,
+                        top: verticalLineTopPos,
                     },
                 ]}
             />

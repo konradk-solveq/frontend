@@ -262,7 +262,11 @@ export class Map {
     }
 
     public get firstPickedDifficulty(): string | undefined {
-        const values = this?.difficulty;
+        const values = Array.isArray(this?.difficulty) && this.difficulty;
+        if (!values) {
+            return;
+        }
+
         const difficultyOptions = this?.optionsEnums?.difficultyOptions?.find(
             o => values?.includes(o?.enumValue),
         )?.i18nValue;
@@ -278,7 +282,11 @@ export class Map {
     }
 
     public get firstPickedSurface(): string | undefined {
-        const values = this?.surface;
+        const values = Array.isArray(this?.surface) && this.surface;
+        if (!values) {
+            return;
+        }
+
         const surfaceOptions = this?.optionsEnums?.surfacesOptions?.find(o =>
             values?.includes(o?.enumValue),
         )?.i18nValue;

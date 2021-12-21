@@ -30,6 +30,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 	<key>NFCReaderUsageDescription</key>
 	<string>This app needs to get your NFC reader to read bike frame nr from NFC stickers.</string>
 	<key>NSAppTransportSecurity</key>
@@ -60,6 +62,7 @@
 	<string>This app requires access to the photo library to add to route description.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>mykross.otf</string>
 		<string>DIN2014Narrow-Light.otf</string>
 		<string>DIN2014Narrow-Regular.otf</string>
 		<string>DIN2014Narrow-Bold.otf</string>
@@ -69,6 +72,8 @@
 		<string>fetch</string>
 		<string>location</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

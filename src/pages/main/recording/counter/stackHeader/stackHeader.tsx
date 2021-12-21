@@ -1,26 +1,41 @@
-import React, {useEffect, useRef, useCallback} from 'react';
-import {StyleSheet, Text, View, Platform, Animated} from 'react-native';
+import React, {useEffect} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import TopBackBtn from './topBackBtn';
+import Animated, {
+    useSharedValue,
+    withTiming,
+    useAnimatedStyle,
+} from 'react-native-reanimated';
 
 import {
     getCenterLeftPx,
-    getVerticalPx,
     getWidthPx,
     getHeightPx,
     getHorizontalPx,
-} from '../../../../../helpers/layoutFoo';
-import HeaderBacgroudShape from './headerBacgroudShape';
-import useStatusBarHeight from '@src/hooks/statusBarHeight';
+    getFontSize,
+    getVerticalPx,
+} from '@helpers/layoutFoo';
+import HeaderBackgroundShape from './HeaderBackgroundShape';
+import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
+import {isAndroid} from '@utils/platform';
 
-const isAndroid = Platform.OS === 'android';
+const HEADER_HEIGHT = getHorizontalPx(116) + getAppLayoutConfig.statusBarH();
+
+const TITLE_TOP_BIG = getVerticalPx(42);
+const TITLE_TOP_SMALL = getVerticalPx(12);
+
+const ARROW_TOP_BIG = getHorizontalPx(68);
+const ARROW_TOP_SMALL = getHorizontalPx(48);
+
+const ARROW_LEFT_BIG = getHorizontalPx(0);
+const ARROW_LEFT_SMALL = getHorizontalPx(-18);
+
 interface Props {
     // * wartości wymagane
-    style?: any;
     onpress: Function; // po naciśnięciu strzałki
     inner: string; // nazwa headera
     titleOn: boolean; // czy nazwa w headerze ma się pokazać
-    getHeight?: (height: number) => void; // * dla rodzica zwrotka wysokości hedera - istotne przy ScrollView
-    whiteArow: boolean;
+    whiteArrow: boolean;
     started?: boolean;
     mapHiden: boolean;
     duration: number;
@@ -28,57 +43,52 @@ interface Props {
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
 const StackHeader: React.FC<Props> = ({
-    getHeight,
     mapHiden,
     duration,
     started,
-    style,
     onpress,
-    whiteArow,
+    whiteArrow,
     inner,
     titleOn,
 }: Props) => {
-    const height = getVerticalPx(100);
-    const iosOpen = isAndroid ? 0 : 10;
-    const iosClose = isAndroid ? 0 : 30;
-
-    const getCurrentHeight = useCallback(async () => {
-        if (getHeight) {
-            const statusBarHeight = await getStatusBarHeight(isAndroid);
-            getHeight(height - statusBarHeight);
-        }
-    }, [height, getHeight]);
+    const titleTop = useSharedValue(TITLE_TOP_BIG);
+    const arrowTop = useSharedValue(ARROW_TOP_BIG);
+    const arrowLeft = useSharedValue(ARROW_LEFT_BIG);
 
     useEffect(() => {
-        getCurrentHeight();
-    }, [getCurrentHeight]);
+        titleTop.value = withTiming(
+            mapHiden ? TITLE_TOP_BIG : TITLE_TOP_SMALL,
+            {
+                duration: duration,
+            },
+        );
 
-    const display = useRef(new Animated.Value(0)).current;
+        arrowTop.value = withTiming(
+            mapHiden ? ARROW_TOP_BIG : ARROW_TOP_SMALL,
+            {
+                duration: duration,
+            },
+        );
 
-    useEffect(() => {
-        Animated.timing(display, {
-            toValue: mapHiden ? 0 : 1,
-            duration: duration,
-            useNativeDriver: false,
-        }).start();
-    }, [mapHiden, display, duration]);
+        arrowLeft.value = withTiming(
+            mapHiden ? ARROW_LEFT_BIG : ARROW_LEFT_SMALL,
+            {
+                duration: duration,
+            },
+        );
+    }, [mapHiden, duration, whiteArrow, titleTop, arrowTop, arrowLeft]);
 
-    const titleTop = display.interpolate({
-        inputRange: [0, 1],
-        outputRange: [
-            getVerticalPx(3 - 28) + iosOpen,
-            getVerticalPx(3 - 28 - 30) + iosClose,
-        ],
+    const titleTopStyle = useAnimatedStyle(() => {
+        return {
+            top: titleTop.value,
+        };
     });
 
-    const arrowTop = display.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, getVerticalPx(isAndroid ? -20 : -3)],
-    });
-
-    const arrowLeft = display.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, getVerticalPx(isAndroid ? -25 : -5)],
+    const arrowStyle = useAnimatedStyle(() => {
+        return {
+            top: arrowTop.value,
+            left: arrowLeft.value,
+        };
     });
 
     const styles = StyleSheet.create({
@@ -87,82 +97,50 @@ const StackHeader: React.FC<Props> = ({
             left: 0,
             top: 0,
             width: '100%',
-            height: height,
-        },
-        wrap: {
-            position: 'absolute',
-            left: 0,
-            top: height * 0.61,
-            width: getHorizontalPx(414),
-            height: getHeightPx(),
+            height: HEADER_HEIGHT,
+            zIndex: 3,
         },
         arrowWrap: {
             position: 'absolute',
-            left: 0,
-            top: 0,
-        },
-        title: {
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'center',
-            fontSize: 13,
-            color: '#ffffff',
         },
         titleWrap: {
-            position: 'absolute',
+            // position: 'absolute',
             width: getWidthPx(),
             left: getCenterLeftPx(),
+            backgroundColor: 'red',
         },
-        background: {
+        title: {
             position: 'absolute',
-            left: getHorizontalPx(-1),
-            top: 0,
-            width: getHorizontalPx(416),
-            height: getVerticalPx(116),
-        },
-        fullView: {
-            backgroundColor: 'transparent',
+            fontFamily: 'DIN2014Narrow-Light',
+            textAlign: 'center',
+            fontSize: getFontSize(13),
+            color: '#ffffff',
             width: '100%',
-            height: '100%',
         },
     });
 
     return (
         <>
-            <View style={[styles.container, style]}>
-                <HeaderBacgroudShape
+            <View style={styles.container}>
+                <HeaderBackgroundShape
                     started={started}
-                    style={styles.background}
                     mapHiden={mapHiden}
                     duration={duration}
                 />
 
-                <View style={styles.wrap}>
-                    <Animated.View
-                        style={[
-                            styles.arrowWrap,
-                            {
-                                top: arrowTop,
-                                left: arrowLeft,
-                            },
-                        ]}>
-                        <TopBackBtn
-                            onpress={onpress}
-                            color={whiteArow ? '#fff' : '#000'}
-                        />
-                    </Animated.View>
+                <Animated.View style={[styles.arrowWrap, arrowStyle]}>
+                    <TopBackBtn
+                        onpress={onpress}
+                        whiteArow={whiteArrow}
+                        duration={duration}
+                    />
+                </Animated.View>
 
-                    {titleOn && (
-                        <Animated.View
-                            style={[
-                                styles.titleWrap,
-                                {
-                                    top: titleTop,
-                                },
-                            ]}>
-                            <Text style={styles.title}>{inner}</Text>
-                        </Animated.View>
-                    )}
-                </View>
+                {titleOn && (
+                    <Animated.View style={[styles.titleWrap, titleTopStyle]}>
+                        <Text style={styles.title}>{inner}</Text>
+                    </Animated.View>
+                )}
             </View>
         </>
     );

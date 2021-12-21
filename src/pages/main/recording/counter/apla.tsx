@@ -1,51 +1,17 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {View, Text, ViewStyle, Animated} from 'react-native';
 
-import AnimSvg from '../../../../helpers/animSvg';
+import AnimSvg from '@helpers/animSvg';
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
-import {useState} from 'react';
-
-const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        width: getHorizontalPx(414),
-        height: getVerticalPx(896),
-        zIndex: 1,
-    },
-    backGround: {
-        position: 'absolute',
-        height: getHorizontalPx(180) * 1.9,
-        left: 0,
-        width: getHorizontalPx(414),
-        bottom: 0,
-    },
-    textContainer: {
-        position: 'absolute',
-        height: getHorizontalPx(120) * 1.9,
-        left: 0,
-        width: getHorizontalPx(414 - 80),
-        marginHorizontal: 40,
-        bottom: 0,
-        zIndex: 2,
-    },
-    message: {
-        fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 23,
-        color: '#313131',
-        letterSpacing: 0,
-        textAlign: 'center',
-        marginTop: 30,
-    },
-    plug: {
-        position: 'absolute',
-        left: 0,
-        bottom: 0,
-        width: getHorizontalPx(414),
-        height: getHorizontalPx(150),
-        backgroundColor: '#fff',
-    },
-});
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '@helpers/layoutFoo';
+import {getAppLayoutConfig as get} from '@helpers/appLayoutConfig';
+import {isIOS} from '@utils/platform';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const backGround = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 332">
 <filter id="filter" x="-1" width="3" y="-1" height="3">
@@ -64,9 +30,6 @@ interface IProps {
     message: string;
     duration: number;
 }
-
-const startPosition = getVerticalPx(232) * 2;
-
 const ButtonBackground: React.FC<IProps> = ({
     show,
     message,
@@ -79,15 +42,18 @@ const ButtonBackground: React.FC<IProps> = ({
         }
     }, [show, message]);
 
-    const backgroundPosition = useRef(
-        new Animated.Value(-startPosition),
-    ).current;
+    const {top} = useSafeAreaInsets();
+    const ACTION_BUTTONS_TOP = mainButtonsHeight(50) + getVerticalPx(65);
+    const startPosition = getHorizontalPx(332);
+
+    const backgroundPosition = useRef(new Animated.Value(-startPosition))
+        .current;
     const textOpacity = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
         if (show) {
             Animated.timing(backgroundPosition, {
-                toValue: 0,
+                toValue: getVerticalPx(50 + 65) - ACTION_BUTTONS_TOP,
                 duration: duration,
                 useNativeDriver: false,
             }).start();
@@ -109,17 +75,65 @@ const ButtonBackground: React.FC<IProps> = ({
             duration: duration / 2,
             useNativeDriver: false,
         }).start();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [show, backgroundPosition, textOpacity]);
 
+    const styles = StyleSheet.create({
+        container: {
+            position: 'absolute',
+            width: getHorizontalPx(414),
+            top: 0,
+            height: getVerticalPx(896) - top,
+            zIndex: 1,
+        },
+        wrap: {
+            position: 'absolute',
+            width: getHorizontalPx(414),
+            height: getVerticalPx(896) - top,
+        },
+        backGround: {
+            position: 'absolute',
+            height: getHorizontalPx(332),
+            left: 0,
+            width: getHorizontalPx(414),
+            bottom: 0,
+        },
+        textContainer: {
+            position: 'absolute',
+            height: getHorizontalPx(50),
+            left: 0,
+            width: getHorizontalPx(414 - 80),
+            marginHorizontal: getHorizontalPx(40),
+            bottom: getHorizontalPx(130),
+            zIndex: 2,
+        },
+        message: {
+            fontFamily: 'DIN2014Narrow-Light',
+            fontSize: getFontSize(23),
+            color: '#313131',
+            letterSpacing: 0,
+            textAlign: 'center',
+        },
+        plug: {
+            position: 'absolute',
+            left: 0,
+            bottom: 0,
+            width: getHorizontalPx(414),
+            height: getVerticalPx(150),
+            backgroundColor: '#fff',
+        },
+    });
     return (
-        <Animated.View style={[styles.container, {bottom: backgroundPosition}]}>
-            <Animated.View
-                style={[styles.textContainer, {opacity: textOpacity}]}>
-                <Text style={styles.message}>{currentMessage}</Text>
+        <View style={styles.container}>
+            <Animated.View style={[styles.wrap, {bottom: backgroundPosition}]}>
+                <Animated.View
+                    style={[styles.textContainer, {opacity: textOpacity}]}>
+                    <Text style={styles.message}>{currentMessage}</Text>
+                </Animated.View>
+                <View style={styles.plug} />
+                <AnimSvg style={styles.backGround} source={backGround} />
             </Animated.View>
-            <View style={styles.plug} />
-            <AnimSvg style={styles.backGround} source={backGround} />
-        </Animated.View>
+        </View>
     );
 };
 

@@ -12,8 +12,10 @@ import {
     getWidthPx,
     getVerticalPx,
     getCenterLeftPx,
+    getFontSize,
 } from '../../../../helpers/layoutFoo';
 import {BothStackRoute} from '../../../../navigation/route';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
     navigation: any;
@@ -26,11 +28,6 @@ const Info: React.FC<Props> = (props: Props) => {
 
     setObjSize(334, 41);
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-        },
         bottons: {
             display: 'flex',
             alignItems: 'flex-start',
@@ -38,7 +35,7 @@ const Info: React.FC<Props> = (props: Props) => {
             width: getWidthPx(),
             height: getVerticalPx(41),
             left: getCenterLeftPx(),
-            marginTop: getVerticalPx(138),
+            marginTop: getVerticalPx(38),
         },
         svg: {
             width: getWidthPx(),
@@ -49,8 +46,8 @@ const Info: React.FC<Props> = (props: Props) => {
             width: getWidthPx(),
             left: getCenterLeftPx(),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             marginTop: getVerticalPx(44),
             marginBottom: getVerticalPx(100),
             color: '#555555',
@@ -58,30 +55,32 @@ const Info: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={styles.container}>
-            <ScrollView>
-                <View style={styles.bottons}>
-                    <TypicalRedBtn
-                        title={trans.btnKross}
-                        active={krossBike}
-                        onpress={() => setKrossBike(true)}
-                    />
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
+                <ScrollView>
+                    <View style={styles.bottons}>
+                        <TypicalRedBtn
+                            title={trans.btnKross}
+                            active={krossBike}
+                            onpress={() => setKrossBike(true)}
+                        />
 
-                    <TypicalRedBtn
-                        title={trans.btnOther}
-                        active={!krossBike}
-                        onpress={() => setKrossBike(false)}
-                    />
-                </View>
+                        <TypicalRedBtn
+                            title={trans.btnOther}
+                            active={!krossBike}
+                            onpress={() => setKrossBike(false)}
+                        />
+                    </View>
 
-                <View style={styles.svg}>
-                    {krossBike ? <ImgKross /> : <ImgOther />}
-                </View>
+                    <View style={styles.svg}>
+                        {krossBike ? <ImgKross /> : <ImgOther />}
+                    </View>
 
-                <Text style={styles.text}>
-                    {krossBike ? trans.textKross : trans.textOther}
-                </Text>
-            </ScrollView>
+                    <Text style={styles.text}>
+                        {krossBike ? trans.textKross : trans.textOther}
+                    </Text>
+                </ScrollView>
+            </View>
 
             <StackHeader
                 onpress={() =>

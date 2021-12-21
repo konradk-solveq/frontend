@@ -1,0 +1,469 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RouteDebugBtn /> Rendering Should fire onPressEvent 1`] = `
+Array [
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 50,
+          "marginTop": 50,
+        }
+      }
+    >
+      <RNGestureHandlerButton
+        collapsable={false}
+        onGestureEvent={[Function]}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+        onHandlerStateChange={[Function]}
+        rippleColor={0}
+        testID="route-debug-btn"
+      >
+        <View
+          accessible={true}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#d8232a",
+              "borderRadius": 50,
+              "display": "flex",
+              "height": "100%",
+              "justifyContent": "center",
+              "opacity": 1,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "white",
+                  "fontFamily": "DIN2014Narrow-Bold",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontSize": 16,
+                  "paddingHorizontal": 20,
+                },
+              ]
+            }
+          >
+            WYŁĄCZ DEBUGOWANIE TRASY
+          </Text>
+        </View>
+      </RNGestureHandlerButton>
+    </View>
+    <RNGestureHandlerButton
+      collapsable={false}
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
+      testID="big-white-btn"
+    >
+      <View
+        accessible={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#33555555",
+            "borderRadius": 90.57971014492753,
+            "borderWidth": 1,
+            "display": "flex",
+            "height": 50,
+            "justifyContent": "center",
+            "marginLeft": 10,
+            "marginTop": 50,
+            "opacity": 1,
+            "width": 50,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#313131",
+              "fontFamily": "DIN2014Narrow-Bold",
+              "fontSize": 36.231884057971016,
+              "textAlign": "center",
+            }
+          }
+        >
+          X
+        </Text>
+      </View>
+    </RNGestureHandlerButton>
+  </View>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`<RouteDebugBtn /> Rendering Should match snapshot - with onPress 1`] = `
+Array [
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 50,
+          "marginTop": 50,
+        }
+      }
+    >
+      <RNGestureHandlerButton
+        collapsable={false}
+        onGestureEvent={[Function]}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+        onHandlerStateChange={[Function]}
+        rippleColor={0}
+        testID="route-debug-btn"
+      >
+        <View
+          accessible={true}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#d8232a",
+              "borderRadius": 50,
+              "display": "flex",
+              "height": "100%",
+              "justifyContent": "center",
+              "opacity": 1,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "white",
+                  "fontFamily": "DIN2014Narrow-Bold",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontSize": 16,
+                  "paddingHorizontal": 20,
+                },
+              ]
+            }
+          >
+            WŁĄCZ DEBUGOWANIE TRASY
+          </Text>
+        </View>
+      </RNGestureHandlerButton>
+    </View>
+    <RNGestureHandlerButton
+      collapsable={false}
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
+      testID="big-white-btn"
+    >
+      <View
+        accessible={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#33555555",
+            "borderRadius": 90.57971014492753,
+            "borderWidth": 1,
+            "display": "flex",
+            "height": 50,
+            "justifyContent": "center",
+            "marginLeft": 10,
+            "marginTop": 50,
+            "opacity": 1,
+            "width": 50,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#313131",
+              "fontFamily": "DIN2014Narrow-Bold",
+              "fontSize": 36.231884057971016,
+              "textAlign": "center",
+            }
+          }
+        >
+          X
+        </Text>
+      </View>
+    </RNGestureHandlerButton>
+  </View>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`<RouteDebugBtn /> Rendering Should match snapshot 1`] = `
+Array [
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 50,
+          "marginTop": 50,
+        }
+      }
+    >
+      <RNGestureHandlerButton
+        collapsable={false}
+        onGestureEvent={[Function]}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+        onHandlerStateChange={[Function]}
+        rippleColor={0}
+        testID="route-debug-btn"
+      >
+        <View
+          accessible={true}
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#d8232a",
+              "borderRadius": 50,
+              "display": "flex",
+              "height": "100%",
+              "justifyContent": "center",
+              "opacity": 1,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "white",
+                  "fontFamily": "DIN2014Narrow-Bold",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                },
+                Object {
+                  "fontSize": 16,
+                  "paddingHorizontal": 20,
+                },
+              ]
+            }
+          >
+            WŁĄCZ DEBUGOWANIE TRASY
+          </Text>
+        </View>
+      </RNGestureHandlerButton>
+    </View>
+    <RNGestureHandlerButton
+      collapsable={false}
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
+      testID="big-white-btn"
+    >
+      <View
+        accessible={true}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderColor": "#33555555",
+            "borderRadius": 90.57971014492753,
+            "borderWidth": 1,
+            "display": "flex",
+            "height": 50,
+            "justifyContent": "center",
+            "marginLeft": 10,
+            "marginTop": 50,
+            "opacity": 1,
+            "width": 50,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#313131",
+              "fontFamily": "DIN2014Narrow-Bold",
+              "fontSize": 36.231884057971016,
+              "textAlign": "center",
+            }
+          }
+        >
+          X
+        </Text>
+      </View>
+    </RNGestureHandlerButton>
+  </View>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;

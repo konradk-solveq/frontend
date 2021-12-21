@@ -6,6 +6,7 @@ import {
     ScrollView,
     SafeAreaView,
     Dimensions,
+    StatusBar,
 } from 'react-native';
 import I18n from 'react-native-i18n';
 import Hyperlink from 'react-native-hyperlink';
@@ -15,12 +16,15 @@ import {
     getWidthPx,
     getHorizontalPx,
     getVerticalPx,
+    getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OnePermit from './onePermit';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
     navigation: any;
@@ -46,16 +50,8 @@ const Permits: React.FC<Props> = (props: Props) => {
         }
     };
 
-    const [headHeight, setHeadHeightt] = useState(0);
-
     setObjSize(334, 50);
     const styles = StyleSheet.create({
-        scroll: {
-            width: '100%',
-            height: '100%',
-            top: headHeight,
-            backgroundColor: 'white',
-        },
         wrap: {
             width: getWidthPx(),
             left: getHorizontalPx(40),
@@ -64,7 +60,7 @@ const Permits: React.FC<Props> = (props: Props) => {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
             marginTop: getVerticalPx(50),
-            fontSize: 30,
+            fontSize: getFontSize(30),
             color: '#313131',
         },
 
@@ -72,14 +68,14 @@ const Permits: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(14),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#555555',
         },
         clauseTitle: {
             marginTop: getVerticalPx(50),
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#313131',
         },
         clause: {
@@ -87,86 +83,90 @@ const Permits: React.FC<Props> = (props: Props) => {
             marginBottom: getVerticalPx(40),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#555555',
         },
         btn: {
             width: getWidthPx(),
-            height: 50,
+            height: mainButtonsHeight(50),
             top: getVerticalPx(11),
-            marginBottom: headHeight + getVerticalPx(69),
+            marginBottom: getVerticalPx(69),
         },
     });
 
     return (
-        <SafeAreaView style={{backgroundColor: 'white'}}>
-            <View style={styles.scroll}>
-                <ScrollView>
-                    <View style={styles.wrap}>
-                        <Text style={styles.title}>{trans.title}</Text>
+        <>
+            <StatusBar hidden={false} />
+            <SafeAreaView style={comStyle.container}>
+                <View style={comStyle.scroll}>
+                    <ScrollView>
+                        <View style={styles.wrap}>
+                            <Text style={styles.title}>{trans.title}</Text>
 
-                        <Text style={styles.text}>{trans.text}</Text>
+                            <Text style={styles.text}>{trans.text}</Text>
 
-                        <OnePermit
-                            checked={checked}
-                            wrong={trans.permit.required && wrong}
-                            getCheck={() => setChecked(!checked)}
-                            text={trans.permit.text}
-                            marginTop={getVerticalPx(66)}
-                            navigation={props.navigation}
-                        />
+                            <OnePermit
+                                checked={checked}
+                                wrong={trans.permit.required && wrong}
+                                getCheck={() => setChecked(!checked)}
+                                text={trans.permit.text}
+                                marginTop={getVerticalPx(66)}
+                                navigation={props.navigation}
+                            />
 
-                        <Text style={styles.clauseTitle}>
-                            {trans.clauseTitle}
-                        </Text>
+                            <Text style={styles.clauseTitle}>
+                                {trans.clauseTitle}
+                            </Text>
 
-                        <Hyperlink
-                            linkStyle={{color: '#3587ea'}}
-                            linkText={(url: string) => {
-                                if (url === trans.urlRegulations) {
-                                    return trans.hiperRegulations;
-                                }
-                                if (url === trans.urlPrivacyPolicy) {
-                                    return trans.hiperPrivacyPolicy;
-                                }
-                                return url;
-                            }}
-                            onPress={(url: string) => {
-                                if (url === trans.urlRegulations) {
-                                    props.navigation.navigate(
-                                        BothStackRoute.REGULATIONS_SCREEN,
-                                    );
-                                }
-                                if (url === trans.urlPrivacyPolicy) {
-                                    props.navigation.navigate(
-                                        BothStackRoute.PRIVACY_POLICY_SCREEN,
-                                    );
-                                }
-                            }}>
-                            <Text style={styles.clause}>{trans.clause}</Text>
-                        </Hyperlink>
+                            <Hyperlink
+                                linkStyle={{color: '#3587ea'}}
+                                linkText={(url: string) => {
+                                    if (url === trans.urlRegulations) {
+                                        return trans.hiperRegulations;
+                                    }
+                                    if (url === trans.urlPrivacyPolicy) {
+                                        return trans.hiperPrivacyPolicy;
+                                    }
+                                    return url;
+                                }}
+                                onPress={(url: string) => {
+                                    if (url === trans.urlRegulations) {
+                                        props.navigation.navigate(
+                                            BothStackRoute.REGULATIONS_SCREEN,
+                                        );
+                                    }
+                                    if (url === trans.urlPrivacyPolicy) {
+                                        props.navigation.navigate(
+                                            BothStackRoute.PRIVACY_POLICY_SCREEN,
+                                        );
+                                    }
+                                }}>
+                                <Text style={styles.clause}>
+                                    {trans.clause}
+                                </Text>
+                            </Hyperlink>
 
-                        <BigRedBtn
-                            style={styles.btn}
-                            title={trans.btn}
-                            onpress={() => hendlerGoFoward()}
-                        />
-                    </View>
-                </ScrollView>
-            </View>
+                            <BigRedBtn
+                                style={styles.btn}
+                                title={trans.btn}
+                                onpress={() => hendlerGoFoward()}
+                            />
+                        </View>
+                    </ScrollView>
+                </View>
 
-            <StackHeader
-                onpress={() =>
-                    props.navigation.navigate(
-                        OnboardingStackRoute.NEW_BEGINNING_SCREEN,
-                    )
-                }
-                inner={trans.header}
-                getHeight={setHeadHeightt}
-                style={{backgroundColor: '#fff'}}
-            />
-        </SafeAreaView>
+                <StackHeader
+                    onpress={() =>
+                        props.navigation.navigate(
+                            OnboardingStackRoute.NEW_BEGINNING_SCREEN,
+                        )
+                    }
+                    inner={trans.header}
+                    style={{backgroundColor: '#fff'}}
+                />
+            </SafeAreaView>
+        </>
     );
 };
 

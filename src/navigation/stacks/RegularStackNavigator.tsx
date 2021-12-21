@@ -6,6 +6,7 @@ import {trackerActiveSelector} from '../../storage/selectors';
 
 import SplashScreen from '../../pages/main/splashScreen/splashScreen';
 import newRegulations from '../../pages/main/newRegulations/newRegulations';
+import NewAppVersion from '../../pages/main/newAppVersion/newAppVersion';
 import ListPageInput from '../../sharedComponents/inputs/listPageInput';
 import InputPage from '../../sharedComponents/inputs/inputPage';
 import MineMenu from '../../pages/main/mainMenu';
@@ -30,6 +31,7 @@ import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPol
 import Help from '../../pages//main/profile/help/help';
 import Contact from '../../pages//main/profile/contact/contact';
 import RoutesMap from '../../pages/main/world/routesMap/routesMap';
+import ShortRouteScreen from '@pages/main/recording/shortRouteScreen/ShortRouteScreen';
 
 import {RegularStackRoute, BothStackRoute} from '../route';
 import {verticalAnim} from '@src/helpers/positioningVerical';
@@ -58,6 +60,10 @@ const RegularStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={RegularStackRoute.NEW_REGULATIONS_SCREEN}
                 component={newRegulations}
+            />
+            <Stack.Screen
+                name={RegularStackRoute.NEW_APP_VERSION_SCREEN}
+                component={NewAppVersion}
             />
 
             {/* Start add bike */}
@@ -102,6 +108,13 @@ const RegularStackNavigator: React.FC = () => {
                 name={RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN}
                 component={CounterThankYouPage}
                 options={{gestureEnabled: false}}
+            />
+            <Stack.Screen
+                name={RegularStackRoute.SHORT_ROUTE_SCREEN}
+                component={ShortRouteScreen}
+                options={{
+                    ...verticalAnim,
+                }}
             />
             {/* End add bike */}
 

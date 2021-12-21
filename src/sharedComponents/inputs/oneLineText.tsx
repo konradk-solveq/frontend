@@ -1,3 +1,4 @@
+import { getFontSize, getHorizontalPx } from '@src/helpers/layoutFoo';
 import React, {useEffect, useState} from 'react';
 import {
     StyleSheet,
@@ -91,7 +92,7 @@ const OneLineText: React.FC<IProps> = ({
     const dynamicStyles = {
         borderWidth: borderWidth,
         borderColor: borderColor,
-        paddingRight: Icon ? 40 : 30,
+        paddingRight: getHorizontalPx(Icon ? 40 : 30),
     };
 
     return (
@@ -120,7 +121,7 @@ const OneLineText: React.FC<IProps> = ({
 const styles = StyleSheet.create({
     placeholder: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         textAlign: 'left',
         color: '#555555',
     },
@@ -128,30 +129,32 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         width: '100%',
-        borderRadius: 25,
+        borderRadius: getHorizontalPx(50),
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 20,
+        fontSize: getFontSize(20),
         textAlign: 'left',
         color: 'black',
-        minHeight: 50,
-        marginTop: 6,
-        paddingLeft: 30,
-        paddingTop: 10,
-        paddingBottom: 10,
+        minHeight: getHorizontalPx(50),
+        height: getHorizontalPx(50),
+        marginTop: getHorizontalPx(6),
+        paddingLeft: getHorizontalPx(30),
+        paddingTop: getHorizontalPx(10),
+        paddingBottom: getHorizontalPx(10),
     },
     error: {
         fontFamily: 'DIN2014Narrow-Light',
-        fontSize: 18,
+        fontSize: getFontSize(18),
         textAlign: 'left',
         color: '#d8232a',
         position: 'relative',
-        marginTop: 6,
-        height: 23,
+        marginTop: getHorizontalPx(6),
+        height: getHorizontalPx(23),
+        marginBottom: getHorizontalPx(10),
     },
     iconContainer: {
         position: 'absolute',
         right: 0,
-        top: 6,
+        top: getHorizontalPx(6),
     },
 });
 

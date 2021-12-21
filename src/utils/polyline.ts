@@ -22,19 +22,19 @@ export const toGeoPoint = (data: ShortCoordsType) => {
 };
 
 export const getCompresionRatio = (length?: number) => {
-    if (!length || length < 3000) {
+    if (!length || length < 2000) {
         return 1.0;
     }
 
-    if (length < 5000) {
+    if (length < 4000) {
         return 0.8;
     }
 
-    if (length < 8000) {
+    if (length < 6000) {
         return 0.6;
     }
 
-    if (length < 15000) {
+    if (length < 10000) {
         return 0.5;
     }
 

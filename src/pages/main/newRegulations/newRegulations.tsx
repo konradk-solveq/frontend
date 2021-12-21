@@ -12,7 +12,6 @@ import Hyperlink from 'react-native-hyperlink';
 import I18n from 'react-native-i18n';
 
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
 
 import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
 import {
@@ -20,12 +19,15 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 import Loader from '../../onboarding/bikeAdding/loader/loader';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {TermsAndConditionsType} from '../../../models/regulations.model';
 import {setAppShowedRegulationsNumber} from '../../../storage/actions';
 import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
+import {getIsNewVersion} from '../../../helpers/appVersion';
 
 interface Props {
     navigation: any;
@@ -45,11 +47,28 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
         state => state.app.terms,
     );
     const showed = useAppSelector<number>(state => state.app.showedRegulations);
+    const shopAppVersion = useAppSelector<string>(
+        state => state.app.config.version,
+    );
+    const showedNewAppVersion = useAppSelector<string>(
+        state => state.app.showedNewAppVersion,
+    );
 
     const [headHeight, setHeadHeight] = useState<number>(0);
     const [pageType, setPageType] = useState<string | null>(null);
     const [shovedToSave, setShovedToSave] = useState<number>(0);
     const [content, setContent] = useState(null);
+    const [showNewAppVersion, setShowNewAppVersion] = useState<boolean>(false);
+
+    useEffect(() => {
+        // show New App Version
+        if (
+            showedNewAppVersion < shopAppVersion &&
+            getIsNewVersion(shopAppVersion)
+        ) {
+            setShowNewAppVersion(true);
+        }
+    }, [shopAppVersion, showedNewAppVersion]);
 
     useEffect(() => {
         if (terms && currentVersion) {
@@ -97,14 +116,23 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
 
     const handleGoForward = () => {
         dispatch(setAppShowedRegulationsNumber(shovedToSave));
-        props.navigation.navigate(BothStackRoute.MAIN_MENU_SCREEN);
+
+        const getPage = () => {
+            if (showNewAppVersion) {
+                return RegularStackRoute.NEW_APP_VERSION_SCREEN;
+            }
+
+            return BothStackRoute.MAIN_MENU_SCREEN;
+        };
+
+        props.navigation.navigate(getPage());
     };
 
     const getHeight = useCallback(async () => {
         const statusBarHeight = await getStatusBarHeight(
             Platform.OS === 'android',
         );
-        setHeadHeight(getVerticalPx(100) - statusBarHeight);
+        setHeadHeight(getHorizontalPx(100) - statusBarHeight);
     }, []);
 
     useEffect(() => {
@@ -120,7 +148,10 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
         },
         scroll: {
             width: '100%',
-            height: getVerticalPx(896 - 65 - 10) - headHeight - 50,
+            height:
+                getVerticalPx(896 - 65 - 10) -
+                headHeight -
+                mainButtonsHeight(50),
             top: headHeight,
         },
         wrap: {
@@ -131,8 +162,8 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
             marginTop: getVerticalPx(38),
-            fontSize: 30,
-            lineHeight: 40,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(40),
             color: '#313131',
         },
         svg: {
@@ -145,8 +176,8 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(37),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 23,
-            lineHeight: 30,
+            fontSize: getFontSize(23),
+            lineHeight: getFontSize(30),
             color: '#313131',
             marginBottom: getVerticalPx(60),
         },
@@ -164,7 +195,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
             textAlign: 'center',
             top: getVerticalPx(65),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
+            fontSize: getFontSize(18),
             color: '#313131',
         },
         btns: {
@@ -181,7 +212,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
         },
         twoBtnsWrap: {
             marginTop: getVerticalPx(10),
-            height: 50,
+            height: mainButtonsHeight(50),
             width: '100%',
             display: 'flex',
             justifyContent: 'space-between',

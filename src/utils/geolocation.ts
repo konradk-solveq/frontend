@@ -1,7 +1,9 @@
 import {Platform} from 'react-native';
 import BackgroundGeolocation, {
+    Config,
     Location,
     LocationError,
+    State,
 } from 'react-native-background-geolocation-android';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {
@@ -13,7 +15,6 @@ import {
 } from 'react-native-permissions';
 import GetLocation from 'react-native-get-location';
 
-import logger from '@utils/crashlytics';
 import {LocationDataI} from '@interfaces/geolocation';
 import {BasicCoordsType} from '@type/coords';
 import {I18n} from '@translations/I18n';
@@ -24,30 +25,37 @@ import {
     loggErrorWithScope,
     sentryLogLevel,
 } from '@sentryLogger/sentryLogger';
+import {getTimeInUTCMilliseconds} from './transformData';
 
 const isIOS = Platform.OS === 'ios';
+export const LOCATION_ACCURACY = 60;
+const GPS_OFF_TIMEOUT = isIOS ? 30 : 15;
 
 export const transformLocationErrorCode = (e: LocationError | any) => {
-    let errorMessage = e;
-    switch (e) {
-        case 0 || '0':
-            errorMessage = `Location unknown - [code: ${errorMessage}]`;
-            break;
-        case 1 || '1':
-            errorMessage = `Location permission denied - [code: ${errorMessage}]`;
-            break;
-        case 2 || '2':
-            errorMessage = `Network error - [code: ${errorMessage}]`;
-            break;
-        case 408 || '408':
-            errorMessage = `Location timeout - [code: ${errorMessage}]`;
-            break;
-        case 499 || '499':
-            errorMessage = `Location request cancelled - [code: ${errorMessage}]`;
-            break;
-    }
+    try {
+        let errorMessage = e?.message || e;
+        switch (e) {
+            case 0 || '0':
+                errorMessage = `Location unknown - [code: ${errorMessage}]`;
+                break;
+            case 1 || '1':
+                errorMessage = `Location permission denied - [code: ${errorMessage}]`;
+                break;
+            case 2 || '2':
+                errorMessage = `Network error - [code: ${errorMessage}]`;
+                break;
+            case 408 || '408':
+                errorMessage = `Location timeout - [code: ${errorMessage}]`;
+                break;
+            case 499 || '499':
+                errorMessage = `Location request cancelled - [code: ${errorMessage}]`;
+                break;
+        }
 
-    return errorMessage;
+        return errorMessage;
+    } catch (error) {
+        return e;
+    }
 };
 
 /* TODO: catch errors */
@@ -80,13 +88,13 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             },
             enableTimestampMeta: !isIOS,
             distanceFilter: 10,
-            stopTimeout: __DEV__ ? 1 : 5,
+            stopTimeout: __DEV__ ? 1 : GPS_OFF_TIMEOUT,
             debug: __DEV__ ? true : false,
             logLevel: __DEV__
                 ? BackgroundGeolocation.LOG_LEVEL_VERBOSE
-                : BackgroundGeolocation.LOG_LEVEL_OFF,
+                : BackgroundGeolocation.LOG_LEVEL_ERROR,
             maxDaysToPersist: __DEV__ ? 1 : 3,
-            desiredOdometerAccuracy: 10,
+            desiredOdometerAccuracy: LOCATION_ACCURACY,
             notification: {
                 text: notificationTitle,
                 smallIcon: 'drawable/ic_launcher_round',
@@ -102,9 +110,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
         return state;
     } catch (e) {
         console.warn('[initBGeolocalization - error]', e);
-        logger.log(`[initBGeolocalization] - ${e}`);
         const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'initBGeolocalization');
     }
@@ -153,9 +159,7 @@ export const getCurrentLocation = async (
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.log('[getCurrentLocation - e]', errorMessage);
-        logger.log(`[getCurrentLocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
-        logger.recordError(error);
 
         loggErrorMessage(error, 'getCurrentLocation', sentryLogLevel.Log);
     }
@@ -192,23 +196,36 @@ export const getBackgroundGeolocationState = async () => {
         return state;
     } catch (e) {
         console.log('[getBackgroundGeolocationState - error]', e);
-        logger.log(`[getBackgroundGeolocationState] - ${e}`);
         const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'getBackgroundGeolocationState');
     }
 };
 
+export const getDebugLevelMode = (active?: boolean) => {
+    if (__DEV__) {
+        return BackgroundGeolocation.LOG_LEVEL_VERBOSE;
+    }
+
+    if (active) {
+        return BackgroundGeolocation.LOG_LEVEL_DEBUG;
+    }
+
+    return BackgroundGeolocation.LOG_LEVEL_ERROR;
+};
+
 export const startBackgroundGeolocation = async (
     routeId: string,
     keep?: boolean,
+    debugModeActive?: boolean,
 ) => {
+    let state: State | undefined;
     try {
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: false,
             startOnBoot: true,
             isMoving: true,
+            logLevel: getDebugLevelMode(debugModeActive),
             extras: {
                 route_id: routeId,
             },
@@ -216,8 +233,10 @@ export const startBackgroundGeolocation = async (
                 text: 'Nagrywanie trasy',
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
             },
+            pausesLocationUpdatesAutomatically: false,
+            showsBackgroundLocationIndicator: true,
         });
-        const state = await startBackgroundGeolocationPlugin(true);
+        state = await startBackgroundGeolocationPlugin(true);
 
         if (!keep) {
             BackgroundGeolocation.resetOdometer();
@@ -225,16 +244,14 @@ export const startBackgroundGeolocation = async (
         setTimeout(async () => {
             await resumeTracingLocation();
         }, 1000);
-
-        return state;
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.warn('[startBackgroundGeolocation - error]', errorMessage);
-        logger.log(`[startBackgroundGeolocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'startBackgroundGeolocation');
+    } finally {
+        return state;
     }
 };
 
@@ -245,10 +262,13 @@ export const stopBackgroundGeolocation = async () => {
             startOnBoot: false,
             isMoving: false,
             extras: undefined,
+            logLevel: getDebugLevelMode(),
             notification: {
                 text: 'Pobieranie lokalizacji',
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
             },
+            pausesLocationUpdatesAutomatically: undefined,
+            showsBackgroundLocationIndicator: undefined,
         });
 
         const state = await stopBackgroundGeolocationPlugin();
@@ -259,9 +279,7 @@ export const stopBackgroundGeolocation = async () => {
         return state;
     } catch (e) {
         console.warn('[stopBackgroundGeolocation - error]', e);
-        logger.log(`[stopBackgroundGeolocation] - ${e}`);
         const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'stopBackgroundGeolocation');
     }
@@ -279,9 +297,7 @@ export const cleanUpListener = (
         BackgroundGeolocation.removeListener(listener, handler);
     } catch (e) {
         console.warn(`[cleanUpListener - [${listener}] - error]`, e);
-        logger.log(`[cleanUpListener] - [${listener}] - ${e}`);
         const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'cleanUpListener');
     }
@@ -296,9 +312,7 @@ export const onLocationChange = async (
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.log('[onLocationChange - error]', errorMessage);
-        logger.log(`[onLocationChange] - ${errorMessage}`);
         const error = new Error(errorMessage);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'onLocationChange');
     }
@@ -313,9 +327,7 @@ export const onPostitionWatch = async (
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.log('[onPostitionWatch - error]', errorMessage);
-        logger.log(`[onPostitionWatch] - ${errorMessage}`);
         const error = new Error(errorMessage);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'onPostitionWatch');
     }
@@ -327,9 +339,7 @@ export const cleaUpPositionWatcher = () => {
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.warn('[cleaUpPositionWatcher - error]', errorMessage);
-        logger.log(`[cleaUpPositionWatcher] - ${errorMessage}`);
         const error = new Error(errorMessage);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'cleaUpPositionWatcher');
     }
@@ -344,8 +354,12 @@ export const transformGeoloCationData = (data: Location): LocationDataI => {
             longitude: data.coords.longitude,
             altitude: data.coords.altitude,
             speed: data.coords.speed,
+            accuracy: data.coords.accuracy,
         },
         odometer: data.odometer,
+        provider: data.provider,
+        is_moving: data.is_moving,
+        activity: data.activity,
     };
 
     return location;
@@ -358,9 +372,7 @@ export const getLocations = async () => {
         return locations;
     } catch (e) {
         console.warn('[getLocations - error]', e);
-        logger.log(`[getLocations] - ${e}`);
         const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'getLocations');
     }
@@ -373,9 +385,7 @@ export const requestGeolocationPermission = async () => {
         return status;
     } catch (e) {
         console.warn('[requestGeolocationPermission - error]', e);
-        logger.log(`[requestGeolocationPermission] - ${e}`);
         const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'requestGeolocationPermission');
     }
@@ -428,9 +438,16 @@ export const getLastLocationByRoutId = async (
     }
 };
 
-/* Set plugin to stationary state - doesnt disable tracking permamently */
-export const pauseTracingLocation = async () => {
+/* Force plugin to stationary state - doesnt disable tracking permamently */
+export const pauseTracingLocation = async (clearRouteId?: boolean) => {
     try {
+        if (clearRouteId) {
+            await BackgroundGeolocation.setConfig({extras: {}});
+            await setConfig({
+                showsBackgroundLocationIndicator: false,
+            });
+        }
+
         const state = await getBackgroundGeolocationState();
         if (state?.enabled) {
             await BackgroundGeolocation.changePace(false);
@@ -438,27 +455,34 @@ export const pauseTracingLocation = async () => {
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.log('[pauseTracingLocation - error]', e);
-        logger.log(`[pauseTracingLocation] - ${e}`);
         const error = new Error(errorMessage);
-        logger.recordError(error);
 
         loggErrorWithScope(error, 'pauseTracingLocation');
     }
 };
 
-/* Set plugin to moving state */
-export const resumeTracingLocation = async () => {
+/* Force plugin to moving state */
+export const resumeTracingLocation = async (routeId?: string) => {
     try {
+        if (routeId) {
+            await BackgroundGeolocation.setConfig({
+                extras: {
+                    route_id: routeId,
+                },
+            });
+            await setConfig({
+                showsBackgroundLocationIndicator: true,
+            });
+        }
+
         const state = await getBackgroundGeolocationState();
-        if (state?.enabled && !state?.isMoving) {
+        if (state?.enabled) {
             await BackgroundGeolocation.changePace(true);
         }
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.log('[resumeTracingLocation - error]', errorMessage);
-        logger.log(`[resumeTracingLocation] - ${errorMessage}`);
         const error = new Error(errorMessage);
-        logger.recordError(error);
 
         loggErrorWithScope(errorMessage, 'resumeTracingLocation');
     }
@@ -473,9 +497,6 @@ export const pauseBackgroundGeolocation = async () => {
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.log('[pauseBackgroundGeolocation - error]', errorMessage);
-        logger.log(`[pauseBackgroundGeolocation] - ${errorMessage}`);
-        const error = new Error(errorMessage);
-        logger.recordError(error);
 
         loggErrorWithScope(errorMessage, 'pauseBackgroundGeolocation');
     }
@@ -490,9 +511,6 @@ export const resumeBackgroundGeolocation = async () => {
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.log('[resumeBackgroundGeolocation - error]', errorMessage);
-        logger.log(`[resumeBackgroundGeolocation] ${errorMessage}`);
-        const error = new Error(errorMessage);
-        logger.recordError(error);
 
         loggErrorWithScope(errorMessage, 'resumeBackgroundGeolocation');
     }
@@ -502,6 +520,7 @@ export const askFineLocationPermission = async () => {
     let permission = 'unavailable';
     try {
         const res = await request(
+            //@ts-ignore
             Platform.select({
                 android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
                 ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE,
@@ -510,9 +529,6 @@ export const askFineLocationPermission = async () => {
         permission = res;
     } catch (e) {
         console.log('[askFineLocationPermission - error]', e);
-        logger.log(`[askFineLocationPermission] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'askFineLocationPermission');
     }
@@ -546,9 +562,6 @@ export const checkAndroidLocationPermission = async () => {
         }
     } catch (e) {
         console.log('[checkAndroidLocationPermission - error]', e);
-        logger.log(`[checkAndroidLocationPermission] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'checkAndroidLocationPermission');
     }
@@ -559,24 +572,29 @@ export const checkAndroidLocationPermission = async () => {
 export const checkDeviceHasLocationAlwaysPermission = async () => {
     let locationPermission = false;
     try {
-        if (isIOS) {
-            const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
-            if (result === RESULTS.GRANTED) {
-                locationPermission = true;
-            }
-        } else {
-            const result = await check(
-                PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
-            );
-            if (result === RESULTS.GRANTED) {
-                locationPermission = true;
-            }
-        }
+        /**
+         * Logged some issues, so added temp solution
+         * https://github.com/facebook/react-native/issues/10009#issuecomment-347839488
+         */
+        locationPermission = await new Promise<boolean>(resolve => {
+            setTimeout(async () => {
+                if (isIOS) {
+                    const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
+                    if (result === RESULTS.GRANTED) {
+                        resolve(true);
+                    }
+                } else {
+                    const result = await check(
+                        PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+                    );
+                    if (result === RESULTS.GRANTED) {
+                        resolve(true);
+                    }
+                }
+            }, 0);
+        });
     } catch (e) {
         console.log('[checkDeviceHasLocationAlwaysPermission - error]', e);
-        logger.log(`[checkDeviceHasLocationAlwaysPermission] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'checkDeviceHasLocationAlwaysPermission');
     }
@@ -633,9 +651,6 @@ export const addGeofence = async (
         });
     } catch (e) {
         console.log('[addGeofence - error]', e);
-        logger.log(`[addGeofence] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'addGeofence');
     }
@@ -656,9 +671,6 @@ export const onGeofenceChangeListener = async (
         BackgroundGeolocation.onGeofence(callback);
     } catch (e) {
         console.log('[onGeofenceChangeListener - error]', e);
-        logger.log(`[onGeofenceChangeListener] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'onGeofenceChangeListener');
     }
@@ -693,9 +705,6 @@ export const setGeofenceFromCurrentLocation = async (
         return loc;
     } catch (e) {
         console.log('[setGeofenceFromCurrentLocation - error]', e);
-        logger.log(`[setGeofenceFromCurrentLocation] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'setGeofenceFromCurrentLocation');
     }
@@ -706,30 +715,29 @@ export const removeGeofence = async (identifier: string) => {
         await BackgroundGeolocation.removeGeofence(identifier);
     } catch (e) {
         console.log('[removeGeofence - error]', e);
-        logger.log(`[removeGeofence] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'removeGeofence');
     }
 };
 
 export const startBackgroundGeolocationPlugin = async (force?: boolean) => {
+    let state;
     try {
-        let state = await getBackgroundGeolocationState();
+        state = await getBackgroundGeolocationState();
         if (!state?.enabled || force) {
-            await BackgroundGeolocation.start();
-            state = await getBackgroundGeolocationState();
+            const st = await BackgroundGeolocation.start();
+            if (!st) {
+                state = await getBackgroundGeolocationState();
+            } else {
+                state = st;
+            }
         }
-
-        return state;
     } catch (e) {
         console.log('[startBackgroundGeolocationPlugin - error]', e);
-        logger.log(`[startBackgroundGeolocationPlugin] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'startBackgroundGeolocationPlugin');
+    } finally {
+        return state;
     }
 };
 
@@ -744,9 +752,6 @@ export const startMonitoringGeofences = async (forceToStart?: boolean) => {
         return state;
     } catch (e) {
         console.log('[startMonitoringGeofences - error]', e);
-        logger.log(`[startMonitoringGeofences] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'startMonitoringGeofences');
     }
@@ -761,9 +766,6 @@ export const stopBackgroundGeolocationPlugin = async () => {
         return state;
     } catch (e) {
         console.log('[stopBackgroundGeolocationPlugin - error]', e);
-        logger.log(`[stopBackgroundGeolocationPlugin] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'stopBackgroundGeolocationPlugin');
     }
@@ -812,9 +814,7 @@ export const onWatchPostionChangeListener = async (
         });
     } catch (e) {
         console.log('[onWatchPostionChangeListener - error]', e);
-        logger.log(`[onWatchPostionChangeListener] - ${e}`);
         const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'onWatchPostionChangeListener');
     }
@@ -825,9 +825,6 @@ export const stopWatchPostionChangeListener = async () => {
         await BackgroundGeolocation.stopWatchPosition();
     } catch (e) {
         console.log('[stopWatchPostionChangeListener - error]', e);
-        logger.log(`[stopWatchPostionChangeListener] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'stopWatchPostionChangeListener');
     }
@@ -842,9 +839,6 @@ export const setConfigWithLocationPermission = async (
         });
     } catch (e) {
         console.log('[setLocationPermission - error]', e);
-        logger.log(`[setLocationPermission] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'setLocationPermission');
     }
@@ -855,10 +849,65 @@ export const resetOdometer = async () => {
         await BackgroundGeolocation.resetOdometer();
     } catch (e) {
         console.log('[resetOdometer - error]', e);
-        logger.log(`[resetOdometer] - ${e}`);
-        const error = new Error(e);
-        logger.recordError(error);
 
         loggErrorWithScope(e, 'resetOdometer');
+    }
+};
+
+export const setConfig = async (config: Config) => {
+    try {
+        await BackgroundGeolocation.setConfig(config);
+    } catch (e) {
+        console.log('[geolocation - setConfig - error]', e);
+
+        loggErrorWithScope(e, 'geolocation-setConfig');
+    }
+};
+
+export const setDebugLogLevel = async () => {
+    try {
+        await setConfig({
+            logLevel: BackgroundGeolocation.LOG_LEVEL_DEBUG,
+        });
+    } catch (e) {
+        console.log('[geolocation - setDebugLogLevel - error]', e);
+
+        loggErrorWithScope(e, 'geolocation-setDebugLogLevel');
+    }
+};
+
+export const setErrorLogLevel = async () => {
+    try {
+        await setConfig({
+            logLevel: BackgroundGeolocation.LOG_LEVEL_ERROR,
+        });
+    } catch (e) {
+        console.log('[geolocation - setErrorLogLevel - error]', e);
+
+        loggErrorWithScope(e, 'geolocation-setErrorLogLevel');
+    }
+};
+
+export const getGeolocationLogs = async (start?: string, end?: string) => {
+    try {
+        const Logger = BackgroundGeolocation.logger;
+
+        if (!start || !end) {
+            const log = await Logger.getLog();
+            return log;
+        }
+
+        const log = await Logger.getLog({
+            start: getTimeInUTCMilliseconds(start, true),
+            end: getTimeInUTCMilliseconds(end, true),
+            order: Logger.ORDER_DESC,
+            limit: 100000,
+        });
+
+        return log;
+    } catch (e) {
+        console.log('[geolocation - getGeolocationLogs - error]', e);
+
+        loggErrorWithScope(e, 'geolocation-getGeolocationLogs');
     }
 };

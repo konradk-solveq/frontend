@@ -8,6 +8,7 @@ import {
     getHorizontalPx,
     getWidthPx,
     getCenterLeftPx,
+    getFontSize,
 } from '../../../../helpers/layoutFoo';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -15,6 +16,7 @@ import AnimSvg from '../../../../helpers/animSvg';
 import {getCountedDaysText} from '../../../../helpers/reviews';
 import ServiceMapBtn from '../../../../sharedComponents/buttons/serviceMap';
 import {RegularStackRoute} from '../../../../navigation/route';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
     navigation: any;
@@ -28,8 +30,6 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
     const region = props.route.params.region;
     const location = props.route.params.location;
 
-    const [headHeight, setHeadHeightt] = useState(0);
-
     const [source, setSource] = useState(
         '<svg xmlns="http://www.w3.org/2000/svg"/>',
     ); // do odpalania animacji svg
@@ -37,11 +37,6 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
-        scroll: {
-            width: '100%',
-            height: '100%', // wh - headHeight,
-            top: headHeight,
-        },
         area: {
             width: getWidthPx(),
             left: getCenterLeftPx(),
@@ -52,12 +47,11 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
             paddingRight: getHorizontalPx(10),
             paddingBottom: getVerticalPx(20),
             paddingLeft: getHorizontalPx(10),
-            // backgroundColor: '#eee',
             borderRadius: getHorizontalPx(20),
         },
         title: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getFontSize(40),
             color: '#313131',
             textAlign: 'center',
         },
@@ -65,7 +59,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(5),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 15,
+            fontSize: getFontSize(15),
             color: '#555555',
         },
         map: {
@@ -75,29 +69,29 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
         warning: {
             width: getHorizontalPx(334),
             left: getHorizontalPx(40),
-            padding: 20,
+            padding: getHorizontalPx(20),
             backgroundColor: '#d8232a',
-            borderRadius: 30,
+            borderRadius: getHorizontalPx(30),
             marginTop: getVerticalPx(33),
             marginBottom: getVerticalPx(123),
         },
         warningText: {
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'center',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#fff',
         },
         optionsTextWrapper: {
-            marginBottom: 15,
-            marginTop: 30,
-            fontSize: 18,
+            marginBottom: getHorizontalPx(15),
+            marginTop: getHorizontalPx(30),
+            fontSize: getFontSize(18),
             fontFamily: 'DIN2014Narrow-Light',
         },
         optionsText: {
-            paddingVertical: 0.2,
+            paddingVertical: getHorizontalPx(0.2),
             letterSpacing: 0.5,
-            fontSize: 18,
+            fontSize: getFontSize(18),
             fontFamily: 'DIN2014Narrow-Light',
         },
     });
@@ -163,8 +157,8 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
     };
 
     return (
-        <SafeAreaView style={{backgroundColor: 'white'}}>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.area}>
                         <AnimSvg
@@ -228,7 +222,6 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
                     props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
                 }
                 inner={trans.header}
-                getHeight={setHeadHeightt}
             />
         </SafeAreaView>
     );

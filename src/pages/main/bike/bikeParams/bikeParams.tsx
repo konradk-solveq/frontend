@@ -14,6 +14,7 @@ import {
     getWidthPx,
 } from '../../../../helpers/layoutFoo';
 import {RegularStackRoute} from '../../../../navigation/route';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
     navigation: any;
@@ -27,19 +28,8 @@ const BikeParams: React.FC<Props> = (props: Props) => {
     const description = props.route.params.description;
     const params = props.route.params.params;
 
-    const [headHeight, setHeadHeightt] = useState(0);
-
     setObjSize(334, 50);
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#ffffff',
-        },
-        scroll: {
-            height: wh - headHeight,
-            marginTop: headHeight,
-        },
         bikeName: {
             fontFamily: 'DIN2014Narrow-Regular',
             fontSize: getHorizontalPx(40),
@@ -125,64 +115,68 @@ const BikeParams: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={styles.container}>
-            <ScrollView style={styles.scroll}>
-                <View style={styles.lists}>
-                    <Text style={styles.bikeName}>{description.name}</Text>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
+                <ScrollView>
+                    <View style={styles.lists}>
+                        <Text style={styles.bikeName}>{description.name}</Text>
+                        <Text style={styles.bikeDetails}>
+                            {trans.details[0] +
+                                description.producer +
+                                trans.details[1] +
+                                description.serial_number}
+                        </Text>
 
-                    <Text style={styles.bikeDetails}>
-                        {trans.details[0] +
-                            description.producer +
-                            trans.details[1] +
-                            description.serial_number}
-                    </Text>
+                        {description?.color && (
+                            <ColorLabel
+                                text={description.color}
+                                colors={description?.colorCodes}
+                                containerStyle={styles.color}
+                            />
+                        )}
 
-                    {description?.color && (
-                        <ColorLabel
-                            text={description.color}
-                            colors={description?.colorCodes}
-                            containerStyle={styles.color}
-                        />
-                    )}
-
-                    <View style={styles.size}>
-                        <Text style={styles.sizeText}>{description.size}</Text>
-                    </View>
-
-                    {params?.map((e, i) => (
-                        <View
-                            style={[
-                                styles.list,
-                                i == params.length - 1 && styles.lastOne,
-                            ]}
-                            key={'list_' + i}>
-                            <Text style={styles.name}>{e.name}</Text>
-
-                            {e.list.map((ee, ii) => (
-                                <View
-                                    style={styles.valLine}
-                                    key={'val_' + i + '_' + ii}>
-                                    <Text style={styles.value}>{ee.name}</Text>
-                                    <Text
-                                        style={[
-                                            styles.value,
-                                            styles.longerValue,
-                                        ]}>
-                                        {ee.value}
-                                    </Text>
-                                </View>
-                            ))}
+                        <View style={styles.size}>
+                            <Text style={styles.sizeText}>
+                                {description.size}
+                            </Text>
                         </View>
-                    ))}
-                </View>
-            </ScrollView>
+
+                        {params?.map((e, i) => (
+                            <View
+                                style={[
+                                    styles.list,
+                                    i == params.length - 1 && styles.lastOne,
+                                ]}
+                                key={'list_' + i}>
+                                <Text style={styles.name}>{e.name}</Text>
+
+                                {e.list.map((ee, ii) => (
+                                    <View
+                                        style={styles.valLine}
+                                        key={'val_' + i + '_' + ii}>
+                                        <Text style={styles.value}>
+                                            {ee.name}
+                                        </Text>
+                                        <Text
+                                            style={[
+                                                styles.value,
+                                                styles.longerValue,
+                                            ]}>
+                                            {ee.value}
+                                        </Text>
+                                    </View>
+                                ))}
+                            </View>
+                        ))}
+                    </View>
+                </ScrollView>
+            </View>
 
             <StackHeader
                 onpress={() =>
                     props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
                 }
                 inner={trans.header}
-                getHeight={setHeadHeightt}
             />
         </SafeAreaView>
     );

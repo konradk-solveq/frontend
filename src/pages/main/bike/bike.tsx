@@ -1,12 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {
-    SafeAreaView,
-    View,
-    Text,
-    Alert,
-    Platform,
-    StatusBar,
-} from 'react-native';
+import {SafeAreaView, View, Text, Alert, Platform} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -21,6 +14,7 @@ import geoBox from '@helpers/geoBox';
 import {getBike} from '@helpers/transformUserBikeData';
 import {countDaysToEnd} from '@helpers/warranty';
 import {getVerticalPx} from '@helpers/layoutFoo';
+import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
 
 import {CogBtn, BigRedBtn, ServiceMapBtn} from '@sharedComponents/buttons';
 import SliverImage from '@sharedComponents/sliverImage/sliverImage';
@@ -31,10 +25,9 @@ import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import ComplaintsRepairs from './complaintsRepairs';
 import Reviews from './reviews';
 import Warranty from './warranty';
+import {isIOS} from '@utils/platform';
 
 import styles from './style';
-
-const isIOS = Platform.OS === 'ios';
 
 interface Props {
     navigation: any;
@@ -73,7 +66,7 @@ const Bike: React.FC<Props> = (props: Props) => {
         latitude: loc?.longitude || 53.008773556173104,
     });
 
-    const getCurrentLocationPositionHandler = useCallback(() => {
+    const getCurrentLocationPositionHandler = useCallback(async () => {
         let newBox;
 
         if (loc) {
@@ -92,15 +85,21 @@ const Bike: React.FC<Props> = (props: Props) => {
                 latitudeDelta: Math.abs((newBox.left - newBox.right) / 2),
                 longitudeDelta: Math.abs((newBox.top - newBox.bottom) / 2),
             });
-            dispatch(
-                fetchPlacesData({
-                    bbox: [
-                        {lat: newBox.left, lng: newBox.top},
-                        {lat: newBox.right, lng: newBox.bottom},
-                    ],
-                    width: 2000,
-                }),
-            );
+            try {
+                await dispatch(
+                    fetchPlacesData({
+                        bbox: [
+                            {lat: newBox.left, lng: newBox.top},
+                            {lat: newBox.right, lng: newBox.bottom},
+                        ],
+                        width: 2000,
+                    }),
+                );
+            } catch (error) {
+                console.error('[getCurrentLocationPositionHandler]', error);
+                const errorMessage = error?.errorMessage || error;
+                Alert.alert('Error', errorMessage);
+            }
         }
     }, [dispatch, loc]);
 
@@ -171,141 +170,139 @@ const Bike: React.FC<Props> = (props: Props) => {
 
     const warrantyData = bike?.warranty || genericBikeData.warranty;
     return (
-        <>
-            <StatusBar translucent />
-            <SafeAreaView style={[styles.container, safeAreaStyle]}>
-                <View
-                    style={{
-                        flex: 1,
-                        backgroundColor: 'transparent',
-                    }}>
-                    <StackHeader
-                        hideBackArrow
-                        onpress={() => {}}
-                        inner={trans.header}
-                        style={styles.header}
-                        titleStyle={styles.title}
+        <SafeAreaView style={[styles.container, safeAreaStyle]}>
+            <View
+                style={{
+                    flex: 1,
+                    backgroundColor: 'transparent',
+                }}>
+                <StackHeader
+                    hideBackArrow
+                    onpress={() => {}}
+                    inner={trans.header}
+                    style={styles.header}
+                />
+
+                {bike?.description && (
+                    <CogBtn
+                        callback={heandleParams}
+                        containerStyle={[
+                            styles.params,
+                            {
+                                top:
+                                    getVerticalPx(58) -
+                                    (isIOS
+                                        ? 0
+                                        : getAppLayoutConfig.statusBarH()),
+                            },
+                        ]}
+                        iconStyle={styles.paramIcon}
                     />
+                )}
 
-                    {bike?.description && (
-                        <CogBtn
-                            callback={heandleParams}
-                            containerStyle={[
-                                styles.params,
-                                {
-                                    marginTop: getVerticalPx(40),
-                                },
-                            ]}
-                            iconStyle={styles.paramIcon}
+                <SliverImage
+                    imgSrc={bike?.images?.[0]}
+                    hideHeader={!bike?.description}
+                    headerElement={
+                        <BikeSelectorList
+                            list={bikes}
+                            description={trans.warranty.reviews}
+                            callback={onChangeBikeHandler}
+                            currentBike={bike?.description?.serial_number}
+                            buttonText={trans.add}
                         />
-                    )}
+                    }>
+                    {bike?.description && (
+                        <>
+                            <Text style={styles.bikeName}>
+                                {bike?.description.name}
+                            </Text>
 
-                    <SliverImage
-                        imgSrc={bike?.images?.[0]}
-                        hideHeader={!bike?.description}
-                        headerElement={
-                            <BikeSelectorList
-                                style={styles.reviews}
-                                list={bikes}
-                                description={trans.warranty.reviews}
-                                callback={onChangeBikeHandler}
-                                currentBike={bike?.description?.serial_number}
-                                buttonText={trans.add}
-                            />
-                        }>
-                        {bike?.description && (
-                            <>
-                                <Text style={styles.bikeName}>
-                                    {bike?.description.name}
-                                </Text>
+                            <Text style={styles.bikeDetails}>
+                                {trans.details[0] +
+                                    bike?.description.producer +
+                                    trans.details[1] +
+                                    bike?.description.serial_number}
+                            </Text>
 
-                                <Text style={styles.bikeDetails}>
-                                    {trans.details[0] +
-                                        bike?.description.producer +
-                                        trans.details[1] +
-                                        bike?.description.serial_number}
-                                </Text>
+                            {warrantyData && warrantyData?.type !== 'no-info' && (
+                                <Warranty
+                                    style={styles.warranty}
+                                    navigation={props.navigation}
+                                    type={warrantyData.info}
+                                    toEnd={
+                                        bike?.warranty
+                                            ? warrantyData?.end
+                                                ? countDaysToEnd(
+                                                    warrantyData.end,
+                                                )
+                                                : null
+                                            : undefined
+                                    }
+                                    warranty={trans.warranty}
+                                    details={{
+                                        description: bike?.description,
+                                        warranty: warrantyData,
+                                    }}
+                                />
+                            )}
 
-                                {warrantyData &&
-                                    warrantyData?.type !== 'no-info' && (
-                                        <Warranty
-                                        style={styles.warranty}
-                                            navigation={props.navigation}
-                                            type={warrantyData.info}
-                                        toEnd={
-                                                bike?.warranty
-                                                    ? warrantyData?.end
-                                                        ? countDaysToEnd(
-                                                            warrantyData.end,
-                                                        )
-                                                        : null
-                                                    : undefined
-                                        }
-                                            warranty={trans.warranty}
-                                            details={{
-                                                description: bike?.description,
-                                                warranty: warrantyData,
-                                            }}
-                                        />
-                                    )}
+                            {warrantyData?.overviews && (
+                                <Reviews
+                                    style={styles.reviews}
+                                    list={warrantyData.overviews}
+                                    details={{
+                                        description: bike?.description,
+                                        warranty: warrantyData,
+                                    }}
+                                    box={box}
+                                    region={region}
+                                    location={location}
+                                    description={trans.warranty.reviews}
+                                    navigation={props.navigation}
+                                    resetPostion={resetReviewsPosition}
+                                    onScrollToStart={() =>
+                                        setResetReviewsPosition(false)
+                                    }
+                                />
+                            )}
 
-                                {warrantyData?.overviews && (
-                                    <Reviews
-                                        style={styles.reviews}
-                                        list={warrantyData.overviews}
-                                        details={{
-                                            description: bike?.description,
-                                            warranty: warrantyData,
-                                        }}
-                                        box={box}
-                                        region={region}
-                                        location={location}
-                                        description={trans.warranty.reviews}
-                                        navigation={props.navigation}
-                                        resetPostion={resetReviewsPosition}
-                                        onScrollToStart={() =>
-                                            setResetReviewsPosition(false)
+                            {bike?.complaintsRepairs &&
+                                bike.complaintsRepairs.length > 0 && (
+                                    <ComplaintsRepairs
+                                        style={styles.complaintsRepairs}
+                                        list={bike.complaintsRepairs}
+                                        description={
+                                            trans.warranty.complaintsRepairs
                                         }
                                     />
                                 )}
 
-                                {bike?.complaintsRepairs &&
-                                    bike.complaintsRepairs.length > 0 && (
-                                        <ComplaintsRepairs
-                                            style={styles.complaintsRepairs}
-                                            list={bike.complaintsRepairs}
-                                            description={
-                                                trans.warranty.complaintsRepairs
-                                            }
-                                        />
-                                    )}
+                            <View style={styles.horizontalSpace}>
+                                <ServiceMapBtn
+                                    style={styles.map}
+                                    title={trans.servisMap}
+                                    height={102}
+                                    region={region}
+                                    location={location}
+                                    onpress={() => heandleServicesMap()}
+                                />
+                            </View>
 
-                                <View style={styles.horizontalSpace}>
-                                    <ServiceMapBtn
-                                        style={styles.map}
-                                        title={trans.servisMap}
-                                        height={102}
-                                        region={region}
-                                        location={location}
-                                        onpress={() => heandleServicesMap()}
-                                    />
-                                </View>
+                            <View style={styles.horizontalSpace}>
+                                <BigRedBtn
+                                    style={styles.btn}
+                                    onpress={onRemoveBikeHandler}
+                                    title={trans.btn}
+                                />
+                            </View>
+                        </>
+                    )}
+                </SliverImage>
+            </View>
 
-                                <View style={styles.horizontalSpace}>
-                                    <BigRedBtn
-                                        style={styles.btn}
-                                        onpress={onRemoveBikeHandler}
-                                        title={trans.btn}
-                                    />
-                                </View>
-                            </>
-                        )}
-                    </SliverImage>
-                </View>
-
-                <TabBackGround />
-            </SafeAreaView>
-        </>
+            <TabBackGround />
+        </SafeAreaView>
     );
 };
 

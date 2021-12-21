@@ -55,12 +55,19 @@ and if it doesn't work:
 ---
 ## FLAVORS
 
-We can use different builds for different environments. To make it work copy `.env` file to `.env.prod`, `.env.dev` and `.env.test` files. Replace variables with proper values.
+We can use different builds for different environments. To make it work copy `.env` file to `.env.production`, `.env.dev`, `.env.test` and `.env.feature` (if needed) files. Replace variables with proper values.
 You can find scripts, to run specific build, inside `package.json` file.
 
 `qa` flavor means `test` for Android, because `test` word is not allowed.
 
 * ISSUES: For now different env files works only with xCode and terminal's commands. Android Studio reads only values from main env file.
+* If you're using VSC and want to add support for all ven files add this to your config json file:
+
+```JSON
+"files.associations": {
+    ".env.feature": "dotenv"
+}
+```
 
 
 ---
@@ -95,3 +102,7 @@ gdyby okazało się, że coś nie działa to usunąć w __android/app/build.grad
         checkReleaseBuilds false
     }
 ```
+
+## Code Versioning
+
+We use semver [semantics](https://semver.org/). Project contains package `rnsemup` for easier versioning. Just use `npx rnsemup` command in your terminal. More info [here](https://github.com/zmnv/react-native-semver-update).

@@ -27,7 +27,6 @@ import {
 } from '@services/index';
 
 import {I18n} from '@translations/I18n';
-import logger, {loggError} from '@utils/crashlytics';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {checkMapExists} from '@utils/checkMapExists';
 import {loggErrorMessage, loggErrorWithScope} from '@sentryLogger/sentryLogger';
@@ -179,9 +178,7 @@ export const fetchMapsList = (
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[fetchMapsList] - ${error}`);
-        logger.log(`[fetchMapsList] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchMapsList');
 
@@ -196,12 +193,21 @@ export const fetchPrivateMapsList = (
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
-        const {location}: AppState = getState().app;
+        const {
+            location,
+            isOffline,
+            internetConnectionInfo,
+        }: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
             const message = I18n.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
             dispatch(setError(message, 400));
+            return;
+        }
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
             return;
         }
 
@@ -280,9 +286,7 @@ export const editPrivateMapMetaData = (
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[editPrivateMapMetaData] - ${error}`);
-        logger.log(`[editPrivateMapMetaData] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'editPrivateMapMetaData');
 
@@ -311,9 +315,7 @@ export const removePrivateMapMetaData = (
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[removePrivateMapMetaData] - ${error}`);
-        logger.log(`[removePrivateMapMetaData] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'removePrivateMapMetaData');
 
@@ -360,9 +362,7 @@ export const fetchPlannedMapsList = (
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[fetchPlannedMapsList] - ${error}`);
-        logger.log(`[fetchPlannedMapsList] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchPlannedMapsList');
 
@@ -388,9 +388,7 @@ export const addPlannedMap = (
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[addPlannedMap] - ${error}`);
-        logger.log(`[addPlannedMap] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'addPlannedMap');
 
@@ -417,9 +415,7 @@ export const removePlanendMap = (
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[removePlanendMap] - ${error}`);
-        logger.log(`[removePlanendMap] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'removePlanendMap');
 
@@ -470,9 +466,7 @@ export const fetchMapIfNotExistsLocally = (
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[fetchMapIfNotExistsLocally] - ${error}`);
-        logger.log(`[fetchMapIfNotExistsLocally] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchMapIfNotExistsLocally');
 
@@ -504,7 +498,6 @@ export const modifyReaction = (
         dispatch(setLoadingState(false));
         dispatch(fetchPrivateMapsList());
     } catch (error) {
-        loggError(error, 'modifyReaction');
         loggErrorMessage(error, 'modifyReaction');
     }
 };
@@ -546,9 +539,7 @@ export const fetchFeaturedMapsList = (
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[fetchFeaturedMapsList] - ${error}`);
-        logger.log(`[fetchFeaturedMapsList] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchFeaturedMapsList');
 

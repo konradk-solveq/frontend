@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {API_URL} from '@env';
 import {getUserAgent} from './utils/headers';
-import logger from '@src/utils/crashlytics';
 import {setntryContext} from '@sentryLogger/sentryLogger';
 
 const config = {
@@ -32,7 +31,6 @@ export const setUserAgentHeader = () => {
     if (uaHeader) {
         instance.defaults.headers.common['User-Agent'] = uaHeader;
     }
-    logger.log(`[SERVER URL - ${API_URL}]`);
     setntryContext('server_uri', {url: API_URL});
 };
 

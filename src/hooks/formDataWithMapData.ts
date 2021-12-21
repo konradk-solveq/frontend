@@ -17,6 +17,7 @@ const useFormDataWithMapData = (mapData: Map | undefined) => {
         setValue,
         setError,
         setFocus,
+        getValues,
     } = useForm<FormData>();
 
     useEffect(() => {
@@ -33,7 +34,15 @@ const useFormDataWithMapData = (mapData: Map | undefined) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return {control, handleSubmit, setValue, setError, setFocus, options};
+    return {
+        control,
+        handleSubmit,
+        setValue,
+        setError,
+        setFocus,
+        options,
+        getValues,
+    };
 };
 
 export default useFormDataWithMapData;

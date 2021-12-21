@@ -1,6 +1,12 @@
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, StatusBar, StyleSheet} from 'react-native';
 
-import {getVerticalPx, getHorizontalPx} from '../../../helpers/layoutFoo';
+import {
+    getVerticalPx,
+    getHorizontalPx,
+    getFontSize,
+    mainButtonsHeight,
+} from '../../../helpers/layoutFoo';
+
 
 const isIOS = Platform.OS === 'ios';
 
@@ -13,7 +19,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     header: {
-        height: getVerticalPx(130),
         backgroundColor: '#ffffff',
         zIndex: isIOS ? 0 : 5,
     },
@@ -22,7 +27,6 @@ const styles = StyleSheet.create({
     },
     params: {
         position: 'absolute',
-        top: getVerticalPx(35),
         right: 25,
         width: getHorizontalPx(13 + 20 + 13),
         height: getHorizontalPx(13 + 20 + 13),
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
     bikeName: {
         width: '100%',
         fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: 40,
+        fontSize: getFontSize(40),
         color: '#313131',
         textAlign: 'center',
     },
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
         width: '100%',
         fontFamily: 'DIN2014Narrow-Light',
         textAlign: 'center',
-        fontSize: 15,
+        fontSize: getFontSize(15),
         color: '#555555',
     },
     warranty: {
@@ -66,7 +70,7 @@ const styles = StyleSheet.create({
     },
     btn: {
         width: '100%',
-        height: 50,
+        height: mainButtonsHeight(50),
         marginTop: getVerticalPx(72),
         marginBottom: getVerticalPx(110),
     },
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'khaki',
     },
     horizontalSpace: {
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
     },
 });
 

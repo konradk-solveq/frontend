@@ -1,7 +1,7 @@
 import * as actionTypes from '../../actionTypes';
-import {dataToSynch, endedRoute, startedRoute, stoppedRoute} from './routeData';
+import {endedRoute, startedRoute, stoppedRoute} from './routeData';
 import {I18n} from '@translations/I18n';
-import {MIN_ROUTE_LENGTH} from '@src/helpers/global';
+import {MIN_ROUTE_LENGTH} from '@helpers/global';
 
 export const startRecordingExpectedActions = [
     {
@@ -56,6 +56,9 @@ export const stopRecordingExpectedActions = [
         type: actionTypes.SET_ROUTE_MAP_VISIBILITY,
     },
     {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
         state: false,
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
@@ -65,6 +68,18 @@ export const synchRecordingExpectedActions = [
     {
         type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: true,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
+        type: actionTypes.SET_ROUTES_TO_SYNC,
+        routeIds: undefined,
+    },
+    {
+        type: actionTypes.SET_ROUTES_DATA,
+        routes: [],
+        refresh: true,
     },
     {
         type: actionTypes.SET_PRIVATE_MAPID_TO_ADD,
@@ -114,33 +129,7 @@ export const synchRecordingWhenOfflineExpectedActions = [
         state: true,
     },
     {
-        type: actionTypes.SET_ROUTES_LOADING_STATE,
-        state: true,
-    },
-    {
-        type: actionTypes.SET_ROUTE_TO_SYNC,
-        routeId: endedRoute.id,
-    },
-    {
-        type: actionTypes.SET_ROUTES_DATA,
-        routes: {
-            id: endedRoute.id,
-            remoteRouteId: undefined,
-            route: dataToSynch,
-        },
-        refresh: undefined,
-    },
-    {
-        type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
-    },
-    {
-        type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.dataSyncError'),
-        statusCode: 500,
-    },
-    {
-        type: actionTypes.SET_ROUTES_LOADING_STATE,
-        state: false,
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
@@ -167,33 +156,7 @@ export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActions = [
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
     {
-        state: true,
-        type: actionTypes.SET_ROUTES_LOADING_STATE,
-    },
-    {
-        type: actionTypes.SET_ROUTE_TO_SYNC,
-        routeId: endedRoute.id,
-    },
-    {
-        type: actionTypes.SET_ROUTES_DATA,
-        routes: {
-            id: endedRoute.id,
-            remoteRouteId: 'remote-route-test-id',
-            route: dataToSynch,
-        },
-        refresh: undefined,
-    },
-    {
-        type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
-    },
-    {
-        type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.dataSyncError'),
-        statusCode: 500,
-    },
-    {
-        state: false,
-        type: actionTypes.SET_ROUTES_LOADING_STATE,
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
@@ -208,12 +171,39 @@ export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActions = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.routeData.updateRouteError'),
+        error: I18n.t('dataAction.routeData.routeLengthError', {
+            value: MIN_ROUTE_LENGTH,
+        }),
         statusCode: 400,
+        routeToShort: true,
+    },
+];
+
+export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActionsB = [
+    {
+        state: true,
+        type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
     {
-        state: false,
-        type: actionTypes.SET_ROUTES_LOADING_STATE,
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
+        type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
+        removeDuplicates: undefined,
+    },
+    {
+        type: actionTypes.CLEAR_CURRENT_ROUTE,
+        keepId: undefined,
+    },
+    {
+        type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
+    },
+    {
+        type: actionTypes.SET_ROUTES_ERROR,
+        error: I18n.t('dataAction.routeData.updateRouteError', {
+            value: MIN_ROUTE_LENGTH,
+        }),
+        statusCode: 400,
     },
 ];
 
@@ -221,6 +211,18 @@ export const synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedAct
     {
         type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: true,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
+        type: actionTypes.SET_ROUTES_TO_SYNC,
+        routeIds: undefined,
+    },
+    {
+        type: actionTypes.SET_ROUTES_DATA,
+        routes: [],
+        refresh: true,
     },
     {
         type: actionTypes.SET_PRIVATE_MAPID_TO_ADD,
@@ -249,10 +251,6 @@ export const synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedAct
         state: true,
     },
     {
-        type: actionTypes.SET_ROUTE_TO_SYNC,
-        routeId: endedRoute.id,
-    },
-    {
         type: actionTypes.SET_PRIVATE_MAPS_DATA,
         privateMaps: [],
         paginationCoursor: {},
@@ -274,6 +272,9 @@ export const synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions = [
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
     {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
         removeDuplicates: undefined,
     },
@@ -290,6 +291,7 @@ export const synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions = [
             value: MIN_ROUTE_LENGTH,
         }),
         statusCode: 400,
+        routeToShort: true,
     },
 ];
 
@@ -297,6 +299,9 @@ export const synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions = [
     {
         type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: true,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,

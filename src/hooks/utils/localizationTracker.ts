@@ -1,4 +1,4 @@
-import { isLocationValidate } from '@src/utils/locationData';
+import {isLocationValidate} from '@src/utils/locationData';
 import {v4 as uuidv4} from 'uuid';
 
 import {transformMetersToKilometersString} from '../../utils/metersToKilometers';
@@ -27,15 +27,22 @@ export const startCurrentRoute = async (followByRoute?: string) => {
         endedAt: undefined,
         routeId: followByRoute || undefined,
         pauseTime: 0,
+        remoteRouteId: undefined,
     };
 };
 
-export const getTrackerData = (gpsData: any, averageSpeed?: string) => {
+export const getTrackerData = (
+    gpsData: any,
+    averageSpeed?: string,
+    noSpeed?: boolean,
+) => {
     if (!gpsData || !isLocationValidate(gpsData)) {
         return;
     }
 
-    const speed = msToKH(gpsData?.coords?.speed) || DEFAULT_SPEED;
+    const speed = noSpeed
+        ? DEFAULT_SPEED
+        : msToKH(gpsData?.coords?.speed) || DEFAULT_SPEED;
     const distance = transformMetersToKilometersString(
         gpsData?.odometer,
         2,

@@ -33,16 +33,22 @@
 		1D4E86A3266A669B006FF848 /* serviceshop_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869D266A669A006FF848 /* serviceshop_marker.png */; };
 		1D4E86A4266A669B006FF848 /* shop_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869E266A669A006FF848 /* shop_empty.png */; };
 		1D4E86A5266A669B006FF848 /* shop_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869F266A669B006FF848 /* shop_marker.png */; };
-		366DC5D2E33296EEFFD0DEA1 /* libPods-myKROSS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C21C9F9C9DF4F9E90C121523 /* libPods-myKROSS.a */; };
+		1DE20505271459D000F57873 /* mykross.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1DE204FF271459D000F57873 /* mykross.woff */; };
+		1DE20506271459D000F57873 /* mykross.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20500271459D000F57873 /* mykross.woff2 */; };
+		1DE20507271459D000F57873 /* mykross.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20501271459D000F57873 /* mykross.eot */; };
+		1DE20508271459D000F57873 /* mykross.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20502271459D000F57873 /* mykross.ttf */; };
+		1DE20509271459D000F57873 /* mykross.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20503271459D000F57873 /* mykross.svg */; };
+		1DE2050A271459D000F57873 /* mykross.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20504271459D000F57873 /* mykross.otf */; };
+		4ADEBC2F5E8C2A52FB5EFC64 /* libPods-myKROSS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3368836B6A02354B4FADCA37 /* libPods-myKROSS.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9009F68626452075005FBC58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9009F68826452075005FBC58 /* InfoPlist.strings */; };
 		901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */; };
 		904F37B026A1875000371264 /* map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 904F37AF26A1875000371264 /* map_route_marker.png */; };
 		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
+		B65B77E17EF285C2F2C4C137 /* libPods-myKROSS-myKROSSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E89687FE86194C3BC84FB19 /* libPods-myKROSS-myKROSSTests.a */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
 		C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
 		D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */; };
-		E1180C3C19A9376E4BB7F32F /* libPods-myKROSS-myKROSSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AD56ED1F4E94E9B961802CE /* libPods-myKROSS-myKROSSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +62,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		001DB19387D425CE7EA828F0 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Light.otf"; path = "../assets/fonts/DIN2014Narrow-Light.otf"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* myKROSSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myKROSSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,27 +95,38 @@
 		1D4E869D266A669A006FF848 /* serviceshop_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = serviceshop_marker.png; path = ../assets/serviceshop_marker.png; sourceTree = "<group>"; };
 		1D4E869E266A669A006FF848 /* shop_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shop_empty.png; path = ../assets/shop_empty.png; sourceTree = "<group>"; };
 		1D4E869F266A669B006FF848 /* shop_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shop_marker.png; path = ../assets/shop_marker.png; sourceTree = "<group>"; };
-		1E5245E56162B0753EA585A6 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		248EEF79F2B9E6A6BFD47BFD /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; sourceTree = "<group>"; };
-		25E79131D5164BECD5742420 /* Pods-myKROSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.release.xcconfig"; sourceTree = "<group>"; };
-		3A6B3A14E06DA0BB3EC09FC7 /* Pods-myKROSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.debug.xcconfig"; sourceTree = "<group>"; };
-		459A7C38313753481FE555E9 /* Pods-myKROSS.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		4E2026A51EADF65F76C8E0B8 /* Pods-myKROSS.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.debug.xcconfig"; sourceTree = "<group>"; };
-		6AD56ED1F4E94E9B961802CE /* libPods-myKROSS-myKROSSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS-myKROSSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F319F117D7CE330662963EE /* Pods-myKROSS.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.release.xcconfig"; sourceTree = "<group>"; };
+		1DE204FF271459D000F57873 /* mykross.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff; path = ../assets/fonts/mykross.woff; sourceTree = "<group>"; };
+		1DE20500271459D000F57873 /* mykross.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff2; path = ../assets/fonts/mykross.woff2; sourceTree = "<group>"; };
+		1DE20501271459D000F57873 /* mykross.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.eot; path = ../assets/fonts/mykross.eot; sourceTree = "<group>"; };
+		1DE20502271459D000F57873 /* mykross.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.ttf; path = ../assets/fonts/mykross.ttf; sourceTree = "<group>"; };
+		1DE20503271459D000F57873 /* mykross.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = mykross.svg; path = ../assets/fonts/mykross.svg; sourceTree = "<group>"; };
+		1DE20504271459D000F57873 /* mykross.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.otf; path = ../assets/fonts/mykross.otf; sourceTree = "<group>"; };
+		1F00BDB969BB47F998DA6308 /* Pods-myKROSS.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.release.xcconfig"; sourceTree = "<group>"; };
+		2487C913233A0DBCEBA42C52 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.release.xcconfig"; sourceTree = "<group>"; };
+		3368836B6A02354B4FADCA37 /* libPods-myKROSS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53CC914B1DC23E786F99D2D1 /* Pods-myKROSS.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.feat.release.xcconfig"; sourceTree = "<group>"; };
+		549B4746117C62A14516C91F /* Pods-myKROSS.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.release.xcconfig"; sourceTree = "<group>"; };
+		5FE5760FD710B9FF4AD296CE /* Pods-myKROSS.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.debug.xcconfig"; sourceTree = "<group>"; };
+		60F42A6FD5046DBDBF90D557 /* Pods-myKROSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.debug.xcconfig"; sourceTree = "<group>"; };
+		6E89687FE86194C3BC84FB19 /* libPods-myKROSS-myKROSSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS-myKROSSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		72788E4C6BFFB8945A34B2DD /* Pods-myKROSS-myKROSSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7B0A858058144CBB1BCE41C3 /* Pods-myKROSS-myKROSSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9009F68726452075005FBC58 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9039C9492636A74E00C355DE /* myKROSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myKROSS.entitlements; sourceTree = "<group>"; };
 		904F37AF26A1875000371264 /* map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_route_marker.png; path = ../src/assets/images/map_route_marker.png; sourceTree = "<group>"; };
 		90B996A826A840580015E097 /* current_map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = current_map_route_marker.png; path = ../src/assets/images/current_map_route_marker.png; sourceTree = "<group>"; };
-		A8AB7D2895D1B0ECDC97BF15 /* Pods-myKROSS-myKROSSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.release.xcconfig"; sourceTree = "<group>"; };
+		9421E0CAB4001884432BD35E /* Pods-myKROSS.feat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.feat.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.feat.debug.xcconfig"; sourceTree = "<group>"; };
+		971EC4DFD92DC1290CED710C /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.release.xcconfig"; sourceTree = "<group>"; };
+		9BE07CAA6FF6A74B01E2EA97 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.feat.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.feat.debug.xcconfig"; sourceTree = "<group>"; };
+		A034C86C4046AC68965A1666 /* Pods-myKROSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.release.xcconfig"; sourceTree = "<group>"; };
+		A3D20846C1EB86FC5ADAEEB9 /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; sourceTree = "<group>"; };
+		A937C93E58366B0071EA3047 /* Pods-myKROSS.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.debug.xcconfig"; sourceTree = "<group>"; };
 		B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Regular.otf"; path = "../assets/fonts/DIN2014Narrow-Regular.otf"; sourceTree = "<group>"; };
-		BD7DE80E2610735C36D7C895 /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.release.xcconfig"; sourceTree = "<group>"; };
-		C21C9F9C9DF4F9E90C121523 /* libPods-myKROSS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD415DBEACB81FB8FCFB2A73 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
+		DC831BC8292795B00AFDF19B /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		ED41D55383276C37BD7AD3E6 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.release.xcconfig"; sourceTree = "<group>"; };
-		F468CC25E865E3A922BD64F8 /* Pods-myKROSS.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1180C3C19A9376E4BB7F32F /* libPods-myKROSS-myKROSSTests.a in Frameworks */,
+				B65B77E17EF285C2F2C4C137 /* libPods-myKROSS-myKROSSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,7 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				366DC5D2E33296EEFFD0DEA1 /* libPods-myKROSS.a in Frameworks */,
+				4ADEBC2F5E8C2A52FB5EFC64 /* libPods-myKROSS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,8 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C21C9F9C9DF4F9E90C121523 /* libPods-myKROSS.a */,
-				6AD56ED1F4E94E9B961802CE /* libPods-myKROSS-myKROSSTests.a */,
+				3368836B6A02354B4FADCA37 /* libPods-myKROSS.a */,
+				6E89687FE86194C3BC84FB19 /* libPods-myKROSS-myKROSSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,18 +194,22 @@
 		363CC143E32C8CFABED66E18 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3A6B3A14E06DA0BB3EC09FC7 /* Pods-myKROSS.debug.xcconfig */,
-				459A7C38313753481FE555E9 /* Pods-myKROSS.dev.debug.xcconfig */,
-				4E2026A51EADF65F76C8E0B8 /* Pods-myKROSS.test.debug.xcconfig */,
-				25E79131D5164BECD5742420 /* Pods-myKROSS.release.xcconfig */,
-				F468CC25E865E3A922BD64F8 /* Pods-myKROSS.dev.release.xcconfig */,
-				6F319F117D7CE330662963EE /* Pods-myKROSS.test.release.xcconfig */,
-				001DB19387D425CE7EA828F0 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */,
-				1E5245E56162B0753EA585A6 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */,
-				248EEF79F2B9E6A6BFD47BFD /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */,
-				A8AB7D2895D1B0ECDC97BF15 /* Pods-myKROSS-myKROSSTests.release.xcconfig */,
-				ED41D55383276C37BD7AD3E6 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */,
-				BD7DE80E2610735C36D7C895 /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */,
+				60F42A6FD5046DBDBF90D557 /* Pods-myKROSS.debug.xcconfig */,
+				A937C93E58366B0071EA3047 /* Pods-myKROSS.dev.debug.xcconfig */,
+				5FE5760FD710B9FF4AD296CE /* Pods-myKROSS.test.debug.xcconfig */,
+				A034C86C4046AC68965A1666 /* Pods-myKROSS.release.xcconfig */,
+				549B4746117C62A14516C91F /* Pods-myKROSS.dev.release.xcconfig */,
+				1F00BDB969BB47F998DA6308 /* Pods-myKROSS.test.release.xcconfig */,
+				72788E4C6BFFB8945A34B2DD /* Pods-myKROSS-myKROSSTests.debug.xcconfig */,
+				CD415DBEACB81FB8FCFB2A73 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */,
+				A3D20846C1EB86FC5ADAEEB9 /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */,
+				7B0A858058144CBB1BCE41C3 /* Pods-myKROSS-myKROSSTests.release.xcconfig */,
+				2487C913233A0DBCEBA42C52 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */,
+				971EC4DFD92DC1290CED710C /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */,
+				9421E0CAB4001884432BD35E /* Pods-myKROSS.feat.debug.xcconfig */,
+				53CC914B1DC23E786F99D2D1 /* Pods-myKROSS.feat.release.xcconfig */,
+				9BE07CAA6FF6A74B01E2EA97 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */,
+				DC831BC8292795B00AFDF19B /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -204,6 +224,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				1DE20501271459D000F57873 /* mykross.eot */,
+				1DE20504271459D000F57873 /* mykross.otf */,
+				1DE20503271459D000F57873 /* mykross.svg */,
+				1DE20502271459D000F57873 /* mykross.ttf */,
+				1DE204FF271459D000F57873 /* mykross.woff */,
+				1DE20500271459D000F57873 /* mykross.woff2 */,
 				1D1631BD268CBEB8007DB5E1 /* my_location.png */,
 				1D4E869A266A669A006FF848 /* service_empty.png */,
 				1D4E869C266A669A006FF848 /* service_marker.png */,
@@ -268,12 +294,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "myKROSSTests" */;
 			buildPhases = (
-				7CD4EE03A7B4CDDAC5E622FA /* [CP] Check Pods Manifest.lock */,
+				05FE891BD603256B0944124A /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				2401E3FC2A6E49C0DBC554C5 /* [CP] Embed Pods Frameworks */,
-				4857E67EB1A6799348273730 /* [CP] Copy Pods Resources */,
+				7F9B29BEA64D58797959AE5E /* [CP] Embed Pods Frameworks */,
+				0795D0199E8B2A8C3DA4392F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,18 +315,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "myKROSS" */;
 			buildPhases = (
-				5A1B4392D2084ED05B2165CB /* [CP] Check Pods Manifest.lock */,
+				C4AF84C9956B985946FD4BBE /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				2EE034E9FF6DFDFF5D3A2D30 /* [CP] Embed Pods Frameworks */,
-				5FBD8732653004F79C4BE1D5 /* [CP] Copy Pods Resources */,
-				95DD666C60B3CDDFC4056B9D /* [CP-User] [RNFB] Core Configuration */,
-				C0A7CDD52F655FB324862DE2 /* [CP-User] [RNFB] Crashlytics Configuration */,
-				90BFD12926C5E8B700813DB1 /* FirebaseCrashlytics Symbols uploader */,
 				1591FE856D2544E98DBA8FDE /* Upload Debug Symbols to Sentry */,
+				ACE4ADADE3B07DE9DE87CF9D /* [CP] Embed Pods Frameworks */,
+				30BB92F6985D1FDC1ED7DEFA /* [CP] Copy Pods Resources */,
+				FCA00971861D182F3859F9BD /* [CP-User] [RNFB] Core Configuration */,
 			);
 			buildRules = (
 			);
@@ -391,6 +415,12 @@
 				C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */,
 				BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */,
 				901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */,
+				1DE20505271459D000F57873 /* mykross.woff in Resources */,
+				1DE20506271459D000F57873 /* mykross.woff2 in Resources */,
+				1DE20507271459D000F57873 /* mykross.eot in Resources */,
+				1DE20508271459D000F57873 /* mykross.ttf in Resources */,
+				1DE20509271459D000F57873 /* mykross.svg in Resources */,
+				1DE2050A271459D000F57873 /* mykross.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,111 +441,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport EXTRA_PACKAGER_ARGS=\"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\nset -e\n\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode --force-foreground ../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		1591FE856D2544E98DBA8FDE /* Upload Debug Symbols to Sentry */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Debug Symbols to Sentry";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym --force-foreground\n";
-		};
-		2401E3FC2A6E49C0DBC554C5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2EE034E9FF6DFDFF5D3A2D30 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4857E67EB1A6799348273730 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5A1B4392D2084ED05B2165CB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myKROSS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5FBD8732653004F79C4BE1D5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7CD4EE03A7B4CDDAC5E622FA /* [CP] Check Pods Manifest.lock */ = {
+		05FE891BD603256B0944124A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -537,25 +463,111 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		90BFD12926C5E8B700813DB1 /* FirebaseCrashlytics Symbols uploader */ = {
+		0795D0199E8B2A8C3DA4392F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1591FE856D2544E98DBA8FDE /* Upload Debug Symbols to Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym --force-foreground\n";
+		};
+		30BB92F6985D1FDC1ED7DEFA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F9B29BEA64D58797959AE5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACE4ADADE3B07DE9DE87CF9D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4AF84C9956B985946FD4BBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "FirebaseCrashlytics Symbols uploader";
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myKROSS-checkManifestLockResult.txt",
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Symbols Directory\"\necho \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
-		95DD666C60B3CDDFC4056B9D /* [CP-User] [RNFB] Core Configuration */ = {
+		FCA00971861D182F3859F9BD /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -567,20 +579,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    _JSON_OUTPUT_BASE64=$(python -c 'import json,sys,base64;print(base64.b64encode(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"').read())['${_JSON_ROOT}'])))' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\n\n  # config.admob_delay_app_measurement_init\n  _ADMOB_DELAY_APP_MEASUREMENT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"admob_delay_app_measurement_init\")\n  if [[ $_ADMOB_DELAY_APP_MEASUREMENT == \"true\" ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GADDelayAppMeasurementInit\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"YES\")\n  fi\n\n  # config.admob_ios_app_id\n  _ADMOB_IOS_APP_ID=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"admob_ios_app_id\")\n  if [[ $_ADMOB_IOS_APP_ID ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GADApplicationIdentifier\")\n    _PLIST_ENTRY_TYPES+=(\"string\")\n    _PLIST_ENTRY_VALUES+=(\"$_ADMOB_IOS_APP_ID\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
-		};
-		C0A7CDD52F655FB324862DE2 /* [CP-User] [RNFB] Crashlytics Configuration */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "[CP-User] [RNFB] Crashlytics Configuration";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\nif [[ ${PODS_ROOT} ]]; then\n  echo \"info: Exec FirebaseCrashlytics Run from Pods\"\n  \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nelse\n  echo \"info: Exec FirebaseCrashlytics Run from framework\"\n  \"${PROJECT_DIR}/FirebaseCrashlytics.framework/run\"\nfi\n";
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -645,7 +643,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 001DB19387D425CE7EA828F0 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */;
+			baseConfigurationReference = 72788E4C6BFFB8945A34B2DD /* Pods-myKROSS-myKROSSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -672,7 +670,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8AB7D2895D1B0ECDC97BF15 /* Pods-myKROSS-myKROSSTests.release.xcconfig */;
+			baseConfigurationReference = 7B0A858058144CBB1BCE41C3 /* Pods-myKROSS-myKROSSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -696,7 +694,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A6B3A14E06DA0BB3EC09FC7 /* Pods-myKROSS.debug.xcconfig */;
+			baseConfigurationReference = 60F42A6FD5046DBDBF90D557 /* Pods-myKROSS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -710,7 +708,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.12;
+				MARKETING_VERSION = 1.10.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -726,7 +724,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25E79131D5164BECD5742420 /* Pods-myKROSS.release.xcconfig */;
+			baseConfigurationReference = A034C86C4046AC68965A1666 /* Pods-myKROSS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -739,7 +737,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.12;
+				MARKETING_VERSION = 1.10.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -875,6 +873,238 @@
 			};
 			name = Release;
 		};
+		90C7EF21274BB55D00D43C9E /* Feat.Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Feat.Debug;
+		};
+		90C7EF22274BB55D00D43C9E /* Feat.Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9421E0CAB4001884432BD35E /* Pods-myKROSS.feat.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = myKROSS/myKROSS.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QC3LNKY272;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/myKROSS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.10.4;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.development;
+				PRODUCT_NAME = "myKROSS-feature";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Feat.Debug;
+		};
+		90C7EF23274BB55D00D43C9E /* Feat.Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BE07CAA6FF6A74B01E2EA97 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = myKROSSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myKROSS.app/myKROSS";
+			};
+			name = Feat.Debug;
+		};
+		90C7EF24274BB58900D43C9E /* Feat.Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Feat.Release;
+		};
+		90C7EF25274BB58900D43C9E /* Feat.Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53CC914B1DC23E786F99D2D1 /* Pods-myKROSS.feat.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = myKROSS/myKROSS.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QC3LNKY272;
+				INFOPLIST_FILE = "$(SRCROOT)/myKROSS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.10.4;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.development;
+				PRODUCT_NAME = "myKROSS-feature";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Feat.Release;
+		};
+		90C7EF26274BB58900D43C9E /* Feat.Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC831BC8292795B00AFDF19B /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = myKROSSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myKROSS.app/myKROSS";
+			};
+			name = Feat.Release;
+		};
 		90F934FB26C5D599001FEFCA /* Test.Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -935,7 +1165,7 @@
 		};
 		90F934FC26C5D599001FEFCA /* Test.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F319F117D7CE330662963EE /* Pods-myKROSS.test.release.xcconfig */;
+			baseConfigurationReference = 1F00BDB969BB47F998DA6308 /* Pods-myKROSS.test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -948,7 +1178,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.12;
+				MARKETING_VERSION = 1.10.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -963,7 +1193,7 @@
 		};
 		90F934FD26C5D599001FEFCA /* Test.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD7DE80E2610735C36D7C895 /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */;
+			baseConfigurationReference = 971EC4DFD92DC1290CED710C /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1045,7 +1275,7 @@
 		};
 		90F934FF26C5D5A7001FEFCA /* Dev.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F468CC25E865E3A922BD64F8 /* Pods-myKROSS.dev.release.xcconfig */;
+			baseConfigurationReference = 549B4746117C62A14516C91F /* Pods-myKROSS.dev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1058,7 +1288,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.12;
+				MARKETING_VERSION = 1.10.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1073,7 +1303,7 @@
 		};
 		90F9350026C5D5A7001FEFCA /* Dev.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED41D55383276C37BD7AD3E6 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */;
+			baseConfigurationReference = 2487C913233A0DBCEBA42C52 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1162,7 +1392,7 @@
 		};
 		90F9350526C5D5C4001FEFCA /* Test.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E2026A51EADF65F76C8E0B8 /* Pods-myKROSS.test.debug.xcconfig */;
+			baseConfigurationReference = 5FE5760FD710B9FF4AD296CE /* Pods-myKROSS.test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1176,7 +1406,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.12;
+				MARKETING_VERSION = 1.10.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1192,7 +1422,7 @@
 		};
 		90F9350626C5D5C4001FEFCA /* Test.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 248EEF79F2B9E6A6BFD47BFD /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */;
+			baseConfigurationReference = A3D20846C1EB86FC5ADAEEB9 /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1284,7 +1514,7 @@
 		};
 		90F9350826C5D5CE001FEFCA /* Dev.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 459A7C38313753481FE555E9 /* Pods-myKROSS.dev.debug.xcconfig */;
+			baseConfigurationReference = A937C93E58366B0071EA3047 /* Pods-myKROSS.dev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1298,7 +1528,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.12;
+				MARKETING_VERSION = 1.10.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1314,7 +1544,7 @@
 		};
 		90F9350926C5D5CE001FEFCA /* Dev.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E5245E56162B0753EA585A6 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */;
+			baseConfigurationReference = CD415DBEACB81FB8FCFB2A73 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1348,9 +1578,11 @@
 				00E356F61AD99517003FC87E /* Debug */,
 				90F9350926C5D5CE001FEFCA /* Dev.Debug */,
 				90F9350626C5D5C4001FEFCA /* Test.Debug */,
+				90C7EF23274BB55D00D43C9E /* Feat.Debug */,
 				00E356F71AD99517003FC87E /* Release */,
 				90F9350026C5D5A7001FEFCA /* Dev.Release */,
 				90F934FD26C5D599001FEFCA /* Test.Release */,
+				90C7EF26274BB58900D43C9E /* Feat.Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1361,9 +1593,11 @@
 				13B07F941A680F5B00A75B9A /* Debug */,
 				90F9350826C5D5CE001FEFCA /* Dev.Debug */,
 				90F9350526C5D5C4001FEFCA /* Test.Debug */,
+				90C7EF22274BB55D00D43C9E /* Feat.Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
 				90F934FF26C5D5A7001FEFCA /* Dev.Release */,
 				90F934FC26C5D599001FEFCA /* Test.Release */,
+				90C7EF25274BB58900D43C9E /* Feat.Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1374,9 +1608,11 @@
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				90F9350726C5D5CE001FEFCA /* Dev.Debug */,
 				90F9350426C5D5C4001FEFCA /* Test.Debug */,
+				90C7EF21274BB55D00D43C9E /* Feat.Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
 				90F934FE26C5D5A7001FEFCA /* Dev.Release */,
 				90F934FB26C5D599001FEFCA /* Test.Release */,
+				90C7EF24274BB58900D43C9E /* Feat.Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

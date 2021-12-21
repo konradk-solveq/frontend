@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import logger from '@src/utils/crashlytics';
 
 import ErrorBoundaryView from './errorBoundaryView/ErrorBoundaryView';
 import {loggErrorWithScope, sentryLogLevel} from '@sentryLogger/sentryLogger';
@@ -38,8 +37,6 @@ class ErrorBoundary extends React.Component<IProps, IState> {
             errorInfo: errorInfo,
             hasError: true,
         });
-        logger.log('[ErrorBoundary]');
-        logger.recordError(error);
         loggErrorWithScope(
             error,
             '[ErrorBoundary]',

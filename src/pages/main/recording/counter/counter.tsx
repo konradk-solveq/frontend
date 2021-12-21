@@ -3,59 +3,48 @@ import {
     StyleSheet,
     View,
     Animated,
-    Platform,
-    StatusBar,
     Alert,
+    StatusBar,
+    SafeAreaView,
 } from 'react-native';
 
 import I18n from 'react-native-i18n';
 
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
-import {
-    getVerticalPx,
-    getStackHeaderHeight,
-    getHorizontalPx,
-} from '../../../../helpers/layoutFoo';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {getHorizontalPx, getVerticalPx, getHeightPx} from '@helpers/layoutFoo';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import useAppState from '@hooks/useAppState';
-import {getBike} from '../../../../helpers/transformUserBikeData';
+import {getBike} from '@helpers/transformUserBikeData';
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
-import useLocalizationTracker from '../../../../hooks/useLocalizationTracker';
+import useLocalizationTracker from '@hooks/useLocalizationTracker';
 import {
     setCurrentRoutePauseTime,
     setRouteMapVisibility,
-} from '../../../../storage/actions/routes';
+} from '@storage/actions/routes';
 
 import StackHeader from './stackHeader/stackHeader';
 
-import {UserBike} from '../../../../models/userBike.model';
-import useStatusBarHeight from '../../../../hooks/statusBarHeight';
+import {UserBike} from '@models/userBike.model';
 import {
     trackerActiveSelector,
     trackerPauseTimeSelector,
     trackerStartTimeSelector,
-} from '../../../../storage/selectors/routes';
-import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
-import useCustomSwipeBackNav from '../../../../hooks/useCustomSwipeBackNav';
+} from '@storage/selectors/routes';
+import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
+import useCustomSwipeBackNav from '@hooks/useCustomSwipeBackNav';
 import ErrorBoundary from '@providers/errorBoundary/ErrorBoundary';
+import useCompassHook from '@hooks/useCompassHook';
 
 import ActionButtons from './actionButtons';
 import Map from './map';
-import {BothStackRoute, RegularStackRoute} from '../../../../navigation/route';
+import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
-import DataPreview from '../../../../sharedComponents/dataPreview/dataPreview';
-import CompassHeading from 'react-native-compass-heading';
+import DataPreview from '@sharedComponents/dataPreview/dataPreview';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {TESTING_MODE} from '@env';
-
-const isIOS = Platform.OS === 'ios';
-
-interface Props {
-    navigation: any;
-    route: any;
-}
 
 const returnToPreviousScreen = (nav: any) => {
     if (nav.canGoBack()) {
@@ -69,11 +58,20 @@ const setTotalTime = (pTime: {start: number; total: number}) => {
     return pTime.start > 0 ? pTime.total + (Date.now() - pTime.start) : 0;
 };
 
+const BIKE_LIST_TOP_BIG = getHorizontalPx(142);
+const BIKE_LIST_TOP_SMALL = getHorizontalPx(42);
+const ANIMATION_DURATION = 700;
+interface Props {
+    navigation: any;
+    route: any;
+}
+
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const trans: any = I18n.t('MainCounter');
     const dispatch = useAppDispatch();
     const mountedRef = useRef(false);
     const notificationContext = useNotificationContext();
+    const initShowMapRef = useRef(false);
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
@@ -81,8 +79,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const bikes = useAppSelector<UserBike[]>(state => state.bikes.list);
     const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
-    const statusBarHeight = useStatusBarHeight();
-    const headerHeight = getStackHeaderHeight() - statusBarHeight;
 
     const [myRouteNumber, setMyRouteNumber] = useState(0);
     const [autoFindMe, setAutoFindMe] = useState<number>(1);
@@ -91,8 +87,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         start: 0,
         total: 0,
     });
+    const [beforeRecording, setBeforeRecording] = useState<boolean>(true);
 
-    const ANIMATION_DURATION = 666;
+    const {top} = useSafeAreaInsets();
 
     // trakowanie
     const {
@@ -111,9 +108,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [renderMap, setRenderMap] = useState(false);
     const [renderPath, setRenderPath] = useState(false);
 
-    const bileListTop = useRef(
-        new Animated.Value(headerHeight + getVerticalPx(50)),
-    ).current;
+    const bileListTop = useRef(new Animated.Value(BIKE_LIST_TOP_BIG)).current;
 
     // zmiana roweru
     const onChangeBikeHandler = (frameNumber: string) => {
@@ -148,9 +143,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     /* Re-run counter after app restart */
     useEffect(() => {
         if (isTrackerActive) {
+            setBeforeRecording(false);
             setPageState('record');
             setPauseTime({start: 0, total: trackerPauseTime});
-            startTracker(true, route?.params?.mapID);
+            startTracker(route?.params?.mapID);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -163,13 +159,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     useEffect(() => {
         Animated.timing(bileListTop, {
-            toValue: mapHiden
-                ? headerHeight + getVerticalPx(50)
-                : headerHeight + getVerticalPx(isIOS ? -22 : -54),
+            toValue: mapHiden ? BIKE_LIST_TOP_BIG : BIKE_LIST_TOP_SMALL,
             duration: ANIMATION_DURATION,
             useNativeDriver: false,
         }).start();
-    }, [mapHiden, headerHeight, bileListTop]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mapHiden, bileListTop, BIKE_LIST_TOP_SMALL]);
 
     // zmiana stanu strony na lewym przycisku
     const heandleLeftBtnClick = useCallback(() => {
@@ -209,6 +204,19 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const navigateToTHPPage = useCallback(
         (pTime?: number) => {
+            /**
+             * If distance isn't greater than 100m back to home screen.
+             */
+            if (
+                trackerData?.odometer === undefined ||
+                trackerData?.odometer <= 100
+            ) {
+                navigation.navigate({
+                    name: RegularStackRoute.SHORT_ROUTE_SCREEN,
+                });
+                return;
+            }
+
             navigation.navigate({
                 name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
                 params: {
@@ -221,7 +229,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 },
             });
         },
-        [navigation, pauseTime, trackerStartTime, trackerData?.distance],
+        [
+            navigation,
+            pauseTime,
+            trackerStartTime,
+            trackerData?.distance,
+            trackerData?.odometer,
+        ],
     );
 
     // zmiana stanu strony na prawym przycisku
@@ -233,7 +247,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         switch (pageState) {
             case 'start':
                 setPageState('record');
-                await startTracker(false, route?.params?.mapID);
+                setBeforeRecording(false);
+                await startTracker(route?.params?.mapID);
                 break;
             case 'record':
                 setPageState('endMessage');
@@ -246,9 +261,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 returnToPreviousScreen(navigation);
                 break;
             case 'endMessage':
+                await stopTracker();
+                if (!isTrackerActive) {
+                    return;
+                }
                 const totTime = setTotalTime(pauseTime);
                 dispatch(setCurrentRoutePauseTime(totTime));
-                await stopTracker();
                 navigateToTHPPage(totTime);
                 // do ekranu zakończenia
                 break;
@@ -269,6 +287,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         navigateToTHPPage,
         pageState,
         route?.params?.mapID,
+        isTrackerActive,
     ]);
 
     // zmiana funckji strzałki headera
@@ -368,6 +387,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     }, [pageState, trans]);
 
     const onHideMapHandler = (state: boolean) => {
+        initShowMapRef.current = true;
         setTimeout(
             () => {
                 setRenderPath(!state);
@@ -392,60 +412,46 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         };
     }, [renderMap]);
 
-    // kompas mapy - przeniesiony z mapy, żby spuścić do innych komponentów
-    const compasHeadingdRef = useRef(0);
-
-    const [compassHeading, setCompassHeading] = useState(0);
-
-    useEffect(() => {
-        const degree_update_rate = 5;
-        if (mountedRef.current) {
-            CompassHeading.start(degree_update_rate, ({heading}) => {
-                const lastHeading = compasHeadingdRef.current;
-                compasHeadingdRef.current = heading;
-                if (Math.abs(lastHeading - heading) >= degree_update_rate) {
-                    setCompassHeading(heading);
-                }
-            });
-        }
-        return () => {
-            CompassHeading.stop();
-        };
-    }, []);
-
     /**
      * Do not render path when app is not active
      */
     const {appStateVisible} = useAppState();
+    const prevAppStateRef = useRef('active');
     useEffect(() => {
-        let t: NodeJS.Timeout;
-        if (!isActive || !renderMap) {
+        if (!isActive || !initShowMapRef.current) {
             return;
         }
-        if (appStateVisible === 'background') {
-            t = setTimeout(() => {
-                setRenderPath(false);
-            }, 500);
+        if (
+            appStateVisible === 'background' &&
+            prevAppStateRef.current === 'active'
+        ) {
+            setRenderPath(false);
+            prevAppStateRef.current = 'background';
         } else {
             setRenderPath(true);
+            prevAppStateRef.current = 'active';
         }
+    }, [appStateVisible, isActive]);
 
-        return () => {
-            clearTimeout(t);
-        };
-    }, [appStateVisible, isActive, renderMap]);
-
+    const compassHeading = useCompassHook();
     const styles = StyleSheet.create({
-        stackHeader: {
-            zIndex: 3,
-        },
         container: {
-            width: '100%',
-            height: '100%',
+            position: 'absolute',
+            width: getHorizontalPx(414),
+            top: top,
+            height: getVerticalPx(896) - top,
         },
         bikeList: {
             position: 'absolute',
             zIndex: 5,
+            top: 0,
+            height: getVerticalPx(250),
+            width: '100%',
+        },
+        bikeListInner: {
+            position: 'absolute',
+            top: getVerticalPx(45),
+            height: getHeightPx(),
         },
         apla: {
             position: 'absolute',
@@ -458,8 +464,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     });
 
     return (
-        <>
-            <StatusBar backgroundColor="#ffffff" />
+        <SafeAreaView>
+            <StatusBar backgroundColor="#fff" />
             <ErrorBoundary onError={() => onHideMapHandler(true)}>
                 <View style={styles.container}>
                     <CounterDataContext.Provider
@@ -487,11 +493,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     <StackHeader
                         onpress={heandleGoBackClick}
                         inner={headerTitle}
-                        whiteArow={
+                        whiteArrow={
                             !pause && pageState !== 'endMessage' && mapHiden
                         }
                         titleOn={true}
-                        style={styles.stackHeader}
                         started={
                             pageState === 'record' ||
                             (pageState === 'cancelText' && !pause)
@@ -501,23 +506,27 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     />
 
                     {bikes && (
-                        <Animated.View
-                            pointerEvents="box-none"
-                            style={[
-                                styles.bikeList,
-                                {
-                                    top: bileListTop,
-                                },
-                            ]}>
-                            <BikeSelectorList
-                                list={bikes}
-                                callback={onChangeBikeHandler}
-                                currentBike={bike?.description?.serial_number}
-                                buttonText={'add'}
-                                mapHiden={mapHiden}
-                                duration={ANIMATION_DURATION}
-                            />
-                        </Animated.View>
+                        <View pointerEvents="box-none" style={styles.bikeList}>
+                            <Animated.View
+                                pointerEvents="box-none"
+                                style={[
+                                    styles.bikeListInner,
+                                    {
+                                        top: bileListTop,
+                                    },
+                                ]}>
+                                <BikeSelectorList
+                                    list={bikes}
+                                    callback={onChangeBikeHandler}
+                                    currentBike={
+                                        bike?.description?.serial_number
+                                    }
+                                    buttonText={'add'}
+                                    mapHiden={mapHiden}
+                                    duration={ANIMATION_DURATION}
+                                />
+                            </Animated.View>
+                        </View>
                     )}
 
                     <View style={styles.apla} pointerEvents="none">
@@ -554,10 +563,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             renderPath={renderPath}
                             restoredPath={restoredPath}
                             autoFindMeSwith={(e: number) => setAutoFindMe(e)}
+                            beforeRecording={beforeRecording}
                         />
                     )}
 
-                    {TESTING_MODE && (
+                    {TESTING_MODE === 'true' && (
                         <DataPreview
                             title={'podgląd danych'}
                             trackerStartTime={trackerStartTime}
@@ -646,7 +656,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     )}
                 </View>
             </ErrorBoundary>
-        </>
+        </SafeAreaView>
     );
 };
 

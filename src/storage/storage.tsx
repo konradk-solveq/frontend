@@ -23,6 +23,7 @@ const buildStore = () => {
             return Promise.resolve(state);
         },
         debug: __DEV__,
+        blacklist: ['app', 'auth', 'bikes', 'maps', 'places', 'routes', 'user'],
     };
 
     const persistedReducer = persistReducer<any, any>(persistConfig, reducer);

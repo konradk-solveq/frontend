@@ -3,11 +3,11 @@
         "goFoward": "DALEJ",
         "skip": "pomiń",
         "title_1": "Poznaj swój rower!",
-        "text_1": "Podaj numer ramy roweru. Jeśli jest to\u00a0rower KROSS otrzymasz szczegółowe informacje o\u00a0rowerze, np.\u00a0kolor, rozmiar czy dokładną specyfikację. Dla rowerów innych producentów zakres informacji będzie mniejszy.",
+        "text_1": "Podaj numer ramy roweru. Jeśli jest to\u00a0rower KROSS, otrzymasz szczegółowe informacje o\u00a0rowerze, np.\u00a0kolor, rozmiar czy dokładną specyfikację. Dla rowerów innych producentów zakres informacji będzie mniejszy.",
         "title_2": "Sprawdź najbliższy przegląd",
-        "text_2": "Od dziś nie zapomnisz o\u00a0przeglądach gwarancyjnych i\u00a0okresowych. Podpowiemy Ci\u00a0kiedy udać się do\u00a0serwisu oraz jaki zakres czynności powinien zostać wykonywany w\u00a0ramach każdego z\u00a0przeglądów.",
+        "text_2": "Od dziś nie zapomnisz o\u00a0przeglądach gwarancyjnych i\u00a0okresowych. Podpowiemy Ci,\u00a0kiedy udać się do\u00a0serwisu oraz jaki zakres czynności powinien zostać wykonywany w\u00a0ramach każdego z\u00a0przeglądów.",
         "title_3": "Znajdź najbliższy punkt serwisowy",
-        "text_3": "Jeśli Twój rower nie jest w\u00a0pełni sprawny lub wymaga okresowego przeglądu nie\u00a0zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów.",
+        "text_3": "Jeśli Twój rower nie jest w\u00a0pełni sprawny lub wymaga okresowego przeglądu, nie\u00a0zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów.",
         "title_4": "Nagrywaj trasy",
         "text_4": "Jeździsz amatorsko lub wyczynowo na\u00a0rowerze, dołącz do\u00a0drużyny KROSS. Nagrywaj przejechane kilometry w\u00a0aplikacji, a\u00a0najciekawsze trasy publikuj na\u00a0Mapie Rowerowej.",
         "title_5": "Odkrywaj ciekawe miejsca",
@@ -151,6 +151,15 @@
             }
         ]
     },
+    "newAppVersion": {
+        "header": "Nowa wersja aplikacji",
+        "title": "Nowa wersja aplikacji",
+        "text_1": "Dostępna jest ",
+        "text_2": "nowa wersja aplikacji myKROSS",
+        "text_3": " - nie zwlekaj pobierz najnowszą wersję.",
+        "btnLeft": "POMIŃ",
+        "btnRight": "AKTUALIZUJ"
+    },
     "BikeData": {
         "header": "Identyfikacja roweru",
         "title": "Hej, to nie jest rower KROSS.\nNic nie szkodzi, podaj dane swojego roweru.",
@@ -278,12 +287,18 @@
         "fourthText": "Bądź inspiracją dla innych. Nagraj kolejną trasę i upublicznij ją na Mapie Rowerowej.",
         "secondBtn": "DODAJ ROWER",
         "thirdBtn": "Nagraj trasę",
-        "fourthBtn": "Nagraj trasę"
+        "fourthBtn": "Nagraj trasę",
+        "counters": {
+            "distance": "Dystans",
+            "time": "Czas",
+            "speed": "Prędkość",
+            "averageSpeed": "Średnia prędkość"
+        }
     },
     "MainWorld": {
         "header": "Świat KROSS",
         "title": "Dołącz do drużyny \n KROSS",
-        "footer": "Już wkrótce razem z nami będziesz mógł ruszyć \n w trasę by odkrywać nowe ścieżki rowerowe \n i budować Mapę Rowerową.",
+        "footer": "Już wkrótce razem z nami będziesz mógł ruszyć \n w trasę, by odkrywać nowe ścieżki rowerowe \n i budować Mapę Rowerową.",
         "btnBikeMap": "Mapa rowerowa",
         "btnMyRoutes": "Moje trasy",
         "btnPlaned": "Planowane",
@@ -544,7 +559,11 @@
         "break": "czas przerw",
         "breakUnit": "h",
         "btnSave": "UPUBLICZNIJ",
-        "btnCancel": "POWRÓT"
+        "btnCancel": "POWRÓT",
+        "errorCloseBtn": "Zamknij",
+        "errorTitle": "Coś poszło nie tak!",
+        "errorMessageTitle": "Przejechany dystans jest **zbyt krótki**.",
+        "errorMessageContent": "Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów)."
     },
     "ServicesMap": {
         "services": "Serwisy",
@@ -679,7 +698,8 @@
                     "long": "Uzupełnij szczegółowy opis",
                     "difficulty": "Wybierz poziom trudności",
                     "surface": "Wybierz rodzaje nawierzchni",
-                    "tags": "Wybierz tagi"
+                    "tags": "Wybierz tagi",
+                    "description": "Uzupełnij opis"
                 }
             }
         }
@@ -736,6 +756,16 @@
         "body": "Przepraszamy...",
         "resetButton": "Spróbuj ponownie",
         "restartButton": "Uruchom ponownie aplikację"
+    },
+    "DebugRoute": {
+        "enableDebugging": "Włącz debugowanie trasy",
+        "disableDebugging": "Wyłącz debugowanie trasy",
+        "removeDirAlert": {
+            "title": "Usuwanie logów",
+            "message": "Zostaną usunięte wszystkie logi nagranych tras. Ta operacja jest niedwracalna!",
+            "leftButton": "Anuluj",
+            "rightButton": "Usuń"
+        }
     },
     "aaaaaaa-aaaaaa": "_____"
 }

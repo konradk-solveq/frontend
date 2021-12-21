@@ -26,13 +26,19 @@ import {
     loadingBikesSelector,
     userNameSelector,
 } from '../../../../storage/selectors';
-import {getHorizontalPx, getVerticalPx} from '../../../../helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '../../../../helpers/layoutFoo';
 import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
 import {setBikesListByFrameNumber} from '../../../../storage/actions';
 import Loader from '../loader/loader';
 import ScanModal from './scanModal.android';
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
 import {BothStackRoute} from '../../../../navigation/route';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -166,23 +172,13 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     };
 
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-        },
-        scroll: {
-            width: '100%',
-            height: '100%',
-            top: headHeight,
-        },
         title: {
             width: getHorizontalPx(334),
             left: getHorizontalPx(40),
             marginTop: getVerticalPx(30),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
-            lineHeight: 40,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(40),
             color: '#313131',
             textAlign: 'left',
         },
@@ -197,33 +193,28 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             left: getHorizontalPx(40),
             marginTop: getVerticalPx(20),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 18,
-            lineHeight: 22,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(22),
             color: '#555555',
             textAlign: 'left',
         },
         btnNfc: {
             width: getHorizontalPx(334),
             left: getHorizontalPx(40),
-            height: 50,
+            height: mainButtonsHeight(50),
             marginTop: getVerticalPx(52),
         },
         btnHand: {
             width: getHorizontalPx(334),
-            height: 50,
+            height: mainButtonsHeight(50),
             left: getHorizontalPx(40),
-            // marginTop: getVerticalPx(30),
             marginTop: getVerticalPx(30),
             marginBottom: getVerticalPx(65) + headHeight,
         },
     });
 
     if (isLoading) {
-        return (
-            <SafeAreaView style={styles.container}>
-                <Loader />
-            </SafeAreaView>
-        );
+        return <Loader />;
     }
 
     const title =
@@ -231,8 +222,8 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             ? trans.titleNext
             : trans.title_1 + userName + trans.title_2;
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView>
                     <Text style={styles.title}>{title}</Text>
 

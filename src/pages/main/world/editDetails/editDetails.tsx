@@ -1,11 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {
-    View,
-    StatusBar,
-    SafeAreaView,
-    Platform,
-    ScrollView,
-} from 'react-native';
+import {View, SafeAreaView, Platform, ScrollView} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
@@ -142,7 +136,6 @@ const EditDetails = () => {
 
     return (
         <>
-            <StatusBar translucent />
             <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
                 <View
                     style={[

@@ -8,6 +8,8 @@ project 'myKROSS',
         'Dev.Release' => :release, 
         'Test.Debug' => :debug,
         'Test.Release' => :release, 
+        'Feat.Debug' => :debug,
+        'Feat.Release' => :release, 
         'Prod.Debug' => :debug,
         'Prod.Release' => :release
 
@@ -19,6 +21,8 @@ target 'myKROSS' do
   pod 'Permission-LocationAccuracy', :path => "#{permissions_path}/LocationAccuracy"
   pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
   pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse"
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
 
   config = use_native_modules!
 
@@ -37,15 +41,17 @@ target 'myKROSS' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  use_flipper!({'Flipper' => '0.109.0', 'Flipper-Folly' => '2.6.9', 'Flipper-RSocket' => '1.4.3', 'Flipper-DoubleConversion' => '3.1.7', 'Flipper-Glog' => '0.3.9', 'Flipper-PeerTalk' => '0.0.4'})
+  use_flipper!({'Flipper' => '0.109.0', 'Flipper-Folly' => '2.6.7', 'Flipper-RSocket' => '1.4.3', 'Flipper-DoubleConversion' => '3.1.7', 'Flipper-Glog' => '0.3.9', 'Flipper-PeerTalk' => '0.0.4'})
 
   ENVFILES = {
     'Dev.Debug' => '${PODS_ROOT}/../../.env.development',
     'Dev.Release' => '${PODS_ROOT}/../../.env.development', 
     'Test.Debug' => '${PODS_ROOT}/../.env.test',
     'Test.Release' => '${PODS_ROOT}/../.env.test', 
-    'Prod.Debug' => '${PODS_ROOT}/../../.env.prod',
-    'Prod.Release' => '${PODS_ROOT}/../../.env.prod'
+    'Feat.Debug' => '${PODS_ROOT}/../.env.feature',
+    'Feat.Release' => '${PODS_ROOT}/../.env.feature', 
+    'Prod.Debug' => '${PODS_ROOT}/../../.env.production',
+    'Prod.Release' => '${PODS_ROOT}/../../.env.production'
   }
 
   post_install do |installer|

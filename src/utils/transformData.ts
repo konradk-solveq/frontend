@@ -1,5 +1,5 @@
 import {AppConfigI} from '@models/config.model';
-import {ShortCoordsType} from '@src/type/coords';
+import {ShortCoordsType} from '@type/coords';
 import {Platform} from 'react-native';
 import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
 import {LocationDataI} from '../interfaces/geolocation';
@@ -13,7 +13,11 @@ import {Images, Map, MapType, OptionsEnumsT} from '../models/map.model';
 import {UserBike} from '../models/userBike.model';
 import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
-import {getLocations} from './geolocation';
+import {
+    getLocations,
+    LOCATION_ACCURACY,
+    transformGeoloCationData,
+} from './geolocation';
 import {
     isLocationValidate,
     removeLessAccuratePointsLocations,
@@ -38,15 +42,29 @@ export const getTimeInUTCMilliseconds = (
     return time;
 };
 
-const isLocationValidToPass = (loc: any, routeId?: string) => {
-    if (!routeId || !loc?.extras?.route_id || loc?.sample === true) {
+export const isLocationValidToPass = (
+    loc: any,
+    routeId?: string,
+    skipFiltering?: boolean,
+) => {
+    if (!routeId || !loc?.extras?.route_id) {
         return false;
     }
     if (routeId !== loc?.extras?.route_id) {
         return false;
     }
+    if (!isLocationValidate(loc)) {
+        return false;
+    }
 
-    if (loc?.coords?.accuracy && loc?.coords?.accuracy > 60) {
+    if (skipFiltering) {
+        return true;
+    }
+
+    if (loc?.sample === true) {
+        return false;
+    }
+    if (loc?.coords?.accuracy && loc?.coords?.accuracy > LOCATION_ACCURACY) {
         return false;
     }
     /**
@@ -59,30 +77,51 @@ const isLocationValidToPass = (loc: any, routeId?: string) => {
     ) {
         return false;
     }
-    if (!isLocationValidate(loc)) {
-        return false;
-    }
 
     return true;
 };
 
 const sortLocationArrayByTime = (locations: ShortCoordsType[]) => {
-    return locations.sort((a, b) => {
-        const timeA = getTimeInUTCMilliseconds(a.timestamp);
-        const timeB = getTimeInUTCMilliseconds(b.timestamp);
-        if (timeA === timeB) {
-            if (a.latitude === b.latitude) {
-                if (a.longitude === b.longitude) {
-                    return 0;
+    return (
+        locations?.sort((a, b) => {
+            const timeA = getTimeInUTCMilliseconds(a.timestamp);
+            const timeB = getTimeInUTCMilliseconds(b.timestamp);
+            if (timeA === timeB) {
+                if (a.latitude === b.latitude) {
+                    if (a.longitude === b.longitude) {
+                        return 0;
+                    }
+
+                    return a.longitude < b.longitude ? -1 : 1;
                 }
 
-                return a.longitude < b.longitude ? -1 : 1;
+                return a.latitude < b.latitude ? -1 : 1;
+            }
+            return timeA < timeB ? -1 : 1;
+        }) || []
+    );
+};
+
+const sortLocationDataByTime = (locations: LocationDataI[]) => {
+    return (
+        locations?.sort((a, b) => {
+            const timeA = getTimeInUTCMilliseconds(a.timestamp);
+            const timeB = getTimeInUTCMilliseconds(b.timestamp);
+            if (timeA === timeB) {
+                if (a.coords.latitude === b.coords.latitude) {
+                    if (a.coords.longitude === b.coords.longitude) {
+                        return 0;
+                    }
+
+                    return a.coords.longitude < b.coords.longitude ? -1 : 1;
+                }
+
+                return a.coords.latitude < b.coords.latitude ? -1 : 1;
             }
 
-            return a.latitude < b.latitude ? -1 : 1;
-        }
-        return timeA < timeB ? -1 : 1;
-    });
+            return timeA < timeB ? -1 : 1;
+        }) || []
+    );
 };
 
 export const transfromToBikeDescription = (
@@ -198,6 +237,14 @@ export const transformToOptionEnumValues = (
     }
 };
 
+const elementExists = (el: any) => {
+    if (el !== undefined) {
+        return true;
+    }
+
+    return false;
+};
+
 export const transformToMapsType = (
     data: any,
     options: OptionsEnumsT | undefined,
@@ -231,10 +278,10 @@ export const transformToMapsType = (
     if (publishedAt) {
         newData.publishedAt = publishedAt;
     }
-    if (distance) {
+    if (elementExists(distance)) {
         newData.distance = distance;
     }
-    if (distanceToRoute) {
+    if (elementExists(distanceToRoute)) {
         newData.distanceToRoute = distanceToRoute;
     }
     if (difficulty) {
@@ -249,16 +296,16 @@ export const transformToMapsType = (
     if (description) {
         newData.description = description;
     }
-    if (location) {
+    if (elementExists(location)) {
         newData.location = location;
     }
-    if (time) {
+    if (elementExists(time)) {
         newData.time = time;
     }
     if (author) {
         newData.author = author;
     }
-    if (rating) {
+    if (elementExists(rating)) {
         newData.rating = rating;
     }
     if (images) {
@@ -270,13 +317,13 @@ export const transformToMapsType = (
     if (isPublic) {
         newData.isPublic = isPublic;
     }
-    if (downloads) {
+    if (elementExists(downloads)) {
         newData.downloads = downloads;
     }
-    if (reaction) {
+    if (elementExists(reaction)) {
         newData.reaction = reaction;
     }
-    if (reactions) {
+    if (elementExists(reactions)) {
         newData.reactions = reactions;
     }
 
@@ -421,9 +468,9 @@ export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
 
 export const routesDataToPersist = async (
     routeId: string,
-    oldRoutes: LocationDataI[],
+    withoutFiltering?: boolean,
 ): Promise<LocationDataI[]> => {
-    const currRoutes = [...oldRoutes];
+    const currRoutes: LocationDataI[] = [];
     const locations = await getLocations();
     if (!locations) {
         return currRoutes;
@@ -431,7 +478,7 @@ export const routesDataToPersist = async (
 
     /* https://transistorsoft.github.io/react-native-background-geolocation/interfaces/location.html */
     locations.forEach((l: any) => {
-        if (!isLocationValidToPass(l, routeId)) {
+        if (!isLocationValidToPass(l, routeId, withoutFiltering)) {
             return;
         }
 
@@ -439,41 +486,21 @@ export const routesDataToPersist = async (
             const alterTimestamp = transformTimestampToDate(
                 l?.timestampMeta?.systemTime,
             );
-            const newRoute: LocationDataI = {
-                uuid: l.uuid,
-                coords: {
-                    latitude: l.coords.latitude,
-                    longitude: l.coords.longitude,
-                    altitude: l.coords.altitude,
-                    speed: l.coords.speed,
-                },
-                odometer: l.odometer,
-                timestamp: alterTimestamp || l.timestamp,
-            };
+
+            const newRoute: LocationDataI = transformGeoloCationData(l);
+            if (alterTimestamp) {
+                newRoute.timestamp = alterTimestamp.toUTCString();
+            }
 
             currRoutes.push(newRoute);
         }
     });
 
-    const sorted = currRoutes.sort((a, b) => {
-        const timeA = getTimeInUTCMilliseconds(a.timestamp);
-        const timeB = getTimeInUTCMilliseconds(b.timestamp);
-        if (timeA === timeB) {
-            if (a.coords.latitude === b.coords.latitude) {
-                if (a.coords.longitude === b.coords.longitude) {
-                    return 0;
-                }
+    const sorted = sortLocationDataByTime(currRoutes);
 
-                return a.coords.longitude < b.coords.longitude ? -1 : 1;
-            }
-
-            return a.coords.latitude < b.coords.latitude ? -1 : 1;
-        }
-
-        return timeA < timeB ? -1 : 1;
-    });
-
-    const cleanedArr = removeLessAccuratePointsLocations(sorted);
+    const cleanedArr = withoutFiltering
+        ? sorted
+        : removeLessAccuratePointsLocations(sorted);
 
     return cleanedArr;
 };

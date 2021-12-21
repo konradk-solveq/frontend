@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {
+    getFontSize,
     getHorizontalPx,
     getVerticalPx,
 } from '../../../../../../helpers/layoutFoo';
@@ -7,7 +8,7 @@ import {
 export const nextTileStyles = StyleSheet.create({
     firstSection: {
         flexDirection: 'row',
-        marginHorizontal: 20,
+        marginHorizontal: getHorizontalPx(20),
         paddingTop: getVerticalPx(20),
         paddingBottom: getVerticalPx(5),
     },
@@ -23,12 +24,31 @@ export const nextTileStyles = StyleSheet.create({
         flexDirection: 'column',
         width: '70%',
     },
+    bikeIconFontWrap: {
+        top: -0.5,
+    },
+    bikeIconFont: {
+        marginLeft: 0,
+        marginRight: getHorizontalPx(5),
+        fontFamily: 'mykross',
+        fontSize: getHorizontalPx(15),
+    },
+    clockIconFontWrap: {
+        top: 0,
+        marginLeft: 5,
+    },
+    clockIconFont: {
+        marginLeft: 0,
+        marginRight: getHorizontalPx(5),
+        fontFamily: 'mykross',
+        fontSize: getHorizontalPx(15),
+    },
     secondtSection: {
         marginLeft: 0,
-        marginRight: 20,
+        marginRight: getHorizontalPx(20),
     },
     thirdSection: {
-        marginHorizontal: 20,
+        marginHorizontal: getHorizontalPx(20),
         marginBottom: 0,
     },
     imageWrapper: {
@@ -36,7 +56,7 @@ export const nextTileStyles = StyleSheet.create({
         height: getVerticalPx(95),
         overflow: 'hidden',
         backgroundColor: '#f1f1f1',
-        borderRadius: 16,
+        borderRadius: getHorizontalPx(16),
     },
     image: {
         height: '100%',

@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+    mainButtonsHeight,
+} from '@helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
@@ -15,22 +20,22 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'DIN2014Narrow-Regular',
         color: '#313131',
-        fontSize: 32,
-        paddingBottom: 16,
-        marginHorizontal: 40,
+        fontSize: getFontSize(32),
+        paddingBottom: getVerticalPx(16),
+        marginHorizontal: getHorizontalPx(40),
     },
     body: {
         fontFamily: 'DIN2014Narrow-Light',
         color: '#313131',
-        fontSize: 24,
+        fontSize: getHorizontalPx(24),
         fontWeight: '800',
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
     },
     buttonsContainer: {
-        marginHorizontal: 40,
+        marginHorizontal: getHorizontalPx(40),
     },
     button: {
-        height: 60,
+        height: mainButtonsHeight(50),
     },
     restartButton: {
         marginTop: getVerticalPx(20),

@@ -17,7 +17,6 @@ import {validateData} from '../../../utils/validation/validation';
 
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
-import ListInputBtn from '../../../sharedComponents/inputs/listInputBtn';
 import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 
 import {userBikeValidationRules} from '../../../models/bike.model';
@@ -28,12 +27,14 @@ import {
     getCenterLeftPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 import deepCopy from '../../../helpers/deepCopy';
 import {frameNumberSelector} from '../../../storage/selectors';
 import {bikeDescriptionByFrameNumberSelector} from '../../../storage/selectors/bikes';
 import {getBikesBaseData} from '../../../utils/transformData';
-import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
+import {BothStackRoute} from '../../../navigation/route';
 
 interface Message {
     serial_number: string;
@@ -210,8 +211,8 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
             marginTop: getVerticalPx(45 + 20) + headHeight,
             marginBottom: getVerticalPx(30),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
-            lineHeight: 38,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(38),
             color: '#555555',
             textAlign: 'left',
         },
@@ -223,7 +224,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
         },
         button: {
             width: getWidthPx(),
-            height: 50,
+            height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
             marginTop: getVerticalPx(10),
             marginBottom: getVerticalPx(65),

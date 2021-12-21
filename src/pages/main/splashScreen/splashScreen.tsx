@@ -13,6 +13,7 @@ import {
 import {TermsAndConditionsType} from '../../../models/regulations.model';
 import {setAppCurrentTerms} from '../../../storage/actions';
 import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
+import {getIsNewVersion} from '../../../helpers/appVersion';
 
 const ww = Dimensions.get('window').width;
 const wh = Dimensions.get('window').height;
@@ -33,7 +34,15 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
     const isLoading = useAppSelector<boolean>(state => state.app.sync);
     const showed = useAppSelector<number>(state => state.app.showedRegulations);
     const [showNewRegulations, setShowNewRegulations] = useState<boolean>();
+    const [showNewAppVersion, setShowNewAppVersion] = useState<boolean>(false);
     const dispatch = useAppDispatch();
+
+    const shopAppVersion = useAppSelector<string>(
+        state => state.app.config.version,
+    );
+    const showedNewAppVersion = useAppSelector<string>(
+        state => state.app.showedNewAppVersion,
+    );
 
     useEffect(() => {
         if (data) {
@@ -72,23 +81,39 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     }),
                 );
             }
+
+            // show New App Version
+            if (
+                showedNewAppVersion < shopAppVersion &&
+                getIsNewVersion(shopAppVersion)
+            ) {
+                setShowNewAppVersion(true);
+            }
         }
-    }, [currentVersion, showed, data]);
+    }, [currentVersion, shopAppVersion, showedNewAppVersion, showed, data]);
 
     useEffect(() => {
         if (!isLoading) {
+            const getPage = () => {
+                if (showNewRegulations) {
+                    return RegularStackRoute.NEW_REGULATIONS_SCREEN;
+                }
+
+                if (showNewAppVersion) {
+                    return RegularStackRoute.NEW_APP_VERSION_SCREEN;
+                }
+
+                return BothStackRoute.MAIN_MENU_SCREEN;
+            };
+
             const t = setTimeout(() => {
-                props.navigation.replace(
-                    showNewRegulations
-                        ? RegularStackRoute.NEW_REGULATIONS_SCREEN
-                        : BothStackRoute.MAIN_MENU_SCREEN,
-                );
+                props.navigation.replace(getPage());
             }, time);
             return () => {
                 clearTimeout(t);
             };
         }
-    }, [isLoading, props.navigation, showNewRegulations]);
+    }, [isLoading, props.navigation, shopAppVersion, showNewRegulations]);
 
     const krossLogo = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 242 130">
     <defs>

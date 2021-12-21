@@ -21,6 +21,7 @@ export const RegularStackRoute = {
 
     SPLASH_SCREEN: 'SplashScreen',
     NEW_REGULATIONS_SCREEN: 'newRegulations',
+    NEW_APP_VERSION_SCREEN: 'NewAppVersion',
 
     // Home
     HOME_SCREEN: 'Home',
@@ -34,6 +35,7 @@ export const RegularStackRoute = {
     COUNTER_THANK_YOU_PAGE_SCREEN: 'CounterThankYouPage',
     ROUTES_MAP_SCREEN: 'RoutesMap',
     FEATURED_ROUTES_SCRREN: 'FeaturedRoutesScreen',
+    SHORT_ROUTE_SCREEN: 'ShortRouteScreen',
 
     // Bike
     BIKE_SCREEN: 'Bike',

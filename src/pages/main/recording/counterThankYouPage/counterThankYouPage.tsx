@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {SafeAreaView, View, Text, ScrollView, Alert} from 'react-native';
+import {SafeAreaView, View, Text, ScrollView} from 'react-native';
 import I18n from 'react-native-i18n';
 import AnimSvg from '../../../../helpers/animSvg';
 
@@ -28,7 +28,8 @@ import {
 
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
 import PoorConnectionModal from '../../../../sharedComponents/modals/poorConnectionModal/poorConnectionModal';
-import DataPreview from '@src/sharedComponents/dataPreview/dataPreview';
+import DataPreview from '@sharedComponents/dataPreview/dataPreview';
+import ShortRouteModal from '@sharedComponents/modals/shortRouteModal/ShortRouteModal';
 
 import {TESTING_MODE} from '@env';
 
@@ -46,6 +47,7 @@ interface Props {
 
 const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const scrollRef = useRef<null | ScrollView>(null);
+    const canGoForwardRef = useRef(true);
 
     const trans: any = I18n.t('CounterThankYouPage');
     const isSyncData = useAppSelector(trackerLoadingSelector);
@@ -64,6 +66,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     // const randomNum = () => Math.floor(Math.random() * 2);
     const [titleType, setTitleType] = useState(1);
     const [goForward, setGoForward] = useState('');
+    const [showErrorModal, setShowErrorModal] = useState(false);
 
     const setShowVisible = useCallback(() => {
         setShow(true);
@@ -97,7 +100,13 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     const onGoForward = useCallback(
         (prev?: boolean) => {
-            dispatch(clearError());
+            /**
+             * It seems, that sidpatching this action blocks navigator.
+             * It's temporary solution
+             */
+            setTimeout(() => {
+                dispatch(clearError());
+            }, 0);
             if (goForward === Action.home) {
                 navigation.navigate(RegularStackRoute.HOME_SCREEN);
                 return;
@@ -110,9 +119,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 return;
             }
 
-            if (goForward === Action.prev || prev) {
-                navigation.navigate(RegularStackRoute.KROSS_WORLD_SCREEN);
-            }
+            navigation.navigate(RegularStackRoute.HOME_SCREEN);
         },
         [dispatch, goForward, navigation],
     );
@@ -120,18 +127,15 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (!isSyncData && goForward) {
             if (error?.message && error?.statusCode >= 400) {
-                Alert.alert('', error.message, [
-                    {
-                        text: 'Ok',
-                        onPress: () => onGoForward(true),
-                    },
-                ]);
+                setShowErrorModal(true);
                 return;
             }
 
-            onGoForward();
+            if (canGoForwardRef.current) {
+                onGoForward();
+            }
         }
-    }, [error?.statusCode, isSyncData, onGoForward, goForward]);
+    }, [error?.statusCode, isSyncData, onGoForward, goForward, error.message]);
 
     const heandleSaveDistance = ratio => {
         let d = route?.params?.distance;
@@ -172,7 +176,14 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     const onCancelRouteHandler = (forward: string) => {
         setGoForward(forward);
-        dispatch(abortSyncCurrentRouteData());
+        dispatch(abortSyncCurrentRouteData(true));
+    };
+
+    const onCloseErrorModalHandler = () => {
+        canGoForwardRef.current = false;
+        setShowErrorModal(false);
+
+        onGoForward(true);
     };
 
     if (isSyncData) {
@@ -253,7 +264,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     </View>
                 </ScrollView>
 
-                {TESTING_MODE && (
+                {TESTING_MODE === 'true' && (
                     <DataPreview
                         title={'podgląd danych'}
                         dataList={[
@@ -305,6 +316,12 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     />
                 )}
             </View>
+
+            <ShortRouteModal
+                showModal={showErrorModal}
+                showAlterMessage={!error?.routeToShort ? error?.message : ''}
+                onClose={onCloseErrorModalHandler}
+            />
         </SafeAreaView>
     );
 };

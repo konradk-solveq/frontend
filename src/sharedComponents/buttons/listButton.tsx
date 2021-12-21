@@ -1,3 +1,4 @@
+import {getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {Pressable, StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
@@ -32,9 +33,9 @@ const ListBtn: React.FC<IProps> = ({
 
 const styles = StyleSheet.create({
     icon: {
-        margin: 20,
-        width: 20,
-        height: 20,
+        margin: getHorizontalPx(20),
+        width: getHorizontalPx(20),
+        height: getHorizontalPx(20),
     },
 });
 

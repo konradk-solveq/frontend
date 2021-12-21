@@ -74,10 +74,10 @@ const BikeSelectorList: React.FC<Props> = ({
             flexDirection: 'row',
             justifyContent: 'flex-start',
             borderStartColor: 'red',
-            height: isIOS ? 60 : 50,
+            height: getHorizontalPx(isIOS ? 60 : 50),
         },
         item: {
-            marginLeft: 15,
+            marginLeft: getHorizontalPx(15),
         },
         fitstItem: {
             marginLeft: getHorizontalPx(40),

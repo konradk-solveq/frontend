@@ -2,7 +2,6 @@ import {useEffect, useState, useRef} from 'react';
 import {State} from 'react-native-background-geolocation-android';
 
 import {I18n} from '../../I18n/I18n';
-import {initCrashlytics} from '../utils/crashlytics';
 import {initBGeolocalization, cleanUp} from '../utils/geolocation';
 import {useAppDispatch, useAppSelector} from './redux';
 import {
@@ -23,7 +22,7 @@ import {
 } from '../storage/selectors/app';
 import {fetchMapsList} from '@src/storage/actions';
 import {fetchFeaturedMapsList} from '@src/storage/actions/maps';
-import {sentrySetUserInfo} from '../../sentry/sentryLogger';
+import {sentrySetUserInfo} from '@sentryLogger/sentryLogger';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
@@ -44,7 +43,6 @@ const useAppInit = () => {
     const location = useAppSelector(globalLocationSelector);
 
     const [geolocationState, setGeolocationState] = useState<State>();
-    const [crashlyticsInitialized, setCrashlyticsInitialized] = useState(false);
     const [dataInitialized, setDataInitialized] = useState(false);
 
     const clearAppSyncError = () => {
@@ -69,9 +67,6 @@ const useAppInit = () => {
             id: userId,
             username: userName,
         });
-        /* Logs will be send after app restarted */
-        initCrashlytics(userName, userId);
-        setCrashlyticsInitialized(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -118,7 +113,6 @@ const useAppInit = () => {
 
     return {
         geolocationState,
-        crashlyticsInitialized,
         dataInitialized,
         isOnline,
         syncStatus,

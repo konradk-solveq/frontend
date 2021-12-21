@@ -14,10 +14,12 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
 } from '../../../../helpers/layoutFoo';
 import {version} from '../../../../../package.json';
-import {API_URL} from '@env';
-
+import {API_URL, ENVIRONMENT_TYPE} from '@env';
+import {RouteDebugBtn} from '@sharedComponents/buttons';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 interface Props {
     navigation: any;
     route: any;
@@ -26,8 +28,9 @@ interface Props {
 const getAppVersion = () => {
     const appBuildNumber = DeviceInfo.getBuildNumber();
     const serverVersion = API_URL.includes('.pre.') ? ' - serwer testowy' : '';
+    const buildType = API_URL.includes('.pre.') ? ` - ${ENVIRONMENT_TYPE}` : '';
 
-    return `${version} (${appBuildNumber}) ${serverVersion}`;
+    return `${version} (${appBuildNumber}) ${buildType} ${serverVersion}`;
 };
 
 const AboutApp: React.FC<Props> = (props: Props) => {
@@ -57,8 +60,8 @@ const AboutApp: React.FC<Props> = (props: Props) => {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
             marginTop: getVerticalPx(30),
-            fontSize: 30,
-            lineHeight: 40,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(40),
             color: '#313131',
         },
         bike: {
@@ -72,46 +75,46 @@ const AboutApp: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(30),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#555555',
         },
         nextLineText: {
             marginTop: getVerticalPx(15),
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#555555',
         },
         signature: {
             marginTop: getVerticalPx(45),
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#555555',
         },
         nextLineSignature: {
             marginTop: getVerticalPx(15),
             fontFamily: 'DIN2014Narrow-Regular',
             textAlign: 'left',
-            fontSize: 18,
-            lineHeight: 24,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(24),
             color: '#555555',
         },
         version: {
             marginTop: getVerticalPx(80),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 14,
+            fontSize: getFontSize(14),
             textAlign: 'left',
             color: '#555555',
         },
     });
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.scroll}>
+        <SafeAreaView style={comStyle.container}>
+            <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         <Text style={styles.title}>{trans.title}</Text>
@@ -145,6 +148,8 @@ const AboutApp: React.FC<Props> = (props: Props) => {
                             style={
                                 styles.version
                             }>{`v. ${getAppVersion()}`}</Text>
+
+                        <RouteDebugBtn />
                     </View>
                 </ScrollView>
             </View>

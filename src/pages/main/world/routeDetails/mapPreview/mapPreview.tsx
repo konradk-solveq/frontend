@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
-import CompassHeading from 'react-native-compass-heading';
 
 import {useAppSelector} from '../../../../../hooks/redux';
 import {
@@ -42,7 +41,6 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
     const mapId = route?.params?.mapId;
     const mapRef = useRef<MapView>(null);
 
-    const [compassHeading, setCompassHeading] = useState(0);
     const [foreignRoute, setForeignRoute] = useState<Coords[]>([]);
 
     const mapPath = useAppSelector<CoordsType[] | undefined>(
@@ -60,18 +58,6 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
             setForeignRoute(fRoute);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        const degree_update_rate = 3;
-
-        CompassHeading.start(degree_update_rate, ({heading}) => {
-            setCompassHeading(heading);
-        });
-
-        return () => {
-            CompassHeading.stop();
-        };
     }, []);
 
     const heandleGoBackClick = () => {
@@ -98,7 +84,7 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
                                 },
                                 pitch: 0,
                                 altitude: 0,
-                                heading: compassHeading,
+                                heading: 0,
                                 zoom: 16,
                             },
                         })}
@@ -113,7 +99,7 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
                                         },
                                         pitch: 0,
                                         altitude: 0,
-                                        heading: compassHeading,
+                                        heading: 0,
                                         zoom: 16,
                                     });
                                 }

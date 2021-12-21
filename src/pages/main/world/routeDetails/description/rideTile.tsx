@@ -14,11 +14,8 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
 } from '../../../../../helpers/layoutFoo';
-import BikeIcon from '../../../../../sharedComponents/svg/bikeIcon';
-import ClockIcon from '../../../../../sharedComponents/svg/clockIcon';
-import MountainIcon from '../../../../../sharedComponents/svg/mountainIcon';
-import WayIcon from '../../../../../sharedComponents/svg/wayIcon';
 import FourthSection from '../../components/tiles/sections/fourthSection';
 
 interface Props {
@@ -143,19 +140,19 @@ const RideTile: React.FC<Props> = ({
         },
         topText: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 23,
+            fontSize: getFontSize(23),
             color: '#313131',
             textAlign: 'center',
         },
         bottomText: {
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'center',
-            fontSize: 15,
+            fontSize: getFontSize(15),
             letterSpacing: 0.42,
             color: '#555555',
         },
         textSuffix: {
-            fontSize: 18,
+            fontSize: getFontSize(18),
             letterSpacing: 0.5,
             color: '#555555',
         },
@@ -180,6 +177,31 @@ const RideTile: React.FC<Props> = ({
         iconTop: {
             marginLeft: 0,
             marginTop: 5,
+        },
+        bikeClockIconFontWrap: {
+            marginRight: getHorizontalPx(7),
+            top: getHorizontalPx(2),
+        },
+        bikeIconFont: {
+            marginLeft: 0,
+            marginRight: getHorizontalPx(5),
+            fontFamily: 'mykross',
+            fontSize: getFontSize(17),
+        },
+        clockIconFont: {
+            marginLeft: 0,
+            marginRight: getHorizontalPx(5),
+            fontFamily: 'mykross',
+            fontSize: getFontSize(15.5),
+        },
+        iconFontWrap: {
+            marginRight: getVerticalPx(7),
+        },
+        iconFont: {
+            marginLeft: 0,
+            marginRight: getHorizontalPx(5),
+            fontFamily: 'mykross',
+            fontSize: getFontSize(14.5),
         },
         likekSection: {
             marginTop: getHorizontalPx(7),
@@ -211,19 +233,17 @@ const RideTile: React.FC<Props> = ({
                 <View style={[styles.textLine, styles.line]}>
                     <View style={styles.verticalLine} />
                     <View style={styles.textContainer}>
-                        <BikeIcon
-                            containerStyle={styles.iconContainer}
-                            iconStyle={styles.iconTop}
-                        />
+                        <View style={styles.bikeClockIconFontWrap}>
+                            <Text style={styles.bikeIconFont}>i</Text>
+                        </View>
                         <Text style={styles.topText}>
                             {distance} <Text style={styles.textSuffix}>km</Text>
                         </Text>
                     </View>
                     <View style={styles.textContainer}>
-                        <ClockIcon
-                            containerStyle={styles.iconContainer}
-                            iconStyle={styles.iconTop}
-                        />
+                        <View style={styles.bikeClockIconFontWrap}>
+                            <Text style={styles.clockIconFont}>j</Text>
+                        </View>
                         <Text style={styles.topText}>
                             {time || '-:--'}{' '}
                             <Text style={styles.textSuffix}>h</Text>
@@ -234,19 +254,17 @@ const RideTile: React.FC<Props> = ({
                 <View style={[styles.textLine, styles.line]}>
                     <View style={styles.verticalLine} />
                     <View style={styles.textContainer}>
-                        <MountainIcon
-                            containerStyle={styles.iconContainer}
-                            iconStyle={styles.icon}
-                        />
+                        <View style={styles.iconFontWrap}>
+                            <Text style={styles.iconFont}>h</Text>
+                        </View>
                         <Text style={styles.bottomText}>
                             {level || trans.noInfo}
                         </Text>
                     </View>
                     <View style={styles.textContainer}>
-                        <WayIcon
-                            containerStyle={styles.iconContainer}
-                            iconStyle={styles.icon}
-                        />
+                        <View style={styles.iconFontWrap}>
+                            <Text style={styles.iconFont}>g</Text>
+                        </View>
                         <Text style={styles.bottomText}>
                             {type || trans.noInfo}
                         </Text>
@@ -258,7 +276,7 @@ const RideTile: React.FC<Props> = ({
                         likeGaved={reaction === likeValue?.enumValue}
                         onLikePress={onLikePressedHandler}
                         likeValue={currentLikeNumber}
-                        likeSize={22}
+                        likeSize={16}
                     />
                 </View>
             </View>

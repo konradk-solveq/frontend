@@ -8,6 +8,7 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
+    getFontSize,
 } from '../../../helpers/layoutFoo';
 import SmallRedBtn from '../../../sharedComponents/buttons/smallRedBtn';
 
@@ -121,12 +122,12 @@ const Tile: React.FC<Props> = ({
             fontFamily: 'DIN2014Narrow-Light',
             textAlign: 'left',
             letterSpacing: 0.5,
-            fontSize: 18,
-            lineHeight: 22,
+            fontSize: getFontSize(18),
+            lineHeight: getFontSize(22),
             color: '#555555',
         },
         button: {
-            height: 35,
+            height: getHorizontalPx(35),
             alignSelf: 'flex-end',
             marginRight: getHorizontalPx(34),
             marginBottom: getVerticalPx(30),
@@ -134,7 +135,7 @@ const Tile: React.FC<Props> = ({
         buttonText: {
             fontFamily: 'DIN2014Narrow-Light',
             letterSpacing: 0.5,
-            fontSize: 18,
+            fontSize: getFontSize(18),
         },
     });
 

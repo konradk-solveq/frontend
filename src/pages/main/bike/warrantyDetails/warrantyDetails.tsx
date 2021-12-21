@@ -5,10 +5,11 @@ import I18n from 'react-native-i18n';
 import {
     setObjSize,
     getVerticalPx,
-    getHeightPx,
     getHorizontalPx,
     getWidthPx,
     getCenterLeftPx,
+    getFontSize,
+    mainButtonsHeight,
 } from '../../../../helpers/layoutFoo';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
@@ -57,7 +58,7 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
         },
         title: {
             fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: 40,
+            fontSize: getFontSize(40),
             color: '#313131',
             textAlign: 'center',
         },
@@ -118,7 +119,7 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
         },
         btn: {
             marginTop: getVerticalPx(92),
-            height: getHeightPx(),
+            height: mainButtonsHeight(50),
             marginBottom: headHeight,
         },
         spaceOnEnd: {

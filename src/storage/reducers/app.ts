@@ -22,10 +22,12 @@ export interface AppState {
     currentTerms: TermsAndConditionsType;
     faq: {faq: FaqType[]} | {};
     showedRegulations: number | null;
+    showedNewAppVersion: string;
     regulation: RegulationType | {};
     policy: RegulationType | {};
     showedLocationInfo: boolean;
     location: BasicCoordsType | undefined;
+    routeDebugMode: boolean;
 }
 
 const initialState: AppState = {
@@ -55,10 +57,12 @@ const initialState: AppState = {
     },
     faq: {},
     showedRegulations: null,
+    showedNewAppVersion: '1.0.0',
     regulation: {},
     policy: {},
     showedLocationInfo: false,
     location: undefined,
+    routeDebugMode: false,
 };
 
 const appReducer = (state = initialState, action: any) => {
@@ -92,6 +96,11 @@ const appReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 showedRegulations: action.showedRegulations,
+            };
+        case actionTypes.SET_APP_SHOWED_NEW_APP_VERSION:
+            return {
+                ...state,
+                showedNewAppVersion: action.showedNewAppVersion,
             };
         case actionTypes.SET_APP_REGULATION: {
             const getVersion = (v: string) => {
@@ -212,6 +221,11 @@ const appReducer = (state = initialState, action: any) => {
                 ...state,
                 location: action.coords,
             };
+        case actionTypes.SET_ROUTE_DEBUG_MODE:
+            return {
+                ...state,
+                routeDebugMode: action.routeDebugMode,
+            };
         case actionTypes.CLEAR_APP_ERROR:
             return {
                 ...state,
@@ -236,6 +250,8 @@ const persistConfig = {
         'faq',
         'showedLocationInfo',
         'location',
+        'routeDebugMode',
+        'showedNewAppVersion',
     ],
     timeout: 20000,
 };

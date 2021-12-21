@@ -8,7 +8,6 @@ import {
     checkSessionAndRecreateIfNeededService,
 } from '../../services';
 import {I18n} from '../../../I18n/I18n';
-import logger from '../../utils/crashlytics';
 import {setAutorizationHeader, setUserAgentHeader} from '../../api/api';
 import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
 import {API_URL} from '@env';
@@ -74,9 +73,7 @@ export const register = (): AppThunk<Promise<void>> => async dispatch => {
         dispatch(setAuthSyncState(false));
     } catch (error) {
         console.log(`[register] - ${error}`);
-        logger.log(`[register] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'register');
 
@@ -108,9 +105,7 @@ export const logIn = (): AppThunk<Promise<void>> => async (
         dispatch(setAuthSyncState(false));
     } catch (error) {
         console.log(`[logIn] - ${error}`);
-        logger.log(`[logIn] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'logIn');
 
@@ -158,11 +153,9 @@ export const checkSession = (): AppThunk<Promise<void>> => async (
              */
             // dispatch(setAuthError(response.error, response.status));
             console.log(`[checkSession] - ${response.error}`);
-            logger.log(`[checkSession] - ${response.error}`);
             const error = new Error(
                 `[checkSession] - an error occured. Cannot refresh session data or re-login. - ${API_URL}`,
             );
-            logger.recordError(error);
 
             loggErrorWithScope(
                 error,
@@ -195,9 +188,7 @@ export const checkSession = (): AppThunk<Promise<void>> => async (
         dispatch(setAuthSyncState(false));
     } catch (error) {
         console.log(`[checkSession] - ${error}`);
-        logger.log(`[checkSession] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'checkSession');
 

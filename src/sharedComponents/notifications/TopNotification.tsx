@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useCallback, useState} from 'react';
 import {Platform, StyleSheet, Animated, View, ViewStyle} from 'react-native';
 
 import useStatusBarHeight from '@hooks/statusBarHeight';
-import {getVerticalPx} from '@helpers/layoutFoo';
+import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
 const expanded = getVerticalPx(60);
@@ -119,9 +119,9 @@ const styles = StyleSheet.create({
     },
     content: {
         fontFamily: 'DIN2014Narrow-Regular',
-        paddingHorizontal: 20,
-        paddingBottom: 5,
-        fontSize: 13,
+        paddingHorizontal: getHorizontalPx(20),
+        paddingBottom: getVerticalPx(5),
+        fontSize: getFontSize(13),
         letterSpacing: 0.4,
         color: '#ffffff',
         textAlign: 'center',

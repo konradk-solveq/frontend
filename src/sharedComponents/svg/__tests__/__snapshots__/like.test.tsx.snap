@@ -25,75 +25,38 @@ exports[`<Like /> Rendering Should match snapshot - checked 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "center",
-        "paddingHorizontal": 5,
+        "paddingHorizontal": 9.057971014492754,
       }
     }
   >
-    <RNSVGSvgView
-      align="xMidYMid"
-      bbHeight={28.985507246376812}
-      bbWidth={28.985507246376812}
-      focusable={false}
-      meetOrSlice={0}
-      minX={0}
-      minY={0}
+    <View
       style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-            "borderWidth": 0,
-          },
-          Object {
-            "height": 28.985507246376812,
-            "width": 28.985507246376812,
-          },
-          Object {
-            "flex": 0,
-            "height": 28,
-            "width": 28,
-          },
-        ]
+        Object {
+          "top": -3.6231884057971016,
+        }
       }
-      vbHeight={16}
-      vbWidth={16}
     >
-      <RNSVGGroup>
-        <RNSVGGroup
-          fill={null}
-          propList={
-            Array [
-              "fill",
-            ]
+      <Text
+        style={
+          Object {
+            "color": "#3587EA",
+            "fontFamily": "mykross",
+            "fontSize": 12,
+            "marginLeft": 0,
+            "marginRight": 9.057971014492754,
           }
-        >
-          <RNSVGPath
-            d="M0 0h16v16H0z"
-          />
-          <RNSVGPath
-            d="M4.67 7.33v5.34c0 .36-.3.66-.67.66H2.67a.67.67 0 01-.67-.66V8c0-.37.3-.67.67-.67h2c1.47 0 2.66-1.2 2.66-2.66V4A1.33 1.33 0 0110 4v3.33h2c.74 0 1.33.6 1.33 1.34L12.67 12c-.2.84-.74 1.38-1.34 1.33H6.67a2 2 0 01-2-2"
-            fill={4281698282}
-            propList={
-              Array [
-                "fill",
-                "stroke",
-                "strokeLinecap",
-                "strokeLinejoin",
-              ]
-            }
-            stroke={4294967295}
-            strokeLinecap={1}
-            strokeLinejoin={1}
-          />
-        </RNSVGGroup>
-      </RNSVGGroup>
-    </RNSVGSvgView>
+        }
+      >
+        L
+      </Text>
+    </View>
     <Text
       style={
         Object {
           "color": "#313131",
           "fontFamily": "DIN2014Narrow-Regular",
           "fontSize": 23,
-          "marginLeft": 5,
+          "marginLeft": 9.057971014492754,
           "position": "relative",
         }
       }
@@ -127,75 +90,38 @@ exports[`<Like /> Rendering Should match snapshot - unchecked 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "center",
-        "paddingHorizontal": 5,
+        "paddingHorizontal": 9.057971014492754,
       }
     }
   >
-    <RNSVGSvgView
-      align="xMidYMid"
-      bbHeight={28.985507246376812}
-      bbWidth={28.985507246376812}
-      focusable={false}
-      meetOrSlice={0}
-      minX={0}
-      minY={0}
+    <View
       style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-            "borderWidth": 0,
-          },
-          Object {
-            "height": 28.985507246376812,
-            "width": 28.985507246376812,
-          },
-          Object {
-            "flex": 0,
-            "height": 28,
-            "width": 28,
-          },
-        ]
+        Object {
+          "top": -3.6231884057971016,
+        }
       }
-      vbHeight={16}
-      vbWidth={16}
     >
-      <RNSVGGroup>
-        <RNSVGGroup
-          fill={null}
-          fillRule={0}
-          propList={
-            Array [
-              "fill",
-              "fillRule",
-            ]
+      <Text
+        style={
+          Object {
+            "color": "#3587EA",
+            "fontFamily": "mykross",
+            "fontSize": 12,
+            "marginLeft": 0,
+            "marginRight": 9.057971014492754,
           }
-        >
-          <RNSVGPath
-            d="M0 0h16v16H0z"
-          />
-          <RNSVGPath
-            d="M4.67 7.33v5.34c0 .36-.3.66-.67.66H2.67a.67.67 0 01-.67-.66V8c0-.37.3-.67.67-.67h2c1.47 0 2.66-1.2 2.66-2.66V4A1.33 1.33 0 0110 4v3.33h2c.74 0 1.33.6 1.33 1.34L12.67 12c-.2.84-.74 1.38-1.34 1.33H6.67a2 2 0 01-2-2"
-            propList={
-              Array [
-                "stroke",
-                "strokeLinecap",
-                "strokeLinejoin",
-              ]
-            }
-            stroke={4281698282}
-            strokeLinecap={1}
-            strokeLinejoin={1}
-          />
-        </RNSVGGroup>
-      </RNSVGGroup>
-    </RNSVGSvgView>
+        }
+      >
+        l
+      </Text>
+    </View>
     <Text
       style={
         Object {
           "color": "#313131",
           "fontFamily": "DIN2014Narrow-Regular",
           "fontSize": 23,
-          "marginLeft": 5,
+          "marginLeft": 9.057971014492754,
           "position": "relative",
         }
       }
@@ -229,75 +155,38 @@ exports[`<Like /> Rendering Should match snapshot - with custom size - unchecked
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "center",
-        "paddingHorizontal": 5,
+        "paddingHorizontal": 9.057971014492754,
       }
     }
   >
-    <RNSVGSvgView
-      align="xMidYMid"
-      bbHeight={39.85507246376812}
-      bbWidth={39.85507246376812}
-      focusable={false}
-      meetOrSlice={0}
-      minX={0}
-      minY={0}
+    <View
       style={
-        Array [
-          Object {
-            "backgroundColor": "transparent",
-            "borderWidth": 0,
-          },
-          Object {
-            "height": 39.85507246376812,
-            "width": 39.85507246376812,
-          },
-          Object {
-            "flex": 0,
-            "height": 39,
-            "width": 39,
-          },
-        ]
+        Object {
+          "top": -3.6231884057971016,
+        }
       }
-      vbHeight={16}
-      vbWidth={16}
     >
-      <RNSVGGroup>
-        <RNSVGGroup
-          fill={null}
-          fillRule={0}
-          propList={
-            Array [
-              "fill",
-              "fillRule",
-            ]
+      <Text
+        style={
+          Object {
+            "color": "#3587EA",
+            "fontFamily": "mykross",
+            "fontSize": 22,
+            "marginLeft": 0,
+            "marginRight": 9.057971014492754,
           }
-        >
-          <RNSVGPath
-            d="M0 0h16v16H0z"
-          />
-          <RNSVGPath
-            d="M4.67 7.33v5.34c0 .36-.3.66-.67.66H2.67a.67.67 0 01-.67-.66V8c0-.37.3-.67.67-.67h2c1.47 0 2.66-1.2 2.66-2.66V4A1.33 1.33 0 0110 4v3.33h2c.74 0 1.33.6 1.33 1.34L12.67 12c-.2.84-.74 1.38-1.34 1.33H6.67a2 2 0 01-2-2"
-            propList={
-              Array [
-                "stroke",
-                "strokeLinecap",
-                "strokeLinejoin",
-              ]
-            }
-            stroke={4281698282}
-            strokeLinecap={1}
-            strokeLinejoin={1}
-          />
-        </RNSVGGroup>
-      </RNSVGGroup>
-    </RNSVGSvgView>
+        }
+      >
+        l
+      </Text>
+    </View>
     <Text
       style={
         Object {
           "color": "#313131",
           "fontFamily": "DIN2014Narrow-Regular",
           "fontSize": 23,
-          "marginLeft": 5,
+          "marginLeft": 9.057971014492754,
           "position": "relative",
         }
       }

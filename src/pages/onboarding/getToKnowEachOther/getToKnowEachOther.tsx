@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react';
 import {
     StyleSheet,
@@ -20,6 +21,8 @@ import {
     getVertical,
     getCenterLeftPx,
     getPosWithMinHeight,
+    getFontSize,
+    mainButtonsHeight,
 } from '../../../helpers/layoutFoo';
 import {validateData} from '../../../utils/validation/validation';
 import {userUserValidationRules} from '../../../models/user.model';
@@ -31,6 +34,7 @@ import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
 import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
 import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
 import {OneLineText} from '@sharedComponents/inputs';
+import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 const getErrorMessage = (value: string, rules: any[]) => {
     const trans: any = I18n.t('GetToKnowEachOther');
@@ -121,13 +125,11 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         goFoward();
     };
 
-    const [headHeight, setHeadHeight] = useState(0);
-
     setObjSize(334, 50);
     const bottons = {
         position: 'absolute',
         width: getWidthPx(),
-        height: 50,
+        height: mainButtonsHeight(50),
         left: getCenterLeftPx(),
         display: 'flex',
         flexDirection: 'row',
@@ -136,14 +138,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     };
 
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-        },
-        scroll: {
-            top: headHeight,
-        },
         area: {
             width: '100%',
             height: getVerticalPx(896) - keyboardHeight,
@@ -154,8 +148,8 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             left: getCenterLeftPx(),
             top: getVertical(138 - 100),
             fontFamily: 'DIN2014Narrow-Light',
-            fontSize: 30,
-            lineHeight: 38,
+            fontSize: getFontSize(30),
+            lineHeight: getFontSize(38),
             color: '#313131',
         },
         logo: {
@@ -165,22 +159,23 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             width: getHorizontalPx(110),
             height: getHorizontalPx(20),
         },
-        inputAndPlaceholder: getPosWithMinHeight(334, 90, 380 - 100, 90),
+        inputAndPlaceholder: getPosWithMinHeight(334, 90, 380 - 150, 50),
         input: {
-            height: 50,
+            height: getHorizontalPx(50),
             marginTop: getHorizontalPx(6),
         },
         bottons,
         btn: {
+            height: mainButtonsHeight(50),
             width: getWidthPxOf(157),
         },
     });
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={comStyle.container}>
             <ScrollView
                 keyboardShouldPersistTaps={'always'}
-                style={styles.scroll}>
+                style={comStyle.scroll}>
                 <View style={styles.area}>
                     <Text style={styles.title}>{trans.title}</Text>
 
@@ -218,7 +213,6 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
                 onpress={() =>
                     navigation.navigate(OnboardingStackRoute.PERMITS_SCREEN)
                 }
-                getHeight={setHeadHeight}
                 inner={''}
             />
 

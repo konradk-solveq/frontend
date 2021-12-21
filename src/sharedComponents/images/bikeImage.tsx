@@ -1,3 +1,4 @@
+import {getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {View, Image, StyleSheet, ViewStyle, ImageStyle} from 'react-native';
 
@@ -29,10 +30,8 @@ const BikeImage: React.FC<IProps> = ({
 
 const styles = StyleSheet.create({
     container: {
-        width: 260,
-        height: 152,
-        marginHorizontal: 79,
-        marginTop: 20,
+        height: getHorizontalPx(195),
+        marginTop: getHorizontalPx(20),
     },
     image: {
         height: '100%',

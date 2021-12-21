@@ -1,44 +1,89 @@
-import React from 'react';
-import {Platform} from 'react-native';
-import {View, Dimensions, StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, StyleSheet, ViewStyle} from 'react-native';
+import Animated, {
+    useAnimatedProps,
+    useSharedValue,
+} from 'react-native-reanimated';
 import Svg, {Path} from 'react-native-svg';
-import {
-    getHorizontalPx,
-    getVerticalPx,
-} from '../../../../../../helpers/layoutFoo';
 
-const {width} = Dimensions.get('window');
+import {getHorizontalPx} from '@helpers/layoutFoo';
 
-const isIOS = Platform.OS === 'ios';
-const shapeWidth = getHorizontalPx(414);
-const shapeHeight = getVerticalPx(142);
+const AnimatedPath = Animated.createAnimatedComponent(Path);
 
-const CurvedShape: React.FC = () => {
+const CONTAINER_WIDTH = getHorizontalPx(414);
+const CONTAINER_HEIGHT = getHorizontalPx(116);
+const SIDE_HEIGHT = getHorizontalPx(116);
+const CENTER_HEIGHT = getHorizontalPx(90);
+
+/** Left Top Corner X Axis Position */
+const lw = getHorizontalPx(-1);
+/** Right Top Corner X Axis Position */
+const rw = getHorizontalPx(416);
+/** Bezier Point To Make Curve Draw From Center */
+const cw = getHorizontalPx(81);
+
+const viewBox = '0 0 ' + CONTAINER_WIDTH + ' ' + CONTAINER_HEIGHT;
+
+interface IProps {
+    style?: ViewStyle;
+}
+
+const CurvedShape: React.FC<IProps> = ({style}: IProps) => {
+    /** Left And Right Height On Sides */
+    const sh = useSharedValue(SIDE_HEIGHT);
+    /** Central Height Bezier Point */
+    const ch = useSharedValue(CENTER_HEIGHT);
+
+    useEffect(() => {
+        sh.value = SIDE_HEIGHT;
+        ch.value = CENTER_HEIGHT;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const animatedProps = useAnimatedProps(() => {
+        // start of drawing
+        // ↓
+        // lw----------------------------------------------←-rw
+        // ↓                                                  |
+        // |                                                  |
+        // |          cw............ch............cw          |
+        // |         _______--------  --------_______         ↑
+        // sh→___----                                ----____sh
+
+        return {
+            d: `M ${lw},0 ${rw},0 ${rw},${sh.value} C ${rw},${sh.value} ${
+                rw - cw
+            },${ch.value} ${rw / 2},${ch.value} C ${cw},${ch.value} ${lw},${
+                sh.value
+            } ${lw},${sh.value} Z`,
+            fill: '#fff',
+        };
+    });
+
+    const styles = StyleSheet.create({
+        container: {
+            position: 'absolute',
+            width: CONTAINER_WIDTH,
+            height: CONTAINER_HEIGHT,
+            top: getHorizontalPx(-26),
+        },
+        svgContainer: {
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: CONTAINER_WIDTH,
+            height: CONTAINER_HEIGHT,
+            transform: [{rotateX: '180deg'}], // flip up side down
+        },
+    });
+
     return (
         <View style={styles.container}>
-            <Svg
-                height="100%"
-                width="100%"
-                viewBox={`0 0 ${shapeWidth} ${shapeHeight}`}>
-                <Path
-                    d="m 0,94.362406 c 0,0 82.50881,21.581224 207,21.581224 124.49119,0 207,-21.581224 207,-21.581224 V 180.06156 H 0 Z"
-                    fill="white"
-                    stroke="white"
-                />
+            <Svg viewBox={viewBox} style={[styles.svgContainer, style]}>
+                <AnimatedPath animatedProps={animatedProps} stroke="none" />
             </Svg>
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        width: width,
-        aspectRatio: shapeWidth / shapeHeight,
-        position: 'absolute',
-        top: getVerticalPx(isIOS ? -125 : -140),
-        left: 0,
-        right: 0,
-    },
-});
 
 export default CurvedShape;
