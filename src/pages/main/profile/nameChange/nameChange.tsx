@@ -9,8 +9,8 @@ import {
     Platform,
 } from 'react-native';
 import I18n from 'react-native-i18n';
-import {setUserName} from '../../../../storage/actions/index';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {setUserName} from '@storage/actions';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {
     setObjSize,
@@ -22,14 +22,14 @@ import {
     getPosWithMinHeight,
     getFontSize,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
-import {validateData} from '../../../../utils/validation/validation';
-import {userUserValidationRules} from '../../../../models/user.model';
-import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
+} from '@helpers/layoutFoo';
+import {validateData} from '@utils/validation/validation';
+import {userUserValidationRules} from '@models/user.model';
+import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 
-import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
+import OneLineTekst from '@sharedComponents/inputs/oneLineTekst';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -49,9 +49,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
     const iosOffset = isIOS ? -(getAppLayoutConfig.statusBarH() || 40) : 0;
 
     useEffect(() => {
-        if (typeof name === 'string') {
-            setInputName(name);
-        }
+        setInputName(name);
     }, [name]);
 
     const handleSetInputName = (value: string) => {
@@ -59,19 +57,19 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
         setInputName(value);
     };
 
-    const hendleValidationOk = (value: string) => {
+    const handleValidationOk = (value: string) => {
         return validateData(userUserValidationRules.userName, value);
     };
 
-    const hadleOnpressWithName = (inputName: string) => {
-        if (inputName.length === 0) {
-            dispatch(setUserName(inputName));
+    const hadleOnpressWithName = (inputValue: string) => {
+        if (inputValue.length === 0) {
+            dispatch(setUserName(inputValue));
             navigation.goBack();
             return;
         }
 
         if (!validateData(userUserValidationRules.userName, inputName)) {
-            setForceMessageWrong('Nazwa ma niepoprawną długość');
+            setForceMessageWrong(trans.invalidNameLengthError);
             setValidationStatus(false);
         }
 
@@ -128,7 +126,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             width: getWidthPx(),
             height: mainButtonsHeight(50),
             left: getCenterLeftPx(),
-            bottom: getVerticalPx((isIOS ? 20 : 65) + 100), // 100 - przesunięcie dla scroll o headera
+            bottom: getVerticalPx(65 + 100), // 100 - przesunięcie dla scroll o headera
         },
         keyboardContainer: {
             position: 'absolute',
@@ -136,6 +134,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             right: 0,
             bottom: 0,
             top: 0,
+            paddingVertical: isIOS ? getVertical(80) : 0,
         },
     });
 
@@ -159,10 +158,11 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
                             <OneLineTekst
                                 placeholder={trans.placeholder}
                                 onChangeText={handleSetInputName}
-                                validationOk={hendleValidationOk}
+                                validationOk={handleValidationOk}
                                 value={inputName}
                                 maxLength={20}
                                 validationStatus={setValidationStatus}
+                                messageWrong={trans.invalidNameLengthError}
                                 forceMessageWrong={forceMessageWrong}
                             />
                         </View>

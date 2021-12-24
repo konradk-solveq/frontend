@@ -1,9 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
 import {persistReducer} from 'redux-persist';
+import {SessionDataType} from '@interfaces/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {SessionDataType} from '../../interfaces/api';
+import {UserAuthStateT} from '@type/auth';
 
-interface AuthState {
+export interface AuthState {
     userId: string;
     deviceToken: string;
     recoveryCodes: string[];
@@ -12,6 +13,7 @@ interface AuthState {
     error: string;
     statusCode: number;
     loading: boolean;
+    userAuthState: UserAuthStateT;
 }
 
 const initialState: AuthState = {
@@ -29,6 +31,7 @@ const initialState: AuthState = {
     error: '',
     statusCode: 200,
     loading: false,
+    userAuthState: 'uknown',
 };
 
 const authReducer = (state = initialState, action: any) => {
@@ -70,15 +73,26 @@ const authReducer = (state = initialState, action: any) => {
             };
         }
         case actionTypes.SET_AUTH_STATE: {
+            const authState = action.authState || 'mobile';
+            const isAuth = action.isAuth === undefined ? true : action.isAuth;
             return {
                 ...state,
-                isAuth: true,
+                isAuth: isAuth,
+                userAuthState: authState,
             };
         }
         case actionTypes.SET_NO_AUTH_STATE: {
+            const authState = action.authState || 'mobile';
             return {
                 ...state,
                 isAuth: false,
+                userAuthState: authState,
+            };
+        }
+        case actionTypes.LOGOUT_USER: {
+            return {
+                ...initialState,
+                userAuthState: 'loggedout',
             };
         }
     }
@@ -95,6 +109,7 @@ const persistConfig = {
         'recoveryCodes',
         'isAuth',
         'sessionData',
+        'userAuthState',
     ],
     timeout: 20000,
 };

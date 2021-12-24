@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {StyleSheet, Dimensions, SafeAreaView, View, Text} from 'react-native';
-import Svg, {G, Path, Circle} from 'react-native-svg';
+import React from 'react';
+import {StyleSheet} from 'react-native';
+import {BottomTabBarOptions} from '@react-navigation/bottom-tabs';
+import Svg, {G, Path} from 'react-native-svg';
 
-import {Tab} from '../../navigation/stack';
+import {Tab} from '@navigation/stack';
 
 import Home from './home/home';
 import World from './world/world';
 import Bike from './bike/bike';
 import Profile from './profile/profile';
 
-import {RegularStackRoute} from '../../navigation/route';
 import {getHorizontalPx} from '../../helpers/layoutFoo';
 
 interface Props {
@@ -17,7 +17,10 @@ interface Props {
     route: any;
 }
 
-const TabMenu: React.FC<Props> = (props: Props) => {
+/**
+ * Contains screens (tabs): HOME, WORLD, BIKE, PROFILE
+ */
+const TabMenu: React.FC<Props> = () => {
     const iconSize = getHorizontalPx(34);
     const iconMargin = getHorizontalPx(10);
     const styles = StyleSheet.create({
@@ -29,10 +32,8 @@ const TabMenu: React.FC<Props> = (props: Props) => {
         },
     });
 
-    const tabBarOptions = {
-        showIcon: true,
+    const tabBarOptions: BottomTabBarOptions = {
         showLabel: false,
-        lazyLoad: true,
         style: {
             backgroundColor: 'transparent',
             borderTopWidth: 0,
@@ -50,14 +51,9 @@ const TabMenu: React.FC<Props> = (props: Props) => {
     };
 
     return (
-        <Tab.Navigator
-            initialRouteName={RegularStackRoute.HOME_SCREEN}
-            tabBarOptions={tabBarOptions}
-            // swipeEnabled={true}
-            // animationEnabled={true}
-        >
+        <Tab.Navigator initialRouteName="HomeTab" tabBarOptions={tabBarOptions}>
             <Tab.Screen
-                name={RegularStackRoute.HOME_SCREEN}
+                name="HomeTab"
                 component={Home}
                 options={{
                     tabBarLabel: '',
@@ -83,7 +79,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
             />
 
             <Tab.Screen
-                name={RegularStackRoute.KROSS_WORLD_SCREEN}
+                name="WorldTab"
                 component={World}
                 options={{
                     tabBarLabel: '',
@@ -109,7 +105,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
             />
 
             <Tab.Screen
-                name={RegularStackRoute.BIKE_SCREEN}
+                name="BikeTab"
                 component={Bike}
                 options={{
                     tabBarLabel: '',
@@ -133,7 +129,7 @@ const TabMenu: React.FC<Props> = (props: Props) => {
             />
 
             <Tab.Screen
-                name={RegularStackRoute.PROFILE_SCREEN}
+                name="ProfileTab"
                 component={Profile}
                 options={{
                     tabBarLabel: '',

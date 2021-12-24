@@ -5,9 +5,9 @@ import DeviceInfo from 'react-native-device-info';
 
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import Bike_0 from './bike_0';
-import Bike_1 from '../../../onboarding/newBeginning/bike_4';
-import Bike_2 from '../../../onboarding/newBeginning/bike_5';
-import Bike_3 from '../../../onboarding/newBeginning/bike_2';
+import Bike_1 from '../../../onboarding/tutorial/bike_4';
+import Bike_2 from '../../../onboarding/tutorial/bike_5';
+import Bike_3 from '../../../onboarding/tutorial/bike_2';
 
 import {
     setObjSize,

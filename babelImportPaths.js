@@ -56,6 +56,10 @@ module.exports = [
         rootPathPrefix: '@storage',
     },
     {
+        rootPathSuffix: './src/theme',
+        rootPathPrefix: '@theme',
+    },
+    {
         rootPathSuffix: './src/type',
         rootPathPrefix: '@type',
     },

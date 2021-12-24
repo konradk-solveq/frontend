@@ -207,8 +207,8 @@ const routesReducer = (state = initialStateList, action: any) => {
                 routeToShort: false,
             };
         }
-        case actionTypes.LOGOUT: {
-            return initialStateList;
+        case actionTypes.LOGOUT_USER: {
+            return {...initialStateList};
         }
     }
 

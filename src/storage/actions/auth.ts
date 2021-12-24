@@ -1,17 +1,26 @@
-import {AppThunk} from '../thunk';
-import * as actionTypes from './actionTypes';
+import {batch} from 'react-redux';
+import {AppThunk} from '@storage/thunk';
+import * as actionTypes from '@storage/actions/actionTypes';
 
-import {SessionDataType} from '../../interfaces/api';
 import {
     registerMobileDevice,
-    logInService,
+    logInMobileService,
     checkSessionAndRecreateIfNeededService,
-} from '../../services';
-import {I18n} from '../../../I18n/I18n';
-import {setAutorizationHeader, setUserAgentHeader} from '../../api/api';
-import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+    logOutService,
+    logInService,
+} from '@services';
+import {I18n} from '@translations/I18n';
+import {setAutorizationHeader, setUserAgentHeader} from '@api/api';
+import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {API_URL} from '@env';
 import {loggErrorWithScope, sentryLogLevel} from '@sentryLogger/sentryLogger';
+import {AppDispatch} from '@hooks/redux';
+import {AuthState} from '@storage/reducers/auth';
+import {AppState} from '@storage/reducers/app';
+import {setAuthData, setAuthDataSessionData} from './authData';
+import {AuthDataState} from '@storage/reducers/authData';
+import {UserAuthStateT} from '@type/auth';
+import {LoginFormDataResult} from '@interfaces/form';
 
 export const setAuthError = (error: string, statusCode: number) => ({
     type: actionTypes.SET_AUTH_ERROR,
@@ -28,32 +37,37 @@ export const setAuthSyncState = (state: boolean) => ({
     state: state,
 });
 
-export const setAuthData = (
-    userId: string,
-    deviceToken: string,
-    recoveryCodes: string[],
+export const setAuthorizationState = (
+    authState?: UserAuthStateT,
+    isAuth?: boolean,
 ) => ({
-    type: actionTypes.SET_AUTH_DATA,
-    userId: userId,
-    deviceToken: deviceToken,
-    recoveryCodes: recoveryCodes,
-});
-
-export const setAuthSessionData = (sessionData: SessionDataType) => ({
-    type: actionTypes.SET_AUTH_SESSION_DATA,
-    sessionData: sessionData,
-});
-
-export const setAuthorizationState = () => ({
     type: actionTypes.SET_AUTH_STATE,
+    authState: authState,
+    isAuth: isAuth,
 });
 
 export const clearAuthorizationStateState = () => ({
     type: actionTypes.SET_NO_AUTH_STATE,
 });
 
-export const register = (): AppThunk<Promise<void>> => async dispatch => {
-    dispatch(setAuthSyncState(true));
+export const setLogoutUser = () => ({
+    type: actionTypes.LOGOUT_USER,
+});
+
+const setSyncState = (
+    dispatch: AppDispatch,
+    state: boolean,
+    skip?: boolean,
+) => {
+    if (!skip) {
+        dispatch(setAuthSyncState(state));
+    }
+};
+
+export const register = (
+    skipLoadingState?: boolean,
+): AppThunk<Promise<void>> => async dispatch => {
+    setSyncState(dispatch, true, skipLoadingState);
     try {
         const response = await registerMobileDevice();
 
@@ -62,15 +76,19 @@ export const register = (): AppThunk<Promise<void>> => async dispatch => {
             return;
         }
 
-        dispatch(clearAuthError());
-        dispatch(
-            setAuthData(
-                response.data.userId,
-                response.data.deviceToken,
-                response.data.recoveryCodes,
-            ),
-        );
-        dispatch(setAuthSyncState(false));
+        batch(() => {
+            dispatch(clearAuthError());
+            dispatch(
+                setAuthData(
+                    response.data.userId,
+                    response.data.deviceToken,
+                    response.data.recoveryCodes,
+                ),
+            );
+            dispatch(setAuthorizationState('mobile', false));
+        });
+
+        setSyncState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[register] - ${error}`);
         const err = convertToApiError(error);
@@ -83,15 +101,16 @@ export const register = (): AppThunk<Promise<void>> => async dispatch => {
     }
 };
 
-export const logIn = (): AppThunk<Promise<void>> => async (
-    dispatch,
-    getState,
-) => {
-    dispatch(setAuthSyncState(true));
+export const logIn = (
+    data: LoginFormDataResult,
+    skipLoadingState?: boolean,
+): AppThunk<Promise<void>> => async dispatch => {
+    setSyncState(dispatch, true, skipLoadingState);
     try {
-        const {userId, deviceToken} = getState().auth;
-        const response = await logInService(userId, deviceToken);
-
+        const response = await logInService(
+            data.email.trim(),
+            data.password.trim(),
+        );
         if (response.error || !response.data) {
             dispatch(setAuthError(response.error, response.status));
             return;
@@ -99,10 +118,14 @@ export const logIn = (): AppThunk<Promise<void>> => async (
 
         setUserAgentHeader();
         setAutorizationHeader(response.data.access_token);
-        dispatch(clearAuthError());
-        dispatch(setAuthSessionData(response.data));
-        dispatch(setAuthorizationState());
-        dispatch(setAuthSyncState(false));
+
+        batch(() => {
+            dispatch(clearAuthError());
+            dispatch(setAuthDataSessionData(response.data)); // change to store in secure datas
+            dispatch(setAuthorizationState('authenticated'));
+        });
+
+        setSyncState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[logIn] - ${error}`);
         const err = convertToApiError(error);
@@ -115,26 +138,67 @@ export const logIn = (): AppThunk<Promise<void>> => async (
     }
 };
 
-export const checkSession = (): AppThunk<Promise<void>> => async (
-    dispatch,
-    getState,
-) => {
-    dispatch(setAuthSyncState(true));
+export const mobileLogIn = (
+    skipLoadingState?: boolean,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    setSyncState(dispatch, true, skipLoadingState);
     try {
-        const {isOffline, internetConnectionInfo} = getState().app;
-        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setAuthSyncState(false));
+        const {userId, deviceToken}: AuthDataState = getState().authData;
+        const response = await logInMobileService(userId, deviceToken);
+
+        if (response.error || !response.data) {
+            dispatch(setAuthError(response.error, response.status));
             return;
         }
 
-        const {userId, deviceToken, sessionData} = getState().auth;
+        setUserAgentHeader();
+        setAutorizationHeader(response.data.access_token);
+
+        batch(() => {
+            dispatch(clearAuthError());
+            dispatch(setAuthDataSessionData(response.data));
+            dispatch(setAuthorizationState());
+        });
+
+        setSyncState(dispatch, false, skipLoadingState);
+    } catch (error) {
+        console.log(`[mobileLogIn] - ${error}`);
+        const err = convertToApiError(error);
+
+        loggErrorWithScope(err, 'mobileLogIn');
+
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setAuthError(errorMessage, 500));
+        dispatch(clearAuthorizationStateState());
+    }
+};
+
+export const checkSession = (
+    skipLoadingState?: boolean,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    setSyncState(dispatch, true, skipLoadingState);
+    try {
+        const {isOffline, internetConnectionInfo} = getState().app;
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            setSyncState(dispatch, false, skipLoadingState);
+            return;
+        }
+
+        const {userAuthState}: AuthState = getState().auth;
+        const {
+            userId,
+            deviceToken,
+            sessionData,
+        }: AuthDataState = getState().authData;
         const token: string = sessionData?.access_token;
-        const expirationDate: Date = sessionData?.expiration_date;
+        const expirationDate = sessionData?.expiration_date;
         const refreshToken: string = sessionData?.refresh_token;
 
         if (!token || !expirationDate || !refreshToken) {
-            dispatch(logIn());
-            return;
+            if (userAuthState === 'mobile') {
+                dispatch(mobileLogIn());
+                return;
+            }
         }
 
         const response = await checkSessionAndRecreateIfNeededService(
@@ -143,16 +207,18 @@ export const checkSession = (): AppThunk<Promise<void>> => async (
             token,
             expirationDate,
             refreshToken,
+            userAuthState !== 'mobile',
         );
 
         if (response.error || !response.data) {
             /**
-             * Registration and login process are silent to user.
-             * So there is no way to show error, but maybe it should be
-             * kept for future usage.
+             * Mobile registration and login process are silent to user.
+             * Error can be shown conditionally
              */
-            // dispatch(setAuthError(response.error, response.status));
-            console.log(`[checkSession] - ${response.error}`);
+            if (userAuthState === 'authenticated') {
+                dispatch(setAuthError(response.error, response.status));
+            }
+            console.error(`[checkSession] - ${response.error}`);
             const error = new Error(
                 `[checkSession] - an error occured. Cannot refresh session data or re-login. - ${API_URL}`,
             );
@@ -164,13 +230,13 @@ export const checkSession = (): AppThunk<Promise<void>> => async (
                 sentryLogLevel.Log,
             );
 
-            dispatch(setAuthSyncState(false));
+            setSyncState(dispatch, false, skipLoadingState);
             return;
         }
 
         /* Check if stale */
         if (response.status === 304) {
-            dispatch(setAuthSyncState(false));
+            setSyncState(dispatch, false, skipLoadingState);
             return;
         }
 
@@ -178,19 +244,65 @@ export const checkSession = (): AppThunk<Promise<void>> => async (
         if (refreshToken !== response.data?.refresh_token) {
             setUserAgentHeader();
             setAutorizationHeader(response.data.access_token);
-            dispatch(clearAuthError());
-            dispatch(setAuthSessionData(response.data));
-            dispatch(setAuthorizationState());
-            dispatch(setAuthSyncState(false));
+
+            batch(() => {
+                dispatch(clearAuthError());
+                dispatch(setAuthDataSessionData(response.data));
+                dispatch(setAuthorizationState());
+            });
+            setSyncState(dispatch, false, skipLoadingState);
             return;
         }
 
-        dispatch(setAuthSyncState(false));
+        setSyncState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[checkSession] - ${error}`);
         const err = convertToApiError(error);
 
         loggErrorWithScope(err, 'checkSession');
+
+        const errorMessage = I18n.t('dataAction.apiError');
+        dispatch(setAuthError(errorMessage, 500));
+    }
+};
+
+export const logOut = (
+    skipLoadingState?: boolean,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    setSyncState(dispatch, true, skipLoadingState);
+    try {
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(
+                setAuthError(I18n.t('dataAction.noInternetConnection'), 500),
+            );
+            setSyncState(dispatch, false, skipLoadingState);
+            return;
+        }
+
+        const {userAuthState}: AuthState = getState().auth;
+        if (userAuthState === 'uknown' || userAuthState === 'loggedout') {
+            setSyncState(dispatch, false, skipLoadingState);
+            return;
+        }
+
+        const response = await logOutService();
+
+        if (response.error) {
+            const trans: any = I18n.t('Profile.auth');
+            dispatch(setAuthError(trans.error, response.status));
+            loggErrorWithScope(response.error, 'logOut');
+            return;
+        }
+
+        dispatch(setLogoutUser());
+
+        setSyncState(dispatch, false, skipLoadingState);
+    } catch (error) {
+        console.log(`[logOut] - ${error}`);
+        const err = convertToApiError(error);
+
+        loggErrorWithScope(err, 'logOut');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));

@@ -230,7 +230,7 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     setObjSize(w, h);
     let height = getHeightPx();
     let res: {
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         width: number;
         height: number;
         left: number;

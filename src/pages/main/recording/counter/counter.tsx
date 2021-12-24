@@ -51,7 +51,7 @@ const returnToPreviousScreen = (nav: any) => {
         nav.goBack();
         return;
     }
-    nav.replace(BothStackRoute.MAIN_MENU_SCREEN);
+    nav.replace(BothStackRoute.TAB_MENU_SCREEN);
 };
 
 const setTotalTime = (pTime: {start: number; total: number}) => {

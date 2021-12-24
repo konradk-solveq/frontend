@@ -5,7 +5,7 @@ export const AuthStackRoute = {
 };
 
 export const OnboardingStackRoute = {
-    NEW_BEGINNING_SCREEN: 'NewBeginning',
+    NEW_BEGINNING_SCREEN: 'Tutorial',
     PERMITS_SCREEN: 'Permits',
     GET_TO_KNOW_EACH_OTHER_SCREEN: 'GetToKnowEachOther',
 
@@ -24,10 +24,10 @@ export const RegularStackRoute = {
     NEW_APP_VERSION_SCREEN: 'NewAppVersion',
 
     // Home
-    HOME_SCREEN: 'Home',
+    HOME_SCREEN: 'HomeTab',
 
     // World
-    KROSS_WORLD_SCREEN: 'World',
+    KROSS_WORLD_SCREEN: 'WorldTab',
     ROUTE_DETAILS_SCREEN: 'RouteDetails',
     EDIT_DETAILS_SCREEN: 'EditDetails',
     MAP_PREVIEW_SCREEN: 'MapPreview',
@@ -38,14 +38,14 @@ export const RegularStackRoute = {
     SHORT_ROUTE_SCREEN: 'ShortRouteScreen',
 
     // Bike
-    BIKE_SCREEN: 'Bike',
+    BIKE_SCREEN: 'BikeTab',
     SERVICES_MAP_SCREEN: 'ServicesMap',
     REVIEWS_DETAILS_SCREEN: 'ReviewsDetails',
     BIKE_PARAMS_SCREEN: 'BikeParams',
     WARRANTY_DETAILS_SCREEN: 'WarrantyDetails',
 
     // Profile
-    PROFILE_SCREEN: 'Profile',
+    PROFILE_SCREEN: 'ProfileTab',
     NAME_CHANGE_SCREEN: 'NameChange',
     ABOUT_APP_SCREEN: 'AboutApp',
     HELP_SCREEN: 'Help',
@@ -53,10 +53,10 @@ export const RegularStackRoute = {
 };
 
 export const BothStackRoute = {
-    MAIN_MENU_SCREEN: 'MineMenu',
+    TAB_MENU_SCREEN: 'TabMenu',
 
     // Bike + Onboarding
-    TURTORIAL_NFC_SCREEN: 'TurtorialNFC',
+    TURTORIAL_NFC_SCREEN: 'TutorialNFC',
     ADDING_BY_NUMBER_SCREEN: 'AddingByNumber',
     BIKE_DATA_SCREEN: 'BikeData',
     BIKE_SUMMARY_SCREEN: 'BikeSummary',

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, GestureResponderEvent} from 'react-native';
 
-import AnimSvg from '../../../helpers/animSvg';
+import AnimSvg from '@helpers/animSvg';
 
 import {
     setObjSize,
@@ -9,14 +9,17 @@ import {
     getVerticalPx,
     getWidthPx,
     getFontSize,
-} from '../../../helpers/layoutFoo';
-import SmallRedBtn from '../../../sharedComponents/buttons/smallRedBtn';
+} from '@helpers/layoutFoo';
+import SmallRedBtn from '@sharedComponents/buttons/smallRedBtn';
+import SmallWhiteBtn from '@sharedComponents/buttons/smallWhiteBtn';
 
 interface Props {
     title: string;
     description: string;
     btnText: string;
-    onPress: () => void;
+    secondaryBtnText?: string;
+    onPress: (event: GestureResponderEvent) => void;
+    onPressSecondary?: (event: GestureResponderEvent) => void;
     style?: any;
 }
 
@@ -24,7 +27,9 @@ const Tile: React.FC<Props> = ({
     title,
     description,
     btnText,
+    secondaryBtnText,
     onPress,
+    onPressSecondary,
     style,
 }: Props) => {
     setObjSize(334, 50);
@@ -132,10 +137,21 @@ const Tile: React.FC<Props> = ({
             marginRight: getHorizontalPx(34),
             marginBottom: getVerticalPx(30),
         },
+        buttonSecondary: {
+            height: getHorizontalPx(35),
+            alignSelf: 'flex-end',
+            marginRight: getHorizontalPx(4),
+            marginBottom: getVerticalPx(30),
+        },
         buttonText: {
             fontFamily: 'DIN2014Narrow-Light',
             letterSpacing: 0.5,
             fontSize: getFontSize(18),
+        },
+        buttons: {
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+            width: '100%',
         },
     });
 
@@ -150,11 +166,20 @@ const Tile: React.FC<Props> = ({
                     <Text style={styles.title}>{title}</Text>
                     <Text style={styles.content}>{description}</Text>
                 </View>
-                <SmallRedBtn
-                    style={styles.button}
-                    onpress={onPress}
-                    title={btnText?.toUpperCase()}
-                />
+                <View style={styles.buttons}>
+                    {secondaryBtnText && (
+                        <SmallWhiteBtn
+                            style={styles.buttonSecondary}
+                            onPress={onPressSecondary}
+                            title={secondaryBtnText?.toUpperCase()}
+                        />
+                    )}
+                    <SmallRedBtn
+                        style={styles.button}
+                        onpress={onPress}
+                        title={btnText?.toUpperCase()}
+                    />
+                </View>
             </View>
         </View>
     );

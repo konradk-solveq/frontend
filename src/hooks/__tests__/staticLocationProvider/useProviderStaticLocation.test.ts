@@ -14,6 +14,9 @@ const initState = {
     app: {
         showedLocationInfo: false,
     },
+    auth: {
+        userAuthState: 'authenticated',
+    },
     user: {
         onboardingFinished: true,
     },

@@ -1,7 +1,6 @@
-import {RootState} from '../storage';
-
-export const isRegisteredSelector = (state: RootState): boolean =>
-    !!state.auth.deviceToken && !!state.auth.userId;
+import {createSelector} from 'reselect';
+import {RootState} from '@storage/storage';
+import {UserAuthStateT} from '@type/auth';
 
 export const isAuthorizedSelector = (state: RootState): boolean =>
     state.auth.isAuth;
@@ -9,14 +8,54 @@ export const isAuthorizedSelector = (state: RootState): boolean =>
 export const isLodingSelector = (state: RootState): boolean =>
     state.auth.loading;
 
-export const userIdSelector = (state: RootState): string => state.auth.userId;
+export const userNameSelector = (state: RootState): string =>
+    state.auth.userName;
 
-export const authTokenSelector = (state: RootState): string =>
-    state.auth.sessionData.access_token;
+export const authErrorMessageSelector = (state: RootState): string =>
+    state.auth.error;
 
-export const authErrorSelector = (
+export const authStatusCodeSelector = (state: RootState): number =>
+    parseInt(state.auth.statusCode, 10);
+
+export const authUserAuthenticationStateSelector = (
     state: RootState,
-): {message: string; statusCode: number} => ({
-    message: state.auth.error,
-    statusCode: state.auth.statusCode,
-});
+): UserAuthStateT => state.auth.userAuthState;
+
+export const authUserLoggedoutStateSelector = createSelector(
+    authUserAuthenticationStateSelector,
+    s => s === 'loggedout',
+);
+
+export const authUserUknownStateSelector = createSelector(
+    authUserAuthenticationStateSelector,
+    s => s === 'uknown',
+);
+
+export const authUserAuthenticatedStateSelector = createSelector(
+    authUserAuthenticationStateSelector,
+    s => s === 'authenticated',
+);
+
+export const authUserMobileAuthenticatedStateSelector = createSelector(
+    authUserAuthenticationStateSelector,
+    s => s === 'mobile',
+);
+
+export const authUserIsUnAuthenticatedStateSelector = createSelector(
+    authUserAuthenticationStateSelector,
+    s => s === 'loggedout' || s === 'uknown',
+);
+
+export const authUserIsAuthenticatedStateSelector = createSelector(
+    authUserAuthenticationStateSelector,
+    s => s === 'authenticated' || s === 'mobile',
+);
+
+export const authErrorSelector = createSelector(
+    authErrorMessageSelector,
+    authStatusCodeSelector,
+    (message, statusCode) => ({
+        message,
+        statusCode,
+    }),
+);

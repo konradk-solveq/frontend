@@ -19,7 +19,10 @@ import {
 } from '@utils/showAndroidLlocationInfo';
 import {hasAnyBikeSelector} from '@storage/selectors/bikes';
 
-import {syncAppSelector} from '@storage/selectors';
+import {
+    authUserAuthenticatedStateSelector,
+    syncAppSelector,
+} from '@storage/selectors';
 import Tile from './tile';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -32,17 +35,17 @@ import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 import {getVerticalPx} from '@src/helpers/layoutFoo';
 import {isIOS} from '@utils/platform';
-import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
+import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
     const trans: any = I18n.t('MainHome');
     const mountedRef = useRef(false);
-
+    const isAuthenticated = useAppSelector(authUserAuthenticatedStateSelector);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
     const syncStatus = useAppSelector(syncAppSelector);
@@ -93,6 +96,14 @@ const Home: React.FC = () => {
             : showLocationInfo(navigation, dispatch);
     };
 
+    const handleLoginPress = () => {
+        navigation.navigate('LoginScreen');
+    };
+
+    const handleRegisterPress = () => {
+        navigation.navigate('RegisterScreen');
+    };
+
     const onContinueHandler = () => {
         setShowModal(false);
         onAddActionHandler();
@@ -106,7 +117,6 @@ const Home: React.FC = () => {
         return <Loader />;
     }
 
-    const scrollTop = getVerticalPx(100) - 0;
     const styles = StyleSheet.create({
         container: {
             justifyContent: 'space-between',
@@ -157,13 +167,25 @@ const Home: React.FC = () => {
                                     onPress={doAction}
                                 />
                             )}
-                            <Tile
-                                title={trans.secondTitle}
-                                description={trans.secondText}
-                                btnText={trans.secondBtn}
-                                style={styles.tileSpace}
-                                onPress={onAddActionHandler}
-                            />
+                            {isAuthenticated ? (
+                                <Tile
+                                    title={trans.secondTitle}
+                                    description={trans.secondText}
+                                    btnText={trans.secondBtn}
+                                    style={styles.tileSpace}
+                                    onPress={onAddActionHandler}
+                                />
+                            ) : (
+                                <Tile
+                                    title={trans.fifthTitle}
+                                    description={trans.fifthText}
+                                    btnText={trans.fifthBtn}
+                                    secondaryBtnText={trans.fifthBtnSecondary}
+                                    style={styles.tileSpace}
+                                    onPress={handleLoginPress}
+                                    onPressSecondary={handleRegisterPress}
+                                />
+                            )}
                             {/* <Tile
                             title={trans.firstTitle}
                             description={trans.firstText}

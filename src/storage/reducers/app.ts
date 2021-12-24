@@ -233,6 +233,9 @@ const appReducer = (state = initialState, action: any) => {
                 error: '',
                 statusCode: 200,
             };
+        case actionTypes.LOGOUT_USER: {
+            return {...initialState};
+        }
     }
     return state;
 };

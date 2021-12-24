@@ -74,6 +74,12 @@ const userReducer = (state = initialState, action: any) => {
                 loading: action.state,
             };
         }
+        case actionTypes.LOGOUT_USER: {
+            return {
+                ...initialState,
+                onboardingFinished: true,
+            };
+        }
     }
 
     return state;

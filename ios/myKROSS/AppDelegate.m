@@ -8,6 +8,7 @@
 #import <TSBackgroundFetch/TSBackgroundFetch.h>
 #import <ReactNativeConfig.h>
 
+
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
@@ -59,6 +60,7 @@ static void InitializeFlipper(UIApplication *application) {
   [self.window makeKeyAndVisible];
 
   [[TSBackgroundFetch sharedInstance] didFinishLaunching];
+  [super application:application didFinishLaunchingWithOptions:launchOptions];
   return YES;
 }
 

@@ -122,7 +122,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
                 return RegularStackRoute.NEW_APP_VERSION_SCREEN;
             }
 
-            return BothStackRoute.MAIN_MENU_SCREEN;
+            return BothStackRoute.TAB_MENU_SCREEN;
         };
 
         props.navigation.navigate(getPage());

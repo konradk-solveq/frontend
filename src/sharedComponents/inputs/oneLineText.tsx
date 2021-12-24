@@ -1,4 +1,4 @@
-import { getFontSize, getHorizontalPx } from '@src/helpers/layoutFoo';
+import {getFontSize, getHorizontalPx} from '@src/helpers/layoutFoo';
 import React, {useEffect, useState} from 'react';
 import {
     StyleSheet,
@@ -7,8 +7,11 @@ import {
     View,
     KeyboardTypeOptions,
     ViewStyle,
+    TouchableOpacity,
 } from 'react-native';
 import I18n from 'react-native-i18n';
+import IconShow from '@sharedComponents/icons/IconShow';
+import IconHide from '@sharedComponents/icons/IconHide';
 
 interface IProps {
     onChangeText: (value: string) => void;
@@ -24,6 +27,8 @@ interface IProps {
     isMultiline?: boolean;
     Icon?: Element;
     style?: ViewStyle;
+    autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+    testID?: string;
 }
 
 const OneLineText: React.FC<IProps> = ({
@@ -40,10 +45,17 @@ const OneLineText: React.FC<IProps> = ({
     isMultiline,
     secureTextEntry,
     Icon,
+    autoCapitalize,
+    testID,
 }: IProps) => {
     const [borderColor, setBorderColor] = useState('#80555555');
     const [borderWidth, setBorderrWidth] = useState(1);
     const [errorMessage, setErrorMessage] = useState('');
+    const [isSecure, setIsSecure] = useState(true);
+
+    const onEyePress = () => {
+        setIsSecure(!isSecure);
+    };
 
     useEffect(() => {
         let validation = '';
@@ -106,14 +118,27 @@ const OneLineText: React.FC<IProps> = ({
                     value={value}
                     maxLength={maxLength ? maxLength : 20}
                     keyboardType={keyboardType}
-                    secureTextEntry={secureTextEntry}
+                    secureTextEntry={secureTextEntry && isSecure}
                     multiline={isMultiline}
+                    autoCapitalize={autoCapitalize}
+                    testID={testID || 'textInput'}
                 />
 
                 {Icon ? <View style={styles.iconContainer}>{Icon}</View> : null}
+                {secureTextEntry && (
+                    <View style={styles.eyeWrapper}>
+                        <TouchableOpacity onPress={() => onEyePress()}>
+                            {isSecure ? <IconShow /> : <IconHide />}
+                        </TouchableOpacity>
+                    </View>
+                )}
             </View>
 
-            <Text style={styles.error}>{errorMessage}</Text>
+            <Text
+                style={styles.error}
+                testID={`${testID || 'textInput'}ErrMessage`}>
+                {errorMessage}
+            </Text>
         </View>
     );
 };
@@ -155,6 +180,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 0,
         top: getHorizontalPx(6),
+    },
+    eyeWrapper: {
+        position: 'absolute',
+        right: getHorizontalPx(15),
+        top: 3,
+        height: '100%',
+        justifyContent: 'center',
     },
 });
 

@@ -16,7 +16,7 @@ import {
     getVerticalPx,
 } from '@helpers/layoutFoo';
 import HeaderBackgroundShape from './HeaderBackgroundShape';
-import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
+import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 import {isAndroid} from '@utils/platform';
 
 const HEADER_HEIGHT = getHorizontalPx(116) + getAppLayoutConfig.statusBarH();
