@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SmallWhiteBtn /> Rendering Should match snapshot - with set custom button style 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "red",
+      "borderColor": "#33555555",
+      "borderRadius": 90.57971014492753,
+      "borderWidth": 1,
+      "display": "flex",
+      "height": "100%",
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingLeft": 28.07971014492754,
+      "paddingRight": 28.07971014492754,
+    }
+  }
+  testID="small-white-btn"
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#313131",
+          "fontFamily": "DIN2014Narrow-Bold",
+          "fontSize": 32.608695652173914,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    bike button
+  </Text>
+</View>
+`;
+
+exports[`<SmallWhiteBtn /> Rendering Should match snapshot - with set custom text style 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "borderColor": "#33555555",
+      "borderRadius": 90.57971014492753,
+      "borderWidth": 1,
+      "display": "flex",
+      "height": "100%",
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingLeft": 28.07971014492754,
+      "paddingRight": 28.07971014492754,
+    }
+  }
+  testID="small-white-btn"
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#313131",
+          "fontFamily": "DIN2014Narrow-Bold",
+          "fontSize": 32.608695652173914,
+          "textAlign": "center",
+        },
+        Object {
+          "color": "red",
+        },
+      ]
+    }
+  >
+    bike button
+  </Text>
+</View>
+`;
+
+exports[`<SmallWhiteBtn /> Rendering Should match snapshot 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "borderColor": "#33555555",
+      "borderRadius": 90.57971014492753,
+      "borderWidth": 1,
+      "display": "flex",
+      "height": "100%",
+      "justifyContent": "center",
+      "opacity": 1,
+      "paddingLeft": 28.07971014492754,
+      "paddingRight": 28.07971014492754,
+    }
+  }
+  testID="small-white-btn"
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#313131",
+          "fontFamily": "DIN2014Narrow-Bold",
+          "fontSize": 32.608695652173914,
+          "textAlign": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    bike button
+  </Text>
+</View>
+`;

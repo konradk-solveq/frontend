@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, compose} from 'redux';
+import {createStore, applyMiddleware, compose, AnyAction, Store} from 'redux';
 import ReduxThunk from 'redux-thunk';
 import {persistReducer} from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
@@ -8,7 +8,7 @@ import {PersistConfig} from 'redux-persist/es/types';
 import {migration} from './migration/migrateRootToRootMykross';
 // import {FLIPPER_REDUX_DEBUGGER} from '@env';
 
-const buildStore = () => {
+export const buildStore = (initState?: Partial<RootState>) => {
     const persistConfig: PersistConfig<any, any> = {
         key: 'root_mykross',
         storage: AsyncStorage,
@@ -23,10 +23,19 @@ const buildStore = () => {
             return Promise.resolve(state);
         },
         debug: __DEV__,
-        blacklist: ['app', 'auth', 'bikes', 'maps', 'places', 'routes', 'user'],
+        blacklist: [
+            'app',
+            'auth',
+            'authData',
+            'bikes',
+            'maps',
+            'places',
+            'routes',
+            'user',
+        ],
     };
 
-    const persistedReducer = persistReducer<any, any>(persistConfig, reducer);
+    const persistedReducer = persistReducer(persistConfig, reducer);
 
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -43,13 +52,14 @@ const buildStore = () => {
 
     const store = createStore(
         persistedReducer,
+        initState,
         composeEnhancers(applyMiddleware(ReduxThunk)),
     );
 
     return store;
 };
 
-const store = buildStore();
+const store: Store<any, AnyAction> = buildStore();
 
 export type RootState = ReturnType<typeof store.getState>;
 

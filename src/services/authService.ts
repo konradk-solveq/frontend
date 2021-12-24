@@ -1,9 +1,11 @@
 import {
     currentSession,
     logInMobile,
+    logIn,
+    logOut,
     refreshSession,
     registerDevice,
-} from '../api';
+} from '@api/index';
 import {SessionDataType} from '../interfaces/api';
 
 import {isTokenExpiredInFuture} from '../utils/apiDataTransform/tokenExpiration';
@@ -35,7 +37,28 @@ export const registerMobileDevice = async () => {
     };
 };
 
-export const logInService = async (userId: string, deviceToken: string) => {
+export const logInService = async (email: string, password: string) => {
+    const response = await logIn(email, password);
+
+    if (!response?.data || response.status > 400) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {data: null, status: response.status, error: errorMessage};
+    }
+
+    return {
+        data: <SessionDataType>response.data,
+        status: response.status,
+        error: '',
+    };
+};
+
+export const logInMobileService = async (
+    userId: string,
+    deviceToken: string,
+) => {
     const response = await logInMobile(userId, deviceToken);
 
     if (!response?.data || response.status > 400) {
@@ -96,14 +119,19 @@ export const checkSessionAndRecreateIfNeededService = async (
     userId: string,
     deviceToken: string,
     token: string,
-    expirationDate: Date,
+    expirationDate: Date | undefined,
     refreshToken: string,
+    abortAutoRefresh?: boolean,
 ) => {
     const currentSessionResponse = await getCurrentSessionService(token);
 
     /* No active session. Try to re-login */
-    if (!currentSessionResponse?.data || currentSessionResponse.status > 400) {
-        const loginResponse = await logInService(userId, deviceToken);
+    if (
+        !currentSessionResponse?.data ||
+        currentSessionResponse.status > 400 ||
+        !expirationDate
+    ) {
+        const loginResponse = await logInMobileService(userId, deviceToken);
         return loginResponse;
     }
 
@@ -115,8 +143,12 @@ export const checkSessionAndRecreateIfNeededService = async (
         );
 
         /* Error on response. Try to re-login */
-        if (!refreshTokenResponse?.data || refreshTokenResponse.status > 400) {
-            const loginResponse = await logInService(userId, deviceToken);
+        if (
+            (!refreshTokenResponse?.data ||
+                refreshTokenResponse.status > 400) &&
+            !abortAutoRefresh
+        ) {
+            const loginResponse = await logInMobileService(userId, deviceToken);
             return loginResponse;
         }
 
@@ -135,6 +167,24 @@ export const checkSessionAndRecreateIfNeededService = async (
             },
         },
         status: 304 /* No changes. Session is active */,
+        error: '',
+    };
+};
+
+export const logOutService = async () => {
+    const response = await logOut();
+
+    if (response.status > 400) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {data: null, status: response.status, error: errorMessage};
+    }
+
+    return {
+        data: null,
+        status: response.status,
         error: '',
     };
 };

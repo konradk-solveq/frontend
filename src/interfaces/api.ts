@@ -12,6 +12,8 @@ export interface actionAsyncResponse {
     data: any;
 }
 
+export type UserRoleT = 'notRegistered' | 'user' | 'admin';
+
 export type SessionDataType = {
     access_token: string;
     refresh_token: string;
@@ -20,6 +22,7 @@ export type SessionDataType = {
     user: {
         id: string;
         email: string;
+        role?: UserRoleT;
     };
 };
 

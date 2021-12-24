@@ -37,4 +37,7 @@ export const initState = {
         error: '',
         loading: false,
     },
+    auth: {
+        userAuthState: 'uknown',
+    },
 };

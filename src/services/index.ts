@@ -20,6 +20,8 @@ export {syncRouteData, createNewRouteService} from './routesService';
 export {
     checkSessionAndRecreateIfNeededService,
     logInService,
+    logInMobileService,
+    logOutService,
     getCurrentSessionService,
     getRefreshSessionService,
     registerMobileDevice,

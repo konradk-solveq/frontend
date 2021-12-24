@@ -1,14 +1,11 @@
-import * as actionTypes from './actionTypes';
+import {batch} from 'react-redux';
+import * as actionTypes from '@storage/actions/actionTypes';
 import {AppThunk} from '@storage/thunk';
 import {FeaturedMapType, MapType} from '@models/map.model';
 import {AppState} from '@storage/reducers/app';
 import {MapsState} from '@storage/reducers/maps';
 import {RouteMapType} from '@models/places.model';
-import {
-    ImagesMetadataType,
-    MapPagination,
-    NestedPaginationType,
-} from '@interfaces/api';
+import {ImagesMetadataType, MapPagination} from '@interfaces/api';
 import {MapFormDataResult, PickedFilters} from '@interfaces/form';
 import {
     editPrivateMapMetadataService,
@@ -30,6 +27,7 @@ import {I18n} from '@translations/I18n';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {checkMapExists} from '@utils/checkMapExists';
 import {loggErrorMessage, loggErrorWithScope} from '@sentryLogger/sentryLogger';
+import {AppDispatch} from '@hooks/redux';
 
 export const setMapsData = (
     maps: MapType[],
@@ -133,11 +131,22 @@ export const removeMapFromPrivates = (mapID: string) => ({
     mapID: mapID,
 });
 
+const setLoadState = (
+    dispatch: AppDispatch,
+    state: boolean,
+    skip?: boolean,
+) => {
+    if (!skip) {
+        dispatch(setLoadingState(state));
+    }
+};
+
 export const fetchMapsList = (
     page?: string,
     filters?: PickedFilters,
+    skipLoadingState?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
-    dispatch(setLoadingState(true));
+    setLoadState(dispatch, true, skipLoadingState);
     try {
         const {
             location,
@@ -154,7 +163,7 @@ export const fetchMapsList = (
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
-            dispatch(setLoadingState(false));
+            setLoadState(dispatch, true, skipLoadingState);
             return;
         }
 
@@ -166,16 +175,20 @@ export const fetchMapsList = (
         }
 
         const refresh = !page;
-        dispatch(
-            setMapsData(
-                response.data.elements,
-                response.data.links,
-                response.data.total,
-                refresh,
-            ),
-        );
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
+
+        batch(() => {
+            dispatch(
+                setMapsData(
+                    response.data.elements,
+                    response.data.links,
+                    response.data.total,
+                    refresh,
+                ),
+            );
+            dispatch(clearError());
+        });
+
+        setLoadState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[fetchMapsList] - ${error}`);
         const err = convertToApiError(error);
@@ -190,8 +203,9 @@ export const fetchMapsList = (
 export const fetchPrivateMapsList = (
     page?: string,
     filters?: PickedFilters,
+    skipLoadingState?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
-    dispatch(setLoadingState(true));
+    setLoadState(dispatch, true, skipLoadingState);
     try {
         const {
             location,
@@ -223,16 +237,19 @@ export const fetchPrivateMapsList = (
         }
 
         const refresh = !page;
-        dispatch(
-            setPrivateMapsData(
-                response.data?.elements,
-                response.data?.links,
-                response.data?.total,
-                refresh,
-            ),
-        );
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
+        batch(() => {
+            dispatch(
+                setPrivateMapsData(
+                    response.data?.elements,
+                    response.data?.links,
+                    response.data?.total,
+                    refresh,
+                ),
+            );
+            dispatch(clearError());
+        });
+
+        setLoadState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[fetchPrivateMapsList] - ${error}`);
         logger.log(`[fetchPrivateMapsList] - ${error}`);
@@ -277,13 +294,16 @@ export const editPrivateMapMetaData = (
             return;
         }
 
-        await dispatch(fetchPrivateMapsList());
-        if (publish) {
-            dispatch(fetchMapsList());
-        }
-        dispatch(clearPrivateMapId());
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
+        batch(async () => {
+            await dispatch(fetchPrivateMapsList());
+            if (publish) {
+                dispatch(fetchMapsList());
+            }
+            dispatch(clearPrivateMapId());
+            dispatch(clearError());
+
+            dispatch(setLoadingState(false));
+        });
     } catch (error) {
         console.log(`[editPrivateMapMetaData] - ${error}`);
         const err = convertToApiError(error);
@@ -307,11 +327,14 @@ export const removePrivateMapMetaData = (
             return;
         }
 
-        dispatch(removeMapFromPrivates(id));
-        dispatch(fetchPrivateMapsList());
-        dispatch(fetchMapsList());
-        dispatch(clearPrivateMapId());
-        dispatch(clearError());
+        batch(() => {
+            dispatch(removeMapFromPrivates(id));
+            dispatch(fetchPrivateMapsList());
+            dispatch(fetchMapsList());
+            dispatch(clearPrivateMapId());
+            dispatch(clearError());
+        });
+
         dispatch(setLoadingState(false));
     } catch (error) {
         console.log(`[removePrivateMapMetaData] - ${error}`);
@@ -327,8 +350,9 @@ export const removePrivateMapMetaData = (
 export const fetchPlannedMapsList = (
     page?: string,
     filters?: PickedFilters,
+    skipLoadingState?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
-    dispatch(setLoadingState(true));
+    setLoadState(dispatch, true, skipLoadingState);
     try {
         const {location}: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
@@ -351,15 +375,18 @@ export const fetchPlannedMapsList = (
         }
 
         const refresh = !page;
-        dispatch(
-            setPlannedMapsData(
-                response.data.elements,
-                response.data.links,
-                refresh,
-            ),
-        );
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
+        batch(() => {
+            dispatch(
+                setPlannedMapsData(
+                    response.data.elements,
+                    response.data.links,
+                    refresh,
+                ),
+            );
+            dispatch(clearError());
+        });
+
+        setLoadState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[fetchPlannedMapsList] - ${error}`);
         const err = convertToApiError(error);
@@ -383,9 +410,12 @@ export const addPlannedMap = (
             return;
         }
 
-        dispatch(fetchPlannedMapsList());
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
+        batch(async () => {
+            await dispatch(fetchPlannedMapsList());
+            dispatch(clearError());
+
+            dispatch(setLoadingState(false));
+        });
     } catch (error) {
         console.log(`[addPlannedMap] - ${error}`);
         const err = convertToApiError(error);
@@ -409,10 +439,13 @@ export const removePlanendMap = (
             return;
         }
 
-        dispatch(removeMapFromFavourite(id));
-        dispatch(fetchPlannedMapsList());
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
+        batch(async () => {
+            dispatch(removeMapFromFavourite(id));
+            await dispatch(fetchPlannedMapsList());
+            dispatch(clearError());
+
+            dispatch(setLoadingState(false));
+        });
     } catch (error) {
         console.log(`[removePlanendMap] - ${error}`);
         const err = convertToApiError(error);
@@ -492,9 +525,11 @@ export const modifyReaction = (
             return;
         }
 
-        dispatch(modifyMapReactions(routeId, reaction, sectionId));
+        batch(() => {
+            dispatch(modifyMapReactions(routeId, reaction, sectionId));
+            dispatch(clearError());
+        });
 
-        dispatch(clearError());
         dispatch(setLoadingState(false));
         dispatch(fetchPrivateMapsList());
     } catch (error) {
@@ -504,8 +539,9 @@ export const modifyReaction = (
 
 export const fetchFeaturedMapsList = (
     page?: string,
+    skipLoadingState?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
-    dispatch(setLoadingState(true));
+    setLoadState(dispatch, true, skipLoadingState);
     try {
         const {
             location,
@@ -522,7 +558,7 @@ export const fetchFeaturedMapsList = (
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
-            dispatch(setLoadingState(false));
+            setLoadState(dispatch, false, skipLoadingState);
             return;
         }
 
@@ -534,9 +570,12 @@ export const fetchFeaturedMapsList = (
         }
 
         const refresh = !page;
-        dispatch(setFeaturedMapsData(response.data, refresh));
-        dispatch(clearError());
-        dispatch(setLoadingState(false));
+        batch(() => {
+            dispatch(setFeaturedMapsData(response.data, refresh));
+            dispatch(clearError());
+        });
+
+        setLoadState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[fetchFeaturedMapsList] - ${error}`);
         const err = convertToApiError(error);

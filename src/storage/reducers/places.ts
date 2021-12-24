@@ -39,6 +39,9 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 error: action.error,
             };
         }
+        case actionTypes.LOGOUT_USER: {
+            return {...initialStateList};
+        }
     }
 
     return state;

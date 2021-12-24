@@ -1,0 +1,744 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<BikeSelectorList /> Rendering Should hide backArrowBtn 1`] = `
+<View
+  style={
+    Object {
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "height": 148.88392857142858,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Generic Screen Test
+        </Text>
+      </View>
+    </View>
+    <Text>
+      Generic Screen
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`<BikeSelectorList /> Rendering Should match snapshot 1`] = `
+<View
+  style={
+    Object {
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "height": 148.88392857142858,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          hitSlop={
+            Object {
+              "bottom": 10,
+              "left": 20,
+              "right": 20,
+              "top": 10,
+            }
+          }
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "height": 61.594202898550726,
+              "justifyContent": "center",
+              "left": 54.34782608695652,
+              "opacity": 1,
+              "padding": 16.304347826086957,
+              "position": "absolute",
+              "width": 72.46376811594203,
+              "zIndex": 20,
+            }
+          }
+          testID="TopBackBtn"
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight="100%"
+            bbWidth="100%"
+            focusable={false}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": "100%",
+                  "width": "100%",
+                },
+              ]
+            }
+            vbHeight={16}
+            vbWidth={20}
+          >
+            <RNSVGGroup>
+              <RNSVGPath
+                d="M7.293 1.147c.36.342.388.881.083 1.254l-.083.09-3.879 3.684H19l.117.006c.497.055.883.457.883.944 0 .525-.448.95-1 .95H3.414l3.879 3.685.083.09c.305.372.277.91-.083 1.253-.39.371-1.024.371-1.414 0L.293 7.797l-.083-.09c-.305-.372-.278-.911.083-1.254l5.586-5.306c.39-.371 1.023-.371 1.414 0z"
+                fill={4281413937}
+                fillRule={1}
+                matrix={
+                  Array [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0.8499999999999943,
+                  ]
+                }
+                propList={
+                  Array [
+                    "fill",
+                    "fillRule",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Generic Screen Test
+        </Text>
+      </View>
+    </View>
+    <Text>
+      Generic Screen
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`<BikeSelectorList /> Rendering Should navigate after press on backArrowBtn 1`] = `
+<View
+  style={
+    Object {
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "height": 148.88392857142858,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          hitSlop={
+            Object {
+              "bottom": 10,
+              "left": 20,
+              "right": 20,
+              "top": 10,
+            }
+          }
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "height": 61.594202898550726,
+              "justifyContent": "center",
+              "left": 54.34782608695652,
+              "opacity": 1,
+              "padding": 16.304347826086957,
+              "position": "absolute",
+              "width": 72.46376811594203,
+              "zIndex": 20,
+            }
+          }
+          testID="TopBackBtn"
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight="100%"
+            bbWidth="100%"
+            focusable={false}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": "100%",
+                  "width": "100%",
+                },
+              ]
+            }
+            vbHeight={16}
+            vbWidth={20}
+          >
+            <RNSVGGroup>
+              <RNSVGPath
+                d="M7.293 1.147c.36.342.388.881.083 1.254l-.083.09-3.879 3.684H19l.117.006c.497.055.883.457.883.944 0 .525-.448.95-1 .95H3.414l3.879 3.685.083.09c.305.372.277.91-.083 1.253-.39.371-1.024.371-1.414 0L.293 7.797l-.083-.09c-.305-.372-.278-.911.083-1.254l5.586-5.306c.39-.371 1.023-.371 1.414 0z"
+                fill={4281413937}
+                fillRule={1}
+                matrix={
+                  Array [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0.8499999999999943,
+                  ]
+                }
+                propList={
+                  Array [
+                    "fill",
+                    "fillRule",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Generic Screen Test
+        </Text>
+      </View>
+    </View>
+    <Text>
+      Generic Screen
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`<BikeSelectorList /> Rendering Should render child component 1`] = `
+<View
+  style={
+    Object {
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "height": 148.88392857142858,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          hitSlop={
+            Object {
+              "bottom": 10,
+              "left": 20,
+              "right": 20,
+              "top": 10,
+            }
+          }
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "height": 61.594202898550726,
+              "justifyContent": "center",
+              "left": 54.34782608695652,
+              "opacity": 1,
+              "padding": 16.304347826086957,
+              "position": "absolute",
+              "width": 72.46376811594203,
+              "zIndex": 20,
+            }
+          }
+          testID="TopBackBtn"
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight="100%"
+            bbWidth="100%"
+            focusable={false}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": "100%",
+                  "width": "100%",
+                },
+              ]
+            }
+            vbHeight={16}
+            vbWidth={20}
+          >
+            <RNSVGGroup>
+              <RNSVGPath
+                d="M7.293 1.147c.36.342.388.881.083 1.254l-.083.09-3.879 3.684H19l.117.006c.497.055.883.457.883.944 0 .525-.448.95-1 .95H3.414l3.879 3.685.083.09c.305.372.277.91-.083 1.253-.39.371-1.024.371-1.414 0L.293 7.797l-.083-.09c-.305-.372-.278-.911.083-1.254l5.586-5.306c.39-.371 1.023-.371 1.414 0z"
+                fill={4281413937}
+                fillRule={1}
+                matrix={
+                  Array [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0.8499999999999943,
+                  ]
+                }
+                propList={
+                  Array [
+                    "fill",
+                    "fillRule",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Generic Screen Test
+        </Text>
+      </View>
+    </View>
+    <Text
+      testID="GenericScreenChildTestComponent"
+    >
+      Test child component
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`<BikeSelectorList /> Rendering Should render header right action element 1`] = `
+<View
+  style={
+    Object {
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "height": 148.88392857142858,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          hitSlop={
+            Object {
+              "bottom": 10,
+              "left": 20,
+              "right": 20,
+              "top": 10,
+            }
+          }
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "height": 61.594202898550726,
+              "justifyContent": "center",
+              "left": 54.34782608695652,
+              "opacity": 1,
+              "padding": 16.304347826086957,
+              "position": "absolute",
+              "width": 72.46376811594203,
+              "zIndex": 20,
+            }
+          }
+          testID="TopBackBtn"
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight="100%"
+            bbWidth="100%"
+            focusable={false}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": "100%",
+                  "width": "100%",
+                },
+              ]
+            }
+            vbHeight={16}
+            vbWidth={20}
+          >
+            <RNSVGGroup>
+              <RNSVGPath
+                d="M7.293 1.147c.36.342.388.881.083 1.254l-.083.09-3.879 3.684H19l.117.006c.497.055.883.457.883.944 0 .525-.448.95-1 .95H3.414l3.879 3.685.083.09c.305.372.277.91-.083 1.253-.39.371-1.024.371-1.414 0L.293 7.797l-.083-.09c-.305-.372-.278-.911.083-1.254l5.586-5.306c.39-.371 1.023-.371 1.414 0z"
+                fill={4281413937}
+                fillRule={1}
+                matrix={
+                  Array [
+                    1,
+                    0,
+                    0,
+                    1,
+                    0,
+                    0.8499999999999943,
+                  ]
+                }
+                propList={
+                  Array [
+                    "fill",
+                    "fillRule",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Generic Screen Test
+        </Text>
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "position": "absolute",
+              "right": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "flex-end",
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "marginRight": 72.46376811594203,
+              }
+            }
+          >
+            <View
+              testID="RightActionElement"
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+    <Text>
+      Generic Screen
+    </Text>
+  </View>
+</View>
+`;

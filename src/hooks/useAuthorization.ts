@@ -1,43 +1,70 @@
 import {useEffect} from 'react';
 
-import {useAppDispatch, useAppSelector} from './redux';
-import {isOnlineAppStatusSelector} from '../storage/selectors';
-import {isGoodConnectionQualitySelector} from '../storage/selectors/app';
-import {checkSession, logIn, register} from '../storage/actions';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {isOnlineAppStatusSelector} from '@storage/selectors';
+import {isGoodConnectionQualitySelector} from '@storage/selectors/app';
+import {checkSession, mobileLogIn, register} from '@storage/actions';
 import {
     authErrorSelector,
     isAuthorizedSelector,
     isLodingSelector,
-    isRegisteredSelector,
-} from '../storage/selectors/auth';
+    authUserMobileAuthenticatedStateSelector,
+    authUserUknownStateSelector,
+} from '@storage/selectors/auth';
+import {onboardingFinishedSelector} from '@storage/selectors/user';
 
-const useAuthorization = (active: boolean) => {
+/**
+ * Pseud-registration process which registers mobile device for API communication
+ */
+const useAuthorization = () => {
     const dispatch = useAppDispatch();
+    const isRegistered = !useAppSelector(authUserUknownStateSelector);
+    const userIsAuthenticatedOnlyByMobile = useAppSelector(
+        authUserMobileAuthenticatedStateSelector,
+    );
+    const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const isOnline = useAppSelector(isOnlineAppStatusSelector);
     const isGoodConnectionQuality = useAppSelector(
         isGoodConnectionQualitySelector,
     );
-    const isRegistered = useAppSelector(isRegisteredSelector);
     const isAuthorized = useAppSelector(isAuthorizedSelector);
     const isAuthProcessing = useAppSelector(isLodingSelector);
     const authError = useAppSelector(authErrorSelector);
 
-    /* Registration */
+    /* Mobile (initial) Registration */
     useEffect(() => {
-        if (active && isOnline && isGoodConnectionQuality && !isRegistered) {
-            dispatch(register());
+        /**
+         * Do mobile registration process only on init app run
+         */
+        if (isRegistered) {
+            return;
         }
-    }, [dispatch, active, isOnline, isGoodConnectionQuality, isRegistered]);
 
-    /* Log in */
+        if (isOnboardingFinished && isOnline && isGoodConnectionQuality) {
+            dispatch(register(true));
+        }
+    }, [
+        dispatch,
+        isOnboardingFinished,
+        isOnline,
+        isGoodConnectionQuality,
+        isRegistered,
+    ]);
+
+    /* (Mobile) Log in */
+    /**
+     * Run mobile log in when user is registered
+     * only as mobile device.
+     */
     useEffect(() => {
         if (
             isOnline &&
             isGoodConnectionQuality &&
             isRegistered &&
-            !isAuthorized
+            !isAuthorized &&
+            userIsAuthenticatedOnlyByMobile
         ) {
-            dispatch(logIn());
+            dispatch(mobileLogIn(true));
         }
     }, [
         dispatch,
@@ -45,9 +72,10 @@ const useAuthorization = (active: boolean) => {
         isGoodConnectionQuality,
         isRegistered,
         isAuthorized,
+        userIsAuthenticatedOnlyByMobile,
     ]);
 
-    /* Refresh session */
+    /* Check session */
     useEffect(() => {
         if (
             isOnline &&
@@ -55,7 +83,7 @@ const useAuthorization = (active: boolean) => {
             isRegistered &&
             isAuthorized
         ) {
-            dispatch(checkSession());
+            dispatch(checkSession(true));
         }
     }, [
         dispatch,

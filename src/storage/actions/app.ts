@@ -36,6 +36,8 @@ import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
 import {RouteActionT, RouteAdditionalInfoT} from '@type/debugRoute';
 import {DebugRouteInstance} from '@debugging/debugRoute';
+import {batch} from 'react-redux';
+import {AuthState, UserAuthStateT} from '../reducers/auth';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -141,8 +143,11 @@ export const fetchAppConfig = (
             return;
         }
 
-        dispatch(setAppConfig(response.data));
-        dispatch(clearAppError());
+        batch(() => {
+            dispatch(setAppConfig(response.data));
+            dispatch(clearAppError());
+        });
+
         if (!noLoader) {
             dispatch(setSyncStatus(false));
         }
@@ -231,40 +236,49 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
             dispatch(setSyncStatus(false));
             return;
         }
-        const {sessionData} = getState().auth;
+        const {sessionData, userAuthState}: AuthState = getState().auth;
         const {onboardingFinished} = getState().user;
         setUserAgentHeader();
 
-        await dispatch(fetchAppRegulations(true));
-        await dispatch(fetchAppConfig(true));
+        if (!onboardingFinished) {
+            dispatch(setSyncStatus(false));
+            return;
+        }
 
         const {currentRoute}: RoutesState = getState().routes;
 
-        /* Omit synch map data if recording is active */
-        const isRecordingActive = currentRoute?.isActive;
+        batch(async () => {
+            await dispatch(fetchAppRegulations(true));
+            await dispatch(fetchAppConfig(true));
 
-        if (onboardingFinished && !isRecordingActive) {
-            await dispatch(fetchMapsList());
-            dispatch(fetchFeaturedMapsList());
-        }
+            /* Omit synch map data if recording is active */
+            const isRecordingActive = currentRoute?.isActive;
 
-        if (sessionData?.access_token && !isRecordingActive) {
-            dispatch(fetchPrivateMapsList());
-            dispatch(fetchPlannedMapsList());
-        }
+            if (onboardingFinished && !isRecordingActive) {
+                await dispatch(fetchMapsList(undefined, undefined, true));
+                await dispatch(fetchFeaturedMapsList(undefined, true));
+            }
 
-        if (onboardingFinished && !isRecordingActive) {
-            dispatch(fetchGenericBikeData());
-            dispatch(setBikesListByFrameNumbers());
-        }
+            if (sessionData?.access_token && !isRecordingActive) {
+                await dispatch(
+                    fetchPrivateMapsList(undefined, undefined, true),
+                );
+                dispatch(fetchPlannedMapsList(undefined, undefined, true));
+            }
 
-        if (sessionData?.access_token && !isRecordingActive) {
-            dispatch(syncRouteDataFromQueue());
-        }
+            if (onboardingFinished && !isRecordingActive) {
+                dispatch(fetchGenericBikeData());
+                dispatch(setBikesListByFrameNumbers());
+            }
 
-        await dispatch(fetchAppFaq(true));
+            if (sessionData?.access_token && !isRecordingActive) {
+                await dispatch(syncRouteDataFromQueue(true));
+            }
 
-        dispatch(setSyncStatus(false));
+            await dispatch(fetchAppFaq(true));
+
+            dispatch(setSyncStatus(false));
+        });
     } catch (error) {
         console.log(`[appSyncData] - ${error}`);
         const err = convertToApiError(error);
@@ -336,8 +350,10 @@ export const fetchAppRegulations = (
                 return;
             }
 
-            dispatch(setAppRegulation(newRegulations.data.regulation));
-            dispatch(setAppPolicy(newRegulations.data.policy));
+            batch(() => {
+                dispatch(setAppRegulation(newRegulations.data.regulation));
+                dispatch(setAppPolicy(newRegulations.data.policy));
+            });
         }
 
         dispatch(clearAppError());

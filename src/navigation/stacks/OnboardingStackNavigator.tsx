@@ -3,7 +3,7 @@ import {Stack} from './../stack';
 import {horizontalAnim} from '../../helpers/positioning';
 import {OnboardingStackRoute, BothStackRoute} from '../route';
 
-import NewBeginning from '../../pages/onboarding/newBeginning/newBeginning';
+import Tutorial from '../../pages/onboarding/tutorial/tutorial';
 import GetToKnowEachOther from '../../pages/onboarding/getToKnowEachOther/getToKnowEachOther';
 import TurtorialNFC from '../../pages/onboarding/bikeAdding/turtorialNFC/turtorialNFC';
 // import WrongScan from '../../pages/onboarding/bikeAdding/wrongScan/wrongScan';
@@ -30,7 +30,7 @@ const OnboardingStackNavigator: React.FC = () => {
             screenOptions={horizontalAnim}>
             <Stack.Screen
                 name={OnboardingStackRoute.NEW_BEGINNING_SCREEN}
-                component={NewBeginning}
+                component={Tutorial}
             />
 
             <Stack.Screen
@@ -84,7 +84,7 @@ const OnboardingStackNavigator: React.FC = () => {
             /> */}
 
             <Stack.Screen
-                name={BothStackRoute.MAIN_MENU_SCREEN}
+                name={BothStackRoute.TAB_MENU_SCREEN}
                 component={MineMenu}
             />
 

@@ -19,7 +19,9 @@ export {
 export {createRoute, sendRouteData} from './routes';
 export {
     currentSession,
+    logIn,
     logInMobile,
+    logOut,
     refreshSession,
     registerDevice,
 } from './auth';

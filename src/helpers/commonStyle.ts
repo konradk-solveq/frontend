@@ -1,5 +1,5 @@
 import {StyleSheet, Platform} from 'react-native';
-import {getAppLayoutConfig as get} from '@helpers/appLayoutConfig';
+import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
 import {getVerticalPx} from '@helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';

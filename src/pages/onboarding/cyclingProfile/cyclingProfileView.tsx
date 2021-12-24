@@ -263,7 +263,7 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
 
     const handleSaveOnboarding = () => {
         dispatch(setOnboardingFinished(true));
-        navigation.navigate(BothStackRoute.MAIN_MENU_SCREEN);
+        navigation.navigate(BothStackRoute.TAB_MENU_SCREEN);
     };
 
     return (

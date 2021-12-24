@@ -43,7 +43,7 @@ const NewAppVersion: React.FC<Props> = (props: Props) => {
 
     const handleGoForward = () => {
         dispatch(setNewAppVersion(shopAppVersion));
-        props.navigation.navigate(BothStackRoute.MAIN_MENU_SCREEN);
+        props.navigation.navigate(BothStackRoute.TAB_MENU_SCREEN);
     };
 
     const handleLinkToShop = () => {

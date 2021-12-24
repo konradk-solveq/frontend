@@ -12,8 +12,12 @@ import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import BlueButton from './blueButton';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {
+    authErrorSelector,
+    authUserAuthenticatedStateSelector,
+} from '@storage/selectors';
 
-import {useAppSelector} from '../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {
     setObjSize,
@@ -21,8 +25,13 @@ import {
     getVerticalPx,
     getWidthPx,
     getFontSize,
-} from '../../../helpers/layoutFoo';
-import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
+} from '@helpers/layoutFoo';
+import {RegularStackRoute, BothStackRoute} from '@navigation/route';
+
+import {clearAuthError, logOut} from '@storage/actions';
+import {BigRedBtn} from '@src/sharedComponents/buttons';
+import FailedResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
+
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 import AmatoryBiker from './amatoryBiker';
 interface Props {
@@ -31,23 +40,36 @@ interface Props {
 }
 
 const Profile: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('MainProfile');
-    // const dispatch = useAppDispatch();
+    const trans: any = I18n.t('MainProfile');
+    const profilePageTrans: any = I18n.t('Profile.auth');
+    const dispatch = useAppDispatch();
 
-    const name = useAppSelector<string>(state => state.user.userName);
-    const getUserName = name ? name : trans.defaultName;
-    const [userName, setUserName] = useState<string>(getUserName);
+    const userName =
+        useAppSelector<string>(state => state.user.userName) ||
+        trans.defaultName;
+    const isAuthenticated = useAppSelector(authUserAuthenticatedStateSelector);
+    const authError = useAppSelector(authErrorSelector);
+
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+    const onLogoutPressedHandler = () => {
+        dispatch(logOut());
+    };
 
     useEffect(() => {
-        if (typeof name === 'string') {
-            setUserName(getUserName);
+        if (authError.statusCode >= 400) {
+            setShowErrorMessage(true);
         }
-    }, [name]);
+    }, [authError.statusCode]);
+
+    const onCloseErrorMessageModal = () => {
+        dispatch(clearAuthError());
+        setShowErrorMessage(false);
+    };
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         wrap: {
-            // position: 'absolute',
             width: getWidthPx(),
             left: getCenterLeftPx(),
             marginBottom: getVerticalPx(145),
@@ -77,13 +99,21 @@ const Profile: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(20),
             marginBottom: getVerticalPx(51),
         },
+        logoutButton: {
+            marginTop: 50,
+            height: 50,
+        },
+        logoutText: {
+            fontSize: getFontSize(19),
+            paddingHorizontal: 20,
+            letterSpacing: getFontSize(0.54),
+        },
     });
 
     return (
         <SafeAreaView style={comStyle.container}>
             <View style={comStyle.scroll}>
                 <ScrollView>
-                    {/* <Text style={styles.header}>{trans.header}</Text> */}
                     <View style={styles.wrap}>
                         <AmatoryBiker />
 
@@ -140,8 +170,25 @@ const Profile: React.FC<Props> = (props: Props) => {
                             }
                             title={trans.contact}
                         />
+
+                        {isAuthenticated && (
+                            <BigRedBtn
+                                testID="logout-btn"
+                                onpress={onLogoutPressedHandler}
+                                title={profilePageTrans.logoutBtn}
+                                style={styles.logoutButton}
+                                textStyle={styles.logoutText}
+                            />
+                        )}
                     </View>
                 </ScrollView>
+
+                <FailedResponseModal
+                    testID="logout-error-message"
+                    showModal={showErrorMessage}
+                    errorMessage={authError.message}
+                    onClose={onCloseErrorMessageModal}
+                />
             </View>
 
             <StackHeader hideBackArrow inner={trans.header} />
