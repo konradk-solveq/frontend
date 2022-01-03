@@ -87,4 +87,8 @@ module.exports = [
         rootPathSuffix: './src/debugging',
         rootPathPrefix: '@debugging',
     },
+    {
+        rootPathSuffix: './analytics',
+        rootPathPrefix: '@analytics',
+    },
 ];

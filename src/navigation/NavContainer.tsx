@@ -1,5 +1,8 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import React, {useRef, RefObject} from 'react';
+import {
+    NavigationContainer,
+    NavigationContainerRef,
+} from '@react-navigation/native';
 
 import {onboardingFinishedSelector} from '@storage/selectors';
 import {useAppSelector} from '@hooks/redux';
@@ -8,14 +11,41 @@ import OnboardingStackNavigator from '@navigation/stacks/OnboardingStackNavigato
 import RegularStackNavigator from '@navigation/stacks/RegularStackNavigator';
 import {KrossTheme} from '@theme/navigationTheme';
 
+import {getScreenName} from '@utils/navigation';
+import {sendAnalyticInfoAboutNewScreen} from '@analytics/firebaseAnalytics';
+
 const NavContainer: React.FC = () => {
     const isOnboardingFinished: boolean = useAppSelector(
         onboardingFinishedSelector,
     );
     useAppInit();
 
+    const routeNameRef = useRef<string | undefined>();
+    const navigationRef: RefObject<NavigationContainerRef> = useRef(null);
+
     return (
-        <NavigationContainer theme={KrossTheme}>
+        <NavigationContainer
+            ref={navigationRef}
+            theme={KrossTheme}
+            onReady={async () => {
+                const routeName = await getScreenName(navigationRef);
+                if (routeName) {
+                    routeNameRef.current = routeName;
+                }
+            }}
+            onStateChange={async () => {
+                const previousRouteName = routeNameRef.current;
+                const currentRouteName = await getScreenName(navigationRef);
+
+                if (currentRouteName) {
+                    await sendAnalyticInfoAboutNewScreen(
+                        currentRouteName,
+                        previousRouteName,
+                    );
+                }
+
+                routeNameRef.current = currentRouteName;
+            }}>
             {!isOnboardingFinished ? (
                 <OnboardingStackNavigator />
             ) : (

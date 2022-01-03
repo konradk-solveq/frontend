@@ -36,6 +36,7 @@
             "@sentryLogger*": ["sentry*"],
             "@env*": ["src/env"],
             "@debugging*": ["src/debugging*"],
+            "@analytics*": ["analytics*"],
         },
       "types": [ "node", "jest" ],
     },
