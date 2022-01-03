@@ -219,6 +219,7 @@ export const startBackgroundGeolocation = async (
     keep?: boolean,
     debugModeActive?: boolean,
 ) => {
+    const trans: any = I18n.t('Geolocation.routeRecordingNotification');
     let state: State | undefined;
     try {
         await BackgroundGeolocation.setConfig({
@@ -230,8 +231,9 @@ export const startBackgroundGeolocation = async (
                 route_id: routeId,
             },
             notification: {
-                text: 'Nagrywanie trasy',
+                text: trans.text,
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MAX,
+                sticky: true,
             },
             pausesLocationUpdatesAutomatically: false,
             showsBackgroundLocationIndicator: true,
@@ -256,6 +258,7 @@ export const startBackgroundGeolocation = async (
 };
 
 export const stopBackgroundGeolocation = async () => {
+    const trans: any = I18n.t('Geolocation.notification');
     try {
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: true,
@@ -264,7 +267,7 @@ export const stopBackgroundGeolocation = async () => {
             extras: undefined,
             logLevel: getDebugLevelMode(),
             notification: {
-                text: 'Pobieranie lokalizacji',
+                text: trans.text,
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
             },
             pausesLocationUpdatesAutomatically: undefined,

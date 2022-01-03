@@ -761,7 +761,10 @@
     },
     "Geolocation": {
         "notification": {
-            "title": "Pobieranie lokalizacji"
+            "text": "Pobieranie lokalizacji"
+        },
+        "routeRecordingNotification": {
+            "text": "Nagrywanie trasy"
         },
         "locationPermission": {
             "title": "Używanie lokalizacji w tle",
