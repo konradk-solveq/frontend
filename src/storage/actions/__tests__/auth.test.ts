@@ -9,6 +9,7 @@ import {
     compareResultsWhenOnlineFirstCase,
     compareResultsWhenOnlineSecondCase,
     compareResultsWhenOnlineThirdCase,
+    compareResultsWhenOnlineFourthCase,
 } from './utils/compareAuthDispatchResults';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
 
@@ -127,6 +128,25 @@ describe('[AuthenticationRoute actions]', () => {
                      * Check if all expected actions have been called.
                      */
                     compareResultsWhenOnlineThirdCase(actionsLog);
+                });
+            });
+
+            it('should set error when fail on bad response when logging out user', async () => {
+                /**
+                 * Mock log out api call
+                 */
+                const apiCall = await postApiCallMock({
+                    data: null,
+                    status: 400,
+                    error: INTERNET_CONNECTION_ERROR_MESSAGE,
+                });
+                actionsLog = store.getActions();
+                return store.dispatch<any>(logOut()).then(() => {
+                    expect(apiCall).toBeCalled();
+                    /**
+                     * Check if all expected actions have been called.
+                     */
+                    compareResultsWhenOnlineFourthCase(actionsLog);
                 });
             });
 

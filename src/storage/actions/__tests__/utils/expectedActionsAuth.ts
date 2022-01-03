@@ -53,3 +53,19 @@ export const authenticateUserWhenOnlineThirdCaseExpectedActions = [
         state: false,
     },
 ];
+
+export const authenticateUserWhenOnlineFourthCaseExpectedActions = [
+    {
+        type: actionTypes.SET_AUTH_SYNC_STATE,
+        state: true,
+    },
+    {
+        type: actionTypes.SET_AUTH_ERROR,
+        error: I18n.t('Profile.auth.error'),
+        statusCode: 400,
+    },
+    {
+        type: actionTypes.SET_AUTH_SYNC_STATE,
+        state: false,
+    },
+];
