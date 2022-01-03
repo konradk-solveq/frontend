@@ -138,7 +138,6 @@ describe('[AuthenticationRoute actions]', () => {
                 const apiCall = await postApiCallMock({
                     data: null,
                     status: 400,
-                    error: INTERNET_CONNECTION_ERROR_MESSAGE,
                 });
                 actionsLog = store.getActions();
                 return store.dispatch<any>(logOut()).then(() => {
