@@ -7,6 +7,7 @@ import {
     authTokenSelector,
     userIdSelector,
     authUserIsAuthenticatedStateSelector,
+    onboardingFinishedSelector,
 } from '@storage/selectors/index';
 import {
     appErrorSelector,
@@ -20,6 +21,7 @@ import {setAutorizationHeader} from '@api/api';
 import {initBGeolocalization, cleanUp} from '@utils/geolocation';
 import {I18n} from '@translations/I18n';
 import {sentrySetUserInfo} from '@sentryLogger/sentryLogger';
+import {enableAnalytics} from '@analytics/firebaseAnalytics';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
@@ -41,6 +43,7 @@ const useAppInit = () => {
     const error = useAppSelector(
         appErrorSelector,
     ); /* TODO: check all errors from sync requests */
+    const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
 
     const clearAppSyncError = () => {
         dispatch(clearAppError());
@@ -99,6 +102,21 @@ const useAppInit = () => {
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOnline, isGoodInternetConnectionQuality, isAuthanticated]);
+
+    /* Init analytics */
+    useEffect(() => {
+        const init = async () => {
+            if (
+                !__DEV__ &&
+                !process.env.JEST_WORKER_ID &&
+                isOnboardingFinished
+            ) {
+                await enableAnalytics();
+            }
+        };
+
+        init();
+    }, [isOnboardingFinished]);
 
     return {
         isOnline,
