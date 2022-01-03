@@ -11,7 +11,7 @@ export const getBikeByFrameNr = async (
 ): Promise<serviceResponse> => {
     const response = await getBike(frameNr);
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -25,7 +25,7 @@ export const getBikeByFrameNr = async (
 export const getGenericDataforBike = async () => {
     const response = await getGenericBikeData();
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -40,7 +40,7 @@ export const getBikesListByFrameNrs = async (frameNrs: string[]) => {
     const numbers: string = frameNrs.join(',');
     const response = await getBikesList(numbers);
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
