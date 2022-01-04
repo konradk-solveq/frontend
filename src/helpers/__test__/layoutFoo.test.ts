@@ -7,6 +7,11 @@ import {
     verticalPxResult,
     stackHeaderHeightResult,
     widthResult,
+    widthOfResult,
+    widthPxResult,
+    widthPxOfResult,
+    heightResult,
+    heightPxResult,
 } from './mocks/layoutFoo';
 import {
     setAppSize,
@@ -57,17 +62,16 @@ const obj = {
     ],
 };
 
-const mockDimensions = (width: number, height: number) => {
-    jest.resetModules();
-    jest.doMock('react-native/Libraries/Utilities/Dimensions', () => ({
-        get: jest.fn().mockReturnValue({width, height}),
-    }));
-};
-mockDimensions(414, 896);
-
 describe('Calculates layout positions -- helpers', () => {
     beforeAll(() => {
         initAppSize();
+        jest.mock('react-native/Libraries/Utilities/Dimensions', () => ({
+            get: jest.fn().mockReturnValue({width: 750, height: 1334}),
+        }));
+    });
+
+    afterAll(() => {
+        jest.resetModules();
     });
 
     describe('[centerLeftPx] - counts layout center element left position', () => {
@@ -205,6 +209,8 @@ describe('Calculates layout positions -- helpers', () => {
         });
     });
 
+    //---------------------------------------------
+
     describe('[getWidth] - counts layout width of seated element size in %', () => {
         it.each([
             [obj.small[0].w, obj.small[0].h, widthResult.small[0]],
@@ -223,6 +229,116 @@ describe('Calculates layout positions -- helpers', () => {
                 const width = getWidth();
 
                 expect(width).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getWidthOf] - counts layout width element in %', () => {
+        it.each([
+            [obj.small[0].w, widthOfResult.small[0]],
+            [obj.small[1].w, widthOfResult.small[1]],
+            [obj.small[2].w, widthOfResult.small[2]],
+            [obj.medium[0].w, widthOfResult.medium[0]],
+            [obj.medium[1].w, widthOfResult.medium[1]],
+            [obj.medium[2].w, widthOfResult.medium[2]],
+            [obj.big[0].w, widthOfResult.big[0]],
+            [obj.big[1].w, widthOfResult.big[1]],
+            [obj.big[2].w, widthOfResult.big[2]],
+        ])(
+            'Should calculate width: %s, and result should be equal to: %s',
+            (w: number, result: string) => {
+                const widthOf = getWidthOf(w);
+
+                expect(widthOf).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getWidthPx] - counts layout width of seated element size in px', () => {
+        it.each([
+            [obj.small[0].w, obj.small[0].h, widthPxResult.small[0]],
+            [obj.small[1].w, obj.small[1].h, widthPxResult.small[1]],
+            [obj.small[2].w, obj.small[2].h, widthPxResult.small[2]],
+            [obj.medium[0].w, obj.medium[0].h, widthPxResult.medium[0]],
+            [obj.medium[1].w, obj.medium[1].h, widthPxResult.medium[1]],
+            [obj.medium[2].w, obj.medium[2].h, widthPxResult.medium[2]],
+            [obj.big[0].w, obj.big[0].h, widthPxResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, widthPxResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, widthPxResult.big[2]],
+        ])(
+            'Should calculate width from object (w: %s, h: %s), and result should be equal to: %s',
+            (w: number, h: number, result: number) => {
+                setObjSize(w, h);
+                const widthPx = getWidthPx();
+
+                expect(widthPx).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getWidthPxOf] - counts layout width element in px', () => {
+        it.each([
+            [obj.small[0].w, widthPxOfResult.small[0]],
+            [obj.small[1].w, widthPxOfResult.small[1]],
+            [obj.small[2].w, widthPxOfResult.small[2]],
+            [obj.medium[0].w, widthPxOfResult.medium[0]],
+            [obj.medium[1].w, widthPxOfResult.medium[1]],
+            [obj.medium[2].w, widthPxOfResult.medium[2]],
+            [obj.big[0].w, widthPxOfResult.big[0]],
+            [obj.big[1].w, widthPxOfResult.big[1]],
+            [obj.big[2].w, widthPxOfResult.big[2]],
+        ])(
+            'Should calculate width: %s, and result should be equal to: %s',
+            (w: number, result: number) => {
+                const widthPxOf = getWidthPxOf(w);
+
+                expect(widthPxOf).toEqual(result);
+            },
+        );
+    });
+
+    //---------------------------------------------
+
+    describe('[getHeight] - counts layout width of seated element size in %', () => {
+        it.each([
+            [obj.small[0].w, obj.small[0].h, heightResult.small[0]],
+            [obj.small[1].w, obj.small[1].h, heightResult.small[1]],
+            [obj.small[2].w, obj.small[2].h, heightResult.small[2]],
+            [obj.medium[0].w, obj.medium[0].h, heightResult.medium[0]],
+            [obj.medium[1].w, obj.medium[1].h, heightResult.medium[1]],
+            [obj.medium[2].w, obj.medium[2].h, heightResult.medium[2]],
+            [obj.big[0].w, obj.big[0].h, heightResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, heightResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, heightResult.big[2]],
+        ])(
+            'Should calculate width from object (w: %s, h: %s), and result should be equal to: %s',
+            (w: number, h: number, result: string) => {
+                setObjSize(w, h);
+                const height = getHeight();
+
+                expect(height).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getHeightPx] - counts layout width of seated element size in px', () => {
+        it.each([
+            [obj.small[0].w, obj.small[0].h, heightPxResult.small[0]],
+            [obj.small[1].w, obj.small[1].h, heightPxResult.small[1]],
+            [obj.small[2].w, obj.small[2].h, heightPxResult.small[2]],
+            [obj.medium[0].w, obj.medium[0].h, heightPxResult.medium[0]],
+            [obj.medium[1].w, obj.medium[1].h, heightPxResult.medium[1]],
+            [obj.medium[2].w, obj.medium[2].h, heightPxResult.medium[2]],
+            [obj.big[0].w, obj.big[0].h, heightPxResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, heightPxResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, heightPxResult.big[2]],
+        ])(
+            'Should calculate width from object (w: %s, h: %s), and result should be equal to: %s',
+            (w: number, h: number, result: number) => {
+                setObjSize(w, h);
+                const heightPx = getHeightPx();
+
+                expect(heightPx).toEqual(result);
             },
         );
     });
