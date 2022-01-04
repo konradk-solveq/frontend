@@ -2,6 +2,9 @@ import {
     centerLeftPxResult,
     centerTopPxResult,
     horizontalResult,
+    horizontalPxResult,
+    verticalResult,
+    verticalPxResult,
 } from './mocks/layoutFoo';
 import {
     setAppSize,
@@ -51,6 +54,14 @@ const obj = {
         {w: 400, h: 800},
     ],
 };
+
+const mockDimensions = (width: number, height: number) => {
+    jest.resetModules();
+    jest.doMock('react-native/Libraries/Utilities/Dimensions', () => ({
+        get: jest.fn().mockReturnValue({width, height}),
+    }));
+};
+mockDimensions(414, 896);
 
 describe('Calculates layout positions -- helpers', () => {
     describe('[centerLeftPx] - counts layout center element left position', () => {
@@ -126,6 +137,81 @@ describe('Calculates layout positions -- helpers', () => {
                 const horizontal = getHorizontal(w);
 
                 expect(horizontal).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getHorizontalPx] - counts layout horizontal element size in px', () => {
+        beforeAll(() => {
+            initAppSize();
+        });
+
+        it.each([
+            [obj.small[0].w, horizontalPxResult.small[0]],
+            [obj.small[1].w, horizontalPxResult.small[1]],
+            [obj.small[2].w, horizontalPxResult.small[2]],
+            [obj.medium[0].w, horizontalPxResult.medium[0]],
+            [obj.medium[1].w, horizontalPxResult.medium[1]],
+            [obj.medium[2].w, horizontalPxResult.medium[2]],
+            [obj.big[0].w, horizontalPxResult.big[0]],
+            [obj.big[1].w, horizontalPxResult.big[1]],
+            [obj.big[2].w, horizontalPxResult.big[2]],
+        ])(
+            'Should calculate width: %s, and result should be equal to: %s',
+            (w: number, result: number) => {
+                const horizontalPx = getHorizontalPx(w);
+
+                expect(horizontalPx).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getVertical] - counts layout vertical element size in %', () => {
+        beforeAll(() => {
+            initAppSize();
+        });
+
+        it.each([
+            [obj.small[0].h, verticalResult.small[0]],
+            [obj.small[1].h, verticalResult.small[1]],
+            [obj.small[2].h, verticalResult.small[2]],
+            [obj.medium[0].h, verticalResult.medium[0]],
+            [obj.medium[1].h, verticalResult.medium[1]],
+            [obj.medium[2].h, verticalResult.medium[2]],
+            [obj.big[0].h, verticalResult.big[0]],
+            [obj.big[1].h, verticalResult.big[1]],
+            [obj.big[2].h, verticalResult.big[2]],
+        ])(
+            'Should calculate height: %s, and result should be equal to: %s',
+            (h: number, result: number) => {
+                const vertical = getVertical(h);
+
+                expect(vertical).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getVerticalPx] - counts layout vertical element size in px', () => {
+        beforeAll(() => {
+            initAppSize();
+        });
+
+        it.each([
+            [obj.small[0].h, verticalPxResult.small[0]],
+            [obj.small[1].h, verticalPxResult.small[1]],
+            [obj.small[2].h, verticalPxResult.small[2]],
+            [obj.medium[0].h, verticalPxResult.medium[0]],
+            [obj.medium[1].h, verticalPxResult.medium[1]],
+            [obj.medium[2].h, verticalPxResult.medium[2]],
+            [obj.big[0].h, verticalPxResult.big[0]],
+            [obj.big[1].h, verticalPxResult.big[1]],
+            [obj.big[2].h, verticalPxResult.big[2]],
+        ])(
+            'Should calculate height: %s, and result should be equal to: %s',
+            (h: number, result: number) => {
+                const verticalPx = getVertical(h);
+
+                expect(verticalPx).toEqual(result);
             },
         );
     });
