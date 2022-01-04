@@ -90,6 +90,150 @@ export const relativeHeightResult = {
     big: ['57.037%', '89.629%', '108.641%'],
 };
 
+export const standardResult = {
+    small: [
+        {
+            height: '0.223%',
+            left: 372.2826086956522,
+            position: 'absolute',
+            top: 1012.4107142857143,
+            width: '0.725%',
+        },
+        {
+            height: '0.893%',
+            left: 364.1304347826087,
+            position: 'absolute',
+            top: 803.9732142857143,
+            width: '2.899%',
+        },
+        {
+            height: '1.786%',
+            left: 347.82608695652175,
+            position: 'absolute',
+            top: 640.2008928571429,
+            width: '7.246%',
+        },
+    ],
+    medium: [
+        {
+            height: '12.277%',
+            left: 293.47826086956525,
+            position: 'absolute',
+            top: 145.90625,
+            width: '21.739%',
+        },
+        {
+            height: '16.741%',
+            left: 266.304347826087,
+            position: 'absolute',
+            top: 187.59375,
+            width: '28.986%',
+        },
+        {
+            height: '21.205%',
+            left: 230.0724637681159,
+            position: 'absolute',
+            top: 253.10267857142858,
+            width: '38.647%',
+        },
+    ],
+    big: [
+        {
+            height: '46.875%',
+            left: 121.37681159420289,
+            position: 'absolute',
+            top: 38.70982142857143,
+            width: '67.633%',
+        },
+        {
+            height: '73.661%',
+            left: 76.08695652173914,
+            position: 'absolute',
+            top: 17.86607142857143,
+            width: '79.710%',
+        },
+        {
+            height: '89.286%',
+            left: 12.681159420289854,
+            position: 'absolute',
+            top: 7.444196428571429,
+            width: '96.618%',
+        },
+    ],
+};
+
+export const standardPxResult = {
+    small: [
+        {
+            height: 2.977678571428571,
+            left: 372.2826086956522,
+            position: 'absolute',
+            top: 1012.4107142857143,
+            width: 5.434782608695652,
+        },
+        {
+            height: 11.910714285714285,
+            left: 364.1304347826087,
+            position: 'absolute',
+            top: 803.9732142857143,
+            width: 21.73913043478261,
+        },
+        {
+            height: 23.82142857142857,
+            left: 347.82608695652175,
+            position: 'absolute',
+            top: 640.2008928571429,
+            width: 54.34782608695652,
+        },
+    ],
+    medium: [
+        {
+            height: 163.77232142857142,
+            left: 293.47826086956525,
+            position: 'absolute',
+            top: 145.90625,
+            width: 163.04347826086956,
+        },
+        {
+            height: 223.32589285714283,
+            left: 266.304347826087,
+            position: 'absolute',
+            top: 187.59375,
+            width: 217.3913043478261,
+        },
+        {
+            height: 282.8794642857143,
+            left: 230.0724637681159,
+            position: 'absolute',
+            top: 253.10267857142858,
+            width: 289.8550724637681,
+        },
+    ],
+    big: [
+        {
+            height: 625.3125,
+            left: 121.37681159420289,
+            position: 'absolute',
+            top: 38.70982142857143,
+            width: 507.2463768115942,
+        },
+        {
+            height: 982.6339285714287,
+            left: 76.08695652173914,
+            position: 'absolute',
+            top: 17.86607142857143,
+            width: 597.8260869565217,
+        },
+        {
+            height: 1191.0714285714287,
+            left: 12.681159420289854,
+            position: 'absolute',
+            top: 7.444196428571429,
+            width: 724.6376811594203,
+        },
+    ],
+};
+
 export const some = {
     small: [0, 0, 0],
     medium: [0, 0, 0],

@@ -15,9 +15,10 @@ import {
     heightOfPxResult,
     relativeWidthResult,
     relativeHeightResult,
+    standardResult,
+    standardPxResult,
 } from './mocks/layoutFoo';
 import {
-    setAppSize,
     initAppSize,
     setObjSize,
     getCenterLeftPx,
@@ -134,7 +135,7 @@ describe('Calculates layout positions -- helpers', () => {
             [obj.big[2].w, horizontalResult.big[2]],
         ])(
             'Should calculate width: %s, and result should be equal to: %s',
-            (w: string, result: string) => {
+            (w: number, result: string) => {
                 const horizontal = getHorizontal(w);
 
                 expect(horizontal).toEqual(result);
@@ -176,7 +177,7 @@ describe('Calculates layout positions -- helpers', () => {
             [obj.big[2].h, verticalResult.big[2]],
         ])(
             'Should calculate height: %s, and result should be equal to: %s',
-            (h: string, result: string) => {
+            (h: number, result: string) => {
                 const vertical = getVertical(h);
 
                 expect(vertical).toEqual(result);
@@ -300,8 +301,6 @@ describe('Calculates layout positions -- helpers', () => {
         );
     });
 
-    //---------------------------------------------
-
     describe('[getHeight] - counts layout height of seated element size in %', () => {
         it.each([
             [obj.small[0].w, obj.small[0].h, heightResult.small[0]],
@@ -367,8 +366,6 @@ describe('Calculates layout positions -- helpers', () => {
         );
     });
 
-    //---------------------------------------------
-
     describe('[getRelativeWidth] - counts layout relative width of seated element size in %', () => {
         it.each([
             [obj.small[0].w, obj.small[0].h, relativeWidthResult.small[0]],
@@ -409,6 +406,126 @@ describe('Calculates layout positions -- helpers', () => {
                 const relativeHeight = getRelativeHeight();
 
                 expect(relativeHeight).toEqual(result);
+            },
+        );
+    });
+
+    //---------------------------------------------
+
+    type standardT = {
+        height: string;
+        left: number;
+        position: string;
+        top: number;
+        width: string;
+    };
+
+    describe('[getStandard] - counts layout object of seated element size in %', () => {
+        it.each([
+            [
+                obj.small[0].w,
+                obj.small[0].h,
+                obj.small[0].t,
+                standardResult.small[0],
+            ],
+            [
+                obj.small[1].w,
+                obj.small[1].h,
+                obj.small[1].t,
+                standardResult.small[1],
+            ],
+            [
+                obj.small[2].w,
+                obj.small[2].h,
+                obj.small[2].t,
+                standardResult.small[2],
+            ],
+            [
+                obj.medium[0].w,
+                obj.medium[0].h,
+                obj.medium[0].t,
+                standardResult.medium[0],
+            ],
+            [
+                obj.medium[1].w,
+                obj.medium[1].h,
+                obj.medium[1].t,
+                standardResult.medium[1],
+            ],
+            [
+                obj.medium[2].w,
+                obj.medium[2].h,
+                obj.medium[2].t,
+                standardResult.medium[2],
+            ],
+            [obj.big[0].w, obj.big[0].h, obj.big[0].t, standardResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, obj.big[1].t, standardResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, obj.big[2].t, standardResult.big[2]],
+        ])(
+            'Should calculate object (w: %s, h: %s, t: $s), and result should be equal to: %s',
+            (w: number, h: number, t: number, result: standardT) => {
+                const standard = getStandard(w, h, t);
+
+                expect(standard).toEqual(result);
+            },
+        );
+    });
+
+    type standardPxT = {
+        height: number;
+        left: number;
+        position: string;
+        top: number;
+        width: number;
+    };
+
+    describe('[getStandardPx] - counts layout object of seated element size in px', () => {
+        it.each([
+            [
+                obj.small[0].w,
+                obj.small[0].h,
+                obj.small[0].t,
+                standardPxResult.small[0],
+            ],
+            [
+                obj.small[1].w,
+                obj.small[1].h,
+                obj.small[1].t,
+                standardPxResult.small[1],
+            ],
+            [
+                obj.small[2].w,
+                obj.small[2].h,
+                obj.small[2].t,
+                standardPxResult.small[2],
+            ],
+            [
+                obj.medium[0].w,
+                obj.medium[0].h,
+                obj.medium[0].t,
+                standardPxResult.medium[0],
+            ],
+            [
+                obj.medium[1].w,
+                obj.medium[1].h,
+                obj.medium[1].t,
+                standardPxResult.medium[1],
+            ],
+            [
+                obj.medium[2].w,
+                obj.medium[2].h,
+                obj.medium[2].t,
+                standardPxResult.medium[2],
+            ],
+            [obj.big[0].w, obj.big[0].h, obj.big[0].t, standardPxResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, obj.big[1].t, standardPxResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, obj.big[2].t, standardPxResult.big[2]],
+        ])(
+            'Should calculate object (w: %s, h: %s, t: $s), and result should be equal to: %s',
+            (w: number, h: number, t: number, result: standardPxT) => {
+                const standardPx = getStandardPx(w, h, t);
+
+                expect(standardPx).toEqual(result);
             },
         );
     });
