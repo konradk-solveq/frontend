@@ -34,6 +34,8 @@ export const verticalPxResult = {
     big: ['46.875%', '73.661%', '89.286%'],
 };
 
+export const stackHeaderHeightResult = 148.88392857142858;
+
 export const some = {
     small: [0, 0, 0],
     medium: [0, 0, 0],
