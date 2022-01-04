@@ -1,4 +1,8 @@
-import {centerLeftPxResult, centerTopPxResult} from './mocks/layoutFoo';
+import {
+    centerLeftPxResult,
+    centerTopPxResult,
+    horizontalResult,
+} from './mocks/layoutFoo';
 import {
     setAppSize,
     initAppSize,
@@ -97,6 +101,31 @@ describe('Calculates layout positions -- helpers', () => {
                 const centerTopPx = getCenterTopPx();
 
                 expect(centerTopPx).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getHorizontal] - counts layout horizontal element size in %', () => {
+        beforeAll(() => {
+            initAppSize();
+        });
+
+        it.each([
+            [obj.small[0].w, horizontalResult.small[0]],
+            [obj.small[1].w, horizontalResult.small[1]],
+            [obj.small[2].w, horizontalResult.small[2]],
+            [obj.medium[0].w, horizontalResult.medium[0]],
+            [obj.medium[1].w, horizontalResult.medium[1]],
+            [obj.medium[2].w, horizontalResult.medium[2]],
+            [obj.big[0].w, horizontalResult.big[0]],
+            [obj.big[1].w, horizontalResult.big[1]],
+            [obj.big[2].w, horizontalResult.big[2]],
+        ])(
+            'Should calculate width: %s, and result should be equal to: %s',
+            (w: number, result: number) => {
+                const horizontal = getHorizontal(w);
+
+                expect(horizontal).toEqual(result);
             },
         );
     });
