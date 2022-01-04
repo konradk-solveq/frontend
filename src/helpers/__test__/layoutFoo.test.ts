@@ -12,6 +12,9 @@ import {
     widthPxOfResult,
     heightResult,
     heightPxResult,
+    heightOfPxResult,
+    relativeWidthResult,
+    relativeHeightResult,
 } from './mocks/layoutFoo';
 import {
     setAppSize,
@@ -46,19 +49,19 @@ import {
 
 const obj = {
     small: [
-        {w: 3, h: 2},
-        {w: 12, h: 8},
-        {w: 30, h: 16},
+        {w: 3, h: 2, t: 680},
+        {w: 12, h: 8, t: 540},
+        {w: 30, h: 16, t: 430},
     ],
     medium: [
-        {w: 90, h: 110},
-        {w: 120, h: 150},
-        {w: 160, h: 190},
+        {w: 90, h: 110, t: 98},
+        {w: 120, h: 150, t: 126},
+        {w: 160, h: 190, t: 170},
     ],
     big: [
-        {w: 280, h: 420},
-        {w: 330, h: 660},
-        {w: 400, h: 800},
+        {w: 280, h: 420, t: 26},
+        {w: 330, h: 660, t: 12},
+        {w: 400, h: 800, t: 5},
     ],
 };
 
@@ -299,7 +302,7 @@ describe('Calculates layout positions -- helpers', () => {
 
     //---------------------------------------------
 
-    describe('[getHeight] - counts layout width of seated element size in %', () => {
+    describe('[getHeight] - counts layout height of seated element size in %', () => {
         it.each([
             [obj.small[0].w, obj.small[0].h, heightResult.small[0]],
             [obj.small[1].w, obj.small[1].h, heightResult.small[1]],
@@ -311,7 +314,7 @@ describe('Calculates layout positions -- helpers', () => {
             [obj.big[1].w, obj.big[1].h, heightResult.big[1]],
             [obj.big[2].w, obj.big[2].h, heightResult.big[2]],
         ])(
-            'Should calculate width from object (w: %s, h: %s), and result should be equal to: %s',
+            'Should calculate height from object (w: %s, h: %s), and result should be equal to: %s',
             (w: number, h: number, result: string) => {
                 setObjSize(w, h);
                 const height = getHeight();
@@ -321,7 +324,7 @@ describe('Calculates layout positions -- helpers', () => {
         );
     });
 
-    describe('[getHeightPx] - counts layout width of seated element size in px', () => {
+    describe('[getHeightPx] - counts layout height of seated element size in px', () => {
         it.each([
             [obj.small[0].w, obj.small[0].h, heightPxResult.small[0]],
             [obj.small[1].w, obj.small[1].h, heightPxResult.small[1]],
@@ -333,12 +336,79 @@ describe('Calculates layout positions -- helpers', () => {
             [obj.big[1].w, obj.big[1].h, heightPxResult.big[1]],
             [obj.big[2].w, obj.big[2].h, heightPxResult.big[2]],
         ])(
-            'Should calculate width from object (w: %s, h: %s), and result should be equal to: %s',
+            'Should calculate height from object (w: %s, h: %s), and result should be equal to: %s',
             (w: number, h: number, result: number) => {
                 setObjSize(w, h);
                 const heightPx = getHeightPx();
 
                 expect(heightPx).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getHeightOfPx] - counts layout height element in px', () => {
+        it.each([
+            [obj.small[0].h, heightOfPxResult.small[0]],
+            [obj.small[1].h, heightOfPxResult.small[1]],
+            [obj.small[2].h, heightOfPxResult.small[2]],
+            [obj.medium[0].h, heightOfPxResult.medium[0]],
+            [obj.medium[1].h, heightOfPxResult.medium[1]],
+            [obj.medium[2].h, heightOfPxResult.medium[2]],
+            [obj.big[0].h, heightOfPxResult.big[0]],
+            [obj.big[1].h, heightOfPxResult.big[1]],
+            [obj.big[2].h, heightOfPxResult.big[2]],
+        ])(
+            'Should calculate height: %s, and result should be equal to: %s',
+            (w: number, result: number) => {
+                const heightOfPx = getHeightOfPx(w);
+
+                expect(heightOfPx).toEqual(result);
+            },
+        );
+    });
+
+    //---------------------------------------------
+
+    describe('[getRelativeWidth] - counts layout relative width of seated element size in %', () => {
+        it.each([
+            [obj.small[0].w, obj.small[0].h, relativeWidthResult.small[0]],
+            [obj.small[1].w, obj.small[1].h, relativeWidthResult.small[1]],
+            [obj.small[2].w, obj.small[2].h, relativeWidthResult.small[2]],
+            [obj.medium[0].w, obj.medium[0].h, relativeWidthResult.medium[0]],
+            [obj.medium[1].w, obj.medium[1].h, relativeWidthResult.medium[1]],
+            [obj.medium[2].w, obj.medium[2].h, relativeWidthResult.medium[2]],
+            [obj.big[0].w, obj.big[0].h, relativeWidthResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, relativeWidthResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, relativeWidthResult.big[2]],
+        ])(
+            'Should calculate relative width from object (w: %s, h: %s), and result should be equal to: %s',
+            (w: number, h: number, result: string) => {
+                setObjSize(w, h);
+                const relativeWidth = getRelativeWidth();
+
+                expect(relativeWidth).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getRelativeHeight] - counts layout relative height of seated element size in %', () => {
+        it.each([
+            [obj.small[0].w, obj.small[0].h, relativeHeightResult.small[0]],
+            [obj.small[1].w, obj.small[1].h, relativeHeightResult.small[1]],
+            [obj.small[2].w, obj.small[2].h, relativeHeightResult.small[2]],
+            [obj.medium[0].w, obj.medium[0].h, relativeHeightResult.medium[0]],
+            [obj.medium[1].w, obj.medium[1].h, relativeHeightResult.medium[1]],
+            [obj.medium[2].w, obj.medium[2].h, relativeHeightResult.medium[2]],
+            [obj.big[0].w, obj.big[0].h, relativeHeightResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, relativeHeightResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, relativeHeightResult.big[2]],
+        ])(
+            'Should calculate relative height from object (w: %s, h: %s), and result should be equal to: %s',
+            (w: number, h: number, result: string) => {
+                setObjSize(w, h);
+                const relativeHeight = getRelativeHeight();
+
+                expect(relativeHeight).toEqual(result);
             },
         );
     });
