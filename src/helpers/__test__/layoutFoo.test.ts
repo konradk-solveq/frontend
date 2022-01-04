@@ -6,6 +6,7 @@ import {
     verticalResult,
     verticalPxResult,
     stackHeaderHeightResult,
+    widthResult,
 } from './mocks/layoutFoo';
 import {
     setAppSize,
@@ -190,7 +191,7 @@ describe('Calculates layout positions -- helpers', () => {
         ])(
             'Should calculate height: %s, and result should be equal to: %s',
             (h: number, result: number) => {
-                const verticalPx = getVertical(h);
+                const verticalPx = getVerticalPx(h);
 
                 expect(verticalPx).toEqual(result);
             },
@@ -202,5 +203,27 @@ describe('Calculates layout positions -- helpers', () => {
             const stackHeaderHeight = getStackHeaderHeight();
             expect(stackHeaderHeight).toEqual(stackHeaderHeightResult);
         });
+    });
+
+    describe('[getWidth] - counts layout width of seated element size in %', () => {
+        it.each([
+            [obj.small[0].w, obj.small[0].h, widthResult.small[0]],
+            [obj.small[1].w, obj.small[1].h, widthResult.small[1]],
+            [obj.small[2].w, obj.small[2].h, widthResult.small[2]],
+            [obj.medium[0].w, obj.medium[0].h, widthResult.medium[0]],
+            [obj.medium[1].w, obj.medium[1].h, widthResult.medium[1]],
+            [obj.medium[2].w, obj.medium[2].h, widthResult.medium[2]],
+            [obj.big[0].w, obj.big[0].h, widthResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, widthResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, widthResult.big[2]],
+        ])(
+            'Should calculate width from object (w: %s, h: %s), and result should be equal to: %s',
+            (w: number, h: number, result: string) => {
+                setObjSize(w, h);
+                const width = getWidth();
+
+                expect(width).toEqual(result);
+            },
+        );
     });
 });
