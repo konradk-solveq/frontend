@@ -5,6 +5,7 @@ import {
     horizontalPxResult,
     verticalResult,
     verticalPxResult,
+    stackHeaderHeightResult,
 } from './mocks/layoutFoo';
 import {
     setAppSize,
@@ -64,11 +65,11 @@ const mockDimensions = (width: number, height: number) => {
 mockDimensions(414, 896);
 
 describe('Calculates layout positions -- helpers', () => {
-    describe('[centerLeftPx] - counts layout center element left position', () => {
-        beforeAll(() => {
-            initAppSize();
-        });
+    beforeAll(() => {
+        initAppSize();
+    });
 
+    describe('[centerLeftPx] - counts layout center element left position', () => {
         it.each([
             [obj.small[0].w, obj.small[0].h, centerLeftPxResult.small[0]],
             [obj.small[1].w, obj.small[1].h, centerLeftPxResult.small[1]],
@@ -91,10 +92,6 @@ describe('Calculates layout positions -- helpers', () => {
     });
 
     describe('[centerTopPx] - counts layout center element top position', () => {
-        beforeAll(() => {
-            initAppSize();
-        });
-
         it.each([
             [obj.small[0].w, obj.small[0].h, centerTopPxResult.small[0]],
             [obj.small[1].w, obj.small[1].h, centerTopPxResult.small[1]],
@@ -117,10 +114,6 @@ describe('Calculates layout positions -- helpers', () => {
     });
 
     describe('[getHorizontal] - counts layout horizontal element size in %', () => {
-        beforeAll(() => {
-            initAppSize();
-        });
-
         it.each([
             [obj.small[0].w, horizontalResult.small[0]],
             [obj.small[1].w, horizontalResult.small[1]],
@@ -133,7 +126,7 @@ describe('Calculates layout positions -- helpers', () => {
             [obj.big[2].w, horizontalResult.big[2]],
         ])(
             'Should calculate width: %s, and result should be equal to: %s',
-            (w: number, result: number) => {
+            (w: string, result: string) => {
                 const horizontal = getHorizontal(w);
 
                 expect(horizontal).toEqual(result);
@@ -142,10 +135,6 @@ describe('Calculates layout positions -- helpers', () => {
     });
 
     describe('[getHorizontalPx] - counts layout horizontal element size in px', () => {
-        beforeAll(() => {
-            initAppSize();
-        });
-
         it.each([
             [obj.small[0].w, horizontalPxResult.small[0]],
             [obj.small[1].w, horizontalPxResult.small[1]],
@@ -167,10 +156,6 @@ describe('Calculates layout positions -- helpers', () => {
     });
 
     describe('[getVertical] - counts layout vertical element size in %', () => {
-        beforeAll(() => {
-            initAppSize();
-        });
-
         it.each([
             [obj.small[0].h, verticalResult.small[0]],
             [obj.small[1].h, verticalResult.small[1]],
@@ -183,7 +168,7 @@ describe('Calculates layout positions -- helpers', () => {
             [obj.big[2].h, verticalResult.big[2]],
         ])(
             'Should calculate height: %s, and result should be equal to: %s',
-            (h: number, result: number) => {
+            (h: string, result: string) => {
                 const vertical = getVertical(h);
 
                 expect(vertical).toEqual(result);
@@ -192,10 +177,6 @@ describe('Calculates layout positions -- helpers', () => {
     });
 
     describe('[getVerticalPx] - counts layout vertical element size in px', () => {
-        beforeAll(() => {
-            initAppSize();
-        });
-
         it.each([
             [obj.small[0].h, verticalPxResult.small[0]],
             [obj.small[1].h, verticalPxResult.small[1]],
@@ -214,5 +195,12 @@ describe('Calculates layout positions -- helpers', () => {
                 expect(verticalPx).toEqual(result);
             },
         );
+    });
+
+    describe('[getStackHeaderHeight] - counts stack header height in px', () => {
+        it('Should calculate height: %s, and result should be equal to: %s', () => {
+            const stackHeaderHeight = getStackHeaderHeight();
+            expect(stackHeaderHeight).toEqual(stackHeaderHeightResult);
+        });
     });
 });
