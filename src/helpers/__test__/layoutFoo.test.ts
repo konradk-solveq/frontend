@@ -1,4 +1,4 @@
-import {getCenterLeftPxResult, getCenterTopPxResult} from './mocks/layoutFoo';
+import {centerLeftPxResult, centerTopPxResult} from './mocks/layoutFoo';
 import {
     setAppSize,
     initAppSize,
@@ -30,19 +30,22 @@ import {
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
 
-const layoutObj = {
-    small: {
-        w: 30,
-        h: 30,
-    },
-    medium: {
-        w: 120,
-        h: 150,
-    },
-    big: {
-        w: 330,
-        h: 400,
-    },
+const obj = {
+    small: [
+        {w: 3, h: 2},
+        {w: 12, h: 8},
+        {w: 30, h: 16},
+    ],
+    medium: [
+        {w: 90, h: 110},
+        {w: 120, h: 150},
+        {w: 160, h: 190},
+    ],
+    big: [
+        {w: 280, h: 420},
+        {w: 330, h: 660},
+        {w: 400, h: 800},
+    ],
 };
 
 describe('Calculates layout positions -- helpers', () => {
@@ -52,9 +55,15 @@ describe('Calculates layout positions -- helpers', () => {
         });
 
         it.each([
-            [layoutObj.small.w, layoutObj.small.h, getCenterLeftPxResult[0]],
-            [layoutObj.medium.w, layoutObj.medium.h, getCenterLeftPxResult[1]],
-            [layoutObj.big.w, layoutObj.big.h, getCenterLeftPxResult[2]],
+            [obj.small[0].w, obj.small[0].h, centerLeftPxResult.small[0]],
+            [obj.small[1].w, obj.small[1].h, centerLeftPxResult.small[1]],
+            [obj.small[2].w, obj.small[2].h, centerLeftPxResult.small[2]],
+            [obj.medium[0].w, obj.medium[0].h, centerLeftPxResult.medium[0]],
+            [obj.medium[1].w, obj.medium[1].h, centerLeftPxResult.medium[1]],
+            [obj.medium[2].w, obj.medium[2].h, centerLeftPxResult.medium[2]],
+            [obj.big[0].w, obj.big[0].h, centerLeftPxResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, centerLeftPxResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, centerLeftPxResult.big[2]],
         ])(
             'Should calculate positions (w: %s, h: %s) and result should be equal to: %s',
             (w: number, h: number, result: number) => {
@@ -72,9 +81,15 @@ describe('Calculates layout positions -- helpers', () => {
         });
 
         it.each([
-            [layoutObj.small.w, layoutObj.small.h, getCenterTopPxResult[0]],
-            [layoutObj.medium.w, layoutObj.medium.h, getCenterTopPxResult[1]],
-            [layoutObj.big.w, layoutObj.big.h, getCenterTopPxResult[2]],
+            [obj.small[0].w, obj.small[0].h, centerTopPxResult.small[0]],
+            [obj.small[1].w, obj.small[1].h, centerTopPxResult.small[1]],
+            [obj.small[2].w, obj.small[2].h, centerTopPxResult.small[2]],
+            [obj.medium[0].w, obj.medium[0].h, centerTopPxResult.medium[0]],
+            [obj.medium[1].w, obj.medium[1].h, centerTopPxResult.medium[1]],
+            [obj.medium[2].w, obj.medium[2].h, centerTopPxResult.medium[2]],
+            [obj.big[0].w, obj.big[0].h, centerTopPxResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, centerTopPxResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, centerTopPxResult.big[2]],
         ])(
             'Should calculate positions (w: %s, h: %s) and result should be equal to: %s',
             (w: number, h: number, result: number) => {
