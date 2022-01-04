@@ -3,6 +3,7 @@ import {
     authenticateUserWhenOnlineAndExpectedActions,
     authenticateUserWhenOnlineSecondCaseExpectedActions,
     authenticateUserWhenOnlineThirdCaseExpectedActions,
+    authenticateUserWhenOnlineFourthCaseExpectedActions,
 } from './expectedActionsAuth';
 
 export const compareResultsWhenOfflineFirstCase = (actionsLog: any[]) => {
@@ -50,5 +51,15 @@ export const compareResultsWhenOnlineThirdCase = (actionsLog: any[]) => {
     /* loading - stop */
     expect(actionsLog[1]).toEqual(
         authenticateUserWhenOnlineThirdCaseExpectedActions[1],
+    );
+};
+export const compareResultsWhenOnlineFourthCase = (actionsLog: any[]) => {
+    /* loading - start */
+    expect(actionsLog[0]).toEqual(
+        authenticateUserWhenOnlineFourthCaseExpectedActions[0],
+    );
+    /* set authentication error and stop loading */
+    expect(actionsLog[1]).toEqual(
+        authenticateUserWhenOnlineFourthCaseExpectedActions[1],
     );
 };

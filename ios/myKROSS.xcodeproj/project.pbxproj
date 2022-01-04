@@ -740,7 +740,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.0.0-alpha.0.9.0";
+				MARKETING_VERSION = "2.0.0-alpha.0.10.0";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -769,7 +769,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.0.0-alpha.0.9.0";
+				MARKETING_VERSION = "2.0.0-alpha.0.10.0";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -986,7 +986,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.0.0-alpha.0.9.0";
+				MARKETING_VERSION = "2.0.0-alpha.0.10.0";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1100,7 +1100,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.0.0-alpha.0.9.0";
+				MARKETING_VERSION = "2.0.0-alpha.0.10.0";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1210,7 +1210,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.0.0-alpha.0.9.0";
+				MARKETING_VERSION = "2.0.0-alpha.0.10.0";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1320,7 +1320,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.0.0-alpha.0.9.0";
+				MARKETING_VERSION = "2.0.0-alpha.0.10.0";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1438,7 +1438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.0.0-alpha.0.9.0";
+				MARKETING_VERSION = "2.0.0-alpha.0.10.0";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1560,7 +1560,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = "2.0.0-alpha.0.9.0";
+				MARKETING_VERSION = "2.0.0-alpha.0.10.0";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

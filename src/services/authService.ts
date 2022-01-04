@@ -22,7 +22,7 @@ interface RegisterResponseI extends DeviceIdI {
 export const registerMobileDevice = async () => {
     const response = await registerDevice();
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -40,7 +40,7 @@ export const registerMobileDevice = async () => {
 export const logInService = async (email: string, password: string) => {
     const response = await logIn(email, password);
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -61,7 +61,7 @@ export const logInMobileService = async (
 ) => {
     const response = await logInMobile(userId, deviceToken);
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -79,7 +79,7 @@ export const logInMobileService = async (
 export const getCurrentSessionService = async (token: string) => {
     const response = await currentSession(token);
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -100,7 +100,7 @@ export const getRefreshSessionService = async (
 ) => {
     const response = await refreshSession(token, refreshToken);
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -128,7 +128,7 @@ export const checkSessionAndRecreateIfNeededService = async (
     /* No active session. Try to re-login */
     if (
         !currentSessionResponse?.data ||
-        currentSessionResponse.status > 400 ||
+        currentSessionResponse.status >= 400 ||
         !expirationDate
     ) {
         const loginResponse = await logInMobileService(userId, deviceToken);
@@ -145,7 +145,7 @@ export const checkSessionAndRecreateIfNeededService = async (
         /* Error on response. Try to re-login */
         if (
             (!refreshTokenResponse?.data ||
-                refreshTokenResponse.status > 400) &&
+                refreshTokenResponse.status >= 400) &&
             !abortAutoRefresh
         ) {
             const loginResponse = await logInMobileService(userId, deviceToken);
@@ -174,7 +174,7 @@ export const checkSessionAndRecreateIfNeededService = async (
 export const logOutService = async () => {
     const response = await logOut();
 
-    if (response.status > 400) {
+    if (response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;

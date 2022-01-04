@@ -51,7 +51,7 @@ const LoginScreen: React.FC = () => {
 
     useEffect(() => {
         if (submit && !isLoading) {
-            if (statusCode > 400) {
+            if (statusCode >= 400) {
                 setShowErrorModal(true);
                 setSubmit(false);
                 return;
