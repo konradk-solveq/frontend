@@ -234,6 +234,78 @@ export const standardPxResult = {
     ],
 };
 
+export const perfectPxResult = {
+    small: [
+        {
+            height: 2.977678571428571,
+            left: 321.5892857142857,
+            position: 'absolute',
+            top: 1012.4107142857143,
+            width: 5.434782608695652,
+        },
+        {
+            height: 11.910714285714285,
+            left: 294.7901785714286,
+            position: 'absolute',
+            top: 803.9732142857143,
+            width: 21.73913043478261,
+        },
+        {
+            height: 23.82142857142857,
+            left: 259.0580357142857,
+            position: 'absolute',
+            top: 640.2008928571429,
+            width: 54.34782608695652,
+        },
+    ],
+    medium: [
+        {
+            height: 163.77232142857142,
+            left: 83.375,
+            position: 'absolute',
+            top: 145.90625,
+            width: 163.04347826086956,
+        },
+        {
+            height: 223.32589285714283,
+            left: 92.30803571428572,
+            position: 'absolute',
+            top: 187.59375,
+            width: 217.3913043478261,
+        },
+        {
+            height: 282.8794642857143,
+            left: 104.21875,
+            position: 'absolute',
+            top: 253.10267857142858,
+            width: 289.8550724637681,
+        },
+    ],
+    big: [
+        {
+            height: 625.3125,
+            left: 23.821428571428573,
+            position: 'absolute',
+            top: 38.70982142857143,
+            width: 507.2463768115942,
+        },
+        {
+            height: 982.6339285714287,
+            left: 23.821428571428573,
+            position: 'absolute',
+            top: 17.86607142857143,
+            width: 597.8260869565217,
+        },
+        {
+            height: 1191.0714285714287,
+            left: 23.821428571428573,
+            position: 'absolute',
+            top: 7.444196428571429,
+            width: 724.6376811594203,
+        },
+    ],
+};
+
 export const some = {
     small: [0, 0, 0],
     medium: [0, 0, 0],
