@@ -12,13 +12,13 @@ let appSize: {
     width: number;
     height: number;
     ratio: number;
-};
+} | null;
 
 let objSize: {
     width: number;
     height: number;
     ratio: number;
-};
+} | null;
 
 const setAppSize = (w: number, h: number) => {
     appSize = {
@@ -40,13 +40,30 @@ const setObjSize = (w: number, h: number) => {
     };
 };
 
+const showError = () => {
+    if (!objSize) {
+        console.error('objSize is not defined!');
+    }
+    if (!appSize) {
+        console.error('appSize is not defined!');
+    }
+};
+
 const getCenterLeftPx = () => {
+    if (!objSize || !appSize) {
+        showError();
+        return 0;
+    }
     let res: number =
         ((BASE_WIDTH - objSize.width) / 2 / BASE_WIDTH) * appSize.width;
     return res;
 };
 
 const getCenterTopPx = () => {
+    if (!objSize || !appSize) {
+        showError();
+        return 0;
+    }
     let res: number =
         ((BASE_HEIGHT - objSize.height) / 2 / BASE_HEIGHT) * appSize.height;
     return res;
@@ -56,10 +73,7 @@ const getHorizontal = (px: number) => {
     let res: number = (px / BASE_WIDTH) * 100;
     return res.toFixed(3) + '%';
 };
-// const getHorizontalPx = (px: number) => {
-//     let res: number = (px / baseWidth) * appSize.width;
-//     return res;
-// }
+
 const getHorizontalPx = (px: number) => {
     return (width / BASE_WIDTH) * px;
 };
@@ -68,10 +82,7 @@ const getVertical = (px: number) => {
     let res: number = (px / BASE_HEIGHT) * 100;
     return res.toFixed(3) + '%';
 };
-// const getVerticalPx = (px: number) => {
-//     let res: number = ((px) / baseHeight) * appSize.height;
-//     return res
-// }
+
 const getVerticalPx = (px: number) => {
     return (height / BASE_HEIGHT) * px;
 };
@@ -81,50 +92,86 @@ const getStackHeaderHeight = () => {
 };
 
 const getWidth = () => {
+    if (!objSize) {
+        showError();
+        return '0%';
+    }
     let res: number = (objSize.width / BASE_WIDTH) * 100;
     return res.toFixed(3) + '%';
 };
+
 const getWidthPx = () => {
+    if (!objSize || !appSize) {
+        showError();
+        return 0;
+    }
     let res: number = (objSize.width / BASE_WIDTH) * appSize.width;
     return res;
 };
+
 const getWidthOf = (num: number) => {
     let res: number = (num / BASE_WIDTH) * 100;
     return res.toFixed(3) + '%';
 };
+
 const getWidthPxOf = (num: number) => {
+    if (!appSize) {
+        showError();
+        return 0;
+    }
     let res: number = (num / BASE_WIDTH) * appSize.width;
     return res;
 };
 
 const getHeight = () => {
+    if (!objSize) {
+        showError();
+        return '0%';
+    }
     let res: number = (objSize.height / BASE_HEIGHT) * 100;
     return res.toFixed(3) + '%';
 };
+
 const getHeightPx = () => {
+    if (!objSize || !appSize) {
+        showError();
+        return 0;
+    }
     let res: number = (objSize.height / BASE_HEIGHT) * appSize.height;
     return res;
 };
+
 const getHeightOfPx = (num: number) => {
+    if (!appSize) {
+        showError();
+        return 0;
+    }
     let res: number = (num / BASE_HEIGHT) * appSize.height;
     return res;
 };
 
 const getRelativeWidth = () => {
+    if (!objSize || !appSize) {
+        showError();
+        return '0%';
+    }
     let res: number = (objSize.width / BASE_HEIGHT / appSize.ratio) * 100;
     return res.toFixed(3) + '%';
 };
 
 const getRelativeHeight = () => {
+    if (!objSize || !appSize) {
+        showError();
+        return '0%';
+    }
     let res: number = (objSize.height / BASE_WIDTH) * appSize.ratio * 100;
     return res.toFixed(3) + '%';
 };
 
 const getStandard = (w: number, h: number, t: number) => {
-    // nazwy pełnych kompozycji bez kontestu, abstrakcujne, nie miałęm pomysłu na okeślniki
     setObjSize(w, h);
     let res: {
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         width: string;
         height: string;
         left: number;
@@ -142,7 +189,7 @@ const getStandard = (w: number, h: number, t: number) => {
 const getStandardPx = (w: number, h: number, t: number) => {
     setObjSize(w, h);
     let res: {
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         width: number;
         height: number;
         left: number;
@@ -160,7 +207,7 @@ const getStandardPx = (w: number, h: number, t: number) => {
 const getPerfectPx = (w: number, h: number, l: number, t: number) => {
     setObjSize(w, h);
     let res: {
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         width: number;
         height: number;
         left: number;
@@ -177,9 +224,9 @@ const getPerfectPx = (w: number, h: number, l: number, t: number) => {
 
 const getPosStaticHeight = (w: number, h: number, t: number) => {
     setObjSize(w, h);
-    let width = getWidthPx();
+    let widthObj = getWidthPx();
     let res: {
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         width: number;
         height: number;
         left: number;
@@ -187,7 +234,7 @@ const getPosStaticHeight = (w: number, h: number, t: number) => {
     } = {
         position: 'absolute',
         width: getWidthPx(),
-        height: (h / w) * width,
+        height: (h / w) * widthObj,
         left: getCenterLeftPx(),
         top: getVertical(t),
     };
@@ -197,7 +244,7 @@ const getPosStaticHeight = (w: number, h: number, t: number) => {
 const getOnlyPos = (w: number, h: number, t: number) => {
     setObjSize(w, h);
     let res: {
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         left: number;
         top: string;
     } = {
@@ -211,7 +258,7 @@ const getOnlyPos = (w: number, h: number, t: number) => {
 const getPosAndWid = (w: number, h: number, t: number) => {
     setObjSize(w, h);
     let res: {
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         width: string;
         left: number;
         top: string;
@@ -226,7 +273,7 @@ const getPosAndWid = (w: number, h: number, t: number) => {
 
 const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     setObjSize(w, h);
-    let height = getHeightPx();
+    let heightObj = getHeightPx();
     let res: {
         position: 'relative' | 'absolute' | undefined;
         width: number;
@@ -236,7 +283,7 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     } = {
         position: 'absolute',
         width: getWidthPx(),
-        height: height < min ? min : height,
+        height: height < min ? min : heightObj,
         left: getCenterLeftPx(),
         top: getVertical(t),
     };
