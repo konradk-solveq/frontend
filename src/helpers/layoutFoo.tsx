@@ -1,12 +1,13 @@
 import {Dimensions} from 'react-native';
+import {
+    BASE_HEIGHT,
+    BASE_WIDTH,
+    BASE_STACK_HEADER_HEIGHT,
+} from '../globalValues/layout';
 
 // funkcje wiliczające położenie elementów proporcje wg layoutu
 // https://app.zeplin.io/project/5fbf658b936bbbb842e3c43c/dashboard?sid=60397836dc2eff2bfdde033a
 const {width, height} = Dimensions.get('window');
-
-const BASE_HEIGHT = 896;
-const BASE_WIDTH = 414;
-const BASE_STACK_HEADER_HEIGHT = 100;
 
 let appSize: {
     width: number;
@@ -294,7 +295,7 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     return res;
 };
 
-const FONT_RATIO = width > 414 ? 1 : width / 414;
+const FONT_RATIO = width > BASE_WIDTH ? 1 : width / BASE_WIDTH;
 const getFontSize = (h: number) => h * FONT_RATIO;
 const mainButtonsHeight = (h: number) => h * FONT_RATIO;
 
