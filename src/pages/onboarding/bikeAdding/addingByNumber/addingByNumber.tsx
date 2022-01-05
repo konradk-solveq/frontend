@@ -57,16 +57,21 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     const [keyboardHeight, setKeyboardHeight] = useState(0);
     const keyboardDidShow = (e: any) =>
         setKeyboardHeight(e.endCoordinates.height);
-    const keyboardDidHide = (e: any) =>
-        setKeyboardHeight(e.endCoordinates.height);
+    const keyboardDidHide = () => setKeyboardHeight(0);
 
     useEffect(() => {
-        Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-        Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+        const didShow = Keyboard.addListener(
+            'keyboardDidShow',
+            keyboardDidShow,
+        );
+        const didHide = Keyboard.addListener(
+            'keyboardDidHide',
+            keyboardDidHide,
+        );
 
         return () => {
-            Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
-            Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+            didShow.remove();
+            didHide.remove();
         };
     }, []);
 

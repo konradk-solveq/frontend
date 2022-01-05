@@ -57,10 +57,18 @@ export const isFutureIphone = getPureDeviceId() >= 13.3;
 // const negativeMargin = isIphone11 ? 44 : STATUSBAR_DEFAULT_HEIGHT;
 
 export const getStatusBarHeight = async (skipAndroid: boolean) => {
-    const nativeDeviceHeight = await getStatusBarHeightAsync();
-    return Platform.select({
-        ios: typeof nativeDeviceHeight !== 'undefined' ? nativeDeviceHeight : 0,
-        android: skipAndroid ? 0 : StatusBar.currentHeight,
-        default: 0,
-    });
+    try {
+        const nativeDeviceHeight = await getStatusBarHeightAsync();
+        return Platform.select({
+            ios:
+                typeof nativeDeviceHeight !== 'undefined'
+                    ? nativeDeviceHeight
+                    : 0,
+            android: skipAndroid ? 0 : StatusBar.currentHeight,
+            default: 0,
+        });
+    } catch (error) {
+        console.error('[detextIOSDevice - getStatusBarHeight]', error);
+        return 0;
+    }
 };
