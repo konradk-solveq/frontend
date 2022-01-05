@@ -294,9 +294,9 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     return res;
 };
 
-const fontRatio = width > 414 ? 1 : width / 414;
-const getFontSize = (h: number) => h * fontRatio;
-const mainButtonsHeight = (h: number) => h * fontRatio;
+const FONT_RATIO = width > 414 ? 1 : width / 414;
+const getFontSize = (h: number) => h * FONT_RATIO;
+const mainButtonsHeight = (h: number) => h * FONT_RATIO;
 
 export {
     setAppSize,
