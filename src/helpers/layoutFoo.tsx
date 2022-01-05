@@ -41,12 +41,16 @@ const setObjSize = (w: number, h: number) => {
 };
 
 const showError = () => {
+    console.error('');
+    console.error('-----------!!!---------');
     if (!objSize) {
         console.error('objSize is not defined!');
     }
     if (!appSize) {
         console.error('appSize is not defined!');
     }
+    console.error('-----------!!!---------');
+    console.error('');
 };
 
 const getCenterLeftPx = () => {
