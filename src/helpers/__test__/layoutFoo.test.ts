@@ -17,6 +17,7 @@ import {
     relativeHeightResult,
     standardResult,
     standardPxResult,
+    perfectPxResult,
 } from './mocks/layoutFoo';
 import {
     initAppSize,
@@ -50,19 +51,19 @@ import {
 
 const obj = {
     small: [
-        {w: 3, h: 2, t: 680},
-        {w: 12, h: 8, t: 540},
-        {w: 30, h: 16, t: 430},
+        {w: 3, h: 2, l: 216, t: 680},
+        {w: 12, h: 8, l: 198, t: 540},
+        {w: 30, h: 16, l: 174, t: 430},
     ],
     medium: [
-        {w: 90, h: 110, t: 98},
-        {w: 120, h: 150, t: 126},
-        {w: 160, h: 190, t: 170},
+        {w: 90, h: 110, l: 56, t: 98},
+        {w: 120, h: 150, l: 62, t: 126},
+        {w: 160, h: 190, l: 70, t: 170},
     ],
     big: [
-        {w: 280, h: 420, t: 26},
-        {w: 330, h: 660, t: 12},
-        {w: 400, h: 800, t: 5},
+        {w: 280, h: 420, l: 16, t: 26},
+        {w: 330, h: 660, l: 12, t: 12},
+        {w: 400, h: 800, l: 6, t: 5},
     ],
 };
 
@@ -526,6 +527,95 @@ describe('Calculates layout positions -- helpers', () => {
                 const standardPx = getStandardPx(w, h, t);
 
                 expect(standardPx).toEqual(result);
+            },
+        );
+    });
+
+    type perfectPxT = {
+        position: string;
+        width: number;
+        height: number;
+        left: number;
+        top: number;
+    };
+
+    describe('[getPerfectPx] - counts layout object of seated element size in px', () => {
+        it.each([
+            [
+                obj.small[0].w,
+                obj.small[0].h,
+                obj.small[0].l,
+                obj.small[0].t,
+                perfectPxResult.small[0],
+            ],
+            [
+                obj.small[1].w,
+                obj.small[1].h,
+                obj.small[1].l,
+                obj.small[1].t,
+                perfectPxResult.small[1],
+            ],
+            [
+                obj.small[2].w,
+                obj.small[2].h,
+                obj.small[2].l,
+                obj.small[2].t,
+                perfectPxResult.small[2],
+            ],
+            [
+                obj.medium[0].w,
+                obj.medium[0].h,
+                obj.medium[0].l,
+                obj.medium[0].t,
+                perfectPxResult.medium[0],
+            ],
+            [
+                obj.medium[1].w,
+                obj.medium[1].h,
+                obj.medium[1].l,
+                obj.medium[1].t,
+                perfectPxResult.medium[1],
+            ],
+            [
+                obj.medium[2].w,
+                obj.medium[2].h,
+                obj.medium[2].l,
+                obj.medium[2].t,
+                perfectPxResult.medium[2],
+            ],
+            [
+                obj.big[0].w,
+                obj.big[0].h,
+                obj.big[0].l,
+                obj.big[0].t,
+                perfectPxResult.big[0],
+            ],
+            [
+                obj.big[1].w,
+                obj.big[1].h,
+                obj.big[0].l,
+                obj.big[1].t,
+                perfectPxResult.big[1],
+            ],
+            [
+                obj.big[2].w,
+                obj.big[2].h,
+                obj.big[0].l,
+                obj.big[2].t,
+                perfectPxResult.big[2],
+            ],
+        ])(
+            'Should calculate object (w: %s, h: %s, t: $s), and result should be equal to: %s',
+            (
+                w: number,
+                h: number,
+                l: number,
+                t: number,
+                result: perfectPxT,
+            ) => {
+                const perfectPx = getPerfectPx(w, h, l, t);
+
+                expect(perfectPx).toEqual(result);
             },
         );
     });
