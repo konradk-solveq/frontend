@@ -1154,6 +1154,8 @@ Array [
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -1170,6 +1172,8 @@ Array [
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -2397,6 +2401,8 @@ Array [
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -2413,6 +2419,8 @@ Array [
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -3643,6 +3651,8 @@ Spróbuj ponownie.
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -3659,6 +3669,8 @@ Spróbuj ponownie.
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {

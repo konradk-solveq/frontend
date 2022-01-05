@@ -847,6 +847,11 @@ exports[`<ShortRouteBody /> Rendering Should render component with disabled btn 
       }
     >
       <View
+        accessibilityState={
+          Object {
+            "disabled": true,
+          }
+        }
         accessible={true}
         focusable={true}
         onClick={[Function]}
@@ -878,9 +883,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with disabled btn 
         testID="big-red-btn-for-short-route"
       >
         <ActivityIndicator
-          animating={true}
           color="white"
-          hidesWhenStopped={true}
           size="small"
           testID="red-btn-loader"
         />
@@ -1149,6 +1152,11 @@ exports[`<ShortRouteBody /> Rendering Should render component with loader on btn
       }
     >
       <View
+        accessibilityState={
+          Object {
+            "disabled": true,
+          }
+        }
         accessible={true}
         focusable={true}
         onClick={[Function]}
@@ -1180,9 +1188,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with loader on btn
         testID="big-red-btn-for-short-route"
       >
         <ActivityIndicator
-          animating={true}
           color="white"
-          hidesWhenStopped={true}
           size="small"
           testID="red-btn-loader"
         />

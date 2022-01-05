@@ -3,7 +3,9 @@
 exports[`<SmallWhiteBtn /> Rendering Should match snapshot - with set custom button style 1`] = `
 <View
   accessible={true}
+  collapsable={false}
   focusable={true}
+  nativeID="animatedComponent"
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -49,7 +51,9 @@ exports[`<SmallWhiteBtn /> Rendering Should match snapshot - with set custom but
 exports[`<SmallWhiteBtn /> Rendering Should match snapshot - with set custom text style 1`] = `
 <View
   accessible={true}
+  collapsable={false}
   focusable={true}
+  nativeID="animatedComponent"
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -97,7 +101,9 @@ exports[`<SmallWhiteBtn /> Rendering Should match snapshot - with set custom tex
 exports[`<SmallWhiteBtn /> Rendering Should match snapshot 1`] = `
 <View
   accessible={true}
+  collapsable={false}
   focusable={true}
+  nativeID="animatedComponent"
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}

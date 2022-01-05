@@ -13,6 +13,8 @@ exports[`<TopNotification /> Rendering Should match snapshot 1`] = `
   }
 >
   <View
+    collapsable={false}
+    nativeID="animatedComponent"
     style={
       Object {
         "backgroundColor": "#313131",
@@ -29,6 +31,8 @@ exports[`<TopNotification /> Rendering Should match snapshot 1`] = `
     }
   >
     <Text
+      collapsable={false}
+      nativeID="animatedComponent"
       numberOfLines={1}
       style={
         Object {
@@ -62,6 +66,8 @@ exports[`<TopNotification /> Rendering Should not show notification without mess
   }
 >
   <View
+    collapsable={false}
+    nativeID="animatedComponent"
     style={
       Object {
         "backgroundColor": "#313131",
@@ -78,6 +84,8 @@ exports[`<TopNotification /> Rendering Should not show notification without mess
     }
   >
     <Text
+      collapsable={false}
+      nativeID="animatedComponent"
       numberOfLines={1}
       style={
         Object {

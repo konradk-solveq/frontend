@@ -132,6 +132,7 @@ exports[`<BikeSelectorList /> Rendering Should match snapshot 1`] = `
       >
         <View
           accessible={true}
+          collapsable={false}
           focusable={true}
           hitSlop={
             Object {
@@ -141,6 +142,7 @@ exports[`<BikeSelectorList /> Rendering Should match snapshot 1`] = `
               "top": 10,
             }
           }
+          nativeID="animatedComponent"
           onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
@@ -292,6 +294,7 @@ exports[`<BikeSelectorList /> Rendering Should navigate after press on backArrow
       >
         <View
           accessible={true}
+          collapsable={false}
           focusable={true}
           hitSlop={
             Object {
@@ -301,6 +304,7 @@ exports[`<BikeSelectorList /> Rendering Should navigate after press on backArrow
               "top": 10,
             }
           }
+          nativeID="animatedComponent"
           onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
@@ -452,6 +456,7 @@ exports[`<BikeSelectorList /> Rendering Should render child component 1`] = `
       >
         <View
           accessible={true}
+          collapsable={false}
           focusable={true}
           hitSlop={
             Object {
@@ -461,6 +466,7 @@ exports[`<BikeSelectorList /> Rendering Should render child component 1`] = `
               "top": 10,
             }
           }
+          nativeID="animatedComponent"
           onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}
@@ -614,6 +620,7 @@ exports[`<BikeSelectorList /> Rendering Should render header right action elemen
       >
         <View
           accessible={true}
+          collapsable={false}
           focusable={true}
           hitSlop={
             Object {
@@ -623,6 +630,7 @@ exports[`<BikeSelectorList /> Rendering Should render header right action elemen
               "top": 10,
             }
           }
+          nativeID="animatedComponent"
           onClick={[Function]}
           onResponderGrant={[Function]}
           onResponderMove={[Function]}

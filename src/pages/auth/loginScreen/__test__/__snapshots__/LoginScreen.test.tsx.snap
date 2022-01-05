@@ -143,12 +143,10 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           autoCapitalize="none"
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           style={
                             Array [
                               Object {
@@ -175,7 +173,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputEmail"
-                          underlineColorAndroid="transparent"
                           value="test@example.com"
                         />
                       </View>
@@ -214,11 +211,9 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           secureTextEntry={true}
                           style={
                             Array [
@@ -246,7 +241,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputPassword"
-                          underlineColorAndroid="transparent"
                           value="12345678"
                         />
                         <View
@@ -1101,6 +1095,8 @@ Masz konto w Kross? Zaloguj się.
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -1117,6 +1113,8 @@ Masz konto w Kross? Zaloguj się.
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -1281,12 +1279,10 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           autoCapitalize="none"
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           style={
                             Array [
                               Object {
@@ -1313,7 +1309,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputEmail"
-                          underlineColorAndroid="transparent"
                           value=""
                         />
                       </View>
@@ -1352,11 +1347,9 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           secureTextEntry={true}
                           style={
                             Array [
@@ -1384,7 +1377,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputPassword"
-                          underlineColorAndroid="transparent"
                           value=""
                         />
                         <View
@@ -1400,7 +1392,9 @@ Masz konto w Kross? Zaloguj się.
                         >
                           <View
                             accessible={true}
+                            collapsable={false}
                             focusable={true}
+                            nativeID="animatedComponent"
                             onClick={[Function]}
                             onResponderGrant={[Function]}
                             onResponderMove={[Function]}
@@ -1487,7 +1481,9 @@ Masz konto w Kross? Zaloguj się.
                   <View>
                     <View
                       accessible={true}
+                      collapsable={false}
                       focusable={true}
+                      nativeID="animatedComponent"
                       onClick={[Function]}
                       onResponderGrant={[Function]}
                       onResponderMove={[Function]}
@@ -1536,6 +1532,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -1615,6 +1613,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -1696,6 +1696,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -1843,7 +1845,9 @@ Masz konto w Kross? Zaloguj się.
                   </Text>
                   <View
                     accessible={true}
+                    collapsable={false}
                     focusable={true}
+                    nativeID="animatedComponent"
                     onClick={[Function]}
                     onResponderGrant={[Function]}
                     onResponderMove={[Function]}
@@ -2188,6 +2192,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -2239,6 +2245,8 @@ Masz konto w Kross? Zaloguj się.
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -2255,6 +2263,8 @@ Masz konto w Kross? Zaloguj się.
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -2419,12 +2429,10 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           autoCapitalize="none"
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           style={
                             Array [
                               Object {
@@ -2451,7 +2459,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputEmail"
-                          underlineColorAndroid="transparent"
                           value=""
                         />
                       </View>
@@ -2490,11 +2497,9 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           secureTextEntry={true}
                           style={
                             Array [
@@ -2522,7 +2527,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputPassword"
-                          underlineColorAndroid="transparent"
                           value=""
                         />
                         <View
@@ -2538,7 +2542,9 @@ Masz konto w Kross? Zaloguj się.
                         >
                           <View
                             accessible={true}
+                            collapsable={false}
                             focusable={true}
+                            nativeID="animatedComponent"
                             onClick={[Function]}
                             onResponderGrant={[Function]}
                             onResponderMove={[Function]}
@@ -2625,7 +2631,9 @@ Masz konto w Kross? Zaloguj się.
                   <View>
                     <View
                       accessible={true}
+                      collapsable={false}
                       focusable={true}
+                      nativeID="animatedComponent"
                       onClick={[Function]}
                       onResponderGrant={[Function]}
                       onResponderMove={[Function]}
@@ -2674,6 +2682,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -2753,6 +2763,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -2834,6 +2846,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -2981,7 +2995,9 @@ Masz konto w Kross? Zaloguj się.
                   </Text>
                   <View
                     accessible={true}
+                    collapsable={false}
                     focusable={true}
+                    nativeID="animatedComponent"
                     onClick={[Function]}
                     onResponderGrant={[Function]}
                     onResponderMove={[Function]}
@@ -3326,6 +3342,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -3377,6 +3395,8 @@ Masz konto w Kross? Zaloguj się.
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -3393,6 +3413,8 @@ Masz konto w Kross? Zaloguj się.
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -3557,12 +3579,10 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           autoCapitalize="none"
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           style={
                             Array [
                               Object {
@@ -3589,7 +3609,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputEmail"
-                          underlineColorAndroid="transparent"
                           value=""
                         />
                       </View>
@@ -3628,11 +3647,9 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           secureTextEntry={true}
                           style={
                             Array [
@@ -3660,7 +3677,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputPassword"
-                          underlineColorAndroid="transparent"
                           value=""
                         />
                         <View
@@ -3676,7 +3692,9 @@ Masz konto w Kross? Zaloguj się.
                         >
                           <View
                             accessible={true}
+                            collapsable={false}
                             focusable={true}
+                            nativeID="animatedComponent"
                             onClick={[Function]}
                             onResponderGrant={[Function]}
                             onResponderMove={[Function]}
@@ -3763,7 +3781,9 @@ Masz konto w Kross? Zaloguj się.
                   <View>
                     <View
                       accessible={true}
+                      collapsable={false}
                       focusable={true}
+                      nativeID="animatedComponent"
                       onClick={[Function]}
                       onResponderGrant={[Function]}
                       onResponderMove={[Function]}
@@ -3812,6 +3832,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -3891,6 +3913,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -3972,6 +3996,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -4119,7 +4145,9 @@ Masz konto w Kross? Zaloguj się.
                   </Text>
                   <View
                     accessible={true}
+                    collapsable={false}
                     focusable={true}
+                    nativeID="animatedComponent"
                     onClick={[Function]}
                     onResponderGrant={[Function]}
                     onResponderMove={[Function]}
@@ -4464,6 +4492,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -4515,6 +4545,8 @@ Masz konto w Kross? Zaloguj się.
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -4531,6 +4563,8 @@ Masz konto w Kross? Zaloguj się.
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -4695,12 +4729,10 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           autoCapitalize="none"
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           style={
                             Array [
                               Object {
@@ -4727,7 +4759,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputEmail"
-                          underlineColorAndroid="transparent"
                           value="test@example.com"
                         />
                       </View>
@@ -4766,11 +4797,9 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           secureTextEntry={true}
                           style={
                             Array [
@@ -4798,7 +4827,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputPassword"
-                          underlineColorAndroid="transparent"
                           value="12345678"
                         />
                         <View
@@ -5653,6 +5681,8 @@ Masz konto w Kross? Zaloguj się.
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -5669,6 +5699,8 @@ Masz konto w Kross? Zaloguj się.
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -5833,12 +5865,10 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           autoCapitalize="none"
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           style={
                             Array [
                               Object {
@@ -5865,7 +5895,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputEmail"
-                          underlineColorAndroid="transparent"
                           value=""
                         />
                       </View>
@@ -5904,11 +5933,9 @@ Masz konto w Kross? Zaloguj się.
                       </Text>
                       <View>
                         <TextInput
-                          allowFontScaling={true}
                           keyboardType="default"
                           maxLength={100}
                           onChangeText={[Function]}
-                          rejectResponderTermination={true}
                           secureTextEntry={true}
                           style={
                             Array [
@@ -5936,7 +5963,6 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                           testID="InputPassword"
-                          underlineColorAndroid="transparent"
                           value=""
                         />
                         <View
@@ -6039,7 +6065,9 @@ Masz konto w Kross? Zaloguj się.
                   <View>
                     <View
                       accessible={true}
+                      collapsable={false}
                       focusable={true}
+                      nativeID="animatedComponent"
                       onClick={[Function]}
                       onResponderGrant={[Function]}
                       onResponderMove={[Function]}
@@ -6088,6 +6116,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -6167,6 +6197,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -6248,6 +6280,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -6395,7 +6429,9 @@ Masz konto w Kross? Zaloguj się.
                   </Text>
                   <View
                     accessible={true}
+                    collapsable={false}
                     focusable={true}
+                    nativeID="animatedComponent"
                     onClick={[Function]}
                     onResponderGrant={[Function]}
                     onResponderMove={[Function]}
@@ -6740,6 +6776,8 @@ Masz konto w Kross? Zaloguj się.
                     >
                       <View
                         accessible={true}
+                        collapsable={false}
+                        nativeID="animatedComponent"
                         style={
                           Object {
                             "alignItems": "center",
@@ -6791,6 +6829,8 @@ Masz konto w Kross? Zaloguj się.
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -6807,6 +6847,8 @@ Masz konto w Kross? Zaloguj się.
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {

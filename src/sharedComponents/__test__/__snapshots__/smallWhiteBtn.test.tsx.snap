@@ -4,7 +4,9 @@ exports[`<SmallWhiteBtn /> Rendering Should fire onPressEvent 1`] = `
 Array [
   <View
     accessible={true}
+    collapsable={false}
     focusable={true}
+    nativeID="animatedComponent"
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -57,6 +59,8 @@ Array [
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -73,6 +77,8 @@ Array [
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -98,7 +104,9 @@ exports[`<SmallWhiteBtn /> Rendering Should match snapshot - with onPress 1`] = 
 Array [
   <View
     accessible={true}
+    collapsable={false}
     focusable={true}
+    nativeID="animatedComponent"
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -151,6 +159,8 @@ Array [
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -167,6 +177,8 @@ Array [
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -192,7 +204,9 @@ exports[`<SmallWhiteBtn /> Rendering Should match snapshot 1`] = `
 Array [
   <View
     accessible={true}
+    collapsable={false}
     focusable={true}
+    nativeID="animatedComponent"
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -245,6 +259,8 @@ Array [
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -261,6 +277,8 @@ Array [
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
