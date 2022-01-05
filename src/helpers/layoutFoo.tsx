@@ -12,13 +12,13 @@ let appSize: {
     width: number;
     height: number;
     ratio: number;
-} | null;
+} | null = null;
 
 let objSize: {
     width: number;
     height: number;
     ratio: number;
-} | null;
+} | null = null;
 
 const setAppSize = (w: number, h: number) => {
     appSize = {
