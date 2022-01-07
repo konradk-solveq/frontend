@@ -3,13 +3,18 @@ import {AxiosResponse} from 'axios';
 
 type GeneralResponse<T> = Pick<AxiosResponse<T>, 'data' | 'status'>;
 
+type HttpMethodT = 'post' | 'get' | 'put' | 'delete' | 'patch';
+
 const defaultResponse = {
     data: null,
     status: 204,
 };
 
-export const postApiCallMock = async <T>(response?: GeneralResponse<T>) => {
-    return jest.spyOn(instance, 'post').mockImplementation(() => {
+export const postApiCallMock = async <T>(
+    response?: GeneralResponse<T>,
+    method?: HttpMethodT,
+) => {
+    return jest.spyOn(instance, method || 'post').mockImplementation(() => {
         return new Promise(resolve => {
             return resolve(response || defaultResponse);
         });

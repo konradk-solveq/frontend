@@ -28,6 +28,7 @@ interface Props {
     keyboardType?: string;
     secureTextEntry?: boolean;
     textContentType?: string;
+    testId?: string;
 }
 
 const OneLineTekst: React.FC<Props> = (props: Props) => {
@@ -146,6 +147,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             <Text style={styles.placeholder}>{props.placeholder}</Text>
             <View>
                 <TextInput
+                    testID={props.testId || 'one-line-tekst'}
                     style={styles.input}
                     onChangeText={props.onChangeText}
                     value={props.value}
