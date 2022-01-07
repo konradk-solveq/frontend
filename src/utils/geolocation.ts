@@ -269,6 +269,7 @@ export const stopBackgroundGeolocation = async () => {
             notification: {
                 text: trans.text,
                 priority: BackgroundGeolocation.NOTIFICATION_PRIORITY_MIN,
+                sticky: false,
             },
             pausesLocationUpdatesAutomatically: undefined,
             showsBackgroundLocationIndicator: undefined,
