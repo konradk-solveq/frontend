@@ -50,6 +50,7 @@ export const RegularStackRoute = {
     ABOUT_APP_SCREEN: 'AboutApp',
     HELP_SCREEN: 'Help',
     CONTACT_SCREEN: 'Contact',
+    CONSENTS_SCREEN: 'Consents',
 };
 
 export const BothStackRoute = {

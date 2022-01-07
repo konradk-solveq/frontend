@@ -15,7 +15,7 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
  */
 export type MainNavigationCompositePropT<
     ParamsList extends Partial<RootStackType>,
-    RouteName extends keyof RootStackType = keyof RootStackType
+    RouteName extends keyof RootStackType = keyof RootStackType,
 > = CompositeNavigationProp<
     StackNavigationProp<ParamsList, RouteName>,
     CompositeNavigationProp<
@@ -184,6 +184,7 @@ export type ProfileParamsListT = {
     PrivacyPolicy: undefined;
     Help: undefined;
     Contact: undefined;
+    Consents: undefined;
 };
 export type NameChangeRouteT = RouteProp<ProfileParamsListT, 'NameChange'>;
 export type NameChangeNavigationPropT = MainNavigationCompositePropT<

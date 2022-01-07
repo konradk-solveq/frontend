@@ -50,5 +50,18 @@ export const axiosGet = async (url: string, options = {}) => {
     clearTimeout(id);
     return response;
 };
+export const axiosPut = async (url: string, data: object, options = {}) => {
+    const abort = axios.CancelToken.source();
+    const id = setTimeout(
+        () => abort.cancel(`Timeout of ${config.timeout}ms.`),
+        config.timeout,
+    );
+    const response = await instance.put(url, data, {
+        cancelToken: abort.token,
+        ...options,
+    });
+    clearTimeout(id);
+    return response;
+};
 
 export default instance;
