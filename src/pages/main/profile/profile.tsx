@@ -34,6 +34,7 @@ import FailedResponseModal from '@sharedComponents/modals/fail/failedResponseMod
 
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 import AmatoryBiker from './amatoryBiker';
+
 interface Props {
     navigation: any;
     route: any;
@@ -100,13 +101,16 @@ const Profile: React.FC<Props> = (props: Props) => {
             marginBottom: getVerticalPx(51),
         },
         logoutButton: {
-            marginTop: 50,
-            height: 50,
+            marginTop: getVerticalPx(30),
+            height: getVerticalPx(50),
         },
         logoutText: {
             fontSize: getFontSize(19),
             paddingHorizontal: 20,
             letterSpacing: getFontSize(0.54),
+        },
+        menuSection: {
+            marginBottom: getVerticalPx(20),
         },
     });
 
@@ -128,49 +132,64 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 <Text style={styles.name}>...</Text>
                             </View>
                         </TouchableOpacity>
-
-                        <Text style={styles.title}>{trans.title}</Text>
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    RegularStackRoute.ABOUT_APP_SCREEN,
-                                )
-                            }
-                            title={trans.app}
-                        />
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    BothStackRoute.REGULATIONS_SCREEN,
-                                )
-                            }
-                            title={trans.regulations}
-                        />
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    BothStackRoute.PRIVACY_POLICY_SCREEN,
-                                )
-                            }
-                            title={trans.privacyPolicy}
-                        />
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    RegularStackRoute.HELP_SCREEN,
-                                )
-                            }
-                            title={trans.help}
-                        />
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    RegularStackRoute.CONTACT_SCREEN,
-                                )
-                            }
-                            title={trans.contact}
-                        />
-
+                        {isAuthenticated && (
+                            <View style={styles.menuSection}>
+                                <Text style={styles.title}>
+                                    {trans.settings}
+                                </Text>
+                                <BlueButton
+                                    onpress={() =>
+                                        props.navigation.navigate(
+                                            RegularStackRoute.CONSENTS_SCREEN,
+                                        )
+                                    }
+                                    title={trans.myConsents}
+                                />
+                            </View>
+                        )}
+                        <View style={styles.menuSection}>
+                            <Text style={styles.title}>{trans.title}</Text>
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        RegularStackRoute.ABOUT_APP_SCREEN,
+                                    )
+                                }
+                                title={trans.app}
+                            />
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        BothStackRoute.REGULATIONS_SCREEN,
+                                    )
+                                }
+                                title={trans.regulations}
+                            />
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        BothStackRoute.PRIVACY_POLICY_SCREEN,
+                                    )
+                                }
+                                title={trans.privacyPolicy}
+                            />
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        RegularStackRoute.HELP_SCREEN,
+                                    )
+                                }
+                                title={trans.help}
+                            />
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        RegularStackRoute.CONTACT_SCREEN,
+                                    )
+                                }
+                                title={trans.contact}
+                            />
+                        </View>
                         {isAuthenticated && (
                             <BigRedBtn
                                 testID="logout-btn"

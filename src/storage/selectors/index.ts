@@ -12,6 +12,11 @@ export {
     bikeDescriptionByFrameNumberSelector,
 } from './bikes';
 export {
+    consentsListSelector,
+    loadingConsentsSelector,
+    errorConsentsSelector,
+} from './consents';
+export {
     favouritesMapsIDSSelector,
     favouritesMapsSelector,
     loadingMapsSelector,

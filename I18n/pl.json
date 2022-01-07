@@ -601,6 +601,8 @@
             "od ",
             " / nr ramy "
         ],
+        "settings": "Ustawienia",
+        "myConsents":  "Moje zgody",
         "remove": "Usuń",
         "btnAddStuff": "DODAJ WYPOSAŻENIE",
         "defaultName": "Rowerzysta",
@@ -613,6 +615,10 @@
     },
     "Help": {
         "header": "Pomoc"
+    },
+    "Consents": {
+        "header": "Moje zgdody",
+        "button": "Zapisz"
     },
     "AboutApp": {
         "header": "O aplikacji",
