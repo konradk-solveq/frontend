@@ -77,7 +77,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
     // do pobrania nazwy użytkownika zz local sorage
     useEffect(() => {
-        if (props.route?.params?.emptyFrame) {
+        if (frame && !props.route?.params?.emptyFrame) {
             setInputFrame(frame);
         }
     }, [frame, props.route?.params?.emptyFrame]);
@@ -183,6 +183,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                             value={inputFrame}
                             validationStatus={setCanGoFoward}
                             forceMessageWrong={forceMessageWrong}
+                            testId="frame-number-input"
                         />
 
                         <TranspLightBtn
@@ -202,6 +203,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                         style={styles.botton}
                         title={trans.btn}
                         onpress={() => handleGoFoward()}
+                        testID="adding-by-number-next-btn"
                     />
                 </View>
             </ScrollView>

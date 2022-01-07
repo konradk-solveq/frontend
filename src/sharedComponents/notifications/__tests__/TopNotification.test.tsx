@@ -12,7 +12,7 @@ const TEST_MESSAGE = 'Test message';
 
 describe('<TopNotification />', () => {
     describe('Rendering', () => {
-        beforeAll(() => {
+        beforeEach(() => {
             const {waitForNextUpdate} = renderHook(() => useStatusBarHeight(), {
                 wrapper: hookWrapper,
             });
