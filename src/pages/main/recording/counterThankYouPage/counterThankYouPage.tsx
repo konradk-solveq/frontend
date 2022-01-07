@@ -1,37 +1,38 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {SafeAreaView, View, Text, ScrollView} from 'react-native';
 import I18n from 'react-native-i18n';
-import AnimSvg from '../../../../helpers/animSvg';
+import AnimSvg from '@helpers/animSvg';
 
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
 
-import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
-import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
+import {useAppSelector, useAppDispatch} from '@hooks/redux';
+import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 
-import {pointToComaString, simplyTimer} from '../../../../helpers/stringFoo';
+import {pointToComaString, simplyTimer} from '@helpers/stringFoo';
 
 import laurelWreath from './laurelWreath';
 import {useNavigation, useRoute} from '@react-navigation/core';
-import {RegularStackRoute} from '../../../../navigation/route';
+import {RegularStackRoute} from '@navigation/route';
 
 import styles from './style';
 import {
     trackerErrorSelector,
     trackerLoadingSelector,
-} from '../../../../storage/selectors/routes';
+} from '@storage/selectors/routes';
 import {
     abortSyncCurrentRouteData,
     clearError,
     syncCurrentRouteData,
-} from '../../../../storage/actions/routes';
+} from '@storage/actions/routes';
 
-import Loader from '../../../onboarding/bikeAdding/loader/loader';
-import PoorConnectionModal from '../../../../sharedComponents/modals/poorConnectionModal/poorConnectionModal';
+import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import PoorConnectionModal from '@sharedComponents/modals/poorConnectionModal/poorConnectionModal';
 import DataPreview from '@sharedComponents/dataPreview/dataPreview';
 import ShortRouteModal from '@sharedComponents/modals/shortRouteModal/ShortRouteModal';
 
 import {TESTING_MODE} from '@env';
+import {CounterThankYouPageRouteT} from '@type/rootStack';
 
 enum Action {
     next = 'next',
@@ -53,7 +54,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const isSyncData = useAppSelector(trackerLoadingSelector);
     const error = useAppSelector(trackerErrorSelector);
     const navigation = useNavigation();
-    const route = useRoute();
+    const route = useRoute<CounterThankYouPageRouteT>();
     const dispatch = useAppDispatch();
 
     useCustomBackNavButton(() => {}, true);
@@ -208,6 +209,9 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     <Text style={styles.subTitle}>
                         {trans.subTilte + heandleGetTitleType()}
                     </Text>
+                    <Text style={styles.subTitle}>
+                        {JSON.stringify(route.params)}
+                    </Text>
 
                     {show && (
                         <AnimSvg
@@ -232,7 +236,9 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                         <View>
                             <Text style={styles.name}>{trans.time}</Text>
                             <Text style={styles.value}>
-                                {simplyTimer(route?.params?.time)}
+                                {simplyTimer(
+                                    route?.params?.time - route?.params?.pause,
+                                )}
                                 <Text style={styles.unit}>
                                     {' ' + trans.timeUnit}
                                 </Text>
