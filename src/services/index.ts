@@ -17,6 +17,7 @@ export {
     getFeaturedMapsListService,
 } from './mapsService';
 export {syncRouteData, createNewRouteService} from './routesService';
+export {getConsentsList, putConsentsList} from './consentsService';
 export {
     checkSessionAndRecreateIfNeededService,
     logInService,
