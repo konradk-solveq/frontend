@@ -75,6 +75,31 @@ describe('Thank You Counter Screen', () => {
 
             expect(component).toMatchSnapshot();
         });
+
+        it('should render route data', async () => {
+            const component = await asyncEvent(
+                renderComponent(
+                    <CounterThankYouPage
+                        navigation={mockedNavigation}
+                        getName={mockedGetName}
+                        name={TEST_NAME}
+                    />,
+                    undefined,
+                    initStore,
+                ),
+            );
+
+            const distance = component.getByText(TEST_DISTANCE);
+            const pause = component.getByText(TEST_PARSED_PAUSE);
+            const time = component.getByText(TEST_PARSED_TIME);
+
+            expect(distance).toBeTruthy();
+            expect(pause).toBeTruthy();
+            expect(time).toBeTruthy();
+
+            expect(component).toMatchSnapshot();
+        });
+
         afterEach(() => {
             jest.restoreAllMocks();
         });
