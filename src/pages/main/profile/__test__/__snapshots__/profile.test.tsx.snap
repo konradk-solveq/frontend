@@ -1993,8 +1993,8 @@ Array [
             <View
               style={
                 Object {
-                  "height": 50,
-                  "marginTop": 30,
+                  "height": 74.44196428571429,
+                  "marginTop": 44.66517857142858,
                 }
               }
             >
@@ -3367,8 +3367,8 @@ Array [
             <View
               style={
                 Object {
-                  "height": 50,
-                  "marginTop": 30,
+                  "height": 74.44196428571429,
+                  "marginTop": 44.66517857142858,
                 }
               }
             >
