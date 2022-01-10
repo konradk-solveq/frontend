@@ -1,37 +1,38 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {SafeAreaView, View, Text, ScrollView} from 'react-native';
 import I18n from 'react-native-i18n';
-import AnimSvg from '../../../../helpers/animSvg';
+import AnimSvg from '@helpers/animSvg';
 
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
 
-import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
-import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
+import {useAppSelector, useAppDispatch} from '@hooks/redux';
+import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 
-import {pointToComaString, simplyTimer} from '../../../../helpers/stringFoo';
+import {pointToComaString, simplyTimer} from '@helpers/stringFoo';
 
 import laurelWreath from './laurelWreath';
 import {useNavigation, useRoute} from '@react-navigation/core';
-import {RegularStackRoute} from '../../../../navigation/route';
+import {RegularStackRoute} from '@navigation/route';
 
 import styles from './style';
 import {
     trackerErrorSelector,
     trackerLoadingSelector,
-} from '../../../../storage/selectors/routes';
+} from '@storage/selectors/routes';
 import {
     abortSyncCurrentRouteData,
     clearError,
     syncCurrentRouteData,
-} from '../../../../storage/actions/routes';
+} from '@storage/actions/routes';
 
-import Loader from '../../../onboarding/bikeAdding/loader/loader';
-import PoorConnectionModal from '../../../../sharedComponents/modals/poorConnectionModal/poorConnectionModal';
+import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import PoorConnectionModal from '@sharedComponents/modals/poorConnectionModal/poorConnectionModal';
 import DataPreview from '@sharedComponents/dataPreview/dataPreview';
 import ShortRouteModal from '@sharedComponents/modals/shortRouteModal/ShortRouteModal';
 
 import {TESTING_MODE} from '@env';
+import {CounterThankYouPageRouteT} from '@type/rootStack';
 
 enum Action {
     next = 'next',
@@ -39,13 +40,9 @@ enum Action {
     home = 'home',
 }
 
-interface Props {
-    navigation: any;
-    name: string;
-    getName: Function;
-}
+interface Props {}
 
-const CounterThankYouPage: React.FC<Props> = (props: Props) => {
+const CounterThankYouPage: React.FC<Props> = () => {
     const scrollRef = useRef<null | ScrollView>(null);
     const canGoForwardRef = useRef(true);
 
@@ -53,11 +50,10 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const isSyncData = useAppSelector(trackerLoadingSelector);
     const error = useAppSelector(trackerErrorSelector);
     const navigation = useNavigation();
-    const route = useRoute();
+    const route = useRoute<CounterThankYouPageRouteT>();
     const dispatch = useAppDispatch();
 
     useCustomBackNavButton(() => {}, true);
-
     const name = useAppSelector<string>(state => state.user.userName);
     const userName = name ? ' ' + name : ' ' + trans.defaultName;
 
@@ -81,14 +77,14 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         setShowVisible();
-        props.navigation.addListener('focus', setShowVisible);
-        props.navigation.addListener('blur', setShowHidden);
+        navigation.addListener('focus', setShowVisible);
+        navigation.addListener('blur', setShowHidden);
 
         return () => {
-            props.navigation.removeListener('focus', setShowVisible);
-            props.navigation.removeListener('blur', setShowHidden);
+            navigation.removeListener('focus', setShowVisible);
+            navigation.removeListener('blur', setShowHidden);
         };
-    }, [props.navigation, setShowHidden, setShowVisible]);
+    }, [navigation, setShowHidden, setShowVisible]);
 
     useEffect(() => {
         const t = setTimeout(() => {
@@ -130,7 +126,6 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 setShowErrorModal(true);
                 return;
             }
-
             if (canGoForwardRef.current) {
                 onGoForward();
             }
@@ -219,7 +214,9 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     <View style={styles.recorded}>
                         <View>
                             <Text style={styles.name}>{trans.distance}</Text>
-                            <Text style={styles.value}>
+                            <Text
+                                style={styles.value}
+                                testID={'counter-distance'}>
                                 {pointToComaString(
                                     route?.params?.distance || '0.00',
                                 )}
@@ -231,8 +228,10 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
                         <View>
                             <Text style={styles.name}>{trans.time}</Text>
-                            <Text style={styles.value}>
-                                {simplyTimer(route?.params?.time)}
+                            <Text style={styles.value} testID={'counter-time'}>
+                                {simplyTimer(
+                                    route?.params?.time - route?.params?.pause,
+                                )}
                                 <Text style={styles.unit}>
                                     {' ' + trans.timeUnit}
                                 </Text>
@@ -242,7 +241,9 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
                     <Text style={styles.breakName}>
                         {trans.break + '  '}
-                        <Text style={styles.breakValue}>
+                        <Text
+                            style={styles.breakValue}
+                            testID={'counter-pause'}>
                             {simplyTimer(route?.params?.pause)}
                         </Text>
                         <Text style={styles.unit}>{' ' + trans.breakUnit}</Text>
@@ -252,12 +253,14 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                         <View style={styles.btnCancel}>
                             <BigWhiteBtn
                                 title={trans.btnCancel}
+                                testID={'counter-cancel-btn'}
                                 onpress={() => onSaveRouteHandler(Action.prev)}
                             />
                         </View>
                         <View style={styles.btnSave}>
                             <BigRedBtn
                                 title={trans.btnSave}
+                                testID={'counter-submit-btn'}
                                 onpress={() => onSaveRouteHandler(Action.next)}
                             />
                         </View>
