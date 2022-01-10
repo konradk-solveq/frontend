@@ -40,13 +40,9 @@ enum Action {
     home = 'home',
 }
 
-interface Props {
-    navigation: any;
-    name: string;
-    getName: Function;
-}
+interface Props {}
 
-const CounterThankYouPage: React.FC<Props> = (props: Props) => {
+const CounterThankYouPage: React.FC<Props> = () => {
     const scrollRef = useRef<null | ScrollView>(null);
     const canGoForwardRef = useRef(true);
 
@@ -58,7 +54,6 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
 
     useCustomBackNavButton(() => {}, true);
-
     const name = useAppSelector<string>(state => state.user.userName);
     const userName = name ? ' ' + name : ' ' + trans.defaultName;
 
@@ -82,14 +77,14 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
     useEffect(() => {
         setShowVisible();
-        props.navigation.addListener('focus', setShowVisible);
-        props.navigation.addListener('blur', setShowHidden);
+        navigation.addListener('focus', setShowVisible);
+        navigation.addListener('blur', setShowHidden);
 
         return () => {
-            props.navigation.removeListener('focus', setShowVisible);
-            props.navigation.removeListener('blur', setShowHidden);
+            navigation.removeListener('focus', setShowVisible);
+            navigation.removeListener('blur', setShowHidden);
         };
-    }, [props.navigation, setShowHidden, setShowVisible]);
+    }, [navigation, setShowHidden, setShowVisible]);
 
     useEffect(() => {
         const t = setTimeout(() => {
@@ -131,7 +126,6 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                 setShowErrorModal(true);
                 return;
             }
-
             if (canGoForwardRef.current) {
                 onGoForward();
             }
@@ -209,9 +203,6 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     <Text style={styles.subTitle}>
                         {trans.subTilte + heandleGetTitleType()}
                     </Text>
-                    <Text style={styles.subTitle}>
-                        {JSON.stringify(route.params)}
-                    </Text>
 
                     {show && (
                         <AnimSvg
@@ -223,7 +214,9 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                     <View style={styles.recorded}>
                         <View>
                             <Text style={styles.name}>{trans.distance}</Text>
-                            <Text style={styles.value}>
+                            <Text
+                                style={styles.value}
+                                testID={'counter-distance'}>
                                 {pointToComaString(
                                     route?.params?.distance || '0.00',
                                 )}
@@ -235,7 +228,7 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
                         <View>
                             <Text style={styles.name}>{trans.time}</Text>
-                            <Text style={styles.value}>
+                            <Text style={styles.value} testID={'counter-time'}>
                                 {simplyTimer(
                                     route?.params?.time - route?.params?.pause,
                                 )}
@@ -248,7 +241,9 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
 
                     <Text style={styles.breakName}>
                         {trans.break + '  '}
-                        <Text style={styles.breakValue}>
+                        <Text
+                            style={styles.breakValue}
+                            testID={'counter-pause'}>
                             {simplyTimer(route?.params?.pause)}
                         </Text>
                         <Text style={styles.unit}>{' ' + trans.breakUnit}</Text>
@@ -258,12 +253,14 @@ const CounterThankYouPage: React.FC<Props> = (props: Props) => {
                         <View style={styles.btnCancel}>
                             <BigWhiteBtn
                                 title={trans.btnCancel}
+                                testID={'counter-cancel-btn'}
                                 onpress={() => onSaveRouteHandler(Action.prev)}
                             />
                         </View>
                         <View style={styles.btnSave}>
                             <BigRedBtn
                                 title={trans.btnSave}
+                                testID={'counter-submit-btn'}
                                 onpress={() => onSaveRouteHandler(Action.next)}
                             />
                         </View>
