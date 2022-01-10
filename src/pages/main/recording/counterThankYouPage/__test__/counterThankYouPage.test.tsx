@@ -5,9 +5,10 @@ import asyncEvent from '@jestUtils/asyncEvent';
 import {initAppSize} from '@helpers/layoutFoo';
 
 import CounterThankYouPage from '@pages/main/recording/counterThankYouPage/counterThankYouPage';
-import {fireEvent, waitFor} from '@testing-library/react-native';
+import {fireEvent} from '@testing-library/react-native';
 import {RegularStackRoute} from '@navigation/route';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
+import {mockedRouteData} from '@pages/main/recording/counterThankYouPage/__test__/mocks/mockedRouteData';
 
 const submitNavigationData = {
     name: RegularStackRoute.EDIT_DETAILS_SCREEN,
@@ -70,40 +71,10 @@ const initStore = {
             id: 1,
             isActive: false,
         },
+        routesToSync: [],
         routes: [
             {
-                route: [
-                    {
-                        coords: {
-                            latitude: 54.5188898,
-                            longitude: 18.5305409,
-                            altitude: 10,
-                            speed: 20,
-                        },
-                        timestamp: 1641788803,
-                        odometer: 1000,
-                    },
-                    {
-                        coords: {
-                            latitude: 54.5178898,
-                            longitude: 18.5305409,
-                            altitude: 10,
-                            speed: 20,
-                        },
-                        timestamp: 1641789100,
-                        odometer: 1000,
-                    },
-                    {
-                        coords: {
-                            latitude: 54.5168898,
-                            longitude: 18.5305409,
-                            altitude: 10,
-                            speed: 20,
-                        },
-                        timestamp: 1641789400,
-                        odometer: 1000,
-                    },
-                ],
+                route: mockedRouteData,
                 id: 1,
             },
         ],
@@ -131,27 +102,25 @@ const SUBMIT_BTN_ID = 'counter-submit-btn';
 const CANCEL_BTN_ID = 'counter-cancel-btn';
 
 describe('Profile Screen', () => {
-    const mockedGetName = jest.fn();
-
     beforeAll(() => {
         initAppSize();
     });
 
     beforeEach(async () => {
         await postApiCallMock({data: {id: 1}, status: 200});
+        await postApiCallMock(
+            {
+                data: mockedRouteData,
+                status: 200,
+            },
+            'patch',
+        );
     });
 
     describe('Rendering', () => {
         it('Should match snapshot', async () => {
             const component = await asyncEvent(
-                renderComponent(
-                    <CounterThankYouPage
-                        getName={mockedGetName}
-                        name={TEST_NAME}
-                    />,
-                    undefined,
-                    initStore,
-                ),
+                renderComponent(<CounterThankYouPage />, undefined, initStore),
             );
 
             expect(component).toMatchSnapshot();
@@ -159,14 +128,7 @@ describe('Profile Screen', () => {
 
         it('Should render passed route data', async () => {
             const component = await asyncEvent(
-                renderComponent(
-                    <CounterThankYouPage
-                        getName={mockedGetName}
-                        name={TEST_NAME}
-                    />,
-                    undefined,
-                    initStore,
-                ),
+                renderComponent(<CounterThankYouPage />, undefined, initStore),
             );
 
             // getting the values by text doesn't work, but they are rendered and present in the snapshot
@@ -183,14 +145,7 @@ describe('Profile Screen', () => {
 
         it('Should navigate after pressing the submit button', async () => {
             const component = await asyncEvent(
-                renderComponent(
-                    <CounterThankYouPage
-                        getName={mockedGetName}
-                        name={TEST_NAME}
-                    />,
-                    undefined,
-                    initStore,
-                ),
+                renderComponent(<CounterThankYouPage />, undefined, initStore),
             );
 
             expect(component).toMatchSnapshot();
@@ -201,23 +156,14 @@ describe('Profile Screen', () => {
             expect(submitButtonComponent).not.toBeNull();
 
             if (submitButtonComponent) {
-                fireEvent.press(submitButtonComponent);
-                await waitFor(() =>
-                    expect(mockedNavigate).toBeCalledWith(submitNavigationData),
-                );
+                await asyncEvent(fireEvent.press(submitButtonComponent));
+                expect(mockedNavigate).toBeCalledWith(submitNavigationData);
             }
         });
 
         it('Should navigate after pressing the cancel buttons', async () => {
             const component = await asyncEvent(
-                renderComponent(
-                    <CounterThankYouPage
-                        getName={mockedGetName}
-                        name={TEST_NAME}
-                    />,
-                    undefined,
-                    initStore,
-                ),
+                renderComponent(<CounterThankYouPage />, undefined, initStore),
             );
 
             expect(component).toMatchSnapshot();
@@ -228,10 +174,8 @@ describe('Profile Screen', () => {
             expect(cancelButtonComponent).not.toBeNull();
 
             if (cancelButtonComponent) {
-                fireEvent.press(cancelButtonComponent);
-                await waitFor(() =>
-                    expect(mockedNavigate).toBeCalledWith(cancelNavigationData),
-                );
+                await asyncEvent(fireEvent.press(cancelButtonComponent));
+                expect(mockedNavigate).toBeCalledWith(cancelNavigationData);
             }
         });
 
