@@ -6,6 +6,8 @@ import {
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
 
+const CHECKBOX_SIZE = getHorizontalPx(26);
+
 const styles = StyleSheet.create({
     innerContainer: {
         flex: 1,
@@ -16,6 +18,11 @@ const styles = StyleSheet.create({
         marginHorizontal: getHorizontalPx(40),
         paddingBottom: getVerticalPx(45),
         marginTop: getVerticalPx(10),
+    },
+    checkbox: {
+        position: 'relative',
+        width: CHECKBOX_SIZE,
+        height: CHECKBOX_SIZE,
     },
     consentContainer: {
         flexDirection: 'row',

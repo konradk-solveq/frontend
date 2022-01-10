@@ -618,7 +618,8 @@
     },
     "Consents": {
         "header": "Moje zgdody",
-        "button": "Zapisz"
+        "button": "Zapisz",
+        "selectAll": "Zaznacz wsystkie"
     },
     "AboutApp": {
         "header": "O aplikacji",

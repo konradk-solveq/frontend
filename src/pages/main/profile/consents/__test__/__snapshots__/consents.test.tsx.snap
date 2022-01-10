@@ -946,6 +946,144 @@ Array [
                     "alignItems": "flex-start",
                     "display": "flex",
                     "flexDirection": "row",
+                    "marginBottom": 65.50892857142857,
+                    "position": "relative",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 47.10144927536232,
+                      "position": "relative",
+                      "width": 47.10144927536232,
+                    }
+                  }
+                >
+                  <View
+                    accessible={true}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "height": "100%",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "height": "100%",
+                            "width": "100%",
+                          },
+                          Object {
+                            "justifyContent": "center",
+                          },
+                          Object {
+                            "position": "absolute",
+                          },
+                        ]
+                      }
+                    >
+                      <RNSVGSvgView
+                        align="xMidYMid"
+                        bbHeight="100%"
+                        bbWidth="100%"
+                        focusable={false}
+                        meetOrSlice={0}
+                        minX={0}
+                        minY={0}
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderWidth": 0,
+                            },
+                            Object {
+                              "flex": 0,
+                              "height": "100%",
+                              "width": "100%",
+                            },
+                          ]
+                        }
+                        vbHeight={27}
+                        vbWidth={26}
+                      >
+                        <RNSVGGroup>
+                          <RNSVGGroup
+                            fill={null}
+                            matrix={
+                              Array [
+                                1,
+                                0,
+                                0,
+                                1,
+                                0,
+                                0.38599999999996726,
+                              ]
+                            }
+                            propList={
+                              Array [
+                                "fill",
+                                "stroke",
+                              ]
+                            }
+                            stroke={4281413937}
+                          >
+                            <RNSVGRect
+                              height="25.232"
+                              rx="4"
+                              width="25"
+                              x=".5"
+                              y=".5"
+                            />
+                          </RNSVGGroup>
+                        </RNSVGGroup>
+                      </RNSVGSvgView>
+                    </View>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "height": "100%",
+                            "width": "100%",
+                          },
+                          Object {
+                            "justifyContent": "center",
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "maxWidth": 557.9710144927536,
+                      "paddingHorizontal": 10,
+                      "paddingTop": 4.466517857142858,
+                    }
+                  }
+                >
+                  <Text>
+                    Zaznacz wsystkie
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "display": "flex",
+                    "flexDirection": "row",
                     "marginBottom": 16.377232142857142,
                     "position": "relative",
                   }
@@ -1074,6 +1212,7 @@ Array [
                     Object {
                       "maxWidth": 557.9710144927536,
                       "paddingHorizontal": 10,
+                      "paddingTop": 4.466517857142858,
                     }
                   }
                 >
@@ -1780,6 +1919,144 @@ Array [
                     "alignItems": "flex-start",
                     "display": "flex",
                     "flexDirection": "row",
+                    "marginBottom": 65.50892857142857,
+                    "position": "relative",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 47.10144927536232,
+                      "position": "relative",
+                      "width": 47.10144927536232,
+                    }
+                  }
+                >
+                  <View
+                    accessible={true}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "height": "100%",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "height": "100%",
+                            "width": "100%",
+                          },
+                          Object {
+                            "justifyContent": "center",
+                          },
+                          Object {
+                            "position": "absolute",
+                          },
+                        ]
+                      }
+                    >
+                      <RNSVGSvgView
+                        align="xMidYMid"
+                        bbHeight="100%"
+                        bbWidth="100%"
+                        focusable={false}
+                        meetOrSlice={0}
+                        minX={0}
+                        minY={0}
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderWidth": 0,
+                            },
+                            Object {
+                              "flex": 0,
+                              "height": "100%",
+                              "width": "100%",
+                            },
+                          ]
+                        }
+                        vbHeight={27}
+                        vbWidth={26}
+                      >
+                        <RNSVGGroup>
+                          <RNSVGGroup
+                            fill={null}
+                            matrix={
+                              Array [
+                                1,
+                                0,
+                                0,
+                                1,
+                                0,
+                                0.38599999999996726,
+                              ]
+                            }
+                            propList={
+                              Array [
+                                "fill",
+                                "stroke",
+                              ]
+                            }
+                            stroke={4281413937}
+                          >
+                            <RNSVGRect
+                              height="25.232"
+                              rx="4"
+                              width="25"
+                              x=".5"
+                              y=".5"
+                            />
+                          </RNSVGGroup>
+                        </RNSVGGroup>
+                      </RNSVGSvgView>
+                    </View>
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "height": "100%",
+                            "width": "100%",
+                          },
+                          Object {
+                            "justifyContent": "center",
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "maxWidth": 557.9710144927536,
+                      "paddingHorizontal": 10,
+                      "paddingTop": 4.466517857142858,
+                    }
+                  }
+                >
+                  <Text>
+                    Zaznacz wsystkie
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "display": "flex",
+                    "flexDirection": "row",
                     "marginBottom": 16.377232142857142,
                     "position": "relative",
                   }
@@ -1908,6 +2185,7 @@ Array [
                     Object {
                       "maxWidth": 557.9710144927536,
                       "paddingHorizontal": 10,
+                      "paddingTop": 4.466517857142858,
                     }
                   }
                 >

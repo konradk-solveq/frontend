@@ -1,36 +1,34 @@
-import React from 'react';
-import {
-    GestureResponderEvent,
-    Linking,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
 import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
-import ControlledCheckbox from '@sharedComponents/checkBox/ControlledCheckbox';
-import {Consent} from '@models/consents.model';
-import RenderHtml from 'react-native-render-html';
+import CheckBoxx from '@sharedComponents/checkBox/checkBox';
+import {useFormContext} from 'react-hook-form';
+import I18n from 'react-native-i18n';
+interface Props {}
 
-interface Props {
-    consent: Consent;
-}
+const SelectAllCheckbox: React.FC<Props> = () => {
+    const trans: any = I18n.t('Consents');
+    const {watch, setValue} = useFormContext();
 
-const openLink = (event: GestureResponderEvent, url: string) => {
-    Linking.openURL(url);
-};
+    const formData = watch();
 
-const baseFontStyle = {
-    textAlign: 'justify',
-};
+    const [allChecked, setAllChecked] = useState(false);
 
-const renderersProps = {
-    a: {
-        onPress: openLink,
-    },
-};
+    useEffect(() => {
+        const consentsTab = Object.values(formData);
+        const newAllChecked = consentsTab.every((val: boolean) => val);
+        if (consentsTab.length && newAllChecked !== allChecked) {
+            setAllChecked(newAllChecked);
+        }
+    }, [allChecked, formData]);
 
-const SingleConsent: React.FC<Props> = React.memo(({consent}: Props) => {
+    const handleAllCheckedPress = (val: boolean) => {
+        Object.keys(formData).forEach(key => {
+            setValue(key, val);
+        });
+    };
+
     const CHECKBOX_SIZE = getHorizontalPx(26);
 
     const styles = StyleSheet.create({
@@ -39,7 +37,7 @@ const SingleConsent: React.FC<Props> = React.memo(({consent}: Props) => {
             alignItems: 'flex-start',
             flexDirection: 'row',
             position: 'relative',
-            marginBottom: getVerticalPx(11),
+            marginBottom: getVerticalPx(44),
         },
         checkbox: {
             position: 'relative',
@@ -73,25 +71,17 @@ const SingleConsent: React.FC<Props> = React.memo(({consent}: Props) => {
     return (
         <View style={styles.container}>
             <View style={styles.checkbox}>
-                <ControlledCheckbox
-                    name={`${consent.id}`}
-                    disabled={consent.disabled}
+                <CheckBoxx
+                    checked={allChecked}
+                    wrong={false}
+                    getCheck={handleAllCheckedPress}
                 />
             </View>
-
-            {consent.content && (
-                <View style={styles.info}>
-                    <Text>{consent.name}</Text>
-                    <RenderHtml
-                        source={{html: consent.content}}
-                        contentWidth={getHorizontalPx(100)}
-                        renderersProps={renderersProps}
-                        baseStyle={baseFontStyle}
-                    />
-                </View>
-            )}
+            <View style={styles.info}>
+                <Text>{trans.selectAll}</Text>
+            </View>
         </View>
     );
-});
+};
 
-export default SingleConsent;
+export default SelectAllCheckbox;
