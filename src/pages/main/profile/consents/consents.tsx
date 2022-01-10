@@ -20,6 +20,7 @@ import {parseInt} from 'lodash';
 import {BigRedBtn} from '@sharedComponents/buttons';
 import Loader from '@sharedComponents/loader/loader';
 import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
+import SelectAllCheckbox from '@pages/main/profile/consents/components/SelectAll';
 
 const Consents = () => {
     const trans: any = I18n.t('Consents');
@@ -29,6 +30,7 @@ const Consents = () => {
     const errorMessage = useAppSelector(errorConsentsSelector);
 
     const [submit, setSubmit] = useState(false);
+
     const [showErrorModal, setShowErrorModal] = useState(false);
 
     const defaults = useMemo(() => {
@@ -113,6 +115,7 @@ const Consents = () => {
                         showsVerticalScrollIndicator={false}>
                         <FormProvider {...methods}>
                             <View style={styles.content}>
+                                <SelectAllCheckbox />
                                 {consents.map(consent => (
                                     <SingleConsent
                                         consent={consent}
