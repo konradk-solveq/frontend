@@ -101,13 +101,15 @@ describe('<AddingByNumber Screen />', () => {
         expect(frameNumberInput).not.toBeNull();
         expect(frameNumberInput.props.value).toEqual('');
 
-        fireEvent.changeText(frameNumberInput, NEW_FRAME_NUMBER);
+        await asyncEvent(
+            fireEvent.changeText(frameNumberInput, NEW_FRAME_NUMBER),
+        );
         const goNextBtn = component.queryByTestId(ADDING_BY_NUMBER_NEXT_BTN_ID);
 
-        expect(goNextBtn).not.toBeNull();
-        fireEvent.press(goNextBtn);
-
         await postApiCallMock(lookupResponse, 'get');
+
+        expect(goNextBtn).not.toBeNull();
+        await asyncEvent(fireEvent.press(goNextBtn));
 
         expect(mockedNavigate).toBeCalledTimes(1);
     });
