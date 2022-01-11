@@ -19,6 +19,7 @@ import {
     standardPxResult,
     perfectPxResult,
     posStaticHeightResult,
+    onlyPosTResult,
 } from './mocks/layoutFoo';
 import {
     initAppSize,
@@ -691,6 +692,63 @@ describe('Calculates layout positions -- helpers', () => {
                 const posStaticHeight = getPosStaticHeight(w, h, t);
 
                 expect(posStaticHeight).toEqual(result);
+            },
+        );
+    });
+
+    type onlyPosT = {
+        position: 'relative' | 'absolute' | undefined;
+        left: number;
+        top: string;
+    };
+
+    describe('[getOnlyPos] - counts layout object of seated element size', () => {
+        it.each([
+            [
+                obj.small[0].w,
+                obj.small[0].h,
+                obj.small[0].t,
+                onlyPosTResult.small[0],
+            ],
+            [
+                obj.small[1].w,
+                obj.small[1].h,
+                obj.small[1].t,
+                onlyPosTResult.small[1],
+            ],
+            [
+                obj.small[2].w,
+                obj.small[2].h,
+                obj.small[2].t,
+                onlyPosTResult.small[2],
+            ],
+            [
+                obj.medium[0].w,
+                obj.medium[0].h,
+                obj.medium[0].t,
+                onlyPosTResult.medium[0],
+            ],
+            [
+                obj.medium[1].w,
+                obj.medium[1].h,
+                obj.medium[1].t,
+                onlyPosTResult.medium[1],
+            ],
+            [
+                obj.medium[2].w,
+                obj.medium[2].h,
+                obj.medium[2].t,
+                onlyPosTResult.medium[2],
+            ],
+            [obj.big[0].w, obj.big[0].h, obj.big[0].t, onlyPosTResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, obj.big[1].t, onlyPosTResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, obj.big[2].t, onlyPosTResult.big[2]],
+        ])(
+            'Should calculate object (w: %s, h: %s, t: %s), and result should be equal to: %s',
+            (w: number, h: number, t: number, result: onlyPosT) => {
+                const onlyPos = getOnlyPos(w, h, t);
+
+                expect(onlyPos).toEqual(result);
             },
         );
     });

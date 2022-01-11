@@ -378,6 +378,24 @@ export const posStaticHeightResult = {
     ],
 };
 
+export const onlyPosTResult = {
+    small: [
+        {left: 372.2826086956522, position: 'absolute', top: '75.893%'},
+        {left: 364.1304347826087, position: 'absolute', top: '60.268%'},
+        {left: 347.82608695652175, position: 'absolute', top: '47.991%'},
+    ],
+    medium: [
+        {left: 293.47826086956525, position: 'absolute', top: '10.938%'},
+        {left: 266.304347826087, position: 'absolute', top: '14.063%'},
+        {left: 230.0724637681159, position: 'absolute', top: '18.973%'},
+    ],
+    big: [
+        {left: 121.37681159420289, position: 'absolute', top: '2.902%'},
+        {left: 76.08695652173914, position: 'absolute', top: '1.339%'},
+        {left: 12.681159420289854, position: 'absolute', top: '0.558%'},
+    ],
+};
+
 export const some = {
     small: [0, 0, 0],
     medium: [0, 0, 0],
