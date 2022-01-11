@@ -288,7 +288,7 @@ const getPosWithMinHeight = (w: number, h: number, t: number, min: number) => {
     } = {
         position: 'absolute',
         width: getWidthPx(),
-        height: height < min ? min : heightObj,
+        height: heightObj < min ? min : heightObj,
         left: getCenterLeftPx(),
         top: getVertical(t),
     };

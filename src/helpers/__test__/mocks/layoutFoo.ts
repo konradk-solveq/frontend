@@ -378,7 +378,7 @@ export const posStaticHeightResult = {
     ],
 };
 
-export const onlyPosTResult = {
+export const onlyPosResult = {
     small: [
         {left: 372.2826086956522, position: 'absolute', top: '75.893%'},
         {left: 364.1304347826087, position: 'absolute', top: '60.268%'},
@@ -394,6 +394,147 @@ export const onlyPosTResult = {
         {left: 76.08695652173914, position: 'absolute', top: '1.339%'},
         {left: 12.681159420289854, position: 'absolute', top: '0.558%'},
     ],
+};
+
+export const posAndWidResult = {
+    small: [
+        {
+            left: 372.2826086956522,
+            position: 'absolute',
+            top: '75.893%',
+            width: '0.725%',
+        },
+        {
+            left: 364.1304347826087,
+            position: 'absolute',
+            top: '60.268%',
+            width: '2.899%',
+        },
+        {
+            left: 347.82608695652175,
+            position: 'absolute',
+            top: '47.991%',
+            width: '7.246%',
+        },
+    ],
+    medium: [
+        {
+            left: 293.47826086956525,
+            position: 'absolute',
+            top: '10.938%',
+            width: '21.739%',
+        },
+        {
+            left: 266.304347826087,
+            position: 'absolute',
+            top: '14.063%',
+            width: '28.986%',
+        },
+        {
+            left: 230.0724637681159,
+            position: 'absolute',
+            top: '18.973%',
+            width: '38.647%',
+        },
+    ],
+    big: [
+        {
+            left: 121.37681159420289,
+            position: 'absolute',
+            top: '2.902%',
+            width: '67.633%',
+        },
+        {
+            left: 76.08695652173914,
+            position: 'absolute',
+            top: '1.339%',
+            width: '79.710%',
+        },
+        {
+            left: 12.681159420289854,
+            position: 'absolute',
+            top: '0.558%',
+            width: '96.618%',
+        },
+    ],
+};
+
+export const posWithMinHeightResult = {
+    small: [
+        {
+            height: 10,
+            left: 372.2826086956522,
+            position: 'absolute',
+            top: '75.893%',
+            width: 5.434782608695652,
+        },
+        {
+            height: 12,
+            left: 364.1304347826087,
+            position: 'absolute',
+            top: '60.268%',
+            width: 21.73913043478261,
+        },
+        {
+            height: 23.82142857142857,
+            left: 347.82608695652175,
+            position: 'absolute',
+            top: '47.991%',
+            width: 54.34782608695652,
+        },
+    ],
+    medium: [
+        {
+            height: 170,
+            left: 293.47826086956525,
+            position: 'absolute',
+            top: '10.938%',
+            width: 163.04347826086956,
+        },
+        {
+            height: 223.32589285714283,
+            left: 266.304347826087,
+            position: 'absolute',
+            top: '14.063%',
+            width: 217.3913043478261,
+        },
+        {
+            height: 282.8794642857143,
+            left: 230.0724637681159,
+            position: 'absolute',
+            top: '18.973%',
+            width: 289.8550724637681,
+        },
+    ],
+    big: [
+        {
+            height: 625.3125,
+            left: 121.37681159420289,
+            position: 'absolute',
+            top: '2.902%',
+            width: 507.2463768115942,
+        },
+        {
+            height: 982.6339285714287,
+            left: 76.08695652173914,
+            position: 'absolute',
+            top: '1.339%',
+            width: 597.8260869565217,
+        },
+        {
+            height: 1191.0714285714287,
+            left: 12.681159420289854,
+            position: 'absolute',
+            top: '0.558%',
+            width: 724.6376811594203,
+        },
+    ],
+};
+
+export const fontSizeResult = {
+    small: [2, 8, 16],
+    medium: [110, 150, 190],
+    big: [420, 660, 800],
 };
 
 export const some = {

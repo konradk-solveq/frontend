@@ -19,7 +19,10 @@ import {
     standardPxResult,
     perfectPxResult,
     posStaticHeightResult,
-    onlyPosTResult,
+    onlyPosResult,
+    posAndWidResult,
+    posWithMinHeightResult,
+    fontSizeResult,
 } from './mocks/layoutFoo';
 import {
     initAppSize,
@@ -53,19 +56,19 @@ import {
 
 const obj = {
     small: [
-        {w: 3, h: 2, l: 216, t: 680},
-        {w: 12, h: 8, l: 198, t: 540},
-        {w: 30, h: 16, l: 174, t: 430},
+        {w: 3, h: 2, l: 216, t: 680, min: 10},
+        {w: 12, h: 8, l: 198, t: 540, min: 12},
+        {w: 30, h: 16, l: 174, t: 430, min: 16},
     ],
     medium: [
-        {w: 90, h: 110, l: 56, t: 98},
-        {w: 120, h: 150, l: 62, t: 126},
-        {w: 160, h: 190, l: 70, t: 170},
+        {w: 90, h: 110, l: 56, t: 98, min: 170},
+        {w: 120, h: 150, l: 62, t: 126, min: 170},
+        {w: 160, h: 190, l: 70, t: 170, min: 170},
     ],
     big: [
-        {w: 280, h: 420, l: 16, t: 26},
-        {w: 330, h: 660, l: 12, t: 12},
-        {w: 400, h: 800, l: 6, t: 5},
+        {w: 280, h: 420, l: 16, t: 26, min: 600},
+        {w: 330, h: 660, l: 12, t: 12, min: 600},
+        {w: 400, h: 800, l: 6, t: 5, min: 600},
     ],
 };
 
@@ -708,47 +711,215 @@ describe('Calculates layout positions -- helpers', () => {
                 obj.small[0].w,
                 obj.small[0].h,
                 obj.small[0].t,
-                onlyPosTResult.small[0],
+                onlyPosResult.small[0],
             ],
             [
                 obj.small[1].w,
                 obj.small[1].h,
                 obj.small[1].t,
-                onlyPosTResult.small[1],
+                onlyPosResult.small[1],
             ],
             [
                 obj.small[2].w,
                 obj.small[2].h,
                 obj.small[2].t,
-                onlyPosTResult.small[2],
+                onlyPosResult.small[2],
             ],
             [
                 obj.medium[0].w,
                 obj.medium[0].h,
                 obj.medium[0].t,
-                onlyPosTResult.medium[0],
+                onlyPosResult.medium[0],
             ],
             [
                 obj.medium[1].w,
                 obj.medium[1].h,
                 obj.medium[1].t,
-                onlyPosTResult.medium[1],
+                onlyPosResult.medium[1],
             ],
             [
                 obj.medium[2].w,
                 obj.medium[2].h,
                 obj.medium[2].t,
-                onlyPosTResult.medium[2],
+                onlyPosResult.medium[2],
             ],
-            [obj.big[0].w, obj.big[0].h, obj.big[0].t, onlyPosTResult.big[0]],
-            [obj.big[1].w, obj.big[1].h, obj.big[1].t, onlyPosTResult.big[1]],
-            [obj.big[2].w, obj.big[2].h, obj.big[2].t, onlyPosTResult.big[2]],
+            [obj.big[0].w, obj.big[0].h, obj.big[0].t, onlyPosResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, obj.big[1].t, onlyPosResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, obj.big[2].t, onlyPosResult.big[2]],
         ])(
             'Should calculate object (w: %s, h: %s, t: %s), and result should be equal to: %s',
             (w: number, h: number, t: number, result: onlyPosT) => {
                 const onlyPos = getOnlyPos(w, h, t);
 
                 expect(onlyPos).toEqual(result);
+            },
+        );
+    });
+
+    type posAndWidT = {
+        position: 'relative' | 'absolute' | undefined;
+        width: string;
+        left: number;
+        top: string;
+    };
+
+    describe('[getPosAndWid] - counts layout object of seated element size', () => {
+        it.each([
+            [
+                obj.small[0].w,
+                obj.small[0].h,
+                obj.small[0].t,
+                posAndWidResult.small[0],
+            ],
+            [
+                obj.small[1].w,
+                obj.small[1].h,
+                obj.small[1].t,
+                posAndWidResult.small[1],
+            ],
+            [
+                obj.small[2].w,
+                obj.small[2].h,
+                obj.small[2].t,
+                posAndWidResult.small[2],
+            ],
+            [
+                obj.medium[0].w,
+                obj.medium[0].h,
+                obj.medium[0].t,
+                posAndWidResult.medium[0],
+            ],
+            [
+                obj.medium[1].w,
+                obj.medium[1].h,
+                obj.medium[1].t,
+                posAndWidResult.medium[1],
+            ],
+            [
+                obj.medium[2].w,
+                obj.medium[2].h,
+                obj.medium[2].t,
+                posAndWidResult.medium[2],
+            ],
+            [obj.big[0].w, obj.big[0].h, obj.big[0].t, posAndWidResult.big[0]],
+            [obj.big[1].w, obj.big[1].h, obj.big[1].t, posAndWidResult.big[1]],
+            [obj.big[2].w, obj.big[2].h, obj.big[2].t, posAndWidResult.big[2]],
+        ])(
+            'Should calculate object (w: %s, h: %s, t: %s), and result should be equal to: %s',
+            (w: number, h: number, t: number, result: posAndWidT) => {
+                const posAndWid = getPosAndWid(w, h, t);
+
+                expect(posAndWid).toEqual(result);
+            },
+        );
+    });
+
+    type posWithMinHeightT = {
+        position: 'relative' | 'absolute' | undefined;
+        width: number;
+        height: number;
+        left: number;
+        top: string;
+    };
+
+    describe('[getPosWithMinHeight] - counts layout object of seated element size', () => {
+        it.each([
+            [
+                obj.small[0].w,
+                obj.small[0].h,
+                obj.small[0].t,
+                obj.small[0].min,
+                posWithMinHeightResult.small[0],
+            ],
+            [
+                obj.small[1].w,
+                obj.small[1].h,
+                obj.small[1].t,
+                obj.small[1].min,
+                posWithMinHeightResult.small[1],
+            ],
+            [
+                obj.small[2].w,
+                obj.small[2].h,
+                obj.small[2].t,
+                obj.small[2].min,
+                posWithMinHeightResult.small[2],
+            ],
+            [
+                obj.medium[0].w,
+                obj.medium[0].h,
+                obj.medium[0].t,
+                obj.medium[0].min,
+                posWithMinHeightResult.medium[0],
+            ],
+            [
+                obj.medium[1].w,
+                obj.medium[1].h,
+                obj.medium[1].t,
+                obj.medium[1].min,
+                posWithMinHeightResult.medium[1],
+            ],
+            [
+                obj.medium[2].w,
+                obj.medium[2].h,
+                obj.medium[2].t,
+                obj.medium[2].min,
+                posWithMinHeightResult.medium[2],
+            ],
+            [
+                obj.big[0].w,
+                obj.big[0].h,
+                obj.big[0].t,
+                obj.big[0].min,
+                posWithMinHeightResult.big[0],
+            ],
+            [
+                obj.big[1].w,
+                obj.big[1].h,
+                obj.big[1].t,
+                obj.big[1].min,
+                posWithMinHeightResult.big[1],
+            ],
+            [
+                obj.big[2].w,
+                obj.big[2].h,
+                obj.big[2].t,
+                obj.big[2].min,
+                posWithMinHeightResult.big[2],
+            ],
+        ])(
+            'Should calculate object (w: %s, h: %s, t: %s, min: %s), and result should be equal to: %s',
+            (
+                w: number,
+                h: number,
+                t: number,
+                min: number,
+                result: posWithMinHeightT,
+            ) => {
+                const posWithMinHeight = getPosWithMinHeight(w, h, t, min);
+
+                expect(posWithMinHeight).toEqual(result);
+            },
+        );
+    });
+
+    describe('[getFontSize] - counts relative font height in px', () => {
+        it.each([
+            [obj.small[0].h, fontSizeResult.small[0]],
+            [obj.small[1].h, fontSizeResult.small[1]],
+            [obj.small[2].h, fontSizeResult.small[2]],
+            [obj.medium[0].h, fontSizeResult.medium[0]],
+            [obj.medium[1].h, fontSizeResult.medium[1]],
+            [obj.medium[2].h, fontSizeResult.medium[2]],
+            [obj.big[0].h, fontSizeResult.big[0]],
+            [obj.big[1].h, fontSizeResult.big[1]],
+            [obj.big[2].h, fontSizeResult.big[2]],
+        ])(
+            'Should calculate relative font height from height: %s, and result should be equal to: %s',
+            (h: number, result: number) => {
+                const fontSize = getFontSize(h);
+
+                expect(fontSize).toEqual(result);
             },
         );
     });
