@@ -306,6 +306,78 @@ export const perfectPxResult = {
     ],
 };
 
+export const posStaticHeightResult = {
+    small: [
+        {
+            height: 3.6231884057971016,
+            left: 372.2826086956522,
+            position: 'absolute',
+            top: '75.893%',
+            width: 5.434782608695652,
+        },
+        {
+            height: 14.492753623188406,
+            left: 364.1304347826087,
+            position: 'absolute',
+            top: '60.268%',
+            width: 21.73913043478261,
+        },
+        {
+            height: 28.985507246376812,
+            left: 347.82608695652175,
+            position: 'absolute',
+            top: '47.991%',
+            width: 54.34782608695652,
+        },
+    ],
+    medium: [
+        {
+            height: 199.2753623188406,
+            left: 293.47826086956525,
+            position: 'absolute',
+            top: '10.938%',
+            width: 163.04347826086956,
+        },
+        {
+            height: 271.7391304347826,
+            left: 266.304347826087,
+            position: 'absolute',
+            top: '14.063%',
+            width: 217.3913043478261,
+        },
+        {
+            height: 344.2028985507246,
+            left: 230.0724637681159,
+            position: 'absolute',
+            top: '18.973%',
+            width: 289.8550724637681,
+        },
+    ],
+    big: [
+        {
+            height: 760.8695652173913,
+            left: 121.37681159420289,
+            position: 'absolute',
+            top: '2.902%',
+            width: 507.2463768115942,
+        },
+        {
+            height: 1195.6521739130435,
+            left: 76.08695652173914,
+            position: 'absolute',
+            top: '1.339%',
+            width: 597.8260869565217,
+        },
+        {
+            height: 1449.2753623188405,
+            left: 12.681159420289854,
+            position: 'absolute',
+            top: '0.558%',
+            width: 724.6376811594203,
+        },
+    ],
+};
+
 export const some = {
     small: [0, 0, 0],
     medium: [0, 0, 0],

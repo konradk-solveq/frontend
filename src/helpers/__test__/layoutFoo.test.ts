@@ -18,6 +18,7 @@ import {
     standardResult,
     standardPxResult,
     perfectPxResult,
+    posStaticHeightResult,
 } from './mocks/layoutFoo';
 import {
     initAppSize,
@@ -416,7 +417,7 @@ describe('Calculates layout positions -- helpers', () => {
     type standardT = {
         height: string;
         left: number;
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         top: number;
         width: string;
     };
@@ -463,7 +464,7 @@ describe('Calculates layout positions -- helpers', () => {
             [obj.big[1].w, obj.big[1].h, obj.big[1].t, standardResult.big[1]],
             [obj.big[2].w, obj.big[2].h, obj.big[2].t, standardResult.big[2]],
         ])(
-            'Should calculate object (w: %s, h: %s, t: $s), and result should be equal to: %s',
+            'Should calculate object (w: %s, h: %s, t: %s), and result should be equal to: %s',
             (w: number, h: number, t: number, result: standardT) => {
                 const standard = getStandard(w, h, t);
 
@@ -475,7 +476,7 @@ describe('Calculates layout positions -- helpers', () => {
     type standardPxT = {
         height: number;
         left: number;
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         top: number;
         width: number;
     };
@@ -522,7 +523,7 @@ describe('Calculates layout positions -- helpers', () => {
             [obj.big[1].w, obj.big[1].h, obj.big[1].t, standardPxResult.big[1]],
             [obj.big[2].w, obj.big[2].h, obj.big[2].t, standardPxResult.big[2]],
         ])(
-            'Should calculate object (w: %s, h: %s, t: $s), and result should be equal to: %s',
+            'Should calculate object (w: %s, h: %s, t: %s), and result should be equal to: %s',
             (w: number, h: number, t: number, result: standardPxT) => {
                 const standardPx = getStandardPx(w, h, t);
 
@@ -532,7 +533,7 @@ describe('Calculates layout positions -- helpers', () => {
     });
 
     type perfectPxT = {
-        position: string;
+        position: 'relative' | 'absolute' | undefined;
         width: number;
         height: number;
         left: number;
@@ -605,7 +606,7 @@ describe('Calculates layout positions -- helpers', () => {
                 perfectPxResult.big[2],
             ],
         ])(
-            'Should calculate object (w: %s, h: %s, t: $s), and result should be equal to: %s',
+            'Should calculate object (w: %s, h: %s, t: %s), and result should be equal to: %s',
             (
                 w: number,
                 h: number,
@@ -616,6 +617,80 @@ describe('Calculates layout positions -- helpers', () => {
                 const perfectPx = getPerfectPx(w, h, l, t);
 
                 expect(perfectPx).toEqual(result);
+            },
+        );
+    });
+
+    type posStaticHeightT = {
+        position: 'relative' | 'absolute' | undefined;
+        width: number;
+        height: number;
+        left: number;
+        top: string;
+    };
+
+    describe('[getPosStaticHeight] - counts layout object of seated element size', () => {
+        it.each([
+            [
+                obj.small[0].w,
+                obj.small[0].h,
+                obj.small[0].t,
+                posStaticHeightResult.small[0],
+            ],
+            [
+                obj.small[1].w,
+                obj.small[1].h,
+                obj.small[1].t,
+                posStaticHeightResult.small[1],
+            ],
+            [
+                obj.small[2].w,
+                obj.small[2].h,
+                obj.small[2].t,
+                posStaticHeightResult.small[2],
+            ],
+            [
+                obj.medium[0].w,
+                obj.medium[0].h,
+                obj.medium[0].t,
+                posStaticHeightResult.medium[0],
+            ],
+            [
+                obj.medium[1].w,
+                obj.medium[1].h,
+                obj.medium[1].t,
+                posStaticHeightResult.medium[1],
+            ],
+            [
+                obj.medium[2].w,
+                obj.medium[2].h,
+                obj.medium[2].t,
+                posStaticHeightResult.medium[2],
+            ],
+            [
+                obj.big[0].w,
+                obj.big[0].h,
+                obj.big[0].t,
+                posStaticHeightResult.big[0],
+            ],
+            [
+                obj.big[1].w,
+                obj.big[1].h,
+                obj.big[1].t,
+                posStaticHeightResult.big[1],
+            ],
+            [
+                obj.big[2].w,
+                obj.big[2].h,
+                obj.big[2].t,
+                posStaticHeightResult.big[2],
+            ],
+        ])(
+            'Should calculate object (w: %s, h: %s, t: %s), and result should be equal to: %s',
+            (w: number, h: number, t: number, result: posStaticHeightT) => {
+                const posStaticHeight = getPosStaticHeight(w, h, t);
+
+                expect(posStaticHeight).toEqual(result);
             },
         );
     });
