@@ -537,8 +537,8 @@ export const fontSizeResult = {
     big: [420, 660, 800],
 };
 
-export const some = {
-    small: [0, 0, 0],
-    medium: [0, 0, 0],
-    big: [0, 0, 0],
+export const buttonsHeightResult = {
+    small: [2, 8, 16],
+    medium: [110, 150, 190],
+    big: [420, 660, 800],
 };

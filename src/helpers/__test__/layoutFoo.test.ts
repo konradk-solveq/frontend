@@ -23,6 +23,7 @@ import {
     posAndWidResult,
     posWithMinHeightResult,
     fontSizeResult,
+    buttonsHeightResult,
 } from './mocks/layoutFoo';
 import {
     initAppSize,
@@ -920,6 +921,27 @@ describe('Calculates layout positions -- helpers', () => {
                 const fontSize = getFontSize(h);
 
                 expect(fontSize).toEqual(result);
+            },
+        );
+    });
+
+    describe('[mainButtonsHeight] - counts relative main buttons height in px', () => {
+        it.each([
+            [obj.small[0].h, buttonsHeightResult.small[0]],
+            [obj.small[1].h, buttonsHeightResult.small[1]],
+            [obj.small[2].h, buttonsHeightResult.small[2]],
+            [obj.medium[0].h, buttonsHeightResult.medium[0]],
+            [obj.medium[1].h, buttonsHeightResult.medium[1]],
+            [obj.medium[2].h, buttonsHeightResult.medium[2]],
+            [obj.big[0].h, buttonsHeightResult.big[0]],
+            [obj.big[1].h, buttonsHeightResult.big[1]],
+            [obj.big[2].h, buttonsHeightResult.big[2]],
+        ])(
+            'Should calculate relative main buttons height from height: %s, and result should be equal to: %s',
+            (h: number, result: number) => {
+                const buttonsHeight = mainButtonsHeight(h);
+
+                expect(buttonsHeight).toEqual(result);
             },
         );
     });
