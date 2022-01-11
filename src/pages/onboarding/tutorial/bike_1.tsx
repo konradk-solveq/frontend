@@ -1,8 +1,13 @@
 import React from 'react';
 import Svg, {G, Path, Circle} from 'react-native-svg';
+import {ViewStyle} from 'react-native';
 
-const Bike_1: React.FC = () => (
-    <Svg viewBox="0 0 254 250">
+interface Props {
+    style?: ViewStyle;
+}
+
+const Bike_1: React.FC<Props> = ({style}: Props) => (
+    <Svg style={style} viewBox="0 0 254 250">
         <G fill="none" fill-rule="evenodd">
             <Path
                 stroke="#313131"
