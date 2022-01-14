@@ -73,16 +73,13 @@ const obj = {
     ],
 };
 
+jest.mock('react-native/Libraries/Utilities/Dimensions', () => ({
+    get: jest.fn().mockReturnValue({width: 750, height: 1334}),
+}));
+
 describe('Calculates layout positions -- helpers', () => {
     beforeAll(() => {
         initAppSize();
-        jest.mock('react-native/Libraries/Utilities/Dimensions', () => ({
-            get: jest.fn().mockReturnValue({width: 750, height: 1334}),
-        }));
-    });
-
-    afterAll(() => {
-        jest.resetModules();
     });
 
     describe('[centerLeftPx] - counts layout center element left position', () => {
