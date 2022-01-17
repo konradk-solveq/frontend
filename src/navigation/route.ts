@@ -47,6 +47,7 @@ export const RegularStackRoute = {
     // Profile
     PROFILE_SCREEN: 'ProfileTab',
     NAME_CHANGE_SCREEN: 'NameChange',
+    LANGUAGE_CHANGE_SCREEN: 'LanguageChange',
     ABOUT_APP_SCREEN: 'AboutApp',
     HELP_SCREEN: 'Help',
     CONTACT_SCREEN: 'Contact',

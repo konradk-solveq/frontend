@@ -602,7 +602,8 @@
             " / nr ramy "
         ],
         "settings": "Ustawienia",
-        "myConsents":  "Moje zgody",
+        "languages": "Język aplikacji",
+        "myConsents": "Moje zgody",
         "remove": "Usuń",
         "btnAddStuff": "DODAJ WYPOSAŻENIE",
         "defaultName": "Rowerzysta",
@@ -649,6 +650,24 @@
         "placeholder": "Podaj imię lub pseudonim",
         "btn": "ZAPISZ",
         "invalidNameLengthError": "Nazwa ma niepoprawną długość"
+    },
+    "LanguageChange": {
+        "header": "Język aplikacji",
+        "languages": [{
+                "name": "Polski",
+                "short": "pl",
+            },
+            {
+                "name": "English",
+                "short": "en",
+            },
+            {
+                "name": "Česky (již brzy)",
+                "short": "cz",
+            }
+        ],
+        "byLocation": "po lokalizacji",
+        "btn": "ZAPISZ"
     },
     "WarrantyDetails": {
         "header": "Szczegóły gwarancji",

@@ -6,6 +6,7 @@ import {riderProfiles} from '../../utils/constants';
 
 interface UserState {
     userName: string;
+    language: string;
     frameNumber: string;
     riderProfile: RiderProfile;
     onboardingFinished: boolean;
@@ -15,6 +16,7 @@ interface UserState {
 
 const initialState: UserState = {
     userName: '',
+    language: '',
     frameNumber: '',
     riderProfile: {
         cyclingStyle: 0,
@@ -38,6 +40,13 @@ const userReducer = (state = initialState, action: any) => {
                 ...state,
                 loading: false,
                 userName: action.userName,
+            };
+        }
+        case actionTypes.SET_LANGUAGE: {
+            return {
+                ...state,
+                loading: false,
+                language: action.language,
             };
         }
         case actionTypes.SET_FRAME_NUMBER: {
@@ -90,6 +99,7 @@ const persistConfig = {
     storage: AsyncStorage,
     whitelist: [
         'userName',
+        'language',
         'frameNumber',
         'riderProfile',
         'onboardingFinished',

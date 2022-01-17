@@ -1,5 +1,6 @@
 export {
     setUserName,
+    setLanguage,
     setFrameNumber,
     setProfileSettings,
     setOnboardingFinished,
