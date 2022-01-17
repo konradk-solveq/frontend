@@ -1,5 +1,5 @@
 import {useTranslation} from 'react-i18next';
-import i18next from './../../../I18n/i18next';
+import i18next from '@translations/i18next';
 import {Platform, NativeModules} from 'react-native';
 
 export const useMergedTranslation = (prefix: string) => {

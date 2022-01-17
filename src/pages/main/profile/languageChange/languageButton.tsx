@@ -1,15 +1,10 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import Svg, {Path, G, Rect} from 'react-native-svg';
+import {getHorizontalPx, getVerticalPx, getFontSize} from '@helpers/layoutFoo';
 import Pl from '@sharedComponents/svg/languageIcons/pl';
 import En from '@sharedComponents/svg/languageIcons/en';
 import Cz from '@sharedComponents/svg/languageIcons/cz';
-
-import {
-    getHorizontalPx,
-    getVerticalPx,
-    getFontSize,
-} from '@helpers/layoutFoo';
 
 interface IProps {
     active: boolean;
@@ -95,9 +90,9 @@ const LanguageButton: React.FC<IProps> = ({
 
                 <Text style={styles.blueText}>{title}</Text>
 
-                {short === 'pl' && <Pl style={styles.symbol}/>}
-                {short === 'en' && <En style={styles.symbol}/>}
-                {short === 'cz' && <Cz style={styles.symbol}/>}
+                {short === 'pl' && <Pl style={styles.symbol} />}
+                {short === 'en' && <En style={styles.symbol} />}
+                {short === 'cz' && <Cz style={styles.symbol} />}
             </View>
         </TouchableOpacity>
     );

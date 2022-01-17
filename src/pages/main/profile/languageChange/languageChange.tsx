@@ -1,16 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, ScrollView, Platform} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import {setLanguage} from '@storage/actions';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {
-    setObjSize,
-    getWidthPx,
     getHorizontalPx,
     getVerticalPx,
     getVertical,
-    getCenterLeftPx,
-    getFontSize,
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
 
@@ -21,8 +17,6 @@ import {
 import GenericScreen from '@pages/template/GenericScreen';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import LanguageButton from './languageButton';
-
-const isIOS = Platform.OS === 'ios';
 
 interface Props {
     navigation: any;
@@ -65,14 +59,7 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
         navigation.goBack();
     };
 
-    setObjSize(334, 50);
-
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-        },
         scroll: {
             top: getVerticalPx(100),
         },
@@ -85,36 +72,11 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
             height: '100%',
             minHeight: getVertical(414),
         },
-        title: {
-            width: getWidthPx(),
-            left: getCenterLeftPx(),
-            top: getVertical(138 - 100),
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getFontSize(30),
-            lineHeight: getFontSize(38),
-            color: '#313131',
-        },
-        logo: {
-            position: 'absolute',
-            left: getHorizontalPx(152),
-            top: getVerticalPx(66),
-            width: getHorizontalPx(110),
-            height: getHorizontalPx(20),
-        },
-
         btn: {
             position: 'absolute',
-            width: getWidthPx(),
+            width: getHorizontalPx(334),
             height: mainButtonsHeight(50),
-            bottom: getVerticalPx(65 + 100), // 100 - przesunięcie dla scroll o headera
-        },
-        keyboardContainer: {
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 0,
-            paddingVertical: isIOS ? getVertical(80) : 0,
+            bottom: getVerticalPx(65 + 100),
         },
     });
 

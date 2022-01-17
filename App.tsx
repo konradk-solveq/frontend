@@ -17,7 +17,7 @@ import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
 import useRouteDebug from '@src/hooks/useRouteDebug';
 
-import i18next from './I18n/i18next';
+import i18next from '@translations/i18next';
 
 // initialize the i18next instance
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
