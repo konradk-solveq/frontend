@@ -3,6 +3,7 @@ import {
     DEEPLINKING_NAMESPACE,
     DEEPLINKING_PREFIX,
 } from '@env';
+import {getPathFromState, getStateFromPath} from '@react-navigation/native';
 
 /**
  * Deep link must match to this config. As example 'world' is used.
@@ -25,7 +26,8 @@ const config = {
 export const linking = {
     prefixes: [
         `https://${DEEPLINKING_HOST}${DEEPLINKING_PREFIX}`,
-        `${DEEPLINKING_NAMESPACE}://`,
+        `${DEEPLINKING_NAMESPACE}://` /* android */,
+        `${DEEPLINKING_NAMESPACE}:/` /* ios */,
     ],
     config,
 };

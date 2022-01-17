@@ -120,6 +120,7 @@
 		901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9039C9492636A74E00C355DE /* myKROSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myKROSS.entitlements; sourceTree = "<group>"; };
 		904F37AF26A1875000371264 /* map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_route_marker.png; path = ../src/assets/images/map_route_marker.png; sourceTree = "<group>"; };
+		905F172A27956F7500BC6C75 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		90B996A826A840580015E097 /* current_map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = current_map_route_marker.png; path = ../src/assets/images/current_map_route_marker.png; sourceTree = "<group>"; };
 		ABD9E55D8315F3021C7CCD2D /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
 		B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Regular.otf"; path = "../assets/fonts/DIN2014Narrow-Regular.otf"; sourceTree = "<group>"; };
@@ -237,6 +238,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				905F172A27956F7500BC6C75 /* Config.xcconfig */,
 				1DE20501271459D000F57873 /* mykross.eot */,
 				1DE20504271459D000F57873 /* mykross.otf */,
 				1DE20503271459D000F57873 /* mykross.svg */,
@@ -784,6 +786,7 @@
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 905F172A27956F7500BC6C75 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -849,6 +852,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 905F172A27956F7500BC6C75 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -907,6 +911,7 @@
 		};
 		90C7EF21274BB55D00D43C9E /* Feat.Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 905F172A27956F7500BC6C75 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1029,6 +1034,7 @@
 		};
 		90C7EF24274BB58900D43C9E /* Feat.Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 905F172A27956F7500BC6C75 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
