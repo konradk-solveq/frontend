@@ -6,7 +6,7 @@ export const useMergedTranslation = (prefix: string) => {
     return useTranslation(['backend', 'local'], {keyPrefix: prefix});
 };
 
-export const changeLanguage = (language: string) => {
+export const changeLanguage = (language: string = '') => {
     if (language === '') {
         const deviceLanguage =
             Platform.OS === 'ios'
