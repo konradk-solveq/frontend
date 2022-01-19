@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import {View, Text, Modal, Pressable, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {hasAnyBikeSelector} from '@storage/selectors/bikes';
-import {addPlannedMap, removePlanendMap} from '@storage/actions/maps';
+import {addPlannedMap, removePlannedMap} from '@storage/actions/maps';
 import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import AnimSvg from '@helpers/animSvg';
@@ -48,10 +48,10 @@ const ShowMoreModal: React.FC<IProps> = ({
     isFeatured,
     backdropStyle,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.BikeMap');
+    const {t} = useMergedTranslation('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const norificationContext = useNotificationContext();
+    const notificationContext = useNotificationContext();
     const userHasAnyBike = useAppSelector(hasAnyBikeSelector);
 
     const [showMissingBikeModal, setShowMissingBikeModal] = useState(false);
@@ -80,20 +80,17 @@ const ShowMoreModal: React.FC<IProps> = ({
     const onAddToFavRoutesHandler = () => {
         onPressCancel();
         if (removeFav) {
-            const message = I18n.t('MainWorld.BikeMap.removeRouteFromPlanned', {
+            const message = t('removeRouteFromPlanned', {
                 name: '',
             });
-            norificationContext.setNotificationVisibility(message);
-            dispatch(removePlanendMap(mapID));
+            notificationContext.setNotificationVisibility(message);
+            dispatch(removePlannedMap(mapID));
             return;
         }
-        const addRouteToPlanned = I18n.t(
-            'MainWorld.BikeMap.addRouteToPlanned',
-            {
-                name: '',
-            },
-        );
-        norificationContext.setNotificationVisibility(addRouteToPlanned);
+        const addRouteToPlanned = t('addRouteToPlanned', {
+            name: '',
+        });
+        notificationContext.setNotificationVisibility(addRouteToPlanned);
         dispatch(addPlannedMap(mapID));
     };
 
@@ -152,15 +149,15 @@ const ShowMoreModal: React.FC<IProps> = ({
                             <Pressable onPress={onPublishRouteHandler}>
                                 <Text style={styles.text}>
                                     {isPublic
-                                        ? trans.editTripAction
-                                        : trans.publishTripAction}
+                                        ? t('editTripAction')
+                                        : t('publishTripAction')}
                                 </Text>
                             </Pressable>
                         )}
                         {removeFav && !isPrivate && (
                             <Pressable onPress={onStartRouteHandler}>
                                 <Text style={styles.text}>
-                                    {trans.startTripAction}
+                                    {t('startTripAction')}
                                 </Text>
                             </Pressable>
                         )}
@@ -168,21 +165,21 @@ const ShowMoreModal: React.FC<IProps> = ({
                             <Pressable onPress={onAddToFavRoutesHandler}>
                                 <Text style={styles.text}>
                                     {!removeFav
-                                        ? trans.addToFavAction
-                                        : trans.removeToFavAction}
+                                        ? t('addToFavAction')
+                                        : t('removeToFavAction')}
                                 </Text>
                             </Pressable>
                         )}
                         <Pressable onPress={onMapDetailsButtonPressedHandler}>
                             <Text style={styles.text}>
                                 <Text style={styles.text}>
-                                    {trans.showOnMapAction}
+                                    {t('showOnMapAction')}
                                 </Text>
                             </Text>
                         </Pressable>
                         <Pressable onPress={onDetailsButtonPressedHandler}>
                             <Text style={styles.text}>
-                                {trans.routeDetailsAction}
+                                {t('routeDetailsAction')}
                             </Text>
                         </Pressable>
                     </View>

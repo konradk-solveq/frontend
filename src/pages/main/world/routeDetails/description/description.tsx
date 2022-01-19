@@ -2,18 +2,18 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {View, Text, Modal, Platform} from 'react-native';
 
-import {I18n} from '../../../../../../I18n/I18n';
-import {getVerticalPx} from '../../../../../helpers/layoutFoo';
-import {useAppSelector} from '../../../../../hooks/redux';
-import useStatusBarHeight from '../../../../../hooks/statusBarHeight';
-import {Map} from '../../../../../models/map.model';
-import {RegularStackRoute} from '../../../../../navigation/route';
-import {CloseBtn, ImageBtn} from '../../../../../sharedComponents/buttons';
-import ImageGallery from '../../../../../sharedComponents/imageGallery/imageGallery';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {getVerticalPx} from '@helpers/layoutFoo';
+import {useAppSelector} from '@hooks/redux';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {Map} from '@models/map.model';
+import {RegularStackRoute} from '@navigation/route';
+import {CloseBtn, ImageBtn} from '@sharedComponents/buttons';
+import ImageGallery from '@sharedComponents/imageGallery/imageGallery';
 
-import ImageSwiper from '../../../../../sharedComponents/imageSwiper/imageSwiper';
-import {userNameSelector} from '../../../../../storage/selectors';
-import {convertToDateWithTime} from '../../../../../utils/dateTime';
+import ImageSwiper from '@sharedComponents/imageSwiper/imageSwiper';
+import {userNameSelector} from '@storage/selectors';
+import {convertToDateWithTime} from '@utils/dateTime';
 import RideTile from './rideTile';
 
 import styles from './styles';
@@ -33,11 +33,11 @@ const Description: React.FC<IProps> = ({
     isFavView,
     isFeaturedView,
 }: IProps) => {
-    const trans: any = I18n.t('RoutesDetails.details');
+    const {t} = useMergedTranslation('RoutesDetails.details');
     const navigation = useNavigation();
     const statusBarHeight = useStatusBarHeight();
     const userName = useAppSelector(userNameSelector);
-    const privateName = isPrivateView ? userName : trans.defaultAuthor;
+    const privateName = isPrivateView ? userName : t('defaultAuthor');
     const authorName = mapData?.author || privateName;
     const [showImgPreview, setShowImgPreview] = useState(false);
 
@@ -62,10 +62,10 @@ const Description: React.FC<IProps> = ({
                         styles.smallText,
                         styles.color555555,
                     ]}>
-                    {`${trans.author}: ${authorName}`}
+                    {`${t('author')}: ${authorName}`}
                 </Text>
                 <Text style={[styles.textStyle, styles.title]}>
-                    {mapData?.name || trans.noTitle}
+                    {mapData?.name || t('noTitle')}
                 </Text>
                 {mapData?.distanceToRouteInKilometers !== '-' ? (
                     <Text
@@ -76,7 +76,7 @@ const Description: React.FC<IProps> = ({
                             styles.color555555,
                         ]}>
                         {mapData?.distanceToRouteInKilometers}
-                        {trans.distanceToStart}
+                        {t('distanceToStart')}
                     </Text>
                 ) : null}
             </View>
@@ -108,7 +108,7 @@ const Description: React.FC<IProps> = ({
                             styles.smallText,
                             styles.color555555,
                         ]}>
-                        {trans.descriptionTitle}
+                        {t('descriptionTitle')}
                     </Text>
                     <View style={[styles.descriptionContainer]}>
                         <Text
@@ -120,7 +120,7 @@ const Description: React.FC<IProps> = ({
                             {mapData?.description ? mapData.description : ''}
                         </Text>
                         {/* <Text style={[styles.textStyle, styles.lightFont]}>
-                            {mapData?.description || trans.noDescription}
+                            {mapData?.description || t('noDescription')}
                         </Text> */}
                     </View>
                 </View>
@@ -134,7 +134,7 @@ const Description: React.FC<IProps> = ({
                             styles.color555555,
                             styles.imagesTitle,
                         ]}>
-                        {trans.imagesTitle}
+                        {t('imagesTitle')}
                     </Text>
                     {mapData && images?.images?.length > 0 && (
                         <ImageSwiper
@@ -152,7 +152,7 @@ const Description: React.FC<IProps> = ({
                         styles.color555555,
                         styles.mapTitle,
                     ]}>
-                    {trans.mapTitle}
+                    {t('mapTitle')}
                 </Text>
                 <View style={styles.mapImage}>
                     {images?.mapImg ? (
@@ -168,7 +168,7 @@ const Description: React.FC<IProps> = ({
             {mapData?.tags?.length ? (
                 <View style={styles.tagsContainer}>
                     <Text style={[styles.textStyle, styles.lightFont]}>
-                        {trans.tagsTitle}
+                        {t('tagsTitle')}
                     </Text>
                     <View style={styles.tagsWrapper}>
                         {mapData?.optionsEnumsValues?.tagsOptions &&
@@ -202,7 +202,7 @@ const Description: React.FC<IProps> = ({
                     styles.lightFont,
                     styles.color555555,
                 ]}>
-                {trans.creationPrefix}:{' '}
+                {t('creationPrefix')}:{' '}
                 {convertToDateWithTime(mapData?.createdAt)}
             </Text>
             {mapData?.publishedAt && (
@@ -213,7 +213,7 @@ const Description: React.FC<IProps> = ({
                         styles.lightFont,
                         styles.color555555,
                     ]}>
-                    {trans.publishPrefix}:{' '}
+                    {t('publishPrefix')}:{' '}
                     {convertToDateWithTime(mapData?.publishedAt)}
                 </Text>
             )}
@@ -247,7 +247,7 @@ const Description: React.FC<IProps> = ({
                             <ImageGallery images={images.fullSizeImages} />
                             {mapData?.author && (
                                 <Text style={styles.authorText}>
-                                    {trans.author}: {mapData?.author}
+                                    {t('author')}: {mapData?.author}
                                 </Text>
                             )}
                         </View>

@@ -427,7 +427,7 @@ export const addPlannedMap = (
     }
 };
 
-export const removePlanendMap = (
+export const removePlannedMap = (
     id: string,
 ): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
@@ -447,10 +447,10 @@ export const removePlanendMap = (
             dispatch(setLoadingState(false));
         });
     } catch (error) {
-        console.log(`[removePlanendMap] - ${error}`);
+        console.log(`[removePlannedMap] - ${error}`);
         const err = convertToApiError(error);
 
-        loggErrorWithScope(err, 'removePlanendMap');
+        loggErrorWithScope(err, 'removePlannedMap');
 
         const errorMessage = I18n.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
