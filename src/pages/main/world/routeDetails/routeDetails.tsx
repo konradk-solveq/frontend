@@ -11,18 +11,23 @@ import {
 import {
     favouriteMapDataByIDSelector,
     selectMapDataByIDBasedOnTypeSelector,
-    selectorTypeEnum,
-} from '../../../../storage/selectors/map';
+    selectorMapTypeEnum,
+    userIdSelector,
+} from '@storage/selectors';
 import {getImagesThumbs, getSliverImageToDisplay} from '@utils/transformData';
 import useStatusBarHeight from '@hooks/statusBarHeight';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {userIdSelector} from '@storage/selectors';
 import {RouteDetailsRouteT} from '@type/rootStack';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 
 import {I18n} from '@translations/I18n';
 import {getVerticalPx} from '@helpers/layoutFoo';
-import {EditBtn, BigRedBtn, BigWhiteBtn} from '@sharedComponents/buttons';
+import {
+    EditBtn,
+    BigRedBtn,
+    BigWhiteBtn,
+    ShareBtn,
+} from '@sharedComponents/buttons';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import SliverTopBar from '@sharedComponents/sliverTopBar/sliverTopBar';
 import BottomModal from '@sharedComponents/modals/bottomModal/bottomModal';
@@ -34,15 +39,15 @@ const isIOS = Platform.OS === 'ios';
 
 const getMapType = (params: any) => {
     if (params?.private) {
-        return selectorTypeEnum.private;
+        return selectorMapTypeEnum.private;
     }
     if (params?.favourite) {
-        return selectorTypeEnum.favourite;
+        return selectorMapTypeEnum.favourite;
     }
     if (params?.featured) {
-        return selectorTypeEnum.featured;
+        return selectorMapTypeEnum.featured;
     }
-    return selectorTypeEnum.regular;
+    return selectorMapTypeEnum.regular;
 };
 
 const RouteDetails = () => {
@@ -82,6 +87,13 @@ const RouteDetails = () => {
         navigation.navigate({
             name: RegularStackRoute.EDIT_DETAILS_SCREEN,
             params: {mapID: mapID, private: privateMap},
+        });
+    };
+
+    const onShareRouteHandler = () => {
+        navigation.navigate({
+            name: RegularStackRoute.SHARE_ROUTE_SCREEN,
+            params: {mapID: mapID, mapType: getMapType(route.params)},
         });
     };
 
@@ -162,10 +174,10 @@ const RouteDetails = () => {
                                         ]}
                                     />
                                 )}
-                                {/* <ShareBtn
-                                    onPress={() => {}}
+                                <ShareBtn
+                                    onPress={onShareRouteHandler}
                                     iconStyle={styles.actionButton}
-                                /> */}
+                                />
                             </View>
                         }
                     />
