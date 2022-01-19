@@ -25,7 +25,7 @@ import {
 import {ImagesMetadataType} from '@interfaces/api';
 import {MapFormDataResult, PickedFilters} from '@interfaces/form';
 import {BasicCoordsType} from '@type/coords';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {
     createFileFormData,
@@ -149,6 +149,8 @@ export const editPrivateMapMetadataService = async (
     publish?: boolean,
     id?: string,
 ): Promise<MapsDataResponse> => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {t} = useMergedTranslation('dataAction.mapData');
     const metadata = mapFormMetadataToAPIRequest(
         data,
         data.publishWithName ? author : '',
@@ -188,7 +190,7 @@ export const editPrivateMapMetadataService = async (
                 errorMessage =
                     publishResponse.data.message || publishResponse.data.error;
                 if (publishResponse.data?.statusCode !== 400) {
-                    errorMessage = I18n.t('dataAction.mapData.publishError');
+                    errorMessage = t('publishError');
                 }
             }
             return {
@@ -219,10 +221,9 @@ export const editPrivateMapMetadataService = async (
                     errorMessage =
                         imageResponse.data.message || imageResponse.data.error;
                     if (imageResponse.data?.statusCode !== 400) {
-                        errorMessage = I18n.t(
-                            'dataAction.mapData.fileUploadError',
-                            {value: images.save[i].fileName},
-                        );
+                        errorMessage = t('fileUploadError', {
+                            value: images.save[i].fileName,
+                        });
                     }
                 }
                 return {
@@ -276,6 +277,8 @@ export const editPrivateMapMetadataService = async (
 export const removePrivateMapByIdService = async (
     id: string,
 ): Promise<MapsDataResponse> => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {t} = useMergedTranslation('dataAction.routeData');
     const response = await removePrivateMapData(id);
 
     if (response.status >= 400 || response.data?.statusCode >= 400) {
@@ -286,7 +289,7 @@ export const removePrivateMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage = I18n.t('dataAction.routeData.removeRouteError');
+                errorMessage = t('removeRouteError');
             }
         }
         return {
@@ -366,6 +369,8 @@ export const addPlannedMapsListService = async (
 export const removePlannedMapByIdService = async (
     id: string,
 ): Promise<MapsDataResponse> => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {t} = useMergedTranslation('dataAction.routeData');
     const response = await removePlannedRoute(id);
 
     if (response.status >= 400 || response.data?.statusCode >= 400) {
@@ -376,7 +381,7 @@ export const removePlannedMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage = I18n.t('dataAction.routeData.removeRouteError');
+                errorMessage = t('removeRouteError');
             }
         }
         return {

@@ -690,9 +690,9 @@
     },
     "PublishThankYouPage": {
         "defaultName": "Rowerzysto",
-        "titleSufix": ", trasa została ",
-        "titleSufixPublished": "upubliczniona",
-        "titleSufixUpdated": "zaktualizowana",
+        "titleSuffix": ", trasa została ",
+        "titleSuffixPublished": "upubliczniona",
+        "titleSuffixUpdated": "zaktualizowana",
         "titleSufixSaved": "zapisana",
         "okBtn": "Ok",
         "errorTitle": "Coś poszło nie tak!"

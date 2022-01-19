@@ -1,9 +1,9 @@
 import React from 'react';
 import {Modal, View, Text, ScrollView, Platform} from 'react-native';
-import {I18n} from '../../../../I18n/I18n';
-import {getVerticalPx} from '../../../helpers/layoutFoo';
-import useStatusBarHeight from '../../../hooks/statusBarHeight';
-import {BigRedBtn, BigWhiteBtn} from '../../../sharedComponents/buttons';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {getVerticalPx} from '@helpers/layoutFoo';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {BigRedBtn, BigWhiteBtn} from '@sharedComponents/buttons';
 import ImgSvg from './imgSvg';
 
 import styles from './style';
@@ -23,7 +23,7 @@ const NoBikeAddedModal: React.FC<IProps> = ({
     onContinue,
     onClose,
 }: IProps) => {
-    const trans: any = I18n.t('NoBikeAddedModal');
+    const {t} = useMergedTranslation('NoBikeAddedModal');
     const statusBarHeight = useStatusBarHeight();
 
     return (
@@ -47,9 +47,7 @@ const NoBikeAddedModal: React.FC<IProps> = ({
                                         getVerticalPx(128) - statusBarHeight,
                                 },
                             ]}>
-                            <Text style={styles.header}>
-                                {trans.errorTitle}
-                            </Text>
+                            <Text style={styles.header}>{t('errorTitle')}</Text>
                         </View>
                         <View style={styles.imgage}>
                             <ImgSvg />
@@ -57,18 +55,18 @@ const NoBikeAddedModal: React.FC<IProps> = ({
 
                         <View style={styles.contentWrapper}>
                             <Text style={styles.content}>
-                                {errorMessage || trans.errorMessage}
+                                {errorMessage || t('errorMessage')}
                             </Text>
                         </View>
 
                         <View style={styles.buttonsWrapper}>
                             <BigRedBtn
-                                title={trans.okBtn}
+                                title={t('okBtn')}
                                 onpress={onContinue}
                                 style={[styles.onPressBtn, styles.bottomBtn]}
                             />
                             <BigWhiteBtn
-                                title={trans.cancelBtn}
+                                title={t('cancelBtn')}
                                 onpress={onClose}
                                 style={[styles.onPressBtn, styles.bottomBtn]}
                             />

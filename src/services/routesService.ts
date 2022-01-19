@@ -6,7 +6,7 @@ import {
     routesDataToAPIRequest,
 } from '@utils/apiDataTransform/prepareRequest';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 export type CreatedRouteType = {
@@ -24,6 +24,8 @@ export interface RoutesResponse {
 export const createNewRouteService = async (
     routeNumber?: number | null,
 ): Promise<RoutesResponse> => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {t} = useMergedTranslation('dataAction');
     try {
         const defaultName = getRouteDefaultName(routeNumber);
         const response = await createRoute(defaultName);
@@ -40,9 +42,7 @@ export const createNewRouteService = async (
                     response?.data?.statusCode !== 400 &&
                     response?.data?.statusCode !== 404
                 ) {
-                    errorMessage = I18n.t(
-                        'dataAction.routeData.createRouteError',
-                    );
+                    errorMessage = t('routeData.createRouteError');
                 }
             }
             return {
@@ -66,7 +66,7 @@ export const createNewRouteService = async (
         return {
             data: null,
             status: 500,
-            error: I18n.t('dataAction.dataSyncError'),
+            error: t('dataSyncError'),
         };
     }
 };
@@ -74,6 +74,9 @@ export const createNewRouteService = async (
 export const removeCeratedRouteIDService = async (
     routeId: string,
 ): Promise<RoutesResponse> => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {t} = useMergedTranslation('dataAction');
+
     try {
         const response = await removePrivateMapData(routeId);
 
@@ -108,7 +111,7 @@ export const removeCeratedRouteIDService = async (
         return {
             data: null,
             status: 500,
-            error: I18n.t('dataAction.dataSyncError'),
+            error: t('dataSyncError'),
         };
     }
 };
@@ -118,6 +121,8 @@ export const syncRouteData = async (
     remoteRouteId?: string,
     routeNumber?: number | null,
 ): Promise<RoutesResponse> => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {t} = useMergedTranslation('dataAction');
     try {
         if (
             !path?.length ||
@@ -129,7 +134,7 @@ export const syncRouteData = async (
             return {
                 data: null,
                 status: 400,
-                error: I18n.t('dataAction.routeData.routeLengthError', {
+                error: t('routeData.routeLengthError', {
                     value: MIN_ROUTE_LENGTH,
                 }),
                 shortRoute: true,
@@ -153,9 +158,7 @@ export const syncRouteData = async (
                         response?.data?.statusCode !== 400 &&
                         response?.data?.statusCode !== 404
                     ) {
-                        errorMessage = I18n.t(
-                            'dataAction.routeData.createRouteError',
-                        );
+                        errorMessage = t('routeData.createRouteError');
                     }
                 }
                 return {
@@ -193,7 +196,7 @@ export const syncRouteData = async (
                     response?.data?.statusCode === 400 ||
                     responseFromUpdate.data?.statusCode >= 400)
             ) {
-                errorMessage = I18n.t('dataAction.routeData.updateRouteError');
+                errorMessage = t('routeData.updateRouteError');
                 await removePrivateMapData(routeId);
                 return {
                     data: null,
@@ -228,7 +231,7 @@ export const syncRouteData = async (
         return {
             data: null,
             status: 500,
-            error: I18n.t('dataAction.dataSyncError'),
+            error: t('dataSyncError'),
             rawError: err.message,
         };
     }

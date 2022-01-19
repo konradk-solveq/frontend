@@ -7,7 +7,7 @@ import {
     Platform,
     StyleSheet,
 } from 'react-native';
-import {I18n} from '../../../../I18n/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {
     getFontSize,
     getHorizontalPx,
@@ -33,7 +33,7 @@ const FailedResponseModal: React.FC<IProps> = ({
     onClose,
     testID,
 }: IProps) => {
-    const trans: any = I18n.t('PublishThankYouPage');
+    const {t} = useMergedTranslation('PublishThankYouPage');
     const statusBarHeight = useStatusBarHeight();
 
     return (
@@ -58,9 +58,7 @@ const FailedResponseModal: React.FC<IProps> = ({
                                         getVerticalPx(138) - statusBarHeight,
                                 },
                             ]}>
-                            <Text style={styles.header}>
-                                {trans.errorTitle}
-                            </Text>
+                            <Text style={styles.header}>{t('errorTitle')}</Text>
                         </View>
                         <ImgSvg />
 
@@ -74,7 +72,7 @@ const FailedResponseModal: React.FC<IProps> = ({
 
                         <View style={styles.buttonsWrapper}>
                             <BigRedBtn
-                                title={trans.okBtn}
+                                title={t('okBtn')}
                                 onpress={onClose}
                                 style={[styles.onPressBtn, styles.bottomBtn]}
                             />

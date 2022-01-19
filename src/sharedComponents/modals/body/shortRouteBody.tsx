@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useStatusBarHeight from '@hooks/statusBarHeight';
 import {BigRedBtn} from '@sharedComponents/buttons';
 import {getVerticalPx} from '@helpers/layoutFoo';
@@ -37,7 +37,7 @@ const ShortRouteBody: React.FC<IProps> = ({
     onClose,
     withBtnLoader,
 }: IProps) => {
-    const trans: any = I18n.t('CounterThankYouPage');
+    const {t} = useMergedTranslation('CounterThankYouPage');
     const statusBarHeight = useStatusBarHeight();
 
     const onCloseHandler = () => {
@@ -52,7 +52,7 @@ const ShortRouteBody: React.FC<IProps> = ({
                         styles.title,
                         {marginTop: getVerticalPx(138) - statusBarHeight},
                     ]}>
-                    {trans.errorTitle}
+                    {t('errorTitle')}
                 </Text>
 
                 <ImgSvg containerStyle={styles.imgage} />
@@ -60,10 +60,10 @@ const ShortRouteBody: React.FC<IProps> = ({
                 {!showAlterMessage ? (
                     <>
                         <Text style={styles.content}>
-                            {boldedText(trans.errorMessageTitle)}
+                            {boldedText(t('errorMessageTitle'))}
                         </Text>
                         <Text style={styles.content}>
-                            {trans.errorMessageContent}
+                            {t('errorMessageContent')}
                         </Text>
                     </>
                 ) : (
@@ -73,7 +73,7 @@ const ShortRouteBody: React.FC<IProps> = ({
 
             <View style={styles.buttonsWrapper}>
                 <BigRedBtn
-                    title={trans.errorCloseBtn}
+                    title={t('errorCloseBtn')}
                     onpress={onCloseHandler}
                     withLoader={withBtnLoader}
                     disabled={withBtnLoader}
