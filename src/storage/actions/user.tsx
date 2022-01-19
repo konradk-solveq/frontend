@@ -4,7 +4,7 @@ import {
     RiderProfile,
     UserRideProfile,
 } from '../../models/userRideProfile.model';
-import {I18n} from '../../../I18n/I18n';
+import i18next from '@translations/i18next';
 import {AppThunk} from '../thunk';
 
 interface actionAsyncResponse {
@@ -68,7 +68,7 @@ export const setProfileSettings = (
         });
     } catch (error) {
         if (error?.[0] instanceof ValidationError) {
-            const errorMessage = I18n.t('dataAction.validationError');
+            const errorMessage = i18next.t('dataAction.validationError');
             dispatch(setError(errorMessage));
 
             return Promise.reject({
@@ -77,7 +77,7 @@ export const setProfileSettings = (
                 data: null,
             });
         }
-        const errorMessage = I18n.t('dataAction.generalError');
+        const errorMessage = i18next.t('dataAction.generalError');
         dispatch(setError(errorMessage));
 
         return Promise.reject({

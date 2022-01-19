@@ -1,7 +1,7 @@
 import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
 import ReduxThunk from 'redux-thunk';
 
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 
 import {initState} from './utils/state';
 import {
@@ -18,7 +18,7 @@ import {logOut} from '@storage/actions';
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
 
-const INTERNET_CONNECTION_ERROR_MESSAGE = I18n.t(
+const INTERNET_CONNECTION_ERROR_MESSAGE = i18next.t(
     'dataAction.noInternetConnection',
 );
 

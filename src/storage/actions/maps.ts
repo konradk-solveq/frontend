@@ -23,7 +23,7 @@ import {
     removePlannedMapByIdService,
 } from '@services/index';
 
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {checkMapExists} from '@utils/checkMapExists';
 import {loggErrorMessage, loggErrorWithScope} from '@sentryLogger/sentryLogger';
@@ -154,7 +154,7 @@ export const fetchMapsList = (
             internetConnectionInfo,
         }: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
-            const message = I18n.t(
+            const message = i18next.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
             dispatch(setError(message, 400));
@@ -162,7 +162,7 @@ export const fetchMapsList = (
         }
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
             setLoadState(dispatch, true, skipLoadingState);
             return;
         }
@@ -195,7 +195,7 @@ export const fetchMapsList = (
 
         loggErrorWithScope(err, 'fetchMapsList');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -213,7 +213,7 @@ export const fetchPrivateMapsList = (
             internetConnectionInfo,
         }: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
-            const message = I18n.t(
+            const message = i18next.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
             dispatch(setError(message, 400));
@@ -221,7 +221,7 @@ export const fetchPrivateMapsList = (
         }
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
             return;
         }
 
@@ -258,7 +258,7 @@ export const fetchPrivateMapsList = (
 
         loggErrorWithScope(err, 'fetchPrivateMapsList');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -273,7 +273,7 @@ export const editPrivateMapMetaData = (
     try {
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
             dispatch(setLoadingState(false));
             return;
         }
@@ -310,7 +310,7 @@ export const editPrivateMapMetaData = (
 
         loggErrorWithScope(err, 'editPrivateMapMetaData');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -342,7 +342,7 @@ export const removePrivateMapMetaData = (
 
         loggErrorWithScope(err, 'removePrivateMapMetaData');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -356,7 +356,7 @@ export const fetchPlannedMapsList = (
     try {
         const {location}: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
-            const message = I18n.t(
+            const message = i18next.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
             dispatch(setError(message, 400));
@@ -393,7 +393,7 @@ export const fetchPlannedMapsList = (
 
         loggErrorWithScope(err, 'fetchPlannedMapsList');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -422,7 +422,7 @@ export const addPlannedMap = (
 
         loggErrorWithScope(err, 'addPlannedMap');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -452,7 +452,7 @@ export const removePlannedMap = (
 
         loggErrorWithScope(err, 'removePlannedMap');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -480,7 +480,7 @@ export const fetchMapIfNotExistsLocally = (
 
         const {location}: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
-            const message = I18n.t(
+            const message = i18next.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
             dispatch(setError(message, 400));
@@ -503,7 +503,7 @@ export const fetchMapIfNotExistsLocally = (
 
         loggErrorWithScope(err, 'fetchMapIfNotExistsLocally');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -549,7 +549,7 @@ export const fetchFeaturedMapsList = (
             internetConnectionInfo,
         }: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
-            const message = I18n.t(
+            const message = i18next.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
             dispatch(setError(message, 400));
@@ -557,7 +557,7 @@ export const fetchFeaturedMapsList = (
         }
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
             setLoadState(dispatch, false, skipLoadingState);
             return;
         }
@@ -582,7 +582,7 @@ export const fetchFeaturedMapsList = (
 
         loggErrorWithScope(err, 'fetchFeaturedMapsList');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };

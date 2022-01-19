@@ -7,7 +7,7 @@ import {
     syncCurrentRouteData,
 } from '@storage/actions/routes';
 import instance from '@api/api';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 
 import {initState} from './utils/state';
 import {endedRoute, startedRoute} from './utils/routeData';
@@ -530,12 +530,12 @@ describe('[Recording Route actions]', () => {
                         Promise.resolve({
                             data: {
                                 statusCode: 400,
-                                error: I18n.t(
+                                error: i18next.t(
                                     'dataAction.routeData.updateRouteError',
                                 ),
                             },
                             status: 400,
-                            error: I18n.t(
+                            error: i18next.t(
                                 'dataAction.routeData.updateRouteError',
                             ),
                         }),

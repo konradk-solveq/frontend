@@ -1,4 +1,4 @@
-import {I18n} from '../../../I18n/I18n';
+import i18next from '@translations/i18next';
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
 import {getConsentsList, putConsentsList} from '@services';
@@ -32,7 +32,7 @@ export const fetchConsentsData = (): AppThunk<void> => async dispatch => {
             dispatch(setConsentsData(response.data));
         }
     } catch (error) {
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage));
     }
 };
@@ -48,7 +48,7 @@ export const putConsentsData = (data: PutUserConsentsDataT): AppThunk<void> => {
                 dispatch(setConsentsData(response.data));
             }
         } catch (error) {
-            const errorMessage = I18n.t('dataAction.apiError');
+            const errorMessage = i18next.t('dataAction.apiError');
             dispatch(setError(errorMessage));
         }
     };
