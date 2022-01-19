@@ -26,7 +26,7 @@ import {
 import Tile from './tile';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {nfcIsSupported} from '@helpers/nfc';
 import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 
@@ -43,7 +43,7 @@ const {width} = Dimensions.get('window');
 const Home: React.FC = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
-    const trans: any = I18n.t('MainHome');
+    const {t} = useMergedTranslation('MainHome');
     const mountedRef = useRef(false);
     const isAuthenticated = useAppSelector(authUserAuthenticatedStateSelector);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
@@ -152,44 +152,44 @@ const Home: React.FC = () => {
                         <View style={styles.tileWrapper}>
                             {!hasRecordedRoutes ? (
                                 <Tile
-                                    title={trans.thirdTitle}
-                                    description={trans.thirdText}
-                                    btnText={trans.thirdBtn}
+                                    title={t('thirdTitle')}
+                                    description={t('thirdText')}
+                                    btnText={t('thirdBtn')}
                                     style={styles.tileSpace}
                                     onPress={doAction}
                                 />
                             ) : (
                                 <Tile
-                                    title={trans.fourthTitle}
-                                    description={trans.fourthText}
-                                    btnText={trans.fourthBtn}
+                                    title={t('fourthTitle')}
+                                    description={t('fourthText')}
+                                    btnText={t('fourthBtn')}
                                     style={styles.tileSpace}
                                     onPress={doAction}
                                 />
                             )}
                             {isAuthenticated ? (
                                 <Tile
-                                    title={trans.secondTitle}
-                                    description={trans.secondText}
-                                    btnText={trans.secondBtn}
+                                    title={t('secondTitle')}
+                                    description={t('secondText')}
+                                    btnText={t('secondBtn')}
                                     style={styles.tileSpace}
                                     onPress={onAddActionHandler}
                                 />
                             ) : (
                                 <Tile
-                                    title={trans.fifthTitle}
-                                    description={trans.fifthText}
-                                    btnText={trans.fifthBtn}
-                                    secondaryBtnText={trans.fifthBtnSecondary}
+                                    title={t('fifthTitle')}
+                                    description={t('fifthText')}
+                                    btnText={t('fifthBtn')}
+                                    secondaryBtnText={t('fifthBtnSecondary')}
                                     style={styles.tileSpace}
                                     onPress={handleLoginPress}
                                     onPressSecondary={handleRegisterPress}
                                 />
                             )}
                             {/* <Tile
-                            title={trans.firstTitle}
-                            description={trans.firstText}
-                            btnText={trans.firstBtn}
+                            title={t('firstTitle')}
+                            description={t('firstText')}
+                            btnText={t('firstBtn')}
                             style={styles.tileSpace}
                             onPress={onCheckActionHandler}
                         /> */}

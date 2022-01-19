@@ -493,10 +493,7 @@
     },
     "MainBike": {
         "header": "Rower",
-        "details": [
-            "od ",
-            " / nr ramy "
-        ],
+        "details": "od {{name}} / nr ramy {{number}}",
         "add": "Dodaj",
         "warranty": {
             "lifetime": "dożywotnio",
@@ -529,10 +526,7 @@
     },
     "MainBikeParams": {
         "header": " Rower",
-        "details": [
-            "od ",
-            " / nr ramy "
-        ]
+        "details": "od {{name}} / nr ramy {{number}}"
     },
     "MainCounter": {
         "headerStart": "Rozpocznij nagrywanie",
@@ -678,15 +672,15 @@
     },
     "ThankYouPage": {
         "defaultName": "Rowerzysto",
-        "titleSufix": ", brawo!",
+        "titleSuffix": ", brawo!",
         "publishBtn": "Upublicznij",
         "cancelButton": "Powrót",
         "distance": "Dystans",
-        "distanceSufix": "km",
+        "distanceSuffix": "km",
         "tripTime": "Czas jazdy",
-        "tripTimeSufix": "h",
+        "tripTimeSuffix": "h",
         "pausePrefix": "czas przerw",
-        "pauseSufix": "h"
+        "pauseSuffix": "h"
     },
     "PublishPoorConnectionPage": {
         "title": "Daj nam jeszcze chwilę",
@@ -708,6 +702,40 @@
         "cancelBtn": "Wróć",
         "errorTitle": "Coś poszło nie tak!",
         "errorMessage": "Dodaj rower, aby móc zapisywać przejechane trasy"
+    },
+    "validation": {
+        "isEmpty": "Pole {{property}} nie jest puste",
+        "isNotEmpty": "Pole {{property}} jest puste",
+        "isNumber": "{{value}} nie jest numerem",
+        "isInt": "{{value}} nie jest liczbą całkowitą",
+        "isString": "{{value}} nie jest ciągiem znaków",
+        "fields": {
+            "userBike": {
+                "frameNumber": "numer ramy",
+                "producer": "producent",
+                "model": "model",
+                "size": "rozmiar",
+                "color": "kolor"
+            },
+            "mapDetails": {
+                "formErrors": {
+                    "name": "Uzupełnij nazwę",
+                    "publishWithName": "Pole wymagane",
+                    "short": "Uzupełnij opis",
+                    "long": "Uzupełnij szczegółowy opis",
+                    "difficulty": "Wybierz poziom trudności",
+                    "surface": "Wybierz rodzaje nawierzchni",
+                    "tags": "Wybierz tagi",
+                    "description": "Uzupełnij opis"
+                }
+            },
+            "login": {
+                "formErrors": {
+                    "email": "Wprowadź poprawny adres e-mail",
+                    "password": "Uzupełnij hasło"
+                }
+            }
+        }
     },
     "dataAction": {
         "validationError": "Sprawdź błędy w\u00a0formularzu",

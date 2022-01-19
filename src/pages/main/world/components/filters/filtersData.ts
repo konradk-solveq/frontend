@@ -9,7 +9,7 @@ export interface FilterI {
     [key: string]: BaseFilter;
 }
 
-export interface FitlersI {
+export interface FiltersI {
     [key: string]: {
         name: string;
         options: SelectOptionType[] | [];
@@ -17,11 +17,11 @@ export interface FitlersI {
     };
 }
 
-export const getFitlers = (
+export const getFilters = (
     mapOptions: OptionType,
     orderTranslations: string[],
-): FitlersI => {
-    let filters: FitlersI = {
+): FiltersI => {
+    let filters: FiltersI = {
         order: {
             name: 'order',
             options: [
@@ -56,7 +56,7 @@ export const getFitlers = (
     Object.keys(mapOptions)?.forEach((mo: string) => {
         const options = mapOptions?.[mo as keyof OptionType] || [];
 
-        filters[mo as keyof FitlersI] = {
+        filters[mo as keyof FiltersI] = {
             name: mo,
             options: options,
             radioType: mo === 'difficulties' ? true : false,
