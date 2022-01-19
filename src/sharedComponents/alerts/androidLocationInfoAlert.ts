@@ -1,13 +1,11 @@
 import {Alert} from 'react-native';
-import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import i18next from '@translations/i18next';
 
 export const showAndroidLocationAlert = async (
     leftActionCallback: () => void,
     rightActionCallback: () => Promise<void>,
 ) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const {t} = useMergedTranslation('Geolocation');
-    const trans: any = t('locationPermission');
+    const trans: any = i18next.t('Geolocation.locationPermission');
 
     Alert.alert(trans.title, trans.message, [
         {

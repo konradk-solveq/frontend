@@ -1,4 +1,4 @@
-import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import i18next from '@translations/i18next';
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
 import {UserBikeI} from '@models/userBike.model';
@@ -86,8 +86,7 @@ export const setBikesListByFrameNumber = (
 
         loggErrorWithScope(err, 'setBikesListByFrameNumber');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage));
     }
 };
@@ -112,8 +111,7 @@ export const fetchGenericBikeData = (): AppThunk<
 
         loggErrorWithScope(err, 'fetchGenericBikeData');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage));
     }
 };
@@ -170,8 +168,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<Promise<void>> => async (
 
             let errorMessage = '';
             if (notFound.length > 0) {
-                const {t} = useMergedTranslation('dataAction');
-                const prefix = t('dataSyncError');
+                const prefix = i18next.t('dataAction.dataSyncError');
                 errorMessage = `${prefix}: ${notFound.join(', ')}`;
             }
 
@@ -195,8 +192,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<Promise<void>> => async (
 
         loggErrorWithScope(err, 'setBikesListByFrameNumbers');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage));
     }
 };

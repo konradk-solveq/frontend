@@ -29,7 +29,7 @@ import {
     getAppTermsAndConditionsService,
     getNewRegulationsService,
 } from '@services/index';
-import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import i18next from '@translations/i18next';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
@@ -157,8 +157,7 @@ export const fetchAppConfig = (
 
         loggErrorWithScope(err, 'fetchAppConfig');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
     }
 };
@@ -213,8 +212,7 @@ export const fetchAppFaq = (
 
         loggErrorWithScope(err, 'fetchAppFaq');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
     }
 };
@@ -232,8 +230,9 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         }: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            const {t} = useMergedTranslation('dataAction');
-            dispatch(setSyncError(t('noInternetConnection'), 500));
+            dispatch(
+                setSyncError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             dispatch(setSyncStatus(false));
             return;
         }
@@ -283,8 +282,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
     } catch (error) {
         console.log(`[appSyncData] - ${error}`);
         const err = convertToApiError(error);
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
 
         loggErrorWithScope(err, 'appSyncData');
 
@@ -307,8 +305,9 @@ export const fetchAppRegulations = (
         } = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            const {t} = useMergedTranslation('dataAction');
-            dispatch(setSyncError(t('noInternetConnection'), 500));
+            dispatch(
+                setSyncError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             dispatch(setSyncStatus(false));
             return;
         }
@@ -367,8 +366,7 @@ export const fetchAppRegulations = (
 
         loggErrorWithScope(err, 'fetchAppRegulations');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
     }
 };

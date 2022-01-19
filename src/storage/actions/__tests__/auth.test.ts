@@ -15,8 +15,8 @@ import {postApiCallMock} from '@utils/testUtils/apiCalls';
 
 import {logOut} from '@storage/actions';
 
-const middlewares = [ReduxThunk];
-const mockStore = configureStore(middlewares);
+const middleware = [ReduxThunk];
+const mockStore = configureStore(middleware);
 
 const INTERNET_CONNECTION_ERROR_MESSAGE = i18next.t(
     'dataAction.noInternetConnection',

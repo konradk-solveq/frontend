@@ -9,7 +9,7 @@ import {
     logOutService,
     logInService,
 } from '@services';
-import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import i18next from '@translations/i18next';
 import {setAutorizationHeader, setUserAgentHeader} from '@api/api';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {API_URL} from '@env';
@@ -95,8 +95,7 @@ export const register = (
 
         loggErrorWithScope(err, 'register');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
         dispatch(clearAuthorizationStateState());
     }
@@ -133,8 +132,7 @@ export const logIn = (
 
         loggErrorWithScope(err, 'logIn');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
         dispatch(clearAuthorizationStateState());
     }
@@ -169,8 +167,7 @@ export const mobileLogIn = (
 
         loggErrorWithScope(err, 'mobileLogIn');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
         dispatch(clearAuthorizationStateState());
     }
@@ -264,8 +261,7 @@ export const checkSession = (
 
         loggErrorWithScope(err, 'checkSession');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
     }
 };
@@ -277,8 +273,9 @@ export const logOut = (
     try {
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            const {t} = useMergedTranslation('dataAction');
-            dispatch(setAuthError(t('noInternetConnection'), 500));
+            dispatch(
+                setAuthError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             setSyncState(dispatch, false, skipLoadingState);
             return;
         }
@@ -292,8 +289,7 @@ export const logOut = (
         const response = await logOutService();
 
         if (response.error) {
-            const {t} = useMergedTranslation('Profile');
-            const trans: any = t('auth');
+            const trans: any = i18next.t('Profile.auth');
             dispatch(setAuthError(trans.error, response.status));
             loggErrorWithScope(response.error, 'logOut');
             return;
@@ -308,8 +304,7 @@ export const logOut = (
 
         loggErrorWithScope(err, 'logOut');
 
-        const {t} = useMergedTranslation('dataAction');
-        const errorMessage = t('apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
     }
 };

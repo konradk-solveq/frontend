@@ -5,26 +5,23 @@ import {
     getPolicy,
     getFaq,
     checkInternetConnectionQuality,
-} from '../api';
+} from '@api';
 import {AppConfigI} from '@models/config.model';
 import {
     RegulationType,
     TermsAndConditionsType,
-} from '@models/regulations.model';
-import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-
+} from '../models/regulations.model';
+import i18next from '@translations/i18next';
 import TimeoutError from '@utils/apiDataTransform/timeoutError';
 
 export const checkInternetConnectionQualityService = async () => {
     try {
         const resp = await checkInternetConnectionQuality();
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const {t} = useMergedTranslation('dataAction');
 
         return {
             data: '',
             status: resp.status === 204 ? 204 : 408,
-            error: new Error(t('noInternetConnection')),
+            error: new Error(i18next.t('dataAction.noInternetConnection')),
         };
     } catch (error) {
         return {
