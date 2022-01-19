@@ -13,6 +13,7 @@ interface IProps {
     children?: React.ReactNode;
     navigationRightActionElement?: Element;
     hideBackArrow?: boolean;
+    contentBelowHeader?: boolean;
 }
 
 const GenericScreen: React.FC<IProps> = ({
@@ -20,6 +21,7 @@ const GenericScreen: React.FC<IProps> = ({
     screenTitle,
     navigationRightActionElement,
     hideBackArrow,
+    contentBelowHeader,
 }: IProps) => {
     const statusBarHeigh = getAppLayoutConfig.statusBarH();
     /**
@@ -28,6 +30,7 @@ const GenericScreen: React.FC<IProps> = ({
     const headerHeightModifier = useMemo(() => navBarHeight - statusBarHeigh, [
         statusBarHeigh,
     ]);
+    const paddingTop = contentBelowHeader && {paddingTop: navBarHeight};
     const title = useMemo(() => screenTitle, [screenTitle]);
 
     const actionElement = useMemo(() => navigationRightActionElement, [
@@ -36,7 +39,7 @@ const GenericScreen: React.FC<IProps> = ({
 
     return (
         <SafeAreaView style={styles.safeAreContainer}>
-            <View style={styles.container}>
+            <View style={[styles.container, paddingTop]}>
                 <StackHeader
                     inner={title}
                     style={{height: headerHeightModifier}}

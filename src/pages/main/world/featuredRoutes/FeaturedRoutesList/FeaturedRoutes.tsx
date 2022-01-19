@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {useNavigation} from '@react-navigation/core';
 
-import {featuredMapsSelector} from '@storage/selectors';
+import {featuredMapsSelector, selectorMapTypeEnum} from '@storage/selectors';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {fetchFeaturedMapsList} from '@storage/actions/maps';
 import {RegularStackRoute} from '@navigation/route';
@@ -72,7 +72,8 @@ const FeaturedRoutes: React.FC = () => {
                 mapID={activeMapID}
                 onPressCancel={() => onPressHandler(false)}
                 backdropStyle={styles.backdrop}
-                isFeatured
+                isPublished /* Featured maps are public by default */
+                mapType={selectorMapTypeEnum.featured}
             />
             {featuredMaps.map(fm => {
                 if (!fm?.routes?.elements?.length) {
