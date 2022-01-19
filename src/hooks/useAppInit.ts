@@ -1,13 +1,13 @@
-import {useEffect, useRef, useCallback} from 'react';
+import {useCallback, useEffect, useRef} from 'react';
 import {State} from 'react-native-background-geolocation-android';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {appSyncData, clearAppError} from '@storage/actions/app';
+import {appSyncData, clearAppError, synchMapsData} from '@storage/actions/app';
 import {
     authTokenSelector,
-    userIdSelector,
     authUserIsAuthenticatedStateSelector,
     onboardingFinishedSelector,
+    userIdSelector,
 } from '@storage/selectors/index';
 import {
     appErrorSelector,
@@ -15,20 +15,29 @@ import {
     syncAppSelector,
     userNameSelector,
 } from '@storage/selectors';
-import {isGoodConnectionQualitySelector} from '@storage/selectors/app';
+import {
+    globalLocationSelector,
+    isGoodConnectionQualitySelector,
+    isInitMapsDataSynchedSelector,
+} from '@storage/selectors/app';
 
 import {setAutorizationHeader} from '@api/api';
-import {initBGeolocalization, cleanUp} from '@utils/geolocation';
+import {cleanUp, initBGeolocalization} from '@utils/geolocation';
 import {I18n} from '@translations/I18n';
 import {sentrySetUserInfo} from '@sentryLogger/sentryLogger';
 import {enableAnalytics} from '@analytics/firebaseAnalytics';
+import {
+    fetchMapsList,
+    fetchPlannedMapsList,
+    fetchPrivateMapsList,
+} from '@storage/actions';
+import {fetchFeaturedMapsList} from '@storage/actions/maps';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
     const dispatch = useAppDispatch();
     const geolocationStateRef = useRef<State>();
     const dataInitializedref = useRef(false);
-
     const isOnline = useAppSelector<boolean>(isOnlineAppStatusSelector);
     const isGoodInternetConnectionQuality = useAppSelector(
         isGoodConnectionQualitySelector,
@@ -40,6 +49,8 @@ const useAppInit = () => {
     const isAuthanticated = useAppSelector(
         authUserIsAuthenticatedStateSelector,
     );
+    const location = useAppSelector(globalLocationSelector);
+    const initMapsDataSynched = useAppSelector(isInitMapsDataSynchedSelector);
     const error = useAppSelector(
         appErrorSelector,
     ); /* TODO: check all errors from sync requests */
@@ -117,6 +128,15 @@ const useAppInit = () => {
 
         init();
     }, [isOnboardingFinished]);
+
+    /**
+     * Fetch map data if initially wasn't
+     */
+    useEffect(() => {
+        if (!initMapsDataSynched && location) {
+            dispatch(synchMapsData());
+        }
+    }, [dispatch, location, initMapsDataSynched]);
 
     return {
         isOnline,

@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
-    SafeAreaView,
-    View,
-    ScrollView,
-    Platform,
     Dimensions,
+    Platform,
+    SafeAreaView,
+    ScrollView,
     StyleSheet,
+    View,
 } from 'react-native';
-import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '@sharedComponents/svg/krossLogo';
 import {trackerActiveSelector} from '@storage/selectors/routes';
@@ -19,10 +19,7 @@ import {
 } from '@utils/showAndroidLlocationInfo';
 import {hasAnyBikeSelector} from '@storage/selectors/bikes';
 
-import {
-    authUserAuthenticatedStateSelector,
-    syncAppSelector,
-} from '@storage/selectors';
+import {syncAppSelector} from '@storage/selectors';
 import Tile from './tile';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -45,7 +42,6 @@ const Home: React.FC = () => {
     const dispatch = useAppDispatch();
     const trans: any = I18n.t('MainHome');
     const mountedRef = useRef(false);
-    const isAuthenticated = useAppSelector(authUserAuthenticatedStateSelector);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
     const syncStatus = useAppSelector(syncAppSelector);
@@ -94,14 +90,6 @@ const Home: React.FC = () => {
         Platform.OS === 'ios' || isLocationInfoShowed
             ? onRecordTripActionHandler(navigation, isIOS)
             : showLocationInfo(navigation, dispatch);
-    };
-
-    const handleLoginPress = () => {
-        navigation.navigate('LoginScreen');
-    };
-
-    const handleRegisterPress = () => {
-        navigation.navigate('RegisterScreen');
     };
 
     const onContinueHandler = () => {
@@ -167,32 +155,13 @@ const Home: React.FC = () => {
                                     onPress={doAction}
                                 />
                             )}
-                            {isAuthenticated ? (
-                                <Tile
-                                    title={trans.secondTitle}
-                                    description={trans.secondText}
-                                    btnText={trans.secondBtn}
-                                    style={styles.tileSpace}
-                                    onPress={onAddActionHandler}
-                                />
-                            ) : (
-                                <Tile
-                                    title={trans.fifthTitle}
-                                    description={trans.fifthText}
-                                    btnText={trans.fifthBtn}
-                                    secondaryBtnText={trans.fifthBtnSecondary}
-                                    style={styles.tileSpace}
-                                    onPress={handleLoginPress}
-                                    onPressSecondary={handleRegisterPress}
-                                />
-                            )}
-                            {/* <Tile
-                            title={trans.firstTitle}
-                            description={trans.firstText}
-                            btnText={trans.firstBtn}
-                            style={styles.tileSpace}
-                            onPress={onCheckActionHandler}
-                        /> */}
+                            <Tile
+                                title={trans.secondTitle}
+                                description={trans.secondText}
+                                btnText={trans.secondBtn}
+                                style={styles.tileSpace}
+                                onPress={onAddActionHandler}
+                            />
                         </View>
                     </View>
                 </ScrollView>

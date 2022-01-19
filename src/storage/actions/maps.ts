@@ -8,19 +8,17 @@ import {RouteMapType} from '@models/places.model';
 import {ImagesMetadataType, MapPagination} from '@interfaces/api';
 import {MapFormDataResult, PickedFilters} from '@interfaces/form';
 import {
+    addPlannedMapsListService,
     editPrivateMapMetadataService,
     getFeaturedMapsListService,
+    getMapsByTypeAndId,
     getMapsList,
+    getPlannedMapsListService,
     getPrivateMapsListService,
     modifyReactionService,
+    removePlannedMapByIdService,
     removePrivateMapByIdService,
     removeReactionService,
-} from '@services/index';
-import {
-    addPlannedMapsListService,
-    getMapsByTypeAndId,
-    getPlannedMapsListService,
-    removePlannedMapByIdService,
 } from '@services/index';
 
 import {I18n} from '@translations/I18n';
@@ -168,7 +166,6 @@ export const fetchMapsList = (
         }
 
         const response = await getMapsList(location, page, filters);
-
         if (response.error || !response.data || !response.data.elements) {
             dispatch(setError(response.error, response.status));
             return;
@@ -252,9 +249,7 @@ export const fetchPrivateMapsList = (
         setLoadState(dispatch, false, skipLoadingState);
     } catch (error) {
         console.log(`[fetchPrivateMapsList] - ${error}`);
-        logger.log(`[fetchPrivateMapsList] - ${error}`);
         const err = convertToApiError(error);
-        logger.recordError(err);
 
         loggErrorWithScope(err, 'fetchPrivateMapsList');
 

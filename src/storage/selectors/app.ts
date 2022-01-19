@@ -88,3 +88,6 @@ export const globalLocationSelector = (
 
 export const routeDebugModeSelector = (state: RootState): boolean =>
     state.app.routeDebugMode;
+
+export const isInitMapsDataSynchedSelector = (state: RootState): boolean =>
+    state.app.initMapsDataSynched;
