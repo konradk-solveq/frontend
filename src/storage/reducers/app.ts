@@ -28,6 +28,7 @@ export interface AppState {
     showedLocationInfo: boolean;
     location: BasicCoordsType | undefined;
     routeDebugMode: boolean;
+    initMapsDataSynched: boolean;
 }
 
 const initialState: AppState = {
@@ -63,6 +64,7 @@ const initialState: AppState = {
     showedLocationInfo: false,
     location: undefined,
     routeDebugMode: false,
+    initMapsDataSynched: false,
 };
 
 const appReducer = (state = initialState, action: any) => {
@@ -226,6 +228,11 @@ const appReducer = (state = initialState, action: any) => {
                 ...state,
                 routeDebugMode: action.routeDebugMode,
             };
+        case actionTypes.SET_INIT_MAPS_DATA_SYNCHED:
+            return {
+                ...state,
+                initMapsDataSynched: action.initMapsDataSynched,
+            };
         case actionTypes.CLEAR_APP_ERROR:
             return {
                 ...state,
@@ -233,6 +240,9 @@ const appReducer = (state = initialState, action: any) => {
                 error: '',
                 statusCode: 200,
             };
+        case actionTypes.LOGOUT_USER: {
+            return {...initialState};
+        }
     }
     return state;
 };

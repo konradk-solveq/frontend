@@ -87,6 +87,9 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 loading: false,
             };
         }
+        case actionTypes.LOGOUT_USER: {
+            return {...initialStateList};
+        }
     }
 
     return state;

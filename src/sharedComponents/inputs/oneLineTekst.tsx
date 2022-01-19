@@ -1,12 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, TextInput, Text, View} from 'react-native';
+import {
+    StyleSheet,
+    TextInput,
+    Text,
+    View,
+    TouchableOpacity,
+    Image,
+} from 'react-native';
 import I18n from 'react-native-i18n';
 
-import {
-    getFontSize,
-    getHorizontalPx,
-    getVerticalPx,
-} from '../../helpers/layoutFoo';
+import {getFontSize, getHorizontalPx} from '../../helpers/layoutFoo';
+import IconHide from '@sharedComponents/icons/IconHide';
+import IconShow from '@sharedComponents/icons/IconShow';
 
 interface Props {
     // * wartości wymagane
@@ -21,12 +26,21 @@ interface Props {
     forceMessageWrong: string; // informacja o błędnej validacji przez rodica, wg validationStatus, nadrzędna nad messageWrong
     maxLength?: number;
     keyboardType?: string;
+    secureTextEntry?: boolean;
+    textContentType?: string;
+    testId?: string;
 }
 
 const OneLineTekst: React.FC<Props> = (props: Props) => {
     const [borderColor, setBorderColor] = useState('#80555555');
     const [borderWidth, setBorderrWidth] = useState(1);
     const [errorMessage, setErrorMessage] = useState('');
+
+    const [isSecure, setIsSecure] = useState(true);
+
+    const onEyePress = () => {
+        setIsSecure(!isSecure);
+    };
 
     useEffect(() => {
         let validation = '';
@@ -106,6 +120,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             height: getHorizontalPx(50),
             marginTop: getHorizontalPx(6),
             paddingLeft: getHorizontalPx(30),
+            paddingRight: getHorizontalPx(30),
             paddingTop: getHorizontalPx(10),
             paddingBottom: getHorizontalPx(10),
         },
@@ -118,19 +133,37 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
             marginTop: getHorizontalPx(6),
             height: getHorizontalPx(23),
         },
+        eyeWrapper: {
+            position: 'absolute',
+            right: getHorizontalPx(15),
+            top: 3,
+            height: '100%',
+            justifyContent: 'center',
+        },
     });
 
     return (
         <View style={props.style}>
             <Text style={styles.placeholder}>{props.placeholder}</Text>
-
-            <TextInput
-                style={styles.input}
-                onChangeText={props.onChangeText}
-                value={props.value}
-                maxLength={props.maxLength ? props.maxLength : 20}
-                keyboardType={props.keyboardType}
-            />
+            <View>
+                <TextInput
+                    testID={props.testId || 'one-line-tekst'}
+                    style={styles.input}
+                    onChangeText={props.onChangeText}
+                    value={props.value}
+                    maxLength={props.maxLength ? props.maxLength : 20}
+                    keyboardType={props.keyboardType}
+                    secureTextEntry={props.secureTextEntry && isSecure}
+                    textContentType={props.textContentType}
+                />
+                {props.secureTextEntry && (
+                    <View style={styles.eyeWrapper}>
+                        <TouchableOpacity onPress={() => onEyePress()}>
+                            {isSecure ? <IconShow /> : <IconHide />}
+                        </TouchableOpacity>
+                    </View>
+                )}
+            </View>
 
             <Text style={styles.error}>{errorMessage}</Text>
         </View>

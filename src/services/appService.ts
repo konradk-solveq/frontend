@@ -35,7 +35,7 @@ export const checkInternetConnectionQualityService = async () => {
 export const getAppConfigService = async () => {
     const response = await getConfig();
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -53,7 +53,7 @@ export const getAppConfigService = async () => {
 export const getAppTermsAndConditionsService = async () => {
     const response = await getTermsAndConditions();
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -73,8 +73,8 @@ export const getRegulationService = async (regulationVersion: string) => {
 
     if (
         !response?.data ||
-        response.data?.statusCode > 400 ||
-        response.status > 400
+        response.data?.statusCode >= 400 ||
+        response.status >= 400
     ) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
@@ -99,8 +99,8 @@ export const getPolicyService = async (policyVersion: string) => {
 
     if (
         !response?.data ||
-        response.data?.statusCode > 400 ||
-        response.status > 400
+        response.data?.statusCode >= 400 ||
+        response.status >= 400
     ) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
@@ -162,8 +162,8 @@ export const getFaqService = async () => {
 
     if (
         !response?.data ||
-        response.data?.statusCode > 400 ||
-        response.status > 400
+        response.data?.statusCode >= 400 ||
+        response.status >= 400
     ) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {

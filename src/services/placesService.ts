@@ -10,7 +10,7 @@ export interface PlacesResponse {
 export const getPlacesList = async (bbox: BBox): Promise<PlacesResponse> => {
     const response = await getPlaces(bbox);
 
-    if (!response?.data || response.status > 400) {
+    if (!response?.data || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;

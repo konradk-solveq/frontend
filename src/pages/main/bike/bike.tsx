@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {SafeAreaView, View, Text, Alert, Platform} from 'react-native';
+import {SafeAreaView, View, Text, Alert} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -13,8 +13,6 @@ import {useLocationProvider} from '@providers/staticLocationProvider/staticLocat
 import geoBox from '@helpers/geoBox';
 import {getBike} from '@helpers/transformUserBikeData';
 import {countDaysToEnd} from '@helpers/warranty';
-import {getVerticalPx} from '@helpers/layoutFoo';
-import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
 
 import {CogBtn, BigRedBtn, ServiceMapBtn} from '@sharedComponents/buttons';
 import SliverImage from '@sharedComponents/sliverImage/sliverImage';
@@ -178,27 +176,17 @@ const Bike: React.FC<Props> = (props: Props) => {
                 }}>
                 <StackHeader
                     hideBackArrow
-                    onpress={() => {}}
                     inner={trans.header}
                     style={styles.header}
+                    rightActions={
+                        bike?.description && (
+                            <CogBtn
+                                callback={heandleParams}
+                                iconStyle={styles.paramIcon}
+                            />
+                        )
+                    }
                 />
-
-                {bike?.description && (
-                    <CogBtn
-                        callback={heandleParams}
-                        containerStyle={[
-                            styles.params,
-                            {
-                                top:
-                                    getVerticalPx(58) -
-                                    (isIOS
-                                        ? 0
-                                        : getAppLayoutConfig.statusBarH()),
-                            },
-                        ]}
-                        iconStyle={styles.paramIcon}
-                    />
-                )}
 
                 <SliverImage
                     imgSrc={bike?.images?.[0]}
@@ -234,8 +222,8 @@ const Bike: React.FC<Props> = (props: Props) => {
                                         bike?.warranty
                                             ? warrantyData?.end
                                                 ? countDaysToEnd(
-                                                    warrantyData.end,
-                                                )
+                                                      warrantyData.end,
+                                                  )
                                                 : null
                                             : undefined
                                     }

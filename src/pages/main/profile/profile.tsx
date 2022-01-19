@@ -12,8 +12,12 @@ import I18n from 'react-native-i18n';
 import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
 import BlueButton from './blueButton';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {
+    authErrorSelector,
+    authUserAuthenticatedStateSelector,
+} from '@storage/selectors';
 
-import {useAppSelector} from '../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {
     setObjSize,
@@ -21,33 +25,52 @@ import {
     getVerticalPx,
     getWidthPx,
     getFontSize,
-} from '../../../helpers/layoutFoo';
-import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
+} from '@helpers/layoutFoo';
+import {RegularStackRoute, BothStackRoute} from '@navigation/route';
+
+import {clearAuthError, logOut} from '@storage/actions';
+import {BigRedBtn} from '@src/sharedComponents/buttons';
+import FailedResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
+
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 import AmatoryBiker from './amatoryBiker';
+
 interface Props {
     navigation: any;
     route: any;
 }
 
 const Profile: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('MainProfile');
-    // const dispatch = useAppDispatch();
+    const trans: any = I18n.t('MainProfile');
+    const profilePageTrans: any = I18n.t('Profile.auth');
+    const dispatch = useAppDispatch();
 
-    const name = useAppSelector<string>(state => state.user.userName);
-    const getUserName = name ? name : trans.defaultName;
-    const [userName, setUserName] = useState<string>(getUserName);
+    const userName =
+        useAppSelector<string>(state => state.user.userName) ||
+        trans.defaultName;
+    const isAuthenticated = useAppSelector(authUserAuthenticatedStateSelector);
+    const authError = useAppSelector(authErrorSelector);
+
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+    const onLogoutPressedHandler = () => {
+        dispatch(logOut());
+    };
 
     useEffect(() => {
-        if (typeof name === 'string') {
-            setUserName(getUserName);
+        if (authError.statusCode >= 400) {
+            setShowErrorMessage(true);
         }
-    }, [name]);
+    }, [authError.statusCode]);
+
+    const onCloseErrorMessageModal = () => {
+        dispatch(clearAuthError());
+        setShowErrorMessage(false);
+    };
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         wrap: {
-            // position: 'absolute',
             width: getWidthPx(),
             left: getCenterLeftPx(),
             marginBottom: getVerticalPx(145),
@@ -77,13 +100,24 @@ const Profile: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(20),
             marginBottom: getVerticalPx(51),
         },
+        logoutButton: {
+            marginTop: getVerticalPx(30),
+            height: getVerticalPx(50),
+        },
+        logoutText: {
+            fontSize: getFontSize(19),
+            paddingHorizontal: 20,
+            letterSpacing: getFontSize(0.54),
+        },
+        menuSection: {
+            marginBottom: getVerticalPx(20),
+        },
     });
 
     return (
         <SafeAreaView style={comStyle.container}>
             <View style={comStyle.scroll}>
                 <ScrollView>
-                    {/* <Text style={styles.header}>{trans.header}</Text> */}
                     <View style={styles.wrap}>
                         <AmatoryBiker />
 
@@ -98,50 +132,82 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 <Text style={styles.name}>...</Text>
                             </View>
                         </TouchableOpacity>
-
-                        <Text style={styles.title}>{trans.title}</Text>
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    RegularStackRoute.ABOUT_APP_SCREEN,
-                                )
-                            }
-                            title={trans.app}
-                        />
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    BothStackRoute.REGULATIONS_SCREEN,
-                                )
-                            }
-                            title={trans.regulations}
-                        />
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    BothStackRoute.PRIVACY_POLICY_SCREEN,
-                                )
-                            }
-                            title={trans.privacyPolicy}
-                        />
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    RegularStackRoute.HELP_SCREEN,
-                                )
-                            }
-                            title={trans.help}
-                        />
-                        <BlueButton
-                            onpress={() =>
-                                props.navigation.navigate(
-                                    RegularStackRoute.CONTACT_SCREEN,
-                                )
-                            }
-                            title={trans.contact}
-                        />
+                        {isAuthenticated && (
+                            <View style={styles.menuSection}>
+                                <Text style={styles.title}>
+                                    {trans.settings}
+                                </Text>
+                                <BlueButton
+                                    onpress={() =>
+                                        props.navigation.navigate(
+                                            RegularStackRoute.CONSENTS_SCREEN,
+                                        )
+                                    }
+                                    title={trans.myConsents}
+                                />
+                            </View>
+                        )}
+                        <View style={styles.menuSection}>
+                            <Text style={styles.title}>{trans.title}</Text>
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        RegularStackRoute.ABOUT_APP_SCREEN,
+                                    )
+                                }
+                                title={trans.app}
+                            />
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        BothStackRoute.REGULATIONS_SCREEN,
+                                    )
+                                }
+                                title={trans.regulations}
+                            />
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        BothStackRoute.PRIVACY_POLICY_SCREEN,
+                                    )
+                                }
+                                title={trans.privacyPolicy}
+                            />
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        RegularStackRoute.HELP_SCREEN,
+                                    )
+                                }
+                                title={trans.help}
+                            />
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        RegularStackRoute.CONTACT_SCREEN,
+                                    )
+                                }
+                                title={trans.contact}
+                            />
+                        </View>
+                        {isAuthenticated && (
+                            <BigRedBtn
+                                testID="logout-btn"
+                                onpress={onLogoutPressedHandler}
+                                title={profilePageTrans.logoutBtn}
+                                style={styles.logoutButton}
+                                textStyle={styles.logoutText}
+                            />
+                        )}
                     </View>
                 </ScrollView>
+
+                <FailedResponseModal
+                    testID="logout-error-message"
+                    showModal={showErrorMessage}
+                    errorMessage={authError.message}
+                    onClose={onCloseErrorMessageModal}
+                />
             </View>
 
             <StackHeader hideBackArrow inner={trans.header} />

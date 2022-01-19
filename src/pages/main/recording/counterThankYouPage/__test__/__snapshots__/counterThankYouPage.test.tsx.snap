@@ -1,0 +1,4997 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile Screen Rendering Should match snapshot 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    >
+      <RCTScrollView
+        decelerationRate={0.1}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <Text
+            style={
+              Object {
+                "color": "#2cba3f",
+                "fontFamily": "DIN2014Narrow-Regular",
+                "fontSize": 40,
+                "left": 72.46376811594203,
+                "lineHeight": 52,
+                "marginTop": 133.99553571428572,
+                "textAlign": "center",
+                "width": 605.072463768116,
+              }
+            }
+          >
+             Test, brawo!
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "left": 72.46376811594203,
+                "letterSpacing": 0.5,
+                "lineHeight": 20,
+                "marginTop": 10.421875,
+                "textAlign": "center",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            Oszczędziłeś 0,5 l paliwa!
+          </Text>
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "height": 605.072463768116,
+                "left": 72.46376811594203,
+                "marginTop": 29.776785714285715,
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "overflow": "hidden",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <RNCWebView
+                  cacheEnabled={true}
+                  injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+                  injectedJavaScriptForMainFrameOnly={true}
+                  javaScriptEnabled={true}
+                  messagingEnabled={false}
+                  onContentProcessDidTerminate={[Function]}
+                  onHttpError={[Function]}
+                  onLoadingError={[Function]}
+                  onLoadingFinish={[Function]}
+                  onLoadingProgress={[Function]}
+                  onLoadingStart={[Function]}
+                  onMessage={[Function]}
+                  onShouldStartLoadWithRequest={[Function]}
+                  scalesPageToFit={true}
+                  scrollEnabled={false}
+                  showsHorizontalScrollIndicator={false}
+                  showsVerticalScrollIndicator={false}
+                  source={
+                    Object {
+                      "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    color: #000;
+}
+
+#origin_svg {
+    position: absolute;
+    width: 100%;
+    opacity: .1;
+}
+
+svg {
+    background-color: #fff;
+}
+
+#back_circle {
+    fill: #fdf5f5;
+    stroke: none;
+}
+
+@keyframes lodyga_righ {
+    0% {
+        transform: rotate(149deg)
+    }
+    16.666666666% {
+        transform: rotate(149deg)
+    }
+    100% {
+        transform: rotate(5deg)
+    }
+}
+
+.lodyga_righ {
+    fill: none;
+    stroke: #2cba3f;
+    stroke-width: 14.01257324;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    transform-origin: 143px 147.83545px;
+    animation: lodyga_righ 6s cubic-bezier(.12, .04, .49, 1.01) forwards 1;
+}
+
+@keyframes lodyga_left {
+    0% {
+        transform: rotate(-149deg)
+    }
+    16.6666666666666% {
+        transform: rotate(-149deg)
+    }
+    100% {
+        transform: rotate(-5deg)
+    }
+}
+
+.lodyga_left {
+    fill: none;
+    stroke: #76ce5a;
+    stroke-width: 14.01257324;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    transform-origin: 143px 147.83545px;
+    animation: lodyga_left 6s cubic-bezier(.12, .04, .49, 1.01) forwards 1;
+}
+
+.lisc_wrap {
+    transform-origin: 19px 60px;
+}
+
+.lisc_right {
+    fill: #2cba3f;
+    fill-rule: nonzero;
+    transform-origin: 19px 60px;
+    transform: scale(0);
+}
+
+#lisc_wrap_right_1 {
+    transform: rotate(-10deg);
+}
+
+#lisc_wrap_right_2 {
+    transform: rotate(20deg);
+}
+
+#lisc_wrap_right_3 {
+    transform: rotate(50deg);
+}
+
+#lisc_wrap_right_4 {
+    transform: rotate(80deg);
+}
+
+#lisc_wrap_right_5 {
+    transform: rotate(110deg);
+    /* animation: lisc_5 3.2s linear forwards 1; */
+}
+
+.lisc_left {
+    fill: #76ce5a;
+    fill-rule: nonzero;
+    transform-origin: 19px 60px;
+    transform: scale(0);
+}
+
+#lisc_wrap_left_1 {
+    transform: rotate(10deg);
+}
+
+#lisc_wrap_left_2 {
+    transform: rotate(-20deg);
+}
+
+#lisc_wrap_left_3 {
+    transform: rotate(-50deg);
+}
+
+#lisc_wrap_left_4 {
+    transform: rotate(-80deg);
+}
+
+#lisc_wrap_left_5 {
+    transform: rotate(-110deg);
+    /* animation: lisc_5 3.2s linear forwards 1; */
+}
+
+@keyframes lisc_right {
+    0% {
+        transform: rotate(15deg) scale(0)
+    }
+    5% {
+        transform: rotate(0deg) scale(.10)
+    }
+    15% {
+        transform: rotate(12deg) scale(.2)
+    }
+    25% {
+        transform: rotate(0deg) scale(.3)
+    }
+    35% {
+        transform: rotate(10deg) scale(.4)
+    }
+    45% {
+        transform: rotate(0deg) scale(.5)
+    }
+    55% {
+        transform: rotate(7deg) scale(.6)
+    }
+    65% {
+        transform: rotate(0deg) scale(.7)
+    }
+    75% {
+        transform: rotate(4deg) scale(.8)
+    }
+    85% {
+        transform: rotate(0deg) scale(.9)
+    }
+    95% {
+        transform: rotate(2deg) scale(.95)
+    }
+    100% {
+        transform: rotate(0deg) scale(1)
+    }
+}
+
+#lisc_right_1 {
+    animation: lisc_right 2.4s 5.0s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_2 {
+    animation: lisc_right 2.8s 3.6s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_3 {
+    animation: lisc_right 3.2s 2.8s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_4 {
+    animation: lisc_right 3.6s 2.1s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_5 {
+    animation: lisc_right 4s 1.4s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes lisc_left {
+    0% {
+        transform: rotate(-15deg) scale(0)
+    }
+    5% {
+        transform: rotate(0deg) scale(.10)
+    }
+    15% {
+        transform: rotate(-12deg) scale(.2)
+    }
+    25% {
+        transform: rotate(0deg) scale(.3)
+    }
+    35% {
+        transform: rotate(-10deg) scale(.4)
+    }
+    45% {
+        transform: rotate(0deg) scale(.5)
+    }
+    55% {
+        transform: rotate(-7deg) scale(.6)
+    }
+    65% {
+        transform: rotate(0deg) scale(.7)
+    }
+    75% {
+        transform: rotate(-4deg) scale(.8)
+    }
+    85% {
+        transform: rotate(0deg) scale(.9)
+    }
+    95% {
+        transform: rotate(-2deg) scale(.95)
+    }
+    100% {
+        transform: rotate(0deg) scale(1)
+    }
+}
+
+#lisc_left_1 {
+    animation: lisc_left 2.4s 5.0s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_2 {
+    animation: lisc_left 2.8s 3.6s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_3 {
+    animation: lisc_left 3.2s 2.8s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_4 {
+    animation: lisc_left 3.6s 2.1s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_5 {
+    animation: lisc_left 4s 1.4s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes star_left {
+    0% {
+        fill: #ecd9b6;
+        opacity: .1;
+    }
+    6% {
+        fill: #ffeecd;
+        opacity: .2;
+    }
+    12% {
+        fill: #ecd9b6;
+        opacity: .3;
+    }
+    19% {
+        fill: #ffeecd;
+        opacity: .4;
+    }
+    30% {
+        fill: #ecd9b6;
+        opacity: .55;
+    }
+    40% {
+        fill: #ffeecd;
+        opacity: .7;
+    }
+    50% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    60% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    75% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    100% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+}
+
+#star_left {
+    opacity: 0;
+    fill: #ffeecd;
+    animation: star_left 4s 0.3s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes star_right {
+    0% {
+        fill: #ffeecd;
+        opacity: .1;
+    }
+    6% {
+        fill: #ecd9b6;
+        opacity: .2;
+    }
+    12% {
+        fill: #ffeecd;
+        opacity: .3;
+    }
+    19% {
+        fill: #ecd9b6;
+        opacity: .4;
+    }
+    30% {
+        fill: #ffeecd;
+        opacity: .55;
+    }
+    40% {
+        fill: #ecd9b6;
+        opacity: .7;
+    }
+    50% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    60% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    75% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    100% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+}
+
+#star_right {
+    opacity: 0;
+    fill: #ecd9b6;
+    animation: star_right 4s 0.3s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#mark_1 {
+    width: 5px;
+    height: 5px;
+    opacity: .5;
+    fill: blueviolet;
+    x: 19px;
+    y: 60px;
+}
+</style>
+
+<svg viewBox=\\"0 0 286 286\\">
+<defs>
+    <clipPath id=\\"clip_right\\">
+        <rect x=\\"143\\" y=\\"0\\" width=\\"143\\" height=\\"286\\" />
+    </clipPath>
+    <clipPath id=\\"clip_left\\">
+        <rect x=\\"0\\" y=\\"0\\" width=\\"143.1\\" height=\\"286\\" />
+    </clipPath>
+</defs>
+<circle id=\\"back_circle\\" cx=\\"143\\" cy=\\"143\\" r=\\"143\\"/>
+
+<g
+    clip-path=\\"url(#clip_right)\\"
+>
+    <path 
+        id=\\"lodyga_righ\\"
+        class=\\"lodyga_righ\\"
+        transform=\\"rotate(141)\\"
+        d=\\"m 143.15039,225.02539 c 42.57748,-0.20363 77.0311,-34.77901 77.03125,-77.4043 C 220.17122,122.33841 208.03214,99.8739 189.25,85.75\\"
+        >
+    </path>
+</g>
+<g
+    clip-path=\\"url(#clip_left)\\"
+>
+    <path 
+        id=\\"lodyga_left\\"
+        class=\\"lodyga_left\\"
+        transform=\\"rotate(-5)\\"
+        d=\\"M 142.84961,225.02539 C 100.27213,224.82176 65.818513,190.24638 65.818363,147.62109 65.828763,122.33841 77.967863,99.8739 96.750003,85.75\\"
+        >
+    </path>
+</g>
+
+<g transform=\\"translate(176, 38)\\">
+    <g id=\\"lisc_wrap_right_1\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_1\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+            />
+    </g>
+</g>
+
+<g transform=\\"translate(195, 70)\\">
+    <g id=\\"lisc_wrap_right_2\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_2\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(194, 107)\\">
+    <g id=\\"lisc_wrap_right_3\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_3\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(174, 140)\\">
+    <g id=\\"lisc_wrap_right_4\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_4\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(142, 158)\\">
+    <g id=\\"lisc_wrap_right_5\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_5\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(73, 38)\\">
+    <g id=\\"lisc_wrap_left_1\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_1\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+            />
+    </g>
+</g>
+
+<g transform=\\"translate(54, 70)\\">
+    <g id=\\"lisc_wrap_left_2\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_2\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(54, 107)\\">
+    <g id=\\"lisc_wrap_left_3\\" class=\\"lisc_wrap\\">
+        <path 
+        id=\\"lisc_left_3\\"
+        class=\\"lisc_left\\"
+        d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(74, 140)\\">
+    <g id=\\"lisc_wrap_left_4\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_4\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(106, 158)\\">
+    <g id=\\"lisc_wrap_left_5\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_5\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<path 
+    id=\\"star_left\\"
+    d=\\"M 143.50195 96.275391 L 127.17969 128.98242 L 90.773438 134.27344 L 117.0918 159.77734 L 110.91406 195.75391 L 143.50195 178.80859 L 143.50195 96.275391 z\\"
+/>
+<path 
+    id=\\"star_right\\"
+    d=\\"m 169.66,159.777 26.069,-25.504 -36.06,-5.289 -16.167,-32.709 v 82.533 l 32.278,16.946 z\\"
+/>
+
+</svg>
+
+</body></html>",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "backgroundColor": "#ffffff",
+                      },
+                      Object {
+                        "backgroundColor": "transparent",
+                        "height": "100%",
+                        "width": "100%",
+                      },
+                    ]
+                  }
+                  useSharedProcessPool={true}
+                  useWebKit={false}
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "left": 72.46376811594203,
+                "marginTop": 29.776785714285715,
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Dystans
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 57,
+                    "textAlign": "left",
+                  }
+                }
+                testID="counter-distance"
+              >
+                10,00
+                <Text
+                  style={
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                   km
+                </Text>
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Czas jazdy
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 57,
+                    "textAlign": "left",
+                  }
+                }
+                testID="counter-time"
+              >
+                0:25
+                <Text
+                  style={
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                   h
+                </Text>
+              </Text>
+            </View>
+          </View>
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "marginTop": 47.642857142857146,
+                "textAlign": "center",
+              }
+            }
+          >
+            czas przerw  
+            <Text
+              style={
+                Object {
+                  "color": "#555555",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 23,
+                  "textAlign": "left",
+                }
+              }
+              testID="counter-pause"
+            >
+              0:05
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#555555",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 18,
+                  "textAlign": "left",
+                }
+              }
+            >
+               h
+            </Text>
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 96.77455357142858,
+                "marginHorizontal": 72.46376811594203,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginRight": 36.231884057971016,
+                  "marginTop": 62.53125000000001,
+                  "width": 284.4202898550725,
+                }
+              }
+            >
+              <RNGestureHandlerButton
+                collapsable={false}
+                onGestureEvent={[Function]}
+                onGestureHandlerEvent={[Function]}
+                onGestureHandlerStateChange={[Function]}
+                onHandlerStateChange={[Function]}
+                rippleColor={0}
+                testID="counter-cancel-btn"
+              >
+                <View
+                  accessible={true}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#fff",
+                      "borderColor": "#33555555",
+                      "borderRadius": 90.57971014492753,
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#313131",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 36.231884057971016,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    POWRÓT
+                  </Text>
+                </View>
+              </RNGestureHandlerButton>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginTop": 62.53125000000001,
+                  "width": 284.4202898550725,
+                }
+              }
+            >
+              <View>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                  testID="counter-submit-btn"
+                >
+                  <View
+                    accessible={true}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#d8232a",
+                        "borderRadius": 50,
+                        "display": "flex",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "white",
+                            "fontFamily": "DIN2014Narrow-Bold",
+                            "fontSize": 20,
+                            "textAlign": "center",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      UPUBLICZNIJ
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+    <Modal
+      animationType="slide"
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      presentationStyle="fullScreen"
+      statusBarTranslucent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "height": "100%",
+            "paddingBottom": 191.43973214285714,
+            "width": "100%",
+          }
+        }
+      >
+        <RCTScrollView>
+          <View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#d8232a",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 40,
+                    "left": 72.46376811594203,
+                    "paddingVertical": 7.444196428571429,
+                    "textAlign": "center",
+                    "width": 605.072463768116,
+                  },
+                  Object {
+                    "marginTop": 205.45982142857144,
+                  },
+                ]
+              }
+            >
+              Coś poszło nie tak!
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flex": 1,
+                  },
+                  Object {
+                    "marginTop": 44.66517857142858,
+                  },
+                ]
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={536.231884057971}
+                bbWidth={753.6231884057971}
+                focusable={false}
+                height={536.231884057971}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 536,
+                      "width": 753,
+                    },
+                  ]
+                }
+                vbHeight={296}
+                vbWidth={416}
+                width={753.6231884057971}
+              >
+                <RNSVGGroup>
+                  <View
+                    pointerEvents="none"
+                    style={
+                      Array [
+                        Object {
+                          "height": 536.231884057971,
+                        },
+                        Object {
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "transparent",
+                          "height": "100%",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                              "overflow": "hidden",
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        <RNCWebView
+                          cacheEnabled={true}
+                          injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+                          injectedJavaScriptForMainFrameOnly={true}
+                          javaScriptEnabled={true}
+                          messagingEnabled={false}
+                          onContentProcessDidTerminate={[Function]}
+                          onHttpError={[Function]}
+                          onLoadingError={[Function]}
+                          onLoadingFinish={[Function]}
+                          onLoadingProgress={[Function]}
+                          onLoadingStart={[Function]}
+                          onMessage={[Function]}
+                          onShouldStartLoadWithRequest={[Function]}
+                          scalesPageToFit={true}
+                          scrollEnabled={false}
+                          showsHorizontalScrollIndicator={false}
+                          showsVerticalScrollIndicator={false}
+                          source={
+                            Object {
+                              "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 416 296\\" width=\\"412\\" height=\\"296\\">
+        <path d=\\"M1.7 132.2c-4.3 31.4 11.5 45.6 47.6 42.5 54-4.6 52 113.4 147.6 84.4 34.6-10.5 51-100.1 110-95.7 88.3 6.7 60.6-110 108.1-82.6\\" stroke=\\"#D8232A\\" fill=\\"none\\" 
+        fill-rule=\\"evenodd\\" stroke-dasharray=\\"6 9\\" stroke-linecap=\\"round\\">
+            <animate attributeName=\\"stroke-dashoffset\\" dur=\\"100s\\" repeatCount=\\"indefinite\\" values=\\"0 ; -1000\\"/>
+        </path>
+    </svg></body></html>",
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "flex": 1,
+                                "overflow": "hidden",
+                              },
+                              Object {
+                                "backgroundColor": "#ffffff",
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                                "height": "100%",
+                                "width": "100%",
+                              },
+                            ]
+                          }
+                          useSharedProcessPool={true}
+                          useWebKit={false}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <RNSVGGroup>
+                    <RNSVGPath
+                      d="M202.7 0h10.6C292.1 0 356 66.3 356 148s-63.9 148-142.7 148h-10.6C123.9 296 60 229.7 60 148S123.9 0 202.7 0z"
+                      fill={4294344323}
+                      fillOpacity={0.2}
+                      propList={
+                        Array [
+                          "fill",
+                          "fillOpacity",
+                        ]
+                      }
+                    />
+                    <RNSVGPath
+                      d="m251.6 71 34.4 34.4L165.4 226 131 191.6z"
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                          "stroke",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4292354858}
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                    />
+                    <RNSVGPath
+                      d="m243 105-13-13m-13 39-13-13m-13 39-13-13m-13 39-13-13"
+                      propList={
+                        Array [
+                          "stroke",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4292354858}
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#414141",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 23,
+                  "left": 72.46376811594203,
+                  "marginTop": 29.776785714285715,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              Przejechany dystans jest 
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "DIN2014Narrow-Bold",
+                    "fontSize": 23,
+                  }
+                }
+              >
+                zbyt krótki
+              </Text>
+              .
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#414141",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 23,
+                  "left": 72.46376811594203,
+                  "marginTop": 29.776785714285715,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów).
+            </Text>
+          </View>
+        </RCTScrollView>
+        <View
+          style={
+            Object {
+              "bottom": 96.77455357142858,
+              "left": 72.46376811594203,
+              "position": "absolute",
+              "width": 605.072463768116,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "height": 50,
+                "marginTop": 44.66517857142858,
+              }
+            }
+          >
+            <RNGestureHandlerButton
+              collapsable={false}
+              onGestureEvent={[Function]}
+              onGestureHandlerEvent={[Function]}
+              onGestureHandlerStateChange={[Function]}
+              onHandlerStateChange={[Function]}
+              rippleColor={0}
+              testID="big-red-btn-for-short-route"
+            >
+              <View
+                accessible={true}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#d8232a",
+                    "borderRadius": 50,
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 20,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  ZAMKNIJ
+                </Text>
+              </View>
+            </RNGestureHandlerButton>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  </RCTSafeAreaView>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`Profile Screen Rendering Should navigate after pressing the cancel buttons 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    >
+      <RCTScrollView
+        decelerationRate={0.1}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <Text
+            style={
+              Object {
+                "color": "#2cba3f",
+                "fontFamily": "DIN2014Narrow-Regular",
+                "fontSize": 40,
+                "left": 72.46376811594203,
+                "lineHeight": 52,
+                "marginTop": 133.99553571428572,
+                "textAlign": "center",
+                "width": 605.072463768116,
+              }
+            }
+          >
+             Test, brawo!
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "left": 72.46376811594203,
+                "letterSpacing": 0.5,
+                "lineHeight": 20,
+                "marginTop": 10.421875,
+                "textAlign": "center",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            Oszczędziłeś 0,5 l paliwa!
+          </Text>
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "height": 605.072463768116,
+                "left": 72.46376811594203,
+                "marginTop": 29.776785714285715,
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "overflow": "hidden",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <RNCWebView
+                  cacheEnabled={true}
+                  injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+                  injectedJavaScriptForMainFrameOnly={true}
+                  javaScriptEnabled={true}
+                  messagingEnabled={false}
+                  onContentProcessDidTerminate={[Function]}
+                  onHttpError={[Function]}
+                  onLoadingError={[Function]}
+                  onLoadingFinish={[Function]}
+                  onLoadingProgress={[Function]}
+                  onLoadingStart={[Function]}
+                  onMessage={[Function]}
+                  onShouldStartLoadWithRequest={[Function]}
+                  scalesPageToFit={true}
+                  scrollEnabled={false}
+                  showsHorizontalScrollIndicator={false}
+                  showsVerticalScrollIndicator={false}
+                  source={
+                    Object {
+                      "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    color: #000;
+}
+
+#origin_svg {
+    position: absolute;
+    width: 100%;
+    opacity: .1;
+}
+
+svg {
+    background-color: #fff;
+}
+
+#back_circle {
+    fill: #fdf5f5;
+    stroke: none;
+}
+
+@keyframes lodyga_righ {
+    0% {
+        transform: rotate(149deg)
+    }
+    16.666666666% {
+        transform: rotate(149deg)
+    }
+    100% {
+        transform: rotate(5deg)
+    }
+}
+
+.lodyga_righ {
+    fill: none;
+    stroke: #2cba3f;
+    stroke-width: 14.01257324;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    transform-origin: 143px 147.83545px;
+    animation: lodyga_righ 6s cubic-bezier(.12, .04, .49, 1.01) forwards 1;
+}
+
+@keyframes lodyga_left {
+    0% {
+        transform: rotate(-149deg)
+    }
+    16.6666666666666% {
+        transform: rotate(-149deg)
+    }
+    100% {
+        transform: rotate(-5deg)
+    }
+}
+
+.lodyga_left {
+    fill: none;
+    stroke: #76ce5a;
+    stroke-width: 14.01257324;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    transform-origin: 143px 147.83545px;
+    animation: lodyga_left 6s cubic-bezier(.12, .04, .49, 1.01) forwards 1;
+}
+
+.lisc_wrap {
+    transform-origin: 19px 60px;
+}
+
+.lisc_right {
+    fill: #2cba3f;
+    fill-rule: nonzero;
+    transform-origin: 19px 60px;
+    transform: scale(0);
+}
+
+#lisc_wrap_right_1 {
+    transform: rotate(-10deg);
+}
+
+#lisc_wrap_right_2 {
+    transform: rotate(20deg);
+}
+
+#lisc_wrap_right_3 {
+    transform: rotate(50deg);
+}
+
+#lisc_wrap_right_4 {
+    transform: rotate(80deg);
+}
+
+#lisc_wrap_right_5 {
+    transform: rotate(110deg);
+    /* animation: lisc_5 3.2s linear forwards 1; */
+}
+
+.lisc_left {
+    fill: #76ce5a;
+    fill-rule: nonzero;
+    transform-origin: 19px 60px;
+    transform: scale(0);
+}
+
+#lisc_wrap_left_1 {
+    transform: rotate(10deg);
+}
+
+#lisc_wrap_left_2 {
+    transform: rotate(-20deg);
+}
+
+#lisc_wrap_left_3 {
+    transform: rotate(-50deg);
+}
+
+#lisc_wrap_left_4 {
+    transform: rotate(-80deg);
+}
+
+#lisc_wrap_left_5 {
+    transform: rotate(-110deg);
+    /* animation: lisc_5 3.2s linear forwards 1; */
+}
+
+@keyframes lisc_right {
+    0% {
+        transform: rotate(15deg) scale(0)
+    }
+    5% {
+        transform: rotate(0deg) scale(.10)
+    }
+    15% {
+        transform: rotate(12deg) scale(.2)
+    }
+    25% {
+        transform: rotate(0deg) scale(.3)
+    }
+    35% {
+        transform: rotate(10deg) scale(.4)
+    }
+    45% {
+        transform: rotate(0deg) scale(.5)
+    }
+    55% {
+        transform: rotate(7deg) scale(.6)
+    }
+    65% {
+        transform: rotate(0deg) scale(.7)
+    }
+    75% {
+        transform: rotate(4deg) scale(.8)
+    }
+    85% {
+        transform: rotate(0deg) scale(.9)
+    }
+    95% {
+        transform: rotate(2deg) scale(.95)
+    }
+    100% {
+        transform: rotate(0deg) scale(1)
+    }
+}
+
+#lisc_right_1 {
+    animation: lisc_right 2.4s 5.0s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_2 {
+    animation: lisc_right 2.8s 3.6s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_3 {
+    animation: lisc_right 3.2s 2.8s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_4 {
+    animation: lisc_right 3.6s 2.1s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_5 {
+    animation: lisc_right 4s 1.4s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes lisc_left {
+    0% {
+        transform: rotate(-15deg) scale(0)
+    }
+    5% {
+        transform: rotate(0deg) scale(.10)
+    }
+    15% {
+        transform: rotate(-12deg) scale(.2)
+    }
+    25% {
+        transform: rotate(0deg) scale(.3)
+    }
+    35% {
+        transform: rotate(-10deg) scale(.4)
+    }
+    45% {
+        transform: rotate(0deg) scale(.5)
+    }
+    55% {
+        transform: rotate(-7deg) scale(.6)
+    }
+    65% {
+        transform: rotate(0deg) scale(.7)
+    }
+    75% {
+        transform: rotate(-4deg) scale(.8)
+    }
+    85% {
+        transform: rotate(0deg) scale(.9)
+    }
+    95% {
+        transform: rotate(-2deg) scale(.95)
+    }
+    100% {
+        transform: rotate(0deg) scale(1)
+    }
+}
+
+#lisc_left_1 {
+    animation: lisc_left 2.4s 5.0s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_2 {
+    animation: lisc_left 2.8s 3.6s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_3 {
+    animation: lisc_left 3.2s 2.8s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_4 {
+    animation: lisc_left 3.6s 2.1s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_5 {
+    animation: lisc_left 4s 1.4s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes star_left {
+    0% {
+        fill: #ecd9b6;
+        opacity: .1;
+    }
+    6% {
+        fill: #ffeecd;
+        opacity: .2;
+    }
+    12% {
+        fill: #ecd9b6;
+        opacity: .3;
+    }
+    19% {
+        fill: #ffeecd;
+        opacity: .4;
+    }
+    30% {
+        fill: #ecd9b6;
+        opacity: .55;
+    }
+    40% {
+        fill: #ffeecd;
+        opacity: .7;
+    }
+    50% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    60% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    75% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    100% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+}
+
+#star_left {
+    opacity: 0;
+    fill: #ffeecd;
+    animation: star_left 4s 0.3s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes star_right {
+    0% {
+        fill: #ffeecd;
+        opacity: .1;
+    }
+    6% {
+        fill: #ecd9b6;
+        opacity: .2;
+    }
+    12% {
+        fill: #ffeecd;
+        opacity: .3;
+    }
+    19% {
+        fill: #ecd9b6;
+        opacity: .4;
+    }
+    30% {
+        fill: #ffeecd;
+        opacity: .55;
+    }
+    40% {
+        fill: #ecd9b6;
+        opacity: .7;
+    }
+    50% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    60% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    75% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    100% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+}
+
+#star_right {
+    opacity: 0;
+    fill: #ecd9b6;
+    animation: star_right 4s 0.3s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#mark_1 {
+    width: 5px;
+    height: 5px;
+    opacity: .5;
+    fill: blueviolet;
+    x: 19px;
+    y: 60px;
+}
+</style>
+
+<svg viewBox=\\"0 0 286 286\\">
+<defs>
+    <clipPath id=\\"clip_right\\">
+        <rect x=\\"143\\" y=\\"0\\" width=\\"143\\" height=\\"286\\" />
+    </clipPath>
+    <clipPath id=\\"clip_left\\">
+        <rect x=\\"0\\" y=\\"0\\" width=\\"143.1\\" height=\\"286\\" />
+    </clipPath>
+</defs>
+<circle id=\\"back_circle\\" cx=\\"143\\" cy=\\"143\\" r=\\"143\\"/>
+
+<g
+    clip-path=\\"url(#clip_right)\\"
+>
+    <path 
+        id=\\"lodyga_righ\\"
+        class=\\"lodyga_righ\\"
+        transform=\\"rotate(141)\\"
+        d=\\"m 143.15039,225.02539 c 42.57748,-0.20363 77.0311,-34.77901 77.03125,-77.4043 C 220.17122,122.33841 208.03214,99.8739 189.25,85.75\\"
+        >
+    </path>
+</g>
+<g
+    clip-path=\\"url(#clip_left)\\"
+>
+    <path 
+        id=\\"lodyga_left\\"
+        class=\\"lodyga_left\\"
+        transform=\\"rotate(-5)\\"
+        d=\\"M 142.84961,225.02539 C 100.27213,224.82176 65.818513,190.24638 65.818363,147.62109 65.828763,122.33841 77.967863,99.8739 96.750003,85.75\\"
+        >
+    </path>
+</g>
+
+<g transform=\\"translate(176, 38)\\">
+    <g id=\\"lisc_wrap_right_1\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_1\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+            />
+    </g>
+</g>
+
+<g transform=\\"translate(195, 70)\\">
+    <g id=\\"lisc_wrap_right_2\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_2\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(194, 107)\\">
+    <g id=\\"lisc_wrap_right_3\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_3\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(174, 140)\\">
+    <g id=\\"lisc_wrap_right_4\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_4\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(142, 158)\\">
+    <g id=\\"lisc_wrap_right_5\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_5\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(73, 38)\\">
+    <g id=\\"lisc_wrap_left_1\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_1\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+            />
+    </g>
+</g>
+
+<g transform=\\"translate(54, 70)\\">
+    <g id=\\"lisc_wrap_left_2\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_2\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(54, 107)\\">
+    <g id=\\"lisc_wrap_left_3\\" class=\\"lisc_wrap\\">
+        <path 
+        id=\\"lisc_left_3\\"
+        class=\\"lisc_left\\"
+        d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(74, 140)\\">
+    <g id=\\"lisc_wrap_left_4\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_4\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(106, 158)\\">
+    <g id=\\"lisc_wrap_left_5\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_5\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<path 
+    id=\\"star_left\\"
+    d=\\"M 143.50195 96.275391 L 127.17969 128.98242 L 90.773438 134.27344 L 117.0918 159.77734 L 110.91406 195.75391 L 143.50195 178.80859 L 143.50195 96.275391 z\\"
+/>
+<path 
+    id=\\"star_right\\"
+    d=\\"m 169.66,159.777 26.069,-25.504 -36.06,-5.289 -16.167,-32.709 v 82.533 l 32.278,16.946 z\\"
+/>
+
+</svg>
+
+</body></html>",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "backgroundColor": "#ffffff",
+                      },
+                      Object {
+                        "backgroundColor": "transparent",
+                        "height": "100%",
+                        "width": "100%",
+                      },
+                    ]
+                  }
+                  useSharedProcessPool={true}
+                  useWebKit={false}
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "left": 72.46376811594203,
+                "marginTop": 29.776785714285715,
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Dystans
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 57,
+                    "textAlign": "left",
+                  }
+                }
+                testID="counter-distance"
+              >
+                10,00
+                <Text
+                  style={
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                   km
+                </Text>
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Czas jazdy
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 57,
+                    "textAlign": "left",
+                  }
+                }
+                testID="counter-time"
+              >
+                0:25
+                <Text
+                  style={
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                   h
+                </Text>
+              </Text>
+            </View>
+          </View>
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "marginTop": 47.642857142857146,
+                "textAlign": "center",
+              }
+            }
+          >
+            czas przerw  
+            <Text
+              style={
+                Object {
+                  "color": "#555555",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 23,
+                  "textAlign": "left",
+                }
+              }
+              testID="counter-pause"
+            >
+              0:05
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#555555",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 18,
+                  "textAlign": "left",
+                }
+              }
+            >
+               h
+            </Text>
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 96.77455357142858,
+                "marginHorizontal": 72.46376811594203,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginRight": 36.231884057971016,
+                  "marginTop": 62.53125000000001,
+                  "width": 284.4202898550725,
+                }
+              }
+            >
+              <RNGestureHandlerButton
+                collapsable={false}
+                onGestureEvent={[Function]}
+                onGestureHandlerEvent={[Function]}
+                onGestureHandlerStateChange={[Function]}
+                onHandlerStateChange={[Function]}
+                rippleColor={0}
+                testID="counter-cancel-btn"
+              >
+                <View
+                  accessible={true}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#fff",
+                      "borderColor": "#33555555",
+                      "borderRadius": 90.57971014492753,
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#313131",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 36.231884057971016,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    POWRÓT
+                  </Text>
+                </View>
+              </RNGestureHandlerButton>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginTop": 62.53125000000001,
+                  "width": 284.4202898550725,
+                }
+              }
+            >
+              <View>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                  testID="counter-submit-btn"
+                >
+                  <View
+                    accessible={true}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#d8232a",
+                        "borderRadius": 50,
+                        "display": "flex",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "white",
+                            "fontFamily": "DIN2014Narrow-Bold",
+                            "fontSize": 20,
+                            "textAlign": "center",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      UPUBLICZNIJ
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+    <Modal
+      animationType="slide"
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      presentationStyle="fullScreen"
+      statusBarTranslucent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "height": "100%",
+            "paddingBottom": 191.43973214285714,
+            "width": "100%",
+          }
+        }
+      >
+        <RCTScrollView>
+          <View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#d8232a",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 40,
+                    "left": 72.46376811594203,
+                    "paddingVertical": 7.444196428571429,
+                    "textAlign": "center",
+                    "width": 605.072463768116,
+                  },
+                  Object {
+                    "marginTop": 205.45982142857144,
+                  },
+                ]
+              }
+            >
+              Coś poszło nie tak!
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flex": 1,
+                  },
+                  Object {
+                    "marginTop": 44.66517857142858,
+                  },
+                ]
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={536.231884057971}
+                bbWidth={753.6231884057971}
+                focusable={false}
+                height={536.231884057971}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 536,
+                      "width": 753,
+                    },
+                  ]
+                }
+                vbHeight={296}
+                vbWidth={416}
+                width={753.6231884057971}
+              >
+                <RNSVGGroup>
+                  <View
+                    pointerEvents="none"
+                    style={
+                      Array [
+                        Object {
+                          "height": 536.231884057971,
+                        },
+                        Object {
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "transparent",
+                          "height": "100%",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                              "overflow": "hidden",
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        <RNCWebView
+                          cacheEnabled={true}
+                          injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+                          injectedJavaScriptForMainFrameOnly={true}
+                          javaScriptEnabled={true}
+                          messagingEnabled={false}
+                          onContentProcessDidTerminate={[Function]}
+                          onHttpError={[Function]}
+                          onLoadingError={[Function]}
+                          onLoadingFinish={[Function]}
+                          onLoadingProgress={[Function]}
+                          onLoadingStart={[Function]}
+                          onMessage={[Function]}
+                          onShouldStartLoadWithRequest={[Function]}
+                          scalesPageToFit={true}
+                          scrollEnabled={false}
+                          showsHorizontalScrollIndicator={false}
+                          showsVerticalScrollIndicator={false}
+                          source={
+                            Object {
+                              "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 416 296\\" width=\\"412\\" height=\\"296\\">
+        <path d=\\"M1.7 132.2c-4.3 31.4 11.5 45.6 47.6 42.5 54-4.6 52 113.4 147.6 84.4 34.6-10.5 51-100.1 110-95.7 88.3 6.7 60.6-110 108.1-82.6\\" stroke=\\"#D8232A\\" fill=\\"none\\" 
+        fill-rule=\\"evenodd\\" stroke-dasharray=\\"6 9\\" stroke-linecap=\\"round\\">
+            <animate attributeName=\\"stroke-dashoffset\\" dur=\\"100s\\" repeatCount=\\"indefinite\\" values=\\"0 ; -1000\\"/>
+        </path>
+    </svg></body></html>",
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "flex": 1,
+                                "overflow": "hidden",
+                              },
+                              Object {
+                                "backgroundColor": "#ffffff",
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                                "height": "100%",
+                                "width": "100%",
+                              },
+                            ]
+                          }
+                          useSharedProcessPool={true}
+                          useWebKit={false}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <RNSVGGroup>
+                    <RNSVGPath
+                      d="M202.7 0h10.6C292.1 0 356 66.3 356 148s-63.9 148-142.7 148h-10.6C123.9 296 60 229.7 60 148S123.9 0 202.7 0z"
+                      fill={4294344323}
+                      fillOpacity={0.2}
+                      propList={
+                        Array [
+                          "fill",
+                          "fillOpacity",
+                        ]
+                      }
+                    />
+                    <RNSVGPath
+                      d="m251.6 71 34.4 34.4L165.4 226 131 191.6z"
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                          "stroke",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4292354858}
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                    />
+                    <RNSVGPath
+                      d="m243 105-13-13m-13 39-13-13m-13 39-13-13m-13 39-13-13"
+                      propList={
+                        Array [
+                          "stroke",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4292354858}
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#414141",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 23,
+                  "left": 72.46376811594203,
+                  "marginTop": 29.776785714285715,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              Przejechany dystans jest 
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "DIN2014Narrow-Bold",
+                    "fontSize": 23,
+                  }
+                }
+              >
+                zbyt krótki
+              </Text>
+              .
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#414141",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 23,
+                  "left": 72.46376811594203,
+                  "marginTop": 29.776785714285715,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów).
+            </Text>
+          </View>
+        </RCTScrollView>
+        <View
+          style={
+            Object {
+              "bottom": 96.77455357142858,
+              "left": 72.46376811594203,
+              "position": "absolute",
+              "width": 605.072463768116,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "height": 50,
+                "marginTop": 44.66517857142858,
+              }
+            }
+          >
+            <RNGestureHandlerButton
+              collapsable={false}
+              onGestureEvent={[Function]}
+              onGestureHandlerEvent={[Function]}
+              onGestureHandlerStateChange={[Function]}
+              onHandlerStateChange={[Function]}
+              rippleColor={0}
+              testID="big-red-btn-for-short-route"
+            >
+              <View
+                accessible={true}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#d8232a",
+                    "borderRadius": 50,
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 20,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  ZAMKNIJ
+                </Text>
+              </View>
+            </RNGestureHandlerButton>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  </RCTSafeAreaView>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`Profile Screen Rendering Should navigate after pressing the submit button 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    >
+      <RCTScrollView
+        decelerationRate={0.1}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <Text
+            style={
+              Object {
+                "color": "#2cba3f",
+                "fontFamily": "DIN2014Narrow-Regular",
+                "fontSize": 40,
+                "left": 72.46376811594203,
+                "lineHeight": 52,
+                "marginTop": 133.99553571428572,
+                "textAlign": "center",
+                "width": 605.072463768116,
+              }
+            }
+          >
+             Test, brawo!
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "left": 72.46376811594203,
+                "letterSpacing": 0.5,
+                "lineHeight": 20,
+                "marginTop": 10.421875,
+                "textAlign": "center",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            Oszczędziłeś 0,5 l paliwa!
+          </Text>
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "height": 605.072463768116,
+                "left": 72.46376811594203,
+                "marginTop": 29.776785714285715,
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "overflow": "hidden",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <RNCWebView
+                  cacheEnabled={true}
+                  injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+                  injectedJavaScriptForMainFrameOnly={true}
+                  javaScriptEnabled={true}
+                  messagingEnabled={false}
+                  onContentProcessDidTerminate={[Function]}
+                  onHttpError={[Function]}
+                  onLoadingError={[Function]}
+                  onLoadingFinish={[Function]}
+                  onLoadingProgress={[Function]}
+                  onLoadingStart={[Function]}
+                  onMessage={[Function]}
+                  onShouldStartLoadWithRequest={[Function]}
+                  scalesPageToFit={true}
+                  scrollEnabled={false}
+                  showsHorizontalScrollIndicator={false}
+                  showsVerticalScrollIndicator={false}
+                  source={
+                    Object {
+                      "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    color: #000;
+}
+
+#origin_svg {
+    position: absolute;
+    width: 100%;
+    opacity: .1;
+}
+
+svg {
+    background-color: #fff;
+}
+
+#back_circle {
+    fill: #fdf5f5;
+    stroke: none;
+}
+
+@keyframes lodyga_righ {
+    0% {
+        transform: rotate(149deg)
+    }
+    16.666666666% {
+        transform: rotate(149deg)
+    }
+    100% {
+        transform: rotate(5deg)
+    }
+}
+
+.lodyga_righ {
+    fill: none;
+    stroke: #2cba3f;
+    stroke-width: 14.01257324;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    transform-origin: 143px 147.83545px;
+    animation: lodyga_righ 6s cubic-bezier(.12, .04, .49, 1.01) forwards 1;
+}
+
+@keyframes lodyga_left {
+    0% {
+        transform: rotate(-149deg)
+    }
+    16.6666666666666% {
+        transform: rotate(-149deg)
+    }
+    100% {
+        transform: rotate(-5deg)
+    }
+}
+
+.lodyga_left {
+    fill: none;
+    stroke: #76ce5a;
+    stroke-width: 14.01257324;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    transform-origin: 143px 147.83545px;
+    animation: lodyga_left 6s cubic-bezier(.12, .04, .49, 1.01) forwards 1;
+}
+
+.lisc_wrap {
+    transform-origin: 19px 60px;
+}
+
+.lisc_right {
+    fill: #2cba3f;
+    fill-rule: nonzero;
+    transform-origin: 19px 60px;
+    transform: scale(0);
+}
+
+#lisc_wrap_right_1 {
+    transform: rotate(-10deg);
+}
+
+#lisc_wrap_right_2 {
+    transform: rotate(20deg);
+}
+
+#lisc_wrap_right_3 {
+    transform: rotate(50deg);
+}
+
+#lisc_wrap_right_4 {
+    transform: rotate(80deg);
+}
+
+#lisc_wrap_right_5 {
+    transform: rotate(110deg);
+    /* animation: lisc_5 3.2s linear forwards 1; */
+}
+
+.lisc_left {
+    fill: #76ce5a;
+    fill-rule: nonzero;
+    transform-origin: 19px 60px;
+    transform: scale(0);
+}
+
+#lisc_wrap_left_1 {
+    transform: rotate(10deg);
+}
+
+#lisc_wrap_left_2 {
+    transform: rotate(-20deg);
+}
+
+#lisc_wrap_left_3 {
+    transform: rotate(-50deg);
+}
+
+#lisc_wrap_left_4 {
+    transform: rotate(-80deg);
+}
+
+#lisc_wrap_left_5 {
+    transform: rotate(-110deg);
+    /* animation: lisc_5 3.2s linear forwards 1; */
+}
+
+@keyframes lisc_right {
+    0% {
+        transform: rotate(15deg) scale(0)
+    }
+    5% {
+        transform: rotate(0deg) scale(.10)
+    }
+    15% {
+        transform: rotate(12deg) scale(.2)
+    }
+    25% {
+        transform: rotate(0deg) scale(.3)
+    }
+    35% {
+        transform: rotate(10deg) scale(.4)
+    }
+    45% {
+        transform: rotate(0deg) scale(.5)
+    }
+    55% {
+        transform: rotate(7deg) scale(.6)
+    }
+    65% {
+        transform: rotate(0deg) scale(.7)
+    }
+    75% {
+        transform: rotate(4deg) scale(.8)
+    }
+    85% {
+        transform: rotate(0deg) scale(.9)
+    }
+    95% {
+        transform: rotate(2deg) scale(.95)
+    }
+    100% {
+        transform: rotate(0deg) scale(1)
+    }
+}
+
+#lisc_right_1 {
+    animation: lisc_right 2.4s 5.0s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_2 {
+    animation: lisc_right 2.8s 3.6s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_3 {
+    animation: lisc_right 3.2s 2.8s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_4 {
+    animation: lisc_right 3.6s 2.1s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_5 {
+    animation: lisc_right 4s 1.4s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes lisc_left {
+    0% {
+        transform: rotate(-15deg) scale(0)
+    }
+    5% {
+        transform: rotate(0deg) scale(.10)
+    }
+    15% {
+        transform: rotate(-12deg) scale(.2)
+    }
+    25% {
+        transform: rotate(0deg) scale(.3)
+    }
+    35% {
+        transform: rotate(-10deg) scale(.4)
+    }
+    45% {
+        transform: rotate(0deg) scale(.5)
+    }
+    55% {
+        transform: rotate(-7deg) scale(.6)
+    }
+    65% {
+        transform: rotate(0deg) scale(.7)
+    }
+    75% {
+        transform: rotate(-4deg) scale(.8)
+    }
+    85% {
+        transform: rotate(0deg) scale(.9)
+    }
+    95% {
+        transform: rotate(-2deg) scale(.95)
+    }
+    100% {
+        transform: rotate(0deg) scale(1)
+    }
+}
+
+#lisc_left_1 {
+    animation: lisc_left 2.4s 5.0s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_2 {
+    animation: lisc_left 2.8s 3.6s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_3 {
+    animation: lisc_left 3.2s 2.8s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_4 {
+    animation: lisc_left 3.6s 2.1s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_5 {
+    animation: lisc_left 4s 1.4s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes star_left {
+    0% {
+        fill: #ecd9b6;
+        opacity: .1;
+    }
+    6% {
+        fill: #ffeecd;
+        opacity: .2;
+    }
+    12% {
+        fill: #ecd9b6;
+        opacity: .3;
+    }
+    19% {
+        fill: #ffeecd;
+        opacity: .4;
+    }
+    30% {
+        fill: #ecd9b6;
+        opacity: .55;
+    }
+    40% {
+        fill: #ffeecd;
+        opacity: .7;
+    }
+    50% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    60% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    75% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    100% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+}
+
+#star_left {
+    opacity: 0;
+    fill: #ffeecd;
+    animation: star_left 4s 0.3s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes star_right {
+    0% {
+        fill: #ffeecd;
+        opacity: .1;
+    }
+    6% {
+        fill: #ecd9b6;
+        opacity: .2;
+    }
+    12% {
+        fill: #ffeecd;
+        opacity: .3;
+    }
+    19% {
+        fill: #ecd9b6;
+        opacity: .4;
+    }
+    30% {
+        fill: #ffeecd;
+        opacity: .55;
+    }
+    40% {
+        fill: #ecd9b6;
+        opacity: .7;
+    }
+    50% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    60% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    75% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    100% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+}
+
+#star_right {
+    opacity: 0;
+    fill: #ecd9b6;
+    animation: star_right 4s 0.3s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#mark_1 {
+    width: 5px;
+    height: 5px;
+    opacity: .5;
+    fill: blueviolet;
+    x: 19px;
+    y: 60px;
+}
+</style>
+
+<svg viewBox=\\"0 0 286 286\\">
+<defs>
+    <clipPath id=\\"clip_right\\">
+        <rect x=\\"143\\" y=\\"0\\" width=\\"143\\" height=\\"286\\" />
+    </clipPath>
+    <clipPath id=\\"clip_left\\">
+        <rect x=\\"0\\" y=\\"0\\" width=\\"143.1\\" height=\\"286\\" />
+    </clipPath>
+</defs>
+<circle id=\\"back_circle\\" cx=\\"143\\" cy=\\"143\\" r=\\"143\\"/>
+
+<g
+    clip-path=\\"url(#clip_right)\\"
+>
+    <path 
+        id=\\"lodyga_righ\\"
+        class=\\"lodyga_righ\\"
+        transform=\\"rotate(141)\\"
+        d=\\"m 143.15039,225.02539 c 42.57748,-0.20363 77.0311,-34.77901 77.03125,-77.4043 C 220.17122,122.33841 208.03214,99.8739 189.25,85.75\\"
+        >
+    </path>
+</g>
+<g
+    clip-path=\\"url(#clip_left)\\"
+>
+    <path 
+        id=\\"lodyga_left\\"
+        class=\\"lodyga_left\\"
+        transform=\\"rotate(-5)\\"
+        d=\\"M 142.84961,225.02539 C 100.27213,224.82176 65.818513,190.24638 65.818363,147.62109 65.828763,122.33841 77.967863,99.8739 96.750003,85.75\\"
+        >
+    </path>
+</g>
+
+<g transform=\\"translate(176, 38)\\">
+    <g id=\\"lisc_wrap_right_1\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_1\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+            />
+    </g>
+</g>
+
+<g transform=\\"translate(195, 70)\\">
+    <g id=\\"lisc_wrap_right_2\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_2\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(194, 107)\\">
+    <g id=\\"lisc_wrap_right_3\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_3\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(174, 140)\\">
+    <g id=\\"lisc_wrap_right_4\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_4\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(142, 158)\\">
+    <g id=\\"lisc_wrap_right_5\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_5\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(73, 38)\\">
+    <g id=\\"lisc_wrap_left_1\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_1\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+            />
+    </g>
+</g>
+
+<g transform=\\"translate(54, 70)\\">
+    <g id=\\"lisc_wrap_left_2\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_2\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(54, 107)\\">
+    <g id=\\"lisc_wrap_left_3\\" class=\\"lisc_wrap\\">
+        <path 
+        id=\\"lisc_left_3\\"
+        class=\\"lisc_left\\"
+        d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(74, 140)\\">
+    <g id=\\"lisc_wrap_left_4\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_4\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(106, 158)\\">
+    <g id=\\"lisc_wrap_left_5\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_5\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<path 
+    id=\\"star_left\\"
+    d=\\"M 143.50195 96.275391 L 127.17969 128.98242 L 90.773438 134.27344 L 117.0918 159.77734 L 110.91406 195.75391 L 143.50195 178.80859 L 143.50195 96.275391 z\\"
+/>
+<path 
+    id=\\"star_right\\"
+    d=\\"m 169.66,159.777 26.069,-25.504 -36.06,-5.289 -16.167,-32.709 v 82.533 l 32.278,16.946 z\\"
+/>
+
+</svg>
+
+</body></html>",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "backgroundColor": "#ffffff",
+                      },
+                      Object {
+                        "backgroundColor": "transparent",
+                        "height": "100%",
+                        "width": "100%",
+                      },
+                    ]
+                  }
+                  useSharedProcessPool={true}
+                  useWebKit={false}
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "left": 72.46376811594203,
+                "marginTop": 29.776785714285715,
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Dystans
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 57,
+                    "textAlign": "left",
+                  }
+                }
+                testID="counter-distance"
+              >
+                10,00
+                <Text
+                  style={
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                   km
+                </Text>
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Czas jazdy
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 57,
+                    "textAlign": "left",
+                  }
+                }
+                testID="counter-time"
+              >
+                0:25
+                <Text
+                  style={
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                   h
+                </Text>
+              </Text>
+            </View>
+          </View>
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "marginTop": 47.642857142857146,
+                "textAlign": "center",
+              }
+            }
+          >
+            czas przerw  
+            <Text
+              style={
+                Object {
+                  "color": "#555555",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 23,
+                  "textAlign": "left",
+                }
+              }
+              testID="counter-pause"
+            >
+              0:05
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#555555",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 18,
+                  "textAlign": "left",
+                }
+              }
+            >
+               h
+            </Text>
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 96.77455357142858,
+                "marginHorizontal": 72.46376811594203,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginRight": 36.231884057971016,
+                  "marginTop": 62.53125000000001,
+                  "width": 284.4202898550725,
+                }
+              }
+            >
+              <RNGestureHandlerButton
+                collapsable={false}
+                onGestureEvent={[Function]}
+                onGestureHandlerEvent={[Function]}
+                onGestureHandlerStateChange={[Function]}
+                onHandlerStateChange={[Function]}
+                rippleColor={0}
+                testID="counter-cancel-btn"
+              >
+                <View
+                  accessible={true}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#fff",
+                      "borderColor": "#33555555",
+                      "borderRadius": 90.57971014492753,
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#313131",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 36.231884057971016,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    POWRÓT
+                  </Text>
+                </View>
+              </RNGestureHandlerButton>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginTop": 62.53125000000001,
+                  "width": 284.4202898550725,
+                }
+              }
+            >
+              <View>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                  testID="counter-submit-btn"
+                >
+                  <View
+                    accessible={true}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#d8232a",
+                        "borderRadius": 50,
+                        "display": "flex",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "white",
+                            "fontFamily": "DIN2014Narrow-Bold",
+                            "fontSize": 20,
+                            "textAlign": "center",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      UPUBLICZNIJ
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+    <Modal
+      animationType="slide"
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      presentationStyle="fullScreen"
+      statusBarTranslucent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "height": "100%",
+            "paddingBottom": 191.43973214285714,
+            "width": "100%",
+          }
+        }
+      >
+        <RCTScrollView>
+          <View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#d8232a",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 40,
+                    "left": 72.46376811594203,
+                    "paddingVertical": 7.444196428571429,
+                    "textAlign": "center",
+                    "width": 605.072463768116,
+                  },
+                  Object {
+                    "marginTop": 205.45982142857144,
+                  },
+                ]
+              }
+            >
+              Coś poszło nie tak!
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flex": 1,
+                  },
+                  Object {
+                    "marginTop": 44.66517857142858,
+                  },
+                ]
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={536.231884057971}
+                bbWidth={753.6231884057971}
+                focusable={false}
+                height={536.231884057971}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 536,
+                      "width": 753,
+                    },
+                  ]
+                }
+                vbHeight={296}
+                vbWidth={416}
+                width={753.6231884057971}
+              >
+                <RNSVGGroup>
+                  <View
+                    pointerEvents="none"
+                    style={
+                      Array [
+                        Object {
+                          "height": 536.231884057971,
+                        },
+                        Object {
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "transparent",
+                          "height": "100%",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                              "overflow": "hidden",
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        <RNCWebView
+                          cacheEnabled={true}
+                          injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+                          injectedJavaScriptForMainFrameOnly={true}
+                          javaScriptEnabled={true}
+                          messagingEnabled={false}
+                          onContentProcessDidTerminate={[Function]}
+                          onHttpError={[Function]}
+                          onLoadingError={[Function]}
+                          onLoadingFinish={[Function]}
+                          onLoadingProgress={[Function]}
+                          onLoadingStart={[Function]}
+                          onMessage={[Function]}
+                          onShouldStartLoadWithRequest={[Function]}
+                          scalesPageToFit={true}
+                          scrollEnabled={false}
+                          showsHorizontalScrollIndicator={false}
+                          showsVerticalScrollIndicator={false}
+                          source={
+                            Object {
+                              "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 416 296\\" width=\\"412\\" height=\\"296\\">
+        <path d=\\"M1.7 132.2c-4.3 31.4 11.5 45.6 47.6 42.5 54-4.6 52 113.4 147.6 84.4 34.6-10.5 51-100.1 110-95.7 88.3 6.7 60.6-110 108.1-82.6\\" stroke=\\"#D8232A\\" fill=\\"none\\" 
+        fill-rule=\\"evenodd\\" stroke-dasharray=\\"6 9\\" stroke-linecap=\\"round\\">
+            <animate attributeName=\\"stroke-dashoffset\\" dur=\\"100s\\" repeatCount=\\"indefinite\\" values=\\"0 ; -1000\\"/>
+        </path>
+    </svg></body></html>",
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "flex": 1,
+                                "overflow": "hidden",
+                              },
+                              Object {
+                                "backgroundColor": "#ffffff",
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                                "height": "100%",
+                                "width": "100%",
+                              },
+                            ]
+                          }
+                          useSharedProcessPool={true}
+                          useWebKit={false}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <RNSVGGroup>
+                    <RNSVGPath
+                      d="M202.7 0h10.6C292.1 0 356 66.3 356 148s-63.9 148-142.7 148h-10.6C123.9 296 60 229.7 60 148S123.9 0 202.7 0z"
+                      fill={4294344323}
+                      fillOpacity={0.2}
+                      propList={
+                        Array [
+                          "fill",
+                          "fillOpacity",
+                        ]
+                      }
+                    />
+                    <RNSVGPath
+                      d="m251.6 71 34.4 34.4L165.4 226 131 191.6z"
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                          "stroke",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4292354858}
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                    />
+                    <RNSVGPath
+                      d="m243 105-13-13m-13 39-13-13m-13 39-13-13m-13 39-13-13"
+                      propList={
+                        Array [
+                          "stroke",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4292354858}
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#414141",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 23,
+                  "left": 72.46376811594203,
+                  "marginTop": 29.776785714285715,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              Przejechany dystans jest 
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "DIN2014Narrow-Bold",
+                    "fontSize": 23,
+                  }
+                }
+              >
+                zbyt krótki
+              </Text>
+              .
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#414141",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 23,
+                  "left": 72.46376811594203,
+                  "marginTop": 29.776785714285715,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów).
+            </Text>
+          </View>
+        </RCTScrollView>
+        <View
+          style={
+            Object {
+              "bottom": 96.77455357142858,
+              "left": 72.46376811594203,
+              "position": "absolute",
+              "width": 605.072463768116,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "height": 50,
+                "marginTop": 44.66517857142858,
+              }
+            }
+          >
+            <RNGestureHandlerButton
+              collapsable={false}
+              onGestureEvent={[Function]}
+              onGestureHandlerEvent={[Function]}
+              onGestureHandlerStateChange={[Function]}
+              onHandlerStateChange={[Function]}
+              rippleColor={0}
+              testID="big-red-btn-for-short-route"
+            >
+              <View
+                accessible={true}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#d8232a",
+                    "borderRadius": 50,
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 20,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  ZAMKNIJ
+                </Text>
+              </View>
+            </RNGestureHandlerButton>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  </RCTSafeAreaView>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`Profile Screen Rendering Should render passed route data 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    >
+      <RCTScrollView
+        decelerationRate={0.1}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <Text
+            style={
+              Object {
+                "color": "#2cba3f",
+                "fontFamily": "DIN2014Narrow-Regular",
+                "fontSize": 40,
+                "left": 72.46376811594203,
+                "lineHeight": 52,
+                "marginTop": 133.99553571428572,
+                "textAlign": "center",
+                "width": 605.072463768116,
+              }
+            }
+          >
+             Test, brawo!
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "left": 72.46376811594203,
+                "letterSpacing": 0.5,
+                "lineHeight": 20,
+                "marginTop": 10.421875,
+                "textAlign": "center",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            Oszczędziłeś 0,5 l paliwa!
+          </Text>
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "height": 605.072463768116,
+                "left": 72.46376811594203,
+                "marginTop": 29.776785714285715,
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "height": "100%",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "overflow": "hidden",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <RNCWebView
+                  cacheEnabled={true}
+                  injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+                  injectedJavaScriptForMainFrameOnly={true}
+                  javaScriptEnabled={true}
+                  messagingEnabled={false}
+                  onContentProcessDidTerminate={[Function]}
+                  onHttpError={[Function]}
+                  onLoadingError={[Function]}
+                  onLoadingFinish={[Function]}
+                  onLoadingProgress={[Function]}
+                  onLoadingStart={[Function]}
+                  onMessage={[Function]}
+                  onShouldStartLoadWithRequest={[Function]}
+                  scalesPageToFit={true}
+                  scrollEnabled={false}
+                  showsHorizontalScrollIndicator={false}
+                  showsVerticalScrollIndicator={false}
+                  source={
+                    Object {
+                      "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    color: #000;
+}
+
+#origin_svg {
+    position: absolute;
+    width: 100%;
+    opacity: .1;
+}
+
+svg {
+    background-color: #fff;
+}
+
+#back_circle {
+    fill: #fdf5f5;
+    stroke: none;
+}
+
+@keyframes lodyga_righ {
+    0% {
+        transform: rotate(149deg)
+    }
+    16.666666666% {
+        transform: rotate(149deg)
+    }
+    100% {
+        transform: rotate(5deg)
+    }
+}
+
+.lodyga_righ {
+    fill: none;
+    stroke: #2cba3f;
+    stroke-width: 14.01257324;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    transform-origin: 143px 147.83545px;
+    animation: lodyga_righ 6s cubic-bezier(.12, .04, .49, 1.01) forwards 1;
+}
+
+@keyframes lodyga_left {
+    0% {
+        transform: rotate(-149deg)
+    }
+    16.6666666666666% {
+        transform: rotate(-149deg)
+    }
+    100% {
+        transform: rotate(-5deg)
+    }
+}
+
+.lodyga_left {
+    fill: none;
+    stroke: #76ce5a;
+    stroke-width: 14.01257324;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    transform-origin: 143px 147.83545px;
+    animation: lodyga_left 6s cubic-bezier(.12, .04, .49, 1.01) forwards 1;
+}
+
+.lisc_wrap {
+    transform-origin: 19px 60px;
+}
+
+.lisc_right {
+    fill: #2cba3f;
+    fill-rule: nonzero;
+    transform-origin: 19px 60px;
+    transform: scale(0);
+}
+
+#lisc_wrap_right_1 {
+    transform: rotate(-10deg);
+}
+
+#lisc_wrap_right_2 {
+    transform: rotate(20deg);
+}
+
+#lisc_wrap_right_3 {
+    transform: rotate(50deg);
+}
+
+#lisc_wrap_right_4 {
+    transform: rotate(80deg);
+}
+
+#lisc_wrap_right_5 {
+    transform: rotate(110deg);
+    /* animation: lisc_5 3.2s linear forwards 1; */
+}
+
+.lisc_left {
+    fill: #76ce5a;
+    fill-rule: nonzero;
+    transform-origin: 19px 60px;
+    transform: scale(0);
+}
+
+#lisc_wrap_left_1 {
+    transform: rotate(10deg);
+}
+
+#lisc_wrap_left_2 {
+    transform: rotate(-20deg);
+}
+
+#lisc_wrap_left_3 {
+    transform: rotate(-50deg);
+}
+
+#lisc_wrap_left_4 {
+    transform: rotate(-80deg);
+}
+
+#lisc_wrap_left_5 {
+    transform: rotate(-110deg);
+    /* animation: lisc_5 3.2s linear forwards 1; */
+}
+
+@keyframes lisc_right {
+    0% {
+        transform: rotate(15deg) scale(0)
+    }
+    5% {
+        transform: rotate(0deg) scale(.10)
+    }
+    15% {
+        transform: rotate(12deg) scale(.2)
+    }
+    25% {
+        transform: rotate(0deg) scale(.3)
+    }
+    35% {
+        transform: rotate(10deg) scale(.4)
+    }
+    45% {
+        transform: rotate(0deg) scale(.5)
+    }
+    55% {
+        transform: rotate(7deg) scale(.6)
+    }
+    65% {
+        transform: rotate(0deg) scale(.7)
+    }
+    75% {
+        transform: rotate(4deg) scale(.8)
+    }
+    85% {
+        transform: rotate(0deg) scale(.9)
+    }
+    95% {
+        transform: rotate(2deg) scale(.95)
+    }
+    100% {
+        transform: rotate(0deg) scale(1)
+    }
+}
+
+#lisc_right_1 {
+    animation: lisc_right 2.4s 5.0s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_2 {
+    animation: lisc_right 2.8s 3.6s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_3 {
+    animation: lisc_right 3.2s 2.8s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_4 {
+    animation: lisc_right 3.6s 2.1s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_right_5 {
+    animation: lisc_right 4s 1.4s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes lisc_left {
+    0% {
+        transform: rotate(-15deg) scale(0)
+    }
+    5% {
+        transform: rotate(0deg) scale(.10)
+    }
+    15% {
+        transform: rotate(-12deg) scale(.2)
+    }
+    25% {
+        transform: rotate(0deg) scale(.3)
+    }
+    35% {
+        transform: rotate(-10deg) scale(.4)
+    }
+    45% {
+        transform: rotate(0deg) scale(.5)
+    }
+    55% {
+        transform: rotate(-7deg) scale(.6)
+    }
+    65% {
+        transform: rotate(0deg) scale(.7)
+    }
+    75% {
+        transform: rotate(-4deg) scale(.8)
+    }
+    85% {
+        transform: rotate(0deg) scale(.9)
+    }
+    95% {
+        transform: rotate(-2deg) scale(.95)
+    }
+    100% {
+        transform: rotate(0deg) scale(1)
+    }
+}
+
+#lisc_left_1 {
+    animation: lisc_left 2.4s 5.0s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_2 {
+    animation: lisc_left 2.8s 3.6s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_3 {
+    animation: lisc_left 3.2s 2.8s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_4 {
+    animation: lisc_left 3.6s 2.1s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#lisc_left_5 {
+    animation: lisc_left 4s 1.4s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes star_left {
+    0% {
+        fill: #ecd9b6;
+        opacity: .1;
+    }
+    6% {
+        fill: #ffeecd;
+        opacity: .2;
+    }
+    12% {
+        fill: #ecd9b6;
+        opacity: .3;
+    }
+    19% {
+        fill: #ffeecd;
+        opacity: .4;
+    }
+    30% {
+        fill: #ecd9b6;
+        opacity: .55;
+    }
+    40% {
+        fill: #ffeecd;
+        opacity: .7;
+    }
+    50% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    60% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    75% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    100% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+}
+
+#star_left {
+    opacity: 0;
+    fill: #ffeecd;
+    animation: star_left 4s 0.3s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+@keyframes star_right {
+    0% {
+        fill: #ffeecd;
+        opacity: .1;
+    }
+    6% {
+        fill: #ecd9b6;
+        opacity: .2;
+    }
+    12% {
+        fill: #ffeecd;
+        opacity: .3;
+    }
+    19% {
+        fill: #ecd9b6;
+        opacity: .4;
+    }
+    30% {
+        fill: #ffeecd;
+        opacity: .55;
+    }
+    40% {
+        fill: #ecd9b6;
+        opacity: .7;
+    }
+    50% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    60% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+    75% {
+        fill: #ffeecd;
+        opacity: 1;
+    }
+    100% {
+        fill: #ecd9b6;
+        opacity: 1;
+    }
+}
+
+#star_right {
+    opacity: 0;
+    fill: #ecd9b6;
+    animation: star_right 4s 0.3s cubic-bezier(.21, -0.01, .82, .99) forwards 1;
+}
+
+#mark_1 {
+    width: 5px;
+    height: 5px;
+    opacity: .5;
+    fill: blueviolet;
+    x: 19px;
+    y: 60px;
+}
+</style>
+
+<svg viewBox=\\"0 0 286 286\\">
+<defs>
+    <clipPath id=\\"clip_right\\">
+        <rect x=\\"143\\" y=\\"0\\" width=\\"143\\" height=\\"286\\" />
+    </clipPath>
+    <clipPath id=\\"clip_left\\">
+        <rect x=\\"0\\" y=\\"0\\" width=\\"143.1\\" height=\\"286\\" />
+    </clipPath>
+</defs>
+<circle id=\\"back_circle\\" cx=\\"143\\" cy=\\"143\\" r=\\"143\\"/>
+
+<g
+    clip-path=\\"url(#clip_right)\\"
+>
+    <path 
+        id=\\"lodyga_righ\\"
+        class=\\"lodyga_righ\\"
+        transform=\\"rotate(141)\\"
+        d=\\"m 143.15039,225.02539 c 42.57748,-0.20363 77.0311,-34.77901 77.03125,-77.4043 C 220.17122,122.33841 208.03214,99.8739 189.25,85.75\\"
+        >
+    </path>
+</g>
+<g
+    clip-path=\\"url(#clip_left)\\"
+>
+    <path 
+        id=\\"lodyga_left\\"
+        class=\\"lodyga_left\\"
+        transform=\\"rotate(-5)\\"
+        d=\\"M 142.84961,225.02539 C 100.27213,224.82176 65.818513,190.24638 65.818363,147.62109 65.828763,122.33841 77.967863,99.8739 96.750003,85.75\\"
+        >
+    </path>
+</g>
+
+<g transform=\\"translate(176, 38)\\">
+    <g id=\\"lisc_wrap_right_1\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_1\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+            />
+    </g>
+</g>
+
+<g transform=\\"translate(195, 70)\\">
+    <g id=\\"lisc_wrap_right_2\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_2\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(194, 107)\\">
+    <g id=\\"lisc_wrap_right_3\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_3\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(174, 140)\\">
+    <g id=\\"lisc_wrap_right_4\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_4\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(142, 158)\\">
+    <g id=\\"lisc_wrap_right_5\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_right_5\\"
+            class=\\"lisc_right\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(73, 38)\\">
+    <g id=\\"lisc_wrap_left_1\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_1\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+            />
+    </g>
+</g>
+
+<g transform=\\"translate(54, 70)\\">
+    <g id=\\"lisc_wrap_left_2\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_2\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(54, 107)\\">
+    <g id=\\"lisc_wrap_left_3\\" class=\\"lisc_wrap\\">
+        <path 
+        id=\\"lisc_left_3\\"
+        class=\\"lisc_left\\"
+        d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(74, 140)\\">
+    <g id=\\"lisc_wrap_left_4\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_4\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<g transform=\\"translate(106, 158)\\">
+    <g id=\\"lisc_wrap_left_5\\" class=\\"lisc_wrap\\">
+        <path 
+            id=\\"lisc_left_5\\"
+            class=\\"lisc_left\\"
+            d=\\"M 17.577768,0 6.4662375,13.04815 c -4.15683,4.88174 -6.40103009,10.94286 -6.45088009,17.27993 -0.033,1.02037 -0.014,2.04822 0.0685,3.08087 0.5741801,7.20084 3.91638009,13.74668 9.41317009,18.43194 L 19.324968,60.217 30.436498,47.16885 c 4.16408,-4.89026 6.40887,-10.96457 6.45112,-17.31365 0.0314,-1.00939 0.0129,-2.02578 -0.0687,-3.04715 -0.57418,-7.20085 -3.91638,-13.7467 -9.41317,-18.43196 z\\"
+        />
+    </g>
+</g>
+
+<path 
+    id=\\"star_left\\"
+    d=\\"M 143.50195 96.275391 L 127.17969 128.98242 L 90.773438 134.27344 L 117.0918 159.77734 L 110.91406 195.75391 L 143.50195 178.80859 L 143.50195 96.275391 z\\"
+/>
+<path 
+    id=\\"star_right\\"
+    d=\\"m 169.66,159.777 26.069,-25.504 -36.06,-5.289 -16.167,-32.709 v 82.533 l 32.278,16.946 z\\"
+/>
+
+</svg>
+
+</body></html>",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                        "overflow": "hidden",
+                      },
+                      Object {
+                        "backgroundColor": "#ffffff",
+                      },
+                      Object {
+                        "backgroundColor": "transparent",
+                        "height": "100%",
+                        "width": "100%",
+                      },
+                    ]
+                  }
+                  useSharedProcessPool={true}
+                  useWebKit={false}
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "left": 72.46376811594203,
+                "marginTop": 29.776785714285715,
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Dystans
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 57,
+                    "textAlign": "left",
+                  }
+                }
+                testID="counter-distance"
+              >
+                10,00
+                <Text
+                  style={
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                   km
+                </Text>
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "lineHeight": 22,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Czas jazdy
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 57,
+                    "textAlign": "left",
+                  }
+                }
+                testID="counter-time"
+              >
+                0:25
+                <Text
+                  style={
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "left",
+                    }
+                  }
+                >
+                   h
+                </Text>
+              </Text>
+            </View>
+          </View>
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "marginTop": 47.642857142857146,
+                "textAlign": "center",
+              }
+            }
+          >
+            czas przerw  
+            <Text
+              style={
+                Object {
+                  "color": "#555555",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 23,
+                  "textAlign": "left",
+                }
+              }
+              testID="counter-pause"
+            >
+              0:05
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#555555",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 18,
+                  "textAlign": "left",
+                }
+              }
+            >
+               h
+            </Text>
+          </Text>
+          <View
+            style={
+              Object {
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginBottom": 96.77455357142858,
+                "marginHorizontal": 72.46376811594203,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginRight": 36.231884057971016,
+                  "marginTop": 62.53125000000001,
+                  "width": 284.4202898550725,
+                }
+              }
+            >
+              <RNGestureHandlerButton
+                collapsable={false}
+                onGestureEvent={[Function]}
+                onGestureHandlerEvent={[Function]}
+                onGestureHandlerStateChange={[Function]}
+                onHandlerStateChange={[Function]}
+                rippleColor={0}
+                testID="counter-cancel-btn"
+              >
+                <View
+                  accessible={true}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#fff",
+                      "borderColor": "#33555555",
+                      "borderRadius": 90.57971014492753,
+                      "borderWidth": 1,
+                      "display": "flex",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#313131",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 36.231884057971016,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    POWRÓT
+                  </Text>
+                </View>
+              </RNGestureHandlerButton>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginTop": 62.53125000000001,
+                  "width": 284.4202898550725,
+                }
+              }
+            >
+              <View>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                  testID="counter-submit-btn"
+                >
+                  <View
+                    accessible={true}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#d8232a",
+                        "borderRadius": 50,
+                        "display": "flex",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "white",
+                            "fontFamily": "DIN2014Narrow-Bold",
+                            "fontSize": 20,
+                            "textAlign": "center",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      UPUBLICZNIJ
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+    <Modal
+      animationType="slide"
+      hardwareAccelerated={false}
+      onRequestClose={[Function]}
+      presentationStyle="fullScreen"
+      statusBarTranslucent={true}
+      visible={false}
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+            "height": "100%",
+            "paddingBottom": 191.43973214285714,
+            "width": "100%",
+          }
+        }
+      >
+        <RCTScrollView>
+          <View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#d8232a",
+                    "fontFamily": "DIN2014Narrow-Regular",
+                    "fontSize": 40,
+                    "left": 72.46376811594203,
+                    "paddingVertical": 7.444196428571429,
+                    "textAlign": "center",
+                    "width": 605.072463768116,
+                  },
+                  Object {
+                    "marginTop": 205.45982142857144,
+                  },
+                ]
+              }
+            >
+              Coś poszło nie tak!
+            </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flex": 1,
+                  },
+                  Object {
+                    "marginTop": 44.66517857142858,
+                  },
+                ]
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={536.231884057971}
+                bbWidth={753.6231884057971}
+                focusable={false}
+                height={536.231884057971}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 536,
+                      "width": 753,
+                    },
+                  ]
+                }
+                vbHeight={296}
+                vbWidth={416}
+                width={753.6231884057971}
+              >
+                <RNSVGGroup>
+                  <View
+                    pointerEvents="none"
+                    style={
+                      Array [
+                        Object {
+                          "height": 536.231884057971,
+                        },
+                        Object {
+                          "width": undefined,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "transparent",
+                          "height": "100%",
+                          "width": "100%",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "flex": 1,
+                              "overflow": "hidden",
+                            },
+                            undefined,
+                          ]
+                        }
+                      >
+                        <RNCWebView
+                          cacheEnabled={true}
+                          injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+                          injectedJavaScriptForMainFrameOnly={true}
+                          javaScriptEnabled={true}
+                          messagingEnabled={false}
+                          onContentProcessDidTerminate={[Function]}
+                          onHttpError={[Function]}
+                          onLoadingError={[Function]}
+                          onLoadingFinish={[Function]}
+                          onLoadingProgress={[Function]}
+                          onLoadingStart={[Function]}
+                          onMessage={[Function]}
+                          onShouldStartLoadWithRequest={[Function]}
+                          scalesPageToFit={true}
+                          scrollEnabled={false}
+                          showsHorizontalScrollIndicator={false}
+                          showsVerticalScrollIndicator={false}
+                          source={
+                            Object {
+                              "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 416 296\\" width=\\"412\\" height=\\"296\\">
+        <path d=\\"M1.7 132.2c-4.3 31.4 11.5 45.6 47.6 42.5 54-4.6 52 113.4 147.6 84.4 34.6-10.5 51-100.1 110-95.7 88.3 6.7 60.6-110 108.1-82.6\\" stroke=\\"#D8232A\\" fill=\\"none\\" 
+        fill-rule=\\"evenodd\\" stroke-dasharray=\\"6 9\\" stroke-linecap=\\"round\\">
+            <animate attributeName=\\"stroke-dashoffset\\" dur=\\"100s\\" repeatCount=\\"indefinite\\" values=\\"0 ; -1000\\"/>
+        </path>
+    </svg></body></html>",
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "flex": 1,
+                                "overflow": "hidden",
+                              },
+                              Object {
+                                "backgroundColor": "#ffffff",
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                                "height": "100%",
+                                "width": "100%",
+                              },
+                            ]
+                          }
+                          useSharedProcessPool={true}
+                          useWebKit={false}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                  <RNSVGGroup>
+                    <RNSVGPath
+                      d="M202.7 0h10.6C292.1 0 356 66.3 356 148s-63.9 148-142.7 148h-10.6C123.9 296 60 229.7 60 148S123.9 0 202.7 0z"
+                      fill={4294344323}
+                      fillOpacity={0.2}
+                      propList={
+                        Array [
+                          "fill",
+                          "fillOpacity",
+                        ]
+                      }
+                    />
+                    <RNSVGPath
+                      d="m251.6 71 34.4 34.4L165.4 226 131 191.6z"
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                          "stroke",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4292354858}
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                    />
+                    <RNSVGPath
+                      d="m243 105-13-13m-13 39-13-13m-13 39-13-13m-13 39-13-13"
+                      propList={
+                        Array [
+                          "stroke",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4292354858}
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                    />
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+            <Text
+              style={
+                Object {
+                  "color": "#414141",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 23,
+                  "left": 72.46376811594203,
+                  "marginTop": 29.776785714285715,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              Przejechany dystans jest 
+              <Text
+                style={
+                  Object {
+                    "fontFamily": "DIN2014Narrow-Bold",
+                    "fontSize": 23,
+                  }
+                }
+              >
+                zbyt krótki
+              </Text>
+              .
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#414141",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 23,
+                  "left": 72.46376811594203,
+                  "marginTop": 29.776785714285715,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów).
+            </Text>
+          </View>
+        </RCTScrollView>
+        <View
+          style={
+            Object {
+              "bottom": 96.77455357142858,
+              "left": 72.46376811594203,
+              "position": "absolute",
+              "width": 605.072463768116,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "height": 50,
+                "marginTop": 44.66517857142858,
+              }
+            }
+          >
+            <RNGestureHandlerButton
+              collapsable={false}
+              onGestureEvent={[Function]}
+              onGestureHandlerEvent={[Function]}
+              onGestureHandlerStateChange={[Function]}
+              onHandlerStateChange={[Function]}
+              rippleColor={0}
+              testID="big-red-btn-for-short-route"
+            >
+              <View
+                accessible={true}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#d8232a",
+                    "borderRadius": 50,
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 20,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  ZAMKNIJ
+                </Text>
+              </View>
+            </RNGestureHandlerButton>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  </RCTSafeAreaView>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;

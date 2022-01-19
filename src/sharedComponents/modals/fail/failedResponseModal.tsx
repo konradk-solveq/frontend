@@ -13,9 +13,9 @@ import {
     getHorizontalPx,
     getVerticalPx,
     mainButtonsHeight,
-} from '../../../helpers/layoutFoo';
-import useStatusBarHeight from '../../../hooks/statusBarHeight';
-import {BigRedBtn} from '../../../sharedComponents/buttons';
+} from '@helpers/layoutFoo';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {BigRedBtn} from '@sharedComponents/buttons';
 import ImgSvg from './imgSvg';
 
 const isAndroid = Platform.OS === 'android';
@@ -24,18 +24,21 @@ interface IProps {
     showModal: boolean;
     errorMessage: string;
     onClose: () => void;
+    testID?: string;
 }
 
 const FailedResponseModal: React.FC<IProps> = ({
     showModal,
     errorMessage,
     onClose,
+    testID,
 }: IProps) => {
     const trans: any = I18n.t('PublishThankYouPage');
     const statusBarHeight = useStatusBarHeight();
 
     return (
         <Modal
+            testID={testID || 'failed-response-modal'}
             animationType="slide"
             visible={showModal}
             presentationStyle="fullScreen"
@@ -62,7 +65,11 @@ const FailedResponseModal: React.FC<IProps> = ({
                         <ImgSvg />
 
                         <View style={styles.contentWrapper}>
-                            <Text style={styles.content}>{errorMessage}</Text>
+                            <Text
+                                style={styles.content}
+                                testID={`${testID}Message`}>
+                                {errorMessage}
+                            </Text>
                         </View>
 
                         <View style={styles.buttonsWrapper}>

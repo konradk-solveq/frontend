@@ -37,7 +37,7 @@ const TopNotificationProvider: React.FC<IProps> = ({children}: IProps) => {
                 notificationContennt: notificationContent,
                 setNotificationVisibility: onSetNotificationHandler,
             }}>
-            {children}
+            {children && children}
             <TopNotification
                 content={notificationContent}
                 onHideNotification={onHideNotificationHandler}

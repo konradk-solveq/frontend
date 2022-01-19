@@ -110,7 +110,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
         }
         navigation.reset({
             index: 0,
-            routes: [{name: BothStackRoute.MAIN_MENU_SCREEN}],
+            routes: [{name: BothStackRoute.TAB_MENU_SCREEN}],
         });
     };
 

@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
-    SafeAreaView,
-    View,
-    ScrollView,
-    Platform,
     Dimensions,
+    Platform,
+    SafeAreaView,
+    ScrollView,
     StyleSheet,
+    View,
 } from 'react-native';
-import {useNavigation, useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 import KroosLogo from '@sharedComponents/svg/krossLogo';
 import {trackerActiveSelector} from '@storage/selectors/routes';
@@ -32,17 +32,16 @@ import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 import {getVerticalPx} from '@src/helpers/layoutFoo';
 import {isIOS} from '@utils/platform';
-import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
+import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
     const trans: any = I18n.t('MainHome');
     const mountedRef = useRef(false);
-
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
     const syncStatus = useAppSelector(syncAppSelector);
@@ -106,7 +105,6 @@ const Home: React.FC = () => {
         return <Loader />;
     }
 
-    const scrollTop = getVerticalPx(100) - 0;
     const styles = StyleSheet.create({
         container: {
             justifyContent: 'space-between',
@@ -164,13 +162,6 @@ const Home: React.FC = () => {
                                 style={styles.tileSpace}
                                 onPress={onAddActionHandler}
                             />
-                            {/* <Tile
-                            title={trans.firstTitle}
-                            description={trans.firstText}
-                            btnText={trans.firstBtn}
-                            style={styles.tileSpace}
-                            onPress={onCheckActionHandler}
-                        /> */}
                         </View>
                     </View>
                 </ScrollView>

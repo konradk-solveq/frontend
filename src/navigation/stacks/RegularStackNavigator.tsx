@@ -1,183 +1,90 @@
-import React from 'react';
-import {Stack} from './../stack';
-import {horizontalAnim} from '../../helpers/positioning';
-import {useAppSelector} from '../../hooks/redux';
-import {trackerActiveSelector} from '../../storage/selectors';
+import React, {useEffect, useMemo, useRef} from 'react';
+import {Stack} from '@navigation/stack';
 
-import SplashScreen from '../../pages/main/splashScreen/splashScreen';
-import newRegulations from '../../pages/main/newRegulations/newRegulations';
-import NewAppVersion from '../../pages/main/newAppVersion/newAppVersion';
-import ListPageInput from '../../sharedComponents/inputs/listPageInput';
-import InputPage from '../../sharedComponents/inputs/inputPage';
-import MineMenu from '../../pages/main/mainMenu';
+import {
+    AuthParamsListT,
+    GeneralParamsListT,
+    RootStackType,
+} from '@type/rootStack';
+import {trackerActiveSelector} from '@storage/selectors';
+import {useAppSelector} from '@hooks/redux';
 
-import AddingByNumber from '../../pages/onboarding/bikeAdding/addingByNumber/addingByNumber';
-import TurtorialNFC from '../../pages/onboarding/bikeAdding/turtorialNFC/turtorialNFC';
-import AddingInfo from '../../pages/onboarding/bikeAdding/info/info';
-import BikeData from '../../pages/onboarding/bikeData/bikeData';
-import BikeSummary from '../../pages/onboarding/bikeSummary/bikeSummary';
-import ServicesMap from '../../pages/main/bike/servicesMap/servicesMap';
-import AboutApp from '../../pages/main/profile/aboutApp/aboutApp';
-import ReviewsDetails from '../../pages/main/bike/reviewsDetails/reviewsDetails';
-import NameChange from '../../pages/main/profile/nameChange/nameChange';
-import Counter from '../../pages/main/recording/counter/counter';
-import FeaturedRoutesScreen from '@pages/main/world/featuredRoutes/FeaturedRoutesScreen';
-import RouteDetails from '../../pages/main/world/routeDetails/routeDetails';
-import CounterThankYouPage from '../../pages/main/recording/counterThankYouPage/counterThankYouPage';
-import EditDetails from '../../pages/main/world/editDetails/editDetails';
-import MapPreview from '../../pages/main/world/routeDetails/mapPreview/mapPreview';
-import Regulations from '../../pages/onboarding/permitsDeclarations/regulations';
-import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
-import Help from '../../pages//main/profile/help/help';
-import Contact from '../../pages//main/profile/contact/contact';
-import RoutesMap from '../../pages/main/world/routesMap/routesMap';
-import ShortRouteScreen from '@pages/main/recording/shortRouteScreen/ShortRouteScreen';
+import {horizontalAnim} from '@helpers/positioning';
+import {
+    BikePrivateScreens,
+    KrossWorldCommonScreens,
+    ProfileCommonScreens,
+    RecordRouteCommonScreens,
+} from '@navigation/screens/index';
 
-import {RegularStackRoute, BothStackRoute} from '../route';
-import {verticalAnim} from '@src/helpers/positioningVerical';
+import TabMenu from '@pages/main/tabMenu';
+import SplashScreen from '@pages/main/splashScreen/splashScreen';
+import newRegulations from '@pages/main/newRegulations/newRegulations';
+import NewAppVersion from '@pages/main/newAppVersion/newAppVersion';
+import useAuthorization from '@src/hooks/useAuthorization';
+
+const timeout = 2500;
+
+const RegularScreens = () => (
+    <>
+        <Stack.Screen name="TabMenu" component={TabMenu} />
+        <Stack.Screen name="NewRegulations" component={newRegulations} />
+        <Stack.Screen name="NewAppVersion" component={NewAppVersion} />
+        {BikePrivateScreens()}
+        {KrossWorldCommonScreens()}
+        {RecordRouteCommonScreens()}
+        {ProfileCommonScreens()}
+    </>
+);
 
 const RegularStackNavigator: React.FC = () => {
     const isActive = useAppSelector(trackerActiveSelector);
+    const initialRun = useRef(true);
+
+    useAuthorization();
+
+    useEffect(() => {
+        // TODO: fix the issue with showing SplashScreen after user has logged in
+        const t = setTimeout(() => (initialRun.current = false), timeout);
+
+        return () => {
+            initialRun.current = true;
+            clearTimeout(t);
+        };
+    }, []);
+
+    const regularInitialRouteName = useMemo<keyof RootStackType>(
+        () => (!initialRun.current ? 'TabMenu' : 'SplashScreen'),
+        [],
+    );
+
+    const initInitialRouteName = useMemo<keyof RootStackType>(
+        () => (!isActive ? regularInitialRouteName : 'TabMenu'),
+        [isActive, regularInitialRouteName],
+    );
+
+    const screenToRedirectFromSplashScreen = useMemo<
+        keyof GeneralParamsListT | keyof AuthParamsListT
+    >(() => 'TabMenu', []);
+
+    const StackScreens = useMemo(() => RegularScreens(), []);
 
     return (
         <Stack.Navigator
             headerMode="none"
-            initialRouteName={
-                !isActive
-                    ? RegularStackRoute.SPLASH_SCREEN
-                    : BothStackRoute.MAIN_MENU_SCREEN
-            }
+            initialRouteName={initInitialRouteName}
             mode="modal"
             screenOptions={horizontalAnim}>
-            <Stack.Screen
-                name={RegularStackRoute.SPLASH_SCREEN}
-                component={SplashScreen}
-            />
-            <Stack.Screen
-                name={BothStackRoute.MAIN_MENU_SCREEN}
-                component={MineMenu}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.NEW_REGULATIONS_SCREEN}
-                component={newRegulations}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.NEW_APP_VERSION_SCREEN}
-                component={NewAppVersion}
-            />
-
-            {/* Start add bike */}
-            <Stack.Screen
-                name={BothStackRoute.TURTORIAL_NFC_SCREEN}
-                component={TurtorialNFC}
-            />
-            <Stack.Screen
-                name={BothStackRoute.ADDING_BY_NUMBER_SCREEN}
-                component={AddingByNumber}
-            />
-            <Stack.Screen
-                name={BothStackRoute.BIKE_DATA_SCREEN}
-                component={BikeData}
-            />
-            <Stack.Screen
-                name={BothStackRoute.BIKE_SUMMARY_SCREEN}
-                component={BikeSummary}
-            />
-            <Stack.Screen
-                name={BothStackRoute.ADDING_INFO_SCREEN}
-                component={AddingInfo}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.SERVICES_MAP_SCREEN}
-                component={ServicesMap}
-                options={{gestureEnabled: false}}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.REVIEWS_DETAILS_SCREEN}
-                component={ReviewsDetails}
-            />
-            <Stack.Screen
-                name={BothStackRoute.LIST_PAGE_INPUT_SCREEN}
-                component={ListPageInput}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.COUNTER_SCREEN}
-                component={Counter}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN}
-                component={CounterThankYouPage}
-                options={{gestureEnabled: false}}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.SHORT_ROUTE_SCREEN}
-                component={ShortRouteScreen}
-                options={{
-                    ...verticalAnim,
-                }}
-            />
-            {/* End add bike */}
-
-            {/* START KROSS WORLD */}
-            <Stack.Screen
-                name={RegularStackRoute.FEATURED_ROUTES_SCRREN}
-                component={FeaturedRoutesScreen}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.ROUTE_DETAILS_SCREEN}
-                component={RouteDetails}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.MAP_PREVIEW_SCREEN}
-                component={MapPreview}
-                options={{gestureEnabled: false}}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.EDIT_DETAILS_SCREEN}
-                component={EditDetails}
-                options={{gestureEnabled: false}}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.ROUTES_MAP_SCREEN}
-                component={RoutesMap}
-                options={{
-                    ...verticalAnim,
-                }}
-            />
-            {/* END KROSS WORLD */}
-
-            {/* START KROSS PROFILE */}
-            <Stack.Screen
-                name={RegularStackRoute.NAME_CHANGE_SCREEN}
-                component={NameChange}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.ABOUT_APP_SCREEN}
-                component={AboutApp}
-            />
-            <Stack.Screen
-                name={BothStackRoute.REGULATIONS_SCREEN}
-                component={Regulations}
-            />
-            <Stack.Screen
-                name={BothStackRoute.PRIVACY_POLICY_SCREEN}
-                component={PrivacyPolicy}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.HELP_SCREEN}
-                component={Help}
-            />
-            <Stack.Screen
-                name={RegularStackRoute.CONTACT_SCREEN}
-                component={Contact}
-            />
-            {/* END KROSS PROFILE */}
-
-            {/* univesal/generic pages */}
-            <Stack.Screen
-                name={BothStackRoute.INPUT_PAGE_SCREEN}
-                component={InputPage}
-            />
+            {!initialRun.current ? null : (
+                <Stack.Screen
+                    name="SplashScreen"
+                    component={SplashScreen}
+                    initialParams={{
+                        redirectToScreen: screenToRedirectFromSplashScreen,
+                    }}
+                />
+            )}
+            {StackScreens}
         </Stack.Navigator>
     );
 };

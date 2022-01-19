@@ -9,8 +9,6 @@ import {
     getVerticalPx,
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
-import {getAppLayoutConfig as get} from '@helpers/appLayoutConfig';
-import {isIOS} from '@utils/platform';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const backGround = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 332">

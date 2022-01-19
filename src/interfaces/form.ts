@@ -18,6 +18,15 @@ export type MapFormDataResult = {
     tags?: string[];
 };
 
+export type LoginFormDataResult = {
+    email: string;
+    password: string;
+};
+
+export type ConsentsFormDataResult = {
+    [key: string]: boolean;
+};
+
 export type SelectOptionType = {
     enumValue: string;
     i18nValue: string;

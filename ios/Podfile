@@ -1,7 +1,8 @@
+require File.join(File.dirname(`node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+platform :ios, '12.0'
 
 project 'myKROSS',
         'Dev.Debug' => :debug,
@@ -14,6 +15,7 @@ project 'myKROSS',
         'Prod.Release' => :release
 
 target 'myKROSS' do
+  use_expo_modules!
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => rn_maps_path
 
@@ -41,7 +43,7 @@ target 'myKROSS' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  use_flipper!({'Flipper' => '0.109.0', 'Flipper-Folly' => '2.6.7', 'Flipper-RSocket' => '1.4.3', 'Flipper-DoubleConversion' => '3.1.7', 'Flipper-Glog' => '0.3.9', 'Flipper-PeerTalk' => '0.0.4'})
+  use_flipper!({'Flipper' => '0.109.0'})
 
   ENVFILES = {
     'Dev.Debug' => '${PODS_ROOT}/../../.env.development',
@@ -56,6 +58,7 @@ target 'myKROSS' do
 
   post_install do |installer|
     react_native_post_install(installer)
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
     flipper_post_install(installer)
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|

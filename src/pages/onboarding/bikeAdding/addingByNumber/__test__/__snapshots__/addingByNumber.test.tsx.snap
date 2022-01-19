@@ -1,0 +1,1305 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddingByNumber Screen /> When enter bike number can go to the next screen 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <RCTScrollView
+      keyboardShouldPersistTaps="always"
+      style={
+        Object {
+          "height": 1185.1160714285716,
+          "position": "absolute",
+          "top": 148.88392857142858,
+          "width": "100%",
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "height": 1334,
+              "minHeight": 851.1370988612837,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 30,
+                "left": 72.46376811594203,
+                "lineHeight": 38,
+                "position": "absolute",
+                "textAlign": "left",
+                "top": "4.241%",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            Podaj numer ramy Twojego roweru.
+          </Text>
+          <View
+            style={
+              Object {
+                "height": 133.99553571428572,
+                "left": 72.46376811594203,
+                "position": "absolute",
+                "top": "28.013%",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Numer ramy
+              </Text>
+              <View>
+                <TextInput
+                  maxLength={20}
+                  onChangeText={[Function]}
+                  style={
+                    Object {
+                      "borderColor": "#80555555",
+                      "borderRadius": 90.57971014492753,
+                      "borderWidth": 1,
+                      "color": "black",
+                      "display": "flex",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 20,
+                      "height": 90.57971014492753,
+                      "justifyContent": "center",
+                      "marginTop": 10.869565217391305,
+                      "paddingBottom": 18.115942028985508,
+                      "paddingLeft": 54.34782608695652,
+                      "paddingRight": 54.34782608695652,
+                      "paddingTop": 18.115942028985508,
+                      "textAlign": "left",
+                      "width": "100%",
+                    }
+                  }
+                  testID="frame-number-input"
+                  value=""
+                />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "#d8232a",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "height": 41.66666666666667,
+                    "marginTop": 10.869565217391305,
+                    "position": "relative",
+                    "textAlign": "left",
+                  }
+                }
+              >
+                
+              </Text>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "display": "flex",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 52.53623188405797,
+                    "marginTop": 3,
+                    "position": "relative",
+                    "width": 605.072463768116,
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                nativeID="animatedComponent"
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#3587ea",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "right",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  Gdzie znajdę numer ramy?
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "bottom": 245.65848214285717,
+                "height": 50,
+                "left": 72.46376811594203,
+                "position": "absolute",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <RNGestureHandlerButton
+              collapsable={false}
+              onGestureEvent={[Function]}
+              onGestureHandlerEvent={[Function]}
+              onGestureHandlerStateChange={[Function]}
+              onHandlerStateChange={[Function]}
+              rippleColor={0}
+              testID="adding-by-number-next-btn"
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                nativeID="animatedComponent"
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#d8232a",
+                    "borderRadius": 50,
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 20,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  DALEJ
+                </Text>
+              </View>
+            </RNGestureHandlerButton>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      style={
+        Array [
+          Object {
+            "height": 148.88392857142858,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Identyfikacja roweru
+        </Text>
+      </View>
+    </View>
+  </RCTSafeAreaView>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`<AddingByNumber Screen /> When input value is empty can't go to the next screen 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <RCTScrollView
+      keyboardShouldPersistTaps="always"
+      style={
+        Object {
+          "height": 1185.1160714285716,
+          "position": "absolute",
+          "top": 148.88392857142858,
+          "width": "100%",
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "height": 1334,
+              "minHeight": 851.1370988612837,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 30,
+                "left": 72.46376811594203,
+                "lineHeight": 38,
+                "position": "absolute",
+                "textAlign": "left",
+                "top": "4.241%",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            Podaj numer ramy Twojego roweru.
+          </Text>
+          <View
+            style={
+              Object {
+                "height": 133.99553571428572,
+                "left": 72.46376811594203,
+                "position": "absolute",
+                "top": "28.013%",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Numer ramy
+              </Text>
+              <View>
+                <TextInput
+                  maxLength={20}
+                  onChangeText={[Function]}
+                  style={
+                    Object {
+                      "borderColor": "#80555555",
+                      "borderRadius": 90.57971014492753,
+                      "borderWidth": 1,
+                      "color": "black",
+                      "display": "flex",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 20,
+                      "height": 90.57971014492753,
+                      "justifyContent": "center",
+                      "marginTop": 10.869565217391305,
+                      "paddingBottom": 18.115942028985508,
+                      "paddingLeft": 54.34782608695652,
+                      "paddingRight": 54.34782608695652,
+                      "paddingTop": 18.115942028985508,
+                      "textAlign": "left",
+                      "width": "100%",
+                    }
+                  }
+                  testID="frame-number-input"
+                  value=""
+                />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "#d8232a",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "height": 41.66666666666667,
+                    "marginTop": 10.869565217391305,
+                    "position": "relative",
+                    "textAlign": "left",
+                  }
+                }
+              >
+                
+              </Text>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "display": "flex",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 52.53623188405797,
+                    "marginTop": 3,
+                    "position": "relative",
+                    "width": 605.072463768116,
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                nativeID="animatedComponent"
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#3587ea",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "right",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  Gdzie znajdę numer ramy?
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "bottom": 245.65848214285717,
+                "height": 50,
+                "left": 72.46376811594203,
+                "position": "absolute",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <RNGestureHandlerButton
+              collapsable={false}
+              onGestureEvent={[Function]}
+              onGestureHandlerEvent={[Function]}
+              onGestureHandlerStateChange={[Function]}
+              onHandlerStateChange={[Function]}
+              rippleColor={0}
+              testID="adding-by-number-next-btn"
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                nativeID="animatedComponent"
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#d8232a",
+                    "borderRadius": 50,
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 20,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  DALEJ
+                </Text>
+              </View>
+            </RNGestureHandlerButton>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      style={
+        Array [
+          Object {
+            "height": 148.88392857142858,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Identyfikacja roweru
+        </Text>
+      </View>
+    </View>
+  </RCTSafeAreaView>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`<AddingByNumber Screen /> When navigated with emptyFrame param euqal false should render input filled with frame number if exists 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <RCTScrollView
+      keyboardShouldPersistTaps="always"
+      style={
+        Object {
+          "height": 1185.1160714285716,
+          "position": "absolute",
+          "top": 148.88392857142858,
+          "width": "100%",
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "height": 1334,
+              "minHeight": 851.1370988612837,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 30,
+                "left": 72.46376811594203,
+                "lineHeight": 38,
+                "position": "absolute",
+                "textAlign": "left",
+                "top": "4.241%",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            Podaj numer ramy Twojego roweru.
+          </Text>
+          <View
+            style={
+              Object {
+                "height": 133.99553571428572,
+                "left": 72.46376811594203,
+                "position": "absolute",
+                "top": "28.013%",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Numer ramy
+              </Text>
+              <View>
+                <TextInput
+                  maxLength={20}
+                  onChangeText={[Function]}
+                  style={
+                    Object {
+                      "borderColor": "#2cba3f",
+                      "borderRadius": 90.57971014492753,
+                      "borderWidth": 2,
+                      "color": "black",
+                      "display": "flex",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 20,
+                      "height": 90.57971014492753,
+                      "justifyContent": "center",
+                      "marginTop": 10.869565217391305,
+                      "paddingBottom": 18.115942028985508,
+                      "paddingLeft": 54.34782608695652,
+                      "paddingRight": 54.34782608695652,
+                      "paddingTop": 18.115942028985508,
+                      "textAlign": "left",
+                      "width": "100%",
+                    }
+                  }
+                  testID="frame-number-input"
+                  value="123456789"
+                />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "#d8232a",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "height": 41.66666666666667,
+                    "marginTop": 10.869565217391305,
+                    "position": "relative",
+                    "textAlign": "left",
+                  }
+                }
+              >
+                
+              </Text>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "display": "flex",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 52.53623188405797,
+                    "marginTop": 3,
+                    "position": "relative",
+                    "width": 605.072463768116,
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#3587ea",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "right",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  Gdzie znajdę numer ramy?
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "bottom": 245.65848214285717,
+                "height": 50,
+                "left": 72.46376811594203,
+                "position": "absolute",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <RNGestureHandlerButton
+              collapsable={false}
+              onGestureEvent={[Function]}
+              onGestureHandlerEvent={[Function]}
+              onGestureHandlerStateChange={[Function]}
+              onHandlerStateChange={[Function]}
+              rippleColor={0}
+              testID="adding-by-number-next-btn"
+            >
+              <View
+                accessible={true}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#d8232a",
+                    "borderRadius": 50,
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 20,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  DALEJ
+                </Text>
+              </View>
+            </RNGestureHandlerButton>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      style={
+        Array [
+          Object {
+            "height": 148.88392857142858,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Identyfikacja roweru
+        </Text>
+      </View>
+    </View>
+  </RCTSafeAreaView>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`<AddingByNumber Screen /> When navigated with emptyFrame param euqal true should not render input filled with frame number 1`] = `
+Array [
+  <RCTSafeAreaView
+    emulateUnlessSupported={true}
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <RCTScrollView
+      keyboardShouldPersistTaps="always"
+      style={
+        Object {
+          "height": 1185.1160714285716,
+          "position": "absolute",
+          "top": 148.88392857142858,
+          "width": "100%",
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "height": 1334,
+              "minHeight": 851.1370988612837,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#555555",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 30,
+                "left": 72.46376811594203,
+                "lineHeight": 38,
+                "position": "absolute",
+                "textAlign": "left",
+                "top": "4.241%",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            Podaj numer ramy Twojego roweru.
+          </Text>
+          <View
+            style={
+              Object {
+                "height": 133.99553571428572,
+                "left": 72.46376811594203,
+                "position": "absolute",
+                "top": "28.013%",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  Object {
+                    "color": "#555555",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "textAlign": "left",
+                  }
+                }
+              >
+                Numer ramy
+              </Text>
+              <View>
+                <TextInput
+                  maxLength={20}
+                  onChangeText={[Function]}
+                  style={
+                    Object {
+                      "borderColor": "#80555555",
+                      "borderRadius": 90.57971014492753,
+                      "borderWidth": 1,
+                      "color": "black",
+                      "display": "flex",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 20,
+                      "height": 90.57971014492753,
+                      "justifyContent": "center",
+                      "marginTop": 10.869565217391305,
+                      "paddingBottom": 18.115942028985508,
+                      "paddingLeft": 54.34782608695652,
+                      "paddingRight": 54.34782608695652,
+                      "paddingTop": 18.115942028985508,
+                      "textAlign": "left",
+                      "width": "100%",
+                    }
+                  }
+                  testID="frame-number-input"
+                  value=""
+                />
+              </View>
+              <Text
+                style={
+                  Object {
+                    "color": "#d8232a",
+                    "fontFamily": "DIN2014Narrow-Light",
+                    "fontSize": 18,
+                    "height": 41.66666666666667,
+                    "marginTop": 10.869565217391305,
+                    "position": "relative",
+                    "textAlign": "left",
+                  }
+                }
+              >
+                
+              </Text>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "display": "flex",
+                    "justifyContent": "center",
+                  },
+                  Object {
+                    "height": 52.53623188405797,
+                    "marginTop": 3,
+                    "position": "relative",
+                    "width": 605.072463768116,
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                nativeID="animatedComponent"
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#3587ea",
+                      "fontFamily": "DIN2014Narrow-Regular",
+                      "fontSize": 18,
+                      "textAlign": "right",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  Gdzie znajdę numer ramy?
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "bottom": 245.65848214285717,
+                "height": 50,
+                "left": 72.46376811594203,
+                "position": "absolute",
+                "width": 605.072463768116,
+              }
+            }
+          >
+            <RNGestureHandlerButton
+              collapsable={false}
+              onGestureEvent={[Function]}
+              onGestureHandlerEvent={[Function]}
+              onGestureHandlerStateChange={[Function]}
+              onHandlerStateChange={[Function]}
+              rippleColor={0}
+              testID="adding-by-number-next-btn"
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                nativeID="animatedComponent"
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#d8232a",
+                    "borderRadius": 50,
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "white",
+                        "fontFamily": "DIN2014Narrow-Bold",
+                        "fontSize": 20,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  DALEJ
+                </Text>
+              </View>
+            </RNGestureHandlerButton>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+    <View
+      style={
+        Array [
+          Object {
+            "height": 148.88392857142858,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "height": 148.88392857142858,
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+        >
+          Identyfikacja roweru
+        </Text>
+      </View>
+    </View>
+  </RCTSafeAreaView>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;

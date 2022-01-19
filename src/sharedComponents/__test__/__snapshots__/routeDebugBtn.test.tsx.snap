@@ -119,6 +119,8 @@ Array [
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -135,6 +137,8 @@ Array [
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -186,6 +190,8 @@ Array [
       >
         <View
           accessible={true}
+          collapsable={false}
+          nativeID="animatedComponent"
           style={
             Object {
               "alignItems": "center",
@@ -231,6 +237,8 @@ Array [
     >
       <View
         accessible={true}
+        collapsable={false}
+        nativeID="animatedComponent"
         style={
           Object {
             "alignItems": "center",
@@ -275,6 +283,8 @@ Array [
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -291,6 +301,8 @@ Array [
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {
@@ -342,6 +354,8 @@ Array [
       >
         <View
           accessible={true}
+          collapsable={false}
+          nativeID="animatedComponent"
           style={
             Object {
               "alignItems": "center",
@@ -387,6 +401,8 @@ Array [
     >
       <View
         accessible={true}
+        collapsable={false}
+        nativeID="animatedComponent"
         style={
           Object {
             "alignItems": "center",
@@ -431,6 +447,8 @@ Array [
     }
   >
     <View
+      collapsable={false}
+      nativeID="animatedComponent"
       style={
         Object {
           "backgroundColor": "#313131",
@@ -447,6 +465,8 @@ Array [
       }
     >
       <Text
+        collapsable={false}
+        nativeID="animatedComponent"
         numberOfLines={1}
         style={
           Object {

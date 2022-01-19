@@ -140,7 +140,7 @@ const FeaturedRoutesScreen: React.FC = () => {
             return;
         }
         navigation?.replace(
-            BothStackRoute.MAIN_MENU_SCREEN as keyof RootStackType,
+            BothStackRoute.TAB_MENU_SCREEN as keyof RootStackType,
         );
     };
 

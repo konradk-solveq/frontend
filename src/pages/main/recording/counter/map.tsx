@@ -20,7 +20,7 @@ import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
 import {getCenterCameraCoords} from '@src/utils/mapCameraAnimation';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {getAppLayoutConfig} from '@src/helpers/appLayoutConfig';
+import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 
 type latType = {latitude: number; longitude: number};
 

@@ -8,7 +8,6 @@ import {
     removePlanendMap,
     removePrivateMapMetaData,
 } from '@storage/actions/maps';
-import {userIdSelector} from '@storage/selectors/auth';
 import {
     favouriteMapDataByIDSelector,
     selectMapDataByIDBasedOnTypeSelector,
@@ -17,7 +16,8 @@ import {
 import {getImagesThumbs, getSliverImageToDisplay} from '@utils/transformData';
 import useStatusBarHeight from '@hooks/statusBarHeight';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {RouteDetailsRouteType} from '@type/rootStack';
+import {userIdSelector} from '@storage/selectors';
+import {RouteDetailsRouteT} from '@type/rootStack';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 
 import {I18n} from '@translations/I18n';
@@ -50,7 +50,7 @@ const RouteDetails = () => {
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const norificationContext = useNotificationContext();
-    const route = useRoute<RouteDetailsRouteType>();
+    const route = useRoute<RouteDetailsRouteT>();
     const mapID: string = route?.params?.mapID;
     const privateMap: boolean = !!route?.params?.private;
     const favouriteMap: boolean = !!route?.params?.favourite;

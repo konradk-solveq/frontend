@@ -9,22 +9,43 @@ import {
     getVerticalPx,
     getWidthPx,
     mainButtonsHeight,
-} from '../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
-import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn';
-import PanelProps from '../../sharedComponents/radio/panel';
-import TranspLightBtn from '../../sharedComponents/buttons/transpLightBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import PanelProps from '@sharedComponents/radio/panel';
+import TranspLightBtn from '@sharedComponents/buttons/transpLightBtn';
 
 interface Props {
     board: number;
     list: Array<Function>;
     setBoard: Function;
-    goFoward: Function;
+    goForward: Function;
 }
 
 // elementy ekranu, które nie przesówają się w czasie przewijania ekranu na turtorialu first run
-const StaticElements: React.FC<Props> = (props: Props) => {
+const StaticElements: React.FC<Props> = ({
+    board,
+    list,
+    setBoard,
+    goForward,
+}: Props) => {
     const trans = I18n.t('Onboarding');
+
+    const getButtonTitle = () => {
+        switch (board) {
+            case 1:
+                return trans.btn_1;
+            case 2:
+                return trans.btn_2;
+            case 3:
+                return trans.btn_3;
+            case 4:
+                return trans.btn_4;
+            case 5:
+                return trans.btn_5;
+        }
+        return '';
+    };
 
     setObjSize(334, 50);
     let styles = StyleSheet.create({
@@ -54,24 +75,24 @@ const StaticElements: React.FC<Props> = (props: Props) => {
         <SafeAreaView style={styles.container}>
             <PanelProps
                 style={styles.panel}
-                active={props.board - 1}
-                listBtn={props.list}
+                active={board - 1}
+                listBtn={list}
             />
 
             <TranspLightBtn
                 style={styles.skip}
                 title={trans.skip}
-                onpress={() => props.goFoward()}
+                onpress={() => goForward()}
             />
 
             <View style={styles.redBtn}>
                 <BigRedBtn
-                    title={trans.goFoward}
+                    title={getButtonTitle()}
                     onpress={() => {
-                        if (props.board < props.list.length) {
-                            props.setBoard(props.board + 1);
+                        if (board < list.length) {
+                            setBoard(board + 1);
                         } else {
-                            props.goFoward();
+                            goForward();
                         }
                     }}
                 />

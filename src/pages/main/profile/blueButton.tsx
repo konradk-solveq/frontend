@@ -7,7 +7,7 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getFontSize,
-} from '../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
 interface Props {
     title: string;
@@ -23,6 +23,8 @@ const BlueButton: React.FC<Props> = (props: Props) => {
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%',
+            borderBottomWidth: 1,
+            borderBottomColor: '#EAEAEA',
             // backgroundColor: 'khaki',
         },
         blueText: {

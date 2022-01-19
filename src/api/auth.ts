@@ -1,6 +1,6 @@
 import instance, {source} from './api';
 
-/* Fake registration process. API returns all data */
+/* Initial registration process (as device). API returns all data */
 export const registerDevice = async () => {
     return await instance.post(
         '/session/mobile/register',
@@ -24,6 +24,19 @@ export const logInMobile = async (userId: string, deviceToken: string) => {
     );
 };
 
+export const logIn = async (email: string, password: string) => {
+    return await instance.post(
+        '/session/login',
+        {
+            email: email,
+            password: password,
+        },
+        {
+            cancelToken: source.token,
+        },
+    );
+};
+
 export const currentSession = async (token: string) => {
     return await instance.get('/session/current', {
         headers: {Authorization: `Bearer ${token}`},
@@ -39,6 +52,16 @@ export const refreshSession = async (token: string, refreshToken: string) => {
         },
         {
             headers: {Authorization: `Bearer ${token}`},
+            cancelToken: source.token,
+        },
+    );
+};
+
+export const logOut = async () => {
+    return await instance.post(
+        '/session/logout',
+        {},
+        {
             cancelToken: source.token,
         },
     );
