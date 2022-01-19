@@ -16,6 +16,10 @@ export interface AuthState {
     userAuthState: UserAuthStateT;
 }
 
+/**
+ * Since 2.0.0 'userId', 'deviceToken', 'recoveryCodes',
+ * 'isAuth' and 'sessionData' are kept in authData reducer.
+ */
 const initialState: AuthState = {
     userId: '',
     deviceToken: '',
