@@ -3,6 +3,9 @@ export const GET_USER_NAME = 'GET_USER_NAME';
 export const SET_USER_NAME = 'SET_USER_NAME';
 export const LOADING_USER_STATUS = 'LOADING_USER_STATUS';
 
+export const SET_LANGUAGE = 'SET_LANGUAGE';
+export const GET_LANGUAGE = 'GET_LANGUAGE';
+
 export const GET_FRAME_NUMBER = 'GET_FRAME_NUMBER';
 export const SET_FRAME_NUMBER = 'SET_FRAME_NUMBER';
 

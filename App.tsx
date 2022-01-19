@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import type {Node} from 'react';
 import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
@@ -16,6 +16,8 @@ import {initConfig} from '@theme/appLayoutConfig';
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
 import useRouteDebug from '@src/hooks/useRouteDebug';
+
+import LanguageReloader from '@src/utils/translations/languageReloader';
 
 const App: () => Node = () => {
     I18n_init();
@@ -38,7 +40,10 @@ const App: () => Node = () => {
                     <NetworkStatus />
                     <TopNotificationProvider>
                         <StaticLocationProvider>
-                            <NavContainer />
+                            <Suspense fallback={null}>
+                                <LanguageReloader />
+                                <NavContainer />
+                            </Suspense>
                         </StaticLocationProvider>
                     </TopNotificationProvider>
                 </PersistGate>
