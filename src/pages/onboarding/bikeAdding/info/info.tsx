@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import TypicalRedBtn from '../../../../sharedComponents/buttons/typicalRed';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import TypicalRedBtn from '@sharedComponents/buttons/typicalRed';
 import ImgKross from './imgKross';
 import ImgOther from './imgOther';
 
@@ -13,8 +13,8 @@ import {
     getVerticalPx,
     getCenterLeftPx,
     getFontSize,
-} from '../../../../helpers/layoutFoo';
-import {BothStackRoute} from '../../../../navigation/route';
+} from '@helpers/layoutFoo';
+import {BothStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
@@ -22,7 +22,7 @@ interface Props {
 }
 
 const Info: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('AddingInfo');
+    const {t} = useMergedTranslation('AddingInfo');
 
     const [krossBike, setKrossBike] = useState(true);
 
@@ -60,13 +60,13 @@ const Info: React.FC<Props> = (props: Props) => {
                 <ScrollView>
                     <View style={styles.bottons}>
                         <TypicalRedBtn
-                            title={trans.btnKross}
+                            title={t('btnKross')}
                             active={krossBike}
                             onpress={() => setKrossBike(true)}
                         />
 
                         <TypicalRedBtn
-                            title={trans.btnOther}
+                            title={t('btnOther')}
                             active={!krossBike}
                             onpress={() => setKrossBike(false)}
                         />
@@ -77,7 +77,7 @@ const Info: React.FC<Props> = (props: Props) => {
                     </View>
 
                     <Text style={styles.text}>
-                        {krossBike ? trans.textKross : trans.textOther}
+                        {krossBike ? t('textKross') : t('textOther')}
                     </Text>
                 </ScrollView>
             </View>
@@ -88,7 +88,7 @@ const Info: React.FC<Props> = (props: Props) => {
                         BothStackRoute.ADDING_BY_NUMBER_SCREEN,
                     )
                 }
-                inner={trans.head}
+                inner={t('head')}
             />
         </SafeAreaView>
     );

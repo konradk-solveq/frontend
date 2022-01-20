@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, TouchableWithoutFeedback, View, Text} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import Svg, {Path} from 'react-native-svg';
 
 import {
@@ -39,7 +39,9 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
 
         if (props.value == 'null' || props.value == 'NULL') {
             validation = 'bad';
-            message = I18n.t('OneLineTekst-error-null');
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const {t} = useMergedTranslation('');
+            message = t('OneLineText-error-null');
         }
 
         if (props.validationWrong && props.validationWrong(props.value)) {

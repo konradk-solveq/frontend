@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, ScrollView, SafeAreaView} from 'react-native';
-import I18n from 'react-native-i18n';
 
 import {
     setObjSize,
@@ -10,13 +9,14 @@ import {
     getCenterLeftPx,
     getFontSize,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import AnimSvg from '../../../../helpers/animSvg';
-import {countDaysToEnd} from '../../../../helpers/warranty';
-import {RegularStackRoute} from '../../../../navigation/route';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import AnimSvg from '@helpers/animSvg';
+import {countDaysToEnd} from '@helpers/warranty';
+import {RegularStackRoute} from '@navigation/route';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 interface Props {
     navigation: any;
@@ -24,7 +24,8 @@ interface Props {
 }
 
 const WarrantyDetails: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('WarrantyDetails');
+    const {t} = useMergedTranslation('WarrantyDetails');
+
     const details = props.route.params.details;
 
     const placeIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
@@ -163,43 +164,43 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
                     <View style={styles.area}>
                         <View style={styles.titleBox}>
                             <Text style={styles.title}>
-                                {trans.title +
+                                {t('title') +
                                     (details.warranty &&
                                         (details.warranty.id
                                             ? details.warranty.id
                                             : 'no number'))}
                             </Text>
                             <Text style={styles.details}>
-                                {trans.details[0] +
-                                    ' ' +
-                                    hendleDay(details.warranty.end) +
-                                    ' ' +
-                                    trans.details[1] +
-                                    ' ' +
-                                    countDaysToEnd(details.warranty.end) +
-                                    ' ' +
-                                    trans.details[2]}
+                                {t('details', {
+                                    days: hendleDay(details.warranty.end),
+                                    daysToEnd: countDaysToEnd(
+                                        details.warranty.end,
+                                    ),
+                                })}
                             </Text>
                         </View>
 
-                        <Text style={styles.name}>{trans.bike}</Text>
+                        <Text style={styles.name}>{t('bike')}</Text>
                         <Text style={styles.value}>
-                            {details.description.name +
-                                ' ' +
-                                trans.bikeDescription +
-                                ' ' +
-                                details.description.serial_number}
+                            {
+                                (t('bikeDescription'),
+                                {
+                                    name: details.description.name,
+                                    serial_number:
+                                        details.description.serial_number,
+                                })
+                            }
                         </Text>
 
-                        <Text style={styles.name}>{trans.id}</Text>
+                        <Text style={styles.name}>{t('id')}</Text>
                         <Text style={styles.value}>
                             {details.description.sku}
                         </Text>
 
-                        <Text style={styles.name}>{trans.date}</Text>
+                        <Text style={styles.name}>{t('date')}</Text>
                         {/* <Text style={styles.value}>{(details.description.bought.date)}</Text> */}
 
-                        <Text style={styles.name}>{trans.place}</Text>
+                        <Text style={styles.name}>{t('place')}</Text>
                         {/* <Text style={styles.shopName}>{details.description.bought.adress.shopName}</Text> */}
 
                         <View>
@@ -216,7 +217,7 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
 
                         <BigRedBtn
                             style={styles.btn}
-                            title={trans.btn}
+                            title={t('btn')}
                             onpress={() => heandlerGetWaranty()}
                         />
                     </View>
@@ -229,7 +230,7 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
                 onpress={() =>
                     props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
                 }
-                inner={trans.header}
+                inner={t('header')}
                 getHeight={setHeadHeightt}
             />
         </SafeAreaView>

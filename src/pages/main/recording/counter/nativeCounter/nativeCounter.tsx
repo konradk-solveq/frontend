@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {View, Text, Animated} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {trackerMapVisibilitySelector} from '@storage/selectors/routes';
 import {useAppSelector} from '@hooks/redux';
@@ -44,7 +44,7 @@ const NativeCounter: React.FC<IProps> = ({
     headingSwitch,
     compassHeading,
 }: IProps) => {
-    const trans: any = I18n.t('MainHome.counters');
+    const {t} = useMergedTranslation('MainHome.counters');
 
     const DURATION_06 = duration * 0.6;
     const DURATION_025 = duration * 0.25;
@@ -255,7 +255,7 @@ const NativeCounter: React.FC<IProps> = ({
                                         styles.label,
                                         {fontSize: cp.font.getLabel()},
                                     ]}>
-                                    {trans.distance}
+                                    {t('distance')}
                                 </Animated.Text>
                             </Animated.View>
                             <DisplayDistance
@@ -284,7 +284,7 @@ const NativeCounter: React.FC<IProps> = ({
                                         styles.rightLabel,
                                         {fontSize: cp.font.getLabel()},
                                     ]}>
-                                    {trans.time}
+                                    {t('time')}
                                 </Text>
                             </Animated.View>
                             <DisplayTimer
@@ -326,7 +326,7 @@ const NativeCounter: React.FC<IProps> = ({
                                         styles.label,
                                         {fontSize: cp.font.getLabel()},
                                     ]}>
-                                    {trans.speed}
+                                    {t('speed')}
                                 </Text>
                             </Animated.View>
                             <DisplaySpeed
@@ -356,7 +356,7 @@ const NativeCounter: React.FC<IProps> = ({
                                         styles.label,
                                         {fontSize: cp.font.getLabel()},
                                     ]}>
-                                    {trans.averageSpeed}
+                                    {t('averageSpeed')}
                                 </Text>
                             </Animated.View>
                             <DisplayAverageSpeed

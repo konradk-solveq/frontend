@@ -8,7 +8,7 @@ import {
     SafeAreaView,
 } from 'react-native';
 
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {getHorizontalPx, getVerticalPx, getHeightPx} from '@helpers/layoutFoo';
@@ -67,7 +67,7 @@ interface Props {
 }
 
 const Counter: React.FC<Props> = ({navigation, route}: Props) => {
-    const trans: any = I18n.t('MainCounter');
+    const {t} = useMergedTranslation('MainCounter');
     const dispatch = useAppDispatch();
     const mountedRef = useRef(false);
     const notificationContext = useNotificationContext();
@@ -119,7 +119,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (newBike) {
             setBike(newBike);
         }
-        const message = I18n.t('MainCounter.bikeChanged', {
+        const message = t('bikeChanged', {
             name: newBike?.description.name || '',
         });
         notificationContext.setNotificationVisibility(message);
@@ -314,9 +314,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             case 'start':
                 // eslint-disable-next-line no-lone-blocks
                 {
-                    setLeftBtnTile(trans.btnCancel);
-                    setRightBtnTile(trans.btnStart);
-                    setHeaderTitle(trans.headerStart);
+                    setLeftBtnTile(t('btnCancel'));
+                    setRightBtnTile(t('btnStart'));
+                    setHeaderTitle(t('headerStart'));
                     setPause(true);
                 }
                 break;
@@ -326,9 +326,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     if (!isActive && isTrackerActive) {
                         resumeTracker();
                     }
-                    setLeftBtnTile(trans.btnPauza);
-                    setRightBtnTile(trans.btnEnd);
-                    setHeaderTitle(trans.headerRecord);
+                    setLeftBtnTile(t('btnPauza'));
+                    setRightBtnTile(t('btnEnd'));
+                    setHeaderTitle(t('headerRecord'));
 
                     setPauseTime(prevPT => {
                         const newTotalTime = setTotalTime(prevPT);
@@ -344,8 +344,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 // eslint-disable-next-line no-lone-blocks
                 {
                     pauseTracker();
-                    setLeftBtnTile(trans.btnPauzaOff);
-                    setHeaderTitle(trans.headerPause);
+                    setLeftBtnTile(t('btnPauzaOff'));
+                    setHeaderTitle(t('headerPause'));
                     setPauseTime(prevPT => ({
                         ...prevPT,
                         start: Date.now(),
@@ -356,17 +356,17 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             case 'cancelText':
                 // eslint-disable-next-line no-lone-blocks
                 {
-                    setLeftBtnTile(trans.btnCancel);
-                    setRightBtnTile(trans.btnBreak);
+                    setLeftBtnTile(t('btnCancel'));
+                    setRightBtnTile(t('btnBreak'));
                 }
                 break;
             case 'endMessage':
                 // eslint-disable-next-line no-lone-blocks
                 {
                     pauseTracker();
-                    setLeftBtnTile(trans.btnCancel);
-                    setRightBtnTile(trans.btnEnd);
-                    setHeaderTitle(trans.headerPause);
+                    setLeftBtnTile(t('btnCancel'));
+                    setRightBtnTile(t('btnEnd'));
+                    setHeaderTitle(t('headerPause'));
                     if (!pause) {
                         setPauseTime(prevPT => ({
                             ...prevPT,
@@ -384,7 +384,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pageState, trans]);
+    }, [pageState, t]);
 
     const onHideMapHandler = (state: boolean) => {
         initShowMapRef.current = true;
@@ -537,8 +537,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             }
                             message={
                                 pageState === 'cancelText'
-                                    ? trans.cancelText
-                                    : trans.endText
+                                    ? t('cancelText')
+                                    : t('endText')
                             }
                             duration={ANIMATION_DURATION}
                         />

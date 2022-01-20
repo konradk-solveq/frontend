@@ -5,9 +5,8 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Image,
 } from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {getFontSize, getHorizontalPx} from '../../helpers/layoutFoo';
 import IconHide from '@sharedComponents/icons/IconHide';
@@ -52,7 +51,9 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
 
         if (props.value == 'null' || props.value == 'NULL') {
             validation = 'bad';
-            message = I18n.t('OneLineTekst-error-null');
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const {t} = useMergedTranslation('');
+            message = t('OneLineText-error-null');
         }
 
         if (props.validationWrong && props.validationWrong(props.value)) {

@@ -9,7 +9,7 @@ import {
     ViewStyle,
     TouchableOpacity,
 } from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import IconShow from '@sharedComponents/icons/IconShow';
 import IconHide from '@sharedComponents/icons/IconHide';
 
@@ -49,7 +49,7 @@ const OneLineText: React.FC<IProps> = ({
     testID,
 }: IProps) => {
     const [borderColor, setBorderColor] = useState('#80555555');
-    const [borderWidth, setBorderrWidth] = useState(1);
+    const [borderWidth, setBordererWidth] = useState(1);
     const [errorMessage, setErrorMessage] = useState('');
     const [isSecure, setIsSecure] = useState(true);
 
@@ -67,7 +67,9 @@ const OneLineText: React.FC<IProps> = ({
 
         if (value == 'null' || value == 'NULL') {
             validation = 'bad';
-            message = I18n.t('OneLineTekst-error-null');
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const {t} = useMergedTranslation('');
+            message = t('OneLineText-error-null');
         }
 
         if (validationWrong) {
@@ -83,17 +85,17 @@ const OneLineText: React.FC<IProps> = ({
         switch (validation) {
             case 'ok':
                 setBorderColor('#2cba3f');
-                setBorderrWidth(2);
+                setBordererWidth(2);
 
                 break;
             case 'bad':
                 setBorderColor('#d8232a');
-                setBorderrWidth(2);
+                setBordererWidth(2);
 
                 break;
             default:
                 setBorderColor('#80555555');
-                setBorderrWidth(1);
+                setBordererWidth(1);
 
                 break;
         }

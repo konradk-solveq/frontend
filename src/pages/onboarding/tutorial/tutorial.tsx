@@ -97,7 +97,6 @@ const Tutorial: React.FC<Props> = (props: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [board]);
 
-    const [titleH, setTitleH] = useState(0);
     const [imgH, setImgH] = useState(0);
     const [textH, setTextH] = useState(0);
     const [linePosX, setLinePosX] = useState(0);
@@ -134,8 +133,6 @@ const Tutorial: React.FC<Props> = (props: Props) => {
         }
 
         if (numTitle >= ELEMENTS_SUM && numText >= ELEMENTS_SUM) {
-            setTitleH(title_h);
-
             setTextH(text_h);
             /** Imagines Height Fitting Between Titles And Texts */
             let img_h = wrapH - title_h - text_h - getVerticalPx(40);
@@ -261,7 +258,6 @@ const Tutorial: React.FC<Props> = (props: Props) => {
                             handleMeasurement={handleMeasurement}
                             wrapH={wrapH}
                             imgH={imgH}
-                            titleH={titleH}
                             textH={textH}
                         />
                     </View>
@@ -271,7 +267,6 @@ const Tutorial: React.FC<Props> = (props: Props) => {
                             handleMeasurement={handleMeasurement}
                             wrapH={wrapH}
                             imgH={imgH}
-                            titleH={titleH}
                             textH={textH}
                         />
                     </View>
@@ -281,7 +276,6 @@ const Tutorial: React.FC<Props> = (props: Props) => {
                             handleMeasurement={handleMeasurement}
                             wrapH={wrapH}
                             imgH={imgH}
-                            titleH={titleH}
                             textH={textH}
                         />
                     </View>
@@ -291,7 +285,6 @@ const Tutorial: React.FC<Props> = (props: Props) => {
                             handleMeasurement={handleMeasurement}
                             wrapH={wrapH}
                             imgH={imgH}
-                            titleH={titleH}
                             textH={textH}
                         />
                     </View>
@@ -301,7 +294,6 @@ const Tutorial: React.FC<Props> = (props: Props) => {
                             handleMeasurement={handleMeasurement}
                             wrapH={wrapH}
                             imgH={imgH}
-                            titleH={titleH}
                             textH={textH}
                         />
                     </View>

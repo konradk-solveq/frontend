@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import GenericScreen from '@pages/template/GenericScreen';
 import {getVerticalPx} from '@helpers/layoutFoo';
-import I18n from 'react-native-i18n';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import fbIcon from '@assets/images/oauth/fb.png';
 import styles from './style';
@@ -32,7 +31,6 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 const isIOS = Platform.OS === 'ios';
 
 const LoginScreen: React.FC = () => {
-    const trans: any = I18n.t('Login');
     const {t, i18n} = useMergedTranslation('Login');
     console.log(i18n.options);
     const isLoading = useAppSelector(isLodingSelector);
@@ -72,7 +70,7 @@ const LoginScreen: React.FC = () => {
     };
 
     return (
-        <GenericScreen screenTitle={trans.header}>
+        <GenericScreen screenTitle={t('header')}>
             <View
                 style={[
                     styles.innerContainer,
@@ -86,7 +84,7 @@ const LoginScreen: React.FC = () => {
                         showsVerticalScrollIndicator={false}>
                         <View style={styles.content}>
                             <Text style={styles.title}>
-                                {(name || trans.defaultName) + trans.title}
+                                {(name || t('defaultName')) + t('title')}
                             </Text>
                             <LoginForm
                                 onSubmit={onSubmitHandler}
@@ -95,7 +93,7 @@ const LoginScreen: React.FC = () => {
                             />
                             <View style={styles.orUse}>
                                 <Text style={styles.orUseText}>
-                                    {trans.orUse}
+                                    {t('orUse')}
                                 </Text>
                             </View>
                             <View style={styles.oauthButtons}>
@@ -124,13 +122,13 @@ const LoginScreen: React.FC = () => {
                             </View>
                             <View style={styles.register}>
                                 <Text style={styles.registerText}>
-                                    {trans.noAccountYet}
+                                    {t('noAccountYet')}
                                 </Text>
                                 <TouchableOpacity
                                     onPress={handleRegisterPress}
                                     testID={'RegisterLink'}>
                                     <Text style={styles.registerLink}>
-                                        {trans.register}
+                                        {t('register')}
                                     </Text>
                                 </TouchableOpacity>
                             </View>

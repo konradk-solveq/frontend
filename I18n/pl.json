@@ -26,27 +26,25 @@
         "toShortValue": "Podane imię lub pseudonim jest zbyt krótkie",
         "toLongValue": "Podane imię lub pseudonim jest zbyt długie"
     },
-    "OneLineTekst-error-null": "Wartość nie może być null-em",
-    "TurtorialNFC": {
+    "OneLineText-error-null": "Wartość nie może być null-em",
+    "TutorialNFC": {
         "header": "Identyfikacja roweru",
         "defaultName": "rowerzysto",
-        "title_1": "Witaj",
-        "title_2": ", mam pierwsze zadanie dla Ciebie :)",
+        "title": "Witaj {{name}}, mam pierwsze zadanie dla Ciebie :)",
         "titleNext": "Nowy rower",
         "tekst": "Włącz NFC w telefonie i zbliż go do naklejki umieszczonej na ramie roweru KROSS.\n\nJeśli nie widzisz naklejki lub nie obsługujesz NFC, wprowadź ręcznie numer ramy.",
         "btnNfc": "SKANUJ NAKLEJKĘ NFC",
         "btnHand": "CHCĘ WPROWADZIĆ RĘCZNIE",
         "alertMessage": "Włącz NFC w ustawieniach telefonu."
     },
-    "TurtorialNFCmodal": {
+    "TutorialNFCmodal": {
         "title": "Gotowy do skanowania",
         "text": "Zbliż telefon do naklejki NFC",
         "cancelBtn": "ANULUJ"
     },
     "WrongScan": {
         "title": "Coś poszło nie tak!",
-        "text_1": "Rama o\u00a0numerze ",
-        "text_2": " została już wcześniej dodana.\n\nSprawdź czy numer ramy jest poprawny. W\u00a0przypadku dalszych problemów skontaktuj się z\u00a0nami 29\u00a0752\u00a011\u00a000.",
+        "text": "Rama o\u00a0numerze {{number}} została już wcześniej dodana.\n\nSprawdź czy numer ramy jest poprawny. W\u00a0przypadku dalszych problemów skontaktuj się z\u00a0nami 29\u00a0752\u00a011\u00a000.",
         "btnAgain": "SPRÓBUJ JESZCZE RAZ"
     },
     "AddingByNumber": {
@@ -190,12 +188,9 @@
     },
     "BikeSummary": {
         "header": "Twój rower",
-        "title": ", jest moc!",
+        "title": "{{name}}, jest moc!",
         "anonim": "Rowerzysto",
-        "details": [
-            "od ",
-            " / nr ramy "
-        ],
+        "details": "od {{producer}} / nr ramy {{serial_number}}",
         "goForward": "DALEJ",
         "btnChange": "ZMIEŃ"
     },
@@ -550,14 +545,14 @@
         "bikeChanged": "Zmieniono rower na {{name}}"
     },
     "CounterThankYouPage": {
-        "title": ", brawo!",
+        "title": "{{name}}, brawo!",
         "subTilte": "Oszczędziłeś",
         "defaultName": "Rowerzysto",
         "type_1": [
             "drzewo!",
             "drzew!"
         ],
-        "type_2": "l paliwa!",
+        "type_2": " {{num}} l paliwa!",
         "distance": "Dystans",
         "distanceUnit": "km",
         "time": "Czas jazdy",
@@ -612,7 +607,7 @@
     "Contact": {
         "header": "Kontakt",
         "anonim": "Rowerzysto",
-        "title": ", bądźmy w\u00a0kontakcie",
+        "title": "{{name}}, bądźmy w\u00a0kontakcie",
         "phone": "(29) 752 11 00",
         "email": "kross@kross.pl",
         "adress": "Biuro Obsługi Klienta\nCzynne w godzinach:\npn. -\u00a0pt.: 9:00 -\u00a016:00",
@@ -630,15 +625,15 @@
         "header": "Język aplikacji",
         "languages": [{
                 "name": "Polski",
-                "short": "pl",
+                "short": "pl"
             },
             {
                 "name": "English",
-                "short": "en",
+                "short": "en"
             },
             {
                 "name": "Česky (již brzy)",
-                "short": "cz",
+                "short": "cz"
             }
         ],
         "byLocation": "po lokalizacji",
@@ -647,13 +642,9 @@
     "WarrantyDetails": {
         "header": "Szczegóły gwarancji",
         "title": "Gwarancja nr\n",
-        "details": [
-            "do",
-            "(pozostało",
-            "dni)"
-        ],
+        "details": "do {{days}} (pozostało {{daysToEnd}} dni)",
         "bike": "Rower",
-        "bikeDescription": "| nr ramy",
+        "bikeDescription": "{{name}} | nr ramy {{serial_number}}",
         "id": "Kod roweru",
         "date": "Data zakupu",
         "place": "Miejsce zakupu",

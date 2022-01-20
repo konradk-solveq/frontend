@@ -8,7 +8,7 @@ import {
     ScrollView,
     Keyboard,
 } from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {useAppSelector, useAppDispatch} from '@hooks/redux';
 import {setBikesListByFrameNumber} from '@storage/actions';
@@ -47,7 +47,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     const frame: string = useAppSelector(frameNumberSelector);
     const isLoading: boolean = useAppSelector(loadingBikesSelector);
 
-    const trans: any = I18n.t('AddingByNumber');
+    const {t} = useMergedTranslation('AddingByNumber');
 
     const [inputFrame, setInputFrame] = useState('');
     const [canGoFoward, setCanGoFoward] = useState(false);
@@ -171,15 +171,15 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 keyboardShouldPersistTaps={'always'}
                 style={comStyle.scroll}>
                 <View style={styles.area}>
-                    <Text style={styles.title}>{trans.text}</Text>
+                    <Text style={styles.title}>{t('text')}</Text>
 
                     <View style={styles.inputAndPlaceholder}>
                         <OneLineTekst
-                            placeholder={trans.placeholder}
+                            placeholder={t('placeholder')}
                             onChangeText={handleInputFrame}
                             validationOk={handleValidationOk}
                             validationWrong={handleValidationWrong}
-                            messageWrong={trans.messageWrong}
+                            messageWrong={t('messageWrong')}
                             value={inputFrame}
                             validationStatus={setCanGoFoward}
                             forceMessageWrong={forceMessageWrong}
@@ -188,7 +188,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
                         <TranspLightBtn
                             style={styles.infoBtn}
-                            title={trans.infoBtn}
+                            title={t('infoBtn')}
                             algin="right"
                             color="#3587ea"
                             onpress={() =>
@@ -201,7 +201,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
                     <BigRedBtn
                         style={styles.botton}
-                        title={trans.btn}
+                        title={t('btn')}
                         onpress={() => handleGoFoward()}
                         testID="adding-by-number-next-btn"
                     />
@@ -210,7 +210,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.goBack()}
-                inner={trans.head}
+                inner={t('head')}
             />
         </SafeAreaView>
     );

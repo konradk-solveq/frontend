@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 // import CheckBox from '@react-native-community/checkbox';
 import Hyperlink from 'react-native-hyperlink';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {
     setObjSize,
@@ -11,10 +11,10 @@ import {
     getHorizontalPx,
     getWidthOf,
     getFontSize,
-} from '../../../helpers/layoutFoo';
-import {BothStackRoute} from '../../../navigation/route';
+} from '@helpers/layoutFoo';
+import {BothStackRoute} from '@navigation/route';
 
-import CheckBox from '../../../sharedComponents/checkBox/checkBox';
+import CheckBox from '@sharedComponents/checkBox/checkBox';
 
 interface Props {
     // * wartości wymagane
@@ -28,7 +28,7 @@ interface Props {
 }
 
 const OnePermit: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('Permits');
+    const {t} = useMergedTranslation('Permits');
 
     setObjSize(26, 26);
     const cbw = getWidthPx();
@@ -88,21 +88,21 @@ const OnePermit: React.FC<Props> = (props: Props) => {
                 <Hyperlink
                     linkStyle={{color: '#3587ea'}}
                     linkText={(url: string) => {
-                        if (url == trans.urlRegulations) {
-                            return trans.hiperRegulations;
+                        if (url === t('urlRegulations')) {
+                            return t('hiperRegulations');
                         }
-                        if (url == trans.urlPrivacyPolicy) {
-                            return trans.hiperPrivacyPolicy;
+                        if (url === t('urlPrivacyPolicy')) {
+                            return t('hiperPrivacyPolicy');
                         }
                         return url;
                     }}
                     onPress={(url: string) => {
-                        if (url == trans.urlRegulations) {
+                        if (url === t('urlRegulations')) {
                             props.navigation.navigate(
                                 BothStackRoute.REGULATIONS_SCREEN,
                             );
                         }
-                        if (url == trans.urlPrivacyPolicy) {
+                        if (url === t('urlPrivacyPolicy')) {
                             props.navigation.navigate(
                                 BothStackRoute.PRIVACY_POLICY_SCREEN,
                             );
@@ -113,7 +113,7 @@ const OnePermit: React.FC<Props> = (props: Props) => {
 
                 {props.wrong && (
                     <Text style={styles.wrong}>
-                        {props.wrong ? trans.wrong : ''}
+                        {props.wrong ? t('wrong') : ''}
                     </Text>
                 )}
 
@@ -121,21 +121,21 @@ const OnePermit: React.FC<Props> = (props: Props) => {
                     <Hyperlink
                         linkStyle={{color: '#3587ea'}}
                         linkText={(url: string) => {
-                            if (url == trans.urlRegulations) {
-                                return trans.hiperRegulations;
+                            if (url === t('urlRegulations')) {
+                                return t('hiperRegulations');
                             }
-                            if (url == trans.urlPrivacyPolicy) {
-                                return trans.hiperPrivacyPolicy;
+                            if (url === t('urlPrivacyPolicy')) {
+                                return t('hiperPrivacyPolicy');
                             }
                             return url;
                         }}
                         onPress={(url: string) => {
-                            if (url == trans.urlRegulations) {
+                            if (url === t('urlRegulations')) {
                                 props.navigation.navigate(
                                     BothStackRoute.REGULATIONS_SCREEN,
                                 );
                             }
-                            if (url == trans.urlPrivacyPolicy) {
+                            if (url === t('urlPrivacyPolicy')) {
                                 props.navigation.navigate(
                                     BothStackRoute.PRIVACY_POLICY_SCREEN,
                                 );

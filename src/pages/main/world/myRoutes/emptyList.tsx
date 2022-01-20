@@ -1,35 +1,34 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text, ScrollView, Platform} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useNavigation} from '@react-navigation/native';
 
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {showedLocationInfoSelector} from '../../../../storage/selectors/app';
-import {hasAnyBikeSelector} from '../../../../storage/selectors/bikes';
-import {BothStackRoute} from '../../../../navigation/route';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {showedLocationInfoSelector} from '@storage/selectors/app';
+import {hasAnyBikeSelector} from '@storage/selectors/bikes';
+import {BothStackRoute} from '@navigation/route';
 import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 import {
     onRecordTripActionHandler,
     showLocationInfo,
-} from '../../../../utils/showAndroidLlocationInfo';
+} from '@utils/showAndroidLlocationInfo';
 
-import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import NoBikeAddedModal from '../../../../sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
-
-const isIOS = Platform.OS === 'ios';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
+import {isIOS} from '@utils/platform';
 
 interface IProps {
     onPress: () => void;
 }
 
 const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
-    const trans: any = I18n.t('MainMyRoutes');
+    const {t} = useMergedTranslation('MainMyRoutes');
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
 
@@ -67,19 +66,19 @@ const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
     return (
         <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <Text style={styles.title}>{trans.title}</Text>
+                <Text style={styles.title}>{t('title')}</Text>
 
-                <Text style={styles.text}>{trans.text}</Text>
+                <Text style={styles.text}>{t('text')}</Text>
 
                 <BigRedBtn
                     style={styles.btnRecord}
-                    title={trans.btnRecord}
+                    title={t('btnRecord')}
                     onpress={doAction}
                 />
 
                 <BigWhiteBtn
                     style={styles.btnCheck}
-                    title={trans.btnCheck}
+                    title={t('btnCheck')}
                     onpress={onPress}
                 />
             </ScrollView>

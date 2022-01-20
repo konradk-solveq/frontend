@@ -8,12 +8,12 @@ import {
     Linking,
     Platform,
 } from 'react-native';
-import I18n from 'react-native-i18n';
-import {useAppSelector} from '../../../../hooks/redux';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {useAppSelector} from '@hooks/redux';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 
 import {
     setObjSize,
@@ -22,7 +22,7 @@ import {
     getWidthPx,
     getFontSize,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
 interface Props {
     navigation: any;
@@ -30,9 +30,9 @@ interface Props {
 }
 
 const Contact: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('Contact');
+    const {t} = useMergedTranslation('Contact');
     const userName =
-        useAppSelector<string>(state => state.user.userName) || trans.anonim;
+        useAppSelector<string>(state => state.user.userName) || t('anonim');
 
     // const [headHeight, setheadHeight] = useState(0);
 
@@ -95,41 +95,41 @@ const Contact: React.FC<Props> = (props: Props) => {
 
     const heandlePhone = () => {
         if (Platform.OS !== 'android') {
-            return `telprompt:${trans.phone}`;
+            return `telprompt:${t('phone')}`;
         } else {
-            return `tel:${trans.phone}`;
+            return `tel:${t('phone')}`;
         }
     };
 
     return (
         <SafeAreaView style={comStyle.container}>
             <View style={styles.wrap}>
-                <Text style={styles.title}>{userName + trans.title}</Text>
+                <Text style={styles.title}>{t('title', {name: userName})}</Text>
                 <View style={styles.poneEmail}>
                     <TouchableWithoutFeedback
                         onPress={() => Linking.openURL(heandlePhone())}>
-                        <Text style={styles.phone}>{trans.phone}</Text>
+                        <Text style={styles.phone}>{t('phone')}</Text>
                     </TouchableWithoutFeedback>
 
                     <TouchableWithoutFeedback
                         onPress={() =>
                             Linking.openURL('mailto:kross@kross.pl')
                         }>
-                        <Text style={styles.email}>{trans.email}</Text>
+                        <Text style={styles.email}>{t('email')}</Text>
                     </TouchableWithoutFeedback>
                 </View>
-                <Text style={styles.adress}>{trans.adress}</Text>
+                <Text style={styles.adress}>{t('adress')}</Text>
 
                 <BigRedBtn
                     style={styles.btn}
-                    title={trans.btn}
+                    title={t('btn')}
                     onpress={() => Linking.openURL('http://kross.eu')}
                 />
             </View>
 
             <StackHeader
                 onpress={() => props.navigation.goBack()}
-                inner={trans.header}
+                inner={t('header')}
                 // getHeight={setheadHeight}
             />
         </SafeAreaView>
