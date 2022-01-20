@@ -169,15 +169,6 @@ const ShowMoreModal: React.FC<IProps> = ({
                                 </Text>
                             </Pressable>
                         )}
-                        {isPublished && (
-                            <Pressable onPress={onShareRouteHandler}>
-                                <Text style={styles.text}>
-                                    <Text style={styles.text}>
-                                        {trans.shareRouteAction}
-                                    </Text>
-                                </Text>
-                            </Pressable>
-                        )}
                         {removeFav && !isPrivate && (
                             <Pressable onPress={onStartRouteHandler}>
                                 <Text style={styles.text}>
@@ -201,6 +192,15 @@ const ShowMoreModal: React.FC<IProps> = ({
                                 </Text>
                             </Text>
                         </Pressable>
+                        {isPublished && (
+                            <Pressable onPress={onShareRouteHandler}>
+                                <Text style={styles.text}>
+                                    <Text style={styles.text}>
+                                        {trans.shareRouteAction}
+                                    </Text>
+                                </Text>
+                            </Pressable>
+                        )}
                         <Pressable onPress={onDetailsButtonPressedHandler}>
                             <Text style={styles.text}>
                                 {trans.routeDetailsAction}
