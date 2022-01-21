@@ -14,33 +14,11 @@ export interface ShareResponseI {
     rawError?: string;
 }
 
-const mockResponse = async (
-    response: ShareResponseI,
-    timeout?: number,
-): Promise<ShareResponseI> => {
-    return new Promise(res => {
-        setTimeout(() => res(response), timeout || 2000);
-    });
-};
-
 export const shareRouteService = async (
     routeId: string,
 ): Promise<ShareResponseI> => {
     try {
         const response = await shareRoute(routeId);
-        // response.status = 200;
-        // const mockedResponse = await mockResponse({
-        //     data: {
-        //         url: 'https://kross.eu/aplikacja-mobilna',
-        //         content: {
-        //             imgUrl:
-        //                 'https://public.pre.mykross.kross.pl/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
-        //         },
-        //     },
-        //     status: 200,
-        //     error: '',
-        // });
-        // response.data = mockedResponse.data;
 
         if (
             !response?.data?.url ||

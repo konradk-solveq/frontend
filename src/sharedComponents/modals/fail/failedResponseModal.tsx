@@ -74,6 +74,7 @@ const FailedResponseModal: React.FC<IProps> = ({
 
                         <View style={styles.buttonsWrapper}>
                             <BigRedBtn
+                                testID={`${testID}-button`}
                                 title={trans.okBtn}
                                 onpress={onClose}
                                 style={[styles.onPressBtn, styles.bottomBtn]}

@@ -29,7 +29,7 @@ const Placeholder = ({
     speed = 1200,
     highlightColor = colors.grey,
     direction = 'right',
-    testID = "share-route-placeholder",
+    testID = 'share-route-placeholder',
 }: PlaceholderPropsI) => {
     const animatedValue = useMemo(() => new Animated.Value(0), []);
     const translateX = useMemo(
@@ -77,7 +77,10 @@ const Placeholder = ({
                 <View style={styles.childrenWrapper}>{children}</View>
             }>
             <>
-                <View style={[styles.expander, {backgroundColor}]} />
+                <View
+                    testID={`${testID}-background-color`}
+                    style={[styles.expander, {backgroundColor}]}
+                />
                 {speed > 0 && (
                     <Animated.View style={absoluteTranslateXStyle}>
                         <MaskedView
@@ -95,6 +98,7 @@ const Placeholder = ({
                                 />
                             }>
                             <View
+                                testID={`${testID}-highlight-color`}
                                 style={[
                                     StyleSheet.absoluteFill,
                                     {backgroundColor: highlightColor},

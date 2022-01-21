@@ -102,7 +102,7 @@ const ShareRouteScreen: React.FC = () => {
                 </View>
             </View>
             <FailedResponseModal
-                testID={'ShareRouteScreen'}
+                testID={'ShareRouteScreen-modal'}
                 showModal={showErrorModal}
                 errorMessage={shareError}
                 onClose={onCloseModalHandler}

@@ -1,5 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 
+import {API_URL} from '@env';
 import {shareRouteService} from '@services/shareService';
 import {SharedContentT} from '@src/type/share';
 
@@ -21,7 +22,7 @@ const useFetchShareLink = (mapId: string) => {
             setError('');
             const content: SharedContentT = {url: '', content: {}};
             if (response.data.content?.imgUrl) {
-                content.content.imgUrl = response.data.content.imgUrl;
+                content.content.imgUrl = `${API_URL}/${response.data.content.imgUrl}`;
             }
             content.url = response.data.url;
             setSharedContent(content);
