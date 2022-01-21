@@ -66,7 +66,7 @@ export const compareResultsWhenOnlineFourthCase = (actionsLog: any[]) => {
     );
 };
 
-export const compareRegistrationResultsFfirstCase = (actionsLog: any[]) => {
+export const compareRegistrationResultsFirstCase = (actionsLog: any[]) => {
     /* loading - start */
     expect(actionsLog[0]).toEqual(userRegistrationFirstCaseExpectedActions[0]);
     /* set authentication error and stop loading */

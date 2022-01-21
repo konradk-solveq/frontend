@@ -10,7 +10,7 @@ import {
     compareResultsWhenOnlineSecondCase,
     compareResultsWhenOnlineThirdCase,
     compareResultsWhenOnlineFourthCase,
-    compareRegistrationResultsFfirstCase,
+    compareRegistrationResultsFirstCase,
     compareRegistrationResultsSecondCase,
 } from './utils/compareAuthDispatchResults';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
@@ -174,7 +174,7 @@ describe('[AuthenticationRoute actions]', () => {
                 /**
                  * Check if all expected actions have been called.
                  */
-                compareRegistrationResultsFfirstCase(actionsLog);
+                compareRegistrationResultsFirstCase(actionsLog);
             });
         });
 
