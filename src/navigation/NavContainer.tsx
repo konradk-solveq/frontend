@@ -14,6 +14,8 @@ import {KrossTheme} from '@theme/navigationTheme';
 import {getScreenName} from '@utils/navigation';
 import {sendAnalyticInfoAboutNewScreen} from '@analytics/firebaseAnalytics';
 
+import {linking} from './linking';
+
 const NavContainer: React.FC = () => {
     const isOnboardingFinished: boolean = useAppSelector(
         onboardingFinishedSelector,
@@ -27,6 +29,7 @@ const NavContainer: React.FC = () => {
         <NavigationContainer
             ref={navigationRef}
             theme={KrossTheme}
+            linking={linking}
             onReady={async () => {
                 const routeName = await getScreenName(navigationRef);
                 if (routeName) {

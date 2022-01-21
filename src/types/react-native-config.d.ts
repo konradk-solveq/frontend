@@ -9,4 +9,11 @@ declare module 'react-native-config' {
         | 'test'
         | 'feature';
     export const ROUTE_DEBUG_MODE: 'true' | 'false';
+    export const DEEPLINKING_NAMESPACE:
+        | 'mykross'
+        | 'mykrossdev'
+        | 'mykrosstest'
+        | 'mykrossfeature';
+    export const DEEPLINKING_HOST: string;
+    export const DEEPLINKING_PREFIX: string;
 }
