@@ -8,7 +8,7 @@ import {
     checkSessionAndRecreateIfNeededService,
     logOutService,
     logInService,
-} from '@services';
+} from '@services/index';
 import {I18n} from '@translations/I18n';
 import {setAutorizationHeader, setUserAgentHeader} from '@api/api';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
@@ -66,9 +66,26 @@ const setSyncState = (
 
 export const register = (
     skipLoadingState?: boolean,
-): AppThunk<Promise<void>> => async dispatch => {
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     setSyncState(dispatch, true, skipLoadingState);
     try {
+        const {isAuth, userAuthState}: AuthState = getState().auth;
+        const {userId}: AuthDataState = getState().authData;
+
+        /**
+         * If user comes fro mversion before 2.0.0 'userAuthState' will be 'uknown'
+         * and registration process will re-run. To prevent this
+         * we set 'userAuthState' to 'mobile' if user has been already registered.
+         */
+        if ((isAuth || userAuthState === 'uknown') && userId) {
+            batch(() => {
+                dispatch(clearAuthError());
+                dispatch(setAuthorizationState('mobile', false));
+            });
+            setSyncState(dispatch, false, skipLoadingState);
+            return;
+        }
+
         const response = await registerMobileDevice();
 
         if (response.error || !response.data) {
