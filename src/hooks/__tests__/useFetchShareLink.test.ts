@@ -1,5 +1,6 @@
 import {renderHook} from '@testing-library/react-hooks';
 
+import {SHARED_IMAGES_URL} from '@env';
 import asyncEvent from '@jestUtils/asyncEvent';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
 
@@ -10,7 +11,7 @@ const mockedResponseSuccess = {
         url: 'https://public.pre.mykross.kross.pl/share/id-12345',
         content: {
             imgUrl:
-                'https://public.pre.mykross.kross.pl/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
+                'cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
         },
     },
     status: 200,
@@ -37,8 +38,7 @@ describe('[useFetchShareLink]', () => {
         expect(result.current.sharedContent).toEqual({
             url: 'https://public.pre.mykross.kross.pl/share/id-12345',
             content: {
-                imgUrl:
-                    'https://public.pre.mykross.kross.pl/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
+                imgUrl: `${SHARED_IMAGES_URL}/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png`,
             },
         });
     }, 1000);

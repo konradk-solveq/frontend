@@ -21,7 +21,9 @@ const ShareRouteImage: React.FC<IProps> = ({
     }, [onImageLoaded, imgUrl]);
 
     return (
-        <View style={[styles.container, containerStyles]}>
+        <View
+            style={[styles.container, containerStyles]}
+            testID="share-route-image">
             <Image
                 resizeMode="contain"
                 style={[styles.image, imageStyles]}

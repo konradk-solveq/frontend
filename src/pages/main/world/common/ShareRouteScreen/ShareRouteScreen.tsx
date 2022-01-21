@@ -50,13 +50,16 @@ const ShareRouteScreen: React.FC = () => {
         if (sharedContent?.url && !shareError) {
             shareBtnIsVisible.current = true;
 
+            const message = I18n.t('ShareScreen.ShareContent.Route.message', {
+                url: sharedContent?.content?.imgUrl || '',
+            });
             callSystemShare(sharedContent.url, {
-                message: trans.ShareContent.Route.message,
                 title: trans.ShareContent.Route.title,
+                message: message,
                 subject: trans.ShareContent.Route.subject,
             });
         }
-    }, [sharedContent?.url, shareError, trans]);
+    }, [sharedContent?.url, sharedContent?.content?.imgUrl, shareError, trans]);
 
     /**
      * Call share menu
@@ -102,7 +105,7 @@ const ShareRouteScreen: React.FC = () => {
                 </View>
             </View>
             <FailedResponseModal
-                testID={'ShareRouteScreen'}
+                testID={'ShareRouteScreen-modal'}
                 showModal={showErrorModal}
                 errorMessage={shareError}
                 onClose={onCloseModalHandler}

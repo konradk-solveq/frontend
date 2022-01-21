@@ -178,9 +178,9 @@
         "header": "Wyślij znajomym",
         "ShareContent": {
             "Route": {
-                "title": "Share route title",
-                "message": "Share route message",
-                "subject": "Share route subject"
+                "title": "Polecam trasę zarejestrowaną w aplikacji myKROSS",
+                "message": "{{url}}",
+                "subject": "Polecam trasę zarejestrowaną w aplikacji myKROSS"
             }
         }
     },
@@ -647,15 +647,15 @@
         "header": "Język aplikacji",
         "languages": [{
                 "name": "Polski",
-                "short": "pl",
+                "short": "pl"
             },
             {
                 "name": "English",
-                "short": "en",
+                "short": "en"
             },
             {
                 "name": "Česky (již brzy)",
-                "short": "cz",
+                "short": "cz"
             }
         ],
         "byLocation": "po lokalizacji",
