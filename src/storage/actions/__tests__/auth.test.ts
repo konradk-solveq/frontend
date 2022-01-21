@@ -10,10 +10,12 @@ import {
     compareResultsWhenOnlineSecondCase,
     compareResultsWhenOnlineThirdCase,
     compareResultsWhenOnlineFourthCase,
+    compareRegistrationResultsFirstCase,
+    compareRegistrationResultsSecondCase,
 } from './utils/compareAuthDispatchResults';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
 
-import {logOut} from '@storage/actions';
+import {logOut, register} from '@storage/actions';
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
@@ -151,6 +153,63 @@ describe('[AuthenticationRoute actions]', () => {
 
             afterEach(() => {
                 jest.clearAllMocks();
+            });
+        });
+    });
+
+    describe('Registration', () => {
+        it('should not re-register user when is authenticated but "userAuthState" is equal to "uknown"', async () => {
+            store = mockStore({
+                ...initState,
+                auth: {
+                    isAuth: true,
+                    userAuthState: 'uknown',
+                },
+                authData: {
+                    userId: 'test-user-id',
+                },
+            });
+            actionsLog = store.getActions();
+            return store.dispatch<any>(register()).then(() => {
+                /**
+                 * Check if all expected actions have been called.
+                 */
+                compareRegistrationResultsFirstCase(actionsLog);
+            });
+        });
+
+        it('should re-register user when is authenticated but "userId" not exists', async () => {
+            store = mockStore({
+                ...initState,
+                auth: {
+                    isAuth: true,
+                    userAuthState: 'uknown',
+                },
+                authData: {
+                    userId: '',
+                },
+            });
+
+            /**
+             * Mock log out api call.
+             */
+            await postApiCallMock(
+                {
+                    data: {
+                        userId: 'test-user-id',
+                        deviceToken: 'test-device-token',
+                        recoveryCodes: ['1', '2', '3'],
+                    },
+                    status: 200,
+                },
+                'post',
+            );
+            actionsLog = store.getActions();
+            return store.dispatch<any>(register()).then(() => {
+                /**
+                 * Check if all expected actions have been called.
+                 */
+                compareRegistrationResultsSecondCase(actionsLog);
             });
         });
     });

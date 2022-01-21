@@ -69,3 +69,47 @@ export const authenticateUserWhenOnlineFourthCaseExpectedActions = [
         state: false,
     },
 ];
+
+export const userRegistrationFirstCaseExpectedActions = [
+    {
+        type: actionTypes.SET_AUTH_SYNC_STATE,
+        state: true,
+    },
+    {
+        type: actionTypes.CLEAR_AUTH_ERROR,
+    },
+    {
+        type: actionTypes.SET_AUTH_STATE,
+        authState: 'mobile',
+        isAuth: false,
+    },
+    {
+        type: actionTypes.SET_AUTH_SYNC_STATE,
+        state: false,
+    },
+];
+
+export const userRegistrationSecondCaseExpectedActions = [
+    {
+        type: actionTypes.SET_AUTH_SYNC_STATE,
+        state: true,
+    },
+    {
+        type: actionTypes.CLEAR_AUTH_ERROR,
+    },
+    {
+        type: actionTypes.SET_AUTHENTICATION_DATA,
+        userId: 'test-user-id',
+        deviceToken: 'test-device-token',
+        recoveryCodes: ['1', '2', '3'],
+    },
+    {
+        type: actionTypes.SET_AUTH_STATE,
+        authState: 'mobile',
+        isAuth: false,
+    },
+    {
+        type: actionTypes.SET_AUTH_SYNC_STATE,
+        state: false,
+    },
+];
