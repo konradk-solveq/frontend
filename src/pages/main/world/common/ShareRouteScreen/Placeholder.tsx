@@ -18,6 +18,7 @@ interface PlaceholderPropsI {
     highlightColor?: string;
     speed?: number;
     direction?: 'left' | 'right';
+    testID?: string;
 }
 
 const Placeholder = ({
@@ -28,6 +29,7 @@ const Placeholder = ({
     speed = 1200,
     highlightColor = colors.grey,
     direction = 'right',
+    testID = "share-route-placeholder",
 }: PlaceholderPropsI) => {
     const animatedValue = useMemo(() => new Animated.Value(0), []);
     const translateX = useMemo(
@@ -66,6 +68,7 @@ const Placeholder = ({
 
     return showPlaceholder ? (
         <MaskedView
+            testID={testID}
             style={{
                 height: layout.height,
                 width: layout.width,

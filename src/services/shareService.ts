@@ -28,19 +28,19 @@ export const shareRouteService = async (
 ): Promise<ShareResponseI> => {
     try {
         const response = await shareRoute(routeId);
-        response.status = 200;
-        const mockedResponse = await mockResponse({
-            data: {
-                url: 'https://kross.eu/aplikacja-mobilna',
-                content: {
-                    imgUrl:
-                        'https://public.pre.mykross.kross.pl/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
-                },
-            },
-            status: 200,
-            error: '',
-        });
-        response.data = mockedResponse.data;
+        // response.status = 200;
+        // const mockedResponse = await mockResponse({
+        //     data: {
+        //         url: 'https://kross.eu/aplikacja-mobilna',
+        //         content: {
+        //             imgUrl:
+        //                 'https://public.pre.mykross.kross.pl/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
+        //         },
+        //     },
+        //     status: 200,
+        //     error: '',
+        // });
+        // response.data = mockedResponse.data;
 
         if (
             !response?.data?.url ||

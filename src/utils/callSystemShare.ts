@@ -18,6 +18,7 @@ export const callSystemShare = async (
 
         /**
          * There is some issue with this package.
+         * I've read that problem probably camse from RN implementation.
          * When use email or clipboard it returnes error
          * even if user action wass succesfull.
          * With whatsapp for example it works correctly.
@@ -41,7 +42,9 @@ export const callSystemShare = async (
         /**
          * It shouldn't be used here,
          * but for for some reason even sucesfull action
-         * ocurres an error
+         * ocurres an error.
+         * When dissmised it also throws an error,
+         * but should return 'dissmisedAction'
          */
         const falsePositiveError = error?.message === 'User did not share';
         if (falsePositiveError && callback) {
