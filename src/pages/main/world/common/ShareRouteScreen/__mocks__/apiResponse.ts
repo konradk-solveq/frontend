@@ -2,7 +2,7 @@ export const apiResponseWithSuccess = {
     data: {
         url: 'https://kross.eu/aplikacja-mobilna',
         content: {
-            imgUrl:
+            image:
                 'cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
         },
     },

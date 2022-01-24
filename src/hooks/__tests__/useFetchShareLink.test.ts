@@ -10,7 +10,7 @@ const mockedResponseSuccess = {
     data: {
         url: 'https://public.pre.mykross.kross.pl/share/id-12345',
         content: {
-            imgUrl:
+            image:
                 'cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
         },
     },
@@ -38,7 +38,7 @@ describe('[useFetchShareLink]', () => {
         expect(result.current.sharedContent).toEqual({
             url: 'https://public.pre.mykross.kross.pl/share/id-12345',
             content: {
-                imgUrl: `${SHARED_IMAGES_URL}/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png`,
+                image: `${SHARED_IMAGES_URL}/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png`,
             },
         });
     }, 1000);

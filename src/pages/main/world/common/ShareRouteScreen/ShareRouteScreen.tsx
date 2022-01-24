@@ -51,7 +51,7 @@ const ShareRouteScreen: React.FC = () => {
             shareBtnIsVisible.current = true;
 
             const message = I18n.t('ShareScreen.ShareContent.Route.message', {
-                url: sharedContent?.content?.imgUrl || '',
+                url: sharedContent?.content?.image || '',
             });
             callSystemShare(sharedContent.url, {
                 title: trans.ShareContent.Route.title,
@@ -59,7 +59,7 @@ const ShareRouteScreen: React.FC = () => {
                 subject: trans.ShareContent.Route.subject,
             });
         }
-    }, [sharedContent?.url, sharedContent?.content?.imgUrl, shareError, trans]);
+    }, [sharedContent?.url, sharedContent?.content?.image, shareError, trans]);
 
     /**
      * Call share menu
@@ -88,7 +88,7 @@ const ShareRouteScreen: React.FC = () => {
                             height: getVerticalPx(239),
                         }}>
                         <ShareRouteImage
-                            imgUrl={sharedContent?.content?.imgUrl}
+                            imgUrl={sharedContent?.content?.image}
                             onImageLoaded={onImageLoadedHandler}
                             containerStyles={styles.shareImageContainer}
                         />

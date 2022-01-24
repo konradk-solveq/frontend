@@ -21,8 +21,8 @@ const useFetchShareLink = (mapId: string) => {
         if (response.data) {
             setError('');
             const content: SharedContentT = {url: '', content: {}};
-            if (response.data.content?.imgUrl) {
-                content.content.imgUrl = `${SHARED_IMAGES_URL}/${response.data.content.imgUrl}`;
+            if (response.data.content?.image) {
+                content.content.image = `${SHARED_IMAGES_URL}/${response.data.content.image}`;
             }
             content.url = response.data.url;
             setSharedContent(content);
