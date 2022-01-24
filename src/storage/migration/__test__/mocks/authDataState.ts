@@ -21,6 +21,6 @@ export const mockedInitStateMock: PersistedState & AuthDataState = {
 };
 
 export const mockedStateMock: PersistedState & AuthDataState = {
-    _persist: {rehydrated: true, version: 0},
     ...authDataMock,
+    _persist: {rehydrated: true, version: 0},
 };

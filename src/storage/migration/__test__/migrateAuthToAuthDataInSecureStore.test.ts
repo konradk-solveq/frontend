@@ -2,13 +2,22 @@ import {authMigration} from '@storage/migration/migrateAuthToAuthDataInSecureSto
 import {mockedInitStateMock, mockedStateMock} from './mocks/authDataState';
 import {
     spyOnAsyncStorageAndInjectAuthState,
+    spyOnAsyncStorageAndInjectAuthStateBeforeAppUpdate,
     spyOnAsyncStorageAndInjectEmptyAuthState,
 } from './utils/asyncStorageSpyOn';
 
 describe('REDUX STORE MIGRATION - migrateAuthToAuthDataInSecureStore', () => {
     describe('persist version is lower than 1', () => {
-        it('Should migrate data if "auth" storage contains session data', async () => {
-            spyOnAsyncStorageAndInjectAuthState();
+        it('Should migrate data if "auth" storage "userAuthState" is uknown', async () => {
+            spyOnAsyncStorageAndInjectAuthState('uknown');
+
+            const result = await authMigration(mockedInitStateMock);
+
+            expect(result).toEqual(mockedStateMock);
+        });
+
+        it('Should migrate data if "auth" storage "userAuthState" is undefined', async () => {
+            spyOnAsyncStorageAndInjectAuthStateBeforeAppUpdate();
 
             const result = await authMigration(mockedInitStateMock);
 
