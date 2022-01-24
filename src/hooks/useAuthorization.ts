@@ -9,7 +9,7 @@ import {
     isAuthorizedSelector,
     isLodingSelector,
     authUserMobileAuthenticatedStateSelector,
-    authUserUknownStateSelector,
+    authUserUknownStateOrItIsUnsetSelector,
 } from '@storage/selectors/auth';
 import {onboardingFinishedSelector} from '@storage/selectors/user';
 
@@ -18,7 +18,9 @@ import {onboardingFinishedSelector} from '@storage/selectors/user';
  */
 const useAuthorization = () => {
     const dispatch = useAppDispatch();
-    const isRegistered = !useAppSelector(authUserUknownStateSelector);
+    const isRegistered = !useAppSelector(
+        authUserUknownStateOrItIsUnsetSelector,
+    );
     const userIsAuthenticatedOnlyByMobile = useAppSelector(
         authUserMobileAuthenticatedStateSelector,
     );

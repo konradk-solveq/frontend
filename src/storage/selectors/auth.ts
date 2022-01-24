@@ -31,6 +31,11 @@ export const authUserUknownStateSelector = createSelector(
     s => s === 'uknown',
 );
 
+export const authUserUknownStateOrItIsUnsetSelector = createSelector(
+    authUserAuthenticationStateSelector,
+    s => s === 'uknown' || !s,
+);
+
 export const authUserAuthenticatedStateSelector = createSelector(
     authUserAuthenticationStateSelector,
     s => s === 'authenticated',
