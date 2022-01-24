@@ -13,12 +13,8 @@ const ImageGallery: React.FC<IProps> = ({images, containerStyle}: IProps) => {
     const renderItem = useCallback(() => {
         return images.map((el, i) => {
             return (
-                <View style={styles.imageContainer}>
-                    <MapImage
-                        key={`${el}_${i}_m`}
-                        imgUrl={el}
-                        containerStyles={styles.image}
-                    />
+                <View style={styles.imageContainer} key={`${el}_${i}_m`}>
+                    <MapImage imgUrl={el} containerStyles={styles.image} />
                 </View>
             );
         });
