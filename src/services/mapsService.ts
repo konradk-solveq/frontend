@@ -34,6 +34,7 @@ import {
 } from '@utils/apiDataTransform/prepareRequest';
 import {getFiltersParam} from '@utils/apiDataTransform/filters';
 import {loggErrorMessage} from '@sentryLogger/sentryLogger';
+import {getImgErrorMessage} from '@services/utils/getErrorMessage';
 
 export type CreatedPlannedMap = {
     id: string;
@@ -211,27 +212,24 @@ export const editPrivateMapMetadataService = async (
         const errorMessages: string[] = [];
         let errorStatus;
         imageResponses.forEach((imgResponse, i) => {
-            if (imgResponse.status === 'rejected' || !imgResponse.value.data) {
-                let errorMessage;
-
-                if (
-                    imgResponse?.reason?.data?.message ||
-                    imgResponse?.reason?.data?.error
-                ) {
-                    errorMessage =
-                        imgResponse?.reason?.data.message ||
-                        imgResponse?.reason?.data.error;
-                } else {
-                    errorMessage = I18n.t(
-                        'dataAction.mapData.fileUploadError',
-                        {value: images.save[i].fileName},
-                    );
-                }
+            if (imgResponse.status === 'rejected') {
+                const errorMessage = getImgErrorMessage(
+                    imgResponse.reason,
+                    images.save && images.save[i].fileName,
+                );
                 errorMessages.push(errorMessage);
-
                 errorStatus =
                     imgResponse?.reason?.status ||
                     imgResponse?.reason?.data?.statusCode;
+                return;
+            }
+            if (imgResponse.status === 'fulfilled' && !imgResponse.value.data) {
+                const errorMessage = getImgErrorMessage(
+                    imgResponse.value,
+                    images.save && images.save[i].fileName,
+                );
+                errorMessages.push(errorMessage);
+                errorStatus = imgResponse?.value?.status;
             }
         });
         const errorMessage = Array.from(

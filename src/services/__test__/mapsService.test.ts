@@ -1,13 +1,15 @@
-import {editPrivateMapMetadataService} from '@services';
+import {editPrivateMapMetadataService} from '@services/';
 import {
     MOCK_AUTHOR,
     MOCK_DATA,
     MOCK_ERROR_400_MESSAGE,
     MOCK_ERROR_400_RESPONSE,
+    MOCK_ERROR_500_DEFAULT_MESSAGE,
     MOCK_ERROR_500_MESSAGE,
     MOCK_ERROR_500_RESPONSE,
     MOCK_OK_RESPONSE,
     MOCK_SAVE_IMAGES,
+    MOCK_SAVE_IMAGES_NO_FILENAMES,
 } from '@services/mock/editMapData';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
 
@@ -56,6 +58,18 @@ describe('[mapsService]', () => {
                 );
                 expect(result.status).toBe(500);
                 expect(result.error).toBe(MOCK_ERROR_500_MESSAGE);
+            });
+        });
+        describe('when image with no filename request returns error other than 400', () => {
+            it('should return passed status code and default translated error message', async () => {
+                await postApiCallMock(MOCK_ERROR_500_RESPONSE, 'post', true);
+                const result = await editPrivateMapMetadataService(
+                    MOCK_DATA,
+                    MOCK_AUTHOR,
+                    MOCK_SAVE_IMAGES_NO_FILENAMES,
+                );
+                expect(result.status).toBe(500);
+                expect(result.error).toBe(MOCK_ERROR_500_DEFAULT_MESSAGE);
             });
         });
     });

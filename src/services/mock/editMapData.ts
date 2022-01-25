@@ -27,7 +27,19 @@ export const MOCK_SAVE_IMAGES: ImagesMetadataType = {
     ],
 };
 
+export const MOCK_SAVE_IMAGES_NO_FILENAMES: ImagesMetadataType = {
+    delete: [],
+    save: [
+        {
+            uri: 'test1',
+        },
+    ],
+};
+
 export const MOCK_ERROR_400_MESSAGE = 'TEST ERROR MESSAGE';
+
+export const MOCK_ERROR_500_DEFAULT_MESSAGE =
+    'Plik [ Brak nazwy ] nie został wysłany. Spróbuj ponownie później.';
 
 export const MOCK_ERROR_500_MESSAGE =
     'Plik [ test1 ] nie został wysłany. Spróbuj ponownie później., Plik [ test2 ] nie został wysłany. Spróbuj ponownie później., Plik [ test3 ] nie został wysłany. Spróbuj ponownie później.';
