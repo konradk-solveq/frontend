@@ -36,8 +36,17 @@ import routesDataToUpdateMock from './mocks/routesDataToUpdate';
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
 
+const DATA_ACTION_ROUTE_DATA_UPDATE_ROUTE_ERROR = i18next.t(
+    'dataAction.routeData.updateRouteError',
+);
+
 jest.mock('uuid', () => ({
     v4: () => 'current-route-test-id',
+}));
+jest.mock('../../../../I18n/i18next', () => ({
+    t: (str: string) => {
+        return `${str}`;
+    },
 }));
 
 describe('[Recording Route actions]', () => {
@@ -530,14 +539,10 @@ describe('[Recording Route actions]', () => {
                         Promise.resolve({
                             data: {
                                 statusCode: 400,
-                                error: i18next.t(
-                                    'dataAction.routeData.updateRouteError',
-                                ),
+                                error: DATA_ACTION_ROUTE_DATA_UPDATE_ROUTE_ERROR,
                             },
                             status: 400,
-                            error: i18next.t(
-                                'dataAction.routeData.updateRouteError',
-                            ),
+                            error: DATA_ACTION_ROUTE_DATA_UPDATE_ROUTE_ERROR,
                         }),
                     );
                 const dataToCompare = routesDataToAPIRequest(

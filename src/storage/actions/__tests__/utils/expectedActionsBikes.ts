@@ -4,6 +4,12 @@ import i18next from '@translations/i18next';
 import bikesMock from '@src/api/mocks/bikes/lookupBike';
 import updatedData from '../mocks/bikesListToUpdate';
 
+jest.mock('../../../../../I18n/i18next', () => ({
+    t: (str: string) => {
+        return `${str}`;
+    },
+}));
+
 const bikeNumber = '1003196015';
 const bikeNumberTwo = '1234567890';
 const customBikeNumber = '1456790';

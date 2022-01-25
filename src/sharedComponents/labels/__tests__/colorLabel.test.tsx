@@ -8,6 +8,14 @@ import {initAppSize} from '../../../../src/helpers/layoutFoo';
 const textToPass = 'Label text';
 const colorsToPass = ['red', 'blue'];
 
+jest.mock('../../../utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val: string) => {
+        return {
+            t: (str: string) => `${val}.${str}`,
+        };
+    },
+}));
+
 describe('<ColorLabel />', () => {
     describe('Rendering', () => {
         beforeAll(() => {

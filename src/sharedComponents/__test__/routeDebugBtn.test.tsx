@@ -8,6 +8,14 @@ import RouteDebugBtn from '@sharedComponents/buttons/routeDebugBtn';
 import renderComponent from '@jestUtils/render';
 import asyncEvent from '@jestUtils/asyncEvent';
 
+jest.mock('../../utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val: string) => {
+        return {
+            t: (str: string) => `${val}.${str}`,
+        };
+    },
+}));
+
 describe('<RouteDebugBtn />', () => {
     describe('Rendering', () => {
         beforeAll(() => {

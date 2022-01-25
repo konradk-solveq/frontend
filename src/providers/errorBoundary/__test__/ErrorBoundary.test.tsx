@@ -10,6 +10,15 @@ import ErrorBoundary from '../ErrorBoundary';
 const RESET_BUTTON_ID = 'error-boundary-reset-button';
 const RESTART_BUTTON_ID = 'error-boundary-restart-button';
 
+jest.mock('../../../utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val: string) => {
+        return {
+            t: (str: string) => `${val}.${str}`,
+        };
+    },
+}));
+
+
 describe('<ErrorBoundary />', () => {
     let consoleErrorSpyOn: jest.SpyInstance;
     let errorMock: Error;

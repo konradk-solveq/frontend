@@ -31,8 +31,7 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 const isIOS = Platform.OS === 'ios';
 
 const LoginScreen: React.FC = () => {
-    const {t, i18n} = useMergedTranslation('Login');
-    console.log(i18n.options);
+    const {t} = useMergedTranslation('Login');
     const isLoading = useAppSelector(isLodingSelector);
     const errorMessage = useAppSelector(authErrorMessageSelector);
     const statusCode = useAppSelector(authStatusCodeSelector);

@@ -3,6 +3,12 @@ import {endedRoute, startedRoute, stoppedRoute} from './routeData';
 import i18next from '@translations/i18next';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
 
+jest.mock('../../../../../I18n/i18next', () => ({
+    t: (str: string) => {
+        return `${str}`;
+    },
+}));
+
 export const startRecordingExpectedActions = [
     {
         state: true,

@@ -29,6 +29,12 @@ const mockStore = configureStore(middlewares);
 const bikeNumber = '1003196015';
 const bikeNumberTwo = '1234567890';
 
+jest.mock('../../../../I18n/i18next', () => ({
+    t: (str: string) => {
+        return `${str}`;
+    },
+}));
+
 describe('[Bikes actions]', () => {
     let store: MockStoreEnhanced<unknown, {}>;
     let actionsLog: any[];

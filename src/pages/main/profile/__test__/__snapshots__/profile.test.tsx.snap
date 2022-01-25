@@ -192,7 +192,7 @@ Array [
                     }
                   }
                 >
-                  Rowerzysta
+                  MainProfile.defaultName
                 </Text>
                 <Text
                   style={
@@ -230,7 +230,7 @@ Array [
                   }
                 }
               >
-                O myKROSS
+                MainProfile.settings
               </Text>
               <View
                 accessible={true}
@@ -274,7 +274,113 @@ Array [
                       }
                     }
                   >
-                    O aplikacji
+                    MainProfile.languages
+                  </Text>
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={27.17391304347826}
+                    bbWidth={16.304347826086957}
+                    focusable={false}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "height": 27.17391304347826,
+                          "marginRight": 12.681159420289855,
+                          "width": 16.304347826086957,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 27,
+                          "width": 16,
+                        },
+                      ]
+                    }
+                    vbHeight={15}
+                    vbWidth={9}
+                  >
+                    <RNSVGGroup>
+                      <RNSVGPath
+                        d="M.309.79c-.38.355-.41.915-.088 1.302l.088.093 5.145 4.814L.31 11.815l-.088.093c-.322.387-.292.947.088 1.303s.978.383 1.392.082l.1-.082 5.89-5.513.088-.093c.295-.355.295-.855 0-1.21l-.088-.093L1.801.79C1.387.404.72.404.308.79z"
+                        fill={4281413937}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+              </View>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Light",
+                      "fontSize": 18,
+                      "marginBottom": 6.6997767857142865,
+                      "position": "relative",
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginTop": 53.59821428571429,
+                    },
+                  ]
+                }
+              >
+                MainProfile.title
+              </Text>
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "borderBottomColor": "#EAEAEA",
+                      "borderBottomWidth": 1,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#3587ea",
+                        "fontFamily": "DIN2014Narrow-Light",
+                        "fontSize": 18,
+                        "marginBottom": 24.565848214285715,
+                        "marginTop": 24.565848214285715,
+                        "position": "relative",
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    MainProfile.app
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -361,7 +467,7 @@ Array [
                       }
                     }
                   >
-                    Regulamin
+                    MainProfile.regulations
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -448,7 +554,7 @@ Array [
                       }
                     }
                   >
-                    Polityka prywatności
+                    MainProfile.privacyPolicy
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -535,7 +641,7 @@ Array [
                       }
                     }
                   >
-                    Pomoc
+                    MainProfile.help
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -622,7 +728,7 @@ Array [
                       }
                     }
                   >
-                    Kontakt
+                    MainProfile.contact
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -733,7 +839,7 @@ Array [
                       }
                     }
                   >
-                    Coś poszło nie tak!
+                    PublishThankYouPage.errorTitle
                   </Text>
                 </View>
                 <View
@@ -1009,7 +1115,7 @@ Array [
                             ]
                           }
                         >
-                          OK
+                          PUBLISHTHANKYOUPAGE.OKBTN
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -1064,7 +1170,7 @@ Array [
             ]
           }
         >
-           Konto
+          MainProfile.header
         </Text>
       </View>
     </View>
@@ -1405,7 +1511,7 @@ Array [
                     }
                   }
                 >
-                  Rowerzysta
+                  MainProfile.defaultName
                 </Text>
                 <Text
                   style={
@@ -1443,7 +1549,7 @@ Array [
                   }
                 }
               >
-                Ustawienia
+                MainProfile.settings
               </Text>
               <View
                 accessible={true}
@@ -1487,7 +1593,7 @@ Array [
                       }
                     }
                   >
-                    Moje zgody
+                    MainProfile.myConsents
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -1552,7 +1658,7 @@ Array [
                   }
                 }
               >
-                O myKROSS
+                MainProfile.settings
               </Text>
               <View
                 accessible={true}
@@ -1596,7 +1702,113 @@ Array [
                       }
                     }
                   >
-                    O aplikacji
+                    MainProfile.languages
+                  </Text>
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={27.17391304347826}
+                    bbWidth={16.304347826086957}
+                    focusable={false}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "height": 27.17391304347826,
+                          "marginRight": 12.681159420289855,
+                          "width": 16.304347826086957,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 27,
+                          "width": 16,
+                        },
+                      ]
+                    }
+                    vbHeight={15}
+                    vbWidth={9}
+                  >
+                    <RNSVGGroup>
+                      <RNSVGPath
+                        d="M.309.79c-.38.355-.41.915-.088 1.302l.088.093 5.145 4.814L.31 11.815l-.088.093c-.322.387-.292.947.088 1.303s.978.383 1.392.082l.1-.082 5.89-5.513.088-.093c.295-.355.295-.855 0-1.21l-.088-.093L1.801.79C1.387.404.72.404.308.79z"
+                        fill={4281413937}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+              </View>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Light",
+                      "fontSize": 18,
+                      "marginBottom": 6.6997767857142865,
+                      "position": "relative",
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginTop": 53.59821428571429,
+                    },
+                  ]
+                }
+              >
+                MainProfile.title
+              </Text>
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "borderBottomColor": "#EAEAEA",
+                      "borderBottomWidth": 1,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#3587ea",
+                        "fontFamily": "DIN2014Narrow-Light",
+                        "fontSize": 18,
+                        "marginBottom": 24.565848214285715,
+                        "marginTop": 24.565848214285715,
+                        "position": "relative",
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    MainProfile.app
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -1683,7 +1895,7 @@ Array [
                       }
                     }
                   >
-                    Regulamin
+                    MainProfile.regulations
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -1770,7 +1982,7 @@ Array [
                       }
                     }
                   >
-                    Polityka prywatności
+                    MainProfile.privacyPolicy
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -1857,7 +2069,7 @@ Array [
                       }
                     }
                   >
-                    Pomoc
+                    MainProfile.help
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -1944,7 +2156,7 @@ Array [
                       }
                     }
                   >
-                    Kontakt
+                    MainProfile.contact
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -2039,7 +2251,7 @@ Array [
                       ]
                     }
                   >
-                    WYLOGUJ
+                    PROFILE.AUTH.LOGOUTBTN
                   </Text>
                 </View>
               </RNGestureHandlerButton>
@@ -2109,7 +2321,7 @@ Array [
                       }
                     }
                   >
-                    Coś poszło nie tak!
+                    PublishThankYouPage.errorTitle
                   </Text>
                 </View>
                 <View
@@ -2383,7 +2595,7 @@ Array [
                             ]
                           }
                         >
-                          OK
+                          PUBLISHTHANKYOUPAGE.OKBTN
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -2438,7 +2650,7 @@ Array [
             ]
           }
         >
-           Konto
+          MainProfile.header
         </Text>
       </View>
     </View>
@@ -2779,7 +2991,7 @@ Array [
                     }
                   }
                 >
-                  Rowerzysta
+                  MainProfile.defaultName
                 </Text>
                 <Text
                   style={
@@ -2817,7 +3029,7 @@ Array [
                   }
                 }
               >
-                Ustawienia
+                MainProfile.settings
               </Text>
               <View
                 accessible={true}
@@ -2861,7 +3073,7 @@ Array [
                       }
                     }
                   >
-                    Moje zgody
+                    MainProfile.myConsents
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -2926,7 +3138,7 @@ Array [
                   }
                 }
               >
-                O myKROSS
+                MainProfile.settings
               </Text>
               <View
                 accessible={true}
@@ -2970,7 +3182,113 @@ Array [
                       }
                     }
                   >
-                    O aplikacji
+                    MainProfile.languages
+                  </Text>
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={27.17391304347826}
+                    bbWidth={16.304347826086957}
+                    focusable={false}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "height": 27.17391304347826,
+                          "marginRight": 12.681159420289855,
+                          "width": 16.304347826086957,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 27,
+                          "width": 16,
+                        },
+                      ]
+                    }
+                    vbHeight={15}
+                    vbWidth={9}
+                  >
+                    <RNSVGGroup>
+                      <RNSVGPath
+                        d="M.309.79c-.38.355-.41.915-.088 1.302l.088.093 5.145 4.814L.31 11.815l-.088.093c-.322.387-.292.947.088 1.303s.978.383 1.392.082l.1-.082 5.89-5.513.088-.093c.295-.355.295-.855 0-1.21l-.088-.093L1.801.79C1.387.404.72.404.308.79z"
+                        fill={4281413937}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+              </View>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#555555",
+                      "fontFamily": "DIN2014Narrow-Light",
+                      "fontSize": 18,
+                      "marginBottom": 6.6997767857142865,
+                      "position": "relative",
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "marginTop": 53.59821428571429,
+                    },
+                  ]
+                }
+              >
+                MainProfile.title
+              </Text>
+              <View
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "borderBottomColor": "#EAEAEA",
+                      "borderBottomWidth": 1,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "#3587ea",
+                        "fontFamily": "DIN2014Narrow-Light",
+                        "fontSize": 18,
+                        "marginBottom": 24.565848214285715,
+                        "marginTop": 24.565848214285715,
+                        "position": "relative",
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    MainProfile.app
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -3057,7 +3375,7 @@ Array [
                       }
                     }
                   >
-                    Regulamin
+                    MainProfile.regulations
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -3144,7 +3462,7 @@ Array [
                       }
                     }
                   >
-                    Polityka prywatności
+                    MainProfile.privacyPolicy
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -3231,7 +3549,7 @@ Array [
                       }
                     }
                   >
-                    Pomoc
+                    MainProfile.help
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -3318,7 +3636,7 @@ Array [
                       }
                     }
                   >
-                    Kontakt
+                    MainProfile.contact
                   </Text>
                   <RNSVGSvgView
                     align="xMidYMid"
@@ -3413,7 +3731,7 @@ Array [
                       ]
                     }
                   >
-                    WYLOGUJ
+                    PROFILE.AUTH.LOGOUTBTN
                   </Text>
                 </View>
               </RNGestureHandlerButton>
@@ -3483,7 +3801,7 @@ Array [
                       }
                     }
                   >
-                    Coś poszło nie tak!
+                    PublishThankYouPage.errorTitle
                   </Text>
                 </View>
                 <View
@@ -3699,10 +4017,7 @@ Array [
                       }
                     }
                     testID="logout-error-messageMessage"
-                  >
-                    Nastąpił błąd podczas wylogowywania lub sesja nie jest dłużej aktywna. 
-Spróbuj ponownie.
-                  </Text>
+                  />
                 </View>
                 <View
                   style={
@@ -3760,7 +4075,7 @@ Spróbuj ponownie.
                             ]
                           }
                         >
-                          OK
+                          PUBLISHTHANKYOUPAGE.OKBTN
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -3815,7 +4130,7 @@ Spróbuj ponownie.
             ]
           }
         >
-           Konto
+          MainProfile.header
         </Text>
       </View>
     </View>

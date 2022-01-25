@@ -17,6 +17,14 @@ jest.mock('react-native/Libraries/Utilities/Platform', () => ({
     select: () => null,
 }));
 
+jest.mock('../../../utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val: string) => {
+        return {
+            t: (str: string) => `${val}.${str}`,
+        };
+    },
+}));
+
 describe('<ShortRouteBody />', () => {
     describe('Rendering', () => {
         beforeAll(() => {

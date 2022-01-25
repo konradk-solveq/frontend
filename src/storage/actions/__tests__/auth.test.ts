@@ -21,9 +21,13 @@ const mockStore = configureStore(middleware);
 const INTERNET_CONNECTION_ERROR_MESSAGE = i18next.t(
     'dataAction.noInternetConnection',
 );
-
 jest.mock('uuid', () => ({
     v4: () => 'current-route-test-id',
+}));
+jest.mock('../../../../I18n/i18next', () => ({
+    t: (str: string) => {
+        return `${str}`;
+    },
 }));
 
 describe('[AuthenticationRoute actions]', () => {

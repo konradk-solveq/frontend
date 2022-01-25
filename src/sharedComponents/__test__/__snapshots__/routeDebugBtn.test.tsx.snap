@@ -59,7 +59,7 @@ Array [
               ]
             }
           >
-            WYŁĄCZ DEBUGOWANIE TRASY
+            DEBUGROUTE.DISABLEDEBUGGING
           </Text>
         </View>
       </RNGestureHandlerButton>
@@ -221,7 +221,7 @@ Array [
               ]
             }
           >
-            WŁĄCZ DEBUGOWANIE TRASY
+            DEBUGROUTE.ENABLEDEBUGGING
           </Text>
         </View>
       </RNGestureHandlerButton>
@@ -385,7 +385,7 @@ Array [
               ]
             }
           >
-            WŁĄCZ DEBUGOWANIE TRASY
+            DEBUGROUTE.ENABLEDEBUGGING
           </Text>
         </View>
       </RNGestureHandlerButton>

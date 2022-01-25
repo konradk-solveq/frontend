@@ -150,7 +150,7 @@ Array [
               ]
             }
           >
-            Moje zgody
+            Consents.header
           </Text>
         </View>
       </View>
@@ -415,7 +415,7 @@ stroke= \\"#D8232A\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-lin
                         }
                       }
                     >
-                      Coś poszło nie tak!
+                      PublishThankYouPage.errorTitle
                     </Text>
                   </View>
                   <View
@@ -691,7 +691,7 @@ stroke= \\"#D8232A\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-lin
                               ]
                             }
                           >
-                            OK
+                            PUBLISHTHANKYOUPAGE.OKBTN
                           </Text>
                         </View>
                       </RNGestureHandlerButton>
@@ -908,7 +908,7 @@ Array [
               ]
             }
           >
-            Moje zgody
+            Consents.header
           </Text>
         </View>
       </View>
@@ -1074,7 +1074,7 @@ Array [
                   }
                 >
                   <Text>
-                    Zaznacz wsystkie
+                    Login.selectAll
                   </Text>
                 </View>
               </View>
@@ -1318,7 +1318,7 @@ Array [
                         ]
                       }
                     >
-                      ZAPISZ
+                      CONSENTS.BUTTON
                     </Text>
                   </View>
                 </RNGestureHandlerButton>
@@ -1388,7 +1388,7 @@ Array [
                         }
                       }
                     >
-                      Coś poszło nie tak!
+                      PublishThankYouPage.errorTitle
                     </Text>
                   </View>
                   <View
@@ -1664,7 +1664,7 @@ Array [
                               ]
                             }
                           >
-                            OK
+                            PUBLISHTHANKYOUPAGE.OKBTN
                           </Text>
                         </View>
                       </RNGestureHandlerButton>
@@ -1881,7 +1881,7 @@ Array [
               ]
             }
           >
-            Moje zgody
+            Consents.header
           </Text>
         </View>
       </View>
@@ -2047,7 +2047,7 @@ Array [
                   }
                 >
                   <Text>
-                    Zaznacz wsystkie
+                    Login.selectAll
                   </Text>
                 </View>
               </View>
@@ -2291,7 +2291,7 @@ Array [
                         ]
                       }
                     >
-                      ZAPISZ
+                      CONSENTS.BUTTON
                     </Text>
                   </View>
                 </RNGestureHandlerButton>
@@ -2361,7 +2361,7 @@ Array [
                         }
                       }
                     >
-                      Coś poszło nie tak!
+                      PublishThankYouPage.errorTitle
                     </Text>
                   </View>
                   <View
@@ -2637,7 +2637,7 @@ Array [
                               ]
                             }
                           >
-                            OK
+                            PUBLISHTHANKYOUPAGE.OKBTN
                           </Text>
                         </View>
                       </RNGestureHandlerButton>

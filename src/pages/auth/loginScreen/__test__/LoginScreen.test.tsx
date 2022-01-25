@@ -32,6 +32,14 @@ jest.mock('@react-navigation/core', () => {
     };
 });
 
+jest.mock('../../../../utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val: string) => {
+        return {
+            t: (str: string) => `${val}.${str}`,
+        };
+    },
+}));
+
 const initStore = {
     auth: {userAuthState: 'loggedout'},
     app: {

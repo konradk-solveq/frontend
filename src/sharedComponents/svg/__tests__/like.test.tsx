@@ -8,6 +8,14 @@ import Like from '../like';
 
 const customSize = 22;
 
+jest.mock('../../../utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val: string) => {
+        return {
+            t: (str: string) => `${val}.${str}`,
+        };
+    },
+}));
+
 describe('<Like />', () => {
     describe('Rendering', () => {
         beforeAll(() => {

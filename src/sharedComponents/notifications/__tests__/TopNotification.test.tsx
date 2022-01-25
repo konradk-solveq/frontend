@@ -10,6 +10,14 @@ import {hookWrapper} from '@jestUtils/render';
 
 const TEST_MESSAGE = 'Test message';
 
+jest.mock('../../../utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val: string) => {
+        return {
+            t: (str: string) => `${val}.${str}`,
+        };
+    },
+}));
+
 describe('<TopNotification />', () => {
     describe('Rendering', () => {
         beforeEach(() => {

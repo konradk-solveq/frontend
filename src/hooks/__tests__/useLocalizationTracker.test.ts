@@ -9,6 +9,14 @@ import {act} from 'react-test-renderer';
 
 let renderedHook: renderHookType;
 
+jest.mock('../../utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val: string) => {
+        return {
+            t: (str: string) => `${val}.${str}`,
+        };
+    },
+}));
+
 describe('[useLocalizationTracker]', () => {
     it('Should start route recording', async () => {
         const {result, waitForNextUpdate} = renderHook(
@@ -25,20 +33,20 @@ describe('[useLocalizationTracker]', () => {
 
     describe('When recording has been started', () => {
         beforeEach(async () => {
-            const {result, waitForNextUpdate} = (async () => {
+            const {result, waitForNextUpdate} = async () => {
                 renderedHook = renderHook(
                     () => useLocalizationTracker(true, true),
                     {wrapper: hookWrapper},
                 );
-    
+
                 if (!result && !waitForNextUpdate) {
                     return;
                 }
-    
+
                 await act(async () => await waitForNextUpdate());
-    
+
                 await asyncEvent(result.current.startTracker());
-            });
+            };
         });
 
         it('Should stop route recording', async () => {
