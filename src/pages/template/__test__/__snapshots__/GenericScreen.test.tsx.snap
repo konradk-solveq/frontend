@@ -13,12 +13,15 @@ exports[`<BikeSelectorList /> Rendering Should hide backArrowBtn 1`] = `
 >
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#fff",
-        "flex": 1,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
     }
   >
     <View
@@ -90,12 +93,15 @@ exports[`<BikeSelectorList /> Rendering Should match snapshot 1`] = `
 >
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#fff",
-        "flex": 1,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
     }
   >
     <View
@@ -252,12 +258,15 @@ exports[`<BikeSelectorList /> Rendering Should navigate after press on backArrow
 >
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#fff",
-        "flex": 1,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
     }
   >
     <View
@@ -414,12 +423,15 @@ exports[`<BikeSelectorList /> Rendering Should render child component 1`] = `
 >
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#fff",
-        "flex": 1,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
     }
   >
     <View
@@ -578,12 +590,15 @@ exports[`<BikeSelectorList /> Rendering Should render header right action elemen
 >
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#fff",
-        "flex": 1,
-        "justifyContent": "center",
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flex": 1,
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
     }
   >
     <View

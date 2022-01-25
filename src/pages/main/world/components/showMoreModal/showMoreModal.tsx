@@ -4,7 +4,10 @@ import {useNavigation} from '@react-navigation/core';
 
 import {I18n} from '@translations/I18n';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {hasAnyBikeSelector} from '@storage/selectors/bikes';
+import {
+    hasAnyBikeSelector,
+    selectorMapTypeEnum,
+} from '@storage/selectors/index';
 import {addPlannedMap, removePlanendMap} from '@storage/actions/maps';
 import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
@@ -30,10 +33,8 @@ interface IProps {
     mapID: string;
     onPressCancel: () => void;
     removeFav?: boolean;
-    isPrivate?: boolean;
-    isPublic?: boolean;
-    isFavourite?: boolean;
-    isFeatured?: boolean;
+    isPublished?: boolean;
+    mapType?: selectorMapTypeEnum;
     backdropStyle?: ViewStyle;
 }
 
@@ -42,10 +43,8 @@ const ShowMoreModal: React.FC<IProps> = ({
     mapID,
     showModal,
     removeFav,
-    isPrivate,
-    isPublic,
-    isFavourite,
-    isFeatured,
+    isPublished,
+    mapType,
     backdropStyle,
 }: IProps) => {
     const trans: any = I18n.t('MainWorld.BikeMap');
@@ -53,6 +52,10 @@ const ShowMoreModal: React.FC<IProps> = ({
     const navigation = useNavigation();
     const norificationContext = useNotificationContext();
     const userHasAnyBike = useAppSelector(hasAnyBikeSelector);
+
+    const isPrivate = mapType === selectorMapTypeEnum.private;
+    const isFeatured = mapType === selectorMapTypeEnum.featured;
+    const isFavourite = mapType === selectorMapTypeEnum.favourite;
 
     const [showMissingBikeModal, setShowMissingBikeModal] = useState(false);
 
@@ -134,6 +137,15 @@ const ShowMoreModal: React.FC<IProps> = ({
         setShowMissingBikeModal(false);
     };
 
+    const onShareRouteHandler = async () => {
+        onPressCancel();
+
+        navigation.navigate({
+            name: RegularStackRoute.SHARE_ROUTE_SCREEN,
+            params: {mapID: mapID, mapType: mapType},
+        });
+    };
+
     return (
         <>
             <Modal
@@ -151,7 +163,7 @@ const ShowMoreModal: React.FC<IProps> = ({
                         {isPrivate && (
                             <Pressable onPress={onPublishRouteHandler}>
                                 <Text style={styles.text}>
-                                    {isPublic
+                                    {isPublished
                                         ? trans.editTripAction
                                         : trans.publishTripAction}
                                 </Text>
@@ -180,6 +192,15 @@ const ShowMoreModal: React.FC<IProps> = ({
                                 </Text>
                             </Text>
                         </Pressable>
+                        {isPublished && (
+                            <Pressable onPress={onShareRouteHandler}>
+                                <Text style={styles.text}>
+                                    <Text style={styles.text}>
+                                        {trans.shareRouteAction}
+                                    </Text>
+                                </Text>
+                            </Pressable>
+                        )}
                         <Pressable onPress={onDetailsButtonPressedHandler}>
                             <Text style={styles.text}>
                                 {trans.routeDetailsAction}

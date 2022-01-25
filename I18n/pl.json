@@ -174,6 +174,16 @@
         "register": " Zarejestruj się",
         "defaultName": "Rowerzysto"
     },
+    "ShareScreen": {
+        "header": "Wyślij znajomym",
+        "ShareContent": {
+            "Route": {
+                "title": "Polecam trasę zarejestrowaną w aplikacji myKROSS",
+                "message": "{{url}}",
+                "subject": "Polecam trasę zarejestrowaną w aplikacji myKROSS"
+            }
+        }
+    },
     "BikeData": {
         "header": "Identyfikacja roweru",
         "title": "Hej, to nie jest rower KROSS.\nNic nie szkodzi, podaj dane swojego roweru.",
@@ -374,6 +384,7 @@
             "noTitle": "Brak tytułu",
             "distanceToStart": " km od Ciebie",
             "addToFavAction": "Pobierz trasę",
+            "shareRouteAction": "Udostępnij",
             "publishTripAction": "Upublicznij",
             "editTripAction": "Edytuj",
             "startTripAction": "Rozpocznij",
@@ -636,15 +647,15 @@
         "header": "Język aplikacji",
         "languages": [{
                 "name": "Polski",
-                "short": "pl",
+                "short": "pl"
             },
             {
                 "name": "English",
-                "short": "en",
+                "short": "en"
             },
             {
                 "name": "Česky (již brzy)",
-                "short": "cz",
+                "short": "cz"
             }
         ],
         "byLocation": "po lokalizacji",
@@ -730,6 +741,9 @@
         },
         "locationData": {
             "readSQLDataFailure": "Nie można odczytać danych geolokalizacyjnych."
+        },
+        "shareData": {
+            "createShareUrlError": "Tworzenie treści do udostępnienia zakończyło się niepowodzeniem. Spróbuj ponownie."
         }
     },
     "Geolocation": {

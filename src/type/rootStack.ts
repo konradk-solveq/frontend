@@ -5,6 +5,7 @@ import {TabStackType} from '@type/tabStack';
 import {RouteMapType} from '@models/places.model';
 import {MapType} from '@models/map.model';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import {selectorMapTypeEnum} from '@src/storage/selectors/map';
 
 /* TODO: Complete missing lists params (if needed) */
 
@@ -78,6 +79,7 @@ export type KrossWorldParamsListT = {
         sectionName: string;
         featuredMapData?: MapType[];
     };
+    ShareRouteScreen: {mapID: string; mapType: selectorMapTypeEnum};
 };
 export type RoutesMapRouteT = RouteProp<KrossWorldParamsListT, 'RoutesMap'>;
 export type RoutesMapNavigationPropT = MainNavigationCompositePropT<
@@ -109,6 +111,14 @@ export type FeaturedMapsScreenRouteT = RouteProp<
 export type FeaturedMapsScreenNavigationPropT = MainNavigationCompositePropT<
     KrossWorldParamsListT,
     'FeaturedRoutesScreen'
+>;
+export type ShareRouteScreenRouteT = RouteProp<
+    KrossWorldParamsListT,
+    'ShareRouteScreen'
+>;
+export type ShareRouteScreenNavigationPropT = MainNavigationCompositePropT<
+    KrossWorldParamsListT,
+    'ShareRouteScreen'
 >;
 /* WORLD */
 

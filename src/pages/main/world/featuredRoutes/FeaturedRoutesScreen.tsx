@@ -1,28 +1,30 @@
 import React, {useCallback, useState} from 'react';
 import {View, FlatList} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 import {BothStackRoute, RegularStackRoute} from '@navigation/route';
-import {Map} from '../../../../models/map.model';
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import {getImagesThumbs} from '../../../../utils/transformData';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {Map} from '@models/map.model';
+import {getVerticalPx} from '@helpers/layoutFoo';
+import {getImagesThumbs} from '@utils/transformData';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {FeaturedMapsScreenRouteT, RootStackType} from '@type/rootStack';
+import {fetchFeaturedMapsList} from '@storage/actions/maps';
 import {
     featuredMapDataBySectionIdSelector,
     loadingMapsSelector,
     nextFeaturedPaginationCoursor,
     refreshMapsSelector,
-} from '../../../../storage/selectors/map';
+    selectorMapTypeEnum,
+} from '@storage/selectors/map';
+
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import Loader from '@sharedComponents/loader/loader';
 
 import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-import Loader from '../../../../sharedComponents/loader/loader';
 
 import styles from './style';
-import {FeaturedMapsScreenRouteType, RootStackType} from '@type/rootStack';
-import {fetchFeaturedMapsList} from '@storage/actions/maps';
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
-import {StackNavigationProp} from '@react-navigation/stack';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -39,7 +41,7 @@ const FeaturedRoutesScreen: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const navigation = useNavigation<StackNavigationProp<RootStackType>>();
-    const route = useRoute<FeaturedMapsScreenRouteType>();
+    const route = useRoute<FeaturedMapsScreenRouteT>();
     const sectionID = route.params.sectionID;
     const sectionName = route.params.sectionName;
 
@@ -159,6 +161,8 @@ const FeaturedRoutesScreen: React.FC = () => {
                         mapID={activeMapID}
                         onPressCancel={() => onPressHandler(false)}
                         backdropStyle={styles.backdrop}
+                        isPublished
+                        mapType={selectorMapTypeEnum.featured}
                     />
                     <FlatList
                         keyExtractor={item => item.id}
