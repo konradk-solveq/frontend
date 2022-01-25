@@ -73,11 +73,15 @@ export const register = (
         const {userId}: AuthDataState = getState().authData;
 
         /**
-         * If user comes fro mversion before 2.0.0 'userAuthState' will be 'uknown'
+         * If user comes from version before 2.0.0 'userAuthState' will be 'uknown' (also can be undefined)
          * and registration process will re-run. To prevent this
          * we set 'userAuthState' to 'mobile' if user has been already registered.
          */
-        if ((isAuth || userAuthState === 'uknown') && userId) {
+        if (
+            isAuth &&
+            (!userAuthState || userAuthState === 'uknown') &&
+            userId
+        ) {
             batch(() => {
                 dispatch(clearAuthError());
                 dispatch(setAuthorizationState('mobile', false));
