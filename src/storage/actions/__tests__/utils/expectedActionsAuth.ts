@@ -30,7 +30,7 @@ export const authenticateUserWhenOnlineAndExpectedActions = [
     },
     {
         type: actionTypes.SET_AUTH_ERROR,
-        // error: i18next.t('Profile.auth.error'),
+        error: i18next.t('Profile.auth.error'),
         statusCode: 500,
     },
     {
@@ -67,7 +67,7 @@ export const authenticateUserWhenOnlineFourthCaseExpectedActions = [
     },
     {
         type: actionTypes.SET_AUTH_ERROR,
-        // error: i18next.t('Profile.auth.error'),
+        error: i18next.t('Profile.auth.error'),
         statusCode: 400,
     },
     {

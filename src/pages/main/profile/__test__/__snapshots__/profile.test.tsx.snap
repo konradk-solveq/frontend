@@ -4017,7 +4017,10 @@ Array [
                       }
                     }
                     testID="logout-error-messageMessage"
-                  />
+                  >
+                    Nastąpił błąd podczas wylogowywania lub sesja nie jest dłużej aktywna. 
+Spróbuj ponownie.
+                  </Text>
                 </View>
                 <View
                   style={

@@ -289,8 +289,9 @@ export const logOut = (
         const response = await logOutService();
 
         if (response.error) {
-            const trans: any = i18next.t('Profile.auth');
-            dispatch(setAuthError(trans.error, response.status));
+            dispatch(
+                setAuthError(i18next.t('Profile.auth.error'), response.status),
+            );
             loggErrorWithScope(response.error, 'logOut');
             return;
         }
