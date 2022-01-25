@@ -737,7 +737,8 @@
         },
         "mapData": {
             "publishError": "Trasa mie została opublikowana. Spróbuj ponownie później.",
-            "fileUploadError": "Plik [ {{value}} ] nie został wysłany. Spróbuj ponownie później."
+            "fileUploadError": "Plik [ {{value}} ] nie został wysłany. Spróbuj ponownie później.",
+            "defaultFilename": "Brak nazwy"
         },
         "locationData": {
             "readSQLDataFailure": "Nie można odczytać danych geolokalizacyjnych."
