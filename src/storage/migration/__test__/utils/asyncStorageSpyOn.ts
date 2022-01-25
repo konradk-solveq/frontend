@@ -6,14 +6,27 @@ import {
 } from '../mocks/authenticationData';
 import {jsonStringify} from '@utils/transformJson';
 
-export const spyOnAsyncStorageAndInjectAuthState = () => {
+export const spyOnAsyncStorageAndInjectAuthStateBeforeAppUpdate = () => {
     const mockedAuthPersistedState = {
         userId: jsonStringify(authDataMock.userId),
         deviceToken: jsonStringify(authDataMock.deviceToken),
         recoveryCodes: jsonStringify(authDataMock.recoveryCodes),
         isAuth: true,
         sessionData: jsonStringify(authDataMock.sessionData),
-        userAuthState: 'mobile',
+        _persist: '{"version":-1,"rehydrated":true}',
+    };
+
+    spyOnAsyncStorageGetItem(mockedAuthPersistedState);
+};
+
+export const spyOnAsyncStorageAndInjectAuthState = (authState = 'mobile') => {
+    const mockedAuthPersistedState = {
+        userId: jsonStringify(authDataMock.userId),
+        deviceToken: jsonStringify(authDataMock.deviceToken),
+        recoveryCodes: jsonStringify(authDataMock.recoveryCodes),
+        isAuth: true,
+        sessionData: jsonStringify(authDataMock.sessionData),
+        userAuthState: jsonStringify(authState),
         _persist: '{"version":-1,"rehydrated":true}',
     };
 

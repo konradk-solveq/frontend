@@ -107,6 +107,7 @@ const authReducer = (state = initialState, action: any) => {
 const persistConfig = {
     key: 'auth',
     storage: AsyncStorage,
+    version: 2,
     whitelist: [
         'userId',
         'deviceToken',
