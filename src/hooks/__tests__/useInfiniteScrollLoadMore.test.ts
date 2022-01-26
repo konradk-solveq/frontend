@@ -4,14 +4,6 @@ import {act} from 'react-test-renderer';
 import {hookWrapper} from '@jestUtils/render';
 import useInfiniteScrollLoadMore from '../useInfiniteScrollLoadMore';
 
-jest.mock('../../utils/translations/useMergedTranslation', () => ({
-    useMergedTranslation: (val: string) => {
-        return {
-            t: (str: string) => `${val}.${str}`,
-        };
-    },
-}));
-
 describe('[useInfiniteScrollLoadMore]', () => {
     it('Should set canLoadMore as true', async () => {
         const {result, waitForNextUpdate} = renderHook(

@@ -6,15 +6,7 @@ import {initAppSize} from '@helpers/layoutFoo';
 
 import Like from '../like';
 
-const customSize = 22;
-
-jest.mock('../../../utils/translations/useMergedTranslation', () => ({
-    useMergedTranslation: (val: string) => {
-        return {
-            t: (str: string) => `${val}.${str}`,
-        };
-    },
-}));
+const CUSTOM_SIZE = 22;
 
 describe('<Like />', () => {
     describe('Rendering', () => {
@@ -47,7 +39,7 @@ describe('<Like />', () => {
                 <Like
                     gaved={false}
                     onpress={onClickFun}
-                    iconSize={customSize}
+                    iconSize={CUSTOM_SIZE}
                 />,
             );
             expect(component).toMatchSnapshot();
@@ -60,7 +52,7 @@ describe('<Like />', () => {
                 <Like
                     gaved={false}
                     onpress={onClickFun}
-                    iconSize={customSize}
+                    iconSize={CUSTOM_SIZE}
                 />,
             );
 

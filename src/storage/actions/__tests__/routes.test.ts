@@ -43,11 +43,6 @@ const DATA_ACTION_ROUTE_DATA_UPDATE_ROUTE_ERROR = i18next.t(
 jest.mock('uuid', () => ({
     v4: () => 'current-route-test-id',
 }));
-jest.mock('../../../../I18n/i18next', () => ({
-    t: (str: string) => {
-        return `${str}`;
-    },
-}));
 
 describe('[Recording Route actions]', () => {
     let store: MockStoreEnhanced<unknown, {}>;

@@ -8,14 +8,6 @@ import SmallWhiteBtn from '@sharedComponents/buttons/SmallWhiteBtn';
 import renderComponent from '@jestUtils/render';
 import asyncEvent from '@jestUtils/asyncEvent';
 
-jest.mock('../../utils/translations/useMergedTranslation', () => ({
-    useMergedTranslation: (val: string) => {
-        return {
-            t: (str: string) => `${val}.${str}`,
-        };
-    },
-}));
-
 describe('<SmallWhiteBtn />', () => {
     describe('Rendering', () => {
         beforeAll(() => {

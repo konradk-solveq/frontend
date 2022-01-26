@@ -37,14 +37,6 @@ jest.mock('@react-navigation/core', () => {
     };
 });
 
-jest.mock('../../../../../utils/translations/useMergedTranslation', () => ({
-    useMergedTranslation: (val: string) => {
-        return {
-            t: (str: string) => `${val}.${str}`,
-        };
-    },
-}));
-
 describe('<AddingByNumber Screen />', () => {
     beforeAll(() => {
         initAppSize();

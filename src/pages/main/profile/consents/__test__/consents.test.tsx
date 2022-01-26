@@ -16,14 +16,6 @@ jest.mock('@react-navigation/native', () => ({
     }),
 }));
 
-jest.mock('../../../../../utils/translations/useMergedTranslation', () => ({
-    useMergedTranslation: (val: string) => {
-        return {
-            t: (str: string) => `${val}.${str}`,
-        };
-    },
-}));
-
 const initStore = {
     auth: {userconsentsState: 'consentsenticated'},
     app: {

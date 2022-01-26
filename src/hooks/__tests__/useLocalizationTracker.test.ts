@@ -9,14 +9,6 @@ import {act} from 'react-test-renderer';
 
 let renderedHook: renderHookType;
 
-jest.mock('../../utils/translations/useMergedTranslation', () => ({
-    useMergedTranslation: (val: string) => {
-        return {
-            t: (str: string) => `${val}.${str}`,
-        };
-    },
-}));
-
 describe('[useLocalizationTracker]', () => {
     it('Should start route recording', async () => {
         const {result, waitForNextUpdate} = renderHook(

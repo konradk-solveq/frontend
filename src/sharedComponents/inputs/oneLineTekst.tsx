@@ -36,6 +36,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const [isSecure, setIsSecure] = useState(true);
+    const {t} = useMergedTranslation('');
 
     const onEyePress = () => {
         setIsSecure(!isSecure);
@@ -51,8 +52,6 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
 
         if (props.value == 'null' || props.value == 'NULL') {
             validation = 'bad';
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const {t} = useMergedTranslation('');
             message = t('OneLineText-error-null');
         }
 

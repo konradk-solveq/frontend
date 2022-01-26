@@ -28,6 +28,7 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
     const [borderColor, setBorderColor] = useState('#80555555');
     const [borderWidth, setBorderrWidth] = useState(1);
     const [errorMessage, setErrorMessage] = useState('');
+    const {t} = useMergedTranslation('');
 
     useEffect(() => {
         let validation = '';
@@ -39,8 +40,6 @@ const ListInputBtn: React.FC<Props> = (props: Props) => {
 
         if (props.value == 'null' || props.value == 'NULL') {
             validation = 'bad';
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const {t} = useMergedTranslation('');
             message = t('OneLineText-error-null');
         }
 

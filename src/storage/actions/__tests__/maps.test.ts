@@ -22,12 +22,6 @@ const featuredRoutesDataNextMock: FeaturedMapType[] = deepCopy(frdNextMock);
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
 
-jest.mock('../../../../I18n/i18next', () => ({
-    t: (str: string) => {
-        return `${str}`;
-    },
-}));
-
 describe('[Maps actions]', () => {
     let store: MockStoreEnhanced<unknown, {}>;
     let actionsLog: any[];

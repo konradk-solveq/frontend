@@ -52,6 +52,7 @@ const OneLineText: React.FC<IProps> = ({
     const [borderWidth, setBordererWidth] = useState(1);
     const [errorMessage, setErrorMessage] = useState('');
     const [isSecure, setIsSecure] = useState(true);
+    const {t} = useMergedTranslation('');
 
     const onEyePress = () => {
         setIsSecure(!isSecure);
@@ -67,8 +68,6 @@ const OneLineText: React.FC<IProps> = ({
 
         if (value == 'null' || value == 'NULL') {
             validation = 'bad';
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const {t} = useMergedTranslation('');
             message = t('OneLineText-error-null');
         }
 

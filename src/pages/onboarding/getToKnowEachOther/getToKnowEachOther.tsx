@@ -35,10 +35,7 @@ import {BothStackRoute, OnboardingStackRoute} from '@navigation/route';
 import {OneLineText} from '@sharedComponents/inputs';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
-const getErrorMessage = (value: string, rules: any[]) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const {t} = useMergedTranslation('GetToKnowEachOther');
-
+const getErrorMessage = (value: string, rules: any[], t: any) => {
     const minLength = rules.find(r => r?.min)?.min;
     const maxLength = rules.find(r => r?.max)?.max;
     const errMessageShort =
@@ -101,7 +98,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         const rules: any[] = userUserValidationRules.userName;
         const valid = validateData(rules, value);
 
-        const errMessage = getErrorMessage(value, rules);
+        const errMessage = getErrorMessage(value, rules, t);
 
         setErrorMessage(valid ? '' : errMessage);
         setIsInputValid(valid);
