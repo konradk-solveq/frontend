@@ -1,4 +1,5 @@
 export const authDataMock = {
+    _persist: {rehydrated: true, version: -1},
     deviceToken: 'U8cEQGzkixBN4INmeSLj9ZHZGu3aZTUIKjl5-1tGUX1XLFon2dP7yl7NP1jH',
     recoveryCodes: ['444970', '060519', '205219', '033079', '402100'],
     sessionData: {

@@ -15,13 +15,6 @@ export const authMigration = async (
 ): Promise<PersistedState | undefined> => {
     try {
         /**
-         * Abort if persistConfig version is newer than '0'
-         */
-        if (state && state?._persist?.version >= 1) {
-            return state;
-        }
-
-        /**
          * Check 'auth' key exists. Abort migration if not.
          */
         const storedState = await AsyncStorage.getItem('persist:auth');
@@ -30,20 +23,38 @@ export const authMigration = async (
             return state;
         }
 
-        const rehydratedLvl1: AuthState = jsonParse(storedState);
+        const rehydratedLvl1: PersistedState & AuthState = jsonParse(
+            storedState,
+        );
+        const storedStateVersion = jsonParse(rehydratedLvl1?._persist)?.version;
+
+        /**
+         * Abort if'auth'  persistConfig version is newer than '0'.
+         * We shouldn't check 'authData' persistance version, as on IOS
+         * it remains untouched when uninstalling the application (keychain property).
+         */
+        if (storedStateVersion >= 2) {
+            return;
+        }
+
         const sessionData: SessionDataType = jsonParse(
             rehydratedLvl1.sessionData,
         );
-        const authDataSessionAccessToken = state?.sessionData?.access_token;
+
+        /**
+         * It tells that user have not been migrated yet.
+         * After update to 2.0.x it's is initial state value.
+         *
+         * If variable did not exists before set it also as a initState
+         */
+        const initUserState = rehydratedLvl1?.userAuthState
+            ? jsonParse(rehydratedLvl1.userAuthState) === 'uknown'
+            : true;
 
         /**
          * Check auth session data exists and is not migrated.
          */
-        if (
-            rehydratedLvl1 &&
-            sessionData?.access_token &&
-            !authDataSessionAccessToken
-        ) {
+        if (rehydratedLvl1 && sessionData?.access_token && initUserState) {
             const userId = jsonParse(rehydratedLvl1?.userId);
             const deviceToken = jsonParse(rehydratedLvl1?.deviceToken);
             const recoveryCodes = jsonParse(rehydratedLvl1?.recoveryCodes);
