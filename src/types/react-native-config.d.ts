@@ -16,5 +16,4 @@ declare module 'react-native-config' {
         | 'mykrossfeature';
     export const DEEPLINKING_HOST: string;
     export const DEEPLINKING_PREFIX: string;
-    export const SHARED_IMAGES_URL: string;
 }

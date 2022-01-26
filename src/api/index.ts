@@ -34,3 +34,4 @@ export {
     checkInternetConnectionQuality,
 } from './app';
 export {modifyReaction, removeReaction} from './reactions';
+export {shareRoute, checkSharedImageExists} from './share';

@@ -744,7 +744,8 @@
             "readSQLDataFailure": "Nie można odczytać danych geolokalizacyjnych."
         },
         "shareData": {
-            "createShareUrlError": "Tworzenie treści do udostępnienia zakończyło się niepowodzeniem. Spróbuj ponownie."
+            "createShareUrlError": "Tworzenie treści do udostępnienia zakończyło się niepowodzeniem. Spróbuj ponownie.",
+            "sharedImageNotExistsError": "Obrazek nie istneije. Proszę spróbować później."
         }
     },
     "Geolocation": {

@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {View} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
+import {InteractionManager, View} from 'react-native';
+import {useNavigation, useFocusEffect} from '@react-navigation/core';
 import {useRoute} from '@react-navigation/native';
 
 import {I18n} from '@translations/I18n';
@@ -64,9 +64,15 @@ const ShareRouteScreen: React.FC = () => {
     /**
      * Call share menu
      */
-    useEffect(() => {
-        callSharing();
-    }, [callSharing]);
+    useFocusEffect(
+        React.useCallback(() => {
+            const task = InteractionManager.runAfterInteractions(() => {
+                callSharing();
+            });
+
+            return () => task.cancel();
+        }, [callSharing]),
+    );
 
     const onImageLoadedHandler = () => {
         setShowPlaceholder(false);

@@ -27,8 +27,8 @@ const ShareRouteImage: React.FC<IProps> = ({
             <Image
                 resizeMode="contain"
                 style={[styles.image, imageStyles]}
-                source={{uri: imgUrl}}
-                onLoad={onLoadEndHandler}
+                source={{uri: imgUrl, cache: 'reload'}}
+                onLoadEnd={onLoadEndHandler}
             />
         </View>
     );

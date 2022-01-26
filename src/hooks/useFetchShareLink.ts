@@ -1,8 +1,30 @@
 import {useCallback, useEffect, useState} from 'react';
 
-import {SHARED_IMAGES_URL} from '@env';
-import {shareRouteService} from '@services/shareService';
-import {SharedContentT} from '@src/type/share';
+import {
+    checkSharedImageExistsService,
+    shareRouteService,
+} from '@services/index';
+import {SharedContentT} from '@type/share';
+
+/**
+ * Response returns faster than operation on AWS
+ * so here is small delay timeout
+ */
+const DELAY = 2000;
+
+const checkImageExists = async (url?: string) => {
+    if (!url) {
+        return;
+    }
+
+    const response = await checkSharedImageExistsService(url);
+
+    if (response.data === 'NOT-EXISTS') {
+        return false;
+    }
+
+    return true;
+};
 
 const useFetchShareLink = (mapId: string) => {
     const [sharedContent, setSharedContent] = useState<
@@ -12,6 +34,7 @@ const useFetchShareLink = (mapId: string) => {
     const [error, setError] = useState('');
 
     const fetchData = useCallback(async () => {
+        let timeout: NodeJS.Timeout;
         if (!mapId) {
             return;
         }
@@ -22,15 +45,33 @@ const useFetchShareLink = (mapId: string) => {
             setError('');
             const content: SharedContentT = {url: '', content: {}};
             if (response.data.content?.image) {
-                content.content.image = `${SHARED_IMAGES_URL}/${response.data.content.image}`;
+                content.content.image = response.data.content.image;
             }
             content.url = response.data.url;
-            setSharedContent(content);
+
+            /**
+             * Checks if generated image is available.
+             * If not set timeout to wait for
+             */
+            const checkImgExists = await checkImageExists(
+                content.content.image,
+            );
+            if (checkImgExists) {
+                setSharedContent(content);
+            } else {
+                timeout = setTimeout(() => {
+                    setSharedContent(content);
+                }, DELAY);
+            }
         } else {
             setError(response.error);
         }
 
         setIsFetching(false);
+
+        return () => {
+            clearTimeout(timeout);
+        };
     }, [mapId]);
 
     useEffect(() => {

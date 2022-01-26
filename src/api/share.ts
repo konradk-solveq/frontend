@@ -5,3 +5,7 @@ export const shareRoute = async (routeId: string) => {
         cancelToken: source.token,
     });
 };
+
+export const checkSharedImageExists = async (url: string) => {
+    return await instance.get(url);
+};

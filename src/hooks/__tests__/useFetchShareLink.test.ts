@@ -1,6 +1,6 @@
+import {act} from 'react-test-renderer';
 import {renderHook} from '@testing-library/react-hooks';
 
-import {SHARED_IMAGES_URL} from '@env';
 import asyncEvent from '@jestUtils/asyncEvent';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
 
@@ -11,7 +11,7 @@ const mockedResponseSuccess = {
         url: 'https://public.pre.mykross.kross.pl/share/id-12345',
         content: {
             image:
-                'cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
+                'https://example.com/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
         },
     },
     status: 200,
@@ -26,6 +26,10 @@ const mockedResponseFailure = {
 describe('[useFetchShareLink]', () => {
     it('Should try to fetch data to be shared and set "sharedContent" on success', async () => {
         postApiCallMock(mockedResponseSuccess, 'post');
+        /**
+         * Mock that picture already exists on S3
+         */
+        postApiCallMock({data: 'EXISTS', status: 200}, 'get');
 
         const {result, waitForNextUpdate} = renderHook(() =>
             useFetchShareLink('conent-id-54321'),
@@ -38,7 +42,8 @@ describe('[useFetchShareLink]', () => {
         expect(result.current.sharedContent).toEqual({
             url: 'https://public.pre.mykross.kross.pl/share/id-12345',
             content: {
-                image: `${SHARED_IMAGES_URL}/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png`,
+                image:
+                    'https://example.com/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
             },
         });
     }, 1000);
@@ -56,6 +61,34 @@ describe('[useFetchShareLink]', () => {
 
         expect(result.current.sharedContent).toBe(undefined);
         expect(result.current.shareError).toEqual(apiResponseErrorMessage);
+    }, 1000);
+
+    it('Should try to fetch data to be shared and set "sharedContent" on success when picture not exists on S3', async () => {
+        postApiCallMock(mockedResponseSuccess, 'post');
+        /**
+         * Mock that picture not exists on S3
+         */
+        postApiCallMock({data: 'NOT-EXISTS', status: 404}, 'get');
+
+        const {result, waitForNextUpdate} = renderHook(() =>
+            useFetchShareLink('conent-id-54321'),
+        );
+
+        await act(async () => {
+            jest.runAllTimers();
+        });
+
+        await asyncEvent(async () => {
+            await waitForNextUpdate();
+        });
+
+        expect(result.current.sharedContent).toEqual({
+            url: 'https://public.pre.mykross.kross.pl/share/id-12345',
+            content: {
+                image:
+                    'https://example.com/cycling-map/pTlxfkJxIu1Lu2EqrRoqZEVYdHKfLZEo/map_share_1024.png',
+            },
+        });
     }, 1000);
 
     it.each([
