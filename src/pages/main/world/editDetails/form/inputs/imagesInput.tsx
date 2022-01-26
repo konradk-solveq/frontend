@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {launchImageLibrary} from 'react-native-image-picker';
-import {ImageType} from '../../../../../../interfaces/form';
-
-import {AddBtn} from '../../../../../../sharedComponents/buttons';
-import ImageSwiper from '../../../../../../sharedComponents/imageSwiper/imageSwiper';
+import ImagePicker from 'react-native-image-crop-picker';
+import {AddBtn} from '@sharedComponents/buttons';
+import ImageSwiper from '@sharedComponents/imageSwiper/imageSwiper';
+import {ImageType} from '@interfaces/form';
+import {prepareImage} from '@pages/main/world/editDetails/form/utils';
 
 interface IProps {
     images: string[];
@@ -21,20 +21,27 @@ const ImagesInput: React.FC<IProps> = ({
 
     const onAddImageHanlder = () => {
         setIsBocked(true);
-        launchImageLibrary(
-            {
-                mediaType: 'photo',
-                maxWidth: 2056,
-                maxHeight: 2056,
-            },
-            o => {
+        ImagePicker.openPicker({
+            mediaType: 'photo',
+            compressImageMaxWidth: 2056,
+            compressImageMaxHeight: 2056,
+            multiple: true,
+            maxFiles: 0, //iOS only, passing 0 allows to pick any number of photos (default - maxFiles: 5)
+        })
+            .then(selectedImages => {
                 /* TODO: on error */
-                if (typeof o?.uri !== 'undefined') {
-                    onAddImage(o);
-                }
+                selectedImages.forEach(img => {
+                    if (
+                        typeof img?.sourceURL !== 'undefined' ||
+                        typeof img?.path !== 'undefined'
+                    ) {
+                        onAddImage(prepareImage(img));
+                    }
+                });
+            })
+            .finally(() => {
                 setIsBocked(false);
-            },
-        );
+            });
     };
 
     return (
