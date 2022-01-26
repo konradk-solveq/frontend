@@ -63,6 +63,7 @@ const RouteDetails = () => {
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
+    const isPublished = mapData?.isPublic;
 
     const favMapName = useAppSelector(favouriteMapDataByIDSelector(mapID))
         ?.name;
@@ -170,14 +171,17 @@ const RouteDetails = () => {
                                         onPress={onGoToEditHandler}
                                         iconStyle={[
                                             styles.actionButton,
-                                            // styles.leftActionButton,
+                                            isPublished &&
+                                                styles.leftActionButton,
                                         ]}
                                     />
                                 )}
-                                <ShareBtn
-                                    onPress={onShareRouteHandler}
-                                    iconStyle={styles.actionButton}
-                                />
+                                {isPublished && (
+                                    <ShareBtn
+                                        onPress={onShareRouteHandler}
+                                        iconStyle={styles.actionButton}
+                                    />
+                                )}
                             </View>
                         }
                     />
