@@ -11,6 +11,8 @@ import {
     apiResponseWithSuccess,
 } from '../__mocks__/apiResponse';
 
+jest.useFakeTimers();
+
 const mockedNavigate = jest.fn();
 const mockedGoBack = jest.fn();
 jest.mock('@react-navigation/core', () => ({
@@ -19,6 +21,7 @@ jest.mock('@react-navigation/core', () => ({
         canGoBack: jest.fn().mockReturnValue(true),
         goBack: mockedGoBack,
     }),
+    useFocusEffect: () => {},
 }));
 jest.mock('@react-navigation/native', () => ({
     useRoute: () => ({

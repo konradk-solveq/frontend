@@ -36,3 +36,4 @@ export {
     getFaqService,
 } from './appService';
 export {modifyReactionService, removeReactionService} from './reactionsService';
+export {shareRouteService, checkSharedImageExistsService} from './shareService';
