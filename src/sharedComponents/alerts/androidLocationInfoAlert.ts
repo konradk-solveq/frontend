@@ -1,11 +1,13 @@
 import {Alert} from 'react-native';
-import {I18n} from '../../../I18n/I18n';
+import i18next from '@translations/i18next';
 
 export const showAndroidLocationAlert = async (
     leftActionCallback: () => void,
     rightActionCallback: () => Promise<void>,
 ) => {
-    const trans: any = I18n.t('Geolocation.locationPermission');
+    const trans: any = i18next.t('Geolocation.locationPermission', {
+        returnObjects: true,
+    });
 
     Alert.alert(trans.title, trans.message, [
         {

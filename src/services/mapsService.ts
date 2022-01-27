@@ -25,8 +25,8 @@ import {
 import {ImagesMetadataType} from '@interfaces/api';
 import {MapFormDataResult, PickedFilters} from '@interfaces/form';
 import {BasicCoordsType} from '@type/coords';
-import {I18n} from '@translations/I18n';
 import '@utils/polyfills/Promise.allSettled';
+import i18next from '@translations/i18next';
 
 import {
     createFileFormData,
@@ -189,7 +189,7 @@ export const editPrivateMapMetadataService = async (
                 errorMessage =
                     publishResponse.data.message || publishResponse.data.error;
                 if (publishResponse.data?.statusCode !== 400) {
-                    errorMessage = I18n.t('dataAction.mapData.publishError');
+                    errorMessage = i18next.t('dataAction.mapData.publishError');
                 }
             }
             return {
@@ -295,7 +295,7 @@ export const removePrivateMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage = I18n.t('dataAction.routeData.removeRouteError');
+                errorMessage = i18next.t('dataAction.routeData.removeRouteError');
             }
         }
         return {
@@ -385,7 +385,7 @@ export const removePlannedMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage = I18n.t('dataAction.routeData.removeRouteError');
+                errorMessage = i18next.t('dataAction.routeData.removeRouteError');
             }
         }
         return {

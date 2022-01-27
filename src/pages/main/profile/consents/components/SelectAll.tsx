@@ -4,11 +4,12 @@ import {StyleSheet, Text, View} from 'react-native';
 import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 import CheckBoxx from '@sharedComponents/checkBox/checkBox';
 import {useFormContext} from 'react-hook-form';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+
 interface Props {}
 
 const SelectAllCheckbox: React.FC<Props> = () => {
-    const trans: any = I18n.t('Consents');
+    const {t} = useMergedTranslation('Login');
     const {watch, setValue} = useFormContext();
 
     const formData = watch();
@@ -78,7 +79,7 @@ const SelectAllCheckbox: React.FC<Props> = () => {
                 />
             </View>
             <View style={styles.info}>
-                <Text>{trans.selectAll}</Text>
+                <Text>{t('selectAll')}</Text>
             </View>
         </View>
     );

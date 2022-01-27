@@ -12,9 +12,9 @@ import {
     selectorMapTypeEnum,
 } from '@storage/selectors';
 import {useAppSelector} from '@hooks/redux';
-import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 import {Map} from '@models/map.model';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import {translateDateToTodayAndYesterdayString} from '@utils/dateTime';
@@ -52,7 +52,7 @@ const MyRoutes: React.FC<IProps> = ({
     onLoadMore,
     sortedByDate,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.MyRoutes');
+    const {t} = useMergedTranslation('MainWorld.MyRoutes');
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
     const privateMaps = useAppSelector<Map[]>(privateMapsListSelector);
@@ -166,8 +166,8 @@ const MyRoutes: React.FC<IProps> = ({
         return null;
     };
 
-    const basicTitle = `${userName || trans.defaultUserName} ${trans.title}`;
-    const secondTitle = `${trans.routesNumberTitle} ${totalNumberOfPrivateMaps}`;
+    const basicTitle = `${userName || t('defaultUserName')} ${t('title')}`;
+    const secondTitle = `${t('routesNumberTitle')} ${totalNumberOfPrivateMaps}`;
 
     const rednerModal = () => {
         const itemIsPublic = privateMaps.find(e => {

@@ -5,7 +5,7 @@ import {useNavigation, useRoute} from '@react-navigation/core';
 import {RegularStackRoute} from '@navigation/route';
 import {
     addPlannedMap,
-    removePlanendMap,
+    removePlannedMap,
     removePrivateMapMetaData,
 } from '@storage/actions/maps';
 import {
@@ -20,7 +20,7 @@ import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {RouteDetailsRouteT} from '@type/rootStack';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {
     EditBtn,
@@ -51,7 +51,8 @@ const getMapType = (params: any) => {
 };
 
 const RouteDetails = () => {
-    const trans: any = I18n.t('RoutesDetails');
+    const {t} = useMergedTranslation('RoutesDetails');
+    const {t: tmb} = useMergedTranslation('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const norificationContext = useNotificationContext();
@@ -134,25 +135,20 @@ const RouteDetails = () => {
 
     const onPressAddRouteHandler = () => {
         if (favMapName) {
-            const message = I18n.t('MainWorld.BikeMap.removeRouteFromPlanned', {
+            const message = tmb('removeRouteFromPlanned', {
                 name: '',
             });
             norificationContext.setNotificationVisibility(message);
-            dispatch(removePlanendMap(mapID));
+            dispatch(removePlannedMap(mapID));
             return;
         }
-        const addRouteToPlanned = I18n.t(
-            'MainWorld.BikeMap.addRouteToPlanned',
-            {
-                name: '',
-            },
-        );
+        const addRouteToPlanned = tmb('addRouteToPlanned', {name: ''});
         norificationContext.setNotificationVisibility(addRouteToPlanned);
         dispatch(addPlannedMap(mapID));
     };
 
     const onPressRemoveFromFacouritesHandler = () => {
-        dispatch(removePlanendMap(mapID));
+        dispatch(removePlannedMap(mapID));
         navigation.goBack();
     };
 
@@ -197,12 +193,12 @@ const RouteDetails = () => {
                             {favouriteMap && (
                                 <>
                                     <BigRedBtn
-                                        title={trans.startButton}
+                                        title={t('startButton')}
                                         onpress={onPressStartRouteHandler}
                                         style={styles.reportButton}
                                     />
                                     <BigWhiteBtn
-                                        title={trans.removeRouteButton}
+                                        title={t('removeRouteButton')}
                                         onpress={
                                             onPressRemoveFromFacouritesHandler
                                         }
@@ -219,9 +215,9 @@ const RouteDetails = () => {
                                     title={
                                         !privateMap
                                             ? !favMapName
-                                                ? trans.addFavRouteButton
-                                                : trans.removeFavRouteButton
-                                            : trans.deleteButton
+                                                ? t('addFavRouteButton')
+                                                : t('removeFavRouteButton')
+                                            : t('deleteButton')
                                     }
                                     onpress={
                                         !privateMap
@@ -236,13 +232,13 @@ const RouteDetails = () => {
                             )}
                             <View style={styles.textButtonContainer}>
                                 <Text style={styles.textButton}>
-                                    {`${trans.textPrefix} `}
+                                    {`${t('textPrefix')} `}
                                     <Text
                                         onPress={onPressReportHandler}
                                         style={styles.textbuttonAction}>
-                                        {trans.textAction}
+                                        {t('textAction')}
                                     </Text>
-                                    {trans.textSuffix}
+                                    {t('textSuffix')}
                                 </Text>
                             </View>
                         </View>
@@ -250,8 +246,8 @@ const RouteDetails = () => {
                 </View>
                 <BottomModal
                     showModal={showBottomModal}
-                    rightBtnTitle={trans.EditScreen.removeRouteBtn}
-                    leftBtnTitle={trans.EditScreen.cancelRemoveRouteBtn}
+                    rightBtnTitle={t('EditScreen.removeRouteBtn')}
+                    leftBtnTitle={t('EditScreen.cancelRemoveRouteBtn')}
                     onPressRight={onPressDeleteHandler}
                     onPressLeft={onPressCancelHandler}
                     onPressCancel={onPressCancelHandler}

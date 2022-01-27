@@ -9,11 +9,11 @@ import {
     Linking,
 } from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 
-import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
+import {getStatusBarHeight} from '@utils/detectIOSDevice';
 import {
     setObjSize,
     getHorizontalPx,
@@ -21,13 +21,13 @@ import {
     getWidthPx,
     getFontSize,
     mainButtonsHeight,
-} from '../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 import Loader from '../../onboarding/bikeAdding/loader/loader';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
-import {TermsAndConditionsType} from '../../../models/regulations.model';
-import {setAppShowedRegulationsNumber} from '../../../storage/actions';
-import {RegularStackRoute, BothStackRoute} from '../../../navigation/route';
-import {getIsNewVersion} from '../../../helpers/appVersion';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {TermsAndConditionsType} from '@models/regulations.model';
+import {setAppShowedRegulationsNumber} from '@storage/actions';
+import {RegularStackRoute, BothStackRoute} from '@navigation/route';
+import {getIsNewVersion} from '@helpers/appVersion';
 
 interface Props {
     navigation: any;
@@ -35,7 +35,7 @@ interface Props {
 }
 
 const NewRegulations: React.FC<Props> = (props: Props) => {
-    const trans: any = I18n.t('newRegulations');
+    const {t} = useMergedTranslation('newRegulations');
     const dispatch = useAppDispatch();
     const currentVersion = useAppSelector<string>(
         state => state.app.currentTerms?.version,
@@ -268,9 +268,13 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
                             <Hyperlink
                                 linkStyle={styles.link}
                                 linkText={(url: string) => {
-                                    let link = trans.urls.find(
-                                        e => e.url === url,
-                                    );
+                                    const trans: {
+                                        url: string;
+                                        hyper: string;
+                                    }[] = t('urls', {
+                                        returnObjects: true,
+                                    });
+                                    const link = trans.find(e => e.url === url);
                                     if (link) {
                                         return link.hyper;
                                     } else {
@@ -305,7 +309,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
 
             <View style={styles.header}>
                 <Text style={styles.headerText}>
-                    {pageType === 'info' ? trans.header[0] : trans.header[1]}
+                    {pageType === 'info' ? t('header.0') : t('header.1')}
                 </Text>
             </View>
 
@@ -313,7 +317,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
                 {pageType === 'info' && (
                     <BigRedBtn
                         style={styles.oneBtn}
-                        title={trans.btnOk}
+                        title={t('btnOk')}
                         onpress={handleGoForward}
                     />
                 )}
@@ -321,7 +325,7 @@ const NewRegulations: React.FC<Props> = (props: Props) => {
                     <View style={styles.twoBtnsWrap}>
                         <BigRedBtn
                             style={styles.oneOfTwoBtns}
-                            title={trans.btnAccept}
+                            title={t('btnAccept')}
                             onpress={handleGoForward}
                         />
                     </View>

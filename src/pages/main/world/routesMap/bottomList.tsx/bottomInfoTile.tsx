@@ -1,14 +1,14 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {Animated, View, Text, Platform, Dimensions} from 'react-native';
 
-import {I18n} from '../../../../../../I18n/I18n';
-import {getVerticalPx} from '../../../../../helpers/layoutFoo';
-import {MarkerDetailsType} from '../../../../../models/map.model';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {getVerticalPx} from '@helpers/layoutFoo';
+import {MarkerDetailsType} from '@models/map.model';
 
-import {ImageBtn} from '../../../../../sharedComponents/buttons';
+import {ImageBtn} from '@sharedComponents/buttons';
 import Tile from './tile/tile';
-import Swipe from '../../../../../sharedComponents/navi/swipe/swipe';
-import CurvedShape from '../../../../../sharedComponents/svg/curvedShape';
+import Swipe from '@sharedComponents/navi/swipe/swipe';
+import CurvedShape from '@sharedComponents/svg/curvedShape';
 
 import styles from './style';
 
@@ -33,7 +33,7 @@ const BottomInfoTile: React.FC<IProps> = ({
     show,
     onHidePress,
 }: IProps) => {
-    const trans: any = I18n.t('MainRoutesMap.bottomTile');
+    const {t} = useMergedTranslation('MainRoutesMap.bottomTile');
 
     const containerHeight = useRef(new Animated.Value(zeroContainerHeight))
         .current;
@@ -117,7 +117,7 @@ const BottomInfoTile: React.FC<IProps> = ({
                                 />
                                 <View style={styles.imageWrapper}>
                                     <Text style={styles.imageHeader}>
-                                        {trans.finMoreInfo}
+                                        {t('finMoreInfo')}
                                     </Text>
                                     <View style={styles.imageContainer}>
                                         {data?.mapImageUrl ? (

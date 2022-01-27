@@ -48,7 +48,7 @@ Array [
               }
             }
           >
-            Podaj numer ramy Twojego roweru.
+            AddingByNumber.text
           </Text>
           <View
             style={
@@ -72,7 +72,7 @@ Array [
                   }
                 }
               >
-                Numer ramy
+                AddingByNumber.placeholder
               </Text>
               <View>
                 <TextInput
@@ -163,7 +163,7 @@ Array [
                     }
                   }
                 >
-                  Gdzie znajdę numer ramy?
+                  AddingByNumber.infoBtn
                 </Text>
               </View>
             </View>
@@ -218,7 +218,7 @@ Array [
                     ]
                   }
                 >
-                  DALEJ
+                  ADDINGBYNUMBER.BTN
                 </Text>
               </View>
             </RNGestureHandlerButton>
@@ -269,7 +269,7 @@ Array [
             ]
           }
         >
-          Identyfikacja roweru
+          AddingByNumber.head
         </Text>
       </View>
     </View>
@@ -375,7 +375,7 @@ Array [
               }
             }
           >
-            Podaj numer ramy Twojego roweru.
+            AddingByNumber.text
           </Text>
           <View
             style={
@@ -399,7 +399,7 @@ Array [
                   }
                 }
               >
-                Numer ramy
+                AddingByNumber.placeholder
               </Text>
               <View>
                 <TextInput
@@ -490,7 +490,7 @@ Array [
                     }
                   }
                 >
-                  Gdzie znajdę numer ramy?
+                  AddingByNumber.infoBtn
                 </Text>
               </View>
             </View>
@@ -545,7 +545,7 @@ Array [
                     ]
                   }
                 >
-                  DALEJ
+                  ADDINGBYNUMBER.BTN
                 </Text>
               </View>
             </RNGestureHandlerButton>
@@ -596,7 +596,7 @@ Array [
             ]
           }
         >
-          Identyfikacja roweru
+          AddingByNumber.head
         </Text>
       </View>
     </View>
@@ -702,7 +702,7 @@ Array [
               }
             }
           >
-            Podaj numer ramy Twojego roweru.
+            AddingByNumber.text
           </Text>
           <View
             style={
@@ -726,7 +726,7 @@ Array [
                   }
                 }
               >
-                Numer ramy
+                AddingByNumber.placeholder
               </Text>
               <View>
                 <TextInput
@@ -815,7 +815,7 @@ Array [
                     }
                   }
                 >
-                  Gdzie znajdę numer ramy?
+                  AddingByNumber.infoBtn
                 </Text>
               </View>
             </View>
@@ -868,7 +868,7 @@ Array [
                     ]
                   }
                 >
-                  DALEJ
+                  ADDINGBYNUMBER.BTN
                 </Text>
               </View>
             </RNGestureHandlerButton>
@@ -919,7 +919,7 @@ Array [
             ]
           }
         >
-          Identyfikacja roweru
+          AddingByNumber.head
         </Text>
       </View>
     </View>
@@ -1025,7 +1025,7 @@ Array [
               }
             }
           >
-            Podaj numer ramy Twojego roweru.
+            AddingByNumber.text
           </Text>
           <View
             style={
@@ -1049,7 +1049,7 @@ Array [
                   }
                 }
               >
-                Numer ramy
+                AddingByNumber.placeholder
               </Text>
               <View>
                 <TextInput
@@ -1140,7 +1140,7 @@ Array [
                     }
                   }
                 >
-                  Gdzie znajdę numer ramy?
+                  AddingByNumber.infoBtn
                 </Text>
               </View>
             </View>
@@ -1195,7 +1195,7 @@ Array [
                     ]
                   }
                 >
-                  DALEJ
+                  ADDINGBYNUMBER.BTN
                 </Text>
               </View>
             </RNGestureHandlerButton>
@@ -1246,7 +1246,7 @@ Array [
             ]
           }
         >
-          Identyfikacja roweru
+          AddingByNumber.head
         </Text>
       </View>
     </View>

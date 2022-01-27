@@ -4,18 +4,16 @@ import {
     Dimensions,
     TouchableWithoutFeedback,
     View,
-    Text,
 } from 'react-native';
-import I18n from 'react-native-i18n';
 import Svg, {G, Path, Circle} from 'react-native-svg';
 
-import AnimSvg from '../../../helpers/animSvg';
+import AnimSvg from '@helpers/animSvg';
 import {
     setObjSize,
     getCenterLeftPx,
     getVerticalPx,
     getWidthPx,
-} from '../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
 interface Props {
     style?: any;

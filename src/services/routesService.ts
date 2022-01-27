@@ -6,7 +6,7 @@ import {
     routesDataToAPIRequest,
 } from '@utils/apiDataTransform/prepareRequest';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 export type CreatedRouteType = {
@@ -40,7 +40,7 @@ export const createNewRouteService = async (
                     response?.data?.statusCode !== 400 &&
                     response?.data?.statusCode !== 404
                 ) {
-                    errorMessage = I18n.t(
+                    errorMessage = i18next.t(
                         'dataAction.routeData.createRouteError',
                     );
                 }
@@ -66,7 +66,7 @@ export const createNewRouteService = async (
         return {
             data: null,
             status: 500,
-            error: I18n.t('dataAction.dataSyncError'),
+            error: i18next.t('dataAction.dataSyncError'),
         };
     }
 };
@@ -108,7 +108,7 @@ export const removeCeratedRouteIDService = async (
         return {
             data: null,
             status: 500,
-            error: I18n.t('dataAction.dataSyncError'),
+            error: i18next.t('dataAction.dataSyncError'),
         };
     }
 };
@@ -129,7 +129,7 @@ export const syncRouteData = async (
             return {
                 data: null,
                 status: 400,
-                error: I18n.t('dataAction.routeData.routeLengthError', {
+                error: i18next.t('dataAction.routeData.routeLengthError', {
                     value: MIN_ROUTE_LENGTH,
                 }),
                 shortRoute: true,
@@ -153,7 +153,7 @@ export const syncRouteData = async (
                         response?.data?.statusCode !== 400 &&
                         response?.data?.statusCode !== 404
                     ) {
-                        errorMessage = I18n.t(
+                        errorMessage = i18next.t(
                             'dataAction.routeData.createRouteError',
                         );
                     }
@@ -193,7 +193,7 @@ export const syncRouteData = async (
                     response?.data?.statusCode === 400 ||
                     responseFromUpdate.data?.statusCode >= 400)
             ) {
-                errorMessage = I18n.t('dataAction.routeData.updateRouteError');
+                errorMessage = i18next.t('dataAction.routeData.updateRouteError');
                 await removePrivateMapData(routeId);
                 return {
                     data: null,
@@ -228,7 +228,7 @@ export const syncRouteData = async (
         return {
             data: null,
             status: 500,
-            error: I18n.t('dataAction.dataSyncError'),
+            error: i18next.t('dataAction.dataSyncError'),
             rawError: err.message,
         };
     }

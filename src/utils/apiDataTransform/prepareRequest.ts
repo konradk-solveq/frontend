@@ -4,7 +4,7 @@ import {MapMetadataType} from '@interfaces/api';
 import {ImageType, MapFormDataResult} from '@interfaces/form';
 import {BasicCoordsType} from '@type/coords';
 
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import {getDateString} from '@utils/dateTime';
 
 export const tranformParamsToBBoxRequest = (data: Point[]): string => {
@@ -43,7 +43,7 @@ export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
 
 export const getRouteDefaultName = (routeNumber?: number | null) => {
     const date = getDateString(new Date(), '/');
-    const defaultName = `${I18n.t(
+    const defaultName = `${i18next.t(
         'dataAction.routeData.defaultAlternativeRouteName',
         {number: routeNumber || 1},
     )} ${date}`;
@@ -56,7 +56,9 @@ export const mapFormMetadataToAPIRequest = (
     author?: string,
 ): MapMetadataType => {
     /* TODO: transform to class and add validator */
-    const trans: any = I18n.t('dataAction.routeData');
+    const trans: any = i18next.t('dataAction.routeData', {
+        returnObjects: true,
+    });
 
     const mData: MapMetadataType = {
         name: data.name,

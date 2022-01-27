@@ -1,16 +1,13 @@
 import React, {useCallback} from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
-import I18n from 'react-native-i18n';
-import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
-import {
-    setOnboardingFinished,
-    removeBikeByNumber,
-} from '../../../storage/actions';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {useAppSelector, useAppDispatch} from '@hooks/redux';
+import {setOnboardingFinished, removeBikeByNumber} from '@storage/actions';
 
 import {
     bikeByFrameNumberSelector,
     onboardingFinishedSelector,
-} from '../../../storage/selectors';
+} from '@storage/selectors';
 
 import {
     setObjSize,
@@ -21,16 +18,16 @@ import {
     getHorizontalPx,
     getFontSize,
     mainButtonsHeight,
-} from '../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
-import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
-import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
-import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
-import BikeImage from '../../../sharedComponents/images/bikeImage';
-import {SizeLabel, ColorLabel} from '../../../sharedComponents/labels';
-import Curve from '../../../sharedComponents/svg/curve';
-import useCustomBackNavButton from '../../../hooks/useCustomBackNavBtn';
-import {BothStackRoute} from '../../../navigation/route';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import BikeImage from '@sharedComponents/images/bikeImage';
+import {SizeLabel, ColorLabel} from '@sharedComponents/labels';
+import Curve from '@sharedComponents/svg/curve';
+import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
+import {BothStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface IProps {
@@ -39,11 +36,11 @@ interface IProps {
 }
 
 const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
-    const trans: any = I18n.t('BikeSummary');
+    const {t} = useMergedTranslation('BikeSummary');
     const dispatch = useAppDispatch();
 
     const userName =
-        useAppSelector<string>(state => state.user.userName) || trans.anonim;
+        useAppSelector<string>(state => state.user.userName) || t('anonim');
     const onboardingFinished = useAppSelector<boolean>(
         onboardingFinishedSelector,
     );
@@ -121,12 +118,12 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                     removeBikeOnCancel();
                     navigation.pop();
                 }}
-                inner={trans.header}
+                inner={t('header')}
             />
 
             <View style={styles.contentContainer}>
                 <Text style={styles.userName}>
-                    {`${userName}${trans.title}`}
+                    {t('title', {name: userName})}
                 </Text>
 
                 {bikeData?.images && bikeData.images.length > 0 ? (
@@ -142,10 +139,10 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                 </Text>
 
                 <Text style={styles.bikeDetails}>
-                    {trans.details[0] +
-                        bikeData?.description.producer +
-                        trans.details[1] +
-                        bikeData?.description.serial_number}
+                    {t('details', {
+                        producer: bikeData?.description.producer,
+                        serial_number: bikeData?.description.serial_number,
+                    })}
                 </Text>
 
                 {bikeData?.description?.color && (
@@ -167,7 +164,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
             <View style={styles.bottons}>
                 <View style={styles.btn}>
                     <BigWhiteBtn
-                        title={trans.btnChange}
+                        title={t('btnChange')}
                         onpress={() => {
                             removeBikeOnCancel();
                             navigation.navigate(
@@ -179,7 +176,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
 
                 <View style={styles.btn}>
                     <BigRedBtn
-                        title={trans.goForward}
+                        title={t('goForward')}
                         onpress={() => {
                             onGoForwrdHandle();
                         }}

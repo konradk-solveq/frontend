@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
 import GenericScreen from '@pages/template/GenericScreen';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {Alert, ScrollView, View} from 'react-native';
 import {fetchConsentsData, putConsentsData} from '@storage/actions/consents';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -23,7 +23,7 @@ import {getAppLayoutConfig} from '@helpers/appLayoutConfig';
 import SelectAllCheckbox from '@pages/main/profile/consents/components/SelectAll';
 
 const Consents = () => {
-    const trans: any = I18n.t('Consents');
+    const {t} = useMergedTranslation('Consents');
 
     const consents = useAppSelector(consentsListSelector);
     const isLoading = useAppSelector(loadingConsentsSelector);
@@ -96,7 +96,7 @@ const Consents = () => {
     }, [defaults, reset]);
 
     return (
-        <GenericScreen screenTitle={trans.header}>
+        <GenericScreen screenTitle={t('header')}>
             <View
                 style={[
                     styles.innerContainer,
@@ -124,7 +124,7 @@ const Consents = () => {
                                 ))}
                                 <BigRedBtn
                                     testID={'ConsentsPostBtn'}
-                                    title={trans.button}
+                                    title={t('button')}
                                     onpress={methods.handleSubmit(
                                         onSubmitHandler,
                                     )}

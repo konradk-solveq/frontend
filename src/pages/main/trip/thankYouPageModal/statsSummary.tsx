@@ -2,34 +2,34 @@ import {getFontSize, getVerticalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-import {I18n} from '../../../../../I18n/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 const StatsSummary = () => {
-    const trans: any = I18n.t('ThankYouPage');
+    const {t} = useMergedTranslation('ThankYouPage');
 
     return (
         <View>
             <View style={styles.rowWrapper}>
                 <View style={styles.row}>
-                    <Text style={styles.label}>{trans.distance}</Text>
+                    <Text style={styles.label}>{t('distance')}</Text>
                     <Text style={styles.text}>
                         102,00{' '}
-                        <Text style={styles.sufix}>{trans.distanceSufix}</Text>
+                        <Text style={styles.sufix}>{t('distanceSuffix')}</Text>
                     </Text>
                 </View>
                 <View style={styles.row}>
-                    <Text style={styles.label}>{trans.tripTime}</Text>
+                    <Text style={styles.label}>{t('tripTime')}</Text>
                     <Text style={styles.text}>
                         1:32{' '}
-                        <Text style={styles.sufix}>{trans.tripTimeSufix}</Text>
+                        <Text style={styles.sufix}>{t('tripTimeSuffix')}</Text>
                     </Text>
                 </View>
             </View>
             <View style={styles.pauseSummaryWrapper}>
                 <Text style={styles.pauseSummary}>
-                    {`${trans.pausePrefix} `}
+                    {`${t('pausePrefix')} `}
                     <Text style={styles.pauseSummaryValue}>0:30</Text>
-                    {` ${trans.pauseSufix}`}
+                    {` ${t('pauseSuffix')}`}
                 </Text>
             </View>
         </View>

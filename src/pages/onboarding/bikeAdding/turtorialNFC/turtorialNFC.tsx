@@ -8,36 +8,31 @@ import {
     Alert,
     Platform,
 } from 'react-native';
-import I18n from 'react-native-i18n';
-import AnimSvg from '../../../../helpers/animSvg';
-import {
-    initNfc,
-    nfcIsEnabled,
-    readNdef,
-    cleanUp,
-} from '../../../../helpers/nfc';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import AnimSvg from '@helpers/animSvg';
+import {initNfc, nfcIsEnabled, readNdef, cleanUp} from '@helpers/nfc';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
 
 import {
     bikesListSelector,
     loadingBikesSelector,
     userNameSelector,
-} from '../../../../storage/selectors';
+} from '@storage/selectors';
 import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
-import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
-import {setBikesListByFrameNumber} from '../../../../storage/actions';
+} from '@helpers/layoutFoo';
+import {useAppSelector, useAppDispatch} from '@hooks/redux';
+import {setBikesListByFrameNumber} from '@storage/actions';
 import Loader from '../loader/loader';
 import ScanModal from './scanModal.android';
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
-import {BothStackRoute} from '../../../../navigation/route';
+import {BothStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 const isAndroid = Platform.OS === 'android';
@@ -50,14 +45,14 @@ interface Props {
 
 const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const refTimer = useRef<any>();
-    const trans: any = I18n.t('TurtorialNFC');
+    const {t} = useMergedTranslation('TutorialNFC');
     const dispatch = useAppDispatch();
     const nfcIsOnRef = useRef(false);
 
     const isLoading = useAppSelector(loadingBikesSelector);
     const bikesList = useAppSelector(bikesListSelector);
     const name = useAppSelector(userNameSelector);
-    const userName = name ? ' ' + name : ' ' + trans.defaultName;
+    const userName = name ? ' ' + name : ' ' + t('defaultName');
 
     const [showScanModal, setShowScanModal] = useState<boolean>(false);
     const [startScanNFC, setStartScanNFC] = useState<boolean>(false);
@@ -147,7 +142,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                 if (r) {
                     readNFCTag();
                 } else {
-                    Alert.alert('', trans.alertMessage, [
+                    Alert.alert('', t('alertMessage'), [
                         {text: 'Ok', onPress: () => cancelScanByNfcHandler()},
                     ]);
                 }
@@ -155,7 +150,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         }
 
         return () => clearTimeout(refTimer.current);
-    }, [readNFCTag, trans.alertMessage, startScanNFC, cancelScanByNfcHandler]);
+    }, [readNFCTag, t, startScanNFC, cancelScanByNfcHandler]);
 
     const [headHeight, setHeadHeightt] = useState(0);
 
@@ -218,9 +213,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     }
 
     const title =
-        bikesList?.length > 0
-            ? trans.titleNext
-            : trans.title_1 + userName + trans.title_2;
+        bikesList?.length > 0 ? t('titleNext') : t('title', {name: userName});
     return (
         <SafeAreaView style={comStyle.container}>
             <View style={comStyle.scroll}>
@@ -229,11 +222,11 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
                     <AnimSvg style={styles.nfc_bike} source={nfcBikeSvg} />
 
-                    <Text style={styles.text}>{trans.tekst}</Text>
+                    <Text style={styles.text}>{t('tekst')}</Text>
 
                     <View style={styles.btnNfc}>
                         <BigRedBtn
-                            title={trans.btnNfc}
+                            title={t('btnNfc')}
                             disabled={startScanNFC}
                             onpress={() => heandleScanByNfc()}
                         />
@@ -241,7 +234,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.btnHand}>
                         <BigWhiteBtn
-                            title={trans.btnHand}
+                            title={t('btnHand')}
                             onpress={() =>
                                 props.navigation.navigate({
                                     name:
@@ -256,7 +249,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.goBack()}
-                inner={trans.header}
+                inner={t('header')}
                 getHeight={setHeadHeightt}
                 style={{backgroundColor: '#fff'}}
             />

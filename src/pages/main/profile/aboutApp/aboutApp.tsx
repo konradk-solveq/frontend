@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import DeviceInfo from 'react-native-device-info';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import Bike_0 from './bike_0';
 import Bike_1 from '../../../onboarding/tutorial/bike_4';
 import Bike_2 from '../../../onboarding/tutorial/bike_5';
@@ -15,7 +15,7 @@ import {
     getVerticalPx,
     getWidthPx,
     getFontSize,
-} from '../../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 import {version} from '../../../../../package.json';
 import {API_URL, ENVIRONMENT_TYPE} from '@env';
 import {RouteDebugBtn} from '@sharedComponents/buttons';
@@ -34,9 +34,9 @@ const getAppVersion = () => {
 };
 
 const AboutApp: React.FC<Props> = (props: Props) => {
-    const trans: any = I18n.t('AboutApp');
+    const {t} = useMergedTranslation('AboutApp');
 
-    const [headHeight, setHeadHeightt] = useState(0);
+    const [headHeight, setHeadHeight] = useState(0);
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -117,31 +117,29 @@ const AboutApp: React.FC<Props> = (props: Props) => {
             <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
-                        <Text style={styles.title}>{trans.title}</Text>
+                        <Text style={styles.title}>{t('title')}</Text>
 
                         <Bike_0 style={styles.bike} />
 
-                        <Text style={styles.text}>{trans.text_1}</Text>
-                        <Text style={styles.nextLineText}>{trans.text_1b}</Text>
+                        <Text style={styles.text}>{t('text_1')}</Text>
+                        <Text style={styles.nextLineText}>{t('text_1b')}</Text>
 
                         <Bike_1 style={styles.bike} />
 
-                        <Text style={styles.text}>{trans.text_2}</Text>
+                        <Text style={styles.text}>{t('text_2')}</Text>
 
                         <Bike_2 style={styles.bike} />
 
-                        <Text style={styles.text}>{trans.text_3}</Text>
+                        <Text style={styles.text}>{t('text_3')}</Text>
 
                         <Bike_3 style={styles.bike} />
 
-                        <Text style={styles.text}>{trans.text_4}</Text>
-                        <Text style={styles.nextLineText}>{trans.text_4b}</Text>
+                        <Text style={styles.text}>{t('text_4')}</Text>
+                        <Text style={styles.nextLineText}>{t('text_4b')}</Text>
 
-                        <Text style={styles.signature}>
-                            {trans.signature_1}
-                        </Text>
+                        <Text style={styles.signature}>{t('signature_1')}</Text>
                         <Text style={styles.nextLineSignature}>
-                            {trans.signature_2}
+                            {t('signature_2')}
                         </Text>
 
                         <Text
@@ -156,8 +154,8 @@ const AboutApp: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.goBack()}
-                inner={trans.header}
-                getHeight={setHeadHeightt}
+                inner={t('header')}
+                getHeight={setHeadHeight}
                 style={{backgroundColor: '#fff'}}
             />
         </SafeAreaView>

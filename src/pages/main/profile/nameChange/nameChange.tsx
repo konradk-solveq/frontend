@@ -8,7 +8,7 @@ import {
     KeyboardAvoidingView,
     Platform,
 } from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {setUserName} from '@storage/actions';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
@@ -39,7 +39,7 @@ interface Props {
 
 const NameChange: React.FC<Props> = ({navigation}: Props) => {
     const dispatch = useAppDispatch();
-    const trans: any = I18n.t('NameChange');
+    const {t} = useMergedTranslation('NameChange');
 
     const name: string = useAppSelector(state => state.user.userName);
 
@@ -69,7 +69,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
         }
 
         if (!validateData(userUserValidationRules.userName, inputName)) {
-            setForceMessageWrong(trans.invalidNameLengthError);
+            setForceMessageWrong(t('invalidNameLengthError'));
             setValidationStatus(false);
         }
 
@@ -150,26 +150,26 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
                     style={styles.scroll}>
                     <View style={styles.area}>
                         <Text style={styles.title}>
-                            {(name || trans.defaultName) + trans.title}
+                            {(name || t('defaultName')) + t('title')}
                         </Text>
 
                         <View
                             style={[styles.inputAndPlaceholder, styles.input]}>
                             <OneLineTekst
-                                placeholder={trans.placeholder}
+                                placeholder={t('placeholder')}
                                 onChangeText={handleSetInputName}
                                 validationOk={handleValidationOk}
                                 value={inputName}
                                 maxLength={20}
                                 validationStatus={setValidationStatus}
-                                messageWrong={trans.invalidNameLengthError}
+                                messageWrong={t('invalidNameLengthError')}
                                 forceMessageWrong={forceMessageWrong}
                             />
                         </View>
 
                         <BigRedBtn
                             style={styles.btn}
-                            title={trans.btn}
+                            title={t('btn')}
                             onpress={() => hadleOnpressWithName(inputName)}
                         />
                     </View>
@@ -177,7 +177,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
             </KeyboardAvoidingView>
             <StackHeader
                 onpress={() => navigation.goBack()}
-                inner={trans.header}
+                inner={t('header')}
             />
         </SafeAreaView>
     );

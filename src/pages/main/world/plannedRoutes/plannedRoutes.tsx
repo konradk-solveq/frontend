@@ -12,7 +12,7 @@ import {
 } from '@storage/selectors';
 import {useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
@@ -46,7 +46,7 @@ const PlannedRoutes: React.FC<IProps> = ({
     onRefresh,
     onLoadMore,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.PlannedRoutes');
+    const {t} = useMergedTranslation('MainWorld.PlannedRoutes');
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
     const favouriteMaps = useAppSelector(favouritesMapsSelector);
@@ -128,8 +128,8 @@ const PlannedRoutes: React.FC<IProps> = ({
                     keyExtractor={item => item.id}
                     ListHeaderComponent={
                         <Text style={styles.header}>
-                            {userName || trans.defaultUserName}
-                            {trans.title}
+                            {userName || t('defaultUserName')}
+                            {t('title')}
                         </Text>
                     }
                     data={favouriteMaps}

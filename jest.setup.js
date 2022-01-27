@@ -43,6 +43,20 @@ jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo);
 
 jest.mock('react-native-background-geolocation-android/src/NativeModule');
 
+jest.mock('./src/utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val) => {
+        return {
+            t: (str) => `${val}.${str}`,
+        };
+    },
+}));
+
+jest.mock('./I18n/i18next', () => ({
+    t: (str) => {
+        return `${str}`;
+    },
+}));
+
 /**
  * Not working from external file
  */

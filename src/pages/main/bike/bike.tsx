@@ -8,7 +8,7 @@ import {UserBike} from '@models/userBike.model';
 import {RegularStackRoute} from '@navigation/route';
 import {fetchPlacesData, removeBikeByNumber} from '@storage/actions';
 import {bikesListSelector} from '@storage/selectors';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import geoBox from '@helpers/geoBox';
 import {getBike} from '@helpers/transformUserBikeData';
@@ -93,7 +93,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                         width: 2000,
                     }),
                 );
-            } catch (error) {
+            } catch (error: any) {
                 console.error('[getCurrentLocationPositionHandler]', error);
                 const errorMessage = error?.errorMessage || error;
                 Alert.alert('Error', errorMessage);
@@ -120,7 +120,7 @@ const Bike: React.FC<Props> = (props: Props) => {
         }
     };
 
-    const trans: any = I18n.t('MainBike');
+    const {t} = useMergedTranslation('MainBike');
 
     const heandleParams = () => {
         props.navigation.navigate(RegularStackRoute.BIKE_PARAMS_SCREEN, {
@@ -142,12 +142,12 @@ const Bike: React.FC<Props> = (props: Props) => {
     };
 
     const onRemoveBikeHandler = () => {
-        Alert.alert('', trans.removeAlert, [
+        Alert.alert('', t('removeAlert'), [
             {
-                text: trans.cancelAction,
+                text: t('cancelAction'),
             },
             {
-                text: trans.removveAction,
+                text: t('removveAction'),
                 onPress: () => {
                     if (bike?.description) {
                         dispatch(
@@ -176,7 +176,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                 }}>
                 <StackHeader
                     hideBackArrow
-                    inner={trans.header}
+                    inner={t('header')}
                     style={styles.header}
                     rightActions={
                         bike?.description && (
@@ -194,10 +194,10 @@ const Bike: React.FC<Props> = (props: Props) => {
                     headerElement={
                         <BikeSelectorList
                             list={bikes}
-                            description={trans.warranty.reviews}
+                            description={t('warranty.reviews')}
                             callback={onChangeBikeHandler}
                             currentBike={bike?.description?.serial_number}
-                            buttonText={trans.add}
+                            buttonText={t('add')}
                         />
                     }>
                     {bike?.description && (
@@ -207,10 +207,10 @@ const Bike: React.FC<Props> = (props: Props) => {
                             </Text>
 
                             <Text style={styles.bikeDetails}>
-                                {trans.details[0] +
-                                    bike?.description.producer +
-                                    trans.details[1] +
-                                    bike?.description.serial_number}
+                                {t('details', {
+                                    name: bike?.description.producer,
+                                    number: bike?.description.serial_number,
+                                })}
                             </Text>
 
                             {warrantyData && warrantyData?.type !== 'no-info' && (
@@ -227,7 +227,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                                                 : null
                                             : undefined
                                     }
-                                    warranty={trans.warranty}
+                                    warranty={t('warranty')}
                                     details={{
                                         description: bike?.description,
                                         warranty: warrantyData,
@@ -246,7 +246,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                                     box={box}
                                     region={region}
                                     location={location}
-                                    description={trans.warranty.reviews}
+                                    description={t('warranty.reviews')}
                                     navigation={props.navigation}
                                     resetPostion={resetReviewsPosition}
                                     onScrollToStart={() =>
@@ -260,16 +260,16 @@ const Bike: React.FC<Props> = (props: Props) => {
                                     <ComplaintsRepairs
                                         style={styles.complaintsRepairs}
                                         list={bike.complaintsRepairs}
-                                        description={
-                                            trans.warranty.complaintsRepairs
-                                        }
+                                        description={t(
+                                            'warranty.complaintsRepairs',
+                                        )}
                                     />
                                 )}
 
                             <View style={styles.horizontalSpace}>
                                 <ServiceMapBtn
                                     style={styles.map}
-                                    title={trans.servisMap}
+                                    title={t('servisMap')}
                                     height={102}
                                     region={region}
                                     location={location}
@@ -281,7 +281,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                                 <BigRedBtn
                                     style={styles.btn}
                                     onpress={onRemoveBikeHandler}
-                                    title={trans.btn}
+                                    title={t('btn')}
                                 />
                             </View>
                         </>

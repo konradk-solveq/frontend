@@ -9,18 +9,18 @@ import {
     SafeAreaView,
 } from 'react-native';
 
-import useStatusBarHeight from '../../../hooks/statusBarHeight';
+import useStatusBarHeight from '@hooks/statusBarHeight';
 import {BigRedBtn} from '../../buttons';
 
-import {useAppSelector} from '../../../hooks/redux';
+import {useAppSelector} from '@hooks/redux';
 import ImgSvg from './imgSvg';
-import {I18n} from '../../../../I18n/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
     mainButtonsHeight,
-} from '../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -41,11 +41,11 @@ const PublishRouteThankYouPageModal: React.FC<IProps> = ({
 }: IProps) => {
     const userName = useAppSelector<string>(state => state.user.userName);
     const statusBarHeight = useStatusBarHeight();
-    const trans: any = I18n.t('PublishThankYouPage');
+    const {t} = useMergedTranslation('PublishThankYouPage');
 
     const publishedText = wasPublished
-        ? trans.titleSufixUpdated
-        : trans.titleSufixPublished;
+        ? t('titleSuffixUpdated')
+        : t('titleSuffixPublished');
 
     return (
         <Modal
@@ -66,13 +66,13 @@ const PublishRouteThankYouPageModal: React.FC<IProps> = ({
                                 },
                             ]}>
                             <Text style={styles.header}>
-                                {`${userName || trans.defaultName}${
-                                    trans.titleSufix
-                                }`}
+                                {`${userName || t('defaultName')}${t(
+                                    'titleSuffix',
+                                )}`}
                                 {`${
                                     isPublished
                                         ? publishedText
-                                        : trans.titleSufixSaved
+                                        : t('titleSuffixSaved')
                                 }`}
                             </Text>
                         </View>
@@ -87,7 +87,7 @@ const PublishRouteThankYouPageModal: React.FC<IProps> = ({
                             {bottom: isIOS ? -10 : -statusBarHeight},
                         ]}>
                         <BigRedBtn
-                            title={trans.okBtn}
+                            title={t('okBtn')}
                             onpress={onPress}
                             style={styles.onPressBtn}
                         />

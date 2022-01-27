@@ -1,6 +1,6 @@
 import * as actionTypes from '@storage/actions/actionTypes';
 
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import bikesMock from '@src/api/mocks/bikes/lookupBike';
 import updatedData from '../mocks/bikesListToUpdate';
 
@@ -10,7 +10,7 @@ const customBikeNumber = '1456790';
 
 const numbersToUpdate = [bikeNumber, bikeNumberTwo];
 
-const prefix = I18n.t('dataAction.dataSyncError');
+const prefix = i18next.t('dataAction.dataSyncError');
 const errorMessage = `${prefix}: ${customBikeNumber}`;
 
 export const synchRecordingWhenOnlineExpectedActions = [

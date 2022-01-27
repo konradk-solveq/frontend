@@ -6,9 +6,9 @@ import {
     Text,
     Platform,
 } from 'react-native';
-import I18n from 'react-native-i18n';
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
-import AnimSvg from '../../../helpers/animSvg';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import TabBackGround from '@sharedComponents/navi/tabBackGround';
+import AnimSvg from '@helpers/animSvg';
 
 import {
     setObjSize,
@@ -16,7 +16,7 @@ import {
     getVerticalPx,
     getWidthPx,
     getFontSize,
-} from '../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 import MapSvg from './mapSvg';
 
 const line = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 256" width="412" height="256">
@@ -28,15 +28,15 @@ const line = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 256" widt
 const ww = Dimensions.get('window').width;
 
 const World: React.FC = () => {
-    const trans: any = I18n.t('MainWorld');
+    const {t} = useMergedTranslation('MainWorld');
 
-    const t = getVerticalPx(348);
+    const top = getVerticalPx(348);
     const h = ww * (202 / 400);
     const th = getVerticalPx(300);
     const tt =
         Platform.OS === 'ios'
             ? getVerticalPx(138)
-            : t - (th + getVerticalPx(138));
+            : top - (th + getVerticalPx(138));
 
     setObjSize(350, 23);
     const styles = StyleSheet.create({
@@ -52,7 +52,7 @@ const World: React.FC = () => {
             position: 'absolute',
             width: ww,
             height: h + getVerticalPx(Platform.OS === 'ios' ? 100 : 60),
-            top: t - getVerticalPx(50),
+            top: top - getVerticalPx(50),
         },
         header: {
             position: 'absolute',
@@ -78,7 +78,7 @@ const World: React.FC = () => {
         },
         footer: {
             position: 'absolute',
-            bottom: t - getVerticalPx(193),
+            bottom: top - getVerticalPx(193),
             fontFamily: 'DIN2014Narrow-Light',
             fontSize: getFontSize(18),
             letterSpacing: 0.5,
@@ -91,14 +91,14 @@ const World: React.FC = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.header}>Świat Kross</Text>
+            <Text style={styles.header}>{t('header')}</Text>
 
             <AnimSvg style={styles.image} source={line} />
             <MapSvg />
 
-            <Text style={styles.title}>{trans.title}</Text>
+            <Text style={styles.title}>{t('title')}</Text>
 
-            <Text style={styles.footer}>{trans.footer}</Text>
+            <Text style={styles.footer}>{t('footer')}</Text>
 
             <TabBackGround />
         </SafeAreaView>

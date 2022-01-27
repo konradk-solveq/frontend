@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {I18n} from '../../../../I18n/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import AnimSvg from '../../../helpers/animSvg';
-import {useAppSelector} from '../../../hooks/redux';
-import {UserBike} from '../../../models/userBike.model';
+import AnimSvg from '@helpers/animSvg';
+import {useAppSelector} from '@hooks/redux';
+import {UserBike} from '@models/userBike.model';
 
 import {
     setObjSize,
@@ -12,8 +12,8 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
-} from '../../../helpers/layoutFoo';
-import {RegularStackRoute} from '../../../navigation/route';
+} from '@helpers/layoutFoo';
+import {RegularStackRoute} from '@navigation/route';
 
 interface Props {
     navigation: any;
@@ -26,6 +26,8 @@ interface Props {
 }
 
 const Warranty: React.FC<Props> = (props: Props) => {
+    const {t} = useMergedTranslation('MainBike');
+
     setObjSize(334, 50);
     const w = getWidthPx();
     const l = getCenterLeftPx();
@@ -146,10 +148,10 @@ const Warranty: React.FC<Props> = (props: Props) => {
 
     const warrantyText =
         props.toEnd === null
-            ? I18n.t('MainBike.warranty.lifetime')
+            ? t('warranty.lifetime')
             : !props.toEnd
-                ? I18n.t('MainBike.warranty.noInfo')
-                : `${props.toEnd} ${props.warranty.days}`;
+            ? t('warranty.noInfo')
+            : `${props.toEnd} ${props.warranty.days}`;
     return (
         <View
             style={[styles.container, props.style]}

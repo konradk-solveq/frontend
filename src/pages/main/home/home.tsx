@@ -23,7 +23,7 @@ import {syncAppSelector} from '@storage/selectors';
 import Tile from './tile';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {nfcIsSupported} from '@helpers/nfc';
 import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 
@@ -40,7 +40,7 @@ const {width} = Dimensions.get('window');
 const Home: React.FC = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
-    const trans: any = I18n.t('MainHome');
+    const {t} = useMergedTranslation('MainHome');
     const mountedRef = useRef(false);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
@@ -140,25 +140,25 @@ const Home: React.FC = () => {
                         <View style={styles.tileWrapper}>
                             {!hasRecordedRoutes ? (
                                 <Tile
-                                    title={trans.thirdTitle}
-                                    description={trans.thirdText}
-                                    btnText={trans.thirdBtn}
+                                    title={t('thirdTitle')}
+                                    description={t('thirdText')}
+                                    btnText={t('thirdBtn')}
                                     style={styles.tileSpace}
                                     onPress={doAction}
                                 />
                             ) : (
                                 <Tile
-                                    title={trans.fourthTitle}
-                                    description={trans.fourthText}
-                                    btnText={trans.fourthBtn}
+                                    title={t('fourthTitle')}
+                                    description={t('fourthText')}
+                                    btnText={t('fourthBtn')}
                                     style={styles.tileSpace}
                                     onPress={doAction}
                                 />
                             )}
                             <Tile
-                                title={trans.secondTitle}
-                                description={trans.secondText}
-                                btnText={trans.secondBtn}
+                                title={t('secondTitle')}
+                                description={t('secondText')}
+                                btnText={t('secondBtn')}
                                 style={styles.tileSpace}
                                 onPress={onAddActionHandler}
                             />

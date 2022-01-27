@@ -2,25 +2,25 @@ import React, {useState} from 'react';
 import {View, Text} from 'react-native';
 import {SubmitErrorHandler, SubmitHandler} from 'react-hook-form';
 
-import {I18n} from '../../../../../../I18n/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {
     reValidateMapMetadataManually,
     validateData,
-} from '../../../../../utils/validation/validation';
-import {useAppSelector} from '../../../../../hooks/redux';
-import useFormDataWithMapData from '../../../../../hooks/formDataWithMapData';
+} from '@utils/validation/validation';
+import {useAppSelector} from '@hooks/redux';
+import useFormDataWithMapData from '@hooks/formDataWithMapData';
 import {attributes} from './attributes';
 import {
     Map,
     publishMapValidationRules,
     PublishMapValidationRulesI,
-} from '../../../../../models/map.model';
-import {userNameSelector} from '../../../../../storage/selectors';
-import {ImageType, MapFormDataResult} from '../../../../../interfaces/form';
+} from '@models/map.model';
+import {userNameSelector} from '@storage/selectors';
+import {ImageType, MapFormDataResult} from '@interfaces/form';
 
-import {BigWhiteBtn, BigRedBtn} from '../../../../../sharedComponents/buttons';
-import OneLineText from '../../../../../sharedComponents/inputs/oneLineText';
-import {MultiSelect} from '../../../../../sharedComponents/inputs';
+import {BigWhiteBtn, BigRedBtn} from '@sharedComponents/buttons';
+import OneLineText from '@sharedComponents/inputs/oneLineText';
+import {MultiSelect} from '@sharedComponents/inputs';
 import Checkbox from './inputs/checkbox';
 import ControlledInput from './inputs/controlledInput';
 import ImagesInput from './inputs/imagesInput';
@@ -45,11 +45,10 @@ const EditForm: React.FC<IProps> = ({
     mapData,
     scrollTop,
 }: IProps) => {
-    const trans: any = I18n.t('RoutesDetails.EditScreen');
-    const validationMessages: any = I18n.t(
-        'validation.fields.mapDetails.formErrors',
-    );
-    const userName = useAppSelector(userNameSelector) || trans.defaultUser;
+    const {t} = useMergedTranslation('RoutesDetails.EditScreen');
+    const {t: tvm} = useMergedTranslation('validation.fields.mapDetails');
+
+    const userName = useAppSelector(userNameSelector) || t('defaultUser');
 
     const [images, setImages] = useState<string[]>(imagesData?.images || []);
     const [imagesToAdd, setImagesToAdd] = useState<ImageType[]>([]);
@@ -66,7 +65,7 @@ const EditForm: React.FC<IProps> = ({
     const validateFormData = (data: MapFormDataResult) => {
         const isValid = reValidateMapMetadataManually(
             data,
-            validationMessages,
+            tvm('formErrors', {returnObjects: true}),
             setError,
             ['publishWithName'],
         );
@@ -105,7 +104,7 @@ const EditForm: React.FC<IProps> = ({
         if (!isValid) {
             scrollTop();
         }
-        return isValid || validationMessages[fieldName];
+        return isValid || tvm(`formErrors.${fieldName}`);
     };
 
     const onAddImageHandler = (img: ImageType) => {
@@ -136,7 +135,7 @@ const EditForm: React.FC<IProps> = ({
                     control={control}
                     Input={({value, isValid, onChange}) => (
                         <Checkbox
-                            label={`${trans.publishAs} ${userName}`}
+                            label={`${t('publishAs')} ${userName}`}
                             value={!!value}
                             isValid={isValid}
                             onCheck={onChange}
@@ -152,7 +151,7 @@ const EditForm: React.FC<IProps> = ({
                     control={control}
                     Input={({value, isValid, onChange, errMsg}) => (
                         <OneLineText
-                            placeholder={trans.nameInput}
+                            placeholder={t('nameInput')}
                             keyboardType="default"
                             onChangeText={(v: string) => onChange(v)}
                             validationOk={isValid}
@@ -174,7 +173,7 @@ const EditForm: React.FC<IProps> = ({
                             <MultiSelect
                                 key={attributes.level.name}
                                 options={options?.difficulties}
-                                optionsTransName={trans.attributes.level.name}
+                                optionsTransName={t('attributes.level.name')}
                                 predefined={value}
                                 errorMessage={errMsg}
                                 onSave={onChange}
@@ -193,7 +192,7 @@ const EditForm: React.FC<IProps> = ({
                         <MultiSelect
                             key={attributes.pavement.name}
                             options={options?.surfaces}
-                            optionsTransName={trans.attributes.pavement.name}
+                            optionsTransName={t('attributes.pavement.name')}
                             predefined={value}
                             errorMessage={errMsg}
                             onSave={onChange}
@@ -208,7 +207,7 @@ const EditForm: React.FC<IProps> = ({
                     control={control}
                     Input={({value, isValid, onChange, errMsg}) => (
                         <OneLineText
-                            placeholder={trans.intro}
+                            placeholder={t('intro')}
                             keyboardType="default"
                             onChangeText={(v: string) => onChange(v)}
                             validationOk={isValid}
@@ -230,7 +229,7 @@ const EditForm: React.FC<IProps> = ({
                         styles.color555555,
                         styles.imagesTitle,
                     ]}>
-                    {trans.imagesTitle}
+                    {t('imagesTitle')}
                 </Text>
                 <ImagesInput
                     images={images}
@@ -246,7 +245,7 @@ const EditForm: React.FC<IProps> = ({
                         <MultiSelect
                             key={attributes.tags.name}
                             options={options?.tags}
-                            optionsTransName={trans.attributes.tags.name}
+                            optionsTransName={t('attributes.tags.name')}
                             predefined={value}
                             errorMessage={errMsg}
                             onSave={onChange}
@@ -259,7 +258,7 @@ const EditForm: React.FC<IProps> = ({
                 {!isRoutePublished ? (
                     <>
                         <BigRedBtn
-                            title={trans.publishButton}
+                            title={t('publishButton')}
                             onpress={handleSubmit(
                                 onSubmitHandlerWithPublish,
                                 onInvalidSubmitHandlerWithPublish,
@@ -267,14 +266,14 @@ const EditForm: React.FC<IProps> = ({
                             style={styles.onPressBtn}
                         />
                         <BigWhiteBtn
-                            title={trans.saveButton}
+                            title={t('saveButton')}
                             onpress={handleSubmit(onSubmitHandler)}
                             style={[styles.onPressBtn, styles.bottomBtn]}
                         />
                     </>
                 ) : (
                     <BigRedBtn
-                        title={trans.updateButton}
+                        title={t('updateButton')}
                         onpress={handleSubmit(onSubmitHandlerWithPublish)}
                         style={styles.onPressBtn}
                     />

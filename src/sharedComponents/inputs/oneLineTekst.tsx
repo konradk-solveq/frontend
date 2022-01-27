@@ -5,9 +5,8 @@ import {
     Text,
     View,
     TouchableOpacity,
-    Image,
 } from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {getFontSize, getHorizontalPx} from '../../helpers/layoutFoo';
 import IconHide from '@sharedComponents/icons/IconHide';
@@ -37,6 +36,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const [isSecure, setIsSecure] = useState(true);
+    const {t} = useMergedTranslation('');
 
     const onEyePress = () => {
         setIsSecure(!isSecure);
@@ -52,7 +52,7 @@ const OneLineTekst: React.FC<Props> = (props: Props) => {
 
         if (props.value == 'null' || props.value == 'NULL') {
             validation = 'bad';
-            message = I18n.t('OneLineTekst-error-null');
+            message = t('OneLineText-error-null');
         }
 
         if (props.validationWrong && props.validationWrong(props.value)) {

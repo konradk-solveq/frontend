@@ -1,5 +1,6 @@
 import {checkSharedImageExists, shareRoute} from '@api/index';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
+
 import {SharedContentT} from '@type/share';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
@@ -39,7 +40,7 @@ export const shareRouteService = async (
                     response?.data?.statusCode !== 400 &&
                     response?.data?.statusCode !== 404
                 ) {
-                    errorMessage = I18n.t(
+                    errorMessage = i18next.t(
                         'dataAction.shareData.createShareUrlError',
                     );
                 }
@@ -66,7 +67,7 @@ export const shareRouteService = async (
         return {
             data: null,
             status: 500,
-            error: I18n.t('dataAction.apiError'),
+            error: i18next.t('dataAction.apiError'),
         };
     }
 };
@@ -85,7 +86,7 @@ export const checkSharedImageExistsService = async (
                     response?.data?.statusCode !== 400 &&
                     response?.data?.statusCode !== 404
                 ) {
-                    errorMessage = I18n.t(
+                    errorMessage = i18next.t(
                         'dataAction.shareData.sharedImageNotExistsError',
                     );
                 }
@@ -116,7 +117,7 @@ export const checkSharedImageExistsService = async (
         return {
             data: 'NOT-EXISTS',
             status: 500,
-            error: I18n.t('dataAction.apiError'),
+            error: i18next.t('dataAction.apiError'),
         };
     }
 };

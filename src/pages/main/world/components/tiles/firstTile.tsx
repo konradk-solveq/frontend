@@ -1,13 +1,13 @@
-import React, { useEffect, useCallback, useState } from 'react';
-import { View, Text, Image, Pressable } from 'react-native';
+import React, {useEffect, useCallback, useState} from 'react';
+import {View, Text, Image, Pressable} from 'react-native';
 
-import { mapReactionsConfigSelector } from '@storage/selectors/app';
-import { modifyReaction } from '@storage/actions/maps';
-import { useAppDispatch, useAppSelector } from '@hooks/redux';
-import { I18n } from '@translations/I18n';
-import { Map, ReactionsType } from '@models/map.model';
-import { jsonStringify } from '@utils/transformJson';
-import { getImageToDisplay } from '@utils/transformData';
+import {mapReactionsConfigSelector} from '@storage/selectors/app';
+import {modifyReaction} from '@storage/actions/maps';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {Map, ReactionsType} from '@models/map.model';
+import {jsonStringify} from '@utils/transformJson';
+import {getImageToDisplay} from '@utils/transformData';
 
 import TileBackground from './tileBackground';
 import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
@@ -20,7 +20,7 @@ import FourthSection from './sections/fourthSection';
 
 interface IProps {
     mapData: Map;
-    images: { images: string[]; mapImg: string };
+    images: {images: string[]; mapImg: string};
     onPress: (state: boolean, mapID: string) => void;
     onPressTile?: (mapID: string) => void;
     tilePressable?: boolean;
@@ -33,7 +33,7 @@ const FirstTile: React.FC<IProps> = ({
     onPressTile,
     tilePressable,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.BikeMap');
+    const {t} = useMergedTranslation('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
 
     const config = useAppSelector(mapReactionsConfigSelector);
@@ -101,12 +101,12 @@ const FirstTile: React.FC<IProps> = ({
                             <Text
                                 numberOfLines={1}
                                 style={styles.tileSectionTitle}>
-                                {mapData?.name || trans.noTitle}
+                                {mapData?.name || t('noTitle')}
                             </Text>
                             <View style={styles.firstSectionContent}>
                                 <Text style={styles.distanceToStart}>
                                     {mapData.distanceToRouteInKilometers}
-                                    {trans.distanceToStart}
+                                    {t('distanceToStart')}
                                 </Text>
                                 <View style={styles.raitingContainer}>
                                     <View style={styles.borderVerticalLine} />
@@ -123,8 +123,14 @@ const FirstTile: React.FC<IProps> = ({
                         <View style={styles.secondtSection}>
                             <View style={styles.sectionContentRow}>
                                 <View style={styles.sectionTextRow}>
-                                    <View style={firstTileStyles.bikeIconFontWrap}>
-                                        <Text style={firstTileStyles.bikeIconFont}>
+                                    <View
+                                        style={
+                                            firstTileStyles.bikeIconFontWrap
+                                        }>
+                                        <Text
+                                            style={
+                                                firstTileStyles.bikeIconFont
+                                            }>
                                             i
                                         </Text>
                                     </View>
@@ -132,13 +138,19 @@ const FirstTile: React.FC<IProps> = ({
                                         {mapData.distanceInKilometers || '-'}{' '}
                                         <Text
                                             style={styles.secondSectionSuffix}>
-                                            {trans.distanceUnit}
+                                            {t('distanceUnit')}
                                         </Text>
                                     </Text>
                                 </View>
                                 <View style={styles.sectionTextRow}>
-                                    <View style={firstTileStyles.clockIconFontWrap}>
-                                        <Text style={firstTileStyles.clockIconFont}>
+                                    <View
+                                        style={
+                                            firstTileStyles.clockIconFontWrap
+                                        }>
+                                        <Text
+                                            style={
+                                                firstTileStyles.clockIconFont
+                                            }>
                                             j
                                         </Text>
                                     </View>
@@ -146,7 +158,7 @@ const FirstTile: React.FC<IProps> = ({
                                         {mapData?.formattedTimeString || '-:--'}{' '}
                                         <Text
                                             style={styles.secondSectionSuffix}>
-                                            {trans.timeUnit}
+                                            {t('timeUnit')}
                                         </Text>
                                     </Text>
                                 </View>

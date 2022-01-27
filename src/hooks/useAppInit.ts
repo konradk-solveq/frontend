@@ -23,18 +23,14 @@ import {
 
 import {setAutorizationHeader} from '@api/api';
 import {cleanUp, initBGeolocalization} from '@utils/geolocation';
-import {I18n} from '@translations/I18n';
 import {sentrySetUserInfo} from '@sentryLogger/sentryLogger';
 import {enableAnalytics} from '@analytics/firebaseAnalytics';
-import {
-    fetchMapsList,
-    fetchPlannedMapsList,
-    fetchPrivateMapsList,
-} from '@storage/actions';
-import {fetchFeaturedMapsList} from '@storage/actions/maps';
+
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 const useAppInit = () => {
-    const trans: any = I18n.t('Geolocation.notification');
+    const {t} = useMergedTranslation('Geolocation.notification');
+
     const dispatch = useAppDispatch();
     const geolocationStateRef = useRef<State>();
     const dataInitializedref = useRef(false);
@@ -82,7 +78,7 @@ const useAppInit = () => {
 
     useEffect(() => {
         const init = async () => {
-            const geolocation = await initBGeolocalization(trans.title);
+            const geolocation = await initBGeolocalization(t('title'));
             if (geolocation) {
                 geolocationStateRef.current = geolocation;
             }

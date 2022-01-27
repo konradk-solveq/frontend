@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, View} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {
     setObjSize,
@@ -29,20 +29,20 @@ const StaticElements: React.FC<Props> = ({
     setBoard,
     goForward,
 }: Props) => {
-    const trans = I18n.t('Onboarding');
+    const {t} = useMergedTranslation('Onboarding');
 
     const getButtonTitle = () => {
         switch (board) {
             case 1:
-                return trans.btn_1;
+                return t('btn_1');
             case 2:
-                return trans.btn_2;
+                return t('btn_2');
             case 3:
-                return trans.btn_3;
+                return t('btn_3');
             case 4:
-                return trans.btn_4;
+                return t('btn_4');
             case 5:
-                return trans.btn_5;
+                return t('btn_5');
         }
         return '';
     };
@@ -81,7 +81,7 @@ const StaticElements: React.FC<Props> = ({
 
             <TranspLightBtn
                 style={styles.skip}
-                title={trans.skip}
+                title={t('skip')}
                 onpress={() => goForward()}
             />
 

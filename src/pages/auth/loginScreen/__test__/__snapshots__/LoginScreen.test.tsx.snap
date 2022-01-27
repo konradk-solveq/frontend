@@ -70,7 +70,7 @@ Array [
               ]
             }
           >
-            Zaloguj się do KROSS
+            Login.header
           </Text>
         </View>
       </View>
@@ -119,8 +119,7 @@ Array [
                     }
                   }
                 >
-                  Rowerzysto, finał już blisko.
-Masz konto w Kross? Zaloguj się.
+                  Login.defaultNameLogin.title
                 </Text>
                 <View
                   style={
@@ -142,7 +141,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        E-mail
+                        Login.email
                       </Text>
                       <View>
                         <TextInput
@@ -210,7 +209,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Hasło
+                        Login.password
                       </Text>
                       <View>
                         <TextInput
@@ -372,7 +371,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Nie pamiętam hasła
+                        Login.forgotPassword
                       </Text>
                     </View>
                   </View>
@@ -421,7 +420,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          ZALOGUJ SIĘ
+                          LOGIN.BUTTON
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -442,7 +441,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    lub użyj
+                    Login.orUse
                   </Text>
                 </View>
                 <View
@@ -698,7 +697,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Nie masz konta w KROSS?
+                    Login.noAccountYet
                   </Text>
                   <View
                     accessible={true}
@@ -726,7 +725,7 @@ Masz konto w Kross? Zaloguj się.
                         }
                       }
                     >
-                       Zarejestruj się
+                      Login.register
                     </Text>
                   </View>
                 </View>
@@ -797,7 +796,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Coś poszło nie tak!
+                    PublishThankYouPage.errorTitle
                   </Text>
                 </View>
                 <View
@@ -1073,7 +1072,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          OK
+                          PUBLISHTHANKYOUPAGE.OKBTN
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -1209,7 +1208,7 @@ Array [
               ]
             }
           >
-            Zaloguj się do KROSS
+            Login.header
           </Text>
         </View>
       </View>
@@ -1258,8 +1257,7 @@ Array [
                     }
                   }
                 >
-                  Rowerzysto, finał już blisko.
-Masz konto w Kross? Zaloguj się.
+                  Login.defaultNameLogin.title
                 </Text>
                 <View
                   style={
@@ -1281,7 +1279,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        E-mail
+                        Login.email
                       </Text>
                       <View>
                         <TextInput
@@ -1349,7 +1347,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Hasło
+                        Login.password
                       </Text>
                       <View>
                         <TextInput
@@ -1515,7 +1513,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Nie pamiętam hasła
+                        Login.forgotPassword
                       </Text>
                     </View>
                   </View>
@@ -1566,7 +1564,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          ZALOGUJ SIĘ
+                          LOGIN.BUTTON
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -1587,7 +1585,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    lub użyj
+                    Login.orUse
                   </Text>
                 </View>
                 <View
@@ -1847,7 +1845,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Nie masz konta w KROSS?
+                    Login.noAccountYet
                   </Text>
                   <View
                     accessible={true}
@@ -1877,7 +1875,7 @@ Masz konto w Kross? Zaloguj się.
                         }
                       }
                     >
-                       Zarejestruj się
+                      Login.register
                     </Text>
                   </View>
                 </View>
@@ -1948,7 +1946,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Coś poszło nie tak!
+                    PublishThankYouPage.errorTitle
                   </Text>
                 </View>
                 <View
@@ -2226,7 +2224,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          OK
+                          PUBLISHTHANKYOUPAGE.OKBTN
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -2362,7 +2360,7 @@ Array [
               ]
             }
           >
-            Zaloguj się do KROSS
+            Login.header
           </Text>
         </View>
       </View>
@@ -2411,8 +2409,7 @@ Array [
                     }
                   }
                 >
-                  Rowerzysto, finał już blisko.
-Masz konto w Kross? Zaloguj się.
+                  Login.defaultNameLogin.title
                 </Text>
                 <View
                   style={
@@ -2434,7 +2431,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        E-mail
+                        Login.email
                       </Text>
                       <View>
                         <TextInput
@@ -2502,7 +2499,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Hasło
+                        Login.password
                       </Text>
                       <View>
                         <TextInput
@@ -2668,7 +2665,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Nie pamiętam hasła
+                        Login.forgotPassword
                       </Text>
                     </View>
                   </View>
@@ -2719,7 +2716,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          ZALOGUJ SIĘ
+                          LOGIN.BUTTON
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -2740,7 +2737,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    lub użyj
+                    Login.orUse
                   </Text>
                 </View>
                 <View
@@ -3000,7 +2997,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Nie masz konta w KROSS?
+                    Login.noAccountYet
                   </Text>
                   <View
                     accessible={true}
@@ -3030,7 +3027,7 @@ Masz konto w Kross? Zaloguj się.
                         }
                       }
                     >
-                       Zarejestruj się
+                      Login.register
                     </Text>
                   </View>
                 </View>
@@ -3101,7 +3098,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Coś poszło nie tak!
+                    PublishThankYouPage.errorTitle
                   </Text>
                 </View>
                 <View
@@ -3379,7 +3376,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          OK
+                          PUBLISHTHANKYOUPAGE.OKBTN
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -3515,7 +3512,7 @@ Array [
               ]
             }
           >
-            Zaloguj się do KROSS
+            Login.header
           </Text>
         </View>
       </View>
@@ -3564,8 +3561,7 @@ Array [
                     }
                   }
                 >
-                  Rowerzysto, finał już blisko.
-Masz konto w Kross? Zaloguj się.
+                  Login.defaultNameLogin.title
                 </Text>
                 <View
                   style={
@@ -3587,7 +3583,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        E-mail
+                        Login.email
                       </Text>
                       <View>
                         <TextInput
@@ -3655,7 +3651,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Hasło
+                        Login.password
                       </Text>
                       <View>
                         <TextInput
@@ -3821,7 +3817,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Nie pamiętam hasła
+                        Login.forgotPassword
                       </Text>
                     </View>
                   </View>
@@ -3872,7 +3868,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          ZALOGUJ SIĘ
+                          LOGIN.BUTTON
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -3893,7 +3889,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    lub użyj
+                    Login.orUse
                   </Text>
                 </View>
                 <View
@@ -4153,7 +4149,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Nie masz konta w KROSS?
+                    Login.noAccountYet
                   </Text>
                   <View
                     accessible={true}
@@ -4183,7 +4179,7 @@ Masz konto w Kross? Zaloguj się.
                         }
                       }
                     >
-                       Zarejestruj się
+                      Login.register
                     </Text>
                   </View>
                 </View>
@@ -4254,7 +4250,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Coś poszło nie tak!
+                    PublishThankYouPage.errorTitle
                   </Text>
                 </View>
                 <View
@@ -4532,7 +4528,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          OK
+                          PUBLISHTHANKYOUPAGE.OKBTN
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -4668,7 +4664,7 @@ Array [
               ]
             }
           >
-            Zaloguj się do KROSS
+            Login.header
           </Text>
         </View>
       </View>
@@ -4717,8 +4713,7 @@ Array [
                     }
                   }
                 >
-                  Rowerzysto, finał już blisko.
-Masz konto w Kross? Zaloguj się.
+                  Login.defaultNameLogin.title
                 </Text>
                 <View
                   style={
@@ -4740,7 +4735,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        E-mail
+                        Login.email
                       </Text>
                       <View>
                         <TextInput
@@ -4808,7 +4803,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Hasło
+                        Login.password
                       </Text>
                       <View>
                         <TextInput
@@ -4970,7 +4965,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Nie pamiętam hasła
+                        Login.forgotPassword
                       </Text>
                     </View>
                   </View>
@@ -5019,7 +5014,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          ZALOGUJ SIĘ
+                          LOGIN.BUTTON
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -5040,7 +5035,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    lub użyj
+                    Login.orUse
                   </Text>
                 </View>
                 <View
@@ -5296,7 +5291,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Nie masz konta w KROSS?
+                    Login.noAccountYet
                   </Text>
                   <View
                     accessible={true}
@@ -5324,7 +5319,7 @@ Masz konto w Kross? Zaloguj się.
                         }
                       }
                     >
-                       Zarejestruj się
+                      Login.register
                     </Text>
                   </View>
                 </View>
@@ -5395,7 +5390,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Coś poszło nie tak!
+                    PublishThankYouPage.errorTitle
                   </Text>
                 </View>
                 <View
@@ -5671,7 +5666,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          OK
+                          PUBLISHTHANKYOUPAGE.OKBTN
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -5807,7 +5802,7 @@ Array [
               ]
             }
           >
-            Zaloguj się do KROSS
+            Login.header
           </Text>
         </View>
       </View>
@@ -5856,8 +5851,7 @@ Array [
                     }
                   }
                 >
-                  Rowerzysto, finał już blisko.
-Masz konto w Kross? Zaloguj się.
+                  Login.defaultNameLogin.title
                 </Text>
                 <View
                   style={
@@ -5879,7 +5873,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        E-mail
+                        Login.email
                       </Text>
                       <View>
                         <TextInput
@@ -5931,7 +5925,7 @@ Masz konto w Kross? Zaloguj się.
                         }
                         testID="InputEmailErrMessage"
                       >
-                        Wprowadź poprawny adres e-mail
+                        validation.fields.login.formErrors.email
                       </Text>
                     </View>
                   </View>
@@ -5947,7 +5941,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Hasło
+                        Login.password
                       </Text>
                       <View>
                         <TextInput
@@ -6076,7 +6070,7 @@ Masz konto w Kross? Zaloguj się.
                         }
                         testID="InputPasswordErrMessage"
                       >
-                        Uzupełnij hasło
+                        validation.fields.login.formErrors.password
                       </Text>
                     </View>
                   </View>
@@ -6111,7 +6105,7 @@ Masz konto w Kross? Zaloguj się.
                           }
                         }
                       >
-                        Nie pamiętam hasła
+                        Login.forgotPassword
                       </Text>
                     </View>
                   </View>
@@ -6162,7 +6156,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          ZALOGUJ SIĘ
+                          LOGIN.BUTTON
                         </Text>
                       </View>
                     </RNGestureHandlerButton>
@@ -6183,7 +6177,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    lub użyj
+                    Login.orUse
                   </Text>
                 </View>
                 <View
@@ -6443,7 +6437,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Nie masz konta w KROSS?
+                    Login.noAccountYet
                   </Text>
                   <View
                     accessible={true}
@@ -6473,7 +6467,7 @@ Masz konto w Kross? Zaloguj się.
                         }
                       }
                     >
-                       Zarejestruj się
+                      Login.register
                     </Text>
                   </View>
                 </View>
@@ -6544,7 +6538,7 @@ Masz konto w Kross? Zaloguj się.
                       }
                     }
                   >
-                    Coś poszło nie tak!
+                    PublishThankYouPage.errorTitle
                   </Text>
                 </View>
                 <View
@@ -6822,7 +6816,7 @@ Masz konto w Kross? Zaloguj się.
                             ]
                           }
                         >
-                          OK
+                          PUBLISHTHANKYOUPAGE.OKBTN
                         </Text>
                       </View>
                     </RNGestureHandlerButton>

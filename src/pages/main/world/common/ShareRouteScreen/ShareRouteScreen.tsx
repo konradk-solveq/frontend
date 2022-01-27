@@ -3,7 +3,7 @@ import {InteractionManager, View} from 'react-native';
 import {useNavigation, useFocusEffect} from '@react-navigation/core';
 import {useRoute} from '@react-navigation/native';
 
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 import {
     ShareRouteScreenNavigationPropT,
@@ -21,7 +21,9 @@ import Placeholder from './Placeholder';
 import styles from './style';
 
 const ShareRouteScreen: React.FC = () => {
-    const trans: any = I18n.t('ShareScreen');
+    const trans: any = i18next.t('ShareScreen', {
+        returnObjects: true,
+    });
     const navigation = useNavigation<ShareRouteScreenNavigationPropT>();
     const {mapID} = useRoute<ShareRouteScreenRouteT>().params;
 
@@ -50,9 +52,12 @@ const ShareRouteScreen: React.FC = () => {
         if (sharedContent?.url && !shareError) {
             shareBtnIsVisible.current = true;
 
-            const message = I18n.t('ShareScreen.ShareContent.Route.message', {
-                url: sharedContent?.content?.image || '',
-            });
+            const message = i18next.t(
+                'ShareScreen.ShareContent.Route.message',
+                {
+                    url: sharedContent?.content?.image || '', // ocochodzi
+                },
+            );
             callSystemShare(sharedContent.url, {
                 title: trans.ShareContent.Route.title,
                 message: message,

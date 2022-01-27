@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {View,  SafeAreaView, Platform} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {RegularStackRoute} from '@navigation/route';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -36,7 +36,7 @@ import styles from './style';
 /* TODO: refresh data if position chagned more than 500 meters */
 const World: React.FC = () => {
     const dispatch = useAppDispatch();
-    const trans: any = I18n.t('MainWorld');
+    const {t} = useMergedTranslation('MainWorld');
     const navigation = useNavigation();
     const route = useRoute<WorldRouteType>();
 
@@ -223,19 +223,19 @@ const World: React.FC = () => {
                     <View style={styles.btns}>
                         <TypicalRedBtn
                             style={styles.btn}
-                            title={trans.btnBikeMap}
+                            title={t('btnBikeMap')}
                             active={activeTab === RouteMapType.BIKE_MAP}
                             onpress={handleBikeMap}
                         />
                         <TypicalRedBtn
                             style={styles.btn}
-                            title={trans.btnMyRoutes}
+                            title={t('btnMyRoutes')}
                             active={activeTab === RouteMapType.MY_ROUTES}
                             onpress={handleMyRoutes}
                         />
                         <TypicalRedBtn
                             style={styles.btn}
-                            title={trans.btnPlaned}
+                            title={t('btnPlaned')}
                             active={activeTab === RouteMapType.PLANNING}
                             onpress={handlePlaned}
                         />
@@ -249,7 +249,7 @@ const World: React.FC = () => {
 
             <StackHeader
                 hideBackArrow
-                inner={trans.header}
+                inner={t('header')}
                 rightActions={
                     <View style={styles.headerButtons}>
                         <FiltersBtn

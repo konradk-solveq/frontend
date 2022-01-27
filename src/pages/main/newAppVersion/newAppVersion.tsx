@@ -8,23 +8,23 @@ import {
     Platform,
     Linking,
 } from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
 
-import {getStatusBarHeight} from '../../../utils/detectIOSDevice';
+import {getStatusBarHeight} from '@utils/detectIOSDevice';
 import {
     setObjSize,
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
-} from '../../../helpers/layoutFoo';
-import {BothStackRoute} from '../../../navigation/route';
+} from '@helpers/layoutFoo';
+import {BothStackRoute} from '@navigation/route';
 
 import SvgVersion from './svgVersion';
 import {setNewAppVersion} from '@src/storage/actions';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 interface Props {
     navigation: any;
@@ -32,7 +32,7 @@ interface Props {
 }
 
 const NewAppVersion: React.FC<Props> = (props: Props) => {
-    const trans: any = I18n.t('newAppVersion');
+    const {t} = useMergedTranslation('newAppVersion');
 
     const dispatch = useAppDispatch();
     const shopAppVersion = useAppSelector<string>(
@@ -162,35 +162,35 @@ const NewAppVersion: React.FC<Props> = (props: Props) => {
             <View style={styles.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
-                        <Text style={styles.title}>{trans.title}</Text>
+                        <Text style={styles.title}>{t('title')}</Text>
 
                         <SvgVersion />
 
                         <Text style={styles.text}>
-                            {trans.text_1}
+                            {t('text_1')}
                             <Text style={[styles.text, styles.bold]}>
-                                {trans.text_2}
+                                {t('text_2')}
                             </Text>
-                            <Text style={styles.text}>{trans.text_3}</Text>
+                            <Text style={styles.text}>{t('text_3')}</Text>
                         </Text>
                     </View>
                 </ScrollView>
             </View>
 
             <View style={styles.header}>
-                <Text style={styles.headerText}>{trans.header}</Text>
+                <Text style={styles.headerText}>{t('header')}</Text>
             </View>
 
             <View style={styles.bottons}>
                 <View style={styles.btn}>
                     <BigWhiteBtn
-                        title={trans.btnLeft}
+                        title={t('btnLeft')}
                         onpress={handleGoForward}
                     />
                 </View>
                 <View style={[styles.btn, styles.rightBtn]}>
                     <BigRedBtn
-                        title={trans.btnRight}
+                        title={t('btnRight')}
                         onpress={handleLinkToShop}
                     />
                 </View>

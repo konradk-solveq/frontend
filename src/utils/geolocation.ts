@@ -17,7 +17,7 @@ import GetLocation from 'react-native-get-location';
 
 import {LocationDataI} from '@interfaces/geolocation';
 import {BasicCoordsType} from '@type/coords';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import {getTrackerData} from '@hooks/utils/localizationTracker';
 import {isLocationValidate} from './locationData';
 import {
@@ -60,8 +60,12 @@ export const transformLocationErrorCode = (e: LocationError | any) => {
 
 /* TODO: catch errors */
 export const initBGeolocalization = async (notificationTitle: string) => {
-    const trans: any = I18n.t('Geolocation.backgroundPermissionRationale');
-    const trans2: any = I18n.t('Geolocation.locationAuthorizationAlert');
+    const trans: any = i18next.t('Geolocation.backgroundPermissionRationale', {
+        returnObjects: true,
+    });
+    const trans2: any = i18next.t('Geolocation.locationAuthorizationAlert', {
+        returnObjects: true,
+    });
 
     try {
         const state = await BackgroundGeolocation.ready({
@@ -219,7 +223,9 @@ export const startBackgroundGeolocation = async (
     keep?: boolean,
     debugModeActive?: boolean,
 ) => {
-    const trans: any = I18n.t('Geolocation.routeRecordingNotification');
+    const trans: any = i18next.t('Geolocation.routeRecordingNotification', {
+        returnObjects: true,
+    });
     let state: State | undefined;
     try {
         await BackgroundGeolocation.setConfig({
@@ -258,7 +264,9 @@ export const startBackgroundGeolocation = async (
 };
 
 export const stopBackgroundGeolocation = async () => {
-    const trans: any = I18n.t('Geolocation.notification');
+    const trans: any = i18next.t('Geolocation.notification', {
+        returnObjects: true,
+    });
     try {
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: true,

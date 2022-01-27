@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/core';
 
 import {RegularStackRoute} from '@navigation/route';
 import {Map} from '@models/map.model';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import {useAppSelector} from '@hooks/redux';
@@ -44,7 +44,8 @@ interface IProps {
 }
 
 const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
-    const trans: any = I18n.t('MainWorld.BikeMap');
+    const {t} = useMergedTranslation('MainWorld.BikeMap');
+
     const navigation = useNavigation();
 
     const mapsData = useAppSelector(mapsListSelector);
@@ -145,7 +146,7 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                         ListHeaderComponent={
                             <>
                                 <FeaturedRoutes key={mapsData?.length} />
-                                <Text style={styles.header}>{trans.title}</Text>
+                                <Text style={styles.header}>{t('title')}</Text>
                             </>
                         }
                         keyExtractor={item => item.id}

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, ScrollView, SafeAreaView} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {
     setObjSize,
@@ -9,13 +9,13 @@ import {
     getWidthPx,
     getCenterLeftPx,
     getFontSize,
-} from '../../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import AnimSvg from '../../../../helpers/animSvg';
-import {getCountedDaysText} from '../../../../helpers/reviews';
-import ServiceMapBtn from '../../../../sharedComponents/buttons/serviceMap';
-import {RegularStackRoute} from '../../../../navigation/route';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import AnimSvg from '@helpers/animSvg';
+import {getCountedDaysText} from '@helpers/reviews';
+import ServiceMapBtn from '@sharedComponents/buttons/serviceMap';
+import {RegularStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
@@ -24,7 +24,7 @@ interface Props {
 }
 
 const ReviewsDetails: React.FC<Props> = (props: Props) => {
-    const trans: any = I18n.t('ReviewsDetails');
+    const {t} = useMergedTranslation('ReviewsDetails');
     const details = props.route.params.details;
     const box = props.route.params.box;
     const region = props.route.params.region;
@@ -174,9 +174,9 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
                             <Text style={styles.details}>
                                 {getCountedDaysText(
                                     details.date,
-                                    trans.daysLeft[0],
-                                    trans.daysLeft[1],
-                                    trans.pastDate,
+                                    t('daysLeft.0'),
+                                    t('daysLeft.1'),
+                                    t('pastDate'),
                                 )}
                             </Text>
                         </View>
@@ -184,7 +184,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
                         {details?.operations && (
                             <View>
                                 <Text style={styles.optionsTextWrapper}>
-                                    {trans.descriptionTitle}
+                                    {t('descriptionTitle')}
                                 </Text>
                                 {details.operations?.map((e: string) => {
                                     return (
@@ -202,7 +202,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
 
                     <ServiceMapBtn
                         style={styles.map}
-                        title={trans.servisMap}
+                        title={t('servisMap')}
                         height={174}
                         region={region}
                         location={location}
@@ -210,7 +210,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
                     />
 
                     <View style={styles.warning}>
-                        <Text style={styles.warningText}>{trans.warning}</Text>
+                        <Text style={styles.warningText}>{t('warning')}</Text>
                     </View>
 
                     <View style={styles.spaceOnEnd} />
@@ -221,7 +221,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
                 onpress={() =>
                     props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
                 }
-                inner={trans.header}
+                inner={t('header')}
             />
         </SafeAreaView>
     );

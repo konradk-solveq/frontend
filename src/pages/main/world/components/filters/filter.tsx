@@ -1,12 +1,12 @@
 import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import {I18n} from '../../../../../../I18n/I18n';
-import {getFontSize, getVerticalPx} from '../../../../../helpers/layoutFoo';
-import {SelectOptionType} from '../../../../../models/map.model';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {getFontSize, getVerticalPx} from '@helpers/layoutFoo';
+import {SelectOptionType} from '@models/map.model';
 
-import {MultiSelect} from '../../../../../sharedComponents/inputs';
-import {firstLetterToUpperCase} from '../../../../../utils/strings';
+import {MultiSelect} from '@sharedComponents/inputs';
+import {firstLetterToUpperCase} from '@utils/strings';
 
 interface IProps {
     name: string;
@@ -23,8 +23,9 @@ const Filter: React.FC<IProps> = ({
     isRadioType,
     onSave,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.maps.filters');
-    const filterName = trans?.[name]?.name || firstLetterToUpperCase(name);
+    const {t} = useMergedTranslation('MainWorld.maps.filters');
+
+    const filterName = t(`${name}.name`) || firstLetterToUpperCase(name);
 
     const onPressHanlder = useCallback(
         (values: string[]) => {

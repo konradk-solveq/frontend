@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
-import {StyleSheet, Dimensions, SafeAreaView, View, Text} from 'react-native';
-import I18n from 'react-native-i18n';
+import React from 'react';
+import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+
 import {ScrollView} from 'react-native-gesture-handler';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import {ColorLabel} from '../../../../sharedComponents/labels';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {ColorLabel} from '@sharedComponents/labels';
 
 import {
     setObjSize,
@@ -12,8 +13,8 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
-} from '../../../../helpers/layoutFoo';
-import {RegularStackRoute} from '../../../../navigation/route';
+} from '@helpers/layoutFoo';
+import {RegularStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
@@ -21,10 +22,9 @@ interface Props {
     route: any;
 }
 
-const wh = Dimensions.get('window').height;
-
 const BikeParams: React.FC<Props> = (props: Props) => {
-    const trans: any = I18n.t('MainBikeParams');
+    const {t} = useMergedTranslation('MainBikeParams');
+
     const description = props.route.params.description;
     const params = props.route.params.params;
 
@@ -43,7 +43,6 @@ const BikeParams: React.FC<Props> = (props: Props) => {
             textAlign: 'center',
             fontSize: getHorizontalPx(15),
             color: '#555555',
-            // backgroundColor: 'khaki'
         },
         color: {
             display: 'flex',
@@ -121,10 +120,10 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                     <View style={styles.lists}>
                         <Text style={styles.bikeName}>{description.name}</Text>
                         <Text style={styles.bikeDetails}>
-                            {trans.details[0] +
-                                description.producer +
-                                trans.details[1] +
-                                description.serial_number}
+                            {t('details', {
+                                name: description.producer,
+                                number: description.serial_number,
+                            })}
                         </Text>
 
                         {description?.color && (
@@ -141,33 +140,47 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                             </Text>
                         </View>
 
-                        {params?.map((e, i) => (
-                            <View
-                                style={[
-                                    styles.list,
-                                    i == params.length - 1 && styles.lastOne,
-                                ]}
-                                key={'list_' + i}>
-                                <Text style={styles.name}>{e.name}</Text>
+                        {params?.map(
+                            (
+                                e: {
+                                    name: string;
+                                    list: {name: string; value: string}[];
+                                },
+                                i: number,
+                            ) => (
+                                <View
+                                    style={[
+                                        styles.list,
+                                        i === params.length - 1 &&
+                                            styles.lastOne,
+                                    ]}
+                                    key={'list_' + i}>
+                                    <Text style={styles.name}>{e.name}</Text>
 
-                                {e.list.map((ee, ii) => (
-                                    <View
-                                        style={styles.valLine}
-                                        key={'val_' + i + '_' + ii}>
-                                        <Text style={styles.value}>
-                                            {ee.name}
-                                        </Text>
-                                        <Text
-                                            style={[
-                                                styles.value,
-                                                styles.longerValue,
-                                            ]}>
-                                            {ee.value}
-                                        </Text>
-                                    </View>
-                                ))}
-                            </View>
-                        ))}
+                                    {e.list.map(
+                                        (
+                                            ee: {name: string; value: string},
+                                            ii: number,
+                                        ) => (
+                                            <View
+                                                style={styles.valLine}
+                                                key={'val_' + i + '_' + ii}>
+                                                <Text style={styles.value}>
+                                                    {ee.name}
+                                                </Text>
+                                                <Text
+                                                    style={[
+                                                        styles.value,
+                                                        styles.longerValue,
+                                                    ]}>
+                                                    {ee.value}
+                                                </Text>
+                                            </View>
+                                        ),
+                                    )}
+                                </View>
+                            ),
+                        )}
                     </View>
                 </ScrollView>
             </View>
@@ -176,7 +189,7 @@ const BikeParams: React.FC<Props> = (props: Props) => {
                 onpress={() =>
                     props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
                 }
-                inner={trans.header}
+                inner={t('header')}
             />
         </SafeAreaView>
     );
