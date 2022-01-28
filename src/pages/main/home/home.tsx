@@ -17,7 +17,6 @@ import {
     onRecordTripActionHandler,
     showLocationInfo,
 } from '@utils/showAndroidLlocationInfo';
-import {hasAnyBikeSelector} from '@storage/selectors/bikes';
 
 import {syncAppSelector} from '@storage/selectors';
 import Tile from './tile';
@@ -46,7 +45,6 @@ const Home: React.FC = () => {
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
     const syncStatus = useAppSelector(syncAppSelector);
     const isLocationInfoShowed = useAppSelector(showedLocationInfoSelector);
-    const userHasAnyBike = useAppSelector(hasAnyBikeSelector);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -82,11 +80,6 @@ const Home: React.FC = () => {
     };
 
     const doAction = () => {
-        if (!userHasAnyBike) {
-            setShowModal(true);
-            return;
-        }
-
         Platform.OS === 'ios' || isLocationInfoShowed
             ? onRecordTripActionHandler(navigation, isIOS)
             : showLocationInfo(navigation, dispatch);
