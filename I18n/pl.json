@@ -35,6 +35,7 @@
         "tekst": "Włącz NFC w telefonie i zbliż go do naklejki umieszczonej na ramie roweru KROSS.\n\nJeśli nie widzisz naklejki lub nie obsługujesz NFC, wprowadź ręcznie numer ramy.",
         "btnNfc": "SKANUJ NAKLEJKĘ NFC",
         "btnHand": "CHCĘ WPROWADZIĆ RĘCZNIE",
+        "btnSkip": "POMIŃ",
         "alertMessage": "Włącz NFC w ustawieniach telefonu."
     },
     "TutorialNFCmodal": {

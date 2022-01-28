@@ -5,7 +5,6 @@ import {useNavigation} from '@react-navigation/native';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {showedLocationInfoSelector} from '@storage/selectors/app';
-import {hasAnyBikeSelector} from '@storage/selectors/bikes';
 import {BothStackRoute} from '@navigation/route';
 import {
     getFontSize,
@@ -33,15 +32,10 @@ const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
     const dispatch = useAppDispatch();
 
     const isLocationInfoShowed = useAppSelector(showedLocationInfoSelector);
-    const userHasAnyBike = useAppSelector(hasAnyBikeSelector);
 
     const [showModal, setShowModal] = useState(false);
 
     const doAction = () => {
-        if (!userHasAnyBike) {
-            setShowModal(true);
-            return;
-        }
         Platform.OS === 'ios' || isLocationInfoShowed
             ? onRecordTripActionHandler(navigation, isIOS)
             : showLocationInfo(navigation, dispatch);

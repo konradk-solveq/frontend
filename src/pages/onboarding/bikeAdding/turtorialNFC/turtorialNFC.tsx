@@ -34,6 +34,8 @@ import ScanModal from './scanModal.android';
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
 import {BothStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
+import {setOnboardingFinished} from '@storage/actions';
+import {onboardingFinishedSelector} from '@storage/selectors';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -152,7 +154,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         return () => clearTimeout(refTimer.current);
     }, [readNFCTag, t, startScanNFC, cancelScanByNfcHandler]);
 
-    const [headHeight, setHeadHeightt] = useState(0);
+    const [headHeight, setHeadHeight] = useState(0);
 
     const heandleScanByNfc = async () => {
         if (!isAndroid) {
@@ -164,6 +166,19 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
     const onScanNfcHandler = () => {
         setStartScanNFC(true);
+    };
+
+    const onboardingFinished = useAppSelector<boolean>(
+        onboardingFinishedSelector,
+    );
+    const onGoForwrdHandle = () => {
+        if (!onboardingFinished) {
+            dispatch(setOnboardingFinished(true));
+        }
+        props.navigation.reset({
+            index: 0,
+            routes: [{name: BothStackRoute.TAB_MENU_SCREEN}],
+        });
     };
 
     const styles = StyleSheet.create({
@@ -206,6 +221,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(30),
             marginBottom: getVerticalPx(65) + headHeight,
         },
+        skip: {marginBottom: getVerticalPx(30)},
     });
 
     if (isLoading) {
@@ -234,6 +250,12 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.btnHand}>
                         <BigWhiteBtn
+                            style={styles.skip}
+                            title={t('btnSkip')}
+                            onpress={() => onGoForwrdHandle()}
+                        />
+
+                        <BigWhiteBtn
                             title={t('btnHand')}
                             onpress={() =>
                                 props.navigation.navigate({
@@ -250,7 +272,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.goBack()}
                 inner={t('header')}
-                getHeight={setHeadHeightt}
+                getHeight={setHeadHeight}
                 style={{backgroundColor: '#fff'}}
             />
 
