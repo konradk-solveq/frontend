@@ -21,7 +21,8 @@
         "prod:ios-bash": "ENVFILE=.env.production react-native run-ios --variant=prodDebug",
         "prod:android": "cp .env.production .env && npx react-native run-android --variant=prodDebug",
         "prod:android-cmd": "copy .env.production .env && npx react-native run-android --variant=prodDebug",
-        "rnsemup": "rnsemup"
+        "rnsemup": "rnsemup",
+        "i18ng": "node I18n/i18nextGenerator/index.js"
     },
     "dependencies": {
         "@react-native-async-storage/async-storage": "^1.14.1",
