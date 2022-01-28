@@ -127,7 +127,7 @@ export const setRouteDebugMode = (routeDebugMode: boolean) => ({
 
 export const setInitMapsDataSynchedState = (initMapsDataSynched: boolean) => ({
     type: actionTypes.SET_INIT_MAPS_DATA_SYNCHED,
-    routeDebugMode: initMapsDataSynched,
+    initMapsDataSynched: initMapsDataSynched,
 });
 
 export const clearAppError = () => ({
@@ -228,7 +228,11 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
 ) => {
     dispatch(setSyncStatus(true));
     try {
-        const {isOffline, internetConnectionInfo}: AppState = getState().app;
+        const {
+            isOffline,
+            internetConnectionInfo,
+            location,
+        }: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
@@ -248,22 +252,26 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         const {currentRoute}: RoutesState = getState().routes;
 
         batch(async () => {
-            await dispatch(fetchAppRegulations(true));
-            await dispatch(fetchAppConfig(true));
+            dispatch(fetchAppRegulations(true));
+            dispatch(fetchAppConfig(true));
 
             /* Omit synch map data if recording is active */
             const isRecordingActive = currentRoute?.isActive;
             if (onboardingFinished && !isRecordingActive) {
-                await dispatch(fetchMapsList(undefined, undefined, true));
-                await dispatch(fetchFeaturedMapsList(undefined, true));
-                dispatch(setInitMapsDataSynchedState(true));
+                if (location) {
+                    dispatch(setInitMapsDataSynchedState(true));
+                    await dispatch(fetchMapsList(undefined, undefined, true));
+                    await dispatch(fetchFeaturedMapsList(undefined, true));
+                }
             }
 
             if (sessionData?.access_token && !isRecordingActive) {
-                await dispatch(
-                    fetchPrivateMapsList(undefined, undefined, true),
-                );
-                dispatch(fetchPlannedMapsList(undefined, undefined, true));
+                if (location) {
+                    await dispatch(
+                        fetchPrivateMapsList(undefined, undefined, true),
+                    );
+                    dispatch(fetchPlannedMapsList(undefined, undefined, true));
+                }
             }
 
             if (onboardingFinished && !isRecordingActive) {
