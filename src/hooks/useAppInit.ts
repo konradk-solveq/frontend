@@ -26,12 +26,6 @@ import {cleanUp, initBGeolocalization} from '@utils/geolocation';
 import {I18n} from '@translations/I18n';
 import {sentrySetUserInfo} from '@sentryLogger/sentryLogger';
 import {enableAnalytics} from '@analytics/firebaseAnalytics';
-import {
-    fetchMapsList,
-    fetchPlannedMapsList,
-    fetchPrivateMapsList,
-} from '@storage/actions';
-import {fetchFeaturedMapsList} from '@storage/actions/maps';
 
 const useAppInit = () => {
     const trans: any = I18n.t('Geolocation.notification');
@@ -133,7 +127,7 @@ const useAppInit = () => {
      * Fetch map data if initially wasn't
      */
     useEffect(() => {
-        if (!initMapsDataSynched && location) {
+        if (!initMapsDataSynched && location && dataInitializedref.current) {
             dispatch(synchMapsData());
         }
     }, [dispatch, location, initMapsDataSynched]);
