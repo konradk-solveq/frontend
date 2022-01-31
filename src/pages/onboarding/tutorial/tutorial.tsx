@@ -9,6 +9,8 @@ import {
     getHorizontalPx,
     getRelativeHeight,
 } from '@helpers/layoutFoo';
+import {useAppDispatch} from '@hooks/redux';
+import {fetchAppRegulations} from '@storage/actions';
 
 import SplashScreen from '../splashScreen/splashScreen';
 import Screen_1 from './screen_1';
@@ -36,6 +38,8 @@ interface Props {
 }
 
 const Tutorial: React.FC<Props> = (props: Props) => {
+    const dispatch = useAppDispatch();
+
     const [board, setBoard] = useState(0);
     const position = useRef(new Animated.Value(0)).current;
     const opacity = useRef(new Animated.Value(0)).current;
@@ -58,6 +62,13 @@ const Tutorial: React.FC<Props> = (props: Props) => {
             setBoard(5);
         },
     ];
+
+    /**
+     * Fetch data when user device has not been registered yet.
+     */
+    useEffect(() => {
+        dispatch(fetchAppRegulations());
+    }, [dispatch]);
 
     // przewinięcie ekranu startowego
     useEffect(() => {

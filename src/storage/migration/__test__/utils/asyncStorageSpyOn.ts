@@ -40,7 +40,7 @@ export const spyOnAsyncStorageAndInjectEmptyAuthState = () => {
         recoveryCodes: jsonStringify([]),
         isAuth: true,
         sessionData: jsonStringify(emptyAuthSessionDataMock),
-        userAuthState: 'mobile',
+        userAuthState: '"mobile"',
         _persist: '{"version":-1,"rehydrated":true}',
     };
 
