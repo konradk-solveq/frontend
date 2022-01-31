@@ -129,7 +129,7 @@ const useAppInit = () => {
      * Fetch map data if initially wasn't
      */
     useEffect(() => {
-        if (!initMapsDataSynched && location) {
+        if (!initMapsDataSynched && location && dataInitializedref.current) {
             dispatch(synchMapsData());
         }
     }, [dispatch, location, initMapsDataSynched]);
