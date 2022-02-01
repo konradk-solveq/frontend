@@ -5,6 +5,7 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:$(DEEPLINKING_HOST)</string>
+		<string>applinks:sharing.pre.mykross.kross.pl</string>
 	</array>
 	<key>com.apple.developer.nfc.readersession.formats</key>
 	<array>

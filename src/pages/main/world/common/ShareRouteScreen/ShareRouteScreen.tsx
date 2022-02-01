@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {InteractionManager, View} from 'react-native';
 import {useNavigation, useFocusEffect} from '@react-navigation/core';
 import {useRoute} from '@react-navigation/native';
@@ -21,9 +21,13 @@ import Placeholder from './Placeholder';
 import styles from './style';
 
 const ShareRouteScreen: React.FC = () => {
-    const trans: any = i18next.t('ShareScreen', {
-        returnObjects: true,
-    });
+    const trans: any = useMemo(
+        () =>
+            i18next.t('ShareScreen', {
+                returnObjects: true,
+            }),
+        [],
+    );
     const navigation = useNavigation<ShareRouteScreenNavigationPropT>();
     const {mapID} = useRoute<ShareRouteScreenRouteT>().params;
 
@@ -55,7 +59,8 @@ const ShareRouteScreen: React.FC = () => {
             const message = i18next.t(
                 'ShareScreen.ShareContent.Route.message',
                 {
-                    url: sharedContent?.content?.image || '', // ocochodzi
+                    url: sharedContent.url || '',
+                    interpolation: {escapeValue: false},
                 },
             );
             callSystemShare(sharedContent.url, {
@@ -64,7 +69,7 @@ const ShareRouteScreen: React.FC = () => {
                 subject: trans.ShareContent.Route.subject,
             });
         }
-    }, [sharedContent?.url, sharedContent?.content?.image, shareError, trans]);
+    }, [sharedContent?.url, shareError, trans]);
 
     /**
      * Call share menu
