@@ -1,5 +1,5 @@
-import React, {Suspense} from 'react';
 import type {Node} from 'react';
+import React, {Suspense} from 'react';
 import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
@@ -11,7 +11,6 @@ import TopNotificationProvider from '@providers/topNotificationProvider/TopNotif
 
 import {initAppSize} from '@helpers/layoutFoo';
 import {initConfig} from '@theme/appLayoutConfig';
-
 
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
