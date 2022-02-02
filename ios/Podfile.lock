@@ -531,8 +531,6 @@ PODS:
     - React
   - RNGestureHandler (1.10.3):
     - React-Core
-  - RNI18n (2.0.15):
-    - React
   - RNImageCropPicker (0.37.2):
     - React-Core
     - React-RCTImage
@@ -578,13 +576,15 @@ PODS:
   - RNSentry (3.2.12):
     - React-Core
     - Sentry (= 7.9.0)
+  - RNShare (7.3.3):
+    - React-Core
   - RNSVG (12.1.1):
     - React
   - Sentry (7.9.0):
     - Sentry/Core (= 7.9.0)
   - Sentry/Core (7.9.0)
   - SocketRocket (0.6.0)
-  - TOCropViewController (2.6.0)
+  - TOCropViewController (2.6.1)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -677,7 +677,6 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNI18n (from `../node_modules/react-native-i18n`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -849,8 +848,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNI18n:
-    :path: "../node_modules/react-native-i18n"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   RNPermissions:
@@ -959,16 +956,16 @@ SPEC CHECKSUMS:
   RNFBApp: 4f490a1e02e41721c55b354019f39f2323d72f82
   RNFS: 3ab21fa6c56d65566d1fb26c2228e2b6132e5e32
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
-  RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNImageCropPicker: 448d3c6e923fde3466b49caf3c2457c2a0ba02dd
   RNPermissions: 3e5bb8afd93c787681bbacbf54d586a6272ecc92
   RNReanimated: 65583befd5706cc9c86ae9a081786181ced37b93
   RNScreens: f7ad633b2e0190b77b6a7aab7f914fad6f198d8d
   RNSentry: 5786c71e7fd8d7fa26bc57d187cba9e01989379a
+  RNShare: 3185c074441b7e8897014d95ba982434a0a024a1
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   Sentry: 2f7e91f247cfb05b05bd01e0b5d0692557a7687b
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
-  TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
+  TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
