@@ -62,6 +62,7 @@ export type KrossWorldParamsListT = {
         private?: boolean;
         favourite?: boolean;
         featured?: boolean;
+        shareID?: string;
     };
     MapPreview: {
         mapId?: string;

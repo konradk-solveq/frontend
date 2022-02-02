@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, SafeAreaView, Platform, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Platform, SafeAreaView, Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {RegularStackRoute} from '@navigation/route';
@@ -23,9 +23,9 @@ import {useNotificationContext} from '@providers/topNotificationProvider/TopNoti
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {
-    EditBtn,
     BigRedBtn,
     BigWhiteBtn,
+    EditBtn,
     ShareBtn,
 } from '@sharedComponents/buttons';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
@@ -34,6 +34,8 @@ import BottomModal from '@sharedComponents/modals/bottomModal/bottomModal';
 import Description from './description/description';
 
 import styles from './style';
+import {useSharedMapData} from '@hooks/useSharedMapData';
+import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -55,22 +57,39 @@ const RouteDetails = () => {
     const {t: tmb} = useMergedTranslation('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const norificationContext = useNotificationContext();
+    const notificationContext = useNotificationContext();
     const route = useRoute<RouteDetailsRouteT>();
-    const mapID: string = route?.params?.mapID;
+
     const privateMap: boolean = !!route?.params?.private;
     const favouriteMap: boolean = !!route?.params?.favourite;
     const featuredMap: boolean = !!route?.params?.featured;
+    const shareID = route?.params?.shareID;
+    const cameFromSharedLink: boolean = !!shareID;
+
+    const {mapData: sharedMapData, isLoading, error} = useSharedMapData(
+        shareID,
+    );
+    const mapID = route?.params?.mapID ?? sharedMapData?.id;
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
-    const isPublished = mapData?.isPublic;
+
+    useEffect(() => {
+        if (error && !mapID) {
+            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
+        }
+    }, [mapID, error, navigation]);
+
+    const isPublished =
+        shareID && !mapData ? sharedMapData?.isPublic : mapData?.isPublic;
 
     const favMapName = useAppSelector(favouriteMapDataByIDSelector(mapID))
         ?.name;
 
     const userID = useAppSelector(userIdSelector);
-    const images = getImagesThumbs(mapData?.images || []);
+    const images = getImagesThumbs(
+        (shareID && !mapData ? sharedMapData?.images : mapData?.images) || [],
+    );
 
     const [showBottomModal, setShowBottomModal] = useState(false);
 
@@ -82,7 +101,11 @@ const RouteDetails = () => {
     ); /* equal to header height */
 
     const onBackHandler = () => {
-        navigation.goBack();
+        if (cameFromSharedLink) {
+            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
+        } else {
+            navigation.goBack();
+        }
     };
 
     const onGoToEditHandler = () => {
@@ -138,12 +161,12 @@ const RouteDetails = () => {
             const message = tmb('removeRouteFromPlanned', {
                 name: '',
             });
-            norificationContext.setNotificationVisibility(message);
+            notificationContext.setNotificationVisibility(message);
             dispatch(removePlannedMap(mapID));
             return;
         }
         const addRouteToPlanned = tmb('addRouteToPlanned', {name: ''});
-        norificationContext.setNotificationVisibility(addRouteToPlanned);
+        notificationContext.setNotificationVisibility(addRouteToPlanned);
         dispatch(addPlannedMap(mapID));
     };
 
@@ -152,18 +175,31 @@ const RouteDetails = () => {
         navigation.goBack();
     };
 
+    if (isLoading) {
+        return <Loader />;
+    }
+
     return (
         <>
             <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
-                <View style={{paddingTop: headerBackgroundHeight, flex: 1}}>
+                <View
+                    style={[
+                        styles.container,
+                        {paddingTop: headerBackgroundHeight},
+                    ]}>
                     <StackHeader
+                        forceBackArrow={cameFromSharedLink}
                         onpress={onBackHandler}
                         inner=""
                         style={styles.header}
                         rightActions={
                             <View style={styles.actionButtonsContainer}>
-                                {userID === mapData?.ownerId && (
+                                {userID ===
+                                    (shareID && !mapData
+                                        ? sharedMapData?.ownerId
+                                        : mapData?.ownerId) && (
                                     <EditBtn
+                                        testID={'route-details-edit-btn'}
                                         onPress={onGoToEditHandler}
                                         iconStyle={[
                                             styles.actionButton,
@@ -174,6 +210,7 @@ const RouteDetails = () => {
                                 )}
                                 {isPublished && (
                                     <ShareBtn
+                                        testID={'route-details-share-btn'}
                                         onPress={onShareRouteHandler}
                                         iconStyle={styles.actionButton}
                                     />
@@ -184,7 +221,11 @@ const RouteDetails = () => {
                     <SliverTopBar imgSrc={sliverImage || ''}>
                         <View style={styles.content}>
                             <Description
-                                mapData={mapData}
+                                mapData={
+                                    shareID && !mapData
+                                        ? sharedMapData
+                                        : mapData
+                                }
                                 images={images}
                                 isPrivateView={privateMap}
                                 isFavView={favouriteMap}
@@ -193,12 +234,14 @@ const RouteDetails = () => {
                             {favouriteMap && (
                                 <>
                                     <BigRedBtn
+                                        testID={'route-details-start-btn'}
                                         title={t('startButton')}
                                         onpress={onPressStartRouteHandler}
                                         style={styles.reportButton}
                                     />
                                     <BigWhiteBtn
                                         title={t('removeRouteButton')}
+                                        testID={'route-details-remove-btn'}
                                         onpress={
                                             onPressRemoveFromFacouritesHandler
                                         }

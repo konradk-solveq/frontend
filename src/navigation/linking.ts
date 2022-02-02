@@ -3,7 +3,7 @@ import {
     DEEPLINKING_NAMESPACE,
     DEEPLINKING_PREFIX,
 } from '@env';
-import {getPathFromState, getStateFromPath} from '@react-navigation/native';
+import {Linking} from 'react-native';
 
 /**
  * Deep link must match to this config. As example 'world' is used.
@@ -16,6 +16,9 @@ const config = {
             screens: {
                 WorldTab: 'world',
             },
+        },
+        RouteDetails: {
+            path: 'cyclingMap/:shareID',
         },
     },
 };
@@ -30,4 +33,22 @@ export const linking = {
         `${DEEPLINKING_NAMESPACE}:/` /* ios */,
     ],
     config,
+    async getInitialURL() {
+        const url = await Linking.getInitialURL();
+
+        if (url != null) {
+            return url;
+        }
+    },
+    subscribe(listener: (arg0: string) => void) {
+        const onReceiveURL = async ({url}: {url: string}) => {
+            listener(url);
+        };
+
+        const subscription = Linking.addEventListener('url', onReceiveURL);
+
+        return () => {
+            subscription.remove();
+        };
+    },
 };
