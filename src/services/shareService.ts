@@ -90,7 +90,6 @@ export const getSharedCyclingMapService = async (
 ): Promise<SharedMapResponseI> => {
     try {
         const response = await getSharedCyclingMap(shareId);
-        console.log(response);
         if (
             !response?.data ||
             response.status >= 400 ||
