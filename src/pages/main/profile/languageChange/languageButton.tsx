@@ -1,15 +1,12 @@
 import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import Svg, {Path, G, Rect} from 'react-native-svg';
+import Svg, {SvgXml, Path, G, Rect} from 'react-native-svg';
 import {getHorizontalPx, getVerticalPx, getFontSize} from '@helpers/layoutFoo';
-import Pl from '@sharedComponents/svg/languageIcons/pl';
-import En from '@sharedComponents/svg/languageIcons/en';
-import Cz from '@sharedComponents/svg/languageIcons/cz';
 
 interface IProps {
     active: boolean;
     title: string;
-    short: string;
+    svg?: string;
     onPress: () => void;
     separator: boolean;
 }
@@ -17,7 +14,7 @@ interface IProps {
 const LanguageButton: React.FC<IProps> = ({
     active,
     title,
-    short,
+    svg,
     onPress,
     separator,
 }: IProps) => {
@@ -47,6 +44,9 @@ const LanguageButton: React.FC<IProps> = ({
         symbol: {
             position: 'absolute',
             right: 0,
+            width: getHorizontalPx(32),
+            height: getHorizontalPx(32),
+            marginLeft: getHorizontalPx(5),
         },
     });
 
@@ -90,9 +90,11 @@ const LanguageButton: React.FC<IProps> = ({
 
                 <Text style={styles.blueText}>{title}</Text>
 
-                {short === 'pl' && <Pl style={styles.symbol} />}
-                {short === 'en' && <En style={styles.symbol} />}
-                {short === 'cz' && <Cz style={styles.symbol} />}
+                {svg && (
+                    <View style={styles.symbol}>
+                        <SvgXml xml={svg} />
+                    </View>
+                )}
             </View>
         </TouchableOpacity>
     );

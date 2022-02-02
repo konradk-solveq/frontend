@@ -9,6 +9,7 @@ import placesReducer from './reducers/places';
 import mapsReducer from './reducers/maps';
 import routesReducer from './reducers/routes';
 import consentsReducer from './reducers/consents';
+import uiTranslationReducer from './reducers/uiTranslation';
 
 const reducer = combineReducers({
     app: appReducer,
@@ -20,6 +21,7 @@ const reducer = combineReducers({
     maps: mapsReducer,
     routes: routesReducer,
     consents: consentsReducer,
+    uiTranslation: uiTranslationReducer,
 });
 
 export default reducer;

@@ -32,6 +32,7 @@ export const buildStore = (initState?: Partial<RootState>) => {
             'places',
             'routes',
             'user',
+            'uiTranslation',
         ],
     };
 

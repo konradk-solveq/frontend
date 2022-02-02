@@ -17,6 +17,7 @@ import {
 import GenericScreen from '@pages/template/GenericScreen';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import LanguageButton from './languageButton';
+import {data} from './data';
 
 interface Props {
     navigation: any;
@@ -25,22 +26,6 @@ interface Props {
 const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     const dispatch = useAppDispatch();
     const {t} = useMergedTranslation('LanguageChange');
-
-    const [languages, setLanguages] = useState<
-        {name: string; short: string}[] | null
-    >(null);
-
-    useEffect(() => {
-        const l = t('languages', {returnObjects: true});
-        const arr = [];
-        for (let i = 0; i < l.length; ++i) {
-            arr.push({
-                name: t(`languages.${i}.name`, {returnObjects: true}),
-                short: t(`languages.${i}.short`, {returnObjects: true}),
-            });
-        }
-        setLanguages(arr);
-    }, [t]);
 
     const language: string = useAppSelector(state => state.user.language);
     const [inputLanguage, setInputLanguage] = useState('');
@@ -88,7 +73,7 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
                 style={styles.scroll}>
                 <View style={styles.area}>
                     <View>
-                        {languages?.map((e, i) => {
+                        {data.map((e, i) => {
                             return (
                                 <LanguageButton
                                     key={'lang_' + i}
@@ -97,7 +82,7 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
                                         handleSetInputLanguage(e.short)
                                     }
                                     title={e.name}
-                                    short={e.short}
+                                    svg={e.svg}
                                     separator={true}>
                                     <View />
                                 </LanguageButton>
@@ -107,7 +92,6 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
                             active={inputLanguage === ''}
                             onPress={() => handleSetInputLanguage('')}
                             title={t('byLocation')}
-                            short={''}
                             separator={false}>
                             <View />
                         </LanguageButton>

@@ -53,6 +53,10 @@ export const CLEAR_APP_ERROR = 'CLEAR_APP_ERROR';
 
 export const LOGOUT = 'LOGOUT';
 
+/* UiTranslation */
+export const SET_UI_TRANSLATION = 'SET_UI_TRANSLATION';
+export const GET_UI_TRANSLATION = 'GET_UI_TRANSLATION';
+
 /* Maps */
 export const SET_MAPS_DATA = 'SET_MAPS_DATA';
 export const ADD_MAPS_DATA = 'ADD_MAPS_DATA';

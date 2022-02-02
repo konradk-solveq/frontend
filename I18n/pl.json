@@ -645,10 +645,10 @@
             },
             {
                 "name": "Česky (již brzy)",
-                "short": "cz"
+                "short": "cs"
             }
         ],
-        "byLocation": "po lokalizacji",
+        "byLocation": "automatycznie",
         "btn": "ZAPISZ"
     },
     "WarrantyDetails": {
