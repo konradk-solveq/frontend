@@ -19,7 +19,6 @@ export const useSharedMapData = (shareID?: string) => {
         if (shareID) {
             const fetchSharedMapDataAsync = async () => {
                 const response = await getSharedCyclingMapService(shareID);
-                console.log(response);
                 if (response.data) {
                     setMapState({mapData: response.data, error: false});
                 } else {
