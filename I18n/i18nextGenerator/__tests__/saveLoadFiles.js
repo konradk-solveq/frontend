@@ -6,6 +6,10 @@ describe('Loading and saving files for generator', () => {
             const file = ff.load('pl.json');
             expect(file && typeof file === 'object').toBe(true);
         });
+        it('Should not load the file', async () => {
+            const file = ff.load('no_file.json');
+            expect(file).toBeNull();
+        });
     });
 
     describe('Save file', () => {
