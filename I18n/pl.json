@@ -765,7 +765,8 @@
         },
         "shareData": {
             "createShareUrlError": "Tworzenie treści do udostępnienia zakończyło się niepowodzeniem. Spróbuj ponownie.",
-            "sharedImageNotExistsError": "Obrazek nie istneije. Proszę spróbować później."
+            "sharedImageNotExistsError": "Obrazek nie istneije. Proszę spróbować później.",
+            "getSharedCyclingMapDataError": "Nie udało się pobrać informacji o udostępnionej trasie. Spróbuj ponownie później."
         }
     },
     "Geolocation": {

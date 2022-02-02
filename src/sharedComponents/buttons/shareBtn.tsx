@@ -13,15 +13,19 @@ interface IProps {
     onPress: () => void;
     containerStyle?: ViewStyle;
     iconStyle?: StyleProp<ViewStyle>;
+    testID?: string;
 }
 
 const ShareBtn: React.FC<IProps> = ({
     onPress,
     containerStyle,
     iconStyle,
+    testID,
 }: IProps) => {
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <TouchableWithoutFeedback
+            onPress={onPress}
+            testID={testID || 'share-btn'}>
             <View style={containerStyle}>
                 <Svg viewBox="0 0 20 20" style={[styles.icon, iconStyle]}>
                     <Path
