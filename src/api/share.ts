@@ -1,4 +1,4 @@
-import instance, {source} from './api';
+import instance, {axiosGet, source} from './api';
 
 export const shareRoute = async (routeId: string) => {
     return await instance.post(`/share/cyclingMap/${routeId}`, undefined, {
@@ -7,5 +7,9 @@ export const shareRoute = async (routeId: string) => {
 };
 
 export const checkSharedImageExists = async (url: string) => {
-    return await instance.get(url);
+    return await axiosGet(url);
+};
+
+export const getSharedCyclingMap = async (shareId: string) => {
+    return await axiosGet(`/share/cyclingMap/${shareId}`);
 };

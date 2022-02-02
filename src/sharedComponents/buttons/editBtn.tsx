@@ -7,18 +7,20 @@ interface IProps {
     onPress: () => void;
     containerStyle?: ViewStyle;
     iconStyle?: StyleProp<ViewStyle>;
+    testID?: string;
 }
 
 const EditBtn: React.FC<IProps> = ({
     onPress,
     containerStyle,
     iconStyle,
+    testID,
 }: IProps) => {
     return (
         <Pressable
             onPress={onPress}
             hitSlop={{top: 20, bottom: 20, left: 10, right: 10}}>
-            <View style={containerStyle}>
+            <View style={containerStyle} testID={testID || 'edit-btn'}>
                 <Svg viewBox="0 0 20 20" style={[styles.icon, iconStyle]}>
                     <Path
                         fill="#313131"
