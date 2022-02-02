@@ -1,12 +1,14 @@
-const ff = require('./filesFoo');
-
-const pl_i18n = JSON.parse(ff.load('pl.json'));
-const en_i18n = JSON.parse(ff.load('en.json'));
+const ff = require('./saveLoadFiles');
 
 const VALUE_WHEN_NO_DATA = '';
+const MODEL_FILE = 'pl';
+const FILE_TO_COMPLETE = 'en';
+
+const modelFile = JSON.parse(ff.load(`${MODEL_FILE}.json`));
+const fileToComplete = JSON.parse(ff.load(`${FILE_TO_COMPLETE}.json`));
 
 const start = () => {
-    const mix = (model, toComplete) => {
+    const complete = (model, toComplete) => {
         let result = {};
 
         for (const key in model) {
@@ -49,20 +51,22 @@ const start = () => {
                     result[key] = toCompleteItem;
                 }
             } else {
-                result[key] = mix(modelItem, toCompleteItem);
+                result[key] = complete(modelItem, toCompleteItem);
             }
         }
 
         return result;
     };
 
-    const mixed = mix(pl_i18n, en_i18n);
+    const completed = complete(modelFile, fileToComplete);
 
     console.log('---------------------------------');
     console.log('---------------------------------');
-    console.log('mixed:', mixed);
+    console.log('THE FILE HAS BEEN SUCCESSFULLY CREATED ');
+    console.log('---------------------------------');
+    console.log('---------------------------------');
 
-    ff.save('en', mixed);
+    ff.save(FILE_TO_COMPLETE, completed);
 };
 
 module.exports = {start};
