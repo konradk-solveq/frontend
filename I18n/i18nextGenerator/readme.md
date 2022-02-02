@@ -1,6 +1,10 @@
 to run generator write at console:
 ```npm run i18ng```
 
+or if you want to fill empty variables at translation with some phrase then type:
+```set VAL=__no translation__& npm run i18ng```
+where on `__no translation__` type phrase to fill
+
 after that new file `en.json` will show at `I18n\i18nextGenerator\output`
 
 if we want to use other translations, we can replace them on `I18n\i18nextGenerator\generator.js`

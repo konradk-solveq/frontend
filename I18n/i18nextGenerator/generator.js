@@ -1,6 +1,8 @@
 const ff = require('./saveLoadFiles');
 
-const VALUE_WHEN_NO_DATA = '';
+const valueFromRun = process.env.VAL;
+const VALUE_WHEN_NO_DATA = valueFromRun ? valueFromRun : '';
+
 const MODEL_FILE = 'pl';
 const FILE_TO_COMPLETE = 'en';
 
