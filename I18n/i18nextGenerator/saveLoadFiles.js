@@ -22,7 +22,12 @@ const load = name => {
 };
 
 const save = (name, data) => {
+    if (!fs.existsSync(path_out)) {
+        fs.mkdirSync(path_out);
+    }
+
     const filePath = path_out + '/' + name + '.json';
+
     fs.writeFileSync(filePath, JSON.stringify(data));
 
     console.log(' saved: ' + name + '.json');
