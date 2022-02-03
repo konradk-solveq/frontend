@@ -25,7 +25,7 @@ const save = (name, data) => {
     const filePath = path_out + '/' + name + '.json';
     fs.writeFileSync(filePath, JSON.stringify(data));
 
-    console.log(' saved: ' + name);
+    console.log(' saved: ' + name + '.json');
 };
 
 module.exports = {load, save};
