@@ -130,6 +130,11 @@ export const setInitMapsDataSynchedState = (initMapsDataSynched: boolean) => ({
     initMapsDataSynched: initMapsDataSynched,
 });
 
+export const setApiAuthHeaderState = (apiAuthHeaderState: boolean) => ({
+    type: actionTypes.SET_API_AUTH_HEADER,
+    apiAuthHeaderState: apiAuthHeaderState,
+});
+
 export const clearAppError = () => ({
     type: actionTypes.CLEAR_APP_ERROR,
 });

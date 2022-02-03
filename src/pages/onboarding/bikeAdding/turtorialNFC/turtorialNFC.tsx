@@ -34,7 +34,10 @@ import ScanModal from './scanModal.android';
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
 import {BothStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
-import {setOnboardingFinished} from '@storage/actions';
+import {
+    setOnboardingFinished,
+    setDeepLinkActionForScreen,
+} from '@storage/actions';
 import {onboardingFinishedSelector} from '@storage/selectors';
 
 const isAndroid = Platform.OS === 'android';
@@ -174,6 +177,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const onGoForwrdHandle = () => {
         if (!onboardingFinished) {
             dispatch(setOnboardingFinished(true));
+            dispatch(setDeepLinkActionForScreen('HomeTab'));
         }
         props.navigation.reset({
             index: 0,

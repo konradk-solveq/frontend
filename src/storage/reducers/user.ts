@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RiderProfile} from '../../models/userRideProfile.model';
 import {riderProfiles} from '../../utils/constants';
 
-interface UserState {
+export interface UserStateI {
     userName: string;
     language: string;
     frameNumber: string;
@@ -14,7 +14,7 @@ interface UserState {
     loading: boolean;
 }
 
-const initialState: UserState = {
+const initialState: UserStateI = {
     userName: '',
     language: '',
     frameNumber: '',

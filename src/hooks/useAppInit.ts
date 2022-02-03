@@ -2,7 +2,12 @@ import {useCallback, useEffect, useRef} from 'react';
 import {State} from 'react-native-background-geolocation-android';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {appSyncData, clearAppError, synchMapsData} from '@storage/actions/app';
+import {
+    appSyncData,
+    clearAppError,
+    synchMapsData,
+    setApiAuthHeaderState,
+} from '@storage/actions';
 import {
     authTokenSelector,
     authUserIsAuthenticatedStateSelector,
@@ -65,8 +70,9 @@ const useAppInit = () => {
     useEffect(() => {
         if (authToken) {
             setAutorizationHeader(authToken);
+            dispatch(setApiAuthHeaderState(true));
         }
-    }, [authToken]);
+    }, [authToken, dispatch]);
 
     useEffect(() => {
         sentrySetUserInfo({
@@ -92,20 +98,20 @@ const useAppInit = () => {
     }, []);
 
     useEffect(() => {
-        let t: NodeJS.Timeout;
+        let time: NodeJS.Timeout;
         if (
             isOnline &&
             isGoodInternetConnectionQuality &&
             !syncStatus &&
             isAuthanticated
         ) {
-            t = setTimeout(() => {
+            time = setTimeout(() => {
                 synchData();
             }, 500);
         }
 
         return () => {
-            clearTimeout(t);
+            clearTimeout(time);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOnline, isGoodInternetConnectionQuality, isAuthanticated]);

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
+import useNavigateOnDeepLink from '@navigation/hooks/useNavigateOnDeepLink';
 import KroosLogo from '@sharedComponents/svg/krossLogo';
 import {trackerActiveSelector} from '@storage/selectors/routes';
 import {hasRecordedRoutesSelector} from '@storage/selectors/map';
@@ -69,6 +70,8 @@ const Home: React.FC = () => {
     nfcIsSupported().then(r => {
         setNfc(r);
     });
+
+    useNavigateOnDeepLink(true);
 
     const onAddActionHandler = () => {
         navigation.navigate({

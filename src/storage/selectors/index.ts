@@ -43,6 +43,7 @@ export {
     appErrorSelector,
     isOnlineAppStatusSelector,
     syncAppSelector,
+    apiAuthHeaderStateSelector,
 } from './app';
 export {
     authErrorSelector,
@@ -62,3 +63,4 @@ export {
     isRegisteredSelector,
     userIdSelector,
 } from './authData';
+export {deepLinkingScreenToTakActionSelector} from './deepLinking';
