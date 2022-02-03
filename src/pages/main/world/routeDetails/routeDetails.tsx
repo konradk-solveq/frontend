@@ -69,7 +69,7 @@ const RouteDetails = () => {
     const {mapData: sharedMapData, isLoading, error} = useSharedMapData(
         shareID,
     );
-    const mapID = route?.params?.mapID ?? sharedMapData?.id;
+    const mapID = sharedMapData?.id ?? route?.params?.mapID;
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
