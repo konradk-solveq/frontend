@@ -35,6 +35,9 @@ export {
     getRegulationService,
     getFaqService,
 } from './appService';
-export {getUiTranslationService} from './uiTranslation';
+export {
+    getUiTranslationService,
+    getLanguagesListService,
+} from './uiTranslation';
 export {modifyReactionService, removeReactionService} from './reactionsService';
 export {shareRouteService, checkSharedImageExistsService} from './shareService';

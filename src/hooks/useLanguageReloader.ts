@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {setLanguage} from '@storage/actions';
 import i18next from '@translations/i18next';
 
 import {changeLanguage} from '@utils/translations/useMergedTranslation';
 
-const LanguageReloader: React.FC = () => {
+const useLanguageReloader = () => {
     const dispatch = useAppDispatch();
     const language: string = useAppSelector(state => state.user.language);
     const translations: any = useAppSelector(
@@ -24,10 +24,10 @@ const LanguageReloader: React.FC = () => {
 
             const local: any = {
                 en: {
-                    local: require('../../../I18n/en.json'),
+                    local: require('../../I18n/en.json'),
                 },
                 pl: {
-                    local: require('../../../I18n/pl.json'),
+                    local: require('../../I18n/pl.json'),
                 },
                 cs: {local: {}},
             };
@@ -80,8 +80,6 @@ const LanguageReloader: React.FC = () => {
             }
         }
     }, [language, translations]);
-
-    return null;
 };
 
-export default LanguageReloader;
+export default useLanguageReloader;

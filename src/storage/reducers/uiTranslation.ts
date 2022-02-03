@@ -5,10 +5,12 @@ import * as actionTypes from '@storage/actions/actionTypes';
 
 export interface UiTranslationState {
     translations: {};
+    languagesList: [];
 }
 
 const initialState: UiTranslationState = {
     translations: {},
+    languagesList: [],
 };
 
 const uiTranslationReducer = (state = initialState, action: any) => {
@@ -18,9 +20,10 @@ const uiTranslationReducer = (state = initialState, action: any) => {
                 ...state,
                 translations: action.translations,
             };
-        case actionTypes.GET_UI_TRANSLATION:
+        case actionTypes.GET_LANGUAGES_LIST:
             return {
                 ...state,
+                languagesList: action.languagesList,
             };
     }
     return state;

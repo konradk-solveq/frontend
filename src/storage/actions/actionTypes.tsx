@@ -55,7 +55,7 @@ export const LOGOUT = 'LOGOUT';
 
 /* UiTranslation */
 export const SET_UI_TRANSLATION = 'SET_UI_TRANSLATION';
-export const GET_UI_TRANSLATION = 'GET_UI_TRANSLATION';
+export const GET_LANGUAGES_LIST = 'GET_LANGUAGES_LIST';
 
 /* Maps */
 export const SET_MAPS_DATA = 'SET_MAPS_DATA';

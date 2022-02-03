@@ -38,6 +38,7 @@ import {RouteActionT, RouteAdditionalInfoT} from '@type/debugRoute';
 import {DebugRouteInstance} from '@debugging/debugRoute';
 import {batch} from 'react-redux';
 import {AuthState} from '../reducers/auth';
+import {fetchUiTranslation, fetchLanguagesList} from './uiTranslation';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -136,7 +137,7 @@ export const clearAppError = () => ({
 
 export const fetchAppConfig = (
     noLoader?: boolean,
-): AppThunk<Promise<void>> => async dispatch => {
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     if (!noLoader) {
         dispatch(setSyncStatus(true));
     }
@@ -147,6 +148,18 @@ export const fetchAppConfig = (
             dispatch(setSyncError(response.error, response.status));
             return;
         }
+
+        dispatch(fetchLanguagesList(true));
+        const {config}: AppState = getState().app;
+
+        if (
+            response?.data?.uiTranslation.controlSum ===
+            config.uiTranslation.controlSum
+        ) {
+        }
+        dispatch(fetchUiTranslation(true));
+
+        // sprawdzenie czy są tłumaczeniua
 
         batch(() => {
             dispatch(setAppConfig(response.data));

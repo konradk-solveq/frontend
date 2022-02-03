@@ -43,10 +43,11 @@ const initialState: AppState = {
         name: '',
         lang: '',
         langs: {name: '', displayName: ''},
-        difficulties: [],
-        surfaces: [],
         tags: [],
+        surfaces: [],
+        difficulties: [],
         reactions: [],
+        uiTranslation: {controlSum: '', langs: []},
     },
     terms: [],
     currentTerms: {

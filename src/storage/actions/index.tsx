@@ -73,4 +73,4 @@ export {
     setAuthSessionData,
 } from './auth';
 
-export {fetchUiTranslation} from './uiTranslation';
+export {fetchUiTranslation, getLanguagesList} from './uiTranslation';

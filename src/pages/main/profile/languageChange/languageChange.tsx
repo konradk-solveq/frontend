@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import {setLanguage} from '@storage/actions';
+import {fetchUiTranslation, setLanguage} from '@storage/actions';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {
@@ -17,7 +17,7 @@ import {
 import GenericScreen from '@pages/template/GenericScreen';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import LanguageButton from './languageButton';
-import {data} from './data';
+import useLanguageReloader from '@src/hooks/useLanguageReloader';
 
 interface Props {
     navigation: any;
@@ -30,6 +30,16 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     const language: string = useAppSelector(state => state.user.language);
     const [inputLanguage, setInputLanguage] = useState('');
 
+    const languageList: any = useAppSelector(
+        state => state.uiTranslation.languagesList,
+    );
+
+    const translations: any = useAppSelector(
+        state => state.uiTranslation.translations,
+    );
+
+    useLanguageReloader();
+
     useEffect(() => {
         setInputLanguage(language);
     }, [language]);
@@ -39,6 +49,10 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     };
 
     const handleSaveLanguage = () => {
+        if (typeof translations[inputLanguage] === 'undefined') {
+            fetchUiTranslation(true);
+        }
+
         dispatch(setLanguage(inputLanguage));
         changeLanguage(inputLanguage);
         navigation.goBack();
@@ -73,28 +87,21 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
                 style={styles.scroll}>
                 <View style={styles.area}>
                     <View>
-                        {data.map((e, i) => {
+                        {languageList.map((e, i) => {
                             return (
                                 <LanguageButton
                                     key={'lang_' + i}
-                                    active={inputLanguage === e.short}
+                                    active={inputLanguage === e.code}
                                     onPress={() =>
-                                        handleSetInputLanguage(e.short)
+                                        handleSetInputLanguage(e.code)
                                     }
                                     title={e.name}
-                                    svg={e.svg}
-                                    separator={true}>
+                                    svg={e.icon}
+                                    separator={languageList.length - 1 !== i}>
                                     <View />
                                 </LanguageButton>
                             );
                         })}
-                        <LanguageButton
-                            active={inputLanguage === ''}
-                            onPress={() => handleSetInputLanguage('')}
-                            title={t('byLocation')}
-                            separator={false}>
-                            <View />
-                        </LanguageButton>
                     </View>
                     <BigRedBtn
                         style={styles.btn}

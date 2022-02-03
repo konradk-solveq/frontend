@@ -1,4 +1,4 @@
-import {SelectOptionType} from './map.model';
+import {SelectOptionType, UiTranslationType} from './map.model';
 
 export type SelectEnumOptionsT = {
     difficulties: SelectOptionType[];
@@ -19,6 +19,7 @@ export class AppConfig implements SelectEnumOptionsT {
         public surfaces: SelectOptionType[],
         public difficulties: SelectOptionType[],
         public reactions: SelectOptionType[],
+        public uiTranslation: UiTranslationType,
     ) {
         this.name = name;
         this.lang = lang;
@@ -27,6 +28,7 @@ export class AppConfig implements SelectEnumOptionsT {
         this.surfaces = surfaces;
         this.difficulties = difficulties;
         this.reactions = reactions;
+        this.uiTranslation = uiTranslation;
     }
 }
 

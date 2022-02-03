@@ -26,4 +26,6 @@ export const changeLanguage = (language: string = '') => {
             return console.error('Changing language went wrong !!!', err);
         }
     });
+
+    return language;
 };
