@@ -15,7 +15,7 @@ export const getDateString = (date: Date, separator?: string) => {
 };
 
 export const getTimeString = (date: Date) => {
-    return date.toLocaleTimeString();
+    return date.toLocaleTimeString([], {hour12: false});
 };
 
 export const convertToDateWithTime = (date: string | undefined) => {
