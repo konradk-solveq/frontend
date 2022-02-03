@@ -221,12 +221,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             marginTop: getVerticalPx(30),
             marginBottom: getVerticalPx(65) + headHeight,
         },
-        skip: {
-            width: getHorizontalPx(334),
-            height: mainButtonsHeight(50),
-            left: getHorizontalPx(40),
-            marginTop: getVerticalPx(30),
-        },
+        skip: {marginBottom: getVerticalPx(30)},
     });
 
     if (isLoading) {
@@ -253,14 +248,13 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                         />
                     </View>
 
-                    <View style={styles.skip}>
+                    <View style={styles.btnHand}>
                         <BigWhiteBtn
+                            style={styles.skip}
                             title={t('btnSkip')}
                             onpress={() => onGoForwrdHandle()}
                         />
-                    </View>
 
-                    <View style={styles.btnHand}>
                         <BigWhiteBtn
                             title={t('btnHand')}
                             onpress={() =>
