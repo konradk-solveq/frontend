@@ -1,7 +1,7 @@
 const ff = require('./saveLoadFiles');
 
 const valueFromRun = process.env.VAL;
-const VALUE_WHEN_NO_DATA = valueFromRun ? valueFromRun : '';
+const VALUE_WHEN_NO_DATA = valueFromRun ? valueFromRun : '__';
 
 const MODEL_FILE = 'pl';
 const FILE_TO_COMPLETE = 'en';
@@ -10,6 +10,35 @@ const modelFile = JSON.parse(ff.load(`${MODEL_FILE}.json`));
 const fileToComplete = JSON.parse(ff.load(`${FILE_TO_COMPLETE}.json`));
 
 const start = () => {
+    const getValueWithAttributes = value => {
+
+        if (typeof value === 'boolean') {
+            return value;
+        }
+
+        const splitted = value.split('{{');
+        if (splitted.length > 1) {
+            let competeValue = '';
+
+            if (splitted[0].length > 0) {
+                competeValue += VALUE_WHEN_NO_DATA;
+            }
+
+            for (const s of splitted) {
+                if (s.indexOf('}}') < 0) {
+                    continue;
+                }
+                const secondSplit = s.split('}}');
+                competeValue += `{{${secondSplit[0]}}}`;
+                if (secondSplit[1].length > 0) {
+                    competeValue += VALUE_WHEN_NO_DATA;
+                }
+            }
+            return competeValue;
+        }
+        return VALUE_WHEN_NO_DATA;
+    };
+
     const complete = (model, toComplete) => {
         let result = {};
 
@@ -48,7 +77,8 @@ const start = () => {
 
             if (typeof modelItem !== 'object') {
                 if (typeof toCompleteItem === 'undefined') {
-                    result[key] = VALUE_WHEN_NO_DATA;
+                    const translation = modelItem;
+                    result[key] = getValueWithAttributes(translation);
                 } else {
                     result[key] = toCompleteItem;
                 }
@@ -71,4 +101,4 @@ const start = () => {
     ff.save(FILE_TO_COMPLETE, completed);
 };
 
-module.exports = {start};
+module.exports = { start };
