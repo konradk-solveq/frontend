@@ -19,11 +19,8 @@ export const getUiTranslationService = async () => {
         };
     }
 
-    const obj: any = {};
-    obj[response.data.language] = response.data.translation;
-
     return {
-        data: obj,
+        data: response.data,
         status: response.status,
         error: '',
     };

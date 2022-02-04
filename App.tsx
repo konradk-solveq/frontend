@@ -12,12 +12,16 @@ import TopNotificationProvider from '@providers/topNotificationProvider/TopNotif
 import {initAppSize} from '@helpers/layoutFoo';
 import {initConfig} from '@theme/appLayoutConfig';
 
-
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
 import useRouteDebug from '@src/hooks/useRouteDebug';
 
-import LanguageReloader from '@src/utils/translations/languageReloader';
+import useLanguageReloader from '@src/hooks/useLanguageReloader';
+
+const LanguageReloader: React.FC = () => {
+    useLanguageReloader();
+    return <></>;
+};
 
 const App: () => Node = () => {
     const persistor = persistStore(storage);

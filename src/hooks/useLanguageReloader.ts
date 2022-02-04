@@ -1,9 +1,10 @@
 import {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {setLanguage} from '@storage/actions';
+import {fetchUiTranslation, setLanguage} from '@storage/actions';
 import i18next from '@translations/i18next';
 
 import {changeLanguage} from '@utils/translations/useMergedTranslation';
+import {setLanguageHeader} from '@src/api/api';
 
 const useLanguageReloader = () => {
     const dispatch = useAppDispatch();
@@ -16,70 +17,44 @@ const useLanguageReloader = () => {
     );
 
     useEffect(() => {
-        if (language != null && translations) {
+        if (language != null && translations != null) {
             const newLanguage = changeLanguage(language);
             dispatch(setLanguage(newLanguage));
+            setLanguageHeader(newLanguage);
 
-            const backend: any = {};
+            if (typeof translations[language] === 'undefined') {
+                /** place for compare control sum form device and from backend */
+                dispatch(fetchUiTranslation(true));
+            }
 
-            const local: any = {
-                en: {
-                    local: require('../../I18n/en.json'),
-                },
-                pl: {
-                    local: require('../../I18n/pl.json'),
-                },
-                cs: {local: {}},
-            };
-
-            /**
-             * For adding languages form language list gutted from backend
-             */
             for (const lang of languageList) {
-                if (typeof local[lang.code] === 'undefined') {
-                    local[lang.code] = {local: {}};
-                }
-            }
+                const code = lang.code;
 
-            /**
-             * Create list of translations of fetched form backend
-             */
-            for (const key in translations.translations) {
-                backend[key] = {backend: translations.translations[key]};
-            }
+                /** adding backend translations to i18n */
+                if (
+                    !i18next.hasResourceBundle(code, 'backend') ||
+                    code === language
+                ) {
+                    const translation = translations[code];
 
-            /**
-             * Complete missing translations on backend list by object form local list
-             */
-            for (const key in local) {
-                if (typeof backend[key] === 'undefined') {
-                    backend[key] = {backend: local[key].local};
-                }
-            }
-
-            /**
-             * Adding translations to local list at i18next
-             */
-            for (const key in local) {
-                if (!i18next.hasResourceBundle(key, 'local')) {
-                    i18next.addResourceBundle(key, 'local', local[key].local);
-                }
-            }
-
-            /**
-             * Adding translations to backend list at i18next
-             */
-            for (const key in backend) {
-                if (!i18next.hasResourceBundle(key, 'backend')) {
                     i18next.addResourceBundle(
-                        key,
+                        code,
                         'backend',
-                        backend[key].backend,
+                        translation ? translation : {backend: {}},
                     );
+                }
+
+                /** adding local translations to i18n */
+                if (code === 'pl' || code === 'en') {
+                    continue;
+                }
+
+                if (!i18next.hasResourceBundle(code, 'local')) {
+                    i18next.addResourceBundle(code, 'local', {local: {}});
                 }
             }
         }
-    }, [language, translations]);
+    }, [dispatch, language, languageList, translations]);
 };
 
 export default useLanguageReloader;

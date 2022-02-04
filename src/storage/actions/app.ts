@@ -156,10 +156,8 @@ export const fetchAppConfig = (
             response?.data?.uiTranslation.controlSum ===
             config.uiTranslation.controlSum
         ) {
+            dispatch(fetchUiTranslation(true));
         }
-        dispatch(fetchUiTranslation(true));
-
-        // sprawdzenie czy są tłumaczeniua
 
         batch(() => {
             dispatch(setAppConfig(response.data));

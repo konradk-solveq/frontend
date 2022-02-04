@@ -52,11 +52,6 @@ export type SelectOptionType = {
     i18nValue: string;
 };
 
-export type UiTranslationType = {
-    controlSum: string;
-    langs: string[];
-};
-
 export interface Coords {
     latitude: number;
     longitude: number;

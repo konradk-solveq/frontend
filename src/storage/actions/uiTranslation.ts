@@ -13,7 +13,7 @@ import {batch} from 'react-redux';
 
 import {setSyncStatus, setSyncError} from './app';
 
-export const setUiTranslation = (translations: any) => {
+const setUiTranslation = (translations: any) => {
     return {
         type: actionTypes.SET_UI_TRANSLATION,
         translations,
@@ -22,7 +22,7 @@ export const setUiTranslation = (translations: any) => {
 
 export const fetchUiTranslation = (
     noLoader?: boolean,
-): AppThunk<Promise<void>> => async dispatch => {
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     if (!noLoader) {
         dispatch(setSyncStatus(true));
     }
@@ -34,11 +34,20 @@ export const fetchUiTranslation = (
             return;
         }
 
-        // sprawdzanie czy jest tłumacznie
-        console.log('fetchUiTranslation', response.data);
+        const newTranslations: any = {};
+        const lang = response.data.language;
+        newTranslations[lang] = response.data.translation;
+        newTranslations[lang].ForApplication = {
+            version: response.data.version,
+        };
+
+        const oldTranslations = getState().uiTranslation.translations;
+        for (const key in newTranslations) {
+            oldTranslations[key] = newTranslations[key];
+        }
 
         batch(() => {
-            dispatch(setUiTranslation(response.data));
+            dispatch(setUiTranslation(oldTranslations));
         });
 
         if (!noLoader) {
@@ -55,7 +64,7 @@ export const fetchUiTranslation = (
     }
 };
 
-export const getLanguagesList = (languagesList: any) => {
+const getLanguagesList = (languagesList: any) => {
     return {
         type: actionTypes.GET_LANGUAGES_LIST,
         languagesList,
@@ -76,9 +85,6 @@ export const fetchLanguagesList = (
             return;
         }
 
-        // sprawdzanie czy są języki
-        console.log('fetchLanguagesList', response.data);
-
         batch(() => {
             dispatch(getLanguagesList(response.data));
         });
@@ -87,10 +93,10 @@ export const fetchLanguagesList = (
             dispatch(setSyncStatus(false));
         }
     } catch (error) {
-        console.log(`[fetchUiTranslation] - ${error}`);
+        console.log(`[fetchLanguagesList] - ${error}`);
         const err = convertToApiError(error);
 
-        loggErrorWithScope(err, 'fetchUiTranslation');
+        loggErrorWithScope(err, 'fetchLanguagesList');
 
         const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));

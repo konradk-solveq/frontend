@@ -7,6 +7,12 @@ export type SelectEnumOptionsT = {
     tags: SelectOptionType[];
 };
 
+type UiTranslationType = {
+    controlSum: string;
+    langs: string[];
+};
+
+
 export class AppConfig implements SelectEnumOptionsT {
     constructor(
         public name: string,

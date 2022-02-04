@@ -23,15 +23,12 @@
     },
     "MainProfile": {
         "header": "Account",
-        "details": [
-            "od ",
-            " / nr ramy "
-        ],
         "settings": "Settings",
+        "languages": "Application language",
         "myConsents": "My consents",
         "remove": "Remove",
         "btnAddStuff": "ADD STUFF",
-        "defaultName": "Cyclist ",
+        "defaultName": "Cyclist Frontend",
         "title": "About myKROSS",
         "app": "About application",
         "regulations": "Regulations",
