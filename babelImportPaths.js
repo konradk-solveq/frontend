@@ -95,4 +95,8 @@ module.exports = [
         rootPathSuffix: './analytics',
         rootPathPrefix: '@analytics',
     },
+    {
+        rootPathSuffix: './storybook',
+        rootPathPrefix: '@sb',
+    },
 ];

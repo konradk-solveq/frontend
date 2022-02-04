@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react';
 import {StyleSheet, View} from 'react-native';
 
-export const BtnWrapper = ({children}: {children: ReactNode}) => (
+const BtnWrapper = ({children}: {children: ReactNode}) => (
     <View style={styles.container}>
         <View style={styles.button}>{children}</View>
     </View>
@@ -18,3 +18,5 @@ const styles = StyleSheet.create({
         height: 40,
     },
 });
+
+export default BtnWrapper;

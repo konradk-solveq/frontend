@@ -38,6 +38,7 @@
             "@env*": ["src/env"],
             "@debugging*": ["src/debugging*"],
             "@analytics*": ["analytics*"],
+            "@sb*": ["storybook*"]
         },
       "types": [ "node", "jest" ],
     },

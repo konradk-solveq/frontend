@@ -3,7 +3,7 @@ import {boolean, text} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react-native';
 import React from 'react';
 import {BigRedBtn} from '@sharedComponents/buttons';
-import {BtnWrapper} from '../utils/BtnWrapper';
+import BtnWrapper from '@sb/utils/BtnWrapper';
 
 storiesOf('BigRedBtn', module)
     .addDecorator(getStory => <BtnWrapper>{getStory()}</BtnWrapper>)

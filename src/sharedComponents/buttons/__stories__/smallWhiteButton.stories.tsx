@@ -3,7 +3,7 @@ import {text} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react-native';
 import React from 'react';
 import SmallWhiteBtn from '@sharedComponents/buttons/smallWhiteBtn';
-import {BtnWrapper} from '../utils/BtnWrapper';
+import BtnWrapper from '@sb/utils/BtnWrapper';
 
 storiesOf('SmallWhiteBtn', module)
     .addDecorator(getStory => <BtnWrapper>{getStory()}</BtnWrapper>)
