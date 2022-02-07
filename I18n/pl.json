@@ -452,6 +452,13 @@
             "distanceToStart": " km od Ciebie",
             "noDescription": "Brak opisu."
         },
+        "share": {
+            "error": {
+                "title": "Coś poszło nie tak",
+                "message": "Nie mogliśmy wyświetlić udostępnionych treści",
+                "button": "Przejdź do strony głównej"
+            }
+        },
         "EditScreen": {
             "tagsTitle": "Tagi",
             "nameInput": "Tytuł",

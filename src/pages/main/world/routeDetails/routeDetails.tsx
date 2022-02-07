@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Platform, SafeAreaView, Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
@@ -36,6 +36,7 @@ import Description from './description/description';
 import styles from './style';
 import {useSharedMapData} from '@hooks/useSharedMapData';
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import GenericError from '@components/error/GenericError';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -73,14 +74,6 @@ const RouteDetails = () => {
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
-
-    useEffect(() => {
-        if (error && !mapID) {
-            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN, {
-                screen: RegularStackRoute.HOME_SCREEN,
-            });
-        }
-    }, [mapID, error, navigation]);
 
     const isPublished =
         shareID && !mapData ? sharedMapData?.isPublic : mapData?.isPublic;
@@ -179,6 +172,10 @@ const RouteDetails = () => {
         navigation.goBack();
     };
 
+    const handleErrorBtnPress = () => {
+        navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
+    };
+
     if (isLoading) {
         return <Loader />;
     }
@@ -222,74 +219,83 @@ const RouteDetails = () => {
                             </View>
                         }
                     />
-                    <SliverTopBar imgSrc={sliverImage || ''}>
-                        <View style={styles.content}>
-                            <Description
-                                mapData={
-                                    shareID && !mapData
-                                        ? sharedMapData
-                                        : mapData
-                                }
-                                images={images}
-                                isPrivateView={privateMap}
-                                isFavView={favouriteMap}
-                                isFeaturedView={featuredMap}
-                            />
-                            {favouriteMap && (
-                                <>
+                    {error && !mapID ? (
+                        <GenericError
+                            errorTitle={t('share.error.title')}
+                            errorMessage={t('share.error.message')}
+                            buttonText={t('share.error.button')}
+                            onButtonPress={handleErrorBtnPress}
+                        />
+                    ) : (
+                        <SliverTopBar imgSrc={sliverImage || ''}>
+                            <View style={styles.content}>
+                                <Description
+                                    mapData={
+                                        shareID && !mapData
+                                            ? sharedMapData
+                                            : mapData
+                                    }
+                                    images={images}
+                                    isPrivateView={privateMap}
+                                    isFavView={favouriteMap}
+                                    isFeaturedView={featuredMap}
+                                />
+                                {favouriteMap && (
+                                    <>
+                                        <BigRedBtn
+                                            testID={'route-details-start-btn'}
+                                            title={t('startButton')}
+                                            onpress={onPressStartRouteHandler}
+                                            style={styles.reportButton}
+                                        />
+                                        <BigWhiteBtn
+                                            title={t('removeRouteButton')}
+                                            testID={'route-details-remove-btn'}
+                                            onpress={
+                                                onPressRemoveFromFacouritesHandler
+                                            }
+                                            style={[
+                                                styles.removeRouteButton,
+                                                styles.buttonBottomDistance,
+                                            ]}
+                                        />
+                                    </>
+                                )}
+
+                                {!favouriteMap && (
                                     <BigRedBtn
-                                        testID={'route-details-start-btn'}
-                                        title={t('startButton')}
-                                        onpress={onPressStartRouteHandler}
-                                        style={styles.reportButton}
-                                    />
-                                    <BigWhiteBtn
-                                        title={t('removeRouteButton')}
-                                        testID={'route-details-remove-btn'}
+                                        title={
+                                            !privateMap
+                                                ? !favMapName
+                                                    ? t('addFavRouteButton')
+                                                    : t('removeFavRouteButton')
+                                                : t('deleteButton')
+                                        }
                                         onpress={
-                                            onPressRemoveFromFacouritesHandler
+                                            !privateMap
+                                                ? onPressAddRouteHandler
+                                                : onPressHandler
                                         }
                                         style={[
-                                            styles.removeRouteButton,
+                                            styles.reportButton,
                                             styles.buttonBottomDistance,
                                         ]}
                                     />
-                                </>
-                            )}
-
-                            {!favouriteMap && (
-                                <BigRedBtn
-                                    title={
-                                        !privateMap
-                                            ? !favMapName
-                                                ? t('addFavRouteButton')
-                                                : t('removeFavRouteButton')
-                                            : t('deleteButton')
-                                    }
-                                    onpress={
-                                        !privateMap
-                                            ? onPressAddRouteHandler
-                                            : onPressHandler
-                                    }
-                                    style={[
-                                        styles.reportButton,
-                                        styles.buttonBottomDistance,
-                                    ]}
-                                />
-                            )}
-                            <View style={styles.textButtonContainer}>
-                                <Text style={styles.textButton}>
-                                    {`${t('textPrefix')} `}
-                                    <Text
-                                        onPress={onPressReportHandler}
-                                        style={styles.textbuttonAction}>
-                                        {t('textAction')}
+                                )}
+                                <View style={styles.textButtonContainer}>
+                                    <Text style={styles.textButton}>
+                                        {`${t('textPrefix')} `}
+                                        <Text
+                                            onPress={onPressReportHandler}
+                                            style={styles.textbuttonAction}>
+                                            {t('textAction')}
+                                        </Text>
+                                        {t('textSuffix')}
                                     </Text>
-                                    {t('textSuffix')}
-                                </Text>
+                                </View>
                             </View>
-                        </View>
-                    </SliverTopBar>
+                        </SliverTopBar>
+                    )}
                 </View>
                 <BottomModal
                     showModal={showBottomModal}
