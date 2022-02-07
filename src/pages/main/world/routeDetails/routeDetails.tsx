@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Platform, SafeAreaView, Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
@@ -36,6 +36,7 @@ import Description from './description/description';
 import styles from './style';
 import {useSharedMapData} from '@hooks/useSharedMapData';
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import GenericError from '@sharedComponents/error/GenericError';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -73,14 +74,6 @@ const RouteDetails = () => {
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
-
-    useEffect(() => {
-        if (error && !mapID) {
-            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN, {
-                screen: RegularStackRoute.HOME_SCREEN,
-            });
-        }
-    }, [mapID, error, navigation]);
 
     const isPublished =
         shareID && !mapData ? sharedMapData?.isPublic : mapData?.isPublic;
@@ -178,6 +171,21 @@ const RouteDetails = () => {
         dispatch(removePlannedMap(mapID));
         navigation.goBack();
     };
+
+    const handleErrorBtnPress = () => {
+        navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
+    };
+
+    if (error && !mapID) {
+        return (
+            <GenericError
+                errorTitle={t('share.error.title')}
+                errorMessage={t('share.error.message')}
+                buttonText={t('share.error.button')}
+                onButtonPress={handleErrorBtnPress}
+            />
+        );
+    }
 
     if (isLoading) {
         return <Loader />;
