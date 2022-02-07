@@ -2,7 +2,11 @@ import React, {useCallback} from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useAppSelector, useAppDispatch} from '@hooks/redux';
-import {setOnboardingFinished, removeBikeByNumber} from '@storage/actions';
+import {
+    setOnboardingFinished,
+    removeBikeByNumber,
+    setDeepLinkActionForScreen,
+} from '@storage/actions';
 
 import {
     bikeByFrameNumberSelector,
@@ -104,6 +108,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const onGoForwrdHandle = () => {
         if (!onboardingFinished) {
             dispatch(setOnboardingFinished(true));
+            dispatch(setDeepLinkActionForScreen('HomeTab'));
         }
         navigation.reset({
             index: 0,

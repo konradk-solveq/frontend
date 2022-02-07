@@ -11,7 +11,7 @@ import OnboardingStackNavigator from '@navigation/stacks/OnboardingStackNavigato
 import RegularStackNavigator from '@navigation/stacks/RegularStackNavigator';
 import {KrossTheme} from '@theme/navigationTheme';
 
-import {getScreenName} from '@utils/navigation';
+import {getScreenName} from '@navigation/utils/navigation';
 import {sendAnalyticInfoAboutNewScreen} from '@analytics/firebaseAnalytics';
 
 import {linking} from './linking';

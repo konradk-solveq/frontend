@@ -29,6 +29,7 @@ export interface AppState {
     location: BasicCoordsType | undefined;
     routeDebugMode: boolean;
     initMapsDataSynched: boolean;
+    apiAuthHeaderState: boolean;
 }
 
 const initialState: AppState = {
@@ -65,6 +66,7 @@ const initialState: AppState = {
     location: undefined,
     routeDebugMode: false,
     initMapsDataSynched: false,
+    apiAuthHeaderState: false,
 };
 
 const appReducer = (state = initialState, action: any) => {
@@ -232,6 +234,11 @@ const appReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 initMapsDataSynched: action.initMapsDataSynched,
+            };
+        case actionTypes.SET_API_AUTH_HEADER:
+            return {
+                ...state,
+                apiAuthHeaderState: action.apiAuthHeaderState,
             };
         case actionTypes.CLEAR_APP_ERROR:
             return {
