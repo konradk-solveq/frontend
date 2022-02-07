@@ -48,6 +48,7 @@ export const fetchUiTranslation = (
             oldTranslations[key] = newTranslations[key];
         }
 
+        console.log('Translations:', oldTranslations);
         batch(() => {
             dispatch(setUiTranslation(oldTranslations));
         });
@@ -87,6 +88,7 @@ export const fetchLanguagesList = (
             return;
         }
 
+        console.log('Languages List', response.data);
         batch(() => {
             dispatch(getLanguagesList(response.data));
         });
