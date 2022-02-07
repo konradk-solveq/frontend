@@ -76,7 +76,9 @@ const RouteDetails = () => {
 
     useEffect(() => {
         if (error && !mapID) {
-            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
+            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN, {
+                screen: RegularStackRoute.HOME_SCREEN,
+            });
         }
     }, [mapID, error, navigation]);
 
@@ -102,7 +104,9 @@ const RouteDetails = () => {
 
     const onBackHandler = () => {
         if (cameFromSharedLink) {
-            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
+            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN, {
+                screen: RegularStackRoute.HOME_SCREEN,
+            });
         } else {
             navigation.goBack();
         }
