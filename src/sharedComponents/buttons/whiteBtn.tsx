@@ -52,7 +52,7 @@ const WhiteBtn: React.FC<Props> = ({
             style={[styles.btn, style]}
             onPress={onPress}
             disabled={disabled}
-            testID={testID || 'big-white-btn'}>
+            testID={testID || 'white-btn'}>
             <Text style={styles.text}>
                 {neutralCase ? title : title.toUpperCase()}
             </Text>

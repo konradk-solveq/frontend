@@ -8,7 +8,7 @@ import {
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
 import BrokenBike from '@sharedComponents/svg/brokenBike';
-import WhiteBtn from '@sharedComponents/buttons/whiteButton';
+import WhiteBtn from '@sharedComponents/buttons/whiteBtn';
 
 interface IProps {
     errorTitle?: string;
