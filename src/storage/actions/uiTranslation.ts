@@ -35,7 +35,9 @@ export const fetchUiTranslation = (
         }
 
         const newTranslations: any = {};
-        const lang = response.data.language;
+        const lang = response.data.code // reductor
+            ? response.data.code
+            : response.data.language;
         newTranslations[lang] = response.data.translation;
         newTranslations[lang].ForApplication = {
             version: response.data.version,

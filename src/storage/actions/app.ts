@@ -53,10 +53,16 @@ export const setAppStatus = (
     goodConnectionQuality: goodConnectionQuality,
 });
 
-export const setAppConfig = (config: AppConfigI) => ({
-    type: actionTypes.SET_APP_CONFIG,
-    config: config,
-});
+export const setAppConfig = (config: AppConfigI) => {
+    if (typeof config.uiTranslation.codes === 'undefined') {
+        config.uiTranslation.codes = config.uiTranslation.langs; // reductor
+    }
+
+    return {
+        type: actionTypes.SET_APP_CONFIG,
+        config: config,
+    };
+};
 
 export const setAppTerms = (terms: TermsAndConditionsType[]) => ({
     type: actionTypes.SET_APP_TERMS,

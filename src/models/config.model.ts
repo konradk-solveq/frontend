@@ -1,4 +1,4 @@
-import {SelectOptionType, UiTranslationType} from './map.model';
+import {SelectOptionType} from './map.model';
 
 export type SelectEnumOptionsT = {
     difficulties: SelectOptionType[];
@@ -9,7 +9,7 @@ export type SelectEnumOptionsT = {
 
 type UiTranslationType = {
     controlSum: string;
-    langs: string[];
+    codes: string[];
 };
 
 
