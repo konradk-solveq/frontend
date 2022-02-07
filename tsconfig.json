@@ -27,6 +27,7 @@
             "@providers*": ["src/providers*"],
             "@services*": ["src/services*"],
             "@sharedComponents*": ["src/sharedComponents*"],
+            "@components*": ["src/components*"],
             "@storage*": ["src/storage*"],
             "@theme*": ["src/theme*"],
             "@type*": ["src/type*"],

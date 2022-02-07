@@ -36,7 +36,7 @@ import Description from './description/description';
 import styles from './style';
 import {useSharedMapData} from '@hooks/useSharedMapData';
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
-import GenericError from '@sharedComponents/error/GenericError';
+import GenericError from '@components/error/GenericError';
 
 const isIOS = Platform.OS === 'ios';
 

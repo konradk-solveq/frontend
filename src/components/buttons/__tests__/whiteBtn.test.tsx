@@ -4,13 +4,11 @@ import {fireEvent} from '@testing-library/react-native';
 
 import {initAppSize} from '@helpers/layoutFoo';
 
-import GenericError from '@sharedComponents/error/GenericError';
+import WhiteBtn from '@components/buttons/whiteBtn';
 import renderComponent from '@jestUtils/render';
 import asyncEvent from '@jestUtils/asyncEvent';
 
-const onPressFun = jest.fn();
-
-describe('<GenericError />', () => {
+describe('<WhiteBtn />', () => {
     describe('Rendering', () => {
         beforeAll(() => {
             initAppSize();
@@ -18,33 +16,43 @@ describe('<GenericError />', () => {
 
         it('Should match snapshot', async () => {
             const component = await asyncEvent(
-                renderComponent(<GenericError onButtonPress={onPressFun} />),
+                renderComponent(<WhiteBtn title="Test" onPress={() => {}} />),
             );
 
             expect(component).toMatchSnapshot();
         });
 
-        it('Should match snapshot with error message', async () => {
+        it('Should match snapshot - with onPress', async () => {
+            const onPressFun = jest.fn();
             const component = await asyncEvent(
-                renderComponent(
-                    <GenericError
-                        errorMessage={'Test'}
-                        errorTitle={'Test'}
-                        onButtonPress={onPressFun}
-                    />,
-                ),
+                renderComponent(<WhiteBtn onPress={onPressFun} title="Test" />),
             );
 
+            expect(component).toMatchSnapshot();
+        });
+
+        it('Should match snapshot - with neutralCase', async () => {
+            const onPressFun = jest.fn();
+            const component = await asyncEvent(
+                renderComponent(
+                    <WhiteBtn onPress={onPressFun} title="Test" neutralCase />,
+                ),
+            );
+            const text = component.getByText('Test');
+
+            expect(text).not.toBeNull();
             expect(component).toMatchSnapshot();
         });
 
         it('Should fire onPressEvent', async () => {
+            const onPressFun = jest.fn();
+
             const component = await asyncEvent(
-                renderComponent(<GenericError onButtonPress={onPressFun} />),
+                renderComponent(<WhiteBtn onPress={onPressFun} title="Test" />),
             );
 
-            const genericError = component.getByTestId('white-btn');
-            await asyncEvent(fireEvent.press(genericError));
+            const whiteBtn = component.getByTestId('white-btn');
+            await asyncEvent(fireEvent.press(whiteBtn));
 
             expect(onPressFun).toBeCalled();
 
