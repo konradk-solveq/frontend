@@ -176,17 +176,6 @@ const RouteDetails = () => {
         navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
     };
 
-    if (error && !mapID) {
-        return (
-            <GenericError
-                errorTitle={t('share.error.title')}
-                errorMessage={t('share.error.message')}
-                buttonText={t('share.error.button')}
-                onButtonPress={handleErrorBtnPress}
-            />
-        );
-    }
-
     if (isLoading) {
         return <Loader />;
     }
@@ -230,74 +219,83 @@ const RouteDetails = () => {
                             </View>
                         }
                     />
-                    <SliverTopBar imgSrc={sliverImage || ''}>
-                        <View style={styles.content}>
-                            <Description
-                                mapData={
-                                    shareID && !mapData
-                                        ? sharedMapData
-                                        : mapData
-                                }
-                                images={images}
-                                isPrivateView={privateMap}
-                                isFavView={favouriteMap}
-                                isFeaturedView={featuredMap}
-                            />
-                            {favouriteMap && (
-                                <>
+                    {error && !mapID ? (
+                        <GenericError
+                            errorTitle={t('share.error.title')}
+                            errorMessage={t('share.error.message')}
+                            buttonText={t('share.error.button')}
+                            onButtonPress={handleErrorBtnPress}
+                        />
+                    ) : (
+                        <SliverTopBar imgSrc={sliverImage || ''}>
+                            <View style={styles.content}>
+                                <Description
+                                    mapData={
+                                        shareID && !mapData
+                                            ? sharedMapData
+                                            : mapData
+                                    }
+                                    images={images}
+                                    isPrivateView={privateMap}
+                                    isFavView={favouriteMap}
+                                    isFeaturedView={featuredMap}
+                                />
+                                {favouriteMap && (
+                                    <>
+                                        <BigRedBtn
+                                            testID={'route-details-start-btn'}
+                                            title={t('startButton')}
+                                            onpress={onPressStartRouteHandler}
+                                            style={styles.reportButton}
+                                        />
+                                        <BigWhiteBtn
+                                            title={t('removeRouteButton')}
+                                            testID={'route-details-remove-btn'}
+                                            onpress={
+                                                onPressRemoveFromFacouritesHandler
+                                            }
+                                            style={[
+                                                styles.removeRouteButton,
+                                                styles.buttonBottomDistance,
+                                            ]}
+                                        />
+                                    </>
+                                )}
+
+                                {!favouriteMap && (
                                     <BigRedBtn
-                                        testID={'route-details-start-btn'}
-                                        title={t('startButton')}
-                                        onpress={onPressStartRouteHandler}
-                                        style={styles.reportButton}
-                                    />
-                                    <BigWhiteBtn
-                                        title={t('removeRouteButton')}
-                                        testID={'route-details-remove-btn'}
+                                        title={
+                                            !privateMap
+                                                ? !favMapName
+                                                    ? t('addFavRouteButton')
+                                                    : t('removeFavRouteButton')
+                                                : t('deleteButton')
+                                        }
                                         onpress={
-                                            onPressRemoveFromFacouritesHandler
+                                            !privateMap
+                                                ? onPressAddRouteHandler
+                                                : onPressHandler
                                         }
                                         style={[
-                                            styles.removeRouteButton,
+                                            styles.reportButton,
                                             styles.buttonBottomDistance,
                                         ]}
                                     />
-                                </>
-                            )}
-
-                            {!favouriteMap && (
-                                <BigRedBtn
-                                    title={
-                                        !privateMap
-                                            ? !favMapName
-                                                ? t('addFavRouteButton')
-                                                : t('removeFavRouteButton')
-                                            : t('deleteButton')
-                                    }
-                                    onpress={
-                                        !privateMap
-                                            ? onPressAddRouteHandler
-                                            : onPressHandler
-                                    }
-                                    style={[
-                                        styles.reportButton,
-                                        styles.buttonBottomDistance,
-                                    ]}
-                                />
-                            )}
-                            <View style={styles.textButtonContainer}>
-                                <Text style={styles.textButton}>
-                                    {`${t('textPrefix')} `}
-                                    <Text
-                                        onPress={onPressReportHandler}
-                                        style={styles.textbuttonAction}>
-                                        {t('textAction')}
+                                )}
+                                <View style={styles.textButtonContainer}>
+                                    <Text style={styles.textButton}>
+                                        {`${t('textPrefix')} `}
+                                        <Text
+                                            onPress={onPressReportHandler}
+                                            style={styles.textbuttonAction}>
+                                            {t('textAction')}
+                                        </Text>
+                                        {t('textSuffix')}
                                     </Text>
-                                    {t('textSuffix')}
-                                </Text>
+                                </View>
                             </View>
-                        </View>
-                    </SliverTopBar>
+                        </SliverTopBar>
+                    )}
                 </View>
                 <BottomModal
                     showModal={showBottomModal}
