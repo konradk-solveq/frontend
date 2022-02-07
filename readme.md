@@ -162,4 +162,4 @@ App contains default route translation for `world` screen. It means, that deepli
 We use Storybook to preview the single components. The stories are defined at `./storybook/stories`. You can run the
 storybook by setting the **LOAD_STORYBOOK** environment variable and running the application on the simulator. To
 control the storybook from the web browser run `npm run storybook`. It will make the website available
-at `http://localhost:7007/`
+at `http://localhost:7007/`. You'll have to restart the app in your simulator to let it connect to the web panel.
