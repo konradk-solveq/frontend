@@ -17,7 +17,9 @@ if (LOAD_STORYBOOK === 'true') {
     configure(() => {
         require('./stories');
     }, module);
-    StorybookUIRoot = getStorybookUI({});
+    StorybookUIRoot = getStorybookUI({
+        asyncStorage: null,
+    });
 }
 
 export default StorybookUIRoot;
