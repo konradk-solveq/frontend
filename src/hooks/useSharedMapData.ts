@@ -32,7 +32,8 @@ export const useSharedMapData = (shareID?: string) => {
 
     if (!shareID) {
         return {
-            error: true,
+            error: false,
+            data: null,
         };
     }
 

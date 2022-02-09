@@ -219,7 +219,7 @@ const RouteDetails = () => {
                             </View>
                         }
                     />
-                    {error && !mapID ? (
+                    {error ? (
                         <GenericError
                             errorTitle={t('share.error.title')}
                             errorMessage={t('share.error.message')}
