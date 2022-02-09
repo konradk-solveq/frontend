@@ -1,6 +1,8 @@
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 import Share, {ShareOptions} from 'react-native-share';
 
+import {isIOS} from '@utils/platform';
+
 type ShareOptionsT = Pick<ShareOptions, 'message' | 'title' | 'subject'>;
 
 export const callSystemShare = async (
@@ -10,7 +12,7 @@ export const callSystemShare = async (
 ) => {
     try {
         const options: ShareOptions = {
-            message: shareContent?.message,
+            message: isIOS ? shareContent?.message : '',
             title: shareContent?.title,
             url: url,
             subject: shareContent?.subject,
