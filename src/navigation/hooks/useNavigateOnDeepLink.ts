@@ -10,6 +10,7 @@ import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {clearDeepLink, DeepLink} from '@navigation/utils/handleDeepLinkUrl';
 import {getScreenNameToNavigate} from '@navigation/utils/navigation';
+import {InteractionManager} from 'react-native';
 
 const useNavigateOnDeepLink = (onlyAuth?: boolean) => {
     const dispatch = useAppDispatch();
@@ -23,42 +24,56 @@ const useNavigateOnDeepLink = (onlyAuth?: boolean) => {
 
     useEffect(() => {
         /**
-         * Some endpoints only work if whe user is authenticated,
-         * so not every screen will work.
+         * Without checking that the screen is focused,
+         * the navigation does not work (on IOS) when the first
+         * 'navigate' action is invoked after navigation stack has changed.
          */
-        if ((onlyAuth && !isUserAuth) || !navigateFromScreen) {
-            return;
-        }
-
-        if (DeepLink.instance && DeepLink.shareId) {
+        const unsubscribe = navigation.addListener('focus', () => {
             /**
-             * Check that the user is on  thescreen from which should be navigated
+             * Some endpoints only work when user is authenticated,
+             * so not every screen will work.
              */
-            if (navigateFromScreen === name) {
-                /**
-                 * Clear share data in redux
-                 */
-                dispatch(clearDeepLinkActionForScreen());
-
-                /**
-                 * Check if shareType has been mapped to any screen name.
-                 */
-                const navigateToScreen = getScreenNameToNavigate(
-                    DeepLink.shareType,
-                );
-                if (navigateToScreen) {
-                    navigation.navigate({
-                        name: navigateToScreen,
-                        params: {shareID: DeepLink.shareId},
-                    });
-                }
-
-                /**
-                 * Clear share data insingleton
-                 */
-                clearDeepLink();
+            if ((onlyAuth && !isUserAuth) || !navigateFromScreen) {
+                return;
             }
-        }
+
+            if (DeepLink.instance && DeepLink.shareId) {
+                /**
+                 * Check that the user is on  thescreen from which should be navigated
+                 */
+                if (navigateFromScreen === name) {
+                    /**
+                     * Clear share data in redux
+                     */
+                    dispatch(clearDeepLinkActionForScreen());
+
+                    /**
+                     * Check if shareType has been mapped to any screen name.
+                     */
+                    const navigateToScreen = getScreenNameToNavigate(
+                        DeepLink.shareType,
+                    );
+                    if (navigateToScreen) {
+                        // setTimeout(() => {
+                        const shareIdToPass = DeepLink.shareId;
+                        InteractionManager.runAfterInteractions(() => {
+                            navigation.navigate({
+                                name: navigateToScreen,
+                                params: {shareID: shareIdToPass},
+                            });
+                        });
+                        // }, 0);
+                    }
+
+                    /**
+                     * Clear share data insingleton
+                     */
+                    clearDeepLink();
+                }
+            }
+        });
+
+        return unsubscribe;
     }, [navigateFromScreen, name, onlyAuth, isUserAuth, navigation, dispatch]);
 
     return {
