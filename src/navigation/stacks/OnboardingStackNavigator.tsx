@@ -1,23 +1,20 @@
 import React from 'react';
 import {Stack} from './../stack';
 import {horizontalAnim} from '../../helpers/positioning';
-import {OnboardingStackRoute, BothStackRoute} from '../route';
+import {OnboardingStackRoute} from '../route';
 
 import Tutorial from '../../pages/onboarding/tutorial/tutorial';
 import GetToKnowEachOther from '../../pages/onboarding/getToKnowEachOther/getToKnowEachOther';
 import TurtorialNFC from '../../pages/onboarding/bikeAdding/turtorialNFC/turtorialNFC';
-// import WrongScan from '../../pages/onboarding/bikeAdding/wrongScan/wrongScan';
 import AddingByNumber from '../../pages/onboarding/bikeAdding/addingByNumber/addingByNumber';
 import AddingInfo from '../../pages/onboarding/bikeAdding/info/info';
-// import Loader from '../../pages/onboarding/bikeAdding/loader/loader';
 import Permits from '../../pages/onboarding/permitsDeclarations/permits';
 import Regulations from '../../pages/onboarding/permitsDeclarations/regulations';
 import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
 import BikeData from '../../pages/onboarding/bikeData/bikeData';
 import BikeSummary from '../../pages/onboarding/bikeSummary/bikeSummary';
 import ListPageInput from '../../sharedComponents/inputs/listPageInput';
-// import CyclingProfile from '../../pages/onboarding/cyclingProfile/cyclingProfile';
-import MineMenu from '../../pages/main/mainMenu';
+
 import InputPage from '../../sharedComponents/inputs/inputPage';
 
 const OnboardingStackNavigator: React.FC = () => {
@@ -38,11 +35,11 @@ const OnboardingStackNavigator: React.FC = () => {
                 component={Permits}
             />
             <Stack.Screen
-                name={BothStackRoute.REGULATIONS_SCREEN}
+                name={OnboardingStackRoute.REGULATIONS_ONBOARDING_SCREEN}
                 component={Regulations}
             />
             <Stack.Screen
-                name={BothStackRoute.PRIVACY_POLICY_SCREEN}
+                name={OnboardingStackRoute.PRIVACY_POLICY_ONBOARDING_SCREEN}
                 component={PrivacyPolicy}
             />
 
@@ -51,25 +48,25 @@ const OnboardingStackNavigator: React.FC = () => {
                 component={GetToKnowEachOther}
             />
             <Stack.Screen
-                name={BothStackRoute.TURTORIAL_NFC_SCREEN}
+                name={OnboardingStackRoute.TURTORIAL_NFC_ONBOARDING_SCREEN}
                 component={TurtorialNFC}
             />
             <Stack.Screen
-                name={BothStackRoute.ADDING_BY_NUMBER_SCREEN}
+                name={OnboardingStackRoute.ADDING_BY_NUMBER_ONBOARDING_SCREEN}
                 component={AddingByNumber}
             />
             <Stack.Screen
-                name={BothStackRoute.ADDING_INFO_SCREEN}
+                name={OnboardingStackRoute.ADDING_INFO_ONBOARDING_SCREEN}
                 component={AddingInfo}
             />
 
             <Stack.Screen
-                name={BothStackRoute.BIKE_DATA_SCREEN}
+                name={OnboardingStackRoute.BIKE_DATA_ONBOARDING_SCREEN}
                 component={BikeData}
             />
 
             <Stack.Screen
-                name={BothStackRoute.BIKE_SUMMARY_SCREEN}
+                name={OnboardingStackRoute.BIKE_SUMMARY_ONBOARDING_SCREEN}
                 component={BikeSummary}
             />
 
@@ -83,18 +80,18 @@ const OnboardingStackNavigator: React.FC = () => {
                 component={CyclingProfile}
             /> */}
 
-            <Stack.Screen
-                name={BothStackRoute.TAB_MENU_SCREEN}
+            {/* <Stack.Screen
+                name={OnboardingStackRoute.TAB_MENU_ONBOARDING_SCREEN}
                 component={MineMenu}
-            />
+            /> */}
 
             {/* univesal/generic pages */}
             <Stack.Screen
-                name={BothStackRoute.LIST_PAGE_INPUT_SCREEN}
+                name={OnboardingStackRoute.LIST_PAGE_INPUT_ONBOARDING_SCREEN}
                 component={ListPageInput}
             />
             <Stack.Screen
-                name={BothStackRoute.INPUT_PAGE_SCREEN}
+                name={OnboardingStackRoute.INPUT_PAGE_ONBOARDING_SCREEN}
                 component={InputPage}
             />
         </Stack.Navigator>

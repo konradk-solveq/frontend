@@ -47,6 +47,7 @@ jest.mock('@react-navigation/native', () => ({
         canGoBack: jest.fn().mockReturnValue(true),
         goBack: mockedGoBack,
     }),
+    useIsFocused: () => true,
 }));
 
 describe('[useNavigateOnDeepLink - navigation/hooks]', () => {
