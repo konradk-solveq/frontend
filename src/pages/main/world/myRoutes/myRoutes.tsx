@@ -78,7 +78,7 @@ const MyRoutes: React.FC<IProps> = ({
         (mapID?: string) => {
             navigation.navigate({
                 name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-                params: {mapID: mapID, private: true},
+                params: {mapID: mapID, private: true, shareID: null},
             });
         },
         [navigation],

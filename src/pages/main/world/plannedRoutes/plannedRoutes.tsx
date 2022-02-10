@@ -70,7 +70,12 @@ const PlannedRoutes: React.FC<IProps> = ({
     const onPressTileHandler = (mapID?: string) => {
         navigation.navigate({
             name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-            params: {mapID: mapID, private: false, favourite: true},
+            params: {
+                mapID: mapID,
+                private: false,
+                favourite: true,
+                shareID: null,
+            },
         });
     };
 

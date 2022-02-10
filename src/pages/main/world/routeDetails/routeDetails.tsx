@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Platform, SafeAreaView, Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
@@ -37,6 +37,8 @@ import styles from './style';
 import {useSharedMapData} from '@hooks/useSharedMapData';
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import GenericError from '@components/error/GenericError';
+import {StackActions} from '@react-navigation/native';
+import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -96,16 +98,21 @@ const RouteDetails = () => {
     const headerBackgroundHeight = getVerticalPx(
         100,
     ); /* equal to header height */
-
-    const onBackHandler = () => {
+    const onBackHandler = useCallback(() => {
         if (cameFromSharedLink) {
-            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN, {
-                screen: RegularStackRoute.HOME_SCREEN,
-            });
+            /**
+             * we use replace instead of navigate, because if you open the app using the shared link,
+             * this screen ends up as the top screen of the stack navigator
+             */
+            navigation.dispatch(
+                StackActions.replace(RegularStackRoute.TAB_MENU_SCREEN),
+            );
         } else {
             navigation.goBack();
         }
-    };
+    }, [cameFromSharedLink, navigation]);
+
+    useCustomBackNavButton(onBackHandler, true);
 
     const onGoToEditHandler = () => {
         navigation.navigate({
