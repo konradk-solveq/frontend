@@ -20,6 +20,7 @@ import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '@sharedComponents/inputs/oneLineTekst';
 import TranspLightBtn from '@sharedComponents/buttons/transpLightBtn';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
 
 import {
     setObjSize,
@@ -36,7 +37,11 @@ import Loader from '../loader/loader';
 import {BothStackRoute} from '@navigation/route';
 import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
-
+import {onboardingFinishedSelector} from '@storage/selectors';
+import {
+    setOnboardingFinished,
+    setDeepLinkActionForScreen,
+} from '@storage/actions';
 interface Props {
     navigation: any;
     route: any;
@@ -127,12 +132,26 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
         }
     };
 
+    const onboardingFinished = useAppSelector<boolean>(
+        onboardingFinishedSelector,
+    );
+    const onGoForwrdHandle = () => {
+        if (!onboardingFinished) {
+            dispatch(setOnboardingFinished(true));
+            dispatch(setDeepLinkActionForScreen('HomeTab'));
+        }
+        props.navigation.reset({
+            index: 0,
+            routes: [{name: BothStackRoute.TAB_MENU_SCREEN}],
+        });
+    };
+
     setObjSize(334, 50);
     const styles = StyleSheet.create({
         area: {
             width: '100%',
-            height: getVerticalPx(896) - keyboardHeight,
-            minHeight: getVerticalPx(450) + get.headerH(),
+            height: getVerticalPx(896) - keyboardHeight - getVerticalPx(100),
+            minHeight: getVerticalPx(400) - getHorizontalPx(100),
         },
         inputAndPlaceholder: getPosWithMinHeight(334, 90, 351 - 100, 100),
         title: {
@@ -152,12 +171,25 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             marginTop: 3,
             width: getWidthPx(),
         },
-        botton: {
+
+        btnHand: {
             position: 'absolute',
-            width: getWidthPx(),
+            width: getHorizontalPx(334),
+            height:
+                mainButtonsHeight(50 + 50) +
+                getVerticalPx(keyboardHeight === 0 ? 30 : 10),
+            left: getHorizontalPx(40),
+            marginTop: getVerticalPx(30),
+            marginBottom: getVerticalPx(65),
+            bottom: 0,
+        },
+        botton: {
+            width: getHorizontalPx(334),
             height: mainButtonsHeight(50),
-            left: getCenterLeftPx(),
-            bottom: getVerticalPx(65 + 100),
+            marginBottom: getVerticalPx(keyboardHeight === 0 ? 30 : 10),
+        },
+        skip: {
+            height: mainButtonsHeight(50),
         },
     });
 
@@ -199,12 +231,20 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                         />
                     </View>
 
-                    <BigRedBtn
-                        style={styles.botton}
-                        title={t('btn')}
-                        onpress={() => handleGoFoward()}
-                        testID="adding-by-number-next-btn"
-                    />
+                    <View style={styles.btnHand}>
+                        <BigRedBtn
+                            style={styles.botton}
+                            title={t('btn')}
+                            onpress={() => handleGoFoward()}
+                            testID="adding-by-number-next-btn"
+                        />
+
+                        <BigWhiteBtn
+                            style={styles.skip}
+                            title={t('btnSkip')}
+                            onpress={() => onGoForwrdHandle()}
+                        />
+                    </View>
                 </View>
             </ScrollView>
 

@@ -34,6 +34,7 @@ import ScanModal from './scanModal.android';
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
 import {BothStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
+import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
 import {
     setOnboardingFinished,
     setDeepLinkActionForScreen,
@@ -157,8 +158,6 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         return () => clearTimeout(refTimer.current);
     }, [readNFCTag, t, startScanNFC, cancelScanByNfcHandler]);
 
-    const [headHeight, setHeadHeight] = useState(0);
-
     const heandleScanByNfc = async () => {
         if (!isAndroid) {
             onScanNfcHandler();
@@ -223,9 +222,12 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             height: mainButtonsHeight(50),
             left: getHorizontalPx(40),
             marginTop: getVerticalPx(30),
-            marginBottom: getVerticalPx(65) + headHeight,
+            marginBottom: getVerticalPx(65) + get.headerH(),
         },
-        skip: {marginBottom: getVerticalPx(30)},
+        skip: {
+            marginBottom: getVerticalPx(30),
+            height: mainButtonsHeight(50),
+        },
     });
 
     if (isLoading) {
@@ -276,7 +278,6 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.goBack()}
                 inner={t('header')}
-                getHeight={setHeadHeight}
                 style={{backgroundColor: '#fff'}}
             />
 
