@@ -1,4 +1,5 @@
 import {useCallback, useEffect} from 'react';
+import {InteractionManager} from 'react-native';
 import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
 
 import {clearDeepLinkActionForScreen} from '@storage/actions';
@@ -49,9 +50,11 @@ const useNavigateOnDeepLink = (onlyAuth?: boolean) => {
                 );
                 if (navigateToScreen) {
                     const shareIdToPass = DeepLink.shareId;
-                    navigation.navigate({
-                        name: navigateToScreen,
-                        params: {shareID: shareIdToPass},
+                    InteractionManager.runAfterInteractions(() => {
+                        navigation.navigate({
+                            name: navigateToScreen,
+                            params: {shareID: shareIdToPass},
+                        });
                     });
                 }
 
