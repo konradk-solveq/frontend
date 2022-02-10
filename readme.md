@@ -164,7 +164,7 @@ storybook by setting the **LOAD_STORYBOOK** environment variable and running the
 control the storybook from the web browser run:
 - `adb reverse tcp:7007 tcp:7007`
 - `npm run storybook`
-- `react-native run-ios --configuration Dev.Debug --simulator`
-- `react-native run-android --variant=devDebug --appIdSuffix=dev`
+- `npm run dev:ios`
+- `npm run dev:android`
 
 It will make the website available at `http://localhost:7007/`.

@@ -12,6 +12,7 @@
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "lint": "eslint .",
+    "dev:ios": "cp .env.dev .env && react-native run-ios --configuration Dev.Debug",
     "dev:ios-bash": "ENVFILE=.env.dev react-native run-ios --variant=devDebug --appIdSuffix=dev",
     "dev:android": "cp .env.dev .env && react-native run-android --variant=devDebug --appIdSuffix=dev",
     "dev:android-cmd": "copy .env.dev .env && react-native run-android --variant=devDebug --appIdSuffix=dev",
