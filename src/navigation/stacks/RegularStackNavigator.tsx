@@ -37,7 +37,13 @@ const RegularScreens = () => (
     </>
 );
 
-const RegularStackNavigator: React.FC = () => {
+interface RegularStackNavigatorI {
+    skipSplashScreen?: boolean;
+}
+
+const RegularStackNavigator: React.FC<RegularStackNavigatorI> = ({
+    skipSplashScreen,
+}: RegularStackNavigatorI) => {
     const isActive = useAppSelector(trackerActiveSelector);
     const initialRun = useRef(true);
 
@@ -54,8 +60,11 @@ const RegularStackNavigator: React.FC = () => {
     }, []);
 
     const regularInitialRouteName = useMemo<keyof RootStackType>(
-        () => (!initialRun.current ? 'TabMenu' : 'SplashScreen'),
-        [],
+        () =>
+            !initialRun.current || skipSplashScreen
+                ? 'TabMenu'
+                : 'SplashScreen',
+        [skipSplashScreen],
     );
 
     const initInitialRouteName = useMemo<keyof RootStackType>(
@@ -75,7 +84,7 @@ const RegularStackNavigator: React.FC = () => {
             initialRouteName={initInitialRouteName}
             mode="modal"
             screenOptions={horizontalAnim}>
-            {!initialRun.current ? null : (
+            {!initialRun.current || skipSplashScreen ? null : (
                 <Stack.Screen
                     name="SplashScreen"
                     component={SplashScreen}

@@ -1,4 +1,4 @@
-import React, {useRef, RefObject} from 'react';
+import React, {useRef, RefObject, useEffect} from 'react';
 import {
     NavigationContainer,
     NavigationContainerRef,
@@ -24,6 +24,15 @@ const NavContainer: React.FC = () => {
 
     const routeNameRef = useRef<string | undefined>();
     const navigationRef: RefObject<NavigationContainerRef> = useRef(null);
+    const isAppRunFirstTime = useRef(false);
+
+    /**
+     * Check if it is app initial run
+     */
+    useEffect(() => {
+        isAppRunFirstTime.current = !isOnboardingFinished;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <NavigationContainer
@@ -52,7 +61,9 @@ const NavContainer: React.FC = () => {
             {!isOnboardingFinished ? (
                 <OnboardingStackNavigator />
             ) : (
-                <RegularStackNavigator />
+                <RegularStackNavigator
+                    skipSplashScreen={isAppRunFirstTime.current}
+                />
             )}
         </NavigationContainer>
     );
