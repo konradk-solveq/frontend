@@ -1,6 +1,6 @@
 import React, {useEffect, useCallback} from 'react';
 import {useDispatch} from 'react-redux';
-import NetInfo, {NetInfoState} from '@react-native-community/netinfo';
+import {NetInfoState, useNetInfo} from '@react-native-community/netinfo';
 
 import {setAppStatus} from '../../storage/actions';
 import {checkInternetConnectionQualityService} from '../../services/appService';
@@ -11,11 +11,15 @@ interface IProps {
 
 const NetworkStatus: React.FC<IProps> = ({children}: IProps) => {
     const dispatch = useDispatch();
+    const netInfoState = useNetInfo();
 
     const onChangeConnectivityState = useCallback(
         async (state: NetInfoState) => {
             let isOffline = false;
-            if (!state.isConnected || !state.isInternetReachable) {
+            if (
+                (!state.isConnected || !state.isInternetReachable) &&
+                state.isConnected !== null
+            ) {
                 isOffline = true;
             }
 
@@ -41,14 +45,10 @@ const NetworkStatus: React.FC<IProps> = ({children}: IProps) => {
     );
 
     useEffect(() => {
-        const netInfoListener = NetInfo.addEventListener(state => {
-            onChangeConnectivityState(state);
-        });
-
-        return () => {
-            netInfoListener();
-        };
-    }, [onChangeConnectivityState]);
+        if (netInfoState) {
+            onChangeConnectivityState(netInfoState);
+        }
+    }, [netInfoState, onChangeConnectivityState]);
 
     /* TODO: show network status bar based on <isConnected> */
     return <>{children}</>;

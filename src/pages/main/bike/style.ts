@@ -1,14 +1,11 @@
-import {Platform, StatusBar, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import {
     getVerticalPx,
     getHorizontalPx,
     getFontSize,
     mainButtonsHeight,
-} from '../../../helpers/layoutFoo';
-
-
-const isIOS = Platform.OS === 'ios';
+} from '@helpers/layoutFoo';
 
 const styles = StyleSheet.create({
     container: {
@@ -20,7 +17,7 @@ const styles = StyleSheet.create({
     },
     header: {
         backgroundColor: '#ffffff',
-        zIndex: isIOS ? 0 : 5,
+        zIndex: 5,
     },
     title: {
         paddingTop: getVerticalPx(65 - 40),
@@ -33,7 +30,7 @@ const styles = StyleSheet.create({
         zIndex: 10,
     },
     paramIcon: {
-        margin: getHorizontalPx(13),
+        margin: 0,
         width: getHorizontalPx(20),
         height: getHorizontalPx(20),
     },

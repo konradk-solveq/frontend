@@ -4,6 +4,7 @@ import {BikesState} from '../reducers/bikes';
 import {RootState} from '../storage';
 
 import {jsonParse} from '@utils/transformJson';
+import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 /**
  * Remove 'root' data.
@@ -106,6 +107,8 @@ export const migration = async (
 
         return state;
     } catch (error) {
+        console.error('[BIKES MIGRATION]', error);
+        loggErrorWithScope(error, 'migrateRootToRootMyKross');
         return state;
     }
 };

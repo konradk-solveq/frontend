@@ -1,33 +1,36 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {
+    GestureResponderEvent,
+    StyleSheet,
+    TouchableOpacity,
+} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 
-import {getWidthPxOf} from '../../../helpers/layoutFoo';
+import {getWidthPxOf} from '@helpers/layoutFoo';
 
 interface Props {
-    onpress: Function;
+    onpress: (event: GestureResponderEvent) => void;
 }
 
-const TopBackBtn: React.FC<Props> = (props: Props) => {
-    let styles = StyleSheet.create({
+const TopBackBtn: React.FC<Props> = ({onpress}: Props) => {
+    const styles = StyleSheet.create({
         btn: {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            // backgroundColor: '#d8232a',
             padding: getWidthPxOf(9),
             position: 'absolute',
             width: getWidthPxOf(40),
             height: getWidthPxOf(34),
             left: getWidthPxOf(30),
-            top: getWidthPxOf(-2),
             zIndex: 20,
         },
     });
 
     return (
         <TouchableOpacity
-            onPress={props.onpress}
+            testID="TopBackBtn"
+            onPress={onpress}
             style={styles.btn}
             hitSlop={{top: 10, bottom: 10, left: 20, right: 20}}>
             <Svg viewBox="0 0 20 16">

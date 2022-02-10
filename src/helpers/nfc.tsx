@@ -20,6 +20,12 @@ async function nfcIsSupported() {
     return await NfcManager.isSupported();
 }
 
+/**
+ * After update to RN 0.65.0 new warning apears.
+ * I've created PR to this library which fixes this bug.
+ *
+ * https://github.com/revtel/react-native-nfc-manager/issues/472
+ */
 const cleanUp = () => {
     NfcManager.setEventListener(NfcEvents.DiscoverTag, null);
     NfcManager.setEventListener(NfcEvents.SessionClosed, null);

@@ -3,7 +3,9 @@
 exports[`<Like /> Rendering Should match snapshot - checked 1`] = `
 <View
   accessible={true}
+  collapsable={false}
   focusable={true}
+  nativeID="animatedComponent"
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -68,7 +70,9 @@ exports[`<Like /> Rendering Should match snapshot - checked 1`] = `
 exports[`<Like /> Rendering Should match snapshot - unchecked 1`] = `
 <View
   accessible={true}
+  collapsable={false}
   focusable={true}
+  nativeID="animatedComponent"
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}
@@ -133,7 +137,9 @@ exports[`<Like /> Rendering Should match snapshot - unchecked 1`] = `
 exports[`<Like /> Rendering Should match snapshot - with custom size - unchecked 1`] = `
 <View
   accessible={true}
+  collapsable={false}
   focusable={true}
+  nativeID="animatedComponent"
   onClick={[Function]}
   onResponderGrant={[Function]}
   onResponderMove={[Function]}

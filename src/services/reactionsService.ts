@@ -8,7 +8,7 @@ export const modifyReactionService = async (
     try {
         const response = await modifyReaction(routeId, reaction);
 
-        if (!response?.data || response.status > 400) {
+        if (!response?.data || response.status >= 400) {
             let errorMessage = 'error';
             if (response.data?.message || response.data?.error) {
                 errorMessage = response.data.message || response.data.error;
@@ -35,7 +35,7 @@ export const removeReactionService = async (routeId: string) => {
     try {
         const response = await removeReaction(routeId);
 
-        if (!response?.data || response.status > 400) {
+        if (!response?.data || response.status >= 400) {
             let errorMessage = 'error';
             if (response.data?.message || response.data?.error) {
                 errorMessage = response.data.message || response.data.error;

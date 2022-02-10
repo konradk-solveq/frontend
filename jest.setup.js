@@ -4,6 +4,7 @@ import mockPermissions from 'react-native-permissions/mock';
 import mockDeviceInfo from 'react-native-device-info/jest/react-native-device-info-mock';
 import mockCompasHeding from 'react-native-compass-heading/__mocks__/react-native-compass-heading';
 import mockRNCNetInfo from '@react-native-community/netinfo/jest/netinfo-mock';
+import '@testing-library/jest-dom';
 // import mockCrashlytics from '@react-native-firebase/';
 
 /** https://stackoverflow.com/a/50793993 */
@@ -89,4 +90,10 @@ jest.mock('react-native-fs', () => ({
     TemporaryDirectoryPath: jest.fn(),
     LibraryDirectoryPath: jest.fn(),
     PicturesDirectoryPath: jest.fn(),
+}));
+
+jest.mock('expo-secure-store', () => ({
+    getItemAsync: jest.fn(),
+    setItemAsync: jest.fn(),
+    deleteItemAsync: jest.fn(),
 }));

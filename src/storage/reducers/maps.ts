@@ -257,8 +257,8 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 statusCode: 200,
             };
         }
-        case actionTypes.LOGOUT: {
-            return initialStateList;
+        case actionTypes.LOGOUT_USER: {
+            return {...initialStateList};
         }
     }
 

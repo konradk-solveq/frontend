@@ -1,15 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, Dimensions, Animated} from 'react-native';
+import {View, Text, Animated} from 'react-native';
 import I18n from 'react-native-i18n';
 
 import {trackerMapVisibilitySelector} from '@storage/selectors/routes';
 import {useAppSelector} from '@hooks/redux';
-import {
-    getHorizontalPx,
-    getVerticalPx,
-    getFontSize,
-    mainButtonsHeight,
-} from '@helpers/layoutFoo';
+import {getHorizontalPx} from '@helpers/layoutFoo';
 import {FindMeButton} from '@sharedComponents/buttons';
 
 import DisplayAverageSpeed from './displayAverageSpeed/displayAveragaSpeed';
@@ -19,63 +14,9 @@ import DisplayTimer from './displayTimer/displayTimer';
 import CurvedShape from './curvedShape/curvedShape';
 import CrossBtn from './crossBtn';
 import CompassButton from '@sharedComponents/buttons/compassBtn';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {isIOS} from '@utils/platform';
+import {counterPositions as cp} from '@helpers/counterPositions';
 
 import styles from './style';
-
-const {width, height} = Dimensions.get('window');
-
-const ACTION_BUTTONS_TOP = mainButtonsHeight(50) + getVerticalPx(65);
-
-const CONSTRAINER_HEIGHT_MAP_OFF = getVerticalPx(896);
-const CONSTRAINER_HEIGHT_MAP_ON = ACTION_BUTTONS_TOP + getHorizontalPx(80 + 26);
-
-const CONSTRAINER_BOTTOM_MAP_OFF = 0;
-const CONSTRAINER_BOTTOM_MAP_ON = 0;
-const CONSTRAINER_BOTTOM_APLA_SHOW = getHorizontalPx(100);
-
-const CENTER_VERTICAL_POS_OF_CROSS = getVerticalPx(896 / 2);
-
-const CROSS_BTN_BOTTOM_MAP_OFF =
-    CENTER_VERTICAL_POS_OF_CROSS - getHorizontalPx(51 / 2);
-const CROSS_BTN_BOTTOM_MAP_ON =
-    CONSTRAINER_HEIGHT_MAP_ON + getHorizontalPx(-23);
-const CROSS_BTN_BOTTOM_APLA_SHOW =
-    CONSTRAINER_HEIGHT_MAP_ON + getHorizontalPx(-26);
-
-const WRAP_HEIGHT_MAP_OFF = getVerticalPx(334);
-const WRAP_HEIGHT_MAP_ON = getVerticalPx(50);
-
-const WRAP_TOP_MAP_OFF = CENTER_VERTICAL_POS_OF_CROSS - WRAP_HEIGHT_MAP_OFF / 2;
-const WRAP_TOP_MAP_ON = getHorizontalPx(36);
-const WRAP_TOP_APLA_SHOW = getHorizontalPx(24);
-
-const CELL_ROW_HEIGHT_MAP_OFF = WRAP_HEIGHT_MAP_OFF / 2;
-const CELL_ROW_HEIGHT_MAP_ON = WRAP_HEIGHT_MAP_ON;
-
-const BIG_FONT = getFontSize(57);
-const SMALL_FONT = getFontSize(23);
-const LABEL_FONT = getFontSize(18);
-
-const FIND_ME_BOTTOM_MAP_ON = ACTION_BUTTONS_TOP + getHorizontalPx(140);
-const FIND_ME_BOTTOM_APLA_SHOW = ACTION_BUTTONS_TOP + getHorizontalPx(240);
-
-const LOWER_LINE_PROPORTIONS = 1.08;
-
-const CELL_WIDTH_MAP_OFF = (width - getHorizontalPx(80)) / 2;
-const CELL_WIDTH_MAP_ON =
-    ((width - getHorizontalPx(80)) / 4) * LOWER_LINE_PROPORTIONS;
-
-const CELL_ROW_LEFT_MAP_OFF = 0;
-const CELL_ROW_LEFT_MAP_ON =
-    ((width - getHorizontalPx(80)) / 2) * LOWER_LINE_PROPORTIONS;
-
-const CELL_ROW_TOP_MAP_OFF = getVerticalPx(12);
-const CELL_ROW_TOP_MAP_ON = getVerticalPx(-50);
-
-const PLUG_BOTTOM_MAP_OFF = 0;
-const PLUG_BOTTOM_MAP_ON = -height + CONSTRAINER_HEIGHT_MAP_ON;
 
 interface IProps {
     time: Date | undefined;
@@ -114,17 +55,19 @@ const NativeCounter: React.FC<IProps> = ({
     const trackerMapVisibility = useAppSelector(trackerMapVisibilitySelector);
 
     const containerHeight = useRef(
-        new Animated.Value(CONSTRAINER_HEIGHT_MAP_OFF),
+        new Animated.Value(cp.constrainerHeight.getMapOff()),
     ).current;
     const containerBottom = useRef(new Animated.Value(0)).current;
-    const wrapHeight = useRef(new Animated.Value(WRAP_HEIGHT_MAP_OFF)).current;
-    const wrapTop = useRef(new Animated.Value(WRAP_TOP_MAP_OFF)).current;
+    const wrapHeight = useRef(new Animated.Value(cp.wrapHeight.getMapOff()))
+        .current;
+    const wrapTop = useRef(new Animated.Value(cp.wrapTop.getMapOff())).current;
     const findMeBottom = useRef(
-        new Animated.Value(getHorizontalPx(FIND_ME_BOTTOM_MAP_ON)),
+        new Animated.Value(getHorizontalPx(cp.findMeBottom.getMapOn())),
     ).current;
     const displayContainer = useRef(new Animated.Value(0)).current;
-    const crossBtnBottom = useRef(new Animated.Value(CROSS_BTN_BOTTOM_MAP_OFF))
-        .current;
+    const crossBtnBottom = useRef(
+        new Animated.Value(cp.crossBtnBottom.getMapOff()),
+    ).current;
     const findMeZIndex = useRef(new Animated.Value(1)).current;
     const labelOpacity = useRef(new Animated.Value(1)).current;
     const plugBottom = useRef(new Animated.Value(0)).current;
@@ -136,14 +79,14 @@ const NativeCounter: React.FC<IProps> = ({
 
         Animated.timing(containerHeight, {
             toValue: isMapHiden
-                ? CONSTRAINER_HEIGHT_MAP_OFF
-                : CONSTRAINER_HEIGHT_MAP_ON,
+                ? cp.constrainerHeight.getMapOff()
+                : cp.constrainerHeight.getMapOn(),
             duration: duration,
             useNativeDriver: false,
         }).start();
 
         // eslint-disable-next-line prettier/prettier
-        const containerBottomValue = condition ? CONSTRAINER_BOTTOM_APLA_SHOW : (isMapHiden ? CONSTRAINER_BOTTOM_MAP_OFF : CONSTRAINER_BOTTOM_MAP_ON);
+        const containerBottomValue = condition ? cp.constrainerBottom.getAplaShow() : (isMapHiden ? cp.constrainerBottom.getMapOff() : cp.constrainerBottom.getMapOn());
         Animated.timing(containerBottom, {
             toValue: containerBottomValue,
             duration: duration,
@@ -151,7 +94,7 @@ const NativeCounter: React.FC<IProps> = ({
         }).start();
 
         // eslint-disable-next-line prettier/prettier
-        const arrowBottomValue = isMapHiden ? CROSS_BTN_BOTTOM_MAP_OFF : (aplaShow ? CROSS_BTN_BOTTOM_APLA_SHOW : CROSS_BTN_BOTTOM_MAP_ON);
+        const arrowBottomValue = isMapHiden ? cp.crossBtnBottom.getMapOff() : (aplaShow ? cp.crossBtnBottom.getAplaShow() : cp.crossBtnBottom.getMapOn());
         Animated.timing(crossBtnBottom, {
             toValue: arrowBottomValue,
             duration: duration,
@@ -159,13 +102,15 @@ const NativeCounter: React.FC<IProps> = ({
         }).start();
 
         Animated.timing(wrapHeight, {
-            toValue: isMapHiden ? WRAP_HEIGHT_MAP_OFF : WRAP_HEIGHT_MAP_ON,
+            toValue: isMapHiden
+                ? cp.wrapHeight.getMapOff()
+                : cp.wrapHeight.getMapOn(),
             duration: duration,
             useNativeDriver: false,
         }).start();
 
         // eslint-disable-next-line prettier/prettier
-        const wrapTopValue = condition ? WRAP_TOP_APLA_SHOW : (isMapHiden ? WRAP_TOP_MAP_OFF : WRAP_TOP_MAP_ON);
+        const wrapTopValue = condition ? cp.wrapTop.getAplaShow() : (isMapHiden ? cp.wrapTop.getMapOff() : cp.wrapTop.getMapOn());
         Animated.timing(wrapTop, {
             toValue: wrapTopValue,
             duration: duration,
@@ -186,14 +131,16 @@ const NativeCounter: React.FC<IProps> = ({
 
         Animated.timing(findMeBottom, {
             toValue: condition
-                ? FIND_ME_BOTTOM_APLA_SHOW
-                : FIND_ME_BOTTOM_MAP_ON,
+                ? cp.findMeBottom.getAplaShow()
+                : cp.findMeBottom.getMapOn(),
             duration: duration,
             useNativeDriver: false,
         }).start();
 
         Animated.timing(plugBottom, {
-            toValue: isMapHiden ? PLUG_BOTTOM_MAP_OFF : PLUG_BOTTOM_MAP_ON,
+            toValue: isMapHiden
+                ? cp.plugBottom.getMapOff()
+                : cp.plugBottom.getMapOn(),
             duration: duration,
             useNativeDriver: false,
         }).start();
@@ -207,17 +154,17 @@ const NativeCounter: React.FC<IProps> = ({
 
     const cellWidth = displayContainer.interpolate({
         inputRange: [0, 1],
-        outputRange: [CELL_WIDTH_MAP_OFF, CELL_WIDTH_MAP_ON],
+        outputRange: [cp.cellWidth.getMapOff(), cp.cellWidth.getMapOn()],
     });
 
     const cellRowLeft = displayContainer.interpolate({
         inputRange: [0, 1],
-        outputRange: [CELL_ROW_LEFT_MAP_OFF, CELL_ROW_LEFT_MAP_ON],
+        outputRange: [cp.cellRowLeft.getMapOff(), cp.cellRowLeft.getMapOn()],
     });
 
     const cellRowTop = displayContainer.interpolate({
         inputRange: [0, 1],
-        outputRange: [CELL_ROW_TOP_MAP_OFF, CELL_ROW_TOP_MAP_ON],
+        outputRange: [cp.cellRowTop.getMapOff(), cp.cellRowTop.getMapOn()],
     });
 
     useEffect(() => {
@@ -253,7 +200,7 @@ const NativeCounter: React.FC<IProps> = ({
     const arrowBtnActionHandler = () => {
         const containerH = containerHeight?.__getValue();
 
-        if (containerH > CONSTRAINER_HEIGHT_MAP_ON + 1) {
+        if (containerH > cp.constrainerHeight.getMapOn() + 1) {
             startAnimation();
             setMapHiden(false);
         } else {
@@ -287,8 +234,8 @@ const NativeCounter: React.FC<IProps> = ({
                             styles.row,
                             {
                                 height: mapHiden
-                                    ? CELL_ROW_HEIGHT_MAP_OFF
-                                    : CELL_ROW_HEIGHT_MAP_ON,
+                                    ? cp.cellRowHeight.getMapOff()
+                                    : cp.cellRowHeight.getMapOn(),
                             },
                         ]}>
                         <Animated.View
@@ -306,13 +253,17 @@ const NativeCounter: React.FC<IProps> = ({
                                 <Animated.Text
                                     style={[
                                         styles.label,
-                                        {fontSize: LABEL_FONT},
+                                        {fontSize: cp.font.getLabel()},
                                     ]}>
                                     {trans.distance}
                                 </Animated.Text>
                             </Animated.View>
                             <DisplayDistance
-                                fontSize={mapHiden ? BIG_FONT : SMALL_FONT}
+                                fontSize={
+                                    mapHiden
+                                        ? cp.font.getBig()
+                                        : cp.font.getSmall()
+                                }
                             />
                         </Animated.View>
                         <Animated.View
@@ -331,7 +282,7 @@ const NativeCounter: React.FC<IProps> = ({
                                     style={[
                                         styles.label,
                                         styles.rightLabel,
-                                        {fontSize: LABEL_FONT},
+                                        {fontSize: cp.font.getLabel()},
                                     ]}>
                                     {trans.time}
                                 </Text>
@@ -339,7 +290,11 @@ const NativeCounter: React.FC<IProps> = ({
                             <DisplayTimer
                                 time={time}
                                 isRunning={isRunning}
-                                fontSize={mapHiden ? BIG_FONT : SMALL_FONT}
+                                fontSize={
+                                    mapHiden
+                                        ? cp.font.getBig()
+                                        : cp.font.getSmall()
+                                }
                             />
                         </Animated.View>
                     </View>
@@ -349,8 +304,8 @@ const NativeCounter: React.FC<IProps> = ({
                             {
                                 marginLeft: cellRowLeft,
                                 height: mapHiden
-                                    ? CELL_ROW_HEIGHT_MAP_OFF
-                                    : CELL_ROW_HEIGHT_MAP_ON,
+                                    ? cp.cellRowHeight.getMapOff()
+                                    : cp.cellRowHeight.getMapOn(),
                             },
                         ]}>
                         <Animated.View
@@ -369,13 +324,17 @@ const NativeCounter: React.FC<IProps> = ({
                                 <Text
                                     style={[
                                         styles.label,
-                                        {fontSize: LABEL_FONT},
+                                        {fontSize: cp.font.getLabel()},
                                     ]}>
                                     {trans.speed}
                                 </Text>
                             </Animated.View>
                             <DisplaySpeed
-                                fontSize={mapHiden ? BIG_FONT : SMALL_FONT}
+                                fontSize={
+                                    mapHiden
+                                        ? cp.font.getBig()
+                                        : cp.font.getSmall()
+                                }
                             />
                         </Animated.View>
                         <Animated.View
@@ -395,14 +354,18 @@ const NativeCounter: React.FC<IProps> = ({
                                 <Text
                                     style={[
                                         styles.label,
-                                        {fontSize: LABEL_FONT},
+                                        {fontSize: cp.font.getLabel()},
                                     ]}>
                                     {trans.averageSpeed}
                                 </Text>
                             </Animated.View>
                             <DisplayAverageSpeed
                                 time={time}
-                                fontSize={mapHiden ? BIG_FONT : SMALL_FONT}
+                                fontSize={
+                                    mapHiden
+                                        ? cp.font.getBig()
+                                        : cp.font.getSmall()
+                                }
                             />
                         </Animated.View>
                     </Animated.View>

@@ -12,6 +12,7 @@ import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import Paragraph from './paragraph';
+import { getAppLayoutConfig } from '@src/theme/appLayoutConfig';
 
 interface Props {
     navigation: any;
@@ -31,6 +32,9 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
         title: {
             top: getVerticalPx(-8),
         },
+        header: {
+            marginHorizontal: 60,
+        },
     });
 
     return (
@@ -43,7 +47,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
                         )}
 
                         {data.paragraph &&
-                            data.paragraph.map((e, i) => (
+                            data.paragraph.map((e: any, i: number) => (
                                 <Paragraph
                                     marginTop={e.marginTop}
                                     font={e.font}
@@ -60,7 +64,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
                 <StackHeader
                     onpress={() => props.navigation.goBack()}
                     inner={data.header}
-                    titleStyle={styles.title}
+                    titleStyle={styles.header}
                 />
             )}
         </SafeAreaView>

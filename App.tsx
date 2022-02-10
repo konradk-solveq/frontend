@@ -11,7 +11,7 @@ import StaticLocationProvider from '@providers/staticLocationProvider/staticLoca
 import TopNotificationProvider from '@providers/topNotificationProvider/TopNotificationProvider';
 
 import {initAppSize} from '@helpers/layoutFoo';
-import {initConfig} from '@helpers/appLayoutConfig';
+import {initConfig} from '@theme/appLayoutConfig';
 
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';

@@ -6,10 +6,10 @@ import {
 import * as actionTypes from './actionTypes';
 import {
     fetchGenericBikeData,
-    setBikesListByFrameNumbers,
     fetchMapsList,
-    syncRouteDataFromQueue,
     fetchPrivateMapsList,
+    setBikesListByFrameNumbers,
+    syncRouteDataFromQueue,
 } from './index';
 import {fetchFeaturedMapsList, fetchPlannedMapsList} from './maps';
 import {AppThunk} from '@storage/thunk';
@@ -22,13 +22,13 @@ import {
     RegulationType,
     TermsAndConditionsType,
 } from '@models/regulations.model';
-import {setUserAgentHeader} from '@api/index';
+import {setUserAgentHeader} from '@api/';
 import {
     getAppConfigService,
-    getFaqService,
     getAppTermsAndConditionsService,
+    getFaqService,
     getNewRegulationsService,
-} from '@services/index';
+} from '@services/';
 import {I18n} from '@translations/I18n';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
@@ -36,6 +36,8 @@ import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
 import {RouteActionT, RouteAdditionalInfoT} from '@type/debugRoute';
 import {DebugRouteInstance} from '@debugging/debugRoute';
+import {batch} from 'react-redux';
+import {AuthState} from '../reducers/auth';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -123,6 +125,11 @@ export const setRouteDebugMode = (routeDebugMode: boolean) => ({
     routeDebugMode: routeDebugMode,
 });
 
+export const setInitMapsDataSynchedState = (initMapsDataSynched: boolean) => ({
+    type: actionTypes.SET_INIT_MAPS_DATA_SYNCHED,
+    initMapsDataSynched: initMapsDataSynched,
+});
+
 export const clearAppError = () => ({
     type: actionTypes.CLEAR_APP_ERROR,
 });
@@ -141,8 +148,11 @@ export const fetchAppConfig = (
             return;
         }
 
-        dispatch(setAppConfig(response.data));
-        dispatch(clearAppError());
+        batch(() => {
+            dispatch(setAppConfig(response.data));
+            dispatch(clearAppError());
+        });
+
         if (!noLoader) {
             dispatch(setSyncStatus(false));
         }
@@ -182,7 +192,7 @@ export const fetchAppFaq = (
             },
         ];
 
-        response.data.faq.forEach(element => {
+        response.data.faq.forEach((element: FaqType) => {
             links.forEach(
                 link =>
                     (element.answer = element.answer.replace(
@@ -221,7 +231,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         const {
             isOffline,
             internetConnectionInfo,
-            showedRegulations,
+            location,
         }: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
@@ -231,40 +241,52 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
             dispatch(setSyncStatus(false));
             return;
         }
-        const {sessionData} = getState().auth;
+        const {sessionData}: AuthState = getState().authData;
         const {onboardingFinished} = getState().user;
         setUserAgentHeader();
-
-        await dispatch(fetchAppRegulations(true));
-        await dispatch(fetchAppConfig(true));
+        if (!onboardingFinished) {
+            dispatch(setSyncStatus(false));
+            return;
+        }
 
         const {currentRoute}: RoutesState = getState().routes;
 
-        /* Omit synch map data if recording is active */
-        const isRecordingActive = currentRoute?.isActive;
+        batch(async () => {
+            dispatch(fetchAppRegulations(true));
+            dispatch(fetchAppConfig(true));
 
-        if (onboardingFinished && !isRecordingActive) {
-            await dispatch(fetchMapsList());
-            dispatch(fetchFeaturedMapsList());
-        }
+            /* Omit synch map data if recording is active */
+            const isRecordingActive = currentRoute?.isActive;
+            if (onboardingFinished && !isRecordingActive) {
+                if (location) {
+                    dispatch(setInitMapsDataSynchedState(true));
+                    await dispatch(fetchMapsList(undefined, undefined, true));
+                    await dispatch(fetchFeaturedMapsList(undefined, true));
+                }
+            }
 
-        if (sessionData?.access_token && !isRecordingActive) {
-            dispatch(fetchPrivateMapsList());
-            dispatch(fetchPlannedMapsList());
-        }
+            if (sessionData?.access_token && !isRecordingActive) {
+                if (location) {
+                    await dispatch(
+                        fetchPrivateMapsList(undefined, undefined, true),
+                    );
+                    dispatch(fetchPlannedMapsList(undefined, undefined, true));
+                }
+            }
 
-        if (onboardingFinished && !isRecordingActive) {
-            dispatch(fetchGenericBikeData());
-            dispatch(setBikesListByFrameNumbers());
-        }
+            if (onboardingFinished && !isRecordingActive) {
+                dispatch(fetchGenericBikeData());
+                dispatch(setBikesListByFrameNumbers());
+            }
 
-        if (sessionData?.access_token && !isRecordingActive) {
-            dispatch(syncRouteDataFromQueue());
-        }
+            if (sessionData?.access_token && !isRecordingActive) {
+                await dispatch(syncRouteDataFromQueue(true));
+            }
 
-        await dispatch(fetchAppFaq(true));
+            await dispatch(fetchAppFaq(true));
 
-        dispatch(setSyncStatus(false));
+            dispatch(setSyncStatus(false));
+        });
     } catch (error) {
         console.log(`[appSyncData] - ${error}`);
         const err = convertToApiError(error);
@@ -336,8 +358,10 @@ export const fetchAppRegulations = (
                 return;
             }
 
-            dispatch(setAppRegulation(newRegulations.data.regulation));
-            dispatch(setAppPolicy(newRegulations.data.policy));
+            batch(() => {
+                dispatch(setAppRegulation(newRegulations.data.regulation));
+                dispatch(setAppPolicy(newRegulations.data.policy));
+            });
         }
 
         dispatch(clearAppError());
@@ -418,5 +442,63 @@ export const appendRouteDebuggInfoToFIle = (
         const err = convertToApiError(error);
 
         loggErrorWithScope(err, 'appendRouteDebuggInfoToFIle');
+    }
+};
+
+export const synchMapsData = (
+    noLoader?: boolean,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    if (!noLoader) {
+        dispatch(setSyncStatus(true));
+    }
+    try {
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(
+                setSyncError(I18n.t('dataAction.noInternetConnection'), 500),
+            );
+            if (!noLoader) {
+                dispatch(setSyncStatus(false));
+            }
+            return;
+        }
+        const {sessionData}: AuthState = getState().authData;
+        const {onboardingFinished} = getState().user;
+        if (!onboardingFinished && !noLoader) {
+            dispatch(setSyncStatus(false));
+            return;
+        }
+
+        const {currentRoute}: RoutesState = getState().routes;
+
+        batch(async () => {
+            /* Omit synch map data if recording is active */
+            const isRecordingActive = currentRoute?.isActive;
+            if (onboardingFinished && !isRecordingActive) {
+                await dispatch(fetchMapsList(undefined, undefined, !noLoader));
+                await dispatch(fetchFeaturedMapsList(undefined, !noLoader));
+                dispatch(setInitMapsDataSynchedState(true));
+            }
+
+            if (sessionData?.access_token && !isRecordingActive) {
+                await dispatch(
+                    fetchPrivateMapsList(undefined, undefined, !noLoader),
+                );
+                dispatch(fetchPlannedMapsList(undefined, undefined, !noLoader));
+            }
+
+            if (!noLoader) {
+                dispatch(setSyncStatus(false));
+            }
+        });
+    } catch (error) {
+        console.log(`[synchMapsData] - ${error}`);
+        const err = convertToApiError(error);
+        const errorMessage = I18n.t('dataAction.apiError');
+
+        loggErrorWithScope(err, 'synchMapsData');
+
+        dispatch(setSyncError(errorMessage, 500));
     }
 };

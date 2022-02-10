@@ -4,22 +4,37 @@ import {SelectOptionType} from '@models/map.model';
 import {FaqType} from '@models/regulations.model';
 import {BasicCoordsType} from '@type/coords';
 import {RootState} from '@storage/storage';
-import {SelectEnumOptionsT} from '@src/models/config.model';
+import {SelectEnumOptionsT} from '@models/config.model';
+import {InternetConnectionInfoType} from '@interfaces/internetConnection';
 
 export const syncAppSelector = (state: RootState): boolean => state.app.sync;
 
 export const isOnlineAppStatusSelector = (state: RootState): boolean =>
     !state.app.isOffline;
 
-export const isGoodConnectionQualitySelector = (state: RootState): boolean =>
-    state.app.internetConnectionInfo?.goodConnectionQuality;
-
-export const appErrorSelector = (
+export const internetConnectionInfoSelector = (
     state: RootState,
-): {message: string; statusCode: number} => ({
-    message: state.app.error,
-    statusCode: state.app.statusCode,
-});
+): InternetConnectionInfoType => state.app.internetConnectionInfo;
+
+export const isGoodConnectionQualitySelector = createSelector(
+    internetConnectionInfoSelector,
+    connection => connection.goodConnectionQuality,
+);
+
+export const appErrorMessageSelector = (state: RootState): string =>
+    state.app.error;
+
+export const appStatusCodeSelector = (state: RootState): string =>
+    state.app.statusCode;
+
+export const appErrorSelector = createSelector(
+    appErrorMessageSelector,
+    appStatusCodeSelector,
+    (message, statusCode) => ({
+        message,
+        statusCode,
+    }),
+);
 
 export const appNameSelector = (state: RootState): string =>
     state.app.config.name;
@@ -73,3 +88,6 @@ export const globalLocationSelector = (
 
 export const routeDebugModeSelector = (state: RootState): boolean =>
     state.app.routeDebugMode;
+
+export const isInitMapsDataSynchedSelector = (state: RootState): boolean =>
+    state.app.initMapsDataSynched;

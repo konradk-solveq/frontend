@@ -18,6 +18,7 @@ import {
     stopBackgroundGeolocationPlugin,
 } from '@utils/geolocation';
 import {
+    authUserIsAuthenticatedStateSelector,
     onboardingFinishedSelector,
     trackerActiveSelector,
 } from '@storage/selectors';
@@ -40,6 +41,9 @@ const useProviderStaticLocation = () => {
     const locationDialogHasBeenShown = useAppSelector(
         showedLocationInfoSelector,
     );
+    const isAuthanticated = useAppSelector(
+        authUserIsAuthenticatedStateSelector,
+    );
 
     const {locationType, permissionGranted} = useCheckLocationType();
 
@@ -47,13 +51,15 @@ const useProviderStaticLocation = () => {
     const [isTrackingActivated, setIsTrackingActivated] = useState(false);
 
     /**
-     * Get initial location with low accuracy
+     * Get initial location with low accuracy.
+     * It should be rerun after user has logged out and logged in again.
      */
     useEffect(() => {
         if (
             !initLocationRef.current &&
             isOnboardingFinished &&
-            permissionGranted
+            permissionGranted &&
+            isAuthanticated
         ) {
             const getLocation = async () => {
                 const loc = await getLocationWithLowAccuracy();
@@ -75,7 +81,7 @@ const useProviderStaticLocation = () => {
         return () => {
             initLocationRef.current = false;
         };
-    }, [dispatch, permissionGranted, isOnboardingFinished]);
+    }, [dispatch, permissionGranted, isOnboardingFinished, isAuthanticated]);
 
     /**
      * Set BacgkroundGeolocation config based on user's choice

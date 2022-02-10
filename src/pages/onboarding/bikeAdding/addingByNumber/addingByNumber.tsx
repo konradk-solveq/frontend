@@ -10,19 +10,16 @@ import {
 } from 'react-native';
 import I18n from 'react-native-i18n';
 
-import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
-import {setBikesListByFrameNumber} from '../../../../storage/actions';
-import {validateData} from '../../../../utils/validation/validation';
-import {userBikeValidationRules} from '../../../../models/bike.model';
-import {
-    loadingBikesSelector,
-    frameNumberSelector,
-} from '../../../../storage/selectors';
+import {useAppSelector, useAppDispatch} from '@hooks/redux';
+import {setBikesListByFrameNumber} from '@storage/actions';
+import {validateData} from '@utils/validation/validation';
+import {userBikeValidationRules} from '@models/bike.model';
+import {loadingBikesSelector, frameNumberSelector} from '@storage/selectors';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import OneLineTekst from '../../../../sharedComponents/inputs/oneLineTekst';
-import TranspLightBtn from '../../../../sharedComponents/buttons/transpLightBtn';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import OneLineTekst from '@sharedComponents/inputs/oneLineTekst';
+import TranspLightBtn from '@sharedComponents/buttons/transpLightBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 
 import {
     setObjSize,
@@ -34,10 +31,10 @@ import {
     getHorizontalPx,
     getFontSize,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 import Loader from '../loader/loader';
-import {BothStackRoute} from '../../../../navigation/route';
-import {getAppLayoutConfig as get} from '@helpers/appLayoutConfig';
+import {BothStackRoute} from '@navigation/route';
+import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
@@ -50,7 +47,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     const frame: string = useAppSelector(frameNumberSelector);
     const isLoading: boolean = useAppSelector(loadingBikesSelector);
 
-    const trans = I18n.t('AddingByNumber');
+    const trans: any = I18n.t('AddingByNumber');
 
     const [inputFrame, setInputFrame] = useState('');
     const [canGoFoward, setCanGoFoward] = useState(false);
@@ -60,46 +57,51 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     const [keyboardHeight, setKeyboardHeight] = useState(0);
     const keyboardDidShow = (e: any) =>
         setKeyboardHeight(e.endCoordinates.height);
-    const keyboardDidHide = (e: any) =>
-        setKeyboardHeight(e.endCoordinates.height);
+    const keyboardDidHide = () => setKeyboardHeight(0);
 
     useEffect(() => {
-        Keyboard.addListener('keyboardDidShow', keyboardDidShow);
-        Keyboard.addListener('keyboardDidHide', keyboardDidHide);
+        const didShow = Keyboard.addListener(
+            'keyboardDidShow',
+            keyboardDidShow,
+        );
+        const didHide = Keyboard.addListener(
+            'keyboardDidHide',
+            keyboardDidHide,
+        );
 
         return () => {
-            Keyboard.removeListener('keyboardDidShow', keyboardDidShow);
-            Keyboard.removeListener('keyboardDidHide', keyboardDidHide);
+            didShow.remove();
+            didHide.remove();
         };
     }, []);
 
     // do pobrania nazwy użytkownika zz local sorage
     useEffect(() => {
-        if (typeof frame === 'string' && !props.route?.params?.emptyFrame) {
+        if (frame && !props.route?.params?.emptyFrame) {
             setInputFrame(frame);
         }
     }, [frame, props.route?.params?.emptyFrame]);
 
     // do wstawiania wartości do inputa i reset powiadomień o błdnym wypełnieniu
-    const hendleInputFrame = (value: string) => {
+    const handleInputFrame = (value: string) => {
         setInputFrame(value);
         setForceMessageWrong('');
     };
 
     // valizadja poprawności inputa
-    const hendleValidationOk = (value: string) => {
+    const handleValidationOk = (value: string) => {
         return validateData(userBikeValidationRules.serial_number, value);
     };
 
     // validacja błędów, tu: czy wszystkie znaki są cyframi
-    const hendleValidationWrong = (value: string) => {
+    const handleValidationWrong = () => {
         // const reg = new RegExp('^[0-9]+$');
         // if (value.length > 0 && !reg.test(value)) return true;
         return false;
     };
 
     // walidacja po naciśnięciu przyciku 'Dalej'
-    const hendleGoFoward = async () => {
+    const handleGoFoward = async () => {
         if (canGoFoward) {
             const trimmedInputFrame = inputFrame?.trim();
             try {
@@ -174,13 +176,14 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                     <View style={styles.inputAndPlaceholder}>
                         <OneLineTekst
                             placeholder={trans.placeholder}
-                            onChangeText={hendleInputFrame}
-                            validationOk={hendleValidationOk}
-                            validationWrong={hendleValidationWrong}
+                            onChangeText={handleInputFrame}
+                            validationOk={handleValidationOk}
+                            validationWrong={handleValidationWrong}
                             messageWrong={trans.messageWrong}
                             value={inputFrame}
                             validationStatus={setCanGoFoward}
                             forceMessageWrong={forceMessageWrong}
+                            testId="frame-number-input"
                         />
 
                         <TranspLightBtn
@@ -199,7 +202,8 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                     <BigRedBtn
                         style={styles.botton}
                         title={trans.btn}
-                        onpress={() => hendleGoFoward()}
+                        onpress={() => handleGoFoward()}
+                        testID="adding-by-number-next-btn"
                     />
                 </View>
             </ScrollView>

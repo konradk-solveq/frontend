@@ -1,30 +1,51 @@
-import React from 'react';
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import React, {useRef, RefObject} from 'react';
+import {
+    NavigationContainer,
+    NavigationContainerRef,
+} from '@react-navigation/native';
 
 import {onboardingFinishedSelector} from '@storage/selectors';
 import {useAppSelector} from '@hooks/redux';
-import useAuthorization from '@hooks/useAuthorization';
 import useAppInit from '@hooks/useAppInit';
 import OnboardingStackNavigator from '@navigation/stacks/OnboardingStackNavigator';
 import RegularStackNavigator from '@navigation/stacks/RegularStackNavigator';
+import {KrossTheme} from '@theme/navigationTheme';
 
-const KrossTheme = {
-    ...DefaultTheme,
-    colors: {
-        ...DefaultTheme.colors,
-        background: '#ffffff',
-    },
-};
+import {getScreenName} from '@utils/navigation';
+import {sendAnalyticInfoAboutNewScreen} from '@analytics/firebaseAnalytics';
 
 const NavContainer: React.FC = () => {
     const isOnboardingFinished: boolean = useAppSelector(
         onboardingFinishedSelector,
     );
-    useAuthorization(isOnboardingFinished);
     useAppInit();
 
+    const routeNameRef = useRef<string | undefined>();
+    const navigationRef: RefObject<NavigationContainerRef> = useRef(null);
+
     return (
-        <NavigationContainer theme={KrossTheme}>
+        <NavigationContainer
+            ref={navigationRef}
+            theme={KrossTheme}
+            onReady={async () => {
+                const routeName = await getScreenName(navigationRef);
+                if (routeName) {
+                    routeNameRef.current = routeName;
+                }
+            }}
+            onStateChange={async () => {
+                const previousRouteName = routeNameRef.current;
+                const currentRouteName = await getScreenName(navigationRef);
+
+                if (currentRouteName) {
+                    await sendAnalyticInfoAboutNewScreen(
+                        currentRouteName,
+                        previousRouteName,
+                    );
+                }
+
+                routeNameRef.current = currentRouteName;
+            }}>
             {!isOnboardingFinished ? (
                 <OnboardingStackNavigator />
             ) : (

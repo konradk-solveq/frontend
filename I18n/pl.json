@@ -4,14 +4,19 @@
         "skip": "pomiń",
         "title_1": "Poznaj swój rower!",
         "text_1": "Podaj numer ramy roweru. Jeśli jest to\u00a0rower KROSS, otrzymasz szczegółowe informacje o\u00a0rowerze, np.\u00a0kolor, rozmiar czy dokładną specyfikację. Dla rowerów innych producentów zakres informacji będzie mniejszy.",
+        "btn_1": "ODKRYWAJ MIEJSCA",
         "title_2": "Sprawdź najbliższy przegląd",
         "text_2": "Od dziś nie zapomnisz o\u00a0przeglądach gwarancyjnych i\u00a0okresowych. Podpowiemy Ci,\u00a0kiedy udać się do\u00a0serwisu oraz jaki zakres czynności powinien zostać wykonywany w\u00a0ramach każdego z\u00a0przeglądów.",
+        "btn_2": "ZNAJDŹ SERWIS",
         "title_3": "Znajdź najbliższy punkt serwisowy",
         "text_3": "Jeśli Twój rower nie jest w\u00a0pełni sprawny lub wymaga okresowego przeglądu, nie\u00a0zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów.",
+        "btn_3": "POZNAJ ROWER",
         "title_4": "Nagrywaj trasy",
         "text_4": "Jeździsz amatorsko lub wyczynowo na\u00a0rowerze, dołącz do\u00a0drużyny KROSS. Nagrywaj przejechane kilometry w\u00a0aplikacji, a\u00a0najciekawsze trasy publikuj na\u00a0Mapie Rowerowej.",
+        "btn_4": "WYKONAJ PRZEGLĄD",
         "title_5": "Odkrywaj ciekawe miejsca",
-        "text_5": "Nie masz pomysłu na\u00a0wycieczkę rowerową -\u00a0sprawdź trasy rekomendowane przez KROSS. Wyszukaj trasy na\u00a0Mapie Rowerowej i\u00a0pobierz te, z\u00a0którymi chcesz się zmierzyć."
+        "text_5": "Nie masz pomysłu na\u00a0wycieczkę rowerową -\u00a0sprawdź trasy rekomendowane przez KROSS. Wyszukaj trasy na\u00a0Mapie Rowerowej i\u00a0pobierz te, z\u00a0którymi chcesz się zmierzyć.",
+        "btn_5": "ROZPOCZNIJ"
     },
     "GetToKnowEachOther": {
         "title": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
@@ -160,6 +165,18 @@
         "btnLeft": "POMIŃ",
         "btnRight": "AKTUALIZUJ"
     },
+    "Login": {
+        "header": "Zaloguj się do KROSS",
+        "title": ", finał już blisko.\nMasz konto w Kross? Zaloguj się.",
+        "button": "Zaloguj się",
+        "password": "Hasło",
+        "email": "E-mail",
+        "forgotPassword": "Nie pamiętam hasła",
+        "orUse": "lub użyj",
+        "noAccountYet": "Nie masz konta w KROSS?",
+        "register": " Zarejestruj się",
+        "defaultName": "Rowerzysto"
+    },
     "BikeData": {
         "header": "Identyfikacja roweru",
         "title": "Hej, to nie jest rower KROSS.\nNic nie szkodzi, podaj dane swojego roweru.",
@@ -273,6 +290,10 @@
             },
             "btnChange": "ZMIEŃ",
             "btnSave": "ZAPISZ"
+        },
+        "auth": {
+            "logoutBtn": "Wyloguj",
+            "error": "Nastąpił błąd podczas wylogowywania lub sesja nie jest dłużej aktywna. \nSpróbuj ponownie."
         }
     },
     "MainHome": {
@@ -288,6 +309,10 @@
         "secondBtn": "DODAJ ROWER",
         "thirdBtn": "Nagraj trasę",
         "fourthBtn": "Nagraj trasę",
+        "fifthTitle": "Wykorzystaj cały potencjał aplikacji",
+        "fifthText": "Aby móc korzystać ze wszystkich funkcji aplikacji zaloguj się lub załóż konto.",
+        "fifthBtn": "Zaloguj",
+        "fifthBtnSecondary": "Załóż konto",
         "counters": {
             "distance": "Dystans",
             "time": "Czas",
@@ -576,6 +601,8 @@
             "od ",
             " / nr ramy "
         ],
+        "settings": "Ustawienia",
+        "myConsents":  "Moje zgody",
         "remove": "Usuń",
         "btnAddStuff": "DODAJ WYPOSAŻENIE",
         "defaultName": "Rowerzysta",
@@ -588,6 +615,11 @@
     },
     "Help": {
         "header": "Pomoc"
+    },
+    "Consents": {
+        "header": "Moje zgody",
+        "button": "Zapisz",
+        "selectAll": "Zaznacz wsystkie"
     },
     "AboutApp": {
         "header": "O aplikacji",
@@ -615,7 +647,8 @@
         "defaultName": "Rowerzysto",
         "title": ", sprawdź czy Twoje dane są aktualne",
         "placeholder": "Podaj imię lub pseudonim",
-        "btn": "ZAPISZ"
+        "btn": "ZAPISZ",
+        "invalidNameLengthError": "Nazwa ma niepoprawną długość"
     },
     "WarrantyDetails": {
         "header": "Szczegóły gwarancji",
@@ -701,6 +734,12 @@
                     "tags": "Wybierz tagi",
                     "description": "Uzupełnij opis"
                 }
+            },
+            "login": {
+                "formErrors": {
+                    "email": "Wprowadź poprawny adres e-mail",
+                    "password": "Uzupełnij hasło"
+                }
             }
         }
     },
@@ -729,7 +768,10 @@
     },
     "Geolocation": {
         "notification": {
-            "title": "Pobieranie lokalizacji"
+            "text": "Pobieranie lokalizacji"
+        },
+        "routeRecordingNotification": {
+            "text": "Nagrywanie trasy"
         },
         "locationPermission": {
             "title": "Używanie lokalizacji w tle",

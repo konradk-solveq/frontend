@@ -143,18 +143,18 @@ const World: React.FC = () => {
 
     const onRefreshHandler = useCallback(() => {
         if (activeTab === RouteMapType.MY_ROUTES) {
-            dispatch(fetchPrivateMapsList());
+            dispatch(fetchPrivateMapsList(undefined, savedMapFilters));
             return;
         }
         if (activeTab === RouteMapType.BIKE_MAP) {
-            dispatch(fetchMapsList());
+            dispatch(fetchMapsList(undefined, savedMapFilters));
             return;
         }
         if (activeTab === RouteMapType.PLANNING) {
-            dispatch(fetchPlannedMapsList());
+            dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
             return;
         }
-    }, [dispatch, activeTab]);
+    }, [dispatch, activeTab, savedMapFilters]);
 
     const navigateTouRouteMap = useCallback(() => {
         navigation.navigate(RegularStackRoute.ROUTES_MAP_SCREEN, {

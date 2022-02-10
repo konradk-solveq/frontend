@@ -1,7 +1,10 @@
 module.exports = {
     preset: 'react-native',
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-    setupFiles: ['./jest.setup.js'],
+    setupFilesAfterEnv: ['./jest.setup.js'],
+    moduleNameMapper: {
+        '^@hooks(.*)$': '<rootDir>/src/hooks$1',
+    },
     modulePathIgnorePatterns: [
         './jest.setup.js',
         '__tests__/utils',
