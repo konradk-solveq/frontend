@@ -334,6 +334,12 @@ export const transformToMapsType = (
     return newData;
 };
 
+export const mapToClass = (map: MapType, appConfig: AppConfigI) => {
+    const tranformed = transformToOptionEnumValues(appConfig);
+
+    return transformToMapsType(map, tranformed);
+};
+
 export const mapsListToClass = (
     maps: MapType[] | [],
     appConfig: AppConfigI,
