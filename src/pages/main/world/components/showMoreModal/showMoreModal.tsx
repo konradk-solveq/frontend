@@ -3,11 +3,8 @@ import {View, Text, Modal, Pressable, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {
-    hasAnyBikeSelector,
-    selectorMapTypeEnum,
-} from '@storage/selectors/index';
+import {useAppDispatch} from '@hooks/redux';
+import {selectorMapTypeEnum} from '@storage/selectors/index';
 import {addPlannedMap, removePlannedMap} from '@storage/actions/maps';
 import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
@@ -51,7 +48,6 @@ const ShowMoreModal: React.FC<IProps> = ({
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const notificationContext = useNotificationContext();
-    const userHasAnyBike = useAppSelector(hasAnyBikeSelector);
 
     const isPrivate = mapType === selectorMapTypeEnum.private;
     const isFeatured = mapType === selectorMapTypeEnum.featured;
@@ -63,7 +59,12 @@ const ShowMoreModal: React.FC<IProps> = ({
         onPressCancel();
         navigation.navigate({
             name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-            params: {mapID: mapID, private: isPrivate, isFeatured: isFeatured},
+            params: {
+                mapID: mapID,
+                private: isPrivate,
+                isFeatured: isFeatured,
+                shareID: null,
+            },
         });
     };
 
@@ -99,11 +100,6 @@ const ShowMoreModal: React.FC<IProps> = ({
 
     const onStartRouteHandler = () => {
         onPressCancel();
-        if (!userHasAnyBike) {
-            setShowMissingBikeModal(true);
-            return;
-        }
-
         navigation.navigate({
             name: RegularStackRoute.COUNTER_SCREEN,
             params: {mapID: mapID, private: isPrivate},

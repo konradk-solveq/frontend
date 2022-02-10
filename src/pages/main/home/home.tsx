@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
+import useNavigateOnDeepLink from '@navigation/hooks/useNavigateOnDeepLink';
 import KroosLogo from '@sharedComponents/svg/krossLogo';
 import {trackerActiveSelector} from '@storage/selectors/routes';
 import {hasRecordedRoutesSelector} from '@storage/selectors/map';
@@ -17,7 +18,6 @@ import {
     onRecordTripActionHandler,
     showLocationInfo,
 } from '@utils/showAndroidLlocationInfo';
-import {hasAnyBikeSelector} from '@storage/selectors/bikes';
 
 import {syncAppSelector} from '@storage/selectors';
 import Tile from './tile';
@@ -46,7 +46,6 @@ const Home: React.FC = () => {
     const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
     const syncStatus = useAppSelector(syncAppSelector);
     const isLocationInfoShowed = useAppSelector(showedLocationInfoSelector);
-    const userHasAnyBike = useAppSelector(hasAnyBikeSelector);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -72,6 +71,8 @@ const Home: React.FC = () => {
         setNfc(r);
     });
 
+    useNavigateOnDeepLink(true);
+
     const onAddActionHandler = () => {
         navigation.navigate({
             name: nfc
@@ -82,11 +83,6 @@ const Home: React.FC = () => {
     };
 
     const doAction = () => {
-        if (!userHasAnyBike) {
-            setShowModal(true);
-            return;
-        }
-
         Platform.OS === 'ios' || isLocationInfoShowed
             ? onRecordTripActionHandler(navigation, isIOS)
             : showLocationInfo(navigation, dispatch);

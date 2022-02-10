@@ -91,3 +91,6 @@ export const routeDebugModeSelector = (state: RootState): boolean =>
 
 export const isInitMapsDataSynchedSelector = (state: RootState): boolean =>
     state.app.initMapsDataSynched;
+
+export const apiAuthHeaderStateSelector = (state: RootState): boolean =>
+    state.app.apiAuthHeaderState;

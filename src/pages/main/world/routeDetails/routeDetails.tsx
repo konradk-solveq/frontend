@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, SafeAreaView, Platform, Text} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {Platform, SafeAreaView, Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {RegularStackRoute} from '@navigation/route';
@@ -23,9 +23,9 @@ import {useNotificationContext} from '@providers/topNotificationProvider/TopNoti
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {
-    EditBtn,
     BigRedBtn,
     BigWhiteBtn,
+    EditBtn,
     ShareBtn,
 } from '@sharedComponents/buttons';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
@@ -34,6 +34,11 @@ import BottomModal from '@sharedComponents/modals/bottomModal/bottomModal';
 import Description from './description/description';
 
 import styles from './style';
+import {useSharedMapData} from '@hooks/useSharedMapData';
+import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import GenericError from '@components/error/GenericError';
+import {StackActions} from '@react-navigation/native';
+import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -55,35 +60,59 @@ const RouteDetails = () => {
     const {t: tmb} = useMergedTranslation('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const norificationContext = useNotificationContext();
+    const notificationContext = useNotificationContext();
     const route = useRoute<RouteDetailsRouteT>();
-    const mapID: string = route?.params?.mapID;
+
     const privateMap: boolean = !!route?.params?.private;
     const favouriteMap: boolean = !!route?.params?.favourite;
     const featuredMap: boolean = !!route?.params?.featured;
+    const shareID = route?.params?.shareID;
+    const cameFromSharedLink: boolean = !!shareID;
+
+    const {mapData: sharedMapData, isLoading, error} = useSharedMapData(
+        shareID,
+    );
+    const mapID = sharedMapData?.id ?? route?.params?.mapID;
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
-    const isPublished = mapData?.isPublic;
+
+    const isPublished =
+        shareID && !mapData ? sharedMapData?.isPublic : mapData?.isPublic;
 
     const favMapName = useAppSelector(favouriteMapDataByIDSelector(mapID))
         ?.name;
 
     const userID = useAppSelector(userIdSelector);
-    const images = getImagesThumbs(mapData?.images || []);
+    const images = getImagesThumbs(
+        (shareID && !mapData ? sharedMapData?.images : mapData?.images) || [],
+    );
 
     const [showBottomModal, setShowBottomModal] = useState(false);
 
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
-
+    const safeAreaBackgroundStyle = {
+        backgroundColor: error && !mapID ? '#FAFAFA' : 'transparent',
+    };
     const headerBackgroundHeight = getVerticalPx(
         100,
     ); /* equal to header height */
+    const onBackHandler = useCallback(() => {
+        if (cameFromSharedLink) {
+            /**
+             * we use replace instead of navigate, because if you open the app using the shared link,
+             * this screen ends up as the top screen of the stack navigator
+             */
+            navigation.dispatch(
+                StackActions.replace(RegularStackRoute.TAB_MENU_SCREEN),
+            );
+        } else {
+            navigation.goBack();
+        }
+    }, [cameFromSharedLink, navigation]);
 
-    const onBackHandler = () => {
-        navigation.goBack();
-    };
+    useCustomBackNavButton(onBackHandler, true);
 
     const onGoToEditHandler = () => {
         navigation.navigate({
@@ -138,12 +167,12 @@ const RouteDetails = () => {
             const message = tmb('removeRouteFromPlanned', {
                 name: '',
             });
-            norificationContext.setNotificationVisibility(message);
+            notificationContext.setNotificationVisibility(message);
             dispatch(removePlannedMap(mapID));
             return;
         }
         const addRouteToPlanned = tmb('addRouteToPlanned', {name: ''});
-        norificationContext.setNotificationVisibility(addRouteToPlanned);
+        notificationContext.setNotificationVisibility(addRouteToPlanned);
         dispatch(addPlannedMap(mapID));
     };
 
@@ -152,18 +181,40 @@ const RouteDetails = () => {
         navigation.goBack();
     };
 
+    const handleErrorBtnPress = () => {
+        navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
+    };
+
+    const containerStyle = {
+        paddingTop: headerBackgroundHeight,
+    };
+
+    if (isLoading) {
+        return <Loader />;
+    }
+
     return (
         <>
-            <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
-                <View style={{paddingTop: headerBackgroundHeight, flex: 1}}>
+            <SafeAreaView
+                style={[
+                    styles.safeAreaView,
+                    safeAreaStyle,
+                    safeAreaBackgroundStyle,
+                ]}>
+                <View style={[styles.container, containerStyle]}>
                     <StackHeader
+                        forceBackArrow={cameFromSharedLink}
                         onpress={onBackHandler}
                         inner=""
                         style={styles.header}
                         rightActions={
                             <View style={styles.actionButtonsContainer}>
-                                {userID === mapData?.ownerId && (
+                                {userID ===
+                                    (shareID && !mapData
+                                        ? sharedMapData?.ownerId
+                                        : mapData?.ownerId) && (
                                     <EditBtn
+                                        testID={'route-details-edit-btn'}
                                         onPress={onGoToEditHandler}
                                         iconStyle={[
                                             styles.actionButton,
@@ -174,6 +225,7 @@ const RouteDetails = () => {
                                 )}
                                 {isPublished && (
                                     <ShareBtn
+                                        testID={'route-details-share-btn'}
                                         onPress={onShareRouteHandler}
                                         iconStyle={styles.actionButton}
                                     />
@@ -181,68 +233,83 @@ const RouteDetails = () => {
                             </View>
                         }
                     />
-                    <SliverTopBar imgSrc={sliverImage || ''}>
-                        <View style={styles.content}>
-                            <Description
-                                mapData={mapData}
-                                images={images}
-                                isPrivateView={privateMap}
-                                isFavView={favouriteMap}
-                                isFeaturedView={featuredMap}
-                            />
-                            {favouriteMap && (
-                                <>
+                    {error ? (
+                        <GenericError
+                            errorTitle={t('share.error.title')}
+                            errorMessage={t('share.error.message')}
+                            buttonText={t('share.error.button')}
+                            onButtonPress={handleErrorBtnPress}
+                        />
+                    ) : (
+                        <SliverTopBar imgSrc={sliverImage || ''}>
+                            <View style={styles.content}>
+                                <Description
+                                    mapData={
+                                        shareID && !mapData
+                                            ? sharedMapData
+                                            : mapData
+                                    }
+                                    images={images}
+                                    isPrivateView={privateMap}
+                                    isFavView={favouriteMap}
+                                    isFeaturedView={featuredMap}
+                                />
+                                {favouriteMap && (
+                                    <>
+                                        <BigRedBtn
+                                            testID={'route-details-start-btn'}
+                                            title={t('startButton')}
+                                            onpress={onPressStartRouteHandler}
+                                            style={styles.reportButton}
+                                        />
+                                        <BigWhiteBtn
+                                            title={t('removeRouteButton')}
+                                            testID={'route-details-remove-btn'}
+                                            onpress={
+                                                onPressRemoveFromFacouritesHandler
+                                            }
+                                            style={[
+                                                styles.removeRouteButton,
+                                                styles.buttonBottomDistance,
+                                            ]}
+                                        />
+                                    </>
+                                )}
+
+                                {!favouriteMap && (
                                     <BigRedBtn
-                                        title={t('startButton')}
-                                        onpress={onPressStartRouteHandler}
-                                        style={styles.reportButton}
-                                    />
-                                    <BigWhiteBtn
-                                        title={t('removeRouteButton')}
+                                        title={
+                                            !privateMap
+                                                ? !favMapName
+                                                    ? t('addFavRouteButton')
+                                                    : t('removeFavRouteButton')
+                                                : t('deleteButton')
+                                        }
                                         onpress={
-                                            onPressRemoveFromFacouritesHandler
+                                            !privateMap
+                                                ? onPressAddRouteHandler
+                                                : onPressHandler
                                         }
                                         style={[
-                                            styles.removeRouteButton,
+                                            styles.reportButton,
                                             styles.buttonBottomDistance,
                                         ]}
                                     />
-                                </>
-                            )}
-
-                            {!favouriteMap && (
-                                <BigRedBtn
-                                    title={
-                                        !privateMap
-                                            ? !favMapName
-                                                ? t('addFavRouteButton')
-                                                : t('removeFavRouteButton')
-                                            : t('deleteButton')
-                                    }
-                                    onpress={
-                                        !privateMap
-                                            ? onPressAddRouteHandler
-                                            : onPressHandler
-                                    }
-                                    style={[
-                                        styles.reportButton,
-                                        styles.buttonBottomDistance,
-                                    ]}
-                                />
-                            )}
-                            <View style={styles.textButtonContainer}>
-                                <Text style={styles.textButton}>
-                                    {`${t('textPrefix')} `}
-                                    <Text
-                                        onPress={onPressReportHandler}
-                                        style={styles.textbuttonAction}>
-                                        {t('textAction')}
+                                )}
+                                <View style={styles.textButtonContainer}>
+                                    <Text style={styles.textButton}>
+                                        {`${t('textPrefix')} `}
+                                        <Text
+                                            onPress={onPressReportHandler}
+                                            style={styles.textbuttonAction}>
+                                            {t('textAction')}
+                                        </Text>
+                                        {t('textSuffix')}
                                     </Text>
-                                    {t('textSuffix')}
-                                </Text>
+                                </View>
                             </View>
-                        </View>
-                    </SliverTopBar>
+                        </SliverTopBar>
+                    )}
                 </View>
                 <BottomModal
                     showModal={showBottomModal}

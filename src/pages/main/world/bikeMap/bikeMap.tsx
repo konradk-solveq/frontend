@@ -68,7 +68,7 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
         (mapID?: string) => {
             navigation.navigate({
                 name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-                params: {mapID: mapID, private: false},
+                params: {mapID: mapID, private: false, shareID: null},
             });
         },
         [navigation],

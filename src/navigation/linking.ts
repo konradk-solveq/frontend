@@ -3,7 +3,9 @@ import {
     DEEPLINKING_NAMESPACE,
     DEEPLINKING_PREFIX,
 } from '@env';
-import {getPathFromState, getStateFromPath} from '@react-navigation/native';
+import {Linking} from 'react-native';
+
+import {DeepLink} from './utils/handleDeepLinkUrl';
 
 /**
  * Deep link must match to this config. As example 'world' is used.
@@ -16,6 +18,9 @@ const config = {
             screens: {
                 WorldTab: 'world',
             },
+        },
+        RouteDetails: {
+            path: 'cyclingMap/:shareID',
         },
     },
 };
@@ -30,4 +35,37 @@ export const linking = {
         `${DEEPLINKING_NAMESPACE}:/` /* ios */,
     ],
     config,
+    async getInitialURL() {
+        const url = await Linking.getInitialURL();
+
+        if (url != null) {
+            /**
+             * Add info about share link to global instance
+             */
+            if (DeepLink?.instance) {
+                DeepLink.setShareIdFromUrl = url;
+                DeepLink.setShareTypeFromUrl = url;
+            }
+            return url;
+        }
+    },
+    subscribe(listener: (arg0: string) => void) {
+        const onReceiveURL = async ({url}: {url: string}) => {
+            /**
+             * Add info about share link to global instance
+             */
+            if (DeepLink?.instance) {
+                DeepLink.setShareIdFromUrl = url;
+                DeepLink.setShareTypeFromUrl = url;
+            }
+
+            listener(url);
+        };
+
+        const subscription = Linking.addEventListener('url', onReceiveURL);
+
+        return () => {
+            subscription.remove();
+        };
+    },
 };

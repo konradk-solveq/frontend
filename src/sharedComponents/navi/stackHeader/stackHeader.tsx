@@ -17,6 +17,7 @@ interface Props {
     rightActions?: Element;
     hideBackArrow?: boolean;
     titleStyle?: TextStyle;
+    forceBackArrow?: boolean;
 }
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
@@ -28,6 +29,7 @@ const StackHeader: React.FC<Props> = ({
     rightActions,
     hideBackArrow,
     titleStyle,
+    forceBackArrow,
 }: Props) => {
     const navigation = useNavigation();
     const navBarHeight =
@@ -62,7 +64,9 @@ const StackHeader: React.FC<Props> = ({
     return (
         <View style={[styles.container, {height: navBarHeight}, style]}>
             <View style={styles.wrap}>
-                {showBackArrow && <TopBackBtn onpress={onPressHandler} />}
+                {(forceBackArrow || showBackArrow) && (
+                    <TopBackBtn onpress={onPressHandler} />
+                )}
 
                 <Text style={[styles.title, titleStyle]}>{inner}</Text>
 

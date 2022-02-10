@@ -1,5 +1,6 @@
 import {MapFormDataResult} from '@interfaces/form';
 import {ImagesMetadataType} from '@interfaces/api';
+import i18next from '@translations/i18next';
 
 export const MOCK_DATA: MapFormDataResult = {
     id: 'TEST',
@@ -38,11 +39,13 @@ export const MOCK_SAVE_IMAGES_NO_FILENAMES: ImagesMetadataType = {
 
 export const MOCK_ERROR_400_MESSAGE = 'TEST ERROR MESSAGE';
 
-export const MOCK_ERROR_500_DEFAULT_MESSAGE =
-    'Plik [ Brak nazwy ] nie został wysłany. Spróbuj ponownie później.';
+export const MOCK_ERROR_500_DEFAULT_MESSAGE = i18next.t(
+    'dataAction.mapData.fileUploadError',
+);
 
-export const MOCK_ERROR_500_MESSAGE =
-    'Plik [ test1 ] nie został wysłany. Spróbuj ponownie później., Plik [ test2 ] nie został wysłany. Spróbuj ponownie później., Plik [ test3 ] nie został wysłany. Spróbuj ponownie później.';
+export const MOCK_ERROR_500_MESSAGE = i18next.t(
+    'dataAction.mapData.fileUploadError',
+);
 
 export const MOCK_ERROR_400_RESPONSE = {
     data: {
