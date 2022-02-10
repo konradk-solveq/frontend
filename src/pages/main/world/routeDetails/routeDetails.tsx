@@ -90,7 +90,9 @@ const RouteDetails = () => {
 
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
-
+    const safeAreaBackgroundStyle = {
+        backgroundColor: error && !mapID ? '#FAFAFA' : 'transparent',
+    };
     const headerBackgroundHeight = getVerticalPx(
         100,
     ); /* equal to header height */
@@ -176,18 +178,23 @@ const RouteDetails = () => {
         navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
     };
 
+    const containerStyle = {
+        paddingTop: headerBackgroundHeight,
+    };
+
     if (isLoading) {
         return <Loader />;
     }
 
     return (
         <>
-            <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
-                <View
-                    style={[
-                        styles.container,
-                        {paddingTop: headerBackgroundHeight},
-                    ]}>
+            <SafeAreaView
+                style={[
+                    styles.safeAreaView,
+                    safeAreaStyle,
+                    safeAreaBackgroundStyle,
+                ]}>
+                <View style={[styles.container, containerStyle]}>
                     <StackHeader
                         forceBackArrow={cameFromSharedLink}
                         onpress={onBackHandler}
