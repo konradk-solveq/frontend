@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
     StyleSheet,
@@ -31,10 +31,13 @@ import {
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
 import deepCopy from '@helpers/deepCopy';
-import {frameNumberSelector} from '@storage/selectors';
+import {
+    frameNumberSelector,
+    onboardingFinishedSelector,
+} from '@storage/selectors';
 import {bikeDescriptionByFrameNumberSelector} from '@storage/selectors/bikes';
 import {getBikesBaseData} from '@utils/transformData';
-import {BothStackRoute} from '@navigation/route';
+import {OnboardingStackRoute, RegularStackRoute} from '@navigation/route';
 
 interface Message {
     serial_number: string;
@@ -56,6 +59,14 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     const frame: string = useAppSelector(frameNumberSelector);
     const bikeDescription = useAppSelector(state =>
         bikeDescriptionByFrameNumberSelector(state, frame),
+    );
+    const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
+    const bikeSummaryRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.BIKE_SUMMARY_ONBOARDING_SCREEN
+                : RegularStackRoute.BIKE_SUMMARY_SCREEN,
+        [isOnboardingFinished],
     );
 
     const frameNumber: string = route?.params?.serial_number || frame;
@@ -153,7 +164,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                 // );
                 /* start to delete */
                 navigation.navigate({
-                    name: BothStackRoute.BIKE_SUMMARY_SCREEN,
+                    name: bikeSummaryRouteName,
                     params: {frameNumber: data.serial_number},
                 });
                 /* end to delete */
