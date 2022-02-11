@@ -25,11 +25,11 @@ instance.defaults.headers.post['Content-Type'] = 'application/json';
  * GET/application/policy/{version}: Accept-Language
  * GET​/application​/urls: Accept-Language
  * GET/application/ui-translation: accept-language
- * 
+ *
  */
 export const setLanguageHeader = (lang: string) => {
     instance.defaults.headers.get['Accept-Language'] = lang;
-}
+};
 
 export const setAutorizationHeader = (token: string) => {
     /* TODO: replace with smth more fancy */
@@ -52,7 +52,6 @@ export const source = axios.CancelToken.source();
 export const isCancel = (c: any) => axios.isCancel(c);
 
 export const axiosGet = async (url: string, options = {}) => {
-
     const abort = axios.CancelToken.source();
     const id = setTimeout(
         () => abort.cancel(`Timeout of ${config.timeout}ms.`),

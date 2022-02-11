@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {StyleSheet, View, ScrollView, SafeAreaView} from 'react-native';
 import {fetchUiTranslation, setLanguage} from '@storage/actions';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
@@ -18,6 +18,13 @@ import GenericScreen from '@pages/template/GenericScreen';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import LanguageButton from './languageButton';
 import useLanguageReloader from '@src/hooks/useLanguageReloader';
+import Loader from '../../../onboarding/bikeAdding/loader/loader';
+import {commonStyle} from '@helpers/commonStyle';
+
+const ReloadItem = () => {
+    useLanguageReloader();
+    return null;
+};
 
 interface Props {
     navigation: any;
@@ -37,6 +44,9 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     const translations: any = useAppSelector(
         state => state.uiTranslation.translations,
     );
+    const [fetchingTranslation, setFetchingTranslation] = useState(false);
+    const [goBack, setGoBack] = useState(false);
+    const [reload, setReload] = useState(false);
 
     useLanguageReloader();
 
@@ -48,15 +58,37 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
         setInputLanguage(value);
     };
 
+    const startFetchingTranslation = (d: any) =>
+        new Promise((resolve, reject) => {
+            d(fetchUiTranslation(true));
+            resolve(true);
+        });
+
     const handleSaveLanguage = () => {
         if (typeof translations[inputLanguage] === 'undefined') {
-            fetchUiTranslation(true);
+            setFetchingTranslation(true);
+            console.log('setFetchingTranslation:', true);
+            startFetchingTranslation(dispatch).then(() => {
+                setReload(true);
+                console.log('setReload:', true);
+                setTimeout(() => {
+                    setFetchingTranslation(false);
+                    console.log('setFetchingTranslation:', false);
+                }, 300);
+            });
         }
 
         dispatch(setLanguage(inputLanguage));
         changeLanguage(inputLanguage);
-        navigation.goBack();
+        setGoBack(true);
+        console.log('setGoBack:', true);
     };
+
+    useEffect(() => {
+        if (!fetchingTranslation && goBack) {
+            navigation.goBack();
+        }
+    }, [fetchingTranslation, goBack, navigation]);
 
     const styles = StyleSheet.create({
         scroll: {
@@ -79,12 +111,21 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
         },
     });
 
+    if (fetchingTranslation) {
+        return (
+            <SafeAreaView style={commonStyle.container}>
+                <Loader />
+            </SafeAreaView>
+        );
+    }
+
     return (
         <GenericScreen screenTitle={t('header')}>
             <ScrollView
                 keyboardShouldPersistTaps="handled"
                 contentContainerStyle={styles.outerArea}
                 style={styles.scroll}>
+                {reload && <ReloadItem />}
                 <View style={styles.area}>
                     <View>
                         {languageList.map((e, i) => {

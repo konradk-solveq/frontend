@@ -17,6 +17,7 @@ import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
 import useRouteDebug from '@src/hooks/useRouteDebug';
 
 import useLanguageReloader from '@src/hooks/useLanguageReloader';
+import {setUserAgentHeader} from '@src/api';
 
 const LanguageReloader: React.FC = () => {
     useLanguageReloader();
@@ -25,6 +26,8 @@ const LanguageReloader: React.FC = () => {
 
 const App: () => Node = () => {
     const persistor = persistStore(storage);
+
+    setUserAgentHeader();
 
     initAppSize();
     initConfig();
