@@ -158,16 +158,16 @@ export const fetchAppConfig = (
         dispatch(fetchLanguagesList(true));
         const {config}: AppState = getState().app;
 
-        if (
-            response?.data?.uiTranslation.controlSum ===
-            config.uiTranslation.controlSum
-        ) {
-            dispatch(fetchUiTranslation(true));
-        }
+        const conditionToGetTranslation =
+            response?.data?.uiTranslation.controlSum !==
+            config.uiTranslation.controlSum;
 
         batch(() => {
             dispatch(setAppConfig(response.data));
             dispatch(clearAppError());
+            if (conditionToGetTranslation) {
+                dispatch(fetchUiTranslation(true));
+            }
         });
 
         if (!noLoader) {

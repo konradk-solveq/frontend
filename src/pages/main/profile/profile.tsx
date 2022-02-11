@@ -54,6 +54,10 @@ const Profile: React.FC<Props> = (props: Props) => {
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
 
+    const languageList: any = useAppSelector(
+        state => state.uiTranslation.languagesList,
+    );
+
     const onLogoutPressedHandler = () => {
         dispatch(logOut());
     };
@@ -152,18 +156,29 @@ const Profile: React.FC<Props> = (props: Props) => {
                             </View>
                         )}
                         <View style={styles.menuSection}>
-                            <Text style={styles.title}>{t('settings')}</Text>
-                            <BlueButton
-                                onpress={() => {
-                                    props.navigation.navigate(
-                                        RegularStackRoute.LANGUAGE_CHANGE_SCREEN,
-                                    );
-                                }}
-                                title={t('languages')}
-                            />
-                            <Text style={[styles.title, styles.separator]}>
-                                {t('title')}
-                            </Text>
+                            {languageList && languageList.length > 1 && (
+                                <View>
+                                    <Text style={styles.title}>
+                                        {t('settings')}
+                                    </Text>
+                                    <BlueButton
+                                        onpress={() => {
+                                            props.navigation.navigate(
+                                                RegularStackRoute.LANGUAGE_CHANGE_SCREEN,
+                                            );
+                                        }}
+                                        title={t('languages')}
+                                    />
+                                    <Text
+                                        style={[
+                                            styles.title,
+                                            styles.separator,
+                                        ]}>
+                                        {t('title')}
+                                    </Text>
+                                </View>
+                            )}
+
                             <BlueButton
                                 onpress={() =>
                                     props.navigation.navigate(
