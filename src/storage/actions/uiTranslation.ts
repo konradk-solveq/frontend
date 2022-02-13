@@ -35,20 +35,21 @@ export const fetchUiTranslation = (
         }
 
         const newTranslations: any = {};
-        const lang = response.data.code // reductor
-            ? response.data.code
-            : response.data.language;
-        newTranslations[lang] = response.data.translation;
-        newTranslations[lang].ForApplication = {
-            version: response.data.version,
-        };
+        const lang = response?.data?.code // reductor
+            ? response?.data?.code
+            : response?.data?.language;
+        if (lang) {
+            newTranslations[lang] = response?.data?.translation;
+            newTranslations[lang].ForApplication = {
+                version: response?.data?.version,
+            };
+        }
 
         const oldTranslations = getState().uiTranslation.translations;
         for (const key in newTranslations) {
             oldTranslations[key] = newTranslations[key];
         }
 
-        // console.log('Translations:', oldTranslations);
         batch(() => {
             dispatch(setUiTranslation(oldTranslations));
         });
