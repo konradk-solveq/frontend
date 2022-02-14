@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -14,7 +14,11 @@ import {useAppSelector, useAppDispatch} from '@hooks/redux';
 import {setBikesListByFrameNumber} from '@storage/actions';
 import {validateData} from '@utils/validation/validation';
 import {userBikeValidationRules} from '@models/bike.model';
-import {loadingBikesSelector, frameNumberSelector} from '@storage/selectors';
+import {
+    loadingBikesSelector,
+    frameNumberSelector,
+    onboardingFinishedSelector,
+} from '@storage/selectors';
 
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import OneLineTekst from '@sharedComponents/inputs/oneLineTekst';
@@ -34,7 +38,7 @@ import {
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
 import Loader from '../loader/loader';
-import {BothStackRoute} from '@navigation/route';
+import {RegularStackRoute, OnboardingStackRoute} from '@navigation/route';
 import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 import {onboardingFinishedSelector} from '@storage/selectors';
@@ -51,6 +55,21 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
     const frame: string = useAppSelector(frameNumberSelector);
     const isLoading: boolean = useAppSelector(loadingBikesSelector);
+    const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
+    const bikeSummaryRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.BIKE_SUMMARY_ONBOARDING_SCREEN
+                : RegularStackRoute.BIKE_SUMMARY_SCREEN,
+        [isOnboardingFinished],
+    );
+    const bikeDataRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.BIKE_DATA_ONBOARDING_SCREEN
+                : RegularStackRoute.BIKE_DATA_SCREEN,
+        [isOnboardingFinished],
+    );
 
     const {t} = useMergedTranslation('AddingByNumber');
 
@@ -112,14 +131,14 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             try {
                 await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
                 props.navigation.navigate({
-                    name: BothStackRoute.BIKE_SUMMARY_SCREEN,
+                    name: bikeSummaryRouteName,
                     params: {frameNumber: trimmedInputFrame},
                 });
                 return;
             } catch (error) {
                 if (error.notFound) {
                     props.navigation.navigate({
-                        name: BothStackRoute.BIKE_DATA_SCREEN,
+                        name: bikeDataRouteName,
                         params: {frameNumber: trimmedInputFrame},
                     });
                     return;

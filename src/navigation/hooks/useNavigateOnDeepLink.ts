@@ -1,5 +1,6 @@
-import {useEffect} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useCallback, useEffect} from 'react';
+import {InteractionManager} from 'react-native';
+import {useIsFocused, useNavigation, useRoute} from '@react-navigation/native';
 
 import {clearDeepLinkActionForScreen} from '@storage/actions';
 import {
@@ -20,10 +21,11 @@ const useNavigateOnDeepLink = (onlyAuth?: boolean) => {
     );
     /* Checks that the auth header has been set for http */
     const isUserAuth = useAppSelector(apiAuthHeaderStateSelector);
+    const isScreenFocused = useIsFocused();
 
-    useEffect(() => {
+    const navigateToSharedLink = useCallback(() => {
         /**
-         * Some endpoints only work if whe user is authenticated,
+         * Some endpoints only work when user is authenticated,
          * so not every screen will work.
          */
         if ((onlyAuth && !isUserAuth) || !navigateFromScreen) {
@@ -47,9 +49,12 @@ const useNavigateOnDeepLink = (onlyAuth?: boolean) => {
                     DeepLink.shareType,
                 );
                 if (navigateToScreen) {
-                    navigation.navigate({
-                        name: navigateToScreen,
-                        params: {shareID: DeepLink.shareId},
+                    const shareIdToPass = DeepLink.shareId;
+                    InteractionManager.runAfterInteractions(() => {
+                        navigation.navigate({
+                            name: navigateToScreen,
+                            params: {shareID: shareIdToPass},
+                        });
                     });
                 }
 
@@ -61,10 +66,20 @@ const useNavigateOnDeepLink = (onlyAuth?: boolean) => {
         }
     }, [navigateFromScreen, name, onlyAuth, isUserAuth, navigation, dispatch]);
 
+    useEffect(() => {
+        /**
+         * Wait until screen is focused to avoid animation glitches.
+         */
+        if (isScreenFocused) {
+            navigateToSharedLink();
+        }
+    }, [navigateToSharedLink, isScreenFocused]);
+
     return {
         curentRouteName: name,
         navigateFromScreen,
         isAuthHeaderSet: isUserAuth,
+        navigateToSharedLink,
     };
 };
 

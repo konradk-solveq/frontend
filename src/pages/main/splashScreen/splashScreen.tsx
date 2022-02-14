@@ -123,7 +123,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
         props.navigation,
         shopAppVersion,
         showNewRegulations,
-        props.route.params.redirectToScreen,
+        props.route.params?.redirectToScreen,
     ]);
 
     const krossLogo = `<svg width="179" height="179" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179 179">

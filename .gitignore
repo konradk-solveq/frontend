@@ -1,6 +1,4 @@
 .history
-App.tsx
-index.js
 
 # OSX
 #
@@ -97,3 +95,4 @@ android/app/qa/res/values/strings.xml
 
 # react-native-config codegen
 ios/tmp.xcconfig
+I18n/i18nextGenerator/output/*

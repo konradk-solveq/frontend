@@ -106,9 +106,13 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
 
     const goFoward = () => {
         if (nfc) {
-            navigation.navigate(BothStackRoute.TURTORIAL_NFC_SCREEN);
+            navigation.navigate(
+                OnboardingStackRoute.TURTORIAL_NFC_ONBOARDING_SCREEN,
+            );
         } else {
-            navigation.navigate(BothStackRoute.ADDING_BY_NUMBER_SCREEN);
+            navigation.navigate(
+                OnboardingStackRoute.ADDING_BY_NUMBER_ONBOARDING_SCREEN,
+            );
         }
     };
 

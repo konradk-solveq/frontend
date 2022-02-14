@@ -1,13 +1,7 @@
-import React, {useEffect, useMemo, useRef} from 'react';
+import React, {useMemo} from 'react';
 import {Stack} from '@navigation/stack';
 
-import {
-    AuthParamsListT,
-    GeneralParamsListT,
-    RootStackType,
-} from '@type/rootStack';
-import {trackerActiveSelector} from '@storage/selectors';
-import {useAppSelector} from '@hooks/redux';
+import {RootStackType} from '@type/rootStack';
 
 import {horizontalAnim} from '@helpers/positioning';
 import {
@@ -23,8 +17,6 @@ import newRegulations from '@pages/main/newRegulations/newRegulations';
 import NewAppVersion from '@pages/main/newAppVersion/newAppVersion';
 import useAuthorization from '@src/hooks/useAuthorization';
 
-const timeout = 2500;
-
 const RegularScreens = () => (
     <>
         <Stack.Screen name="TabMenu" component={TabMenu} />
@@ -37,35 +29,14 @@ const RegularScreens = () => (
     </>
 );
 
-const RegularStackNavigator: React.FC = () => {
-    const isActive = useAppSelector(trackerActiveSelector);
-    const initialRun = useRef(true);
+interface RegularStackNavigatorI {
+    initInitialRouteName?: keyof RootStackType;
+}
 
+const RegularStackNavigator: React.FC<RegularStackNavigatorI> = ({
+    initInitialRouteName = 'SplashScreen',
+}: RegularStackNavigatorI) => {
     useAuthorization();
-
-    useEffect(() => {
-        // TODO: fix the issue with showing SplashScreen after user has logged in
-        const t = setTimeout(() => (initialRun.current = false), timeout);
-
-        return () => {
-            initialRun.current = true;
-            clearTimeout(t);
-        };
-    }, []);
-
-    const regularInitialRouteName = useMemo<keyof RootStackType>(
-        () => (!initialRun.current ? 'TabMenu' : 'SplashScreen'),
-        [],
-    );
-
-    const initInitialRouteName = useMemo<keyof RootStackType>(
-        () => (!isActive ? regularInitialRouteName : 'TabMenu'),
-        [isActive, regularInitialRouteName],
-    );
-
-    const screenToRedirectFromSplashScreen = useMemo<
-        keyof GeneralParamsListT | keyof AuthParamsListT
-    >(() => 'TabMenu', []);
 
     const StackScreens = useMemo(() => RegularScreens(), []);
 
@@ -75,18 +46,10 @@ const RegularStackNavigator: React.FC = () => {
             initialRouteName={initInitialRouteName}
             mode="modal"
             screenOptions={horizontalAnim}>
-            {!initialRun.current ? null : (
-                <Stack.Screen
-                    name="SplashScreen"
-                    component={SplashScreen}
-                    initialParams={{
-                        redirectToScreen: screenToRedirectFromSplashScreen,
-                    }}
-                />
-            )}
             {StackScreens}
+            <Stack.Screen name="SplashScreen" component={SplashScreen} />
         </Stack.Navigator>
     );
 };
 
-export default RegularStackNavigator;
+export default React.memo(RegularStackNavigator);
