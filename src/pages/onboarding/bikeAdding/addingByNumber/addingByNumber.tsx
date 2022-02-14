@@ -140,10 +140,6 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
             dispatch(setOnboardingFinished(true));
             dispatch(setDeepLinkActionForScreen('HomeTab'));
         }
-        props.navigation.reset({
-            index: 0,
-            routes: [{name: BothStackRoute.TAB_MENU_SCREEN}],
-        });
     };
 
     setObjSize(334, 50);
