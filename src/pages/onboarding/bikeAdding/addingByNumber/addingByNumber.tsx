@@ -41,7 +41,6 @@ import Loader from '../loader/loader';
 import {RegularStackRoute, OnboardingStackRoute} from '@navigation/route';
 import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
-import {onboardingFinishedSelector} from '@storage/selectors';
 import {
     setOnboardingFinished,
     setDeepLinkActionForScreen,
