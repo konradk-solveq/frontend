@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {StyleSheet, View, Text, ScrollView, SafeAreaView} from 'react-native';
 
 import {
@@ -12,7 +12,8 @@ import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import Paragraph from './paragraph';
-import { getAppLayoutConfig } from '@src/theme/appLayoutConfig';
+import {onboardingFinishedSelector} from '@src/storage/selectors';
+import {OnboardingStackRoute, RegularStackRoute} from '@src/navigation/route';
 
 interface Props {
     navigation: any;
@@ -20,6 +21,14 @@ interface Props {
 
 const PrivacyPolicy: React.FC<Props> = (props: Props) => {
     const data = useAppSelector(state => state.app.policy);
+    const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
+    const privacyPolicyRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.REGULATIONS_ONBOARDING_SCREEN
+                : RegularStackRoute.REGULATIONS_SCREEN,
+        [isOnboardingFinished],
+    );
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -49,6 +58,9 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
                         {data.paragraph &&
                             data.paragraph.map((e: any, i: number) => (
                                 <Paragraph
+                                    regulationsScreenRouteName={
+                                        privacyPolicyRouteName
+                                    }
                                     marginTop={e.marginTop}
                                     font={e.font}
                                     text={e.text}
