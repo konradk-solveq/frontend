@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistReducer} from 'redux-persist';
 
 import * as actionTypes from '@storage/actions/actionTypes';
-import {translationsT, languagesListT} from '@src/models/translation.models';
+import {translationsT, languagesListT} from '@src/models/uiTranslation.models';
 
 export interface UiTranslationState {
     translations: translationsT;
