@@ -32,8 +32,11 @@ import {sentrySetUserInfo} from '@sentryLogger/sentryLogger';
 import {enableAnalytics} from '@analytics/firebaseAnalytics';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import useLanguageReloader from './useLanguageReloader';
 
 const useAppInit = () => {
+    useLanguageReloader();
+
     const {t} = useMergedTranslation('Geolocation.notification');
 
     const dispatch = useAppDispatch();

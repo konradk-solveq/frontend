@@ -16,13 +16,7 @@ import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
 import useRouteDebug from '@src/hooks/useRouteDebug';
 
-import useLanguageReloader from '@src/hooks/useLanguageReloader';
 import {setUserAgentHeader} from '@src/api';
-
-const LanguageReloader: React.FC = () => {
-    useLanguageReloader();
-    return <></>;
-};
 
 const App: () => Node = () => {
     const persistor = persistStore(storage);
@@ -47,7 +41,6 @@ const App: () => Node = () => {
                     <TopNotificationProvider>
                         <StaticLocationProvider>
                             <Suspense fallback={null}>
-                                <LanguageReloader />
                                 <NavContainer />
                             </Suspense>
                         </StaticLocationProvider>
