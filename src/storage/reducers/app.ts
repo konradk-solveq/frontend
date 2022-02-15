@@ -78,7 +78,7 @@ const initialState: AppState = {
         surfaces: [],
         difficulties: [],
         reactions: [],
-        uiTranslation: {controlSum: '', langs: []},
+        uiTranslation: {controlSum: '', codes: []},
     },
     terms: [],
     currentTerms: {

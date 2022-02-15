@@ -50,9 +50,7 @@ export const fetchUiTranslation = (
             oldTranslations[key] = newTranslations[key];
         }
 
-        batch(() => {
-            dispatch(setUiTranslation(oldTranslations));
-        });
+        dispatch(setUiTranslation(oldTranslations));
 
         if (!noLoader) {
             dispatch(setSyncStatus(false));
@@ -90,9 +88,7 @@ export const fetchLanguagesList = (
         }
 
         // console.log('Languages List', response.data);
-        batch(() => {
-            dispatch(getLanguagesList(response.data));
-        });
+        dispatch(getLanguagesList(response.data));
 
         if (!noLoader) {
             dispatch(setSyncStatus(false));

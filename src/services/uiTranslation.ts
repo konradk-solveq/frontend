@@ -1,4 +1,5 @@
 import {getUiTranslation, getLanguagesList} from '@api';
+import {translationsT, languagesListT} from '@src/models/translation.models';
 
 export const getUiTranslationService = async () => {
     const response = await getUiTranslation();
@@ -20,7 +21,7 @@ export const getUiTranslationService = async () => {
     }
 
     return {
-        data: response.data,
+        data: <translationsT>response.data,
         status: response.status,
         error: '',
     };
@@ -46,7 +47,7 @@ export const getLanguagesListService = async () => {
     }
 
     return {
-        data: response.data,
+        data: <languagesListT>response.data,
         status: response.status,
         error: '',
     };

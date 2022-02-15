@@ -2,10 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistReducer} from 'redux-persist';
 
 import * as actionTypes from '@storage/actions/actionTypes';
+import {translationsT, languagesListT} from '@src/models/translation.models';
 
 export interface UiTranslationState {
-    translations: {};
-    languagesList: [];
+    translations: translationsT;
+    languagesList: languagesListT;
 }
 
 const initialState: UiTranslationState = {
@@ -32,7 +33,7 @@ const uiTranslationReducer = (state = initialState, action: any) => {
 const persistConfig = {
     key: 'uiTranslation',
     storage: AsyncStorage,
-    whitelist: ['translations'],
+    whitelist: ['translations', 'languagesList'],
     timeout: 20000,
 };
 
