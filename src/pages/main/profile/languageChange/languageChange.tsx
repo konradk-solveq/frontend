@@ -20,6 +20,10 @@ import LanguageButton from './languageButton';
 import useLanguageReloader from '@src/hooks/useLanguageReloader';
 import Loader from '../../../onboarding/bikeAdding/loader/loader';
 import {commonStyle} from '@helpers/commonStyle';
+import {
+    languagesListSelector,
+    translationsSelector,
+} from '@storage/selectors/uiTranslation';
 
 const ReloadItem = () => {
     useLanguageReloader();
@@ -37,13 +41,9 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     const language: string = useAppSelector(state => state.user.language);
     const [inputLanguage, setInputLanguage] = useState('');
 
-    const languageList: any = useAppSelector(
-        state => state.uiTranslation.languagesList,
-    );
+    const languageList: any = useAppSelector(languagesListSelector);
 
-    const translations: any = useAppSelector(
-        state => state.uiTranslation.translations,
-    );
+    const translations: any = useAppSelector(translationsSelector);
     const [fetchingTranslation, setFetchingTranslation] = useState(false);
     const [goBack, setGoBack] = useState(false);
     const [reload, setReload] = useState(false);

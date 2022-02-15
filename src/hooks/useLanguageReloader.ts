@@ -1,20 +1,20 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {fetchUiTranslation, setLanguage} from '@storage/actions';
 import i18next from '@translations/i18next';
 
 import {changeLanguage} from '@utils/translations/useMergedTranslation';
-import {setLanguageHeader} from '@src/api/api';
+import {setLanguageHeader} from '@api/api';
+import {
+    languagesListSelector,
+    translationsSelector,
+} from '@storage/selectors/uiTranslation';
 
 const useLanguageReloader = () => {
     const dispatch = useAppDispatch();
     const language: string = useAppSelector(state => state.user.language);
-    const translations: any = useAppSelector(
-        state => state.uiTranslation.translations,
-    );
-    const languageList: any = useAppSelector(
-        state => state.uiTranslation.languagesList,
-    );
+    const translations: any = useAppSelector(translationsSelector);
+    const languageList: any = useAppSelector(languagesListSelector);
 
     useEffect(() => {
         if (language != null && translations != null) {

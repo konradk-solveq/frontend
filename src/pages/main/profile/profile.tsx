@@ -28,13 +28,14 @@ import {
 import {RegularStackRoute, BothStackRoute} from '@navigation/route';
 
 import {clearAuthError, logOut} from '@storage/actions';
-import {BigRedBtn} from '@src/sharedComponents/buttons';
+import {BigRedBtn} from '@sharedComponents/buttons';
 import FailedResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
 
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 import AmatoryBiker from './amatoryBiker';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {languagesListSelector} from '@storage/selectors/uiTranslation';
 
 interface Props {
     navigation: any;
@@ -54,9 +55,7 @@ const Profile: React.FC<Props> = (props: Props) => {
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    const languageList: any = useAppSelector(
-        state => state.uiTranslation.languagesList,
-    );
+    const languageList: any = useAppSelector(languagesListSelector);
 
     const onLogoutPressedHandler = () => {
         dispatch(logOut());
