@@ -17,16 +17,6 @@ const instance = axios.create({
 
 instance.defaults.headers.post['Content-Type'] = 'application/json';
 
-/**
- * POST/session/login: cookie - for dashboard
- * GET//application/config: user-agent, Accept-Language
- * GET/application/terms-and-conditions: Accept-Language
- * GET​/application​/regulation​/{version}: Accept-Language
- * GET/application/policy/{version}: Accept-Language
- * GET​/application​/urls: Accept-Language
- * GET/application/ui-translation: accept-language
- *
- */
 export const setLanguageHeader = (lang: string) => {
     instance.defaults.headers.get['Accept-Language'] = lang;
 };

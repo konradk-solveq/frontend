@@ -67,13 +67,10 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     const handleSaveLanguage = () => {
         if (typeof translations[inputLanguage] === 'undefined') {
             setFetchingTranslation(true);
-            console.log('setFetchingTranslation:', true);
             startFetchingTranslation(dispatch).then(() => {
                 setReload(true);
-                console.log('setReload:', true);
                 setTimeout(() => {
                     setFetchingTranslation(false);
-                    console.log('setFetchingTranslation:', false);
                 }, 300);
             });
         }
@@ -81,7 +78,6 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
         dispatch(setLanguage(inputLanguage));
         changeLanguage(inputLanguage);
         setGoBack(true);
-        console.log('setGoBack:', true);
     };
 
     useEffect(() => {
