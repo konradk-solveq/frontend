@@ -5,6 +5,8 @@ import {
 } from '@env';
 import {Linking} from 'react-native';
 
+import {DeepLink} from './utils/handleDeepLinkUrl';
+
 /**
  * Deep link must match to this config. As example 'world' is used.
  * In this case url: 'https://${DEEPLINKING_HOST}${DEEPLINKING_PREFIX}/world'
@@ -37,11 +39,26 @@ export const linking = {
         const url = await Linking.getInitialURL();
 
         if (url != null) {
+            /**
+             * Add info about share link to global instance
+             */
+            if (DeepLink?.instance) {
+                DeepLink.setShareIdFromUrl = url;
+                DeepLink.setShareTypeFromUrl = url;
+            }
             return url;
         }
     },
     subscribe(listener: (arg0: string) => void) {
         const onReceiveURL = async ({url}: {url: string}) => {
+            /**
+             * Add info about share link to global instance
+             */
+            if (DeepLink?.instance) {
+                DeepLink.setShareIdFromUrl = url;
+                DeepLink.setShareTypeFromUrl = url;
+            }
+
             listener(url);
         };
 

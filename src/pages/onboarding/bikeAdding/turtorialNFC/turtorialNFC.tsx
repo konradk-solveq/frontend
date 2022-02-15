@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState, useRef} from 'react';
+import React, {useCallback, useEffect, useState, useRef, useMemo} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -32,9 +32,13 @@ import {setBikesListByFrameNumber} from '@storage/actions';
 import Loader from '../loader/loader';
 import ScanModal from './scanModal.android';
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
-import {BothStackRoute} from '@navigation/route';
+import {OnboardingStackRoute, RegularStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
-import {setOnboardingFinished} from '@storage/actions';
+import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
+import {
+    setOnboardingFinished,
+    setDeepLinkActionForScreen,
+} from '@storage/actions';
 import {onboardingFinishedSelector} from '@storage/selectors';
 
 const isAndroid = Platform.OS === 'android';
@@ -55,6 +59,28 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const bikesList = useAppSelector(bikesListSelector);
     const name = useAppSelector(userNameSelector);
     const userName = name ? ' ' + name : ' ' + t('defaultName');
+    const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
+    const bikeSummaryRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.BIKE_SUMMARY_ONBOARDING_SCREEN
+                : RegularStackRoute.BIKE_SUMMARY_SCREEN,
+        [isOnboardingFinished],
+    );
+    const bikeDataRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.BIKE_DATA_ONBOARDING_SCREEN
+                : RegularStackRoute.BIKE_DATA_SCREEN,
+        [isOnboardingFinished],
+    );
+    const addByNumberRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.ADDING_BY_NUMBER_ONBOARDING_SCREEN
+                : RegularStackRoute.ADDING_BY_NUMBER_SCREEN,
+        [isOnboardingFinished],
+    );
 
     const [showScanModal, setShowScanModal] = useState<boolean>(false);
     const [startScanNFC, setStartScanNFC] = useState<boolean>(false);
@@ -82,14 +108,14 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                 await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
                 setStartScanNFC(false);
                 props.navigation.navigate({
-                    name: BothStackRoute.BIKE_SUMMARY_SCREEN,
+                    name: bikeSummaryRouteName,
                     params: {frameNumber: trimmedInputFrame},
                 });
                 return;
             } catch (error) {
                 if (error.notFound) {
                     props.navigation.navigate({
-                        name: BothStackRoute.BIKE_DATA_SCREEN,
+                        name: bikeDataRouteName,
                         params: {frameNumber: trimmedInputFrame},
                     });
                     return;
@@ -98,7 +124,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                 Alert.alert('Error', errorMessage);
             }
         },
-        [dispatch, props.navigation],
+        [dispatch, props.navigation, bikeSummaryRouteName, bikeDataRouteName],
     );
 
     const readNFCTag = useCallback(async () => {
@@ -154,8 +180,6 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         return () => clearTimeout(refTimer.current);
     }, [readNFCTag, t, startScanNFC, cancelScanByNfcHandler]);
 
-    const [headHeight, setHeadHeight] = useState(0);
-
     const heandleScanByNfc = async () => {
         if (!isAndroid) {
             onScanNfcHandler();
@@ -174,11 +198,13 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const onGoForwrdHandle = () => {
         if (!onboardingFinished) {
             dispatch(setOnboardingFinished(true));
+            dispatch(setDeepLinkActionForScreen('HomeTab'));
+        } else {
+            /**
+             * Go back to 'BikeScreen'
+             */
+            props.navigation.goBack();
         }
-        props.navigation.reset({
-            index: 0,
-            routes: [{name: BothStackRoute.TAB_MENU_SCREEN}],
-        });
     };
 
     const styles = StyleSheet.create({
@@ -219,9 +245,12 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             height: mainButtonsHeight(50),
             left: getHorizontalPx(40),
             marginTop: getVerticalPx(30),
-            marginBottom: getVerticalPx(65) + headHeight,
+            marginBottom: getVerticalPx(65) + get.headerH(),
         },
-        skip: {marginBottom: getVerticalPx(30)},
+        skip: {
+            marginBottom: getVerticalPx(30),
+            height: mainButtonsHeight(50),
+        },
     });
 
     if (isLoading) {
@@ -259,8 +288,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                             title={t('btnHand')}
                             onpress={() =>
                                 props.navigation.navigate({
-                                    name:
-                                        BothStackRoute.ADDING_BY_NUMBER_SCREEN,
+                                    name: addByNumberRouteName,
                                     params: {emptyFrame: true},
                                 })
                             }
@@ -272,7 +300,6 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.goBack()}
                 inner={t('header')}
-                getHeight={setHeadHeight}
                 style={{backgroundColor: '#fff'}}
             />
 

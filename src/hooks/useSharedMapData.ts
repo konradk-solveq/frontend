@@ -1,7 +1,12 @@
 import {useEffect, useState} from 'react';
+
 import {Map} from '@models/map.model';
 import {getSharedCyclingMapService} from '@services/shareService';
 import {useMergedState} from '@hooks/useMergedState';
+import {mapToClass} from '@utils/transformData';
+import {appConfigSelector} from '@storage/selectors/app';
+
+import {useAppSelector} from './redux';
 
 type MapStateT = {
     mapData: Map | null;
@@ -9,6 +14,8 @@ type MapStateT = {
 };
 
 export const useSharedMapData = (shareID?: string) => {
+    const appConfig = useAppSelector(appConfigSelector);
+
     const [{mapData, error}, setMapState] = useMergedState<MapStateT>({
         mapData: null,
         error: false,
@@ -20,7 +27,8 @@ export const useSharedMapData = (shareID?: string) => {
             const fetchSharedMapDataAsync = async () => {
                 const response = await getSharedCyclingMapService(shareID);
                 if (response.data) {
-                    setMapState({mapData: response.data, error: false});
+                    const md = mapToClass(response.data, appConfig);
+                    setMapState({mapData: md, error: false});
                 } else {
                     setMapState({error: true});
                 }
@@ -28,11 +36,12 @@ export const useSharedMapData = (shareID?: string) => {
             };
             fetchSharedMapDataAsync();
         }
-    }, [setMapState, shareID]);
+    }, [setMapState, shareID, appConfig]);
 
     if (!shareID) {
         return {
-            error: true,
+            error: false,
+            mapData: null,
         };
     }
 

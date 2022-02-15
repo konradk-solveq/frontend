@@ -1,7 +1,14 @@
-import {RootState} from '../storage';
+import {createSelector} from 'reselect';
 
-export const onboardingFinishedSelector = (state: RootState): boolean =>
-    state.user.onboardingFinished;
+import {UserStateI} from '@storage/reducers/user';
+import {RootState} from '@storage/storage';
+
+export const userSelector = (state: RootState): UserStateI => state.user;
+
+export const onboardingFinishedSelector = createSelector(
+    userSelector,
+    u => u.onboardingFinished,
+);
 
 export const userNameSelector = (state: RootState): string =>
     state.user.userName;

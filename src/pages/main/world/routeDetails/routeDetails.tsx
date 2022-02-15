@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Platform, SafeAreaView, Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
@@ -36,6 +36,9 @@ import Description from './description/description';
 import styles from './style';
 import {useSharedMapData} from '@hooks/useSharedMapData';
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import GenericError from '@components/error/GenericError';
+import {StackActions} from '@react-navigation/native';
+import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -69,16 +72,10 @@ const RouteDetails = () => {
     const {mapData: sharedMapData, isLoading, error} = useSharedMapData(
         shareID,
     );
-    const mapID = route?.params?.mapID ?? sharedMapData?.id;
+    const mapID = sharedMapData?.id ?? route?.params?.mapID;
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(mapID, getMapType(route?.params)),
     );
-
-    useEffect(() => {
-        if (error && !mapID) {
-            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
-        }
-    }, [mapID, error, navigation]);
 
     const isPublished =
         shareID && !mapData ? sharedMapData?.isPublic : mapData?.isPublic;
@@ -95,18 +92,27 @@ const RouteDetails = () => {
 
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
-
+    const safeAreaBackgroundStyle = {
+        backgroundColor: error && !mapID ? '#FAFAFA' : 'transparent',
+    };
     const headerBackgroundHeight = getVerticalPx(
         100,
     ); /* equal to header height */
-
-    const onBackHandler = () => {
+    const onBackHandler = useCallback(() => {
         if (cameFromSharedLink) {
-            navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
+            /**
+             * we use replace instead of navigate, because if you open the app using the shared link,
+             * this screen ends up as the top screen of the stack navigator
+             */
+            navigation.dispatch(
+                StackActions.replace(RegularStackRoute.TAB_MENU_SCREEN),
+            );
         } else {
             navigation.goBack();
         }
-    };
+    }, [cameFromSharedLink, navigation]);
+
+    useCustomBackNavButton(onBackHandler, true);
 
     const onGoToEditHandler = () => {
         navigation.navigate({
@@ -175,18 +181,27 @@ const RouteDetails = () => {
         navigation.goBack();
     };
 
+    const handleErrorBtnPress = () => {
+        navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
+    };
+
+    const containerStyle = {
+        paddingTop: headerBackgroundHeight,
+    };
+
     if (isLoading) {
         return <Loader />;
     }
 
     return (
         <>
-            <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
-                <View
-                    style={[
-                        styles.container,
-                        {paddingTop: headerBackgroundHeight},
-                    ]}>
+            <SafeAreaView
+                style={[
+                    styles.safeAreaView,
+                    safeAreaStyle,
+                    safeAreaBackgroundStyle,
+                ]}>
+                <View style={[styles.container, containerStyle]}>
                     <StackHeader
                         forceBackArrow={cameFromSharedLink}
                         onpress={onBackHandler}
@@ -218,74 +233,83 @@ const RouteDetails = () => {
                             </View>
                         }
                     />
-                    <SliverTopBar imgSrc={sliverImage || ''}>
-                        <View style={styles.content}>
-                            <Description
-                                mapData={
-                                    shareID && !mapData
-                                        ? sharedMapData
-                                        : mapData
-                                }
-                                images={images}
-                                isPrivateView={privateMap}
-                                isFavView={favouriteMap}
-                                isFeaturedView={featuredMap}
-                            />
-                            {favouriteMap && (
-                                <>
+                    {error ? (
+                        <GenericError
+                            errorTitle={t('share.error.title')}
+                            errorMessage={t('share.error.message')}
+                            buttonText={t('share.error.button')}
+                            onButtonPress={handleErrorBtnPress}
+                        />
+                    ) : (
+                        <SliverTopBar imgSrc={sliverImage || ''}>
+                            <View style={styles.content}>
+                                <Description
+                                    mapData={
+                                        shareID && !mapData
+                                            ? sharedMapData
+                                            : mapData
+                                    }
+                                    images={images}
+                                    isPrivateView={privateMap}
+                                    isFavView={favouriteMap}
+                                    isFeaturedView={featuredMap}
+                                />
+                                {favouriteMap && (
+                                    <>
+                                        <BigRedBtn
+                                            testID={'route-details-start-btn'}
+                                            title={t('startButton')}
+                                            onpress={onPressStartRouteHandler}
+                                            style={styles.reportButton}
+                                        />
+                                        <BigWhiteBtn
+                                            title={t('removeRouteButton')}
+                                            testID={'route-details-remove-btn'}
+                                            onpress={
+                                                onPressRemoveFromFacouritesHandler
+                                            }
+                                            style={[
+                                                styles.removeRouteButton,
+                                                styles.buttonBottomDistance,
+                                            ]}
+                                        />
+                                    </>
+                                )}
+
+                                {!favouriteMap && (
                                     <BigRedBtn
-                                        testID={'route-details-start-btn'}
-                                        title={t('startButton')}
-                                        onpress={onPressStartRouteHandler}
-                                        style={styles.reportButton}
-                                    />
-                                    <BigWhiteBtn
-                                        title={t('removeRouteButton')}
-                                        testID={'route-details-remove-btn'}
+                                        title={
+                                            !privateMap
+                                                ? !favMapName
+                                                    ? t('addFavRouteButton')
+                                                    : t('removeFavRouteButton')
+                                                : t('deleteButton')
+                                        }
                                         onpress={
-                                            onPressRemoveFromFacouritesHandler
+                                            !privateMap
+                                                ? onPressAddRouteHandler
+                                                : onPressHandler
                                         }
                                         style={[
-                                            styles.removeRouteButton,
+                                            styles.reportButton,
                                             styles.buttonBottomDistance,
                                         ]}
                                     />
-                                </>
-                            )}
-
-                            {!favouriteMap && (
-                                <BigRedBtn
-                                    title={
-                                        !privateMap
-                                            ? !favMapName
-                                                ? t('addFavRouteButton')
-                                                : t('removeFavRouteButton')
-                                            : t('deleteButton')
-                                    }
-                                    onpress={
-                                        !privateMap
-                                            ? onPressAddRouteHandler
-                                            : onPressHandler
-                                    }
-                                    style={[
-                                        styles.reportButton,
-                                        styles.buttonBottomDistance,
-                                    ]}
-                                />
-                            )}
-                            <View style={styles.textButtonContainer}>
-                                <Text style={styles.textButton}>
-                                    {`${t('textPrefix')} `}
-                                    <Text
-                                        onPress={onPressReportHandler}
-                                        style={styles.textbuttonAction}>
-                                        {t('textAction')}
+                                )}
+                                <View style={styles.textButtonContainer}>
+                                    <Text style={styles.textButton}>
+                                        {`${t('textPrefix')} `}
+                                        <Text
+                                            onPress={onPressReportHandler}
+                                            style={styles.textbuttonAction}>
+                                            {t('textAction')}
+                                        </Text>
+                                        {t('textSuffix')}
                                     </Text>
-                                    {t('textSuffix')}
-                                </Text>
+                                </View>
                             </View>
-                        </View>
-                    </SliverTopBar>
+                        </SliverTopBar>
+                    )}
                 </View>
                 <BottomModal
                     showModal={showBottomModal}

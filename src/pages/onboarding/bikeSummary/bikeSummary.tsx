@@ -2,7 +2,11 @@ import React, {useCallback} from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useAppSelector, useAppDispatch} from '@hooks/redux';
-import {setOnboardingFinished, removeBikeByNumber} from '@storage/actions';
+import {
+    setOnboardingFinished,
+    removeBikeByNumber,
+    setDeepLinkActionForScreen,
+} from '@storage/actions';
 
 import {
     bikeByFrameNumberSelector,
@@ -27,7 +31,7 @@ import BikeImage from '@sharedComponents/images/bikeImage';
 import {SizeLabel, ColorLabel} from '@sharedComponents/labels';
 import Curve from '@sharedComponents/svg/curve';
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
-import {BothStackRoute} from '@navigation/route';
+import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface IProps {
@@ -104,11 +108,13 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const onGoForwrdHandle = () => {
         if (!onboardingFinished) {
             dispatch(setOnboardingFinished(true));
+            dispatch(setDeepLinkActionForScreen('HomeTab'));
+        } else {
+            /**
+             * Go back to 'BikeScreen'
+             */
+            navigation.navigate(RegularStackRoute.BIKE_SCREEN);
         }
-        navigation.reset({
-            index: 0,
-            routes: [{name: BothStackRoute.TAB_MENU_SCREEN}],
-        });
     };
 
     return (

@@ -1,0 +1,381 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WhiteBtn /> Rendering Should fire onPressEvent 1`] = `
+Array [
+  <RNGestureHandlerButton
+    collapsable={false}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+    testID="white-btn"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderRadius": 28.985507246376812,
+          "display": "flex",
+          "height": "100%",
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#C63733",
+            "fontFamily": "DIN2014Narrow-Bold",
+            "fontSize": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        TEST
+      </Text>
+    </View>
+  </RNGestureHandlerButton>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`<WhiteBtn /> Rendering Should match snapshot - with neutralCase 1`] = `
+Array [
+  <RNGestureHandlerButton
+    collapsable={false}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+    testID="white-btn"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderRadius": 28.985507246376812,
+          "display": "flex",
+          "height": "100%",
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#C63733",
+            "fontFamily": "DIN2014Narrow-Bold",
+            "fontSize": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        Test
+      </Text>
+    </View>
+  </RNGestureHandlerButton>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`<WhiteBtn /> Rendering Should match snapshot - with onPress 1`] = `
+Array [
+  <RNGestureHandlerButton
+    collapsable={false}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+    testID="white-btn"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderRadius": 28.985507246376812,
+          "display": "flex",
+          "height": "100%",
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#C63733",
+            "fontFamily": "DIN2014Narrow-Bold",
+            "fontSize": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        TEST
+      </Text>
+    </View>
+  </RNGestureHandlerButton>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;
+
+exports[`<WhiteBtn /> Rendering Should match snapshot 1`] = `
+Array [
+  <RNGestureHandlerButton
+    collapsable={false}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+    testID="white-btn"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderRadius": 28.985507246376812,
+          "display": "flex",
+          "height": "100%",
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": "100%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#C63733",
+            "fontFamily": "DIN2014Narrow-Bold",
+            "fontSize": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        TEST
+      </Text>
+    </View>
+  </RNGestureHandlerButton>,
+  <View
+    style={
+      Array [
+        Object {
+          "position": "absolute",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "backgroundColor": "#313131",
+          "bottom": 0,
+          "height": 0,
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": "100%",
+          "zIndex": 1000,
+        }
+      }
+    >
+      <Text
+        collapsable={false}
+        nativeID="animatedComponent"
+        numberOfLines={1}
+        style={
+          Object {
+            "color": "#ffffff",
+            "fontFamily": "DIN2014Narrow-Regular",
+            "fontSize": 13,
+            "letterSpacing": 0.4,
+            "opacity": 0,
+            "paddingBottom": 7.444196428571429,
+            "paddingHorizontal": 36.231884057971016,
+            "textAlign": "center",
+          }
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>,
+]
+`;

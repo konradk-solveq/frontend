@@ -47,6 +47,7 @@ const FeaturedRoutes: React.FC = () => {
                 private: false,
                 favourite: false,
                 featured: true,
+                shareID: null,
             },
         });
     };

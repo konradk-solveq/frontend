@@ -54,6 +54,7 @@
         "placeholder": "Numer ramy",
         "messageWrong": "Nieprawidłowe znaki",
         "infoBtn": "Gdzie znajdę numer ramy?",
+        "btnSkip": "POMIŃ",
         "btn": "DALEJ"
     },
     "AddingInfo": {
@@ -451,6 +452,13 @@
             "publishPrefix": "Na mapie rowerowej od",
             "distanceToStart": " km od Ciebie",
             "noDescription": "Brak opisu."
+        },
+        "share": {
+            "error": {
+                "title": "Coś poszło nie tak",
+                "message": "Nie mogliśmy wyświetlić udostępnionych treści",
+                "button": "Przejdź do strony głównej"
+            }
         },
         "EditScreen": {
             "tagsTitle": "Tagi",

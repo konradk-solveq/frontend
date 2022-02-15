@@ -59,7 +59,12 @@ const ShowMoreModal: React.FC<IProps> = ({
         onPressCancel();
         navigation.navigate({
             name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-            params: {mapID: mapID, private: isPrivate, isFeatured: isFeatured},
+            params: {
+                mapID: mapID,
+                private: isPrivate,
+                isFeatured: isFeatured,
+                shareID: null,
+            },
         });
     };
 
