@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {InteractionManager, View} from 'react-native';
 import {useNavigation, useFocusEffect} from '@react-navigation/core';
 import {useRoute} from '@react-navigation/native';
@@ -31,7 +31,7 @@ const ShareRouteScreen: React.FC = () => {
     const navigation = useNavigation<ShareRouteScreenNavigationPropT>();
     const {mapID} = useRoute<ShareRouteScreenRouteT>().params;
 
-    const shareBtnIsVisible = useRef(false);
+    const [shareBtnIsVisible, setShareBtnIsVisible] = useState(false);
 
     const [showErrorModal, setShowErrorModal] = useState(false);
 
@@ -54,7 +54,7 @@ const ShareRouteScreen: React.FC = () => {
 
     const callSharing = useCallback(() => {
         if (sharedContent?.url && !shareError) {
-            shareBtnIsVisible.current = true;
+            setShareBtnIsVisible(true);
 
             const message = i18next.t(
                 'ShareScreen.ShareContent.Route.message',
@@ -111,7 +111,7 @@ const ShareRouteScreen: React.FC = () => {
                     </Placeholder>
 
                     <View>
-                        {shareBtnIsVisible.current && (
+                        {shareBtnIsVisible && (
                             <ShareBtn
                                 onPress={callSharing}
                                 iconStyle={styles.sharebutton}

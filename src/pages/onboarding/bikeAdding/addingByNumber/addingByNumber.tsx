@@ -69,6 +69,13 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 : RegularStackRoute.BIKE_DATA_SCREEN,
         [isOnboardingFinished],
     );
+    const whereIsBikeFrameNumberRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.ADDING_INFO_ONBOARDING_SCREEN
+                : RegularStackRoute.ADDING_INFO_SCREEN,
+        [isOnboardingFinished],
+    );
 
     const {t} = useMergedTranslation('AddingByNumber');
 
@@ -239,7 +246,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                             color="#3587ea"
                             onpress={() =>
                                 props.navigation.navigate(
-                                    BothStackRoute.ADDING_INFO_SCREEN,
+                                    whereIsBikeFrameNumberRouteName,
                                 )
                             }
                         />
