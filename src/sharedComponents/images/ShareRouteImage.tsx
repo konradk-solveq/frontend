@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image, StyleSheet, ViewStyle, ImageStyle} from 'react-native';
 
 interface IProps {
@@ -14,11 +14,17 @@ const ShareRouteImage: React.FC<IProps> = ({
     containerStyles,
     imageStyles,
 }: IProps) => {
-    const onLoadEndHandler = useCallback(() => {
-        if (imgUrl) {
+    const [imageIsLoaded, setImageIsLoaded] = useState(false);
+
+    const onLoadEndHandler = () => {
+        setImageIsLoaded(true);
+    };
+
+    useEffect(() => {
+        if (imageIsLoaded && imgUrl) {
             onImageLoaded();
         }
-    }, [onImageLoaded, imgUrl]);
+    }, [onImageLoaded, imageIsLoaded, imgUrl]);
 
     return (
         <View
