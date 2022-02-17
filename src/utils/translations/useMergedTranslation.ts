@@ -12,17 +12,21 @@ export const changeLanguage = (
     langsList: LangsType[],
 ) => {
     if (language === '') {
-        const deviceLanguage =
-            Platform.OS === 'ios'
-                ? NativeModules.SettingsManager.settings.AppleLocale ||
-                  NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
-                : NativeModules.I18nManager.localeIdentifier;
+        try {
+            const deviceLanguage =
+                Platform.OS === 'ios'
+                    ? NativeModules.SettingsManager.settings.AppleLocale ||
+                      NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+                    : NativeModules.I18nManager.localeIdentifier;
 
-        const code = deviceLanguage.split('_')[0];
-        if (langsList.some(e => e.name === code)) {
-            language = code;
-        } else {
-            /** default language */
+            const code = deviceLanguage.split('_')[0];
+            if (langsList.some(e => e.name === code)) {
+                language = code;
+            } else {
+                /** default language */
+                language = 'en';
+            }
+        } catch {
             language = 'en';
         }
     }

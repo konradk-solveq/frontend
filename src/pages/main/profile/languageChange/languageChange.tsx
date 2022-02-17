@@ -60,7 +60,7 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     };
 
     const startFetchingTranslation = (d: any) =>
-        new Promise((resolve, reject) => {
+        new Promise(resolve => {
             d(fetchUiTranslation(true));
             resolve(true);
         });
