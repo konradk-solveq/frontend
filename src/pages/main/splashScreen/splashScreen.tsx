@@ -96,16 +96,16 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
     useEffect(() => {
         if (!isLoading) {
             const getPage = () => {
-                if (props.route.params?.redirectToScreen) {
-                    return props.route.params.redirectToScreen;
-                }
-
                 if (showNewRegulations) {
                     return RegularStackRoute.NEW_REGULATIONS_SCREEN;
                 }
 
                 if (showNewAppVersion) {
                     return RegularStackRoute.NEW_APP_VERSION_SCREEN;
+                }
+
+                if (props.route.params?.redirectToScreen) {
+                    return props.route.params.redirectToScreen;
                 }
 
                 return BothStackRoute.TAB_MENU_SCREEN;
