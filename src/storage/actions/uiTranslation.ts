@@ -11,6 +11,7 @@ import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 import {setSyncStatus, setSyncError} from './app';
 import {languagesListT, translationsT} from '@models/uiTranslation.models';
+import {convertTranslations} from '@helpers/uiTranslation';
 
 export const setUiTranslation = (translations: translationsT) => {
     return {
@@ -33,22 +34,16 @@ export const fetchUiTranslation = (
             return;
         }
 
-        const newTranslations: any = {};
         const code: string = response?.data?.code;
-        if (code) {
-            newTranslations[code] = {
-                translation: response?.data?.translation,
-                version: response?.data?.version,
-                controlSum: response?.data?.controlSum,
-            };
-        }
-
         const oldTranslations = getState().uiTranslation.translations;
-        for (const key in newTranslations) {
-            oldTranslations[key] = newTranslations[key];
-        }
 
-        dispatch(setUiTranslation(oldTranslations));
+        const newTranslations = convertTranslations(
+            code,
+            response.data,
+            oldTranslations,
+        );
+
+        dispatch(setUiTranslation(newTranslations));
 
         if (!noLoader) {
             dispatch(setSyncStatus(false));

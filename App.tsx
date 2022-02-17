@@ -14,12 +14,10 @@ import {initConfig} from '@theme/appLayoutConfig';
 
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
-import useRouteDebug from '@src/hooks/useRouteDebug';
+import useRouteDebug from '@hooks/useRouteDebug';
 
-import {setUserAgentHeader} from '@src/api';
-import {fetchAppConfig} from '@src/storage/actions/app';
-import {setLanguageHeader} from '@src/api/api';
-import { fetchLanguagesList } from '@src/storage/actions';
+import {setUserAgentHeader} from '@api';
+import {setLanguageHeader} from '@api/api';
 
 const App: () => Node = () => {
     const persistor = persistStore(storage);

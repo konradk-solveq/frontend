@@ -21,10 +21,12 @@ import useLanguageReloader from '@src/hooks/useLanguageReloader';
 import Loader from '@sharedComponents/loader/loader';
 import {commonStyle} from '@helpers/commonStyle';
 import {
+    codesListSelector,
     languagesListSelector,
     translationsSelector,
 } from '@storage/selectors/uiTranslation';
-import {languagesListT} from '@src/models/uiTranslation.models';
+import {languagesListT, translationsT} from '@src/models/uiTranslation.models';
+import {LangsType} from '@src/models/config.model';
 
 const ReloadItem = () => {
     useLanguageReloader();
@@ -43,8 +45,9 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     const [inputLanguage, setInputLanguage] = useState<string>('');
 
     const languageList: languagesListT = useAppSelector(languagesListSelector);
+    const langsList: LangsType[] = useAppSelector(codesListSelector);
 
-    const translations: any = useAppSelector(translationsSelector);
+    const translations: translationsT = useAppSelector(translationsSelector);
     const [fetchingTranslation, setFetchingTranslation] = useState<boolean>(
         false,
     );
@@ -77,7 +80,7 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
         }
 
         dispatch(setLanguage(inputLanguage));
-        changeLanguage(inputLanguage);
+        changeLanguage(inputLanguage, langsList);
         setGoBack(true);
     };
 
