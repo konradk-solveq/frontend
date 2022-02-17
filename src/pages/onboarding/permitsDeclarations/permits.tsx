@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
     StyleSheet,
     View,
@@ -22,7 +22,7 @@ import {
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import OnePermit from './onePermit';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
-import {BothStackRoute, OnboardingStackRoute} from '@navigation/route';
+import {OnboardingStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface Props {
@@ -46,6 +46,22 @@ const Permits: React.FC<Props> = (props: Props) => {
             setWrong(true);
         }
     };
+
+    const navigateToDetailsHandler = useCallback(
+        (url: string) => {
+            if (url === t('urlRegulations')) {
+                props.navigation.navigate(
+                    OnboardingStackRoute.REGULATIONS_ONBOARDING_SCREEN,
+                );
+            }
+            if (url === t('urlPrivacyPolicy')) {
+                props.navigation.navigate(
+                    OnboardingStackRoute.PRIVACY_POLICY_ONBOARDING_SCREEN,
+                );
+            }
+        },
+        [props.navigation, t],
+    );
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -115,7 +131,7 @@ const Permits: React.FC<Props> = (props: Props) => {
                                 getCheck={() => setChecked(!checked)}
                                 text={t('permit.text')}
                                 marginTop={getVerticalPx(66)}
-                                navigation={props.navigation}
+                                onPress={navigateToDetailsHandler}
                             />
 
                             <Text style={styles.clauseTitle}>
@@ -133,18 +149,7 @@ const Permits: React.FC<Props> = (props: Props) => {
                                     }
                                     return url;
                                 }}
-                                onPress={(url: string) => {
-                                    if (url === t('urlRegulations')) {
-                                        props.navigation.navigate(
-                                            BothStackRoute.REGULATIONS_SCREEN,
-                                        );
-                                    }
-                                    if (url === t('urlPrivacyPolicy')) {
-                                        props.navigation.navigate(
-                                            BothStackRoute.PRIVACY_POLICY_SCREEN,
-                                        );
-                                    }
-                                }}>
+                                onPress={navigateToDetailsHandler}>
                                 <Text style={styles.clause}>{t('clause')}</Text>
                             </Hyperlink>
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-// import CheckBox from '@react-native-community/checkbox';
 import Hyperlink from 'react-native-hyperlink';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
@@ -12,7 +11,6 @@ import {
     getWidthOf,
     getFontSize,
 } from '@helpers/layoutFoo';
-import {BothStackRoute} from '@navigation/route';
 
 import CheckBox from '@sharedComponents/checkBox/checkBox';
 
@@ -24,7 +22,7 @@ interface Props {
     text: string; // * tekst zgody
     info?: string; // dodatkowe informacje
     marginTop: number; // *
-    navigation: any;
+    onPress: (url: string) => void;
 }
 
 const OnePermit: React.FC<Props> = (props: Props) => {
@@ -96,18 +94,7 @@ const OnePermit: React.FC<Props> = (props: Props) => {
                         }
                         return url;
                     }}
-                    onPress={(url: string) => {
-                        if (url === t('urlRegulations')) {
-                            props.navigation.navigate(
-                                BothStackRoute.REGULATIONS_SCREEN,
-                            );
-                        }
-                        if (url === t('urlPrivacyPolicy')) {
-                            props.navigation.navigate(
-                                BothStackRoute.PRIVACY_POLICY_SCREEN,
-                            );
-                        }
-                    }}>
+                    onPress={props.onPress}>
                     <Text style={styles.text}>{props.text}</Text>
                 </Hyperlink>
 
@@ -129,18 +116,7 @@ const OnePermit: React.FC<Props> = (props: Props) => {
                             }
                             return url;
                         }}
-                        onPress={(url: string) => {
-                            if (url === t('urlRegulations')) {
-                                props.navigation.navigate(
-                                    BothStackRoute.REGULATIONS_SCREEN,
-                                );
-                            }
-                            if (url === t('urlPrivacyPolicy')) {
-                                props.navigation.navigate(
-                                    BothStackRoute.PRIVACY_POLICY_SCREEN,
-                                );
-                            }
-                        }}>
+                        onPress={props.onPress}>
                         <Text style={[styles.text, styles.info]}>
                             {props.info}
                         </Text>
