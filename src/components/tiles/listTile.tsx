@@ -21,7 +21,7 @@ interface PropsI {
     testID?: string;
 }
 
-const ListTile: React.FC<PropsI> = ({onpress: onPress, testID}) => {
+const ListTile: React.FC<PropsI> = ({onPress, testID}) => {
     const styles = StyleSheet.create({
         area: {
             width: getFHorizontalPx(358),
@@ -51,6 +51,7 @@ const ListTile: React.FC<PropsI> = ({onpress: onPress, testID}) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
         },
+        btn: {},
     });
 
     return (
