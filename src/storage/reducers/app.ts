@@ -73,12 +73,12 @@ const initialState: AppState = {
     config: {
         name: '',
         lang: '',
-        langs: {name: '', displayName: ''},
+        langs: [],
         tags: [],
         surfaces: [],
         difficulties: [],
         reactions: [],
-        uiTranslation: {controlSum: '', codes: []},
+        uiTranslations: {controlSums: [], codes: []},
     },
     terms: [],
     currentTerms: {

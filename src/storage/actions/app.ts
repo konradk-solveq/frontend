@@ -39,6 +39,7 @@ import {DebugRouteInstance} from '@debugging/debugRoute';
 import {batch} from 'react-redux';
 import {AuthState} from '../reducers/auth';
 import {fetchUiTranslation, fetchLanguagesList} from './uiTranslation';
+import {getControlSumService} from '@src/services/uiTranslation';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -54,10 +55,6 @@ export const setAppStatus = (
 });
 
 export const setAppConfig = (config: AppConfigI) => {
-    if (typeof config.uiTranslation.codes === 'undefined') {
-        config.uiTranslation.codes = config.uiTranslation.langs; // reductor
-    }
-
     return {
         type: actionTypes.SET_APP_CONFIG,
         config: config,
@@ -154,6 +151,7 @@ export const fetchAppConfig = (
     }
     try {
         const response = await getAppConfigService();
+        const responseControlSum = await getControlSumService();
 
         if (response.error || response.status >= 400 || !response.data) {
             dispatch(setSyncError(response.error, response.status));
@@ -163,14 +161,16 @@ export const fetchAppConfig = (
         dispatch(fetchLanguagesList(true));
         const {config}: AppState = getState().app;
 
-        const conditionToGetTranslation =
-            response?.data?.uiTranslation.controlSum !==
-            config.uiTranslation.controlSum;
+        const lang = response.data.lang;
+        const currentControlSums = responseControlSum.data?.controlSum;
+        const memoriedControlSums = config.uiTranslations?.controlSums.find(
+            e => e.code === lang,
+        )?.controlSum;
 
         batch(() => {
             dispatch(setAppConfig(response.data));
             dispatch(clearAppError());
-            if (conditionToGetTranslation) {
+            if (currentControlSums !== memoriedControlSums) {
                 dispatch(fetchUiTranslation(true));
             }
         });

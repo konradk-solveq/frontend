@@ -7,25 +7,31 @@ export type SelectEnumOptionsT = {
     tags: SelectOptionType[];
 };
 
-type UiTranslationType = {
+export type ControlSumsT = {
+    code: string;
     controlSum: string;
+};
+
+type UiTranslationType = {
+    controlSums: ControlSumsT[];
     codes: string[];
 };
 
+export type LangsT = {
+    name: string;
+    displayName: string;
+};
 
 export class AppConfig implements SelectEnumOptionsT {
     constructor(
         public name: string,
         public lang: string,
-        public langs: {
-            name: string;
-            displayName: string;
-        },
+        public langs: LangsT[],
         public tags: SelectOptionType[],
         public surfaces: SelectOptionType[],
         public difficulties: SelectOptionType[],
         public reactions: SelectOptionType[],
-        public uiTranslation: UiTranslationType,
+        public uiTranslations: UiTranslationType,
     ) {
         this.name = name;
         this.lang = lang;
@@ -34,7 +40,7 @@ export class AppConfig implements SelectEnumOptionsT {
         this.surfaces = surfaces;
         this.difficulties = difficulties;
         this.reactions = reactions;
-        this.uiTranslation = uiTranslation;
+        this.uiTranslations = uiTranslations;
     }
 }
 

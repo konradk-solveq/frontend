@@ -5,3 +5,6 @@ export const getUiTranslation = async () =>
 
 export const getLanguagesList = async () =>
     await axiosGet('/application/languages');
+
+export const getControlSum = async () =>
+    await axiosGet('/application/ui-translation/control-sum');

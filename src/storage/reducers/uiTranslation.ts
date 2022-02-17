@@ -7,11 +7,13 @@ import {translationsT, languagesListT} from '@src/models/uiTranslation.models';
 export interface UiTranslationState {
     translations: translationsT;
     languagesList: languagesListT;
+    controlSum: string | undefined;
 }
 
 const initialState: UiTranslationState = {
     translations: {},
     languagesList: [],
+    controlSum: undefined,
 };
 
 const uiTranslationReducer = (state = initialState, action: any) => {

@@ -9,11 +9,10 @@ import i18next from '@translations/i18next';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
-import {batch} from 'react-redux';
-
 import {setSyncStatus, setSyncError} from './app';
+import {languagesListT, translationsT} from '@models/uiTranslation.models';
 
-const setUiTranslation = (translations: any) => {
+export const setUiTranslation = (translations: translationsT) => {
     return {
         type: actionTypes.SET_UI_TRANSLATION,
         translations,
@@ -35,13 +34,12 @@ export const fetchUiTranslation = (
         }
 
         const newTranslations: any = {};
-        const lang = response?.data?.code // reductor
-            ? response?.data?.code
-            : response?.data?.language;
-        if (lang) {
-            newTranslations[lang] = response?.data?.translation;
-            newTranslations[lang].ForApplication = {
+        const code: string = response?.data?.code;
+        if (typeof code !== 'undefined' && code) {
+            newTranslations[code] = {
+                translation: response?.data?.translation,
                 version: response?.data?.version,
+                controlSum: response?.data?.controlSum,
             };
         }
 
@@ -66,7 +64,7 @@ export const fetchUiTranslation = (
     }
 };
 
-const getLanguagesList = (languagesList: any) => {
+const getLanguagesList = (languagesList: languagesListT) => {
     return {
         type: actionTypes.GET_LANGUAGES_LIST,
         languagesList,
@@ -87,7 +85,6 @@ export const fetchLanguagesList = (
             return;
         }
 
-        // console.log('Languages List', response.data);
         dispatch(getLanguagesList(response.data));
 
         if (!noLoader) {

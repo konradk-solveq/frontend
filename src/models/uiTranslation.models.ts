@@ -4,8 +4,21 @@ export type languagesListT = {
     icon: string;
 }[];
 
+export type translationsResponseT = {
+    code: string;
+    version: string;
+    translation: {};
+    controlSum: string;
+};
+
 export type translationsT = {
     [key: string]: {
-        backend: any;
-    }[];
+        translation: {};
+        version: string;
+        controlSum: string;
+    };
+};
+
+export type controlSumT = {
+    controlSum: string;
 };

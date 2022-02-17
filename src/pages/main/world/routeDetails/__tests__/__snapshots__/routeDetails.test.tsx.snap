@@ -13,6 +13,9 @@ Array [
         Object {
           "marginTop": -0,
         },
+        Object {
+          "backgroundColor": "transparent",
+        },
       ]
     }
   >
@@ -993,7 +996,7 @@ Array [
                 RoutesDetails.details.creationPrefix
                 :
                  
-                27.01.2022, 24:00:00
+                27.01.2022, 00:00:00
               </Text>
             </View>
             <View
@@ -1414,6 +1417,9 @@ Array [
         },
         Object {
           "marginTop": -0,
+        },
+        Object {
+          "backgroundColor": "transparent",
         },
       ]
     }
@@ -2325,7 +2331,7 @@ Array [
                 RoutesDetails.details.creationPrefix
                 :
                  
-                27.01.2022, 24:00:00
+                27.01.2022, 00:00:00
               </Text>
             </View>
             <View
@@ -2785,6 +2791,9 @@ Array [
         },
         Object {
           "marginTop": -0,
+        },
+        Object {
+          "backgroundColor": "transparent",
         },
       ]
     }
@@ -3773,7 +3782,7 @@ Array [
                 RoutesDetails.details.creationPrefix
                 :
                  
-                27.01.2022, 24:00:00
+                27.01.2022, 00:00:00
               </Text>
             </View>
             <View
@@ -4194,6 +4203,9 @@ Array [
         },
         Object {
           "marginTop": -0,
+        },
+        Object {
+          "backgroundColor": "transparent",
         },
       ]
     }
@@ -5105,7 +5117,7 @@ Array [
                 RoutesDetails.details.creationPrefix
                 :
                  
-                27.01.2022, 24:00:00
+                27.01.2022, 00:00:00
               </Text>
             </View>
             <View
@@ -5526,6 +5538,9 @@ Array [
         },
         Object {
           "marginTop": -0,
+        },
+        Object {
+          "backgroundColor": "transparent",
         },
       ]
     }
@@ -6522,7 +6537,7 @@ Array [
                 RoutesDetails.details.creationPrefix
                 :
                  
-                27.01.2022, 24:00:00
+                27.01.2022, 00:00:00
               </Text>
             </View>
             <View

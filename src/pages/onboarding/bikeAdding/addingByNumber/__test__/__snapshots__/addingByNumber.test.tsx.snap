@@ -27,8 +27,8 @@ Array [
         <View
           style={
             Object {
-              "height": 1334,
-              "minHeight": 851.1370988612837,
+              "height": 1185.1160714285713,
+              "minHeight": 414.37629399585927,
               "width": "100%",
             }
           }
@@ -171,14 +171,69 @@ Array [
           <View
             style={
               Object {
-                "bottom": 245.65848214285717,
-                "height": 50,
+                "bottom": 0,
+                "height": 144.66517857142858,
                 "left": 72.46376811594203,
+                "marginBottom": 96.77455357142858,
+                "marginTop": 44.66517857142858,
                 "position": "absolute",
                 "width": 605.072463768116,
               }
             }
           >
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginBottom": 44.66517857142858,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              <RNGestureHandlerButton
+                collapsable={false}
+                onGestureEvent={[Function]}
+                onGestureHandlerEvent={[Function]}
+                onGestureHandlerStateChange={[Function]}
+                onHandlerStateChange={[Function]}
+                rippleColor={0}
+                testID="adding-by-number-next-btn"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  nativeID="animatedComponent"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#d8232a",
+                      "borderRadius": 50,
+                      "display": "flex",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                          "fontFamily": "DIN2014Narrow-Bold",
+                          "fontSize": 20,
+                          "textAlign": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    ADDINGBYNUMBER.BTN
+                  </Text>
+                </View>
+              </RNGestureHandlerButton>
+            </View>
             <RNGestureHandlerButton
               collapsable={false}
               onGestureEvent={[Function]}
@@ -186,7 +241,7 @@ Array [
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
-              testID="adding-by-number-next-btn"
+              testID="big-white-btn"
             >
               <View
                 accessible={true}
@@ -195,10 +250,12 @@ Array [
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#d8232a",
-                    "borderRadius": 50,
+                    "backgroundColor": "#fff",
+                    "borderColor": "#33555555",
+                    "borderRadius": 90.57971014492753,
+                    "borderWidth": 1,
                     "display": "flex",
-                    "height": "100%",
+                    "height": 50,
                     "justifyContent": "center",
                     "opacity": 1,
                     "width": "100%",
@@ -207,18 +264,15 @@ Array [
               >
                 <Text
                   style={
-                    Array [
-                      Object {
-                        "color": "white",
-                        "fontFamily": "DIN2014Narrow-Bold",
-                        "fontSize": 20,
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ]
+                    Object {
+                      "color": "#313131",
+                      "fontFamily": "DIN2014Narrow-Bold",
+                      "fontSize": 36.231884057971016,
+                      "textAlign": "center",
+                    }
                   }
                 >
-                  ADDINGBYNUMBER.BTN
+                  ADDINGBYNUMBER.BTNSKIP
                 </Text>
               </View>
             </RNGestureHandlerButton>
@@ -354,8 +408,8 @@ Array [
         <View
           style={
             Object {
-              "height": 1334,
-              "minHeight": 851.1370988612837,
+              "height": 1185.1160714285713,
+              "minHeight": 414.37629399585927,
               "width": "100%",
             }
           }
@@ -498,14 +552,69 @@ Array [
           <View
             style={
               Object {
-                "bottom": 245.65848214285717,
-                "height": 50,
+                "bottom": 0,
+                "height": 144.66517857142858,
                 "left": 72.46376811594203,
+                "marginBottom": 96.77455357142858,
+                "marginTop": 44.66517857142858,
                 "position": "absolute",
                 "width": 605.072463768116,
               }
             }
           >
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginBottom": 44.66517857142858,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              <RNGestureHandlerButton
+                collapsable={false}
+                onGestureEvent={[Function]}
+                onGestureHandlerEvent={[Function]}
+                onGestureHandlerStateChange={[Function]}
+                onHandlerStateChange={[Function]}
+                rippleColor={0}
+                testID="adding-by-number-next-btn"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  nativeID="animatedComponent"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#d8232a",
+                      "borderRadius": 50,
+                      "display": "flex",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                          "fontFamily": "DIN2014Narrow-Bold",
+                          "fontSize": 20,
+                          "textAlign": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    ADDINGBYNUMBER.BTN
+                  </Text>
+                </View>
+              </RNGestureHandlerButton>
+            </View>
             <RNGestureHandlerButton
               collapsable={false}
               onGestureEvent={[Function]}
@@ -513,7 +622,7 @@ Array [
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
-              testID="adding-by-number-next-btn"
+              testID="big-white-btn"
             >
               <View
                 accessible={true}
@@ -522,10 +631,12 @@ Array [
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#d8232a",
-                    "borderRadius": 50,
+                    "backgroundColor": "#fff",
+                    "borderColor": "#33555555",
+                    "borderRadius": 90.57971014492753,
+                    "borderWidth": 1,
                     "display": "flex",
-                    "height": "100%",
+                    "height": 50,
                     "justifyContent": "center",
                     "opacity": 1,
                     "width": "100%",
@@ -534,18 +645,15 @@ Array [
               >
                 <Text
                   style={
-                    Array [
-                      Object {
-                        "color": "white",
-                        "fontFamily": "DIN2014Narrow-Bold",
-                        "fontSize": 20,
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ]
+                    Object {
+                      "color": "#313131",
+                      "fontFamily": "DIN2014Narrow-Bold",
+                      "fontSize": 36.231884057971016,
+                      "textAlign": "center",
+                    }
                   }
                 >
-                  ADDINGBYNUMBER.BTN
+                  ADDINGBYNUMBER.BTNSKIP
                 </Text>
               </View>
             </RNGestureHandlerButton>
@@ -681,8 +789,8 @@ Array [
         <View
           style={
             Object {
-              "height": 1334,
-              "minHeight": 851.1370988612837,
+              "height": 1185.1160714285713,
+              "minHeight": 414.37629399585927,
               "width": "100%",
             }
           }
@@ -823,14 +931,67 @@ Array [
           <View
             style={
               Object {
-                "bottom": 245.65848214285717,
-                "height": 50,
+                "bottom": 0,
+                "height": 144.66517857142858,
                 "left": 72.46376811594203,
+                "marginBottom": 96.77455357142858,
+                "marginTop": 44.66517857142858,
                 "position": "absolute",
                 "width": 605.072463768116,
               }
             }
           >
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginBottom": 44.66517857142858,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              <RNGestureHandlerButton
+                collapsable={false}
+                onGestureEvent={[Function]}
+                onGestureHandlerEvent={[Function]}
+                onGestureHandlerStateChange={[Function]}
+                onHandlerStateChange={[Function]}
+                rippleColor={0}
+                testID="adding-by-number-next-btn"
+              >
+                <View
+                  accessible={true}
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#d8232a",
+                      "borderRadius": 50,
+                      "display": "flex",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                          "fontFamily": "DIN2014Narrow-Bold",
+                          "fontSize": 20,
+                          "textAlign": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    ADDINGBYNUMBER.BTN
+                  </Text>
+                </View>
+              </RNGestureHandlerButton>
+            </View>
             <RNGestureHandlerButton
               collapsable={false}
               onGestureEvent={[Function]}
@@ -838,17 +999,19 @@ Array [
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
-              testID="adding-by-number-next-btn"
+              testID="big-white-btn"
             >
               <View
                 accessible={true}
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#d8232a",
-                    "borderRadius": 50,
+                    "backgroundColor": "#fff",
+                    "borderColor": "#33555555",
+                    "borderRadius": 90.57971014492753,
+                    "borderWidth": 1,
                     "display": "flex",
-                    "height": "100%",
+                    "height": 50,
                     "justifyContent": "center",
                     "opacity": 1,
                     "width": "100%",
@@ -857,18 +1020,15 @@ Array [
               >
                 <Text
                   style={
-                    Array [
-                      Object {
-                        "color": "white",
-                        "fontFamily": "DIN2014Narrow-Bold",
-                        "fontSize": 20,
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ]
+                    Object {
+                      "color": "#313131",
+                      "fontFamily": "DIN2014Narrow-Bold",
+                      "fontSize": 36.231884057971016,
+                      "textAlign": "center",
+                    }
                   }
                 >
-                  ADDINGBYNUMBER.BTN
+                  ADDINGBYNUMBER.BTNSKIP
                 </Text>
               </View>
             </RNGestureHandlerButton>
@@ -1004,8 +1164,8 @@ Array [
         <View
           style={
             Object {
-              "height": 1334,
-              "minHeight": 851.1370988612837,
+              "height": 1185.1160714285713,
+              "minHeight": 414.37629399585927,
               "width": "100%",
             }
           }
@@ -1148,14 +1308,69 @@ Array [
           <View
             style={
               Object {
-                "bottom": 245.65848214285717,
-                "height": 50,
+                "bottom": 0,
+                "height": 144.66517857142858,
                 "left": 72.46376811594203,
+                "marginBottom": 96.77455357142858,
+                "marginTop": 44.66517857142858,
                 "position": "absolute",
                 "width": 605.072463768116,
               }
             }
           >
+            <View
+              style={
+                Object {
+                  "height": 50,
+                  "marginBottom": 44.66517857142858,
+                  "width": 605.072463768116,
+                }
+              }
+            >
+              <RNGestureHandlerButton
+                collapsable={false}
+                onGestureEvent={[Function]}
+                onGestureHandlerEvent={[Function]}
+                onGestureHandlerStateChange={[Function]}
+                onHandlerStateChange={[Function]}
+                rippleColor={0}
+                testID="adding-by-number-next-btn"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  nativeID="animatedComponent"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#d8232a",
+                      "borderRadius": 50,
+                      "display": "flex",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "opacity": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "color": "white",
+                          "fontFamily": "DIN2014Narrow-Bold",
+                          "fontSize": 20,
+                          "textAlign": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                  >
+                    ADDINGBYNUMBER.BTN
+                  </Text>
+                </View>
+              </RNGestureHandlerButton>
+            </View>
             <RNGestureHandlerButton
               collapsable={false}
               onGestureEvent={[Function]}
@@ -1163,7 +1378,7 @@ Array [
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
-              testID="adding-by-number-next-btn"
+              testID="big-white-btn"
             >
               <View
                 accessible={true}
@@ -1172,10 +1387,12 @@ Array [
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "#d8232a",
-                    "borderRadius": 50,
+                    "backgroundColor": "#fff",
+                    "borderColor": "#33555555",
+                    "borderRadius": 90.57971014492753,
+                    "borderWidth": 1,
                     "display": "flex",
-                    "height": "100%",
+                    "height": 50,
                     "justifyContent": "center",
                     "opacity": 1,
                     "width": "100%",
@@ -1184,18 +1401,15 @@ Array [
               >
                 <Text
                   style={
-                    Array [
-                      Object {
-                        "color": "white",
-                        "fontFamily": "DIN2014Narrow-Bold",
-                        "fontSize": 20,
-                        "textAlign": "center",
-                      },
-                      undefined,
-                    ]
+                    Object {
+                      "color": "#313131",
+                      "fontFamily": "DIN2014Narrow-Bold",
+                      "fontSize": 36.231884057971016,
+                      "textAlign": "center",
+                    }
                   }
                 >
-                  ADDINGBYNUMBER.BTN
+                  ADDINGBYNUMBER.BTNSKIP
                 </Text>
               </View>
             </RNGestureHandlerButton>

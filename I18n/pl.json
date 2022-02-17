@@ -10,7 +10,7 @@
         "title_3": "Znajdź najbliższy punkt serwisowy",
         "text_3": "Jeśli Twój rower nie jest w\u00a0pełni sprawny lub wymaga okresowego przeglądu, nie\u00a0zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów.",
         "btn_3": "POZNAJ ROWER",
-        "title_4": "Nagrywaj trasy",
+        "title_4": "Nagrywaj trasy !",
         "text_4": "Jeździsz amatorsko lub wyczynowo na\u00a0rowerze, dołącz do\u00a0drużyny KROSS. Nagrywaj przejechane kilometry w\u00a0aplikacji, a\u00a0najciekawsze trasy publikuj na\u00a0Mapie Rowerowej.",
         "btn_4": "WYKONAJ PRZEGLĄD",
         "title_5": "Odkrywaj ciekawe miejsca",
@@ -781,7 +781,7 @@
             "text": "Pobieranie lokalizacji"
         },
         "routeRecordingNotification": {
-            "text": "Nagrywanie trasy"
+            "text": "Nagrywanie trasy !!!"
         },
         "locationPermission": {
             "title": "Używanie lokalizacji w tle",

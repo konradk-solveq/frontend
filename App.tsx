@@ -17,16 +17,20 @@ import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
 import useRouteDebug from '@src/hooks/useRouteDebug';
 
 import {setUserAgentHeader} from '@src/api';
+import {fetchAppConfig} from '@src/storage/actions/app';
+import {setLanguageHeader} from '@src/api/api';
+import { fetchLanguagesList } from '@src/storage/actions';
 
 const App: () => Node = () => {
     const persistor = persistStore(storage);
-
-    setUserAgentHeader();
 
     initAppSize();
     initConfig();
 
     useRouteDebug();
+
+    setUserAgentHeader();
+    setLanguageHeader('pl');
 
     return (
         <>

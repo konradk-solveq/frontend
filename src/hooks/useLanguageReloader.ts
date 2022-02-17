@@ -6,24 +6,39 @@ import i18next from '@translations/i18next';
 import {changeLanguage} from '@utils/translations/useMergedTranslation';
 import {setLanguageHeader} from '@api/api';
 import {
+    codesListSelector,
     languagesListSelector,
+    translationsControlSumsSelector,
     translationsSelector,
 } from '@storage/selectors/uiTranslation';
+import {fetchAppConfig} from '@src/storage/actions/app';
+import {translationsT} from '@src/models/uiTranslation.models';
 
 const useLanguageReloader = () => {
     const dispatch = useAppDispatch();
     const language: string = useAppSelector(state => state.user.language);
-    const translations: any = useAppSelector(translationsSelector);
+    const translations: translationsT = useAppSelector(translationsSelector);
     const languageList: any = useAppSelector(languagesListSelector);
+    const langsList = useAppSelector(codesListSelector);
+    const controlSumsList = useAppSelector(translationsControlSumsSelector);
 
     useEffect(() => {
+        if (langsList.length === 0 || controlSumsList.length === 0) {
+            dispatch(fetchAppConfig(true));
+            return;
+        }
         if (language != null && translations != null) {
-            const newLanguage = changeLanguage(language);
+            const newLanguage = changeLanguage(language, langsList);
             dispatch(setLanguage(newLanguage));
             setLanguageHeader(newLanguage);
 
-            if (typeof translations[language] === 'undefined') {
-                /** place for compare control sum form device and from backend */
+            const controlSym = controlSumsList.find(e => e.code === newLanguage)
+                ?.controlSum;
+
+            if (
+                typeof translations[language] === 'undefined' ||
+                translations[language].controlSum !== controlSym
+            ) {
                 dispatch(fetchUiTranslation(true));
             }
 
@@ -33,14 +48,14 @@ const useLanguageReloader = () => {
                 /** adding backend translations to i18n */
                 if (
                     !i18next.hasResourceBundle(code, 'backend') ||
-                    code === language
+                    code === newLanguage
                 ) {
-                    const translation = translations[code];
+                    const translation = translations[code]?.translation;
 
                     i18next.addResourceBundle(
                         code,
                         'backend',
-                        translation ? translation : {backend: {}},
+                        translation ? translation : {},
                     );
                 }
 
@@ -50,11 +65,18 @@ const useLanguageReloader = () => {
                 }
 
                 if (!i18next.hasResourceBundle(code, 'local')) {
-                    i18next.addResourceBundle(code, 'local', {local: {}});
+                    i18next.addResourceBundle(code, 'local', {});
                 }
             }
         }
-    }, [dispatch, language, languageList, translations]);
+    }, [
+        controlSumsList,
+        dispatch,
+        langsList,
+        language,
+        languageList,
+        translations,
+    ]);
 };
 
 export default useLanguageReloader;
