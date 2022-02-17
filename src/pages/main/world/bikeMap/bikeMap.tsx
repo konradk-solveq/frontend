@@ -24,6 +24,7 @@ import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 
 import FeaturedRoutes from '../featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
 import styles from './style';
+import ListTile from '@src/components/tiles/listTile';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -91,6 +92,8 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
             const lastItemStyle =
                 index === mapsData?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
+            return <ListTile />;
+
             if (index === 0) {
                 return (
                     <View style={styles.tileWrapper}>
