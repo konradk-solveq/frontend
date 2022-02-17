@@ -35,7 +35,7 @@ export const fetchUiTranslation = (
 
         const newTranslations: any = {};
         const code: string = response?.data?.code;
-        if (typeof code !== 'undefined' && code) {
+        if (typeof code !== 'undefined') {
             newTranslations[code] = {
                 translation: response?.data?.translation,
                 version: response?.data?.version,

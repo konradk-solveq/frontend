@@ -2,7 +2,7 @@ import {fetchUiTranslation} from '..';
 import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
 import ReduxThunk from 'redux-thunk';
 
-import instance from '@api/api';
+import {getApiCallMock} from '@src/utils/testUtils/apiCalls';
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
@@ -25,20 +25,17 @@ describe('[UiTranslation actions]', () => {
          * Mock fetching translation
          */
         /* synch data */
-        const getUiTranslation = jest
-            .spyOn(instance, 'get')
-            .mockImplementation(() =>
-                Promise.resolve({
-                    data: {
-                        code: 'code',
-                        version: 'version',
-                        translation: {},
-                        controlSum: 'controlSum',
-                    },
-                    status: 200,
-                    error: '',
-                }),
-            );
+
+        const getUiTranslation = getApiCallMock({
+            data: {
+                code: 'code',
+                version: 'version',
+                translation: {},
+                controlSum: 'controlSum',
+            },
+            status: 200,
+            error: '',
+        });
 
         actionsLog = store.getActions();
 

@@ -1,13 +1,16 @@
 import {useTranslation} from 'react-i18next';
 import i18next from '@translations/i18next';
 import {Platform, NativeModules} from 'react-native';
-import {LangsT} from '@src/models/config.model';
+import {LangsType} from '@models/config.model';
 
 export const useMergedTranslation = (prefix: string) => {
     return useTranslation(['backend', 'local'], {keyPrefix: prefix});
 };
 
-export const changeLanguage = (language: string = '', langsList: LangsT[]) => {
+export const changeLanguage = (
+    language: string = '',
+    langsList: LangsType[],
+) => {
     if (language === '') {
         const deviceLanguage =
             Platform.OS === 'ios'

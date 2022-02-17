@@ -18,12 +18,13 @@ import GenericScreen from '@pages/template/GenericScreen';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import LanguageButton from './languageButton';
 import useLanguageReloader from '@src/hooks/useLanguageReloader';
-import Loader from '../../../onboarding/bikeAdding/loader/loader';
+import Loader from '@sharedComponents/loader/loader';
 import {commonStyle} from '@helpers/commonStyle';
 import {
     languagesListSelector,
     translationsSelector,
 } from '@storage/selectors/uiTranslation';
+import {languagesListT} from '@src/models/uiTranslation.models';
 
 const ReloadItem = () => {
     useLanguageReloader();
@@ -39,16 +40,16 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     const {t} = useMergedTranslation('LanguageChange');
 
     const language: string = useAppSelector(state => state.user.language);
-    const [inputLanguage, setInputLanguage] = useState('');
+    const [inputLanguage, setInputLanguage] = useState<string>('');
 
-    const languageList: any = useAppSelector(languagesListSelector);
+    const languageList: languagesListT = useAppSelector(languagesListSelector);
 
     const translations: any = useAppSelector(translationsSelector);
-    const [fetchingTranslation, setFetchingTranslation] = useState(false);
-    const [goBack, setGoBack] = useState(false);
-    const [reload, setReload] = useState(false);
-
-    useLanguageReloader();
+    const [fetchingTranslation, setFetchingTranslation] = useState<boolean>(
+        false,
+    );
+    const [goBack, setGoBack] = useState<boolean>(false);
+    const [reload, setReload] = useState<boolean>(false);
 
     useEffect(() => {
         setInputLanguage(language);

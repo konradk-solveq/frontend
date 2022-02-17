@@ -1,6 +1,6 @@
 import {RootState} from '@storage/storage';
 import {translationsT, languagesListT} from '@models/uiTranslation.models';
-import {ControlSumsT, LangsT} from '@models/config.model';
+import {ControlSumsType, LangsType} from '@models/config.model';
 
 export const translationsSelector = (state: RootState): translationsT =>
     state.uiTranslation.translations;
@@ -8,12 +8,12 @@ export const translationsSelector = (state: RootState): translationsT =>
 export const languagesListSelector = (state: RootState): languagesListT =>
     state.uiTranslation.languagesList;
 
-export const codesListSelector = (state: RootState): LangsT[] =>
+export const codesListSelector = (state: RootState): LangsType[] =>
     state.app.config.langs;
 
 export const translationsControlSumsSelector = (
     state: RootState,
-): ControlSumsT[] => state.app.config.uiTranslations.controlSums;
+): ControlSumsType[] => state.app.config.uiTranslations.controlSums;
 
 export const translationsCodesSelector = (state: RootState): string[] =>
     state.app.config.uiTranslations.codes;

@@ -151,14 +151,28 @@ export const fetchAppConfig = (
     }
     try {
         const response = await getAppConfigService();
-        const responseControlSum = await getControlSumService();
 
         if (response.error || response.status >= 400 || !response.data) {
             dispatch(setSyncError(response.error, response.status));
             return;
         }
 
-        dispatch(fetchLanguagesList(true));
+        const responseControlSum = await getControlSumService();
+
+        if (
+            responseControlSum.error ||
+            responseControlSum.status >= 400 ||
+            !responseControlSum.data
+        ) {
+            dispatch(
+                setSyncError(
+                    responseControlSum.error,
+                    responseControlSum.status,
+                ),
+            );
+            return;
+        }
+
         const {config}: AppState = getState().app;
 
         const lang = response.data.lang;
@@ -168,6 +182,7 @@ export const fetchAppConfig = (
         )?.controlSum;
 
         batch(() => {
+            dispatch(fetchLanguagesList(true));
             dispatch(setAppConfig(response.data));
             dispatch(clearAppError());
             if (currentControlSums !== memoriedControlSums) {

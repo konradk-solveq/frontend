@@ -36,6 +36,7 @@ import AmatoryBiker from './amatoryBiker';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {languagesListSelector} from '@storage/selectors/uiTranslation';
+import {languagesListT} from '@models/uiTranslation.models';
 
 interface Props {
     navigation: any;
@@ -55,7 +56,7 @@ const Profile: React.FC<Props> = (props: Props) => {
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    const languageList: any = useAppSelector(languagesListSelector);
+    const languageList: languagesListT = useAppSelector(languagesListSelector);
 
     const onLogoutPressedHandler = () => {
         dispatch(logOut());

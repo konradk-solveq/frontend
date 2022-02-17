@@ -11,16 +11,19 @@ import {
     translationsControlSumsSelector,
     translationsSelector,
 } from '@storage/selectors/uiTranslation';
-import {fetchAppConfig} from '@src/storage/actions/app';
-import {translationsT} from '@src/models/uiTranslation.models';
+import {fetchAppConfig} from '@storage/actions/app';
+import {languagesListT, translationsT} from '@models/uiTranslation.models';
+import {ControlSumsType, LangsType} from '@models/config.model';
 
 const useLanguageReloader = () => {
     const dispatch = useAppDispatch();
     const language: string = useAppSelector(state => state.user.language);
     const translations: translationsT = useAppSelector(translationsSelector);
-    const languageList: any = useAppSelector(languagesListSelector);
-    const langsList = useAppSelector(codesListSelector);
-    const controlSumsList = useAppSelector(translationsControlSumsSelector);
+    const languageList: languagesListT = useAppSelector(languagesListSelector);
+    const langsList: LangsType[] = useAppSelector(codesListSelector);
+    const controlSumsList: ControlSumsType[] = useAppSelector(
+        translationsControlSumsSelector,
+    );
 
     useEffect(() => {
         if (langsList.length === 0 || controlSumsList.length === 0) {

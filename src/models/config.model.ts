@@ -1,32 +1,32 @@
 import {SelectOptionType} from './map.model';
 
-export type SelectEnumOptionsT = {
+export type SelectEnumOptionsType = {
     difficulties: SelectOptionType[];
     reactions: SelectOptionType[];
     surfaces: SelectOptionType[];
     tags: SelectOptionType[];
 };
 
-export type ControlSumsT = {
+export type ControlSumsType = {
     code: string;
     controlSum: string;
 };
 
 type UiTranslationType = {
-    controlSums: ControlSumsT[];
+    controlSums: ControlSumsType[];
     codes: string[];
 };
 
-export type LangsT = {
+export type LangsType = {
     name: string;
     displayName: string;
 };
 
-export class AppConfig implements SelectEnumOptionsT {
+export class AppConfig implements SelectEnumOptionsType {
     constructor(
         public name: string,
         public lang: string,
-        public langs: LangsT[],
+        public langs: LangsType[],
         public tags: SelectOptionType[],
         public surfaces: SelectOptionType[],
         public difficulties: SelectOptionType[],
