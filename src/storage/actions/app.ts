@@ -177,7 +177,7 @@ export const fetchAppConfig = (
 
         const lang = response.data.lang;
         const currentControlSums = responseControlSum.data?.controlSum;
-        const memoriedControlSums = config.uiTranslations?.controlSums.find(
+        const memoriedControlSums = config.uiTranslations?.controlSums?.find(
             e => e.code === lang,
         )?.controlSum;
 
