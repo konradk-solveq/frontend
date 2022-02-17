@@ -11,7 +11,6 @@ const fileToComplete = JSON.parse(ff.load(`${FILE_TO_COMPLETE}.json`));
 
 const start = () => {
     const getValueWithAttributes = value => {
-
         if (typeof value === 'boolean') {
             return value;
         }
@@ -62,10 +61,17 @@ const start = () => {
                     ) {
                         if (typeof modelItem[i] === 'object') {
                             const obj = {};
-                            obj[Object.keys(modelItem[i])[0]] = '';
+
+                            const keys = Object.keys(modelItem[i]);
+                            for (const k of keys) {
+                                obj[k] = getValueWithAttributes(
+                                    modelItem[i][k],
+                                );
+                            }
+
                             arr.push(obj);
                         } else {
-                            arr.push('');
+                            arr.push(getValueWithAttributes(modelItem[i]));
                         }
                     } else {
                         arr.push(toCompleteItem[i]);
@@ -101,4 +107,4 @@ const start = () => {
     ff.save(FILE_TO_COMPLETE, completed);
 };
 
-module.exports = { start };
+module.exports = {start};
