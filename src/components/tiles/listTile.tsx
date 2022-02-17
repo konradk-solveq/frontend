@@ -1,8 +1,3 @@
-import {
-    getFFontSize,
-    getFHorizontalPx,
-    mainFButtonsHeight,
-} from '@src/helpers/figmaFoo';
 import React from 'react';
 import {
     StyleSheet,
@@ -16,6 +11,7 @@ import {
 } from 'react-native';
 import {TouchableOpacity as TouchableOpacityIOS} from 'react-native-gesture-handler';
 import {Demi18h28, Demi18h36} from '@components/texts/texts';
+import {getFHorizontalPx} from '@src/helpers/appLayoutDimensions';
 
 const TouchableOpacity =
     Platform.OS === 'ios' ? TouchableOpacityIOS : TouchableOpacityRN;

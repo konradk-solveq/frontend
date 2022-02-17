@@ -94,30 +94,30 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
             const images = getImagesThumbs(item?.images || []);
             return <ListTile />;
 
-            if (index === 0) {
-                return (
-                    <View style={styles.tileWrapper}>
-                        <FirstTile
-                            mapData={item}
-                            images={images}
-                            onPress={onPressHandler}
-                            onPressTile={onPressTileHandler}
-                            tilePressable
-                        />
-                    </View>
-                );
-            }
-            return (
-                <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
-                    <NextTile
-                        mapData={item}
-                        images={images}
-                        onPress={onPressHandler}
-                        onPressTile={onPressTileHandler}
-                        tilePressable
-                    />
-                </View>
-            );
+            // if (index === 0) {
+            //     return (
+            //         <View style={styles.tileWrapper}>
+            //             <FirstTile
+            //                 mapData={item}
+            //                 images={images}
+            //                 onPress={onPressHandler}
+            //                 onPressTile={onPressTileHandler}
+            //                 tilePressable
+            //             />
+            //         </View>
+            //     );
+            // }
+            // return (
+            //     <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
+            //         <NextTile
+            //             mapData={item}
+            //             images={images}
+            //             onPress={onPressHandler}
+            //             onPressTile={onPressTileHandler}
+            //             tilePressable
+            //         />
+            //     </View>
+            // );
         },
         [mapsData?.length, onPressTileHandler],
     );

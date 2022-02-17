@@ -48,9 +48,13 @@
 		901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */; };
 		904F37B026A1875000371264 /* map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 904F37AF26A1875000371264 /* map_route_marker.png */; };
 		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
+		A0555DD64CFB430BA1BDFF1C /* DIN2014-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45D96C787A3A4035B3DE152D /* DIN2014-Regular.otf */; };
+		AB7C779D14C64FD8ADDE22F7 /* DIN2014-Regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = 95DEA88F22344502A367F901 /* DIN2014-Regular.svg */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
 		C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
 		D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */; };
+		E0A6E2CDD13748449248B411 /* DIN2014-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D65BFE7B2BA54EAD969A2088 /* DIN2014-Regular.ttf */; };
+		FA6ACE7ADD2243329075C3F3 /* DIN2014-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 96816611510447D9AFD7D70A /* DIN2014-Regular.woff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,6 +242,18 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				1D04589327B14E9000A2A394 /* DIN2014-Demi.eot */,
+				1D04589527B14E9000A2A394 /* DIN2014-Demi.otf */,
+				1D04589627B14E9000A2A394 /* DIN2014-Demi.svg */,
+				1D04589227B14E9000A2A394 /* DIN2014-Demi.ttf */,
+				1D04589127B14E9000A2A394 /* DIN2014-Demi.woff */,
+				1D04589427B14E9000A2A394 /* DIN2014-Demi.woff2 */,
+				1D04588827B14E8300A2A394 /* mykross.eot */,
+				1D04588727B14E8300A2A394 /* mykross.otf */,
+				1D04588927B14E8300A2A394 /* mykross.svg */,
+				1D04588527B14E8300A2A394 /* mykross.ttf */,
+				1D04588627B14E8300A2A394 /* mykross.woff */,
+				1D04588A27B14E8300A2A394 /* mykross.woff2 */,
 				905F172A27956F7500BC6C75 /* Config.xcconfig */,
 				1DE20501271459D000F57873 /* mykross.eot */,
 				1DE20504271459D000F57873 /* mykross.otf */,
@@ -307,6 +323,16 @@
 				00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */,
 				B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */,
 				08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */,
+				783C403FCE04409C8DC03DF2 /* DIN2014-Demi.svg */,
+				95DEA88F22344502A367F901 /* DIN2014-Regular.svg */,
+				D0F7F72281FA4320B7BEBB1E /* DIN2014-Demi.otf */,
+				EBE8506B4ACE4BAE98FC2491 /* DIN2014-Demi.ttf */,
+				8B3C1E584DE8458BB2ECDD24 /* DIN2014-Demi.woff */,
+				CCA997D91AEC4EA8B417542D /* DIN2014-Demi.woff2 */,
+				45D96C787A3A4035B3DE152D /* DIN2014-Regular.otf */,
+				D65BFE7B2BA54EAD969A2088 /* DIN2014-Regular.ttf */,
+				96816611510447D9AFD7D70A /* DIN2014-Regular.woff */,
+				F9D8F66AC7684D5FA555E38A /* DIN2014-Regular.woff2 */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -447,12 +473,23 @@
 				C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */,
 				BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */,
 				901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */,
-				1DE20505271459D000F57873 /* mykross.woff in Resources */,
-				1DE20506271459D000F57873 /* mykross.woff2 in Resources */,
-				1DE20507271459D000F57873 /* mykross.eot in Resources */,
-				1DE20508271459D000F57873 /* mykross.ttf in Resources */,
-				1DE20509271459D000F57873 /* mykross.svg in Resources */,
-				1DE2050A271459D000F57873 /* mykross.otf in Resources */,
+				AB7C779D14C64FD8ADDE22F7 /* DIN2014-Regular.svg in Resources */,
+				A0555DD64CFB430BA1BDFF1C /* DIN2014-Regular.otf in Resources */,
+				E0A6E2CDD13748449248B411 /* DIN2014-Regular.ttf in Resources */,
+				FA6ACE7ADD2243329075C3F3 /* DIN2014-Regular.woff in Resources */,
+				51220053D3BC45539053D797 /* DIN2014-Regular.woff2 in Resources */,
+				1D04588B27B14E8300A2A394 /* mykross.ttf in Resources */,
+				1D04588C27B14E8300A2A394 /* mykross.woff in Resources */,
+				1D04588D27B14E8300A2A394 /* mykross.otf in Resources */,
+				1D04588E27B14E8300A2A394 /* mykross.eot in Resources */,
+				1D04588F27B14E8300A2A394 /* mykross.svg in Resources */,
+				1D04589027B14E8300A2A394 /* mykross.woff2 in Resources */,
+				1D04589727B14E9000A2A394 /* DIN2014-Demi.woff in Resources */,
+				1D04589827B14E9000A2A394 /* DIN2014-Demi.ttf in Resources */,
+				1D04589927B14E9000A2A394 /* DIN2014-Demi.eot in Resources */,
+				1D04589A27B14E9000A2A394 /* DIN2014-Demi.woff2 in Resources */,
+				1D04589B27B14E9100A2A394 /* DIN2014-Demi.otf in Resources */,
+				1D04589C27B14E9100A2A394 /* DIN2014-Demi.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,7 +779,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -771,7 +808,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -991,7 +1028,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1106,7 +1143,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1216,7 +1253,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1326,7 +1363,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1444,7 +1481,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1566,7 +1603,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7.0;
+				MARKETING_VERSION = 2.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
