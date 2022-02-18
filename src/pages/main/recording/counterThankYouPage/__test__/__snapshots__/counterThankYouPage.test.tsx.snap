@@ -630,6 +630,7 @@ svg {
                       },
                     ]
                   }
+                  textInteractionEnabled={true}
                   useSharedProcessPool={true}
                   useWebKit={false}
                 />
@@ -1041,6 +1042,7 @@ svg {
                               },
                             ]
                           }
+                          textInteractionEnabled={true}
                           useSharedProcessPool={true}
                           useWebKit={false}
                         />
@@ -1868,6 +1870,7 @@ svg {
                       },
                     ]
                   }
+                  textInteractionEnabled={true}
                   useSharedProcessPool={true}
                   useWebKit={false}
                 />
@@ -2279,6 +2282,7 @@ svg {
                               },
                             ]
                           }
+                          textInteractionEnabled={true}
                           useSharedProcessPool={true}
                           useWebKit={false}
                         />
@@ -3106,6 +3110,7 @@ svg {
                       },
                     ]
                   }
+                  textInteractionEnabled={true}
                   useSharedProcessPool={true}
                   useWebKit={false}
                 />
@@ -3517,6 +3522,7 @@ svg {
                               },
                             ]
                           }
+                          textInteractionEnabled={true}
                           useSharedProcessPool={true}
                           useWebKit={false}
                         />
@@ -4344,6 +4350,7 @@ svg {
                       },
                     ]
                   }
+                  textInteractionEnabled={true}
                   useSharedProcessPool={true}
                   useWebKit={false}
                 />
@@ -4755,6 +4762,7 @@ svg {
                               },
                             ]
                           }
+                          textInteractionEnabled={true}
                           useSharedProcessPool={true}
                           useWebKit={false}
                         />
