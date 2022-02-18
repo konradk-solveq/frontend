@@ -146,6 +146,7 @@ Array [
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -953,6 +954,7 @@ Array [
                                     },
                                   ]
                                 }
+                                textInteractionEnabled={true}
                                 useSharedProcessPool={true}
                                 useWebKit={false}
                               />
@@ -1259,6 +1261,7 @@ Array [
                 },
               ]
             }
+            textInteractionEnabled={true}
             useSharedProcessPool={true}
             useWebKit={false}
           />
@@ -1465,6 +1468,7 @@ Array [
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -2435,6 +2439,7 @@ Array [
                                     },
                                   ]
                                 }
+                                textInteractionEnabled={true}
                                 useSharedProcessPool={true}
                                 useWebKit={false}
                               />
@@ -2739,6 +2744,7 @@ Array [
                 },
               ]
             }
+            textInteractionEnabled={true}
             useSharedProcessPool={true}
             useWebKit={false}
           />
@@ -2945,6 +2951,7 @@ Array [
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -3915,6 +3922,7 @@ Array [
                                     },
                                   ]
                                 }
+                                textInteractionEnabled={true}
                                 useSharedProcessPool={true}
                                 useWebKit={false}
                               />
@@ -4221,6 +4229,7 @@ Array [
                 },
               ]
             }
+            textInteractionEnabled={true}
             useSharedProcessPool={true}
             useWebKit={false}
           />

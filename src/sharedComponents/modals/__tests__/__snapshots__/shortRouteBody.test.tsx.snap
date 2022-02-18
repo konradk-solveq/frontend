@@ -149,6 +149,7 @@ exports[`<ShortRouteBody /> Rendering Should match snapshot 1`] = `
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -441,6 +442,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with alternative m
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -726,6 +728,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with disabled btn 
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -1020,6 +1023,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with loader on btn
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />

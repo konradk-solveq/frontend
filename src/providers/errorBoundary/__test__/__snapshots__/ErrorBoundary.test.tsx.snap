@@ -108,6 +108,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
                 },
               ]
             }
+            textInteractionEnabled={true}
             useSharedProcessPool={true}
             useWebKit={false}
           />
@@ -347,6 +348,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
                 },
               ]
             }
+            textInteractionEnabled={true}
             useSharedProcessPool={true}
             useWebKit={false}
           />
