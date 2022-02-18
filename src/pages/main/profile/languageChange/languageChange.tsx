@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
-import {setLanguage} from '@storage/actions';
+import {StyleSheet, View, ScrollView, SafeAreaView} from 'react-native';
+import {fetchUiTranslation, setLanguage} from '@storage/actions';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {
@@ -17,6 +17,21 @@ import {
 import GenericScreen from '@pages/template/GenericScreen';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import LanguageButton from './languageButton';
+import useLanguageReloader from '@src/hooks/useLanguageReloader';
+import Loader from '@sharedComponents/loader/loader';
+import {commonStyle} from '@helpers/commonStyle';
+import {
+    codesListSelector,
+    languagesListSelector,
+    translationsSelector,
+} from '@storage/selectors/uiTranslation';
+import {languagesListT, translationsT} from '@src/models/uiTranslation.models';
+import {LangsType} from '@src/models/config.model';
+
+const ReloadItem = () => {
+    useLanguageReloader();
+    return null;
+};
 
 interface Props {
     navigation: any;
@@ -26,24 +41,18 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     const dispatch = useAppDispatch();
     const {t} = useMergedTranslation('LanguageChange');
 
-    const [languages, setLanguages] = useState<
-        {name: string; short: string}[] | null
-    >(null);
-
-    useEffect(() => {
-        const l = t('languages', {returnObjects: true});
-        const arr = [];
-        for (let i = 0; i < l.length; ++i) {
-            arr.push({
-                name: t(`languages.${i}.name`, {returnObjects: true}),
-                short: t(`languages.${i}.short`, {returnObjects: true}),
-            });
-        }
-        setLanguages(arr);
-    }, [t]);
-
     const language: string = useAppSelector(state => state.user.language);
-    const [inputLanguage, setInputLanguage] = useState('');
+    const [inputLanguage, setInputLanguage] = useState<string>('');
+
+    const languageList: languagesListT = useAppSelector(languagesListSelector);
+    const langsList: LangsType[] = useAppSelector(codesListSelector);
+
+    const translations: translationsT = useAppSelector(translationsSelector);
+    const [fetchingTranslation, setFetchingTranslation] = useState<boolean>(
+        false,
+    );
+    const [goBack, setGoBack] = useState<boolean>(false);
+    const [reload, setReload] = useState<boolean>(false);
 
     useEffect(() => {
         setInputLanguage(language);
@@ -53,11 +62,33 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
         setInputLanguage(value);
     };
 
+    const startFetchingTranslation = (d: any) =>
+        new Promise(resolve => {
+            d(fetchUiTranslation(true));
+            resolve(true);
+        });
+
     const handleSaveLanguage = () => {
+        if (typeof translations[inputLanguage] === 'undefined') {
+            setFetchingTranslation(true);
+            startFetchingTranslation(dispatch).then(() => {
+                setReload(true);
+                setTimeout(() => {
+                    setFetchingTranslation(false);
+                }, 300);
+            });
+        }
+
         dispatch(setLanguage(inputLanguage));
-        changeLanguage(inputLanguage);
-        navigation.goBack();
+        changeLanguage(inputLanguage, langsList);
+        setGoBack(true);
     };
+
+    useEffect(() => {
+        if (!fetchingTranslation && goBack) {
+            navigation.goBack();
+        }
+    }, [fetchingTranslation, goBack, navigation]);
 
     const styles = StyleSheet.create({
         scroll: {
@@ -80,37 +111,38 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
         },
     });
 
+    if (fetchingTranslation) {
+        return (
+            <SafeAreaView style={commonStyle.container}>
+                <Loader />
+            </SafeAreaView>
+        );
+    }
+
     return (
         <GenericScreen screenTitle={t('header')}>
             <ScrollView
                 keyboardShouldPersistTaps="handled"
                 contentContainerStyle={styles.outerArea}
                 style={styles.scroll}>
+                {reload && <ReloadItem />}
                 <View style={styles.area}>
                     <View>
-                        {languages?.map((e, i) => {
+                        {languageList.map((e, i) => {
                             return (
                                 <LanguageButton
                                     key={'lang_' + i}
-                                    active={inputLanguage === e.short}
+                                    active={inputLanguage === e.code}
                                     onPress={() =>
-                                        handleSetInputLanguage(e.short)
+                                        handleSetInputLanguage(e.code)
                                     }
                                     title={e.name}
-                                    short={e.short}
-                                    separator={true}>
+                                    svg={e.icon}
+                                    separator={languageList.length - 1 !== i}>
                                     <View />
                                 </LanguageButton>
                             );
                         })}
-                        <LanguageButton
-                            active={inputLanguage === ''}
-                            onPress={() => handleSetInputLanguage('')}
-                            title={t('byLocation')}
-                            short={''}
-                            separator={false}>
-                            <View />
-                        </LanguageButton>
                     </View>
                     <BigRedBtn
                         style={styles.btn}

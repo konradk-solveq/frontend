@@ -11,6 +11,7 @@ const local = {
     pl: {
         local: require('./pl.json'),
     },
+    cs: {local: {}},
 };
 
 const backend = {
@@ -24,6 +25,7 @@ const backend = {
             Login: {header: 'TEST pl'},
         },
     },
+    cs: {backend: {}},
 };
 
 i18next

@@ -28,13 +28,15 @@ import {
 import {RegularStackRoute, BothStackRoute} from '@navigation/route';
 
 import {clearAuthError, logOut} from '@storage/actions';
-import {BigRedBtn} from '@src/sharedComponents/buttons';
+import {BigRedBtn} from '@sharedComponents/buttons';
 import FailedResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
 
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 import AmatoryBiker from './amatoryBiker';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {languagesListSelector} from '@storage/selectors/uiTranslation';
+import {languagesListT} from '@models/uiTranslation.models';
 
 interface Props {
     navigation: any;
@@ -53,6 +55,8 @@ const Profile: React.FC<Props> = (props: Props) => {
     const authError = useAppSelector(authErrorSelector);
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+    const languageList: languagesListT = useAppSelector(languagesListSelector);
 
     const onLogoutPressedHandler = () => {
         dispatch(logOut());
@@ -152,18 +156,29 @@ const Profile: React.FC<Props> = (props: Props) => {
                             </View>
                         )}
                         <View style={styles.menuSection}>
-                            <Text style={styles.title}>{t('settings')}</Text>
-                            <BlueButton
-                                onpress={() => {
-                                    props.navigation.navigate(
-                                        RegularStackRoute.LANGUAGE_CHANGE_SCREEN,
-                                    );
-                                }}
-                                title={t('languages')}
-                            />
-                            <Text style={[styles.title, styles.separator]}>
-                                {t('title')}
-                            </Text>
+                            {languageList && languageList.length > 1 && (
+                                <View>
+                                    <Text style={styles.title}>
+                                        {t('settings')}
+                                    </Text>
+                                    <BlueButton
+                                        onpress={() => {
+                                            props.navigation.navigate(
+                                                RegularStackRoute.LANGUAGE_CHANGE_SCREEN,
+                                            );
+                                        }}
+                                        title={t('languages')}
+                                    />
+                                    <Text
+                                        style={[
+                                            styles.title,
+                                            styles.separator,
+                                        ]}>
+                                        {t('title')}
+                                    </Text>
+                                </View>
+                            )}
+
                             <BlueButton
                                 onpress={() =>
                                     props.navigation.navigate(
