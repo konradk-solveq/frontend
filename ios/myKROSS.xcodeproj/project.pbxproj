@@ -47,6 +47,19 @@
 		9009F68626452075005FBC58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9009F68826452075005FBC58 /* InfoPlist.strings */; };
 		901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */; };
 		904F37B026A1875000371264 /* map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 904F37AF26A1875000371264 /* map_route_marker.png */; };
+		909E2E8827BFA2E40062F828 /* DIN2014-Demi.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7C27BFA2E20062F828 /* DIN2014-Demi.eot */; };
+		909E2E8927BFA2E40062F828 /* DIN2014-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7D27BFA2E20062F828 /* DIN2014-Regular.eot */; };
+		909E2E8A27BFA2E40062F828 /* DIN2014-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7E27BFA2E20062F828 /* DIN2014-Regular.woff2 */; };
+		909E2E8B27BFA2E40062F828 /* DIN2014-Demi.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7F27BFA2E20062F828 /* DIN2014-Demi.woff */; };
+		909E2E8C27BFA2E40062F828 /* DIN2014-Regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8027BFA2E20062F828 /* DIN2014-Regular.svg */; };
+		909E2E8D27BFA2E40062F828 /* DIN2014-Demi.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8127BFA2E30062F828 /* DIN2014-Demi.woff2 */; };
+		909E2E8E27BFA2E40062F828 /* DIN2014-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8227BFA2E30062F828 /* DIN2014-Regular.woff */; };
+		909E2E8F27BFA2E40062F828 /* DIN2014-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8327BFA2E30062F828 /* DIN2014-Regular.ttf */; };
+		909E2E9027BFA2E40062F828 /* DIN2014-Demi.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8427BFA2E40062F828 /* DIN2014-Demi.svg */; };
+		909E2E9127BFA2E40062F828 /* DIN2014-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8527BFA2E40062F828 /* DIN2014-Regular.otf */; };
+		909E2E9227BFA2E40062F828 /* DIN2014-Demi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8627BFA2E40062F828 /* DIN2014-Demi.ttf */; };
+		909E2E9327BFA2E40062F828 /* DIN2014-Demi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8727BFA2E40062F828 /* DIN2014-Demi.otf */; };
+		909E2E9427BFA2E50062F828 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 905F172A27956F7500BC6C75 /* Config.xcconfig */; };
 		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
 		C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
@@ -121,6 +134,18 @@
 		9039C9492636A74E00C355DE /* myKROSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myKROSS.entitlements; sourceTree = "<group>"; };
 		904F37AF26A1875000371264 /* map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_route_marker.png; path = ../src/assets/images/map_route_marker.png; sourceTree = "<group>"; };
 		905F172A27956F7500BC6C75 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		909E2E7C27BFA2E20062F828 /* DIN2014-Demi.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.eot"; path = "../assets/fonts/DIN2014-Demi.eot"; sourceTree = "<group>"; };
+		909E2E7D27BFA2E20062F828 /* DIN2014-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.eot"; path = "../assets/fonts/DIN2014-Regular.eot"; sourceTree = "<group>"; };
+		909E2E7E27BFA2E20062F828 /* DIN2014-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.woff2"; path = "../assets/fonts/DIN2014-Regular.woff2"; sourceTree = "<group>"; };
+		909E2E7F27BFA2E20062F828 /* DIN2014-Demi.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.woff"; path = "../assets/fonts/DIN2014-Demi.woff"; sourceTree = "<group>"; };
+		909E2E8027BFA2E20062F828 /* DIN2014-Regular.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "DIN2014-Regular.svg"; path = "../assets/fonts/DIN2014-Regular.svg"; sourceTree = "<group>"; };
+		909E2E8127BFA2E30062F828 /* DIN2014-Demi.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.woff2"; path = "../assets/fonts/DIN2014-Demi.woff2"; sourceTree = "<group>"; };
+		909E2E8227BFA2E30062F828 /* DIN2014-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.woff"; path = "../assets/fonts/DIN2014-Regular.woff"; sourceTree = "<group>"; };
+		909E2E8327BFA2E30062F828 /* DIN2014-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.ttf"; path = "../assets/fonts/DIN2014-Regular.ttf"; sourceTree = "<group>"; };
+		909E2E8427BFA2E40062F828 /* DIN2014-Demi.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "DIN2014-Demi.svg"; path = "../assets/fonts/DIN2014-Demi.svg"; sourceTree = "<group>"; };
+		909E2E8527BFA2E40062F828 /* DIN2014-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.otf"; path = "../assets/fonts/DIN2014-Regular.otf"; sourceTree = "<group>"; };
+		909E2E8627BFA2E40062F828 /* DIN2014-Demi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.ttf"; path = "../assets/fonts/DIN2014-Demi.ttf"; sourceTree = "<group>"; };
+		909E2E8727BFA2E40062F828 /* DIN2014-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.otf"; path = "../assets/fonts/DIN2014-Demi.otf"; sourceTree = "<group>"; };
 		90B996A826A840580015E097 /* current_map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = current_map_route_marker.png; path = ../src/assets/images/current_map_route_marker.png; sourceTree = "<group>"; };
 		921EDEB91B42C5DE5BBCE3F6 /* Pods-myKROSS.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.release.xcconfig"; sourceTree = "<group>"; };
 		952EBC2A89F9D279A3D27FF9 /* Pods-myKROSS.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.feat.release.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +284,18 @@
 				1D13B2012657B97F00A4F34A /* DIN2014Narrow-Bold.woff */,
 				1D13B1FB2657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 */,
 				1D13B1FE2657B97F00A4F34A /* DIN2014Narrow-Light.eot */,
+				909E2E7C27BFA2E20062F828 /* DIN2014-Demi.eot */,
+				909E2E8727BFA2E40062F828 /* DIN2014-Demi.otf */,
+				909E2E8427BFA2E40062F828 /* DIN2014-Demi.svg */,
+				909E2E8627BFA2E40062F828 /* DIN2014-Demi.ttf */,
+				909E2E7F27BFA2E20062F828 /* DIN2014-Demi.woff */,
+				909E2E8127BFA2E30062F828 /* DIN2014-Demi.woff2 */,
+				909E2E7D27BFA2E20062F828 /* DIN2014-Regular.eot */,
+				909E2E8527BFA2E40062F828 /* DIN2014-Regular.otf */,
+				909E2E8027BFA2E20062F828 /* DIN2014-Regular.svg */,
+				909E2E8327BFA2E30062F828 /* DIN2014-Regular.ttf */,
+				909E2E8227BFA2E30062F828 /* DIN2014-Regular.woff */,
+				909E2E7E27BFA2E20062F828 /* DIN2014-Regular.woff2 */,
 				1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */,
 				1D13B1F72657B97F00A4F34A /* DIN2014Narrow-Light.ttf */,
 				1D13B2022657B97F00A4F34A /* DIN2014Narrow-Light.woff */,
@@ -425,31 +462,44 @@
 				1D4E86A5266A669B006FF848 /* shop_marker.png in Resources */,
 				1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */,
 				904F37B026A1875000371264 /* map_route_marker.png in Resources */,
+				909E2E8927BFA2E40062F828 /* DIN2014-Regular.eot in Resources */,
 				1D13B2042657B97F00A4F34A /* DIN2014Narrow-Regular.eot in Resources */,
 				1D13B2052657B97F00A4F34A /* DIN2014Narrow-Light.ttf in Resources */,
 				1D13B2062657B97F00A4F34A /* DIN2014Narrow-Regular.ttf in Resources */,
 				1D13B2072657B97F00A4F34A /* DIN2014Narrow-Regular.svg in Resources */,
 				1D13B2082657B97F00A4F34A /* DIN2014Narrow-Bold.ttf in Resources */,
 				1D13B2092657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 in Resources */,
+				909E2E9427BFA2E50062F828 /* Config.xcconfig in Resources */,
 				1D13B20A2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 in Resources */,
 				1D13B20B2657B97F00A4F34A /* DIN2014Narrow-Regular.woff in Resources */,
+				909E2E8F27BFA2E40062F828 /* DIN2014-Regular.ttf in Resources */,
 				1D13B20C2657B97F00A4F34A /* DIN2014Narrow-Light.eot in Resources */,
 				1D13B20D2657B97F00A4F34A /* DIN2014Narrow-Bold.svg in Resources */,
 				90B996A926A840590015E097 /* current_map_route_marker.png in Resources */,
 				1D13B20E2657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 in Resources */,
 				1D13B20F2657B97F00A4F34A /* DIN2014Narrow-Bold.woff in Resources */,
+				909E2E9027BFA2E40062F828 /* DIN2014-Demi.svg in Resources */,
 				1D13B2102657B97F00A4F34A /* DIN2014Narrow-Light.woff in Resources */,
+				909E2E9127BFA2E40062F828 /* DIN2014-Regular.otf in Resources */,
+				909E2E8A27BFA2E40062F828 /* DIN2014-Regular.woff2 in Resources */,
 				1D13B1F42657B94D00A4F34A /* DIN2014Narrow-Bold.eot in Resources */,
+				909E2E8827BFA2E40062F828 /* DIN2014-Demi.eot in Resources */,
+				909E2E8D27BFA2E40062F828 /* DIN2014-Demi.woff2 in Resources */,
 				9009F68626452075005FBC58 /* InfoPlist.strings in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				909E2E8C27BFA2E40062F828 /* DIN2014-Regular.svg in Resources */,
 				D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */,
 				C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */,
 				BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */,
 				901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */,
 				1DE20505271459D000F57873 /* mykross.woff in Resources */,
+				909E2E8E27BFA2E40062F828 /* DIN2014-Regular.woff in Resources */,
 				1DE20506271459D000F57873 /* mykross.woff2 in Resources */,
+				909E2E9227BFA2E40062F828 /* DIN2014-Demi.ttf in Resources */,
 				1DE20507271459D000F57873 /* mykross.eot in Resources */,
+				909E2E8B27BFA2E40062F828 /* DIN2014-Demi.woff in Resources */,
+				909E2E9327BFA2E40062F828 /* DIN2014-Demi.otf in Resources */,
 				1DE20508271459D000F57873 /* mykross.ttf in Resources */,
 				1DE20509271459D000F57873 /* mykross.svg in Resources */,
 				1DE2050A271459D000F57873 /* mykross.otf in Resources */,
@@ -742,7 +792,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.6;
+				MARKETING_VERSION = 2.5.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -771,7 +821,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.6;
+				MARKETING_VERSION = 2.5.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -991,7 +1041,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.6;
+				MARKETING_VERSION = 2.5.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1106,7 +1156,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.6;
+				MARKETING_VERSION = 2.5.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1216,7 +1266,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.6;
+				MARKETING_VERSION = 2.5.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1326,7 +1376,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.6;
+				MARKETING_VERSION = 2.5.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1444,7 +1494,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.6;
+				MARKETING_VERSION = 2.5.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1566,7 +1616,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.5.6;
+				MARKETING_VERSION = 2.5.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
