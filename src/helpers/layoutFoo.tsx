@@ -1,9 +1,5 @@
 import {Dimensions} from 'react-native';
-import {
-    BASE_HEIGHT,
-    BASE_WIDTH,
-    BASE_STACK_HEADER_HEIGHT,
-} from '../globalValues/layout';
+import {BASE_HEIGHT, BASE_WIDTH, BASE_STACK_HEADER_HEIGHT} from '@theme/layout';
 
 // funkcje wiliczające położenie elementów proporcje wg layoutu
 // https://app.zeplin.io/project/5fbf658b936bbbb842e3c43c/dashboard?sid=60397836dc2eff2bfdde033a

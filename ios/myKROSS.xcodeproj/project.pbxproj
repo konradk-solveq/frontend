@@ -12,21 +12,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1555044E1027EAB08C3AD517 /* libPods-myKROSS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96604D9CD6E5D881F5103B4E /* libPods-myKROSS.a */; };
-		1D13B1F42657B94D00A4F34A /* DIN2014Narrow-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */; };
-		1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */; };
-		1D13B2042657B97F00A4F34A /* DIN2014Narrow-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */; };
-		1D13B2052657B97F00A4F34A /* DIN2014Narrow-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F72657B97F00A4F34A /* DIN2014Narrow-Light.ttf */; };
-		1D13B2062657B97F00A4F34A /* DIN2014Narrow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F82657B97F00A4F34A /* DIN2014Narrow-Regular.ttf */; };
-		1D13B2072657B97F00A4F34A /* DIN2014Narrow-Regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F92657B97F00A4F34A /* DIN2014Narrow-Regular.svg */; };
-		1D13B2082657B97F00A4F34A /* DIN2014Narrow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FA2657B97F00A4F34A /* DIN2014Narrow-Bold.ttf */; };
-		1D13B2092657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FB2657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 */; };
-		1D13B20A2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FC2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 */; };
-		1D13B20B2657B97F00A4F34A /* DIN2014Narrow-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FD2657B97F00A4F34A /* DIN2014Narrow-Regular.woff */; };
-		1D13B20C2657B97F00A4F34A /* DIN2014Narrow-Light.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FE2657B97F00A4F34A /* DIN2014Narrow-Light.eot */; };
-		1D13B20D2657B97F00A4F34A /* DIN2014Narrow-Bold.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1FF2657B97F00A4F34A /* DIN2014Narrow-Bold.svg */; };
-		1D13B20E2657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B2002657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 */; };
-		1D13B20F2657B97F00A4F34A /* DIN2014Narrow-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B2012657B97F00A4F34A /* DIN2014Narrow-Bold.woff */; };
-		1D13B2102657B97F00A4F34A /* DIN2014Narrow-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B2022657B97F00A4F34A /* DIN2014Narrow-Light.woff */; };
 		1D1631BF268CBEEC007DB5E1 /* my_location.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D1631BD268CBEB8007DB5E1 /* my_location.png */; };
 		1D4E86A0266A669B006FF848 /* service_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869A266A669A006FF848 /* service_empty.png */; };
 		1D4E86A1266A669B006FF848 /* serviceshop_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869B266A669A006FF848 /* serviceshop_empty.png */; };
@@ -34,12 +19,6 @@
 		1D4E86A3266A669B006FF848 /* serviceshop_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869D266A669A006FF848 /* serviceshop_marker.png */; };
 		1D4E86A4266A669B006FF848 /* shop_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869E266A669A006FF848 /* shop_empty.png */; };
 		1D4E86A5266A669B006FF848 /* shop_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869F266A669B006FF848 /* shop_marker.png */; };
-		1DE20505271459D000F57873 /* mykross.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1DE204FF271459D000F57873 /* mykross.woff */; };
-		1DE20506271459D000F57873 /* mykross.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20500271459D000F57873 /* mykross.woff2 */; };
-		1DE20507271459D000F57873 /* mykross.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20501271459D000F57873 /* mykross.eot */; };
-		1DE20508271459D000F57873 /* mykross.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20502271459D000F57873 /* mykross.ttf */; };
-		1DE20509271459D000F57873 /* mykross.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20503271459D000F57873 /* mykross.svg */; };
-		1DE2050A271459D000F57873 /* mykross.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20504271459D000F57873 /* mykross.otf */; };
 		51AFA57D87D54EC33FD696BF /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9D1E9358F48E7BA61D8626 /* ExpoModulesProvider.swift */; };
 		782A9E19B835E37953429E3A /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27264724D2EF382DC4CFB75 /* ExpoModulesProvider.swift */; };
 		7AF20AC959A188A771013013 /* libPods-myKROSS-myKROSSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3FCCD7B3AD7800C08AE509 /* libPods-myKROSS-myKROSSTests.a */; };
@@ -47,6 +26,43 @@
 		9009F68626452075005FBC58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9009F68826452075005FBC58 /* InfoPlist.strings */; };
 		901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */; };
 		904F37B026A1875000371264 /* map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 904F37AF26A1875000371264 /* map_route_marker.png */; };
+		909E2E3327BF960C0062F828 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 905F172A27956F7500BC6C75 /* Config.xcconfig */; };
+		909E2E5227BF962B0062F828 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3427BF96250062F828 /* DIN2014Narrow-Bold.otf */; };
+		909E2E5327BF962B0062F828 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3527BF96250062F828 /* DIN2014Narrow-Regular.otf */; };
+		909E2E5427BF962B0062F828 /* DIN2014-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3627BF96250062F828 /* DIN2014-Regular.woff */; };
+		909E2E5527BF962B0062F828 /* DIN2014Narrow-Light.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3727BF96260062F828 /* DIN2014Narrow-Light.svg */; };
+		909E2E5627BF962B0062F828 /* DIN2014Narrow-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3827BF96260062F828 /* DIN2014Narrow-Bold.ttf */; };
+		909E2E5727BF962B0062F828 /* DIN2014-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3927BF96260062F828 /* DIN2014-Regular.ttf */; };
+		909E2E5827BF962B0062F828 /* DIN2014-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3A27BF96260062F828 /* DIN2014-Regular.woff2 */; };
+		909E2E5927BF962B0062F828 /* DIN2014-Demi.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3B27BF96260062F828 /* DIN2014-Demi.woff */; };
+		909E2E5A27BF962B0062F828 /* DIN2014Narrow-Light.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3C27BF96270062F828 /* DIN2014Narrow-Light.eot */; };
+		909E2E5B27BF962B0062F828 /* DIN2014-Regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3D27BF96270062F828 /* DIN2014-Regular.svg */; };
+		909E2E5C27BF962B0062F828 /* DIN2014Narrow-Light.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3E27BF96270062F828 /* DIN2014Narrow-Light.woff2 */; };
+		909E2E5D27BF962B0062F828 /* DIN2014-Demi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E3F27BF96270062F828 /* DIN2014-Demi.ttf */; };
+		909E2E5E27BF962B0062F828 /* DIN2014Narrow-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4027BF96270062F828 /* DIN2014Narrow-Light.ttf */; };
+		909E2E5F27BF962B0062F828 /* DIN2014Narrow-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4127BF96280062F828 /* DIN2014Narrow-Bold.eot */; };
+		909E2E6027BF962B0062F828 /* DIN2014Narrow-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4227BF96280062F828 /* DIN2014Narrow-Regular.woff2 */; };
+		909E2E6127BF962B0062F828 /* DIN2014-Demi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4327BF96280062F828 /* DIN2014-Demi.otf */; };
+		909E2E6227BF962B0062F828 /* DIN2014Narrow-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4427BF96280062F828 /* DIN2014Narrow-Light.woff */; };
+		909E2E6327BF962B0062F828 /* DIN2014-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4527BF96280062F828 /* DIN2014-Regular.eot */; };
+		909E2E6427BF962B0062F828 /* DIN2014Narrow-Regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4627BF96280062F828 /* DIN2014Narrow-Regular.svg */; };
+		909E2E6527BF962B0062F828 /* DIN2014Narrow-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4727BF96290062F828 /* DIN2014Narrow-Light.otf */; };
+		909E2E6627BF962B0062F828 /* DIN2014Narrow-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4827BF96290062F828 /* DIN2014Narrow-Regular.ttf */; };
+		909E2E6727BF962B0062F828 /* DIN2014Narrow-Bold.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4927BF96290062F828 /* DIN2014Narrow-Bold.svg */; };
+		909E2E6827BF962B0062F828 /* DIN2014Narrow-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4A27BF96290062F828 /* DIN2014Narrow-Regular.woff */; };
+		909E2E6927BF962B0062F828 /* DIN2014-Demi.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4B27BF96290062F828 /* DIN2014-Demi.woff2 */; };
+		909E2E6A27BF962B0062F828 /* DIN2014-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4C27BF96290062F828 /* DIN2014-Regular.otf */; };
+		909E2E6B27BF962B0062F828 /* DIN2014Narrow-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4D27BF962A0062F828 /* DIN2014Narrow-Regular.eot */; };
+		909E2E6C27BF962B0062F828 /* DIN2014Narrow-Bold.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4E27BF962A0062F828 /* DIN2014Narrow-Bold.woff2 */; };
+		909E2E6D27BF962B0062F828 /* DIN2014-Demi.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E4F27BF962A0062F828 /* DIN2014-Demi.eot */; };
+		909E2E6E27BF962B0062F828 /* DIN2014Narrow-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E5027BF962A0062F828 /* DIN2014Narrow-Bold.woff */; };
+		909E2E6F27BF962B0062F828 /* DIN2014-Demi.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E5127BF962A0062F828 /* DIN2014-Demi.svg */; };
+		909E2E7627BF96320062F828 /* mykross.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7027BF96310062F828 /* mykross.woff2 */; };
+		909E2E7727BF96320062F828 /* mykross.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7127BF96310062F828 /* mykross.otf */; };
+		909E2E7827BF96320062F828 /* mykross.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7227BF96320062F828 /* mykross.svg */; };
+		909E2E7927BF96320062F828 /* mykross.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7327BF96320062F828 /* mykross.ttf */; };
+		909E2E7A27BF96320062F828 /* mykross.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7427BF96320062F828 /* mykross.eot */; };
+		909E2E7B27BF96320062F828 /* mykross.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7527BF96320062F828 /* mykross.woff */; };
 		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
 		C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
@@ -79,21 +95,6 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18BBA092F9FBF74C64D66988 /* Pods-myKROSS-myKROSSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.release.xcconfig"; sourceTree = "<group>"; };
-		1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.eot"; path = "../assets/fonts/DIN2014Narrow-Bold.eot"; sourceTree = "<group>"; };
-		1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "DIN2014Narrow-Light.svg"; path = "../assets/fonts/DIN2014Narrow-Light.svg"; sourceTree = "<group>"; };
-		1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.eot"; path = "../assets/fonts/DIN2014Narrow-Regular.eot"; sourceTree = "<group>"; };
-		1D13B1F72657B97F00A4F34A /* DIN2014Narrow-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.ttf"; path = "../assets/fonts/DIN2014Narrow-Light.ttf"; sourceTree = "<group>"; };
-		1D13B1F82657B97F00A4F34A /* DIN2014Narrow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.ttf"; path = "../assets/fonts/DIN2014Narrow-Regular.ttf"; sourceTree = "<group>"; };
-		1D13B1F92657B97F00A4F34A /* DIN2014Narrow-Regular.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "DIN2014Narrow-Regular.svg"; path = "../assets/fonts/DIN2014Narrow-Regular.svg"; sourceTree = "<group>"; };
-		1D13B1FA2657B97F00A4F34A /* DIN2014Narrow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.ttf"; path = "../assets/fonts/DIN2014Narrow-Bold.ttf"; sourceTree = "<group>"; };
-		1D13B1FB2657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.woff2"; path = "../assets/fonts/DIN2014Narrow-Bold.woff2"; sourceTree = "<group>"; };
-		1D13B1FC2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.woff2"; path = "../assets/fonts/DIN2014Narrow-Light.woff2"; sourceTree = "<group>"; };
-		1D13B1FD2657B97F00A4F34A /* DIN2014Narrow-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.woff"; path = "../assets/fonts/DIN2014Narrow-Regular.woff"; sourceTree = "<group>"; };
-		1D13B1FE2657B97F00A4F34A /* DIN2014Narrow-Light.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.eot"; path = "../assets/fonts/DIN2014Narrow-Light.eot"; sourceTree = "<group>"; };
-		1D13B1FF2657B97F00A4F34A /* DIN2014Narrow-Bold.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "DIN2014Narrow-Bold.svg"; path = "../assets/fonts/DIN2014Narrow-Bold.svg"; sourceTree = "<group>"; };
-		1D13B2002657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.woff2"; path = "../assets/fonts/DIN2014Narrow-Regular.woff2"; sourceTree = "<group>"; };
-		1D13B2012657B97F00A4F34A /* DIN2014Narrow-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.woff"; path = "../assets/fonts/DIN2014Narrow-Bold.woff"; sourceTree = "<group>"; };
-		1D13B2022657B97F00A4F34A /* DIN2014Narrow-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.woff"; path = "../assets/fonts/DIN2014Narrow-Light.woff"; sourceTree = "<group>"; };
 		1D1631BD268CBEB8007DB5E1 /* my_location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = my_location.png; path = ../android/app/src/main/assets/my_location.png; sourceTree = "<group>"; };
 		1D4E869A266A669A006FF848 /* service_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = service_empty.png; path = ../assets/service_empty.png; sourceTree = "<group>"; };
 		1D4E869B266A669A006FF848 /* serviceshop_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = serviceshop_empty.png; path = ../assets/serviceshop_empty.png; sourceTree = "<group>"; };
@@ -101,12 +102,6 @@
 		1D4E869D266A669A006FF848 /* serviceshop_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = serviceshop_marker.png; path = ../assets/serviceshop_marker.png; sourceTree = "<group>"; };
 		1D4E869E266A669A006FF848 /* shop_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shop_empty.png; path = ../assets/shop_empty.png; sourceTree = "<group>"; };
 		1D4E869F266A669B006FF848 /* shop_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shop_marker.png; path = ../assets/shop_marker.png; sourceTree = "<group>"; };
-		1DE204FF271459D000F57873 /* mykross.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff; path = ../assets/fonts/mykross.woff; sourceTree = "<group>"; };
-		1DE20500271459D000F57873 /* mykross.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff2; path = ../assets/fonts/mykross.woff2; sourceTree = "<group>"; };
-		1DE20501271459D000F57873 /* mykross.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.eot; path = ../assets/fonts/mykross.eot; sourceTree = "<group>"; };
-		1DE20502271459D000F57873 /* mykross.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.ttf; path = ../assets/fonts/mykross.ttf; sourceTree = "<group>"; };
-		1DE20503271459D000F57873 /* mykross.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = mykross.svg; path = ../assets/fonts/mykross.svg; sourceTree = "<group>"; };
-		1DE20504271459D000F57873 /* mykross.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.otf; path = ../assets/fonts/mykross.otf; sourceTree = "<group>"; };
 		1E04EE7AA998AA05F6A15C9C /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
 		331BC8AFE8B97D2CBE1E6685 /* Pods-myKROSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.debug.xcconfig"; sourceTree = "<group>"; };
 		5C419F93D4D6BE6978E043B6 /* Pods-myKROSS.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.release.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +116,42 @@
 		9039C9492636A74E00C355DE /* myKROSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myKROSS.entitlements; sourceTree = "<group>"; };
 		904F37AF26A1875000371264 /* map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_route_marker.png; path = ../src/assets/images/map_route_marker.png; sourceTree = "<group>"; };
 		905F172A27956F7500BC6C75 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		909E2E3427BF96250062F828 /* DIN2014Narrow-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.otf"; path = "../android/app/src/main/assets/DIN2014Narrow-Bold.otf"; sourceTree = "<group>"; };
+		909E2E3527BF96250062F828 /* DIN2014Narrow-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.otf"; path = "../android/app/src/main/assets/DIN2014Narrow-Regular.otf"; sourceTree = "<group>"; };
+		909E2E3627BF96250062F828 /* DIN2014-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.woff"; path = "../android/app/src/main/assets/DIN2014-Regular.woff"; sourceTree = "<group>"; };
+		909E2E3727BF96260062F828 /* DIN2014Narrow-Light.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "DIN2014Narrow-Light.svg"; path = "../android/app/src/main/assets/DIN2014Narrow-Light.svg"; sourceTree = "<group>"; };
+		909E2E3827BF96260062F828 /* DIN2014Narrow-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.ttf"; path = "../android/app/src/main/assets/DIN2014Narrow-Bold.ttf"; sourceTree = "<group>"; };
+		909E2E3927BF96260062F828 /* DIN2014-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.ttf"; path = "../android/app/src/main/assets/DIN2014-Regular.ttf"; sourceTree = "<group>"; };
+		909E2E3A27BF96260062F828 /* DIN2014-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.woff2"; path = "../android/app/src/main/assets/DIN2014-Regular.woff2"; sourceTree = "<group>"; };
+		909E2E3B27BF96260062F828 /* DIN2014-Demi.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.woff"; path = "../android/app/src/main/assets/DIN2014-Demi.woff"; sourceTree = "<group>"; };
+		909E2E3C27BF96270062F828 /* DIN2014Narrow-Light.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.eot"; path = "../android/app/src/main/assets/DIN2014Narrow-Light.eot"; sourceTree = "<group>"; };
+		909E2E3D27BF96270062F828 /* DIN2014-Regular.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "DIN2014-Regular.svg"; path = "../android/app/src/main/assets/DIN2014-Regular.svg"; sourceTree = "<group>"; };
+		909E2E3E27BF96270062F828 /* DIN2014Narrow-Light.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.woff2"; path = "../android/app/src/main/assets/DIN2014Narrow-Light.woff2"; sourceTree = "<group>"; };
+		909E2E3F27BF96270062F828 /* DIN2014-Demi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.ttf"; path = "../android/app/src/main/assets/DIN2014-Demi.ttf"; sourceTree = "<group>"; };
+		909E2E4027BF96270062F828 /* DIN2014Narrow-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.ttf"; path = "../android/app/src/main/assets/DIN2014Narrow-Light.ttf"; sourceTree = "<group>"; };
+		909E2E4127BF96280062F828 /* DIN2014Narrow-Bold.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.eot"; path = "../android/app/src/main/assets/DIN2014Narrow-Bold.eot"; sourceTree = "<group>"; };
+		909E2E4227BF96280062F828 /* DIN2014Narrow-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.woff2"; path = "../android/app/src/main/assets/DIN2014Narrow-Regular.woff2"; sourceTree = "<group>"; };
+		909E2E4327BF96280062F828 /* DIN2014-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.otf"; path = "../android/app/src/main/assets/DIN2014-Demi.otf"; sourceTree = "<group>"; };
+		909E2E4427BF96280062F828 /* DIN2014Narrow-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.woff"; path = "../android/app/src/main/assets/DIN2014Narrow-Light.woff"; sourceTree = "<group>"; };
+		909E2E4527BF96280062F828 /* DIN2014-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.eot"; path = "../android/app/src/main/assets/DIN2014-Regular.eot"; sourceTree = "<group>"; };
+		909E2E4627BF96280062F828 /* DIN2014Narrow-Regular.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "DIN2014Narrow-Regular.svg"; path = "../android/app/src/main/assets/DIN2014Narrow-Regular.svg"; sourceTree = "<group>"; };
+		909E2E4727BF96290062F828 /* DIN2014Narrow-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Light.otf"; path = "../android/app/src/main/assets/DIN2014Narrow-Light.otf"; sourceTree = "<group>"; };
+		909E2E4827BF96290062F828 /* DIN2014Narrow-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.ttf"; path = "../android/app/src/main/assets/DIN2014Narrow-Regular.ttf"; sourceTree = "<group>"; };
+		909E2E4927BF96290062F828 /* DIN2014Narrow-Bold.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "DIN2014Narrow-Bold.svg"; path = "../android/app/src/main/assets/DIN2014Narrow-Bold.svg"; sourceTree = "<group>"; };
+		909E2E4A27BF96290062F828 /* DIN2014Narrow-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.woff"; path = "../android/app/src/main/assets/DIN2014Narrow-Regular.woff"; sourceTree = "<group>"; };
+		909E2E4B27BF96290062F828 /* DIN2014-Demi.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.woff2"; path = "../android/app/src/main/assets/DIN2014-Demi.woff2"; sourceTree = "<group>"; };
+		909E2E4C27BF96290062F828 /* DIN2014-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.otf"; path = "../android/app/src/main/assets/DIN2014-Regular.otf"; sourceTree = "<group>"; };
+		909E2E4D27BF962A0062F828 /* DIN2014Narrow-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.eot"; path = "../android/app/src/main/assets/DIN2014Narrow-Regular.eot"; sourceTree = "<group>"; };
+		909E2E4E27BF962A0062F828 /* DIN2014Narrow-Bold.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.woff2"; path = "../android/app/src/main/assets/DIN2014Narrow-Bold.woff2"; sourceTree = "<group>"; };
+		909E2E4F27BF962A0062F828 /* DIN2014-Demi.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.eot"; path = "../android/app/src/main/assets/DIN2014-Demi.eot"; sourceTree = "<group>"; };
+		909E2E5027BF962A0062F828 /* DIN2014Narrow-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.woff"; path = "../android/app/src/main/assets/DIN2014Narrow-Bold.woff"; sourceTree = "<group>"; };
+		909E2E5127BF962A0062F828 /* DIN2014-Demi.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "DIN2014-Demi.svg"; path = "../android/app/src/main/assets/DIN2014-Demi.svg"; sourceTree = "<group>"; };
+		909E2E7027BF96310062F828 /* mykross.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff2; path = ../android/app/src/main/assets/mykross.woff2; sourceTree = "<group>"; };
+		909E2E7127BF96310062F828 /* mykross.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.otf; path = ../android/app/src/main/assets/mykross.otf; sourceTree = "<group>"; };
+		909E2E7227BF96320062F828 /* mykross.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = mykross.svg; path = ../android/app/src/main/assets/mykross.svg; sourceTree = "<group>"; };
+		909E2E7327BF96320062F828 /* mykross.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.ttf; path = ../android/app/src/main/assets/mykross.ttf; sourceTree = "<group>"; };
+		909E2E7427BF96320062F828 /* mykross.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.eot; path = ../android/app/src/main/assets/mykross.eot; sourceTree = "<group>"; };
+		909E2E7527BF96320062F828 /* mykross.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff; path = ../android/app/src/main/assets/mykross.woff; sourceTree = "<group>"; };
 		90B996A826A840580015E097 /* current_map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = current_map_route_marker.png; path = ../src/assets/images/current_map_route_marker.png; sourceTree = "<group>"; };
 		921EDEB91B42C5DE5BBCE3F6 /* Pods-myKROSS.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.release.xcconfig"; sourceTree = "<group>"; };
 		952EBC2A89F9D279A3D27FF9 /* Pods-myKROSS.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.feat.release.xcconfig"; sourceTree = "<group>"; };
@@ -239,36 +270,51 @@
 			isa = PBXGroup;
 			children = (
 				905F172A27956F7500BC6C75 /* Config.xcconfig */,
-				1DE20501271459D000F57873 /* mykross.eot */,
-				1DE20504271459D000F57873 /* mykross.otf */,
-				1DE20503271459D000F57873 /* mykross.svg */,
-				1DE20502271459D000F57873 /* mykross.ttf */,
-				1DE204FF271459D000F57873 /* mykross.woff */,
-				1DE20500271459D000F57873 /* mykross.woff2 */,
 				1D1631BD268CBEB8007DB5E1 /* my_location.png */,
 				1D4E869A266A669A006FF848 /* service_empty.png */,
 				1D4E869C266A669A006FF848 /* service_marker.png */,
 				1D4E869B266A669A006FF848 /* serviceshop_empty.png */,
 				1D4E869D266A669A006FF848 /* serviceshop_marker.png */,
+				909E2E4F27BF962A0062F828 /* DIN2014-Demi.eot */,
+				909E2E4327BF96280062F828 /* DIN2014-Demi.otf */,
+				909E2E5127BF962A0062F828 /* DIN2014-Demi.svg */,
+				909E2E3F27BF96270062F828 /* DIN2014-Demi.ttf */,
+				909E2E3B27BF96260062F828 /* DIN2014-Demi.woff */,
+				909E2E4B27BF96290062F828 /* DIN2014-Demi.woff2 */,
+				909E2E4527BF96280062F828 /* DIN2014-Regular.eot */,
+				909E2E4C27BF96290062F828 /* DIN2014-Regular.otf */,
+				909E2E3D27BF96270062F828 /* DIN2014-Regular.svg */,
+				909E2E3927BF96260062F828 /* DIN2014-Regular.ttf */,
+				909E2E7427BF96320062F828 /* mykross.eot */,
+				909E2E7127BF96310062F828 /* mykross.otf */,
+				909E2E7227BF96320062F828 /* mykross.svg */,
+				909E2E7327BF96320062F828 /* mykross.ttf */,
+				909E2E7527BF96320062F828 /* mykross.woff */,
+				909E2E7027BF96310062F828 /* mykross.woff2 */,
+				909E2E3627BF96250062F828 /* DIN2014-Regular.woff */,
+				909E2E3A27BF96260062F828 /* DIN2014-Regular.woff2 */,
+				909E2E4127BF96280062F828 /* DIN2014Narrow-Bold.eot */,
+				909E2E3427BF96250062F828 /* DIN2014Narrow-Bold.otf */,
+				909E2E4927BF96290062F828 /* DIN2014Narrow-Bold.svg */,
+				909E2E3827BF96260062F828 /* DIN2014Narrow-Bold.ttf */,
+				909E2E5027BF962A0062F828 /* DIN2014Narrow-Bold.woff */,
+				909E2E4E27BF962A0062F828 /* DIN2014Narrow-Bold.woff2 */,
+				909E2E3C27BF96270062F828 /* DIN2014Narrow-Light.eot */,
+				909E2E4727BF96290062F828 /* DIN2014Narrow-Light.otf */,
+				909E2E3727BF96260062F828 /* DIN2014Narrow-Light.svg */,
+				909E2E4027BF96270062F828 /* DIN2014Narrow-Light.ttf */,
+				909E2E4427BF96280062F828 /* DIN2014Narrow-Light.woff */,
+				909E2E3E27BF96270062F828 /* DIN2014Narrow-Light.woff2 */,
+				909E2E4D27BF962A0062F828 /* DIN2014Narrow-Regular.eot */,
+				909E2E3527BF96250062F828 /* DIN2014Narrow-Regular.otf */,
+				909E2E4627BF96280062F828 /* DIN2014Narrow-Regular.svg */,
+				909E2E4827BF96290062F828 /* DIN2014Narrow-Regular.ttf */,
+				909E2E4A27BF96290062F828 /* DIN2014Narrow-Regular.woff */,
+				909E2E4227BF96280062F828 /* DIN2014Narrow-Regular.woff2 */,
 				904F37AF26A1875000371264 /* map_route_marker.png */,
 				1D4E869E266A669A006FF848 /* shop_empty.png */,
 				1D4E869F266A669B006FF848 /* shop_marker.png */,
-				1D13B1FF2657B97F00A4F34A /* DIN2014Narrow-Bold.svg */,
 				90B996A826A840580015E097 /* current_map_route_marker.png */,
-				1D13B1FA2657B97F00A4F34A /* DIN2014Narrow-Bold.ttf */,
-				1D13B2012657B97F00A4F34A /* DIN2014Narrow-Bold.woff */,
-				1D13B1FB2657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 */,
-				1D13B1FE2657B97F00A4F34A /* DIN2014Narrow-Light.eot */,
-				1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */,
-				1D13B1F72657B97F00A4F34A /* DIN2014Narrow-Light.ttf */,
-				1D13B2022657B97F00A4F34A /* DIN2014Narrow-Light.woff */,
-				1D13B1FC2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 */,
-				1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */,
-				1D13B1F92657B97F00A4F34A /* DIN2014Narrow-Regular.svg */,
-				1D13B1F82657B97F00A4F34A /* DIN2014Narrow-Regular.ttf */,
-				1D13B1FD2657B97F00A4F34A /* DIN2014Narrow-Regular.woff */,
-				1D13B2002657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 */,
-				1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */,
 				901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* myKROSS */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -416,43 +462,59 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				909E2E6B27BF962B0062F828 /* DIN2014Narrow-Regular.eot in Resources */,
+				909E2E5327BF962B0062F828 /* DIN2014Narrow-Regular.otf in Resources */,
+				909E2E5927BF962B0062F828 /* DIN2014-Demi.woff in Resources */,
 				1D1631BF268CBEEC007DB5E1 /* my_location.png in Resources */,
+				909E2E5527BF962B0062F828 /* DIN2014Narrow-Light.svg in Resources */,
+				909E2E6927BF962B0062F828 /* DIN2014-Demi.woff2 in Resources */,
+				909E2E6E27BF962B0062F828 /* DIN2014Narrow-Bold.woff in Resources */,
+				909E2E7627BF96320062F828 /* mykross.woff2 in Resources */,
 				1D4E86A0266A669B006FF848 /* service_empty.png in Resources */,
+				909E2E5A27BF962B0062F828 /* DIN2014Narrow-Light.eot in Resources */,
+				909E2E7727BF96320062F828 /* mykross.otf in Resources */,
+				909E2E6527BF962B0062F828 /* DIN2014Narrow-Light.otf in Resources */,
+				909E2E5227BF962B0062F828 /* DIN2014Narrow-Bold.otf in Resources */,
+				909E2E6027BF962B0062F828 /* DIN2014Narrow-Regular.woff2 in Resources */,
 				1D4E86A1266A669B006FF848 /* serviceshop_empty.png in Resources */,
 				1D4E86A2266A669B006FF848 /* service_marker.png in Resources */,
 				1D4E86A3266A669B006FF848 /* serviceshop_marker.png in Resources */,
+				909E2E7B27BF96320062F828 /* mykross.woff in Resources */,
+				909E2E5827BF962B0062F828 /* DIN2014-Regular.woff2 in Resources */,
+				909E2E7927BF96320062F828 /* mykross.ttf in Resources */,
+				909E2E3327BF960C0062F828 /* Config.xcconfig in Resources */,
+				909E2E6727BF962B0062F828 /* DIN2014Narrow-Bold.svg in Resources */,
+				909E2E6D27BF962B0062F828 /* DIN2014-Demi.eot in Resources */,
+				909E2E6427BF962B0062F828 /* DIN2014Narrow-Regular.svg in Resources */,
 				1D4E86A4266A669B006FF848 /* shop_empty.png in Resources */,
+				909E2E5427BF962B0062F828 /* DIN2014-Regular.woff in Resources */,
 				1D4E86A5266A669B006FF848 /* shop_marker.png in Resources */,
-				1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */,
+				909E2E5C27BF962B0062F828 /* DIN2014Narrow-Light.woff2 in Resources */,
+				909E2E6127BF962B0062F828 /* DIN2014-Demi.otf in Resources */,
 				904F37B026A1875000371264 /* map_route_marker.png in Resources */,
-				1D13B2042657B97F00A4F34A /* DIN2014Narrow-Regular.eot in Resources */,
-				1D13B2052657B97F00A4F34A /* DIN2014Narrow-Light.ttf in Resources */,
-				1D13B2062657B97F00A4F34A /* DIN2014Narrow-Regular.ttf in Resources */,
-				1D13B2072657B97F00A4F34A /* DIN2014Narrow-Regular.svg in Resources */,
-				1D13B2082657B97F00A4F34A /* DIN2014Narrow-Bold.ttf in Resources */,
-				1D13B2092657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 in Resources */,
-				1D13B20A2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 in Resources */,
-				1D13B20B2657B97F00A4F34A /* DIN2014Narrow-Regular.woff in Resources */,
-				1D13B20C2657B97F00A4F34A /* DIN2014Narrow-Light.eot in Resources */,
-				1D13B20D2657B97F00A4F34A /* DIN2014Narrow-Bold.svg in Resources */,
+				909E2E5F27BF962B0062F828 /* DIN2014Narrow-Bold.eot in Resources */,
 				90B996A926A840590015E097 /* current_map_route_marker.png in Resources */,
-				1D13B20E2657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 in Resources */,
-				1D13B20F2657B97F00A4F34A /* DIN2014Narrow-Bold.woff in Resources */,
-				1D13B2102657B97F00A4F34A /* DIN2014Narrow-Light.woff in Resources */,
-				1D13B1F42657B94D00A4F34A /* DIN2014Narrow-Bold.eot in Resources */,
 				9009F68626452075005FBC58 /* InfoPlist.strings in Resources */,
+				909E2E5D27BF962B0062F828 /* DIN2014-Demi.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				909E2E6827BF962B0062F828 /* DIN2014Narrow-Regular.woff in Resources */,
+				909E2E7827BF96320062F828 /* mykross.svg in Resources */,
 				D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */,
+				909E2E5E27BF962B0062F828 /* DIN2014Narrow-Light.ttf in Resources */,
+				909E2E5B27BF962B0062F828 /* DIN2014-Regular.svg in Resources */,
+				909E2E6A27BF962B0062F828 /* DIN2014-Regular.otf in Resources */,
+				909E2E6C27BF962B0062F828 /* DIN2014Narrow-Bold.woff2 in Resources */,
 				C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */,
 				BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */,
+				909E2E5727BF962B0062F828 /* DIN2014-Regular.ttf in Resources */,
+				909E2E7A27BF96320062F828 /* mykross.eot in Resources */,
+				909E2E6627BF962B0062F828 /* DIN2014Narrow-Regular.ttf in Resources */,
 				901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */,
-				1DE20505271459D000F57873 /* mykross.woff in Resources */,
-				1DE20506271459D000F57873 /* mykross.woff2 in Resources */,
-				1DE20507271459D000F57873 /* mykross.eot in Resources */,
-				1DE20508271459D000F57873 /* mykross.ttf in Resources */,
-				1DE20509271459D000F57873 /* mykross.svg in Resources */,
-				1DE2050A271459D000F57873 /* mykross.otf in Resources */,
+				909E2E6F27BF962B0062F828 /* DIN2014-Demi.svg in Resources */,
+				909E2E6227BF962B0062F828 /* DIN2014Narrow-Light.woff in Resources */,
+				909E2E5627BF962B0062F828 /* DIN2014Narrow-Bold.ttf in Resources */,
+				909E2E6327BF962B0062F828 /* DIN2014-Regular.eot in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
