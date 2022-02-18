@@ -2,3 +2,76 @@
 export const BASE_HEIGHT = 896;
 export const BASE_WIDTH = 414;
 export const BASE_STACK_HEADER_HEIGHT = 100;
+
+export const FONT_ICON_MAP_SERVICES = '0';
+export const FONT_ICON_MENU_WOLD = '1';
+export const FONT_ICON_MENU_HOME = '2';
+export const FONT_ICON_MENU_BIKE = '3';
+export const FONT_ICON_MENU_PROFILE = '4';
+export const FONT_ICON_WARNING = '5';
+export const FONT_ICON_BIKE_TWO = '6';
+export const FONT_ICON_SERVISOWE = '7';
+export const FONT_ICON_POGODOWE = '8';
+export const FONT_ICON_MARKETINGOWE = '9';
+export const FONT_ICON_COMMENT_ON = 'K';
+export const FONT_ICON_LIKE_ON = 'L';
+export const FONT_ICON_DOWNLOAD_ON = 'M';
+export const FONT_ICON_MORE = 'N';
+export const FONT_ICON_NEW_LOGO_MYKROSS = 'a';
+export const FONT_ICON_LOGO_MYKROSS = 'b';
+export const FONT_ICON_KROSS = 'c';
+export const FONT_ICON_KROSS_YOU_CAN = 'd';
+export const FONT_ICON_LOGO_MYKROSS_PLUS_KROSS = 'e';
+export const FONT_ICON_DOWNLOAD = 'f';
+export const FONT_ICON_WAY = 'g';
+export const FONT_ICON_MOUNTAIN = 'h';
+export const FONT_ICON_BIKE_SMALL = 'i';
+export const FONT_ICON_TIME = 'j';
+export const FONT_ICON_COMMENT_OFF = 'k';
+export const FONT_ICON_LIKE_OFF = 'l';
+export const FONT_ICON_DOWNLOAD_OFF = 'm';
+export const FONT_ICON_EDIT = 'n';
+export const FONT_ICON_SHEREE = 'o';
+export const FONT_ICON_MAP_POINT = 'p';
+export const FONT_ICON_MAP_POINT_LIGHT = 'q';
+export const FONT_ICON_RING = 'r';
+export const FONT_ICON_SEARCH = 's';
+export const FONT_ICON_LIST = 't';
+export const FONT_ICON_DOCUMENT = 'u';
+export const FONT_ICON_SHOW = 'v';
+export const FONT_ICON_FILTERS = 'w';
+export const FONT_ICON_EXIT = 'x';
+export const FONT_ICON_BACK = 'y';
+export const FONT_ICON_OK = 'z';
+
+/**
+ * new layout for figma
+ */
+export const FIGMA_HEIGHT = 844;
+export const FIGMA_WIDTH = 390;
+
+export const MYKROSS_ICON_EXPLOR = 'A';
+export const MYKROSS_ICON_BIKE = 'B';
+export const MYKROSS_ICON_CHEVRON_DOWN = 'C';
+export const MYKROSS_ICON_DISCOVERY = 'D';
+export const MYKROSS_ICON_EDIT = 'E';
+export const MYKROSS_ICON_FILTR = 'F';
+export const MYKROSS_ICON_NAVIGATE = 'G';
+export const MYKROSS_ICON_HOME = 'H';
+export const MYKROSS_ICON_LIKE_OFF = 'I';
+export const MYKROSS_ICON_LIKE_ON = 'J';
+export const MYKROSS_ICON_MAP = 'O';
+export const MYKROSS_ICON_PROFILE = 'P';
+export const MYKROSS_ICON_PUBLIC = 'Q';
+export const MYKROSS_ICON_ROUTE_ADDED = 'R';
+export const MYKROSS_ICON_SAVE_OFF = 'S';
+export const MYKROSS_ICON_SAVE_ON = 'T';
+export const MYKROSS_ICON_USER = 'U';
+export const MYKROSS_ICON_SHARE = 'V';
+export const MYKROSS_ICON_ALT_SHARE = 'W';
+export const MYKROSS_ICON_EXIT = 'X';
+export const MYKROSS_ICON_MORE = 'Y';
+export const MYKROSS_ICON_SORT = 'Z';
+export const MYKROSS_ICON_ALT_BIKE = '@';
+export const MYKROSS_ICON_PAUSE = '[';
+export const MYKROSS_ICON_PLAY = ']';
