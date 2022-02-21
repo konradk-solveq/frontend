@@ -506,7 +506,7 @@ const setMarks = places => {
         ignoreHidden: true,
         minimumClusterSize: 3,
         styles: [{
-                url: "pinroute_published.png",
+                url: "pinroute_published_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
                 textSize: 17,
                 textColor: "#fff",
@@ -520,7 +520,7 @@ const setMarks = places => {
         ignoreHidden: true,
         minimumClusterSize: 3,
         styles: [{
-                url: "pinroute_private.png",
+                url: "pinroute_private_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
                 textSize: 17,
                 textColor: "#fff",
@@ -534,7 +534,7 @@ const setMarks = places => {
         ignoreHidden: true,
         minimumClusterSize: 3,
         styles: [{
-                url: "pinroute_panned.png",
+                url: "pinroute_panned_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
                 textSize: 17,
                 textColor: "#fff",
