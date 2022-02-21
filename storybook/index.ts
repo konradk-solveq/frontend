@@ -2,7 +2,7 @@ import {LOAD_STORYBOOK} from '@env';
 
 let StorybookUIRoot = () => null;
 
-if (LOAD_STORYBOOK === 'true') {
+if (LOAD_STORYBOOK === 'true' && __DEV__) {
     const {
         configure,
         addDecorator,
