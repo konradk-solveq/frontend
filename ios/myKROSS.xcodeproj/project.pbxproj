@@ -46,6 +46,9 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9009F68626452075005FBC58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9009F68826452075005FBC58 /* InfoPlist.strings */; };
 		901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */; };
+		9049DB4E27C3FB9C001B065B /* pinroute_published.png in Resources */ = {isa = PBXBuildFile; fileRef = 9049DB4B27C3FB9B001B065B /* pinroute_published.png */; };
+		9049DB4F27C3FB9C001B065B /* pinroute_planned.png in Resources */ = {isa = PBXBuildFile; fileRef = 9049DB4C27C3FB9B001B065B /* pinroute_planned.png */; };
+		9049DB5027C3FB9C001B065B /* pinroute_private.png in Resources */ = {isa = PBXBuildFile; fileRef = 9049DB4D27C3FB9B001B065B /* pinroute_private.png */; };
 		904F37B026A1875000371264 /* map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 904F37AF26A1875000371264 /* map_route_marker.png */; };
 		909E2E8827BFA2E40062F828 /* DIN2014-Demi.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7C27BFA2E20062F828 /* DIN2014-Demi.eot */; };
 		909E2E8927BFA2E40062F828 /* DIN2014-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7D27BFA2E20062F828 /* DIN2014-Regular.eot */; };
@@ -132,6 +135,9 @@
 		9009F68726452075005FBC58 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9039C9492636A74E00C355DE /* myKROSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myKROSS.entitlements; sourceTree = "<group>"; };
+		9049DB4B27C3FB9B001B065B /* pinroute_published.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_published.png; path = ../src/assets/images/pinroute_published.png; sourceTree = "<group>"; };
+		9049DB4C27C3FB9B001B065B /* pinroute_planned.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_planned.png; path = ../src/assets/images/pinroute_planned.png; sourceTree = "<group>"; };
+		9049DB4D27C3FB9B001B065B /* pinroute_private.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_private.png; path = ../src/assets/images/pinroute_private.png; sourceTree = "<group>"; };
 		904F37AF26A1875000371264 /* map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_route_marker.png; path = ../src/assets/images/map_route_marker.png; sourceTree = "<group>"; };
 		905F172A27956F7500BC6C75 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		909E2E7C27BFA2E20062F828 /* DIN2014-Demi.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.eot"; path = "../assets/fonts/DIN2014-Demi.eot"; sourceTree = "<group>"; };
@@ -276,6 +282,9 @@
 				1D4E869B266A669A006FF848 /* serviceshop_empty.png */,
 				1D4E869D266A669A006FF848 /* serviceshop_marker.png */,
 				904F37AF26A1875000371264 /* map_route_marker.png */,
+				9049DB4C27C3FB9B001B065B /* pinroute_planned.png */,
+				9049DB4D27C3FB9B001B065B /* pinroute_private.png */,
+				9049DB4B27C3FB9B001B065B /* pinroute_published.png */,
 				1D4E869E266A669A006FF848 /* shop_empty.png */,
 				1D4E869F266A669B006FF848 /* shop_marker.png */,
 				1D13B1FF2657B97F00A4F34A /* DIN2014Narrow-Bold.svg */,
@@ -455,6 +464,7 @@
 			files = (
 				1D1631BF268CBEEC007DB5E1 /* my_location.png in Resources */,
 				1D4E86A0266A669B006FF848 /* service_empty.png in Resources */,
+				9049DB4F27C3FB9C001B065B /* pinroute_planned.png in Resources */,
 				1D4E86A1266A669B006FF848 /* serviceshop_empty.png in Resources */,
 				1D4E86A2266A669B006FF848 /* service_marker.png in Resources */,
 				1D4E86A3266A669B006FF848 /* serviceshop_marker.png in Resources */,
@@ -495,8 +505,10 @@
 				901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */,
 				1DE20505271459D000F57873 /* mykross.woff in Resources */,
 				909E2E8E27BFA2E40062F828 /* DIN2014-Regular.woff in Resources */,
+				9049DB5027C3FB9C001B065B /* pinroute_private.png in Resources */,
 				1DE20506271459D000F57873 /* mykross.woff2 in Resources */,
 				909E2E9227BFA2E40062F828 /* DIN2014-Demi.ttf in Resources */,
+				9049DB4E27C3FB9C001B065B /* pinroute_published.png in Resources */,
 				1DE20507271459D000F57873 /* mykross.eot in Resources */,
 				909E2E8B27BFA2E40062F828 /* DIN2014-Demi.woff in Resources */,
 				909E2E9327BFA2E40062F828 /* DIN2014-Demi.otf in Resources */,
