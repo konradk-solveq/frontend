@@ -1,4 +1,63 @@
-export default `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/World/RoutesMapContainer Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "paddingHorizontal": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "overflow": "hidden",
+          },
+          undefined,
+        ]
+      }
+    >
+      <RNCWebView
+        cacheEnabled={true}
+        injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+        injectedJavaScriptForMainFrameOnly={true}
+        javaScriptEnabled={true}
+        messagingEnabled={true}
+        onContentProcessDidTerminate={[Function]}
+        onHttpError={[Function]}
+        onLoadEnd={[Function]}
+        onLoadingError={[Function]}
+        onLoadingFinish={[Function]}
+        onLoadingProgress={[Function]}
+        onLoadingStart={[Function]}
+        onMessage={[Function]}
+        onShouldStartLoadWithRequest={[Function]}
+        scalesPageToFit={true}
+        scrollEnabled={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        source={
+          Object {
+            "baseUrl": "",
+            "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body><script>let pos={latitude: 50.664087722680975, longitude: 17.88744936290463}</script>
 <style>
 @font-face {
     font-family: 'DIN2014Narrow-Light';
@@ -37,9 +96,9 @@ export default `
 }
 </style>
 
-<div id="map"></div>
+<div id=\\"map\\"></div>
 
-<script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
+<script src=\\"https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js\\"></script>
 
 <script>
 const customJsonStringify = (value, fallback) => {
@@ -86,7 +145,7 @@ const setPosOnMap = position => {
 const getRgion = () => {
     const bounds = map.getBounds();
 
-    window.ReactNativeWebView.postMessage("changeRegion#$#"+customJsonStringify(bounds, ''));
+    window.ReactNativeWebView.postMessage(\\"changeRegion#$#\\"+customJsonStringify(bounds, ''));
 }
 
 function initMap() {
@@ -454,7 +513,7 @@ function initMap() {
 
     // dla chowania apli z adresem
     map.addListener('click', () => {
-        window.ReactNativeWebView.postMessage("clickMap");
+        window.ReactNativeWebView.postMessage(\\"clickMap\\");
         marks.forEach(m => {
             m.setOptions({
                 icon: 'map_route_marker.png',
@@ -489,10 +548,10 @@ const setMarks = places => {
         });
 
         marks.push(mark);
-        window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+customJsonStringify(mark?.markerTypes, ''));
+        window.ReactNativeWebView.postMessage(\\"clickMarkerToAdd#$#\\"+customJsonStringify(mark?.markerTypes, ''));
         // do pokazywania alpi z adresem
         google.maps.event.addDomListener(mark, 'click', function() {
-            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify(mark?.details, ''));
+            window.ReactNativeWebView.postMessage(\\"clickMarker#$#\\"+customJsonStringify(mark?.details, ''));
             marks.forEach(m => {
                 m.setOptions({
                     icon: 'map_route_marker.png',
@@ -507,46 +566,46 @@ const setMarks = places => {
     clusterPublic = new MarkerClusterer(map, marks, {
         ignoreHidden: true,
         styles: [{
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
+                url: \\"shop_empty.png\\",
+                fontFamily: \\"DIN2014Narrow-Regular\\",
                 textSize: 30,
-                textColor: "#fff",
+                textColor: \\"#fff\\",
                 width: 44,
                 height: 44,
                 anchor:[22,22],
             },
             {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
+                url: \\"shop_empty.png\\",
+                fontFamily: \\"DIN2014Narrow-Regular\\",
                 textSize: 30,
-                textColor: "#fff",
+                textColor: \\"#fff\\",
                 width: 44,
                 height: 44,
                 anchor:[22,22],
             },
             {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
+                url: \\"shop_empty.png\\",
+                fontFamily: \\"DIN2014Narrow-Regular\\",
                 textSize: 30,
-                textColor: "#fff",
+                textColor: \\"#fff\\",
                 width: 44,
                 height: 44,
                 anchor:[22,22],
             },
             {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
+                url: \\"shop_empty.png\\",
+                fontFamily: \\"DIN2014Narrow-Regular\\",
                 textSize: 30,
-                textColor: "#fff",
+                textColor: \\"#fff\\",
                 width: 44,
                 height: 44,
                 anchor:[22,22],
             },
             {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
+                url: \\"shop_empty.png\\",
+                fontFamily: \\"DIN2014Narrow-Regular\\",
                 textSize: 30,
-                textColor: "#fff",
+                textColor: \\"#fff\\",
                 width: 44,
                 height: 44,
                 anchor:[22,22],
@@ -560,7 +619,7 @@ const setPublic = () => {
         marks?.forEach(m => m.markerTypes?.includes('PUBLIC') ? m.setVisible(true) : m.setVisible(false));
         clusterPublic.repaint();
     }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PUBLIC#$#"+customJsonStringify(e, ''));
+        window.ReactNativeWebView.postMessage(\\"ERROR ON REPAINT PUBLIC#$#\\"+customJsonStringify(e, ''));
     }
 }
 
@@ -569,7 +628,7 @@ const setFavourites = () => {
         marks?.forEach(m => m.markerTypes?.includes('FAVORITE') ? m.setVisible(true) : m.setVisible(false));
         clusterPublic.repaint();
     }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT FAVORITE#$#"+customJsonStringify(e, ''));
+        window.ReactNativeWebView.postMessage(\\"ERROR ON REPAINT FAVORITE#$#\\"+customJsonStringify(e, ''));
     }
 }
 
@@ -578,7 +637,7 @@ const setPrivate = () => {
         marks?.forEach(m => m.markerTypes?.includes('OWN') ? m.setVisible(true) : m.setVisible(false));
         clusterPublic.repaint();
     }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#"+customJsonStringify(e, ''));
+        window.ReactNativeWebView.postMessage(\\"ERROR ON REPAINT PRIVATE#$#\\"+customJsonStringify(e, ''));
     }
 }
 
@@ -589,7 +648,197 @@ const clearMarkersCluster = () => {
 }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcuDhYsJJqOBvWppdbLf5y75V8OdNOevQ&map_ids=2ffa275ecc610735&callback=initMap">
+<script src=\\"https://maps.googleapis.com/maps/api/js?key=AIzaSyBcuDhYsJJqOBvWppdbLf5y75V8OdNOevQ&map_ids=2ffa275ecc610735&callback=initMap\\">
 </script>
 
+</body></html>",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "overflow": "hidden",
+            },
+            Object {
+              "backgroundColor": "#ffffff",
+            },
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "zIndex": 0,
+            },
+          ]
+        }
+        textInteractionEnabled={true}
+        useSharedProcessPool={true}
+        useWebKit={true}
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "bottom": 59.55357142857143,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingHorizontal": 28.985507246376812,
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 1,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="secondary-btn-test-id"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#ffffff",
+                "borderRadius": 30.76923076923077,
+                "elevation": 5,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "shadowColor": "rgba(51, 51, 51, 0.07)",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 7.6923076923076925,
+                },
+                "shadowRadius": 15.384615384615385,
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Array [
+                Object {
+                  "height": 92.3076923076923,
+                  "width": 565.3846153846154,
+                },
+                Object {
+                  "height": 84.61538461538461,
+                  "width": 221.15384615384616,
+                },
+              ],
+            ]
+          }
+          testID="secondary-btn-test-id-container"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#333333",
+                  "fontSize": 20,
+                },
+                Object {
+                  "marginRight": 15.384615384615385,
+                },
+              ]
+            }
+            testID="secondary-btn-test-id-icon"
+          >
+            X
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="secondary-btn-test-id-text"
+          >
+            MainRoutesMap.container.closeButton
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="icon-btn-test-id"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignContent": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "height": 84.61538461538461,
+                "justifyContent": "center",
+                "width": 84.61538461538461,
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#C63733",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+            testID="icon-btn-test-id-icon"
+          >
+            U
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
 `;

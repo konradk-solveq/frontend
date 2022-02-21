@@ -28,6 +28,7 @@
             "@services*": ["src/services*"],
             "@sharedComponents*": ["src/sharedComponents*"],
             "@components*": ["src/components*"],
+            "@containers*": ["src/containers*"],
             "@storage*": ["src/storage*"],
             "@theme*": ["src/theme*"],
             "@type*": ["src/type*"],

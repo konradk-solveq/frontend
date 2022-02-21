@@ -418,6 +418,9 @@
         "planning": "Planowane",
         "bottomTile": {
             "finMoreInfo": "Sprawdź trasę na mapie"
+        },
+        "container": {
+            "closeButton": "Wyjdź"
         }
 
     },

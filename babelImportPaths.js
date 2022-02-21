@@ -56,6 +56,10 @@ module.exports = [
         rootPathPrefix: '@components',
     },
     {
+        rootPathSuffix: './src/containers',
+        rootPathPrefix: '@containers',
+    },
+    {
         rootPathSuffix: './src/storage',
         rootPathPrefix: '@storage',
     },
