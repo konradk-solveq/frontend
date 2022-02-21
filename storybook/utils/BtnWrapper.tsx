@@ -1,18 +1,15 @@
 import React, {ReactNode} from 'react';
 import {StyleSheet, View} from 'react-native';
 
+import LayoutCenter from './LayoutCenter';
+
 const BtnWrapper = ({children}: {children: ReactNode}) => (
-    <View style={styles.container}>
+    <LayoutCenter>
         <View style={styles.button}>{children}</View>
-    </View>
+    </LayoutCenter>
 );
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     button: {
         width: 200,
         height: 40,
