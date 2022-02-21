@@ -200,7 +200,7 @@ export default [
     {
         lng: 17.837720435245657,
         lat: 50.68821738131316,
-        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED', 'PRIVATE'],
+        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED'],
         details: {
             id: '3g-HOwZee1hXHCeROAb_R7Tajul4PVRL',
             name: 'T 4',
@@ -214,7 +214,7 @@ export default [
     {
         lng: 17.846531467701237,
         lat: 50.689981424170696,
-        markerTypes: <MapMarkerT[]>['PUBLIC'],
+        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED'],
         details: {
             id: '3xZ7CXbycF7TIXK_nLwHA7zWtKcZBrz5',
             name: 'dawdawdawd',
