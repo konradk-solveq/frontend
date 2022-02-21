@@ -4,8 +4,11 @@ import {SelectOptionType} from '@models/map.model';
 import {FaqType} from '@models/regulations.model';
 import {BasicCoordsType} from '@type/coords';
 import {RootState} from '@storage/storage';
-import {SelectEnumOptionsT} from '@models/config.model';
+import {SelectEnumOptionsType} from '@models/config.model';
 import {InternetConnectionInfoType} from '@interfaces/internetConnection';
+import {AppState} from '@storage/reducers/app';
+
+export const appSelector = (state: RootState): AppState => state.app;
 
 export const syncAppSelector = (state: RootState): boolean => state.app.sync;
 
@@ -66,7 +69,7 @@ export const mapOptionsSelector = () => {
 
 export const mapOptionsAndTagsSelector = (
     state: RootState,
-): SelectEnumOptionsT => ({
+): SelectEnumOptionsType => ({
     difficulties: state.app.config.difficulties,
     reactions: state.app.config.reactions,
     surfaces: state.app.config.surfaces,
@@ -91,3 +94,8 @@ export const routeDebugModeSelector = (state: RootState): boolean =>
 
 export const isInitMapsDataSynchedSelector = (state: RootState): boolean =>
     state.app.initMapsDataSynched;
+
+export const apiAuthHeaderStateSelector = (state: RootState): boolean =>
+    state.app.apiAuthHeaderState;
+
+export const appConfigSelector = createSelector(appSelector, a => a.config);

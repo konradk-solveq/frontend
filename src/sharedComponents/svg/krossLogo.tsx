@@ -1,7 +1,7 @@
 import React from 'react';
 import Svg, {G, Path} from 'react-native-svg';
 
-const KroosLogo = () => {
+const KrossLogo = () => {
     return (
         <Svg viewBox="0 0 110 20">
             <G fill="none" fillRule="evenodd">
@@ -25,4 +25,4 @@ const KroosLogo = () => {
     );
 };
 
-export default KroosLogo;
+export default KrossLogo;

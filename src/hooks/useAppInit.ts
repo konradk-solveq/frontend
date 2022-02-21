@@ -2,7 +2,12 @@ import {useCallback, useEffect, useRef} from 'react';
 import {State} from 'react-native-background-geolocation-android';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {appSyncData, clearAppError, synchMapsData} from '@storage/actions/app';
+import {
+    appSyncData,
+    clearAppError,
+    synchMapsData,
+    setApiAuthHeaderState,
+} from '@storage/actions';
 import {
     authTokenSelector,
     authUserIsAuthenticatedStateSelector,
@@ -23,12 +28,17 @@ import {
 
 import {setAutorizationHeader} from '@api/api';
 import {cleanUp, initBGeolocalization} from '@utils/geolocation';
-import {I18n} from '@translations/I18n';
 import {sentrySetUserInfo} from '@sentryLogger/sentryLogger';
 import {enableAnalytics} from '@analytics/firebaseAnalytics';
 
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import useLanguageReloader from './useLanguageReloader';
+
 const useAppInit = () => {
-    const trans: any = I18n.t('Geolocation.notification');
+    useLanguageReloader();
+
+    const {t} = useMergedTranslation('Geolocation.notification');
+
     const dispatch = useAppDispatch();
     const geolocationStateRef = useRef<State>();
     const dataInitializedref = useRef(false);
@@ -63,8 +73,9 @@ const useAppInit = () => {
     useEffect(() => {
         if (authToken) {
             setAutorizationHeader(authToken);
+            dispatch(setApiAuthHeaderState(true));
         }
-    }, [authToken]);
+    }, [authToken, dispatch]);
 
     useEffect(() => {
         sentrySetUserInfo({
@@ -76,7 +87,7 @@ const useAppInit = () => {
 
     useEffect(() => {
         const init = async () => {
-            const geolocation = await initBGeolocalization(trans.title);
+            const geolocation = await initBGeolocalization(t('title'));
             if (geolocation) {
                 geolocationStateRef.current = geolocation;
             }
@@ -90,20 +101,20 @@ const useAppInit = () => {
     }, []);
 
     useEffect(() => {
-        let t: NodeJS.Timeout;
+        let time: NodeJS.Timeout;
         if (
             isOnline &&
             isGoodInternetConnectionQuality &&
             !syncStatus &&
             isAuthanticated
         ) {
-            t = setTimeout(() => {
+            time = setTimeout(() => {
                 synchData();
             }, 500);
         }
 
         return () => {
-            clearTimeout(t);
+            clearTimeout(time);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isOnline, isGoodInternetConnectionQuality, isAuthanticated]);

@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, SafeAreaView, Text} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 
@@ -10,7 +10,6 @@ interface Props {
     handleMeasurement: Function;
     wrapH: any;
     imgH: any;
-    titleH: any;
     textH: any;
 }
 
@@ -18,10 +17,9 @@ const Screen_5: React.FC<Props> = ({
     handleMeasurement,
     wrapH,
     imgH,
-    titleH,
     textH,
 }: Props) => {
-    const trans = I18n.t('Onboarding');
+    const {t} = useMergedTranslation('Onboarding');
 
     let styles = StyleSheet.create({
         container: {
@@ -93,7 +91,7 @@ const Screen_5: React.FC<Props> = ({
                         onLayout={({nativeEvent}) =>
                             handleMeasurement(nativeEvent.layout, 'title')
                         }>
-                        {trans.title_5}
+                        {t('title_5')}
                     </Text>
                 </View>
 
@@ -109,7 +107,7 @@ const Screen_5: React.FC<Props> = ({
                         onLayout={({nativeEvent}) =>
                             handleMeasurement(nativeEvent.layout, 'text')
                         }>
-                        {trans.text_5}
+                        {t('text_5')}
                     </Text>
                 </View>
             </View>

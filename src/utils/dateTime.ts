@@ -1,5 +1,5 @@
 import {CounterTimeT} from '@type/dateTime';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 
 export const twoDigits = (num: Number) => (num < 10 ? '0' + num : '' + num);
 
@@ -15,7 +15,7 @@ export const getDateString = (date: Date, separator?: string) => {
 };
 
 export const getTimeString = (date: Date) => {
-    return date.toLocaleTimeString();
+    return date.toLocaleTimeString([], {hour12: false});
 };
 
 export const convertToDateWithTime = (date: string | undefined) => {
@@ -106,7 +106,9 @@ export const compareDates = (date1: Date, date2: Date | undefined) => {
 };
 
 export const translateDateToTodayAndYesterdayString = (date: Date) => {
-    const trans: any = I18n.t('MainWorld.MyRoutes');
+    const trans: any = i18next.t('MainWorld.MyRoutes', {
+        returnObjects: true,
+    });
     const now = new Date();
 
     if (date.getDate() === now.getDate()) {

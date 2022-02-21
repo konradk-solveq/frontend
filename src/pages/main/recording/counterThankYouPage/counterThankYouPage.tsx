@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {SafeAreaView, View, Text, ScrollView} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import AnimSvg from '@helpers/animSvg';
 
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
@@ -46,7 +46,7 @@ const CounterThankYouPage: React.FC<Props> = () => {
     const scrollRef = useRef<null | ScrollView>(null);
     const canGoForwardRef = useRef(true);
 
-    const trans: any = I18n.t('CounterThankYouPage');
+    const {t} = useMergedTranslation('CounterThankYouPage');
     const isSyncData = useAppSelector(trackerLoadingSelector);
     const error = useAppSelector(trackerErrorSelector);
     const navigation = useNavigation();
@@ -55,7 +55,7 @@ const CounterThankYouPage: React.FC<Props> = () => {
 
     useCustomBackNavButton(() => {}, true);
     const name = useAppSelector<string>(state => state.user.userName);
-    const userName = name ? ' ' + name : ' ' + trans.defaultName;
+    const userName = name ? ' ' + name : ' ' + t('defaultName');
 
     const [show, setShow] = useState(true);
     const randomNum = () => 1;
@@ -146,21 +146,18 @@ const CounterThankYouPage: React.FC<Props> = () => {
             res = 0;
         }
 
-        return res.toFixed(1).replace('.', ',');
+        return Number(res.toFixed(1).replace('.', ','));
     };
 
     const heandleGetTitleType = () => {
         if (titleType == 0) {
             let num = heandleSaveDistance(23);
             return (
-                ' ' +
-                num +
-                ' ' +
-                (num === 1 ? trans.type_1[0] : trans.type_1[1])
+                ' ' + num + ' ' + (num === 1 ? t('type_1.0') : t('type_1.1'))
             );
         } else {
             let num = heandleSaveDistance(5);
-            return ' ' + num + ' ' + trans.type_2;
+            return t('type_2', {num: num});
         }
     };
 
@@ -199,9 +196,11 @@ const CounterThankYouPage: React.FC<Props> = () => {
                     ref={scrollRef}
                     decelerationRate={0.1}
                     showsVerticalScrollIndicator={false}>
-                    <Text style={styles.title}>{userName + trans.title}</Text>
+                    <Text style={styles.title}>
+                        {t('title', {name: userName})}
+                    </Text>
                     <Text style={styles.subTitle}>
-                        {trans.subTilte + heandleGetTitleType()}
+                        {t('subTilte') + heandleGetTitleType()}
                     </Text>
 
                     {show && (
@@ -213,7 +212,7 @@ const CounterThankYouPage: React.FC<Props> = () => {
 
                     <View style={styles.recorded}>
                         <View>
-                            <Text style={styles.name}>{trans.distance}</Text>
+                            <Text style={styles.name}>{t('distance')}</Text>
                             <Text
                                 style={styles.value}
                                 testID={'counter-distance'}>
@@ -221,45 +220,45 @@ const CounterThankYouPage: React.FC<Props> = () => {
                                     route?.params?.distance || '0.00',
                                 )}
                                 <Text style={styles.unit}>
-                                    {' ' + trans.distanceUnit}
+                                    {' ' + t('distanceUnit')}
                                 </Text>
                             </Text>
                         </View>
 
                         <View>
-                            <Text style={styles.name}>{trans.time}</Text>
+                            <Text style={styles.name}>{t('time')}</Text>
                             <Text style={styles.value} testID={'counter-time'}>
                                 {simplyTimer(
                                     route?.params?.time - route?.params?.pause,
                                 )}
                                 <Text style={styles.unit}>
-                                    {' ' + trans.timeUnit}
+                                    {' ' + t('timeUnit')}
                                 </Text>
                             </Text>
                         </View>
                     </View>
 
                     <Text style={styles.breakName}>
-                        {trans.break + '  '}
+                        {t('break') + '  '}
                         <Text
                             style={styles.breakValue}
                             testID={'counter-pause'}>
                             {simplyTimer(route?.params?.pause)}
                         </Text>
-                        <Text style={styles.unit}>{' ' + trans.breakUnit}</Text>
+                        <Text style={styles.unit}>{' ' + t('breakUnit')}</Text>
                     </Text>
 
                     <View style={styles.btnContainer}>
                         <View style={styles.btnCancel}>
                             <BigWhiteBtn
-                                title={trans.btnCancel}
+                                title={t('btnCancel')}
                                 testID={'counter-cancel-btn'}
                                 onpress={() => onSaveRouteHandler(Action.prev)}
                             />
                         </View>
                         <View style={styles.btnSave}>
                             <BigRedBtn
-                                title={trans.btnSave}
+                                title={t('btnSave')}
                                 testID={'counter-submit-btn'}
                                 onpress={() => onSaveRouteHandler(Action.next)}
                             />

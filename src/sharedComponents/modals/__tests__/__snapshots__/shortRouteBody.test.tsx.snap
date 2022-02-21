@@ -31,7 +31,7 @@ exports[`<ShortRouteBody /> Rendering Should match snapshot 1`] = `
           ]
         }
       >
-        Coś poszło nie tak!
+        CounterThankYouPage.errorTitle
       </Text>
       <View
         style={
@@ -211,18 +211,7 @@ exports[`<ShortRouteBody /> Rendering Should match snapshot 1`] = `
           }
         }
       >
-        Przejechany dystans jest 
-        <Text
-          style={
-            Object {
-              "fontFamily": "DIN2014Narrow-Bold",
-              "fontSize": 23,
-            }
-          }
-        >
-          zbyt krótki
-        </Text>
-        .
+        CounterThankYouPage.errorMessageTitle
       </Text>
       <Text
         style={
@@ -236,7 +225,7 @@ exports[`<ShortRouteBody /> Rendering Should match snapshot 1`] = `
           }
         }
       >
-        Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów).
+        CounterThankYouPage.errorMessageContent
       </Text>
     </View>
   </RCTScrollView>
@@ -295,7 +284,7 @@ exports[`<ShortRouteBody /> Rendering Should match snapshot 1`] = `
             ]
           }
         >
-          ZAMKNIJ
+          COUNTERTHANKYOUPAGE.ERRORCLOSEBTN
         </Text>
       </View>
     </View>
@@ -334,7 +323,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with alternative m
           ]
         }
       >
-        Coś poszło nie tak!
+        CounterThankYouPage.errorTitle
       </Text>
       <View
         style={
@@ -580,7 +569,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with alternative m
             ]
           }
         >
-          ZAMKNIJ
+          COUNTERTHANKYOUPAGE.ERRORCLOSEBTN
         </Text>
       </View>
     </View>
@@ -619,7 +608,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with disabled btn 
           ]
         }
       >
-        Coś poszło nie tak!
+        CounterThankYouPage.errorTitle
       </Text>
       <View
         style={
@@ -799,18 +788,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with disabled btn 
           }
         }
       >
-        Przejechany dystans jest 
-        <Text
-          style={
-            Object {
-              "fontFamily": "DIN2014Narrow-Bold",
-              "fontSize": 23,
-            }
-          }
-        >
-          zbyt krótki
-        </Text>
-        .
+        CounterThankYouPage.errorMessageTitle
       </Text>
       <Text
         style={
@@ -824,7 +802,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with disabled btn 
           }
         }
       >
-        Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów).
+        CounterThankYouPage.errorMessageContent
       </Text>
     </View>
   </RCTScrollView>
@@ -924,7 +902,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with loader on btn
           ]
         }
       >
-        Coś poszło nie tak!
+        CounterThankYouPage.errorTitle
       </Text>
       <View
         style={
@@ -1104,18 +1082,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with loader on btn
           }
         }
       >
-        Przejechany dystans jest 
-        <Text
-          style={
-            Object {
-              "fontFamily": "DIN2014Narrow-Bold",
-              "fontSize": 23,
-            }
-          }
-        >
-          zbyt krótki
-        </Text>
-        .
+        CounterThankYouPage.errorMessageTitle
       </Text>
       <Text
         style={
@@ -1129,7 +1096,7 @@ exports[`<ShortRouteBody /> Rendering Should render component with loader on btn
           }
         }
       >
-        Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów).
+        CounterThankYouPage.errorMessageContent
       </Text>
     </View>
   </RCTScrollView>

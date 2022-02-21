@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState, useRef} from 'react';
+import React, {useCallback, useEffect, useState, useRef, useMemo} from 'react';
 import {
     StyleSheet,
     SafeAreaView,
@@ -8,37 +8,38 @@ import {
     Alert,
     Platform,
 } from 'react-native';
-import I18n from 'react-native-i18n';
-import AnimSvg from '../../../../helpers/animSvg';
-import {
-    initNfc,
-    nfcIsEnabled,
-    readNdef,
-    cleanUp,
-} from '../../../../helpers/nfc';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import AnimSvg from '@helpers/animSvg';
+import {initNfc, nfcIsEnabled, readNdef, cleanUp} from '@helpers/nfc';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
-import BigWhiteBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
 
 import {
     bikesListSelector,
     loadingBikesSelector,
     userNameSelector,
-} from '../../../../storage/selectors';
+} from '@storage/selectors';
 import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
-import {useAppSelector, useAppDispatch} from '../../../../hooks/redux';
-import {setBikesListByFrameNumber} from '../../../../storage/actions';
+} from '@helpers/layoutFoo';
+import {useAppSelector, useAppDispatch} from '@hooks/redux';
+import {setBikesListByFrameNumber} from '@storage/actions';
 import Loader from '../loader/loader';
 import ScanModal from './scanModal.android';
 import nfcBikeSvg from './nfcBikeBackgoundSvg';
-import {BothStackRoute} from '../../../../navigation/route';
+import {OnboardingStackRoute, RegularStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
+import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
+import {
+    setOnboardingFinished,
+    setDeepLinkActionForScreen,
+} from '@storage/actions';
+import {onboardingFinishedSelector} from '@storage/selectors';
 
 const isAndroid = Platform.OS === 'android';
 
@@ -50,14 +51,36 @@ interface Props {
 
 const TurtorialNFC: React.FC<Props> = (props: Props) => {
     const refTimer = useRef<any>();
-    const trans: any = I18n.t('TurtorialNFC');
+    const {t} = useMergedTranslation('TutorialNFC');
     const dispatch = useAppDispatch();
     const nfcIsOnRef = useRef(false);
 
     const isLoading = useAppSelector(loadingBikesSelector);
     const bikesList = useAppSelector(bikesListSelector);
     const name = useAppSelector(userNameSelector);
-    const userName = name ? ' ' + name : ' ' + trans.defaultName;
+    const userName = name ? ' ' + name : ' ' + t('defaultName');
+    const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
+    const bikeSummaryRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.BIKE_SUMMARY_ONBOARDING_SCREEN
+                : RegularStackRoute.BIKE_SUMMARY_SCREEN,
+        [isOnboardingFinished],
+    );
+    const bikeDataRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.BIKE_DATA_ONBOARDING_SCREEN
+                : RegularStackRoute.BIKE_DATA_SCREEN,
+        [isOnboardingFinished],
+    );
+    const addByNumberRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.ADDING_BY_NUMBER_ONBOARDING_SCREEN
+                : RegularStackRoute.ADDING_BY_NUMBER_SCREEN,
+        [isOnboardingFinished],
+    );
 
     const [showScanModal, setShowScanModal] = useState<boolean>(false);
     const [startScanNFC, setStartScanNFC] = useState<boolean>(false);
@@ -85,14 +108,14 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                 await dispatch(setBikesListByFrameNumber(trimmedInputFrame));
                 setStartScanNFC(false);
                 props.navigation.navigate({
-                    name: BothStackRoute.BIKE_SUMMARY_SCREEN,
+                    name: bikeSummaryRouteName,
                     params: {frameNumber: trimmedInputFrame},
                 });
                 return;
             } catch (error) {
                 if (error.notFound) {
                     props.navigation.navigate({
-                        name: BothStackRoute.BIKE_DATA_SCREEN,
+                        name: bikeDataRouteName,
                         params: {frameNumber: trimmedInputFrame},
                     });
                     return;
@@ -101,7 +124,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                 Alert.alert('Error', errorMessage);
             }
         },
-        [dispatch, props.navigation],
+        [dispatch, props.navigation, bikeSummaryRouteName, bikeDataRouteName],
     );
 
     const readNFCTag = useCallback(async () => {
@@ -147,7 +170,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
                 if (r) {
                     readNFCTag();
                 } else {
-                    Alert.alert('', trans.alertMessage, [
+                    Alert.alert('', t('alertMessage'), [
                         {text: 'Ok', onPress: () => cancelScanByNfcHandler()},
                     ]);
                 }
@@ -155,9 +178,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
         }
 
         return () => clearTimeout(refTimer.current);
-    }, [readNFCTag, trans.alertMessage, startScanNFC, cancelScanByNfcHandler]);
-
-    const [headHeight, setHeadHeightt] = useState(0);
+    }, [readNFCTag, t, startScanNFC, cancelScanByNfcHandler]);
 
     const heandleScanByNfc = async () => {
         if (!isAndroid) {
@@ -169,6 +190,21 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
     const onScanNfcHandler = () => {
         setStartScanNFC(true);
+    };
+
+    const onboardingFinished = useAppSelector<boolean>(
+        onboardingFinishedSelector,
+    );
+    const onGoForwrdHandle = () => {
+        if (!onboardingFinished) {
+            dispatch(setOnboardingFinished(true));
+            dispatch(setDeepLinkActionForScreen('HomeTab'));
+        } else {
+            /**
+             * Go back to 'BikeScreen'
+             */
+            props.navigation.goBack();
+        }
     };
 
     const styles = StyleSheet.create({
@@ -209,7 +245,11 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
             height: mainButtonsHeight(50),
             left: getHorizontalPx(40),
             marginTop: getVerticalPx(30),
-            marginBottom: getVerticalPx(65) + headHeight,
+            marginBottom: getVerticalPx(65) + get.headerH(),
+        },
+        skip: {
+            marginBottom: getVerticalPx(30),
+            height: mainButtonsHeight(50),
         },
     });
 
@@ -218,9 +258,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
     }
 
     const title =
-        bikesList?.length > 0
-            ? trans.titleNext
-            : trans.title_1 + userName + trans.title_2;
+        bikesList?.length > 0 ? t('titleNext') : t('title', {name: userName});
     return (
         <SafeAreaView style={comStyle.container}>
             <View style={comStyle.scroll}>
@@ -229,11 +267,11 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
                     <AnimSvg style={styles.nfc_bike} source={nfcBikeSvg} />
 
-                    <Text style={styles.text}>{trans.tekst}</Text>
+                    <Text style={styles.text}>{t('tekst')}</Text>
 
                     <View style={styles.btnNfc}>
                         <BigRedBtn
-                            title={trans.btnNfc}
+                            title={t('btnNfc')}
                             disabled={startScanNFC}
                             onpress={() => heandleScanByNfc()}
                         />
@@ -241,11 +279,16 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
                     <View style={styles.btnHand}>
                         <BigWhiteBtn
-                            title={trans.btnHand}
+                            style={styles.skip}
+                            title={t('btnSkip')}
+                            onpress={() => onGoForwrdHandle()}
+                        />
+
+                        <BigWhiteBtn
+                            title={t('btnHand')}
                             onpress={() =>
                                 props.navigation.navigate({
-                                    name:
-                                        BothStackRoute.ADDING_BY_NUMBER_SCREEN,
+                                    name: addByNumberRouteName,
                                     params: {emptyFrame: true},
                                 })
                             }
@@ -256,8 +299,7 @@ const TurtorialNFC: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.goBack()}
-                inner={trans.header}
-                getHeight={setHeadHeightt}
+                inner={t('header')}
                 style={{backgroundColor: '#fff'}}
             />
 

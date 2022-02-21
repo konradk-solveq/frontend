@@ -11,6 +11,36 @@ import {
     TermsAndConditionsType,
 } from '@models/regulations.model';
 
+const getVersion = (v: string) => {
+    if (typeof v !== 'string') {
+        return 0;
+    }
+    let splitted = v.split('.');
+    let num = '';
+    for (let s of splitted) {
+        if (s.length === 2) {
+            num += '0' + s;
+        }
+        if (s.length === 1) {
+            num += '00' + s;
+        }
+    }
+    return Number(num);
+};
+
+const getNewerVersion = (oldVersion: any, newVersion: any, term: any) => {
+    let result;
+
+    if (Date.parse(term?.publishDate) > Date.now() && oldVersion) {
+        result = oldVersion;
+        result.paragraph = result?.paragraph?.concat(newVersion?.paragraph);
+    } else {
+        result = newVersion;
+    }
+
+    return result;
+};
+
 export interface AppState {
     isOffline: boolean;
     internetConnectionInfo: InternetConnectionInfoType;
@@ -29,6 +59,7 @@ export interface AppState {
     location: BasicCoordsType | undefined;
     routeDebugMode: boolean;
     initMapsDataSynched: boolean;
+    apiAuthHeaderState: boolean;
 }
 
 const initialState: AppState = {
@@ -42,11 +73,12 @@ const initialState: AppState = {
     config: {
         name: '',
         lang: '',
-        langs: {name: '', displayName: ''},
-        difficulties: [],
-        surfaces: [],
+        langs: [],
         tags: [],
+        surfaces: [],
+        difficulties: [],
         reactions: [],
+        uiTranslations: {controlSums: [], codes: []},
     },
     terms: [],
     currentTerms: {
@@ -65,6 +97,7 @@ const initialState: AppState = {
     location: undefined,
     routeDebugMode: false,
     initMapsDataSynched: false,
+    apiAuthHeaderState: false,
 };
 
 const appReducer = (state = initialState, action: any) => {
@@ -80,9 +113,11 @@ const appReducer = (state = initialState, action: any) => {
                 },
             };
         case actionTypes.SET_APP_CONFIG:
+            const config = action.config;
+            config.lang = 'en';
             return {
                 ...state,
-                config: action.config,
+                config: config,
             };
         case actionTypes.SET_APP_TERMS:
             return {
@@ -105,20 +140,6 @@ const appReducer = (state = initialState, action: any) => {
                 showedNewAppVersion: action.showedNewAppVersion,
             };
         case actionTypes.SET_APP_REGULATION: {
-            const getVersion = (v: string) => {
-                let splited = v.split('.');
-                let num = '';
-                for (let s of splited) {
-                    if (s.length === 2) {
-                        num += '0' + s;
-                    }
-                    if (s.length === 1) {
-                        num += '00' + s;
-                    }
-                }
-                return Number(num);
-            };
-
             const term1version = getVersion(
                 action.regulation?.regulation1?.version,
             );
@@ -134,40 +155,21 @@ const appReducer = (state = initialState, action: any) => {
                 term1version > term2version
                     ? action.regulation.regulation1
                     : action.regulation.regulation2;
+            const lastTerm = state.terms[state.terms.length - 1];
 
-            let result;
-
-            let lastTerm = state.terms[state.terms.length - 1];
-            if (Date.parse(lastTerm?.publishDate) > Date.now()) {
-                result = oldRegulations;
-                result.paragraph = result?.paragraph?.concat(
-                    newRegulations?.paragraph,
-                );
-            } else {
-                result = newRegulations;
-            }
+            const newerVersion = getNewerVersion(
+                oldRegulations,
+                newRegulations,
+                lastTerm,
+            );
 
             return {
                 ...state,
-                regulation: result,
+                regulation: newerVersion,
             };
         }
 
         case actionTypes.SET_APP_POLICY: {
-            const getVersion = (v: string) => {
-                let splited = v.split('.');
-                let num = '';
-                for (let s of splited) {
-                    if (s.length === 2) {
-                        num += '0' + s;
-                    }
-                    if (s.length === 1) {
-                        num += '00' + s;
-                    }
-                }
-                return Number(num);
-            };
-
             const term1version = getVersion(action.policy?.policy1?.version);
             const term2version = getVersion(action.policy?.policy2?.version);
 
@@ -179,21 +181,17 @@ const appReducer = (state = initialState, action: any) => {
                 term1version > term2version
                     ? action.policy.policy1
                     : action.policy.policy2;
+            const lastTerm = state.terms[state.terms.length - 1];
 
-            let result;
-            let lastTerm = state.terms[state.terms.length - 1];
-            if (Date.parse(lastTerm?.publishDate) > Date.now()) {
-                result = oldPolicy;
-                result.paragraph = result?.paragraph?.concat(
-                    newPolicy?.paragraph,
-                );
-            } else {
-                result = newPolicy;
-            }
+            const newerVersion = getNewerVersion(
+                oldPolicy,
+                newPolicy,
+                lastTerm,
+            );
 
             return {
                 ...state,
-                policy: result,
+                policy: newerVersion,
             };
         }
         case actionTypes.SET_APP_FAQ:
@@ -232,6 +230,11 @@ const appReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 initMapsDataSynched: action.initMapsDataSynched,
+            };
+        case actionTypes.SET_API_AUTH_HEADER:
+            return {
+                ...state,
+                apiAuthHeaderState: action.apiAuthHeaderState,
             };
         case actionTypes.CLEAR_APP_ERROR:
             return {

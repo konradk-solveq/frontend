@@ -1,6 +1,6 @@
 import * as actionTypes from '../../actionTypes';
 import {endedRoute, startedRoute, stoppedRoute} from './routeData';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
 
 export const startRecordingExpectedActions = [
@@ -141,7 +141,7 @@ export const synchRecordingWhenOfflineExpectedActions = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.noInternetConnection'),
+        error: i18next.t('dataAction.noInternetConnection'),
         statusCode: 500,
     },
     {
@@ -171,7 +171,7 @@ export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActions = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.routeData.routeLengthError', {
+        error: i18next.t('dataAction.routeData.routeLengthError', {
             value: MIN_ROUTE_LENGTH,
         }),
         statusCode: 400,
@@ -200,7 +200,7 @@ export const synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActionsB = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.routeData.updateRouteError', {
+        error: i18next.t('dataAction.routeData.updateRouteError', {
             value: MIN_ROUTE_LENGTH,
         }),
         statusCode: 400,
@@ -287,7 +287,7 @@ export const synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.routeData.routeLengthError', {
+        error: i18next.t('dataAction.routeData.routeLengthError', {
             value: MIN_ROUTE_LENGTH,
         }),
         statusCode: 400,
@@ -313,7 +313,7 @@ export const synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: I18n.t('dataAction.noInternetConnection'),
+        error: i18next.t('dataAction.noInternetConnection'),
         statusCode: 500,
     },
     {

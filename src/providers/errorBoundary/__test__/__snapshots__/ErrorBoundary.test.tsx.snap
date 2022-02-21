@@ -126,7 +126,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
           }
         }
       >
-        Wystąpił błąd
+        ErrorBoundary.header
       </Text>
       <Text
         style={
@@ -139,7 +139,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
           }
         }
       >
-        Przepraszamy...
+        ErrorBoundary.body
       </Text>
     </View>
     <View
@@ -193,7 +193,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
                 ]
               }
             >
-              SPRÓBUJ PONOWNIE
+              ERRORBOUNDARY.RESETBUTTON
             </Text>
           </View>
         </RNGestureHandlerButton>
@@ -236,7 +236,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should catch error and re
               }
             }
           >
-            URUCHOM PONOWNIE APLIKACJĘ
+            ERRORBOUNDARY.RESTARTBUTTON
           </Text>
         </View>
       </RNGestureHandlerButton>
@@ -365,7 +365,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
           }
         }
       >
-        Wystąpił błąd
+        ErrorBoundary.header
       </Text>
       <Text
         style={
@@ -378,7 +378,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
           }
         }
       >
-        Przepraszamy...
+        ErrorBoundary.body
       </Text>
     </View>
     <View
@@ -432,7 +432,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
                 ]
               }
             >
-              SPRÓBUJ PONOWNIE
+              ERRORBOUNDARY.RESETBUTTON
             </Text>
           </View>
         </RNGestureHandlerButton>
@@ -475,7 +475,7 @@ exports[`<ErrorBoundary /> Rendering When error occurs Should fire onErrorHandle
               }
             }
           >
-            URUCHOM PONOWNIE APLIKACJĘ
+            ERRORBOUNDARY.RESTARTBUTTON
           </Text>
         </View>
       </RNGestureHandlerButton>

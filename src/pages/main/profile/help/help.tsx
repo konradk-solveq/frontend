@@ -6,7 +6,7 @@ import {
     ScrollView,
     SafeAreaView,
 } from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {
     setObjSize,
@@ -14,13 +14,13 @@ import {
     getVerticalPx,
     getHorizontalPx,
     getFontSize,
-} from '../../../../helpers/layoutFoo';
-import {useAppSelector} from '../../../../hooks/redux';
+} from '@helpers/layoutFoo';
+import {useAppSelector} from '@hooks/redux';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 import Question from './faq/question';
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
-import {faqDataSelector} from '../../../../storage/selectors/app';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {faqDataSelector} from '@storage/selectors/app';
 
 interface Props {
     navigation: any;
@@ -29,7 +29,7 @@ interface Props {
 const wh = Dimensions.get('window').height;
 
 const Help: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('Help');
+    const {t} = useMergedTranslation('Help');
 
     const faqData = useAppSelector(faqDataSelector);
 
@@ -86,7 +86,7 @@ const Help: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.goBack()}
-                inner={trans.header}
+                inner={t('header')}
                 getHeight={setheadHeight}
                 style={{backgroundColor: '#fff'}}
             />

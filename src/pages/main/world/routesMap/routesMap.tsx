@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {SafeAreaView, View, Platform, Animated} from 'react-native';
 import {WebView} from 'react-native-webview';
 
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {useAppDispatch} from '@hooks/redux';
 import useGetRouteMapMarkers from '@hooks/useGetRouteMapMarkers';
@@ -48,7 +48,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
         BasicCoordsType | undefined
     >();
 
-    const trans: any = I18n.t('MainRoutesMap');
+    const {t} = useMergedTranslation('MainRoutesMap');
 
     const [showWebView, setShowWebView] = useState(true);
     const [adress, setAdress] = useState<MarkerDetailsType | null>(null);
@@ -298,19 +298,19 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
             <View style={styles.btns}>
                 <TypicalRedBtn
                     style={styles.btn}
-                    title={trans.bikeMap}
+                    title={t('bikeMap')}
                     active={currentMapType === RouteMapType.BIKE_MAP}
                     onpress={heandleBikeMap}
                 />
                 <TypicalRedBtn
                     style={styles.btn}
-                    title={trans.myRoutes}
+                    title={t('myRoutes')}
                     active={currentMapType === RouteMapType.MY_ROUTES}
                     onpress={heandleMyRoutes}
                 />
                 <TypicalRedBtn
                     style={styles.btn}
-                    title={trans.planning}
+                    title={t('planning')}
                     active={currentMapType === RouteMapType.PLANNING}
                     onpress={heandlePlanning}
                 />
@@ -336,7 +336,7 @@ const RoutesMap: React.FC<Props> = ({navigation, route}: Props) => {
 
             <StackHeader
                 hideBackArrow
-                inner={trans.header}
+                inner={t('header')}
                 rightActions={
                     <View style={styles.actionButtonsContainer}>
                         <ListBtn

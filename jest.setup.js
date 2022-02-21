@@ -16,8 +16,6 @@ jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
 /** https://react-native-async-storage.github.io/async-storage/docs/advanced/jest */
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 
-jest.mock('@react-native-community/masked-view', () => ({}));
-
 /** https://reactnavigation.org/docs/testing */
 jest.mock('react-native-reanimated', () => {
     const Reanimated = require('react-native-reanimated/mock');
@@ -44,6 +42,20 @@ jest.mock('react-native-compass-heading', () => mockCompasHeding);
 jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo);
 
 jest.mock('react-native-background-geolocation-android/src/NativeModule');
+
+jest.mock('./src/utils/translations/useMergedTranslation', () => ({
+    useMergedTranslation: (val) => {
+        return {
+            t: (str) => `${val}.${str}`,
+        };
+    },
+}));
+
+jest.mock('./I18n/i18next', () => ({
+    t: (str) => {
+        return `${str}`;
+    },
+}));
 
 /**
  * Not working from external file
@@ -96,4 +108,8 @@ jest.mock('expo-secure-store', () => ({
     getItemAsync: jest.fn(),
     setItemAsync: jest.fn(),
     deleteItemAsync: jest.fn(),
+}));
+
+jest.mock('react-native-image-crop-picker', () => ({
+    openPicker: jest.fn(),
 }));

@@ -4,7 +4,7 @@ import {View, FlatList} from 'react-native';
 import {Map, MapType} from '@models/map.model';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {TextBtn} from '@sharedComponents/buttons';
 
@@ -44,7 +44,8 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
     onShowMore,
     sectionHeader,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.FeaturedRoutes');
+    const {t} = useMergedTranslation('MainWorld.FeaturedRoutes');
+
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         if (onPressMore && mapID) {
@@ -99,7 +100,7 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 />
-                <TextBtn text={trans.showMoreBtn} onPress={onShowMoreHandler} />
+                <TextBtn text={t('showMoreBtn')} onPress={onShowMoreHandler} />
             </View>
         </>
     );

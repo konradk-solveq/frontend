@@ -10,10 +10,11 @@ import {
     IsBoolean,
     IsDateString,
 } from 'class-validator';
-import {simplyTimer} from '../helpers/stringFoo';
-import {getDateString} from '../utils/dateTime';
-import {transformMetersToKilometersString} from '../utils/metersToKilometers';
-import validationRules from '../utils/validation/validationRules';
+import {simplyTimer} from '@helpers/stringFoo';
+import {getDateString} from '@utils/dateTime';
+import {transformMetersToKilometersString} from '@utils/metersToKilometers';
+import validationRules from '@utils/validation/validationRules';
+import {getImagesThumbs} from '@utils/transformData';
 
 export type PublishMapValidationRuleT = (string | {[key: string]: number})[];
 export interface PublishMapValidationRulesI {
@@ -72,6 +73,7 @@ export interface ImagesVariants {
     share: Image[];
     square: Image[];
     vertical: Image[];
+    horizontal: Image[];
 }
 
 export interface Images {
@@ -347,6 +349,27 @@ export class Map {
 
     public get optionsEnumsValues(): OptionsEnumsT | undefined {
         return this.optionsEnums;
+    }
+
+    public get imageThumbsUrls() {
+        if (!this.images) {
+            return;
+        }
+        return getImagesThumbs(this.images);
+    }
+
+    public get mapImageUrl() {
+        if (!this.imageThumbsUrls?.mapImg) {
+            return;
+        }
+        return this.imageThumbsUrls.mapImg;
+    }
+
+    public get mapShareImageUrl() {
+        if (!this.imageThumbsUrls?.shareMapImgUrl) {
+            return;
+        }
+        return this.imageThumbsUrls.shareMapImgUrl;
     }
 }
 

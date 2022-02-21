@@ -48,5 +48,11 @@ allprojects {
 
         google()
         maven { url 'https://www.jitpack.io' }
+
+        // Required for react-native-image-crop-picker
+        maven { url 'https://maven.google.com' }
+
+        // Required for react-native-image-crop-picker
+        maven { url "https://www.jitpack.io" }
     }
 }

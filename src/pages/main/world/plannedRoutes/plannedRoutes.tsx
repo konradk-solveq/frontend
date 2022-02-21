@@ -2,26 +2,27 @@ import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
+import {RegularStackRoute} from '@navigation/route';
 import {
+    userNameSelector,
     favouritesMapsSelector,
     loadingMapsSelector,
     refreshMapsSelector,
-} from '../../../../storage/selectors/map';
-import {userNameSelector} from '../../../../storage/selectors';
-import {useAppSelector} from '../../../../hooks/redux';
-import {Map} from '../../../../models/map.model';
-import {I18n} from '../../../../../I18n/I18n';
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import {getImagesThumbs} from '../../../../utils/transformData';
+    selectorMapTypeEnum,
+} from '@storage/selectors';
+import {useAppSelector} from '@hooks/redux';
+import {Map} from '@models/map.model';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {getVerticalPx} from '@helpers/layoutFoo';
+import {getImagesThumbs} from '@utils/transformData';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
+import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import NextTile from '../components/tiles/nextTile';
+import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import EmptyList from './emptyList';
 
 import styles from './style';
-import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-import Loader from '../../../onboarding/bikeAdding/loader/loader';
-import {RegularStackRoute} from '../../../../navigation/route';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -45,7 +46,7 @@ const PlannedRoutes: React.FC<IProps> = ({
     onRefresh,
     onLoadMore,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.PlannedRoutes');
+    const {t} = useMergedTranslation('MainWorld.PlannedRoutes');
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
     const favouriteMaps = useAppSelector(favouritesMapsSelector);
@@ -69,7 +70,12 @@ const PlannedRoutes: React.FC<IProps> = ({
     const onPressTileHandler = (mapID?: string) => {
         navigation.navigate({
             name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-            params: {mapID: mapID, private: false, favourite: true},
+            params: {
+                mapID: mapID,
+                private: false,
+                favourite: true,
+                shareID: null,
+            },
         });
     };
 
@@ -119,15 +125,16 @@ const PlannedRoutes: React.FC<IProps> = ({
                 mapID={activeMapID}
                 onPressCancel={() => onPressHandler(false)}
                 backdropStyle={styles.backdrop}
-                isFavourite
+                isPublished /* Planned maps can be picked from [published only (by default) */
+                mapType={selectorMapTypeEnum.favourite}
             />
             <View style={styles.horizontalSpace}>
                 <FlatList
                     keyExtractor={item => item.id}
                     ListHeaderComponent={
                         <Text style={styles.header}>
-                            {userName || trans.defaultUserName}
-                            {trans.title}
+                            {userName || t('defaultUserName')}
+                            {t('title')}
                         </Text>
                     }
                     data={favouriteMaps}

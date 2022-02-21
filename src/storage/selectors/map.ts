@@ -6,7 +6,7 @@ import routes from '../reducers/routes';
 import {getMapFromFeaturedSections} from './utils/map';
 import {NestedPaginationType} from '@src/interfaces/api';
 
-export enum selectorTypeEnum {
+export enum selectorMapTypeEnum {
     regular = 'regular',
     private = 'private',
     favourite = 'favourite',
@@ -84,16 +84,16 @@ export const privateDataByIDSelector = (mapID: string) =>
 
 export const selectMapDataByIDBasedOnTypeSelector = (
     mapID: string,
-    type: selectorTypeEnum,
+    type: selectorMapTypeEnum,
 ) => {
     let selectorType = mapsListSelector;
-    if (type === selectorTypeEnum.private) {
+    if (type === selectorMapTypeEnum.private) {
         selectorType = privateMapsListSelector;
     }
-    if (type === selectorTypeEnum.favourite) {
+    if (type === selectorMapTypeEnum.favourite) {
         selectorType = favouritesMapsSelector;
     }
-    if (type === selectorTypeEnum.featured) {
+    if (type === selectorMapTypeEnum.featured) {
         return featuredMapDataByIdSelector(mapID);
     }
 
@@ -122,16 +122,16 @@ export const favouriteMapPathByIDSelector = (mapID: string) =>
 
 export const selectMapPathByIDBasedOnTypeSelector = (
     mapID: string,
-    type: selectorTypeEnum,
+    type: selectorMapTypeEnum,
 ) => {
     let selectorType = mapsListSelector;
-    if (type === selectorTypeEnum.private) {
+    if (type === selectorMapTypeEnum.private) {
         selectorType = privateMapsListSelector;
     }
-    if (type === selectorTypeEnum.favourite) {
+    if (type === selectorMapTypeEnum.favourite) {
         selectorType = favouritesMapsSelector;
     }
-    if (type === selectorTypeEnum.featured) {
+    if (type === selectorMapTypeEnum.featured) {
         return featuredMapPathDataByIdSelector(mapID);
     }
 

@@ -5,7 +5,7 @@ import {ROUTE_DEBUG_MODE} from '@env';
 import {useAppSelector, useAppDispatch} from '@hooks/redux';
 import {routeDebugModeSelector} from '@storage/selectors/app';
 import {setRouteDebugMode} from '@storage/actions/app';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {askFilePermissionsOnAndroid} from '@utils/writeFilePermission';
 
 import {BigRedBtn, BigWhiteBtn} from '@sharedComponents/buttons';
@@ -18,7 +18,7 @@ interface IProps {
 }
 
 const RouteDebugBtn: React.FC<IProps> = ({onPress}: IProps) => {
-    const trans: any = I18n.t('DebugRoute');
+    const {t} = useMergedTranslation('DebugRoute');
     const dispatch = useAppDispatch();
     const routeDebugMode = useAppSelector(routeDebugModeSelector);
 
@@ -57,8 +57,8 @@ const RouteDebugBtn: React.FC<IProps> = ({onPress}: IProps) => {
                 onpress={onPressHandler}
                 title={
                     routeDebugMode
-                        ? trans.disableDebugging
-                        : trans.enableDebugging
+                        ? t('disableDebugging')
+                        : t('enableDebugging')
                 }
                 style={styles.btn}
                 textStyle={styles.btnText}

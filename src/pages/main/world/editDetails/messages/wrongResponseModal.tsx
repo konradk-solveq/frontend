@@ -13,9 +13,9 @@ import {
     Platform,
     StyleSheet,
 } from 'react-native';
-import {I18n} from '../../../../../../I18n/I18n';
-import useStatusBarHeight from '../../../../../hooks/statusBarHeight';
-import {BigWhiteBtn} from '../../../../../sharedComponents/buttons';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {BigWhiteBtn} from '@sharedComponents/buttons';
 import ImgSvg from './imgSvg';
 
 const isAndroid = Platform.OS === 'android';
@@ -31,7 +31,7 @@ const WrongCredentialsModal: React.FC<IProps> = ({
     errorMessage,
     onClose,
 }: IProps) => {
-    const trans: any = I18n.t('Login');
+    const {t} = useMergedTranslation('Login');
     const statusBarHeight = useStatusBarHeight();
 
     return (
@@ -51,7 +51,7 @@ const WrongCredentialsModal: React.FC<IProps> = ({
                                 {marginTop: 138 - statusBarHeight},
                             ]}>
                             <Text style={styles.header}>
-                                {trans.authErrorTitle}
+                                {t('authErrorTitle')}
                             </Text>
                         </View>
                         <ImgSvg />
@@ -62,7 +62,7 @@ const WrongCredentialsModal: React.FC<IProps> = ({
 
                         <View style={styles.buttonsWrapper}>
                             <BigWhiteBtn
-                                title={trans.authErrorBtn}
+                                title={t('authErrorBtn')}
                                 onpress={onClose}
                                 style={[styles.onPressBtn, styles.bottomBtn]}
                             />

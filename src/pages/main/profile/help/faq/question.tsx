@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Text, Linking} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import Hyperlink from 'react-native-hyperlink';
 
 import DropDownItem from './dropDownItem';
@@ -13,7 +13,7 @@ import {
     getVerticalPx,
     getHorizontalPx,
     getFontSize,
-} from '../../../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
 interface IProps {
     data: {
@@ -23,7 +23,7 @@ interface IProps {
 }
 
 const Question: React.FC<IProps> = ({data}: IProps) => {
-    const trans = I18n.t('Urls');
+    const {t} = useMergedTranslation('');
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -80,7 +80,13 @@ const Question: React.FC<IProps> = ({data}: IProps) => {
                 <Hyperlink
                     linkStyle={{color: '#3587ea'}}
                     linkText={(url: string) => {
-                        let link = trans.find(e => e.url === url);
+                        const trans: {url: string; hyper: string}[] = t(
+                            'Urls',
+                            {
+                                returnObjects: true,
+                            },
+                        );
+                        const link = trans.find(e => e.url === url);
                         if (link) {
                             return link.hyper;
                         } else {

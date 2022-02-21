@@ -3,7 +3,7 @@ import React from 'react';
 import {Text} from 'react-native';
 import {fireEvent, render} from '@testing-library/react-native';
 
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import ErrorBoundary from '../ErrorBoundary';
 
@@ -13,7 +13,7 @@ const RESTART_BUTTON_ID = 'error-boundary-restart-button';
 describe('<ErrorBoundary />', () => {
     let consoleErrorSpyOn: jest.SpyInstance;
     let errorMock: Error;
-    const trans: any = I18n.t('ErrorBoundary');
+    const {t} = useMergedTranslation('ErrorBoundary');
 
     describe('Rendering', () => {
         beforeAll(() => {
@@ -41,10 +41,10 @@ describe('<ErrorBoundary />', () => {
                     </ErrorBoundary>,
                 );
 
-                const header = component.getByText(trans.header);
+                const header = component.getByText(t('header'));
                 expect(header).not.toBeNull();
 
-                const body = component.getByText(trans.body);
+                const body = component.getByText(t('body'));
                 expect(body).not.toBeNull();
 
                 const resetBtn = component.getByTestId(RESET_BUTTON_ID);

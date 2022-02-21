@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useEffect} from 'react';
 import {Modal, View, Text, ScrollView, Platform} from 'react-native';
-import {I18n} from '../../../../I18n/I18n';
-import useStatusBarHeight from '../../../hooks/statusBarHeight';
-import {BigWhiteBtn, BigRedBtn} from '../../../sharedComponents/buttons';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {BigWhiteBtn, BigRedBtn} from '@sharedComponents/buttons';
 import ImgSvg from './imgSvg';
 
 import {commonStyle as comStyle} from '@helpers/commonStyle';
@@ -16,7 +16,7 @@ interface IProps {
 }
 
 const PoorConnectionModal: React.FC<IProps> = ({onAbort}: IProps) => {
-    const trans: any = I18n.t('PublishPoorConnectionPage');
+    const {t} = useMergedTranslation('PublishPoorConnectionPage');
     const statusBarHeight = useStatusBarHeight();
 
     const [showModal, setShowModal] = useState(false);
@@ -55,23 +55,23 @@ const PoorConnectionModal: React.FC<IProps> = ({onAbort}: IProps) => {
                             styles.title,
                             {marginTop: 138 - statusBarHeight},
                         ]}>
-                        {trans.title}
+                        {t('title')}
                     </Text>
 
                     <ImgSvg style={styles.imgage} />
 
-                    <Text style={styles.content}>{trans.content}</Text>
+                    <Text style={styles.content}>{t('content')}</Text>
                 </ScrollView>
 
                 <View style={styles.wrap}>
                     <View style={styles.buttonsWrapper}>
                         <BigRedBtn
-                            title={trans.continueBtn}
+                            title={t('continueBtn')}
                             onpress={onCloseHandler}
                             style={styles.btn}
                         />
                         <BigWhiteBtn
-                            title={trans.cancelBtn}
+                            title={t('cancelBtn')}
                             onpress={onAbortHandler}
                             style={styles.btn}
                         />

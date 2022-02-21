@@ -8,7 +8,7 @@ import {
     View,
     Platform,
 } from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {fetchPlacesData} from '@storage/actions';
@@ -37,7 +37,7 @@ const {width, height} = Dimensions.get('window');
 
 const ServicesMap: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
-    const trans: any = I18n.t('ServicesMap');
+    const {t} = useMergedTranslation('ServicesMap');
 
     const {location} = useLocationProvider();
     const [initLocation, setInitLocation] = useState<
@@ -280,13 +280,13 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
             <View style={styles.btns}>
                 <TypicalRedBtn
                     style={styles.btn}
-                    title={trans.services}
+                    title={t('services')}
                     active={markersFilters?.includes(markerTypes.SERVICE)}
                     onpress={heandleServices}
                 />
                 <TypicalRedBtn
                     style={styles.btn}
-                    title={trans.shops}
+                    title={t('shops')}
                     active={markersFilters?.includes(markerTypes.SHOP)}
                     onpress={heandleShops}
                 />
@@ -308,7 +308,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
 
             <StackHeader
                 onpress={() => props.navigation.goBack()}
-                inner={trans.title}
+                inner={t('title')}
             />
         </SafeAreaView>
     );

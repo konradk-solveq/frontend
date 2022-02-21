@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
     StyleSheet,
@@ -8,19 +8,19 @@ import {
     Text,
     Alert,
 } from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
+import {useAppSelector, useAppDispatch} from '@hooks/redux';
 
-import {setBikeData} from '../../../storage/actions';
-import {validateData} from '../../../utils/validation/validation';
+import {setBikeData} from '@storage/actions';
+import {validateData} from '@utils/validation/validation';
 
-import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
-import OneLineTekst from '../../../sharedComponents/inputs/oneLineTekst';
-import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import OneLineTekst from '@sharedComponents/inputs/oneLineTekst';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 
-import {userBikeValidationRules} from '../../../models/bike.model';
-import {BikeBaseData} from '../../../models/bike.model';
+import {userBikeValidationRules} from '@models/bike.model';
+import {BikeBaseData} from '@models/bike.model';
 
 import {
     setObjSize,
@@ -29,12 +29,15 @@ import {
     getWidthPx,
     getFontSize,
     mainButtonsHeight,
-} from '../../../helpers/layoutFoo';
-import deepCopy from '../../../helpers/deepCopy';
-import {frameNumberSelector} from '../../../storage/selectors';
-import {bikeDescriptionByFrameNumberSelector} from '../../../storage/selectors/bikes';
-import {getBikesBaseData} from '../../../utils/transformData';
-import {BothStackRoute} from '../../../navigation/route';
+} from '@helpers/layoutFoo';
+import deepCopy from '@helpers/deepCopy';
+import {
+    frameNumberSelector,
+    onboardingFinishedSelector,
+} from '@storage/selectors';
+import {bikeDescriptionByFrameNumberSelector} from '@storage/selectors/bikes';
+import {getBikesBaseData} from '@utils/transformData';
+import {OnboardingStackRoute, RegularStackRoute} from '@navigation/route';
 
 interface Message {
     serial_number: string;
@@ -51,11 +54,19 @@ interface Props {
 
 const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
-    const trans: any = I18n.t('BikeData');
+    const {t} = useMergedTranslation('BikeData');
 
     const frame: string = useAppSelector(frameNumberSelector);
     const bikeDescription = useAppSelector(state =>
         bikeDescriptionByFrameNumberSelector(state, frame),
+    );
+    const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
+    const bikeSummaryRouteName = useMemo(
+        () =>
+            !isOnboardingFinished
+                ? OnboardingStackRoute.BIKE_SUMMARY_ONBOARDING_SCREEN
+                : RegularStackRoute.BIKE_SUMMARY_SCREEN,
+        [isOnboardingFinished],
     );
 
     const frameNumber: string = route?.params?.serial_number || frame;
@@ -126,7 +137,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
             if (newCanGoFoward[key]) {
                 newMessages[key] = '';
             } else {
-                newMessages[key] = trans.btnWrong;
+                newMessages[key] = t('btnWrong');
                 goFoward = false;
             }
         }
@@ -153,7 +164,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                 // );
                 /* start to delete */
                 navigation.navigate({
-                    name: BothStackRoute.BIKE_SUMMARY_SCREEN,
+                    name: bikeSummaryRouteName,
                     params: {frameNumber: data.serial_number},
                 });
                 /* end to delete */
@@ -236,11 +247,11 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
             <View style={styles.scroll}>
                 <ScrollView keyboardShouldPersistTaps={'always'}>
                     <KeyboardAwareScrollView>
-                        <Text style={styles.title}>{trans.title}</Text>
+                        <Text style={styles.title}>{t('title')}</Text>
 
                         <OneLineTekst
                             style={styles.inputAndPlaceholder}
-                            placeholder={trans.frameNum}
+                            placeholder={t('frameNum')}
                             onChangeText={(value: string) =>
                                 hendleChangeDataValue('serial_number', value)
                             }
@@ -248,7 +259,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                                 hendleValidationOk(value, 'serial_number')
                             }
                             // validationWrong={hendleValidationWrong}
-                            messageWrong={trans.wrong} //TODO: add bether form messages
+                            messageWrong={t('wrong')} //TODO: add bether form messages
                             value={data.serial_number}
                             validationStatus={(value: boolean) =>
                                 handleSetCanGoFoard('frameNumber', value)
@@ -258,7 +269,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
 
                         <OneLineTekst
                             style={styles.inputAndPlaceholder}
-                            placeholder={trans.producer.title}
+                            placeholder={t('producer.title')}
                             onChangeText={(value: string) =>
                                 hendleChangeDataValue('producer', value)
                             }
@@ -266,7 +277,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                                 hendleValidationOk(value, 'producer')
                             }
                             // validationWrong={hendleValidationWrong}
-                            messageWrong={trans.wrong}
+                            messageWrong={t('wrong')}
                             value={data.producer}
                             validationStatus={(value: boolean) =>
                                 handleSetCanGoFoard('producer', value)
@@ -276,7 +287,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
 
                         <OneLineTekst
                             style={styles.inputAndPlaceholder}
-                            placeholder={trans.model}
+                            placeholder={t('model')}
                             onChangeText={(value: string) =>
                                 hendleChangeDataValue('name', value)
                             }
@@ -284,7 +295,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                                 hendleValidationOk(value, 'name')
                             }
                             // validationWrong={hendleValidationWrong}
-                            messageWrong={trans.wrong}
+                            messageWrong={t('wrong')}
                             value={data.name}
                             validationStatus={(value: boolean) =>
                                 handleSetCanGoFoard('name', value)
@@ -294,7 +305,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
 
                         <OneLineTekst
                             style={styles.inputAndPlaceholder}
-                            placeholder={trans.size}
+                            placeholder={t('size')}
                             onChangeText={(value: string) =>
                                 hendleChangeDataValue('size', value)
                             }
@@ -302,7 +313,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                                 hendleValidationOk(value, 'size')
                             }
                             // validationWrong={hendleValidationWrong}
-                            messageWrong={trans.wrong}
+                            messageWrong={t('wrong')}
                             value={data.size}
                             validationStatus={(value: boolean) =>
                                 handleSetCanGoFoard('size', value)
@@ -315,7 +326,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
 
                         <OneLineTekst
                             style={styles.inputAndPlaceholder}
-                            placeholder={trans.color}
+                            placeholder={t('color')}
                             onChangeText={(value: string) =>
                                 hendleChangeDataValue('color', value)
                             }
@@ -323,7 +334,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
                                 hendleValidationOk(value, 'color')
                             }
                             // validationWrong={hendleValidationWrong}
-                            messageWrong={trans.wrong}
+                            messageWrong={t('wrong')}
                             value={data.color}
                             validationStatus={(value: boolean) =>
                                 handleSetCanGoFoard('color', value)
@@ -333,7 +344,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
 
                         <BigRedBtn
                             style={styles.button}
-                            title={trans.btn}
+                            title={t('btn')}
                             onpress={() => hendleGoFoward()}
                         />
                     </KeyboardAwareScrollView>
@@ -342,7 +353,7 @@ const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
 
             <StackHeader
                 onpress={() => navigation.goBack()}
-                inner={trans.header}
+                inner={t('header')}
                 getHeight={setHeadHeight}
                 style={{backgroundColor: '#fff'}}
             />

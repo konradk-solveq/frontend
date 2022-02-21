@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, View, Text, Modal} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
-import AnimSvg from '../../../../helpers/animSvg';
-import I18n from 'react-native-i18n';
+import AnimSvg from '@helpers/animSvg';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {
     setObjSize,
@@ -10,9 +10,9 @@ import {
     getVerticalPx,
     getFontSize,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
-import backGround from '../../../../sharedComponents/modals/backGround';
-import BigRedBtn from '../../../../sharedComponents/buttons/bigWhiteBtn';
+} from '@helpers/layoutFoo';
+import backGround from '@sharedComponents/modals/backGround';
+import BigRedBtn from '@sharedComponents/buttons/bigWhiteBtn';
 
 interface IProps {
     showModal?: boolean;
@@ -25,7 +25,7 @@ const ScanModal: React.FC<IProps> = ({
     startScan,
     showModal,
 }: IProps) => {
-    const trans: any = I18n.t('TurtorialNFCmodal');
+    const {t} = useMergedTranslation('TutorialNFCmodal');
 
     useEffect(() => {
         if (showModal) {
@@ -89,8 +89,8 @@ const ScanModal: React.FC<IProps> = ({
                 <AnimSvg style={styles.backGround} source={backGround} />
 
                 <View style={styles.wrap}>
-                    <Text style={styles.title}>{trans.title}</Text>
-                    <Text style={styles.text}>{trans.text}</Text>
+                    <Text style={styles.title}>{t('title')}</Text>
+                    <Text style={styles.text}>{t('text')}</Text>
 
                     <Svg style={styles.svg} viewBox="0 0 62 81">
                         <Path
@@ -103,7 +103,7 @@ const ScanModal: React.FC<IProps> = ({
 
                     <BigRedBtn
                         style={styles.cancelBtn}
-                        title={trans.cancelBtn}
+                        title={t('cancelBtn')}
                         onpress={onPressCancel}
                     />
                 </View>

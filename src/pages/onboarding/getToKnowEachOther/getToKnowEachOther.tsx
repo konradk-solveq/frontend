@@ -7,9 +7,9 @@ import {
     ScrollView,
     Keyboard,
 } from 'react-native';
-import I18n from 'react-native-i18n';
-import {setUserName} from '../../../storage/actions/index';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {setUserName} from '@storage/actions/index';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {
     setObjSize,
@@ -22,30 +22,28 @@ import {
     getPosWithMinHeight,
     getFontSize,
     mainButtonsHeight,
-} from '../../../helpers/layoutFoo';
-import {validateData} from '../../../utils/validation/validation';
-import {userUserValidationRules} from '../../../models/user.model';
-import {nfcIsSupported} from '../../../helpers/nfc';
+} from '@helpers/layoutFoo';
+import {validateData} from '@utils/validation/validation';
+import {userUserValidationRules} from '@models/user.model';
+import {nfcIsSupported} from '@helpers/nfc';
 
-import KroosLogo from '../../../sharedComponents/svg/krossLogo';
-import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
-import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
-import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
-import {BothStackRoute, OnboardingStackRoute} from '../../../navigation/route';
+import KrossLogo from '@sharedComponents/svg/krossLogo';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {BothStackRoute, OnboardingStackRoute} from '@navigation/route';
 import {OneLineText} from '@sharedComponents/inputs';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
-const getErrorMessage = (value: string, rules: any[]) => {
-    const trans: any = I18n.t('GetToKnowEachOther');
-
+const getErrorMessage = (value: string, rules: any[], t: any) => {
     const minLength = rules.find(r => r?.min)?.min;
     const maxLength = rules.find(r => r?.max)?.max;
-    const errMessateShort =
-        value && minLength > value?.length && trans.toShortValue;
-    const errMessateLong = maxLength < value?.length && trans.toLongValue;
-    const errorMessageEmpty = trans.emptyValue;
+    const errMessageShort =
+        value && minLength > value?.length && t('toShortValue');
+    const errMessageLong = maxLength < value?.length && t('toLongValue');
+    const errorMessageEmpty = t('emptyValue');
 
-    return errMessateShort || errMessateLong || errorMessageEmpty;
+    return errMessageShort || errMessageLong || errorMessageEmpty;
 };
 
 interface Props {
@@ -54,7 +52,7 @@ interface Props {
 
 const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
     const dispatch = useAppDispatch();
-    const trans: any = I18n.t('GetToKnowEachOther');
+    const {t} = useMergedTranslation('GetToKnowEachOther');
 
     const name: string = useAppSelector(state => state.user.userName);
 
@@ -100,7 +98,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
         const rules: any[] = userUserValidationRules.userName;
         const valid = validateData(rules, value);
 
-        const errMessage = getErrorMessage(value, rules);
+        const errMessage = getErrorMessage(value, rules, t);
 
         setErrorMessage(valid ? '' : errMessage);
         setIsInputValid(valid);
@@ -108,9 +106,13 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
 
     const goFoward = () => {
         if (nfc) {
-            navigation.navigate(BothStackRoute.TURTORIAL_NFC_SCREEN);
+            navigation.navigate(
+                OnboardingStackRoute.TURTORIAL_NFC_ONBOARDING_SCREEN,
+            );
         } else {
-            navigation.navigate(BothStackRoute.ADDING_BY_NUMBER_SCREEN);
+            navigation.navigate(
+                OnboardingStackRoute.ADDING_BY_NUMBER_ONBOARDING_SCREEN,
+            );
         }
     };
 
@@ -181,11 +183,11 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
                 keyboardShouldPersistTaps={'always'}
                 style={comStyle.scroll}>
                 <View style={styles.area}>
-                    <Text style={styles.title}>{trans.title}</Text>
+                    <Text style={styles.title}>{t('title')}</Text>
 
                     <View style={[styles.inputAndPlaceholder, styles.input]}>
                         <OneLineText
-                            placeholder={trans.placeholder}
+                            placeholder={t('placeholder')}
                             value={inputName}
                             validationOk={isInputValid}
                             validationWrong={!!errorMessage}
@@ -198,14 +200,14 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
                     <View style={styles.bottons}>
                         <View style={styles.btn}>
                             <BigWhiteBtn
-                                title={trans.skip}
+                                title={t('skip')}
                                 onpress={() => hadleOnpress('')}
                             />
                         </View>
 
                         <View style={styles.btn}>
                             <BigRedBtn
-                                title={trans.goFoward}
+                                title={t('goFoward')}
                                 onpress={() => hadleOnpressWithName(inputName)}
                             />
                         </View>
@@ -221,7 +223,7 @@ const GetToKnowEachOther: React.FC<Props> = ({navigation}: Props) => {
             />
 
             <View style={styles.logo}>
-                <KroosLogo />
+                <KrossLogo />
             </View>
         </SafeAreaView>
     );

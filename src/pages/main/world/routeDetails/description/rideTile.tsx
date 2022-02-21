@@ -1,8 +1,8 @@
 import React, {useState, useCallback} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {I18n} from '../../../../../../I18n/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import AnimSvg from '../../../../../helpers/animSvg';
+import AnimSvg from '@helpers/animSvg';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {ReactionsType} from '@models/map.model';
@@ -15,7 +15,7 @@ import {
     getVerticalPx,
     getWidthPx,
     getFontSize,
-} from '../../../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 import FourthSection from '../../components/tiles/sections/fourthSection';
 
 interface Props {
@@ -39,7 +39,8 @@ const RideTile: React.FC<Props> = ({
     reactions,
     reaction,
 }: Props) => {
-    const trans: any = I18n.t('RoutesDetails');
+    const {t} = useMergedTranslation('RoutesDetails');
+
     const dispatch = useAppDispatch();
 
     const config = useAppSelector(mapReactionsConfigSelector);
@@ -258,7 +259,7 @@ const RideTile: React.FC<Props> = ({
                             <Text style={styles.iconFont}>h</Text>
                         </View>
                         <Text style={styles.bottomText}>
-                            {level || trans.noInfo}
+                            {level || t('noInfo')}
                         </Text>
                     </View>
                     <View style={styles.textContainer}>
@@ -266,7 +267,7 @@ const RideTile: React.FC<Props> = ({
                             <Text style={styles.iconFont}>g</Text>
                         </View>
                         <Text style={styles.bottomText}>
-                            {type || trans.noInfo}
+                            {type || t('noInfo')}
                         </Text>
                     </View>
                 </View>

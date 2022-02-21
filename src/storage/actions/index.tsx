@@ -1,5 +1,6 @@
 export {
     setUserName,
+    setLanguage,
     setFrameNumber,
     setProfileSettings,
     setOnboardingFinished,
@@ -19,6 +20,7 @@ export {
     clearAppError,
     setAppStatus,
     setSyncError,
+    synchMapsData,
     setSyncStatus,
     fetchAppRegulations,
     setAppRegulation,
@@ -27,6 +29,7 @@ export {
     setAppPolicy,
     setAppShowedRegulationsNumber,
     setAppTerms,
+    setApiAuthHeaderState,
 } from './app';
 
 export {fetchPlacesData} from './places';
@@ -65,9 +68,20 @@ export {
     mobileLogIn,
     setLogoutUser,
     register,
-    setAuthData,
     setAuthError,
     setAuthorizationState,
     setAuthSyncState,
-    setAuthSessionData,
 } from './auth';
+
+export {fetchUiTranslation, fetchLanguagesList} from './uiTranslation';
+
+export {
+    setAuthData,
+    setAuthDataSessionData,
+    clearAuthDataSessionData,
+} from './authData';
+
+export {
+    setDeepLinkActionForScreen,
+    clearDeepLinkActionForScreen,
+} from './deepLinking';
