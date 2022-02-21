@@ -488,6 +488,7 @@ const setMarks = places => {
 
     clusterPublic = new MarkerClusterer(map, marks, {
         ignoreHidden: true,
+        minimumClusterSize: 3,
         styles: [{
                 url: "shop_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
