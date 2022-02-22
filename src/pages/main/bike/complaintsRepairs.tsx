@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-import AnimSvg from '../../../helpers/animSvg';
-
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import AnimSvg from '@helpers/animSvg';
 
 import {
     setObjSize,
@@ -11,7 +9,7 @@ import {
     getHorizontalPx,
     getVerticalPx,
     getWidthPx,
-} from '../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
 interface Props {
     style?: any;

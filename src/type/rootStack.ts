@@ -123,6 +123,10 @@ export type ShareRouteScreenNavigationPropT = MainNavigationCompositePropT<
 >;
 /* WORLD */
 
+/* RECORD */
+export type RecordParamsListT = {};
+/* RECORD */
+
 /* BIKE */
 export type BikeParamsListT = {
     BikeParams: {

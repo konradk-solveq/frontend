@@ -12,6 +12,12 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1555044E1027EAB08C3AD517 /* libPods-myKROSS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96604D9CD6E5D881F5103B4E /* libPods-myKROSS.a */; };
+		1D12961427BEAD1800964C00 /* mykross.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1D12960E27BEAD1800964C00 /* mykross.woff2 */; };
+		1D12961527BEAD1800964C00 /* mykross.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D12960F27BEAD1800964C00 /* mykross.eot */; };
+		1D12961627BEAD1800964C00 /* mykross.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1D12961027BEAD1800964C00 /* mykross.ttf */; };
+		1D12961727BEAD1800964C00 /* mykross.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1D12961127BEAD1800964C00 /* mykross.svg */; };
+		1D12961827BEAD1800964C00 /* mykross.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1D12961227BEAD1800964C00 /* mykross.woff */; };
+		1D12961927BEAD1800964C00 /* mykross.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1D12961327BEAD1800964C00 /* mykross.otf */; };
 		1D13B1F42657B94D00A4F34A /* DIN2014Narrow-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */; };
 		1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */; };
 		1D13B2042657B97F00A4F34A /* DIN2014Narrow-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */; };
@@ -34,12 +40,6 @@
 		1D4E86A3266A669B006FF848 /* serviceshop_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869D266A669A006FF848 /* serviceshop_marker.png */; };
 		1D4E86A4266A669B006FF848 /* shop_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869E266A669A006FF848 /* shop_empty.png */; };
 		1D4E86A5266A669B006FF848 /* shop_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869F266A669B006FF848 /* shop_marker.png */; };
-		1DE20505271459D000F57873 /* mykross.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1DE204FF271459D000F57873 /* mykross.woff */; };
-		1DE20506271459D000F57873 /* mykross.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20500271459D000F57873 /* mykross.woff2 */; };
-		1DE20507271459D000F57873 /* mykross.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20501271459D000F57873 /* mykross.eot */; };
-		1DE20508271459D000F57873 /* mykross.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20502271459D000F57873 /* mykross.ttf */; };
-		1DE20509271459D000F57873 /* mykross.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20503271459D000F57873 /* mykross.svg */; };
-		1DE2050A271459D000F57873 /* mykross.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20504271459D000F57873 /* mykross.otf */; };
 		51AFA57D87D54EC33FD696BF /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9D1E9358F48E7BA61D8626 /* ExpoModulesProvider.swift */; };
 		782A9E19B835E37953429E3A /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27264724D2EF382DC4CFB75 /* ExpoModulesProvider.swift */; };
 		7AF20AC959A188A771013013 /* libPods-myKROSS-myKROSSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3FCCD7B3AD7800C08AE509 /* libPods-myKROSS-myKROSSTests.a */; };
@@ -53,15 +53,11 @@
 		909E2E8827BFA2E40062F828 /* DIN2014-Demi.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7C27BFA2E20062F828 /* DIN2014-Demi.eot */; };
 		909E2E8927BFA2E40062F828 /* DIN2014-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7D27BFA2E20062F828 /* DIN2014-Regular.eot */; };
 		909E2E8A27BFA2E40062F828 /* DIN2014-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7E27BFA2E20062F828 /* DIN2014-Regular.woff2 */; };
-		909E2E8B27BFA2E40062F828 /* DIN2014-Demi.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7F27BFA2E20062F828 /* DIN2014-Demi.woff */; };
 		909E2E8C27BFA2E40062F828 /* DIN2014-Regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8027BFA2E20062F828 /* DIN2014-Regular.svg */; };
 		909E2E8D27BFA2E40062F828 /* DIN2014-Demi.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8127BFA2E30062F828 /* DIN2014-Demi.woff2 */; };
-		909E2E8E27BFA2E40062F828 /* DIN2014-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8227BFA2E30062F828 /* DIN2014-Regular.woff */; };
 		909E2E8F27BFA2E40062F828 /* DIN2014-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8327BFA2E30062F828 /* DIN2014-Regular.ttf */; };
 		909E2E9027BFA2E40062F828 /* DIN2014-Demi.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8427BFA2E40062F828 /* DIN2014-Demi.svg */; };
 		909E2E9127BFA2E40062F828 /* DIN2014-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8527BFA2E40062F828 /* DIN2014-Regular.otf */; };
-		909E2E9227BFA2E40062F828 /* DIN2014-Demi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8627BFA2E40062F828 /* DIN2014-Demi.ttf */; };
-		909E2E9327BFA2E40062F828 /* DIN2014-Demi.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8727BFA2E40062F828 /* DIN2014-Demi.otf */; };
 		909E2E9427BFA2E50062F828 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 905F172A27956F7500BC6C75 /* Config.xcconfig */; };
 		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
@@ -95,6 +91,12 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18BBA092F9FBF74C64D66988 /* Pods-myKROSS-myKROSSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.release.xcconfig"; sourceTree = "<group>"; };
+		1D12960E27BEAD1800964C00 /* mykross.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff2; path = ../assets/fonts/mykross.woff2; sourceTree = "<group>"; };
+		1D12960F27BEAD1800964C00 /* mykross.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.eot; path = ../assets/fonts/mykross.eot; sourceTree = "<group>"; };
+		1D12961027BEAD1800964C00 /* mykross.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.ttf; path = ../assets/fonts/mykross.ttf; sourceTree = "<group>"; };
+		1D12961127BEAD1800964C00 /* mykross.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = mykross.svg; path = ../assets/fonts/mykross.svg; sourceTree = "<group>"; };
+		1D12961227BEAD1800964C00 /* mykross.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff; path = ../assets/fonts/mykross.woff; sourceTree = "<group>"; };
+		1D12961327BEAD1800964C00 /* mykross.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.otf; path = ../assets/fonts/mykross.otf; sourceTree = "<group>"; };
 		1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.eot"; path = "../assets/fonts/DIN2014Narrow-Bold.eot"; sourceTree = "<group>"; };
 		1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "DIN2014Narrow-Light.svg"; path = "../assets/fonts/DIN2014Narrow-Light.svg"; sourceTree = "<group>"; };
 		1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.eot"; path = "../assets/fonts/DIN2014Narrow-Regular.eot"; sourceTree = "<group>"; };
@@ -117,12 +119,6 @@
 		1D4E869D266A669A006FF848 /* serviceshop_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = serviceshop_marker.png; path = ../assets/serviceshop_marker.png; sourceTree = "<group>"; };
 		1D4E869E266A669A006FF848 /* shop_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shop_empty.png; path = ../assets/shop_empty.png; sourceTree = "<group>"; };
 		1D4E869F266A669B006FF848 /* shop_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shop_marker.png; path = ../assets/shop_marker.png; sourceTree = "<group>"; };
-		1DE204FF271459D000F57873 /* mykross.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff; path = ../assets/fonts/mykross.woff; sourceTree = "<group>"; };
-		1DE20500271459D000F57873 /* mykross.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff2; path = ../assets/fonts/mykross.woff2; sourceTree = "<group>"; };
-		1DE20501271459D000F57873 /* mykross.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.eot; path = ../assets/fonts/mykross.eot; sourceTree = "<group>"; };
-		1DE20502271459D000F57873 /* mykross.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.ttf; path = ../assets/fonts/mykross.ttf; sourceTree = "<group>"; };
-		1DE20503271459D000F57873 /* mykross.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = mykross.svg; path = ../assets/fonts/mykross.svg; sourceTree = "<group>"; };
-		1DE20504271459D000F57873 /* mykross.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.otf; path = ../assets/fonts/mykross.otf; sourceTree = "<group>"; };
 		1E04EE7AA998AA05F6A15C9C /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
 		331BC8AFE8B97D2CBE1E6685 /* Pods-myKROSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.debug.xcconfig"; sourceTree = "<group>"; };
 		5C419F93D4D6BE6978E043B6 /* Pods-myKROSS.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.release.xcconfig"; sourceTree = "<group>"; };
@@ -269,13 +265,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				1D12960F27BEAD1800964C00 /* mykross.eot */,
+				1D12961327BEAD1800964C00 /* mykross.otf */,
+				1D12961127BEAD1800964C00 /* mykross.svg */,
+				1D12961027BEAD1800964C00 /* mykross.ttf */,
+				1D12961227BEAD1800964C00 /* mykross.woff */,
+				1D12960E27BEAD1800964C00 /* mykross.woff2 */,
 				905F172A27956F7500BC6C75 /* Config.xcconfig */,
-				1DE20501271459D000F57873 /* mykross.eot */,
-				1DE20504271459D000F57873 /* mykross.otf */,
-				1DE20503271459D000F57873 /* mykross.svg */,
-				1DE20502271459D000F57873 /* mykross.ttf */,
-				1DE204FF271459D000F57873 /* mykross.woff */,
-				1DE20500271459D000F57873 /* mykross.woff2 */,
 				1D1631BD268CBEB8007DB5E1 /* my_location.png */,
 				1D4E869A266A669A006FF848 /* service_empty.png */,
 				1D4E869C266A669A006FF848 /* service_marker.png */,

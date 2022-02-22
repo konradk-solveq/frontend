@@ -8,7 +8,6 @@ import {
     ScrollView,
 } from 'react-native';
 
-import TabBackGround from '@sharedComponents/navi/tabBackGround';
 import BlueButton from './blueButton';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import {
@@ -226,8 +225,6 @@ const Profile: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader hideBackArrow inner={t('header')} />
-
-            <TabBackGround />
         </SafeAreaView>
     );
 };
