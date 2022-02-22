@@ -472,7 +472,9 @@ const setMarks = places => {
     for (let p of places) {
         let id = p.details.id;
         if (marks.some(e => e.id == id)) continue;
-
+        if (privateMarks.some(e => e.id == id)) continue;
+        if (plannedMarks.some(e => e.id == id)) continue;
+        
         const isPlanned = p.markerTypes?.includes('PLANNED');
         const isPrivate = p.markerTypes?.includes('PRIVATE');
         const privateImage = isPrivate && 'pinroute_private.png';
