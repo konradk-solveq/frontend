@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots SmallWhiteBtn Basic 1`] = `
+exports[`Storyshots Buttons/SmallWhite Basic 1`] = `
 <View
   style={
     Array [

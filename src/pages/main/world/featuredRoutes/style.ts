@@ -10,12 +10,12 @@ const styles = StyleSheet.create({
         fontSize: getFontSize(30),
         marginTop: getVerticalPx(30),
         color: darkText,
-        marginHorizontal: getHorizontalPx(40),
+        marginHorizontal: getHorizontalPx(16),
     },
     tileWrapper: {
         marginTop: getVerticalPx(30),
         marginBottom: getVerticalPx(10),
-        marginHorizontal: getHorizontalPx(40),
+        marginHorizontal: getHorizontalPx(16),
     },
     lastTile: {
         marginBottom: getVerticalPx(50),
