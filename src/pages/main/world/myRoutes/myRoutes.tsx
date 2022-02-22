@@ -1,7 +1,7 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
-import {RegularStackRoute} from '@navigation/route';
+import {KrossWorldTabRoute, RegularStackRoute} from '@navigation/route';
 
 import {
     userNameSelector,
@@ -11,7 +11,7 @@ import {
     refreshMapsSelector,
     selectorMapTypeEnum,
 } from '@storage/selectors';
-import {useAppSelector} from '@hooks/redux';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
@@ -26,6 +26,12 @@ import EmptyList from './emptyList';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 
 import styles from './style';
+import {nextPrivatePaginationCoursor} from '@storage/selectors/map';
+import {fetchPrivateMapsList} from '@storage/actions';
+import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
+import {PickedFilters} from '@interfaces/form';
+import FiltersModal from '@pages/main/world/components/filters/filtersModal';
+import {FiltersButton, SortButton} from '@pages/main/world/components/buttons';
 
 const length = getVerticalPx(175);
 const getItemLayout = (_: any, index: number) => ({
@@ -39,21 +45,13 @@ interface RenderItem {
     index: number;
 }
 
-interface IProps {
-    onPress: () => void;
-    onRefresh: () => void;
-    onLoadMore: () => void;
-    sortedByDate?: boolean;
-}
-
-const MyRoutes: React.FC<IProps> = ({
-    onPress,
-    onRefresh,
-    onLoadMore,
-    sortedByDate,
-}: IProps) => {
+interface IProps {}
+const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld.MyRoutes');
+    const {t: mwt} = useMergedTranslation('MainWorld');
     const navigation = useNavigation();
+    const nextCoursor = useAppSelector(nextPrivatePaginationCoursor);
+    const dispatch = useAppDispatch();
     const userName = useAppSelector(userNameSelector);
     const privateMaps = useAppSelector<Map[]>(privateMapsListSelector);
     const totalNumberOfPrivateMaps = useAppSelector(
@@ -64,8 +62,43 @@ const MyRoutes: React.FC<IProps> = ({
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
-
+    const [showFiltersModal, setShowFiltersModal] = useState(false);
+    const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
+    const sortedByDate = !!savedMapFilters.order || true;
     const {onLoadMoreHandler} = useInfiniteScrollLoadMore(privateMaps?.length);
+
+    const onRefresh = useCallback(
+        () => dispatch(fetchPrivateMapsList(undefined, savedMapFilters)),
+        [dispatch, savedMapFilters],
+    );
+    const onLoadMore = useCallback(
+        () => dispatch(fetchPrivateMapsList(nextCoursor, savedMapFilters)),
+        [dispatch, nextCoursor, savedMapFilters],
+    );
+
+    useEffect(() => {
+        const isValid = checkIfContainsFitlers(savedMapFilters);
+        if (isValid) {
+            dispatch(fetchPrivateMapsList(undefined, savedMapFilters));
+            return;
+        }
+    }, [dispatch, savedMapFilters]);
+
+    const onFiltersModalOpenHandler = () => {
+        setShowFiltersModal(true);
+    };
+    const onFiltersModalCloseHandler = () => {
+        setShowFiltersModal(false);
+    };
+
+    const onFiltersSaveHandler = (picked: PickedFilters) => {
+        setShowFiltersModal(false);
+        setSavedMapFilters(picked);
+    };
+
+    const emptyListButtonHandler = () => {
+        navigation.navigate(KrossWorldTabRoute.BIKE_MAP_SCREEN);
+    };
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
@@ -142,7 +175,7 @@ const MyRoutes: React.FC<IProps> = ({
                 </View>
             );
         },
-        [privateMaps?.length, onPressTileHandler, shouldShowDate, sortedByDate],
+        [privateMaps?.length, shouldShowDate, sortedByDate, onPressTileHandler],
     );
 
     const onEndReachedHandler = useCallback(() => {
@@ -152,7 +185,7 @@ const MyRoutes: React.FC<IProps> = ({
     }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
 
     if (!privateMaps?.length) {
-        return <EmptyList onPress={onPress} />;
+        return <EmptyList onPress={emptyListButtonHandler} />;
     }
 
     const renderListLoader = () => {
@@ -196,16 +229,37 @@ const MyRoutes: React.FC<IProps> = ({
     return (
         <>
             {rednerModal()}
+            <FiltersModal
+                onClose={onFiltersModalCloseHandler}
+                definedFilters={savedMapFilters}
+                onSave={onFiltersSaveHandler}
+                showModal={showFiltersModal}
+                allowedFilters={['order']}
+            />
+
             <View style={styles.horizontalSpace}>
                 <FlatList
                     keyExtractor={item => item.id}
                     ListHeaderComponent={
-                        <Text style={styles.header}>
-                            {totalNumberOfPrivateMaps &&
-                            totalNumberOfPrivateMaps > 0
-                                ? secondTitle
-                                : basicTitle}
-                        </Text>
+                        <>
+                            <View style={styles.topButtonsContainer}>
+                                <SortButton
+                                    onPress={() => {}}
+                                    title={mwt('btnSort')}
+                                    style={styles.topButton}
+                                />
+                                <FiltersButton
+                                    onPress={onFiltersModalOpenHandler}
+                                    style={styles.topButton}
+                                />
+                            </View>
+                            <Text style={styles.header}>
+                                {totalNumberOfPrivateMaps &&
+                                totalNumberOfPrivateMaps > 0
+                                    ? secondTitle
+                                    : basicTitle}
+                            </Text>
+                        </>
                     }
                     data={privateMaps}
                     renderItem={renderItem}

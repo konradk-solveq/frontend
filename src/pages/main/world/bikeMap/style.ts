@@ -1,9 +1,9 @@
 import {StyleSheet} from 'react-native';
 import {
-    getFontSize,
-    getHorizontalPx,
-    getVerticalPx,
-} from '../../../../helpers/layoutFoo';
+    getFFontSize,
+    getFVerticalPx,
+    getFHorizontalPx,
+} from '@theme/utils/appLayoutDimensions';
 
 const fontLight = 'DIN2014Narrow-Light';
 const darkText = '#313131';
@@ -11,28 +11,38 @@ const darkText = '#313131';
 const styles = StyleSheet.create({
     header: {
         fontFamily: fontLight,
-        fontSize: getFontSize(30),
-        marginTop: getVerticalPx(30),
+        fontSize: getFFontSize(30),
+        marginTop: getFVerticalPx(30),
         color: darkText,
-        marginHorizontal: getHorizontalPx(40),
+        marginHorizontal: getFHorizontalPx(16),
     },
     tileWrapper: {
-        marginTop: getVerticalPx(30),
-        marginBottom: getVerticalPx(10),
-        marginHorizontal: getHorizontalPx(40),
+        marginTop: getFVerticalPx(30),
+        marginBottom: getFVerticalPx(10),
+        marginHorizontal: getFHorizontalPx(16),
     },
     lastTile: {
-        marginBottom: getVerticalPx(150),
+        marginBottom: getFVerticalPx(150),
     },
     horizontalSpace: {},
     loaderContainer: {
-        height: getHorizontalPx(50),
+        height: getFHorizontalPx(50),
         width: '100%',
-        marginTop: -getVerticalPx(120),
-        marginBottom: getVerticalPx(150),
+        marginTop: -getFVerticalPx(120),
+        marginBottom: getFVerticalPx(150),
     },
     backdrop: {
-        marginTop: -getVerticalPx(250),
+        marginTop: -getFVerticalPx(250),
+    },
+    topButtonsContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: getFHorizontalPx(16),
+    },
+    topButton: {
+        height: getFVerticalPx(48),
+        width: 'auto',
     },
 });
 

@@ -43,7 +43,7 @@ describe('<GenericError />', () => {
                 renderComponent(<GenericError onButtonPress={onPressFun} />),
             );
 
-            const genericError = component.getByTestId('white-btn');
+            const genericError = component.getByTestId('secondary-btn-test-id');
             await asyncEvent(fireEvent.press(genericError));
 
             expect(onPressFun).toBeCalled();

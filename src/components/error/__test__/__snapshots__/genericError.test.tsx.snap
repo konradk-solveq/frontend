@@ -229,46 +229,82 @@ Array [
           }
         }
       >
-        <RNGestureHandlerButton
+        <View
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          onGestureEvent={[Function]}
-          onGestureHandlerEvent={[Function]}
-          onGestureHandlerStateChange={[Function]}
-          onHandlerStateChange={[Function]}
-          rippleColor={0}
-          testID="white-btn"
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="secondary-btn-test-id"
         >
           <View
-            accessible={true}
-            collapsable={false}
-            nativeID="animatedComponent"
             style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#fff",
-                "borderRadius": 28.985507246376812,
-                "display": "flex",
-                "height": 48,
-                "justifyContent": "center",
-                "opacity": 1,
-                "width": "100%",
-              }
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 30.76923076923077,
+                  "elevation": 5,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "shadowColor": "rgba(51, 51, 51, 0.07)",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 7.6923076923076925,
+                  },
+                  "shadowRadius": 15.384615384615385,
+                  "width": "100%",
+                },
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                },
+                Array [
+                  Object {
+                    "height": 92.3076923076923,
+                    "width": 565.3846153846154,
+                  },
+                  Object {
+                    "height": 48,
+                  },
+                ],
+              ]
             }
+            testID="secondary-btn-test-id-container"
           >
             <Text
               style={
-                Object {
-                  "color": "#C63733",
-                  "fontFamily": "DIN2014Narrow-Bold",
-                  "fontSize": 36.231884057971016,
-                  "textAlign": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#C63733",
+                  },
+                ]
               }
+              testID="secondary-btn-test-id-text"
             >
               PublishThankYouPage.btnOk
             </Text>
           </View>
-        </RNGestureHandlerButton>
+        </View>
       </View>
     </View>
   </View>,
@@ -554,46 +590,82 @@ Array [
           }
         }
       >
-        <RNGestureHandlerButton
+        <View
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          onGestureEvent={[Function]}
-          onGestureHandlerEvent={[Function]}
-          onGestureHandlerStateChange={[Function]}
-          onHandlerStateChange={[Function]}
-          rippleColor={0}
-          testID="white-btn"
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="secondary-btn-test-id"
         >
           <View
-            accessible={true}
-            collapsable={false}
-            nativeID="animatedComponent"
             style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#fff",
-                "borderRadius": 28.985507246376812,
-                "display": "flex",
-                "height": 48,
-                "justifyContent": "center",
-                "opacity": 1,
-                "width": "100%",
-              }
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 30.76923076923077,
+                  "elevation": 5,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "shadowColor": "rgba(51, 51, 51, 0.07)",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 7.6923076923076925,
+                  },
+                  "shadowRadius": 15.384615384615385,
+                  "width": "100%",
+                },
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                },
+                Array [
+                  Object {
+                    "height": 92.3076923076923,
+                    "width": 565.3846153846154,
+                  },
+                  Object {
+                    "height": 48,
+                  },
+                ],
+              ]
             }
+            testID="secondary-btn-test-id-container"
           >
             <Text
               style={
-                Object {
-                  "color": "#C63733",
-                  "fontFamily": "DIN2014Narrow-Bold",
-                  "fontSize": 36.231884057971016,
-                  "textAlign": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#C63733",
+                  },
+                ]
               }
+              testID="secondary-btn-test-id-text"
             >
               PublishThankYouPage.btnOk
             </Text>
           </View>
-        </RNGestureHandlerButton>
+        </View>
       </View>
     </View>
   </View>,
@@ -899,46 +971,82 @@ Array [
           }
         }
       >
-        <RNGestureHandlerButton
+        <View
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
           collapsable={false}
-          onGestureEvent={[Function]}
-          onGestureHandlerEvent={[Function]}
-          onGestureHandlerStateChange={[Function]}
-          onHandlerStateChange={[Function]}
-          rippleColor={0}
-          testID="white-btn"
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="secondary-btn-test-id"
         >
           <View
-            accessible={true}
-            collapsable={false}
-            nativeID="animatedComponent"
             style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#fff",
-                "borderRadius": 28.985507246376812,
-                "display": "flex",
-                "height": 48,
-                "justifyContent": "center",
-                "opacity": 1,
-                "width": "100%",
-              }
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#ffffff",
+                  "borderRadius": 30.76923076923077,
+                  "elevation": 5,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "shadowColor": "rgba(51, 51, 51, 0.07)",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 7.6923076923076925,
+                  },
+                  "shadowRadius": 15.384615384615385,
+                  "width": "100%",
+                },
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                },
+                Array [
+                  Object {
+                    "height": 92.3076923076923,
+                    "width": 565.3846153846154,
+                  },
+                  Object {
+                    "height": 48,
+                  },
+                ],
+              ]
             }
+            testID="secondary-btn-test-id-container"
           >
             <Text
               style={
-                Object {
-                  "color": "#C63733",
-                  "fontFamily": "DIN2014Narrow-Bold",
-                  "fontSize": 36.231884057971016,
-                  "textAlign": "center",
-                }
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#C63733",
+                  },
+                ]
               }
+              testID="secondary-btn-test-id-text"
             >
               PublishThankYouPage.btnOk
             </Text>
           </View>
-        </RNGestureHandlerButton>
+        </View>
       </View>
     </View>
   </View>,

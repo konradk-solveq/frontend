@@ -5,7 +5,7 @@ import React from 'react';
 import SmallWhiteBtn from '@sharedComponents/buttons/smallWhiteBtn';
 import BtnWrapper from '@sb/utils/BtnWrapper';
 
-storiesOf('SmallWhiteBtn', module)
+storiesOf('Buttons/SmallWhite', module)
     .addDecorator(getStory => <BtnWrapper>{getStory()}</BtnWrapper>)
     .add('Basic', () => (
         <SmallWhiteBtn

@@ -5,7 +5,7 @@ import React from 'react';
 import {BigRedBtn} from '@sharedComponents/buttons';
 import BtnWrapper from '@sb/utils/BtnWrapper';
 
-storiesOf('BigRedBtn', module)
+storiesOf('Buttons/BigRed', module)
     .addDecorator(getStory => <BtnWrapper>{getStory()}</BtnWrapper>)
     .add('Basic', () => (
         <BigRedBtn
