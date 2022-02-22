@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {WebView, WebViewMessageEvent} from 'react-native-webview';
 
 import {BasicCoordsType} from '@type/coords';
-import {MapMarkerType} from '@models/map.model';
+import {MapMarkerType, CoordsType} from '@models/map.model';
 
 import {isIOS} from '@utils/platform';
 import {getMapInitLocation} from '@utils/webView';
@@ -27,6 +27,7 @@ interface IProps {
     onMapLoadEnd?: () => void;
     location?: BasicCoordsType;
     routesMarkers?: MapMarkerType[];
+    mapPath?: CoordsType[];
 }
 
 const RoutesMapContainer: React.FC<IProps> = ({
@@ -35,8 +36,9 @@ const RoutesMapContainer: React.FC<IProps> = ({
     onMapLoadEnd,
     location,
     routesMarkers,
+    mapPath,
 }: IProps) => {
-    const mapRef = useRef(null);
+    const mapRef = useRef<WebView>(null);
     const posRef = useRef(false);
 
     const setJsWV = (data: string) => mapRef.current?.injectJavaScript(data);
@@ -49,6 +51,20 @@ const RoutesMapContainer: React.FC<IProps> = ({
     );
 
     const [mapLoaded, setMapLoaded] = useState(false);
+
+    /**
+     * Set route path
+     */
+    useEffect(() => {
+        if (location && mapLoaded) {
+            const p = jsonStringify(mapPath);
+            if (!p) {
+                setJsWV(`clearPath(${p});true;`);
+                return;
+            }
+            setJsWV(`setPath(${p});true;`);
+        }
+    }, [location, mapLoaded, mapPath]);
 
     /**
      * Set user marker position
@@ -125,7 +141,6 @@ const RoutesMapContainer: React.FC<IProps> = ({
                 style={styles.webView}
                 originWhitelist={['*']}
                 scalesPageToFit={true}
-                useWebKit={isIOS}
                 scrollEnabled={false}
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}

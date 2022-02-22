@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useState} from 'react';
 import {WebViewMessageEvent} from 'react-native-webview';
 import {useNavigation} from '@react-navigation/native';
 
@@ -11,10 +11,20 @@ import {jsonParse} from '@utils/transformJson';
 
 import GenericScreen from '@pages/template/GenericScreen';
 import {RoutesMapContainer} from '@containers/World';
+import {useAppSelector} from '@hooks/redux';
+import {selectorMapTypeEnum} from '@storage/selectors';
+import {selectMapPathByIDBasedOnTypeSelector} from '@storage/selectors/map';
 
 const RoutesMap: React.FC = () => {
     const navigation = useNavigation();
     const {location} = useLocationProvider();
+    const [mapId, setMapId] = useState('');
+    const mapPath = useAppSelector(
+        selectMapPathByIDBasedOnTypeSelector(
+            mapId,
+            selectorMapTypeEnum.regular,
+        ),
+    );
 
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
     const routeMapMarkers = useMemo(
@@ -55,9 +65,12 @@ const RoutesMap: React.FC = () => {
                 }
                 break;
             case 'clickMarker':
+                const routeDetails = jsonParse(val?.[1]);
+                setMapId(routeDetails?.id);
                 /* TODO: action on click marker */
                 break;
             case 'clickMap':
+                setMapId('');
                 /* TODO: ction on click map */
                 break;
         }
@@ -70,6 +83,7 @@ const RoutesMap: React.FC = () => {
                 onPressClose={onNavigateBack}
                 onWebViewMessage={onWebViewMessageHandler}
                 routesMarkers={routeMapMarkers.routeMarkres}
+                mapPath={mapPath}
             />
         </GenericScreen>
     );

@@ -55,6 +55,7 @@ const customJsonStringify = (value, fallback) => {
 };
 
 let map;
+let routePath;
 const googleMap = document.getElementById('map');
 // let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
 
@@ -546,6 +547,22 @@ const setMarks = places => {
             },
         ]
     });
+}
+const setPath = path => {
+    const coords = path.map(([lat, lng]) => ({lat, lng}));
+    routePath = new google.maps.Polyline({
+        path: coords,
+        geodesic: true,
+        strokeColor: "#C63733",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+    });
+    
+    routePath.setMap(map);
+}
+
+const clearPath = () => {
+    routePath.setMap(null);
 }
 
 const clearMarkersCluster = () => {
