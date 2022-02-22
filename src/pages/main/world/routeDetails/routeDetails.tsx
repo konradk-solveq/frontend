@@ -93,7 +93,7 @@ const RouteDetails = () => {
     const statusBarHeight = useStatusBarHeight();
     const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
     const safeAreaBackgroundStyle = {
-        backgroundColor: error && !mapID ? '#FAFAFA' : 'transparent',
+        backgroundColor: error ? '#FAFAFA' : 'transparent',
     };
     const headerBackgroundHeight = getVerticalPx(
         100,

@@ -54,6 +54,7 @@
         "placeholder": "Numer ramy",
         "messageWrong": "Nieprawidłowe znaki",
         "infoBtn": "Gdzie znajdę numer ramy?",
+        "btnSkip": "POMIŃ",
         "btn": "DALEJ"
     },
     "AddingInfo": {

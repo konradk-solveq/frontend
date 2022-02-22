@@ -16,6 +16,10 @@ module.exports = [
         rootPathPrefix: '@enums',
     },
     {
+        rootPathSuffix: './src/globalValues',
+        rootPathPrefix: '@globalValues',
+    },
+    {
         rootPathSuffix: './src/helpers',
         rootPathPrefix: '@helpers',
     },

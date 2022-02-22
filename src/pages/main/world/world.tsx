@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View,  SafeAreaView, Platform} from 'react-native';
+import {View, SafeAreaView, Platform, Text} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
@@ -22,7 +22,6 @@ import {
 import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
 
 import {FiltersBtn, MapBtn, TypicalRedBtn} from '@sharedComponents/buttons';
-import TabBackGround from '@sharedComponents/navi/tabBackGround';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 
 import FiltersModal from './components/filters/filtersModal';
@@ -241,10 +240,7 @@ const World: React.FC = () => {
                         />
                     </View>
                 </View>
-
                 <View style={styles.viewContainer}>{renderActiveScreen()}</View>
-
-                <TabBackGround />
             </View>
 
             <StackHeader

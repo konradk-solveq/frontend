@@ -7,7 +7,6 @@ import {
     Platform,
 } from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import TabBackGround from '@sharedComponents/navi/tabBackGround';
 import AnimSvg from '@helpers/animSvg';
 
 import {
@@ -99,8 +98,6 @@ const World: React.FC = () => {
             <Text style={styles.title}>{t('title')}</Text>
 
             <Text style={styles.footer}>{t('footer')}</Text>
-
-            <TabBackGround />
         </SafeAreaView>
     );
 };

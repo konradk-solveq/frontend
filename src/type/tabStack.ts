@@ -9,6 +9,7 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {
     AuthParamsListT,
     BikeParamsListT,
+    RecordParamsListT,
     GeneralParamsListT,
     KrossWorldParamsListT,
     ProfileParamsListT,
@@ -62,6 +63,7 @@ export type NavigatorScreenParamsT<
 export type TabStackType = {
     HomeTab: NestedNavigatorParamsT<GeneralParamsListT>;
     WorldTab: NestedNavigatorParamsT<KrossWorldParamsListT>;
+    RecordTab: NestedNavigatorParamsT<RecordParamsListT>;
     BikeTab: NestedNavigatorParamsT<BikeParamsListT>;
     ProfileTab: NestedNavigatorParamsT<ProfileParamsListT>;
 };
@@ -76,6 +78,12 @@ export type WorldTabRouteT = RouteProp<TabStackType, 'WorldTab'>;
 export type WorldTabNavigationPropT = BottomTabNavigationProp<
     TabStackType,
     'WorldTab'
+>;
+
+export type RecordTabRouteT = RouteProp<TabStackType, 'RecordTab'>;
+export type RecordTabNavigationPropT = BottomTabNavigationProp<
+    TabStackType,
+    'RecordTab'
 >;
 
 export type BikeTabRouteT = RouteProp<TabStackType, 'BikeTab'>;
