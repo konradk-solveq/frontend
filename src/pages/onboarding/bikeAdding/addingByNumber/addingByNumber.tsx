@@ -39,7 +39,6 @@ import {
 } from '@helpers/layoutFoo';
 import Loader from '../loader/loader';
 import {RegularStackRoute, OnboardingStackRoute} from '@navigation/route';
-import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 import {
     setOnboardingFinished,
@@ -69,7 +68,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                 : RegularStackRoute.BIKE_DATA_SCREEN,
         [isOnboardingFinished],
     );
-    const whereIsBikeFrameNumberRouteName = useMemo(
+    const bikeInfoRouteName = useMemo(
         () =>
             !isOnboardingFinished
                 ? OnboardingStackRoute.ADDING_INFO_ONBOARDING_SCREEN
@@ -245,9 +244,7 @@ const AddingByNumber: React.FC<Props> = (props: Props) => {
                             algin="right"
                             color="#3587ea"
                             onpress={() =>
-                                props.navigation.navigate(
-                                    whereIsBikeFrameNumberRouteName,
-                                )
+                                props.navigation.navigate(bikeInfoRouteName)
                             }
                         />
                     </View>

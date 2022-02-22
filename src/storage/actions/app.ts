@@ -38,6 +38,8 @@ import {RouteActionT, RouteAdditionalInfoT} from '@type/debugRoute';
 import {DebugRouteInstance} from '@debugging/debugRoute';
 import {batch} from 'react-redux';
 import {AuthState} from '../reducers/auth';
+import {fetchUiTranslation, fetchLanguagesList} from './uiTranslation';
+import {getControlSumService} from '@src/services/uiTranslation';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -52,10 +54,12 @@ export const setAppStatus = (
     goodConnectionQuality: goodConnectionQuality,
 });
 
-export const setAppConfig = (config: AppConfigI) => ({
-    type: actionTypes.SET_APP_CONFIG,
-    config: config,
-});
+export const setAppConfig = (config: AppConfigI) => {
+    return {
+        type: actionTypes.SET_APP_CONFIG,
+        config: config,
+    };
+};
 
 export const setAppTerms = (terms: TermsAndConditionsType[]) => ({
     type: actionTypes.SET_APP_TERMS,
@@ -141,7 +145,7 @@ export const clearAppError = () => ({
 
 export const fetchAppConfig = (
     noLoader?: boolean,
-): AppThunk<Promise<void>> => async dispatch => {
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     if (!noLoader) {
         dispatch(setSyncStatus(true));
     }
@@ -153,9 +157,37 @@ export const fetchAppConfig = (
             return;
         }
 
+        const responseControlSum = await getControlSumService();
+
+        if (
+            responseControlSum.error ||
+            responseControlSum.status >= 400 ||
+            !responseControlSum.data
+        ) {
+            dispatch(
+                setSyncError(
+                    responseControlSum.error,
+                    responseControlSum.status,
+                ),
+            );
+            return;
+        }
+
+        const {config}: AppState = getState().app;
+
+        const lang = response.data.lang;
+        const currentControlSums = responseControlSum.data?.controlSum;
+        const memoriedControlSums = config.uiTranslations?.controlSums?.find(
+            e => e.code === lang,
+        )?.controlSum;
+
         batch(() => {
+            dispatch(fetchLanguagesList(true));
             dispatch(setAppConfig(response.data));
             dispatch(clearAppError());
+            if (currentControlSums !== memoriedControlSums) {
+                dispatch(fetchUiTranslation(true));
+            }
         });
 
         if (!noLoader) {

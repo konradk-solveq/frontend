@@ -12,12 +12,12 @@ import TopNotificationProvider from '@providers/topNotificationProvider/TopNotif
 import {initAppSize} from '@helpers/layoutFoo';
 import {initConfig} from '@theme/appLayoutConfig';
 
-
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
-import useRouteDebug from '@src/hooks/useRouteDebug';
+import useRouteDebug from '@hooks/useRouteDebug';
 
-import LanguageReloader from '@src/utils/translations/languageReloader';
+import {setUserAgentHeader} from '@api';
+import {setLanguageHeader} from '@api/api';
 
 const App: () => Node = () => {
     const persistor = persistStore(storage);
@@ -26,6 +26,9 @@ const App: () => Node = () => {
     initConfig();
 
     useRouteDebug();
+
+    setUserAgentHeader();
+    setLanguageHeader('pl');
 
     return (
         <>
@@ -40,7 +43,6 @@ const App: () => Node = () => {
                     <TopNotificationProvider>
                         <StaticLocationProvider>
                             <Suspense fallback={null}>
-                                <LanguageReloader />
                                 <NavContainer />
                             </Suspense>
                         </StaticLocationProvider>

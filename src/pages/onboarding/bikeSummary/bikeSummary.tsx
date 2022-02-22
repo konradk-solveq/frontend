@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {SafeAreaView, View, Text, StyleSheet} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useAppSelector, useAppDispatch} from '@hooks/redux';
@@ -31,7 +31,7 @@ import BikeImage from '@sharedComponents/images/bikeImage';
 import {SizeLabel, ColorLabel} from '@sharedComponents/labels';
 import Curve from '@sharedComponents/svg/curve';
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
-import {BothStackRoute, RegularStackRoute} from '@navigation/route';
+import {OnboardingStackRoute, RegularStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface IProps {
@@ -51,6 +51,13 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
     const frameNumber = route.params.frameNumber;
     const bikeData = useAppSelector(state =>
         bikeByFrameNumberSelector(state, frameNumber),
+    );
+    const nfcTutorialRouteName = useMemo(
+        () =>
+            !onboardingFinished
+                ? OnboardingStackRoute.TURTORIAL_NFC_ONBOARDING_SCREEN
+                : RegularStackRoute.TURTORIAL_NFC_SCREEN,
+        [onboardingFinished],
     );
 
     const removeBikeOnCancel = useCallback(() => {
@@ -173,9 +180,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
                         title={t('btnChange')}
                         onpress={() => {
                             removeBikeOnCancel();
-                            navigation.navigate(
-                                BothStackRoute.TURTORIAL_NFC_SCREEN,
-                            );
+                            navigation.navigate(nfcTutorialRouteName);
                         }}
                     />
                 </View>
