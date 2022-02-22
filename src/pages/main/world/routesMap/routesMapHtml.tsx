@@ -461,15 +461,22 @@ function initMap() {
 }
 
 // dodawanie punktów po zmianie regionu
-let marks = [];
+const marks = [];
+const privateMarks = [];
+const plannedMarks = [];
 let clusterPublic = null;
+let clusterPrivate = null;
+let clusterPlanned = null;
 
 const setMarks = places => {
     for (let p of places) {
         let id = p.details.id;
         if (marks.some(e => e.id == id)) continue;
-        const privateImage = p.markerTypes?.includes('PLANNED') && 'pinroute_planned.png';
-        const plannedImage = p.markerTypes?.includes('PRIVATE') && 'pinroute_private.png';
+
+        const isPlanned = p.markerTypes?.includes('PLANNED');
+        const isPrivate = p.markerTypes?.includes('PRIVATE');
+        const privateImage = isPrivate && 'pinroute_private.png';
+        const plannedImage = isPlanned && 'pinroute_planned.png';
         const publicImage = 'pinroute_published.png';
         const markerImage = privateImage || plannedImage || publicImage;
 
@@ -482,7 +489,16 @@ const setMarks = places => {
             markerTypes: [...p.markerTypes]
         });
 
-        marks.push(mark);
+        /**
+         * Private have the highest priority, then planned and public as last.
+         */
+        if(isPrivate){
+            privateMarks.push(mark);
+        }else if(isPlanned){
+            plannedMarks.push(mark);
+        }else{
+            marks.push(mark);
+        }
         window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+customJsonStringify(mark?.markerTypes, ''));
     }
 
@@ -490,84 +506,57 @@ const setMarks = places => {
         ignoreHidden: true,
         minimumClusterSize: 3,
         styles: [{
-                url: "shop_empty.png",
+                url: "pinroute_published_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
+                textSize: 17,
                 textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
+                width: 32,
+                height: 32,
+                anchor:[16,16],
             },
-            {
-                url: "shop_empty.png",
+        ]
+    });
+    clusterPrivate = new MarkerClusterer(map, privateMarks, {
+        ignoreHidden: true,
+        minimumClusterSize: 3,
+        styles: [{
+                url: "pinroute_private_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
+                textSize: 17,
                 textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
+                width: 32,
+                height: 32,
+                anchor:[16,16],
             },
-            {
-                url: "shop_empty.png",
+        ]
+    });
+    clusterPlanned = new MarkerClusterer(map, clusterPlanned, {
+        ignoreHidden: true,
+        minimumClusterSize: 3,
+        styles: [{
+                url: "pinroute_panned_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
+                textSize: 17,
                 textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
+                width: 32,
+                height: 32,
+                anchor:[16,16],
             },
         ]
     });
 }
 
-const setPublic = () => {
-    try{
-        marks?.forEach(m => m.markerTypes?.includes('PUBLIC') ? m.setVisible(true) : m.setVisible(false));
-        clusterPublic.repaint();
-    }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PUBLIC#$#"+customJsonStringify(e, ''));
-    }
-}
-
-const setFavourites = () => {
-    try{
-        marks?.forEach(m => m.markerTypes?.includes('FAVORITE') ? m.setVisible(true) : m.setVisible(false));
-        clusterPublic.repaint();
-    }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT FAVORITE#$#"+customJsonStringify(e, ''));
-    }
-}
-
-const setPrivate = () => {
-    try{
-        marks?.forEach(m => m.markerTypes?.includes('OWN') ? m.setVisible(true) : m.setVisible(false));
-        clusterPublic.repaint();
-    }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#"+customJsonStringify(e, ''));
-    }
-}
-
 const clearMarkersCluster = () => {
     if(clusterPublic){
         clusterPublic.clearMarkers();
+    }
+
+    if(clusterPrivate){
+        clusterPrivate.clearMarkers();
+    }
+
+    if(clusterPlanned){
+        clusterPlanned.clearMarkers();
     }
 }
 </script>
