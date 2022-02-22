@@ -79,6 +79,12 @@ export const RegularStackRoute = {
     PRIVACY_POLICY_SCREEN: 'PrivacyPolicy',
 };
 
+export const KrossWorldTabRoute = {
+    BIKE_MAP_SCREEN: 'WorldBikeMap',
+    MY_ROUTES_SCREEN: 'WorldMyRoutes',
+    PLANNING_SCREEN: 'WorldPlannedRoutes',
+};
+
 /**
  * TODO: those names are duplicated in 'RegularStackRoute'
  * and should be deleted in the future.

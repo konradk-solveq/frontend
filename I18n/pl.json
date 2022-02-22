@@ -319,9 +319,11 @@
         "header": "Świat KROSS",
         "title": "Dołącz do drużyny \n KROSS",
         "footer": "Już wkrótce razem z nami będziesz mógł ruszyć \n w trasę, by odkrywać nowe ścieżki rowerowe \n i budować Mapę Rowerową.",
-        "btnBikeMap": "Mapa rowerowa",
+        "btnBikeMap": "Publiczne",
         "btnMyRoutes": "Moje trasy",
-        "btnPlaned": "Planowane",
+        "btnPlanned": "Zapisane",
+        "btnFilters": "Filtruj",
+        "btnSort": "Sortuj",
         "maps": {
             "filtersTitle": "Filtry",
             "filtersDescription": "Określ parametry, które pozwolą zawęzić listę wyświetlanych tras.",
@@ -375,7 +377,7 @@
             }
         },
         "BikeMap": {
-            "title": "Zobacz rekomendowane trasy w okolicy",
+            "title": "Trasy w okolicy",
             "distanceUnit": "km",
             "timeUnit": "h",
             "noTitle": "Brak tytułu",
@@ -419,6 +421,9 @@
         "planning": "Planowane",
         "bottomTile": {
             "finMoreInfo": "Sprawdź trasę na mapie"
+        },
+        "container": {
+            "closeButton": "Wyjdź"
         }
 
     },

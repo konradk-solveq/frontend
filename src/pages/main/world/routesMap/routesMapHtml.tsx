@@ -98,6 +98,7 @@ function initMap() {
         draggable: true,
         scrollwheel: true,
         disableDoubleClickZoom: false,
+        keyboardShortcuts: false,
         styles: [
             {
                 featureType: 'administrative.country',
@@ -451,16 +452,6 @@ function initMap() {
 
     setPosOnMap(pos)
 
-    // dla chowania apli z adresem
-    map.addListener('click', () => {
-        window.ReactNativeWebView.postMessage("clickMap");
-        marks.forEach(m => {
-            m.setOptions({
-                icon: 'map_route_marker.png',
-            });
-        })
-    });
-
     // dla zmiany pozycji regionu
     map.addListener('dragend', getRgion);
     map.addListener('zoom_changed', getRgion);
@@ -470,120 +461,104 @@ function initMap() {
 }
 
 // dodawanie punktów po zmianie regionu
-let marks = [];
+const marks = [];
+const privateMarks = [];
+const plannedMarks = [];
 let clusterPublic = null;
+let clusterPrivate = null;
+let clusterPlanned = null;
 
 const setMarks = places => {
     for (let p of places) {
         let id = p.details.id;
         if (marks.some(e => e.id == id)) continue;
+        if (privateMarks.some(e => e.id == id)) continue;
+        if (plannedMarks.some(e => e.id == id)) continue;
+        
+        const isPlanned = p.markerTypes?.includes('PLANNED');
+        const isPrivate = p.markerTypes?.includes('PRIVATE');
+        const privateImage = isPrivate && 'pinroute_private.png';
+        const plannedImage = isPlanned && 'pinroute_planned.png';
+        const publicImage = 'pinroute_published.png';
+        const markerImage = privateImage || plannedImage || publicImage;
 
         let mark = new google.maps.Marker({
             id,
             position: new google.maps.LatLng(p.lat, p.lng),
-            icon: 'map_route_marker.png',
+            icon: markerImage,
             map: map,
             details: p.details,
             markerTypes: [...p.markerTypes]
         });
 
-        marks.push(mark);
+        /**
+         * Private have the highest priority, then planned and public as last.
+         */
+        if(isPrivate){
+            privateMarks.push(mark);
+        }else if(isPlanned){
+            plannedMarks.push(mark);
+        }else{
+            marks.push(mark);
+        }
         window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+customJsonStringify(mark?.markerTypes, ''));
-        // do pokazywania alpi z adresem
-        google.maps.event.addDomListener(mark, 'click', function() {
-            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify(mark?.details, ''));
-            marks.forEach(m => {
-                m.setOptions({
-                    icon: 'map_route_marker.png',
-                });
-            })
-            mark.setOptions({
-                icon: 'current_map_route_marker.png',
-            }); 
-        });
     }
 
     clusterPublic = new MarkerClusterer(map, marks, {
         ignoreHidden: true,
+        minimumClusterSize: 3,
         styles: [{
-                url: "shop_empty.png",
+                url: "pinroute_published_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
+                textSize: 17,
                 textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
+                width: 32,
+                height: 32,
+                anchor:[16,16],
             },
-            {
-                url: "shop_empty.png",
+        ]
+    });
+    clusterPrivate = new MarkerClusterer(map, privateMarks, {
+        ignoreHidden: true,
+        minimumClusterSize: 3,
+        styles: [{
+                url: "pinroute_private_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
+                textSize: 17,
                 textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
+                width: 32,
+                height: 32,
+                anchor:[16,16],
             },
-            {
-                url: "shop_empty.png",
+        ]
+    });
+    clusterPlanned = new MarkerClusterer(map, clusterPlanned, {
+        ignoreHidden: true,
+        minimumClusterSize: 3,
+        styles: [{
+                url: "pinroute_panned_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
+                textSize: 17,
                 textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
+                width: 32,
+                height: 32,
+                anchor:[16,16],
             },
         ]
     });
 }
 
-const setPublic = () => {
-    try{
-        marks?.forEach(m => m.markerTypes?.includes('PUBLIC') ? m.setVisible(true) : m.setVisible(false));
-        clusterPublic.repaint();
-    }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PUBLIC#$#"+customJsonStringify(e, ''));
-    }
-}
-
-const setFavourites = () => {
-    try{
-        marks?.forEach(m => m.markerTypes?.includes('FAVORITE') ? m.setVisible(true) : m.setVisible(false));
-        clusterPublic.repaint();
-    }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT FAVORITE#$#"+customJsonStringify(e, ''));
-    }
-}
-
-const setPrivate = () => {
-    try{
-        marks?.forEach(m => m.markerTypes?.includes('OWN') ? m.setVisible(true) : m.setVisible(false));
-        clusterPublic.repaint();
-    }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#"+customJsonStringify(e, ''));
-    }
-}
-
 const clearMarkersCluster = () => {
     if(clusterPublic){
         clusterPublic.clearMarkers();
+    }
+
+    if(clusterPrivate){
+        clusterPrivate.clearMarkers();
+    }
+
+    if(clusterPlanned){
+        clusterPlanned.clearMarkers();
     }
 }
 </script>

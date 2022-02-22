@@ -26,7 +26,7 @@ describe('[UiTranslation actions]', () => {
          */
         /* synch data */
 
-        const getUiTranslation = getApiCallMock({
+        const getUiTranslation = await getApiCallMock({
             data: {
                 code: 'code',
                 version: 'version',
@@ -34,7 +34,6 @@ describe('[UiTranslation actions]', () => {
                 controlSum: 'controlSum',
             },
             status: 200,
-            error: '',
         });
 
         actionsLog = store.getActions();

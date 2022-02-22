@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Buttons/BigRed Basic 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "height": 40,
+        "width": 200,
+      }
+    }
+  >
+    <View>
+      <RNGestureHandlerButton
+        collapsable={false}
+        onGestureEvent={[Function]}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+        onHandlerStateChange={[Function]}
+        rippleColor={0}
+        testID="big-red-btn"
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          nativeID="animatedComponent"
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#d8232a",
+              "borderRadius": 50,
+              "display": "flex",
+              "height": "100%",
+              "justifyContent": "center",
+              "opacity": 1,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "white",
+                  "fontFamily": "DIN2014Narrow-Bold",
+                  "fontSize": 20,
+                  "textAlign": "center",
+                },
+                undefined,
+              ]
+            }
+          >
+            HELLO!
+          </Text>
+        </View>
+      </RNGestureHandlerButton>
+    </View>
+  </View>
+</View>
+`;

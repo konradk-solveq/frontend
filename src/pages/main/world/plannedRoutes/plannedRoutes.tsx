@@ -1,8 +1,8 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
-import {RegularStackRoute} from '@navigation/route';
+import {KrossWorldTabRoute, RegularStackRoute} from '@navigation/route';
 import {
     userNameSelector,
     favouritesMapsSelector,
@@ -10,7 +10,7 @@ import {
     refreshMapsSelector,
     selectorMapTypeEnum,
 } from '@storage/selectors';
-import {useAppSelector} from '@hooks/redux';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
@@ -23,6 +23,12 @@ import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import EmptyList from './emptyList';
 
 import styles from './style';
+import {nextPlannedPaginationCoursor} from '@storage/selectors/map';
+import {fetchMapsList, fetchPlannedMapsList} from '@storage/actions';
+import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
+import {PickedFilters} from '@interfaces/form';
+import FiltersModal from '@pages/main/world/components/filters/filtersModal';
+import {FiltersButton, SortButton} from '@pages/main/world/components/buttons';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -35,19 +41,13 @@ interface RenderItem {
     index: number;
 }
 
-interface IProps {
-    onPress: () => void;
-    onRefresh: () => void;
-    onLoadMore: () => void;
-}
-
-const PlannedRoutes: React.FC<IProps> = ({
-    onPress,
-    onRefresh,
-    onLoadMore,
-}: IProps) => {
+interface IProps {}
+const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld.PlannedRoutes');
+    const {t: mwt} = useMergedTranslation('MainWorld');
     const navigation = useNavigation();
+    const nextCoursor = useAppSelector(nextPlannedPaginationCoursor);
+    const dispatch = useAppDispatch();
     const userName = useAppSelector(userNameSelector);
     const favouriteMaps = useAppSelector(favouritesMapsSelector);
     const isLoading = useAppSelector(loadingMapsSelector);
@@ -60,11 +60,47 @@ const PlannedRoutes: React.FC<IProps> = ({
         favouriteMaps?.length,
     );
 
+    const [showFiltersModal, setShowFiltersModal] = useState(false);
+    const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
+
+    const onRefresh = useCallback(
+        () => dispatch(fetchPlannedMapsList(undefined, savedMapFilters)),
+        [dispatch, savedMapFilters],
+    );
+    const onLoadMore = useCallback(
+        () => dispatch(fetchPlannedMapsList(nextCoursor, savedMapFilters)),
+        [dispatch, nextCoursor, savedMapFilters],
+    );
+
+    useEffect(() => {
+        const isValid = checkIfContainsFitlers(savedMapFilters);
+        if (isValid) {
+            dispatch(fetchMapsList(undefined, savedMapFilters));
+            return;
+        }
+    }, [dispatch, savedMapFilters]);
+
+    const onFiltersModalOpenHandler = () => {
+        setShowFiltersModal(true);
+    };
+    const onFiltersModalCloseHandler = () => {
+        setShowFiltersModal(false);
+    };
+
+    const onFiltersSaveHandler = (picked: PickedFilters) => {
+        setShowFiltersModal(false);
+        setSavedMapFilters(picked);
+    };
+
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);
         if (mapID) {
             setActiveMapID(mapID);
         }
+    };
+
+    const emptyListButtonHandler = () => {
+        navigation.navigate(KrossWorldTabRoute.BIKE_MAP_SCREEN);
     };
 
     const onPressTileHandler = (mapID?: string) => {
@@ -103,7 +139,7 @@ const PlannedRoutes: React.FC<IProps> = ({
     };
 
     if (!favouriteMaps?.length) {
-        return <EmptyList onPress={onPress} />;
+        return <EmptyList onPress={emptyListButtonHandler} />;
     }
 
     const renderListLoader = () => {
@@ -128,14 +164,33 @@ const PlannedRoutes: React.FC<IProps> = ({
                 isPublished /* Planned maps can be picked from [published only (by default) */
                 mapType={selectorMapTypeEnum.favourite}
             />
+            <FiltersModal
+                onClose={onFiltersModalCloseHandler}
+                definedFilters={savedMapFilters}
+                onSave={onFiltersSaveHandler}
+                showModal={showFiltersModal}
+            />
             <View style={styles.horizontalSpace}>
                 <FlatList
                     keyExtractor={item => item.id}
                     ListHeaderComponent={
-                        <Text style={styles.header}>
-                            {userName || t('defaultUserName')}
-                            {t('title')}
-                        </Text>
+                        <>
+                            <View style={styles.topButtonsContainer}>
+                                <SortButton
+                                    onPress={() => {}}
+                                    title={mwt('btnSort')}
+                                    style={styles.topButton}
+                                />
+                                <FiltersButton
+                                    onPress={onFiltersModalOpenHandler}
+                                    style={styles.topButton}
+                                />
+                            </View>
+                            <Text style={styles.header}>
+                                {userName || t('defaultUserName')}
+                                {t('title')}
+                            </Text>
+                        </>
                     }
                     data={favouriteMaps}
                     renderItem={renderItem}

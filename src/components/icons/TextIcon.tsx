@@ -1,0 +1,41 @@
+import React from 'react';
+import {StyleSheet, Text, ViewStyle} from 'react-native';
+
+import {getFFontSize} from '@theme/utils/appLayoutDimensions';
+
+import {MykrossIconFont} from '@theme/enums/iconFonts';
+import colors from '@theme/colors';
+
+interface IProps {
+    icon: MykrossIconFont /* Font symbol from 'mykross' font */;
+    iconColor?: string;
+    iconSize?: number;
+    style?: ViewStyle;
+    testID?: string;
+}
+
+const TextIcon: React.FC<IProps> = ({
+    icon,
+    iconColor = colors.red,
+    iconSize = 20,
+    style,
+    testID = 'text-icon-test-id',
+}: IProps) => {
+    const iSize = getFFontSize(iconSize);
+    return (
+        <Text
+            testID={testID}
+            style={[styles.icon, {color: iconColor, fontSize: iSize}, style]}>
+            {icon}
+        </Text>
+    );
+};
+
+const styles = StyleSheet.create({
+    icon: {
+        fontFamily: 'mykross',
+        textAlign: 'center',
+    },
+});
+
+export default TextIcon;

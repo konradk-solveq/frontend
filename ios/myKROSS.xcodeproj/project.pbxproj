@@ -11,7 +11,6 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1555044E1027EAB08C3AD517 /* libPods-myKROSS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96604D9CD6E5D881F5103B4E /* libPods-myKROSS.a */; };
 		1D13B1F42657B94D00A4F34A /* DIN2014Narrow-Bold.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */; };
 		1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */; };
 		1D13B2042657B97F00A4F34A /* DIN2014Narrow-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */; };
@@ -34,22 +33,38 @@
 		1D4E86A3266A669B006FF848 /* serviceshop_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869D266A669A006FF848 /* serviceshop_marker.png */; };
 		1D4E86A4266A669B006FF848 /* shop_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869E266A669A006FF848 /* shop_empty.png */; };
 		1D4E86A5266A669B006FF848 /* shop_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E869F266A669B006FF848 /* shop_marker.png */; };
-		1DE20505271459D000F57873 /* mykross.woff in Resources */ = {isa = PBXBuildFile; fileRef = 1DE204FF271459D000F57873 /* mykross.woff */; };
-		1DE20506271459D000F57873 /* mykross.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20500271459D000F57873 /* mykross.woff2 */; };
-		1DE20507271459D000F57873 /* mykross.eot in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20501271459D000F57873 /* mykross.eot */; };
-		1DE20508271459D000F57873 /* mykross.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20502271459D000F57873 /* mykross.ttf */; };
-		1DE20509271459D000F57873 /* mykross.svg in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20503271459D000F57873 /* mykross.svg */; };
-		1DE2050A271459D000F57873 /* mykross.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1DE20504271459D000F57873 /* mykross.otf */; };
+		2813CA2027C4E35F003B6128 /* mykross.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2813CA1A27C4E35E003B6128 /* mykross.ttf */; };
+		2813CA2127C4E35F003B6128 /* mykross.woff in Resources */ = {isa = PBXBuildFile; fileRef = 2813CA1B27C4E35E003B6128 /* mykross.woff */; };
+		2813CA2227C4E35F003B6128 /* mykross.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 2813CA1C27C4E35E003B6128 /* mykross.woff2 */; };
+		2813CA2327C4E35F003B6128 /* mykross.svg in Resources */ = {isa = PBXBuildFile; fileRef = 2813CA1D27C4E35E003B6128 /* mykross.svg */; };
+		2813CA2427C4E35F003B6128 /* mykross.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2813CA1E27C4E35E003B6128 /* mykross.otf */; };
+		2813CA2527C4E35F003B6128 /* mykross.eot in Resources */ = {isa = PBXBuildFile; fileRef = 2813CA1F27C4E35E003B6128 /* mykross.eot */; };
 		51AFA57D87D54EC33FD696BF /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9D1E9358F48E7BA61D8626 /* ExpoModulesProvider.swift */; };
+		5D46DB1D2EF54711A4BBF909 /* libPods-myKROSS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 361ADC732C7E58CE7FDBEBA3 /* libPods-myKROSS.a */; };
 		782A9E19B835E37953429E3A /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27264724D2EF382DC4CFB75 /* ExpoModulesProvider.swift */; };
-		7AF20AC959A188A771013013 /* libPods-myKROSS-myKROSSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D3FCCD7B3AD7800C08AE509 /* libPods-myKROSS-myKROSSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9009F68626452075005FBC58 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9009F68826452075005FBC58 /* InfoPlist.strings */; };
 		901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */; };
+		9049DB4E27C3FB9C001B065B /* pinroute_published.png in Resources */ = {isa = PBXBuildFile; fileRef = 9049DB4B27C3FB9B001B065B /* pinroute_published.png */; };
+		9049DB4F27C3FB9C001B065B /* pinroute_planned.png in Resources */ = {isa = PBXBuildFile; fileRef = 9049DB4C27C3FB9B001B065B /* pinroute_planned.png */; };
+		9049DB5027C3FB9C001B065B /* pinroute_private.png in Resources */ = {isa = PBXBuildFile; fileRef = 9049DB4D27C3FB9B001B065B /* pinroute_private.png */; };
+		9049DB5427C43589001B065B /* pinroute_planned_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 9049DB5127C43589001B065B /* pinroute_planned_empty.png */; };
+		9049DB5527C43589001B065B /* pinroute_published_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 9049DB5227C43589001B065B /* pinroute_published_empty.png */; };
+		9049DB5627C43589001B065B /* pinroute_private_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 9049DB5327C43589001B065B /* pinroute_private_empty.png */; };
 		904F37B026A1875000371264 /* map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 904F37AF26A1875000371264 /* map_route_marker.png */; };
+		909E2E8827BFA2E40062F828 /* DIN2014-Demi.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7C27BFA2E20062F828 /* DIN2014-Demi.eot */; };
+		909E2E8927BFA2E40062F828 /* DIN2014-Regular.eot in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7D27BFA2E20062F828 /* DIN2014-Regular.eot */; };
+		909E2E8A27BFA2E40062F828 /* DIN2014-Regular.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E7E27BFA2E20062F828 /* DIN2014-Regular.woff2 */; };
+		909E2E8C27BFA2E40062F828 /* DIN2014-Regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8027BFA2E20062F828 /* DIN2014-Regular.svg */; };
+		909E2E8D27BFA2E40062F828 /* DIN2014-Demi.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8127BFA2E30062F828 /* DIN2014-Demi.woff2 */; };
+		909E2E8F27BFA2E40062F828 /* DIN2014-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8327BFA2E30062F828 /* DIN2014-Regular.ttf */; };
+		909E2E9027BFA2E40062F828 /* DIN2014-Demi.svg in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8427BFA2E40062F828 /* DIN2014-Demi.svg */; };
+		909E2E9127BFA2E40062F828 /* DIN2014-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8527BFA2E40062F828 /* DIN2014-Regular.otf */; };
+		909E2E9427BFA2E50062F828 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 905F172A27956F7500BC6C75 /* Config.xcconfig */; };
 		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
 		C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
+		D2B624DF8B6AB827393AADDD /* libPods-myKROSS-myKROSSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4202A231274289D1F11516F8 /* libPods-myKROSS-myKROSSTests.a */; };
 		D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */; };
 /* End PBXBuildFile section */
 
@@ -64,12 +79,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0005BE962B1BE3308D3B580B /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; sourceTree = "<group>"; };
 		00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Light.otf"; path = "../assets/fonts/DIN2014Narrow-Light.otf"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* myKROSSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myKROSSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* myKROSSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myKROSSTests.m; sourceTree = "<group>"; };
-		01ED46AD7CBDEA6F6153A630 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Bold.otf"; path = "../assets/fonts/DIN2014Narrow-Bold.otf"; sourceTree = "<group>"; };
 		0F9D1E9358F48E7BA61D8626 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-myKROSS-myKROSSTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* myKROSS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myKROSS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +91,9 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		18BBA092F9FBF74C64D66988 /* Pods-myKROSS-myKROSSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.release.xcconfig"; sourceTree = "<group>"; };
+		1544B967EB28ACD37EAEDF7C /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; sourceTree = "<group>"; };
+		1924B9B3C3E6B4171E637C32 /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.release.xcconfig"; sourceTree = "<group>"; };
+		1B67E5026DEE4FD963D86056 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
 		1D13B1F32657B94D00A4F34A /* DIN2014Narrow-Bold.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Bold.eot"; path = "../assets/fonts/DIN2014Narrow-Bold.eot"; sourceTree = "<group>"; };
 		1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "DIN2014Narrow-Light.svg"; path = "../assets/fonts/DIN2014Narrow-Light.svg"; sourceTree = "<group>"; };
 		1D13B1F62657B97F00A4F34A /* DIN2014Narrow-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014Narrow-Regular.eot"; path = "../assets/fonts/DIN2014Narrow-Regular.eot"; sourceTree = "<group>"; };
@@ -101,37 +116,55 @@
 		1D4E869D266A669A006FF848 /* serviceshop_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = serviceshop_marker.png; path = ../assets/serviceshop_marker.png; sourceTree = "<group>"; };
 		1D4E869E266A669A006FF848 /* shop_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shop_empty.png; path = ../assets/shop_empty.png; sourceTree = "<group>"; };
 		1D4E869F266A669B006FF848 /* shop_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shop_marker.png; path = ../assets/shop_marker.png; sourceTree = "<group>"; };
-		1DE204FF271459D000F57873 /* mykross.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff; path = ../assets/fonts/mykross.woff; sourceTree = "<group>"; };
-		1DE20500271459D000F57873 /* mykross.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff2; path = ../assets/fonts/mykross.woff2; sourceTree = "<group>"; };
-		1DE20501271459D000F57873 /* mykross.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.eot; path = ../assets/fonts/mykross.eot; sourceTree = "<group>"; };
-		1DE20502271459D000F57873 /* mykross.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.ttf; path = ../assets/fonts/mykross.ttf; sourceTree = "<group>"; };
-		1DE20503271459D000F57873 /* mykross.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = mykross.svg; path = ../assets/fonts/mykross.svg; sourceTree = "<group>"; };
-		1DE20504271459D000F57873 /* mykross.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.otf; path = ../assets/fonts/mykross.otf; sourceTree = "<group>"; };
-		1E04EE7AA998AA05F6A15C9C /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		331BC8AFE8B97D2CBE1E6685 /* Pods-myKROSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.debug.xcconfig"; sourceTree = "<group>"; };
-		5C419F93D4D6BE6978E043B6 /* Pods-myKROSS.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.release.xcconfig"; sourceTree = "<group>"; };
-		5D3FCCD7B3AD7800C08AE509 /* libPods-myKROSS-myKROSSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS-myKROSSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E453865C60F630016BB217C /* Pods-myKROSS.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.debug.xcconfig"; sourceTree = "<group>"; };
-		7B929008771FAB185B970970 /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.release.xcconfig"; sourceTree = "<group>"; };
-		7C14E2F83412F4FD95FE6AF5 /* Pods-myKROSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.release.xcconfig"; sourceTree = "<group>"; };
+		2095FD82E30D2EAE927DD584 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2813CA1A27C4E35E003B6128 /* mykross.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.ttf; path = ../assets/fonts/mykross.ttf; sourceTree = "<group>"; };
+		2813CA1B27C4E35E003B6128 /* mykross.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff; path = ../assets/fonts/mykross.woff; sourceTree = "<group>"; };
+		2813CA1C27C4E35E003B6128 /* mykross.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.woff2; path = ../assets/fonts/mykross.woff2; sourceTree = "<group>"; };
+		2813CA1D27C4E35E003B6128 /* mykross.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = mykross.svg; path = ../assets/fonts/mykross.svg; sourceTree = "<group>"; };
+		2813CA1E27C4E35E003B6128 /* mykross.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.otf; path = ../assets/fonts/mykross.otf; sourceTree = "<group>"; };
+		2813CA1F27C4E35E003B6128 /* mykross.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.eot; path = ../assets/fonts/mykross.eot; sourceTree = "<group>"; };
+		35713BD63A13A1F3E8BED426 /* Pods-myKROSS.dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.debug.xcconfig"; sourceTree = "<group>"; };
+		361ADC732C7E58CE7FDBEBA3 /* libPods-myKROSS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4202A231274289D1F11516F8 /* libPods-myKROSS-myKROSSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS-myKROSSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44540C7FEA5269BC105A80F6 /* Pods-myKROSS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.debug.xcconfig"; sourceTree = "<group>"; };
+		53B50B5C58A98657C901E8BE /* Pods-myKROSS-myKROSSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.release.xcconfig"; sourceTree = "<group>"; };
+		6890A7811C58FA79CD07BBB4 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8479AD0159FEBDF70D01541A /* Pods-myKROSS.feat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.feat.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.feat.debug.xcconfig"; sourceTree = "<group>"; };
 		9009F68726452075005FBC58 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		901D6EAB26416F3B00A247E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9039C9492636A74E00C355DE /* myKROSS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = myKROSS.entitlements; sourceTree = "<group>"; };
+		9049DB4B27C3FB9B001B065B /* pinroute_published.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_published.png; path = ../src/assets/images/pinroute_published.png; sourceTree = "<group>"; };
+		9049DB4C27C3FB9B001B065B /* pinroute_planned.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_planned.png; path = ../src/assets/images/pinroute_planned.png; sourceTree = "<group>"; };
+		9049DB4D27C3FB9B001B065B /* pinroute_private.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_private.png; path = ../src/assets/images/pinroute_private.png; sourceTree = "<group>"; };
+		9049DB5127C43589001B065B /* pinroute_planned_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_planned_empty.png; path = ../src/assets/images/pinroute_planned_empty.png; sourceTree = "<group>"; };
+		9049DB5227C43589001B065B /* pinroute_published_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_published_empty.png; path = ../src/assets/images/pinroute_published_empty.png; sourceTree = "<group>"; };
+		9049DB5327C43589001B065B /* pinroute_private_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_private_empty.png; path = ../src/assets/images/pinroute_private_empty.png; sourceTree = "<group>"; };
 		904F37AF26A1875000371264 /* map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_route_marker.png; path = ../src/assets/images/map_route_marker.png; sourceTree = "<group>"; };
 		905F172A27956F7500BC6C75 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		909E2E7C27BFA2E20062F828 /* DIN2014-Demi.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.eot"; path = "../assets/fonts/DIN2014-Demi.eot"; sourceTree = "<group>"; };
+		909E2E7D27BFA2E20062F828 /* DIN2014-Regular.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.eot"; path = "../assets/fonts/DIN2014-Regular.eot"; sourceTree = "<group>"; };
+		909E2E7E27BFA2E20062F828 /* DIN2014-Regular.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.woff2"; path = "../assets/fonts/DIN2014-Regular.woff2"; sourceTree = "<group>"; };
+		909E2E7F27BFA2E20062F828 /* DIN2014-Demi.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.woff"; path = "../assets/fonts/DIN2014-Demi.woff"; sourceTree = "<group>"; };
+		909E2E8027BFA2E20062F828 /* DIN2014-Regular.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "DIN2014-Regular.svg"; path = "../assets/fonts/DIN2014-Regular.svg"; sourceTree = "<group>"; };
+		909E2E8127BFA2E30062F828 /* DIN2014-Demi.woff2 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.woff2"; path = "../assets/fonts/DIN2014-Demi.woff2"; sourceTree = "<group>"; };
+		909E2E8227BFA2E30062F828 /* DIN2014-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.woff"; path = "../assets/fonts/DIN2014-Regular.woff"; sourceTree = "<group>"; };
+		909E2E8327BFA2E30062F828 /* DIN2014-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.ttf"; path = "../assets/fonts/DIN2014-Regular.ttf"; sourceTree = "<group>"; };
+		909E2E8427BFA2E40062F828 /* DIN2014-Demi.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "DIN2014-Demi.svg"; path = "../assets/fonts/DIN2014-Demi.svg"; sourceTree = "<group>"; };
+		909E2E8527BFA2E40062F828 /* DIN2014-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Regular.otf"; path = "../assets/fonts/DIN2014-Regular.otf"; sourceTree = "<group>"; };
+		909E2E8627BFA2E40062F828 /* DIN2014-Demi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.ttf"; path = "../assets/fonts/DIN2014-Demi.ttf"; sourceTree = "<group>"; };
+		909E2E8727BFA2E40062F828 /* DIN2014-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.otf"; path = "../assets/fonts/DIN2014-Demi.otf"; sourceTree = "<group>"; };
 		90B996A826A840580015E097 /* current_map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = current_map_route_marker.png; path = ../src/assets/images/current_map_route_marker.png; sourceTree = "<group>"; };
-		921EDEB91B42C5DE5BBCE3F6 /* Pods-myKROSS.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.release.xcconfig"; sourceTree = "<group>"; };
-		952EBC2A89F9D279A3D27FF9 /* Pods-myKROSS.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.feat.release.xcconfig"; sourceTree = "<group>"; };
-		96604D9CD6E5D881F5103B4E /* libPods-myKROSS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myKROSS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C075D16BBBE35AFDB654347 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.dev.release.xcconfig"; sourceTree = "<group>"; };
-		ABDC72DE2C60BC6C298BF1FC /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; sourceTree = "<group>"; };
+		94E4D1CB2E5889F60B43DC2D /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; sourceTree = "<group>"; };
+		9520F849C964809E7377BBBB /* Pods-myKROSS.feat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.feat.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.feat.debug.xcconfig"; sourceTree = "<group>"; };
+		AFE069A0E69FFD4D520DF584 /* Pods-myKROSS.dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.dev.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.dev.release.xcconfig"; sourceTree = "<group>"; };
 		B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Regular.otf"; path = "../assets/fonts/DIN2014Narrow-Regular.otf"; sourceTree = "<group>"; };
+		B159CB192F3ECF7C736223FE /* Pods-myKROSS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.release.xcconfig"; sourceTree = "<group>"; };
 		B27264724D2EF382DC4CFB75 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-myKROSS/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		D7E00CA3A14F1EB2DA1FF407 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.feat.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.feat.debug.xcconfig"; sourceTree = "<group>"; };
+		BFFFD36E372EA71DD813DF4F /* Pods-myKROSS.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.release.xcconfig"; sourceTree = "<group>"; };
+		DCB72C731EC69F9230060BD7 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.feat.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.feat.debug.xcconfig"; sourceTree = "<group>"; };
+		E3F737EDFAEC87C23AC8EB8A /* Pods-myKROSS.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.feat.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FA7B295336174C2DBCCAAF42 /* Pods-myKROSS.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.debug.xcconfig"; sourceTree = "<group>"; };
+		F94750443060D06E41BCD51A /* Pods-myKROSS.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AF20AC959A188A771013013 /* libPods-myKROSS-myKROSSTests.a in Frameworks */,
+				D2B624DF8B6AB827393AADDD /* libPods-myKROSS-myKROSSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1555044E1027EAB08C3AD517 /* libPods-myKROSS.a in Frameworks */,
+				5D46DB1D2EF54711A4BBF909 /* libPods-myKROSS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,8 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				96604D9CD6E5D881F5103B4E /* libPods-myKROSS.a */,
-				5D3FCCD7B3AD7800C08AE509 /* libPods-myKROSS-myKROSSTests.a */,
+				361ADC732C7E58CE7FDBEBA3 /* libPods-myKROSS.a */,
+				4202A231274289D1F11516F8 /* libPods-myKROSS-myKROSSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -208,22 +241,22 @@
 		363CC143E32C8CFABED66E18 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				331BC8AFE8B97D2CBE1E6685 /* Pods-myKROSS.debug.xcconfig */,
-				5E453865C60F630016BB217C /* Pods-myKROSS.dev.debug.xcconfig */,
-				FA7B295336174C2DBCCAAF42 /* Pods-myKROSS.test.debug.xcconfig */,
-				8479AD0159FEBDF70D01541A /* Pods-myKROSS.feat.debug.xcconfig */,
-				7C14E2F83412F4FD95FE6AF5 /* Pods-myKROSS.release.xcconfig */,
-				5C419F93D4D6BE6978E043B6 /* Pods-myKROSS.dev.release.xcconfig */,
-				921EDEB91B42C5DE5BBCE3F6 /* Pods-myKROSS.test.release.xcconfig */,
-				952EBC2A89F9D279A3D27FF9 /* Pods-myKROSS.feat.release.xcconfig */,
-				01ED46AD7CBDEA6F6153A630 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */,
-				1E04EE7AA998AA05F6A15C9C /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */,
-				0005BE962B1BE3308D3B580B /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */,
-				D7E00CA3A14F1EB2DA1FF407 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */,
-				18BBA092F9FBF74C64D66988 /* Pods-myKROSS-myKROSSTests.release.xcconfig */,
-				9C075D16BBBE35AFDB654347 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */,
-				7B929008771FAB185B970970 /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */,
-				ABDC72DE2C60BC6C298BF1FC /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */,
+				44540C7FEA5269BC105A80F6 /* Pods-myKROSS.debug.xcconfig */,
+				35713BD63A13A1F3E8BED426 /* Pods-myKROSS.dev.debug.xcconfig */,
+				F94750443060D06E41BCD51A /* Pods-myKROSS.test.debug.xcconfig */,
+				9520F849C964809E7377BBBB /* Pods-myKROSS.feat.debug.xcconfig */,
+				B159CB192F3ECF7C736223FE /* Pods-myKROSS.release.xcconfig */,
+				AFE069A0E69FFD4D520DF584 /* Pods-myKROSS.dev.release.xcconfig */,
+				BFFFD36E372EA71DD813DF4F /* Pods-myKROSS.test.release.xcconfig */,
+				E3F737EDFAEC87C23AC8EB8A /* Pods-myKROSS.feat.release.xcconfig */,
+				2095FD82E30D2EAE927DD584 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */,
+				1B67E5026DEE4FD963D86056 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */,
+				1544B967EB28ACD37EAEDF7C /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */,
+				DCB72C731EC69F9230060BD7 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */,
+				53B50B5C58A98657C901E8BE /* Pods-myKROSS-myKROSSTests.release.xcconfig */,
+				6890A7811C58FA79CD07BBB4 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */,
+				1924B9B3C3E6B4171E637C32 /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */,
+				94E4D1CB2E5889F60B43DC2D /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -238,19 +271,25 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2813CA1F27C4E35E003B6128 /* mykross.eot */,
+				2813CA1E27C4E35E003B6128 /* mykross.otf */,
+				2813CA1D27C4E35E003B6128 /* mykross.svg */,
+				2813CA1A27C4E35E003B6128 /* mykross.ttf */,
+				2813CA1B27C4E35E003B6128 /* mykross.woff */,
+				2813CA1C27C4E35E003B6128 /* mykross.woff2 */,
 				905F172A27956F7500BC6C75 /* Config.xcconfig */,
-				1DE20501271459D000F57873 /* mykross.eot */,
-				1DE20504271459D000F57873 /* mykross.otf */,
-				1DE20503271459D000F57873 /* mykross.svg */,
-				1DE20502271459D000F57873 /* mykross.ttf */,
-				1DE204FF271459D000F57873 /* mykross.woff */,
-				1DE20500271459D000F57873 /* mykross.woff2 */,
 				1D1631BD268CBEB8007DB5E1 /* my_location.png */,
 				1D4E869A266A669A006FF848 /* service_empty.png */,
 				1D4E869C266A669A006FF848 /* service_marker.png */,
 				1D4E869B266A669A006FF848 /* serviceshop_empty.png */,
 				1D4E869D266A669A006FF848 /* serviceshop_marker.png */,
 				904F37AF26A1875000371264 /* map_route_marker.png */,
+				9049DB4C27C3FB9B001B065B /* pinroute_planned.png */,
+				9049DB4D27C3FB9B001B065B /* pinroute_private.png */,
+				9049DB4B27C3FB9B001B065B /* pinroute_published.png */,
+				9049DB5127C43589001B065B /* pinroute_planned_empty.png */,
+				9049DB5327C43589001B065B /* pinroute_private_empty.png */,
+				9049DB5227C43589001B065B /* pinroute_published_empty.png */,
 				1D4E869E266A669A006FF848 /* shop_empty.png */,
 				1D4E869F266A669B006FF848 /* shop_marker.png */,
 				1D13B1FF2657B97F00A4F34A /* DIN2014Narrow-Bold.svg */,
@@ -259,6 +298,18 @@
 				1D13B2012657B97F00A4F34A /* DIN2014Narrow-Bold.woff */,
 				1D13B1FB2657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 */,
 				1D13B1FE2657B97F00A4F34A /* DIN2014Narrow-Light.eot */,
+				909E2E7C27BFA2E20062F828 /* DIN2014-Demi.eot */,
+				909E2E8727BFA2E40062F828 /* DIN2014-Demi.otf */,
+				909E2E8427BFA2E40062F828 /* DIN2014-Demi.svg */,
+				909E2E8627BFA2E40062F828 /* DIN2014-Demi.ttf */,
+				909E2E7F27BFA2E20062F828 /* DIN2014-Demi.woff */,
+				909E2E8127BFA2E30062F828 /* DIN2014-Demi.woff2 */,
+				909E2E7D27BFA2E20062F828 /* DIN2014-Regular.eot */,
+				909E2E8527BFA2E40062F828 /* DIN2014-Regular.otf */,
+				909E2E8027BFA2E20062F828 /* DIN2014-Regular.svg */,
+				909E2E8327BFA2E30062F828 /* DIN2014-Regular.ttf */,
+				909E2E8227BFA2E30062F828 /* DIN2014-Regular.woff */,
+				909E2E7E27BFA2E20062F828 /* DIN2014-Regular.woff2 */,
 				1D13B1F52657B97F00A4F34A /* DIN2014Narrow-Light.svg */,
 				1D13B1F72657B97F00A4F34A /* DIN2014Narrow-Light.ttf */,
 				1D13B2022657B97F00A4F34A /* DIN2014Narrow-Light.woff */,
@@ -326,12 +377,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "myKROSSTests" */;
 			buildPhases = (
-				51C0F774FF7AB5EF89AB918D /* [CP] Check Pods Manifest.lock */,
+				BA3322E07A6DF750C2AE743F /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				648941FE0DC08F358FAE0952 /* [CP] Embed Pods Frameworks */,
-				18D2CDC7B6376140A2E49409 /* [CP] Copy Pods Resources */,
+				E4DF68F7F1D5983FC74FABA9 /* [CP] Embed Pods Frameworks */,
+				FB84481094428C986C522A97 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,16 +398,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "myKROSS" */;
 			buildPhases = (
-				C415D3684019F85E3D96F671 /* [CP] Check Pods Manifest.lock */,
+				74CCDD638529BFA00D358285 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				1591FE856D2544E98DBA8FDE /* Upload Debug Symbols to Sentry */,
-				5C28AC457D43E80FD52CA218 /* [CP] Embed Pods Frameworks */,
-				A7C6D3C06C6753924E64CB68 /* [CP] Copy Pods Resources */,
-				176EF8690F082EC71BDF0371 /* [CP-User] [RNFB] Core Configuration */,
+				3D0969F184BF0DBC4E7C8912 /* [CP] Embed Pods Frameworks */,
+				DCC5AB4BDB2D78366C7F0D50 /* [CP] Copy Pods Resources */,
+				D842F7115AFED4E536E5FC9A /* [CP-User] [RNFB] Core Configuration */,
 			);
 			buildRules = (
 			);
@@ -418,41 +469,56 @@
 			files = (
 				1D1631BF268CBEEC007DB5E1 /* my_location.png in Resources */,
 				1D4E86A0266A669B006FF848 /* service_empty.png in Resources */,
+				9049DB4F27C3FB9C001B065B /* pinroute_planned.png in Resources */,
 				1D4E86A1266A669B006FF848 /* serviceshop_empty.png in Resources */,
+				2813CA2127C4E35F003B6128 /* mykross.woff in Resources */,
 				1D4E86A2266A669B006FF848 /* service_marker.png in Resources */,
 				1D4E86A3266A669B006FF848 /* serviceshop_marker.png in Resources */,
 				1D4E86A4266A669B006FF848 /* shop_empty.png in Resources */,
 				1D4E86A5266A669B006FF848 /* shop_marker.png in Resources */,
 				1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */,
 				904F37B026A1875000371264 /* map_route_marker.png in Resources */,
+				909E2E8927BFA2E40062F828 /* DIN2014-Regular.eot in Resources */,
+				9049DB5627C43589001B065B /* pinroute_private_empty.png in Resources */,
 				1D13B2042657B97F00A4F34A /* DIN2014Narrow-Regular.eot in Resources */,
 				1D13B2052657B97F00A4F34A /* DIN2014Narrow-Light.ttf in Resources */,
 				1D13B2062657B97F00A4F34A /* DIN2014Narrow-Regular.ttf in Resources */,
 				1D13B2072657B97F00A4F34A /* DIN2014Narrow-Regular.svg in Resources */,
 				1D13B2082657B97F00A4F34A /* DIN2014Narrow-Bold.ttf in Resources */,
 				1D13B2092657B97F00A4F34A /* DIN2014Narrow-Bold.woff2 in Resources */,
+				909E2E9427BFA2E50062F828 /* Config.xcconfig in Resources */,
 				1D13B20A2657B97F00A4F34A /* DIN2014Narrow-Light.woff2 in Resources */,
 				1D13B20B2657B97F00A4F34A /* DIN2014Narrow-Regular.woff in Resources */,
+				909E2E8F27BFA2E40062F828 /* DIN2014-Regular.ttf in Resources */,
 				1D13B20C2657B97F00A4F34A /* DIN2014Narrow-Light.eot in Resources */,
 				1D13B20D2657B97F00A4F34A /* DIN2014Narrow-Bold.svg in Resources */,
 				90B996A926A840590015E097 /* current_map_route_marker.png in Resources */,
 				1D13B20E2657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 in Resources */,
 				1D13B20F2657B97F00A4F34A /* DIN2014Narrow-Bold.woff in Resources */,
+				909E2E9027BFA2E40062F828 /* DIN2014-Demi.svg in Resources */,
 				1D13B2102657B97F00A4F34A /* DIN2014Narrow-Light.woff in Resources */,
+				909E2E9127BFA2E40062F828 /* DIN2014-Regular.otf in Resources */,
+				909E2E8A27BFA2E40062F828 /* DIN2014-Regular.woff2 in Resources */,
 				1D13B1F42657B94D00A4F34A /* DIN2014Narrow-Bold.eot in Resources */,
+				909E2E8827BFA2E40062F828 /* DIN2014-Demi.eot in Resources */,
+				909E2E8D27BFA2E40062F828 /* DIN2014-Demi.woff2 in Resources */,
+				2813CA2327C4E35F003B6128 /* mykross.svg in Resources */,
 				9009F68626452075005FBC58 /* InfoPlist.strings in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				2813CA2027C4E35F003B6128 /* mykross.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				909E2E8C27BFA2E40062F828 /* DIN2014-Regular.svg in Resources */,
+				9049DB5527C43589001B065B /* pinroute_published_empty.png in Resources */,
+				2813CA2427C4E35F003B6128 /* mykross.otf in Resources */,
 				D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */,
 				C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */,
+				2813CA2527C4E35F003B6128 /* mykross.eot in Resources */,
 				BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */,
+				2813CA2227C4E35F003B6128 /* mykross.woff2 in Resources */,
 				901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */,
-				1DE20505271459D000F57873 /* mykross.woff in Resources */,
-				1DE20506271459D000F57873 /* mykross.woff2 in Resources */,
-				1DE20507271459D000F57873 /* mykross.eot in Resources */,
-				1DE20508271459D000F57873 /* mykross.ttf in Resources */,
-				1DE20509271459D000F57873 /* mykross.svg in Resources */,
-				1DE2050A271459D000F57873 /* mykross.otf in Resources */,
+				9049DB5427C43589001B065B /* pinroute_planned_empty.png in Resources */,
+				9049DB5027C3FB9C001B065B /* pinroute_private.png in Resources */,
+				9049DB4E27C3FB9C001B065B /* pinroute_published.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,37 +553,46 @@
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym --force-foreground\n";
 		};
-		176EF8690F082EC71BDF0371 /* [CP-User] [RNFB] Core Configuration */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "[CP-User] [RNFB] Core Configuration";
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | /usr/bin/head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    _JSON_OUTPUT_BASE64=$(python -c 'import json,sys,base64;print(base64.b64encode(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"').read())['${_JSON_ROOT}'])))' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.app_data_collection_default_enabled\n  _APP_DATA_COLLECTION_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_data_collection_default_enabled\")\n  if [[ $_APP_DATA_COLLECTION_ENABLED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseDataCollectionDefaultEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_DATA_COLLECTION_ENABLED\")\")\n  fi\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.analytics_collection_deactivated\n  _ANALYTICS_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_collection_deactivated\")\n  if [[ $_ANALYTICS_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_DEACTIVATED\")\")\n  fi\n\n  # config.analytics_idfv_collection_enabled\n  _ANALYTICS_IDFV_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_idfv_collection_enabled\")\n  if [[ $_ANALYTICS_IDFV_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_IDFV_COLLECTION\")\")\n  fi\n\n  # config.analytics_default_allow_ad_personalization_signals\n  _ANALYTICS_PERSONALIZATION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_personalization_signals\")\n  if [[ $_ANALYTICS_PERSONALIZATION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_PERSONALIZATION\")\")\n  fi\n\n  # config.google_analytics_automatic_screen_reporting_enabled\n  _ANALYTICS_AUTO_SCREEN_REPORTING=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_automatic_screen_reporting_enabled\")\n  if [[ $_ANALYTICS_AUTO_SCREEN_REPORTING ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAutomaticScreenReportingEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_SCREEN_REPORTING\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_collection_deactivated\n  _PERF_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_collection_deactivated\")\n  if [[ $_PERF_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_deactivated\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_DEACTIVATED\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.in_app_messaging_auto_colllection_enabled\n  _FIAM_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"in_app_messaging_auto_collection_enabled\")\n  if [[ $_FIAM_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseInAppMessagingAutomaticDataCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_FIAM_AUTO_INIT\")\")\n  fi\n\n  # config.app_check_token_auto_refresh\n  _APP_CHECK_TOKEN_AUTO_REFRESH=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_check_token_auto_refresh\")\n  if [[ $_APP_CHECK_TOKEN_AUTO_REFRESH ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAppCheckTokenAutoRefreshEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_CHECK_TOKEN_AUTO_REFRESH\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
-		};
-		18D2CDC7B6376140A2E49409 /* [CP] Copy Pods Resources */ = {
+		3D0969F184BF0DBC4E7C8912 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		51C0F774FF7AB5EF89AB918D /* [CP] Check Pods Manifest.lock */ = {
+		74CCDD638529BFA00D358285 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myKROSS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA3322E07A6DF750C2AE743F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -539,41 +614,20 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5C28AC457D43E80FD52CA218 /* [CP] Embed Pods Frameworks */ = {
+		D842F7115AFED4E536E5FC9A /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
+			name = "[CP-User] [RNFB] Core Configuration";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | /usr/bin/head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    _JSON_OUTPUT_BASE64=$(python -c 'import json,sys,base64;print(base64.b64encode(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"').read())['${_JSON_ROOT}'])))' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.app_data_collection_default_enabled\n  _APP_DATA_COLLECTION_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_data_collection_default_enabled\")\n  if [[ $_APP_DATA_COLLECTION_ENABLED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseDataCollectionDefaultEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_DATA_COLLECTION_ENABLED\")\")\n  fi\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.analytics_collection_deactivated\n  _ANALYTICS_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_collection_deactivated\")\n  if [[ $_ANALYTICS_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_DEACTIVATED\")\")\n  fi\n\n  # config.analytics_idfv_collection_enabled\n  _ANALYTICS_IDFV_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_idfv_collection_enabled\")\n  if [[ $_ANALYTICS_IDFV_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_IDFV_COLLECTION\")\")\n  fi\n\n  # config.analytics_default_allow_ad_personalization_signals\n  _ANALYTICS_PERSONALIZATION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_personalization_signals\")\n  if [[ $_ANALYTICS_PERSONALIZATION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_PERSONALIZATION\")\")\n  fi\n\n  # config.google_analytics_automatic_screen_reporting_enabled\n  _ANALYTICS_AUTO_SCREEN_REPORTING=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_automatic_screen_reporting_enabled\")\n  if [[ $_ANALYTICS_AUTO_SCREEN_REPORTING ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAutomaticScreenReportingEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_SCREEN_REPORTING\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_collection_deactivated\n  _PERF_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_collection_deactivated\")\n  if [[ $_PERF_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_deactivated\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_DEACTIVATED\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.in_app_messaging_auto_colllection_enabled\n  _FIAM_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"in_app_messaging_auto_collection_enabled\")\n  if [[ $_FIAM_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseInAppMessagingAutomaticDataCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_FIAM_AUTO_INIT\")\")\n  fi\n\n  # config.app_check_token_auto_refresh\n  _APP_CHECK_TOKEN_AUTO_REFRESH=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_check_token_auto_refresh\")\n  if [[ $_APP_CHECK_TOKEN_AUTO_REFRESH ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAppCheckTokenAutoRefreshEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_CHECK_TOKEN_AUTO_REFRESH\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
 		};
-		648941FE0DC08F358FAE0952 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7C6D3C06C6753924E64CB68 /* [CP] Copy Pods Resources */ = {
+		DCC5AB4BDB2D78366C7F0D50 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -590,26 +644,38 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS/Pods-myKROSS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C415D3684019F85E3D96F671 /* [CP] Check Pods Manifest.lock */ = {
+		E4DF68F7F1D5983FC74FABA9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myKROSS-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB84481094428C986C522A97 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -677,7 +743,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01ED46AD7CBDEA6F6153A630 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */;
+			baseConfigurationReference = 2095FD82E30D2EAE927DD584 /* Pods-myKROSS-myKROSSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -704,7 +770,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18BBA092F9FBF74C64D66988 /* Pods-myKROSS-myKROSSTests.release.xcconfig */;
+			baseConfigurationReference = 53B50B5C58A98657C901E8BE /* Pods-myKROSS-myKROSSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -728,7 +794,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 331BC8AFE8B97D2CBE1E6685 /* Pods-myKROSS.debug.xcconfig */;
+			baseConfigurationReference = 44540C7FEA5269BC105A80F6 /* Pods-myKROSS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -742,7 +808,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -758,7 +824,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C14E2F83412F4FD95FE6AF5 /* Pods-myKROSS.release.xcconfig */;
+			baseConfigurationReference = B159CB192F3ECF7C736223FE /* Pods-myKROSS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -771,7 +837,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -977,7 +1043,7 @@
 		};
 		90C7EF22274BB55D00D43C9E /* Feat.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8479AD0159FEBDF70D01541A /* Pods-myKROSS.feat.debug.xcconfig */;
+			baseConfigurationReference = 9520F849C964809E7377BBBB /* Pods-myKROSS.feat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -991,7 +1057,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1007,7 +1073,7 @@
 		};
 		90C7EF23274BB55D00D43C9E /* Feat.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7E00CA3A14F1EB2DA1FF407 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */;
+			baseConfigurationReference = DCB72C731EC69F9230060BD7 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1093,7 +1159,7 @@
 		};
 		90C7EF25274BB58900D43C9E /* Feat.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 952EBC2A89F9D279A3D27FF9 /* Pods-myKROSS.feat.release.xcconfig */;
+			baseConfigurationReference = E3F737EDFAEC87C23AC8EB8A /* Pods-myKROSS.feat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1106,7 +1172,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1121,7 +1187,7 @@
 		};
 		90C7EF26274BB58900D43C9E /* Feat.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABDC72DE2C60BC6C298BF1FC /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */;
+			baseConfigurationReference = 94E4D1CB2E5889F60B43DC2D /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1203,7 +1269,7 @@
 		};
 		90F934FC26C5D599001FEFCA /* Test.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 921EDEB91B42C5DE5BBCE3F6 /* Pods-myKROSS.test.release.xcconfig */;
+			baseConfigurationReference = BFFFD36E372EA71DD813DF4F /* Pods-myKROSS.test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1216,7 +1282,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1231,7 +1297,7 @@
 		};
 		90F934FD26C5D599001FEFCA /* Test.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B929008771FAB185B970970 /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */;
+			baseConfigurationReference = 1924B9B3C3E6B4171E637C32 /* Pods-myKROSS-myKROSSTests.test.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1313,7 +1379,7 @@
 		};
 		90F934FF26C5D5A7001FEFCA /* Dev.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C419F93D4D6BE6978E043B6 /* Pods-myKROSS.dev.release.xcconfig */;
+			baseConfigurationReference = AFE069A0E69FFD4D520DF584 /* Pods-myKROSS.dev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1326,7 +1392,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1341,7 +1407,7 @@
 		};
 		90F9350026C5D5A7001FEFCA /* Dev.Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C075D16BBBE35AFDB654347 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */;
+			baseConfigurationReference = 6890A7811C58FA79CD07BBB4 /* Pods-myKROSS-myKROSSTests.dev.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1430,7 +1496,7 @@
 		};
 		90F9350526C5D5C4001FEFCA /* Test.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA7B295336174C2DBCCAAF42 /* Pods-myKROSS.test.debug.xcconfig */;
+			baseConfigurationReference = F94750443060D06E41BCD51A /* Pods-myKROSS.test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1444,7 +1510,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1460,7 +1526,7 @@
 		};
 		90F9350626C5D5C4001FEFCA /* Test.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0005BE962B1BE3308D3B580B /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */;
+			baseConfigurationReference = 1544B967EB28ACD37EAEDF7C /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1552,7 +1618,7 @@
 		};
 		90F9350826C5D5CE001FEFCA /* Dev.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E453865C60F630016BB217C /* Pods-myKROSS.dev.debug.xcconfig */;
+			baseConfigurationReference = 35713BD63A13A1F3E8BED426 /* Pods-myKROSS.dev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1566,7 +1632,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6.0;
+				MARKETING_VERSION = 2.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1582,7 +1648,7 @@
 		};
 		90F9350926C5D5CE001FEFCA /* Dev.Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E04EE7AA998AA05F6A15C9C /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */;
+			baseConfigurationReference = 1B67E5026DEE4FD963D86056 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (

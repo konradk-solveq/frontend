@@ -146,6 +146,7 @@ Array [
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -833,6 +834,7 @@ Array [
                                     },
                                   ]
                                 }
+                                textInteractionEnabled={true}
                                 useSharedProcessPool={true}
                                 useWebKit={false}
                               />
@@ -1054,97 +1056,6 @@ Array [
         </Text>
       </View>
     </View>
-    <View
-      pointerEvents="none"
-      style={
-        Object {
-          "bottom": 0,
-          "height": 307.9710144927536,
-          "left": 0,
-          "position": "absolute",
-          "width": 750,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "backgroundColor": "transparent",
-            "height": "100%",
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "overflow": "hidden",
-              },
-              undefined,
-            ]
-          }
-        >
-          <RNCWebView
-            cacheEnabled={true}
-            injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-            injectedJavaScriptForMainFrameOnly={true}
-            javaScriptEnabled={true}
-            messagingEnabled={false}
-            onContentProcessDidTerminate={[Function]}
-            onHttpError={[Function]}
-            onLoadingError={[Function]}
-            onLoadingFinish={[Function]}
-            onLoadingProgress={[Function]}
-            onLoadingStart={[Function]}
-            onMessage={[Function]}
-            onShouldStartLoadWithRequest={[Function]}
-            scalesPageToFit={true}
-            scrollEnabled={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            source={
-              Object {
-                "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\" viewBox=\\"0 0 414 170\\">
-    <defs>
-      <filter id=\\"a\\" width=\\"151%\\" height=\\"297.2%\\" x=\\"-25.5%\\" y=\\"-97.7%\\" filterUnits=\\"objectBoundingBox\\">
-        <feOffset dy=\\"1\\" in=\\"SourceAlpha\\" result=\\"shadowOffsetOuter1\\"/>
-        <feGaussianBlur in=\\"shadowOffsetOuter1\\" result=\\"shadowBlurOuter1\\" stdDeviation=\\"35\\"/>
-        <feColorMatrix in=\\"shadowBlurOuter1\\" values=\\"0 0 0 0 0.518513113 0 0 0 0 0.0483188295 0 0 0 0 0.0672953544 0 0 0 0.15 0\\"/>
-      </filter>
-      <path id=\\"b\\" d=\\"M0 0c66.44 14.67 135.18 22 206.2 22 71.03 0 140.3-7.33 207.8-22v107H0V0z\\"/>
-    </defs>
-    <g fill=\\"none\\" fill-rule=\\"evenodd\\" transform=\\"translate(0 63)\\">
-      <use fill=\\"#000\\" filter=\\"url(#a)\\" xlink:href=\\"#b\\"/>
-      <use fill=\\"#FFF\\" xlink:href=\\"#b\\"/>
-    </g>
-  </svg>
-  </body></html>",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "overflow": "hidden",
-                },
-                Object {
-                  "backgroundColor": "#ffffff",
-                },
-                Object {
-                  "backgroundColor": "transparent",
-                  "height": "100%",
-                  "width": "100%",
-                },
-              ]
-            }
-            useSharedProcessPool={true}
-            useWebKit={false}
-          />
-        </View>
-      </View>
-    </View>
   </RCTSafeAreaView>,
   <View
     style={
@@ -1345,6 +1256,7 @@ Array [
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -2195,6 +2107,7 @@ Array [
                                     },
                                   ]
                                 }
+                                textInteractionEnabled={true}
                                 useSharedProcessPool={true}
                                 useWebKit={false}
                               />
@@ -2414,97 +2327,6 @@ Array [
         </Text>
       </View>
     </View>
-    <View
-      pointerEvents="none"
-      style={
-        Object {
-          "bottom": 0,
-          "height": 307.9710144927536,
-          "left": 0,
-          "position": "absolute",
-          "width": 750,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "backgroundColor": "transparent",
-            "height": "100%",
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "overflow": "hidden",
-              },
-              undefined,
-            ]
-          }
-        >
-          <RNCWebView
-            cacheEnabled={true}
-            injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-            injectedJavaScriptForMainFrameOnly={true}
-            javaScriptEnabled={true}
-            messagingEnabled={false}
-            onContentProcessDidTerminate={[Function]}
-            onHttpError={[Function]}
-            onLoadingError={[Function]}
-            onLoadingFinish={[Function]}
-            onLoadingProgress={[Function]}
-            onLoadingStart={[Function]}
-            onMessage={[Function]}
-            onShouldStartLoadWithRequest={[Function]}
-            scalesPageToFit={true}
-            scrollEnabled={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            source={
-              Object {
-                "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\" viewBox=\\"0 0 414 170\\">
-    <defs>
-      <filter id=\\"a\\" width=\\"151%\\" height=\\"297.2%\\" x=\\"-25.5%\\" y=\\"-97.7%\\" filterUnits=\\"objectBoundingBox\\">
-        <feOffset dy=\\"1\\" in=\\"SourceAlpha\\" result=\\"shadowOffsetOuter1\\"/>
-        <feGaussianBlur in=\\"shadowOffsetOuter1\\" result=\\"shadowBlurOuter1\\" stdDeviation=\\"35\\"/>
-        <feColorMatrix in=\\"shadowBlurOuter1\\" values=\\"0 0 0 0 0.518513113 0 0 0 0 0.0483188295 0 0 0 0 0.0672953544 0 0 0 0.15 0\\"/>
-      </filter>
-      <path id=\\"b\\" d=\\"M0 0c66.44 14.67 135.18 22 206.2 22 71.03 0 140.3-7.33 207.8-22v107H0V0z\\"/>
-    </defs>
-    <g fill=\\"none\\" fill-rule=\\"evenodd\\" transform=\\"translate(0 63)\\">
-      <use fill=\\"#000\\" filter=\\"url(#a)\\" xlink:href=\\"#b\\"/>
-      <use fill=\\"#FFF\\" xlink:href=\\"#b\\"/>
-    </g>
-  </svg>
-  </body></html>",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "overflow": "hidden",
-                },
-                Object {
-                  "backgroundColor": "#ffffff",
-                },
-                Object {
-                  "backgroundColor": "transparent",
-                  "height": "100%",
-                  "width": "100%",
-                },
-              ]
-            }
-            useSharedProcessPool={true}
-            useWebKit={false}
-          />
-        </View>
-      </View>
-    </View>
   </RCTSafeAreaView>,
   <View
     style={
@@ -2705,6 +2527,7 @@ Array [
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -3555,6 +3378,7 @@ Array [
                                     },
                                   ]
                                 }
+                                textInteractionEnabled={true}
                                 useSharedProcessPool={true}
                                 useWebKit={false}
                               />
@@ -3774,97 +3598,6 @@ Array [
         >
           MainProfile.header
         </Text>
-      </View>
-    </View>
-    <View
-      pointerEvents="none"
-      style={
-        Object {
-          "bottom": 0,
-          "height": 307.9710144927536,
-          "left": 0,
-          "position": "absolute",
-          "width": 750,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "backgroundColor": "transparent",
-            "height": "100%",
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "overflow": "hidden",
-              },
-              undefined,
-            ]
-          }
-        >
-          <RNCWebView
-            cacheEnabled={true}
-            injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-            injectedJavaScriptForMainFrameOnly={true}
-            javaScriptEnabled={true}
-            messagingEnabled={false}
-            onContentProcessDidTerminate={[Function]}
-            onHttpError={[Function]}
-            onLoadingError={[Function]}
-            onLoadingFinish={[Function]}
-            onLoadingProgress={[Function]}
-            onLoadingStart={[Function]}
-            onMessage={[Function]}
-            onShouldStartLoadWithRequest={[Function]}
-            scalesPageToFit={true}
-            scrollEnabled={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            source={
-              Object {
-                "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\" viewBox=\\"0 0 414 170\\">
-    <defs>
-      <filter id=\\"a\\" width=\\"151%\\" height=\\"297.2%\\" x=\\"-25.5%\\" y=\\"-97.7%\\" filterUnits=\\"objectBoundingBox\\">
-        <feOffset dy=\\"1\\" in=\\"SourceAlpha\\" result=\\"shadowOffsetOuter1\\"/>
-        <feGaussianBlur in=\\"shadowOffsetOuter1\\" result=\\"shadowBlurOuter1\\" stdDeviation=\\"35\\"/>
-        <feColorMatrix in=\\"shadowBlurOuter1\\" values=\\"0 0 0 0 0.518513113 0 0 0 0 0.0483188295 0 0 0 0 0.0672953544 0 0 0 0.15 0\\"/>
-      </filter>
-      <path id=\\"b\\" d=\\"M0 0c66.44 14.67 135.18 22 206.2 22 71.03 0 140.3-7.33 207.8-22v107H0V0z\\"/>
-    </defs>
-    <g fill=\\"none\\" fill-rule=\\"evenodd\\" transform=\\"translate(0 63)\\">
-      <use fill=\\"#000\\" filter=\\"url(#a)\\" xlink:href=\\"#b\\"/>
-      <use fill=\\"#FFF\\" xlink:href=\\"#b\\"/>
-    </g>
-  </svg>
-  </body></html>",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "overflow": "hidden",
-                },
-                Object {
-                  "backgroundColor": "#ffffff",
-                },
-                Object {
-                  "backgroundColor": "transparent",
-                  "height": "100%",
-                  "width": "100%",
-                },
-              ]
-            }
-            useSharedProcessPool={true}
-            useWebKit={false}
-          />
-        </View>
       </View>
     </View>
   </RCTSafeAreaView>,
