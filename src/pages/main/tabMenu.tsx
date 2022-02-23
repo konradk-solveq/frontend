@@ -17,7 +17,7 @@ import {
     ProfileIcon,
 } from '@components/icons/tabMenu';
 import {getFHorizontalPx} from '@helpers/appLayoutDimensions';
-import { verticalAnim } from '@src/helpers/positioningVerical';
+import {verticalAnim} from '@src/helpers/positioningVerical';
 
 interface Props {
     navigation: any;
@@ -54,7 +54,7 @@ const TabMenu: React.FC<Props> = () => {
                 component={Home}
                 options={{
                     tabBarLabel: '',
-                    tabBarIcon: ({focused}) => <HomeIcon />,
+                    tabBarIcon: ({focused}) => <HomeIcon isFocused={focused} />,
                 }}
             />
 
@@ -63,7 +63,9 @@ const TabMenu: React.FC<Props> = () => {
                 component={World}
                 options={{
                     tabBarLabel: '',
-                    tabBarIcon: ({focused}) => <ExploreIcon />,
+                    tabBarIcon: ({focused}) => (
+                        <ExploreIcon isFocused={focused} />
+                    ),
                 }}
             />
 
@@ -85,7 +87,7 @@ const TabMenu: React.FC<Props> = () => {
                 component={Bike}
                 options={{
                     tabBarLabel: '',
-                    tabBarIcon: ({focused}) => <BikeIcon />,
+                    tabBarIcon: ({focused}) => <BikeIcon isFocused={focused} />,
                 }}
             />
 
@@ -94,7 +96,9 @@ const TabMenu: React.FC<Props> = () => {
                 component={Profile}
                 options={{
                     tabBarLabel: '',
-                    tabBarIcon: ({focused}) => <ProfileIcon />,
+                    tabBarIcon: ({focused}) => (
+                        <ProfileIcon isFocused={focused} />
+                    ),
                 }}
             />
         </Tab.Navigator>

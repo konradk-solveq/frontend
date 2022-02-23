@@ -3,6 +3,7 @@ import {StyleSheet, View, Text} from 'react-native';
 
 import {getFHorizontalPx} from '@helpers/appLayoutDimensions';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
+import colors from '@src/theme/colors';
 
 const styles = StyleSheet.create({
     text: {
@@ -23,7 +24,11 @@ const styles = StyleSheet.create({
     },
 });
 
-export const HomeIcon: FunctionComponent = () => {
+interface IProps {
+    isFocused?: boolean;
+}
+
+export const HomeIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
     const style = StyleSheet.create({
         home: {
             left: 0,
@@ -31,15 +36,20 @@ export const HomeIcon: FunctionComponent = () => {
             paddingRight: getFHorizontalPx(23.5),
             paddingLeft: getFHorizontalPx(34),
         },
+        activeText: {
+            color: isFocused ? colors.red : colors.black,
+        },
     });
     return (
         <View style={[styles.icon, style.home]}>
-            <Text style={styles.text}>{MykrossIconFont.MYKROSS_ICON_HOME}</Text>
+            <Text style={[styles.text, style.activeText]}>
+                {MykrossIconFont.MYKROSS_ICON_HOME}
+            </Text>
         </View>
     );
 };
 
-export const ExploreIcon: FunctionComponent = () => {
+export const ExploreIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
     const style = StyleSheet.create({
         explore: {
             left: getFHorizontalPx(9.5),
@@ -47,10 +57,13 @@ export const ExploreIcon: FunctionComponent = () => {
             paddingLeft: getFHorizontalPx(23.5),
             paddingRight: getFHorizontalPx(54),
         },
+        activeText: {
+            color: isFocused ? colors.red : colors.black,
+        },
     });
     return (
         <View style={[styles.icon, style.explore]}>
-            <Text style={styles.text}>
+            <Text style={[styles.text, style.activeText]}>
                 {MykrossIconFont.MYKROSS_ICON_EXPLOR}
             </Text>
         </View>
@@ -107,7 +120,7 @@ export const RecordIcon: FunctionComponent<RecordIconIprops> = ({
     );
 };
 
-export const BikeIcon: FunctionComponent = () => {
+export const BikeIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
     const style = StyleSheet.create({
         bike: {
             left: getFHorizontalPx(-39),
@@ -115,15 +128,20 @@ export const BikeIcon: FunctionComponent = () => {
             paddingLeft: getFHorizontalPx(54),
             paddingRight: getFHorizontalPx(23.5),
         },
+        activeText: {
+            color: isFocused ? colors.red : colors.black,
+        },
     });
     return (
         <View style={[styles.icon, style.bike]}>
-            <Text style={styles.text}>{MykrossIconFont.MYKROSS_ICON_BIKE}</Text>
+            <Text style={[styles.text, style.activeText]}>
+                {MykrossIconFont.MYKROSS_ICON_BIKE}
+            </Text>
         </View>
     );
 };
 
-export const ProfileIcon: FunctionComponent = () => {
+export const ProfileIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
     const style = StyleSheet.create({
         profile: {
             left: getFHorizontalPx(-9.5),
@@ -131,10 +149,13 @@ export const ProfileIcon: FunctionComponent = () => {
             paddingRight: getFHorizontalPx(34),
             paddingLeft: getFHorizontalPx(23.5),
         },
+        activeText: {
+            color: isFocused ? colors.red : colors.black,
+        },
     });
     return (
         <View style={[styles.icon, style.profile]}>
-            <Text style={styles.text}>
+            <Text style={[styles.text, style.activeText]}>
                 {MykrossIconFont.MYKROSS_ICON_PROFILE}
             </Text>
         </View>
