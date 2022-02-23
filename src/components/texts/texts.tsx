@@ -15,13 +15,42 @@ import {getFFontSize} from '@theme/utils/appLayoutDimensions';
 type PropsT = {
     algin?: 'left' | 'auto' | 'right' | 'center' | 'justify';
     color?: string;
+    adjustsFontSizeToFit?: boolean;
     style?: TextStyle;
     testID?: string;
+};
+
+export const BodyPrimary: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'demi-16-h28-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontSize: getFFontSize(16),
+            lineHeight: getFFontSize(28),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : '#333',
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
 };
 
 export const Demi18h28: FunctionComponent<PropsT> = ({
     algin,
     color,
+    adjustsFontSizeToFit = false,
     children,
     style,
     testID = 'demi-18-h28-test-id',
@@ -36,7 +65,10 @@ export const Demi18h28: FunctionComponent<PropsT> = ({
         },
     });
     return (
-        <Text testID={testID} style={[styles.text, style]}>
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
             {children}
         </Text>
     );

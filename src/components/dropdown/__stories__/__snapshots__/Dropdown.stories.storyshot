@@ -1,0 +1,1305 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "height": 75.86729857819905,
+          "paddingVertical": 2,
+          "width": "100%",
+        },
+        Object {},
+      ]
+    }
+    testID="dropdown-test-id"
+  >
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {},
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {
+              "backgroundColor": "#ededed",
+              "height": "100%",
+              "width": 259.61538461538464,
+            },
+          ],
+        ]
+      }
+      testID="dropdown-test-id-button"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "justifyContent": "flex-start",
+            },
+          ]
+        }
+        testID="dropdown-test-id-button-container"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "mykross",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#333333",
+                "fontSize": 20,
+              },
+              Object {
+                "marginRight": 15.384615384615385,
+              },
+            ]
+          }
+          testID="dropdown-test-id-button-icon"
+        >
+          C
+        </Text>
+        <Text
+          adjustsFontSizeToFit={true}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#333333",
+              },
+            ]
+          }
+          testID="dropdown-test-id-button-text"
+        >
+          Sort by
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomEndRadius": 15,
+            "borderBottomStartRadius": 15,
+            "height": 0,
+            "opacity": 0,
+            "paddingHorizontal": 28.985507246376812,
+            "width": "100%",
+          },
+          Object {},
+          Object {
+            "height": 0,
+            "opacity": 0,
+          },
+        ]
+      }
+      testID="dropdown-test-id-items-box"
+    >
+      <RCTScrollView
+        collapsable={false}
+        nativeID="animatedComponent"
+        scrollEventThrottle={0.0001}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
+        testID="dropdown-test-id-items-list"
+      >
+        <View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignContent": "center",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                undefined,
+              ]
+            }
+            testID="dropdown-test-id-dropdown-item-1"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "height": 75.86729857819905,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="dropdown-test-id-dropdown-item-1-button"
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 28,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "color": "#C63733",
+                        },
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-1-text"
+                  >
+                    By distance (default)
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": "mykross",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#C63733",
+                          "fontSize": 12,
+                        },
+                        Object {
+                          "marginLeft": "2.564%",
+                        },
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-1-icon"
+                  >
+                    z
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignContent": "center",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                undefined,
+              ]
+            }
+            testID="dropdown-test-id-dropdown-item-2"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "height": 75.86729857819905,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="dropdown-test-id-dropdown-item-2-button"
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 28,
+                          "textAlign": "left",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-2-text"
+                  >
+                    By date - newest 
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignContent": "center",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                undefined,
+              ]
+            }
+            testID="dropdown-test-id-dropdown-item-3"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "height": 75.86729857819905,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="dropdown-test-id-dropdown-item-3-button"
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 28,
+                          "textAlign": "left",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-3-text"
+                  >
+                    By date - oldest 
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignContent": "center",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                undefined,
+              ]
+            }
+            testID="dropdown-test-id-dropdown-item-4"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "height": 75.86729857819905,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="dropdown-test-id-dropdown-item-4-button"
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 28,
+                          "textAlign": "left",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-4-text"
+                  >
+                    Popularity 
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "center",
+                "flex": 1,
+                "height": 94.83412322274881,
+                "justifyContent": "center",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              accessibilityState={
+                Object {
+                  "disabled": false,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 30.76923076923077,
+                    "flexDirection": "row",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  },
+                  Object {},
+                  Array [
+                    Object {
+                      "height": 92.3076923076923,
+                      "width": 565.3846153846154,
+                    },
+                    Object {
+                      "height": "100%",
+                      "width": 221.15384615384616,
+                    },
+                  ],
+                ]
+              }
+              testID="dropdown-test-id-reset-button"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 30.76923076923077,
+                      "flexDirection": "row",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
+                    Object {},
+                  ]
+                }
+                testID="dropdown-test-id-reset-button-container"
+              >
+                <Text
+                  adjustsFontSizeToFit={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#333",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#333333",
+                      },
+                    ]
+                  }
+                  testID="dropdown-test-id-reset-button-text"
+                >
+                  Reset
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "height": 75.86729857819905,
+          "paddingVertical": 2,
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+    testID="dropdown-test-id"
+  >
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {},
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {
+              "backgroundColor": "#ededed",
+              "height": "100%",
+              "width": 259.61538461538464,
+            },
+          ],
+        ]
+      }
+      testID="dropdown-test-id-button"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "transparent",
+            },
+            Object {
+              "justifyContent": "flex-start",
+            },
+          ]
+        }
+        testID="dropdown-test-id-button-container"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "mykross",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#333333",
+                "fontSize": 20,
+              },
+              Object {
+                "marginRight": 15.384615384615385,
+              },
+            ]
+          }
+          testID="dropdown-test-id-button-icon"
+        >
+          C
+        </Text>
+        <Text
+          adjustsFontSizeToFit={true}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#333333",
+              },
+            ]
+          }
+          testID="dropdown-test-id-button-text"
+        >
+          Sort by
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomEndRadius": 15,
+            "borderBottomStartRadius": 15,
+            "height": 0,
+            "opacity": 0,
+            "paddingHorizontal": 28.985507246376812,
+            "width": "100%",
+          },
+          undefined,
+          Object {
+            "height": 0,
+            "opacity": 0,
+          },
+        ]
+      }
+      testID="dropdown-test-id-items-box"
+    >
+      <RCTScrollView
+        collapsable={false}
+        nativeID="animatedComponent"
+        scrollEventThrottle={0.0001}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
+        testID="dropdown-test-id-items-list"
+      >
+        <View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignContent": "center",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                undefined,
+              ]
+            }
+            testID="dropdown-test-id-dropdown-item-1"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "height": 75.86729857819905,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="dropdown-test-id-dropdown-item-1-button"
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 28,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "color": "#C63733",
+                        },
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-1-text"
+                  >
+                    By distance (default)
+                  </Text>
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontFamily": "mykross",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#C63733",
+                          "fontSize": 12,
+                        },
+                        Object {
+                          "marginLeft": "2.564%",
+                        },
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-1-icon"
+                  >
+                    z
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignContent": "center",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                undefined,
+              ]
+            }
+            testID="dropdown-test-id-dropdown-item-2"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "height": 75.86729857819905,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="dropdown-test-id-dropdown-item-2-button"
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 28,
+                          "textAlign": "left",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-2-text"
+                  >
+                    By date - newest 
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignContent": "center",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                undefined,
+              ]
+            }
+            testID="dropdown-test-id-dropdown-item-3"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "height": 75.86729857819905,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="dropdown-test-id-dropdown-item-3-button"
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 28,
+                          "textAlign": "left",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-3-text"
+                  >
+                    By date - oldest 
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "alignContent": "center",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                undefined,
+              ]
+            }
+            testID="dropdown-test-id-dropdown-item-4"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "height": 75.86729857819905,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="dropdown-test-id-dropdown-item-4-button"
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 28,
+                          "textAlign": "left",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="dropdown-test-id-dropdown-item-4-text"
+                  >
+                    Popularity 
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+          <View
+            style={
+              Object {
+                "alignContent": "center",
+                "alignItems": "center",
+                "alignSelf": "center",
+                "flex": 1,
+                "height": 94.83412322274881,
+                "justifyContent": "center",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              accessibilityState={
+                Object {
+                  "disabled": false,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 30.76923076923077,
+                    "flexDirection": "row",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  },
+                  Object {},
+                  Array [
+                    Object {
+                      "height": 92.3076923076923,
+                      "width": 565.3846153846154,
+                    },
+                    Object {
+                      "height": "100%",
+                      "width": 221.15384615384616,
+                    },
+                  ],
+                ]
+              }
+              testID="dropdown-test-id-reset-button"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignItems": "center",
+                      "borderRadius": 30.76923076923077,
+                      "flexDirection": "row",
+                      "height": "100%",
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
+                    Object {},
+                  ]
+                }
+                testID="dropdown-test-id-reset-button-container"
+              >
+                <Text
+                  adjustsFontSizeToFit={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#333",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 18,
+                        "lineHeight": 28,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "color": "#333333",
+                      },
+                    ]
+                  }
+                  testID="dropdown-test-id-reset-button-text"
+                >
+                  Reset
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;

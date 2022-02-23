@@ -3,11 +3,11 @@ import {StyleSheet, Text, ViewStyle} from 'react-native';
 
 import {getFFontSize} from '@theme/utils/appLayoutDimensions';
 
-import {MykrossIconFont} from '@theme/enums/iconFonts';
+import {IconFont, MykrossIconFont} from '@theme/enums/iconFonts';
 import colors from '@theme/colors';
 
 interface IProps {
-    icon: MykrossIconFont /* Font symbol from 'mykross' font */;
+    icon: MykrossIconFont | IconFont /* Font symbol from 'mykross' font */;
     iconColor?: string;
     iconSize?: number;
     style?: ViewStyle;

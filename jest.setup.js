@@ -16,7 +16,10 @@ jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
 /** https://react-native-async-storage.github.io/async-storage/docs/advanced/jest */
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 
-/** https://reactnavigation.org/docs/testing */
+/** Mock for react-native-reanimated */
+global.__reanimatedWorkletInit = jest.fn();
+
+/** https://reactnavigation.org/docs/testing - https://github.com/software-mansion/react-native-reanimated/issues/1380#issuecomment-865143328*/
 jest.mock('react-native-reanimated', () => {
     const Reanimated = require('react-native-reanimated/mock');
 

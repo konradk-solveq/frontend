@@ -18,6 +18,7 @@ import {Demi18h28} from '@components/texts/texts';
 interface IProps {
     text: string;
     onPress: (e: GestureResponderEvent) => void;
+    adjustsTextSizeToFit?: boolean;
     color?: string;
     disabledColor?: string;
     textColor?: string;
@@ -27,13 +28,16 @@ interface IProps {
     disabled?: boolean;
     withLoader?: boolean;
     loaderColor?: string;
+    withoutShadow?: boolean;
     style?: ViewStyle | ViewStyle[];
+    containerStyle?: ViewStyle | ViewStyle[];
     testID?: string;
 }
 
 /* TODO: add font */
 const Button: React.FC<IProps> = ({
     text,
+    adjustsTextSizeToFit = true,
     onPress,
     color = colors.white,
     disabledColor = colors.white,
@@ -44,7 +48,9 @@ const Button: React.FC<IProps> = ({
     disabled = false,
     loaderColor,
     withLoader,
+    withoutShadow = false,
     style,
+    containerStyle,
     testID = 'button-test-id',
 }: IProps) => {
     const buttonColor = useMemo(() => (disabled ? disabledColor : color), [
@@ -57,15 +63,22 @@ const Button: React.FC<IProps> = ({
         textColor,
         disabledTextColor,
     ]);
+    const shadowStyle = useMemo(() => (!withoutShadow ? styles.shadow : {}), [
+        withoutShadow,
+    ]);
 
     return (
-        <Pressable onPress={onPress} testID={testID} disabled={disabled}>
+        <Pressable
+            onPress={onPress}
+            testID={testID}
+            disabled={disabled}
+            style={[styles.innerContainer, shadowStyle, style]}>
             <View
                 testID={`${testID}-container`}
                 style={[
-                    styles.container,
+                    styles.innerContainer,
                     {backgroundColor: buttonColor},
-                    style,
+                    containerStyle,
                 ]}>
                 {!withLoader ? (
                     <>
@@ -80,7 +93,8 @@ const Button: React.FC<IProps> = ({
                         )}
                         <Demi18h28
                             testID={`${testID}-text`}
-                            style={{color: tColor}}>
+                            style={{color: tColor}}
+                            adjustsFontSizeToFit={adjustsTextSizeToFit}>
                             {text}
                         </Demi18h28>
                     </>
@@ -97,14 +111,14 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: '#ffffff',
+    },
+    innerContainer: {
+        width: '100%',
+        height: '100%',
         borderRadius: getFHorizontalPx(16),
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: 'rgba(51, 51, 51, 0.07)',
-        shadowRadius: getFHorizontalPx(8),
-        shadowOffset: {height: 0, width: getFHorizontalPx(4)},
-        elevation: 5,
     },
     text: {
         fontFamily: 'DIN2014Narrow-Regular',
@@ -114,6 +128,12 @@ const styles = StyleSheet.create({
     },
     icon: {
         marginRight: getFHorizontalPx(8),
+    },
+    shadow: {
+        shadowColor: 'rgba(51, 51, 51, 0.07)',
+        shadowRadius: getFHorizontalPx(8),
+        shadowOffset: {height: 0, width: getFHorizontalPx(4)},
+        elevation: 5,
     },
 });
 

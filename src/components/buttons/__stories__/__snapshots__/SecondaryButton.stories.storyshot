@@ -32,6 +32,36 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 30.76923076923077,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {
+          "elevation": 5,
+          "shadowColor": "rgba(51, 51, 51, 0.07)",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 7.6923076923076925,
+          },
+          "shadowRadius": 15.384615384615385,
+        },
+        Array [
+          Object {
+            "height": 92.3076923076923,
+            "width": 565.3846153846154,
+          },
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
+        ],
+      ]
+    }
     testID="secondary-btn-test-id"
   >
     <View
@@ -39,32 +69,16 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#ffffff",
             "borderRadius": 30.76923076923077,
-            "elevation": 5,
             "flexDirection": "row",
             "height": "100%",
             "justifyContent": "center",
-            "shadowColor": "rgba(51, 51, 51, 0.07)",
-            "shadowOffset": Object {
-              "height": 0,
-              "width": 7.6923076923076925,
-            },
-            "shadowRadius": 15.384615384615385,
             "width": "100%",
           },
           Object {
             "backgroundColor": "#FFFFFF",
           },
-          Array [
-            Object {
-              "height": 92.3076923076923,
-              "width": 565.3846153846154,
-            },
-            Object {
-              "backgroundColor": "#FFFFFF",
-            },
-          ],
+          undefined,
         ]
       }
       testID="secondary-btn-test-id-container"
@@ -90,6 +104,7 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
         U
       </Text>
       <Text
+        adjustsFontSizeToFit={true}
         style={
           Array [
             Object {
@@ -145,6 +160,34 @@ exports[`Storyshots components/buttons/SecondaryButton Default 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 30.76923076923077,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {
+          "elevation": 5,
+          "shadowColor": "rgba(51, 51, 51, 0.07)",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 7.6923076923076925,
+          },
+          "shadowRadius": 15.384615384615385,
+        },
+        Array [
+          Object {
+            "height": 92.3076923076923,
+            "width": 565.3846153846154,
+          },
+          Object {},
+        ],
+      ]
+    }
     testID="secondary-btn-test-id"
   >
     <View
@@ -152,35 +195,22 @@ exports[`Storyshots components/buttons/SecondaryButton Default 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#ffffff",
             "borderRadius": 30.76923076923077,
-            "elevation": 5,
             "flexDirection": "row",
             "height": "100%",
             "justifyContent": "center",
-            "shadowColor": "rgba(51, 51, 51, 0.07)",
-            "shadowOffset": Object {
-              "height": 0,
-              "width": 7.6923076923076925,
-            },
-            "shadowRadius": 15.384615384615385,
             "width": "100%",
           },
           Object {
             "backgroundColor": "#FFFFFF",
           },
-          Array [
-            Object {
-              "height": 92.3076923076923,
-              "width": 565.3846153846154,
-            },
-            Object {},
-          ],
+          undefined,
         ]
       }
       testID="secondary-btn-test-id-container"
     >
       <Text
+        adjustsFontSizeToFit={true}
         style={
           Array [
             Object {
@@ -236,6 +266,34 @@ exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 30.76923076923077,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {
+          "elevation": 5,
+          "shadowColor": "rgba(51, 51, 51, 0.07)",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 7.6923076923076925,
+          },
+          "shadowRadius": 15.384615384615385,
+        },
+        Array [
+          Object {
+            "height": 92.3076923076923,
+            "width": 565.3846153846154,
+          },
+          Object {},
+        ],
+      ]
+    }
     testID="secondary-btn-test-id"
   >
     <View
@@ -243,30 +301,16 @@ exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#ffffff",
             "borderRadius": 30.76923076923077,
-            "elevation": 5,
             "flexDirection": "row",
             "height": "100%",
             "justifyContent": "center",
-            "shadowColor": "rgba(51, 51, 51, 0.07)",
-            "shadowOffset": Object {
-              "height": 0,
-              "width": 7.6923076923076925,
-            },
-            "shadowRadius": 15.384615384615385,
             "width": "100%",
           },
           Object {
             "backgroundColor": "#FFFFFF",
           },
-          Array [
-            Object {
-              "height": 92.3076923076923,
-              "width": 565.3846153846154,
-            },
-            Object {},
-          ],
+          undefined,
         ]
       }
       testID="secondary-btn-test-id-container"
@@ -292,6 +336,7 @@ exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
         U
       </Text>
       <Text
+        adjustsFontSizeToFit={true}
         style={
           Array [
             Object {
