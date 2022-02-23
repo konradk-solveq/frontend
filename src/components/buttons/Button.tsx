@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
         shadowColor: 'rgba(51, 51, 51, 0.07)',
         shadowRadius: getFHorizontalPx(8),
         shadowOffset: {height: 0, width: getFHorizontalPx(4)},
+        shadowOpacity: 1,
         elevation: 5,
     },
 });

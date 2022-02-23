@@ -49,6 +49,7 @@ exports[`Storyshots components/buttons/Button Customized 1`] = `
             "height": 0,
             "width": 7.6923076923076925,
           },
+          "shadowOpacity": 1,
           "shadowRadius": 15.384615384615385,
         },
         Object {
@@ -172,6 +173,7 @@ exports[`Storyshots components/buttons/Button Default 1`] = `
             "height": 0,
             "width": 7.6923076923076925,
           },
+          "shadowOpacity": 1,
           "shadowRadius": 15.384615384615385,
         },
         Object {
@@ -275,6 +277,7 @@ exports[`Storyshots components/buttons/Button With Icon 1`] = `
             "height": 0,
             "width": 7.6923076923076925,
           },
+          "shadowOpacity": 1,
           "shadowRadius": 15.384615384615385,
         },
         Object {
