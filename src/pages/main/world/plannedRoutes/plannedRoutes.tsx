@@ -28,8 +28,11 @@ import {RoutesMapButton} from '@pages/main/world/components/buttons';
 
 import styles from './style';
 import {nextPlannedPaginationCoursor} from '@storage/selectors/map';
-import {fetchMapsList, fetchPlannedMapsList} from '@storage/actions';
-import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
+import {fetchPlannedMapsList} from '@storage/actions';
+import {
+    checkIfContainsFitlers,
+    getSorByFilters,
+} from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {FiltersButton} from '@pages/main/world/components/buttons';
@@ -80,7 +83,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
         if (isValid) {
-            dispatch(fetchMapsList(undefined, savedMapFilters));
+            dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
             return;
         }
     }, [dispatch, savedMapFilters]);
@@ -151,6 +154,14 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         setShowDropdown(state);
     }, []);
 
+    const onSortByHandler = useCallback((sortTypeId: string) => {
+        const sortBy = plannedRoutesDropdownList.find(
+            el => el.id === sortTypeId,
+        );
+
+        setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
+    }, []);
+
     if (!favouriteMaps?.length) {
         return <EmptyList onPress={emptyListButtonHandler} />;
     }
@@ -188,7 +199,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     openOnStart={showDropdown}
                     list={plannedRoutesDropdownList}
                     onPress={toggleDropdown}
-                    onPressItem={() => console.log('pressed item')}
+                    onPressItem={onSortByHandler}
                     buttonText={mwt('btnSort')}
                     buttonContainerStyle={styles.dropdownButtonContainerStyle}
                     boxStyle={styles.dropdownBox}

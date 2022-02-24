@@ -31,7 +31,10 @@ import styles from './style';
 import {fetchMapsList} from '@storage/actions';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {PickedFilters} from '@interfaces/form';
-import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
+import {
+    checkIfContainsFitlers,
+    getSorByFilters,
+} from '@utils/apiDataTransform/filters';
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
 import {publicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
@@ -63,7 +66,6 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const [showFiltersModal, setShowFiltersModal] = useState(false);
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
     const [activeMapID, setActiveMapID] = useState<string>('');
-
     const {onLoadMoreHandler} = useInfiniteScrollLoadMore(mapsData?.length);
 
     const onRefresh = useCallback(
@@ -176,6 +178,14 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         setShowDropdown(state);
     }, []);
 
+    const onSortByHandler = useCallback((sortTypeId: string) => {
+        const sortBy = publicRoutesDropdownList.find(
+            el => el.id === sortTypeId,
+        );
+
+        setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
+    }, []);
+
     return (
         <>
             {mapsData?.length ? (
@@ -199,7 +209,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                             openOnStart={showDropdown}
                             list={publicRoutesDropdownList}
                             onPress={toggleDropdown}
-                            onPressItem={() => console.log('pressed item')}
+                            onPressItem={onSortByHandler}
                             buttonText={t('btnSort')}
                             buttonContainerStyle={
                                 styles.dropdownButtonContainerStyle

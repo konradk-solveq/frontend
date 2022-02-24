@@ -1,6 +1,10 @@
+export type SortByType = 'created' | 'distance';
+export type OrderType = 'asc' | 'desc';
+
 export type DropdownItemT = {
     id: string;
-    value: string | boolean | number;
+    sortBy: SortByType;
+    order: OrderType;
     text: string;
     isDefault?: boolean;
     defaultItemSuffix?: string;
