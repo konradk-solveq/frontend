@@ -67,4 +67,12 @@ export enum MykrossIconFont {
     MYKROSS_ICON_ALT_BIKE = '@',
     MYKROSS_ICON_PAUSE = '[',
     MYKROSS_ICON_PLAY = ']',
+    MYKROSS_ICON_BACK = '/',
+    MYKROSS_ICON_INFO = '.',
+    MYKROSS_ICON_PROFILE_ALT = ':',
+    MYKROSS_ICON_RADIAL_OFF = '<',
+    MYKROSS_ICON_RADIAL_ON = '>',
+    MYKROSS_ICON_OK = '=',
+    MYKROSS_ICON_SIGNAL = '?',
+    MYKROSS_ICON_SEND = ';',
 }
