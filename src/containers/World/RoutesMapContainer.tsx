@@ -58,8 +58,8 @@ const RoutesMapContainer: React.FC<IProps> = ({
     useEffect(() => {
         if (location && mapLoaded) {
             const p = jsonStringify(mapPath);
+            setJsWV(`clearPath(${p});true;`);
             if (!p) {
-                setJsWV(`clearPath(${p});true;`);
                 return;
             }
             setJsWV(`setPath(${p});true;`);

@@ -1,8 +1,8 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo, useState, useEffect} from 'react';
 import {WebViewMessageEvent} from 'react-native-webview';
 import {useNavigation} from '@react-navigation/native';
 
-import {Point} from '@models/places.model';
+import {Point, RouteMapType} from '@models/places.model';
 import {RegularStackRoute} from '@navigation/route';
 import {RootStackType} from '@type/rootStack';
 import useGetRouteMapMarkers from '@hooks/useGetRouteMapMarkers';
@@ -11,19 +11,54 @@ import {jsonParse} from '@utils/transformJson';
 
 import GenericScreen from '@pages/template/GenericScreen';
 import {RoutesMapContainer} from '@containers/World';
-import {useAppSelector} from '@hooks/redux';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {selectorMapTypeEnum} from '@storage/selectors';
+import {fetchMapIfNotExistsLocally} from '@storage/actions/maps';
 import {selectMapPathByIDBasedOnTypeSelector} from '@storage/selectors/map';
 
 const RoutesMap: React.FC = () => {
     const navigation = useNavigation();
+    const dispatch = useAppDispatch();
     const {location} = useLocationProvider();
-    const [mapId, setMapId] = useState('');
+    const [routeInfo, setRouteInfo] = useState({
+        id: '',
+        mapType: selectorMapTypeEnum.regular,
+        routeMapType: RouteMapType.BIKE_MAP,
+    });
+
+    const handleMarkerClick = (id: string, types: string[]) => {
+        const isPlanned = types.includes('FAVORITE');
+        const isPrivate = types.includes('PRIVATE');
+        if (isPrivate) {
+            setRouteInfo({
+                id,
+                mapType: selectorMapTypeEnum.private,
+                routeMapType: RouteMapType.MY_ROUTES,
+            });
+        } else if (isPlanned) {
+            setRouteInfo({
+                id,
+                mapType: selectorMapTypeEnum.favourite,
+                routeMapType: RouteMapType.PLANNING,
+            });
+        } else {
+            setRouteInfo({
+                id,
+                mapType: selectorMapTypeEnum.regular,
+                routeMapType: RouteMapType.BIKE_MAP,
+            });
+        }
+    };
+
+    useEffect(() => {
+        const {id, routeMapType} = routeInfo;
+        if (id) {
+            dispatch(fetchMapIfNotExistsLocally(id, routeMapType));
+        }
+    }, [dispatch, routeInfo]);
+
     const mapPath = useAppSelector(
-        selectMapPathByIDBasedOnTypeSelector(
-            mapId,
-            selectorMapTypeEnum.regular,
-        ),
+        selectMapPathByIDBasedOnTypeSelector(routeInfo.id, routeInfo.mapType),
     );
 
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
@@ -41,7 +76,6 @@ const RoutesMap: React.FC = () => {
 
     const onWebViewMessageHandler = (e: WebViewMessageEvent) => {
         let val = e.nativeEvent?.data?.split('#$#');
-
         switch (val?.[0]) {
             case 'changeRegion':
                 const newBox = jsonParse(val?.[1]);
@@ -66,12 +100,10 @@ const RoutesMap: React.FC = () => {
                 break;
             case 'clickMarker':
                 const routeDetails = jsonParse(val?.[1]);
-                setMapId(routeDetails?.id);
-                /* TODO: action on click marker */
+                handleMarkerClick(routeDetails?.id, routeDetails.markerTypes);
                 break;
             case 'clickMap':
-                setMapId('');
-                /* TODO: ction on click map */
+                handleMarkerClick('', []);
                 break;
         }
     };

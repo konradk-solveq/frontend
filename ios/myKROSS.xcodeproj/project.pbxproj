@@ -39,6 +39,8 @@
 		2813CA2327C4E35F003B6128 /* mykross.svg in Resources */ = {isa = PBXBuildFile; fileRef = 2813CA1D27C4E35E003B6128 /* mykross.svg */; };
 		2813CA2427C4E35F003B6128 /* mykross.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2813CA1E27C4E35E003B6128 /* mykross.otf */; };
 		2813CA2527C4E35F003B6128 /* mykross.eot in Resources */ = {isa = PBXBuildFile; fileRef = 2813CA1F27C4E35E003B6128 /* mykross.eot */; };
+		2870649327C8DACC003FCFE9 /* pinroute_end.png in Resources */ = {isa = PBXBuildFile; fileRef = 2870649127C8DACC003FCFE9 /* pinroute_end.png */; };
+		2870649427C8DACC003FCFE9 /* pinroute_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 2870649227C8DACC003FCFE9 /* pinroute_start.png */; };
 		300CC11411487692A324D0B8 /* libPods-myKROSS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF928F12FFF0E9B141C2E166 /* libPods-myKROSS.a */; };
 		4F5A9EE100CE5A5FEC3388A7 /* libPods-myKROSS-myKROSSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA548E70ACC4E7176C7DD284 /* libPods-myKROSS-myKROSSTests.a */; };
 		51AFA57D87D54EC33FD696BF /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9D1E9358F48E7BA61D8626 /* ExpoModulesProvider.swift */; };
@@ -121,6 +123,8 @@
 		2813CA1D27C4E35E003B6128 /* mykross.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = mykross.svg; path = ../assets/fonts/mykross.svg; sourceTree = "<group>"; };
 		2813CA1E27C4E35E003B6128 /* mykross.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.otf; path = ../assets/fonts/mykross.otf; sourceTree = "<group>"; };
 		2813CA1F27C4E35E003B6128 /* mykross.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.eot; path = ../assets/fonts/mykross.eot; sourceTree = "<group>"; };
+		2870649127C8DACC003FCFE9 /* pinroute_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_end.png; path = ../assets/pinroute_end.png; sourceTree = "<group>"; };
+		2870649227C8DACC003FCFE9 /* pinroute_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_start.png; path = ../assets/pinroute_start.png; sourceTree = "<group>"; };
 		4236C6C91B37D64A51590B06 /* Pods-myKROSS.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.debug.xcconfig"; sourceTree = "<group>"; };
 		4489E9339514510410B9CCF9 /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; sourceTree = "<group>"; };
 		526E7EA30805707748418D70 /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; sourceTree = "<group>"; };
@@ -284,6 +288,8 @@
 				1D4E869B266A669A006FF848 /* serviceshop_empty.png */,
 				1D4E869D266A669A006FF848 /* serviceshop_marker.png */,
 				904F37AF26A1875000371264 /* map_route_marker.png */,
+				2870649127C8DACC003FCFE9 /* pinroute_end.png */,
+				2870649227C8DACC003FCFE9 /* pinroute_start.png */,
 				9049DB4C27C3FB9B001B065B /* pinroute_planned.png */,
 				9049DB4D27C3FB9B001B065B /* pinroute_private.png */,
 				9049DB4B27C3FB9B001B065B /* pinroute_published.png */,
@@ -477,6 +483,7 @@
 				1D4E86A4266A669B006FF848 /* shop_empty.png in Resources */,
 				1D4E86A5266A669B006FF848 /* shop_marker.png in Resources */,
 				1D13B2032657B97F00A4F34A /* DIN2014Narrow-Light.svg in Resources */,
+				2870649327C8DACC003FCFE9 /* pinroute_end.png in Resources */,
 				904F37B026A1875000371264 /* map_route_marker.png in Resources */,
 				909E2E8927BFA2E40062F828 /* DIN2014-Regular.eot in Resources */,
 				9049DB5627C43589001B065B /* pinroute_private_empty.png in Resources */,
@@ -516,6 +523,7 @@
 				BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */,
 				2813CA2227C4E35F003B6128 /* mykross.woff2 in Resources */,
 				901D6EAC26416F3B00A247E6 /* GoogleService-Info.plist in Resources */,
+				2870649427C8DACC003FCFE9 /* pinroute_start.png in Resources */,
 				9049DB5427C43589001B065B /* pinroute_planned_empty.png in Resources */,
 				9049DB5027C3FB9C001B065B /* pinroute_private.png in Resources */,
 				9049DB4E27C3FB9C001B065B /* pinroute_published.png in Resources */,
