@@ -1,0 +1,457 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/dropdown/DropdownItem Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignContent": "center",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+    testID="dropdown-item-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignContent": "center",
+            "height": 75.86729857819905,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="dropdown-item-test-id-button"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {},
+              ]
+            }
+            testID="dropdown-item-test-id-text"
+          >
+            Dropdown item
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "borderBottomColor": "#BDBDBD",
+            "borderBottomWidth": 0.5,
+            "borderRadius": 1,
+          },
+          Object {
+            "borderBottomWidth": 0.5,
+            "color": "#BDBDBD",
+          },
+          undefined,
+        ]
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/dropdown/DropdownItem Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignContent": "center",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+    testID="dropdown-item-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignContent": "center",
+            "height": 75.86729857819905,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="dropdown-item-test-id-button"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {},
+              ]
+            }
+            testID="dropdown-item-test-id-text"
+          >
+            Dropdown item
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "borderBottomColor": "#BDBDBD",
+            "borderBottomWidth": 0.5,
+            "borderRadius": 1,
+          },
+          Object {
+            "borderBottomWidth": 0.5,
+            "color": "#BDBDBD",
+          },
+          undefined,
+        ]
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/dropdown/DropdownItem Selected 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignContent": "center",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+    testID="dropdown-item-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignContent": "center",
+            "height": 75.86729857819905,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="dropdown-item-test-id-button"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#C63733",
+                },
+              ]
+            }
+            testID="dropdown-item-test-id-text"
+          >
+            Dropdown item
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "borderBottomColor": "#BDBDBD",
+            "borderBottomWidth": 0.5,
+            "borderRadius": 1,
+          },
+          Object {
+            "borderBottomWidth": 0.5,
+            "color": "#BDBDBD",
+          },
+          undefined,
+        ]
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/dropdown/DropdownItem With Icon 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignContent": "center",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+    testID="dropdown-item-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignContent": "center",
+            "height": 75.86729857819905,
+            "justifyContent": "center",
+            "opacity": 1,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="dropdown-item-test-id-button"
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#C63733",
+                },
+              ]
+            }
+            testID="dropdown-item-test-id-text"
+          >
+            Dropdown item
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#C63733",
+                  "fontSize": 12,
+                },
+                Object {
+                  "marginLeft": "2.564%",
+                },
+              ]
+            }
+            testID="dropdown-item-test-id-icon"
+          >
+            z
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "borderBottomColor": "#BDBDBD",
+            "borderBottomWidth": 0.5,
+            "borderRadius": 1,
+          },
+          Object {
+            "borderBottomWidth": 0.5,
+            "color": "#BDBDBD",
+          },
+          undefined,
+        ]
+      }
+    />
+  </View>
+</View>
+`;

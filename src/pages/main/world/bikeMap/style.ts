@@ -38,11 +38,10 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: getFHorizontalPx(16),
     },
     topButton: {
         height: getFVerticalPx(48),
-        width: 'auto',
+        width: getFHorizontalPx(115),
     },
 });
 

@@ -683,6 +683,38 @@ const clearMarkersCluster = () => {
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "elevation": 5,
+              "shadowColor": "rgba(51, 51, 51, 0.07)",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 7.6923076923076925,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 15.384615384615385,
+            },
+            Array [
+              Object {
+                "height": 92.3076923076923,
+                "width": 565.3846153846154,
+              },
+              Object {
+                "height": 84.61538461538461,
+                "width": 221.15384615384616,
+              },
+            ],
+          ]
+        }
         testID="secondary-btn-test-id"
       >
         <View
@@ -690,33 +722,16 @@ const clearMarkersCluster = () => {
             Array [
               Object {
                 "alignItems": "center",
-                "backgroundColor": "#ffffff",
                 "borderRadius": 30.76923076923077,
-                "elevation": 5,
                 "flexDirection": "row",
                 "height": "100%",
                 "justifyContent": "center",
-                "shadowColor": "rgba(51, 51, 51, 0.07)",
-                "shadowOffset": Object {
-                  "height": 0,
-                  "width": 7.6923076923076925,
-                },
-                "shadowRadius": 15.384615384615385,
                 "width": "100%",
               },
               Object {
                 "backgroundColor": "#FFFFFF",
               },
-              Array [
-                Object {
-                  "height": 92.3076923076923,
-                  "width": 565.3846153846154,
-                },
-                Object {
-                  "height": 84.61538461538461,
-                  "width": 221.15384615384616,
-                },
-              ],
+              undefined,
             ]
           }
           testID="secondary-btn-test-id-container"
@@ -742,6 +757,7 @@ const clearMarkersCluster = () => {
             X
           </Text>
           <Text
+            adjustsFontSizeToFit={true}
             style={
               Array [
                 Object {
