@@ -534,7 +534,7 @@ const setMarks = places => {
         if (privateMarks.some(e => e.id == id)) continue;
         if (plannedMarks.some(e => e.id == id)) continue;
         
-        const isPlanned = p.markerTypes?.includes('PLANNED');
+        const isPlanned = p.markerTypes?.includes('FAVORITE');
         const isPrivate = p.markerTypes?.includes('PRIVATE');
         const privateImage = isPrivate && 'pinroute_private.png';
         const plannedImage = isPlanned && 'pinroute_planned.png';
