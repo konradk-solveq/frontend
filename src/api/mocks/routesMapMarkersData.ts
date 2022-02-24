@@ -32,7 +32,7 @@ export default [
     {
         lng: 17.886847008913527,
         lat: 50.66326086535108,
-        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED'],
+        markerTypes: <MapMarkerT[]>['PUBLIC', 'FAVORITE'],
         details: {
             id: '-9SXuZ6NyCdU5svSC7pKoAb5FX0RYcVw',
             name: 'Sam - sym - 23/06/2021 - 22:43',
@@ -116,7 +116,7 @@ export default [
     {
         lng: 17.88913618943502,
         lat: 50.6651145,
-        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED', 'PRIVATE'],
+        markerTypes: <MapMarkerT[]>['PUBLIC', 'FAVORITE', 'PRIVATE'],
         details: {
             id: '0rCaV9aznM-29qdVBesb1EoeKKuZJcT4',
             name: 'Samsung_A72- when in use',
@@ -172,7 +172,7 @@ export default [
     {
         lng: 17.887478666750006,
         lat: 50.664561162173186,
-        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED', 'PRIVATE'],
+        markerTypes: <MapMarkerT[]>['PUBLIC', 'FAVORITE', 'PRIVATE'],
         details: {
             id: '2TefSD9-bJBRjV_6Wks5-2ABWJCqsgm9',
             name: 'Trasa 2 z dnia 27/09/2021',
@@ -200,7 +200,7 @@ export default [
     {
         lng: 17.837720435245657,
         lat: 50.68821738131316,
-        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED'],
+        markerTypes: <MapMarkerT[]>['PUBLIC', 'FAVORITE'],
         details: {
             id: '3g-HOwZee1hXHCeROAb_R7Tajul4PVRL',
             name: 'T 4',
@@ -214,7 +214,7 @@ export default [
     {
         lng: 17.846531467701237,
         lat: 50.689981424170696,
-        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED'],
+        markerTypes: <MapMarkerT[]>['PUBLIC', 'FAVORITE'],
         details: {
             id: '3xZ7CXbycF7TIXK_nLwHA7zWtKcZBrz5',
             name: 'dawdawdawd',
@@ -256,7 +256,7 @@ export default [
     {
         lng: 17.888389122684735,
         lat: 50.6644010808735,
-        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED'],
+        markerTypes: <MapMarkerT[]>['PUBLIC', 'FAVORITE'],
         details: {
             id: '53iflajDiTknKnfKATS6zhMOYnefm75p',
             name: 'Wkoło komina',
@@ -270,7 +270,7 @@ export default [
     {
         lng: 17.887481864489864,
         lat: 50.66457407824369,
-        markerTypes: <MapMarkerT[]>['PUBLIC', 'PLANNED'],
+        markerTypes: <MapMarkerT[]>['PUBLIC', 'FAVORITE'],
         details: {
             id: '5BJFulsz7HKbgFMRHPbxHdx-ZanmRN4K',
             name: '21-0',
