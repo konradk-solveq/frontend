@@ -7,7 +7,6 @@ import {
     userNameSelector,
     loadingMapsSelector,
     privateMapsListSelector,
-    favouritesMapsSelector,
     privateTotalMapsNumberSelector,
     refreshMapsSelector,
     selectorMapTypeEnum,
@@ -31,7 +30,10 @@ import SortButton from '../components/buttons/SortButton';
 import styles from './style';
 import {nextPrivatePaginationCoursor} from '@storage/selectors/map';
 import {fetchPrivateMapsList} from '@storage/actions';
-import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
+import {
+    checkIfContainsFitlers,
+    getSorByFilters,
+} from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {FiltersButton} from '@pages/main/world/components/buttons';
@@ -58,7 +60,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const nextCoursor = useAppSelector(nextPrivatePaginationCoursor);
     const dispatch = useAppDispatch();
     const userName = useAppSelector(userNameSelector);
-    const privateMaps = useAppSelector<Map[]>(favouritesMapsSelector);
+    const privateMaps = useAppSelector<Map[]>(privateMapsListSelector);
     const totalNumberOfPrivateMaps = useAppSelector(
         privateTotalMapsNumberSelector,
     );
@@ -197,6 +199,14 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         setShowDropdown(state);
     }, []);
 
+    const onSortByHandler = useCallback((sortTypeId: string) => {
+        const sortBy = privateRoutesDropdownList.find(
+            el => el.id === sortTypeId,
+        );
+
+        setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
+    }, []);
+
     if (!privateMaps?.length) {
         return <EmptyList onPress={emptyListButtonHandler} />;
     }
@@ -254,7 +264,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                     openOnStart={showDropdown}
                     list={privateRoutesDropdownList}
                     onPress={toggleDropdown}
-                    onPressItem={() => console.log('pressed item')}
+                    onPressItem={onSortByHandler}
                     buttonText={mwt('btnSort')}
                     buttonContainerStyle={styles.dropdownButtonContainerStyle}
                     boxStyle={styles.dropdownBox}

@@ -40,11 +40,11 @@ const styles = StyleSheet.create({
     topButtonsContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginHorizontal: appContainerHorizontalMargin,
+        zIndex: 10,
     },
     topButton: {
         height: getFVerticalPx(48),
-        width: getFHorizontalPx(115),
-        marginHorizontal: appContainerHorizontalMargin,
         zIndex: 10,
     },
     topButtonLeft: {},
