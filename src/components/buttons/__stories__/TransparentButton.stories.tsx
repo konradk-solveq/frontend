@@ -38,6 +38,7 @@ storiesOf('components/buttons/TransparentButton', module)
             )}
             disabled={boolean('Disable button', false)}
             withLoader={boolean('Display loader', false)}
-            style={object('Icon style', {backgroundColor: colors.white})}
+            style={object('Button style', {backgroundColor: colors.white})}
+            containerStyle={object('Container style', {})}
         />
     ));

@@ -28,6 +28,15 @@
                title = "Generate tmp.xcconfig"
                scriptText = "&quot;${SRCROOT}/../node_modules/react-native-config/ios/ReactNativeConfig/BuildXCConfig.rb&quot; &quot;${SRCROOT}/..&quot; &quot;${SRCROOT}/tmp.xcconfig&quot;&#10;"
                shellToInvoke = "Generate tmp.xcconfig">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+                     BuildableName = "myKROSS.app"
+                     BlueprintName = "myKROSS"
+                     ReferencedContainer = "container:myKROSS.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
          <ExecutionAction
@@ -83,7 +92,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Test.Debug"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -98,6 +107,15 @@
             <ActionContent
                title = "Geerate tmp.xcconfig"
                scriptText = "&quot;${SRCROOT}/../node_modules/react-native-config/ios/ReactNativeConfig/BuildXCConfig.rb&quot; &quot;${SRCROOT}/..&quot; &quot;${SRCROOT}/tmp.xcconfig&quot;&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+                     BuildableName = "myKROSS.app"
+                     BlueprintName = "myKROSS"
+                     ReferencedContainer = "container:myKROSS.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
             </ActionContent>
          </ExecutionAction>
       </PreActions>

@@ -14,6 +14,7 @@ interface IProps {
     disabled?: boolean;
     withLoader?: boolean;
     style?: ViewStyle;
+    containerStyle?: ViewStyle;
     testID?: string;
 }
 
@@ -25,6 +26,7 @@ const TransparentButton: React.FC<IProps> = ({
     disabled = false,
     withLoader = false,
     style,
+    containerStyle,
     testID = 'transparent-btn-test-id',
 }: IProps) => {
     return (
@@ -40,6 +42,8 @@ const TransparentButton: React.FC<IProps> = ({
             disabledTextColor={colors.grey}
             loaderColor={colors.black}
             style={[styles.button, style || {}]}
+            containerStyle={containerStyle || {}}
+            withoutShadow
         />
     );
 };
