@@ -700,6 +700,7 @@ const clearMarkersCluster = () => {
                 "height": 0,
                 "width": 7.6923076923076925,
               },
+              "shadowOpacity": 1,
               "shadowRadius": 15.384615384615385,
             },
             Array [
