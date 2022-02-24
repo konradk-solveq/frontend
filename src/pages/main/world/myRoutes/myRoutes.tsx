@@ -193,19 +193,33 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
 
     const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
+    const [sortButtonName, setSortButtonName] = useState<string>(
+        mwt('btnSort'),
+    );
 
     const toggleDropdown = useCallback((state: boolean) => {
         setShowBackdrop(state);
         setShowDropdown(state);
     }, []);
 
-    const onSortByHandler = useCallback((sortTypeId: string) => {
-        const sortBy = privateRoutesDropdownList.find(
-            el => el.id === sortTypeId,
-        );
-
-        setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
+    const changeSortButtonName = useCallback((buttoName?: string) => {
+        if (buttoName) {
+            setSortButtonName(buttoName);
+        }
     }, []);
+
+    const onSortByHandler = useCallback(
+        (sortTypeId?: string) => {
+            const firstEl = privateRoutesDropdownList[0];
+            const sortBy =
+                privateRoutesDropdownList.find(el => el.id === sortTypeId) ||
+                firstEl;
+            changeSortButtonName(sortTypeId ? sortBy?.text : mwt('btnSort'));
+
+            setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
+        },
+        [changeSortButtonName, mwt],
+    );
 
     if (!privateMaps?.length) {
         return <EmptyList onPress={emptyListButtonHandler} />;
@@ -279,7 +293,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         <>
                             <View style={styles.topButtonsContainer}>
                                 <SortButton
-                                    title={mwt('btnSort')}
+                                    title={sortButtonName}
                                     onPress={() => setShowDropdown(true)}
                                     style={styles.topButton}
                                 />

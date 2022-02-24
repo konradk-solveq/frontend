@@ -33,7 +33,7 @@ interface IProps {
     withResetButton?: boolean;
     resetButtonText?: string;
     onPress?: (isOpen: boolean) => void;
-    onPressItem?: (elementId: string) => void;
+    onPressItem?: (elementId?: string) => void;
     openOnStart?: boolean;
     style?: ViewStyle;
     testID?: string;
@@ -154,8 +154,11 @@ const DropdownList: React.FC<IProps> = ({
         if (onPress) {
             onPress(false);
         }
+        if (onPressItem) {
+            onPressItem(undefined);
+        }
         setOpen(false);
-    }, [onPress]);
+    }, [onPress, onPressItem]);
 
     /**
      * Renders single item

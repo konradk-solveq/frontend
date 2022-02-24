@@ -38,6 +38,7 @@ import {
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
 import {publicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
+import {useMemo} from '@storybook/addons';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -172,19 +173,32 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
 
     const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
+    const [sortButtonName, setSortButtonName] = useState<string>(t('btnSort'));
 
     const toggleDropdown = useCallback((state: boolean) => {
         setShowBackdrop(state);
         setShowDropdown(state);
     }, []);
 
-    const onSortByHandler = useCallback((sortTypeId: string) => {
-        const sortBy = publicRoutesDropdownList.find(
-            el => el.id === sortTypeId,
-        );
-
-        setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
+    const changeSortButtonName = useCallback((buttoName?: string) => {
+        if (buttoName) {
+            setSortButtonName(buttoName);
+        }
     }, []);
+
+    const onSortByHandler = useCallback(
+        (sortTypeId?: string) => {
+            const firstEl = publicRoutesDropdownList[0];
+            const sortBy =
+                publicRoutesDropdownList.find(el => el.id === sortTypeId) ||
+                firstEl;
+
+            changeSortButtonName(sortTypeId ? sortBy?.text : t('btnSort'));
+
+            setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
+        },
+        [changeSortButtonName, t],
+    );
 
     return (
         <>
@@ -223,7 +237,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                             <>
                                 <View style={styles.topButtonsContainer}>
                                     <SortButton
-                                        title={t('btnSort')}
+                                        title={sortButtonName}
                                         onPress={() => setShowDropdown(true)}
                                         style={styles.topButton}
                                     />

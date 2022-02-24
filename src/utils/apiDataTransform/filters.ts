@@ -73,7 +73,6 @@ export const getSorByFilters = (
 
     let filtersToUpdate = {};
     Object.keys({...filters}).forEach(f => {
-        console.log(f);
         if (f !== ('created' || 'distance')) {
             filtersToUpdate = {
                 ...filtersToUpdate,
@@ -86,6 +85,5 @@ export const getSorByFilters = (
         ...filtersToUpdate,
         [newFilter.sortBy]: [newFilter.order],
     };
-    console.log('[updated fitlers]', updatedFilters);
     return updatedFilters;
 };
