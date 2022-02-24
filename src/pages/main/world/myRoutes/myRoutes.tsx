@@ -7,6 +7,7 @@ import {
     userNameSelector,
     loadingMapsSelector,
     privateMapsListSelector,
+    favouritesMapsSelector,
     privateTotalMapsNumberSelector,
     refreshMapsSelector,
     selectorMapTypeEnum,
@@ -24,14 +25,18 @@ import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
 import EmptyList from './emptyList';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-
+import {Dropdown} from '@components/dropdown';
+import {Backdrop} from '@components/backdrop';
+import SortButton from '../components/buttons/SortButton';
 import styles from './style';
 import {nextPrivatePaginationCoursor} from '@storage/selectors/map';
 import {fetchPrivateMapsList} from '@storage/actions';
 import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
-import {FiltersButton, SortButton} from '@pages/main/world/components/buttons';
+import {FiltersButton} from '@pages/main/world/components/buttons';
+import {RoutesMapButton} from '@pages/main/world/components/buttons';
+import {privateRoutesDropdownList} from '../utils/dropdownLists';
 
 const length = getVerticalPx(175);
 const getItemLayout = (_: any, index: number) => ({
@@ -53,7 +58,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const nextCoursor = useAppSelector(nextPrivatePaginationCoursor);
     const dispatch = useAppDispatch();
     const userName = useAppSelector(userNameSelector);
-    const privateMaps = useAppSelector<Map[]>(privateMapsListSelector);
+    const privateMaps = useAppSelector<Map[]>(favouritesMapsSelector);
     const totalNumberOfPrivateMaps = useAppSelector(
         privateTotalMapsNumberSelector,
     );
@@ -184,6 +189,14 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         }
     }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
 
+    const [showBackdrop, setShowBackdrop] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const toggleDropdown = useCallback((state: boolean) => {
+        setShowBackdrop(state);
+        setShowDropdown(state);
+    }, []);
+
     if (!privateMaps?.length) {
         return <EmptyList onPress={emptyListButtonHandler} />;
     }
@@ -236,6 +249,18 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 showModal={showFiltersModal}
                 allowedFilters={['order']}
             />
+            <View style={styles.topButtonsContainer}>
+                <Dropdown
+                    openOnStart={showDropdown}
+                    list={privateRoutesDropdownList}
+                    onPress={toggleDropdown}
+                    onPressItem={() => console.log('pressed item')}
+                    buttonText={mwt('btnSort')}
+                    buttonContainerStyle={styles.dropdownButtonContainerStyle}
+                    boxStyle={styles.dropdownBox}
+                    hideButton
+                />
+            </View>
 
             <View style={styles.horizontalSpace}>
                 <FlatList
@@ -244,13 +269,16 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         <>
                             <View style={styles.topButtonsContainer}>
                                 <SortButton
-                                    onPress={() => {}}
                                     title={mwt('btnSort')}
+                                    onPress={() => setShowDropdown(true)}
                                     style={styles.topButton}
                                 />
                                 <FiltersButton
                                     onPress={onFiltersModalOpenHandler}
-                                    style={styles.topButton}
+                                    style={{
+                                        ...styles.topButton,
+                                        ...styles.topButtonRight,
+                                    }}
                                 />
                             </View>
                             <Text style={styles.header}>
@@ -272,6 +300,16 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                     ListFooterComponent={renderListLoader}
                     refreshing={isLoading && isRefreshing}
                     onRefresh={onRefresh}
+                />
+
+                <Backdrop
+                    isVisible={showBackdrop}
+                    style={styles.fullscreenBackdrop}
+                />
+
+                <RoutesMapButton
+                    onPress={() => navigation.navigate('RoutesMap')}
+                    style={styles.mapBtn}
                 />
             </View>
         </>
