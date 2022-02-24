@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {StyleSheet, View, ViewStyle} from 'react-native';
+import {GestureResponderEvent, StyleSheet, View, ViewStyle} from 'react-native';
 
 import Animated, {
     useAnimatedStyle,
@@ -25,12 +25,14 @@ const BOTTOM_AREA_HEIGHT = 64;
 interface IProps {
     list: DropdownItemT[];
     buttonText: string;
+    hideButton?: boolean;
     buttonIcon?: MykrossIconFont;
     buttonStyle?: ViewStyle;
     buttonContainerStyle?: ViewStyle;
     boxStyle?: ViewStyle;
     withResetButton?: boolean;
     resetButtonText?: string;
+    onPress?: (isOpen: boolean) => void;
     onPressItem?: (elementId: string) => void;
     openOnStart?: boolean;
     style?: ViewStyle;
@@ -40,12 +42,14 @@ interface IProps {
 const DropdownList: React.FC<IProps> = ({
     list,
     buttonText,
+    hideButton = false,
     buttonIcon = MykrossIconFont.MYKROSS_ICON_CHEVRON_DOWN,
     buttonStyle,
     buttonContainerStyle,
     boxStyle,
     withResetButton = true,
     resetButtonText = 'Reset',
+    onPress,
     onPressItem,
     openOnStart = false,
     style,
@@ -60,6 +64,10 @@ const DropdownList: React.FC<IProps> = ({
                     (withResetButton ? BOTTOM_AREA_HEIGHT : 0),
             ),
         [list, withResetButton],
+    );
+    const containerHeightWhenButtonIsHidden = useMemo(
+        () => (hideButton ? {height: 0} : {}),
+        [hideButton],
     );
 
     const boxHeight = useSharedValue(openOnStart ? dropdownHeight : 0);
@@ -106,8 +114,19 @@ const DropdownList: React.FC<IProps> = ({
     }, [open, boxHeight, boxOpacity, itemOpacity, dropdownHeight]);
 
     const toggleDropdown = useCallback(() => {
-        setOpen(prev => !prev);
-    }, []);
+        setOpen(prev => {
+            if (onPress) {
+                onPress(!prev);
+            }
+            return !prev;
+        });
+    }, [onPress]);
+
+    useEffect(() => {
+        if (openOnStart) {
+            toggleDropdown();
+        }
+    }, [openOnStart, toggleDropdown]);
 
     /**
      * Trigger action, set clicked item as active and close dropdown
@@ -119,19 +138,24 @@ const DropdownList: React.FC<IProps> = ({
             if (onPressItem) {
                 onPressItem(id);
             }
-
+            if (onPress) {
+                onPress(false);
+            }
             setOpen(false);
         },
-        [onPressItem],
+        [onPressItem, onPress],
     );
 
     /**
      * Trigger action, reset active item and close dropdown
      */
-    const onResetPickedListItem = () => {
+    const onResetPickedListItem = useCallback(() => {
         setActiveItem(undefined);
+        if (onPress) {
+            onPress(false);
+        }
         setOpen(false);
-    };
+    }, [onPress]);
 
     /**
      * Renders single item
@@ -160,18 +184,26 @@ const DropdownList: React.FC<IProps> = ({
     );
 
     return (
-        <View style={[styles.outerContainer, style]} testID={testID}>
-            <TransparentButton
-                text={buttonName}
-                onPress={toggleDropdown}
-                icon={buttonIcon}
-                style={{...styles.button, ...buttonStyle}}
-                containerStyle={{
-                    ...styles.buttonContainer,
-                    ...buttonContainerStyle,
-                }}
-                testID={`${testID}-button`}
-            />
+        <View
+            style={[
+                styles.outerContainer,
+                containerHeightWhenButtonIsHidden,
+                style,
+            ]}
+            testID={testID}>
+            {!hideButton && (
+                <TransparentButton
+                    text={buttonName}
+                    onPress={toggleDropdown}
+                    icon={buttonIcon}
+                    style={{...styles.button, ...buttonStyle}}
+                    containerStyle={{
+                        ...styles.buttonContainer,
+                        ...buttonContainerStyle,
+                    }}
+                    testID={`${testID}-button`}
+                />
+            )}
             <Animated.View
                 style={[styles.container, boxStyle, boxAnimation]}
                 testID={`${testID}-items-box`}>
@@ -222,6 +254,9 @@ const styles = StyleSheet.create({
     button: {
         height: '100%',
         width: getFHorizontalPx(135),
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
     },
     buttonContainer: {},
     bottomArea: {
