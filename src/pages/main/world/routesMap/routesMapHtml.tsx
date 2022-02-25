@@ -532,11 +532,11 @@ const setMarks = places => {
             },
         ]
     });
-    clusterPlanned = new MarkerClusterer(map, clusterPlanned, {
+    clusterPlanned = new MarkerClusterer(map, plannedMarks, {
         ignoreHidden: true,
         minimumClusterSize: 3,
         styles: [{
-                url: "pinroute_panned_empty.png",
+                url: "pinroute_planned_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
                 textSize: 17,
                 textColor: "#fff",
