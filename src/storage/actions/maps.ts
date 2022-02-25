@@ -467,6 +467,7 @@ export const removePlannedMap = (
 export const fetchMapIfNotExistsLocally = (
     mapId: string,
     mapType?: RouteMapType,
+    withPath?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
@@ -494,7 +495,7 @@ export const fetchMapIfNotExistsLocally = (
             return;
         }
 
-        const response = await getMapsByTypeAndId(location, mapId);
+        const response = await getMapsByTypeAndId(location, mapId, withPath);
 
         if (response.error || !response.data || !response.data) {
             dispatch(setError(response.error, response.status));

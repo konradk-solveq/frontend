@@ -53,7 +53,7 @@ const RoutesMap: React.FC = () => {
     useEffect(() => {
         const {id, routeMapType} = routeInfo;
         if (id) {
-            dispatch(fetchMapIfNotExistsLocally(id, routeMapType));
+            dispatch(fetchMapIfNotExistsLocally(id, routeMapType, true));
         }
     }, [dispatch, routeInfo]);
 

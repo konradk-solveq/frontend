@@ -40,10 +40,16 @@ export const getMaps = async (
     );
 };
 
-export const getRoute = async (id: string, location?: Coords) => {
+export const getRoute = async (
+    id: string,
+    location?: Coords,
+    withPath?: boolean,
+) => {
     let url = `${BASE_ROUTE_URL}/${id}`;
     if (location) {
-        url = `${url}?lat=${location.latitude}&lng=${location.longitude}&detailed=true`;
+        url = `${url}?lat=${location.latitude}&lng=${
+            location.longitude
+        }&detailed=true&path=${!!withPath}`;
     }
 
     return await axiosGet(url);
