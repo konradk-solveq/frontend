@@ -113,9 +113,38 @@ const customJsonStringify = (value, fallback) => {
     }
 };
 
+const getSVGMarker = () => {
+    return {
+        path: \\"M10.941 3.73a1.133 1.133 0 0 1 2.118 0l5.851 14.638c.396.99-.59 1.966-1.535 1.521l-4.899-3.369a1.115 1.115 0 0 0-.952 0l-4.9 3.37c-.944.444-1.93-.533-1.534-1.522L10.94 3.73Z\\",
+        fillColor: \\"#333\\",
+        fillOpacity: 1,
+        strokeColor: '#fff',
+        strokeWeight: 2,
+        rotation: 0,
+        scale: 1.2,
+        zIndex: 1000,
+        anchor: new google.maps.Point(12, 12),
+    }
+}
+
+const rotateUserLocationMarker = (heading) => {
+    if(heading !== undefined && heading !== null) {
+        let updatedMarker = my_location?.icon;
+
+        if(!updatedMarker.icon){
+            updatedMarker = getSVGMarker();
+        }
+
+        updatedMarker.rotation = heading;
+
+        window.requestAnimationFrame(() => {
+            my_location.setIcon(updatedMarker)
+        })
+    }
+}
+
 let map;
 const googleMap = document.getElementById('map');
-// let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
 
 let my_location = null;
 const setMyLocation = position => {
@@ -125,10 +154,12 @@ const setMyLocation = position => {
         if (my_location) {
             my_location.setPosition(latLng);
         } else {
+            const svgMarker = getSVGMarker();
+
             my_location = new google.maps.Marker({
                 id: 'my_location',
                 position: latLng,
-                icon: 'my_location.png',
+                icon: svgMarker,
                 map: map,
             });
         }

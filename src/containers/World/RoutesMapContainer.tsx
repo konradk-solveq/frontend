@@ -20,6 +20,7 @@ import colors from '@theme/colors';
 import mapSource from '@pages/main/world/routesMap/routesMapHtml';
 import {IconButton, SecondaryButton} from '@components/buttons';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import useCompassHook from '@src/hooks/useCompassHook';
 
 interface IProps {
     onWebViewMessage: (e: WebViewMessageEvent) => void;
@@ -39,10 +40,20 @@ const RoutesMapContainer: React.FC<IProps> = ({
     const mapRef = useRef(null);
     const posRef = useRef(false);
 
-    const setJsWV = (data: string) => mapRef.current?.injectJavaScript(data);
+    /* TODO: temp solution for not working tests - storyshots */
+    const setJsWV = (data: string) =>
+        !process.env.JEST_WORKER_ID
+            ? mapRef.current?.injectJavaScript(data)
+            : '';
     const {t} = useMergedTranslation('MainRoutesMap');
 
-    const loc = useMemo(() => getMapInitLocation(location), [location]);
+    /**
+     * Set it only once to avoid changes in map string
+     * which causes rerenders.
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const loc = useMemo(() => getMapInitLocation(location), []);
+
     const markersExists = useMemo(
         () => routesMarkers && routesMarkers.length > 0,
         [routesMarkers],
@@ -115,9 +126,21 @@ const RoutesMapContainer: React.FC<IProps> = ({
             const p = jsonStringify(pos);
             if (p) {
                 setJsWV(`setPosOnMap(${p});true;`);
+                /**
+                 * Fetch should reassign region to fetch markers if not exists
+                 */
+                setJsWV('getRgion();true;');
             }
         }
     }, [location, mapLoaded]);
+
+    const heading = useCompassHook();
+
+    useEffect(() => {
+        if (heading !== undefined && heading !== null && mapRef.current) {
+            setJsWV(`rotateUserLocationMarker(${heading});true;`);
+        }
+    }, [heading]);
 
     return (
         <View style={styles.container}>
