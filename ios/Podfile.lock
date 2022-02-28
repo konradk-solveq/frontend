@@ -440,7 +440,7 @@ PODS:
     - React-Core
   - react-native-safe-area-context (3.2.0):
     - React-Core
-  - react-native-webview (11.4.2):
+  - react-native-webview (11.17.2):
     - React-Core
   - React-perflogger (0.66.4)
   - React-RCTActionSheet (0.66.4):
@@ -511,7 +511,7 @@ PODS:
     - React
   - RNBackgroundFetch (4.0.2):
     - React-Core
-  - RNBackgroundGeolocation (4.4.5):
+  - RNBackgroundGeolocation (4.4.6):
     - CocoaLumberjack (~> 3.7.2)
     - React-Core
   - RNCAsyncStorage (1.15.2):
@@ -933,7 +933,7 @@ SPEC CHECKSUMS:
   react-native-nfc-manager: e0889542676e1587791ca7b15cf41a7d1ba228e5
   react-native-restart: d4ea7637e193da7558d229b3704d500ec0d75f9c
   react-native-safe-area-context: e471852c5ed67eea4b10c5d9d43c1cebae3b231d
-  react-native-webview: 90ccc4add19f940dfe6c89d30659aed8134f234d
+  react-native-webview: 77ee909f73e1fcab76380f7dcc3344771fe61bd8
   React-perflogger: 93075d8931c32cd1fce8a98c15d2d5ccc4d891bd
   React-RCTActionSheet: 7d3041e6761b4f3044a37079ddcb156575fb6d89
   React-RCTAnimation: 743e88b55ac62511ae5c2e22803d4f503f2a3a13
@@ -948,7 +948,7 @@ SPEC CHECKSUMS:
   ReactCommon: 57b69f6383eafcbd7da625bfa6003810332313c4
   ReactNativeGetLocation: 7ed719807f65206e20b6793896372b11ad835d6d
   RNBackgroundFetch: 1efac9adb6daac367819488f0c8b201d780a08bf
-  RNBackgroundGeolocation: df25f3debd5d8af679ece25f4e076b2fdd3d675d
+  RNBackgroundGeolocation: 2718317d4562828b1995f78cce237f5f402b93e3
   RNCAsyncStorage: 502fbf425b9ee2d73ca6fa4b299dce0be411b422
   RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNDeviceInfo: 417b2ef4456c13a9d50ad8c57895eea837b735a8

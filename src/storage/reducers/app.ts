@@ -73,11 +73,12 @@ const initialState: AppState = {
     config: {
         name: '',
         lang: '',
-        langs: {name: '', displayName: ''},
-        difficulties: [],
-        surfaces: [],
+        langs: [],
         tags: [],
+        surfaces: [],
+        difficulties: [],
         reactions: [],
+        uiTranslations: {controlSums: [], codes: []},
     },
     terms: [],
     currentTerms: {
@@ -112,9 +113,11 @@ const appReducer = (state = initialState, action: any) => {
                 },
             };
         case actionTypes.SET_APP_CONFIG:
+            const config = action.config;
+            config.lang = 'en';
             return {
                 ...state,
-                config: action.config,
+                config: config,
             };
         case actionTypes.SET_APP_TERMS:
             return {

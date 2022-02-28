@@ -1,0 +1,337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/buttons/TransparentButton Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 30.76923076923077,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {},
+        Array [
+          Object {
+            "height": 92.3076923076923,
+            "width": 565.3846153846154,
+          },
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
+        ],
+      ]
+    }
+    testID="transparent-btn-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {},
+        ]
+      }
+      testID="transparent-btn-test-id-container"
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#333333",
+              "fontSize": 20,
+            },
+            Object {
+              "marginRight": 15.384615384615385,
+            },
+          ]
+        }
+        testID="transparent-btn-test-id-icon"
+      >
+        U
+      </Text>
+      <Text
+        adjustsFontSizeToFit={true}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#333333",
+            },
+          ]
+        }
+        testID="transparent-btn-test-id-text"
+      >
+        Button
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/buttons/TransparentButton Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 30.76923076923077,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {},
+        Array [
+          Object {
+            "height": 92.3076923076923,
+            "width": 565.3846153846154,
+          },
+          Object {},
+        ],
+      ]
+    }
+    testID="transparent-btn-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {},
+        ]
+      }
+      testID="transparent-btn-test-id-container"
+    >
+      <Text
+        adjustsFontSizeToFit={true}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#333333",
+            },
+          ]
+        }
+        testID="transparent-btn-test-id-text"
+      >
+        Button
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/buttons/TransparentButton With Icon 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 30.76923076923077,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {},
+        Array [
+          Object {
+            "height": 92.3076923076923,
+            "width": 565.3846153846154,
+          },
+          Object {},
+        ],
+      ]
+    }
+    testID="transparent-btn-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {},
+        ]
+      }
+      testID="transparent-btn-test-id-container"
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#333333",
+              "fontSize": 20,
+            },
+            Object {
+              "marginRight": 15.384615384615385,
+            },
+          ]
+        }
+        testID="transparent-btn-test-id-icon"
+      >
+        U
+      </Text>
+      <Text
+        adjustsFontSizeToFit={true}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#333333",
+            },
+          ]
+        }
+        testID="transparent-btn-test-id-text"
+      >
+        Button
+      </Text>
+    </View>
+  </View>
+</View>
+`;

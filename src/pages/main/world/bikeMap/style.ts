@@ -1,38 +1,85 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import {
-    getFontSize,
-    getHorizontalPx,
-    getVerticalPx,
-} from '../../../../helpers/layoutFoo';
+    getFFontSize,
+    getFVerticalPx,
+    getFHorizontalPx,
+} from '@theme/utils/appLayoutDimensions';
+import {appContainerHorizontalMargin} from '@theme/commonStyle';
 
 const fontLight = 'DIN2014Narrow-Light';
 const darkText = '#313131';
 
+const {width} = Dimensions.get('screen');
+
 const styles = StyleSheet.create({
     header: {
         fontFamily: fontLight,
-        fontSize: getFontSize(30),
-        marginTop: getVerticalPx(30),
+        fontSize: getFFontSize(30),
+        marginTop: getFVerticalPx(30),
         color: darkText,
-        marginHorizontal: getHorizontalPx(40),
+        marginHorizontal: getFHorizontalPx(16),
     },
     tileWrapper: {
-        marginTop: getVerticalPx(30),
-        marginBottom: getVerticalPx(10),
-        marginHorizontal: getHorizontalPx(40),
+        marginTop: getFVerticalPx(30),
+        marginBottom: getFVerticalPx(10),
+        marginHorizontal: getFHorizontalPx(16),
     },
     lastTile: {
-        marginBottom: getVerticalPx(150),
+        marginBottom: getFVerticalPx(150),
     },
     horizontalSpace: {},
     loaderContainer: {
-        height: getHorizontalPx(50),
+        height: getFHorizontalPx(50),
         width: '100%',
-        marginTop: -getVerticalPx(120),
-        marginBottom: getVerticalPx(150),
+        marginTop: -getFVerticalPx(120),
+        marginBottom: getFVerticalPx(150),
     },
     backdrop: {
-        marginTop: -getVerticalPx(250),
+        marginTop: -getFVerticalPx(250),
+    },
+    topButtonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: appContainerHorizontalMargin,
+        zIndex: 10,
+    },
+    topButton: {
+        height: getFVerticalPx(48),
+        zIndex: 10,
+    },
+    topButtonLeft: {},
+    topButtonRight: {
+        position: 'absolute',
+        right: 0,
+        width: getFHorizontalPx(70),
+    },
+    fullscreenBackdrop: {
+        top: getFVerticalPx(42),
+    },
+    dropdownBox: {
+        width: width,
+        marginHorizontal: 0,
+        position: 'absolute',
+        top: getFVerticalPx(42),
+        left: -appContainerHorizontalMargin,
+    },
+    dropdownButtonContainerStyle: {
+        justifyContent: 'flex-start',
+    },
+    mapBtn: {
+        position: 'absolute',
+        bottom: getFVerticalPx(133),
+        left: getFHorizontalPx(95),
+        width: getFHorizontalPx(200),
+        shadowColor: '#333333',
+        shadowOffset: {
+            width: 0,
+            height: getFVerticalPx(4),
+        },
+        shadowOpacity: 0.07,
+        shadowRadius: getFVerticalPx(8),
+        elevation: 3,
+        borderRadius: getFHorizontalPx(16),
     },
 });
 

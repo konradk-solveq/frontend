@@ -1,0 +1,364 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 30.76923076923077,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {
+          "elevation": 5,
+          "shadowColor": "rgba(51, 51, 51, 0.07)",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 7.6923076923076925,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 15.384615384615385,
+        },
+        Array [
+          Object {
+            "height": 92.3076923076923,
+            "width": 565.3846153846154,
+          },
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
+        ],
+      ]
+    }
+    testID="secondary-btn-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
+          undefined,
+        ]
+      }
+      testID="secondary-btn-test-id-container"
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#C63733",
+              "fontSize": 20,
+            },
+            Object {
+              "marginRight": 15.384615384615385,
+            },
+          ]
+        }
+        testID="secondary-btn-test-id-icon"
+      >
+        U
+      </Text>
+      <Text
+        adjustsFontSizeToFit={true}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#C63733",
+            },
+          ]
+        }
+        testID="secondary-btn-test-id-text"
+      >
+        Button
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/buttons/SecondaryButton Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 30.76923076923077,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {
+          "elevation": 5,
+          "shadowColor": "rgba(51, 51, 51, 0.07)",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 7.6923076923076925,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 15.384615384615385,
+        },
+        Array [
+          Object {
+            "height": 92.3076923076923,
+            "width": 565.3846153846154,
+          },
+          Object {},
+        ],
+      ]
+    }
+    testID="secondary-btn-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
+          undefined,
+        ]
+      }
+      testID="secondary-btn-test-id-container"
+    >
+      <Text
+        adjustsFontSizeToFit={true}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#C63733",
+            },
+          ]
+        }
+        testID="secondary-btn-test-id-text"
+      >
+        Button
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 30.76923076923077,
+          "flexDirection": "row",
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {
+          "elevation": 5,
+          "shadowColor": "rgba(51, 51, 51, 0.07)",
+          "shadowOffset": Object {
+            "height": 0,
+            "width": 7.6923076923076925,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 15.384615384615385,
+        },
+        Array [
+          Object {
+            "height": 92.3076923076923,
+            "width": 565.3846153846154,
+          },
+          Object {},
+        ],
+      ]
+    }
+    testID="secondary-btn-test-id"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
+          undefined,
+        ]
+      }
+      testID="secondary-btn-test-id-container"
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#C63733",
+              "fontSize": 20,
+            },
+            Object {
+              "marginRight": 15.384615384615385,
+            },
+          ]
+        }
+        testID="secondary-btn-test-id-icon"
+      >
+        U
+      </Text>
+      <Text
+        adjustsFontSizeToFit={true}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#C63733",
+            },
+          ]
+        }
+        testID="secondary-btn-test-id-text"
+      >
+        Button
+      </Text>
+    </View>
+  </View>
+</View>
+`;

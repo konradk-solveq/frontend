@@ -73,6 +73,8 @@ export {
     setAuthSyncState,
 } from './auth';
 
+export {fetchUiTranslation, fetchLanguagesList} from './uiTranslation';
+
 export {
     setAuthData,
     setAuthDataSessionData,

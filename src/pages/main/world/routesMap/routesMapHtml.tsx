@@ -54,9 +54,39 @@ const customJsonStringify = (value, fallback) => {
     }
 };
 
+const getSVGMarker = () => {
+    return {
+        path: "M10.941 3.73a1.133 1.133 0 0 1 2.118 0l5.851 14.638c.396.99-.59 1.966-1.535 1.521l-4.899-3.369a1.115 1.115 0 0 0-.952 0l-4.9 3.37c-.944.444-1.93-.533-1.534-1.522L10.94 3.73Z",
+        fillColor: "#333",
+        fillOpacity: 1,
+        strokeColor: '#fff',
+        strokeWeight: 2,
+        rotation: 0,
+        scale: 1.2,
+        zIndex: 1000,
+        anchor: new google.maps.Point(12, 12),
+    }
+}
+
+const rotateUserLocationMarker = (heading) => {
+    if(heading !== undefined && heading !== null) {
+        let updatedMarker = my_location?.icon;
+
+        if(!updatedMarker.icon){
+            updatedMarker = getSVGMarker();
+        }
+
+        updatedMarker.rotation = heading;
+
+        window.requestAnimationFrame(() => {
+            my_location.setIcon(updatedMarker)
+        })
+    }
+}
+
 let map;
+let routePath;
 const googleMap = document.getElementById('map');
-// let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
 
 let my_location = null;
 const setMyLocation = position => {
@@ -66,10 +96,12 @@ const setMyLocation = position => {
         if (my_location) {
             my_location.setPosition(latLng);
         } else {
+            const svgMarker = getSVGMarker();
+
             my_location = new google.maps.Marker({
                 id: 'my_location',
                 position: latLng,
-                icon: 'my_location.png',
+                icon: svgMarker,
                 map: map,
             });
         }
@@ -98,6 +130,7 @@ function initMap() {
         draggable: true,
         scrollwheel: true,
         disableDoubleClickZoom: false,
+        keyboardShortcuts: false,
         styles: [
             {
                 featureType: 'administrative.country',
@@ -451,139 +484,173 @@ function initMap() {
 
     setPosOnMap(pos)
 
-    // dla chowania apli z adresem
-    map.addListener('click', () => {
-        window.ReactNativeWebView.postMessage("clickMap");
-        marks.forEach(m => {
-            m.setOptions({
-                icon: 'map_route_marker.png',
-            });
-        })
-    });
-
     // dla zmiany pozycji regionu
     map.addListener('dragend', getRgion);
     map.addListener('zoom_changed', getRgion);
     setTimeout(() => {
         getRgion();
     }, 1500);
+    map.addListener('click', () => {
+        window.ReactNativeWebView.postMessage("clickMap");
+    });
 }
 
 // dodawanie punktów po zmianie regionu
-let marks = [];
+const marks = [];
+const privateMarks = [];
+const plannedMarks = [];
+const routeMarks = [];
 let clusterPublic = null;
+let clusterPrivate = null;
+let clusterPlanned = null;
+let startMark
+let endMark
 
 const setMarks = places => {
     for (let p of places) {
         let id = p.details.id;
         if (marks.some(e => e.id == id)) continue;
+        if (privateMarks.some(e => e.id == id)) continue;
+        if (plannedMarks.some(e => e.id == id)) continue;
+        
+        const isPlanned = p.markerTypes?.includes('FAVORITE');
+        const isPrivate = p.markerTypes?.includes('PRIVATE');
+        const privateImage = isPrivate && 'pinroute_private.png';
+        const plannedImage = isPlanned && 'pinroute_planned.png';
+        const publicImage = 'pinroute_published.png';
+        const markerImage = privateImage || plannedImage || publicImage;
 
         let mark = new google.maps.Marker({
             id,
             position: new google.maps.LatLng(p.lat, p.lng),
-            icon: 'map_route_marker.png',
+            icon: markerImage,
             map: map,
             details: p.details,
             markerTypes: [...p.markerTypes]
         });
 
-        marks.push(mark);
+        /**
+         * Private have the highest priority, then planned and public as last.
+         */
+        if(isPrivate){
+            privateMarks.push(mark);
+        }else if(isPlanned){
+            plannedMarks.push(mark);
+        }else{
+            marks.push(mark);
+        }
         window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+customJsonStringify(mark?.markerTypes, ''));
-        // do pokazywania alpi z adresem
         google.maps.event.addDomListener(mark, 'click', function() {
-            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify(mark?.details, ''));
-            marks.forEach(m => {
-                m.setOptions({
-                    icon: 'map_route_marker.png',
-                });
-            })
-            mark.setOptions({
-                icon: 'current_map_route_marker.png',
-            }); 
+            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify({...mark?.details, markerTypes: mark?.markerTypes}, ''));
         });
     }
 
     clusterPublic = new MarkerClusterer(map, marks, {
         ignoreHidden: true,
+        minimumClusterSize: 3,
         styles: [{
-                url: "shop_empty.png",
+                url: "pinroute_published_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
+                textSize: 17,
                 textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
+                width: 32,
+                height: 32,
+                anchor:[16,16],
             },
-            {
-                url: "shop_empty.png",
+        ]
+    });
+    clusterPrivate = new MarkerClusterer(map, privateMarks, {
+        ignoreHidden: true,
+        minimumClusterSize: 3,
+        styles: [{
+                url: "pinroute_private_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
+                textSize: 17,
                 textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
+                width: 32,
+                height: 32,
+                anchor:[16,16],
             },
-            {
-                url: "shop_empty.png",
+        ]
+    });
+    clusterPlanned = new MarkerClusterer(map, plannedMarks, {
+        ignoreHidden: true,
+        minimumClusterSize: 3,
+        styles: [{
+                url: "pinroute_planned_empty.png",
                 fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
+                textSize: 17,
                 textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
-            },
-            {
-                url: "shop_empty.png",
-                fontFamily: "DIN2014Narrow-Regular",
-                textSize: 30,
-                textColor: "#fff",
-                width: 44,
-                height: 44,
-                anchor:[22,22],
+                width: 32,
+                height: 32,
+                anchor:[16,16],
             },
         ]
     });
 }
 
-const setPublic = () => {
-    try{
-        marks?.forEach(m => m.markerTypes?.includes('PUBLIC') ? m.setVisible(true) : m.setVisible(false));
-        clusterPublic.repaint();
-    }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PUBLIC#$#"+customJsonStringify(e, ''));
+const setPath = path => {
+    const coords = path.map(([lat, lng]) => ({lat, lng}));
+    if (coords?.length<2) {
+        return;
     }
+
+    const start = coords[0];
+    const end = coords[coords.length - 1];
+    
+    if (!startMark){
+        startMark = new google.maps.Marker({
+            id: 'route-start',
+            position: new google.maps.LatLng(start.lat, start.lng),
+            icon: 'pinroute_start.png',
+            map,
+        });
+    } else {
+        startMark.setMap(map);
+        startMark.setPosition(new google.maps.LatLng(start.lat, start.lng));
+    }
+    
+    if(!endMark) {
+        endMark = new google.maps.Marker({
+            id: 'route-end',
+            position: new google.maps.LatLng(end.lat, end.lng),
+            icon: 'pinroute_end.png',
+            map,
+        });
+    } else {
+        endMark.setMap(map);
+        endMark.setPosition(new google.maps.LatLng(end.lat, end.lng));
+    }
+    
+    routePath = new google.maps.Polyline({
+        path: coords,
+        geodesic: true,
+        strokeColor: "#C63733",
+        strokeOpacity: 1.0,
+        strokeWeight: 3,
+    });
+
+        
+    routePath.setMap(map);
 }
 
-const setFavourites = () => {
-    try{
-        marks?.forEach(m => m.markerTypes?.includes('FAVORITE') ? m.setVisible(true) : m.setVisible(false));
-        clusterPublic.repaint();
-    }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT FAVORITE#$#"+customJsonStringify(e, ''));
-    }
-}
-
-const setPrivate = () => {
-    try{
-        marks?.forEach(m => m.markerTypes?.includes('OWN') ? m.setVisible(true) : m.setVisible(false));
-        clusterPublic.repaint();
-    }catch (e){
-        window.ReactNativeWebView.postMessage("ERROR ON REPAINT PRIVATE#$#"+customJsonStringify(e, ''));
-    }
+const clearPath = () => {
+    routePath.setMap(null);
+    startMark.setMap(null);
+    endMark.setMap(null);
 }
 
 const clearMarkersCluster = () => {
     if(clusterPublic){
         clusterPublic.clearMarkers();
+    }
+
+    if(clusterPrivate){
+        clusterPrivate.clearMarkers();
+    }
+
+    if(clusterPlanned){
+        clusterPlanned.clearMarkers();
     }
 }
 </script>

@@ -16,6 +16,10 @@ module.exports = [
         rootPathPrefix: '@enums',
     },
     {
+        rootPathSuffix: './src/globalValues',
+        rootPathPrefix: '@globalValues',
+    },
+    {
         rootPathSuffix: './src/helpers',
         rootPathPrefix: '@helpers',
     },
@@ -56,6 +60,10 @@ module.exports = [
         rootPathPrefix: '@components',
     },
     {
+        rootPathSuffix: './src/containers',
+        rootPathPrefix: '@containers',
+    },
+    {
         rootPathSuffix: './src/storage',
         rootPathPrefix: '@storage',
     },
@@ -94,5 +102,9 @@ module.exports = [
     {
         rootPathSuffix: './analytics',
         rootPathPrefix: '@analytics',
+    },
+    {
+        rootPathSuffix: './storybook',
+        rootPathPrefix: '@sb',
     },
 ];

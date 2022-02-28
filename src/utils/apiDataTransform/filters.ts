@@ -1,4 +1,5 @@
 import {PickedFilters} from '../../interfaces/form';
+import {DropdownItemT} from '@components/types/dropdown';
 
 export const checkIfContainsFitlers = (filters?: PickedFilters): boolean => {
     if (!filters) {
@@ -33,15 +34,16 @@ export const getFiltersParam = (filters?: PickedFilters) => {
             const cKeyT = f === 'tags' ? 'tag' : '';
             const key = cKeyD || cKeyS || cKeyT || f;
             /* array values */
-            newFilters = {
-                ...newFilters,
-                [key]: filters[f],
-            };
-            /* string values */
-            if (f === 'order') {
+            if (f !== 'created' && f !== 'distance') {
                 newFilters = {
                     ...newFilters,
-                    sortBy: 'created',
+                    [key]: filters[f],
+                };
+            } else {
+                /* string values */
+                newFilters = {
+                    ...newFilters,
+                    sortBy: f,
                     order: filters[f]?.[0],
                 };
             }
@@ -49,4 +51,39 @@ export const getFiltersParam = (filters?: PickedFilters) => {
     });
 
     return newFilters;
+};
+
+export const getSorByFilters = (
+    filters?: PickedFilters,
+    newFilter?: DropdownItemT,
+) => {
+    if (!newFilter) {
+        if (filters && Object.keys(filters)?.length) {
+            return filters;
+        }
+
+        return {};
+    }
+
+    if (!filters || !Object.keys(filters)?.length) {
+        return {
+            [newFilter.sortBy]: [newFilter.order],
+        };
+    }
+
+    let filtersToUpdate = {};
+    Object.keys({...filters}).forEach(f => {
+        if (f !== ('created' || 'distance')) {
+            filtersToUpdate = {
+                ...filtersToUpdate,
+                ...{[f]: filters[f]},
+            };
+        }
+    });
+
+    const updatedFilters = {
+        ...filtersToUpdate,
+        [newFilter.sortBy]: [newFilter.order],
+    };
+    return updatedFilters;
 };

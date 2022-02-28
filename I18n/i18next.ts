@@ -4,6 +4,8 @@ import HttpBackend from 'i18next-http-backend';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import {initReactI18next} from 'react-i18next';
 
+import {LOAD_STORYBOOK} from '@env';
+
 const local = {
     en: {
         local: require('./en.json'),
@@ -11,6 +13,7 @@ const local = {
     pl: {
         local: require('./pl.json'),
     },
+    cs: {local: {}},
 };
 
 const backend = {
@@ -24,6 +27,7 @@ const backend = {
             Login: {header: 'TEST pl'},
         },
     },
+    cs: {backend: {}},
 };
 
 i18next
@@ -39,9 +43,9 @@ i18next
             fallbackNS: 'local',
             backend: {
                 backends: [
-                    HttpBackend,
-                    resourcesToBackend(local),
                     resourcesToBackend(backend),
+                    resourcesToBackend(local),
+                    HttpBackend,
                 ],
                 backendOptions: [
                     {
@@ -50,6 +54,7 @@ i18next
                     },
                 ],
             },
+            debug: LOAD_STORYBOOK === 'true',
         },
         err => {
             if (err) {

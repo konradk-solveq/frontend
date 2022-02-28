@@ -8,7 +8,7 @@ import {
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
 import BrokenBike from '@components/svg/brokenBike';
-import WhiteBtn from '@components/buttons/whiteBtn';
+import {SecondaryButton} from '@components/buttons';
 
 interface IProps {
     errorTitle?: string;
@@ -45,10 +45,9 @@ const GenericError: React.FC<IProps> = ({
                 )}
 
                 <View style={styles.buttonsWrapper}>
-                    <WhiteBtn
-                        title={buttonText ?? t('btnOk')}
+                    <SecondaryButton
+                        text={buttonText ?? t('btnOk')}
                         onPress={onButtonPress}
-                        neutralCase
                         style={styles.button}
                     />
                 </View>

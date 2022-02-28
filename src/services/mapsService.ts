@@ -295,7 +295,9 @@ export const removePrivateMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage = i18next.t('dataAction.routeData.removeRouteError');
+                errorMessage = i18next.t(
+                    'dataAction.routeData.removeRouteError',
+                );
             }
         }
         return {
@@ -385,7 +387,9 @@ export const removePlannedMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage = i18next.t('dataAction.routeData.removeRouteError');
+                errorMessage = i18next.t(
+                    'dataAction.routeData.removeRouteError',
+                );
             }
         }
         return {
@@ -405,8 +409,9 @@ export const removePlannedMapByIdService = async (
 export const getMapsByTypeAndId = async (
     location: Coords,
     mapId: string,
+    withPath?: boolean,
 ): Promise<MapResponse> => {
-    const response = await getRoute(mapId, location);
+    const response = await getRoute(mapId, location, withPath);
 
     if (
         !response?.data ||

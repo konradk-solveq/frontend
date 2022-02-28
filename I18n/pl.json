@@ -10,7 +10,7 @@
         "title_3": "Znajdź najbliższy punkt serwisowy",
         "text_3": "Jeśli Twój rower nie jest w\u00a0pełni sprawny lub wymaga okresowego przeglądu, nie\u00a0zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów.",
         "btn_3": "POZNAJ ROWER",
-        "title_4": "Nagrywaj trasy",
+        "title_4": "Nagrywaj trasy !",
         "text_4": "Jeździsz amatorsko lub wyczynowo na\u00a0rowerze, dołącz do\u00a0drużyny KROSS. Nagrywaj przejechane kilometry w\u00a0aplikacji, a\u00a0najciekawsze trasy publikuj na\u00a0Mapie Rowerowej.",
         "btn_4": "WYKONAJ PRZEGLĄD",
         "title_5": "Odkrywaj ciekawe miejsca",
@@ -319,9 +319,12 @@
         "header": "Świat KROSS",
         "title": "Dołącz do drużyny \n KROSS",
         "footer": "Już wkrótce razem z nami będziesz mógł ruszyć \n w trasę, by odkrywać nowe ścieżki rowerowe \n i budować Mapę Rowerową.",
-        "btnBikeMap": "Mapa rowerowa",
+        "btnBikeMap": "Publiczne",
         "btnMyRoutes": "Moje trasy",
-        "btnPlaned": "Planowane",
+        "btnPlanned": "Zapisane",
+        "btnFilters": "Filtruj",
+        "btnSort": "Sortuj",
+        "resetFilters": "Resetuj",
         "maps": {
             "filtersTitle": "Filtry",
             "filtersDescription": "Określ parametry, które pozwolą zawęzić listę wyświetlanych tras.",
@@ -375,7 +378,7 @@
             }
         },
         "BikeMap": {
-            "title": "Zobacz rekomendowane trasy w okolicy",
+            "title": "Trasy w okolicy",
             "distanceUnit": "km",
             "timeUnit": "h",
             "noTitle": "Brak tytułu",
@@ -389,14 +392,26 @@
             "showOnMapAction": "Zobacz na mapie",
             "routeDetailsAction": "Szczegóły",
             "addRouteToPlanned": "Trasa {{name}} została dodana do planowanych.",
-            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z planowanych."
+            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z planowanych.",
+            "sortBy": {
+                "nearest": "Od najbliższych",
+                "newest": "Od najnowszych",
+                "oldest": "Od najstarszych",
+                "default": "(domyślnie)"
+            }
         },
         "PlannedRoutes": {
             "title": ", odkryj ciekawe trasy z KROSS",
             "emptyStateTitle": "Dobry plan to podstawa",
             "emptyStateContent": "Zaplanuj wycieczkę na podstawie tras rekomendowanych przez KROSS.",
             "emptyStateButton": "Pobierz trasę",
-            "defaultUserName": "Rowerzysto"
+            "defaultUserName": "Rowerzysto",
+            "sortBy": {
+                "nearest": "Od najbliższych",
+                "newest": "Od najnowszych",
+                "oldest": "Od najstarszych",
+                "default": "(domyślnie)"
+            }
         },
         "MyRoutes": {
             "title": ", odkryj ciekawe trasy z KROSS",
@@ -406,7 +421,13 @@
             "defaultUserName": "Rowerzysto",
             "routesNumberTitle": "Ilość nagranych tras:",
             "todayDate": "Dziś",
-            "yestardayDate": "Wczoraj"
+            "yestardayDate": "Wczoraj",
+            "sortBy": {
+                "newest": "Od najnowszych",
+                "nearest": "Od najbliższych",
+                "oldest": "Od najstarszych",
+                "default": "(domyślnie)"
+            }
         },
         "FeaturedRoutes": {
             "showMoreBtn": "Pokaż więcej"
@@ -419,6 +440,9 @@
         "planning": "Planowane",
         "bottomTile": {
             "finMoreInfo": "Sprawdź trasę na mapie"
+        },
+        "container": {
+            "closeButton": "Wyjdź"
         }
 
     },
@@ -596,7 +620,7 @@
         "settings": "Ustawienia",
         "languages": "Język aplikacji",
         "myConsents": "Moje zgody",
-        "defaultName": "Rowerzysta",
+        "defaultName": "Rowerzysta.",
         "title": "O myKROSS",
         "app": "O aplikacji",
         "regulations": "Regulamin",
@@ -653,10 +677,9 @@
             },
             {
                 "name": "Česky (již brzy)",
-                "short": "cz"
+                "short": "cs"
             }
         ],
-        "byLocation": "po lokalizacji",
         "btn": "ZAPISZ"
     },
     "WarrantyDetails": {
@@ -782,7 +805,7 @@
             "text": "Pobieranie lokalizacji"
         },
         "routeRecordingNotification": {
-            "text": "Nagrywanie trasy"
+            "text": "Nagrywanie trasy !!!"
         },
         "locationPermission": {
             "title": "Używanie lokalizacji w tle",

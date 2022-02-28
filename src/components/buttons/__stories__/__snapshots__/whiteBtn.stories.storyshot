@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Buttons/White Basic 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "height": 40,
+        "width": 200,
+      }
+    }
+  >
+    <RNGestureHandlerButton
+      collapsable={false}
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
+      testID="white-btn"
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        nativeID="animatedComponent"
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#fff",
+            "borderRadius": 30.76923076923077,
+            "elevation": 5,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "opacity": 1,
+            "shadowColor": "#333333",
+            "shadowOffset": Object {
+              "height": 6.322274881516588,
+              "width": 0,
+            },
+            "shadowOpacity": 0.07,
+            "shadowRadius": 12.644549763033176,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#C63733",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "textAlign": "center",
+            }
+          }
+        >
+          HELLO!
+        </Text>
+      </View>
+    </RNGestureHandlerButton>
+  </View>
+</View>
+`;

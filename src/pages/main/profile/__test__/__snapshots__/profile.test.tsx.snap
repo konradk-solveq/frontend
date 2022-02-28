@@ -146,6 +146,7 @@ Array [
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -218,126 +219,6 @@ Array [
                 }
               }
             >
-              <Text
-                style={
-                  Object {
-                    "color": "#555555",
-                    "fontFamily": "DIN2014Narrow-Light",
-                    "fontSize": 18,
-                    "marginBottom": 6.6997767857142865,
-                    "position": "relative",
-                    "textAlign": "left",
-                  }
-                }
-              >
-                MainProfile.settings
-              </Text>
-              <View
-                accessible={true}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "borderBottomColor": "#EAEAEA",
-                      "borderBottomWidth": 1,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <Text
-                    style={
-                      Object {
-                        "color": "#3587ea",
-                        "fontFamily": "DIN2014Narrow-Light",
-                        "fontSize": 18,
-                        "marginBottom": 24.565848214285715,
-                        "marginTop": 24.565848214285715,
-                        "position": "relative",
-                        "textAlign": "left",
-                      }
-                    }
-                  >
-                    MainProfile.languages
-                  </Text>
-                  <RNSVGSvgView
-                    align="xMidYMid"
-                    bbHeight={27.17391304347826}
-                    bbWidth={16.304347826086957}
-                    focusable={false}
-                    meetOrSlice={0}
-                    minX={0}
-                    minY={0}
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "borderWidth": 0,
-                        },
-                        Object {
-                          "height": 27.17391304347826,
-                          "marginRight": 12.681159420289855,
-                          "width": 16.304347826086957,
-                        },
-                        Object {
-                          "flex": 0,
-                          "height": 27,
-                          "width": 16,
-                        },
-                      ]
-                    }
-                    vbHeight={15}
-                    vbWidth={9}
-                  >
-                    <RNSVGGroup>
-                      <RNSVGPath
-                        d="M.309.79c-.38.355-.41.915-.088 1.302l.088.093 5.145 4.814L.31 11.815l-.088.093c-.322.387-.292.947.088 1.303s.978.383 1.392.082l.1-.082 5.89-5.513.088-.093c.295-.355.295-.855 0-1.21l-.088-.093L1.801.79C1.387.404.72.404.308.79z"
-                        fill={4281413937}
-                        propList={
-                          Array [
-                            "fill",
-                          ]
-                        }
-                      />
-                    </RNSVGGroup>
-                  </RNSVGSvgView>
-                </View>
-              </View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#555555",
-                      "fontFamily": "DIN2014Narrow-Light",
-                      "fontSize": 18,
-                      "marginBottom": 6.6997767857142865,
-                      "position": "relative",
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "marginTop": 53.59821428571429,
-                    },
-                  ]
-                }
-              >
-                MainProfile.title
-              </Text>
               <View
                 accessible={true}
                 focusable={true}
@@ -953,6 +834,7 @@ Array [
                                     },
                                   ]
                                 }
+                                textInteractionEnabled={true}
                                 useSharedProcessPool={true}
                                 useWebKit={false}
                               />
@@ -1174,97 +1056,6 @@ Array [
         </Text>
       </View>
     </View>
-    <View
-      pointerEvents="none"
-      style={
-        Object {
-          "bottom": 0,
-          "height": 307.9710144927536,
-          "left": 0,
-          "position": "absolute",
-          "width": 750,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "backgroundColor": "transparent",
-            "height": "100%",
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "overflow": "hidden",
-              },
-              undefined,
-            ]
-          }
-        >
-          <RNCWebView
-            cacheEnabled={true}
-            injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-            injectedJavaScriptForMainFrameOnly={true}
-            javaScriptEnabled={true}
-            messagingEnabled={false}
-            onContentProcessDidTerminate={[Function]}
-            onHttpError={[Function]}
-            onLoadingError={[Function]}
-            onLoadingFinish={[Function]}
-            onLoadingProgress={[Function]}
-            onLoadingStart={[Function]}
-            onMessage={[Function]}
-            onShouldStartLoadWithRequest={[Function]}
-            scalesPageToFit={true}
-            scrollEnabled={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            source={
-              Object {
-                "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\" viewBox=\\"0 0 414 170\\">
-    <defs>
-      <filter id=\\"a\\" width=\\"151%\\" height=\\"297.2%\\" x=\\"-25.5%\\" y=\\"-97.7%\\" filterUnits=\\"objectBoundingBox\\">
-        <feOffset dy=\\"1\\" in=\\"SourceAlpha\\" result=\\"shadowOffsetOuter1\\"/>
-        <feGaussianBlur in=\\"shadowOffsetOuter1\\" result=\\"shadowBlurOuter1\\" stdDeviation=\\"35\\"/>
-        <feColorMatrix in=\\"shadowBlurOuter1\\" values=\\"0 0 0 0 0.518513113 0 0 0 0 0.0483188295 0 0 0 0 0.0672953544 0 0 0 0.15 0\\"/>
-      </filter>
-      <path id=\\"b\\" d=\\"M0 0c66.44 14.67 135.18 22 206.2 22 71.03 0 140.3-7.33 207.8-22v107H0V0z\\"/>
-    </defs>
-    <g fill=\\"none\\" fill-rule=\\"evenodd\\" transform=\\"translate(0 63)\\">
-      <use fill=\\"#000\\" filter=\\"url(#a)\\" xlink:href=\\"#b\\"/>
-      <use fill=\\"#FFF\\" xlink:href=\\"#b\\"/>
-    </g>
-  </svg>
-  </body></html>",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "overflow": "hidden",
-                },
-                Object {
-                  "backgroundColor": "#ffffff",
-                },
-                Object {
-                  "backgroundColor": "transparent",
-                  "height": "100%",
-                  "width": "100%",
-                },
-              ]
-            }
-            useSharedProcessPool={true}
-            useWebKit={false}
-          />
-        </View>
-      </View>
-    </View>
   </RCTSafeAreaView>,
   <View
     style={
@@ -1465,6 +1256,7 @@ Array [
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -1646,126 +1438,6 @@ Array [
                 }
               }
             >
-              <Text
-                style={
-                  Object {
-                    "color": "#555555",
-                    "fontFamily": "DIN2014Narrow-Light",
-                    "fontSize": 18,
-                    "marginBottom": 6.6997767857142865,
-                    "position": "relative",
-                    "textAlign": "left",
-                  }
-                }
-              >
-                MainProfile.settings
-              </Text>
-              <View
-                accessible={true}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "borderBottomColor": "#EAEAEA",
-                      "borderBottomWidth": 1,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <Text
-                    style={
-                      Object {
-                        "color": "#3587ea",
-                        "fontFamily": "DIN2014Narrow-Light",
-                        "fontSize": 18,
-                        "marginBottom": 24.565848214285715,
-                        "marginTop": 24.565848214285715,
-                        "position": "relative",
-                        "textAlign": "left",
-                      }
-                    }
-                  >
-                    MainProfile.languages
-                  </Text>
-                  <RNSVGSvgView
-                    align="xMidYMid"
-                    bbHeight={27.17391304347826}
-                    bbWidth={16.304347826086957}
-                    focusable={false}
-                    meetOrSlice={0}
-                    minX={0}
-                    minY={0}
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "borderWidth": 0,
-                        },
-                        Object {
-                          "height": 27.17391304347826,
-                          "marginRight": 12.681159420289855,
-                          "width": 16.304347826086957,
-                        },
-                        Object {
-                          "flex": 0,
-                          "height": 27,
-                          "width": 16,
-                        },
-                      ]
-                    }
-                    vbHeight={15}
-                    vbWidth={9}
-                  >
-                    <RNSVGGroup>
-                      <RNSVGPath
-                        d="M.309.79c-.38.355-.41.915-.088 1.302l.088.093 5.145 4.814L.31 11.815l-.088.093c-.322.387-.292.947.088 1.303s.978.383 1.392.082l.1-.082 5.89-5.513.088-.093c.295-.355.295-.855 0-1.21l-.088-.093L1.801.79C1.387.404.72.404.308.79z"
-                        fill={4281413937}
-                        propList={
-                          Array [
-                            "fill",
-                          ]
-                        }
-                      />
-                    </RNSVGGroup>
-                  </RNSVGSvgView>
-                </View>
-              </View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#555555",
-                      "fontFamily": "DIN2014Narrow-Light",
-                      "fontSize": 18,
-                      "marginBottom": 6.6997767857142865,
-                      "position": "relative",
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "marginTop": 53.59821428571429,
-                    },
-                  ]
-                }
-              >
-                MainProfile.title
-              </Text>
               <View
                 accessible={true}
                 focusable={true}
@@ -2435,6 +2107,7 @@ Array [
                                     },
                                   ]
                                 }
+                                textInteractionEnabled={true}
                                 useSharedProcessPool={true}
                                 useWebKit={false}
                               />
@@ -2654,97 +2327,6 @@ Array [
         </Text>
       </View>
     </View>
-    <View
-      pointerEvents="none"
-      style={
-        Object {
-          "bottom": 0,
-          "height": 307.9710144927536,
-          "left": 0,
-          "position": "absolute",
-          "width": 750,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "backgroundColor": "transparent",
-            "height": "100%",
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "overflow": "hidden",
-              },
-              undefined,
-            ]
-          }
-        >
-          <RNCWebView
-            cacheEnabled={true}
-            injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-            injectedJavaScriptForMainFrameOnly={true}
-            javaScriptEnabled={true}
-            messagingEnabled={false}
-            onContentProcessDidTerminate={[Function]}
-            onHttpError={[Function]}
-            onLoadingError={[Function]}
-            onLoadingFinish={[Function]}
-            onLoadingProgress={[Function]}
-            onLoadingStart={[Function]}
-            onMessage={[Function]}
-            onShouldStartLoadWithRequest={[Function]}
-            scalesPageToFit={true}
-            scrollEnabled={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            source={
-              Object {
-                "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\" viewBox=\\"0 0 414 170\\">
-    <defs>
-      <filter id=\\"a\\" width=\\"151%\\" height=\\"297.2%\\" x=\\"-25.5%\\" y=\\"-97.7%\\" filterUnits=\\"objectBoundingBox\\">
-        <feOffset dy=\\"1\\" in=\\"SourceAlpha\\" result=\\"shadowOffsetOuter1\\"/>
-        <feGaussianBlur in=\\"shadowOffsetOuter1\\" result=\\"shadowBlurOuter1\\" stdDeviation=\\"35\\"/>
-        <feColorMatrix in=\\"shadowBlurOuter1\\" values=\\"0 0 0 0 0.518513113 0 0 0 0 0.0483188295 0 0 0 0 0.0672953544 0 0 0 0.15 0\\"/>
-      </filter>
-      <path id=\\"b\\" d=\\"M0 0c66.44 14.67 135.18 22 206.2 22 71.03 0 140.3-7.33 207.8-22v107H0V0z\\"/>
-    </defs>
-    <g fill=\\"none\\" fill-rule=\\"evenodd\\" transform=\\"translate(0 63)\\">
-      <use fill=\\"#000\\" filter=\\"url(#a)\\" xlink:href=\\"#b\\"/>
-      <use fill=\\"#FFF\\" xlink:href=\\"#b\\"/>
-    </g>
-  </svg>
-  </body></html>",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "overflow": "hidden",
-                },
-                Object {
-                  "backgroundColor": "#ffffff",
-                },
-                Object {
-                  "backgroundColor": "transparent",
-                  "height": "100%",
-                  "width": "100%",
-                },
-              ]
-            }
-            useSharedProcessPool={true}
-            useWebKit={false}
-          />
-        </View>
-      </View>
-    </View>
   </RCTSafeAreaView>,
   <View
     style={
@@ -2945,6 +2527,7 @@ Array [
                         },
                       ]
                     }
+                    textInteractionEnabled={true}
                     useSharedProcessPool={true}
                     useWebKit={false}
                   />
@@ -3126,126 +2709,6 @@ Array [
                 }
               }
             >
-              <Text
-                style={
-                  Object {
-                    "color": "#555555",
-                    "fontFamily": "DIN2014Narrow-Light",
-                    "fontSize": 18,
-                    "marginBottom": 6.6997767857142865,
-                    "position": "relative",
-                    "textAlign": "left",
-                  }
-                }
-              >
-                MainProfile.settings
-              </Text>
-              <View
-                accessible={true}
-                focusable={true}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
-              >
-                <View
-                  style={
-                    Object {
-                      "alignItems": "center",
-                      "borderBottomColor": "#EAEAEA",
-                      "borderBottomWidth": 1,
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <Text
-                    style={
-                      Object {
-                        "color": "#3587ea",
-                        "fontFamily": "DIN2014Narrow-Light",
-                        "fontSize": 18,
-                        "marginBottom": 24.565848214285715,
-                        "marginTop": 24.565848214285715,
-                        "position": "relative",
-                        "textAlign": "left",
-                      }
-                    }
-                  >
-                    MainProfile.languages
-                  </Text>
-                  <RNSVGSvgView
-                    align="xMidYMid"
-                    bbHeight={27.17391304347826}
-                    bbWidth={16.304347826086957}
-                    focusable={false}
-                    meetOrSlice={0}
-                    minX={0}
-                    minY={0}
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "borderWidth": 0,
-                        },
-                        Object {
-                          "height": 27.17391304347826,
-                          "marginRight": 12.681159420289855,
-                          "width": 16.304347826086957,
-                        },
-                        Object {
-                          "flex": 0,
-                          "height": 27,
-                          "width": 16,
-                        },
-                      ]
-                    }
-                    vbHeight={15}
-                    vbWidth={9}
-                  >
-                    <RNSVGGroup>
-                      <RNSVGPath
-                        d="M.309.79c-.38.355-.41.915-.088 1.302l.088.093 5.145 4.814L.31 11.815l-.088.093c-.322.387-.292.947.088 1.303s.978.383 1.392.082l.1-.082 5.89-5.513.088-.093c.295-.355.295-.855 0-1.21l-.088-.093L1.801.79C1.387.404.72.404.308.79z"
-                        fill={4281413937}
-                        propList={
-                          Array [
-                            "fill",
-                          ]
-                        }
-                      />
-                    </RNSVGGroup>
-                  </RNSVGSvgView>
-                </View>
-              </View>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#555555",
-                      "fontFamily": "DIN2014Narrow-Light",
-                      "fontSize": 18,
-                      "marginBottom": 6.6997767857142865,
-                      "position": "relative",
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "marginTop": 53.59821428571429,
-                    },
-                  ]
-                }
-              >
-                MainProfile.title
-              </Text>
               <View
                 accessible={true}
                 focusable={true}
@@ -3915,6 +3378,7 @@ Array [
                                     },
                                   ]
                                 }
+                                textInteractionEnabled={true}
                                 useSharedProcessPool={true}
                                 useWebKit={false}
                               />
@@ -4134,97 +3598,6 @@ Array [
         >
           MainProfile.header
         </Text>
-      </View>
-    </View>
-    <View
-      pointerEvents="none"
-      style={
-        Object {
-          "bottom": 0,
-          "height": 307.9710144927536,
-          "left": 0,
-          "position": "absolute",
-          "width": 750,
-        }
-      }
-    >
-      <View
-        style={
-          Object {
-            "backgroundColor": "transparent",
-            "height": "100%",
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "flex": 1,
-                "overflow": "hidden",
-              },
-              undefined,
-            ]
-          }
-        >
-          <RNCWebView
-            cacheEnabled={true}
-            injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
-            injectedJavaScriptForMainFrameOnly={true}
-            javaScriptEnabled={true}
-            messagingEnabled={false}
-            onContentProcessDidTerminate={[Function]}
-            onHttpError={[Function]}
-            onLoadingError={[Function]}
-            onLoadingFinish={[Function]}
-            onLoadingProgress={[Function]}
-            onLoadingStart={[Function]}
-            onMessage={[Function]}
-            onShouldStartLoadWithRequest={[Function]}
-            scalesPageToFit={true}
-            scrollEnabled={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            source={
-              Object {
-                "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body,svg {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent} svg{position:fixed}</style></head><body><svg xmlns=\\"http://www.w3.org/2000/svg\\" xmlns:xlink=\\"http://www.w3.org/1999/xlink\\" viewBox=\\"0 0 414 170\\">
-    <defs>
-      <filter id=\\"a\\" width=\\"151%\\" height=\\"297.2%\\" x=\\"-25.5%\\" y=\\"-97.7%\\" filterUnits=\\"objectBoundingBox\\">
-        <feOffset dy=\\"1\\" in=\\"SourceAlpha\\" result=\\"shadowOffsetOuter1\\"/>
-        <feGaussianBlur in=\\"shadowOffsetOuter1\\" result=\\"shadowBlurOuter1\\" stdDeviation=\\"35\\"/>
-        <feColorMatrix in=\\"shadowBlurOuter1\\" values=\\"0 0 0 0 0.518513113 0 0 0 0 0.0483188295 0 0 0 0 0.0672953544 0 0 0 0.15 0\\"/>
-      </filter>
-      <path id=\\"b\\" d=\\"M0 0c66.44 14.67 135.18 22 206.2 22 71.03 0 140.3-7.33 207.8-22v107H0V0z\\"/>
-    </defs>
-    <g fill=\\"none\\" fill-rule=\\"evenodd\\" transform=\\"translate(0 63)\\">
-      <use fill=\\"#000\\" filter=\\"url(#a)\\" xlink:href=\\"#b\\"/>
-      <use fill=\\"#FFF\\" xlink:href=\\"#b\\"/>
-    </g>
-  </svg>
-  </body></html>",
-              }
-            }
-            style={
-              Array [
-                Object {
-                  "flex": 1,
-                  "overflow": "hidden",
-                },
-                Object {
-                  "backgroundColor": "#ffffff",
-                },
-                Object {
-                  "backgroundColor": "transparent",
-                  "height": "100%",
-                  "width": "100%",
-                },
-              ]
-            }
-            useSharedProcessPool={true}
-            useWebKit={false}
-          />
-        </View>
       </View>
     </View>
   </RCTSafeAreaView>,

@@ -27,7 +27,6 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {nfcIsSupported} from '@helpers/nfc';
 import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 
-import TabBackGround from '@sharedComponents/navi/tabBackGround';
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 import {getVerticalPx} from '@src/helpers/layoutFoo';
@@ -162,12 +161,9 @@ const Home: React.FC = () => {
                     </View>
                 </ScrollView>
             </View>
-
             <View style={styles.header}>
                 <KroosLogo />
             </View>
-
-            <TabBackGround />
 
             {!isTrackerActive && (
                 <NoBikeAddedModal

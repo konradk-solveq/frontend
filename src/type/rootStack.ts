@@ -50,12 +50,14 @@ export type ResetPasswordNavigationPropT = MainNavigationCompositePropT<
 
 /* WORLD */
 export type KrossWorldParamsListT = {
-    RoutesMap: {
-        activeTab: RouteMapType;
-        private?: boolean;
-        favourite?: boolean;
-        featured?: boolean;
-    };
+    RoutesMap:
+        | {
+              activeTab?: RouteMapType;
+              private?: boolean;
+              favourite?: boolean;
+              featured?: boolean;
+          }
+        | undefined;
     RouteDetails: {
         mapID: string;
         sectionID?: string;
@@ -122,6 +124,10 @@ export type ShareRouteScreenNavigationPropT = MainNavigationCompositePropT<
     'ShareRouteScreen'
 >;
 /* WORLD */
+
+/* RECORD */
+export type RecordParamsListT = {};
+/* RECORD */
 
 /* BIKE */
 export type BikeParamsListT = {

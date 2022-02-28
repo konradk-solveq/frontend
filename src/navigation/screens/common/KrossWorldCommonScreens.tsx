@@ -33,6 +33,7 @@ const KrossWorldCommonScreens = () => {
                 component={RoutesMap}
                 options={{
                     ...verticalAnim,
+                    gestureEnabled: false,
                 }}
             />
             <Stack.Screen

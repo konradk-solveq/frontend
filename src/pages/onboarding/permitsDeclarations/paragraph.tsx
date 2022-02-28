@@ -5,13 +5,13 @@ import Hyperlink from 'react-native-hyperlink';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {getFontSize, getVerticalPx} from '@helpers/layoutFoo';
-import {BothStackRoute} from '@navigation/route';
 
 interface Props {
     marginTop: any;
     font?: any;
     text: any;
     num: number;
+    regulationsScreenRouteName: string;
 }
 
 const Paragraph: React.FC<Props> = (props: Props) => {
@@ -49,8 +49,8 @@ const Paragraph: React.FC<Props> = (props: Props) => {
                 }
             }}
             onPress={(url: string) => {
-                if (url == 'https://www.kross.pl.rgulamin') {
-                    navigation.navigate(BothStackRoute.REGULATIONS_SCREEN);
+                if (url === 'https://www.kross.pl.rgulamin') {
+                    navigation.navigate(props.regulationsScreenRouteName);
                 } else {
                     Linking.openURL(url);
                 }

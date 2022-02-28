@@ -107,6 +107,8 @@ export enum MarkerTypes {
     RECOMMENDED = 'RECOMMENDED',
 }
 
+export type MapMarkerT = 'PUBLIC' | 'OWN' | 'FAVORITE' | 'RECOMMENDED';
+
 export type ReactionsType = {
     like: number;
     wow: number;
@@ -118,17 +120,17 @@ export type MarkerDetailsType = {
     name: string;
     distance: number;
     distanceToRoute: number;
-    totalTime: number;
+    totalTime: number | null;
     mapImageUrl: string;
-    openHours: string;
+    openHours?: string;
 };
 
 export type MapMarkerType = {
-    type: string;
+    type?: string;
     lat: number;
     lng: number;
     details: MarkerDetailsType;
-    markerType: MarkerTypes[];
+    markerTypes: MapMarkerT[];
 };
 
 export type OptionsEnumsT = {
@@ -258,8 +260,8 @@ export class Map {
     }
 
     public get firstDifficulty(): string | undefined {
-        const difficultyOptions = this.optionsEnums?.difficultyOptions?.[0]
-            ?.i18nValue;
+        const difficultyOptions =
+            this.optionsEnums?.difficultyOptions?.[0]?.i18nValue;
         return difficultyOptions;
     }
 
@@ -277,8 +279,8 @@ export class Map {
     }
 
     public get firstSurface(): string | undefined {
-        const surfaceOptions = this.optionsEnums?.surfacesOptions?.[0]
-            ?.i18nValue;
+        const surfaceOptions =
+            this.optionsEnums?.surfacesOptions?.[0]?.i18nValue;
 
         return surfaceOptions;
     }

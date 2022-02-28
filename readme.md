@@ -134,13 +134,37 @@ App contains default route translation for `world` screen. It means, that deepli
 
 * **DEEPLINKING_HOST** - universal links
 
-    This variable is used to listen for universal links from proper domain.
-    Let say we have url like this `https://example.com/world`. It will be handled by the application and proper action will be run (if defined).
+    This variable is used to listen for universal links from proper domain. Let say we have url like
+  this `https://example.com/world`. It will be handled by the application and proper action will be run (if defined).
 
-    To make it work we need files `apple-app-site-association` and `assetlinks.json` to be available from `https://${domain}/.well-known/${file-name}`. Without this universal links won't work on IOS. On Android, our application will not be selected by default by the operating system to trigger an action when a link is clicked.
+  To make it work we need files `apple-app-site-association` and `assetlinks.json` to be available
+  from `https://${domain}/.well-known/${file-name}`. Without this universal links won't work on IOS. On Android, our
+  application will not be selected by default by the operating system to trigger an action when a link is clicked.
 
 * **DEEPLINKING_PREFIX** - universal links
 
-    It is connected with `DEEPLINKING_HOST`. By default the value is set to `'/'`, and it can remain as is. Though it could be helpful for some links.
+  It is connected with `DEEPLINKING_HOST`. By default the value is set to `'/'`, and it can remain as is. Though it
+  could be helpful for some links.
 
-    Imagine we have working website, `https://example.com` and we want to create some subspace for mobile app. We can replace `DEEPLINKING_HOST` with `'/mobile-app/'`  and from now on, each url `https://example.com/mobile-app/*` will be served by the app.
+  Imagine we have working website, `https://example.com` and we want to create some subspace for mobile app. We can
+  replace `DEEPLINKING_HOST` with `'/mobile-app/'`  and from now on, each url `https://example.com/mobile-app/*` will be
+  served by the app.
+
+* **LOAD_STORYBOOK** - app mode
+
+  It controls the mode that application boots in. Set it to `true` to enable storybook. Setting it to `false` will
+  result in a normal application startup.
+
+---
+
+## Storybook
+
+We use Storybook to preview the single components. The stories are defined at `./storybook/stories`. You can run the
+storybook by setting the **LOAD_STORYBOOK** environment variable and running the application on the simulator. To
+control the storybook from the web browser run:
+- `adb reverse tcp:7007 tcp:7007`
+- `npm run storybook`
+- `npm run dev:ios`
+- `npm run dev:android`
+
+It will make the website available at `http://localhost:7007/`.

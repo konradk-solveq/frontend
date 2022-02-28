@@ -1,0 +1,865 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/World/RoutesMapContainer Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "paddingHorizontal": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "overflow": "hidden",
+          },
+          undefined,
+        ]
+      }
+    >
+      <RNCWebView
+        cacheEnabled={true}
+        injectedJavaScriptBeforeContentLoadedForMainFrameOnly={true}
+        injectedJavaScriptForMainFrameOnly={true}
+        javaScriptEnabled={true}
+        messagingEnabled={true}
+        onContentProcessDidTerminate={[Function]}
+        onHttpError={[Function]}
+        onLoadEnd={[Function]}
+        onLoadingError={[Function]}
+        onLoadingFinish={[Function]}
+        onLoadingProgress={[Function]}
+        onLoadingStart={[Function]}
+        onMessage={[Function]}
+        onShouldStartLoadWithRequest={[Function]}
+        scalesPageToFit={true}
+        scrollEnabled={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        source={
+          Object {
+            "baseUrl": "",
+            "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body><script>let pos={latitude: 50.664087722680975, longitude: 17.88744936290463}</script>
+<style>
+@font-face {
+    font-family: 'DIN2014Narrow-Light';
+    font-style: normal;
+    font-weight: 400;
+    src: url('DIN2014Narrow-Light.eot');
+    src: local('open sans extralight'), local('open-sans-extralight'), url('DIN2014Narrow-Light.eot?#iefix') format('embedded-opentype'), url('DIN2014Narrow-Light.woff2') format('woff2'), url('DIN2014Narrow-Light.woff') format('woff'), url('DIN2014Narrow-Light.ttf') format('truetype'), url('DIN2014Narrow-Light.svg#Barlow') format('svg'), url('DIN2014Narrow-Light.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'DIN2014Narrow-Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('DIN2014Narrow-Regular.eot');
+    src: local('open sans extralight'), local('open-sans-extralight'), url('DIN2014Narrow-Regular.eot?#iefix') format('embedded-opentype'), url('DIN2014Narrow-Regular.woff2') format('woff2'), url('DIN2014Narrow-Regular.woff') format('woff'), url('DIN2014Narrow-Regular.ttf') format('truetype'), url('DIN2014Narrow-Regular.svg#Barlow') format('svg'), url('DIN2014Narrow-Regular.otf') format('otf');
+}
+
+@font-face {
+    font-family: 'DIN2014Narrow-Bold';
+    font-style: normal;
+    font-weight: 400;
+    src: url('DIN2014Narrow-Bold.eot');
+    src: local('open sans extralight'), local('open-sans-extralight'), url('DIN2014Narrow-Bold.eot?#iefix') format('embedded-opentype'), url('DIN2014Narrow-Bold.woff2') format('woff2'), url('DIN2014Narrow-Bold.woff') format('woff'), url('DIN2014Narrow-Bold.ttf') format('truetype'), url('DIN2014Narrow-Bold.svg#Barlow') format('svg'), url('DIN2014Narrow-Bold.otf') format('otf');
+}
+
+#map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cluster div {
+    top: 6px;
+}
+</style>
+
+<div id=\\"map\\"></div>
+
+<script src=\\"https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js\\"></script>
+
+<script>
+const customJsonStringify = (value, fallback) => {
+    if (!value) {
+        return value;
+    }
+
+    try {
+        return JSON.stringify(value);
+    } catch (error) {
+        return fallback || undefined;
+    }
+};
+
+const getSVGMarker = () => {
+    return {
+        path: \\"M10.941 3.73a1.133 1.133 0 0 1 2.118 0l5.851 14.638c.396.99-.59 1.966-1.535 1.521l-4.899-3.369a1.115 1.115 0 0 0-.952 0l-4.9 3.37c-.944.444-1.93-.533-1.534-1.522L10.94 3.73Z\\",
+        fillColor: \\"#333\\",
+        fillOpacity: 1,
+        strokeColor: '#fff',
+        strokeWeight: 2,
+        rotation: 0,
+        scale: 1.2,
+        zIndex: 1000,
+        anchor: new google.maps.Point(12, 12),
+    }
+}
+
+const rotateUserLocationMarker = (heading) => {
+    if(heading !== undefined && heading !== null) {
+        let updatedMarker = my_location?.icon;
+
+        if(!updatedMarker.icon){
+            updatedMarker = getSVGMarker();
+        }
+
+        updatedMarker.rotation = heading;
+
+        window.requestAnimationFrame(() => {
+            my_location.setIcon(updatedMarker)
+        })
+    }
+}
+
+let map;
+const googleMap = document.getElementById('map');
+
+let my_location = null;
+const setMyLocation = position => {
+    let latLng = new google.maps.LatLng(position.latitude, position.longitude);
+
+    if (map) {
+        if (my_location) {
+            my_location.setPosition(latLng);
+        } else {
+            const svgMarker = getSVGMarker();
+
+            my_location = new google.maps.Marker({
+                id: 'my_location',
+                position: latLng,
+                icon: svgMarker,
+                map: map,
+            });
+        }
+    }
+}
+
+const setPosOnMap = position => {
+    let latLng = new google.maps.LatLng(position.latitude, position.longitude);
+
+    map.setOptions({
+        center: latLng,
+    });
+}
+const getRgion = () => {
+    const bounds = map.getBounds();
+
+    window.ReactNativeWebView.postMessage(\\"changeRegion#$#\\"+customJsonStringify(bounds, ''));
+}
+
+function initMap() {
+    map = new google.maps.Map(googleMap, {
+        mapTypeId: 'roadmap',
+        disableDefaultUI: true,
+        zoom: 13,
+        minZoom: 6,
+        draggable: true,
+        scrollwheel: true,
+        disableDoubleClickZoom: false,
+        keyboardShortcuts: false,
+        styles: [
+            {
+                featureType: 'administrative.country',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'administrative.locality',
+                elementType: 'labels',
+                stylers: [
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'administrative.locality',
+                elementType: 'labels.text',
+                stylers: [
+                    {
+                        color: '#555555',
+                    },
+                ],
+            },
+            {
+                featureType: 'administrative.locality',
+                elementType: 'labels.text.fill',
+                stylers: [
+                    {
+                        visibility: 'simplified',
+                    },
+                ],
+            },
+            {
+                featureType: 'landscape.man_made',
+                elementType: 'geometry.fill',
+                stylers: [
+                    {
+                        color: '#F9EEEE',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'landscape.natural.landcover',
+                elementType: 'geometry.fill',
+                stylers: [
+                    {
+                        color: '#F9EEEE',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.attraction',
+                stylers: [
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.attraction',
+                elementType: 'labels.icon',
+                stylers: [
+                    {
+                        color: '#D8232A',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.attraction',
+                elementType: 'labels.text',
+                stylers: [
+                    {
+                        color: '#555555',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.attraction',
+                elementType: 'labels.text.fill',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.business',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.government',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.medical',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.park',
+                stylers: [
+                    {
+                        color: '#9ED28D',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'labels',
+                stylers: [
+                    {
+                        color: '#313131',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.park',
+                elementType: 'labels.text.fill',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.place_of_worship',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.school',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'poi.sports_complex',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.arterial',
+                elementType: 'labels.icon',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry.fill',
+                stylers: [
+                    {
+                        color: '#FFFFFF',
+                    },
+                    {
+                        saturation: '0',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                    {
+                        weight: '4.00',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'geometry.stroke',
+                stylers: [
+                    {
+                        color: '#313131',
+                    },
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'labels',
+                stylers: [
+                    {
+                        color: '#313131',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'labels.icon',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.highway',
+                elementType: 'labels.text.fill',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.local',
+                elementType: 'labels',
+                stylers: [
+                    {
+                        color: '#313131',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.local',
+                elementType: 'labels.icon',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.local',
+                elementType: 'labels.text',
+                stylers: [
+                    {
+                        color: '#313131',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'road.local',
+                elementType: 'labels.text.fill',
+                stylers: [
+                    {
+                        color: '#313131',
+                    },
+                    {
+                        visibility: 'simplified',
+                    },
+                ],
+            },
+            {
+                featureType: 'transit',
+                elementType: 'labels.icon',
+                stylers: [
+                    {
+                        color: '#555555',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'transit',
+                elementType: 'labels.text',
+                stylers: [
+                    {
+                        color: '#555555',
+                    },
+                ],
+            },
+            {
+                featureType: 'transit',
+                elementType: 'labels.text.fill',
+                stylers: [
+                    {
+                        visibility: 'off',
+                    },
+                ],
+            },
+            {
+                featureType: 'transit.station',
+                elementType: 'geometry.fill',
+                stylers: [
+                    {
+                        color: '#D6D6D6',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'transit.station.rail',
+                elementType: 'labels.icon',
+                stylers: [
+                    {
+                        color: '#555555',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+            {
+                featureType: 'water',
+                stylers: [
+                    {
+                        color: '#84BDE9',
+                    },
+                    {
+                        visibility: 'on',
+                    },
+                ],
+            },
+        ],
+    });
+
+    setPosOnMap(pos)
+
+    // dla zmiany pozycji regionu
+    map.addListener('dragend', getRgion);
+    map.addListener('zoom_changed', getRgion);
+    setTimeout(() => {
+        getRgion();
+    }, 1500);
+}
+
+// dodawanie punktów po zmianie regionu
+const marks = [];
+const privateMarks = [];
+const plannedMarks = [];
+let clusterPublic = null;
+let clusterPrivate = null;
+let clusterPlanned = null;
+
+const setMarks = places => {
+    for (let p of places) {
+        let id = p.details.id;
+        if (marks.some(e => e.id == id)) continue;
+        if (privateMarks.some(e => e.id == id)) continue;
+        if (plannedMarks.some(e => e.id == id)) continue;
+        
+        const isPlanned = p.markerTypes?.includes('FAVORITE');
+        const isPrivate = p.markerTypes?.includes('PRIVATE');
+        const privateImage = isPrivate && 'pinroute_private.png';
+        const plannedImage = isPlanned && 'pinroute_planned.png';
+        const publicImage = 'pinroute_published.png';
+        const markerImage = privateImage || plannedImage || publicImage;
+
+        let mark = new google.maps.Marker({
+            id,
+            position: new google.maps.LatLng(p.lat, p.lng),
+            icon: markerImage,
+            map: map,
+            details: p.details,
+            markerTypes: [...p.markerTypes]
+        });
+
+        /**
+         * Private have the highest priority, then planned and public as last.
+         */
+        if(isPrivate){
+            privateMarks.push(mark);
+        }else if(isPlanned){
+            plannedMarks.push(mark);
+        }else{
+            marks.push(mark);
+        }
+        window.ReactNativeWebView.postMessage(\\"clickMarkerToAdd#$#\\"+customJsonStringify(mark?.markerTypes, ''));
+    }
+
+    clusterPublic = new MarkerClusterer(map, marks, {
+        ignoreHidden: true,
+        minimumClusterSize: 3,
+        styles: [{
+                url: \\"pinroute_published_empty.png\\",
+                fontFamily: \\"DIN2014Narrow-Regular\\",
+                textSize: 17,
+                textColor: \\"#fff\\",
+                width: 32,
+                height: 32,
+                anchor:[16,16],
+            },
+        ]
+    });
+    clusterPrivate = new MarkerClusterer(map, privateMarks, {
+        ignoreHidden: true,
+        minimumClusterSize: 3,
+        styles: [{
+                url: \\"pinroute_private_empty.png\\",
+                fontFamily: \\"DIN2014Narrow-Regular\\",
+                textSize: 17,
+                textColor: \\"#fff\\",
+                width: 32,
+                height: 32,
+                anchor:[16,16],
+            },
+        ]
+    });
+    clusterPlanned = new MarkerClusterer(map, plannedMarks, {
+        ignoreHidden: true,
+        minimumClusterSize: 3,
+        styles: [{
+                url: \\"pinroute_planned_empty.png\\",
+                fontFamily: \\"DIN2014Narrow-Regular\\",
+                textSize: 17,
+                textColor: \\"#fff\\",
+                width: 32,
+                height: 32,
+                anchor:[16,16],
+            },
+        ]
+    });
+}
+
+const clearMarkersCluster = () => {
+    if(clusterPublic){
+        clusterPublic.clearMarkers();
+    }
+
+    if(clusterPrivate){
+        clusterPrivate.clearMarkers();
+    }
+
+    if(clusterPlanned){
+        clusterPlanned.clearMarkers();
+    }
+}
+</script>
+
+<script src=\\"https://maps.googleapis.com/maps/api/js?key=AIzaSyBcuDhYsJJqOBvWppdbLf5y75V8OdNOevQ&map_ids=2ffa275ecc610735&callback=initMap\\">
+</script>
+
+</body></html>",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "overflow": "hidden",
+            },
+            Object {
+              "backgroundColor": "#ffffff",
+            },
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "zIndex": 0,
+            },
+          ]
+        }
+        textInteractionEnabled={true}
+        useSharedProcessPool={true}
+        useWebKit={true}
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "bottom": 59.55357142857143,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingHorizontal": 28.985507246376812,
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 1,
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "elevation": 5,
+              "shadowColor": "rgba(51, 51, 51, 0.07)",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 7.6923076923076925,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 15.384615384615385,
+            },
+            Array [
+              Object {
+                "height": 92.3076923076923,
+                "width": 565.3846153846154,
+              },
+              Object {
+                "height": 84.61538461538461,
+                "width": 221.15384615384616,
+              },
+            ],
+          ]
+        }
+        testID="secondary-btn-test-id"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              undefined,
+            ]
+          }
+          testID="secondary-btn-test-id-container"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#333333",
+                  "fontSize": 20,
+                },
+                Object {
+                  "marginRight": 15.384615384615385,
+                },
+              ]
+            }
+            testID="secondary-btn-test-id-icon"
+          >
+            X
+          </Text>
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="secondary-btn-test-id-text"
+          >
+            MainRoutesMap.container.closeButton
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="icon-btn-test-id"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignContent": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "height": 84.61538461538461,
+                "justifyContent": "center",
+                "width": 84.61538461538461,
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#C63733",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+            testID="icon-btn-test-id-icon"
+          >
+            U
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

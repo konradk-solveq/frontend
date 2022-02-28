@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Buttons/Transparent Basic 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "height": 40,
+        "width": 200,
+      }
+    }
+  >
+    <RNGestureHandlerButton
+      collapsable={false}
+      onGestureEvent={[Function]}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      onHandlerStateChange={[Function]}
+      rippleColor={0}
+      testID="white-btn"
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        nativeID="animatedComponent"
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "opacity": 1,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "textAlign": "center",
+            }
+          }
+        >
+          HELLO!
+        </Text>
+      </View>
+    </RNGestureHandlerButton>
+  </View>
+</View>
+`;

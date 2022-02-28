@@ -17,7 +17,6 @@ import {countDaysToEnd} from '@helpers/warranty';
 import {CogBtn, BigRedBtn, ServiceMapBtn} from '@sharedComponents/buttons';
 import SliverImage from '@sharedComponents/sliverImage/sliverImage';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
-import TabBackGround from '@sharedComponents/navi/tabBackGround';
 
 import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import ComplaintsRepairs from './complaintsRepairs';
@@ -288,8 +287,6 @@ const Bike: React.FC<Props> = (props: Props) => {
                     )}
                 </SliverImage>
             </View>
-
-            <TabBackGround />
         </SafeAreaView>
     );
 };

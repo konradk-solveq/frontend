@@ -1,5 +1,6 @@
 import {Dimensions} from 'react-native';
-import {FIGMA_HEIGHT, FIGMA_WIDTH} from '../globalValues/layout';
+
+import {FIGMA_WIDTH, FIGMA_HEIGHT} from '@theme/layout';
 
 const {width, height} = Dimensions.get('window');
 

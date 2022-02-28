@@ -144,6 +144,12 @@ export const fetchMapsList = (
     filters?: PickedFilters,
     skipLoadingState?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    const {loading}: MapsState = getState().maps;
+    if (loading) {
+        setLoadState(dispatch, false, skipLoadingState);
+        return;
+    }
+
     setLoadState(dispatch, true, skipLoadingState);
     try {
         const {
@@ -160,7 +166,9 @@ export const fetchMapsList = (
         }
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
+            dispatch(
+                setError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             setLoadState(dispatch, true, skipLoadingState);
             return;
         }
@@ -218,7 +226,9 @@ export const fetchPrivateMapsList = (
         }
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
+            dispatch(
+                setError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             return;
         }
 
@@ -268,7 +278,9 @@ export const editPrivateMapMetaData = (
     try {
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
+            dispatch(
+                setError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             dispatch(setLoadingState(false));
             return;
         }
@@ -455,6 +467,7 @@ export const removePlannedMap = (
 export const fetchMapIfNotExistsLocally = (
     mapId: string,
     mapType?: RouteMapType,
+    withPath?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
@@ -482,7 +495,7 @@ export const fetchMapIfNotExistsLocally = (
             return;
         }
 
-        const response = await getMapsByTypeAndId(location, mapId);
+        const response = await getMapsByTypeAndId(location, mapId, withPath);
 
         if (response.error || !response.data || !response.data) {
             dispatch(setError(response.error, response.status));
@@ -552,7 +565,9 @@ export const fetchFeaturedMapsList = (
         }
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
+            dispatch(
+                setError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             setLoadState(dispatch, false, skipLoadingState);
             return;
         }

@@ -272,6 +272,7 @@ stroke= \\"#D8232A\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-lin
                       },
                     ]
                   }
+                  textInteractionEnabled={true}
                   useSharedProcessPool={true}
                   useWebKit={false}
                 />
@@ -532,6 +533,7 @@ stroke= \\"#D8232A\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-lin
                                       },
                                     ]
                                   }
+                                  textInteractionEnabled={true}
                                   useSharedProcessPool={true}
                                   useWebKit={false}
                                 />
@@ -1508,6 +1510,7 @@ Array [
                                       },
                                     ]
                                   }
+                                  textInteractionEnabled={true}
                                   useSharedProcessPool={true}
                                   useWebKit={false}
                                 />
@@ -2484,6 +2487,7 @@ Array [
                                       },
                                     ]
                                   }
+                                  textInteractionEnabled={true}
                                   useSharedProcessPool={true}
                                   useWebKit={false}
                                 />

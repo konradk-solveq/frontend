@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/buttons/IconBtn Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    testID="icon-btn-test-id"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+          "borderRadius": 28.985507246376812,
+          "height": 79.71014492753623,
+          "justifyContent": "center",
+          "width": 79.71014492753623,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#C63733",
+              "fontSize": 36.231884057971016,
+            },
+          ]
+        }
+      >
+        q
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/buttons/IconBtn Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    testID="icon-btn-test-id"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+          "borderRadius": 28.985507246376812,
+          "height": 79.71014492753623,
+          "justifyContent": "center",
+          "width": 79.71014492753623,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#C63733",
+              "fontSize": 36.231884057971016,
+            },
+          ]
+        }
+      >
+        q
+      </Text>
+    </View>
+  </View>
+</View>
+`;
