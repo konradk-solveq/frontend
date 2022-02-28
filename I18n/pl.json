@@ -324,6 +324,7 @@
         "btnPlanned": "Zapisane",
         "btnFilters": "Filtruj",
         "btnSort": "Sortuj",
+        "resetFilters": "Resetuj",
         "maps": {
             "filtersTitle": "Filtry",
             "filtersDescription": "Określ parametry, które pozwolą zawęzić listę wyświetlanych tras.",
@@ -391,14 +392,26 @@
             "showOnMapAction": "Zobacz na mapie",
             "routeDetailsAction": "Szczegóły",
             "addRouteToPlanned": "Trasa {{name}} została dodana do planowanych.",
-            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z planowanych."
+            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z planowanych.",
+            "sortBy": {
+                "nearest": "Od najbliższych",
+                "newest": "Od najnowszych",
+                "oldest": "Od najstarszych",
+                "default": "(domyślnie)"
+            }
         },
         "PlannedRoutes": {
             "title": ", odkryj ciekawe trasy z KROSS",
             "emptyStateTitle": "Dobry plan to podstawa",
             "emptyStateContent": "Zaplanuj wycieczkę na podstawie tras rekomendowanych przez KROSS.",
             "emptyStateButton": "Pobierz trasę",
-            "defaultUserName": "Rowerzysto"
+            "defaultUserName": "Rowerzysto",
+            "sortBy": {
+                "nearest": "Od najbliższych",
+                "newest": "Od najnowszych",
+                "oldest": "Od najstarszych",
+                "default": "(domyślnie)"
+            }
         },
         "MyRoutes": {
             "title": ", odkryj ciekawe trasy z KROSS",
@@ -408,7 +421,13 @@
             "defaultUserName": "Rowerzysto",
             "routesNumberTitle": "Ilość nagranych tras:",
             "todayDate": "Dziś",
-            "yestardayDate": "Wczoraj"
+            "yestardayDate": "Wczoraj",
+            "sortBy": {
+                "newest": "Od najnowszych",
+                "nearest": "Od najbliższych",
+                "oldest": "Od najstarszych",
+                "default": "(domyślnie)"
+            }
         },
         "FeaturedRoutes": {
             "showMoreBtn": "Pokaż więcej"

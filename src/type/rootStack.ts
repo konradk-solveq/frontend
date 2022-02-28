@@ -50,12 +50,14 @@ export type ResetPasswordNavigationPropT = MainNavigationCompositePropT<
 
 /* WORLD */
 export type KrossWorldParamsListT = {
-    RoutesMap: {
-        activeTab: RouteMapType;
-        private?: boolean;
-        favourite?: boolean;
-        featured?: boolean;
-    };
+    RoutesMap:
+        | {
+              activeTab?: RouteMapType;
+              private?: boolean;
+              favourite?: boolean;
+              featured?: boolean;
+          }
+        | undefined;
     RouteDetails: {
         mapID: string;
         sectionID?: string;

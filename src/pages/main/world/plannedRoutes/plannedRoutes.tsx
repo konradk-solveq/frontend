@@ -21,14 +21,22 @@ import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import EmptyList from './emptyList';
+import {Dropdown} from '@components/dropdown';
+import {Backdrop} from '@components/backdrop';
+import SortButton from '../components/buttons/SortButton';
+import {RoutesMapButton} from '@pages/main/world/components/buttons';
 
 import styles from './style';
 import {nextPlannedPaginationCoursor} from '@storage/selectors/map';
-import {fetchMapsList, fetchPlannedMapsList} from '@storage/actions';
-import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
+import {fetchPlannedMapsList} from '@storage/actions';
+import {
+    checkIfContainsFitlers,
+    getSorByFilters,
+} from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
-import {FiltersButton, SortButton} from '@pages/main/world/components/buttons';
+import {FiltersButton} from '@pages/main/world/components/buttons';
+import {plannedRoutesDropdownList} from '../utils/dropdownLists';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -75,7 +83,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
         if (isValid) {
-            dispatch(fetchMapsList(undefined, savedMapFilters));
+            dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
             return;
         }
     }, [dispatch, savedMapFilters]);
@@ -138,6 +146,36 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         );
     };
 
+    const [showBackdrop, setShowBackdrop] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [sortButtonName, setSortButtonName] = useState<string>(
+        mwt('btnSort'),
+    );
+
+    const toggleDropdown = useCallback((state: boolean) => {
+        setShowBackdrop(state);
+        setShowDropdown(state);
+    }, []);
+
+    const changeSortButtonName = useCallback((buttoName?: string) => {
+        if (buttoName) {
+            setSortButtonName(buttoName);
+        }
+    }, []);
+
+    const onSortByHandler = useCallback(
+        (sortTypeId?: string) => {
+            const firstEl = plannedRoutesDropdownList[0];
+            const sortBy =
+                plannedRoutesDropdownList.find(el => el.id === sortTypeId) ||
+                firstEl;
+            changeSortButtonName(sortTypeId ? sortBy?.text : mwt('btnSort'));
+
+            setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
+        },
+        [changeSortButtonName, mwt],
+    );
+
     if (!favouriteMaps?.length) {
         return <EmptyList onPress={emptyListButtonHandler} />;
     }
@@ -170,6 +208,19 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 onSave={onFiltersSaveHandler}
                 showModal={showFiltersModal}
             />
+            <View style={styles.topButtonsContainer}>
+                <Dropdown
+                    openOnStart={showDropdown}
+                    list={plannedRoutesDropdownList}
+                    onPress={toggleDropdown}
+                    onPressItem={onSortByHandler}
+                    buttonText={mwt('btnSort')}
+                    buttonContainerStyle={styles.dropdownButtonContainerStyle}
+                    boxStyle={styles.dropdownBox}
+                    resetButtonText={mwt('resetFilters')}
+                    hideButton
+                />
+            </View>
             <View style={styles.horizontalSpace}>
                 <FlatList
                     keyExtractor={item => item.id}
@@ -177,13 +228,16 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                         <>
                             <View style={styles.topButtonsContainer}>
                                 <SortButton
-                                    onPress={() => {}}
-                                    title={mwt('btnSort')}
+                                    title={sortButtonName}
+                                    onPress={() => setShowDropdown(true)}
                                     style={styles.topButton}
                                 />
                                 <FiltersButton
                                     onPress={onFiltersModalOpenHandler}
-                                    style={styles.topButton}
+                                    style={{
+                                        ...styles.topButton,
+                                        ...styles.topButtonRight,
+                                    }}
                                 />
                             </View>
                             <Text style={styles.header}>
@@ -203,6 +257,16 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     ListFooterComponent={renderListLoader}
                     refreshing={isLoading && isRefreshing}
                     onRefresh={onRefresh}
+                />
+
+                <Backdrop
+                    isVisible={showBackdrop}
+                    style={styles.fullscreenBackdrop}
+                />
+
+                <RoutesMapButton
+                    onPress={() => navigation.navigate('RoutesMap')}
+                    style={styles.mapBtn}
                 />
             </View>
         </>
