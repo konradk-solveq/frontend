@@ -60,11 +60,7 @@ export const getLanguagesListService = async () => {
 export const getControlSumService = async () => {
     const response = await getControlSum();
 
-    if (
-        !response?.data ||
-        response.data?.statusCode >= 400 ||
-        response.status >= 400
-    ) {
+    if (response.data?.statusCode >= 400 || response.status >= 400) {
         let errorMessage = 'error';
         if (response.data?.message || response.data?.error) {
             errorMessage = response.data.message || response.data.error;
@@ -77,7 +73,10 @@ export const getControlSumService = async () => {
     }
 
     return {
-        data: <controlSumT>response.data,
+        /** for no error and no data */
+        data: !response?.data
+            ? <controlSumT>response.data
+            : {controlSum: 'no_controlSum'},
         status: response.status,
         error: '',
     };

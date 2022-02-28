@@ -2,6 +2,7 @@ import {useTranslation} from 'react-i18next';
 import i18next from '@translations/i18next';
 import {Platform, NativeModules} from 'react-native';
 import {LangsType} from '@models/config.model';
+import {MAJOR_LANGUAGE} from '@helpers/global';
 
 export const useMergedTranslation = (prefix: string) => {
     return useTranslation(['backend', 'local'], {keyPrefix: prefix});
@@ -24,10 +25,14 @@ export const changeLanguage = (
                 language = code;
             } else {
                 /** default language */
-                language = 'en';
+                language = MAJOR_LANGUAGE;
             }
         } catch {
-            language = 'en';
+            language = MAJOR_LANGUAGE;
+        }
+    } else {
+        if (!langsList.some(e => e.name === language)) {
+            language = MAJOR_LANGUAGE;
         }
     }
 
