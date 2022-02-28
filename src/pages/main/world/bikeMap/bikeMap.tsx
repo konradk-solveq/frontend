@@ -22,14 +22,23 @@ import Loader from '@sharedComponents/loader/loader';
 import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
+import {Dropdown} from '@components/dropdown';
+import {Backdrop} from '@components/backdrop';
+import SortButton from '../components/buttons/SortButton';
+import {RoutesMapButton} from '@pages/main/world/components/buttons';
 
 import styles from './style';
 import {fetchMapsList} from '@storage/actions';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {PickedFilters} from '@interfaces/form';
-import {checkIfContainsFitlers} from '@utils/apiDataTransform/filters';
-import {FiltersButton, SortButton} from '@pages/main/world/components/buttons';
+import {
+    checkIfContainsFitlers,
+    getSorByFilters,
+} from '@utils/apiDataTransform/filters';
+import {FiltersButton} from '@pages/main/world/components/buttons';
 import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
+import {publicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
+import {useMemo} from '@storybook/addons';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -58,7 +67,6 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const [showFiltersModal, setShowFiltersModal] = useState(false);
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
     const [activeMapID, setActiveMapID] = useState<string>('');
-
     const {onLoadMoreHandler} = useInfiniteScrollLoadMore(mapsData?.length);
 
     const onRefresh = useCallback(
@@ -163,6 +171,35 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         return null;
     }, [isLoading, mapsData?.length]);
 
+    const [showBackdrop, setShowBackdrop] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [sortButtonName, setSortButtonName] = useState<string>(t('btnSort'));
+
+    const toggleDropdown = useCallback((state: boolean) => {
+        setShowBackdrop(state);
+        setShowDropdown(state);
+    }, []);
+
+    const changeSortButtonName = useCallback((buttoName?: string) => {
+        if (buttoName) {
+            setSortButtonName(buttoName);
+        }
+    }, []);
+
+    const onSortByHandler = useCallback(
+        (sortTypeId?: string) => {
+            const firstEl = publicRoutesDropdownList[0];
+            const sortBy =
+                publicRoutesDropdownList.find(el => el.id === sortTypeId) ||
+                firstEl;
+
+            changeSortButtonName(sortTypeId ? sortBy?.text : t('btnSort'));
+
+            setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
+        },
+        [changeSortButtonName, t],
+    );
+
     return (
         <>
             {mapsData?.length ? (
@@ -181,18 +218,35 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                         onSave={onFiltersSaveHandler}
                         showModal={showFiltersModal}
                     />
+                    <View style={styles.topButtonsContainer}>
+                        <Dropdown
+                            openOnStart={showDropdown}
+                            list={publicRoutesDropdownList}
+                            onPress={toggleDropdown}
+                            onPressItem={onSortByHandler}
+                            buttonText={t('btnSort')}
+                            buttonContainerStyle={
+                                styles.dropdownButtonContainerStyle
+                            }
+                            boxStyle={styles.dropdownBox}
+                            hideButton
+                        />
+                    </View>
                     <FlatList
                         ListHeaderComponent={
                             <>
                                 <View style={styles.topButtonsContainer}>
                                     <SortButton
-                                        onPress={() => {}}
-                                        title={t('btnSort')}
+                                        title={sortButtonName}
+                                        onPress={() => setShowDropdown(true)}
                                         style={styles.topButton}
                                     />
                                     <FiltersButton
                                         onPress={onFiltersModalOpenHandler}
-                                        style={styles.topButton}
+                                        style={{
+                                            ...styles.topButton,
+                                            ...styles.topButtonRight,
+                                        }}
                                     />
                                 </View>
                                 <FeaturedRoutes key={mapsData?.length} />
@@ -216,6 +270,16 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                     />
                 </>
             ) : null}
+
+            <Backdrop
+                isVisible={showBackdrop}
+                style={styles.fullscreenBackdrop}
+            />
+
+            <RoutesMapButton
+                onPress={() => navigation.navigate('RoutesMap')}
+                style={styles.mapBtn}
+            />
         </>
     );
 };

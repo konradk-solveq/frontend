@@ -25,6 +25,7 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
           "width": "100%",
         },
         Object {},
+        Object {},
       ]
     }
     testID="dropdown-test-id"
@@ -64,8 +65,11 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
               "width": 565.3846153846154,
             },
             Object {
+              "alignItems": "flex-start",
               "backgroundColor": "#ededed",
+              "flex": 1,
               "height": "100%",
+              "justifyContent": "flex-start",
               "width": 259.61538461538464,
             },
           ],
@@ -669,6 +673,7 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
           "paddingVertical": 2,
           "width": "100%",
         },
+        Object {},
         undefined,
       ]
     }
@@ -709,8 +714,11 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
               "width": 565.3846153846154,
             },
             Object {
+              "alignItems": "flex-start",
               "backgroundColor": "#ededed",
+              "flex": 1,
               "height": "100%",
+              "justifyContent": "flex-start",
               "width": 259.61538461538464,
             },
           ],
