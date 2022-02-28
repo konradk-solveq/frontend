@@ -159,8 +159,6 @@ export const fetchAppConfig = (
 
         const responseControlSum = await getControlSumService();
 
-
-
         const {config}: AppState = getState().app;
 
         const lang = response.data.lang;
