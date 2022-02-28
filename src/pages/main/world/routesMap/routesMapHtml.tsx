@@ -63,7 +63,7 @@ const getSVGMarker = () => {
         strokeWeight: 2,
         rotation: 0,
         scale: 1.2,
-        zIndex: 100,
+        zIndex: 1000,
         anchor: new google.maps.Point(12, 12),
     }
 }
@@ -86,7 +86,6 @@ const rotateUserLocationMarker = (heading) => {
 
 let map;
 const googleMap = document.getElementById('map');
-// let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
 
 let my_location = null;
 const setMyLocation = position => {

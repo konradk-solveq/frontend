@@ -47,7 +47,13 @@ const RoutesMapContainer: React.FC<IProps> = ({
             : '';
     const {t} = useMergedTranslation('MainRoutesMap');
 
-    const loc = useMemo(() => getMapInitLocation(location), [location]);
+    /**
+     * Set it only once to avoid changes in map string
+     * which causes rerenders.
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const loc = useMemo(() => getMapInitLocation(location), []);
+
     const markersExists = useMemo(
         () => routesMarkers && routesMarkers.length > 0,
         [routesMarkers],
@@ -120,6 +126,10 @@ const RoutesMapContainer: React.FC<IProps> = ({
             const p = jsonStringify(pos);
             if (p) {
                 setJsWV(`setPosOnMap(${p});true;`);
+                /**
+                 * Fetch should reassign region to fetch markers if not exists
+                 */
+                setJsWV('getRgion();true;');
             }
         }
     }, [location, mapLoaded]);
