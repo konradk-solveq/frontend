@@ -33,6 +33,9 @@ const styles = StyleSheet.create({
         marginTop: -getVerticalPx(120),
         marginBottom: getVerticalPx(150),
     },
+    listBodyLoader: {
+        marginTop: '50%',
+    },
     backdrop: {
         marginTop: -getVerticalPx(250),
     },
