@@ -31,7 +31,7 @@ export const changeLanguage = (
             language = MAJOR_LANGUAGE;
         }
     } else {
-        if (langsList.some(e => e.name === language)) {
+        if (!langsList.some(e => e.name === language)) {
             language = MAJOR_LANGUAGE;
         }
     }
