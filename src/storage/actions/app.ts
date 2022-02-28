@@ -159,6 +159,16 @@ export const fetchAppConfig = (
 
         const responseControlSum = await getControlSumService();
 
+        if (!responseControlSum.data) {
+            console.log(`[getControlSumService] - ${responseControlSum.error}`);
+            const err = convertToApiError(responseControlSum.error);
+
+            loggErrorWithScope(err, 'getControlSumService');
+
+            const errorMessage = i18next.t('dataAction.apiError');
+            dispatch(setSyncError(errorMessage, 500));
+        }
+
         const {config}: AppState = getState().app;
 
         const lang = response.data.lang;
