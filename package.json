@@ -1,6 +1,6 @@
 {
   "name": "kross_app",
-  "version": "2.8.1",
+  "version": "2.9.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -57,7 +57,7 @@
     "react-native-android-location-enabler": "^1.2.2",
     "react-native-background-fetch": "^4.0.2",
     "react-native-background-geolocation-android": "git+ssh://git@github.com:transistorsoft/react-native-background-geolocation-android.git",
-    "react-native-compass-heading": "^1.2.1",
+    "react-native-compass-heading": "^1.4.0",
     "react-native-config": "^1.4.4",
     "react-native-device-info": "^8.1.8",
     "react-native-fs": "^2.18.0",

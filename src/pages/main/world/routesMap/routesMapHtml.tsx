@@ -54,9 +54,39 @@ const customJsonStringify = (value, fallback) => {
     }
 };
 
+const getSVGMarker = () => {
+    return {
+        path: "M10.941 3.73a1.133 1.133 0 0 1 2.118 0l5.851 14.638c.396.99-.59 1.966-1.535 1.521l-4.899-3.369a1.115 1.115 0 0 0-.952 0l-4.9 3.37c-.944.444-1.93-.533-1.534-1.522L10.94 3.73Z",
+        fillColor: "#333",
+        fillOpacity: 1,
+        strokeColor: '#fff',
+        strokeWeight: 2,
+        rotation: 0,
+        scale: 1.2,
+        zIndex: 1000,
+        anchor: new google.maps.Point(12, 12),
+    }
+}
+
+const rotateUserLocationMarker = (heading) => {
+    if(heading !== undefined && heading !== null) {
+        let updatedMarker = my_location?.icon;
+
+        if(!updatedMarker.icon){
+            updatedMarker = getSVGMarker();
+        }
+
+        updatedMarker.rotation = heading;
+
+        window.requestAnimationFrame(() => {
+            my_location.setIcon(updatedMarker)
+        })
+    }
+}
+
 let map;
+let routePath;
 const googleMap = document.getElementById('map');
-// let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
 
 let my_location = null;
 const setMyLocation = position => {
@@ -66,10 +96,12 @@ const setMyLocation = position => {
         if (my_location) {
             my_location.setPosition(latLng);
         } else {
+            const svgMarker = getSVGMarker();
+
             my_location = new google.maps.Marker({
                 id: 'my_location',
                 position: latLng,
-                icon: 'my_location.png',
+                icon: svgMarker,
                 map: map,
             });
         }
@@ -458,15 +490,21 @@ function initMap() {
     setTimeout(() => {
         getRgion();
     }, 1500);
+    map.addListener('click', () => {
+        window.ReactNativeWebView.postMessage("clickMap");
+    });
 }
 
 // dodawanie punktów po zmianie regionu
 const marks = [];
 const privateMarks = [];
 const plannedMarks = [];
+const routeMarks = [];
 let clusterPublic = null;
 let clusterPrivate = null;
 let clusterPlanned = null;
+let startMark
+let endMark
 
 const setMarks = places => {
     for (let p of places) {
@@ -502,6 +540,9 @@ const setMarks = places => {
             marks.push(mark);
         }
         window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+customJsonStringify(mark?.markerTypes, ''));
+        google.maps.event.addDomListener(mark, 'click', function() {
+            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify({...mark?.details, markerTypes: mark?.markerTypes}, ''));
+        });
     }
 
     clusterPublic = new MarkerClusterer(map, marks, {
@@ -546,6 +587,57 @@ const setMarks = places => {
             },
         ]
     });
+}
+
+const setPath = path => {
+    const coords = path.map(([lat, lng]) => ({lat, lng}));
+    if (coords?.length<2) {
+        return;
+    }
+
+    const start = coords[0];
+    const end = coords[coords.length - 1];
+    
+    if (!startMark){
+        startMark = new google.maps.Marker({
+            id: 'route-start',
+            position: new google.maps.LatLng(start.lat, start.lng),
+            icon: 'pinroute_start.png',
+            map,
+        });
+    } else {
+        startMark.setMap(map);
+        startMark.setPosition(new google.maps.LatLng(start.lat, start.lng));
+    }
+    
+    if(!endMark) {
+        endMark = new google.maps.Marker({
+            id: 'route-end',
+            position: new google.maps.LatLng(end.lat, end.lng),
+            icon: 'pinroute_end.png',
+            map,
+        });
+    } else {
+        endMark.setMap(map);
+        endMark.setPosition(new google.maps.LatLng(end.lat, end.lng));
+    }
+    
+    routePath = new google.maps.Polyline({
+        path: coords,
+        geodesic: true,
+        strokeColor: "#C63733",
+        strokeOpacity: 1.0,
+        strokeWeight: 3,
+    });
+
+        
+    routePath.setMap(map);
+}
+
+const clearPath = () => {
+    routePath.setMap(null);
+    startMark.setMap(null);
+    endMark.setMap(null);
 }
 
 const clearMarkersCluster = () => {

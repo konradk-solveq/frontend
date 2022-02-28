@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {WebView, WebViewMessageEvent} from 'react-native-webview';
 
 import {BasicCoordsType} from '@type/coords';
-import {MapMarkerType} from '@models/map.model';
+import {MapMarkerType, CoordsType} from '@models/map.model';
 
 import {isIOS} from '@utils/platform';
 import {getMapInitLocation} from '@utils/webView';
@@ -20,6 +20,7 @@ import colors from '@theme/colors';
 import mapSource from '@pages/main/world/routesMap/routesMapHtml';
 import {IconButton, SecondaryButton} from '@components/buttons';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import useCompassHook from '@src/hooks/useCompassHook';
 
 interface IProps {
     onWebViewMessage: (e: WebViewMessageEvent) => void;
@@ -27,6 +28,7 @@ interface IProps {
     onMapLoadEnd?: () => void;
     location?: BasicCoordsType;
     routesMarkers?: MapMarkerType[];
+    mapPath?: CoordsType[];
 }
 
 const RoutesMapContainer: React.FC<IProps> = ({
@@ -35,20 +37,45 @@ const RoutesMapContainer: React.FC<IProps> = ({
     onMapLoadEnd,
     location,
     routesMarkers,
+    mapPath,
 }: IProps) => {
-    const mapRef = useRef(null);
+    const mapRef = useRef<WebView>(null);
     const posRef = useRef(false);
 
-    const setJsWV = (data: string) => mapRef.current?.injectJavaScript(data);
+    /* TODO: temp solution for not working tests - storyshots */
+    const setJsWV = (data: string) =>
+        !process.env.JEST_WORKER_ID
+            ? mapRef.current?.injectJavaScript(data)
+            : '';
     const {t} = useMergedTranslation('MainRoutesMap');
 
-    const loc = useMemo(() => getMapInitLocation(location), [location]);
+    /**
+     * Set it only once to avoid changes in map string
+     * which causes rerenders.
+     */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const loc = useMemo(() => getMapInitLocation(location), []);
+
     const markersExists = useMemo(
         () => routesMarkers && routesMarkers.length > 0,
         [routesMarkers],
     );
 
     const [mapLoaded, setMapLoaded] = useState(false);
+
+    /**
+     * Set route path
+     */
+    useEffect(() => {
+        if (location && mapLoaded) {
+            const p = jsonStringify(mapPath);
+            setJsWV(`clearPath(${p});true;`);
+            if (!p) {
+                return;
+            }
+            setJsWV(`setPath(${p});true;`);
+        }
+    }, [location, mapLoaded, mapPath]);
 
     /**
      * Set user marker position
@@ -115,9 +142,21 @@ const RoutesMapContainer: React.FC<IProps> = ({
             const p = jsonStringify(pos);
             if (p) {
                 setJsWV(`setPosOnMap(${p});true;`);
+                /**
+                 * Fetch should reassign region to fetch markers if not exists
+                 */
+                setJsWV('getRgion();true;');
             }
         }
     }, [location, mapLoaded]);
+
+    const heading = useCompassHook();
+
+    useEffect(() => {
+        if (heading !== undefined && heading !== null && mapRef.current) {
+            setJsWV(`rotateUserLocationMarker(${heading});true;`);
+        }
+    }, [heading]);
 
     return (
         <View style={styles.container}>
@@ -125,7 +164,6 @@ const RoutesMapContainer: React.FC<IProps> = ({
                 style={styles.webView}
                 originWhitelist={['*']}
                 scalesPageToFit={true}
-                useWebKit={isIOS}
                 scrollEnabled={false}
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}
