@@ -73,12 +73,8 @@ export const getControlSumService = async () => {
     }
 
     if (!response?.data) {
-        return {
-            data: {
-                controlSum: 'no_controlSum',
-            },
-            status: response.status,
-            error: '',
+        response.data = {
+            controlSum: 'no_controlSum',
         };
     }
 
