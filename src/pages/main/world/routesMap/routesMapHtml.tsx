@@ -85,6 +85,7 @@ const rotateUserLocationMarker = (heading) => {
 }
 
 let map;
+let routePath;
 const googleMap = document.getElementById('map');
 
 let my_location = null;
@@ -489,15 +490,21 @@ function initMap() {
     setTimeout(() => {
         getRgion();
     }, 1500);
+    map.addListener('click', () => {
+        window.ReactNativeWebView.postMessage("clickMap");
+    });
 }
 
 // dodawanie punktów po zmianie regionu
 const marks = [];
 const privateMarks = [];
 const plannedMarks = [];
+const routeMarks = [];
 let clusterPublic = null;
 let clusterPrivate = null;
 let clusterPlanned = null;
+let startMark
+let endMark
 
 const setMarks = places => {
     for (let p of places) {
@@ -533,6 +540,9 @@ const setMarks = places => {
             marks.push(mark);
         }
         window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+customJsonStringify(mark?.markerTypes, ''));
+        google.maps.event.addDomListener(mark, 'click', function() {
+            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify({...mark?.details, markerTypes: mark?.markerTypes}, ''));
+        });
     }
 
     clusterPublic = new MarkerClusterer(map, marks, {
@@ -577,6 +587,57 @@ const setMarks = places => {
             },
         ]
     });
+}
+
+const setPath = path => {
+    const coords = path.map(([lat, lng]) => ({lat, lng}));
+    if (coords?.length<2) {
+        return;
+    }
+
+    const start = coords[0];
+    const end = coords[coords.length - 1];
+    
+    if (!startMark){
+        startMark = new google.maps.Marker({
+            id: 'route-start',
+            position: new google.maps.LatLng(start.lat, start.lng),
+            icon: 'pinroute_start.png',
+            map,
+        });
+    } else {
+        startMark.setMap(map);
+        startMark.setPosition(new google.maps.LatLng(start.lat, start.lng));
+    }
+    
+    if(!endMark) {
+        endMark = new google.maps.Marker({
+            id: 'route-end',
+            position: new google.maps.LatLng(end.lat, end.lng),
+            icon: 'pinroute_end.png',
+            map,
+        });
+    } else {
+        endMark.setMap(map);
+        endMark.setPosition(new google.maps.LatLng(end.lat, end.lng));
+    }
+    
+    routePath = new google.maps.Polyline({
+        path: coords,
+        geodesic: true,
+        strokeColor: "#C63733",
+        strokeOpacity: 1.0,
+        strokeWeight: 3,
+    });
+
+        
+    routePath.setMap(map);
+}
+
+const clearPath = () => {
+    routePath.setMap(null);
+    startMark.setMap(null);
+    endMark.setMap(null);
 }
 
 const clearMarkersCluster = () => {
