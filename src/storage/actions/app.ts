@@ -159,19 +159,7 @@ export const fetchAppConfig = (
 
         const responseControlSum = await getControlSumService();
 
-        if (
-            responseControlSum.error ||
-            responseControlSum.status >= 400 ||
-            !responseControlSum.data
-        ) {
-            dispatch(
-                setSyncError(
-                    responseControlSum.error,
-                    responseControlSum.status,
-                ),
-            );
-            return;
-        }
+
 
         const {config}: AppState = getState().app;
 
