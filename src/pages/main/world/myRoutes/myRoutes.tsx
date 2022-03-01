@@ -148,40 +148,8 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 index === privateMaps?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
 
-            if (index === 0) {
-                return (
-                    <View style={[styles.tileWrapper, lastItemStyle]}>
-                        {sortedByDate && (
-                            <Text style={styles.separatorHeader}>
-                                {translateDateToTodayAndYesterdayString(
-                                    item.createdAtDate,
-                                )}
-                            </Text>
-                        )}
-                        <ListTile
-                            mapData={item}
-                            images={images}
-                            onPress={onPressHandler}
-                            onPressTile={onPressTileHandler}
-                            tilePressable
-                        />
-                    </View>
-                );
-            }
-
-            const showDate = shouldShowDate(
-                item.createdAtDateString,
-                index - 1,
-            );
             return (
-                <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
-                    {sortedByDate && showDate && (
-                        <Text style={styles.separatorHeader}>
-                            {translateDateToTodayAndYesterdayString(
-                                item.createdAtDate,
-                            )}
-                        </Text>
-                    )}
+                <View key={item.id} style={lastItemStyle}>
                     <ListTile
                         mapData={item}
                         images={images}
@@ -284,7 +252,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     return (
-        <>
+        <View style={styles.background}>
             {rednerModal()}
             <FiltersModal
                 onClose={onFiltersModalCloseHandler}
@@ -356,7 +324,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 onPress={() => navigation.navigate('RoutesMap')}
                 style={styles.mapBtn}
             />
-        </>
+        </View>
     );
 };
 

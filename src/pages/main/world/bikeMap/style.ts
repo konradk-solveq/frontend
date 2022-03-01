@@ -12,6 +12,9 @@ const darkText = '#313131';
 const {width} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
+    background: {
+        backgroundColor: '#fafafa',
+    },
     header: {
         fontFamily: fontLight,
         fontSize: getFFontSize(30),

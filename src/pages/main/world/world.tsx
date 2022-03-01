@@ -8,11 +8,7 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import BikeMap from '@pages/main/world/bikeMap/bikeMap';
 import MyRoutes from '@pages/main/world/myRoutes/myRoutes';
 import PlannedRoutes from '@pages/main/world/plannedRoutes/plannedRoutes';
-import {
-    getFFontSize,
-    getFHorizontalPx,
-    getFVerticalPx,
-} from '@theme/utils/appLayoutDimensions';
+import {getFFontSize} from '@theme/utils/appLayoutDimensions';
 
 import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 import {navBarHeight} from '@theme/commonStyle';
@@ -73,21 +69,8 @@ const World = () => {
 };
 
 const styles = StyleSheet.create({
-    container: {flex: 1},
-    mapBtn: {
-        position: 'absolute',
-        bottom: getFVerticalPx(133),
-        left: getFHorizontalPx(95),
-        width: getFHorizontalPx(200),
-        shadowColor: '#333333',
-        shadowOffset: {
-            width: 0,
-            height: getFVerticalPx(4),
-        },
-        shadowOpacity: 0.07,
-        shadowRadius: getFVerticalPx(8),
-        elevation: 3,
-        borderRadius: getFHorizontalPx(16),
+    container: {
+        flex: 1,
     },
 });
 

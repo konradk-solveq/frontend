@@ -213,7 +213,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     return (
         <>
             {mapsData?.length ? (
-                <>
+                <View style={styles.background}>
                     <ShowMoreModal
                         showModal={showModal}
                         mapID={activeMapID}
@@ -278,7 +278,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                         refreshing={isLoading && isRefreshing}
                         onRefresh={onRefreshHandler}
                     />
-                </>
+                </View>
             ) : null}
 
             <Backdrop

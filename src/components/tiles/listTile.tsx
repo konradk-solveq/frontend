@@ -81,19 +81,33 @@ const ListTile: React.FC<PropsI> = ({
         [dispatch, likeValue, mapData?.id, sectionID],
     );
 
-    const handleDistance = () => {
-        if (!mapData?.distance) {
-            return '-';
-        }
-        return (mapData.distance / 1000).toFixed(0) + t('distanceUnit');
-    };
+    const handleDistanceAndTime = () => {
+        const getDistance = () => {
+            if (!mapData?.distance) {
+                return null;
+            }
+            return (mapData.distance / 1000).toFixed(0) + t('distanceUnit');
+        };
 
-    const handleTime = () => {
-        if (!mapData?.formattedTimeString) {
-            return '-';
+        const getTime = () => {
+            if (!mapData?.formattedTimeString) {
+                return null;
+            }
+            const ti = timeWithHandM(mapData.formattedTimeString);
+            return `${ti.h}${t('hours')} ${ti.m}${t('minutes')}`;
+        };
+
+        const distance = getDistance();
+        const time = getTime();
+
+        if (distance && time) {
+            return `${distance}${t('separator')}${time}`;
+        } else if (distance && !time) {
+            return distance;
+        } else if (!distance && time) {
+            return time;
         }
-        const time = timeWithHandM(mapData.formattedTimeString);
-        return `${time.h}${t('hours')} ${time.m}${t('minutes')}`;
+        return '';
     };
 
     const handleDistanceToStart = () => {
@@ -106,12 +120,17 @@ const ListTile: React.FC<PropsI> = ({
     };
 
     const handleCapitalize = () => {
-        const difficulty = mapData?.firstPickedDifficulty || '-';
-        const surface = mapData?.firstPickedSurface || '-';
+        const difficulty = mapData?.firstPickedDifficulty;
+        const surface = mapData?.firstPickedSurface;
 
-        return `${capitalize(difficulty)}${t('separator')}${capitalize(
-            surface,
-        )}`;
+        if (difficulty && surface) {
+            return `${difficulty}${t('separator')}${surface}`;
+        } else if (!difficulty && surface) {
+            return surface;
+        } else if (difficulty && !surface) {
+            return difficulty;
+        }
+        return '';
     };
 
     const imagesToDisplay = getImageToDisplay(images);
@@ -129,13 +148,12 @@ const ListTile: React.FC<PropsI> = ({
             width: '100%',
             height: '100%',
             borderRadius: getFHorizontalPx(12),
-            backgroundColor: '#f0f0f0',
+            backgroundColor: '#fff',
             overflow: 'hidden',
         },
         imageWrapper: {
             width: '100%',
             height: getFHorizontalPx(163),
-            backgroundColor: '#6fda5d',
             overflow: 'hidden',
         },
         image: {
@@ -201,11 +219,7 @@ const ListTile: React.FC<PropsI> = ({
                             <Demi18h28crop>
                                 {mapData?.name || t('noTitle')}
                             </Demi18h28crop>
-                            <Demi18h28>
-                                {handleDistance()}
-                                {t('separator')}
-                                {handleTime()}
-                            </Demi18h28>
+                            <Demi18h28>{handleDistanceAndTime()}</Demi18h28>
                             <View style={styles.row}>
                                 <Demi16h36>{handleDistanceToStart()}</Demi16h36>
                                 <Demi16h36>{handleCapitalize()}</Demi16h36>

@@ -213,7 +213,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     return (
-        <>
+        <View style={styles.background}>
             <ShowMoreModal
                 showModal={showModal}
                 removeFav
@@ -289,7 +289,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 onPress={() => navigation.navigate('RoutesMap')}
                 style={styles.mapBtn}
             />
-        </>
+        </View>
     );
 };
 
