@@ -21,10 +21,10 @@ import {
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import Loader from '@sharedComponents/loader/loader';
 
-import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 
 import styles from './style';
+import ListTile from '@src/components/tiles/listTile';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -111,7 +111,7 @@ const FeaturedRoutesScreen: React.FC = () => {
 
             return (
                 <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
-                    <NextTile
+                    <ListTile
                         mapData={item}
                         images={images}
                         onPress={onPressHandler}

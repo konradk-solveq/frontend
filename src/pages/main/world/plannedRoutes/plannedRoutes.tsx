@@ -19,7 +19,6 @@ import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
-import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import EmptyList from './emptyList';
 import {Dropdown} from '@components/dropdown';

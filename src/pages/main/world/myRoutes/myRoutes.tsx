@@ -21,8 +21,6 @@ import {translateDateToTodayAndYesterdayString} from '@utils/dateTime';
 import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 
-import FirstTile from '../components/tiles/firstTile';
-import NextTile from '../components/tiles/nextTile';
 import EmptyList from './emptyList';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import {Dropdown} from '@components/dropdown';
@@ -184,7 +182,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                             )}
                         </Text>
                     )}
-                    <NextTile
+                    <ListTile
                         mapData={item}
                         images={images}
                         onPress={onPressHandler}
