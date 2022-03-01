@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     lastTile: {
         marginBottom: getVerticalPx(150),
     },
-    horizontalSpace: {},
     loaderContainer: {
         height: getHorizontalPx(50),
         width: '100%',

@@ -38,6 +38,7 @@ import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import {plannedRoutesDropdownList} from '../utils/dropdownLists';
+import ListTile from '@src/components/tiles/listTile';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -145,8 +146,8 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             index === favouriteMaps?.length - 1 ? styles.lastTile : undefined;
         const images = getImagesThumbs(item?.images || []);
         return (
-            <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
-                <NextTile
+            <View key={item.id} style={lastItemStyle}>
+                <ListTile
                     mapData={item}
                     images={images}
                     onPress={onPressHandler}
@@ -242,7 +243,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     hideButton
                 />
             </View>
-            <View style={styles.horizontalSpace}>
+            <View >
                 <FlatList
                     keyExtractor={item => item.id}
                     ListHeaderComponent={

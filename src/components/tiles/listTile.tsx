@@ -25,6 +25,7 @@ interface PropsI {
     images: {images: string[]; mapImg: string};
     onPressTile?: (mapID: string) => void;
     tilePressable?: boolean;
+    sectionID?: string;
     testID?: string;
 }
 
@@ -34,6 +35,7 @@ const ListTile: React.FC<PropsI> = ({
     images,
     onPressTile,
     tilePressable,
+    sectionID,
     testID,
 }) => {
     const {t} = useMergedTranslation('MainWorld.Tile');
@@ -71,11 +73,12 @@ const ListTile: React.FC<PropsI> = ({
                         mapData?.id,
                         likeValue?.enumValue || 'like',
                         !state,
+                        sectionID,
                     ),
                 );
             }
         },
-        [dispatch, likeValue, mapData?.id],
+        [dispatch, likeValue, mapData?.id, sectionID],
     );
 
     const handleDistance = () => {

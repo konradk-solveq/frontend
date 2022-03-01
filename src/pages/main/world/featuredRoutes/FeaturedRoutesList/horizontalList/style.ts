@@ -1,18 +1,17 @@
 import {StyleSheet} from 'react-native';
-import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {getFHorizontalPx} from '@src/helpers/appLayoutDimensions';
 
 const styles = StyleSheet.create({
     tileWrapper: {
-        marginTop: getVerticalPx(30),
-        marginBottom: getVerticalPx(18),
-        marginHorizontal: getHorizontalPx(40),
-        width: getHorizontalPx(334),
+        marginTop: getFHorizontalPx(30),
+        marginBottom: getFHorizontalPx(18),
+        width: getFHorizontalPx(390),
     },
 });
 
 export const horizontalStyles = StyleSheet.create({
     middleTile: {
-        marginRight: -getHorizontalPx(20),
+        marginRight: -getFHorizontalPx(20),
     },
 });
 
