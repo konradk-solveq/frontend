@@ -47,6 +47,33 @@ export const BodyPrimary: FunctionComponent<PropsT> = ({
     );
 };
 
+export const Demi16h24: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'demi-16-h24-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontSize: getFFontSize(18),
+            lineHeight: getFFontSize(28),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : '#333',
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
 export const Demi18h28: FunctionComponent<PropsT> = ({
     algin,
     color,
@@ -86,6 +113,52 @@ export const Demi18h36: FunctionComponent<PropsT> = ({
             fontFamily: 'DIN2014-Demi',
             fontSize: getFFontSize(18),
             lineHeight: getFFontSize(36),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : '#717171',
+        },
+    });
+    return (
+        <Text testID={testID} style={[styles.text, style]}>
+            {children}
+        </Text>
+    );
+};
+
+export const Demi16h36: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    children,
+    style,
+    testID = 'demi-16-h36-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontSize: getFFontSize(16),
+            lineHeight: getFFontSize(36),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : '#717171',
+        },
+    });
+    return (
+        <Text testID={testID} style={[styles.text, style]}>
+            {children}
+        </Text>
+    );
+};
+
+export const Demi14h48: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    children,
+    style,
+    testID = 'demi-14-h48-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontSize: getFFontSize(14),
+            lineHeight: getFFontSize(48),
             textAlign: algin ? algin : 'left',
             color: color ? color : '#717171',
         },
