@@ -1,11 +1,16 @@
-import React, {FunctionComponent} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import React, {FunctionComponent, useState} from 'react';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 
 import {getFHorizontalPx} from '@helpers/appLayoutDimensions';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
-import colors from '@src/theme/colors';
+import {Demi16h24} from '@components/texts/texts';
 
 const styles = StyleSheet.create({
+    wrap: {
+        display: 'flex',
+        flexDirection: 'row',
+        marginRight: getFHorizontalPx(16),
+    },
     icon: {
         fontFamily: 'mykross',
         fontSize: getFHorizontalPx(24),
@@ -14,21 +19,50 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333',
     },
+    number: {
+        marginLeft: getFHorizontalPx(4),
+        top: getFHorizontalPx(-1),
+    },
 });
+
+interface ILikeProps {
+    check?: boolean;
+    value: number;
+    onPress: (state: boolean) => void;
+}
+
+export const LikeIcon: FunctionComponent<ILikeProps> = ({
+    check,
+    value,
+    onPress,
+}: ILikeProps) => {
+    const [likeChecked, setLikeChecked] = useState(check);
+
+    const handleOnPress = () => {
+        const ls = !likeChecked;
+        if (onPress) {
+            onPress(ls);
+        }
+        setLikeChecked(ls);
+    };
+
+    return (
+        <TouchableOpacity onPress={handleOnPress}>
+            <View style={styles.wrap}>
+                <Text style={styles.icon}>
+                    {likeChecked
+                        ? MykrossIconFont.MYKROSS_ICON_LIKE_ON
+                        : MykrossIconFont.MYKROSS_ICON_LIKE_OFF}
+                </Text>
+                <Demi16h24 style={styles.number}>{value}</Demi16h24>
+            </View>
+        </TouchableOpacity>
+    );
+};
 
 interface IProps {
     check?: boolean;
 }
-
-export const LikeIcon: FunctionComponent<IProps> = ({check}: IProps) => {
-    return (
-        <Text style={styles.icon}>
-            {check
-                ? MykrossIconFont.MYKROSS_ICON_LIKE_ON
-                : MykrossIconFont.MYKROSS_ICON_LIKE_OFF}
-        </Text>
-    );
-};
 
 export const SaveIcon: FunctionComponent<IProps> = ({check}: IProps) => {
     return (
@@ -39,13 +73,31 @@ export const SaveIcon: FunctionComponent<IProps> = ({check}: IProps) => {
         </Text>
     );
 };
-export const ShareIcon: FunctionComponent<IProps> = () => {
+
+interface ShareIProps {
+    onPress: () => void;
+}
+
+export const ShareIcon: FunctionComponent<ShareIProps> = ({onPress}) => {
     return (
-        <Text style={styles.icon}>
-            {MykrossIconFont.MYKROSS_ICON_ALT_SHARE}
-        </Text>
+        <TouchableOpacity onPress={onPress}>
+            <View style={styles.wrap}>
+                <Text style={styles.icon}>
+                    {MykrossIconFont.MYKROSS_ICON_ALT_SHARE}
+                </Text>
+            </View>
+        </TouchableOpacity>
     );
 };
-export const MoreIcon: FunctionComponent<IProps> = () => {
-    return <Text style={styles.icon}>{MykrossIconFont.MYKROSS_ICON_MORE}</Text>;
+
+interface TouchableIProps {
+    onPress: () => void;
+}
+
+export const MoreIcon: FunctionComponent<TouchableIProps> = ({onPress}) => {
+    return (
+        <TouchableOpacity onPress={onPress}>
+            <Text style={styles.icon}>{MykrossIconFont.MYKROSS_ICON_MORE}</Text>
+        </TouchableOpacity>
+    );
 };

@@ -431,7 +431,15 @@
         },
         "FeaturedRoutes": {
             "showMoreBtn": "Pokaż więcej"
-        }
+        },
+        "Tile": {
+            "noTitle": "Brak tytułu",
+            "distanceUnit": "km",
+            "separator": " - ",
+            "hours": "h",
+            "minutes": "m",
+            "distanceToStart": "km od Ciebie"
+        },
     },
     "MainRoutesMap": {
         "header": "Świat KROSS",

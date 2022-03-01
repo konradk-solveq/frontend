@@ -21,8 +21,6 @@ import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 
-import FirstTile from '../components/tiles/firstTile';
-import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
@@ -147,32 +145,17 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
             const lastItemStyle =
                 index === mapsData?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
-            return <ListTile />;
-
-            // if (index === 0) {
-            //     return (
-            //         <View style={styles.tileWrapper}>
-            //             <FirstTile
-            //                 mapData={item}
-            //                 images={images}
-            //                 onPress={onPressHandler}
-            //                 onPressTile={onPressTileHandler}
-            //                 tilePressable
-            //             />
-            //         </View>
-            //     );
-            // }
-            // return (
-            //     <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
-            //         <NextTile
-            //             mapData={item}
-            //             images={images}
-            //             onPress={onPressHandler}
-            //             onPressTile={onPressTileHandler}
-            //             tilePressable
-            //         />
-            //     </View>
-            // );
+            return (
+                <View key={item.id} style={lastItemStyle}>
+                    <ListTile
+                        mapData={item}
+                        images={images}
+                        onPress={onPressHandler}
+                        onPressTile={onPressTileHandler}
+                        tilePressable
+                    />
+                </View>
+            );
         },
         [mapsData?.length, onPressTileHandler],
     );

@@ -101,6 +101,35 @@ export const Demi18h28: FunctionComponent<PropsT> = ({
     );
 };
 
+export const Demi18h28crop: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'demi-18-h28-crop-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontSize: getFFontSize(18),
+            lineHeight: getFFontSize(28),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : '#333',
+            overflow: 'hidden',
+        },
+    });
+    return (
+        <Text
+            numberOfLines={1}
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
 export const Demi18h36: FunctionComponent<PropsT> = ({
     algin,
     color,

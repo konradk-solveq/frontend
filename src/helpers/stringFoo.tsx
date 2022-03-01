@@ -35,4 +35,22 @@ const simplyTimer = (time: number) => {
     return hou + ':' + twoDigits(min);
 };
 
-export {pointToComa, pointToComaString, twoDigits, timer, simplyTimer};
+const timeWithHandM = (time: string) => {
+    const splited = time.split(':');
+    return {
+        h: splited[0],
+        m: splited[1],
+    };
+};
+
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+export {
+    pointToComa,
+    pointToComaString,
+    twoDigits,
+    timer,
+    simplyTimer,
+    timeWithHandM,
+    capitalize,
+};
