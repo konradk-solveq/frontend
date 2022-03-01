@@ -198,3 +198,8 @@ export const totalMapsNumberSelector = (state: RootState): number | null =>
 export const privateTotalMapsNumberSelector = (
     state: RootState,
 ): number | null => state.maps.totalPrivateMaps;
+
+export const featuredMapsLengthSelector = createSelector(
+    featuredMapsSelector,
+    fm => fm?.length || 0,
+);

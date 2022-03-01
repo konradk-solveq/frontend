@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState, useMemo} from 'react';
 import {View, Text, FlatList, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
@@ -9,6 +9,7 @@ import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {
+    featuredMapsLengthSelector,
     loadingMapsSelector,
     mapsListSelector,
     nextPaginationCoursor,
@@ -18,6 +19,7 @@ import {
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import Loader from '@sharedComponents/loader/loader';
+import {Loader as NativeLoader} from '@components/loader';
 
 import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
@@ -38,7 +40,6 @@ import {
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
 import {publicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
-import {useMemo} from '@storybook/addons';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -62,6 +63,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const mapsData = useAppSelector(mapsListSelector);
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
+    const containsFeaturedMaps = useAppSelector(featuredMapsLengthSelector);
 
     const [showModal, setShowModal] = useState(false);
     const [showFiltersModal, setShowFiltersModal] = useState(false);
@@ -69,6 +71,14 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const [activeMapID, setActiveMapID] = useState<string>('');
     const {onLoadMoreHandler} = useInfiniteScrollLoadMore(mapsData?.length);
 
+    /**
+     * Shows list loader when filters changed.
+     */
+    const [showListLoader, setShowListLoader] = useState(false);
+    const listBodyLoaderStyle = useMemo(
+        () => (containsFeaturedMaps > 0 ? '25%' : '50%'),
+        [containsFeaturedMaps],
+    );
     const onRefresh = useCallback(
         () => dispatch(fetchMapsList(undefined, savedMapFilters)),
         [dispatch, savedMapFilters],
@@ -81,7 +91,11 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
         if (isValid) {
-            dispatch(fetchMapsList(undefined, savedMapFilters));
+            const fetch = async () => {
+                await dispatch(fetchMapsList(undefined, savedMapFilters));
+                setShowListLoader(false);
+            };
+            fetch();
             return;
         }
     }, [dispatch, savedMapFilters]);
@@ -161,15 +175,24 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     );
 
     const renderListLoader = useCallback(() => {
-        if (isLoading && mapsData.length > 3) {
+        if (!showListLoader && isLoading && mapsData.length > 3) {
             return (
                 <View style={styles.loaderContainer}>
                     <Loader />
                 </View>
             );
         }
+
+        if (isLoading && showListLoader) {
+            return (
+                <View style={{marginTop: listBodyLoaderStyle}}>
+                    <NativeLoader />
+                </View>
+            );
+        }
+
         return null;
-    }, [isLoading, mapsData?.length]);
+    }, [isLoading, mapsData?.length, showListLoader, listBodyLoaderStyle]);
 
     const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -194,6 +217,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                 firstEl;
 
             changeSortButtonName(sortTypeId ? sortBy?.text : t('btnSort'));
+            setShowListLoader(true);
 
             setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
         },
@@ -256,7 +280,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                             </>
                         }
                         keyExtractor={item => item.id}
-                        data={mapsData}
+                        data={!showListLoader ? mapsData : []}
                         renderItem={renderItem}
                         showsVerticalScrollIndicator={false}
                         getItemLayout={getItemLayout}

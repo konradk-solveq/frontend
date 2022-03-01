@@ -19,6 +19,7 @@ import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import {translateDateToTodayAndYesterdayString} from '@utils/dateTime';
 import Loader from '@sharedComponents/loader/loader';
+import {Loader as NativeLoader} from '@components/loader';
 
 import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
@@ -74,6 +75,10 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const sortedByDate = !!savedMapFilters.order || true;
     const {onLoadMoreHandler} = useInfiniteScrollLoadMore(privateMaps?.length);
 
+    /**
+     * Shows list loader when filters changed.
+     */
+    const [showListLoader, setShowListLoader] = useState(false);
     const onRefresh = useCallback(
         () => dispatch(fetchPrivateMapsList(undefined, savedMapFilters)),
         [dispatch, savedMapFilters],
@@ -86,7 +91,13 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
         if (isValid) {
-            dispatch(fetchPrivateMapsList(undefined, savedMapFilters));
+            const fetch = async () => {
+                await dispatch(
+                    fetchPrivateMapsList(undefined, savedMapFilters),
+                );
+                setShowListLoader(false);
+            };
+            fetch();
             return;
         }
     }, [dispatch, savedMapFilters]);
@@ -215,6 +226,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 privateRoutesDropdownList.find(el => el.id === sortTypeId) ||
                 firstEl;
             changeSortButtonName(sortTypeId ? sortBy?.text : mwt('btnSort'));
+            setShowListLoader(true);
 
             setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
         },
@@ -226,13 +238,22 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     }
 
     const renderListLoader = () => {
-        if (isLoading && privateMaps.length > 3) {
+        if (!showListLoader && isLoading && privateMaps.length > 3) {
             return (
                 <View style={styles.loaderContainer}>
                     <Loader />
                 </View>
             );
         }
+
+        if (isLoading && showListLoader) {
+            return (
+                <View style={styles.listBodyLoader}>
+                    <NativeLoader />
+                </View>
+            );
+        }
+
         return null;
     };
 
@@ -313,7 +334,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                             </Text>
                         </>
                     }
-                    data={privateMaps}
+                    data={!showListLoader ? privateMaps : []}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
                     getItemLayout={getItemLayout}
@@ -325,17 +346,17 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                     refreshing={isLoading && isRefreshing}
                     onRefresh={onRefresh}
                 />
-
-                <Backdrop
-                    isVisible={showBackdrop}
-                    style={styles.fullscreenBackdrop}
-                />
-
-                <RoutesMapButton
-                    onPress={() => navigation.navigate('RoutesMap')}
-                    style={styles.mapBtn}
-                />
             </View>
+
+            <Backdrop
+                isVisible={showBackdrop}
+                style={styles.fullscreenBackdrop}
+            />
+
+            <RoutesMapButton
+                onPress={() => navigation.navigate('RoutesMap')}
+                style={styles.mapBtn}
+            />
         </>
     );
 };
