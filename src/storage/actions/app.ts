@@ -159,18 +159,14 @@ export const fetchAppConfig = (
 
         const responseControlSum = await getControlSumService();
 
-        if (
-            responseControlSum.error ||
-            responseControlSum.status >= 400 ||
-            !responseControlSum.data
-        ) {
-            dispatch(
-                setSyncError(
-                    responseControlSum.error,
-                    responseControlSum.status,
-                ),
-            );
-            return;
+        if (!responseControlSum.data) {
+            console.log(`[getControlSumService] - ${responseControlSum.error}`);
+            const err = convertToApiError(responseControlSum.error);
+
+            loggErrorWithScope(err, 'getControlSumService');
+
+            const errorMessage = i18next.t('dataAction.apiError');
+            dispatch(setSyncError(errorMessage, 500));
         }
 
         const {config}: AppState = getState().app;

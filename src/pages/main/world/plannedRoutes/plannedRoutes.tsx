@@ -18,6 +18,7 @@ import {getImagesThumbs} from '@utils/transformData';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import {Loader as NativeLoader} from '@components/loader';
 import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import EmptyList from './emptyList';
@@ -71,6 +72,10 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const [showFiltersModal, setShowFiltersModal] = useState(false);
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
 
+    /**
+     * Shows list loader when filters changed.
+     */
+    const [showListLoader, setShowListLoader] = useState(false);
     const onRefresh = useCallback(
         () => dispatch(fetchPlannedMapsList(undefined, savedMapFilters)),
         [dispatch, savedMapFilters],
@@ -83,7 +88,13 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
         if (isValid) {
-            dispatch(fetchPlannedMapsList(undefined, savedMapFilters));
+            const fetch = async () => {
+                await dispatch(
+                    fetchPlannedMapsList(undefined, savedMapFilters),
+                );
+                setShowListLoader(false);
+            };
+            fetch();
             return;
         }
     }, [dispatch, savedMapFilters]);
@@ -170,6 +181,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 plannedRoutesDropdownList.find(el => el.id === sortTypeId) ||
                 firstEl;
             changeSortButtonName(sortTypeId ? sortBy?.text : mwt('btnSort'));
+            setShowListLoader(true);
 
             setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
         },
@@ -181,13 +193,22 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     }
 
     const renderListLoader = () => {
-        if (isLoading && favouriteMaps.length > 3) {
+        if (!showListLoader && isLoading && favouriteMaps.length > 3) {
             return (
                 <View style={styles.loaderContainer}>
                     <Loader />
                 </View>
             );
         }
+
+        if (isLoading && showListLoader) {
+            return (
+                <View style={styles.listBodyLoader}>
+                    <NativeLoader />
+                </View>
+            );
+        }
+
         return null;
     };
 
@@ -246,7 +267,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                             </Text>
                         </>
                     }
-                    data={favouriteMaps}
+                    data={!showListLoader ? favouriteMaps : []}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
                     getItemLayout={getItemLayout}
@@ -258,17 +279,16 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     refreshing={isLoading && isRefreshing}
                     onRefresh={onRefresh}
                 />
-
-                <Backdrop
-                    isVisible={showBackdrop}
-                    style={styles.fullscreenBackdrop}
-                />
-
-                <RoutesMapButton
-                    onPress={() => navigation.navigate('RoutesMap')}
-                    style={styles.mapBtn}
-                />
             </View>
+
+            <Backdrop
+                isVisible={showBackdrop}
+                style={styles.fullscreenBackdrop}
+            />
+            <RoutesMapButton
+                onPress={() => navigation.navigate('RoutesMap')}
+                style={styles.mapBtn}
+            />
         </>
     );
 };

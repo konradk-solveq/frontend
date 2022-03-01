@@ -34,8 +34,7 @@ import {commonStyle as comStyle} from '@helpers/commonStyle';
 import AmatoryBiker from './amatoryBiker';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {languagesListSelector} from '@storage/selectors/uiTranslation';
-import {languagesListT} from '@models/uiTranslation.models';
+import {translationsCodesSelector} from '@storage/selectors/uiTranslation';
 
 interface Props {
     navigation: any;
@@ -55,7 +54,7 @@ const Profile: React.FC<Props> = (props: Props) => {
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    const languageList: languagesListT = useAppSelector(languagesListSelector);
+    const langs: string[] = useAppSelector(translationsCodesSelector);
 
     const onLogoutPressedHandler = () => {
         dispatch(logOut());
@@ -155,7 +154,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                             </View>
                         )}
                         <View style={styles.menuSection}>
-                            {languageList && languageList.length > 1 && (
+                            {langs && langs.length > 1 && (
                                 <View>
                                     <Text style={styles.title}>
                                         {t('settings')}
