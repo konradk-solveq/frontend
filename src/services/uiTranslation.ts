@@ -7,6 +7,7 @@ import {
 
 export const getUiTranslationService = async () => {
     const response = await getUiTranslation();
+    console.log('%c response:', 'background: #ffcc00; color: #003300', response)
 
     if (
         !response?.data ||
