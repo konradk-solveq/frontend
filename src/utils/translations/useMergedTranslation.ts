@@ -12,11 +12,6 @@ export const changeLanguage = (
     language: string = '',
     langsList: languagesListT,
 ) => {
-    for (const l of langsList) {
-        console.log('langsList:', l.code);
-    }
-    console.log('%c language:', 'background: #ffcc00; color: #003300', language)
-
     if (language === '') {
         try {
             const deviceLanguage =
@@ -40,7 +35,6 @@ export const changeLanguage = (
             language = MAJOR_LANGUAGE;
         }
     }
-    console.log('%c language res:', 'background: #ffcc00; color: #003300', language)
 
     i18next.changeLanguage(language, err => {
         if (err) {
