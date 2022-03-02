@@ -14,7 +14,7 @@ import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceh
 import {getImageToDisplay} from '@utils/transformData';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {LikeIcon, MoreIcon, ShareIcon} from '../icons/reactionIcons';
-import {timeWithHandM} from '@src/helpers/stringFoo';
+import {capitalize, timeWithHandM} from '@src/helpers/stringFoo';
 import {getFullDate} from '@src/helpers/overviews';
 import {styles} from './style';
 interface PropsI {
@@ -122,11 +122,13 @@ const ListTile: React.FC<PropsI> = ({
         const surface = mapData?.firstPickedSurface;
 
         if (difficulty && surface) {
-            return `${difficulty}${t('separator')}${surface}`;
+            return `${capitalize(difficulty)}${t('separator')}${capitalize(
+                surface,
+            )}`;
         } else if (!difficulty && surface) {
-            return surface;
+            return capitalize(surface);
         } else if (difficulty && !surface) {
-            return difficulty;
+            return capitalize(difficulty);
         }
         return '';
     };
