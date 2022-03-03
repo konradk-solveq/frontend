@@ -1,4 +1,4 @@
-import React, {useMemo, useState, useEffect} from 'react';
+import React, {useMemo, useState, useEffect, useCallback} from 'react';
 import {WebViewMessageEvent} from 'react-native-webview';
 import {useNavigation} from '@react-navigation/native';
 
@@ -15,11 +15,16 @@ import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {selectorMapTypeEnum} from '@storage/selectors';
 import {fetchMapIfNotExistsLocally} from '@storage/actions/maps';
 import {selectMapPathByIDBasedOnTypeSelector} from '@storage/selectors/map';
+import {useAppRoute} from '@navigation/hooks/useAppRoute';
+import {BasicCoordsType} from '@src/type/coords';
 
 const RoutesMap: React.FC = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
+    const {mapID, nearestPoint} = useAppRoute<'RoutesMap'>()?.params || {};
+
     const {location} = useLocationProvider();
+    const [loc, setLoc] = useState<BasicCoordsType | undefined>();
     const [routeInfo, setRouteInfo] = useState({
         id: '',
         mapType: selectorMapTypeEnum.regular,
@@ -51,6 +56,12 @@ const RoutesMap: React.FC = () => {
     };
 
     useEffect(() => {
+        if (location) {
+            setLoc(location);
+        }
+    }, [location]);
+
+    useEffect(() => {
         const {id, routeMapType} = routeInfo;
         if (id) {
             dispatch(fetchMapIfNotExistsLocally(id, routeMapType, true));
@@ -67,6 +78,44 @@ const RoutesMap: React.FC = () => {
         [fetchRoutesMarkers, routeMarkres],
     );
 
+    const markerToShowDetails = useMemo(
+        () => routeMarkres?.find(r => r.details.id === mapID),
+        [routeMarkres, mapID],
+    );
+
+    /**
+     * When redirects from routes list checks
+     * if marker exists.
+     * If not set the position on nearest point to
+     * clicked route which user has chosen to see it detials.
+     */
+    useEffect(() => {
+        if (markerToShowDetails) {
+            handleMarkerClick(
+                markerToShowDetails.details.id,
+                markerToShowDetails.markerTypes,
+            );
+            /**
+             * Clear param after path has been showed.
+             */
+            navigation.setParams({mapID: undefined});
+        } else {
+            if (nearestPoint) {
+                const locationToSet = {
+                    latitude: nearestPoint.lat,
+                    longitude: nearestPoint.lng,
+                };
+                /**
+                 * Check if location is already set
+                 * to avoid uneccessary http requests.
+                 */
+                if (loc !== locationToSet) {
+                    setLoc(locationToSet);
+                }
+            }
+        }
+    }, [markerToShowDetails, navigation, loc, nearestPoint]);
+
     const onNavigateBack = () => {
         navigation.navigate(
             RegularStackRoute.KROSS_WORLD_SCREEN as keyof RootStackType,
@@ -74,44 +123,52 @@ const RoutesMap: React.FC = () => {
         );
     };
 
-    const onWebViewMessageHandler = (e: WebViewMessageEvent) => {
-        let val = e.nativeEvent?.data?.split('#$#');
-        switch (val?.[0]) {
-            case 'changeRegion':
-                const newBox = jsonParse(val?.[1]);
-                if (!newBox) {
-                    return;
-                }
+    const onWebViewMessageHandler = useCallback(
+        (e: WebViewMessageEvent) => {
+            const webviewMessage = e.nativeEvent?.data?.split('#$#');
+            const actionType = webviewMessage?.[0];
+            const contextData = webviewMessage?.[1];
+            switch (actionType) {
+                case 'changeRegion':
+                    const newBox = jsonParse(contextData);
+                    if (!newBox) {
+                        return;
+                    }
 
-                const bbox: [Point, Point] = [
-                    {lat: newBox.east, lng: newBox.north},
-                    {lat: newBox.west, lng: newBox.south},
-                ];
+                    const bbox: [Point, Point] = [
+                        {lat: newBox.east, lng: newBox.north},
+                        {lat: newBox.west, lng: newBox.south},
+                    ];
 
-                if (location) {
-                    routeMapMarkers.fetchRoutesMarkers(
-                        {
-                            bbox: bbox,
-                            width: 500,
-                        },
-                        location,
+                    if (loc) {
+                        routeMapMarkers.fetchRoutesMarkers(
+                            {
+                                bbox: bbox,
+                                width: 500,
+                            },
+                            loc,
+                        );
+                    }
+                    break;
+                case 'clickMarker':
+                    const routeDetails = jsonParse(contextData);
+                    handleMarkerClick(
+                        routeDetails?.id,
+                        routeDetails.markerTypes,
                     );
-                }
-                break;
-            case 'clickMarker':
-                const routeDetails = jsonParse(val?.[1]);
-                handleMarkerClick(routeDetails?.id, routeDetails.markerTypes);
-                break;
-            case 'clickMap':
-                handleMarkerClick('', []);
-                break;
-        }
-    };
+                    break;
+                case 'clickMap':
+                    handleMarkerClick('', []);
+                    break;
+            }
+        },
+        [loc, routeMapMarkers],
+    );
 
     return (
         <GenericScreen hideBackArrow transculentStatusBar transculentBottom>
             <RoutesMapContainer
-                location={location}
+                location={loc}
                 onPressClose={onNavigateBack}
                 onWebViewMessage={onWebViewMessageHandler}
                 routesMarkers={routeMapMarkers.routeMarkres}
