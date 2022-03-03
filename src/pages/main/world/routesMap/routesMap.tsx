@@ -1,4 +1,5 @@
 import React, {useMemo, useState, useEffect, useCallback} from 'react';
+import {InteractionManager} from 'react-native';
 import {WebViewMessageEvent} from 'react-native-webview';
 import {useNavigation} from '@react-navigation/native';
 
@@ -8,15 +9,17 @@ import {RootStackType} from '@type/rootStack';
 import useGetRouteMapMarkers from '@hooks/useGetRouteMapMarkers';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {jsonParse} from '@utils/transformJson';
+import {getImagesThumbs} from '@utils/transformData';
 
 import GenericScreen from '@pages/template/GenericScreen';
-import {RoutesMapContainer} from '@containers/World';
+import {RouteMapDetailsContainer, RoutesMapContainer} from '@containers/World';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {selectorMapTypeEnum} from '@storage/selectors';
 import {fetchMapIfNotExistsLocally} from '@storage/actions/maps';
-import {selectMapPathByIDBasedOnTypeSelector} from '@storage/selectors/map';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
-import {BasicCoordsType} from '@src/type/coords';
+import {BasicCoordsType} from '@type/coords';
+import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
+import BottomModal from '@components/modals/BottomModal';
 
 const RoutesMap: React.FC = () => {
     const navigation = useNavigation();
@@ -30,6 +33,8 @@ const RoutesMap: React.FC = () => {
         mapType: selectorMapTypeEnum.regular,
         routeMapType: RouteMapType.BIKE_MAP,
     });
+
+    const [bottomSheetWithDetails, setBottomSheetWithDetails] = useState(false);
 
     const handleMarkerClick = (id: string, types: string[]) => {
         const isPlanned = types.includes('FAVORITE');
@@ -68,9 +73,10 @@ const RoutesMap: React.FC = () => {
         }
     }, [dispatch, routeInfo]);
 
-    const mapPath = useAppSelector(
-        selectMapPathByIDBasedOnTypeSelector(routeInfo.id, routeInfo.mapType),
+    const mapData = useAppSelector(
+        selectMapDataByIDBasedOnTypeSelector(routeInfo.id, routeInfo.mapType),
     );
+    const mapImages = getImagesThumbs(mapData?.images || []);
 
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
     const routeMapMarkers = useMemo(
@@ -165,6 +171,15 @@ const RoutesMap: React.FC = () => {
         [loc, routeMapMarkers],
     );
 
+    /**
+     * Show route details component only when data exists
+     */
+    useEffect(() => {
+        InteractionManager.runAfterInteractions(() => {
+            setBottomSheetWithDetails(mapData ? true : false);
+        });
+    }, [mapData]);
+
     return (
         <GenericScreen hideBackArrow transculentStatusBar transculentBottom>
             <RoutesMapContainer
@@ -172,9 +187,16 @@ const RoutesMap: React.FC = () => {
                 onPressClose={onNavigateBack}
                 onWebViewMessage={onWebViewMessageHandler}
                 routesMarkers={routeMapMarkers.routeMarkres}
-                mapPath={mapPath}
+                mapPath={mapData?.path}
                 pathType={routeInfo.mapType}
+                animateButtonsPosition={bottomSheetWithDetails}
             />
+            <BottomModal show={bottomSheetWithDetails}>
+                <RouteMapDetailsContainer
+                    mapData={mapData}
+                    mapImages={mapImages}
+                />
+            </BottomModal>
         </GenericScreen>
     );
 };

@@ -26,6 +26,7 @@ export const buildStore = (initState?: Partial<RootState>) => {
         blacklist: [
             'app',
             'auth',
+            'consents',
             'deepLinking',
             'authData',
             'bikes',
