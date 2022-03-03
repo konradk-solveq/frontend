@@ -125,6 +125,8 @@
 		2813CA1F27C4E35E003B6128 /* mykross.eot */ = {isa = PBXFileReference; lastKnownFileType = file; name = mykross.eot; path = ../assets/fonts/mykross.eot; sourceTree = "<group>"; };
 		2870649127C8DACC003FCFE9 /* pinroute_end.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_end.png; path = ../assets/pinroute_end.png; sourceTree = "<group>"; };
 		2870649227C8DACC003FCFE9 /* pinroute_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_start.png; path = ../assets/pinroute_start.png; sourceTree = "<group>"; };
+		28AE001527CE575B001F766D /* pinroute_start_saved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_start_saved.png; path = ../assets/pinroute_start_saved.png; sourceTree = "<group>"; };
+		28AE001627CE575B001F766D /* pinroute_start_private.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pinroute_start_private.png; path = ../assets/pinroute_start_private.png; sourceTree = "<group>"; };
 		4236C6C91B37D64A51590B06 /* Pods-myKROSS.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.debug.xcconfig"; sourceTree = "<group>"; };
 		4489E9339514510410B9CCF9 /* Pods-myKROSS-myKROSSTests.test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.test.debug.xcconfig"; sourceTree = "<group>"; };
 		526E7EA30805707748418D70 /* Pods-myKROSS-myKROSSTests.feat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.feat.release.xcconfig"; sourceTree = "<group>"; };
@@ -290,6 +292,8 @@
 				904F37AF26A1875000371264 /* map_route_marker.png */,
 				2870649127C8DACC003FCFE9 /* pinroute_end.png */,
 				2870649227C8DACC003FCFE9 /* pinroute_start.png */,
+				28AE001627CE575B001F766D /* pinroute_start_private.png */,
+				28AE001527CE575B001F766D /* pinroute_start_saved.png */,
 				9049DB4C27C3FB9B001B065B /* pinroute_planned.png */,
 				9049DB4D27C3FB9B001B065B /* pinroute_private.png */,
 				9049DB4B27C3FB9B001B065B /* pinroute_published.png */,

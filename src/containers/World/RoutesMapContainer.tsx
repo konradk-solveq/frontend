@@ -29,6 +29,7 @@ interface IProps {
     location?: BasicCoordsType;
     routesMarkers?: MapMarkerType[];
     mapPath?: CoordsType[];
+    pathType?: string;
 }
 
 const RoutesMapContainer: React.FC<IProps> = ({
@@ -38,6 +39,7 @@ const RoutesMapContainer: React.FC<IProps> = ({
     location,
     routesMarkers,
     mapPath,
+    pathType,
 }: IProps) => {
     const mapRef = useRef<WebView>(null);
     const posRef = useRef(false);
@@ -73,9 +75,9 @@ const RoutesMapContainer: React.FC<IProps> = ({
             if (!p) {
                 return;
             }
-            setJsWV(`setPath(${p});true;`);
+            setJsWV(`setPath(${p},'${pathType}');true;`);
         }
-    }, [location, mapLoaded, mapPath]);
+    }, [location, mapLoaded, mapPath, pathType]);
 
     /**
      * Set user marker position
