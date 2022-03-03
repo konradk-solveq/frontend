@@ -1,19 +1,18 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {View, Text, Modal, Platform} from 'react-native';
+import {View, Text} from 'react-native';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {useAppSelector} from '@hooks/redux';
-import useStatusBarHeight from '@hooks/statusBarHeight';
 import {Map} from '@models/map.model';
 import {RegularStackRoute} from '@navigation/route';
-import {CloseBtn, ImageBtn} from '@sharedComponents/buttons';
-import ImageGallery from '@sharedComponents/imageGallery/imageGallery';
+import {ImageBtn} from '@sharedComponents/buttons';
 
 import ImageSwiper from '@sharedComponents/imageSwiper/imageSwiper';
 import {userNameSelector} from '@storage/selectors';
 import {convertToDateWithTime} from '@utils/dateTime';
+import FullScreenGallery from '../fullScreenGallery/FullScreenGallery';
 import RideTile from './rideTile';
 
 import styles from './styles';
@@ -35,7 +34,6 @@ const Description: React.FC<IProps> = ({
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details');
     const navigation = useNavigation();
-    const statusBarHeight = useStatusBarHeight();
     const userName = useAppSelector(userNameSelector);
     const privateName = isPrivateView ? userName : t('defaultAuthor');
     const authorName = mapData?.author || privateName;
@@ -218,41 +216,12 @@ const Description: React.FC<IProps> = ({
                 </Text>
             )}
             {images?.fullSizeImages && (
-                <Modal
-                    animationType="slide"
-                    statusBarTranslucent
-                    hardwareAccelerated={Platform.OS === 'android'}
-                    visible={showImgPreview}
-                    onRequestClose={() => setShowImgPreview(false)}>
-                    <View
-                        style={[
-                            styles.galleryWrapper,
-                            {
-                                paddingTop: getVerticalPx(67) - statusBarHeight,
-                            },
-                        ]}>
-                        <View
-                            style={[
-                                styles.closeGalleryBtnContainer,
-                                {
-                                    top: getVerticalPx(67) - statusBarHeight,
-                                },
-                            ]}>
-                            <CloseBtn
-                                onPress={() => setShowImgPreview(false)}
-                                iconColor="#ffffff"
-                            />
-                        </View>
-                        <View style={styles.swiperContainer}>
-                            <ImageGallery images={images.fullSizeImages} />
-                            {mapData?.author && (
-                                <Text style={styles.authorText}>
-                                    {t('author')}: {mapData?.author}
-                                </Text>
-                            )}
-                        </View>
-                    </View>
-                </Modal>
+                <FullScreenGallery
+                    show={showImgPreview}
+                    onClose={() => setShowImgPreview(false)}
+                    author={mapData?.author}
+                    imagesUrls={images.fullSizeImages}
+                />
             )}
         </View>
     );

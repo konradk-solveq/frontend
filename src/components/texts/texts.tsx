@@ -2,6 +2,7 @@ import React, {FunctionComponent} from 'react';
 import {StyleSheet, Text, TextStyle} from 'react-native';
 
 import {getFFontSize} from '@theme/utils/appLayoutDimensions';
+import colors from '@src/theme/colors';
 
 /**
  * DIN2014-Demi
@@ -33,6 +34,142 @@ export const BodyPrimary: FunctionComponent<PropsT> = ({
             fontFamily: 'DIN2014-Demi',
             fontSize: getFFontSize(16),
             lineHeight: getFFontSize(28),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : '#333',
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const BodySecondary: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'demi-16-h28-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Regular',
+            fontSize: getFFontSize(16),
+            lineHeight: getFFontSize(16),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.darkGrey,
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const Paragraf: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'demi-16-h28-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Regular',
+            fontSize: getFFontSize(16),
+            lineHeight: getFFontSize(28),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : '#333',
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+export const Subtitle: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'demi-16-h28-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Regular',
+            fontSize: getFFontSize(14),
+            lineHeight: getFFontSize(16),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.darkGrey,
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const Header2: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'demi-16-h28-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontWeight: '600',
+            fontSize: getFFontSize(20),
+            lineHeight: getFFontSize(24),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : '#333',
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const Header3: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'demi-16-h28-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontWeight: '600',
+            fontSize: getFFontSize(18),
+            lineHeight: getFFontSize(24),
             textAlign: algin ? algin : 'left',
             color: color ? color : '#333',
         },

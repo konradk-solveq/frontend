@@ -10,10 +10,6 @@ import {getMapInitLocation} from '@utils/webView';
 import {jsonStringify} from '@utils/transformJson';
 import {getFHorizontalPx} from '@theme/utils/appLayoutDimensions';
 
-import {
-    appBottomMargin,
-    appContainerHorizontalMargin,
-} from '@theme/commonStyle';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import colors from '@theme/colors';
 
@@ -21,6 +17,8 @@ import mapSource from '@pages/main/world/routesMap/routesMapHtml';
 import {IconButton, SecondaryButton} from '@components/buttons';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useCompassHook from '@src/hooks/useCompassHook';
+
+import {AnimatedContainerPosition} from './components';
 
 interface IProps {
     onWebViewMessage: (e: WebViewMessageEvent) => void;
@@ -30,6 +28,7 @@ interface IProps {
     routesMarkers?: MapMarkerType[];
     mapPath?: CoordsType[];
     pathType?: string;
+    animateButtonsPosition?: boolean;
 }
 
 const RoutesMapContainer: React.FC<IProps> = ({
@@ -40,6 +39,7 @@ const RoutesMapContainer: React.FC<IProps> = ({
     routesMarkers,
     mapPath,
     pathType,
+    animateButtonsPosition = false,
 }: IProps) => {
     const mapRef = useRef<WebView>(null);
     const posRef = useRef(false);
@@ -182,7 +182,7 @@ const RoutesMapContainer: React.FC<IProps> = ({
                 ref={mapRef}
                 onMessage={onWebViewMessageHandler}
             />
-            <View style={styles.buttonRow}>
+            <AnimatedContainerPosition toggle={animateButtonsPosition}>
                 <SecondaryButton
                     text={t('container.closeButton')}
                     icon={MykrossIconFont.MYKROSS_ICON_EXIT}
@@ -197,7 +197,7 @@ const RoutesMapContainer: React.FC<IProps> = ({
                     icon={MykrossIconFont.MYKROSS_ICON_USER}
                     onPress={onPressFindLocationHandler}
                 />
-            </View>
+            </AnimatedContainerPosition>
         </View>
     );
 };
@@ -214,15 +214,6 @@ const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         zIndex: 0,
-    },
-    buttonRow: {
-        position: 'absolute',
-        width: '100%',
-        bottom: appBottomMargin,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: appContainerHorizontalMargin,
-        zIndex: 1,
     },
 });
 
