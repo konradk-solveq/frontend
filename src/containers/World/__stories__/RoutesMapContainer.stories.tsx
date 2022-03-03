@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {storiesOf} from '@storybook/react-native';
 import {action} from '@storybook/addon-actions';
-import {object, select} from '@storybook/addon-knobs';
+import {boolean, object, select} from '@storybook/addon-knobs';
 import {I18nextProvider} from 'react-i18next';
 
 import LayoutCenter from '@sb/utils/LayoutCenter';
@@ -38,6 +38,7 @@ storiesOf('containers/World/RoutesMapContainer', module)
             onPressClose={action('onPressClose')}
             onMapLoadEnd={action('onMapLoadEnd')}
             onWebViewMessage={action('onWebViewMessage')}
+            animateButtonsPosition={boolean('Animate buttons position', false)}
             pathType={select('Route type', mapTypeOptions, 'regular')}
             routesMarkers={object('Route markers', rotueMarkers)}
             mapPath={object('Route path', routePath)}

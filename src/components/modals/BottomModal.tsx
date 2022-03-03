@@ -18,7 +18,6 @@ import {HorizontalSpacer} from '@components/divider';
 
 const {height} = Dimensions.get('window');
 const containerHeight = getFVerticalPx(270);
-// const containerFullHeight = getFVerticalPx(832);
 
 interface IProps {
     show?: boolean;

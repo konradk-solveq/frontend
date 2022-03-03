@@ -1,8 +1,8 @@
-import React, {FunctionComponent} from 'react';
-import {StyleSheet, Text, TextStyle} from 'react-native';
+import React, {FunctionComponent, ReactNode} from 'react';
+import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
 
 import {getFFontSize} from '@theme/utils/appLayoutDimensions';
-import colors from '@src/theme/colors';
+import colors from '@theme/colors';
 
 /**
  * DIN2014-Demi
@@ -14,10 +14,11 @@ import colors from '@src/theme/colors';
  */
 
 type PropsT = {
+    children: ReactNode;
     algin?: 'left' | 'auto' | 'right' | 'center' | 'justify';
     color?: string;
     adjustsFontSizeToFit?: boolean;
-    style?: TextStyle;
+    style?: StyleProp<TextStyle> | undefined;
     testID?: string;
 };
 
@@ -27,8 +28,8 @@ export const BodyPrimary: FunctionComponent<PropsT> = ({
     adjustsFontSizeToFit = false,
     children,
     style,
-    testID = 'demi-16-h28-test-id',
-}) => {
+    testID = 'body-primary-test-id',
+}: PropsT) => {
     const styles = StyleSheet.create({
         text: {
             fontFamily: 'DIN2014-Demi',
@@ -54,8 +55,8 @@ export const BodySecondary: FunctionComponent<PropsT> = ({
     adjustsFontSizeToFit = false,
     children,
     style,
-    testID = 'demi-16-h28-test-id',
-}) => {
+    testID = 'body-secondary-test-id',
+}: PropsT) => {
     const styles = StyleSheet.create({
         text: {
             fontFamily: 'DIN2014-Regular',
@@ -75,14 +76,14 @@ export const BodySecondary: FunctionComponent<PropsT> = ({
     );
 };
 
-export const Paragraf: FunctionComponent<PropsT> = ({
+export const Paragraph: FunctionComponent<PropsT> = ({
     algin,
     color,
     adjustsFontSizeToFit = false,
     children,
     style,
-    testID = 'demi-16-h28-test-id',
-}) => {
+    testID = 'paragraph-test-id',
+}: PropsT) => {
     const styles = StyleSheet.create({
         text: {
             fontFamily: 'DIN2014-Regular',
@@ -101,14 +102,15 @@ export const Paragraf: FunctionComponent<PropsT> = ({
         </Text>
     );
 };
+
 export const Subtitle: FunctionComponent<PropsT> = ({
     algin,
     color,
     adjustsFontSizeToFit = false,
     children,
     style,
-    testID = 'demi-16-h28-test-id',
-}) => {
+    testID = 'subtitle-test-id',
+}: PropsT) => {
     const styles = StyleSheet.create({
         text: {
             fontFamily: 'DIN2014-Regular',
@@ -134,8 +136,8 @@ export const Header2: FunctionComponent<PropsT> = ({
     adjustsFontSizeToFit = false,
     children,
     style,
-    testID = 'demi-16-h28-test-id',
-}) => {
+    testID = 'header2-test-id',
+}: PropsT) => {
     const styles = StyleSheet.create({
         text: {
             fontFamily: 'DIN2014-Demi',
@@ -162,8 +164,8 @@ export const Header3: FunctionComponent<PropsT> = ({
     adjustsFontSizeToFit = false,
     children,
     style,
-    testID = 'demi-16-h28-test-id',
-}) => {
+    testID = 'header3-test-id',
+}: PropsT) => {
     const styles = StyleSheet.create({
         text: {
             fontFamily: 'DIN2014-Demi',

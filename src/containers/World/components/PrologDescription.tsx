@@ -12,23 +12,8 @@ import {
     getFHorizontalPx,
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
-import {firstLetterToUpperCase} from '@utils/strings';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-
-const getDifficultyString = (
-    difficulties?: string[],
-    suffix = '',
-    placeholder = '-',
-) => {
-    if (!difficulties?.length) {
-        return placeholder;
-    }
-
-    const stringSuffix = difficulties?.length > 1 ? `- ${suffix}` : '';
-    const firstEl = firstLetterToUpperCase(difficulties[0]);
-
-    return `${firstEl} ${stringSuffix}`;
-};
+import {getDifficultyString} from '@containers/World/utils/transformRouteDataStrings';
 
 interface IProps {
     name?: string;
@@ -37,6 +22,7 @@ interface IProps {
     distanceToRoute?: string;
     difficultiesLevels?: string[];
     reactions?: ReactionsType;
+    testID?: string;
 }
 
 const PrologDescription: React.FC<IProps> = ({
@@ -46,6 +32,7 @@ const PrologDescription: React.FC<IProps> = ({
     distanceToRoute = '-',
     difficultiesLevels,
     reactions,
+    testID = 'prolog-description-test-id',
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details');
     const difficultyLevel = useMemo(
@@ -58,19 +45,22 @@ const PrologDescription: React.FC<IProps> = ({
             <View
                 style={{
                     paddingBottom: getFVerticalPx(16),
-                }}>
+                }}
+                testID={`${testID}-row1`}>
                 <Header2>{name || ''}</Header2>
                 <Header2>
                     {distance}km - {time}
                 </Header2>
             </View>
-            <View style={styles.row}>
+            <View style={styles.row} testID={`${testID}-row2`}>
                 <BodySecondary>{`${distanceToRoute} ${t(
                     'distanceToStart',
                 )}`}</BodySecondary>
                 <BodySecondary>{difficultyLevel}</BodySecondary>
             </View>
-            <View style={[styles.row, styles.flexStart]}>
+            <View
+                style={[styles.row, styles.flexStart]}
+                testID={`${testID}-row3`}>
                 <TextIcon
                     icon={MykrossIconFont.MYKROSS_ICON_LIKE_OFF}
                     iconColor={colors.black}
@@ -78,7 +68,9 @@ const PrologDescription: React.FC<IProps> = ({
                         marginRight: getFHorizontalPx(8),
                     }}
                 />
-                <BodyPrimary>{reactions?.like || 0}</BodyPrimary>
+                <BodyPrimary testID={`${testID}-row3-likes`}>
+                    {reactions?.like || 0}
+                </BodyPrimary>
             </View>
         </>
     );

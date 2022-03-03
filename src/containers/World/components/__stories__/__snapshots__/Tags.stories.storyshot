@@ -1,0 +1,1348 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/World/components/Tags Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+        },
+        Object {
+          "borderColor": "#C63733",
+          "borderWidth": 1,
+        },
+      ]
+    }
+    testID="tags-world-test-id"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        widokowa
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        weekendowa
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        mały ruch
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        duży ruch
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        dobre jedzenie
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        ciekawe atrakcje
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        rodzinna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        trekkingowa
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        leśna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        miejska
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        górska
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        turystyczna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        zabytki
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        szlak historyczny
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        nocleg
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        parking dla rowerów
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        profesjonalna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        rekreacyjna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        singletrack
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        pomniki przyrody
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots containers/World/components/Tags Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+        },
+        undefined,
+      ]
+    }
+    testID="tags-world-test-id"
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        widokowa
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        weekendowa
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        mały ruch
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        duży ruch
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        dobre jedzenie
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        ciekawe atrakcje
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        rodzinna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        trekkingowa
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        leśna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        miejska
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        górska
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        turystyczna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        zabytki
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        szlak historyczny
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        nocleg
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        parking dla rowerów
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        profesjonalna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        rekreacyjna
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        singletrack
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 30.76923076923077,
+          "marginBottom": 12.644549763033176,
+          "marginRight": 15.384615384615385,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 15.384615384615385,
+        }
+      }
+      testID="tags-world-test-id-tags-element"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-primary-test-id"
+      >
+        pomniki przyrody
+      </Text>
+    </View>
+  </View>
+</View>
+`;
