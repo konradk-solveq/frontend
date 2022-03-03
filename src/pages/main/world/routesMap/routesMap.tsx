@@ -173,6 +173,7 @@ const RoutesMap: React.FC = () => {
                 onWebViewMessage={onWebViewMessageHandler}
                 routesMarkers={routeMapMarkers.routeMarkres}
                 mapPath={mapPath}
+                pathType={routeInfo.mapType}
             />
         </GenericScreen>
     );

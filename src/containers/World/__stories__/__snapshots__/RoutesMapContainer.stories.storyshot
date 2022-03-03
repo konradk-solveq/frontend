@@ -648,7 +648,7 @@ const setMarks = places => {
     });
 }
 
-const setPath = path => {
+const setPath = (path, mapType) => {
     const coords = path.map(([lat, lng]) => ({lat, lng}));
     if (coords?.length<2) {
         return;
@@ -656,15 +656,21 @@ const setPath = path => {
 
     const start = coords[0];
     const end = coords[coords.length - 1];
-    
+    const isPlanned = mapType ==='favourite';
+    const isPrivate = mapType === 'private';
+    const privateImage = isPrivate && 'pinroute_private.png';
+    const plannedImage = isPlanned && 'pinroute_planned.png';
+    const publicImage = 'pinroute_start.png';
+    const markerImage = privateImage || plannedImage || publicImage;
     if (!startMark){
         startMark = new google.maps.Marker({
             id: 'route-start',
             position: new google.maps.LatLng(start.lat, start.lng),
-            icon: 'pinroute_start.png',
+            icon: markerImage,
             map,
         });
     } else {
+        startMark.setIcon(markerImage);
         startMark.setMap(map);
         startMark.setPosition(new google.maps.LatLng(start.lat, start.lng));
     }
