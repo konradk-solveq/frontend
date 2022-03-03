@@ -168,6 +168,9 @@ export class Map {
     public distance?: number;
 
     @IsOptional()
+    public nearestPoint?: {lat: number; lng: number};
+
+    @IsOptional()
     @IsNumber()
     public distanceToRoute?: number;
 
@@ -260,8 +263,8 @@ export class Map {
     }
 
     public get firstDifficulty(): string | undefined {
-        const difficultyOptions =
-            this.optionsEnums?.difficultyOptions?.[0]?.i18nValue;
+        const difficultyOptions = this.optionsEnums?.difficultyOptions?.[0]
+            ?.i18nValue;
         return difficultyOptions;
     }
 
@@ -279,8 +282,8 @@ export class Map {
     }
 
     public get firstSurface(): string | undefined {
-        const surfaceOptions =
-            this.optionsEnums?.surfacesOptions?.[0]?.i18nValue;
+        const surfaceOptions = this.optionsEnums?.surfacesOptions?.[0]
+            ?.i18nValue;
 
         return surfaceOptions;
     }
