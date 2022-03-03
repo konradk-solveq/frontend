@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 
 import {MapType} from '@models/map.model';
 import {ImagesUrlsToDisplay} from '@utils/transformData';
@@ -19,16 +19,18 @@ import {ButtonsGroup, FullDescription, PrologDescription} from './components';
 interface IProps {
     mapData?: MapType;
     mapImages?: ImagesUrlsToDisplay;
+    style?: ViewStyle;
 }
 
 const RouteMapDetailsContainer: React.FC<IProps> = ({
     mapData,
     mapImages,
+    style,
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details.actionButtons');
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
             <>
                 <PrologDescription
                     name={mapData?.name}

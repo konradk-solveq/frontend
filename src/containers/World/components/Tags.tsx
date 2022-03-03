@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 
-import {OptionsEnumsT} from '@models/map.model';
+import {SelectOptionType} from '@models/map.model';
 import colors from '@theme/colors';
 import {
     getFHorizontalPx,
@@ -12,14 +12,21 @@ import {BodyPrimary} from '@components/texts/texts';
 
 interface TagsIProps {
     tags: string[];
-    options?: OptionsEnumsT;
+    options?: SelectOptionType[];
+    style?: ViewStyle;
+    testID?: string;
 }
 
-const Tags: React.FC<TagsIProps> = ({tags, options}: TagsIProps) => {
+const Tags: React.FC<TagsIProps> = ({
+    tags,
+    options,
+    style,
+    testID = 'tags-world-test-id',
+}: TagsIProps) => {
     return (
-        <View style={styles.tagsWrapper}>
-            {options?.tagsOptions &&
-                options?.tagsOptions?.map(t => {
+        <View style={[styles.tagsWrapper, style]} testID={testID}>
+            {options &&
+                options?.map(t => {
                     if (!t?.enumValue) {
                         return null;
                     }
@@ -28,7 +35,10 @@ const Tags: React.FC<TagsIProps> = ({tags, options}: TagsIProps) => {
                     }
 
                     return (
-                        <View key={t.enumValue} style={styles.tag}>
+                        <View
+                            key={t.enumValue}
+                            style={styles.tag}
+                            testID={`${testID}-tags-element`}>
                             <BodyPrimary>{t.i18nValue}</BodyPrimary>
                         </View>
                     );

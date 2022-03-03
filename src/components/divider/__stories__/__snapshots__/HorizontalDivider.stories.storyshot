@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/divider/HorizontalDivider Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "#BDBDBD",
+          "borderBottomWidth": 0.5,
+          "borderRadius": 1,
+        },
+        Object {
+          "borderBottomWidth": 2,
+          "color": "#C63733",
+        },
+        Object {
+          "width": "100%",
+        },
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`Storyshots components/divider/HorizontalDivider Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderBottomColor": "#BDBDBD",
+          "borderBottomWidth": 0.5,
+          "borderRadius": 1,
+        },
+        Object {
+          "borderBottomWidth": 0.5,
+          "color": "#BDBDBD",
+        },
+        Object {
+          "width": "100%",
+        },
+      ]
+    }
+  />
+</View>
+`;

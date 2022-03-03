@@ -13,7 +13,7 @@ import {firstLetterToUpperCase} from '@utils/strings';
 
 import FullScreenGallery from '@pages/main/world/routeDetails/fullScreenGallery/FullScreenGallery';
 import ImageSwiper from '@sharedComponents/imageSwiper/imageSwiper';
-import {Header3, Paragraf, Subtitle} from '@components/texts/texts';
+import {Header3, Paragraph, Subtitle} from '@components/texts/texts';
 import {Tags} from '@containers/World/components';
 
 const getSurfaceString = (
@@ -57,11 +57,11 @@ const FullDescription: React.FC<IProps> = ({mapData, images}: IProps) => {
                 <View style={styles.bottomPadding}>
                     <View style={styles.bottomPadding}>
                         <Header3>{t('descriptionTitle')}</Header3>
-                        <Paragraf>
+                        <Paragraph>
                             {mapData?.description ? mapData.description : ''}
-                        </Paragraf>
+                        </Paragraph>
                     </View>
-                    <Paragraf>{surfacesString}</Paragraf>
+                    <Paragraph>{surfacesString}</Paragraph>
                 </View>
             ) : null}
             {images?.images?.length ? (
@@ -84,7 +84,7 @@ const FullDescription: React.FC<IProps> = ({mapData, images}: IProps) => {
                     </Header3>
                     <Tags
                         tags={mapData.tags}
-                        options={mapData.optionsEnumsValues}
+                        options={mapData.optionsEnumsValues?.tagsOptions}
                     />
                 </View>
             ) : null}

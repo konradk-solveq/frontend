@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ViewStyle} from 'react-native';
 
 import {
     getFHorizontalPx,
@@ -8,11 +8,14 @@ import {
 
 interface IProps {
     height?: number;
+    style?: ViewStyle;
 }
 
-const HorizontalSpacer: React.FC<IProps> = ({height = 20}: IProps) => {
+const HorizontalSpacer: React.FC<IProps> = ({height = 20, style}: IProps) => {
     return (
-        <View style={[styles.container, {height: getFVerticalPx(height)}]} />
+        <View
+            style={[styles.container, {height: getFVerticalPx(height)}, style]}
+        />
     );
 };
 const styles = StyleSheet.create({

@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/divider/HorizontalSpacer Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "height": 31.61137440758294,
+          "paddingHorizontal": 76.92307692307692,
+          "width": "100%",
+        },
+        Object {
+          "height": 31.61137440758294,
+        },
+        Object {
+          "backgroundColor": "#C63733",
+        },
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`Storyshots components/divider/HorizontalSpacer Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "height": 31.61137440758294,
+          "paddingHorizontal": 76.92307692307692,
+          "width": "100%",
+        },
+        Object {
+          "height": 31.61137440758294,
+        },
+        Object {
+          "backgroundColor": "#C63733",
+        },
+      ]
+    }
+  />
+</View>
+`;
