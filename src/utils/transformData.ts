@@ -265,6 +265,7 @@ export const transformToMapsType = (
         createdAt,
         publishedAt,
         distance,
+        nearestPoint,
         distanceToRoute,
         time,
         rating,
@@ -280,6 +281,9 @@ export const transformToMapsType = (
     }
     if (elementExists(distance)) {
         newData.distance = distance;
+    }
+    if (elementExists(nearestPoint)) {
+        newData.nearestPoint = nearestPoint;
     }
     if (elementExists(distanceToRoute)) {
         newData.distanceToRoute = distanceToRoute;

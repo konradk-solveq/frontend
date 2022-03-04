@@ -53,6 +53,8 @@ export type KrossWorldParamsListT = {
     RoutesMap:
         | {
               activeTab?: RouteMapType;
+              mapID?: string;
+              nearestPoint?: {lat: number; lng: number};
               private?: boolean;
               favourite?: boolean;
               featured?: boolean;

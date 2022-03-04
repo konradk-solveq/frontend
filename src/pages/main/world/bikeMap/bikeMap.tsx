@@ -1,8 +1,6 @@
 import React, {useCallback, useEffect, useState, useMemo} from 'react';
 import {View, Text, FlatList, Platform} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
 
-import {RegularStackRoute} from '@navigation/route';
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
@@ -26,6 +24,7 @@ import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
 import SortButton from '../components/buttons/SortButton';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
+import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import styles from './style';
 import ListTile from '@src/components/tiles/listTile';
@@ -56,7 +55,7 @@ interface RenderItem {
 interface IProps {}
 const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld');
-    const navigation = useNavigation();
+    const navigation = useAppNavigation();
     const nextCoursor = useAppSelector(nextPaginationCoursor);
     const dispatch = useAppDispatch();
     const mapsData = useAppSelector(mapsListSelector);
@@ -120,12 +119,19 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
 
     const onPressTileHandler = useCallback(
         (mapID?: string) => {
-            navigation.navigate({
-                name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-                params: {mapID: mapID, private: false, shareID: null},
+            /**
+             * Nearest point to user's position
+             */
+            const nearestPoint = mapsData.find(md => md.id === mapID)
+                ?.nearestPoint;
+
+            navigation.navigate('RoutesMap', {
+                mapID: mapID,
+                nearestPoint: nearestPoint,
+                private: false,
             });
         },
-        [navigation],
+        [navigation, mapsData],
     );
 
     const onEndReachedHandler = useCallback(() => {

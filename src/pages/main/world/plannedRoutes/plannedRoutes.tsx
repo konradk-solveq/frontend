@@ -1,8 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
 
-import {KrossWorldTabRoute, RegularStackRoute} from '@navigation/route';
 import {
     userNameSelector,
     favouritesMapsSelector,
@@ -25,6 +23,7 @@ import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
 import SortButton from '../components/buttons/SortButton';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
+import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import styles from './style';
 import {nextPlannedPaginationCoursor} from '@storage/selectors/map';
@@ -54,7 +53,7 @@ interface IProps {}
 const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld.PlannedRoutes');
     const {t: mwt} = useMergedTranslation('MainWorld');
-    const navigation = useNavigation();
+    const navigation = useAppNavigation();
     const nextCoursor = useAppSelector(nextPlannedPaginationCoursor);
     const dispatch = useAppDispatch();
     const userName = useAppSelector(userNameSelector);
@@ -119,18 +118,21 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     const emptyListButtonHandler = () => {
-        navigation.navigate(KrossWorldTabRoute.BIKE_MAP_SCREEN);
+        navigation.navigate('WorldBikeMap');
     };
 
     const onPressTileHandler = (mapID?: string) => {
-        navigation.navigate({
-            name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-            params: {
-                mapID: mapID,
-                private: false,
-                favourite: true,
-                shareID: null,
-            },
+        /**
+         * Nearest point to user's position
+         */
+        const nearestPoint = favouriteMaps.find(md => md.id === mapID)
+            ?.nearestPoint;
+
+        navigation.navigate('RoutesMap', {
+            mapID: mapID,
+            nearestPoint: nearestPoint,
+            private: false,
+            favourite: true,
         });
     };
 

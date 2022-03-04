@@ -20,6 +20,7 @@ import {getImagesThumbs} from '@utils/transformData';
 import {translateDateToTodayAndYesterdayString} from '@utils/dateTime';
 import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
+import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import EmptyList from './emptyList';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
@@ -56,7 +57,7 @@ interface IProps {}
 const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld.MyRoutes');
     const {t: mwt} = useMergedTranslation('MainWorld');
-    const navigation = useNavigation();
+    const navigation = useAppNavigation();
     const nextCoursor = useAppSelector(nextPrivatePaginationCoursor);
     const dispatch = useAppDispatch();
     const userName = useAppSelector(userNameSelector);
@@ -114,7 +115,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     const emptyListButtonHandler = () => {
-        navigation.navigate(KrossWorldTabRoute.BIKE_MAP_SCREEN);
+        navigation.navigate('WorldBikeMap');
     };
 
     const onPressHandler = (state: boolean, mapID?: string) => {
@@ -126,12 +127,20 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
 
     const onPressTileHandler = useCallback(
         (mapID?: string) => {
-            navigation.navigate({
-                name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-                params: {mapID: mapID, private: true, shareID: null},
+            /**
+             * Nearest point to user's position
+             */
+            const nearestPoint = privateMaps.find(md => md.id === mapID)
+                ?.nearestPoint;
+
+            navigation.navigate('RoutesMap', {
+                mapID: mapID,
+                nearestPoint: nearestPoint,
+                private: true,
+                favourite: false,
             });
         },
-        [navigation],
+        [navigation, privateMaps],
     );
 
     const shouldShowDate = useCallback(
