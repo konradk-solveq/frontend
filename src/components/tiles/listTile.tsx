@@ -13,9 +13,11 @@ import {
 import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
 import {getImageToDisplay} from '@utils/transformData';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {LikeIcon, MoreIcon, ShareIcon} from '../icons/reactionIcons';
+import {LikeIcon, MoreIcon, SaveIcon, ShareIcon} from '../icons/reactionIcons';
 import {capitalize, timeWithHandM} from '@src/helpers/stringFoo';
 import {getFullDate} from '@src/helpers/overviews';
+import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
+import {addPlannedMap} from '@storage/actions/maps';
 import {styles} from './style';
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
@@ -23,6 +25,7 @@ interface PropsI {
     images: {images: string[]; mapImg: string};
     onPressTile?: (mapID: string) => void;
     tilePressable?: boolean;
+    showSave?: boolean;
     sectionID?: string;
     testID?: string;
 }
@@ -33,10 +36,13 @@ const ListTile: React.FC<PropsI> = ({
     images,
     onPressTile,
     tilePressable,
+    showSave,
     sectionID,
     testID,
 }) => {
     const {t} = useMergedTranslation('MainWorld.Tile');
+    const {t: tbm} = useMergedTranslation('MainWorld.BikeMap');
+
     const dispatch = useAppDispatch();
 
     const config = useAppSelector(mapReactionsConfigSelector);
@@ -46,6 +52,7 @@ const ListTile: React.FC<PropsI> = ({
         : 0;
 
     const [currentLikeNumber, setCurrentLikeNumber] = useState(0);
+    const notificationContext = useNotificationContext();
 
     useEffect(() => {
         setCurrentLikeNumber(likesNumber);
@@ -133,6 +140,14 @@ const ListTile: React.FC<PropsI> = ({
         return '';
     };
 
+    const handleAddToFavorites = () => {
+        const addRouteToPlanned = tbm('addRouteToPlanned', {
+            name: '',
+        });
+        notificationContext.setNotificationVisibility(addRouteToPlanned);
+        dispatch(addPlannedMap(mapData.id));
+    };
+
     const imagesToDisplay = getImageToDisplay(images);
 
     return (
@@ -177,6 +192,18 @@ const ListTile: React.FC<PropsI> = ({
                                     value={currentLikeNumber}
                                     onPress={onLikePressedHandler}
                                 />
+
+                                {showSave && (
+                                    <View style={styles.iconWrap}>
+                                        <SaveIcon
+                                            check={
+                                                mapData.reaction ===
+                                                likeValue?.enumValue
+                                            }
+                                            onPress={handleAddToFavorites}
+                                        />
+                                    </View>
+                                )}
 
                                 <ShareIcon onPress={() => {}} />
                             </View>

@@ -159,6 +159,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                         onPress={onPressHandler}
                         onPressTile={onPressTileHandler}
                         tilePressable
+                        showSave={true}
                     />
                 </View>
             );

@@ -39,11 +39,11 @@ export const LikeIcon: FunctionComponent<ILikeProps> = ({
     const [likeChecked, setLikeChecked] = useState(check);
 
     const handleOnPress = () => {
-        const ls = !likeChecked;
+        const state = !likeChecked;
         if (onPress) {
-            onPress(ls);
+            onPress(state);
         }
-        setLikeChecked(ls);
+        setLikeChecked(state);
     };
 
     return (
@@ -62,15 +62,31 @@ export const LikeIcon: FunctionComponent<ILikeProps> = ({
 
 interface IProps {
     check?: boolean;
+    onPress: () => void;
 }
 
-export const SaveIcon: FunctionComponent<IProps> = ({check}: IProps) => {
+export const SaveIcon: FunctionComponent<IProps> = ({
+    check,
+    onPress,
+}: IProps) => {
+    const [saveChecked, setSaveChecked] = useState(check);
+
+    const handleOnPress = () => {
+        const state = !saveChecked;
+        if (onPress) {
+            onPress();
+        }
+        setSaveChecked(state);
+    };
+
     return (
-        <Text style={styles.icon}>
-            {check
-                ? MykrossIconFont.MYKROSS_ICON_SAVE_ON
-                : MykrossIconFont.MYKROSS_ICON_SAVE_OFF}
-        </Text>
+        <TouchableOpacity onPress={handleOnPress}>
+            <Text style={styles.icon}>
+                {check
+                    ? MykrossIconFont.MYKROSS_ICON_SAVE_ON
+                    : MykrossIconFont.MYKROSS_ICON_SAVE_OFF}
+            </Text>
+        </TouchableOpacity>
     );
 };
 

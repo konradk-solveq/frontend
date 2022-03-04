@@ -75,6 +75,7 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
                     onPress={onPressHandler}
                     onPressTile={onPressElement}
                     tilePressable
+                    showSave={true}
                     sectionID={sectionID}
                 />
             </View>

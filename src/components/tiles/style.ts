@@ -51,6 +51,9 @@ export const styles = StyleSheet.create({
         marginRight: getFHorizontalPx(16),
         top: getFHorizontalPx(-1),
     },
+    iconWrap: {
+        marginRight: getFHorizontalPx(16),
+    },
     edit: {
         position: 'absolute',
         bottom: 0,
