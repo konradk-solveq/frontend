@@ -24,7 +24,7 @@ import Loader from '@sharedComponents/loader/loader';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 
 import styles from './style';
-import ListTile from '@src/components/tiles/listTile';
+import ListTile from '@components/tiles/listTile';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),

@@ -36,7 +36,7 @@ import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import {plannedRoutesDropdownList} from '../utils/dropdownLists';
-import ListTile from '@src/components/tiles/listTile';
+import ListTile from '@components/tiles/listTile';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),

@@ -9,7 +9,7 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {TextBtn} from '@sharedComponents/buttons';
 
 import styles, {horizontalStyles} from './style';
-import ListTile from '@src/components/tiles/listTile';
+import ListTile from '@components/tiles/listTile';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),

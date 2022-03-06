@@ -39,7 +39,7 @@ import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {privateRoutesDropdownList} from '../utils/dropdownLists';
-import ListTile from '@src/components/tiles/listTile';
+import ListTile from '@components/tiles/listTile';
 
 const length = getVerticalPx(175);
 const getItemLayout = (_: any, index: number) => ({
