@@ -116,6 +116,7 @@ const FeaturedRoutesScreen: React.FC = () => {
                         images={images}
                         onPress={onPressHandler}
                         onPressTile={onPressTileHandler}
+                        mode={'public'}
                         tilePressable
                         sectionID={sectionID}
                     />

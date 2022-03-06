@@ -158,8 +158,8 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                         images={images}
                         onPress={onPressHandler}
                         onPressTile={onPressTileHandler}
+                        mode={'public'}
                         tilePressable
-                        showSave={true}
                     />
                 </View>
             );

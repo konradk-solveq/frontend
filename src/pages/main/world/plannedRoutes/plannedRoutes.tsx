@@ -153,6 +153,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     images={images}
                     onPress={onPressHandler}
                     onPressTile={onPressTileHandler}
+                    mode={'saved'}
                     tilePressable
                 />
             </View>

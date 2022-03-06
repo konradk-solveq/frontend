@@ -13,7 +13,15 @@ import {
 import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
 import {getImageToDisplay} from '@utils/transformData';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {LikeIcon, MoreIcon, SaveIcon, ShareIcon} from '../icons/reactionIcons';
+import {
+    LikeIcon,
+    MoreIcon,
+    SaveIcon,
+    ShareIcon,
+    EditIcon,
+} from '../icons/reactionIcons';
+import {useNavigation} from '@react-navigation/core';
+import {RegularStackRoute} from '@navigation/route';
 import {capitalize, timeWithHandM} from '@src/helpers/stringFoo';
 import {getFullDate} from '@src/helpers/overviews';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
@@ -25,7 +33,7 @@ interface PropsI {
     images: {images: string[]; mapImg: string};
     onPressTile?: (mapID: string) => void;
     tilePressable?: boolean;
-    showSave?: boolean;
+    mode: 'public' | 'my' | 'saved';
     sectionID?: string;
     testID?: string;
 }
@@ -36,7 +44,7 @@ const ListTile: React.FC<PropsI> = ({
     images,
     onPressTile,
     tilePressable,
-    showSave,
+    mode,
     sectionID,
     testID,
 }) => {
@@ -44,6 +52,7 @@ const ListTile: React.FC<PropsI> = ({
     const {t: tbm} = useMergedTranslation('MainWorld.BikeMap');
 
     const dispatch = useAppDispatch();
+    const navigation = useNavigation();
 
     const config = useAppSelector(mapReactionsConfigSelector);
     const likeValue = config?.find(c => c.enumValue === 'like');
@@ -148,6 +157,13 @@ const ListTile: React.FC<PropsI> = ({
         dispatch(addPlannedMap(mapData.id));
     };
 
+    const handleEdit = () => {
+        navigation.navigate({
+            name: RegularStackRoute.EDIT_DETAILS_SCREEN,
+            params: {mapID: mapData.id, private: !mapData.isPublic},
+        });
+    };
+
     const imagesToDisplay = getImageToDisplay(images);
 
     return (
@@ -184,16 +200,18 @@ const ListTile: React.FC<PropsI> = ({
                             </View>
 
                             <View style={styles.reactions}>
-                                <LikeIcon
-                                    check={
-                                        mapData.reaction ===
-                                        likeValue?.enumValue
-                                    }
-                                    value={currentLikeNumber}
-                                    onPress={onLikePressedHandler}
-                                />
+                                {(mode === 'public' || mode === 'saved') && (
+                                    <LikeIcon
+                                        check={
+                                            mapData.reaction ===
+                                            likeValue?.enumValue
+                                        }
+                                        value={currentLikeNumber}
+                                        onPress={onLikePressedHandler}
+                                    />
+                                )}
 
-                                {showSave && (
+                                {mode === 'public' && (
                                     <View style={styles.iconWrap}>
                                         <SaveIcon
                                             check={
@@ -205,7 +223,13 @@ const ListTile: React.FC<PropsI> = ({
                                     </View>
                                 )}
 
-                                <ShareIcon onPress={() => {}} />
+                                {(mode === 'public' || mode === 'saved') && (
+                                    <ShareIcon onPress={() => {}} />
+                                )}
+
+                                {mode === 'my' && (
+                                    <EditIcon onPress={handleEdit} />
+                                )}
                             </View>
 
                             <View style={styles.edit}>

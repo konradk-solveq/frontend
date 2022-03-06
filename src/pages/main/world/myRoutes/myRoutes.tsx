@@ -164,6 +164,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         images={images}
                         onPress={onPressHandler}
                         onPressTile={onPressTileHandler}
+                        mode={'my'}
                         tilePressable
                     />
                 </View>

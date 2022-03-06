@@ -105,6 +105,21 @@ export const ShareIcon: FunctionComponent<ShareIProps> = ({onPress}) => {
         </TouchableOpacity>
     );
 };
+interface EditIProps {
+    onPress: () => void;
+}
+
+export const EditIcon: FunctionComponent<EditIProps> = ({onPress}) => {
+    return (
+        <TouchableOpacity onPress={onPress}>
+            <View style={styles.wrap}>
+                <Text style={styles.icon}>
+                    {MykrossIconFont.MYKROSS_ICON_EDIT}
+                </Text>
+            </View>
+        </TouchableOpacity>
+    );
+};
 
 interface TouchableIProps {
     onPress: () => void;
