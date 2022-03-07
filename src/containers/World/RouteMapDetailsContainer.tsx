@@ -22,6 +22,7 @@ interface IProps {
     isPublished?: boolean;
     mapImages?: ImagesUrlsToDisplay;
     style?: ViewStyle;
+    testID?: string;
 }
 
 const RouteMapDetailsContainer: React.FC<IProps> = ({
@@ -31,9 +32,10 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
     isPublished = false,
     mapImages,
     style,
+    testID = 'route-map-details-container',
 }: IProps) => {
     return (
-        <View style={[styles.container, style]}>
+        <View style={[styles.container, style]} testID={testID}>
             <>
                 <PrologDescription
                     name={mapData?.name}
@@ -42,12 +44,14 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
                     distanceToRoute={mapData?.distanceToRouteInKilometers}
                     difficultiesLevels={mapData?.pickedDifficulties}
                     reactions={mapData?.reactions}
+                    testID={`${testID}-prolog-description`}
                 />
                 {!isPrivate ? (
                     <CommonActionButtons
                         onPressPrimary={() => onPressAction('record')}
                         onPressSecondary={() => onPressAction('add_to_planned')}
                         onPressIcon={() => onPressAction('share')}
+                        testID={`${testID}-common-action-buttons`}
                     />
                 ) : (
                     <PrivateActionButtons
@@ -55,6 +59,7 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
                         onPressSecondary={() => onPressAction('edit')}
                         onPressIcon={() => onPressAction('do_more')}
                         isPublished={isPublished}
+                        testID={`${testID}-private-action-buttons`}
                     />
                 )}
             </>

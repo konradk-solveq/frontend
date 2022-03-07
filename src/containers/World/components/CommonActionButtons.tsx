@@ -15,17 +15,19 @@ interface IProps {
     onPressPrimary: (e: GestureResponderEvent) => void;
     onPressSecondary: (e: GestureResponderEvent) => void;
     onPressIcon: (e: GestureResponderEvent) => void;
+    testID?: string;
 }
 
 const CommonActionButtons: React.FC<IProps> = ({
     onPressPrimary,
     onPressSecondary,
     onPressIcon,
+    testID = 'common-action-buttons',
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details.actionButtons');
 
     return (
-        <ButtonsGroup>
+        <ButtonsGroup testID={testID}>
             <PrimaryButton
                 onPress={onPressPrimary}
                 text={t('published.primaryAction')}
@@ -34,6 +36,7 @@ const CommonActionButtons: React.FC<IProps> = ({
                     width: getFHorizontalPx(151),
                     height: getFVerticalPx(48),
                 }}
+                testID={`${testID}-primary-button`}
             />
             <SecondaryButton
                 onPress={onPressSecondary}
@@ -43,6 +46,7 @@ const CommonActionButtons: React.FC<IProps> = ({
                     width: getFHorizontalPx(143),
                     height: getFVerticalPx(48),
                 }}
+                testID={`${testID}-secondary-button`}
             />
             <IconButton
                 onPress={onPressIcon}
@@ -51,6 +55,7 @@ const CommonActionButtons: React.FC<IProps> = ({
                     width: getFHorizontalPx(48),
                     height: getFVerticalPx(48),
                 }}
+                testID={`${testID}-icon-button`}
             />
         </ButtonsGroup>
     );

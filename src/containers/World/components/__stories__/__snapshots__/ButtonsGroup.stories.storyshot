@@ -24,6 +24,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
         "width": "100%",
       }
     }
+    testID="buttons-group-test-id"
   >
     <View
       accessibilityState={

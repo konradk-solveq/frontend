@@ -16,6 +16,7 @@ interface IProps {
     onPressSecondary: (e: GestureResponderEvent) => void;
     onPressIcon: (e: GestureResponderEvent) => void;
     isPublished?: boolean;
+    testID?: string;
 }
 
 const PrivateActionButtons: React.FC<IProps> = ({
@@ -23,11 +24,12 @@ const PrivateActionButtons: React.FC<IProps> = ({
     onPressSecondary,
     onPressIcon,
     isPublished = false,
+    testID = 'private-action-buttons',
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details.actionButtons');
 
     return (
-        <ButtonsGroup>
+        <ButtonsGroup testID={testID}>
             {isPublished ? (
                 <>
                     <SecondaryButton
@@ -35,17 +37,20 @@ const PrivateActionButtons: React.FC<IProps> = ({
                         text={t('published.plannedPrimaryAction')}
                         icon={MykrossIconFont.MYKROSS_ICON_SHARE}
                         style={styles.primaryButton}
+                        testID={`${testID}-primary-button`}
                     />
                     <SecondaryButton
                         onPress={onPressSecondary}
                         text={t('published.plannedSecondaryAction')}
                         icon={MykrossIconFont.MYKROSS_ICON_EDIT}
                         style={styles.secondaryButton}
+                        testID={`${testID}-secondary-button`}
                     />
                     <IconButton
                         onPress={onPressIcon}
                         icon={MykrossIconFont.MYKROSS_ICON_MORE}
                         style={styles.iconButton}
+                        testID={`${testID}-icon-button`}
                     />
                 </>
             ) : (
@@ -54,6 +59,7 @@ const PrivateActionButtons: React.FC<IProps> = ({
                     text={t('published.plannedPrimaryAlternativeAction')}
                     icon={MykrossIconFont.MYKROSS_ICON_NAVIGATE}
                     style={styles.alternativePrimaryButton}
+                    testID={`${testID}-alternative-primary-button`}
                 />
             )}
         </ButtonsGroup>
