@@ -1,32 +1,17 @@
 import React, {useEffect, useCallback, useState} from 'react';
-import {View, Image, Pressable} from 'react-native';
 import {Map, ReactionsType} from '@models/map.model';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {mapReactionsConfigSelector} from '@storage/selectors/app';
 import {modifyReaction} from '@storage/actions/maps';
-import {
-    Demi14h48,
-    Demi16h36,
-    Demi18h28,
-    Demi18h28crop,
-} from '@components/texts/texts';
-import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
 import {getImageToDisplay} from '@utils/transformData';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {
-    LikeIcon,
-    MoreIcon,
-    SaveIcon,
-    ShareIcon,
-    EditIcon,
-} from '../icons/reactionIcons';
 import {useNavigation} from '@react-navigation/core';
 import {RegularStackRoute} from '@navigation/route';
 import {capitalize, timeWithHandM} from '@src/helpers/stringFoo';
 import {getFullDate} from '@src/helpers/overviews';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {addPlannedMap} from '@storage/actions/maps';
-import {styles} from './style';
+import ListTileView from './listTileView';
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
     mapData: Map;
@@ -60,11 +45,11 @@ const ListTile: React.FC<PropsI> = ({
         ? mapData?.reactions?.[likeValue.enumValue as keyof ReactionsType] || 0
         : 0;
 
-    const [currentLikeNumber, setCurrentLikeNumber] = useState(0);
+    const [numberOfLikes, setNumberOfLikes] = useState(0);
     const notificationContext = useNotificationContext();
 
     useEffect(() => {
-        setCurrentLikeNumber(likesNumber);
+        setNumberOfLikes(likesNumber);
     }, [likesNumber]);
 
     const onTilePressedHandler = () => {
@@ -74,13 +59,13 @@ const ListTile: React.FC<PropsI> = ({
         onPressTile(mapData.id);
     };
 
-    const onDetailsButtonPressedHandler = () => {
+    const handleDetailsPressOn = () => {
         onPress(true, mapData.id);
     };
 
-    const onLikePressedHandler = useCallback(
+    const handleLikePressOn = useCallback(
         (state: boolean) => {
-            setCurrentLikeNumber(prev => (!state ? prev - 1 : prev + 1));
+            setNumberOfLikes(prev => (!state ? prev - 1 : prev + 1));
             if (mapData?.id) {
                 dispatch(
                     modifyReaction(
@@ -94,6 +79,8 @@ const ListTile: React.FC<PropsI> = ({
         },
         [dispatch, likeValue, mapData?.id, sectionID],
     );
+
+    const handleCheckLike = () => mapData.reaction === likeValue?.enumValue;
 
     const handleDistanceAndTime = () => {
         const getDistance = () => {
@@ -133,7 +120,7 @@ const ListTile: React.FC<PropsI> = ({
         )}`;
     };
 
-    const handleCapitalize = () => {
+    const handleDifficultyAndSurface = () => {
         const difficulty = mapData?.firstPickedDifficulty;
         const surface = mapData?.firstPickedSurface;
 
@@ -149,7 +136,7 @@ const ListTile: React.FC<PropsI> = ({
         return '';
     };
 
-    const handleAddToFavorites = () => {
+    const handleAddToFavoritesPressOn = () => {
         const addRouteToPlanned = tbm('addRouteToPlanned', {
             name: '',
         });
@@ -157,91 +144,31 @@ const ListTile: React.FC<PropsI> = ({
         dispatch(addPlannedMap(mapData.id));
     };
 
-    const handleEdit = () => {
+    const handleEditPressOn = () => {
         navigation.navigate({
             name: RegularStackRoute.EDIT_DETAILS_SCREEN,
             params: {mapID: mapData.id, private: !mapData.isPublic},
         });
     };
 
-    const imagesToDisplay = getImageToDisplay(images);
-
     return (
-        <Pressable
-            onPress={onTilePressedHandler}
-            testID={testID || 'list-tile'}>
-            <View style={styles.wrap}>
-                <Demi14h48>{getFullDate(mapData?.createdAt)}</Demi14h48>
-                <View style={styles.area}>
-                    <View style={styles.tile}>
-                        <View style={styles.imageWrapper}>
-                            {imagesToDisplay ? (
-                                <Image
-                                    source={{
-                                        uri: imagesToDisplay,
-                                    }}
-                                    style={styles.image}
-                                    resizeMode="cover"
-                                />
-                            ) : (
-                                <View style={[styles.image, styles.noImage]}>
-                                    <RouteImagePlaceholder />
-                                </View>
-                            )}
-                        </View>
-                        <View style={styles.description}>
-                            <Demi18h28crop>
-                                {mapData?.name || t('noTitle')}
-                            </Demi18h28crop>
-                            <Demi18h28>{handleDistanceAndTime()}</Demi18h28>
-                            <View style={styles.row}>
-                                <Demi16h36>{handleDistanceToStart()}</Demi16h36>
-                                <Demi16h36>{handleCapitalize()}</Demi16h36>
-                            </View>
-
-                            <View style={styles.reactions}>
-                                {(mode === 'public' || mode === 'saved') && (
-                                    <LikeIcon
-                                        check={
-                                            mapData.reaction ===
-                                            likeValue?.enumValue
-                                        }
-                                        value={currentLikeNumber}
-                                        onPress={onLikePressedHandler}
-                                    />
-                                )}
-
-                                {mode === 'public' && (
-                                    <View style={styles.iconWrap}>
-                                        <SaveIcon
-                                            check={
-                                                mapData.reaction ===
-                                                likeValue?.enumValue
-                                            }
-                                            onPress={handleAddToFavorites}
-                                        />
-                                    </View>
-                                )}
-
-                                {(mode === 'public' || mode === 'saved') && (
-                                    <ShareIcon onPress={() => {}} />
-                                )}
-
-                                {mode === 'my' && (
-                                    <EditIcon onPress={handleEdit} />
-                                )}
-                            </View>
-
-                            <View style={styles.edit}>
-                                <MoreIcon
-                                    onPress={onDetailsButtonPressedHandler}
-                                />
-                            </View>
-                        </View>
-                    </View>
-                </View>
-            </View>
-        </Pressable>
+        <ListTileView
+            tilePressOn={onTilePressedHandler}
+            fullDate={getFullDate(mapData?.createdAt)}
+            imagesToDisplay={getImageToDisplay(images)}
+            name={mapData?.name || t('noTitle')}
+            distanceAndTime={handleDistanceAndTime()}
+            distanceToStart={handleDistanceToStart()}
+            difficultyAndSurface={handleDifficultyAndSurface()}
+            numberOfLikes={numberOfLikes}
+            checkLike={handleCheckLike()}
+            likePressOn={handleLikePressOn}
+            addToFavoritesPressOn={handleAddToFavoritesPressOn}
+            editPressOn={handleEditPressOn}
+            detailsPressOn={handleDetailsPressOn}
+            mode={mode}
+            testID={testID}
+        />
     );
 };
 
