@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/modals/BottomModal Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#FAFAFA",
+          "borderTopEndRadius": 30.76923076923077,
+          "borderTopStartRadius": 30.76923076923077,
+          "bottom": 0,
+          "flex": 1,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "zIndex": 10,
+        },
+        [Function],
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        collapsable={false}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 69.54502369668246,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 10,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#BDBDBD",
+              "borderRadius": 7.6923076923076925,
+              "height": 6.322274881516588,
+              "marginTop": 25.28909952606635,
+              "width": 63.46153846153846,
+              "zIndex": 10,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "height": 31.61137440758294,
+              "paddingHorizontal": 76.92307692307692,
+              "width": "100%",
+            },
+            Object {
+              "height": 31.61137440758294,
+            },
+            undefined,
+          ]
+        }
+      />
+      <RCTScrollView
+        scrollEnabled={false}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <View
+            style={
+              Array [
+                Object {
+                  "height": 31.61137440758294,
+                  "paddingHorizontal": 76.92307692307692,
+                  "width": "100%",
+                },
+                Object {
+                  "height": 31.61137440758294,
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/modals/BottomModal Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#FAFAFA",
+          "borderTopEndRadius": 30.76923076923077,
+          "borderTopStartRadius": 30.76923076923077,
+          "bottom": 0,
+          "flex": 1,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "zIndex": 10,
+        },
+        [Function],
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        collapsable={false}
+        onGestureHandlerEvent={[Function]}
+        onGestureHandlerStateChange={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "height": 69.54502369668246,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "zIndex": 10,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#BDBDBD",
+              "borderRadius": 7.6923076923076925,
+              "height": 6.322274881516588,
+              "marginTop": 25.28909952606635,
+              "width": 63.46153846153846,
+              "zIndex": 10,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "height": 31.61137440758294,
+              "paddingHorizontal": 76.92307692307692,
+              "width": "100%",
+            },
+            Object {
+              "height": 31.61137440758294,
+            },
+            undefined,
+          ]
+        }
+      />
+      <RCTScrollView
+        scrollEnabled={false}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <View
+            style={
+              Array [
+                Object {
+                  "height": 31.61137440758294,
+                  "paddingHorizontal": 76.92307692307692,
+                  "width": "100%",
+                },
+                Object {
+                  "height": 31.61137440758294,
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;

@@ -750,16 +750,20 @@ const clearMarkersCluster = () => {
       />
     </View>
     <View
+      pointerEvents="box-none"
       style={
-        Object {
-          "bottom": 59.55357142857143,
-          "flexDirection": "row",
-          "justifyContent": "space-between",
-          "paddingHorizontal": 28.985507246376812,
-          "position": "absolute",
-          "width": "100%",
-          "zIndex": 1,
-        }
+        Array [
+          Object {
+            "bottom": 59.55357142857143,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 28.985507246376812,
+            "position": "absolute",
+            "width": "100%",
+            "zIndex": 1,
+          },
+          [Function],
+        ]
       }
     >
       <View

@@ -21,7 +21,7 @@ const timer = (time: number) => {
     return t1 + t2;
 };
 
-const simplyTimer = (time: number) => {
+const simplyTimer = (time: number, separator = ':') => {
     const t = isNaN(time) ? 0 : time;
     let min = Math.floor((t + 1000) / (1000 * 60)) % 60;
     if (min < 0) {
@@ -32,7 +32,7 @@ const simplyTimer = (time: number) => {
         hou = 0;
     }
 
-    return hou + ':' + twoDigits(min);
+    return hou + separator + twoDigits(min);
 };
 
 export {pointToComa, pointToComaString, twoDigits, timer, simplyTimer};

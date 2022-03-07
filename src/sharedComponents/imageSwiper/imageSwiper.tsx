@@ -7,6 +7,7 @@ import {
     ImageProps,
     View,
     Pressable,
+    ImageStyle,
 } from 'react-native';
 
 import {RemoveBtn} from '../buttons';
@@ -14,7 +15,7 @@ import {RemoveBtn} from '../buttons';
 interface IProps {
     images: string[];
     containerStyle?: ViewStyle;
-    imageStyle?: ImageProps;
+    imageStyle?: ImageStyle;
     withRemoveButton?: boolean;
     onPress?: (uri: string) => void | null;
     onPressRemove?: (uri: string) => void;

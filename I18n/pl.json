@@ -468,14 +468,21 @@
             "defaultAuthor": "Rowerzysta",
             "noInfo": "brak informacji",
             "noTitle": "brak tytułu",
-            "descriptionTitle": "Opis trasy",
-            "imagesTitle": "Zdjęcia z trasy",
+            "descriptionTitle": "Opis",
+            "imagesTitle": "Zdjęcia",
             "mapTitle": "Sprawdź trasę na mapie",
-            "tagsTitle": "Tagi na trasie",
-            "creationPrefix": "Utworzona",
+            "tagsTitle": "Tagi",
+            "creationPrefix": "Utworzono",
             "publishPrefix": "Na mapie rowerowej od",
             "distanceToStart": " km od Ciebie",
-            "noDescription": "Brak opisu."
+            "noDescription": "Brak opisu.",
+            "multiDifficulties": "Różnorodna",
+            "actionButtons": {
+                "published": {
+                    "primaryAction": "Rozpocznij",
+                    "secondaryAction": "Zapisz"
+                }
+            }
         },
         "share": {
             "error": {

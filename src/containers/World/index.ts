@@ -1,3 +1,4 @@
 import RoutesMapContainer from './RoutesMapContainer';
+import RouteMapDetailsContainer from './RouteMapDetailsContainer';
 
-export {RoutesMapContainer};
+export {RoutesMapContainer, RouteMapDetailsContainer};
