@@ -16,6 +16,6 @@ module.exports = {
         window: {},
     },
     transformIgnorePatterns: [
-        'node_modules/(?!(@react-native|react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*)|bs-platform|@rootstrap/redux-tools|@sentry/react-native)/)',
+        'node_modules/(?!(@react-native|react-native|react-(native|universal|navigation)-(.*)|@react-native-community/(.*)|@react-navigation/(.*)|bs-platform|@rootstrap/redux-tools|@sentry/react-native|rn-range-slider)/)',
     ],
 };
