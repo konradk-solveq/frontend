@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: '#FAFAFA',
+        backgroundColor: colors.whiteGrey,
         alignItems: 'center',
         zIndex: 10,
         borderTopEndRadius: getFHorizontalPx(16),

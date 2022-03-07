@@ -90,7 +90,7 @@ export const Paragraph: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(16),
             lineHeight: getFFontSize(28),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#333',
+            color: color ? color : colors.black,
         },
     });
     return (
@@ -173,7 +173,7 @@ export const Header3: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(18),
             lineHeight: getFFontSize(24),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#333',
+            color: color ? color : colors.black,
         },
     });
     return (

@@ -1,0 +1,435 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/slider/Slider Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+    testID="slider-test-id"
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "flex-start",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          },
+          Object {
+            "top": -0,
+          },
+        ]
+      }
+    />
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "flexDirection": "row",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "marginHorizontal": 0,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderRadius": 3.161137440758294,
+                "height": 6.322274881516588,
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "rgba(120, 120, 128, 0.2)",
+              },
+            ]
+          }
+          testID="slider-test-id-rail"
+        />
+        <View
+          collapsable={false}
+          nativeID="animatedComponent"
+          style={
+            Object {
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "height": 6.322274881516588,
+                  "width": "100%",
+                },
+                Object {
+                  "backgroundColor": "#C63733",
+                },
+              ]
+            }
+            testID="slider-test-id-selected-rail"
+          />
+        </View>
+      </View>
+      <View
+        collapsable={false}
+        nativeID="animatedComponent"
+        onLayout={[Function]}
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+            ],
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "elevation": 5,
+                "shadowColor": "rgba(0, 0, 0, 0.12)",
+                "shadowOffset": Object {
+                  "height": 9.483412322274882,
+                  "width": 0,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 25,
+              },
+              Object {
+                "borderRadius": 26.923076923076923,
+                "height": 44.25592417061611,
+                "width": 53.84615384615385,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+            ]
+          }
+          testID="slider-test-id-thumb"
+        />
+      </View>
+      <View
+        collapsable={false}
+        nativeID="animatedComponent"
+        style={
+          Object {
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+            ],
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "elevation": 5,
+                "shadowColor": "rgba(0, 0, 0, 0.12)",
+                "shadowOffset": Object {
+                  "height": 9.483412322274882,
+                  "width": 0,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 25,
+              },
+              Object {
+                "borderRadius": 26.923076923076923,
+                "height": 44.25592417061611,
+                "width": 53.84615384615385,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+            ]
+          }
+          testID="slider-test-id-thumb"
+        />
+      </View>
+      <View
+        collapsable={false}
+        onMoveShouldSetResponder={[Function]}
+        onMoveShouldSetResponderCapture={[Function]}
+        onResponderEnd={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderReject={[Function]}
+        onResponderRelease={[Function]}
+        onResponderStart={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/slider/Slider Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+    testID="slider-test-id"
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "flex-start",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          },
+          Object {
+            "top": -0,
+          },
+        ]
+      }
+    />
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "flex-start",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "bottom": 0,
+              "flexDirection": "row",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "marginHorizontal": 0,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderRadius": 3.161137440758294,
+                "height": 6.322274881516588,
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "rgba(120, 120, 128, 0.2)",
+              },
+            ]
+          }
+          testID="slider-test-id-rail"
+        />
+        <View
+          collapsable={false}
+          nativeID="animatedComponent"
+          style={
+            Object {
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "height": 6.322274881516588,
+                  "width": "100%",
+                },
+                Object {
+                  "backgroundColor": "#C63733",
+                },
+              ]
+            }
+            testID="slider-test-id-selected-rail"
+          />
+        </View>
+      </View>
+      <View
+        collapsable={false}
+        nativeID="animatedComponent"
+        onLayout={[Function]}
+        style={
+          Object {
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+            ],
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "elevation": 5,
+                "shadowColor": "rgba(0, 0, 0, 0.12)",
+                "shadowOffset": Object {
+                  "height": 9.483412322274882,
+                  "width": 0,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 25,
+              },
+              Object {
+                "borderRadius": 26.923076923076923,
+                "height": 44.25592417061611,
+                "width": 53.84615384615385,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+            ]
+          }
+          testID="slider-test-id-thumb"
+        />
+      </View>
+      <View
+        collapsable={false}
+        nativeID="animatedComponent"
+        style={
+          Object {
+            "position": "absolute",
+            "transform": Array [
+              Object {
+                "translateX": 0,
+              },
+            ],
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "elevation": 5,
+                "shadowColor": "rgba(0, 0, 0, 0.12)",
+                "shadowOffset": Object {
+                  "height": 9.483412322274882,
+                  "width": 0,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 25,
+              },
+              Object {
+                "borderRadius": 26.923076923076923,
+                "height": 44.25592417061611,
+                "width": 53.84615384615385,
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+            ]
+          }
+          testID="slider-test-id-thumb"
+        />
+      </View>
+      <View
+        collapsable={false}
+        onMoveShouldSetResponder={[Function]}
+        onMoveShouldSetResponderCapture={[Function]}
+        onResponderEnd={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderReject={[Function]}
+        onResponderRelease={[Function]}
+        onResponderStart={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
+        style={
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
