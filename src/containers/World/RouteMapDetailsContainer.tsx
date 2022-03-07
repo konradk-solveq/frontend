@@ -3,32 +3,35 @@ import {StyleSheet, View, ViewStyle} from 'react-native';
 
 import {MapType} from '@models/map.model';
 import {ImagesUrlsToDisplay} from '@utils/transformData';
-import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {RouteDetailsActionT} from '@type/screens/routesMap';
 
-import {
-    getFHorizontalPx,
-    getFVerticalPx,
-} from '@theme/utils/appLayoutDimensions';
-import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import colors from '@theme/colors';
 
-import {IconButton, PrimaryButton, SecondaryButton} from '@components/buttons';
-import {ButtonsGroup, FullDescription, PrologDescription} from './components';
+import {
+    CommonActionButtons,
+    FullDescription,
+    PrivateActionButtons,
+    PrologDescription,
+} from '@containers/World/components';
 
 interface IProps {
+    onPressAction: (actionType: RouteDetailsActionT) => void;
     mapData?: MapType;
+    isPrivate?: boolean;
+    isPublished?: boolean;
     mapImages?: ImagesUrlsToDisplay;
     style?: ViewStyle;
 }
 
 const RouteMapDetailsContainer: React.FC<IProps> = ({
+    onPressAction,
     mapData,
+    isPrivate = false,
+    isPublished = false,
     mapImages,
     style,
 }: IProps) => {
-    const {t} = useMergedTranslation('RoutesDetails.details.actionButtons');
-
     return (
         <View style={[styles.container, style]}>
             <>
@@ -40,34 +43,20 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
                     difficultiesLevels={mapData?.pickedDifficulties}
                     reactions={mapData?.reactions}
                 />
-                <ButtonsGroup>
-                    <PrimaryButton
-                        onPress={() => {}}
-                        text={t('published.primaryAction')}
-                        icon={MykrossIconFont.MYKROSS_ICON_NAVIGATE}
-                        style={{
-                            width: getFHorizontalPx(151),
-                            height: getFVerticalPx(48),
-                        }}
+                {!isPrivate ? (
+                    <CommonActionButtons
+                        onPressPrimary={() => onPressAction('record')}
+                        onPressSecondary={() => onPressAction('add_to_planned')}
+                        onPressIcon={() => onPressAction('share')}
                     />
-                    <SecondaryButton
-                        onPress={() => {}}
-                        text={t('published.secondaryAction')}
-                        icon={MykrossIconFont.MYKROSS_ICON_SAVE_OFF}
-                        style={{
-                            width: getFHorizontalPx(143),
-                            height: getFVerticalPx(48),
-                        }}
+                ) : (
+                    <PrivateActionButtons
+                        onPressPrimary={() => onPressAction('share')}
+                        onPressSecondary={() => onPressAction('edit')}
+                        onPressIcon={() => onPressAction('do_more')}
+                        isPublished={isPublished}
                     />
-                    <IconButton
-                        onPress={() => {}}
-                        icon={MykrossIconFont.MYKROSS_ICON_SHARE}
-                        style={{
-                            width: getFHorizontalPx(48),
-                            height: getFVerticalPx(48),
-                        }}
-                    />
-                </ButtonsGroup>
+                )}
             </>
             <FullDescription mapData={mapData} images={mapImages} />
         </View>

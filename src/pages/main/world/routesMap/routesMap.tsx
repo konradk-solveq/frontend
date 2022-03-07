@@ -1,28 +1,28 @@
 import React, {useMemo, useState, useEffect, useCallback} from 'react';
 import {InteractionManager} from 'react-native';
 import {WebViewMessageEvent} from 'react-native-webview';
-import {useNavigation} from '@react-navigation/native';
 
 import {Point, RouteMapType} from '@models/places.model';
-import {RegularStackRoute} from '@navigation/route';
-import {RootStackType} from '@type/rootStack';
+import {RouteDetailsActionT} from '@type/screens/routesMap';
 import useGetRouteMapMarkers from '@hooks/useGetRouteMapMarkers';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {jsonParse} from '@utils/transformJson';
 import {getImagesThumbs} from '@utils/transformData';
+import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import GenericScreen from '@pages/template/GenericScreen';
 import {RouteMapDetailsContainer, RoutesMapContainer} from '@containers/World';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {selectorMapTypeEnum} from '@storage/selectors';
-import {fetchMapIfNotExistsLocally} from '@storage/actions/maps';
+import {addPlannedMap, fetchMapIfNotExistsLocally} from '@storage/actions/maps';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
 import {BasicCoordsType} from '@type/coords';
 import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
 import BottomModal from '@components/modals/BottomModal';
+import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 
 const RoutesMap: React.FC = () => {
-    const navigation = useNavigation();
+    const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
     const {mapID, nearestPoint} = useAppRoute<'RoutesMap'>()?.params || {};
 
@@ -33,8 +33,14 @@ const RoutesMap: React.FC = () => {
         mapType: selectorMapTypeEnum.regular,
         routeMapType: RouteMapType.BIKE_MAP,
     });
+    const isCreatedByUser = useMemo(
+        () => routeInfo?.mapType === selectorMapTypeEnum.private,
+        [routeInfo?.mapType],
+    );
 
     const [bottomSheetWithDetails, setBottomSheetWithDetails] = useState(false);
+
+    const [showDoMoreModal, setShowDoMoreModal] = useState(false);
 
     const handleMarkerClick = (id: string, types: string[]) => {
         const isPlanned = types.includes('FAVORITE');
@@ -77,6 +83,10 @@ const RoutesMap: React.FC = () => {
         selectMapDataByIDBasedOnTypeSelector(routeInfo.id, routeInfo.mapType),
     );
     const mapImages = getImagesThumbs(mapData?.images || []);
+    /* Route has been published */
+    const isPublished = useMemo(() => mapData?.isPublic || false, [
+        mapData?.isPublic,
+    ]);
 
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
     const routeMapMarkers = useMemo(
@@ -116,6 +126,7 @@ const RoutesMap: React.FC = () => {
                  * to avoid uneccessary http requests.
                  */
                 if (loc !== locationToSet) {
+                    navigation.setParams({nearestPoint: undefined});
                     setLoc(locationToSet);
                 }
             }
@@ -123,10 +134,7 @@ const RoutesMap: React.FC = () => {
     }, [markerToShowDetails, navigation, loc, nearestPoint]);
 
     const onNavigateBack = () => {
-        navigation.navigate(
-            RegularStackRoute.KROSS_WORLD_SCREEN as keyof RootStackType,
-            {activeTab: ''},
-        );
+        navigation.navigate('WorldTab');
     };
 
     const onWebViewMessageHandler = useCallback(
@@ -180,6 +188,42 @@ const RoutesMap: React.FC = () => {
         });
     }, [mapData]);
 
+    const onRotueDetailsActionHandler = useCallback(
+        (actionType: RouteDetailsActionT) => {
+            const mapId = mapData?.id;
+            if (!mapId) {
+                return;
+            }
+
+            switch (actionType) {
+                case 'record':
+                    navigation.navigate('Counter', {mapID: mapId});
+                    break;
+                case 'add_to_planned':
+                    dispatch(addPlannedMap(mapId));
+                    break;
+                case 'share':
+                    navigation.navigate('ShareRouteScreen', {
+                        mapID: mapId,
+                        mapType: routeInfo.mapType,
+                    });
+                    break;
+                case 'edit' || 'publish':
+                    navigation.navigate('EditDetails', {
+                        mapID: mapId,
+                        private: isCreatedByUser,
+                    });
+                    break;
+                case 'do_more':
+                    setShowDoMoreModal(true);
+                    break;
+                default:
+                    break;
+            }
+        },
+        [dispatch, navigation, mapData?.id, routeInfo.mapType, isCreatedByUser],
+    );
+
     return (
         <GenericScreen hideBackArrow transculentStatusBar transculentBottom>
             <RoutesMapContainer
@@ -195,8 +239,17 @@ const RoutesMap: React.FC = () => {
                 <RouteMapDetailsContainer
                     mapData={mapData}
                     mapImages={mapImages}
+                    onPressAction={onRotueDetailsActionHandler}
+                    isPrivate={isCreatedByUser}
                 />
             </BottomModal>
+            <ShowMoreModal
+                showModal={showDoMoreModal}
+                mapID={mapData?.id || ''}
+                onPressCancel={() => setShowDoMoreModal(false)}
+                isPublished={isPublished}
+                mapType={selectorMapTypeEnum.regular}
+            />
         </GenericScreen>
     );
 };
