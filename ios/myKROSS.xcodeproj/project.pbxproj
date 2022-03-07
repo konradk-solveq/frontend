@@ -65,13 +65,9 @@
 		909E2E9127BFA2E40062F828 /* DIN2014-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8527BFA2E40062F828 /* DIN2014-Regular.otf */; };
 		909E2E9427BFA2E50062F828 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 905F172A27956F7500BC6C75 /* Config.xcconfig */; };
 		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
-		A0555DD64CFB430BA1BDFF1C /* DIN2014-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45D96C787A3A4035B3DE152D /* DIN2014-Regular.otf */; };
-		AB7C779D14C64FD8ADDE22F7 /* DIN2014-Regular.svg in Resources */ = {isa = PBXBuildFile; fileRef = 95DEA88F22344502A367F901 /* DIN2014-Regular.svg */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
 		C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
 		D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */; };
-		E0A6E2CDD13748449248B411 /* DIN2014-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D65BFE7B2BA54EAD969A2088 /* DIN2014-Regular.ttf */; };
-		FA6ACE7ADD2243329075C3F3 /* DIN2014-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 96816611510447D9AFD7D70A /* DIN2014-Regular.woff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
