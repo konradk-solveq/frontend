@@ -116,11 +116,15 @@ const RoutesMap: React.FC = () => {
                  * to avoid uneccessary http requests.
                  */
                 if (loc !== locationToSet) {
+                    /**
+                     * Clear param after new location has been set.
+                     */
+                    navigation.setParams({nearestPoint: undefined});
                     setLoc(locationToSet);
                 }
             }
         }
-    }, [markerToShowDetails, navigation, loc, nearestPoint]);
+    }, [markerToShowDetails, navigation, loc, nearestPoint, mapID]);
 
     const onNavigateBack = () => {
         navigation.navigate(
