@@ -20,7 +20,6 @@ import {useAppRoute} from '@navigation/hooks/useAppRoute';
 import {BasicCoordsType} from '@type/coords';
 import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
 import BottomModal from '@components/modals/BottomModal';
-import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 
 const RoutesMap: React.FC = () => {
     const navigation = useAppNavigation();
@@ -41,8 +40,6 @@ const RoutesMap: React.FC = () => {
     );
 
     const [bottomSheetWithDetails, setBottomSheetWithDetails] = useState(false);
-
-    const [showDoMoreModal, setShowDoMoreModal] = useState(false);
 
     const handleMarkerClick = (id: string, types: string[]) => {
         const isPlanned = types.includes('FAVORITE');
@@ -220,7 +217,7 @@ const RoutesMap: React.FC = () => {
                     });
                     break;
                 case 'do_more':
-                    setShowDoMoreModal(true);
+                    /* TODO: waiting for tasks */
                     break;
                 default:
                     break;
@@ -249,14 +246,6 @@ const RoutesMap: React.FC = () => {
                     isPublished={isPublished}
                 />
             </BottomModal>
-            <ShowMoreModal
-                showModal={showDoMoreModal}
-                mapID={mapData?.id || ''}
-                onPressCancel={() => setShowDoMoreModal(false)}
-                isPublished={isPublished}
-                mapType={routeInfo.mapType}
-                hideShowOnMapButton
-            />
         </GenericScreen>
     );
 };

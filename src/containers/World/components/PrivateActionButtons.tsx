@@ -54,13 +54,28 @@ const PrivateActionButtons: React.FC<IProps> = ({
                     />
                 </>
             ) : (
-                <PrimaryButton
-                    onPress={onPressPrimary}
-                    text={t('published.plannedPrimaryAlternativeAction')}
-                    icon={MykrossIconFont.MYKROSS_ICON_NAVIGATE}
-                    style={styles.alternativePrimaryButton}
-                    testID={`${testID}-alternative-primary-button`}
-                />
+                <>
+                    <SecondaryButton
+                        onPress={onPressPrimary}
+                        text={t('published.plannedPrimaryAlternativeAction')}
+                        icon={MykrossIconFont.MYKROSS_ICON_NAVIGATE}
+                        style={styles.alternativePrimaryButton}
+                        testID={`${testID}-alternative-primary-button`}
+                    />
+                    <SecondaryButton
+                        onPress={onPressSecondary}
+                        text={t('published.plannedSecondaryAction')}
+                        icon={MykrossIconFont.MYKROSS_ICON_EDIT}
+                        style={styles.secondaryButton}
+                        testID={`${testID}-secondary-button`}
+                    />
+                    <IconButton
+                        onPress={onPressIcon}
+                        icon={MykrossIconFont.MYKROSS_ICON_MORE}
+                        style={styles.iconButton}
+                        testID={`${testID}-icon-button`}
+                    />
+                </>
             )}
         </ButtonsGroup>
     );
@@ -80,7 +95,7 @@ const styles = StyleSheet.create({
         height: getFVerticalPx(48),
     },
     alternativePrimaryButton: {
-        width: '100%',
+        width: getFHorizontalPx(151),
         height: getFVerticalPx(48),
     },
 });

@@ -203,7 +203,7 @@ describe('<RouteMapDetailsContainer /> - containers/World/containers/RouteMapDet
             });
 
             it('Should access secondary button', () => {
-                const {queryByTestId} = render(
+                const {getByTestId} = render(
                     <RouteMapDetailsContainer
                         onPressAction={onPresFn}
                         mapData={routeData}
@@ -213,14 +213,14 @@ describe('<RouteMapDetailsContainer /> - containers/World/containers/RouteMapDet
                     />,
                 );
 
-                const secondaryButton = queryByTestId(
+                const secondaryButton = getByTestId(
                     PRIVATE_ACTION_BUTTONS_SECONDARY_BUTTON_TEST_ID,
                 );
-                expect(secondaryButton).toBeNull();
+                fireEvent.press(secondaryButton);
             });
 
             it('Should access icon button', () => {
-                const {queryByTestId} = render(
+                const {getByTestId} = render(
                     <RouteMapDetailsContainer
                         onPressAction={onPresFn}
                         mapData={routeData}
@@ -230,13 +230,13 @@ describe('<RouteMapDetailsContainer /> - containers/World/containers/RouteMapDet
                     />,
                 );
 
-                const iconButton = queryByTestId(
+                const iconButton = getByTestId(
                     PRIVATE_ACTION_BUTTONS_ICON_BUTTON_TEST_ID,
                 );
-                expect(iconButton).toBeNull();
+                fireEvent.press(iconButton);
             });
 
-            it('Should access alternative primary button', () => {
+            it('Should access alternative secondary button', () => {
                 const {getByTestId} = render(
                     <RouteMapDetailsContainer
                         onPressAction={onPresFn}
