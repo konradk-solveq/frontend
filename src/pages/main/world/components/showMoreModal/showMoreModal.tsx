@@ -33,6 +33,7 @@ interface IProps {
     isPublished?: boolean;
     mapType?: selectorMapTypeEnum;
     backdropStyle?: ViewStyle;
+    hideShowOnMapButton?: boolean;
 }
 
 const ShowMoreModal: React.FC<IProps> = ({
@@ -43,6 +44,7 @@ const ShowMoreModal: React.FC<IProps> = ({
     isPublished,
     mapType,
     backdropStyle,
+    hideShowOnMapButton = false,
 }: IProps) => {
     const {t} = useMergedTranslation('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
@@ -178,13 +180,16 @@ const ShowMoreModal: React.FC<IProps> = ({
                                 </Text>
                             </Pressable>
                         )}
-                        <Pressable onPress={onMapDetailsButtonPressedHandler}>
-                            <Text style={styles.text}>
+                        {!hideShowOnMapButton && (
+                            <Pressable
+                                onPress={onMapDetailsButtonPressedHandler}>
                                 <Text style={styles.text}>
-                                    {t('showOnMapAction')}
+                                    <Text style={styles.text}>
+                                        {t('showOnMapAction')}
+                                    </Text>
                                 </Text>
-                            </Text>
-                        </Pressable>
+                            </Pressable>
+                        )}
                         {isPublished && (
                             <Pressable onPress={onShareRouteHandler}>
                                 <Text style={styles.text}>

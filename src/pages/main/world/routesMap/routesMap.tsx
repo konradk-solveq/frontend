@@ -244,6 +244,7 @@ const RoutesMap: React.FC = () => {
                     mapImages={mapImages}
                     onPressAction={onRotueDetailsActionHandler}
                     isPrivate={isCreatedByUser}
+                    isPublished={isPublished}
                 />
             </BottomModal>
             <ShowMoreModal
@@ -251,7 +252,8 @@ const RoutesMap: React.FC = () => {
                 mapID={mapData?.id || ''}
                 onPressCancel={() => setShowDoMoreModal(false)}
                 isPublished={isPublished}
-                mapType={selectorMapTypeEnum.regular}
+                mapType={routeInfo.mapType}
+                hideShowOnMapButton
             />
         </GenericScreen>
     );
