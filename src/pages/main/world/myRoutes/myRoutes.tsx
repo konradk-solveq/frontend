@@ -1,28 +1,29 @@
 import React, {useCallback, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
+import {RegularStackRoute} from '@navigation/route';
 
 import {
+    userNameSelector,
     loadingMapsSelector,
     privateMapsListSelector,
     privateTotalMapsNumberSelector,
     refreshMapsSelector,
-} from '../../../../storage/selectors/map';
-import {userNameSelector} from '../../../../storage/selectors';
-import {useAppSelector} from '../../../../hooks/redux';
-import {Map} from '../../../../models/map.model';
-import {I18n} from '../../../../../I18n/I18n';
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import {getImagesThumbs} from '../../../../utils/transformData';
-import {RegularStackRoute} from '../../../../navigation/route';
-import {translateDateToTodayAndYesterdayString} from '../../../../utils/dateTime';
+    selectorMapTypeEnum,
+} from '@storage/selectors';
+import {useAppSelector} from '@hooks/redux';
+import {Map} from '@models/map.model';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
+import {getVerticalPx} from '@helpers/layoutFoo';
+import {getImagesThumbs} from '@utils/transformData';
+import {translateDateToTodayAndYesterdayString} from '@utils/dateTime';
+import Loader from '@sharedComponents/loader/loader';
 
 import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
 import EmptyList from './emptyList';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-import Loader from '../../../../sharedComponents/loader/loader';
 
 import styles from './style';
 
@@ -51,7 +52,7 @@ const MyRoutes: React.FC<IProps> = ({
     onLoadMore,
     sortedByDate,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.MyRoutes');
+    const {t} = useMergedTranslation('MainWorld.MyRoutes');
     const navigation = useNavigation();
     const userName = useAppSelector(userNameSelector);
     const privateMaps = useAppSelector<Map[]>(privateMapsListSelector);
@@ -77,7 +78,7 @@ const MyRoutes: React.FC<IProps> = ({
         (mapID?: string) => {
             navigation.navigate({
                 name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-                params: {mapID: mapID, private: true},
+                params: {mapID: mapID, private: true, shareID: null},
             });
         },
         [navigation],
@@ -165,8 +166,8 @@ const MyRoutes: React.FC<IProps> = ({
         return null;
     };
 
-    const basicTitle = `${userName || trans.defaultUserName} ${trans.title}`;
-    const secondTitle = `${trans.routesNumberTitle} ${totalNumberOfPrivateMaps}`;
+    const basicTitle = `${userName || t('defaultUserName')} ${t('title')}`;
+    const secondTitle = `${t('routesNumberTitle')} ${totalNumberOfPrivateMaps}`;
 
     const rednerModal = () => {
         const itemIsPublic = privateMaps.find(e => {
@@ -186,8 +187,8 @@ const MyRoutes: React.FC<IProps> = ({
                 mapID={activeMapID}
                 onPressCancel={() => onPressHandler(false)}
                 backdropStyle={styles.backdrop}
-                isPrivate
-                isPublic={isPublic}
+                isPublished={isPublic}
+                mapType={selectorMapTypeEnum.private}
             />
         );
     };

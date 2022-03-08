@@ -12,7 +12,7 @@ import {
 import {GeneralDeviceT, RouteActionT} from '@type/debugRoute';
 import {appendRouteDebuggInfoToFIle} from '@storage/actions/app';
 import {AppDispatch} from '@storage/storage';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import {getGeolocationLogs} from '../geolocation';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
@@ -155,7 +155,9 @@ export const dispatchRouteDebugAction = (
 export const showRemoveFileAlert = async (
     rightActionCallback?: () => Promise<void>,
 ) => {
-    const trans: any = I18n.t('DebugRoute.removeDirAlert');
+    const trans: any = i18next.t('DebugRoute.removeDirAlert', {
+        returnObjects: true,
+    });
 
     Alert.alert(trans.title, trans.message, [
         {

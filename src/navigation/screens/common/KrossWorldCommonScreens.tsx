@@ -8,6 +8,7 @@ import RouteDetails from '@pages/main/world/routeDetails/routeDetails';
 import MapPreview from '@pages/main/world/routeDetails/mapPreview/mapPreview';
 import EditDetails from '@pages/main/world/editDetails/editDetails';
 import RoutesMap from '@pages/main/world/routesMap/routesMap';
+import ShareRouteScreen from '@pages/main/world/common/ShareRouteScreen/ShareRouteScreen';
 
 const KrossWorldCommonScreens = () => {
     return (
@@ -33,6 +34,10 @@ const KrossWorldCommonScreens = () => {
                 options={{
                     ...verticalAnim,
                 }}
+            />
+            <Stack.Screen
+                name="ShareRouteScreen"
+                component={ShareRouteScreen}
             />
         </>
     );

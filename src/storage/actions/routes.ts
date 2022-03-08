@@ -1,19 +1,19 @@
 import {AppThunk} from '../thunk';
 
-import {I18n} from '../../../I18n/I18n';
+import i18next from '@translations/i18next';
 import {CurrentRouteI, RoutesI, RoutesState} from '../reducers/routes';
 import * as actionTypes from './actionTypes';
-import {routesDataToPersist} from '../../utils/transformData';
-import {LocationDataI} from '../../interfaces/geolocation';
+import {routesDataToPersist} from '@utils/transformData';
+import {LocationDataI} from '@interfaces/geolocation';
 import {AppState} from '../reducers/app';
 import {MapsState} from '../reducers/maps';
-import {removeCeratedRouteIDService} from '../../services/routesService';
+import {removeCeratedRouteIDService} from '@services/routesService';
 import {appendRouteDebuggInfoToFIle} from '@storage/actions/app';
 
-import {createNewRouteService, syncRouteData} from '../../services';
+import {createNewRouteService, syncRouteData} from '@services';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
-import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
-import {MIN_ROUTE_LENGTH} from '../../helpers/global';
+import {convertToApiError} from '@utils/apiDataTransform/communicationError';
+import {MIN_ROUTE_LENGTH} from '@helpers/global';
 import {AppDispatch} from '@hooks/redux';
 import {
     loggErrorMessage,
@@ -235,7 +235,7 @@ export const startRecordingRoute = (
 
         loggErrorWithScope(err, 'startRecordingRoute');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
 
         return {success: false, finished: true};
@@ -336,7 +336,7 @@ export const stopCurrentRoute = (
 
         loggErrorWithScope(err, 'stopCurrentRoute');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
 
         return {success: false, finished: true};
@@ -367,7 +367,7 @@ export const addToQueueByRouteIdRouteData = (
         const err = convertToApiError(error);
 
         loggErrorWithScope(err, 'addToQueueByRouteIdRouteData');
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -396,7 +396,7 @@ export const addRoutesToSynchQueue = (
         );
         dispatch(clearAverageSpeed());
 
-        dispatch(setError(I18n.t('dataAction.dataSyncError'), 500));
+        dispatch(setError(i18next.t('dataAction.dataSyncError'), 500));
 
         /* Route debug - start */
         await dispatch(
@@ -423,7 +423,7 @@ export const addRoutesToSynchQueue = (
         loggErrorWithScope(err, 'addRoutesToSynchQueue');
 
         dispatch(clearAverageSpeed());
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
     }
 };
@@ -449,7 +449,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
 
-            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
             dispatch(setLoadingState(false));
 
             /* Route debug - start */
@@ -567,7 +567,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
         loggErrorWithScope(err, 'syncCurrentRouteData');
 
-        dispatch(setError(I18n.t('dataAction.dataSyncError'), 500));
+        dispatch(setError(i18next.t('dataAction.dataSyncError'), 500));
     }
 };
 
@@ -590,7 +590,7 @@ export const syncRouteDataFromQueue = (
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
             setLoadState(dispatch, true, skipLoadingState);
             return;
         }
@@ -673,7 +673,7 @@ export const abortSyncCurrentRouteData = (
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
 
-            dispatch(setError(I18n.t('dataAction.noInternetConnection'), 500));
+            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
             dispatch(setLoadingState(false));
             return;
         }

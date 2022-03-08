@@ -1,32 +1,32 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import {BigRedBtn} from '../../../../sharedComponents/buttons';
+import {BigRedBtn} from '@sharedComponents/buttons';
 
 import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
     mainButtonsHeight,
-} from '../../../../helpers/layoutFoo';
+} from '@helpers/layoutFoo';
 
 interface IProsp {
     onPress: () => void;
 }
 
 const EmptyList: React.FC<IProsp> = ({onPress}: IProsp) => {
-    const trans: any = I18n.t('MainWorld.PlannedRoutes');
+    const {t} = useMergedTranslation('MainWorld.PlannedRoutes');
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{trans.emptyStateTitle}</Text>
+            <Text style={styles.title}>{t('emptyStateTitle')}</Text>
 
-            <Text style={styles.text}>{trans.emptyStateContent}</Text>
+            <Text style={styles.text}>{t('emptyStateContent')}</Text>
 
             <BigRedBtn
                 style={styles.btnRecord}
-                title={trans.emptyStateButton}
+                title={t('emptyStateButton')}
                 onpress={onPress}
             />
         </View>

@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
-import I18n from 'react-native-i18n';
-import AnimSvg from '../../../helpers/animSvg';
-import {setOnboardingFinished} from '../../../storage/actions';
-import {RiderProfile} from '../../../models/userRideProfile.model';
-import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
-import {riderProfiles} from '../../../utils/constants';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import AnimSvg from '@helpers/animSvg';
+import {setOnboardingFinished} from '@storage/actions';
+import {RiderProfile} from '@models/userRideProfile.model';
+import {useAppSelector, useAppDispatch} from '@hooks/redux';
+import {riderProfiles} from '@utils/constants';
 
-import StackHeader from '../../../sharedComponents/navi/stackHeader/stackHeader';
-import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
-import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 
 import {
     setObjSize,
@@ -17,11 +17,10 @@ import {
     getVerticalPx,
     getWidthPx,
     getWidthPxOf,
-    getHeightPx,
     getHorizontalPx,
     mainButtonsHeight,
-} from '../../../helpers/layoutFoo';
-import {BothStackRoute, CyclingProfileRoute} from '../../../navigation/route';
+} from '@helpers/layoutFoo';
+import {BothStackRoute, CyclingProfileRoute} from '@navigation/route';
 
 interface Props {
     navigation: any;
@@ -34,16 +33,16 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
         state => state.user.riderProfile,
     );
 
-    const trans = I18n.t('Profile').view;
+    const {t} = useMergedTranslation('Profile.view');
 
-    const profiles = Object.keys(trans.types); // lista nazw profili
-    const [profilType, setProfilType] = useState(cyclingProfile.name); // dane poszczególnych pól
+    const profiles = Object.keys(t('types', {returnObjects: true})); // lista nazw profili
+    const [profileType, setProfileType] = useState(cyclingProfile.name); // dane poszczególnych pól
 
     useEffect(() => {
         // zmiana profilu po ustawieniach w settingsach
         route.params &&
             typeof route.params.profile !== 'undefined' &&
-            setProfilType(profiles[route.params.profile]);
+            setProfileType(profiles[route.params.profile]);
     }, [route.params]);
 
     const amatour_biker = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 315 296">
@@ -268,28 +267,28 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>{trans.title}</Text>
+            <Text style={styles.title}>{t('title')}</Text>
 
-            {profilType === riderProfiles.AMATEUR && (
+            {profileType === riderProfiles.AMATEUR && (
                 <AnimSvg source={amatour_biker} style={styles.image} />
             )}
-            {profilType === riderProfiles.CITY && (
+            {profileType === riderProfiles.CITY && (
                 <AnimSvg source={city_biker} style={styles.image} />
             )}
-            {profilType === riderProfiles.PROFESSIONAL && (
+            {profileType === riderProfiles.PROFESSIONAL && (
                 <AnimSvg source={advanced_biker} style={styles.image} />
             )}
 
-            <Text style={styles.name}>{trans.types[profilType].name}</Text>
+            <Text style={styles.name}>{t(`types.${profileType}.name`)}</Text>
 
             <Text style={styles.description}>
-                {trans.types[profilType].description}
+                {t(`types.${profileType}.description`)}
             </Text>
 
             <View style={styles.bottons}>
                 <BigWhiteBtn
                     style={styles.btn}
-                    title={trans.btnChange}
+                    title={t('btnChange')}
                     onpress={() =>
                         navigation.navigate(
                             CyclingProfileRoute.CYCLING_PROFILE_SETTINGS_SCREEN,
@@ -299,7 +298,7 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
 
                 <BigRedBtn
                     style={styles.btn}
-                    title={trans.btnSave}
+                    title={t('btnSave')}
                     onpress={handleSaveOnboarding}
                 />
             </View>
@@ -308,7 +307,7 @@ const CyclingProfileView: React.FC<Props> = ({navigation, route}: Props) => {
                 onpress={() =>
                     navigation.navigate(BothStackRoute.ADDING_BY_NUMBER_SCREEN)
                 }
-                inner={trans.header}
+                inner={t('header')}
             />
         </SafeAreaView>
     );

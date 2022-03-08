@@ -1,17 +1,13 @@
 import React from 'react';
 import {View, Text, Modal, StyleSheet, ScrollView} from 'react-native';
 
-import useStatusBarHeight from '../../../../hooks/statusBarHeight';
-import {
-    BigRedBtn,
-    BigWhiteBtn,
-    ShareBtn,
-} from '../../../../sharedComponents/buttons';
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {BigRedBtn, BigWhiteBtn, ShareBtn} from '@sharedComponents/buttons';
 
-import {useAppSelector} from '../../../../hooks/redux';
+import {useAppSelector} from '@hooks/redux';
 import ImgSvg from './imgSvg';
 import StatsSummary from './statsSummary';
-import {I18n} from '../../../../../I18n/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {
     getFontSize,
     getHorizontalPx,
@@ -35,7 +31,7 @@ const ThankYouPageModal: React.FC<IProps> = ({
 }: IProps) => {
     const userName = useAppSelector<string>(state => state.user.userName);
     const statusBarHeight = useStatusBarHeight();
-    const trans: any = I18n.t('ThankYouPage');
+    const {t} = useMergedTranslation('ThankYouPage');
 
     const onShareHandler = () => {
         if (onPressShareBtn) {
@@ -56,7 +52,7 @@ const ThankYouPageModal: React.FC<IProps> = ({
                         <ShareBtn
                             onPress={onShareHandler}
                             containerStyle={styles.iconContainer}
-                            iconStyle={[
+                            iconStyle={
                                 styles.icon,
                                 {
                                     marginTop:
@@ -66,8 +62,8 @@ const ThankYouPageModal: React.FC<IProps> = ({
                         />
                         <View style={styles.headerWrapper}>
                             <Text style={styles.header}>
-                                {`${userName || trans.defaultName}${
-                                    trans.titleSufix
+                                {`${userName || t('defaultName')}${
+                                    t('titleSuffix')
                                 }`}
                             </Text>
                         </View>
@@ -76,12 +72,12 @@ const ThankYouPageModal: React.FC<IProps> = ({
                         <StatsSummary />
                         <View style={styles.buttonsWrapper}>
                             <BigRedBtn
-                                title={trans.publishBtn}
+                                title={t('publishBtn')}
                                 onpress={onPress}
                                 style={styles.onPressBtn}
                             />
                             <BigWhiteBtn
-                                title={trans.cancelButton}
+                                title={t('cancelButton')}
                                 onpress={onBackPress}
                                 style={[styles.onPressBtn, styles.bottomBtn]}
                             />

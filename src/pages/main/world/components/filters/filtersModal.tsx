@@ -8,25 +8,21 @@ import {
     SafeAreaView,
 } from 'react-native';
 
-import {I18n} from '../../../../../../I18n/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {
     getFontSize,
     getHorizontalPx,
     getVerticalPx,
     mainButtonsHeight,
-} from '../../../../../helpers/layoutFoo';
-import {useAppSelector} from '../../../../../hooks/redux';
-import {PickedFilters} from '../../../../../interfaces/form';
+} from '@helpers/layoutFoo';
+import {useAppSelector} from '@hooks/redux';
+import {PickedFilters} from '@interfaces/form';
 
-import {
-    BigRedBtn,
-    BigWhiteBtn,
-    CloseBtn,
-} from '../../../../../sharedComponents/buttons';
-import {mapOptionsAndTagsSelector} from '../../../../../storage/selectors/app';
+import {BigRedBtn, BigWhiteBtn, CloseBtn} from '@sharedComponents/buttons';
+import {mapOptionsAndTagsSelector} from '@storage/selectors/app';
 import Filter from './filter';
 
-import {getFitlers, updateFilters} from './filtersData';
+import {getFilters, updateFilters} from './filtersData';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 interface IProps {
@@ -44,9 +40,12 @@ const FiltersModal: React.FC<IProps> = ({
     showModal,
     allowedFilters,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.maps');
+    const {t} = useMergedTranslation('MainWorld.maps');
     const mapOptions = useAppSelector(mapOptionsAndTagsSelector);
-    const filters = getFitlers(mapOptions, trans?.filters?.order?.options);
+    const filters = getFilters(
+        mapOptions,
+        t('filters.order.options', {returnObjects: true}),
+    );
     const contentStyle = allowedFilters ? {minHeight: '90%'} : undefined;
 
     const [pickedFilters, setPickedFilters] = useState<PickedFilters>({});
@@ -80,10 +79,10 @@ const FiltersModal: React.FC<IProps> = ({
                         <View style={styles.wrap}>
                             <View style={styles.headerWrapper}>
                                 <Text style={styles.header}>
-                                    {trans.filtersTitle}
+                                    {t('filtersTitle')}
                                 </Text>
                                 <Text style={styles.description}>
-                                    {trans.filtersDescription}
+                                    {t('filtersDescription')}
                                 </Text>
 
                                 {Object.keys(filters).map(f => {
@@ -115,13 +114,13 @@ const FiltersModal: React.FC<IProps> = ({
                             <View style={styles.buttonsWrapper}>
                                 <View style={styles.button}>
                                     <BigWhiteBtn
-                                        title={trans.filtersBackBtn}
+                                        title={t('filtersBackBtn')}
                                         onpress={onResetHandler}
                                     />
                                 </View>
                                 <View style={styles.button}>
                                     <BigRedBtn
-                                        title={trans.filtersSaveBtn}
+                                        title={t('filtersSaveBtn')}
                                         onpress={onSaveHandler}
                                     />
                                 </View>

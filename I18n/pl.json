@@ -1,6 +1,5 @@
 {
     "Onboarding": {
-        "goFoward": "DALEJ",
         "skip": "pomiń",
         "title_1": "Poznaj swój rower!",
         "text_1": "Podaj numer ramy roweru. Jeśli jest to\u00a0rower KROSS, otrzymasz szczegółowe informacje o\u00a0rowerze, np.\u00a0kolor, rozmiar czy dokładną specyfikację. Dla rowerów innych producentów zakres informacji będzie mniejszy.",
@@ -11,7 +10,7 @@
         "title_3": "Znajdź najbliższy punkt serwisowy",
         "text_3": "Jeśli Twój rower nie jest w\u00a0pełni sprawny lub wymaga okresowego przeglądu, nie\u00a0zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów.",
         "btn_3": "POZNAJ ROWER",
-        "title_4": "Nagrywaj trasy",
+        "title_4": "Nagrywaj trasy !",
         "text_4": "Jeździsz amatorsko lub wyczynowo na\u00a0rowerze, dołącz do\u00a0drużyny KROSS. Nagrywaj przejechane kilometry w\u00a0aplikacji, a\u00a0najciekawsze trasy publikuj na\u00a0Mapie Rowerowej.",
         "btn_4": "WYKONAJ PRZEGLĄD",
         "title_5": "Odkrywaj ciekawe miejsca",
@@ -27,27 +26,26 @@
         "toShortValue": "Podane imię lub pseudonim jest zbyt krótkie",
         "toLongValue": "Podane imię lub pseudonim jest zbyt długie"
     },
-    "OneLineTekst-error-null": "Wartość nie może być null-em",
-    "TurtorialNFC": {
+    "OneLineText-error-null": "Wartość nie może być null-em",
+    "TutorialNFC": {
         "header": "Identyfikacja roweru",
         "defaultName": "rowerzysto",
-        "title_1": "Witaj",
-        "title_2": ", mam pierwsze zadanie dla Ciebie :)",
+        "title": "Witaj {{name}}, mam pierwsze zadanie dla Ciebie :)",
         "titleNext": "Nowy rower",
         "tekst": "Włącz NFC w telefonie i zbliż go do naklejki umieszczonej na ramie roweru KROSS.\n\nJeśli nie widzisz naklejki lub nie obsługujesz NFC, wprowadź ręcznie numer ramy.",
         "btnNfc": "SKANUJ NAKLEJKĘ NFC",
         "btnHand": "CHCĘ WPROWADZIĆ RĘCZNIE",
+        "btnSkip": "POMIŃ",
         "alertMessage": "Włącz NFC w ustawieniach telefonu."
     },
-    "TurtorialNFCmodal": {
+    "TutorialNFCmodal": {
         "title": "Gotowy do skanowania",
         "text": "Zbliż telefon do naklejki NFC",
         "cancelBtn": "ANULUJ"
     },
     "WrongScan": {
         "title": "Coś poszło nie tak!",
-        "text_1": "Rama o\u00a0numerze ",
-        "text_2": " została już wcześniej dodana.\n\nSprawdź czy numer ramy jest poprawny. W\u00a0przypadku dalszych problemów skontaktuj się z\u00a0nami 29\u00a0752\u00a011\u00a000.",
+        "text": "Rama o\u00a0numerze {{number}} została już wcześniej dodana.\n\nSprawdź czy numer ramy jest poprawny. W\u00a0przypadku dalszych problemów skontaktuj się z\u00a0nami 29\u00a0752\u00a011\u00a000.",
         "btnAgain": "SPRÓBUJ JESZCZE RAZ"
     },
     "AddingByNumber": {
@@ -56,6 +54,7 @@
         "placeholder": "Numer ramy",
         "messageWrong": "Nieprawidłowe znaki",
         "infoBtn": "Gdzie znajdę numer ramy?",
+        "btnSkip": "POMIŃ",
         "btn": "DALEJ"
     },
     "AddingInfo": {
@@ -66,7 +65,6 @@
         "textOther": "Numer ramy (numer seryjny) u\u00a0innych producentów znajdziesz:\n- w okolicach korby,\n- na dolnej rurze ramy,\n- na dolnej rurze trójkąta tylnego,\n- na wsporniku kierownicy."
     },
     "Permits": {
-        "version": "1.03",
         "header": "Zgody",
         "title": "Zaakceptuj regulamin, aby móc korzystać z aplikacji.",
         "text": "* pole obowiązkowe",
@@ -140,7 +138,6 @@
         "version": "1.0.0",
         "header": ["Informacja", "Regulamin"],
         "btnOk": "DALEJ",
-        "btnDontAccept": "NIE AKCEPTUJĘ",
         "btnAccept": "DALEJ",
         "urls": [{
                 "url": "http://regulations.eu",
@@ -177,21 +174,22 @@
         "register": " Zarejestruj się",
         "defaultName": "Rowerzysto"
     },
+    "ShareScreen": {
+        "header": "Wyślij znajomym",
+        "ShareContent": {
+            "Route": {
+                "title": "Polecam trasę zarejestrowaną w aplikacji myKROSS",
+                "message": "{{url}}",
+                "subject": "Polecam trasę zarejestrowaną w aplikacji myKROSS"
+            }
+        }
+    },
     "BikeData": {
         "header": "Identyfikacja roweru",
         "title": "Hej, to nie jest rower KROSS.\nNic nie szkodzi, podaj dane swojego roweru.",
         "frameNum": "Numer ramy",
         "producer": {
-            "title": "Producent",
-            "list": "Wybierz producenta",
-            "listHeader": "Producent ramy",
-            "other": {
-                "header": "Nazwa producenta",
-                "text": "Podaj nazwę producenta",
-                "placeholder": "Producent:",
-                "messageWrong": "Nazwa jest za krótka",
-                "btn": "DODAJ"
-            }
+            "title": "Producent"
         },
         "model": "Model",
         "size": "Rozmiar",
@@ -202,12 +200,9 @@
     },
     "BikeSummary": {
         "header": "Twój rower",
-        "title": ", jest moc!",
+        "title": "{{name}}, jest moc!",
         "anonim": "Rowerzysto",
-        "details": [
-            "od ",
-            " / nr ramy "
-        ],
+        "details": "od {{producer}} / nr ramy {{serial_number}}",
         "goForward": "DALEJ",
         "btnChange": "ZMIEŃ"
     },
@@ -386,6 +381,7 @@
             "noTitle": "Brak tytułu",
             "distanceToStart": " km od Ciebie",
             "addToFavAction": "Pobierz trasę",
+            "shareRouteAction": "Udostępnij",
             "publishTripAction": "Upublicznij",
             "editTripAction": "Edytuj",
             "startTripAction": "Rozpocznij",
@@ -457,10 +453,16 @@
             "distanceToStart": " km od Ciebie",
             "noDescription": "Brak opisu."
         },
+        "share": {
+            "error": {
+                "title": "Coś poszło nie tak",
+                "message": "Nie mogliśmy wyświetlić udostępnionych treści",
+                "button": "Przejdź do strony głównej"
+            }
+        },
         "EditScreen": {
             "tagsTitle": "Tagi",
             "nameInput": "Tytuł",
-            "publishWithName": "Opublikuj jako",
             "intro": "Opis trasy",
             "description": "Szczegółowy opis trasy",
             "publishButton": "Upublicznij",
@@ -506,10 +508,7 @@
     },
     "MainBike": {
         "header": "Rower",
-        "details": [
-            "od ",
-            " / nr ramy "
-        ],
+        "details": "od {{name}} / nr ramy {{number}}",
         "add": "Dodaj",
         "warranty": {
             "lifetime": "dożywotnio",
@@ -542,10 +541,7 @@
     },
     "MainBikeParams": {
         "header": " Rower",
-        "details": [
-            "od ",
-            " / nr ramy "
-        ]
+        "details": "od {{name}} / nr ramy {{number}}"
     },
     "MainCounter": {
         "headerStart": "Rozpocznij nagrywanie",
@@ -569,14 +565,14 @@
         "bikeChanged": "Zmieniono rower na {{name}}"
     },
     "CounterThankYouPage": {
-        "title": ", brawo!",
+        "title": "{{name}}, brawo!",
         "subTilte": "Oszczędziłeś",
         "defaultName": "Rowerzysto",
         "type_1": [
             "drzewo!",
             "drzew!"
         ],
-        "type_2": "l paliwa!",
+        "type_2": " {{num}} l paliwa!",
         "distance": "Dystans",
         "distanceUnit": "km",
         "time": "Czas jazdy",
@@ -597,15 +593,10 @@
     },
     "MainProfile": {
         "header": " Konto",
-        "details": [
-            "od ",
-            " / nr ramy "
-        ],
         "settings": "Ustawienia",
-        "myConsents":  "Moje zgody",
-        "remove": "Usuń",
-        "btnAddStuff": "DODAJ WYPOSAŻENIE",
-        "defaultName": "Rowerzysta",
+        "languages": "Język aplikacji",
+        "myConsents": "Moje zgody",
+        "defaultName": "Rowerzysta.",
         "title": "O myKROSS",
         "app": "O aplikacji",
         "regulations": "Regulamin",
@@ -636,7 +627,7 @@
     "Contact": {
         "header": "Kontakt",
         "anonim": "Rowerzysto",
-        "title": ", bądźmy w\u00a0kontakcie",
+        "title": "{{name}}, bądźmy w\u00a0kontakcie",
         "phone": "(29) 752 11 00",
         "email": "kross@kross.pl",
         "adress": "Biuro Obsługi Klienta\nCzynne w godzinach:\npn. -\u00a0pt.: 9:00 -\u00a016:00",
@@ -650,16 +641,29 @@
         "btn": "ZAPISZ",
         "invalidNameLengthError": "Nazwa ma niepoprawną długość"
     },
+    "LanguageChange": {
+        "header": "Język aplikacji",
+        "languages": [{
+                "name": "Polski",
+                "short": "pl"
+            },
+            {
+                "name": "English",
+                "short": "en"
+            },
+            {
+                "name": "Česky (již brzy)",
+                "short": "cs"
+            }
+        ],
+        "btn": "ZAPISZ"
+    },
     "WarrantyDetails": {
         "header": "Szczegóły gwarancji",
         "title": "Gwarancja nr\n",
-        "details": [
-            "do",
-            "(pozostało",
-            "dni)"
-        ],
+        "details": "do {{days}} (pozostało {{daysToEnd}} dni)",
         "bike": "Rower",
-        "bikeDescription": "| nr ramy",
+        "bikeDescription": "{{name}} | nr ramy {{serial_number}}",
         "id": "Kod roweru",
         "date": "Data zakupu",
         "place": "Miejsce zakupu",
@@ -678,15 +682,15 @@
     },
     "ThankYouPage": {
         "defaultName": "Rowerzysto",
-        "titleSufix": ", brawo!",
+        "titleSuffix": ", brawo!",
         "publishBtn": "Upublicznij",
         "cancelButton": "Powrót",
         "distance": "Dystans",
-        "distanceSufix": "km",
+        "distanceSuffix": "km",
         "tripTime": "Czas jazdy",
-        "tripTimeSufix": "h",
+        "tripTimeSuffix": "h",
         "pausePrefix": "czas przerw",
-        "pauseSufix": "h"
+        "pauseSuffix": "h"
     },
     "PublishPoorConnectionPage": {
         "title": "Daj nam jeszcze chwilę",
@@ -696,9 +700,9 @@
     },
     "PublishThankYouPage": {
         "defaultName": "Rowerzysto",
-        "titleSufix": ", trasa została ",
-        "titleSufixPublished": "upubliczniona",
-        "titleSufixUpdated": "zaktualizowana",
+        "titleSuffix": ", trasa została ",
+        "titleSuffixPublished": "upubliczniona",
+        "titleSuffixUpdated": "zaktualizowana",
         "titleSufixSaved": "zapisana",
         "okBtn": "Ok",
         "errorTitle": "Coś poszło nie tak!"
@@ -760,10 +764,16 @@
         },
         "mapData": {
             "publishError": "Trasa mie została opublikowana. Spróbuj ponownie później.",
-            "fileUploadError": "Plik [ {{value}} ] nie został wysłany. Spróbuj ponownie później."
+            "fileUploadError": "Plik [ {{value}} ] nie został wysłany. Spróbuj ponownie później.",
+            "defaultFilename": "Brak nazwy"
         },
         "locationData": {
             "readSQLDataFailure": "Nie można odczytać danych geolokalizacyjnych."
+        },
+        "shareData": {
+            "createShareUrlError": "Tworzenie treści do udostępnienia zakończyło się niepowodzeniem. Spróbuj ponownie.",
+            "sharedImageNotExistsError": "Obrazek nie istneije. Proszę spróbować później.",
+            "getSharedCyclingMapDataError": "Nie udało się pobrać informacji o udostępnionej trasie. Spróbuj ponownie później."
         }
     },
     "Geolocation": {
@@ -771,7 +781,7 @@
             "text": "Pobieranie lokalizacji"
         },
         "routeRecordingNotification": {
-            "text": "Nagrywanie trasy"
+            "text": "Nagrywanie trasy !!!"
         },
         "locationPermission": {
             "title": "Używanie lokalizacji w tle",
@@ -808,6 +818,5 @@
             "leftButton": "Anuluj",
             "rightButton": "Usuń"
         }
-    },
-    "aaaaaaa-aaaaaa": "_____"
+    }
 }

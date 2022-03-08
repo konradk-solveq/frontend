@@ -26,12 +26,14 @@ export const buildStore = (initState?: Partial<RootState>) => {
         blacklist: [
             'app',
             'auth',
+            'deepLinking',
             'authData',
             'bikes',
             'maps',
             'places',
             'routes',
             'user',
+            'uiTranslation',
         ],
     };
 

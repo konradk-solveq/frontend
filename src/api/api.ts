@@ -17,6 +17,10 @@ const instance = axios.create({
 
 instance.defaults.headers.post['Content-Type'] = 'application/json';
 
+export const setLanguageHeader = (lang: string) => {
+    instance.defaults.headers.get['Accept-Language'] = lang;
+};
+
 export const setAutorizationHeader = (token: string) => {
     /* TODO: replace with smth more fancy */
     instance.defaults.headers.get.Authorization = `Bearer ${token}`;

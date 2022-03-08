@@ -4,8 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {RiderProfile} from '../../models/userRideProfile.model';
 import {riderProfiles} from '../../utils/constants';
 
-interface UserState {
+export interface UserStateI {
     userName: string;
+    language: string;
     frameNumber: string;
     riderProfile: RiderProfile;
     onboardingFinished: boolean;
@@ -13,8 +14,9 @@ interface UserState {
     loading: boolean;
 }
 
-const initialState: UserState = {
+const initialState: UserStateI = {
     userName: '',
+    language: '',
     frameNumber: '',
     riderProfile: {
         cyclingStyle: 0,
@@ -38,6 +40,13 @@ const userReducer = (state = initialState, action: any) => {
                 ...state,
                 loading: false,
                 userName: action.userName,
+            };
+        }
+        case actionTypes.SET_LANGUAGE: {
+            return {
+                ...state,
+                loading: false,
+                language: action.language,
             };
         }
         case actionTypes.SET_FRAME_NUMBER: {
@@ -90,6 +99,7 @@ const persistConfig = {
     storage: AsyncStorage,
     whitelist: [
         'userName',
+        'language',
         'frameNumber',
         'riderProfile',
         'onboardingFinished',

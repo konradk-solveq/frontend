@@ -9,6 +9,8 @@ module.exports = {
         './jest.setup.js',
         '__tests__/utils',
         '__tests__/mocks',
+        '__tests__/__mocks__',
+        '.history',
     ],
     globals: {
         window: {},

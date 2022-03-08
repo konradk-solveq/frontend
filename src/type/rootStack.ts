@@ -5,6 +5,7 @@ import {TabStackType} from '@type/tabStack';
 import {RouteMapType} from '@models/places.model';
 import {MapType} from '@models/map.model';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import {selectorMapTypeEnum} from '@src/storage/selectors/map';
 
 /* TODO: Complete missing lists params (if needed) */
 
@@ -15,7 +16,7 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
  */
 export type MainNavigationCompositePropT<
     ParamsList extends Partial<RootStackType>,
-    RouteName extends keyof RootStackType = keyof RootStackType,
+    RouteName extends keyof RootStackType = keyof RootStackType
 > = CompositeNavigationProp<
     StackNavigationProp<ParamsList, RouteName>,
     CompositeNavigationProp<
@@ -61,6 +62,7 @@ export type KrossWorldParamsListT = {
         private?: boolean;
         favourite?: boolean;
         featured?: boolean;
+        shareID?: string;
     };
     MapPreview: {
         mapId?: string;
@@ -78,6 +80,7 @@ export type KrossWorldParamsListT = {
         sectionName: string;
         featuredMapData?: MapType[];
     };
+    ShareRouteScreen: {mapID: string; mapType: selectorMapTypeEnum};
 };
 export type RoutesMapRouteT = RouteProp<KrossWorldParamsListT, 'RoutesMap'>;
 export type RoutesMapNavigationPropT = MainNavigationCompositePropT<
@@ -109,6 +112,14 @@ export type FeaturedMapsScreenRouteT = RouteProp<
 export type FeaturedMapsScreenNavigationPropT = MainNavigationCompositePropT<
     KrossWorldParamsListT,
     'FeaturedRoutesScreen'
+>;
+export type ShareRouteScreenRouteT = RouteProp<
+    KrossWorldParamsListT,
+    'ShareRouteScreen'
+>;
+export type ShareRouteScreenNavigationPropT = MainNavigationCompositePropT<
+    KrossWorldParamsListT,
+    'ShareRouteScreen'
 >;
 /* WORLD */
 
@@ -179,6 +190,7 @@ export type ServicesMapNavigationPropT = MainNavigationCompositePropT<
 /* PROFILE */
 export type ProfileParamsListT = {
     NameChange: undefined;
+    LanguageChange: undefined;
     AboutApp: undefined;
     Regulations: undefined;
     PrivacyPolicy: undefined;
@@ -190,6 +202,14 @@ export type NameChangeRouteT = RouteProp<ProfileParamsListT, 'NameChange'>;
 export type NameChangeNavigationPropT = MainNavigationCompositePropT<
     ProfileParamsListT,
     'NameChange'
+>;
+export type LanguageChangeRouteT = RouteProp<
+    ProfileParamsListT,
+    'LanguageChange'
+>;
+export type LanguageChangeNavigationPropT = MainNavigationCompositePropT<
+    ProfileParamsListT,
+    'LanguageChange'
 >;
 export type AboutAppRouteT = RouteProp<ProfileParamsListT, 'AboutApp'>;
 export type AboutAppNavigationPropT = MainNavigationCompositePropT<

@@ -26,6 +26,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
+
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/DEEPLINKING_NAMESPACE" />
+            </intent-filter>
+            <intent-filter android:label="@string/app_name" android:autoVerify="true">
+
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https"
+                    android:host="@string/DEEPLINKING_HOST"
+                    android:pathPrefix="@string/DEEPLINKING_PREFIX" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>

@@ -334,6 +334,12 @@ export const transformToMapsType = (
     return newData;
 };
 
+export const mapToClass = (map: MapType, appConfig: AppConfigI) => {
+    const tranformed = transformToOptionEnumValues(appConfig);
+
+    return transformToMapsType(map, tranformed);
+};
+
 export const mapsListToClass = (
     maps: MapType[] | [],
     appConfig: AppConfigI,
@@ -406,6 +412,8 @@ export type ImagesUrlsToDisplay = {
     mapImg: string;
     fullSizeImages?: string[];
     verticalMapImgUrl?: string;
+    horizontalMapImgUrl?: string;
+    shareMapImgUrl?: string;
     sliverImg?: string;
 };
 
@@ -414,6 +422,8 @@ export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
     const fullSizeImgsUrls: string[] = [];
     let mapImgUrl = '';
     let verticalMapImgUrl = '';
+    let horizontalMapImgUrl = '';
+    let shareMapImgUrl = '';
     let sliverImgUrl = '';
 
     if (!images?.length) {
@@ -446,13 +456,31 @@ export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
             }
         }
         if (i.type === 'map') {
-            const url = i.variants?.square?.[1]?.url;
+            const url =
+                i.variants?.square?.[1]?.url || i.variants?.square?.[0]?.url;
             if (url) {
                 mapImgUrl = url;
             }
-            const verticalUrl = i.variants?.vertical?.[2]?.url;
+            const verticalUrl =
+                i.variants?.vertical?.[2]?.url ||
+                i.variants?.vertical?.[1]?.url ||
+                i.variants?.vertical?.[0]?.url;
             if (verticalUrl) {
                 verticalMapImgUrl = verticalUrl;
+            }
+            const horizontalUrl =
+                i.variants?.horizontal?.[2]?.url ||
+                i.variants?.horizontal?.[1]?.url ||
+                i.variants?.horizontal?.[0]?.url;
+            if (horizontalUrl) {
+                horizontalMapImgUrl = horizontalUrl;
+            }
+            const shareUrl =
+                i.variants?.share?.[2]?.url ||
+                i.variants?.share?.[1]?.url ||
+                i.variants?.share?.[0]?.url;
+            if (shareUrl) {
+                shareMapImgUrl = shareUrl;
             }
         }
     });
@@ -462,6 +490,8 @@ export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
         fullSizeImages: fullSizeImgsUrls,
         mapImg: mapImgUrl,
         verticalMapImgUrl: verticalMapImgUrl,
+        horizontalMapImgUrl: horizontalMapImgUrl,
+        shareMapImgUrl: shareMapImgUrl,
         sliverImg: sliverImgUrl,
     };
 };

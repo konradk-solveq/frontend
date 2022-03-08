@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, Dimensions, View, Text} from 'react-native';
-import I18n from 'react-native-i18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import BigRedBtn from '../../../../sharedComponents/buttons/bigRedBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import Image from './image';
 
 import {
@@ -14,7 +14,8 @@ import {
     getFontSize,
     mainButtonsHeight,
     getHeightPx,
-} from '../../../../helpers/layoutFoo';
+    getHeightOfPx,
+} from '@helpers/layoutFoo';
 
 interface Props {
     navigation: any;
@@ -23,7 +24,7 @@ interface Props {
 const ww = Dimensions.get('window').width;
 
 const WrongScan: React.FC<Props> = (props: Props) => {
-    const trans = I18n.t('WrongScan');
+    const {t} = useMergedTranslation('WrongScan');
 
     const imgH = ww * (296 / 414);
     setObjSize(334, 51);
@@ -60,8 +61,8 @@ const WrongScan: React.FC<Props> = (props: Props) => {
         text: getStandard(334, 174, 535),
         btnAgain: {
             position: 'absolute',
-            width: getWidthPx(334),
-            height: getHeightPx(50),
+            width: getHeightOfPx(334),
+            height: getVerticalPx(50),
             left: mainButtonsHeight(40),
             top: getVerticalPx(781),
         },
@@ -73,14 +74,14 @@ const WrongScan: React.FC<Props> = (props: Props) => {
                 <Image />
             </View>
 
-            <Text style={[styles.title, styles.reg40]}>{trans.title}</Text>
+            <Text style={[styles.title, styles.reg40]}>{t('title')}</Text>
 
             <Text style={[styles.text, styles.light18]}>
-                {trans.text_1 + '4444444444' + trans.text_2}
+                {t('text', {number: '4444444444'})}
             </Text>
 
             <View style={styles.btnAgain}>
-                <BigRedBtn title={trans.btnAgain} onpress={() => {}} />
+                <BigRedBtn title={t('btnAgain')} onpress={() => {}} />
             </View>
         </SafeAreaView>
     );

@@ -29,7 +29,7 @@ import {
     getFaqService,
     getNewRegulationsService,
 } from '@services/';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
@@ -38,6 +38,8 @@ import {RouteActionT, RouteAdditionalInfoT} from '@type/debugRoute';
 import {DebugRouteInstance} from '@debugging/debugRoute';
 import {batch} from 'react-redux';
 import {AuthState} from '../reducers/auth';
+import {fetchUiTranslation, fetchLanguagesList} from './uiTranslation';
+import {getControlSumService} from '@src/services/uiTranslation';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -52,10 +54,12 @@ export const setAppStatus = (
     goodConnectionQuality: goodConnectionQuality,
 });
 
-export const setAppConfig = (config: AppConfigI) => ({
-    type: actionTypes.SET_APP_CONFIG,
-    config: config,
-});
+export const setAppConfig = (config: AppConfigI) => {
+    return {
+        type: actionTypes.SET_APP_CONFIG,
+        config: config,
+    };
+};
 
 export const setAppTerms = (terms: TermsAndConditionsType[]) => ({
     type: actionTypes.SET_APP_TERMS,
@@ -130,13 +134,18 @@ export const setInitMapsDataSynchedState = (initMapsDataSynched: boolean) => ({
     initMapsDataSynched: initMapsDataSynched,
 });
 
+export const setApiAuthHeaderState = (apiAuthHeaderState: boolean) => ({
+    type: actionTypes.SET_API_AUTH_HEADER,
+    apiAuthHeaderState: apiAuthHeaderState,
+});
+
 export const clearAppError = () => ({
     type: actionTypes.CLEAR_APP_ERROR,
 });
 
 export const fetchAppConfig = (
     noLoader?: boolean,
-): AppThunk<Promise<void>> => async dispatch => {
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     if (!noLoader) {
         dispatch(setSyncStatus(true));
     }
@@ -148,9 +157,37 @@ export const fetchAppConfig = (
             return;
         }
 
+        const responseControlSum = await getControlSumService();
+
+        if (
+            responseControlSum.error ||
+            responseControlSum.status >= 400 ||
+            !responseControlSum.data
+        ) {
+            dispatch(
+                setSyncError(
+                    responseControlSum.error,
+                    responseControlSum.status,
+                ),
+            );
+            return;
+        }
+
+        const {config}: AppState = getState().app;
+
+        const lang = response.data.lang;
+        const currentControlSums = responseControlSum.data?.controlSum;
+        const memoriedControlSums = config.uiTranslations?.controlSums?.find(
+            e => e.code === lang,
+        )?.controlSum;
+
         batch(() => {
+            dispatch(fetchLanguagesList(true));
             dispatch(setAppConfig(response.data));
             dispatch(clearAppError());
+            if (currentControlSums !== memoriedControlSums) {
+                dispatch(fetchUiTranslation(true));
+            }
         });
 
         if (!noLoader) {
@@ -162,7 +199,7 @@ export const fetchAppConfig = (
 
         loggErrorWithScope(err, 'fetchAppConfig');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
     }
 };
@@ -217,7 +254,7 @@ export const fetchAppFaq = (
 
         loggErrorWithScope(err, 'fetchAppFaq');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
     }
 };
@@ -236,7 +273,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
-                setSyncError(I18n.t('dataAction.noInternetConnection'), 500),
+                setSyncError(i18next.t('dataAction.noInternetConnection'), 500),
             );
             dispatch(setSyncStatus(false));
             return;
@@ -290,7 +327,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
     } catch (error) {
         console.log(`[appSyncData] - ${error}`);
         const err = convertToApiError(error);
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
 
         loggErrorWithScope(err, 'appSyncData');
 
@@ -314,7 +351,7 @@ export const fetchAppRegulations = (
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
-                setSyncError(I18n.t('dataAction.noInternetConnection'), 500),
+                setSyncError(i18next.t('dataAction.noInternetConnection'), 500),
             );
             dispatch(setSyncStatus(false));
             return;
@@ -374,7 +411,7 @@ export const fetchAppRegulations = (
 
         loggErrorWithScope(err, 'fetchAppRegulations');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
     }
 };
@@ -456,7 +493,7 @@ export const synchMapsData = (
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
-                setSyncError(I18n.t('dataAction.noInternetConnection'), 500),
+                setSyncError(i18next.t('dataAction.noInternetConnection'), 500),
             );
             if (!noLoader) {
                 dispatch(setSyncStatus(false));
@@ -495,7 +532,7 @@ export const synchMapsData = (
     } catch (error) {
         console.log(`[synchMapsData] - ${error}`);
         const err = convertToApiError(error);
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
 
         loggErrorWithScope(err, 'synchMapsData');
 

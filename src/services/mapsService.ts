@@ -25,7 +25,8 @@ import {
 import {ImagesMetadataType} from '@interfaces/api';
 import {MapFormDataResult, PickedFilters} from '@interfaces/form';
 import {BasicCoordsType} from '@type/coords';
-import {I18n} from '@translations/I18n';
+import '@utils/polyfills/Promise.allSettled';
+import i18next from '@translations/i18next';
 
 import {
     createFileFormData,
@@ -33,6 +34,7 @@ import {
 } from '@utils/apiDataTransform/prepareRequest';
 import {getFiltersParam} from '@utils/apiDataTransform/filters';
 import {loggErrorMessage} from '@sentryLogger/sentryLogger';
+import {getImgErrorMessage} from '@services/utils/getErrorMessage';
 
 export type CreatedPlannedMap = {
     id: string;
@@ -153,7 +155,6 @@ export const editPrivateMapMetadataService = async (
         data,
         data.publishWithName ? author : '',
     );
-
     /* Update metadata */
     const response = await editPrivateMapMetaData(id || data.id, metadata);
 
@@ -188,7 +189,7 @@ export const editPrivateMapMetadataService = async (
                 errorMessage =
                     publishResponse.data.message || publishResponse.data.error;
                 if (publishResponse.data?.statusCode !== 400) {
-                    errorMessage = I18n.t('dataAction.mapData.publishError');
+                    errorMessage = i18next.t('dataAction.mapData.publishError');
                 }
             }
             return {
@@ -202,36 +203,44 @@ export const editPrivateMapMetadataService = async (
 
     /* Upload images */
     if (images?.save?.length) {
+        const imagePromises = [];
         for (let i = 0; i < images.save.length; i++) {
             const formdata = createFileFormData(images.save[i]);
-            const imageResponse = await uploadImageToMapData(
-                id || data.id,
-                formdata,
-            );
-
-            if (
-                !imageResponse?.data ||
-                imageResponse.status >= 400 ||
-                imageResponse.data?.statusCode >= 400
-            ) {
-                let errorMessage = 'error';
-                if (imageResponse.data?.message || imageResponse.data?.error) {
-                    errorMessage =
-                        imageResponse.data.message || imageResponse.data.error;
-                    if (imageResponse.data?.statusCode !== 400) {
-                        errorMessage = I18n.t(
-                            'dataAction.mapData.fileUploadError',
-                            {value: images.save[i].fileName},
-                        );
-                    }
-                }
-                return {
-                    data: null,
-                    status:
-                        imageResponse.data?.statusCode || imageResponse.status,
-                    error: errorMessage,
-                };
+            imagePromises.push(uploadImageToMapData(id || data.id, formdata));
+        }
+        const imageResponses = await Promise.allSettled(imagePromises);
+        const errorMessages: string[] = [];
+        let errorStatus;
+        imageResponses.forEach((imgResponse, i) => {
+            if (imgResponse.status === 'rejected') {
+                const errorMessage = getImgErrorMessage(
+                    imgResponse.reason,
+                    images.save && images.save[i].fileName,
+                );
+                errorMessages.push(errorMessage);
+                errorStatus =
+                    imgResponse?.reason?.status ||
+                    imgResponse?.reason?.data?.statusCode;
+                return;
             }
+            if (imgResponse.status === 'fulfilled' && !imgResponse.value.data) {
+                const errorMessage = getImgErrorMessage(
+                    imgResponse.value,
+                    images.save && images.save[i].fileName,
+                );
+                errorMessages.push(errorMessage);
+                errorStatus = imgResponse?.value?.status;
+            }
+        });
+        const errorMessage = Array.from(
+            new Set(errorMessages.filter(x => !!x)),
+        ).join(', ');
+        if (errorStatus) {
+            return {
+                data: null,
+                status: errorStatus,
+                error: errorMessage,
+            };
         }
     }
 
@@ -286,7 +295,7 @@ export const removePrivateMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage = I18n.t('dataAction.routeData.removeRouteError');
+                errorMessage = i18next.t('dataAction.routeData.removeRouteError');
             }
         }
         return {
@@ -376,7 +385,7 @@ export const removePlannedMapByIdService = async (
                 response.data?.statusCode !== 400 &&
                 response.data.statusCode !== 404
             ) {
-                errorMessage = I18n.t('dataAction.routeData.removeRouteError');
+                errorMessage = i18next.t('dataAction.routeData.removeRouteError');
             }
         }
         return {

@@ -9,7 +9,7 @@ import {
     logOutService,
     logInService,
 } from '@services/index';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 import {setAutorizationHeader, setUserAgentHeader} from '@api/api';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {API_URL} from '@env';
@@ -116,7 +116,7 @@ export const register = (
 
         loggErrorWithScope(err, 'register');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
         dispatch(clearAuthorizationStateState());
     }
@@ -153,7 +153,7 @@ export const logIn = (
 
         loggErrorWithScope(err, 'logIn');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
         dispatch(clearAuthorizationStateState());
     }
@@ -188,7 +188,7 @@ export const mobileLogIn = (
 
         loggErrorWithScope(err, 'mobileLogIn');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
         dispatch(clearAuthorizationStateState());
     }
@@ -282,7 +282,7 @@ export const checkSession = (
 
         loggErrorWithScope(err, 'checkSession');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
     }
 };
@@ -295,7 +295,7 @@ export const logOut = (
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
-                setAuthError(I18n.t('dataAction.noInternetConnection'), 500),
+                setAuthError(i18next.t('dataAction.noInternetConnection'), 500),
             );
             setSyncState(dispatch, false, skipLoadingState);
             return;
@@ -310,8 +310,9 @@ export const logOut = (
         const response = await logOutService();
 
         if (response.error) {
-            const trans: any = I18n.t('Profile.auth');
-            dispatch(setAuthError(trans.error, response.status));
+            dispatch(
+                setAuthError(i18next.t('Profile.auth.error'), response.status),
+            );
             loggErrorWithScope(response.error, 'logOut');
             return;
         }
@@ -325,7 +326,7 @@ export const logOut = (
 
         loggErrorWithScope(err, 'logOut');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setAuthError(errorMessage, 500));
     }
 };

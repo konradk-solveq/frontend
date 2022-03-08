@@ -2,7 +2,6 @@ import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {SubmitHandler, useForm} from 'react-hook-form';
 
-import {I18n} from '@translations/I18n';
 import {validateData} from '@utils/validation/validation';
 import {BigRedBtn} from '@sharedComponents/buttons';
 import OneLineText from '@sharedComponents/inputs/oneLineText';
@@ -18,6 +17,7 @@ import {FormData} from '@pages/auth/loginScreen/form/inputs/types';
 import {Text} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 import {LoginNavigationPropT} from '@type/rootStack';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 interface IProps {
     onSubmit: (data: LoginFormDataResult) => void;
@@ -30,10 +30,8 @@ const LoginForm: React.FC<IProps> = ({
     scrollTop,
     isLoading,
 }: IProps) => {
-    const trans: any = I18n.t('Login');
-    const validationMessages: any = I18n.t(
-        'validation.fields.login.formErrors',
-    );
+    const {t} = useMergedTranslation('Login');
+    const {t: tv} = useMergedTranslation('validation.fields.login.formErrors');
 
     const navigation = useNavigation<LoginNavigationPropT>();
 
@@ -60,7 +58,7 @@ const LoginForm: React.FC<IProps> = ({
         if (!isValid) {
             scrollTop();
         }
-        return isValid || validationMessages[fieldName];
+        return isValid || tv(`${fieldName}`);
     };
 
     return (
@@ -71,7 +69,7 @@ const LoginForm: React.FC<IProps> = ({
                     control={control}
                     Input={({value, isValid, onChange, errMsg}) => (
                         <OneLineText
-                            placeholder={trans.email}
+                            placeholder={t('email')}
                             keyboardType="default"
                             onChangeText={(v: string) => onChange(v)}
                             validationOk={isValid}
@@ -92,7 +90,7 @@ const LoginForm: React.FC<IProps> = ({
                     control={control}
                     Input={({value, isValid, onChange, errMsg}) => (
                         <OneLineText
-                            placeholder={trans.password}
+                            placeholder={t('password')}
                             keyboardType="default"
                             onChangeText={(v: string) => onChange(v)}
                             validationOk={isValid}
@@ -112,13 +110,13 @@ const LoginForm: React.FC<IProps> = ({
                     testID={'ForgotPassLink'}
                     onPress={handleForgotPasswordPress}>
                     <Text style={styles.forgotPasswordText}>
-                        {trans.forgotPassword}
+                        {t('forgotPassword')}
                     </Text>
                 </TouchableOpacity>
             </View>
             <BigRedBtn
                 testID={'LoginBtn'}
-                title={trans.button}
+                title={t('button')}
                 onpress={handleSubmit(onSubmitHandler)}
                 style={styles.bottomBtn}
                 disabled={isLoading}

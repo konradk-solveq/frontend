@@ -4,11 +4,11 @@ import {View, Text, Image, Pressable} from 'react-native';
 import {mapReactionsConfigSelector} from '@storage/selectors/app';
 import {modifyReaction} from '@storage/actions/maps';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {Map, ReactionsType} from '@models/map.model';
 
 import TileBackground from './tileBackground';
-import RouteImagePlaceholder from '../../../../../sharedComponents/images/routeListImagePlaceholder';
+import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
 import {getImageToDisplay} from '@utils/transformData';
 import {jsonStringify} from '@utils/transformJson';
 
@@ -39,7 +39,8 @@ const NextTile: React.FC<IProps> = ({
     headerTitle,
     sectionID,
 }: IProps) => {
-    const trans: any = I18n.t('MainWorld.BikeMap');
+    const {t} = useMergedTranslation('MainWorld.BikeMap');
+
     const dispatch = useAppDispatch();
 
     const config = useAppSelector(mapReactionsConfigSelector);
@@ -124,7 +125,7 @@ const NextTile: React.FC<IProps> = ({
                                 <Text
                                     style={styles.tileSectionTitle}
                                     numberOfLines={1}>
-                                    {mapData?.name || trans.noTitle}
+                                    {mapData?.name || t('noTitle')}
                                 </Text>
                                 <View
                                     style={nextTileStyles.firstSectionContent}>
@@ -134,7 +135,7 @@ const NextTile: React.FC<IProps> = ({
                                             styles.column,
                                         ]}>
                                         {mapData.distanceToRouteInKilometers}
-                                        {trans.distanceToStart}
+                                        {t('distanceToStart')}
                                     </Text>
                                     <View
                                         style={[
@@ -181,7 +182,7 @@ const NextTile: React.FC<IProps> = ({
                                                     style={
                                                         styles.secondSectionSuffix
                                                     }>
-                                                    {trans.distanceUnit}
+                                                    {t('distanceUnit')}
                                                 </Text>
                                             </Text>
                                         </View>
@@ -207,7 +208,7 @@ const NextTile: React.FC<IProps> = ({
                                                     style={
                                                         styles.secondSectionSuffix
                                                     }>
-                                                    {trans.timeUnit}
+                                                    {t('timeUnit')}
                                                 </Text>
                                             </Text>
                                         </View>

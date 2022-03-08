@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import type {Node} from 'react';
 import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
@@ -6,7 +6,6 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {persistStore} from 'redux-persist';
 
 import storage from '@storage/storage';
-import {I18n_init} from '@translations/I18n';
 import StaticLocationProvider from '@providers/staticLocationProvider/staticLocationProvider';
 import TopNotificationProvider from '@providers/topNotificationProvider/TopNotificationProvider';
 
@@ -15,16 +14,21 @@ import {initConfig} from '@theme/appLayoutConfig';
 
 import NavContainer from '@navigation/NavContainer';
 import NetworkStatus from '@sharedComponents/networkStatus/networkStatus';
-import useRouteDebug from '@src/hooks/useRouteDebug';
+import useRouteDebug from '@hooks/useRouteDebug';
+
+import {setUserAgentHeader} from '@api';
+import {setLanguageHeader} from '@api/api';
 
 const App: () => Node = () => {
-    I18n_init();
     const persistor = persistStore(storage);
 
     initAppSize();
     initConfig();
 
     useRouteDebug();
+
+    setUserAgentHeader();
+    setLanguageHeader('pl');
 
     return (
         <>
@@ -38,7 +42,9 @@ const App: () => Node = () => {
                     <NetworkStatus />
                     <TopNotificationProvider>
                         <StaticLocationProvider>
-                            <NavContainer />
+                            <Suspense fallback={null}>
+                                <NavContainer />
+                            </Suspense>
                         </StaticLocationProvider>
                     </TopNotificationProvider>
                 </PersistGate>

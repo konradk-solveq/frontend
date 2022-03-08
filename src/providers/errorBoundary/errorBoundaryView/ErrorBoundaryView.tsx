@@ -8,7 +8,7 @@ import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import RNRestart from 'react-native-restart';
 
-import {I18n} from '@translations/I18n';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {BigRedBtn, BigWhiteBtn} from '@sharedComponents/buttons';
 import ImgSvg from './ImgsSvg';
 
@@ -20,7 +20,8 @@ interface IProps {
 }
 
 const ErrorBoundaryView = ({resetError}: IProps) => {
-    const trans: any = I18n.t('ErrorBoundary');
+    const {t} = useMergedTranslation('ErrorBoundary');
+
 
     /**
      * Restart app
@@ -34,19 +35,19 @@ const ErrorBoundaryView = ({resetError}: IProps) => {
             <View style={styles.content}>
                 <ImgSvg style={styles.image} />
                 <View>
-                    <Text style={styles.title}>{trans.header}</Text>
-                    <Text style={styles.body}>{trans.body}</Text>
+                    <Text style={styles.title}>{t('header')}</Text>
+                    <Text style={styles.body}>{t('body')}</Text>
                 </View>
                 <View style={styles.buttonsContainer}>
                     <BigRedBtn
                         onpress={resetError}
-                        title={trans.resetButton}
+                        title={t('resetButton')}
                         style={styles.button}
                         testID="error-boundary-reset-button"
                     />
                     <BigWhiteBtn
                         onpress={restartView}
-                        title={trans.restartButton}
+                        title={t('restartButton')}
                         style={[styles.button, styles.restartButton]}
                         testID="error-boundary-restart-button"
                     />

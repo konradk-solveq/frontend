@@ -1,5 +1,5 @@
 import * as actionTypes from '@storage/actions/actionTypes';
-import {I18n} from '@translations/I18n';
+import i18next from '@translations/i18next';
 
 export const authenticateUserWhenOfflineAndExpectedActions = [
     {
@@ -8,7 +8,7 @@ export const authenticateUserWhenOfflineAndExpectedActions = [
     },
     {
         type: actionTypes.SET_AUTH_ERROR,
-        error: I18n.t('dataAction.noInternetConnection'),
+        error: i18next.t('dataAction.noInternetConnection'),
         statusCode: 500,
     },
     {
@@ -24,7 +24,7 @@ export const authenticateUserWhenOnlineAndExpectedActions = [
     },
     {
         type: actionTypes.SET_AUTH_ERROR,
-        error: I18n.t('Profile.auth.error'),
+        error: i18next.t('Profile.auth.error'),
         statusCode: 500,
     },
     {
@@ -61,7 +61,7 @@ export const authenticateUserWhenOnlineFourthCaseExpectedActions = [
     },
     {
         type: actionTypes.SET_AUTH_ERROR,
-        error: I18n.t('Profile.auth.error'),
+        error: i18next.t('Profile.auth.error'),
         statusCode: 400,
     },
     {

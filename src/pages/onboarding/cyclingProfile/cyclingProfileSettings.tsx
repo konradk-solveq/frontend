@@ -7,14 +7,15 @@ import {
     Text,
     Alert,
 } from 'react-native';
-import I18n from 'react-native-i18n';
-import {RiderProfile} from '../../../models/userRideProfile.model';
-import {useAppSelector, useAppDispatch} from '../../../hooks/redux';
-import {setProfileSettings} from '../../../storage/actions';
 
-import VerticalHeader from './../../../sharedComponents/navi/verticalHeader/verticalHeader';
-import BigWhiteBtn from '../../../sharedComponents/buttons/bigWhiteBtn';
-import BigRedBtn from '../../../sharedComponents/buttons/bigRedBtn';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {RiderProfile} from '@models/userRideProfile.model';
+import {useAppSelector, useAppDispatch} from '@hooks/redux';
+import {setProfileSettings} from '@storage/actions';
+
+import VerticalHeader from '@sharedComponents/navi/verticalHeader/verticalHeader';
+import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
+import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import RadioLine from './radioLine';
 
 import {
@@ -23,12 +24,11 @@ import {
     getVerticalPx,
     getWidthPx,
     getWidthPxOf,
-    getHeightPx,
     getHorizontalPx,
     mainButtonsHeight,
-} from '../../../helpers/layoutFoo';
-import deepCopy from '../../../helpers/deepCopy';
-import {CyclingProfileRoute} from '../../../navigation/route';
+} from '@helpers/layoutFoo';
+import deepCopy from '@helpers/deepCopy';
+import {CyclingProfileRoute} from '@navigation/route';
 
 interface Props {
     navigation: any;
@@ -44,11 +44,12 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
         state => state.user.riderProfile,
     );
 
-    const trans = I18n.t('Profile').settings;
-    const lists = Object.keys(trans.lists);
+    const {t} = useMergedTranslation('Profile.settings');
 
-    const view = I18n.t('Profile').view;
-    const types = Object.keys(view.types);
+    const lists = Object.keys(t('lists', {returnObjects: true}));
+
+    const {t: tv} = useMergedTranslation('Profile.view');
+    const types = Object.keys(tv('types', {returnObjects: true}));
 
     const [dataSetting, setDataSetting] = useState<RiderProfile>(
         riderProfileData,
@@ -202,14 +203,16 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
                         }
                     />
 
-                    <Text style={styles.reg23}>{trans.title}</Text>
+                    <Text style={styles.reg23}>{t('title')}</Text>
 
-                    <Text style={styles.light18}>{trans.text}</Text>
+                    <Text style={styles.light18}>{t('text')}</Text>
 
                     {lists.map((e, i) => (
                         <RadioLine
-                            name={trans.lists[e].name}
-                            list={trans.lists[e].values}
+                            name={t(`${lists[e]}.name`)}
+                            list={t(`${lists[e]}.values`, {
+                                returnObjects: true,
+                            })}
                             getReult={(val: number) => {
                                 handleChangeData(e, val);
                             }}
@@ -221,14 +224,14 @@ const CyclingProfileSettings: React.FC<Props> = (props: Props) => {
                     <View style={styles.bottons}>
                         <View style={styles.btn}>
                             <BigWhiteBtn
-                                title={trans.btnRestore}
+                                title={t('btnRestore')}
                                 onpress={() => handleGetDataBack()}
                             />
                         </View>
 
                         <View style={styles.btn}>
                             <BigRedBtn
-                                title={trans.btnChange}
+                                title={t('btnChange')}
                                 onpress={() => handleGoBackWithMemeo()}
                             />
                         </View>

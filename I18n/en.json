@@ -1,24 +1,39 @@
 {
-  "welcome": "Welcome",
-  "validation": {
-    "isEmpty": "Field {{property}} is not empty",
-    "isNotEmpty": "Field {{property}} is empty",
-    "isNumber": "{{value}} is not a number",
-    "isInt": "{{value}} is not a integer",
-    "isString": "{{value}} is not a string",
-    "fields": {
-        "userBike": {
-            "frameNumber": "frame number",
-            "producer": "producer",
-            "model": "model",
-            "size": "size",
-            "color": "color"
+    "welcome": "Welcome",
+    "validation": {
+        "isEmpty": "Field {{property}} is not empty",
+        "isNotEmpty": "Field {{property}} is empty",
+        "isNumber": "{{value}} is not a number",
+        "isInt": "{{value}} is not a integer",
+        "isString": "{{value}} is not a string",
+        "fields": {
+            "userBike": {
+                "frameNumber": "frame number",
+                "producer": "producer",
+                "model": "model",
+                "size": "size",
+                "color": "color"
+            }
         }
+    },
+    "dataAction": {
+        "validationError": "Check your form",
+        "apiError": "There was an error, please try again",
+        "dataSyncError": "An error occurred while synchronizing data"
+    },
+    "MainProfile": {
+        "header": "Account",
+        "settings": "Settings",
+        "languages": "Application language",
+        "myConsents": "My consents",
+        "remove": "Remove",
+        "btnAddStuff": "ADD STUFF",
+        "defaultName": "Cyclist.",
+        "title": "About myKROSS",
+        "app": "About application",
+        "regulations": "Regulations",
+        "privacyPolicy": "Privacy policy",
+        "help": "Help",
+        "contact": "Contact"
     }
-  },
-  "dataAction": {
-    "validationError": "Check your form",
-    "apiError": "There was an error, please try again",
-    "dataSyncError": "An error occurred while synchronizing data"
-  }
 }

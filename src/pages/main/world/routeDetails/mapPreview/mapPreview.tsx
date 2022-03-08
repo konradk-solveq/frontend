@@ -5,7 +5,7 @@ import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
 import {useAppSelector} from '../../../../../hooks/redux';
 import {
     selectMapPathByIDBasedOnTypeSelector,
-    selectorTypeEnum,
+    selectorMapTypeEnum,
 } from '../../../../../storage/selectors/map';
 import {Coords, CoordsType} from '../../../../../models/map.model';
 
@@ -26,15 +26,15 @@ interface Props {
 
 const getMapType = (params: any) => {
     if (params?.private) {
-        return selectorTypeEnum.private;
+        return selectorMapTypeEnum.private;
     }
     if (params?.favourite) {
-        return selectorTypeEnum.favourite;
+        return selectorMapTypeEnum.favourite;
     }
     if (params?.featured) {
-        return selectorTypeEnum.featured;
+        return selectorMapTypeEnum.featured;
     }
-    return selectorTypeEnum.regular;
+    return selectorMapTypeEnum.regular;
 };
 
 const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {

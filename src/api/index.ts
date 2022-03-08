@@ -33,4 +33,10 @@ export {
     getConfig,
     checkInternetConnectionQuality,
 } from './app';
+export {
+    getUiTranslation,
+    getLanguagesList,
+    getControlSum,
+} from './uiTranslation';
 export {modifyReaction, removeReaction} from './reactions';
+export {shareRoute, checkSharedImageExists} from './share';

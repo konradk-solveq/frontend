@@ -8,8 +8,7 @@ import {
     ScrollView,
 } from 'react-native';
 
-import I18n from 'react-native-i18n';
-import TabBackGround from '../../../sharedComponents/navi/tabBackGround';
+import TabBackGround from '@sharedComponents/navi/tabBackGround';
 import BlueButton from './blueButton';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import {
@@ -29,11 +28,15 @@ import {
 import {RegularStackRoute, BothStackRoute} from '@navigation/route';
 
 import {clearAuthError, logOut} from '@storage/actions';
-import {BigRedBtn} from '@src/sharedComponents/buttons';
+import {BigRedBtn} from '@sharedComponents/buttons';
 import FailedResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
 
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 import AmatoryBiker from './amatoryBiker';
+
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {languagesListSelector} from '@storage/selectors/uiTranslation';
+import {languagesListT} from '@models/uiTranslation.models';
 
 interface Props {
     navigation: any;
@@ -41,17 +44,19 @@ interface Props {
 }
 
 const Profile: React.FC<Props> = (props: Props) => {
-    const trans: any = I18n.t('MainProfile');
-    const profilePageTrans: any = I18n.t('Profile.auth');
+    const {t} = useMergedTranslation('MainProfile');
+    const {t: tpa} = useMergedTranslation('Profile.auth');
     const dispatch = useAppDispatch();
 
     const userName =
         useAppSelector<string>(state => state.user.userName) ||
-        trans.defaultName;
+        t('defaultName');
     const isAuthenticated = useAppSelector(authUserAuthenticatedStateSelector);
     const authError = useAppSelector(authErrorSelector);
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+    const languageList: languagesListT = useAppSelector(languagesListSelector);
 
     const onLogoutPressedHandler = () => {
         dispatch(logOut());
@@ -83,6 +88,9 @@ const Profile: React.FC<Props> = (props: Props) => {
             textAlign: 'left',
             position: 'relative',
             marginBottom: getVerticalPx(4.5),
+        },
+        separator: {
+            marginTop: getVerticalPx(36),
         },
         nameWrap: {
             display: 'flex',
@@ -135,7 +143,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                         {isAuthenticated && (
                             <View style={styles.menuSection}>
                                 <Text style={styles.title}>
-                                    {trans.settings}
+                                    {t('settings')}
                                 </Text>
                                 <BlueButton
                                     onpress={() =>
@@ -143,19 +151,41 @@ const Profile: React.FC<Props> = (props: Props) => {
                                             RegularStackRoute.CONSENTS_SCREEN,
                                         )
                                     }
-                                    title={trans.myConsents}
+                                    title={t('myConsents')}
                                 />
                             </View>
                         )}
                         <View style={styles.menuSection}>
-                            <Text style={styles.title}>{trans.title}</Text>
+                            {languageList && languageList.length > 1 && (
+                                <View>
+                                    <Text style={styles.title}>
+                                        {t('settings')}
+                                    </Text>
+                                    <BlueButton
+                                        onpress={() => {
+                                            props.navigation.navigate(
+                                                RegularStackRoute.LANGUAGE_CHANGE_SCREEN,
+                                            );
+                                        }}
+                                        title={t('languages')}
+                                    />
+                                    <Text
+                                        style={[
+                                            styles.title,
+                                            styles.separator,
+                                        ]}>
+                                        {t('title')}
+                                    </Text>
+                                </View>
+                            )}
+
                             <BlueButton
                                 onpress={() =>
                                     props.navigation.navigate(
                                         RegularStackRoute.ABOUT_APP_SCREEN,
                                     )
                                 }
-                                title={trans.app}
+                                title={t('app')}
                             />
                             <BlueButton
                                 onpress={() =>
@@ -163,7 +193,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                                         BothStackRoute.REGULATIONS_SCREEN,
                                     )
                                 }
-                                title={trans.regulations}
+                                title={t('regulations')}
                             />
                             <BlueButton
                                 onpress={() =>
@@ -171,7 +201,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                                         BothStackRoute.PRIVACY_POLICY_SCREEN,
                                     )
                                 }
-                                title={trans.privacyPolicy}
+                                title={t('privacyPolicy')}
                             />
                             <BlueButton
                                 onpress={() =>
@@ -179,7 +209,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                                         RegularStackRoute.HELP_SCREEN,
                                     )
                                 }
-                                title={trans.help}
+                                title={t('help')}
                             />
                             <BlueButton
                                 onpress={() =>
@@ -187,14 +217,14 @@ const Profile: React.FC<Props> = (props: Props) => {
                                         RegularStackRoute.CONTACT_SCREEN,
                                     )
                                 }
-                                title={trans.contact}
+                                title={t('contact')}
                             />
                         </View>
                         {isAuthenticated && (
                             <BigRedBtn
                                 testID="logout-btn"
                                 onpress={onLogoutPressedHandler}
-                                title={profilePageTrans.logoutBtn}
+                                title={tpa('logoutBtn')}
                                 style={styles.logoutButton}
                                 textStyle={styles.logoutText}
                             />
@@ -210,7 +240,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                 />
             </View>
 
-            <StackHeader hideBackArrow inner={trans.header} />
+            <StackHeader hideBackArrow inner={t('header')} />
 
             <TabBackGround />
         </SafeAreaView>

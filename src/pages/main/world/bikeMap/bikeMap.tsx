@@ -3,25 +3,27 @@ import {View, Text, FlatList, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/core';
 
 import {RegularStackRoute} from '@navigation/route';
-import {Map} from '../../../../models/map.model';
-import {I18n} from '../../../../../I18n/I18n';
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import {getImagesThumbs} from '../../../../utils/transformData';
-import {useAppSelector} from '../../../../hooks/redux';
+import {Map} from '@models/map.model';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {getVerticalPx} from '@helpers/layoutFoo';
+import {getImagesThumbs} from '@utils/transformData';
+import {useAppSelector} from '@hooks/redux';
 import {
     loadingMapsSelector,
     mapsListSelector,
     refreshMapsSelector,
-} from '../../../../storage/selectors/map';
+    selectorMapTypeEnum,
+} from '@storage/selectors/map';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
+
+import Loader from '@sharedComponents/loader/loader';
 
 import FirstTile from '../components/tiles/firstTile';
 import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-import Loader from '../../../../sharedComponents/loader/loader';
 
-import styles from './style';
 import FeaturedRoutes from '../featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
+import styles from './style';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -42,7 +44,8 @@ interface IProps {
 }
 
 const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
-    const trans: any = I18n.t('MainWorld.BikeMap');
+    const {t} = useMergedTranslation('MainWorld.BikeMap');
+
     const navigation = useNavigation();
 
     const mapsData = useAppSelector(mapsListSelector);
@@ -65,7 +68,7 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
         (mapID?: string) => {
             navigation.navigate({
                 name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-                params: {mapID: mapID, private: false},
+                params: {mapID: mapID, private: false, shareID: null},
             });
         },
         [navigation],
@@ -136,12 +139,14 @@ const BikeMap: React.FC<IProps> = ({onRefresh, onLoadMore}: IProps) => {
                         mapID={activeMapID}
                         onPressCancel={() => onPressHandler(false)}
                         backdropStyle={styles.backdrop}
+                        isPublished
+                        mapType={selectorMapTypeEnum.regular}
                     />
                     <FlatList
                         ListHeaderComponent={
                             <>
                                 <FeaturedRoutes key={mapsData?.length} />
-                                <Text style={styles.header}>{trans.title}</Text>
+                                <Text style={styles.header}>{t('title')}</Text>
                             </>
                         }
                         keyExtractor={item => item.id}

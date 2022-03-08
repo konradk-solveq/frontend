@@ -1,15 +1,15 @@
-import {I18n} from '../../../I18n/I18n';
+import i18next from '@translations/i18next';
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
-import {UserBikeI} from '../../models/userBike.model';
-import {Bike} from '../../models/bike.model';
+import {UserBikeI} from '@models/userBike.model';
+import {Bike} from '@models/bike.model';
 import {
     getBikeByFrameNr,
     getGenericDataforBike,
     getBikesListByFrameNrs,
-} from '../../services';
+} from '@services';
 import {setFrameNumber} from './index';
-import {convertToApiError} from '../../utils/apiDataTransform/communicationError';
+import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 import {BikesState} from '@storage/reducers/bikes';
 import {getNumbersToUpdate} from './utils/bikes';
@@ -86,7 +86,7 @@ export const setBikesListByFrameNumber = (
 
         loggErrorWithScope(err, 'setBikesListByFrameNumber');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage));
     }
 };
@@ -111,7 +111,7 @@ export const fetchGenericBikeData = (): AppThunk<
 
         loggErrorWithScope(err, 'fetchGenericBikeData');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage));
     }
 };
@@ -168,7 +168,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<Promise<void>> => async (
 
             let errorMessage = '';
             if (notFound.length > 0) {
-                const prefix = I18n.t('dataAction.dataSyncError');
+                const prefix = i18next.t('dataAction.dataSyncError');
                 errorMessage = `${prefix}: ${notFound.join(', ')}`;
             }
 
@@ -192,7 +192,7 @@ export const setBikesListByFrameNumbers = (): AppThunk<Promise<void>> => async (
 
         loggErrorWithScope(err, 'setBikesListByFrameNumbers');
 
-        const errorMessage = I18n.t('dataAction.apiError');
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage));
     }
 };
