@@ -10,6 +10,7 @@ import useGetRouteMapMarkers from '@hooks/useGetRouteMapMarkers';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {jsonParse} from '@utils/transformJson';
 import {getImagesThumbs} from '@utils/transformData';
+import {globalLocationSelector} from '@storage/selectors/app';
 
 import GenericScreen from '@pages/template/GenericScreen';
 import {RouteMapDetailsContainer, RoutesMapContainer} from '@containers/World';
@@ -25,9 +26,10 @@ const RoutesMap: React.FC = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
     const {mapID, nearestPoint} = useAppRoute<'RoutesMap'>()?.params || {};
+    const globalLcation = useAppSelector(globalLocationSelector);
 
     const {location} = useLocationProvider();
-    const [loc, setLoc] = useState<BasicCoordsType | undefined>();
+    const [loc, setLoc] = useState<BasicCoordsType | undefined>(globalLcation);
     const [routeInfo, setRouteInfo] = useState({
         id: '',
         mapType: selectorMapTypeEnum.regular,
