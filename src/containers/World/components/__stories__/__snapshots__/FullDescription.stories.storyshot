@@ -54,7 +54,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 18,
                   "fontWeight": "600",
@@ -73,7 +73,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Regular",
                   "fontSize": 16,
                   "lineHeight": 28,
@@ -92,7 +92,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Regular",
                 "fontSize": 16,
                 "lineHeight": 28,
@@ -118,7 +118,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "fontWeight": "600",
@@ -211,7 +211,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "fontWeight": "600",
@@ -702,7 +702,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 18,
                   "fontWeight": "600",
@@ -721,7 +721,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Regular",
                   "fontSize": 16,
                   "lineHeight": 28,
@@ -740,7 +740,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Regular",
                 "fontSize": 16,
                 "lineHeight": 28,
@@ -766,7 +766,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "fontWeight": "600",
@@ -859,7 +859,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "fontWeight": "600",
