@@ -11,7 +11,7 @@ import {capitalize, timeWithHandM} from '@src/helpers/stringFoo';
 import {getFullDate} from '@src/helpers/overviews';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {addPlannedMap} from '@storage/actions/maps';
-import ListTileView from './listTileView';
+import ListTileView from '@components/tiles/listTileView';
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
     mapData: Map;

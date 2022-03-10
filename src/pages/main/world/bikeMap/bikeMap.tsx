@@ -27,7 +27,7 @@ import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import styles from './style';
-import ListTile from '@components/tiles/listTile';
+import ListTile from '@pages/main/world/components/listTile';
 import {fetchMapsList} from '@storage/actions';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {PickedFilters} from '@interfaces/form';
