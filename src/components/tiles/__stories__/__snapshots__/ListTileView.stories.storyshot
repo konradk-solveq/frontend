@@ -86,7 +86,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
               resizeMode="cover"
               source={
                 Object {
-                  "uri": "url",
+                  "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
                 }
               }
               style={
@@ -380,7 +380,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
               resizeMode="cover"
               source={
                 Object {
-                  "uri": "url",
+                  "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
                 }
               }
               style={
@@ -779,7 +779,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
               resizeMode="cover"
               source={
                 Object {
-                  "uri": "url",
+                  "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
                 }
               }
               style={
