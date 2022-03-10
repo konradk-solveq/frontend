@@ -157,6 +157,15 @@ export const fetchAppConfig = (
             return;
         }
 
+        if (response.data.uiTranslations.controlSums.length === 0) {
+            response.data.uiTranslations.controlSums = [
+                {
+                    code: 'noControl_Sum',
+                    controlSum: 'noControl_Sum',
+                },
+            ];
+        }
+
         const responseControlSum = await getControlSumService();
 
         if (!responseControlSum.data) {
