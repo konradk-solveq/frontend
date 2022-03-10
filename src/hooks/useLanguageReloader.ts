@@ -26,7 +26,7 @@ const useLanguageReloader = () => {
     );
 
     useEffect(() => {
-        if (languageList.length === 0 || controlSumsList.length === 0) {
+        if (controlSumsList.length === 0) {
             dispatch(fetchAppConfig(true));
             return;
         }

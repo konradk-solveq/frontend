@@ -1,9 +1,8 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {SafeAreaView, View, Text, Alert} from 'react-native';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {View, Text, Alert} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import useStatusBarHeight from '@hooks/statusBarHeight';
 import {UserBike} from '@models/userBike.model';
 import {RegularStackRoute} from '@navigation/route';
 import {fetchPlacesData, removeBikeByNumber} from '@storage/actions';
@@ -22,9 +21,12 @@ import BikeSelectorList from './bikeSelectorList/bikeSelectorList';
 import ComplaintsRepairs from './complaintsRepairs';
 import Reviews from './reviews';
 import Warranty from './warranty';
-import {isIOS} from '@utils/platform';
 
 import styles from './style';
+import {NoBikesContainer} from '@src/containers/Bike';
+import GenericScreen from '@src/pages/template/GenericScreen';
+import {useAppNavigation} from '@src/navigation/hooks/useAppNavigation';
+import {nfcIsSupported} from '@helpers/nfc';
 
 interface Props {
     navigation: any;
@@ -38,15 +40,22 @@ const defaultRegion = {
 };
 const Bike: React.FC<Props> = (props: Props) => {
     const scrollRef = useRef<null | ScrollView>(null);
-    const statusBarHeight = useStatusBarHeight();
+    const navigation = useAppNavigation();
 
     const loc = useLocationProvider()?.location;
 
     const dispatch = useAppDispatch();
     const bikes = useAppSelector(bikesListSelector);
+    const hasAnyBikesAdded = useMemo(() => bikes.length, [bikes]);
     const genericBikeData = useAppSelector<UserBike>(
         state => state.bikes.genericBike,
     );
+
+    const [nfc, setNfc] = useState(false);
+
+    nfcIsSupported().then(r => {
+        setNfc(r);
+    });
 
     const [resetReviewsPosition, setResetReviewsPosition] = useState(false);
 
@@ -163,131 +172,147 @@ const Bike: React.FC<Props> = (props: Props) => {
         ]);
     };
 
-    const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
+    const onAddKrossBike = useCallback(() => {
+        navigation.navigate(nfc ? 'TutorialNFC' : 'AddingByNumber', {
+            emptyFrame: true,
+        });
+    }, [navigation, nfc]);
 
     const warrantyData = bike?.warranty || genericBikeData.warranty;
     return (
-        <SafeAreaView style={[styles.container, safeAreaStyle]}>
-            <View
-                style={{
-                    flex: 1,
-                    backgroundColor: 'transparent',
-                }}>
-                <StackHeader
-                    hideBackArrow
-                    inner={t('header')}
-                    style={styles.header}
-                    rightActions={
-                        bike?.description && (
-                            <CogBtn
-                                callback={heandleParams}
-                                iconStyle={styles.paramIcon}
+        <GenericScreen hideBackArrow>
+            {hasAnyBikesAdded ? (
+                <View
+                    style={{
+                        flex: 1,
+                        backgroundColor: 'transparent',
+                    }}>
+                    <StackHeader
+                        hideBackArrow
+                        inner={t('header')}
+                        style={styles.header}
+                        rightActions={
+                            bike?.description && (
+                                <CogBtn
+                                    callback={heandleParams}
+                                    iconStyle={styles.paramIcon}
+                                />
+                            )
+                        }
+                    />
+
+                    <SliverImage
+                        imgSrc={bike?.images?.[0]}
+                        hideHeader={!bike?.description}
+                        headerElement={
+                            <BikeSelectorList
+                                list={bikes}
+                                description={t('warranty.reviews')}
+                                callback={onChangeBikeHandler}
+                                currentBike={bike?.description?.serial_number}
+                                buttonText={t('add')}
+                                supportsNFC={nfc}
                             />
-                        )
-                    }
-                />
+                        }>
+                        {bike?.description && (
+                            <>
+                                <Text style={styles.bikeName}>
+                                    {bike?.description.name}
+                                </Text>
 
-                <SliverImage
-                    imgSrc={bike?.images?.[0]}
-                    hideHeader={!bike?.description}
-                    headerElement={
-                        <BikeSelectorList
-                            list={bikes}
-                            description={t('warranty.reviews')}
-                            callback={onChangeBikeHandler}
-                            currentBike={bike?.description?.serial_number}
-                            buttonText={t('add')}
-                        />
-                    }>
-                    {bike?.description && (
-                        <>
-                            <Text style={styles.bikeName}>
-                                {bike?.description.name}
-                            </Text>
+                                <Text style={styles.bikeDetails}>
+                                    {t('details', {
+                                        name: bike?.description.producer,
+                                        number: bike?.description.serial_number,
+                                    })}
+                                </Text>
 
-                            <Text style={styles.bikeDetails}>
-                                {t('details', {
-                                    name: bike?.description.producer,
-                                    number: bike?.description.serial_number,
-                                })}
-                            </Text>
+                                {warrantyData &&
+                                    warrantyData?.type !== 'no-info' && (
+                                        <Warranty
+                                            style={styles.warranty}
+                                            navigation={props.navigation}
+                                            type={warrantyData.info}
+                                            toEnd={
+                                                bike?.warranty
+                                                    ? warrantyData?.end
+                                                        ? countDaysToEnd(
+                                                              warrantyData.end,
+                                                          )
+                                                        : null
+                                                    : undefined
+                                            }
+                                            warranty={t('warranty')}
+                                            details={{
+                                                description: bike?.description,
+                                                warranty: warrantyData,
+                                            }}
+                                        />
+                                    )}
 
-                            {warrantyData && warrantyData?.type !== 'no-info' && (
-                                <Warranty
-                                    style={styles.warranty}
-                                    navigation={props.navigation}
-                                    type={warrantyData.info}
-                                    toEnd={
-                                        bike?.warranty
-                                            ? warrantyData?.end
-                                                ? countDaysToEnd(
-                                                      warrantyData.end,
-                                                  )
-                                                : null
-                                            : undefined
-                                    }
-                                    warranty={t('warranty')}
-                                    details={{
-                                        description: bike?.description,
-                                        warranty: warrantyData,
-                                    }}
-                                />
-                            )}
-
-                            {warrantyData?.overviews && (
-                                <Reviews
-                                    style={styles.reviews}
-                                    list={warrantyData.overviews}
-                                    details={{
-                                        description: bike?.description,
-                                        warranty: warrantyData,
-                                    }}
-                                    box={box}
-                                    region={region}
-                                    location={location}
-                                    description={t('warranty.reviews')}
-                                    navigation={props.navigation}
-                                    resetPostion={resetReviewsPosition}
-                                    onScrollToStart={() =>
-                                        setResetReviewsPosition(false)
-                                    }
-                                />
-                            )}
-
-                            {bike?.complaintsRepairs &&
-                                bike.complaintsRepairs.length > 0 && (
-                                    <ComplaintsRepairs
-                                        style={styles.complaintsRepairs}
-                                        list={bike.complaintsRepairs}
-                                        description={t(
-                                            'warranty.complaintsRepairs',
-                                        )}
+                                {warrantyData?.overviews && (
+                                    <Reviews
+                                        style={styles.reviews}
+                                        list={warrantyData.overviews}
+                                        details={{
+                                            description: bike?.description,
+                                            warranty: warrantyData,
+                                        }}
+                                        box={box}
+                                        region={region}
+                                        location={location}
+                                        description={t('warranty.reviews')}
+                                        navigation={props.navigation}
+                                        resetPostion={resetReviewsPosition}
+                                        onScrollToStart={() =>
+                                            setResetReviewsPosition(false)
+                                        }
                                     />
                                 )}
 
-                            <View style={styles.horizontalSpace}>
-                                <ServiceMapBtn
-                                    style={styles.map}
-                                    title={t('servisMap')}
-                                    height={102}
-                                    region={region}
-                                    location={location}
-                                    onpress={() => heandleServicesMap()}
-                                />
-                            </View>
+                                {bike?.complaintsRepairs &&
+                                    bike.complaintsRepairs.length > 0 && (
+                                        <ComplaintsRepairs
+                                            style={styles.complaintsRepairs}
+                                            list={bike.complaintsRepairs}
+                                            description={t(
+                                                'warranty.complaintsRepairs',
+                                            )}
+                                        />
+                                    )}
 
-                            <View style={styles.horizontalSpace}>
-                                <BigRedBtn
-                                    style={styles.btn}
-                                    onpress={onRemoveBikeHandler}
-                                    title={t('btn')}
-                                />
-                            </View>
-                        </>
-                    )}
-                </SliverImage>
-            </View>
-        </SafeAreaView>
+                                <View style={styles.horizontalSpace}>
+                                    <ServiceMapBtn
+                                        style={styles.map}
+                                        title={t('servisMap')}
+                                        height={102}
+                                        region={region}
+                                        location={location}
+                                        onpress={() => heandleServicesMap()}
+                                    />
+                                </View>
+
+                                <View style={styles.horizontalSpace}>
+                                    <BigRedBtn
+                                        style={styles.btn}
+                                        onpress={onRemoveBikeHandler}
+                                        title={t('btn')}
+                                    />
+                                </View>
+                            </>
+                        )}
+                    </SliverImage>
+                </View>
+            ) : (
+                <NoBikesContainer
+                    onPressPrimary={
+                        onAddKrossBike
+                    } /* TODO: nacigate to proper screen after redesign */
+                    onPressSecondary={() => {}} /* TODO: add after screen will be available */
+                    onPressTile={heandleServicesMap}
+                />
+            )}
+        </GenericScreen>
     );
 };
 

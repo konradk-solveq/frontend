@@ -23,7 +23,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
         "height": "100%",
         "justifyContent": "center",
         "paddingBottom": 63.22274881516588,
-        "paddingTop": 63.22274881516588,
+        "paddingHorizontal": 28.985507246376812,
         "width": "100%",
       }
     }
@@ -38,14 +38,19 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
     >
       <View
         style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 18.966824644549764,
-            "height": 595.8744075829384,
-            "marginBottom": 25.28909952606635,
-            "paddingVertical": 37.93364928909953,
-          }
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 18.966824644549764,
+              "height": 595.8744075829384,
+              "marginBottom": 25.28909952606635,
+              "paddingVertical": 37.93364928909953,
+            },
+            Object {
+              "height": 595.8744075829384,
+            },
+          ]
         }
       >
         <View
@@ -491,14 +496,19 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 18.966824644549764,
-              "height": 379.33649289099526,
-              "marginBottom": 25.28909952606635,
-              "paddingVertical": 37.93364928909953,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 18.966824644549764,
+                "height": 595.8744075829384,
+                "marginBottom": 25.28909952606635,
+                "paddingVertical": 37.93364928909953,
+              },
+              Object {
+                "height": 379.33649289099526,
+              },
+            ]
           }
         >
           <View
@@ -506,11 +516,11 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
               Object {
                 "alignItems": "center",
                 "backgroundColor": "black",
-                "borderRadius": 23,
-                "height": 56,
+                "borderRadius": 50,
+                "height": 107.6923076923077,
                 "justifyContent": "center",
                 "marginBottom": 25.28909952606635,
-                "width": 56,
+                "width": 107.6923076923077,
               }
             }
           >

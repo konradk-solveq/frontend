@@ -9,6 +9,7 @@ import {
     getFHorizontalPx,
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
+import {appContainerHorizontalMargin} from '@theme/commonStyle';
 
 import {PrimaryButton, SecondaryButton} from '@components/buttons';
 import {TextIcon} from '@components/icons';
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'column',
         backgroundColor: colors.screenBackgroundPrimary,
-        paddingTop: getFVerticalPx(40),
+        paddingHorizontal: appContainerHorizontalMargin,
         paddingBottom: getFVerticalPx(40),
     },
     tileContainer: {
