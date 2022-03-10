@@ -1,5 +1,6 @@
 const colors = {
     backgroundPrimary: '#fff',
+    screenBackgroundPrimary: '#FAFAFA',
     lightGrey: '#eaeaea',
     grey: '#d3d3d3',
     greyish: '#BDBDBD',
@@ -9,6 +10,7 @@ const colors = {
     white: '#FFFFFF',
     whiteGrey: '#FAFAFA',
     black: '#333333',
+    deepBlack: '#000000',
     transparentGrey: 'rgba(120, 120, 128, 0.2)',
 };
 

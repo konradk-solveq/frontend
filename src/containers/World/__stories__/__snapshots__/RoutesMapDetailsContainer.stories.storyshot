@@ -31,6 +31,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         },
       ]
     }
+    testID="route-map-details-container"
   >
     <View
       style={
@@ -38,7 +39,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           "paddingBottom": 25.28909952606635,
         }
       }
-      testID="prolog-description-test-id-row1"
+      testID="route-map-details-container-prolog-description-row1"
     >
       <Text
         adjustsFontSizeToFit={false}
@@ -89,7 +90,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           "paddingBottom": 31.61137440758294,
         }
       }
-      testID="prolog-description-test-id-row2"
+      testID="route-map-details-container-prolog-description-row2"
     >
       <Text
         adjustsFontSizeToFit={false}
@@ -142,7 +143,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           },
         ]
       }
-      testID="prolog-description-test-id-row3"
+      testID="route-map-details-container-prolog-description-row3"
     >
       <Text
         style={
@@ -178,7 +179,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             undefined,
           ]
         }
-        testID="prolog-description-test-id-row3-likes"
+        testID="route-map-details-container-prolog-description-row3-likes"
       >
         0
       </Text>
@@ -191,6 +192,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           "width": "100%",
         }
       }
+      testID="route-map-details-container-common-action-buttons"
     >
       <View
         accessibilityState={
@@ -242,7 +244,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             ],
           ]
         }
-        testID="secondary-btn-test-id"
+        testID="route-map-details-container-common-action-buttons-primary-button"
       >
         <View
           style={
@@ -261,7 +263,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
               undefined,
             ]
           }
-          testID="secondary-btn-test-id-container"
+          testID="route-map-details-container-common-action-buttons-primary-button-container"
         >
           <Text
             style={
@@ -279,7 +281,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 },
               ]
             }
-            testID="secondary-btn-test-id-icon"
+            testID="route-map-details-container-common-action-buttons-primary-button-icon"
           >
             G
           </Text>
@@ -299,7 +301,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 },
               ]
             }
-            testID="secondary-btn-test-id-text"
+            testID="route-map-details-container-common-action-buttons-primary-button-text"
           >
             RoutesDetails.details.actionButtons.published.primaryAction
           </Text>
@@ -355,7 +357,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             ],
           ]
         }
-        testID="secondary-btn-test-id"
+        testID="route-map-details-container-common-action-buttons-secondary-button"
       >
         <View
           style={
@@ -374,7 +376,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
               undefined,
             ]
           }
-          testID="secondary-btn-test-id-container"
+          testID="route-map-details-container-common-action-buttons-secondary-button-container"
         >
           <Text
             style={
@@ -392,7 +394,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 },
               ]
             }
-            testID="secondary-btn-test-id-icon"
+            testID="route-map-details-container-common-action-buttons-secondary-button-icon"
           >
             S
           </Text>
@@ -412,7 +414,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 },
               ]
             }
-            testID="secondary-btn-test-id-text"
+            testID="route-map-details-container-common-action-buttons-secondary-button-text"
           >
             RoutesDetails.details.actionButtons.published.secondaryAction
           </Text>
@@ -431,7 +433,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        testID="icon-btn-test-id"
+        testID="route-map-details-container-common-action-buttons-icon-button"
       >
         <View
           style={
@@ -465,7 +467,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 undefined,
               ]
             }
-            testID="icon-btn-test-id-icon"
+            testID="route-map-details-container-common-action-buttons-icon-button-icon"
           >
             V
           </Text>
@@ -503,7 +505,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 18,
                   "fontWeight": "600",
@@ -522,10 +524,10 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Regular",
                   "fontSize": 16,
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
                 undefined,
@@ -541,10 +543,10 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Regular",
                 "fontSize": 16,
-                "lineHeight": 28,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
               undefined,
@@ -567,7 +569,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "fontWeight": "600",
@@ -660,7 +662,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "fontWeight": "600",
@@ -1125,6 +1127,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         undefined,
       ]
     }
+    testID="route-map-details-container"
   >
     <View
       style={
@@ -1132,7 +1135,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           "paddingBottom": 25.28909952606635,
         }
       }
-      testID="prolog-description-test-id-row1"
+      testID="route-map-details-container-prolog-description-row1"
     >
       <Text
         adjustsFontSizeToFit={false}
@@ -1183,7 +1186,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           "paddingBottom": 31.61137440758294,
         }
       }
-      testID="prolog-description-test-id-row2"
+      testID="route-map-details-container-prolog-description-row2"
     >
       <Text
         adjustsFontSizeToFit={false}
@@ -1236,7 +1239,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           },
         ]
       }
-      testID="prolog-description-test-id-row3"
+      testID="route-map-details-container-prolog-description-row3"
     >
       <Text
         style={
@@ -1272,7 +1275,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             undefined,
           ]
         }
-        testID="prolog-description-test-id-row3-likes"
+        testID="route-map-details-container-prolog-description-row3-likes"
       >
         0
       </Text>
@@ -1285,6 +1288,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           "width": "100%",
         }
       }
+      testID="route-map-details-container-common-action-buttons"
     >
       <View
         accessibilityState={
@@ -1336,7 +1340,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             ],
           ]
         }
-        testID="secondary-btn-test-id"
+        testID="route-map-details-container-common-action-buttons-primary-button"
       >
         <View
           style={
@@ -1355,7 +1359,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
               undefined,
             ]
           }
-          testID="secondary-btn-test-id-container"
+          testID="route-map-details-container-common-action-buttons-primary-button-container"
         >
           <Text
             style={
@@ -1373,7 +1377,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 },
               ]
             }
-            testID="secondary-btn-test-id-icon"
+            testID="route-map-details-container-common-action-buttons-primary-button-icon"
           >
             G
           </Text>
@@ -1393,7 +1397,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 },
               ]
             }
-            testID="secondary-btn-test-id-text"
+            testID="route-map-details-container-common-action-buttons-primary-button-text"
           >
             RoutesDetails.details.actionButtons.published.primaryAction
           </Text>
@@ -1449,7 +1453,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             ],
           ]
         }
-        testID="secondary-btn-test-id"
+        testID="route-map-details-container-common-action-buttons-secondary-button"
       >
         <View
           style={
@@ -1468,7 +1472,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
               undefined,
             ]
           }
-          testID="secondary-btn-test-id-container"
+          testID="route-map-details-container-common-action-buttons-secondary-button-container"
         >
           <Text
             style={
@@ -1486,7 +1490,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 },
               ]
             }
-            testID="secondary-btn-test-id-icon"
+            testID="route-map-details-container-common-action-buttons-secondary-button-icon"
           >
             S
           </Text>
@@ -1506,7 +1510,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 },
               ]
             }
-            testID="secondary-btn-test-id-text"
+            testID="route-map-details-container-common-action-buttons-secondary-button-text"
           >
             RoutesDetails.details.actionButtons.published.secondaryAction
           </Text>
@@ -1525,7 +1529,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
-        testID="icon-btn-test-id"
+        testID="route-map-details-container-common-action-buttons-icon-button"
       >
         <View
           style={
@@ -1559,7 +1563,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 undefined,
               ]
             }
-            testID="icon-btn-test-id-icon"
+            testID="route-map-details-container-common-action-buttons-icon-button-icon"
           >
             V
           </Text>
@@ -1597,7 +1601,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 18,
                   "fontWeight": "600",
@@ -1616,10 +1620,10 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Regular",
                   "fontSize": 16,
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                   "textAlign": "left",
                 },
                 undefined,
@@ -1635,10 +1639,10 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Regular",
                 "fontSize": 16,
-                "lineHeight": 28,
+                "lineHeight": 24,
                 "textAlign": "left",
               },
               undefined,
@@ -1661,7 +1665,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "fontWeight": "600",
@@ -1754,7 +1758,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "fontWeight": "600",

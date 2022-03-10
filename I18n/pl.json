@@ -480,7 +480,10 @@
             "actionButtons": {
                 "published": {
                     "primaryAction": "Rozpocznij",
-                    "secondaryAction": "Zapisz"
+                    "plannedPrimaryAction": "Udostępnij",
+                    "plannedPrimaryAlternativeAction": "Upubllicznij",
+                    "secondaryAction": "Zapisz",
+                    "plannedSecondaryAction": "Edytuj"
                 }
             }
         },
@@ -568,7 +571,20 @@
         "btn": "USUŃ ROWER",
         "removeAlert": "Czy chcesz usunąć rower z aplikacji?",
         "removveAction": "Usuń",
-        "cancelAction": "Anuluj"
+        "cancelAction": "Anuluj",
+        "noBikes": {
+            "addBikeTile": {
+                "header": "Dodaj swój rower",
+                "body": "Podaj numer ramy i poznaj wszystkie \n szczegóły swojego roweru.",
+                "primaryButton": "Dodaj rower kross",
+                "secondaryButton": "Dodaj rower innej marki"
+            },
+            "servicesTile": {
+                "header": "Punkty serwisowe",
+                "body": "Chcesz naprawiać swój rower? \n Czas przeglądu się zbliża?",
+                "button": "Sprawdź"
+            }
+        }
     },
     "MainBikeParams": {
         "header": " Rower",

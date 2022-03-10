@@ -8,3 +8,4 @@ import '@components/divider/__stories__';
 
 import '@containers/World/__stories__';
 import '@containers/World/components/__stories__';
+import '@containers/Bike/__stories__';
