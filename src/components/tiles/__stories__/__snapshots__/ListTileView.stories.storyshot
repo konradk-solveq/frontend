@@ -203,19 +203,15 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
                 <View
                   style={
@@ -228,15 +224,25 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                 >
                   <Text
                     style={
-                      Object {
-                        "color": "#333333",
-                        "fontFamily": "mykross",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": "mykross",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#c63733",
+                          "fontSize": 20,
+                        },
+                        Object {
+                          "color": "#333333",
+                          "fontSize": 46.15384615384615,
+                          "height": 46.15384615384615,
+                          "textAlign": "center",
+                          "width": 46.15384615384615,
+                        },
+                      ]
                     }
+                    testID="text-icon-test-id"
                   >
                     I
                   </Text>
@@ -254,7 +260,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                         },
                         Object {
                           "marginLeft": 7.6923076923076925,
-                          "top": -1.9230769230769231,
+                          "top": 3.8461538461538463,
                         },
                       ]
                     }
@@ -275,31 +281,37 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   accessible={true}
                   collapsable={false}
                   focusable={true}
-                  nativeID="animatedComponent"
+                  onBlur={[Function]}
                   onClick={[Function]}
+                  onFocus={[Function]}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
                 >
                   <Text
                     style={
-                      Object {
-                        "color": "#333333",
-                        "fontFamily": "mykross",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": "mykross",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#c63733",
+                          "fontSize": 20,
+                        },
+                        Object {
+                          "color": "#333333",
+                          "fontSize": 46.15384615384615,
+                          "height": 46.15384615384615,
+                          "textAlign": "center",
+                          "width": 46.15384615384615,
+                        },
+                      ]
                     }
+                    testID="text-icon-test-id"
                   >
                     S
                   </Text>
@@ -309,44 +321,40 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
-                <View
+                <Text
                   style={
-                    Object {
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "marginRight": 30.76923076923077,
-                    }
-                  }
-                >
-                  <Text
-                    style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#c63733",
+                        "fontSize": 20,
+                      },
                       Object {
                         "color": "#333333",
-                        "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
                         "textAlign": "center",
                         "width": 46.15384615384615,
-                      }
-                    }
-                  >
-                    W
-                  </Text>
-                </View>
+                      },
+                    ]
+                  }
+                  testID="text-icon-test-id"
+                >
+                  W
+                </Text>
               </View>
             </View>
             <View
@@ -362,31 +370,37 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
                 <Text
                   style={
-                    Object {
-                      "color": "#333333",
-                      "fontFamily": "mykross",
-                      "fontSize": 46.15384615384615,
-                      "height": 46.15384615384615,
-                      "textAlign": "center",
-                      "width": 46.15384615384615,
-                    }
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#c63733",
+                        "fontSize": 20,
+                      },
+                      Object {
+                        "color": "#333333",
+                        "fontSize": 46.15384615384615,
+                        "height": 46.15384615384615,
+                        "textAlign": "center",
+                        "width": 46.15384615384615,
+                      },
+                    ]
                   }
+                  testID="text-icon-test-id"
                 >
                   Y
                 </Text>
@@ -603,44 +617,40 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
-                <View
+                <Text
                   style={
-                    Object {
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "marginRight": 30.76923076923077,
-                    }
-                  }
-                >
-                  <Text
-                    style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#c63733",
+                        "fontSize": 20,
+                      },
                       Object {
                         "color": "#333333",
-                        "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
                         "textAlign": "center",
                         "width": 46.15384615384615,
-                      }
-                    }
-                  >
-                    E
-                  </Text>
-                </View>
+                      },
+                    ]
+                  }
+                  testID="text-icon-test-id"
+                >
+                  E
+                </Text>
               </View>
             </View>
             <View
@@ -656,31 +666,37 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
                 <Text
                   style={
-                    Object {
-                      "color": "#333333",
-                      "fontFamily": "mykross",
-                      "fontSize": 46.15384615384615,
-                      "height": 46.15384615384615,
-                      "textAlign": "center",
-                      "width": 46.15384615384615,
-                    }
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#c63733",
+                        "fontSize": 20,
+                      },
+                      Object {
+                        "color": "#333333",
+                        "fontSize": 46.15384615384615,
+                        "height": 46.15384615384615,
+                        "textAlign": "center",
+                        "width": 46.15384615384615,
+                      },
+                    ]
                   }
+                  testID="text-icon-test-id"
                 >
                   Y
                 </Text>
@@ -897,19 +913,15 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
                 <View
                   style={
@@ -922,15 +934,25 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 >
                   <Text
                     style={
-                      Object {
-                        "color": "#333333",
-                        "fontFamily": "mykross",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": "mykross",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#c63733",
+                          "fontSize": 20,
+                        },
+                        Object {
+                          "color": "#333333",
+                          "fontSize": 46.15384615384615,
+                          "height": 46.15384615384615,
+                          "textAlign": "center",
+                          "width": 46.15384615384615,
+                        },
+                      ]
                     }
+                    testID="text-icon-test-id"
                   >
                     I
                   </Text>
@@ -948,7 +970,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                         },
                         Object {
                           "marginLeft": 7.6923076923076925,
-                          "top": -1.9230769230769231,
+                          "top": 3.8461538461538463,
                         },
                       ]
                     }
@@ -969,31 +991,37 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   accessible={true}
                   collapsable={false}
                   focusable={true}
-                  nativeID="animatedComponent"
+                  onBlur={[Function]}
                   onClick={[Function]}
+                  onFocus={[Function]}
                   onResponderGrant={[Function]}
                   onResponderMove={[Function]}
                   onResponderRelease={[Function]}
                   onResponderTerminate={[Function]}
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
-                  style={
-                    Object {
-                      "opacity": 1,
-                    }
-                  }
                 >
                   <Text
                     style={
-                      Object {
-                        "color": "#333333",
-                        "fontFamily": "mykross",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": "mykross",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#c63733",
+                          "fontSize": 20,
+                        },
+                        Object {
+                          "color": "#333333",
+                          "fontSize": 46.15384615384615,
+                          "height": 46.15384615384615,
+                          "textAlign": "center",
+                          "width": 46.15384615384615,
+                        },
+                      ]
                     }
+                    testID="text-icon-test-id"
                   >
                     S
                   </Text>
@@ -1003,44 +1031,40 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
-                <View
+                <Text
                   style={
-                    Object {
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "marginRight": 30.76923076923077,
-                    }
-                  }
-                >
-                  <Text
-                    style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#c63733",
+                        "fontSize": 20,
+                      },
                       Object {
                         "color": "#333333",
-                        "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
                         "textAlign": "center",
                         "width": 46.15384615384615,
-                      }
-                    }
-                  >
-                    W
-                  </Text>
-                </View>
+                      },
+                    ]
+                  }
+                  testID="text-icon-test-id"
+                >
+                  W
+                </Text>
               </View>
             </View>
             <View
@@ -1056,31 +1080,37 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
                 <Text
                   style={
-                    Object {
-                      "color": "#333333",
-                      "fontFamily": "mykross",
-                      "fontSize": 46.15384615384615,
-                      "height": 46.15384615384615,
-                      "textAlign": "center",
-                      "width": 46.15384615384615,
-                    }
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#c63733",
+                        "fontSize": 20,
+                      },
+                      Object {
+                        "color": "#333333",
+                        "fontSize": 46.15384615384615,
+                        "height": 46.15384615384615,
+                        "textAlign": "center",
+                        "width": 46.15384615384615,
+                      },
+                    ]
                   }
+                  testID="text-icon-test-id"
                 >
                   Y
                 </Text>
@@ -1297,19 +1327,15 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
                 <View
                   style={
@@ -1322,15 +1348,25 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                 >
                   <Text
                     style={
-                      Object {
-                        "color": "#333333",
-                        "fontFamily": "mykross",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      }
+                      Array [
+                        Object {
+                          "fontFamily": "mykross",
+                          "textAlign": "center",
+                        },
+                        Object {
+                          "color": "#c63733",
+                          "fontSize": 20,
+                        },
+                        Object {
+                          "color": "#333333",
+                          "fontSize": 46.15384615384615,
+                          "height": 46.15384615384615,
+                          "textAlign": "center",
+                          "width": 46.15384615384615,
+                        },
+                      ]
                     }
+                    testID="text-icon-test-id"
                   >
                     I
                   </Text>
@@ -1348,7 +1384,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                         },
                         Object {
                           "marginLeft": 7.6923076923076925,
-                          "top": -1.9230769230769231,
+                          "top": 3.8461538461538463,
                         },
                       ]
                     }
@@ -1362,44 +1398,40 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
-                <View
+                <Text
                   style={
-                    Object {
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "marginRight": 30.76923076923077,
-                    }
-                  }
-                >
-                  <Text
-                    style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#c63733",
+                        "fontSize": 20,
+                      },
                       Object {
                         "color": "#333333",
-                        "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
                         "textAlign": "center",
                         "width": 46.15384615384615,
-                      }
-                    }
-                  >
-                    W
-                  </Text>
-                </View>
+                      },
+                    ]
+                  }
+                  testID="text-icon-test-id"
+                >
+                  W
+                </Text>
               </View>
             </View>
             <View
@@ -1415,31 +1447,37 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
+                onBlur={[Function]}
                 onClick={[Function]}
+                onFocus={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "opacity": 1,
-                  }
-                }
               >
                 <Text
                   style={
-                    Object {
-                      "color": "#333333",
-                      "fontFamily": "mykross",
-                      "fontSize": 46.15384615384615,
-                      "height": 46.15384615384615,
-                      "textAlign": "center",
-                      "width": 46.15384615384615,
-                    }
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#c63733",
+                        "fontSize": 20,
+                      },
+                      Object {
+                        "color": "#333333",
+                        "fontSize": 46.15384615384615,
+                        "height": 46.15384615384615,
+                        "textAlign": "center",
+                        "width": 46.15384615384615,
+                      },
+                    ]
                   }
+                  testID="text-icon-test-id"
                 >
                   Y
                 </Text>
