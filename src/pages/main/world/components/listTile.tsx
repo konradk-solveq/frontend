@@ -7,7 +7,7 @@ import {getImageToDisplay} from '@utils/transformData';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useNavigation} from '@react-navigation/core';
 import {RegularStackRoute} from '@navigation/route';
-import {capitalize, timeWithHandM} from '@src/helpers/stringFoo';
+import {capitalize, timeWithHoursAndMinutes} from '@src/helpers/stringFoo';
 import {getFullDate} from '@src/helpers/overviews';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {addPlannedMap} from '@storage/actions/maps';
@@ -94,7 +94,7 @@ const ListTile: React.FC<PropsI> = ({
             if (!mapData?.formattedTimeString) {
                 return null;
             }
-            const ti = timeWithHandM(mapData.formattedTimeString);
+            const ti = timeWithHoursAndMinutes(mapData.formattedTimeString);
             return `${ti.h}${t('hours')} ${ti.m}${t('minutes')}`;
         };
 

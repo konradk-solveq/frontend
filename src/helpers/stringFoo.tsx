@@ -35,7 +35,7 @@ const simplyTimer = (time: number, separator = ':') => {
     return hou + separator + twoDigits(min);
 };
 
-const timeWithHandM = (time: string) => {
+const timeWithHoursAndMinutes = (time: string) => {
     const splited = time.split(':');
     return {
         h: splited[0],
@@ -51,6 +51,6 @@ export {
     twoDigits,
     timer,
     simplyTimer,
-    timeWithHandM,
+    timeWithHoursAndMinutes,
     capitalize,
 };
