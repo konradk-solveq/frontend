@@ -1,0 +1,2196 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#FAFAFA",
+          "height": "100%",
+          "paddingHorizontal": 28.985507246376812,
+          "width": "100%",
+        },
+        Object {
+          "borderColor": "#C63733",
+          "borderWidth": 1,
+        },
+      ]
+    }
+    testID="route-map-details-container"
+  >
+    <View
+      style={
+        Object {
+          "paddingBottom": 25.28909952606635,
+        }
+      }
+      testID="route-map-details-container-prolog-description-row1"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header2-test-id"
+      >
+        Trasa 1 z dnia 18/02/2022
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header2-test-id"
+      >
+        1,18
+        km - 
+        0h 17m
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 31.61137440758294,
+        }
+      }
+      testID="route-map-details-container-prolog-description-row2"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-secondary-test-id"
+      >
+        0,01 RoutesDetails.details.distanceToStart
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-secondary-test-id"
+      >
+        Łatwa
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingBottom": 31.61137440758294,
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+          },
+        ]
+      }
+      testID="route-map-details-container-prolog-description-row3"
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#333333",
+              "fontSize": 20,
+            },
+            Object {
+              "marginRight": 15.384615384615385,
+            },
+          ]
+        }
+        testID="text-icon-test-id"
+      >
+        I
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="route-map-details-container-prolog-description-row3-likes"
+      >
+        0
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "width": "100%",
+        }
+      }
+      testID="route-map-details-container-common-action-buttons"
+    >
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "elevation": 5,
+              "shadowColor": "rgba(51, 51, 51, 0.07)",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 7.6923076923076925,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 15.384615384615385,
+            },
+            Array [
+              Object {
+                "height": 92.3076923076923,
+                "width": 565.3846153846154,
+              },
+              Object {
+                "height": 75.86729857819905,
+                "width": 290.3846153846154,
+              },
+            ],
+          ]
+        }
+        testID="route-map-details-container-common-action-buttons-primary-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#C63733",
+              },
+              undefined,
+            ]
+          }
+          testID="route-map-details-container-common-action-buttons-primary-button-container"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#FFFFFF",
+                  "fontSize": 20,
+                },
+                Object {
+                  "marginRight": 15.384615384615385,
+                },
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-primary-button-icon"
+          >
+            G
+          </Text>
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#FFFFFF",
+                },
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-primary-button-text"
+          >
+            RoutesDetails.details.actionButtons.published.primaryAction
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "elevation": 5,
+              "shadowColor": "rgba(51, 51, 51, 0.07)",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 7.6923076923076925,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 15.384615384615385,
+            },
+            Array [
+              Object {
+                "height": 92.3076923076923,
+                "width": 565.3846153846154,
+              },
+              Object {
+                "height": 75.86729857819905,
+                "width": 275,
+              },
+            ],
+          ]
+        }
+        testID="route-map-details-container-common-action-buttons-secondary-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              undefined,
+            ]
+          }
+          testID="route-map-details-container-common-action-buttons-secondary-button-container"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#C63733",
+                  "fontSize": 20,
+                },
+                Object {
+                  "marginRight": 15.384615384615385,
+                },
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-secondary-button-icon"
+          >
+            S
+          </Text>
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#C63733",
+                },
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-secondary-button-text"
+          >
+            RoutesDetails.details.actionButtons.published.secondaryAction
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="route-map-details-container-common-action-buttons-icon-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignContent": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "height": 84.61538461538461,
+                "justifyContent": "center",
+                "width": 84.61538461538461,
+              },
+              Object {
+                "height": 75.86729857819905,
+                "width": 92.3076923076923,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#C63733",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-icon-button-icon"
+          >
+            V
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "marginTop": 37.93364928909953,
+          },
+          Object {
+            "paddingBottom": 37.93364928909953,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingBottom": 37.93364928909953,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "paddingBottom": 37.93364928909953,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="header3-test-id"
+          >
+            RoutesDetails.details.descriptionTitle
+          </Text>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            Ar
+          </Text>
+        </View>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          Szutrowa
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingBottom": 37.93364928909953,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "paddingBottom": 25.28909952606635,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        >
+          RoutesDetails.details.imagesTitle
+        </Text>
+        <RCTScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={
+            Array [
+              Object {
+                "height": 150,
+              },
+              Object {
+                "height": 126.44549763033176,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+              >
+                <Image
+                  resizeMode="cover"
+                  source={
+                    Object {
+                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_square_480.jpg",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#ededed",
+                        "borderRadius": 16,
+                        "height": 125,
+                        "marginRight": 15,
+                        "width": 125,
+                      },
+                      Object {
+                        "borderRadius": 15.384615384615385,
+                        "height": 126.44549763033176,
+                        "width": 211.53846153846155,
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingBottom": 37.93364928909953,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "paddingBottom": 25.28909952606635,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        >
+          RoutesDetails.details.tagsTitle
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+              },
+              undefined,
+            ]
+          }
+          testID="tags-world-test-id"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "marginBottom": 12.644549763033176,
+                "marginRight": 15.384615384615385,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 15.384615384615385,
+              }
+            }
+            testID="tags-world-test-id-tags-element"
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  undefined,
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              widokowa
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "marginBottom": 12.644549763033176,
+                "marginRight": 15.384615384615385,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 15.384615384615385,
+              }
+            }
+            testID="tags-world-test-id-tags-element"
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  undefined,
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              weekendowa
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "marginBottom": 12.644549763033176,
+                "marginRight": 15.384615384615385,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 15.384615384615385,
+              }
+            }
+            testID="tags-world-test-id-tags-element"
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  undefined,
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              trekkingowa
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          RoutesDetails.details.author
+          : 
+          Rowerzysta
+          , 
+          RoutesDetails.details.creationPrefix
+          :
+           
+          18.02.2022, 15:52:02
+        </Text>
+      </View>
+      <Modal
+        animationType="slide"
+        hardwareAccelerated={false}
+        onRequestClose={[Function]}
+        statusBarTranslucent={true}
+        visible={false}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#313131",
+                "flex": 1,
+                "paddingBottom": 94.83412322274881,
+              },
+              Object {
+                "paddingTop": 105.89810426540285,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "position": "absolute",
+                  "right": 38.46153846153846,
+                  "zIndex": 10,
+                },
+                Object {
+                  "top": 105.89810426540285,
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={36.231884057971016}
+                bbWidth={36.231884057971016}
+                focusable={false}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Array [
+                      Object {
+                        "height": 36.231884057971016,
+                        "margin": 36.231884057971016,
+                        "width": 36.231884057971016,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "flex": 0,
+                      "height": 36,
+                      "width": 36,
+                    },
+                  ]
+                }
+                vbHeight={20}
+                vbWidth={20}
+              >
+                <RNSVGGroup>
+                  <RNSVGPath
+                    d="M1.043 1.043a1 1 0 011.414 0L10 8.585l7.543-7.542a1 1 0 011.497 1.32l-.083.094L11.415 10l7.542 7.543.083.094a1 1 0 01-1.497 1.32L10 11.415l-7.543 7.542a1 1 0 01-1.497-1.32l.083-.094L8.585 10 1.043 2.457.96 2.363a1 1 0 01.083-1.32z"
+                    fill={4294967295}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  />
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "flex": 1,
+                    "position": "relative",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <RCTScrollView
+                activeDot={
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderColor": "#d8232a",
+                        "borderRadius": 50,
+                        "borderWidth": 1,
+                        "height": 13,
+                        "marginHorizontal": 3,
+                        "width": 13,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#d8232a",
+                          "borderRadius": 4,
+                          "height": 5,
+                          "marginBottom": 3,
+                          "marginLeft": 3,
+                          "marginRight": 3,
+                          "marginTop": 3,
+                          "width": 5,
+                        }
+                      }
+                    />
+                  </View>
+                }
+                activeDotColor="#d8232a"
+                automaticallyAdjustContentInsets={false}
+                autoplay={false}
+                autoplayDirection={true}
+                autoplayTimeout={2.5}
+                bounces={false}
+                contentContainerStyle={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
+                    undefined,
+                  ]
+                }
+                contentOffset={
+                  Object {
+                    "x": 0,
+                  }
+                }
+                disableNextButton={false}
+                disablePrevButton={false}
+                dotColor="#f0f0f0"
+                dotStyle={
+                  Object {
+                    "borderRadius": 50,
+                    "height": 13,
+                    "marginHorizontal": 20,
+                    "opacity": 0.8,
+                    "width": 13,
+                  }
+                }
+                horizontal={true}
+                index={0}
+                loadMinimal={false}
+                loadMinimalSize={1}
+                loop={false}
+                onIndexChanged={[Function]}
+                onMomentumScrollEnd={[Function]}
+                onScrollBeginDrag={[Function]}
+                onScrollEndDrag={[Function]}
+                pagingEnabled={true}
+                removeClippedSubviews={true}
+                scrollEnabled={true}
+                scrollsToTop={false}
+                showsButtons={false}
+                showsHorizontalScrollIndicator={false}
+                showsPagination={true}
+                showsVerticalScrollIndicator={false}
+              >
+                <View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "height": 1334,
+                          "width": 750,
+                        },
+                        Object {
+                          "backgroundColor": "transparent",
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": "100%",
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "margin": 0,
+                              "width": "100%",
+                            },
+                            Object {
+                              "maxHeight": "80%",
+                            },
+                          ]
+                        }
+                      >
+                        <Image
+                          resizeMode="contain"
+                          source={
+                            Object {
+                              "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_vertical_1600.jpg",
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "height": "100%",
+                                "width": "100%",
+                              },
+                              undefined,
+                            ]
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </RCTScrollView>
+            </View>
+            <Text
+              style={
+                Object {
+                  "bottom": 158.0568720379147,
+                  "color": "#ffffff",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 15,
+                  "left": 76.92307692307692,
+                  "letterSpacing": 0.42,
+                  "position": "absolute",
+                }
+              }
+            >
+              RoutesDetails.details.author
+              : 
+              Rowerzysta
+            </Text>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#FAFAFA",
+          "height": "100%",
+          "paddingHorizontal": 28.985507246376812,
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+    testID="route-map-details-container"
+  >
+    <View
+      style={
+        Object {
+          "paddingBottom": 25.28909952606635,
+        }
+      }
+      testID="route-map-details-container-prolog-description-row1"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header2-test-id"
+      >
+        Trasa 1 z dnia 18/02/2022
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header2-test-id"
+      >
+        1,18
+        km - 
+        0h 17m
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 31.61137440758294,
+        }
+      }
+      testID="route-map-details-container-prolog-description-row2"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-secondary-test-id"
+      >
+        0,01 RoutesDetails.details.distanceToStart
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-secondary-test-id"
+      >
+        Łatwa
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingBottom": 31.61137440758294,
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+          },
+        ]
+      }
+      testID="route-map-details-container-prolog-description-row3"
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#333333",
+              "fontSize": 20,
+            },
+            Object {
+              "marginRight": 15.384615384615385,
+            },
+          ]
+        }
+        testID="text-icon-test-id"
+      >
+        I
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="route-map-details-container-prolog-description-row3-likes"
+      >
+        0
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "width": "100%",
+        }
+      }
+      testID="route-map-details-container-common-action-buttons"
+    >
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "elevation": 5,
+              "shadowColor": "rgba(51, 51, 51, 0.07)",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 7.6923076923076925,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 15.384615384615385,
+            },
+            Array [
+              Object {
+                "height": 92.3076923076923,
+                "width": 565.3846153846154,
+              },
+              Object {
+                "height": 75.86729857819905,
+                "width": 290.3846153846154,
+              },
+            ],
+          ]
+        }
+        testID="route-map-details-container-common-action-buttons-primary-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#C63733",
+              },
+              undefined,
+            ]
+          }
+          testID="route-map-details-container-common-action-buttons-primary-button-container"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#FFFFFF",
+                  "fontSize": 20,
+                },
+                Object {
+                  "marginRight": 15.384615384615385,
+                },
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-primary-button-icon"
+          >
+            G
+          </Text>
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#FFFFFF",
+                },
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-primary-button-text"
+          >
+            RoutesDetails.details.actionButtons.published.primaryAction
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "elevation": 5,
+              "shadowColor": "rgba(51, 51, 51, 0.07)",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 7.6923076923076925,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 15.384615384615385,
+            },
+            Array [
+              Object {
+                "height": 92.3076923076923,
+                "width": 565.3846153846154,
+              },
+              Object {
+                "height": 75.86729857819905,
+                "width": 275,
+              },
+            ],
+          ]
+        }
+        testID="route-map-details-container-common-action-buttons-secondary-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              undefined,
+            ]
+          }
+          testID="route-map-details-container-common-action-buttons-secondary-button-container"
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#C63733",
+                  "fontSize": 20,
+                },
+                Object {
+                  "marginRight": 15.384615384615385,
+                },
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-secondary-button-icon"
+          >
+            S
+          </Text>
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#C63733",
+                },
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-secondary-button-text"
+          >
+            RoutesDetails.details.actionButtons.published.secondaryAction
+          </Text>
+        </View>
+      </View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="route-map-details-container-common-action-buttons-icon-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignContent": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "height": 84.61538461538461,
+                "justifyContent": "center",
+                "width": 84.61538461538461,
+              },
+              Object {
+                "height": 75.86729857819905,
+                "width": 92.3076923076923,
+              },
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#C63733",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+            testID="route-map-details-container-common-action-buttons-icon-button-icon"
+          >
+            V
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "marginTop": 37.93364928909953,
+          },
+          Object {
+            "paddingBottom": 37.93364928909953,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingBottom": 37.93364928909953,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "paddingBottom": 37.93364928909953,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="header3-test-id"
+          >
+            RoutesDetails.details.descriptionTitle
+          </Text>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            Ar
+          </Text>
+        </View>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          Szutrowa
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingBottom": 37.93364928909953,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "paddingBottom": 25.28909952606635,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        >
+          RoutesDetails.details.imagesTitle
+        </Text>
+        <RCTScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={
+            Array [
+              Object {
+                "height": 150,
+              },
+              Object {
+                "height": 126.44549763033176,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+              >
+                <Image
+                  resizeMode="cover"
+                  source={
+                    Object {
+                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_square_480.jpg",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#ededed",
+                        "borderRadius": 16,
+                        "height": 125,
+                        "marginRight": 15,
+                        "width": 125,
+                      },
+                      Object {
+                        "borderRadius": 15.384615384615385,
+                        "height": 126.44549763033176,
+                        "width": 211.53846153846155,
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingBottom": 37.93364928909953,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "paddingBottom": 25.28909952606635,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        >
+          RoutesDetails.details.tagsTitle
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+              },
+              undefined,
+            ]
+          }
+          testID="tags-world-test-id"
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "marginBottom": 12.644549763033176,
+                "marginRight": 15.384615384615385,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 15.384615384615385,
+              }
+            }
+            testID="tags-world-test-id-tags-element"
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  undefined,
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              widokowa
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "marginBottom": 12.644549763033176,
+                "marginRight": 15.384615384615385,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 15.384615384615385,
+              }
+            }
+            testID="tags-world-test-id-tags-element"
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  undefined,
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              weekendowa
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "marginBottom": 12.644549763033176,
+                "marginRight": 15.384615384615385,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 15.384615384615385,
+              }
+            }
+            testID="tags-world-test-id-tags-element"
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  undefined,
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              trekkingowa
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          RoutesDetails.details.author
+          : 
+          Rowerzysta
+          , 
+          RoutesDetails.details.creationPrefix
+          :
+           
+          18.02.2022, 15:52:02
+        </Text>
+      </View>
+      <Modal
+        animationType="slide"
+        hardwareAccelerated={false}
+        onRequestClose={[Function]}
+        statusBarTranslucent={true}
+        visible={false}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#313131",
+                "flex": 1,
+                "paddingBottom": 94.83412322274881,
+              },
+              Object {
+                "paddingTop": 105.89810426540285,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "position": "absolute",
+                  "right": 38.46153846153846,
+                  "zIndex": 10,
+                },
+                Object {
+                  "top": 105.89810426540285,
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={36.231884057971016}
+                bbWidth={36.231884057971016}
+                focusable={false}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Array [
+                      Object {
+                        "height": 36.231884057971016,
+                        "margin": 36.231884057971016,
+                        "width": 36.231884057971016,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "flex": 0,
+                      "height": 36,
+                      "width": 36,
+                    },
+                  ]
+                }
+                vbHeight={20}
+                vbWidth={20}
+              >
+                <RNSVGGroup>
+                  <RNSVGPath
+                    d="M1.043 1.043a1 1 0 011.414 0L10 8.585l7.543-7.542a1 1 0 011.497 1.32l-.083.094L11.415 10l7.542 7.543.083.094a1 1 0 01-1.497 1.32L10 11.415l-7.543 7.542a1 1 0 01-1.497-1.32l.083-.094L8.585 10 1.043 2.457.96 2.363a1 1 0 01.083-1.32z"
+                    fill={4294967295}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  />
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "flex": 1,
+                    "position": "relative",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <RCTScrollView
+                activeDot={
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderColor": "#d8232a",
+                        "borderRadius": 50,
+                        "borderWidth": 1,
+                        "height": 13,
+                        "marginHorizontal": 3,
+                        "width": 13,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#d8232a",
+                          "borderRadius": 4,
+                          "height": 5,
+                          "marginBottom": 3,
+                          "marginLeft": 3,
+                          "marginRight": 3,
+                          "marginTop": 3,
+                          "width": 5,
+                        }
+                      }
+                    />
+                  </View>
+                }
+                activeDotColor="#d8232a"
+                automaticallyAdjustContentInsets={false}
+                autoplay={false}
+                autoplayDirection={true}
+                autoplayTimeout={2.5}
+                bounces={false}
+                contentContainerStyle={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
+                    undefined,
+                  ]
+                }
+                contentOffset={
+                  Object {
+                    "x": 0,
+                  }
+                }
+                disableNextButton={false}
+                disablePrevButton={false}
+                dotColor="#f0f0f0"
+                dotStyle={
+                  Object {
+                    "borderRadius": 50,
+                    "height": 13,
+                    "marginHorizontal": 20,
+                    "opacity": 0.8,
+                    "width": 13,
+                  }
+                }
+                horizontal={true}
+                index={0}
+                loadMinimal={false}
+                loadMinimalSize={1}
+                loop={false}
+                onIndexChanged={[Function]}
+                onMomentumScrollEnd={[Function]}
+                onScrollBeginDrag={[Function]}
+                onScrollEndDrag={[Function]}
+                pagingEnabled={true}
+                removeClippedSubviews={true}
+                scrollEnabled={true}
+                scrollsToTop={false}
+                showsButtons={false}
+                showsHorizontalScrollIndicator={false}
+                showsPagination={true}
+                showsVerticalScrollIndicator={false}
+              >
+                <View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "height": 1334,
+                          "width": 750,
+                        },
+                        Object {
+                          "backgroundColor": "transparent",
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": "100%",
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "margin": 0,
+                              "width": "100%",
+                            },
+                            Object {
+                              "maxHeight": "80%",
+                            },
+                          ]
+                        }
+                      >
+                        <Image
+                          resizeMode="contain"
+                          source={
+                            Object {
+                              "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_vertical_1600.jpg",
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "height": "100%",
+                                "width": "100%",
+                              },
+                              undefined,
+                            ]
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </RCTScrollView>
+            </View>
+            <Text
+              style={
+                Object {
+                  "bottom": 158.0568720379147,
+                  "color": "#ffffff",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 15,
+                  "left": 76.92307692307692,
+                  "letterSpacing": 0.42,
+                  "position": "absolute",
+                }
+              }
+            >
+              RoutesDetails.details.author
+              : 
+              Rowerzysta
+            </Text>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  </View>
+</View>
+`;

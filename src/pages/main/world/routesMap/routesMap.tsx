@@ -1,35 +1,45 @@
 import React, {useMemo, useState, useEffect, useCallback} from 'react';
+import {InteractionManager} from 'react-native';
 import {WebViewMessageEvent} from 'react-native-webview';
-import {useNavigation} from '@react-navigation/native';
 
 import {Point, RouteMapType} from '@models/places.model';
-import {RegularStackRoute} from '@navigation/route';
-import {RootStackType} from '@type/rootStack';
+import {RouteDetailsActionT} from '@type/screens/routesMap';
 import useGetRouteMapMarkers from '@hooks/useGetRouteMapMarkers';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {jsonParse} from '@utils/transformJson';
+import {getImagesThumbs} from '@utils/transformData';
+import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
+import {globalLocationSelector} from '@storage/selectors/app';
 
 import GenericScreen from '@pages/template/GenericScreen';
-import {RoutesMapContainer} from '@containers/World';
+import {RouteMapDetailsContainer, RoutesMapContainer} from '@containers/World';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {selectorMapTypeEnum} from '@storage/selectors';
-import {fetchMapIfNotExistsLocally} from '@storage/actions/maps';
-import {selectMapPathByIDBasedOnTypeSelector} from '@storage/selectors/map';
+import {addPlannedMap, fetchMapIfNotExistsLocally} from '@storage/actions/maps';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
-import {BasicCoordsType} from '@src/type/coords';
+import {BasicCoordsType} from '@type/coords';
+import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
+import BottomModal from '@components/modals/BottomModal';
 
 const RoutesMap: React.FC = () => {
-    const navigation = useNavigation();
+    const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
     const {mapID, nearestPoint} = useAppRoute<'RoutesMap'>()?.params || {};
+    const globalLcation = useAppSelector(globalLocationSelector);
 
     const {location} = useLocationProvider();
-    const [loc, setLoc] = useState<BasicCoordsType | undefined>();
+    const [loc, setLoc] = useState<BasicCoordsType | undefined>(globalLcation);
     const [routeInfo, setRouteInfo] = useState({
         id: '',
         mapType: selectorMapTypeEnum.regular,
         routeMapType: RouteMapType.BIKE_MAP,
     });
+    const isCreatedByUser = useMemo(
+        () => routeInfo?.mapType === selectorMapTypeEnum.private,
+        [routeInfo?.mapType],
+    );
+
+    const [bottomSheetWithDetails, setBottomSheetWithDetails] = useState(false);
 
     const handleMarkerClick = (id: string, types: string[]) => {
         const isPlanned = types.includes('FAVORITE');
@@ -68,9 +78,14 @@ const RoutesMap: React.FC = () => {
         }
     }, [dispatch, routeInfo]);
 
-    const mapPath = useAppSelector(
-        selectMapPathByIDBasedOnTypeSelector(routeInfo.id, routeInfo.mapType),
+    const mapData = useAppSelector(
+        selectMapDataByIDBasedOnTypeSelector(routeInfo.id, routeInfo.mapType),
     );
+    const mapImages = getImagesThumbs(mapData?.images || []);
+    /* Route has been published */
+    const isPublished = useMemo(() => mapData?.isPublic || false, [
+        mapData?.isPublic,
+    ]);
 
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
     const routeMapMarkers = useMemo(
@@ -110,17 +125,18 @@ const RoutesMap: React.FC = () => {
                  * to avoid uneccessary http requests.
                  */
                 if (loc !== locationToSet) {
+                    /**
+                     * Clear param after new location has been set.
+                     */
+                    navigation.setParams({nearestPoint: undefined});
                     setLoc(locationToSet);
                 }
             }
         }
-    }, [markerToShowDetails, navigation, loc, nearestPoint]);
+    }, [markerToShowDetails, navigation, loc, nearestPoint, mapID]);
 
     const onNavigateBack = () => {
-        navigation.navigate(
-            RegularStackRoute.KROSS_WORLD_SCREEN as keyof RootStackType,
-            {activeTab: ''},
-        );
+        navigation.navigate('WorldTab');
     };
 
     const onWebViewMessageHandler = useCallback(
@@ -165,6 +181,51 @@ const RoutesMap: React.FC = () => {
         [loc, routeMapMarkers],
     );
 
+    /**
+     * Show route details component only when data exists
+     */
+    useEffect(() => {
+        InteractionManager.runAfterInteractions(() => {
+            setBottomSheetWithDetails(mapData ? true : false);
+        });
+    }, [mapData]);
+
+    const onRotueDetailsActionHandler = useCallback(
+        (actionType: RouteDetailsActionT) => {
+            const mapId = mapData?.id;
+            if (!mapId) {
+                return;
+            }
+
+            switch (actionType) {
+                case 'record':
+                    navigation.navigate('Counter', {mapID: mapId});
+                    break;
+                case 'add_to_planned':
+                    dispatch(addPlannedMap(mapId));
+                    break;
+                case 'share':
+                    navigation.navigate('ShareRouteScreen', {
+                        mapID: mapId,
+                        mapType: routeInfo.mapType,
+                    });
+                    break;
+                case 'edit' || 'publish':
+                    navigation.navigate('EditDetails', {
+                        mapID: mapId,
+                        private: isCreatedByUser,
+                    });
+                    break;
+                case 'do_more':
+                    /* TODO: waiting for tasks */
+                    break;
+                default:
+                    break;
+            }
+        },
+        [dispatch, navigation, mapData?.id, routeInfo.mapType, isCreatedByUser],
+    );
+
     return (
         <GenericScreen hideBackArrow transculentStatusBar transculentBottom>
             <RoutesMapContainer
@@ -172,9 +233,19 @@ const RoutesMap: React.FC = () => {
                 onPressClose={onNavigateBack}
                 onWebViewMessage={onWebViewMessageHandler}
                 routesMarkers={routeMapMarkers.routeMarkres}
-                mapPath={mapPath}
+                mapPath={mapData?.path}
                 pathType={routeInfo.mapType}
+                animateButtonsPosition={bottomSheetWithDetails}
             />
+            <BottomModal show={bottomSheetWithDetails}>
+                <RouteMapDetailsContainer
+                    mapData={mapData}
+                    mapImages={mapImages}
+                    onPressAction={onRotueDetailsActionHandler}
+                    isPrivate={isCreatedByUser}
+                    isPublished={isPublished}
+                />
+            </BottomModal>
         </GenericScreen>
     );
 };

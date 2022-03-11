@@ -262,6 +262,18 @@ export class Map {
         return simplyTimer(this.time ? this.time * 1000 : 0);
     }
 
+    /**
+     * @example
+     *
+     * ```typescript
+     * 2h 20m
+     * ```
+     */
+    public get timeFormatedToString(): string {
+        const time = simplyTimer(this.time ? this.time * 1000 : 0, 'h ');
+        return `${time}m`;
+    }
+
     public get firstDifficulty(): string | undefined {
         const difficultyOptions = this.optionsEnums?.difficultyOptions?.[0]
             ?.i18nValue;
@@ -279,6 +291,22 @@ export class Map {
         )?.i18nValue;
 
         return difficultyOptions;
+    }
+
+    public get pickedDifficulties(): string[] | undefined {
+        const values = Array.isArray(this?.difficulty) && this.difficulty;
+        if (!values) {
+            return;
+        }
+
+        const picked: string[] = [];
+        this?.optionsEnums?.difficultyOptions?.forEach(o => {
+            if (values?.includes(o?.enumValue)) {
+                picked.push(o.i18nValue);
+            }
+        });
+
+        return picked;
     }
 
     public get firstSurface(): string | undefined {
@@ -299,6 +327,22 @@ export class Map {
         )?.i18nValue;
 
         return surfaceOptions;
+    }
+
+    public get pickedSurfaces(): string[] | undefined {
+        const values = Array.isArray(this?.surface) && this.surface;
+        if (!values) {
+            return;
+        }
+
+        const picked: string[] = [];
+        this?.optionsEnums?.surfacesOptions?.forEach(o => {
+            if (values?.includes(o?.enumValue)) {
+                picked.push(o.i18nValue);
+            }
+        });
+
+        return picked;
     }
 
     public get createdAtDate(): Date {

@@ -3,7 +3,7 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 
 import {getFHorizontalPx} from '@helpers/appLayoutDimensions';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
-import {Demi16h24} from '@components/texts/texts';
+import {Header2} from '@components/texts/texts';
 
 const styles = StyleSheet.create({
     wrap: {
@@ -54,7 +54,7 @@ export const LikeIcon: FunctionComponent<ILikeProps> = ({
                         ? MykrossIconFont.MYKROSS_ICON_LIKE_ON
                         : MykrossIconFont.MYKROSS_ICON_LIKE_OFF}
                 </Text>
-                <Demi16h24 style={styles.number}>{value}</Demi16h24>
+                <Header2 style={styles.number}>{value}</Header2>
             </View>
         </TouchableOpacity>
     );

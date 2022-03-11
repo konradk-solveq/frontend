@@ -1,0 +1,357 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/World/components/PrologDescription Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "paddingBottom": 25.28909952606635,
+        }
+      }
+      testID="prolog-description-test-id-row1"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header2-test-id"
+      >
+        Trasa 44 z dnia 10/10/2021
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header2-test-id"
+      >
+        2,53
+        km - 
+        1h 52m
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 31.61137440758294,
+        }
+      }
+      testID="prolog-description-test-id-row2"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-secondary-test-id"
+      >
+        0,00 RoutesDetails.details.distanceToStart
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-secondary-test-id"
+      >
+        Umiarkowana
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingBottom": 31.61137440758294,
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+          },
+        ]
+      }
+      testID="prolog-description-test-id-row3"
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#333333",
+              "fontSize": 20,
+            },
+            Object {
+              "marginRight": 15.384615384615385,
+            },
+          ]
+        }
+        testID="text-icon-test-id"
+      >
+        I
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="prolog-description-test-id-row3-likes"
+      >
+        3
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots containers/World/components/PrologDescription Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "paddingBottom": 25.28909952606635,
+        }
+      }
+      testID="prolog-description-test-id-row1"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header2-test-id"
+      >
+        Trasa 44 z dnia 10/10/2021
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header2-test-id"
+      >
+        2,53
+        km - 
+        1h 52m
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 31.61137440758294,
+        }
+      }
+      testID="prolog-description-test-id-row2"
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-secondary-test-id"
+      >
+        0,00 RoutesDetails.details.distanceToStart
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="body-secondary-test-id"
+      >
+        Umiarkowana
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingBottom": 31.61137440758294,
+          },
+          Object {
+            "alignItems": "center",
+            "justifyContent": "flex-start",
+          },
+        ]
+      }
+      testID="prolog-description-test-id-row3"
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#333333",
+              "fontSize": 20,
+            },
+            Object {
+              "marginRight": 15.384615384615385,
+            },
+          ]
+        }
+        testID="text-icon-test-id"
+      >
+        I
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "lineHeight": 28,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="prolog-description-test-id-row3-likes"
+      >
+        3
+      </Text>
+    </View>
+  </View>
+</View>
+`;

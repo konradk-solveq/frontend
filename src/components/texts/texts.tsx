@@ -1,7 +1,8 @@
-import React, {FunctionComponent} from 'react';
-import {StyleSheet, Text, TextStyle} from 'react-native';
+import React, {FunctionComponent, ReactNode} from 'react';
+import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
 
 import {getFFontSize} from '@theme/utils/appLayoutDimensions';
+import colors from '@theme/colors';
 
 /**
  * DIN2014-Demi
@@ -13,10 +14,11 @@ import {getFFontSize} from '@theme/utils/appLayoutDimensions';
  */
 
 type PropsT = {
+    children: ReactNode;
     algin?: 'left' | 'auto' | 'right' | 'center' | 'justify';
     color?: string;
     adjustsFontSizeToFit?: boolean;
-    style?: TextStyle;
+    style?: StyleProp<TextStyle> | undefined;
     testID?: string;
 };
 
@@ -26,8 +28,8 @@ export const BodyPrimary: FunctionComponent<PropsT> = ({
     adjustsFontSizeToFit = false,
     children,
     style,
-    testID = 'demi-16-h28-test-id',
-}) => {
+    testID = 'body-primary-test-id',
+}: PropsT) => {
     const styles = StyleSheet.create({
         text: {
             fontFamily: 'DIN2014-Demi',
@@ -47,21 +49,131 @@ export const BodyPrimary: FunctionComponent<PropsT> = ({
     );
 };
 
-export const Demi16h24: FunctionComponent<PropsT> = ({
+export const BodySecondary: FunctionComponent<PropsT> = ({
     algin,
     color,
     adjustsFontSizeToFit = false,
     children,
     style,
-    testID = 'demi-16-h24-test-id',
-}) => {
+    testID = 'body-secondary-test-id',
+}: PropsT) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Regular',
+            fontSize: getFFontSize(16),
+            lineHeight: getFFontSize(16),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.darkGrey,
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const Paragraph: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'paragraph-test-id',
+}: PropsT) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Regular',
+            fontSize: getFFontSize(16),
+            lineHeight: getFFontSize(28),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.black,
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const Subtitle: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'subtitle-test-id',
+}: PropsT) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Regular',
+            fontSize: getFFontSize(14),
+            lineHeight: getFFontSize(16),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.darkGrey,
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const Header2: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'header2-test-id',
+}: PropsT) => {
     const styles = StyleSheet.create({
         text: {
             fontFamily: 'DIN2014-Demi',
-            fontSize: getFFontSize(18),
-            lineHeight: getFFontSize(28),
+            fontWeight: '600',
+            fontSize: getFFontSize(20),
+            lineHeight: getFFontSize(24),
             textAlign: algin ? algin : 'left',
             color: color ? color : '#333',
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const Header3: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'header3-test-id',
+}: PropsT) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontWeight: '600',
+            fontSize: getFFontSize(18),
+            lineHeight: getFFontSize(24),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.black,
         },
     });
     return (
