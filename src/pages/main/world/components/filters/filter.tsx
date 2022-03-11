@@ -2,11 +2,13 @@ import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {getFontSize, getVerticalPx} from '@helpers/layoutFoo';
 import {SelectOptionType} from '@models/map.model';
 
-import {MultiSelect} from '@sharedComponents/inputs';
+import {MultiSelect} from '@components/inputs';
 import {firstLetterToUpperCase} from '@utils/strings';
+import {getFFontSize} from '@theme/utils/appLayoutDimensions';
+import colors from '@theme/colors';
+import {getFVerticalPx} from '@helpers/appLayoutDimensions';
 
 interface IProps {
     name: string;
@@ -58,13 +60,12 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     name: {
-        fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: getFontSize(18),
-        letterSpacing: 0.5,
-        color: '#313131',
+        fontFamily: 'DIN2014-Demi',
+        fontSize: getFFontSize(18),
+        color: colors.black,
         textAlign: 'left',
-        marginTop: getVerticalPx(20),
-        marginBottom: getVerticalPx(5),
+        marginTop: getFVerticalPx(32),
+        marginBottom: getFVerticalPx(16),
     },
     list: {
         flexDirection: 'row',

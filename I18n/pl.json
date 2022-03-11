@@ -327,25 +327,15 @@
         "resetFilters": "Resetuj",
         "maps": {
             "filtersTitle": "Filtry",
+            "filtersClear": "Wyczyść",
             "filtersDescription": "Określ parametry, które pozwolą zawęzić listę wyświetlanych tras.",
-            "filtersSaveBtn": "Zastosuj",
+            "filtersSaveBtn": "Filtruj",
+            "filtersShowAllBtn": "Pokaż wszystkie wyniki",
             "filtersBackBtn": "Przywróć",
+            "length": "Długość",
+            "loop": "Pętla",
+            "myPublic": "Moje publiczne",
             "filters": {
-                "order": {
-                    "name": "Sortuj po dacie",
-                    "options": [
-                        "Od najnowszych",
-                        "Od najstarszych"
-                    ]
-                },
-                "routeType": {
-                    "name": "Pokaż trasy",
-                    "options": [
-                        "Wszystkie",
-                        "Niepubliczne",
-                        "Publiczne"
-                    ]
-                },
                 "difficulties": {
                     "name": "Poziom trudności",
                     "options": [

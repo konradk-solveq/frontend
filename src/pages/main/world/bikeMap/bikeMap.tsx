@@ -108,6 +108,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
 
     const onFiltersSaveHandler = (picked: PickedFilters) => {
         setShowFiltersModal(false);
+        setShowListLoader(true);
         setSavedMapFilters(picked);
     };
 

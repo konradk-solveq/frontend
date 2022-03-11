@@ -1,0 +1,1451 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/input/MultiSelect Custom 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#555555",
+            "fontFamily": "DIN2014-Demi",
+            "fontSize": 18,
+            "letterSpacing": 0.5,
+            "marginBottom": 7.902843601895735,
+            "textAlign": "left",
+          },
+          Object {},
+        ]
+      }
+    >
+      
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-1"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-1-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-1-text"
+          >
+            Option 1
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-2"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-2-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-2-text"
+          >
+            Option 2
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-3"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-3-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-3-text"
+          >
+            Option 3
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-4"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-4-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-4-text"
+          >
+            Option 4
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-5"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-5-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-5-text"
+          >
+            Opt. 5
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-6"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-6-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-6-text"
+          >
+            Opt. 6
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-7"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-7-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-7-text"
+          >
+            Opt. 7
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-8"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-8-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-8-text"
+          >
+            8
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/input/MultiSelect Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#555555",
+            "fontFamily": "DIN2014-Demi",
+            "fontSize": 18,
+            "letterSpacing": 0.5,
+            "marginBottom": 7.902843601895735,
+            "textAlign": "left",
+          },
+          undefined,
+        ]
+      }
+    >
+      
+    </Text>
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+        }
+      }
+    >
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-1"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-1-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-1-text"
+          >
+            Option 1
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-2"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-2-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-2-text"
+          >
+            Option 2
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-3"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-3-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-3-text"
+          >
+            Option 3
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-4"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-4-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-4-text"
+          >
+            Option 4
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-5"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-5-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-5-text"
+          >
+            Opt. 5
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-6"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-6-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-6-text"
+          >
+            Opt. 6
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-7"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-7-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-7-text"
+          >
+            Opt. 7
+          </Text>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Object {
+              "0": Object {},
+              "height": 69.54502369668246,
+              "marginBottom": 12.644549763033176,
+              "marginRight": 15.384615384615385,
+              "width": "auto",
+            },
+          ]
+        }
+        testID="multiselect-button-8"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              Object {
+                "paddingHorizontal": 30.76923076923077,
+                "width": "auto",
+              },
+            ]
+          }
+          testID="multiselect-button-8-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#333333",
+                },
+              ]
+            }
+            testID="multiselect-button-8-text"
+          >
+            8
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

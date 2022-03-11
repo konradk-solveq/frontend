@@ -17,25 +17,8 @@ export interface FiltersI {
     };
 }
 
-export const getFilters = (
-    mapOptions: OptionType,
-    orderTranslations: string[],
-): FiltersI => {
+export const getFilters = (mapOptions: OptionType): FiltersI => {
     let filters: FiltersI = {
-        order: {
-            name: 'order',
-            options: [
-                {
-                    enumValue: 'desc',
-                    i18nValue: orderTranslations?.[0] || 'Od najnowszych',
-                },
-                {
-                    enumValue: 'asc',
-                    i18nValue: orderTranslations?.[1] || 'Od najstarszych',
-                },
-            ],
-            radioType: true,
-        },
         difficulties: {
             name: 'difficulties',
             options: [],
