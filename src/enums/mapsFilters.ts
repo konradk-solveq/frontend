@@ -16,7 +16,6 @@ export enum levelFilter {
 }
 
 export enum pavementFilter {
-    gravel,
     asphalt,
     paved,
     unsealed,

@@ -12,8 +12,6 @@ const TEST_STRING_OPTIONS = [
     'TEST4',
     'TEST5',
 ];
-const TEST_NUMBER_LABEL = 5;
-const TEST_NUMBER_OPTIONS = [1, 2, 3, 4, TEST_NUMBER_LABEL, 6, 7, 8, 9];
 
 describe('<RangePicker /> - components/slider', () => {
     const onValueChangeFn = jest.fn();
@@ -29,17 +27,6 @@ describe('<RangePicker /> - components/slider', () => {
             />,
         );
         const label = getByText(TEST_STRING_LABEL);
-        expect(label).not.toBe(null);
-    });
-
-    it('Should render number label options', async () => {
-        const {getByText} = render(
-            <RangePicker
-                options={TEST_NUMBER_OPTIONS}
-                onValueChange={onValueChangeFn}
-            />,
-        );
-        const label = getByText(`${TEST_NUMBER_LABEL}`);
         expect(label).not.toBe(null);
     });
 

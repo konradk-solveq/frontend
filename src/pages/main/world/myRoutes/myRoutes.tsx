@@ -108,6 +108,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
 
     const onFiltersSaveHandler = (picked: PickedFilters) => {
         setShowFiltersModal(false);
+        setShowListLoader(true);
         setSavedMapFilters(picked);
     };
 
@@ -266,7 +267,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 definedFilters={savedMapFilters}
                 onSave={onFiltersSaveHandler}
                 showModal={showFiltersModal}
-                allowedFilters={['order']}
+                allowMyPublic
             />
             <View style={styles.topButtonsContainer}>
                 <Dropdown

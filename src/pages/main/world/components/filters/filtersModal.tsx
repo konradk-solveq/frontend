@@ -1,29 +1,14 @@
-import React, {useState} from 'react';
-import {
-    View,
-    Text,
-    Modal,
-    ScrollView,
-    StyleSheet,
-    SafeAreaView,
-} from 'react-native';
-
-import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {
-    getFontSize,
-    getHorizontalPx,
-    getVerticalPx,
-    mainButtonsHeight,
-} from '@helpers/layoutFoo';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
 import {useAppSelector} from '@hooks/redux';
 import {PickedFilters} from '@interfaces/form';
-
-import {BigRedBtn, BigWhiteBtn, CloseBtn} from '@sharedComponents/buttons';
 import {mapOptionsAndTagsSelector} from '@storage/selectors/app';
-import Filter from './filter';
 
 import {getFilters, updateFilters} from './filtersData';
-import {commonStyle as comStyle} from '@helpers/commonStyle';
+import {RangePickerRef} from '@components/slider/RangePicker';
+import {useMergedState} from '@hooks/useMergedState';
+import {FiltersContainer} from '@containers/World';
+
+const lengthOptions = ['0', '5', '10', '20', '40', '80', '120', '160', '200'];
 
 interface IProps {
     onSave: (picked: PickedFilters) => void;
@@ -31,143 +16,95 @@ interface IProps {
     definedFilters: PickedFilters;
     showModal?: boolean;
     allowedFilters?: string[];
+    allowMyPublic?: boolean;
 }
 
 const FiltersModal: React.FC<IProps> = ({
     onSave,
     onClose,
     definedFilters,
-    showModal,
-    allowedFilters,
+    showModal = false,
+    allowMyPublic = false,
 }: IProps) => {
-    const {t} = useMergedTranslation('MainWorld.maps');
     const mapOptions = useAppSelector(mapOptionsAndTagsSelector);
-    const filters = getFilters(
-        mapOptions,
-        t('filters.order.options', {returnObjects: true}),
-    );
-    const contentStyle = allowedFilters ? {minHeight: '90%'} : undefined;
+    const filters = getFilters(mapOptions);
 
-    const [pickedFilters, setPickedFilters] = useState<PickedFilters>({});
+    const rangePickerRef = useRef<RangePickerRef>();
+
+    const [{minLength, maxLength}, setLengthFilter] = useMergedState({
+        minLength: lengthOptions[0],
+        maxLength: lengthOptions[lengthOptions.length - 1],
+    });
+
+    const [isLoop, setIsLoop] = useState<boolean>(false);
+    const [isMyPublic, setIsMyPublic] = useState<boolean>(false);
+    const [isDirty, setIsDirty] = useState<boolean>(false);
+
+    const handleRangeChange = useCallback(
+        (low: string, high: string) => {
+            setLengthFilter({minLength: low, maxLength: high});
+        },
+        [setLengthFilter],
+    );
+
+    const [pickedFilters, setPickedFilters] = useState<PickedFilters>(
+        definedFilters,
+    );
 
     const onSaveFiltersHanlder = (filterName: string, filtersArr: string[]) => {
         setPickedFilters(prev => updateFilters(prev, filterName, filtersArr));
     };
 
     const onSaveHandler = () => {
-        onSave(pickedFilters);
+        const filtersToSave = pickedFilters;
+        filtersToSave.loop = [`${isLoop}`];
+        filtersToSave.onlyPublic = [`${isMyPublic}`];
+        filtersToSave.minDistance = [`${minLength}`];
+        filtersToSave.minDistance = [`${maxLength}`];
+        onSave(filtersToSave);
     };
 
     const onResetHandler = () => {
-        setPickedFilters(definedFilters);
+        setPickedFilters({});
+        setIsMyPublic(false);
+        setIsLoop(false);
+        setIsDirty(false);
+        rangePickerRef.current && rangePickerRef.current.reset();
     };
 
+    useEffect(() => {
+        const isDefaultLength =
+            minLength === lengthOptions[0] ||
+            maxLength === lengthOptions[lengthOptions.length - 1];
+        const isDefaultFilters = !Object.keys(pickedFilters).length;
+        if (isLoop || isMyPublic || !isDefaultFilters || !isDefaultLength) {
+            setIsDirty(true);
+        } else {
+            setIsDirty(false);
+        }
+    }, [isLoop, isMyPublic, minLength, maxLength, pickedFilters]);
     return (
-        <Modal
-            animationType="slide"
-            visible={showModal}
-            onRequestClose={onClose}>
-            <SafeAreaView>
-                <View style={comStyle.container}>
-                    <CloseBtn
-                        onPress={onClose}
-                        containerStyle={styles.buttonContainer}
-                    />
-                    <ScrollView
-                        showsVerticalScrollIndicator={false}
-                        contentContainerStyle={contentStyle}>
-                        <View style={styles.wrap}>
-                            <View style={styles.headerWrapper}>
-                                <Text style={styles.header}>
-                                    {t('filtersTitle')}
-                                </Text>
-                                <Text style={styles.description}>
-                                    {t('filtersDescription')}
-                                </Text>
-
-                                {Object.keys(filters).map(f => {
-                                    if (
-                                        allowedFilters &&
-                                        !allowedFilters.includes(f)
-                                    ) {
-                                        return null;
-                                    }
-
-                                    if (f === 'reactions') {
-                                        return;
-                                    }
-
-                                    return (
-                                        <Filter
-                                            key={filters[f]?.name}
-                                            name={filters?.[f]?.name}
-                                            options={filters[f]?.options}
-                                            predefined={
-                                                pickedFilters?.[f] || []
-                                            }
-                                            isRadioType={filters[f].radioType}
-                                            onSave={onSaveFiltersHanlder}
-                                        />
-                                    );
-                                })}
-                            </View>
-                            <View style={styles.buttonsWrapper}>
-                                <View style={styles.button}>
-                                    <BigWhiteBtn
-                                        title={t('filtersBackBtn')}
-                                        onpress={onResetHandler}
-                                    />
-                                </View>
-                                <View style={styles.button}>
-                                    <BigRedBtn
-                                        title={t('filtersSaveBtn')}
-                                        onpress={onSaveHandler}
-                                    />
-                                </View>
-                            </View>
-                        </View>
-                    </ScrollView>
-                </View>
-            </SafeAreaView>
-        </Modal>
+        <FiltersContainer
+            showModal={showModal}
+            onClose={onClose}
+            onResetHandler={onResetHandler}
+            lengthOptions={lengthOptions}
+            minLength={minLength}
+            maxLength={maxLength}
+            handleRangeChange={handleRangeChange}
+            isLoop={isLoop}
+            setIsLoop={setIsLoop}
+            isMyPublic={isMyPublic}
+            setIsMyPublic={setIsMyPublic}
+            rangePickerRef={rangePickerRef}
+            allowMyPublic={allowMyPublic}
+            onSaveHandler={onSaveHandler}
+            isDirty={isDirty}
+            filters={filters}
+            pickedFilters={pickedFilters}
+            onSaveFiltersHandler={onSaveFiltersHanlder}
+        />
     );
 };
-
-const styles = StyleSheet.create({
-    wrap: {
-        flex: 1,
-        marginHorizontal: getHorizontalPx(40),
-        marginBottom: getVerticalPx(65),
-        justifyContent: 'space-between',
-    },
-    headerWrapper: {
-        marginBottom: getVerticalPx(8),
-    },
-    header: {
-        fontFamily: 'DIN2014Narrow-Regular',
-        fontSize: getFontSize(23),
-        color: '#313131',
-    },
-    description: {
-        fontFamily: 'DIN2014Narrow-Light',
-        fontSize: getFontSize(18),
-        letterSpacing: 0.5,
-        color: '#313131',
-        marginTop: getVerticalPx(8),
-        marginBottom: getVerticalPx(10),
-    },
-    buttonContainer: {
-        alignItems: 'flex-end',
-    },
-    buttonsWrapper: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: getVerticalPx(91),
-    },
-    button: {
-        width: '46%',
-        height: mainButtonsHeight(50),
-    },
-});
 
 export default FiltersModal;

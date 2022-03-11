@@ -15,7 +15,7 @@ import {TextIcon} from '@components/icons/index';
 import {Loader} from '@components/loader';
 import {Demi18h28} from '@components/texts/texts';
 
-interface IProps {
+export interface IProps {
     text: string;
     onPress: (e: GestureResponderEvent) => void;
     adjustsTextSizeToFit?: boolean;

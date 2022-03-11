@@ -11,6 +11,7 @@ const colors = {
     dark: '#313131',
     black: '#333333',
     transparentGrey: '#78788033',
+    green: '#6fda5d',
 };
 
 export default colors;

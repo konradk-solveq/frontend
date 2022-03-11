@@ -226,80 +226,133 @@ exports[`Storyshots components/slider/RangePicker Customized 1`] = `
         Object {
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "marginTop": 9.483412322274882,
+          "marginTop": 22.127962085308056,
+          "paddingHorizontal": 26.923076923076923,
         }
       }
     >
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "marginLeft": -34.61538461538461,
+              "textAlign": "left",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           1
         </Text>
       </View>
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "textAlign": "center",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           2
         </Text>
       </View>
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "textAlign": "center",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           3
         </Text>
       </View>
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "textAlign": "center",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           4
         </Text>
       </View>
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "marginRight": -34.61538461538461,
+              "textAlign": "right",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           5
@@ -536,80 +589,133 @@ exports[`Storyshots components/slider/RangePicker Default 1`] = `
         Object {
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "marginTop": 9.483412322274882,
+          "marginTop": 22.127962085308056,
+          "paddingHorizontal": 26.923076923076923,
         }
       }
     >
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "marginLeft": -34.61538461538461,
+              "textAlign": "left",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           1
         </Text>
       </View>
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "textAlign": "center",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           2
         </Text>
       </View>
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "textAlign": "center",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           3
         </Text>
       </View>
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "textAlign": "center",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           4
         </Text>
       </View>
       <View
-        style={Object {}}
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "marginRight": -34.61538461538461,
+              "textAlign": "right",
+            },
+          ]
+        }
       >
         <Text
           style={
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "width": "100%",
-            }
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
         >
           5

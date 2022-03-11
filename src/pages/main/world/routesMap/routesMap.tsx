@@ -43,7 +43,11 @@ const RoutesMap: React.FC = () => {
 
     const handleMarkerClick = (id: string, types: string[]) => {
         const isPlanned = types.includes('FAVORITE');
-        const isPrivate = types.includes('PRIVATE');
+        const isPrivate =
+            types.includes('PRIVATE') ||
+            types.includes(
+                'OWN',
+            ); /* when route is published tag is 'OWN' type*/
         if (isPrivate) {
             setRouteInfo({
                 id,
