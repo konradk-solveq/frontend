@@ -1,20 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Image, Pressable} from 'react-native';
 import {
     Demi14h48,
     Demi16h36,
     Demi18h28,
     Demi18h28crop,
+    Header2,
 } from '@components/texts/texts';
 import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
-import {
-    LikeIcon,
-    MoreIcon,
-    SaveIcon,
-    ShareIcon,
-    EditIcon,
-} from '../icons/reactionIcons';
 import {styles} from './style';
+import {TextIcon} from '../icons';
+import {MykrossIconFont} from '@src/theme/enums/iconFonts';
 interface PropsI {
     tilePressOn: () => void;
     fullDate: string;
@@ -50,6 +46,27 @@ const ListTileView: React.FC<PropsI> = ({
     mode,
     testID,
 }) => {
+    const [likeChecked, setLikeChecked] = useState(checkLike);
+
+    // TODO savbe check from backend data
+    const [saveChecked, setSaveChecked] = useState(false);
+
+    const handleLikeOnPress = () => {
+        const state = !likeChecked;
+        if (likePressOn) {
+            likePressOn(state);
+        }
+        setLikeChecked(state);
+    };
+
+    const handleSaveOnPress = () => {
+        const state = !saveChecked;
+        if (addToFavoritesPressOn) {
+            addToFavoritesPressOn();
+        }
+        setSaveChecked(state);
+    };
+
     return (
         <Pressable onPress={tilePressOn} testID={testID || 'list-tile'}>
             <View
@@ -82,33 +99,68 @@ const ListTileView: React.FC<PropsI> = ({
 
                             <View style={styles.reactions}>
                                 {mode !== 'my' && (
-                                    <LikeIcon
-                                        check={checkLike}
-                                        value={numberOfLikes}
-                                        onPress={likePressOn}
-                                    />
+                                    <Pressable onPress={handleLikeOnPress}>
+                                        <View style={styles.iconWrap}>
+                                            <TextIcon
+                                                icon={
+                                                    likeChecked
+                                                        ? MykrossIconFont.MYKROSS_ICON_LIKE_ON
+                                                        : MykrossIconFont.MYKROSS_ICON_LIKE_OFF
+                                                }
+                                                style={styles.icon}
+                                            />
+                                            <Header2 style={styles.iconNumber}>
+                                                {numberOfLikes}
+                                            </Header2>
+                                        </View>
+                                    </Pressable>
                                 )}
 
                                 {(mode === 'public' || mode === 'featured') && (
-                                    <View style={styles.iconWrap}>
-                                        <SaveIcon
-                                            check={false}
-                                            onPress={addToFavoritesPressOn}
-                                        />
+                                    <View style={styles.reactionWrap}>
+                                        <Pressable onPress={handleSaveOnPress}>
+                                            <TextIcon
+                                                icon={
+                                                    saveChecked
+                                                        ? MykrossIconFont.MYKROSS_ICON_SAVE_ON
+                                                        : MykrossIconFont.MYKROSS_ICON_SAVE_OFF
+                                                }
+                                                style={styles.icon}
+                                            />
+                                        </Pressable>
                                     </View>
                                 )}
 
                                 {mode !== 'my' && (
-                                    <ShareIcon onPress={() => {}} />
+                                    <Pressable onPress={() => {}}>
+                                        <TextIcon
+                                            icon={
+                                                MykrossIconFont.MYKROSS_ICON_ALT_SHARE
+                                            }
+                                            style={styles.icon}
+                                        />
+                                    </Pressable>
                                 )}
 
                                 {mode === 'my' && (
-                                    <EditIcon onPress={editPressOn} />
+                                    <Pressable onPress={editPressOn}>
+                                        <TextIcon
+                                            icon={
+                                                MykrossIconFont.MYKROSS_ICON_EDIT
+                                            }
+                                            style={styles.icon}
+                                        />
+                                    </Pressable>
                                 )}
                             </View>
 
                             <View style={styles.edit}>
-                                <MoreIcon onPress={detailsPressOn} />
+                                <Pressable onPress={detailsPressOn}>
+                                    <TextIcon
+                                        icon={MykrossIconFont.MYKROSS_ICON_MORE}
+                                        style={styles.icon}
+                                    />
+                                </Pressable>
                             </View>
                         </View>
                     </View>

@@ -57,6 +57,22 @@ export const styles = StyleSheet.create({
         top: getFHorizontalPx(-1),
     },
     iconWrap: {
+        display: 'flex',
+        flexDirection: 'row',
+        marginRight: getFHorizontalPx(16),
+    },
+    icon: {
+        fontSize: getFHorizontalPx(24),
+        width: getFHorizontalPx(24),
+        height: getFHorizontalPx(24),
+        textAlign: 'center',
+        color: colors.black,
+    },
+    iconNumber: {
+        marginLeft: getFHorizontalPx(4),
+        top: getFHorizontalPx(2),
+    },
+    reactionWrap: {
         marginRight: getFHorizontalPx(16),
     },
     edit: {
