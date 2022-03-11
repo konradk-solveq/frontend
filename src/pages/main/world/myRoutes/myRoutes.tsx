@@ -1,7 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
-import {KrossWorldTabRoute, RegularStackRoute} from '@navigation/route';
 
 import {
     userNameSelector,
@@ -17,7 +15,6 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
-import {translateDateToTodayAndYesterdayString} from '@utils/dateTime';
 import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';

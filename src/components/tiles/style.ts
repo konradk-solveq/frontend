@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {getFHorizontalPx} from '@src/helpers/appLayoutDimensions';
+import colors from '@theme/colors';
 
 export const styles = StyleSheet.create({
     wrap: {
@@ -18,7 +19,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         borderRadius: getFHorizontalPx(12),
-        backgroundColor: '#fff',
+        backgroundColor: colors.backgroundPrimary,
         overflow: 'hidden',
     },
     imageWrapper: {

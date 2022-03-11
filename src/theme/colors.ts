@@ -8,6 +8,7 @@ const colors = {
     lightRed: '#EFD8D8',
     white: '#FFFFFF',
     whiteGrey: '#FAFAFA',
+    dark: '#313131',
     black: '#333333',
     transparentGrey: 'rgba(120, 120, 128, 0.2)',
 };
