@@ -1,0 +1,285 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/input/Switch Custom 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    nativeID="animatedComponent"
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "rgba(111, 218, 93, 1)",
+        "borderRadius": 24.498815165876778,
+        "height": 48.997630331753555,
+        "width": 85.35071090047394,
+      }
+    }
+    testID="switch-test-id"
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "left": 7.397061611374409,
+          "width": 85.35071090047394,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+            },
+            Object {
+              "paddingRight": 5,
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+      <View
+        collapsable={false}
+        nativeID="animatedComponent"
+        style={
+          Object {
+            "backgroundColor": "rgba(255, 255, 255, 1)",
+            "borderColor": "rgba(255, 255, 255, 1)",
+            "borderRadius": 21.337677725118485,
+            "borderWidth": 3.161137440758294,
+            "height": 42.67535545023697,
+            "width": 42.67535545023697,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/input/Switch Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    nativeID="animatedComponent"
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "rgba(120, 120, 128, 0.2)",
+        "borderRadius": 42.67535545023697,
+        "height": 48.997630331753555,
+        "width": 85.35071090047394,
+      }
+    }
+    testID="switch-test-id"
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "alignItems": "center",
+          "elevation": 3,
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "left": -7.397061611374409,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 4.741706161137441,
+            "width": 0,
+          },
+          "shadowOpacity": 0.15,
+          "shadowRadius": 6.322274881516588,
+          "width": 85.35071090047394,
+        }
+      }
+    >
+      <View
+        collapsable={false}
+        nativeID="animatedComponent"
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 1)",
+            "borderColor": "rgba(80, 80, 80, 1)",
+            "borderRadius": 21.337677725118485,
+            "borderWidth": 0,
+            "height": 42.67535545023697,
+            "justifyContent": "center",
+            "width": 42.67535545023697,
+          }
+        }
+      />
+      <Text
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+            },
+            Object {
+              "paddingLeft": 5,
+            },
+            undefined,
+          ]
+        }
+      >
+        
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "height": 15.80568720379147,
+      }
+    }
+  />
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    nativeID="animatedComponent"
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "rgba(111, 218, 93, 1)",
+        "borderRadius": 42.67535545023697,
+        "height": 48.997630331753555,
+        "width": 85.35071090047394,
+      }
+    }
+    testID="switch-test-id"
+  >
+    <View
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={
+        Object {
+          "alignItems": "center",
+          "elevation": 3,
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "left": 7.397061611374409,
+          "shadowColor": "#000",
+          "shadowOffset": Object {
+            "height": 4.741706161137441,
+            "width": 0,
+          },
+          "shadowOpacity": 0.15,
+          "shadowRadius": 6.322274881516588,
+          "width": 85.35071090047394,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+            },
+            Object {
+              "paddingRight": 5,
+            },
+            undefined,
+          ]
+        }
+      >
+        
+      </Text>
+      <View
+        collapsable={false}
+        nativeID="animatedComponent"
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(255, 255, 255, 1)",
+            "borderColor": "rgba(100, 100, 100, 1)",
+            "borderRadius": 21.337677725118485,
+            "borderWidth": 0,
+            "height": 42.67535545023697,
+            "justifyContent": "center",
+            "width": 42.67535545023697,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;

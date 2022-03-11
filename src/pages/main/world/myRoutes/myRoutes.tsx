@@ -1,7 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
-import {KrossWorldTabRoute, RegularStackRoute} from '@navigation/route';
 
 import {
     userNameSelector,
@@ -112,6 +110,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
 
     const onFiltersSaveHandler = (picked: PickedFilters) => {
         setShowFiltersModal(false);
+        setShowListLoader(true);
         setSavedMapFilters(picked);
     };
 
@@ -301,7 +300,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 definedFilters={savedMapFilters}
                 onSave={onFiltersSaveHandler}
                 showModal={showFiltersModal}
-                allowedFilters={['order']}
+                allowMyPublic
             />
             <View style={styles.topButtonsContainer}>
                 <Dropdown

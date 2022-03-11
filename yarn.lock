@@ -14054,6 +14054,7 @@
   "version" "4.0.5"
 
 "react-native-background-geolocation-android@git+ssh://git@github.com:transistorsoft/react-native-background-geolocation-android.git":
+  "integrity" "sha512-gsggumzVZv00YnyQztGMusKCt4wj6hHaz+YYroB/g95eOIDv37CiIBGGz7c0WQSO77Iwo62aqqF9dd7HRTG/Xw=="
   "resolved" "git+ssh://git@github.com/transistorsoft/react-native-background-geolocation-android.git#1f744107815c8a7748359a396f6e7623a04f1195"
   "version" "4.4.6"
   dependencies:
@@ -14068,10 +14069,10 @@
     "jscodeshift" "^0.11.0"
     "nullthrows" "^1.1.1"
 
-"react-native-compass-heading@^1.2.1":
-  "integrity" "sha512-Xvzb43w0A1FyA7PEOgowwUX1Jy+5dmQ7K/+L/NKGPlgwR6ttbWFgIlzZg7VfR0awmbpjVmO79m9tkPOPZGIdNg=="
-  "resolved" "https://registry.npmjs.org/react-native-compass-heading/-/react-native-compass-heading-1.2.1.tgz"
-  "version" "1.2.1"
+"react-native-compass-heading@^1.4.0":
+  "integrity" "sha512-naesy0kBAKViEm3AQJ1AvzAaS/bEEG4yRK4NL0RVfYm2ZUS7nziXeqc/3uxtdH+zRnSBVrklu2IG5OJs7XBs3A=="
+  "resolved" "https://registry.npmjs.org/react-native-compass-heading/-/react-native-compass-heading-1.4.0.tgz"
+  "version" "1.4.0"
 
 "react-native-config@^1.4.4":
   "integrity" "sha512-bu47sJHn/HrB7COAWBI8DieAhrbFLINHFE2HBCcVkDu0Y5ScrMs6vL+jhIm+pMSgxouseLhXG8h7xYYpxE38PA=="
@@ -14275,6 +14276,13 @@
   dependencies:
     "prop-types" "^15.5.10"
 
+"react-native-switch@^1.5.1":
+  "integrity" "sha512-nfuPrrPKzeZL1mQH0u1rlEGv9W1+okU/xOcNNaDNz/LhSdzWOZ04ogJ4iEj7Sth3hkBxv4XwFQZTgCc07we+cg=="
+  "resolved" "https://registry.npmjs.org/react-native-switch/-/react-native-switch-1.5.1.tgz"
+  "version" "1.5.1"
+  dependencies:
+    "prop-types" "^15.6.0"
+
 "react-native-tab-view@^2.16.0", "react-native-tab-view@>= 2.0.0":
   "integrity" "sha512-ac2DmT7+l13wzIFqtbfXn4wwfgtPoKzWjjZyrK1t+T8sdemuUvD4zIt+UImg03fu3s3VD8Wh/fBrIdcqQyZJWg=="
   "resolved" "https://registry.npmjs.org/react-native-tab-view/-/react-native-tab-view-2.16.0.tgz"
@@ -14288,7 +14296,7 @@
     "escape-string-regexp" "2.0.0"
     "invariant" "2.2.4"
 
-"react-native@*", "react-native@^*", "react-native@^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || 1000.0.0", "react-native@^0.66.4", "react-native@>= 0.51", "react-native@>= 0.60.0", "react-native@>=0.14.0 <1", "react-native@>=0.28.0", "react-native@>=0.36.0", "react-native@>=0.40.0", "react-native@>=0.42.0", "react-native@>=0.44", "react-native@>=0.48.4", "react-native@>=0.50.0", "react-native@>=0.55", "react-native@>=0.56", "react-native@>=0.56.0", "react-native@>=0.57", "react-native@>=0.57.0", "react-native@>=0.59", "react-native@>=0.60.0-rc.0 <1.0.x", "react-native@>=0.63.3":
+"react-native@*", "react-native@^*", "react-native@^0.60.6 || ^0.61.5 || ^0.62.2 || ^0.63.2 || ^0.64.0 || 1000.0.0", "react-native@^0.66.4", "react-native@>= 0.51", "react-native@>= 0.60.0", "react-native@>=0.14.0 <1", "react-native@>=0.28.0", "react-native@>=0.29", "react-native@>=0.36.0", "react-native@>=0.40.0", "react-native@>=0.42.0", "react-native@>=0.44", "react-native@>=0.48.4", "react-native@>=0.50.0", "react-native@>=0.55", "react-native@>=0.56", "react-native@>=0.56.0", "react-native@>=0.57", "react-native@>=0.57.0", "react-native@>=0.59", "react-native@>=0.60.0 <1.0.x", "react-native@>=0.63.3":
   "integrity" "sha512-9vx5dlSfQlKbbDtr8+xMon6qsmSu7jvjdXWZpEKh3XVKpUidbbODv7048gwVKX8YAel1egeR7hN8vzSeI6ssTw=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.66.4.tgz"
   "version" "0.66.4"
@@ -14481,7 +14489,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.0", "react@^16.0.0 || ^17.0.0", "react@^16.14.0", "react@^16.3.0 || ^17.0.0", "react@^16.6.0 || ^17.0.0", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.1", "react@^16.8.3 || ^17", "react@^17.0.2", "react@>= 0.14.0", "react@>= 16.0 || < 18.0", "react@>= 16.3.0", "react@>= 16.8.0", "react@>=0.14.0", "react@>=16.0.0", "react@>=16.12.0", "react@>=16.13.1", "react@>=16.3.0", "react@>=16.4.1", "react@>=16.6.0", "react@>=16.8.0", "react@>=16.9.0", "react@0.14.x || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@15.x || 16.x || 16.4.0-alpha.0911da3", "react@15.x || 16.x || 17.x", "react@17.0.2":
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.0", "react@^16.0.0 || ^17.0.0", "react@^16.14.0", "react@^16.3.0 || ^17.0.0", "react@^16.6.0 || ^17.0.0", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.3 || ^17", "react@^17.0.2", "react@>= 0.14.0", "react@>= 16.0 || < 18.0", "react@>= 16.3.0", "react@>= 16.8.0", "react@>=0.14.0", "react@>=16.0.0", "react@>=16.12.0", "react@>=16.13.1", "react@>=16.3.0", "react@>=16.4.1", "react@>=16.6.0", "react@>=16.8.0", "react@>=16.9.0", "react@0.14.x || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@15.x || 16.x || 16.4.0-alpha.0911da3", "react@15.x || 16.x || 17.x", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -14993,6 +15001,11 @@
   dependencies:
     "hash-base" "^3.0.0"
     "inherits" "^2.0.1"
+
+"rn-range-slider@^2.1.1":
+  "integrity" "sha512-tDfH8G4e/k+waGMMd+HaYTlpOqyh1dd3aWdDmqKo0WGh1BfHB+NXy0X2REyr1ZJDvsrq7WEeFZ+PBTdD6cisbw=="
+  "resolved" "https://registry.npmjs.org/rn-range-slider/-/rn-range-slider-2.1.1.tgz"
+  "version" "2.1.1"
 
 "roarr@^2.15.3":
   "integrity" "sha512-CHhPh+UNHD2GTXNYhPWLnU8ONHdI+5DI+4EYIAOaiD63rHeYlZvyh8P+in5999TTSFgUYuKUAjzRI4mdh/p+2A=="
