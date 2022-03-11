@@ -29,7 +29,7 @@ interface PropsI {
     addToFavoritesPressOn: () => void;
     editPressOn: () => void;
     detailsPressOn: () => void;
-    mode: 'public' | 'my' | 'saved';
+    mode: 'public' | 'my' | 'saved' | 'featured';
     testID?: string;
 }
 
@@ -52,7 +52,8 @@ const ListTileView: React.FC<PropsI> = ({
 }) => {
     return (
         <Pressable onPress={tilePressOn} testID={testID || 'list-tile'}>
-            <View style={styles.wrap}>
+            <View
+                style={mode === 'featured' ? styles.wrapFeatured : styles.wrap}>
                 <Demi14h48>{fullDate}</Demi14h48>
                 <View style={styles.area}>
                     <View style={styles.tile}>
@@ -80,7 +81,7 @@ const ListTileView: React.FC<PropsI> = ({
                             </View>
 
                             <View style={styles.reactions}>
-                                {(mode === 'public' || mode === 'saved') && (
+                                {mode !== 'my' && (
                                     <LikeIcon
                                         check={checkLike}
                                         value={numberOfLikes}
@@ -88,7 +89,7 @@ const ListTileView: React.FC<PropsI> = ({
                                     />
                                 )}
 
-                                {mode === 'public' && (
+                                {(mode === 'public' || mode === 'featured') && (
                                     <View style={styles.iconWrap}>
                                         <SaveIcon
                                             check={false}
@@ -97,11 +98,13 @@ const ListTileView: React.FC<PropsI> = ({
                                     </View>
                                 )}
 
-                                {(mode === 'public' || mode === 'saved') && (
+                                {mode !== 'my' && (
                                     <ShareIcon onPress={() => {}} />
                                 )}
 
-                                {mode === 'my' && <EditIcon onPress={editPressOn} />}
+                                {mode === 'my' && (
+                                    <EditIcon onPress={editPressOn} />
+                                )}
                             </View>
 
                             <View style={styles.edit}>

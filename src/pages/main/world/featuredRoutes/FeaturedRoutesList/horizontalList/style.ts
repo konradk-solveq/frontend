@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     tileWrapper: {
         marginTop: getFHorizontalPx(30),
         marginBottom: getFHorizontalPx(18),
-        width: getFHorizontalPx(390),
+        width: getFHorizontalPx(16 + 342 + 16),
     },
 });
 

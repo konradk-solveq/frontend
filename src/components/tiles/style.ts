@@ -6,6 +6,10 @@ export const styles = StyleSheet.create({
         width: getFHorizontalPx(358),
         left: getFHorizontalPx(16),
     },
+    wrapFeatured: {
+        width: getFHorizontalPx(342),
+        left: getFHorizontalPx(16),
+    },
     area: {
         height: getFHorizontalPx(311),
         marginBottom: getFHorizontalPx(8),

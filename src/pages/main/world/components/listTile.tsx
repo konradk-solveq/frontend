@@ -18,7 +18,7 @@ interface PropsI {
     images: {images: string[]; mapImg: string};
     onPressTile?: (mapID: string) => void;
     tilePressable?: boolean;
-    mode: 'public' | 'my' | 'saved';
+    mode: 'public' | 'my' | 'saved' | 'featured';
     sectionID?: string;
     testID?: string;
 }
