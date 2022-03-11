@@ -4,6 +4,7 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {getFHorizontalPx} from '@helpers/appLayoutDimensions';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {Header2} from '@components/texts/texts';
+import colors from '@theme/colors';
 
 const styles = StyleSheet.create({
     wrap: {
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
         width: getFHorizontalPx(24),
         height: getFHorizontalPx(24),
         textAlign: 'center',
-        color: '#333',
+        color: colors.black,
     },
     number: {
         marginLeft: getFHorizontalPx(4),

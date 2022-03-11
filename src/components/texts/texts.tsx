@@ -36,7 +36,7 @@ export const BodyPrimary: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(16),
             lineHeight: getFFontSize(28),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#333',
+            color: color ? color : colors.black,
         },
     });
     return (
@@ -145,7 +145,7 @@ export const Header2: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(20),
             lineHeight: getFFontSize(24),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#333',
+            color: color ? color : colors.black,
         },
     });
     return (
@@ -200,7 +200,7 @@ export const Demi18h28: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(18),
             lineHeight: getFFontSize(28),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#333',
+            color: color ? color : colors.black,
         },
     });
     return (
@@ -227,7 +227,7 @@ export const Demi18h28crop: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(18),
             lineHeight: getFFontSize(28),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#333',
+            color: color ? color : colors.black,
             overflow: 'hidden',
         },
     });
@@ -255,7 +255,7 @@ export const Demi18h36: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(18),
             lineHeight: getFFontSize(36),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#717171',
+            color: color ? color : colors.darkGrey,
         },
     });
     return (
@@ -278,7 +278,7 @@ export const Demi16h36: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(16),
             lineHeight: getFFontSize(36),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#717171',
+            color: color ? color : colors.darkGrey,
         },
     });
     return (
@@ -301,7 +301,7 @@ export const Demi14h48: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(14),
             lineHeight: getFFontSize(48),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#717171',
+            color: color ? color : colors.darkGrey,
         },
     });
     return (

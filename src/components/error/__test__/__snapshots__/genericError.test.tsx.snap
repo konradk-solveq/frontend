@@ -292,7 +292,7 @@ Array [
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#FFFFFF",
+                  "backgroundColor": "#fff",
                 },
                 undefined,
               ]
@@ -304,14 +304,14 @@ Array [
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
                     "textAlign": "left",
                   },
                   Object {
-                    "color": "#C63733",
+                    "color": "#c63733",
                   },
                 ]
               }
@@ -669,7 +669,7 @@ Array [
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#FFFFFF",
+                  "backgroundColor": "#fff",
                 },
                 undefined,
               ]
@@ -681,14 +681,14 @@ Array [
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
                     "textAlign": "left",
                   },
                   Object {
-                    "color": "#C63733",
+                    "color": "#c63733",
                   },
                 ]
               }
@@ -1066,7 +1066,7 @@ Array [
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#FFFFFF",
+                  "backgroundColor": "#fff",
                 },
                 undefined,
               ]
@@ -1078,14 +1078,14 @@ Array [
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
                     "textAlign": "left",
                   },
                   Object {
-                    "color": "#C63733",
+                    "color": "#c63733",
                   },
                 ]
               }
