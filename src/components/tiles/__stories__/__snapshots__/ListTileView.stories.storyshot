@@ -247,8 +247,9 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                         Object {
                           "color": "#333",
                           "fontFamily": "DIN2014-Demi",
-                          "fontSize": 18,
-                          "lineHeight": 28,
+                          "fontSize": 20,
+                          "fontWeight": "600",
+                          "lineHeight": 24,
                           "textAlign": "left",
                         },
                         Object {
@@ -257,7 +258,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                         },
                       ]
                     }
-                    testID="demi-16-h24-test-id"
+                    testID="header2-test-id"
                   >
                     123
                   </Text>
@@ -940,8 +941,9 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                         Object {
                           "color": "#333",
                           "fontFamily": "DIN2014-Demi",
-                          "fontSize": 18,
-                          "lineHeight": 28,
+                          "fontSize": 20,
+                          "fontWeight": "600",
+                          "lineHeight": 24,
                           "textAlign": "left",
                         },
                         Object {
@@ -950,7 +952,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                         },
                       ]
                     }
-                    testID="demi-16-h24-test-id"
+                    testID="header2-test-id"
                   >
                     123
                   </Text>
@@ -1339,8 +1341,9 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                         Object {
                           "color": "#333",
                           "fontFamily": "DIN2014-Demi",
-                          "fontSize": 18,
-                          "lineHeight": 28,
+                          "fontSize": 20,
+                          "fontWeight": "600",
+                          "lineHeight": 24,
                           "textAlign": "left",
                         },
                         Object {
@@ -1349,7 +1352,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                         },
                       ]
                     }
-                    testID="demi-16-h24-test-id"
+                    testID="header2-test-id"
                   >
                     123
                   </Text>
