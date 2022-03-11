@@ -20,13 +20,13 @@ exports[`Storyshots components/divider/HorizontalDivider Customized 1`] = `
     style={
       Array [
         Object {
-          "borderBottomColor": "#BDBDBD",
+          "borderBottomColor": "#bdbdbd",
           "borderBottomWidth": 0.5,
           "borderRadius": 1,
         },
         Object {
           "borderBottomWidth": 2,
-          "color": "#C63733",
+          "color": "#c63733",
         },
         Object {
           "width": "100%",
@@ -57,13 +57,13 @@ exports[`Storyshots components/divider/HorizontalDivider Default 1`] = `
     style={
       Array [
         Object {
-          "borderBottomColor": "#BDBDBD",
+          "borderBottomColor": "#bdbdbd",
           "borderBottomWidth": 0.5,
           "borderRadius": 1,
         },
         Object {
           "borderBottomWidth": 0.5,
-          "color": "#BDBDBD",
+          "color": "#bdbdbd",
         },
         Object {
           "width": "100%",

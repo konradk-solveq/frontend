@@ -58,7 +58,7 @@ exports[`Storyshots components/buttons/PrimaryButton Customized 1`] = `
             "width": 565.3846153846154,
           },
           Object {
-            "backgroundColor": "#C63733",
+            "backgroundColor": "#c63733",
           },
         ],
       ]
@@ -77,7 +77,7 @@ exports[`Storyshots components/buttons/PrimaryButton Customized 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#C63733",
+            "backgroundColor": "#c63733",
           },
           undefined,
         ]
@@ -92,7 +92,7 @@ exports[`Storyshots components/buttons/PrimaryButton Customized 1`] = `
               "textAlign": "center",
             },
             Object {
-              "color": "#FFFFFF",
+              "color": "#fff",
               "fontSize": 20,
             },
             Object {
@@ -109,14 +109,14 @@ exports[`Storyshots components/buttons/PrimaryButton Customized 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 18,
               "lineHeight": 28,
               "textAlign": "left",
             },
             Object {
-              "color": "#FFFFFF",
+              "color": "#fff",
             },
           ]
         }
@@ -204,7 +204,7 @@ exports[`Storyshots components/buttons/PrimaryButton Default 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#C63733",
+            "backgroundColor": "#c63733",
           },
           undefined,
         ]
@@ -216,14 +216,14 @@ exports[`Storyshots components/buttons/PrimaryButton Default 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 18,
               "lineHeight": 28,
               "textAlign": "left",
             },
             Object {
-              "color": "#FFFFFF",
+              "color": "#fff",
             },
           ]
         }
@@ -311,7 +311,7 @@ exports[`Storyshots components/buttons/PrimaryButton With Icon 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#C63733",
+            "backgroundColor": "#c63733",
           },
           undefined,
         ]
@@ -326,7 +326,7 @@ exports[`Storyshots components/buttons/PrimaryButton With Icon 1`] = `
               "textAlign": "center",
             },
             Object {
-              "color": "#FFFFFF",
+              "color": "#fff",
               "fontSize": 20,
             },
             Object {
@@ -343,14 +343,14 @@ exports[`Storyshots components/buttons/PrimaryButton With Icon 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 18,
               "lineHeight": 28,
               "textAlign": "left",
             },
             Object {
-              "color": "#FFFFFF",
+              "color": "#fff",
             },
           ]
         }

@@ -75,7 +75,7 @@ exports[`Storyshots components/slider/Slider Customized 1`] = `
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "rgba(120, 120, 128, 0.2)",
+                "backgroundColor": "#78788033",
               },
             ]
           }
@@ -100,7 +100,7 @@ exports[`Storyshots components/slider/Slider Customized 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#C63733",
+                  "backgroundColor": "#c63733",
                 },
               ]
             }
@@ -141,7 +141,7 @@ exports[`Storyshots components/slider/Slider Customized 1`] = `
                 "width": 53.84615384615385,
               },
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
               },
             ]
           }
@@ -181,7 +181,7 @@ exports[`Storyshots components/slider/Slider Customized 1`] = `
                 "width": 53.84615384615385,
               },
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
               },
             ]
           }
@@ -292,7 +292,7 @@ exports[`Storyshots components/slider/Slider Default 1`] = `
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "rgba(120, 120, 128, 0.2)",
+                "backgroundColor": "#78788033",
               },
             ]
           }
@@ -317,7 +317,7 @@ exports[`Storyshots components/slider/Slider Default 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#C63733",
+                  "backgroundColor": "#c63733",
                 },
               ]
             }
@@ -358,7 +358,7 @@ exports[`Storyshots components/slider/Slider Default 1`] = `
                 "width": 53.84615384615385,
               },
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
               },
             ]
           }
@@ -398,7 +398,7 @@ exports[`Storyshots components/slider/Slider Default 1`] = `
                 "width": 53.84615384615385,
               },
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
               },
             ]
           }

@@ -20,13 +20,13 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
     style={
       Array [
         Object {
-          "backgroundColor": "#FAFAFA",
+          "backgroundColor": "#fafafa",
           "height": "100%",
           "paddingHorizontal": 28.985507246376812,
           "width": "100%",
         },
         Object {
-          "borderColor": "#C63733",
+          "borderColor": "#c63733",
           "borderWidth": 1,
         },
       ]
@@ -46,7 +46,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 20,
               "fontWeight": "600",
@@ -65,7 +65,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 20,
               "fontWeight": "600",
@@ -170,7 +170,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 16,
               "lineHeight": 28,
@@ -258,7 +258,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "#C63733",
+                "backgroundColor": "#c63733",
               },
               undefined,
             ]
@@ -273,7 +273,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#FFFFFF",
+                  "color": "#fff",
                   "fontSize": 20,
                 },
                 Object {
@@ -290,14 +290,14 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 18,
                   "lineHeight": 28,
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#FFFFFF",
+                  "color": "#fff",
                 },
               ]
             }
@@ -371,7 +371,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
               },
               undefined,
             ]
@@ -386,7 +386,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#C63733",
+                  "color": "#c63733",
                   "fontSize": 20,
                 },
                 Object {
@@ -403,14 +403,14 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 18,
                   "lineHeight": 28,
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#C63733",
+                  "color": "#c63733",
                 },
               ]
             }
@@ -440,7 +440,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             Array [
               Object {
                 "alignContent": "center",
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
                 "borderRadius": 30.76923076923077,
                 "height": 84.61538461538461,
                 "justifyContent": "center",
@@ -461,7 +461,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#C63733",
+                  "color": "#c63733",
                   "fontSize": 24,
                 },
                 undefined,
@@ -693,7 +693,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           <View
             style={
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -708,7 +708,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 16,
                     "lineHeight": 28,
@@ -725,7 +725,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           <View
             style={
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -740,7 +740,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 16,
                     "lineHeight": 28,
@@ -757,7 +757,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           <View
             style={
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -772,7 +772,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 16,
                     "lineHeight": 28,
@@ -1119,7 +1119,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#FAFAFA",
+          "backgroundColor": "#fafafa",
           "height": "100%",
           "paddingHorizontal": 28.985507246376812,
           "width": "100%",
@@ -1142,7 +1142,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 20,
               "fontWeight": "600",
@@ -1161,7 +1161,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 20,
               "fontWeight": "600",
@@ -1266,7 +1266,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 16,
               "lineHeight": 28,
@@ -1354,7 +1354,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "#C63733",
+                "backgroundColor": "#c63733",
               },
               undefined,
             ]
@@ -1369,7 +1369,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#FFFFFF",
+                  "color": "#fff",
                   "fontSize": 20,
                 },
                 Object {
@@ -1386,14 +1386,14 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 18,
                   "lineHeight": 28,
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#FFFFFF",
+                  "color": "#fff",
                 },
               ]
             }
@@ -1467,7 +1467,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
               },
               undefined,
             ]
@@ -1482,7 +1482,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#C63733",
+                  "color": "#c63733",
                   "fontSize": 20,
                 },
                 Object {
@@ -1499,14 +1499,14 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 18,
                   "lineHeight": 28,
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#C63733",
+                  "color": "#c63733",
                 },
               ]
             }
@@ -1536,7 +1536,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             Array [
               Object {
                 "alignContent": "center",
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
                 "borderRadius": 30.76923076923077,
                 "height": 84.61538461538461,
                 "justifyContent": "center",
@@ -1557,7 +1557,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#C63733",
+                  "color": "#c63733",
                   "fontSize": 24,
                 },
                 undefined,
@@ -1789,7 +1789,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -1804,7 +1804,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 16,
                     "lineHeight": 28,
@@ -1821,7 +1821,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -1836,7 +1836,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 16,
                     "lineHeight": 28,
@@ -1853,7 +1853,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#FFFFFF",
+                "backgroundColor": "#fff",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -1868,7 +1868,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 16,
                     "lineHeight": 28,

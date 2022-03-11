@@ -89,7 +89,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
               "width": "100%",
             },
             Object {
-              "backgroundColor": "#C63733",
+              "backgroundColor": "#c63733",
             },
             undefined,
           ]
@@ -104,7 +104,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
                 "textAlign": "center",
               },
               Object {
-                "color": "#FFFFFF",
+                "color": "#fff",
                 "fontSize": 20,
               },
               Object {
@@ -121,14 +121,14 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "lineHeight": 28,
                 "textAlign": "left",
               },
               Object {
-                "color": "#FFFFFF",
+                "color": "#fff",
               },
             ]
           }
@@ -201,7 +201,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
               "width": "100%",
             },
             Object {
-              "backgroundColor": "#FFFFFF",
+              "backgroundColor": "#fff",
             },
             undefined,
           ]
@@ -216,7 +216,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
                 "textAlign": "center",
               },
               Object {
-                "color": "#C63733",
+                "color": "#c63733",
                 "fontSize": 20,
               },
               Object {
@@ -233,14 +233,14 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "lineHeight": 28,
                 "textAlign": "left",
               },
               Object {
-                "color": "#C63733",
+                "color": "#c63733",
               },
             ]
           }

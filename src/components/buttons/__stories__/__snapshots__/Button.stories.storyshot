@@ -72,7 +72,7 @@ exports[`Storyshots components/buttons/Button Customized 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#C63733",
+            "backgroundColor": "#c63733",
           },
           undefined,
         ]
@@ -87,7 +87,7 @@ exports[`Storyshots components/buttons/Button Customized 1`] = `
               "textAlign": "center",
             },
             Object {
-              "color": "#FFFFFF",
+              "color": "#fff",
               "fontSize": 24,
             },
             Object {
@@ -104,14 +104,14 @@ exports[`Storyshots components/buttons/Button Customized 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 18,
               "lineHeight": 28,
               "textAlign": "left",
             },
             Object {
-              "color": "#FFFFFF",
+              "color": "#fff",
             },
           ]
         }
@@ -196,7 +196,7 @@ exports[`Storyshots components/buttons/Button Default 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#FFFFFF",
+            "backgroundColor": "#fff",
           },
           undefined,
         ]
@@ -208,7 +208,7 @@ exports[`Storyshots components/buttons/Button Default 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 18,
               "lineHeight": 28,
@@ -300,7 +300,7 @@ exports[`Storyshots components/buttons/Button With Icon 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#FFFFFF",
+            "backgroundColor": "#fff",
           },
           undefined,
         ]
@@ -332,7 +332,7 @@ exports[`Storyshots components/buttons/Button With Icon 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 18,
               "lineHeight": 28,

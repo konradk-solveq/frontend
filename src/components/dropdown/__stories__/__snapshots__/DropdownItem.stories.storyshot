@@ -72,7 +72,7 @@ exports[`Storyshots components/dropdown/DropdownItem Customized 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 16,
                   "lineHeight": 28,
@@ -92,13 +92,13 @@ exports[`Storyshots components/dropdown/DropdownItem Customized 1`] = `
       style={
         Array [
           Object {
-            "borderBottomColor": "#BDBDBD",
+            "borderBottomColor": "#bdbdbd",
             "borderBottomWidth": 0.5,
             "borderRadius": 1,
           },
           Object {
             "borderBottomWidth": 0.5,
-            "color": "#BDBDBD",
+            "color": "#bdbdbd",
           },
           undefined,
         ]
@@ -180,7 +180,7 @@ exports[`Storyshots components/dropdown/DropdownItem Default 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 16,
                   "lineHeight": 28,
@@ -200,13 +200,13 @@ exports[`Storyshots components/dropdown/DropdownItem Default 1`] = `
       style={
         Array [
           Object {
-            "borderBottomColor": "#BDBDBD",
+            "borderBottomColor": "#bdbdbd",
             "borderBottomWidth": 0.5,
             "borderRadius": 1,
           },
           Object {
             "borderBottomWidth": 0.5,
-            "color": "#BDBDBD",
+            "color": "#bdbdbd",
           },
           undefined,
         ]
@@ -288,14 +288,14 @@ exports[`Storyshots components/dropdown/DropdownItem Selected 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 16,
                   "lineHeight": 28,
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#C63733",
+                  "color": "#c63733",
                 },
               ]
             }
@@ -310,13 +310,13 @@ exports[`Storyshots components/dropdown/DropdownItem Selected 1`] = `
       style={
         Array [
           Object {
-            "borderBottomColor": "#BDBDBD",
+            "borderBottomColor": "#bdbdbd",
             "borderBottomWidth": 0.5,
             "borderRadius": 1,
           },
           Object {
             "borderBottomWidth": 0.5,
-            "color": "#BDBDBD",
+            "color": "#bdbdbd",
           },
           undefined,
         ]
@@ -398,14 +398,14 @@ exports[`Storyshots components/dropdown/DropdownItem With Icon 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 16,
                   "lineHeight": 28,
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#C63733",
+                  "color": "#c63733",
                 },
               ]
             }
@@ -421,7 +421,7 @@ exports[`Storyshots components/dropdown/DropdownItem With Icon 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#C63733",
+                  "color": "#c63733",
                   "fontSize": 12,
                 },
                 Object {
@@ -440,13 +440,13 @@ exports[`Storyshots components/dropdown/DropdownItem With Icon 1`] = `
       style={
         Array [
           Object {
-            "borderBottomColor": "#BDBDBD",
+            "borderBottomColor": "#bdbdbd",
             "borderBottomWidth": 0.5,
             "borderRadius": 1,
           },
           Object {
             "borderBottomWidth": 0.5,
-            "color": "#BDBDBD",
+            "color": "#bdbdbd",
           },
           undefined,
         ]

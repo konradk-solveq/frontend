@@ -21,7 +21,7 @@ exports[`Storyshots components/modals/BottomModal Customized 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#FAFAFA",
+          "backgroundColor": "#fafafa",
           "borderTopEndRadius": 30.76923076923077,
           "borderTopStartRadius": 30.76923076923077,
           "bottom": 0,
@@ -61,7 +61,7 @@ exports[`Storyshots components/modals/BottomModal Customized 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#BDBDBD",
+              "backgroundColor": "#bdbdbd",
               "borderRadius": 7.6923076923076925,
               "height": 6.322274881516588,
               "marginTop": 25.28909952606635,
@@ -134,7 +134,7 @@ exports[`Storyshots components/modals/BottomModal Default 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#FAFAFA",
+          "backgroundColor": "#fafafa",
           "borderTopEndRadius": 30.76923076923077,
           "borderTopStartRadius": 30.76923076923077,
           "bottom": 0,
@@ -174,7 +174,7 @@ exports[`Storyshots components/modals/BottomModal Default 1`] = `
         <View
           style={
             Object {
-              "backgroundColor": "#BDBDBD",
+              "backgroundColor": "#bdbdbd",
               "borderRadius": 7.6923076923076925,
               "height": 6.322274881516588,
               "marginTop": 25.28909952606635,

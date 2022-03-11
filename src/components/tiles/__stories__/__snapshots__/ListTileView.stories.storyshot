@@ -113,7 +113,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
@@ -132,7 +132,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
@@ -229,7 +229,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
@@ -245,7 +245,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 20,
                           "fontWeight": "600",
@@ -292,7 +292,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
@@ -335,7 +335,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
@@ -379,7 +379,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#333",
+                      "color": "#333333",
                       "fontFamily": "mykross",
                       "fontSize": 46.15384615384615,
                       "height": 46.15384615384615,
@@ -513,7 +513,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
@@ -532,7 +532,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
@@ -629,7 +629,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
@@ -673,7 +673,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#333",
+                      "color": "#333333",
                       "fontFamily": "mykross",
                       "fontSize": 46.15384615384615,
                       "height": 46.15384615384615,
@@ -807,7 +807,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
@@ -826,7 +826,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
@@ -923,7 +923,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
@@ -939,7 +939,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 20,
                           "fontWeight": "600",
@@ -986,7 +986,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
@@ -1029,7 +1029,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
@@ -1073,7 +1073,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#333",
+                      "color": "#333333",
                       "fontFamily": "mykross",
                       "fontSize": 46.15384615384615,
                       "height": 46.15384615384615,
@@ -1207,7 +1207,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
@@ -1226,7 +1226,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 18,
                     "lineHeight": 28,
@@ -1323,7 +1323,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
@@ -1339,7 +1339,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 20,
                           "fontWeight": "600",
@@ -1388,7 +1388,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   <Text
                     style={
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "mykross",
                         "fontSize": 46.15384615384615,
                         "height": 46.15384615384615,
@@ -1432,7 +1432,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                 <Text
                   style={
                     Object {
-                      "color": "#333",
+                      "color": "#333333",
                       "fontFamily": "mykross",
                       "fontSize": 46.15384615384615,
                       "height": 46.15384615384615,
