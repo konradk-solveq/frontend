@@ -292,7 +292,7 @@ Array [
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#fff",
+                  "backgroundColor": "#FFFFFF",
                 },
                 undefined,
               ]
@@ -311,7 +311,7 @@ Array [
                     "textAlign": "left",
                   },
                   Object {
-                    "color": "#c63733",
+                    "color": "#C63733",
                   },
                 ]
               }
@@ -669,7 +669,7 @@ Array [
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#fff",
+                  "backgroundColor": "#FFFFFF",
                 },
                 undefined,
               ]
@@ -688,7 +688,7 @@ Array [
                     "textAlign": "left",
                   },
                   Object {
-                    "color": "#c63733",
+                    "color": "#C63733",
                   },
                 ]
               }
@@ -1066,7 +1066,7 @@ Array [
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#fff",
+                  "backgroundColor": "#FFFFFF",
                 },
                 undefined,
               ]
@@ -1085,7 +1085,7 @@ Array [
                     "textAlign": "left",
                   },
                   Object {
-                    "color": "#c63733",
+                    "color": "#C63733",
                   },
                 ]
               }

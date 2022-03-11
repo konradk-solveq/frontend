@@ -72,7 +72,7 @@ exports[`Storyshots components/buttons/Button Customized 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#c63733",
+            "backgroundColor": "#C63733",
           },
           undefined,
         ]
@@ -87,7 +87,7 @@ exports[`Storyshots components/buttons/Button Customized 1`] = `
               "textAlign": "center",
             },
             Object {
-              "color": "#fff",
+              "color": "#FFFFFF",
               "fontSize": 24,
             },
             Object {
@@ -111,7 +111,7 @@ exports[`Storyshots components/buttons/Button Customized 1`] = `
               "textAlign": "left",
             },
             Object {
-              "color": "#fff",
+              "color": "#FFFFFF",
             },
           ]
         }
@@ -196,7 +196,7 @@ exports[`Storyshots components/buttons/Button Default 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]
@@ -300,7 +300,7 @@ exports[`Storyshots components/buttons/Button With Icon 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]

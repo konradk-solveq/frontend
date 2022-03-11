@@ -830,7 +830,7 @@ const clearMarkersCluster = () => {
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]
@@ -899,7 +899,7 @@ const clearMarkersCluster = () => {
             Array [
               Object {
                 "alignContent": "center",
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "height": 84.61538461538461,
                 "justifyContent": "center",
@@ -917,7 +917,7 @@ const clearMarkersCluster = () => {
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                   "fontSize": 24,
                 },
                 undefined,

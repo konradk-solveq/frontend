@@ -89,7 +89,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
               "width": "100%",
             },
             Object {
-              "backgroundColor": "#c63733",
+              "backgroundColor": "#C63733",
             },
             undefined,
           ]
@@ -104,7 +104,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
                 "textAlign": "center",
               },
               Object {
-                "color": "#fff",
+                "color": "#FFFFFF",
                 "fontSize": 20,
               },
               Object {
@@ -128,7 +128,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
                 "textAlign": "left",
               },
               Object {
-                "color": "#fff",
+                "color": "#FFFFFF",
               },
             ]
           }
@@ -201,7 +201,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
               "width": "100%",
             },
             Object {
-              "backgroundColor": "#fff",
+              "backgroundColor": "#FFFFFF",
             },
             undefined,
           ]
@@ -216,7 +216,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
                 "textAlign": "center",
               },
               Object {
-                "color": "#c63733",
+                "color": "#C63733",
                 "fontSize": 20,
               },
               Object {
@@ -240,7 +240,7 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
                 "textAlign": "left",
               },
               Object {
-                "color": "#c63733",
+                "color": "#C63733",
               },
             ]
           }

@@ -82,7 +82,7 @@ exports[`Storyshots components/slider/RangePicker Customized 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#78788033",
+                  "backgroundColor": "rgba(120, 120, 128, 0.2)",
                 },
               ]
             }
@@ -107,7 +107,7 @@ exports[`Storyshots components/slider/RangePicker Customized 1`] = `
                     "width": "100%",
                   },
                   Object {
-                    "backgroundColor": "#c63733",
+                    "backgroundColor": "#C63733",
                   },
                 ]
               }
@@ -148,7 +148,7 @@ exports[`Storyshots components/slider/RangePicker Customized 1`] = `
                   "width": 53.84615384615385,
                 },
                 Object {
-                  "backgroundColor": "#fff",
+                  "backgroundColor": "#FFFFFF",
                 },
               ]
             }
@@ -188,7 +188,7 @@ exports[`Storyshots components/slider/RangePicker Customized 1`] = `
                   "width": 53.84615384615385,
                 },
                 Object {
-                  "backgroundColor": "#fff",
+                  "backgroundColor": "#FFFFFF",
                 },
               ]
             }
@@ -445,7 +445,7 @@ exports[`Storyshots components/slider/RangePicker Default 1`] = `
                   "width": "100%",
                 },
                 Object {
-                  "backgroundColor": "#78788033",
+                  "backgroundColor": "rgba(120, 120, 128, 0.2)",
                 },
               ]
             }
@@ -470,7 +470,7 @@ exports[`Storyshots components/slider/RangePicker Default 1`] = `
                     "width": "100%",
                   },
                   Object {
-                    "backgroundColor": "#c63733",
+                    "backgroundColor": "#C63733",
                   },
                 ]
               }
@@ -511,7 +511,7 @@ exports[`Storyshots components/slider/RangePicker Default 1`] = `
                   "width": 53.84615384615385,
                 },
                 Object {
-                  "backgroundColor": "#fff",
+                  "backgroundColor": "#FFFFFF",
                 },
               ]
             }
@@ -551,7 +551,7 @@ exports[`Storyshots components/slider/RangePicker Default 1`] = `
                   "width": 53.84615384615385,
                 },
                 Object {
-                  "backgroundColor": "#fff",
+                  "backgroundColor": "#FFFFFF",
                 },
               ]
             }

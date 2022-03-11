@@ -58,7 +58,7 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
             "width": 565.3846153846154,
           },
           Object {
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
           },
         ],
       ]
@@ -77,7 +77,7 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]
@@ -92,7 +92,7 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
               "textAlign": "center",
             },
             Object {
-              "color": "#c63733",
+              "color": "#C63733",
               "fontSize": 20,
             },
             Object {
@@ -116,7 +116,7 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
               "textAlign": "left",
             },
             Object {
-              "color": "#c63733",
+              "color": "#C63733",
             },
           ]
         }
@@ -204,7 +204,7 @@ exports[`Storyshots components/buttons/SecondaryButton Default 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]
@@ -223,7 +223,7 @@ exports[`Storyshots components/buttons/SecondaryButton Default 1`] = `
               "textAlign": "left",
             },
             Object {
-              "color": "#c63733",
+              "color": "#C63733",
             },
           ]
         }
@@ -311,7 +311,7 @@ exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
             "width": "100%",
           },
           Object {
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]
@@ -326,7 +326,7 @@ exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
               "textAlign": "center",
             },
             Object {
-              "color": "#c63733",
+              "color": "#C63733",
               "fontSize": 20,
             },
             Object {
@@ -350,7 +350,7 @@ exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
               "textAlign": "left",
             },
             Object {
-              "color": "#c63733",
+              "color": "#C63733",
             },
           ]
         }

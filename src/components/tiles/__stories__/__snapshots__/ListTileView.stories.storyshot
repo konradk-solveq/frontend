@@ -230,7 +230,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                           "textAlign": "center",
                         },
                         Object {
-                          "color": "#c63733",
+                          "color": "#C63733",
                           "fontSize": 20,
                         },
                         Object {
@@ -299,7 +299,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                           "textAlign": "center",
                         },
                         Object {
-                          "color": "#c63733",
+                          "color": "#C63733",
                           "fontSize": 20,
                         },
                         Object {
@@ -339,7 +339,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                         "textAlign": "center",
                       },
                       Object {
-                        "color": "#c63733",
+                        "color": "#C63733",
                         "fontSize": 20,
                       },
                       Object {
@@ -388,7 +388,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                         "textAlign": "center",
                       },
                       Object {
-                        "color": "#c63733",
+                        "color": "#C63733",
                         "fontSize": 20,
                       },
                       Object {
@@ -635,7 +635,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                         "textAlign": "center",
                       },
                       Object {
-                        "color": "#c63733",
+                        "color": "#C63733",
                         "fontSize": 20,
                       },
                       Object {
@@ -684,7 +684,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                         "textAlign": "center",
                       },
                       Object {
-                        "color": "#c63733",
+                        "color": "#C63733",
                         "fontSize": 20,
                       },
                       Object {
@@ -940,7 +940,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                           "textAlign": "center",
                         },
                         Object {
-                          "color": "#c63733",
+                          "color": "#C63733",
                           "fontSize": 20,
                         },
                         Object {
@@ -1009,7 +1009,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                           "textAlign": "center",
                         },
                         Object {
-                          "color": "#c63733",
+                          "color": "#C63733",
                           "fontSize": 20,
                         },
                         Object {
@@ -1049,7 +1049,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                         "textAlign": "center",
                       },
                       Object {
-                        "color": "#c63733",
+                        "color": "#C63733",
                         "fontSize": 20,
                       },
                       Object {
@@ -1098,7 +1098,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                         "textAlign": "center",
                       },
                       Object {
-                        "color": "#c63733",
+                        "color": "#C63733",
                         "fontSize": 20,
                       },
                       Object {
@@ -1354,7 +1354,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                           "textAlign": "center",
                         },
                         Object {
-                          "color": "#c63733",
+                          "color": "#C63733",
                           "fontSize": 20,
                         },
                         Object {
@@ -1416,7 +1416,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                         "textAlign": "center",
                       },
                       Object {
-                        "color": "#c63733",
+                        "color": "#C63733",
                         "fontSize": 20,
                       },
                       Object {
@@ -1465,7 +1465,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                         "textAlign": "center",
                       },
                       Object {
-                        "color": "#c63733",
+                        "color": "#C63733",
                         "fontSize": 20,
                       },
                       Object {

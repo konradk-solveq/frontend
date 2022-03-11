@@ -36,14 +36,14 @@ exports[`Storyshots components/buttons/IconButton Customized 1`] = `
         Array [
           Object {
             "alignContent": "center",
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
             "borderRadius": 30.76923076923077,
             "height": 84.61538461538461,
             "justifyContent": "center",
             "width": 84.61538461538461,
           },
           Object {
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
           },
         ]
       }
@@ -56,7 +56,7 @@ exports[`Storyshots components/buttons/IconButton Customized 1`] = `
               "textAlign": "center",
             },
             Object {
-              "color": "#c63733",
+              "color": "#C63733",
               "fontSize": 24,
             },
             undefined,
@@ -107,7 +107,7 @@ exports[`Storyshots components/buttons/IconButton Default 1`] = `
         Array [
           Object {
             "alignContent": "center",
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
             "borderRadius": 30.76923076923077,
             "height": 84.61538461538461,
             "justifyContent": "center",
@@ -125,7 +125,7 @@ exports[`Storyshots components/buttons/IconButton Default 1`] = `
               "textAlign": "center",
             },
             Object {
-              "color": "#c63733",
+              "color": "#C63733",
               "fontSize": 24,
             },
             undefined,

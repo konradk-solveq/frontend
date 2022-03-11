@@ -49,7 +49,7 @@ exports[`Storyshots components/buttons/TransparentButton Customized 1`] = `
             "width": 565.3846153846154,
           },
           Object {
-            "backgroundColor": "#fff",
+            "backgroundColor": "#FFFFFF",
           },
         ],
       ]

@@ -242,7 +242,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -274,7 +274,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -306,7 +306,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -890,7 +890,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -922,7 +922,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -954,7 +954,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,

@@ -28,7 +28,7 @@ exports[`Storyshots components/divider/HorizontalSpacer Customized 1`] = `
           "height": 31.61137440758294,
         },
         Object {
-          "backgroundColor": "#c63733",
+          "backgroundColor": "#C63733",
         },
       ]
     }
@@ -64,7 +64,7 @@ exports[`Storyshots components/divider/HorizontalSpacer Default 1`] = `
           "height": 31.61137440758294,
         },
         Object {
-          "backgroundColor": "#c63733",
+          "backgroundColor": "#C63733",
         },
       ]
     }

@@ -92,13 +92,13 @@ exports[`Storyshots components/dropdown/DropdownItem Customized 1`] = `
       style={
         Array [
           Object {
-            "borderBottomColor": "#bdbdbd",
+            "borderBottomColor": "#BDBDBD",
             "borderBottomWidth": 0.5,
             "borderRadius": 1,
           },
           Object {
             "borderBottomWidth": 0.5,
-            "color": "#bdbdbd",
+            "color": "#BDBDBD",
           },
           undefined,
         ]
@@ -200,13 +200,13 @@ exports[`Storyshots components/dropdown/DropdownItem Default 1`] = `
       style={
         Array [
           Object {
-            "borderBottomColor": "#bdbdbd",
+            "borderBottomColor": "#BDBDBD",
             "borderBottomWidth": 0.5,
             "borderRadius": 1,
           },
           Object {
             "borderBottomWidth": 0.5,
-            "color": "#bdbdbd",
+            "color": "#BDBDBD",
           },
           undefined,
         ]
@@ -295,7 +295,7 @@ exports[`Storyshots components/dropdown/DropdownItem Selected 1`] = `
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                 },
               ]
             }
@@ -310,13 +310,13 @@ exports[`Storyshots components/dropdown/DropdownItem Selected 1`] = `
       style={
         Array [
           Object {
-            "borderBottomColor": "#bdbdbd",
+            "borderBottomColor": "#BDBDBD",
             "borderBottomWidth": 0.5,
             "borderRadius": 1,
           },
           Object {
             "borderBottomWidth": 0.5,
-            "color": "#bdbdbd",
+            "color": "#BDBDBD",
           },
           undefined,
         ]
@@ -405,7 +405,7 @@ exports[`Storyshots components/dropdown/DropdownItem With Icon 1`] = `
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                 },
               ]
             }
@@ -421,7 +421,7 @@ exports[`Storyshots components/dropdown/DropdownItem With Icon 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                   "fontSize": 12,
                 },
                 Object {
@@ -440,13 +440,13 @@ exports[`Storyshots components/dropdown/DropdownItem With Icon 1`] = `
       style={
         Array [
           Object {
-            "borderBottomColor": "#bdbdbd",
+            "borderBottomColor": "#BDBDBD",
             "borderBottomWidth": 0.5,
             "borderRadius": 1,
           },
           Object {
             "borderBottomWidth": 0.5,
-            "color": "#bdbdbd",
+            "color": "#BDBDBD",
           },
           undefined,
         ]

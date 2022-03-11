@@ -22,11 +22,11 @@ exports[`Storyshots components/icons/TextIcon Customized 1`] = `
           "textAlign": "center",
         },
         Object {
-          "color": "#c63733",
+          "color": "#C63733",
           "fontSize": 24,
         },
         Object {
-          "backgroundColor": "#fff",
+          "backgroundColor": "#FFFFFF",
         },
       ]
     }
@@ -59,7 +59,7 @@ exports[`Storyshots components/icons/TextIcon Default 1`] = `
           "textAlign": "center",
         },
         Object {
-          "color": "#c63733",
+          "color": "#C63733",
           "fontSize": 20,
         },
         undefined,

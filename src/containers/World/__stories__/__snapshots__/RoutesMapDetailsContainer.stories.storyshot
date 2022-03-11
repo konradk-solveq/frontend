@@ -20,13 +20,13 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
     style={
       Array [
         Object {
-          "backgroundColor": "#fafafa",
+          "backgroundColor": "#FAFAFA",
           "height": "100%",
           "paddingHorizontal": 28.985507246376812,
           "width": "100%",
         },
         Object {
-          "borderColor": "#c63733",
+          "borderColor": "#C63733",
           "borderWidth": 1,
         },
       ]
@@ -258,7 +258,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "#c63733",
+                "backgroundColor": "#C63733",
               },
               undefined,
             ]
@@ -273,7 +273,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#fff",
+                  "color": "#FFFFFF",
                   "fontSize": 20,
                 },
                 Object {
@@ -297,7 +297,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#fff",
+                  "color": "#FFFFFF",
                 },
               ]
             }
@@ -371,7 +371,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]
@@ -386,7 +386,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                   "fontSize": 20,
                 },
                 Object {
@@ -410,7 +410,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                 },
               ]
             }
@@ -440,7 +440,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             Array [
               Object {
                 "alignContent": "center",
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "height": 84.61538461538461,
                 "justifyContent": "center",
@@ -461,7 +461,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                   "fontSize": 24,
                 },
                 undefined,
@@ -693,7 +693,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -725,7 +725,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -757,7 +757,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -1119,7 +1119,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#fafafa",
+          "backgroundColor": "#FAFAFA",
           "height": "100%",
           "paddingHorizontal": 28.985507246376812,
           "width": "100%",
@@ -1354,7 +1354,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "#c63733",
+                "backgroundColor": "#C63733",
               },
               undefined,
             ]
@@ -1369,7 +1369,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#fff",
+                  "color": "#FFFFFF",
                   "fontSize": 20,
                 },
                 Object {
@@ -1393,7 +1393,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#fff",
+                  "color": "#FFFFFF",
                 },
               ]
             }
@@ -1467,7 +1467,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 "width": "100%",
               },
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]
@@ -1482,7 +1482,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                   "fontSize": 20,
                 },
                 Object {
@@ -1506,7 +1506,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   "textAlign": "left",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                 },
               ]
             }
@@ -1536,7 +1536,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             Array [
               Object {
                 "alignContent": "center",
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "height": 84.61538461538461,
                 "justifyContent": "center",
@@ -1557,7 +1557,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   "textAlign": "center",
                 },
                 Object {
-                  "color": "#c63733",
+                  "color": "#C63733",
                   "fontSize": 24,
                 },
                 undefined,
@@ -1789,7 +1789,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -1821,7 +1821,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
@@ -1853,7 +1853,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           <View
             style={
               Object {
-                "backgroundColor": "#fff",
+                "backgroundColor": "#FFFFFF",
                 "borderRadius": 30.76923076923077,
                 "marginBottom": 12.644549763033176,
                 "marginRight": 15.384615384615385,
