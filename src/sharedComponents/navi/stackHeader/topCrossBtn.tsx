@@ -12,6 +12,20 @@ interface Props {
 }
 
 const TopCrossBtn: React.FC<Props> = ({onPress}: Props) => {
+    const styles = StyleSheet.create({
+        buttonContainer: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: getWidthPxOf(9),
+            position: 'absolute',
+            width: getWidthPxOf(40),
+            height: getWidthPxOf(34),
+            left: getWidthPxOf(30),
+            zIndex: 20,
+        },
+    });
+
     return (
         <View style={styles.buttonContainer}>
             <IconButton
@@ -22,19 +36,5 @@ const TopCrossBtn: React.FC<Props> = ({onPress}: Props) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    buttonContainer: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: getWidthPxOf(9),
-        position: 'absolute',
-        width: getWidthPxOf(40),
-        height: getWidthPxOf(34),
-        left: getWidthPxOf(30),
-        zIndex: 20,
-    },
-});
 
 export default TopCrossBtn;

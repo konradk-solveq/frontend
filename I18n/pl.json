@@ -38,6 +38,20 @@
         "btnSkip": "POMIŃ",
         "alertMessage": "Włącz NFC w ustawieniach telefonu."
     },
+    "AddBikeScreen": {
+        "headerTitle": "Dodaj rower kross",
+        "divider": "lub",
+        "upperCell": {
+            "header": "Skan NFC",
+            "body": "Jeśli masz rower od xxxx to naklejka nfc \n znajduje się przy kierownicy"
+        },
+        "bottomCell": {
+            "header": "Wprowadź ręcznie nr ramy",
+            "linkButton": "Gdzie znajdę nr ramy?",
+            "scanNfcButton": "Skan NFC",
+            "findByNumberButton": "Wprowadź ręcznie nr ramy"
+        }
+    },
     "TutorialNFCmodal": {
         "title": "Gotowy do skanowania",
         "text": "Zbliż telefon do naklejki NFC",

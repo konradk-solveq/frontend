@@ -1,0 +1,923 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/AddBike/AddBike Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "width": "100%",
+        },
+        Object {},
+      ]
+    }
+    testID="add-bike-container-test-id"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/assets/images/bike_placeholder_2.png",
+          }
+        }
+        style={
+          Object {
+            "height": 538.4615384615385,
+            "width": 700,
+          }
+        }
+        testID="add-bike-container-test-id-placeholder-image"
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "marginBottom": 75.86729857819905,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 20,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+          testID="header2-test-id"
+        >
+          AddBikeScreen.upperCell.header
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 28,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+          testID="body-primary-test-id"
+        >
+          AddBikeScreen.upperCell.body
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          Object {
+            "flexDirection": "row",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 1,
+              "color": "#717171",
+            },
+            Object {
+              "flexGrow": 3,
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexGrow": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              Object {
+                "position": "absolute",
+              },
+            ]
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "alignSelf": "center",
+                },
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            AddBikeScreen.divider
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 1,
+              "color": "#717171",
+            },
+            Object {
+              "flexGrow": 3,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 75.86729857819905,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "marginBottom": 88.51184834123222,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 20,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "center",
+              },
+              Object {
+                "paddingBottom": 25.28909952606635,
+              },
+            ]
+          }
+          testID="header2-test-id"
+        >
+          AddBikeScreen.bottomCell.header
+        </Text>
+        <View
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="add-bike-container-test-id-link-button"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#C63733",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                  "textDecorationLine": "underline",
+                },
+                undefined,
+              ]
+            }
+            testID="text-link-test-id"
+          >
+            AddBikeScreen.bottomCell.linkButton
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "elevation": 5,
+                "shadowColor": "rgba(51, 51, 51, 0.07)",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 7.6923076923076925,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 15.384615384615385,
+              },
+              Array [
+                Object {
+                  "height": 92.3076923076923,
+                  "width": 565.3846153846154,
+                },
+                Object {
+                  "marginBottom": 25.28909952606635,
+                },
+              ],
+            ]
+          }
+          testID="add-bike-container-test-id-scan-nfc-button"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {
+                  "backgroundColor": "#C63733",
+                },
+                undefined,
+              ]
+            }
+            testID="add-bike-container-test-id-scan-nfc-button-container"
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#FFFFFF",
+                  },
+                ]
+              }
+              testID="add-bike-container-test-id-scan-nfc-button-text"
+            >
+              AddBikeScreen.bottomCell.scanNfcButton
+            </Text>
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "elevation": 5,
+                "shadowColor": "rgba(51, 51, 51, 0.07)",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 7.6923076923076925,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 15.384615384615385,
+              },
+              Array [
+                Object {
+                  "height": 92.3076923076923,
+                  "width": 565.3846153846154,
+                },
+                Object {},
+              ],
+            ]
+          }
+          testID="add-bike-container-test-id-find-by-number-button"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {
+                  "backgroundColor": "#C63733",
+                },
+                undefined,
+              ]
+            }
+            testID="add-bike-container-test-id-find-by-number-button-container"
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#FFFFFF",
+                  },
+                ]
+              }
+              testID="add-bike-container-test-id-find-by-number-button-text"
+            >
+              AddBikeScreen.bottomCell.findByNumberButton
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots containers/AddBike/AddBike Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+    testID="add-bike-container-test-id"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/assets/images/bike_placeholder_2.png",
+          }
+        }
+        style={
+          Object {
+            "height": 538.4615384615385,
+            "width": 700,
+          }
+        }
+        testID="add-bike-container-test-id-placeholder-image"
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "marginBottom": 75.86729857819905,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 20,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+          testID="header2-test-id"
+        >
+          AddBikeScreen.upperCell.header
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 28,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+          testID="body-primary-test-id"
+        >
+          AddBikeScreen.upperCell.body
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          Object {
+            "flexDirection": "row",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 1,
+              "color": "#717171",
+            },
+            Object {
+              "flexGrow": 3,
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexGrow": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flexDirection": "row",
+              },
+              Object {
+                "position": "absolute",
+              },
+            ]
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "alignSelf": "center",
+                },
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            AddBikeScreen.divider
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 1,
+              "color": "#717171",
+            },
+            Object {
+              "flexGrow": 3,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 75.86729857819905,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "marginBottom": 88.51184834123222,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 20,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "center",
+              },
+              Object {
+                "paddingBottom": 25.28909952606635,
+              },
+            ]
+          }
+          testID="header2-test-id"
+        >
+          AddBikeScreen.bottomCell.header
+        </Text>
+        <View
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="add-bike-container-test-id-link-button"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#C63733",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "fontWeight": "600",
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                  "textDecorationLine": "underline",
+                },
+                undefined,
+              ]
+            }
+            testID="text-link-test-id"
+          >
+            AddBikeScreen.bottomCell.linkButton
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "elevation": 5,
+                "shadowColor": "rgba(51, 51, 51, 0.07)",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 7.6923076923076925,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 15.384615384615385,
+              },
+              Array [
+                Object {
+                  "height": 92.3076923076923,
+                  "width": 565.3846153846154,
+                },
+                Object {
+                  "marginBottom": 25.28909952606635,
+                },
+              ],
+            ]
+          }
+          testID="add-bike-container-test-id-scan-nfc-button"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {
+                  "backgroundColor": "#C63733",
+                },
+                undefined,
+              ]
+            }
+            testID="add-bike-container-test-id-scan-nfc-button-container"
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#FFFFFF",
+                  },
+                ]
+              }
+              testID="add-bike-container-test-id-scan-nfc-button-text"
+            >
+              AddBikeScreen.bottomCell.scanNfcButton
+            </Text>
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "elevation": 5,
+                "shadowColor": "rgba(51, 51, 51, 0.07)",
+                "shadowOffset": Object {
+                  "height": 0,
+                  "width": 7.6923076923076925,
+                },
+                "shadowOpacity": 1,
+                "shadowRadius": 15.384615384615385,
+              },
+              Array [
+                Object {
+                  "height": 92.3076923076923,
+                  "width": 565.3846153846154,
+                },
+                Object {},
+              ],
+            ]
+          }
+          testID="add-bike-container-test-id-find-by-number-button"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {
+                  "backgroundColor": "#C63733",
+                },
+                undefined,
+              ]
+            }
+            testID="add-bike-container-test-id-find-by-number-button-container"
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "lineHeight": 28,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#FFFFFF",
+                  },
+                ]
+              }
+              testID="add-bike-container-test-id-find-by-number-button-text"
+            >
+              AddBikeScreen.bottomCell.findByNumberButton
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
