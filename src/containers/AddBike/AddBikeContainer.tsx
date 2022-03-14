@@ -5,6 +5,7 @@ import {
     Image,
     GestureResponderEvent,
     ViewStyle,
+    Dimensions,
 } from 'react-native';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -16,6 +17,13 @@ import {
 import {HorizontalDividerWithSeparator} from '@components/divider';
 import {BodyPrimary, Header2} from '@components/texts/texts';
 import {LinkButton, PrimaryButton} from '@components/buttons';
+import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
+
+const {height} = Dimensions.get('screen');
+/* Cut spacer on smaller screen to fit content */
+const dividerSpace = height > 768 ? 48 : 14;
+/* Cut spacer on smaller screen to fit content */
+const upperTextSpace = height > 768 ? 0 : -48;
 
 interface IProps {
     onPressLink: (e: GestureResponderEvent) => void;
@@ -89,16 +97,18 @@ const AddBikeContainer: React.FC<IProps> = ({
 const styles = StyleSheet.create({
     container: {
         width: '100%',
+        paddingHorizontal: appContainerHorizontalMargin,
     },
     upperCell: {
         alignItems: 'center',
     },
     bottomCell: {
-        marginTop: getFVerticalPx(48),
+        marginTop: getFVerticalPx(dividerSpace),
     },
     upperTextContainer: {
         alignItems: 'center',
-        marginBottom: getFVerticalPx(48),
+        marginTop: getFVerticalPx(upperTextSpace),
+        marginBottom: getFVerticalPx(dividerSpace),
     },
     bottomTextContainer: {
         alignItems: 'center',
