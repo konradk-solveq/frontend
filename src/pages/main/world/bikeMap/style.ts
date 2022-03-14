@@ -5,6 +5,7 @@ import {
     getFHorizontalPx,
 } from '@theme/utils/appLayoutDimensions';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
+import colors from '@theme/colors';
 
 const fontLight = 'DIN2014Narrow-Light';
 const darkText = '#313131';
@@ -12,6 +13,9 @@ const darkText = '#313131';
 const {width} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
+    background: {
+        backgroundColor: colors.whiteGrey,
+    },
     header: {
         fontFamily: fontLight,
         fontSize: getFFontSize(30),
