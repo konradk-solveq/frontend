@@ -36,7 +36,7 @@ export const BodyPrimary: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(16),
             lineHeight: getFFontSize(28),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#333',
+            color: color ? color : colors.black,
         },
     });
     return (
@@ -88,7 +88,7 @@ export const Paragraph: FunctionComponent<PropsT> = ({
         text: {
             fontFamily: 'DIN2014-Regular',
             fontSize: getFFontSize(16),
-            lineHeight: getFFontSize(28),
+            lineHeight: getFFontSize(24),
             textAlign: algin ? algin : 'left',
             color: color ? color : colors.black,
         },
@@ -145,7 +145,7 @@ export const Header2: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(20),
             lineHeight: getFFontSize(24),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#333',
+            color: color ? color : colors.black,
         },
     });
     return (
@@ -229,11 +229,40 @@ export const Demi18h28: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(18),
             lineHeight: getFFontSize(28),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#333',
+            color: color ? color : colors.black,
         },
     });
     return (
         <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const Demi18h28crop: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'demi-18-h28-crop-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontSize: getFFontSize(18),
+            lineHeight: getFFontSize(28),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.black,
+            overflow: 'hidden',
+        },
+    });
+    return (
+        <Text
+            numberOfLines={1}
             testID={testID}
             style={[styles.text, style]}
             adjustsFontSizeToFit={adjustsFontSizeToFit}>
@@ -255,7 +284,53 @@ export const Demi18h36: FunctionComponent<PropsT> = ({
             fontSize: getFFontSize(18),
             lineHeight: getFFontSize(36),
             textAlign: algin ? algin : 'left',
-            color: color ? color : '#717171',
+            color: color ? color : colors.darkGrey,
+        },
+    });
+    return (
+        <Text testID={testID} style={[styles.text, style]}>
+            {children}
+        </Text>
+    );
+};
+
+export const Demi16h36: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    children,
+    style,
+    testID = 'demi-16-h36-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontSize: getFFontSize(16),
+            lineHeight: getFFontSize(36),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.darkGrey,
+        },
+    });
+    return (
+        <Text testID={testID} style={[styles.text, style]}>
+            {children}
+        </Text>
+    );
+};
+
+export const Demi14h48: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    children,
+    style,
+    testID = 'demi-14-h48-test-id',
+}) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontSize: getFFontSize(14),
+            lineHeight: getFFontSize(48),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.darkGrey,
         },
     });
     return (

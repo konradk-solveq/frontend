@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, Dimensions, View} from 'react-native';
 import {useNavigation, StackActions} from '@react-navigation/native';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -9,7 +9,6 @@ import {
     getCenterLeftPx,
     getVerticalPx,
 } from '../../../../helpers/layoutFoo';
-import {nfcIsSupported} from '../../../../helpers/nfc';
 
 import BikeButton from '../../../../sharedComponents/buttons/bikeButton';
 import BikeIcon from '../../../../sharedComponents/svg/bikeIcon';
@@ -21,6 +20,7 @@ interface Props {
     callback: Function;
     currentBike: string | undefined;
     buttonText: string;
+    supportsNFC?: boolean;
 }
 
 const {width} = Dimensions.get('window');
@@ -30,14 +30,9 @@ const BikeSelectorList: React.FC<Props> = ({
     callback,
     currentBike,
     buttonText,
+    supportsNFC = false,
 }: Props) => {
     const navigation = useNavigation();
-
-    const [nfc, setNfc] = useState();
-
-    nfcIsSupported().then(r => {
-        setNfc(r);
-    });
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
@@ -103,7 +98,7 @@ const BikeSelectorList: React.FC<Props> = ({
                     text={`+ ${buttonText}`}
                     onPress={() => {
                         const pushAction = StackActions.push(
-                            nfc
+                            supportsNFC
                                 ? RegularStackRoute.ADD_BIKE_SCREEN
                                 : BothStackRoute.ADDING_BY_NUMBER_SCREEN,
                             {

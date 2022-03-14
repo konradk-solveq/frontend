@@ -7,16 +7,18 @@ import {
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
-const fontLight = 'DIN2014Narrow-Light';
-const darkText = '#313131';
+import colors from '@theme/colors';
 
 const {width} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
+    background: {
+        backgroundColor: colors.whiteGrey,
+    },
     header: {
-        fontFamily: fontLight,
+        fontFamily: 'DIN2014Narrow-Light',
         fontSize: getVerticalPx(30),
-        color: darkText,
+        color: colors.dark,
         marginHorizontal: getHorizontalPx(16),
     },
     tileWrapper: {
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
         bottom: getFVerticalPx(133),
         left: getFHorizontalPx(95),
         width: getFHorizontalPx(200),
-        shadowColor: '#333333',
+        shadowColor: colors.black,
         shadowOffset: {
             width: 0,
             height: getFVerticalPx(4),

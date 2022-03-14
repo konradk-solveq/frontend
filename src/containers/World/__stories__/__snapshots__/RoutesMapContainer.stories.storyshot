@@ -862,7 +862,7 @@ const clearMarkersCluster = () => {
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 18,
                   "lineHeight": 28,

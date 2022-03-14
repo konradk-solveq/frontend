@@ -19,8 +19,6 @@ import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 
-import FirstTile from '../components/tiles/firstTile';
-import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
@@ -29,6 +27,7 @@ import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import styles from './style';
+import ListTile from '@pages/main/world/components/listTile';
 import {fetchMapsList} from '@storage/actions';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {PickedFilters} from '@interfaces/form';
@@ -153,26 +152,14 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
             const lastItemStyle =
                 index === mapsData?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
-            if (index === 0) {
-                return (
-                    <View style={styles.tileWrapper}>
-                        <FirstTile
-                            mapData={item}
-                            images={images}
-                            onPress={onPressHandler}
-                            onPressTile={onPressTileHandler}
-                            tilePressable
-                        />
-                    </View>
-                );
-            }
             return (
-                <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
-                    <NextTile
+                <View key={item.id} style={lastItemStyle}>
+                    <ListTile
                         mapData={item}
                         images={images}
                         onPress={onPressHandler}
                         onPressTile={onPressTileHandler}
+                        mode={'public'}
                         tilePressable
                     />
                 </View>
@@ -234,7 +221,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     return (
         <>
             {mapsData?.length ? (
-                <>
+                <View style={styles.background}>
                     <ShowMoreModal
                         showModal={showModal}
                         mapID={activeMapID}
@@ -299,7 +286,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                         refreshing={isLoading && isRefreshing}
                         onRefresh={onRefreshHandler}
                     />
-                </>
+                </View>
             ) : null}
 
             <Backdrop

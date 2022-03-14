@@ -109,7 +109,7 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 18,
               "lineHeight": 28,
@@ -216,7 +216,7 @@ exports[`Storyshots components/buttons/SecondaryButton Default 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 18,
               "lineHeight": 28,
@@ -343,7 +343,7 @@ exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
         style={
           Array [
             Object {
-              "color": "#333",
+              "color": "#333333",
               "fontFamily": "DIN2014-Demi",
               "fontSize": 18,
               "lineHeight": 28,

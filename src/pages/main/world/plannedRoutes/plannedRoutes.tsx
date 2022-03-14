@@ -17,7 +17,6 @@ import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
-import NextTile from '../components/tiles/nextTile';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import EmptyList from './emptyList';
 import {Dropdown} from '@components/dropdown';
@@ -37,6 +36,7 @@ import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import {plannedRoutesDropdownList} from '../utils/dropdownLists';
+import ListTile from '@pages/main/world/components/listTile';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -148,12 +148,13 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             index === favouriteMaps?.length - 1 ? styles.lastTile : undefined;
         const images = getImagesThumbs(item?.images || []);
         return (
-            <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
-                <NextTile
+            <View key={item.id} style={lastItemStyle}>
+                <ListTile
                     mapData={item}
                     images={images}
                     onPress={onPressHandler}
                     onPressTile={onPressTileHandler}
+                    mode={'saved'}
                     tilePressable
                 />
             </View>
@@ -216,7 +217,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     return (
-        <>
+        <View style={styles.background}>
             <ShowMoreModal
                 showModal={showModal}
                 removeFav
@@ -245,7 +246,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     hideButton
                 />
             </View>
-            <View style={styles.horizontalSpace}>
+            <View >
                 <FlatList
                     keyExtractor={item => item.id}
                     ListHeaderComponent={
@@ -292,7 +293,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 onPress={() => navigation.navigate('RoutesMap')}
                 style={styles.mapBtn}
             />
-        </>
+        </View>
     );
 };
 

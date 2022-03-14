@@ -16,3 +16,7 @@ export const getYear = (d: string) => {
     let date = getDate(d);
     return '' + date.getFullYear();
 };
+
+export const getFullDate = (d: string) => {
+    return getDay(d) + '.' + getYear(d);
+};

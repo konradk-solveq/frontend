@@ -15,13 +15,10 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
-import {translateDateToTodayAndYesterdayString} from '@utils/dateTime';
 import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
-import FirstTile from '../components/tiles/firstTile';
-import NextTile from '../components/tiles/nextTile';
 import EmptyList from './emptyList';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import {Dropdown} from '@components/dropdown';
@@ -39,6 +36,7 @@ import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {privateRoutesDropdownList} from '../utils/dropdownLists';
+import ListTile from '@pages/main/world/components/listTile';
 
 const length = getVerticalPx(175);
 const getItemLayout = (_: any, index: number) => ({
@@ -157,45 +155,14 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 index === privateMaps?.length - 1 ? styles.lastTile : undefined;
             const images = getImagesThumbs(item?.images || []);
 
-            if (index === 0) {
-                return (
-                    <View style={[styles.tileWrapper, lastItemStyle]}>
-                        {sortedByDate && (
-                            <Text style={styles.separatorHeader}>
-                                {translateDateToTodayAndYesterdayString(
-                                    item.createdAtDate,
-                                )}
-                            </Text>
-                        )}
-                        <FirstTile
-                            mapData={item}
-                            images={images}
-                            onPress={onPressHandler}
-                            onPressTile={onPressTileHandler}
-                            tilePressable
-                        />
-                    </View>
-                );
-            }
-
-            const showDate = shouldShowDate(
-                item.createdAtDateString,
-                index - 1,
-            );
             return (
-                <View key={item.id} style={[styles.tileWrapper, lastItemStyle]}>
-                    {sortedByDate && showDate && (
-                        <Text style={styles.separatorHeader}>
-                            {translateDateToTodayAndYesterdayString(
-                                item.createdAtDate,
-                            )}
-                        </Text>
-                    )}
-                    <NextTile
+                <View key={item.id} style={lastItemStyle}>
+                    <ListTile
                         mapData={item}
                         images={images}
                         onPress={onPressHandler}
                         onPressTile={onPressTileHandler}
+                        mode={'my'}
                         tilePressable
                     />
                 </View>
@@ -293,7 +260,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     return (
-        <>
+        <View style={styles.background}>
             {rednerModal()}
             <FiltersModal
                 onClose={onFiltersModalCloseHandler}
@@ -365,7 +332,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 onPress={() => navigation.navigate('RoutesMap')}
                 style={styles.mapBtn}
             />
-        </>
+        </View>
     );
 };
 

@@ -1,15 +1,13 @@
 import {StyleSheet} from 'react-native';
 import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
-
-const fontLight = 'DIN2014Narrow-Light';
-const darkText = '#313131';
+import colors from '@theme/colors';
 
 const styles = StyleSheet.create({
     header: {
-        fontFamily: fontLight,
+        fontFamily: 'DIN2014Narrow-Light',
         fontSize: getFontSize(30),
         marginTop: getVerticalPx(30),
-        color: darkText,
+        color: colors.dark,
         marginHorizontal: getHorizontalPx(16),
     },
     tileWrapper: {
@@ -33,7 +31,7 @@ const styles = StyleSheet.create({
         marginTop: getVerticalPx(100),
     },
     navHeader: {
-        backgroundColor: '#ffffff',
+        backgroundColor: colors.white,
         zIndex: 1000,
     },
 });

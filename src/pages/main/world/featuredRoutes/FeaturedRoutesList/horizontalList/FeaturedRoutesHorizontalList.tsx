@@ -8,9 +8,8 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {TextBtn} from '@sharedComponents/buttons';
 
-import NextTile from '../../../components/tiles/nextTile';
-
 import styles, {horizontalStyles} from './style';
+import ListTile from '@pages/main/world/components/listTile';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -30,8 +29,8 @@ interface IProps {
     onPressElement: (mapID?: string) => void;
     onShowMore: (
         sectionID: string,
-        sectionName?: string,
         data: MapType[],
+        sectionName?: string,
     ) => void;
     sectionHeader?: string;
 }
@@ -70,13 +69,13 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
 
         return (
             <View key={item.id} style={[styles.tileWrapper, middleTiles]}>
-                <NextTile
+                <ListTile
                     mapData={item}
                     images={images}
                     onPress={onPressHandler}
                     onPressTile={onPressElement}
                     tilePressable
-                    headerTitle={sectionHeader}
+                    mode={'featured'}
                     sectionID={sectionID}
                 />
             </View>

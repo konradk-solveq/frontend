@@ -123,7 +123,7 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "lineHeight": 28,
@@ -222,7 +222,7 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 16,
                           "lineHeight": 28,
@@ -333,7 +333,7 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 16,
                           "lineHeight": 28,
@@ -422,7 +422,7 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 16,
                           "lineHeight": 28,
@@ -511,7 +511,7 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 16,
                           "lineHeight": 28,
@@ -624,7 +624,7 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
                   style={
                     Array [
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "DIN2014-Demi",
                         "fontSize": 18,
                         "lineHeight": 28,
@@ -772,7 +772,7 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
           style={
             Array [
               Object {
-                "color": "#333",
+                "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
                 "fontSize": 18,
                 "lineHeight": 28,
@@ -871,7 +871,7 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 16,
                           "lineHeight": 28,
@@ -982,7 +982,7 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 16,
                           "lineHeight": 28,
@@ -1071,7 +1071,7 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 16,
                           "lineHeight": 28,
@@ -1160,7 +1160,7 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#333",
+                          "color": "#333333",
                           "fontFamily": "DIN2014-Demi",
                           "fontSize": 16,
                           "lineHeight": 28,
@@ -1273,7 +1273,7 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
                   style={
                     Array [
                       Object {
-                        "color": "#333",
+                        "color": "#333333",
                         "fontFamily": "DIN2014-Demi",
                         "fontSize": 18,
                         "lineHeight": 28,
