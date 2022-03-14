@@ -239,7 +239,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#333",
+                  "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
                   "fontSize": 20,
                   "fontWeight": "600",
@@ -362,7 +362,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#333",
+                      "color": "#333333",
                       "fontFamily": "DIN2014-Demi",
                       "fontSize": 18,
                       "lineHeight": 28,
@@ -452,7 +452,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#333",
+                      "color": "#333333",
                       "fontFamily": "DIN2014-Demi",
                       "fontSize": 18,
                       "lineHeight": 28,
@@ -560,7 +560,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#333",
+                    "color": "#333333",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 20,
                     "fontWeight": "600",

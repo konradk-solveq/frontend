@@ -507,7 +507,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 Object {
                   "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
-                  "fontSize": 14,
+                  "fontSize": 18,
                   "fontWeight": "600",
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -571,7 +571,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
               Object {
                 "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
-                "fontSize": 14,
+                "fontSize": 18,
                 "fontWeight": "600",
                 "lineHeight": 24,
                 "textAlign": "left",
@@ -664,7 +664,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
               Object {
                 "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
-                "fontSize": 14,
+                "fontSize": 18,
                 "fontWeight": "600",
                 "lineHeight": 24,
                 "textAlign": "left",
@@ -1603,7 +1603,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 Object {
                   "color": "#333333",
                   "fontFamily": "DIN2014-Demi",
-                  "fontSize": 14,
+                  "fontSize": 18,
                   "fontWeight": "600",
                   "lineHeight": 24,
                   "textAlign": "left",
@@ -1667,7 +1667,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
               Object {
                 "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
-                "fontSize": 14,
+                "fontSize": 18,
                 "fontWeight": "600",
                 "lineHeight": 24,
                 "textAlign": "left",
@@ -1760,7 +1760,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
               Object {
                 "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
-                "fontSize": 14,
+                "fontSize": 18,
                 "fontWeight": "600",
                 "lineHeight": 24,
                 "textAlign": "left",

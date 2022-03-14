@@ -57,21 +57,17 @@ exports[`<BikeSelectorList /> Rendering Should hide backArrowBtn 1`] = `
         }
       >
         <Text
-          adjustsFontSizeToFit={false}
           style={
             Array [
               Object {
-                "color": "#333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 20,
-                "fontWeight": "600",
-                "lineHeight": 24,
-                "textAlign": "left",
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
               },
               undefined,
             ]
           }
-          testID="header2-test-id"
         >
           Generic Screen Test
         </Text>
@@ -226,21 +222,17 @@ exports[`<BikeSelectorList /> Rendering Should match snapshot 1`] = `
           </RNSVGSvgView>
         </View>
         <Text
-          adjustsFontSizeToFit={false}
           style={
             Array [
               Object {
-                "color": "#333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 20,
-                "fontWeight": "600",
-                "lineHeight": 24,
-                "textAlign": "left",
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
               },
               undefined,
             ]
           }
-          testID="header2-test-id"
         >
           Generic Screen Test
         </Text>
@@ -395,21 +387,17 @@ exports[`<BikeSelectorList /> Rendering Should navigate after press on backArrow
           </RNSVGSvgView>
         </View>
         <Text
-          adjustsFontSizeToFit={false}
           style={
             Array [
               Object {
-                "color": "#333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 20,
-                "fontWeight": "600",
-                "lineHeight": 24,
-                "textAlign": "left",
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
               },
               undefined,
             ]
           }
-          testID="header2-test-id"
         >
           Generic Screen Test
         </Text>
@@ -564,21 +552,17 @@ exports[`<BikeSelectorList /> Rendering Should render child component 1`] = `
           </RNSVGSvgView>
         </View>
         <Text
-          adjustsFontSizeToFit={false}
           style={
             Array [
               Object {
-                "color": "#333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 20,
-                "fontWeight": "600",
-                "lineHeight": 24,
-                "textAlign": "left",
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
               },
               undefined,
             ]
           }
-          testID="header2-test-id"
         >
           Generic Screen Test
         </Text>
@@ -735,21 +719,17 @@ exports[`<BikeSelectorList /> Rendering Should render header right action elemen
           </RNSVGSvgView>
         </View>
         <Text
-          adjustsFontSizeToFit={false}
           style={
             Array [
               Object {
-                "color": "#333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 20,
-                "fontWeight": "600",
-                "lineHeight": 24,
-                "textAlign": "left",
+                "color": "#313131",
+                "fontFamily": "DIN2014Narrow-Light",
+                "fontSize": 18,
+                "textAlign": "center",
               },
               undefined,
             ]
           }
-          testID="header2-test-id"
         >
           Generic Screen Test
         </Text>

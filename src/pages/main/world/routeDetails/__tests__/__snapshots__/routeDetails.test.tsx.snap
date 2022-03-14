@@ -64,21 +64,17 @@ Array [
           }
         >
           <Text
-            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "color": "#333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
+                  "color": "#313131",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 18,
+                  "textAlign": "center",
                 },
                 undefined,
               ]
             }
-            testID="header2-test-id"
           >
             
           </Text>
@@ -1475,21 +1471,17 @@ Array [
           }
         >
           <Text
-            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "color": "#333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
+                  "color": "#313131",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 18,
+                  "textAlign": "center",
                 },
                 undefined,
               ]
             }
-            testID="header2-test-id"
           >
             
           </Text>
@@ -2855,21 +2847,17 @@ Array [
           }
         >
           <Text
-            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "color": "#333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
+                  "color": "#313131",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 18,
+                  "textAlign": "center",
                 },
                 undefined,
               ]
             }
-            testID="header2-test-id"
           >
             
           </Text>
@@ -4273,21 +4261,17 @@ Array [
           }
         >
           <Text
-            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "color": "#333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
+                  "color": "#313131",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 18,
+                  "textAlign": "center",
                 },
                 undefined,
               ]
             }
-            testID="header2-test-id"
           >
             
           </Text>
@@ -5699,21 +5683,17 @@ Array [
             </RNSVGSvgView>
           </View>
           <Text
-            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "color": "#333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
+                  "color": "#313131",
+                  "fontFamily": "DIN2014Narrow-Light",
+                  "fontSize": 18,
+                  "textAlign": "center",
                 },
                 undefined,
               ]
             }
-            testID="header2-test-id"
           >
             
           </Text>
