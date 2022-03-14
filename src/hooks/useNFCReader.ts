@@ -56,7 +56,6 @@ const useNFCReader = () => {
     }, []);
 
     const cancelScanByNfcHandler = useCallback(() => {
-        // setShowScanModal(false);
         if (startScanNFC) {
             setStartScanNFC(false);
             nfcIsOnRef.current = false;
