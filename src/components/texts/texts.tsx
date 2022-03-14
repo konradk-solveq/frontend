@@ -88,7 +88,7 @@ export const Paragraph: FunctionComponent<PropsT> = ({
         text: {
             fontFamily: 'DIN2014-Regular',
             fontSize: getFFontSize(16),
-            lineHeight: getFFontSize(28),
+            lineHeight: getFFontSize(24),
             textAlign: algin ? algin : 'left',
             color: color ? color : colors.black,
         },
