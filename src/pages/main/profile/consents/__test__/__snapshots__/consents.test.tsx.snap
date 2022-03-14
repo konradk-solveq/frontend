@@ -59,6 +59,7 @@ Array [
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={true}
             hitSlop={
               Object {
@@ -68,6 +69,7 @@ Array [
                 "top": 10,
               }
             }
+            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -141,17 +143,21 @@ Array [
             </RNSVGSvgView>
           </View>
           <Text
+            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "color": "#313131",
-                  "fontFamily": "DIN2014Narrow-Light",
-                  "fontSize": 18,
-                  "textAlign": "center",
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 20,
+                  "fontWeight": "600",
+                  "lineHeight": 24,
+                  "textAlign": "left",
                 },
                 undefined,
               ]
             }
+            testID="header2-test-id"
           >
             Consents.header
           </Text>
@@ -822,6 +828,7 @@ Array [
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={true}
             hitSlop={
               Object {
@@ -831,6 +838,7 @@ Array [
                 "top": 10,
               }
             }
+            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -904,17 +912,21 @@ Array [
             </RNSVGSvgView>
           </View>
           <Text
+            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "color": "#313131",
-                  "fontFamily": "DIN2014Narrow-Light",
-                  "fontSize": 18,
-                  "textAlign": "center",
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 20,
+                  "fontWeight": "600",
+                  "lineHeight": 24,
+                  "textAlign": "left",
                 },
                 undefined,
               ]
             }
+            testID="header2-test-id"
           >
             Consents.header
           </Text>
@@ -1799,6 +1811,7 @@ Array [
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={true}
             hitSlop={
               Object {
@@ -1808,6 +1821,7 @@ Array [
                 "top": 10,
               }
             }
+            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -1881,17 +1895,21 @@ Array [
             </RNSVGSvgView>
           </View>
           <Text
+            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "color": "#313131",
-                  "fontFamily": "DIN2014Narrow-Light",
-                  "fontSize": 18,
-                  "textAlign": "center",
+                  "color": "#333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 20,
+                  "fontWeight": "600",
+                  "lineHeight": 24,
+                  "textAlign": "left",
                 },
                 undefined,
               ]
             }
+            testID="header2-test-id"
           >
             Consents.header
           </Text>
