@@ -82,7 +82,7 @@ const StackHeader: React.FC<Props> = ({
             <View style={styles.wrap}>
                 {(forceBackArrow || showBackArrow) && <BackButton />}
 
-                <Text style={[styles.title, titleStyle]}>{inner}</Text>
+                <Header2 style={titleStyle}>{inner}</Header2>
 
                 {rightActions && (
                     <View style={styles.actionButtonsWraper}>
