@@ -5,6 +5,10 @@ import {cleanUp, initNfc, nfcIsEnabled, readNdef} from '@helpers/nfc';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {isAndroid} from '@utils/platform';
 
+/**
+ * TODO: It was copied from src/pages/onboarding/bikeAdding/turtorialNFC/turtorialNFC.tsx
+ * Needs some refactor. Tests are missing.
+ */
 const useNFCReader = () => {
     const refTimer = useRef<any>();
     const {t} = useMergedTranslation('TutorialNFC');

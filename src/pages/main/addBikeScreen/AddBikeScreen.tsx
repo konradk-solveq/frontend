@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 
 import {setBikesListByFrameNumber} from '@storage/actions';
 import {useAppDispatch} from '@hooks/redux';
@@ -15,6 +15,8 @@ const AddBikeScreen: React.FC = () => {
     const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
     const {t} = useMergedTranslation('AddBikeScreen');
+
+    const [isFetching, setIsFetching] = useState(false);
 
     const {
         heandleScanByNfc,
@@ -38,7 +40,9 @@ const AddBikeScreen: React.FC = () => {
     useEffect(() => {
         if (!startScanNFC && nfcTagResult) {
             const navigateToSummary = async () => {
+                setIsFetching(true);
                 await dispatch(setBikesListByFrameNumber(nfcTagResult));
+                setIsFetching(false);
                 navigation.navigate('BikeSummary', {frameNumber: nfcTagResult});
             };
             navigateToSummary();
@@ -52,6 +56,7 @@ const AddBikeScreen: React.FC = () => {
                 onPressScanNfc={onPressScanNfcHandler}
                 onPressFindByNumber={onPressScanByNumberHandler}
                 scanButtonIsDisabled={startScanNFC}
+                isLoading={isFetching}
             />
             {isAndroid && (
                 <ScanModal

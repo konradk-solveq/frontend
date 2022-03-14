@@ -30,6 +30,7 @@ interface IProps {
     onPressFindByNumber: (e: GestureResponderEvent) => void;
     onPressScanNfc: (e: GestureResponderEvent) => void;
     scanButtonIsDisabled?: boolean;
+    isLoading?: boolean;
     style?: ViewStyle;
     testID?: string;
 }
@@ -39,6 +40,7 @@ const AddBikeContainer: React.FC<IProps> = ({
     onPressFindByNumber,
     onPressScanNfc,
     scanButtonIsDisabled = false,
+    isLoading = false,
     style,
     testID = 'add-bike-container-test-id',
 }: IProps) => {
@@ -81,6 +83,7 @@ const AddBikeContainer: React.FC<IProps> = ({
                         onPress={onPressScanNfc}
                         style={styles.button}
                         disabled={scanButtonIsDisabled}
+                        withLoader={isLoading}
                         testID={`${testID}-scan-nfc-button`}
                     />
                     <PrimaryButton
