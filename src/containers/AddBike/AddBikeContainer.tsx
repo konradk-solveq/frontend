@@ -40,7 +40,7 @@ const AddBikeContainer: React.FC<IProps> = ({
         <View style={[styles.container, style]} testID={testID}>
             <View style={styles.upperCell}>
                 <Image
-                    source={require('@assets/images/bike_placeholder_2.png')}
+                    source={require('@assets/images/bike_placeholder_.png')}
                     style={styles.image}
                     testID={`${testID}-placeholder-image`}
                 />

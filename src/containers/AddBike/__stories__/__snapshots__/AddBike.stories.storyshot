@@ -37,7 +37,7 @@ exports[`Storyshots containers/AddBike/AddBike Customized 1`] = `
       <Image
         source={
           Object {
-            "testUri": "../../../src/assets/images/bike_placeholder_2.png",
+            "testUri": "../../../src/assets/images/bike_placeholder_.png",
           }
         }
         style={
@@ -498,7 +498,7 @@ exports[`Storyshots containers/AddBike/AddBike Default 1`] = `
       <Image
         source={
           Object {
-            "testUri": "../../../src/assets/images/bike_placeholder_2.png",
+            "testUri": "../../../src/assets/images/bike_placeholder_.png",
           }
         }
         style={
