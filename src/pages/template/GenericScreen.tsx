@@ -20,6 +20,7 @@ interface IProps {
     contentBelowHeader?: boolean;
     transculentStatusBar?: boolean /* Renders screen under statusb bur */;
     transculentBottom?: boolean /* Renders screen under statusb bur */;
+    showCross?: boolean /* Shows cross instead of back arrow */;
 }
 
 const GenericScreen: React.FC<IProps> = ({
@@ -30,6 +31,7 @@ const GenericScreen: React.FC<IProps> = ({
     contentBelowHeader,
     transculentStatusBar,
     transculentBottom,
+    showCross = false,
 }: IProps) => {
     const statusBarHeigh = getAppLayoutConfig.statusBarH();
     const {top} = useSafeAreaInsets();
@@ -79,6 +81,7 @@ const GenericScreen: React.FC<IProps> = ({
                         style={{height: headerHeightModifier}}
                         rightActions={actionElement}
                         hideBackArrow={hideBackArrow}
+                        showCross={showCross}
                     />
                     {children ? children : <Text>Generic Screen</Text>}
                 </View>

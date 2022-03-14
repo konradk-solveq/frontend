@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {showedLocationInfoSelector} from '@storage/selectors/app';
-import {BothStackRoute} from '@navigation/route';
+import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import {
     getFontSize,
     getHorizontalPx,
@@ -21,6 +21,7 @@ import BigWhiteBtn from '@sharedComponents/buttons/bigWhiteBtn';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 import {isIOS} from '@utils/platform';
+import {useAppNavigation} from '@src/navigation/hooks/useAppNavigation';
 
 interface IProps {
     onPress: () => void;
@@ -28,7 +29,7 @@ interface IProps {
 
 const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
     const {t} = useMergedTranslation('MainMyRoutes');
-    const navigation = useNavigation();
+    const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
 
     const isLocationInfoShowed = useAppSelector(showedLocationInfoSelector);
@@ -42,10 +43,7 @@ const EmptyList: React.FC<IProps> = ({onPress}: IProps) => {
     };
 
     const onAddActionHandler = () => {
-        navigation.navigate({
-            name: BothStackRoute.TURTORIAL_NFC_SCREEN,
-            params: {emptyFrame: true},
-        });
+        navigation.navigate('AddBike', {emptyFrame: true});
     };
 
     const onContinueHandler = () => {

@@ -170,10 +170,39 @@ export const Header3: FunctionComponent<PropsT> = ({
         text: {
             fontFamily: 'DIN2014-Demi',
             fontWeight: '600',
-            fontSize: getFFontSize(18),
+            fontSize: getFFontSize(14),
             lineHeight: getFFontSize(24),
             textAlign: algin ? algin : 'left',
             color: color ? color : colors.black,
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
+export const TextLink: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'text-link-test-id',
+}: PropsT) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontWeight: '600',
+            fontSize: getFFontSize(16),
+            lineHeight: getFFontSize(16),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.black,
+            textDecorationLine: 'underline',
         },
     });
     return (

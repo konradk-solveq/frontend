@@ -75,7 +75,7 @@ const Home: React.FC = () => {
     const onAddActionHandler = () => {
         navigation.navigate({
             name: nfc
-                ? BothStackRoute.TURTORIAL_NFC_SCREEN
+                ? RegularStackRoute.ADD_BIKE_SCREEN
                 : BothStackRoute.ADDING_BY_NUMBER_SCREEN,
             params: {emptyFrame: true},
         });

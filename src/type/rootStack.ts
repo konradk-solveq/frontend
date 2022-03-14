@@ -148,7 +148,7 @@ export type BikeParamsListT = {
     AddingByNumber: {
         emptyFrame?: boolean;
     };
-    TutorialNFC: {
+    AddBike: {
         emptyFrame?: boolean;
     };
     ServicesMap: undefined;
@@ -183,10 +183,10 @@ export type AddingByNumberNavigationPropT = MainNavigationCompositePropT<
     BikeParamsListT,
     'AddingByNumber'
 >;
-export type TutorialNFCRouteT = RouteProp<BikeParamsListT, 'TutorialNFC'>;
+export type TutorialNFCRouteT = RouteProp<BikeParamsListT, 'AddBike'>;
 export type TutorialNFCNavigationPropT = MainNavigationCompositePropT<
     BikeParamsListT,
-    'TutorialNFC'
+    'AddBike'
 >;
 export type ServicesMapRouteT = RouteProp<BikeParamsListT, 'ServicesMap'>;
 export type ServicesMapNavigationPropT = MainNavigationCompositePropT<
