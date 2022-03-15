@@ -157,20 +157,25 @@ export const fetchAppConfig = (
             return;
         }
 
+        if (response.data.uiTranslations.controlSums.length === 0) {
+            response.data.uiTranslations.controlSums = [
+                {
+                    code: 'noControl_Sum',
+                    controlSum: 'noControl_Sum',
+                },
+            ];
+        }
+
         const responseControlSum = await getControlSumService();
 
-        if (
-            responseControlSum.error ||
-            responseControlSum.status >= 400 ||
-            !responseControlSum.data
-        ) {
-            dispatch(
-                setSyncError(
-                    responseControlSum.error,
-                    responseControlSum.status,
-                ),
-            );
-            return;
+        if (!responseControlSum.data) {
+            console.log(`[getControlSumService] - ${responseControlSum.error}`);
+            const err = convertToApiError(responseControlSum.error);
+
+            loggErrorWithScope(err, 'getControlSumService');
+
+            const errorMessage = i18next.t('dataAction.apiError');
+            dispatch(setSyncError(errorMessage, 500));
         }
 
         const {config}: AppState = getState().app;
