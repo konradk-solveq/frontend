@@ -26,12 +26,12 @@ const useLanguageReloader = () => {
     );
 
     useEffect(() => {
-        if (langsList.length === 0 || controlSumsList.length === 0) {
+        if (controlSumsList.length === 0) {
             dispatch(fetchAppConfig(true));
             return;
         }
         if (language != null && translations != null) {
-            const newLanguage = changeLanguage(language, langsList);
+            const newLanguage = changeLanguage(language, languageList);
             dispatch(setLanguage(newLanguage));
             setLanguageHeader(newLanguage);
 
