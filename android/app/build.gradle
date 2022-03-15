@@ -154,12 +154,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 178
         versionName "2.29.4"
-    }
-    splits {
-        abi {
-            reset()
-            enable enableSeparateBuildPerCPUArchitecture
-            universalApk false  // If true, also generate a universal APK
+        versionCode 178
+        versionName "2.29.4"
+generate a universal APK
             include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }

@@ -845,6 +845,35 @@
 				DEVELOPMENT_TEAM = QC3LNKY272;
 				INFOPLIST_FILE = "$(SRCROOT)/myKROSS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD<<<<<<< HEAD
+				MARKETING_VERSION = 2.29.4;
+=======
+				MARKETING_VERSION = 2.6.4;
+>>>>>>> ae6d766f (fix typo)
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross;
+				PRODUCT_NAME = myKROSS;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D528CD38B1B744C0B0AEB432 /* Pods-myKROSS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = myKROSS/myKROSS.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QC3LNKY272;
+				INFOPLIST_FILE = "$(SRCROOT)/myKROSS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1645,58 +1674,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.29.4;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.dev;
-				PRODUCT_NAME = "myKROSS-dev";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Dev.Debug;
-		};
-		90F9350926C5D5CE001FEFCA /* Dev.Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4F9E76147667FEFBAF74A70 /* Pods-myKROSS-myKROSSTests.dev.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = myKROSSTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myKROSS.app/myKROSS";
-			};
-			name = Dev.Debug;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "myKROSSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				90F9350926C5D5CE001FEFCA /* Dev.Debug */,
-				90F9350626C5D5C4001FEFCA /* Test.Debug */,
-				90C7EF23274BB55D00D43C9E /* Feat.Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-				90F9350026C5D5A7001FEFCA /* Dev.Release */,
+ase */,
 				90F934FD26C5D599001FEFCA /* Test.Release */,
 				90C7EF26274BB58900D43C9E /* Feat.Release */,
 			);
