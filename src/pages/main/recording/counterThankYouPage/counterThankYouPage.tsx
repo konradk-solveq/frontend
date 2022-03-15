@@ -146,7 +146,7 @@ const CounterThankYouPage: React.FC<Props> = () => {
             res = 0;
         }
 
-        return Number(res.toFixed(1).replace('.', ','));
+        return res.toFixed(1).replace('.', ',');
     };
 
     const heandleGetTitleType = () => {
