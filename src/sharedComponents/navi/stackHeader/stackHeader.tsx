@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
-import {Text, View, TextStyle, ViewStyle} from 'react-native';
+import {View, TextStyle, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {getVerticalPx} from '@helpers/layoutFoo';
@@ -8,6 +8,7 @@ import TopBackBtn from './topBackBtn';
 
 import styles from './styles';
 import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
+import {Header2} from '@components/texts/texts';
 
 interface Props {
     style?: ViewStyle;
@@ -68,7 +69,7 @@ const StackHeader: React.FC<Props> = ({
                     <TopBackBtn onpress={onPressHandler} />
                 )}
 
-                <Text style={[styles.title, titleStyle]}>{inner}</Text>
+                <Header2 style={titleStyle}>{inner}</Header2>
 
                 {rightActions && (
                     <View style={styles.actionButtonsWraper}>
