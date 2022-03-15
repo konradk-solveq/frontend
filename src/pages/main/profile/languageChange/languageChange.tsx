@@ -21,12 +21,10 @@ import useLanguageReloader from '@src/hooks/useLanguageReloader';
 import Loader from '@sharedComponents/loader/loader';
 import {commonStyle} from '@helpers/commonStyle';
 import {
-    codesListSelector,
     languagesListSelector,
     translationsSelector,
 } from '@storage/selectors/uiTranslation';
 import {languagesListT, translationsT} from '@src/models/uiTranslation.models';
-import {LangsType} from '@src/models/config.model';
 
 const ReloadItem = () => {
     useLanguageReloader();
@@ -43,9 +41,7 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
 
     const language: string = useAppSelector(state => state.user.language);
     const [inputLanguage, setInputLanguage] = useState<string>('');
-
     const languageList: languagesListT = useAppSelector(languagesListSelector);
-    const langsList: LangsType[] = useAppSelector(codesListSelector);
 
     const translations: translationsT = useAppSelector(translationsSelector);
     const [fetchingTranslation, setFetchingTranslation] = useState<boolean>(
@@ -80,7 +76,7 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
         }
 
         dispatch(setLanguage(inputLanguage));
-        changeLanguage(inputLanguage, langsList);
+        changeLanguage(inputLanguage, languageList);
         setGoBack(true);
     };
 
@@ -109,12 +105,16 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
             height: mainButtonsHeight(50),
             bottom: getVerticalPx(65 + 100),
         },
+        spinnerStyle: {
+            width: getHorizontalPx(200),
+            height: getHorizontalPx(200),
+        },
     });
 
     if (fetchingTranslation) {
         return (
             <SafeAreaView style={commonStyle.container}>
-                <Loader />
+                <Loader spinnerStyle={styles.spinnerStyle} />
             </SafeAreaView>
         );
     }
