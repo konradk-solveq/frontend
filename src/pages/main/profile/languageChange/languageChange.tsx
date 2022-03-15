@@ -22,7 +22,6 @@ import Loader from '@sharedComponents/loader/loader';
 import {commonStyle} from '@helpers/commonStyle';
 import {
     languagesListSelector,
-    translationsCodesSelector,
     translationsSelector,
 } from '@storage/selectors/uiTranslation';
 import {languagesListT, translationsT} from '@src/models/uiTranslation.models';
