@@ -227,7 +227,9 @@ const Bike: React.FC<Props> = (props: Props) => {
                                                 : null
                                             : undefined
                                     }
-                                    warranty={t('warranty')}
+                                    warranty={t('warranty', {
+                                        returnObjects: true,
+                                    })}
                                     details={{
                                         description: bike?.description,
                                         warranty: warrantyData,
