@@ -21,13 +21,10 @@ import useLanguageReloader from '@src/hooks/useLanguageReloader';
 import Loader from '@sharedComponents/loader/loader';
 import {commonStyle} from '@helpers/commonStyle';
 import {
-    codesListSelector,
     languagesListSelector,
-    translationsCodesSelector,
     translationsSelector,
 } from '@storage/selectors/uiTranslation';
 import {languagesListT, translationsT} from '@src/models/uiTranslation.models';
-import {LangsType} from '@src/models/config.model';
 
 const ReloadItem = () => {
     useLanguageReloader();
