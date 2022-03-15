@@ -602,7 +602,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                     "color": "#C63733",
                     "fontFamily": "DIN2014-Demi",
                     "fontSize": 16,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                     "textAlign": "center",
                   },
                   undefined,

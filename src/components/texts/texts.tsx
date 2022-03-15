@@ -34,7 +34,7 @@ export const BodyPrimary: FunctionComponent<PropsT> = ({
         text: {
             fontFamily: 'DIN2014-Demi',
             fontSize: getFFontSize(16),
-            lineHeight: getFFontSize(28),
+            lineHeight: getFFontSize(24),
             textAlign: algin ? algin : 'left',
             color: color ? color : colors.black,
         },

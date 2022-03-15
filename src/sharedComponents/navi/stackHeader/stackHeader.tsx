@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo} from 'react';
-import {Text, View, TextStyle, ViewStyle} from 'react-native';
+import {View, TextStyle, ViewStyle} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {getVerticalPx} from '@helpers/layoutFoo';
@@ -8,10 +8,8 @@ import TopBackBtn from './topBackBtn';
 
 import styles from './styles';
 import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
-import {Header2} from '@src/components/texts/texts';
-import {IconButton} from '@src/components/buttons';
-import {MykrossIconFont} from '@src/theme/enums/iconFonts';
 import TopCrossBtn from './topCrossBtn';
+import {Header2} from '@components/texts/texts';
 
 interface Props {
     style?: ViewStyle;
