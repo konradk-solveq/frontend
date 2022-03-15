@@ -20,12 +20,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    title: {
-        fontFamily: 'DIN2014Narrow-Light',
-        textAlign: 'center',
-        fontSize: getFontSize(18),
-        color: '#313131',
-    },
     actionButtonsWraper: {
         position: 'absolute',
         right: 0,
