@@ -2675,10 +2675,10 @@
   dependencies:
     "@types/i18n-js" "*"
 
-"@types/react-native@*", "@types/react-native@^0.64.2":
-  "integrity" "sha512-VqnlmadGkD5usREvnuyVpWDS1W8f6cCz6MP5fZdgONsaZ9/Ijfb9Iq9MZ5O3bnW1OyJixDX9HtSp3COsFSLD8Q=="
-  "resolved" "https://registry.npmjs.org/@types/react-native/-/react-native-0.64.4.tgz"
-  "version" "0.64.4"
+"@types/react-native@*", "@types/react-native@^0.66.15":
+  "integrity" "sha512-qNK3LZhNpSd2Hdr0OFdvQ/VOb1qcjNhmw96LsOtxIN+1RtXHO/1dVzxYUlWnKMCtV+E5WSaWM703c9Q7gG9tyg=="
+  "resolved" "https://registry.npmjs.org/@types/react-native/-/react-native-0.66.15.tgz"
+  "version" "0.66.15"
   dependencies:
     "@types/react" "*"
 
@@ -8752,12 +8752,11 @@
   "version" "4.0.2"
 
 "react-native-background-fetch@~4.0.4":
-  "integrity" "sha512-vGcsIbv5TXblIqBonsMw1dbh/x/1np1NTMArLVz5rjdgUu330pc4o7X6VTxCWtzadajz0Fe1Y71xqXylpmBekA=="
-  "resolved" "https://registry.npmjs.org/react-native-background-fetch/-/react-native-background-fetch-4.0.4.tgz"
-  "version" "4.0.4"
+  "integrity" "sha512-RZx51NRtGX+BFQXW026HUbXzOvCsQX76uBjU2QbikrtE0BefDbhpUPkM8VwufYod0aN5IQ480UF+D9bwUpsxmg=="
+  "resolved" "https://registry.npmjs.org/react-native-background-fetch/-/react-native-background-fetch-4.0.5.tgz"
+  "version" "4.0.5"
 
 "react-native-background-geolocation-android@git+ssh://git@github.com:transistorsoft/react-native-background-geolocation-android.git":
-  "integrity" "sha512-Ry0x3wDNtAFvi3BVGwD789j75MAOzpBztUCmgsn5Nrs71Eqf5Hxyx4Xizt4jv3y52V3n1IKL5hKoWpANTjrdPA=="
   "resolved" "git+ssh://git@github.com/transistorsoft/react-native-background-geolocation-android.git#4a60331595056e0b001af6d1be4f4f54d7c6c69a"
   "version" "4.4.5"
   dependencies:
