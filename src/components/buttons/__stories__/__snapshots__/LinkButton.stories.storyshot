@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/buttons/LinkBUtton Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    testID="link-button-test-id"
+  >
+    <Text
+      adjustsFontSizeToFit={false}
+      style={
+        Array [
+          Object {
+            "color": "#C63733",
+            "fontFamily": "DIN2014-Demi",
+            "fontSize": 16,
+            "fontWeight": "600",
+            "lineHeight": 16,
+            "textAlign": "left",
+            "textDecorationLine": "underline",
+          },
+          undefined,
+        ]
+      }
+      testID="text-link-test-id"
+    >
+      Link button
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/buttons/LinkBUtton Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    accessibilityState={
+      Object {
+        "disabled": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    testID="link-button-test-id"
+  >
+    <Text
+      adjustsFontSizeToFit={false}
+      style={
+        Array [
+          Object {
+            "color": "#C63733",
+            "fontFamily": "DIN2014-Demi",
+            "fontSize": 16,
+            "fontWeight": "600",
+            "lineHeight": 16,
+            "textAlign": "left",
+            "textDecorationLine": "underline",
+          },
+          undefined,
+        ]
+      }
+      testID="text-link-test-id"
+    >
+      Link button
+    </Text>
+  </View>
+</View>
+`;

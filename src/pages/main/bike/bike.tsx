@@ -173,7 +173,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     };
 
     const onAddKrossBike = useCallback(() => {
-        navigation.navigate(nfc ? 'TutorialNFC' : 'AddingByNumber', {
+        navigation.navigate(nfc ? 'AddBike' : 'AddingByNumber', {
             emptyFrame: true,
         });
     }, [navigation, nfc]);

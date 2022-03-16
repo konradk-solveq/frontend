@@ -83,11 +83,7 @@ const Info: React.FC<Props> = (props: Props) => {
             </View>
 
             <StackHeader
-                onpress={() =>
-                    props.navigation.navigate(
-                        BothStackRoute.ADDING_BY_NUMBER_SCREEN,
-                    )
-                }
+                onpress={() => props.navigation.goBack()}
                 inner={t('head')}
             />
         </SafeAreaView>

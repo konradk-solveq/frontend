@@ -8,6 +8,7 @@ import TopBackBtn from './topBackBtn';
 
 import styles from './styles';
 import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
+import TopCrossBtn from './topCrossBtn';
 import {Header2} from '@components/texts/texts';
 
 interface Props {
@@ -19,6 +20,7 @@ interface Props {
     hideBackArrow?: boolean;
     titleStyle?: TextStyle;
     forceBackArrow?: boolean;
+    showCross?: boolean;
 }
 
 // ręcznie dodawany hader bo nie potrafiłem ostylować strałki tak jak wyglądała na designach layoutu
@@ -31,6 +33,7 @@ const StackHeader: React.FC<Props> = ({
     hideBackArrow,
     titleStyle,
     forceBackArrow,
+    showCross = false,
 }: Props) => {
     const navigation = useNavigation();
     const navBarHeight =
@@ -62,12 +65,20 @@ const StackHeader: React.FC<Props> = ({
         }
     }, [onpress, navigation]);
 
+    const BackButton = useCallback(
+        () =>
+            showCross ? (
+                <TopCrossBtn onPress={onPressHandler} />
+            ) : (
+                <TopBackBtn onpress={onPressHandler} />
+            ),
+        [showCross, onPressHandler],
+    );
+
     return (
         <View style={[styles.container, {height: navBarHeight}, style]}>
             <View style={styles.wrap}>
-                {(forceBackArrow || showBackArrow) && (
-                    <TopBackBtn onpress={onPressHandler} />
-                )}
+                {(forceBackArrow || showBackArrow) && <BackButton />}
 
                 <Header2 style={titleStyle}>{inner}</Header2>
 

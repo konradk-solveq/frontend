@@ -59,6 +59,7 @@ Array [
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={true}
             hitSlop={
               Object {
@@ -68,6 +69,7 @@ Array [
                 "top": 10,
               }
             }
+            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -826,6 +828,7 @@ Array [
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={true}
             hitSlop={
               Object {
@@ -835,6 +838,7 @@ Array [
                 "top": 10,
               }
             }
+            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -1807,6 +1811,7 @@ Array [
         >
           <View
             accessible={true}
+            collapsable={false}
             focusable={true}
             hitSlop={
               Object {
@@ -1816,6 +1821,7 @@ Array [
                 "top": 10,
               }
             }
+            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}

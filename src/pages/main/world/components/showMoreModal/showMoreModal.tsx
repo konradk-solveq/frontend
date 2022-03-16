@@ -118,7 +118,7 @@ const ShowMoreModal: React.FC<IProps> = ({
 
     const onAddActionHandler = () => {
         navigation.navigate({
-            name: BothStackRoute.TURTORIAL_NFC_SCREEN,
+            name: RegularStackRoute.ADD_BIKE_SCREEN,
             params: {emptyFrame: true},
         });
     };

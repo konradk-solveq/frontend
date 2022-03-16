@@ -56,7 +56,7 @@ const BikeSummary: React.FC<IProps> = ({navigation, route}: IProps) => {
         () =>
             !onboardingFinished
                 ? OnboardingStackRoute.TURTORIAL_NFC_ONBOARDING_SCREEN
-                : RegularStackRoute.TURTORIAL_NFC_SCREEN,
+                : RegularStackRoute.ADD_BIKE_SCREEN,
         [onboardingFinished],
     );
 
