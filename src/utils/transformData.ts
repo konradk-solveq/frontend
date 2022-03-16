@@ -669,3 +669,11 @@ export const getRoutesDataFromSQLWithLastRecord = async (
         };
     }
 };
+
+export const getFilterDistance = (val: string) => {
+    const parsedValue = parseFloat(val.replace(',', '.')) * 1000;
+    if (isNaN(parsedValue)) {
+        return;
+    }
+    return parsedValue;
+};
