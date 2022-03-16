@@ -229,26 +229,28 @@ const Bike: React.FC<Props> = (props: Props) => {
 
                                 {warrantyData &&
                                     warrantyData?.type !== 'no-info' && (
-                                        <Warranty
-                                            style={styles.warranty}
-                                            navigation={props.navigation}
+                                    <Warranty
+                                        style={styles.warranty}
+                                        navigation={props.navigation}
                                             type={warrantyData.info}
                                             toEnd={
                                                 bike?.warranty
                                                     ? warrantyData?.end
                                                         ? countDaysToEnd(
                                                               warrantyData.end,
-                                                          )
+                                                        )
                                                         : null
                                                     : undefined
                                             }
-                                            warranty={t('warranty')}
+                                            warranty={t('warranty', {
+                                            returnObjects: true,
+                                        })}
                                             details={{
-                                                description: bike?.description,
+                                            description: bike?.description,
                                                 warranty: warrantyData,
                                             }}
-                                        />
-                                    )}
+                                    />
+                                )}
 
                                 {warrantyData?.overviews && (
                                     <Reviews

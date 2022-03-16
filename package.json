@@ -23,7 +23,8 @@
     "prod:android": "cp .env.production .env && npx react-native run-android --variant=prodDebug",
     "prod:android-cmd": "copy .env.production .env && npx react-native run-android --variant=prodDebug",
     "rnsemup": "rnsemup",
-    "storybook": "start-storybook -p 7007"
+    "storybook": "start-storybook -p 7007",
+    "i18ng": "node I18n/i18nextGenerator/index"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.14.1",

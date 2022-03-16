@@ -676,4 +676,30 @@ export const getFilterDistance = (val: string) => {
         return;
     }
     return parsedValue;
+}
+
+export const getRouteLengthFuelEquivalent = (
+    ratio: number,
+    distance: string | undefined,
+) => {
+    if (typeof ratio !== 'number') {
+        return '0';
+    }
+    let fuelEq = 0;
+    if (typeof distance === 'string') {
+        fuelEq = Number(distance.replace(',', '.'));
+    } else {
+        return '0';
+    }
+    const res = fuelEq * (ratio / 100);
+    if (res < 0 || isNaN(res)) {
+        return '0';
+    }
+
+    /**
+     * this makes sure to display only one digit after a dot,
+     * but also deletes the trailing 0s, so '1,0' becomes just '1'
+     */
+
+    return Number(res.toFixed(1)).toString().replace('.', ',');
 };
