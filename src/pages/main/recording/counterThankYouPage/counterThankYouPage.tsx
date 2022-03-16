@@ -33,6 +33,7 @@ import ShortRouteModal from '@sharedComponents/modals/shortRouteModal/ShortRoute
 
 import {TESTING_MODE} from '@env';
 import {CounterThankYouPageRouteT} from '@type/rootStack';
+import {getRouteLengthFuelEquivalent} from '@utils/transformData';
 
 enum Action {
     next = 'next',
@@ -132,31 +133,20 @@ const CounterThankYouPage: React.FC<Props> = () => {
         }
     }, [error?.statusCode, isSyncData, onGoForward, goForward, error.message]);
 
-    const heandleSaveDistance = ratio => {
-        let d = route?.params?.distance;
-
-        if (typeof d === 'undefined') {
-            d = 0.001;
-        } else {
-            d = Number(d.replace(',', '.'));
-        }
-
-        let res = d * (ratio / 100);
-        if (res < 0) {
-            res = 0;
-        }
-
-        return res.toFixed(1).replace('.', ',');
-    };
-
     const heandleGetTitleType = () => {
         if (titleType == 0) {
-            let num = heandleSaveDistance(23);
+            const num = getRouteLengthFuelEquivalent(
+                23,
+                route?.params?.distance,
+            );
             return (
-                ' ' + num + ' ' + (num === 1 ? t('type_1.0') : t('type_1.1'))
+                ' ' + num + ' ' + (num === '1' ? t('type_1.0') : t('type_1.1'))
             );
         } else {
-            let num = heandleSaveDistance(5);
+            const num = getRouteLengthFuelEquivalent(
+                5,
+                route?.params?.distance,
+            );
             return t('type_2', {num: num});
         }
     };
