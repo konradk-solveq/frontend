@@ -670,13 +670,17 @@ export const getRouteLengthFuelEquivalent = (
     ratio: number,
     distance: string | undefined,
 ) => {
-    let fuelEq = 0.001;
-    if (typeof distance !== 'undefined') {
-        fuelEq = Number(distance.replace(',', '.'));
+    if (typeof ratio !== 'number') {
+        return '0';
     }
-
+    let fuelEq = 0;
+    if (typeof distance === 'string') {
+        fuelEq = Number(distance.replace(',', '.'));
+    } else {
+        return '0';
+    }
     const res = fuelEq * (ratio / 100);
-    if (res < 0) {
+    if (res < 0 || isNaN(res)) {
         return '0';
     }
 
