@@ -733,7 +733,6 @@ export const getRoutesDataFromSQLWithLastRecord = async (
     }
 };
 
-<<<<<<< HEAD
 export const getFilterDistance = (val: string) => {
     const parsedValue = parseFloat(val.replace(',', '.')) * 1000;
     if (isNaN(parsedValue)) {
@@ -742,13 +741,10 @@ export const getFilterDistance = (val: string) => {
     return parsedValue;
 };
 
-=======
->>>>>>> 5f53bebd (add types and test for the fuel equivalent function)
 export const getRouteLengthFuelEquivalent = (
     ratio: number,
     distance: string | undefined,
 ) => {
-<<<<<<< HEAD
     if (typeof ratio !== 'number') {
         return '0';
     }
@@ -760,15 +756,6 @@ export const getRouteLengthFuelEquivalent = (
     }
     const res = fuelEq * (ratio / 100);
     if (res < 0 || isNaN(res)) {
-=======
-    let fuelEq = 0.001;
-    if (typeof distance !== 'undefined') {
-        fuelEq = Number(distance.replace(',', '.'));
-    }
-
-    const res = fuelEq * (ratio / 100);
-    if (res < 0) {
->>>>>>> 5f53bebd (add types and test for the fuel equivalent function)
         return '0';
     }
 
@@ -779,7 +766,6 @@ export const getRouteLengthFuelEquivalent = (
 
     return Number(res.toFixed(1)).toString().replace('.', ',');
 };
-<<<<<<< HEAD
 
 export const getRouteLengthCarbonEquivalent = (
     fuelRatio: number,
@@ -803,5 +789,3 @@ export const bikesConfigToClass = (
         return;
     }
 };
-=======
->>>>>>> 5f53bebd (add types and test for the fuel equivalent function)
