@@ -7,6 +7,7 @@ import {getFilters, updateFilters} from './filtersData';
 import {RangePickerRef} from '@components/slider/RangePicker';
 import {useMergedState} from '@hooks/useMergedState';
 import {FiltersContainer} from '@containers/World';
+import {getFilterDistance} from '@utils/transformData';
 
 const lengthOptions = ['0', '5', '10', '20', '40', '80', '120', '160', '200'];
 
@@ -56,11 +57,16 @@ const FiltersModal: React.FC<IProps> = ({
     };
 
     const onSaveHandler = () => {
+        const distanceFrom = getFilterDistance(minLength);
+        const distanceTo = getFilterDistance(maxLength);
         const filtersToSave = pickedFilters;
         filtersToSave.loop = [`${isLoop}`];
         filtersToSave.onlyPublic = [`${isMyPublic}`];
-        filtersToSave.minDistance = [`${minLength}`];
-        filtersToSave.minDistance = [`${maxLength}`];
+        /**
+         * Options are given in kms - filters accept the values in meters
+         */
+        filtersToSave.distanceFrom = distanceFrom ? [`${distanceFrom}`] : [];
+        filtersToSave.distanceTo = distanceTo ? [`${distanceTo}`] : [];
         onSave(filtersToSave);
     };
 
@@ -74,7 +80,7 @@ const FiltersModal: React.FC<IProps> = ({
 
     useEffect(() => {
         const isDefaultLength =
-            minLength === lengthOptions[0] ||
+            minLength === lengthOptions[0] &&
             maxLength === lengthOptions[lengthOptions.length - 1];
         const isDefaultFilters = !Object.keys(pickedFilters).length;
         if (isLoop || isMyPublic || !isDefaultFilters || !isDefaultLength) {
