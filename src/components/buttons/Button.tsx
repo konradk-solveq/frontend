@@ -130,10 +130,10 @@ const styles = StyleSheet.create({
         marginRight: getFHorizontalPx(8),
     },
     shadow: {
-        shadowColor: 'rgba(51, 51, 51, 0.07)',
+        shadowColor: colors.black,
         shadowRadius: getFHorizontalPx(8),
         shadowOffset: {height: 0, width: getFHorizontalPx(4)},
-        shadowOpacity: 1,
+        shadowOpacity: 0.07,
         elevation: 5,
     },
 });
