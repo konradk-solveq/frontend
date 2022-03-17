@@ -36,13 +36,16 @@ export {fetchPlacesData} from './places';
 
 export {
     fetchMapsList,
+    fetchMapsCount,
     setMapsData,
     addMapData,
     addMapToFavourite,
     removeMapFromFavourite,
     fetchPrivateMapsList,
+    fetchPrivateMapsCount,
     setPrivateMapId,
     fetchPlannedMapsList,
+    fetchPlannedMapsCount,
 } from './maps';
 
 export {

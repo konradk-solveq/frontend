@@ -25,8 +25,11 @@ import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
 import SortButton from '../components/buttons/SortButton';
 import styles from './style';
-import {nextPrivatePaginationCoursor} from '@storage/selectors/map';
-import {fetchPrivateMapsList} from '@storage/actions';
+import {
+    nextPrivatePaginationCoursor,
+    mapsCountSelector,
+} from '@storage/selectors/map';
+import {fetchPrivateMapsList, fetchPrivateMapsCount} from '@storage/actions';
 import {
     checkIfContainsFitlers,
     getSorByFilters,
@@ -37,6 +40,7 @@ import {FiltersButton} from '@pages/main/world/components/buttons';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {privateRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
+import {resetMapsCount} from '@storage/actions/maps';
 
 const length = getVerticalPx(175);
 const getItemLayout = (_: any, index: number) => ({
@@ -64,7 +68,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     );
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
-
+    const {private: privateMapsCount} = useAppSelector(mapsCountSelector);
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
     const [showFiltersModal, setShowFiltersModal] = useState(false);
@@ -84,6 +88,13 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         () => dispatch(fetchPrivateMapsList(nextCoursor, savedMapFilters)),
         [dispatch, nextCoursor, savedMapFilters],
     );
+    const onGetFiltersCount = useCallback(
+        filters => dispatch(fetchPrivateMapsCount(filters)),
+        [dispatch],
+    );
+    const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
+        dispatch,
+    ]);
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
@@ -267,6 +278,9 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 definedFilters={savedMapFilters}
                 onSave={onFiltersSaveHandler}
                 showModal={showFiltersModal}
+                onGetFiltersCount={onGetFiltersCount}
+                onResetFiltersCount={onResetFiltersCount}
+                itemsCount={privateMapsCount}
                 allowMyPublic
             />
             <View style={styles.topButtonsContainer}>
