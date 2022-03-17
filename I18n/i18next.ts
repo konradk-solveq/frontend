@@ -37,7 +37,6 @@ i18next
         {
             lng: 'pl',
             fallbackLng: 'pl',
-            compatibilityJSON: 'v3',
             defaultNS: 'backend',
             ns: ['local'],
             fallbackNS: 'local',

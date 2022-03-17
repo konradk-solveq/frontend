@@ -26,8 +26,11 @@ import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import styles from './style';
-import {nextPlannedPaginationCoursor} from '@storage/selectors/map';
-import {fetchPlannedMapsList} from '@storage/actions';
+import {
+    nextPlannedPaginationCoursor,
+    mapsCountSelector,
+} from '@storage/selectors/map';
+import {fetchPlannedMapsList, fetchPlannedMapsCount} from '@storage/actions';
 import {
     checkIfContainsFitlers,
     getSorByFilters,
@@ -37,6 +40,7 @@ import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import {plannedRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
+import {resetMapsCount} from '@storage/actions/maps';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -60,6 +64,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const favouriteMaps = useAppSelector(favouritesMapsSelector);
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
+    const {planned: plannedMapsCount} = useAppSelector(mapsCountSelector);
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
@@ -83,6 +88,13 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         () => dispatch(fetchPlannedMapsList(nextCoursor, savedMapFilters)),
         [dispatch, nextCoursor, savedMapFilters],
     );
+    const onGetFiltersCount = useCallback(
+        filters => dispatch(fetchPlannedMapsCount(filters)),
+        [dispatch],
+    );
+    const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
+        dispatch,
+    ]);
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
@@ -232,6 +244,9 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 definedFilters={savedMapFilters}
                 onSave={onFiltersSaveHandler}
                 showModal={showFiltersModal}
+                onGetFiltersCount={onGetFiltersCount}
+                onResetFiltersCount={onResetFiltersCount}
+                itemsCount={plannedMapsCount}
             />
             <View style={styles.topButtonsContainer}>
                 <Dropdown
@@ -246,7 +261,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     hideButton
                 />
             </View>
-            <View >
+            <View>
                 <FlatList
                     keyExtractor={item => item.id}
                     ListHeaderComponent={

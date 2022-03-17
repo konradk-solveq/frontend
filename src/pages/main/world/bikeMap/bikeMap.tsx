@@ -13,6 +13,7 @@ import {
     nextPaginationCoursor,
     refreshMapsSelector,
     selectorMapTypeEnum,
+    mapsCountSelector,
 } from '@storage/selectors/map';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
@@ -38,6 +39,8 @@ import {
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
 import {publicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
+import {fetchMapsCount} from '@storage/actions';
+import {resetMapsCount} from '@storage/actions/maps';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -59,6 +62,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const nextCoursor = useAppSelector(nextPaginationCoursor);
     const dispatch = useAppDispatch();
     const mapsData = useAppSelector(mapsListSelector);
+    const {public: publicMapsCount} = useAppSelector(mapsCountSelector);
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const containsFeaturedMaps = useAppSelector(featuredMapsLengthSelector);
@@ -85,6 +89,13 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         () => dispatch(fetchMapsList(nextCoursor, savedMapFilters)),
         [dispatch, nextCoursor, savedMapFilters],
     );
+    const onGetFiltersCount = useCallback(
+        filters => dispatch(fetchMapsCount(filters)),
+        [dispatch],
+    );
+    const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
+        dispatch,
+    ]);
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
@@ -235,6 +246,9 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                         definedFilters={savedMapFilters}
                         onSave={onFiltersSaveHandler}
                         showModal={showFiltersModal}
+                        onGetFiltersCount={onGetFiltersCount}
+                        onResetFiltersCount={onResetFiltersCount}
+                        itemsCount={publicMapsCount}
                     />
                     <View style={styles.topButtonsContainer}>
                         <Dropdown

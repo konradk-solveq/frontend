@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, useRef} from 'react';
+import React, {useState, useEffect, useCallback, useRef, useMemo} from 'react';
 import {useAppSelector} from '@hooks/redux';
 import {PickedFilters} from '@interfaces/form';
 import {mapOptionsAndTagsSelector} from '@storage/selectors/app';
@@ -8,13 +8,37 @@ import {RangePickerRef} from '@components/slider/RangePicker';
 import {useMergedState} from '@hooks/useMergedState';
 import {FiltersContainer} from '@containers/World';
 import {getFilterDistance} from '@utils/transformData';
+import {debounce} from '@utils/input/debounce';
 
 const lengthOptions = ['0', '5', '10', '20', '40', '80', '120', '160', '200'];
+
+const getFiltersToSave = (
+    pickedFilters: PickedFilters,
+    isLoop: boolean,
+    isMyPublic: boolean,
+    minLength: string,
+    maxLength: string,
+) => {
+    const filtersToSave = {...pickedFilters};
+    const distanceFrom = getFilterDistance(minLength);
+    const distanceTo = getFilterDistance(maxLength);
+    filtersToSave.loop = [`${isLoop}`];
+    filtersToSave.onlyPublic = [`${isMyPublic}`];
+    /**
+     * Options are given in kms - filters accept the values in meters
+     */
+    filtersToSave.distanceFrom = distanceFrom ? [`${distanceFrom}`] : [];
+    filtersToSave.distanceTo = distanceTo ? [`${distanceTo}`] : [];
+    return filtersToSave;
+};
 
 interface IProps {
     onSave: (picked: PickedFilters) => void;
     onClose: () => void;
+    onGetFiltersCount: (filters: PickedFilters) => void;
+    onResetFiltersCount: () => void;
     definedFilters: PickedFilters;
+    itemsCount?: number;
     showModal?: boolean;
     allowedFilters?: string[];
     allowMyPublic?: boolean;
@@ -24,8 +48,11 @@ const FiltersModal: React.FC<IProps> = ({
     onSave,
     onClose,
     definedFilters,
+    itemsCount,
     showModal = false,
     allowMyPublic = false,
+    onGetFiltersCount,
+    onResetFiltersCount,
 }: IProps) => {
     const mapOptions = useAppSelector(mapOptionsAndTagsSelector);
     const filters = getFilters(mapOptions);
@@ -40,6 +67,14 @@ const FiltersModal: React.FC<IProps> = ({
     const [isLoop, setIsLoop] = useState<boolean>(false);
     const [isMyPublic, setIsMyPublic] = useState<boolean>(false);
     const [isDirty, setIsDirty] = useState<boolean>(false);
+
+    const debouncedReset = useMemo(() => debounce(onResetFiltersCount), [
+        onResetFiltersCount,
+    ]);
+
+    const debouncedGetFilters = useMemo(() => debounce(onGetFiltersCount), [
+        onGetFiltersCount,
+    ]);
 
     const handleRangeChange = useCallback(
         (low: string, high: string) => {
@@ -57,16 +92,13 @@ const FiltersModal: React.FC<IProps> = ({
     };
 
     const onSaveHandler = () => {
-        const distanceFrom = getFilterDistance(minLength);
-        const distanceTo = getFilterDistance(maxLength);
-        const filtersToSave = pickedFilters;
-        filtersToSave.loop = [`${isLoop}`];
-        filtersToSave.onlyPublic = [`${isMyPublic}`];
-        /**
-         * Options are given in kms - filters accept the values in meters
-         */
-        filtersToSave.distanceFrom = distanceFrom ? [`${distanceFrom}`] : [];
-        filtersToSave.distanceTo = distanceTo ? [`${distanceTo}`] : [];
+        const filtersToSave = getFiltersToSave(
+            pickedFilters,
+            isLoop,
+            isMyPublic,
+            minLength,
+            maxLength,
+        );
         onSave(filtersToSave);
     };
 
@@ -85,10 +117,30 @@ const FiltersModal: React.FC<IProps> = ({
         const isDefaultFilters = !Object.keys(pickedFilters).length;
         if (isLoop || isMyPublic || !isDefaultFilters || !isDefaultLength) {
             setIsDirty(true);
+            debouncedGetFilters(
+                getFiltersToSave(
+                    pickedFilters,
+                    isLoop,
+                    isMyPublic,
+                    minLength,
+                    maxLength,
+                ),
+            );
         } else {
+            debouncedReset();
             setIsDirty(false);
         }
-    }, [isLoop, isMyPublic, minLength, maxLength, pickedFilters]);
+    }, [
+        isLoop,
+        isMyPublic,
+        minLength,
+        maxLength,
+        pickedFilters,
+        onGetFiltersCount,
+        onResetFiltersCount,
+        debouncedGetFilters,
+        debouncedReset,
+    ]);
     return (
         <FiltersContainer
             showModal={showModal}
@@ -106,6 +158,7 @@ const FiltersModal: React.FC<IProps> = ({
             allowMyPublic={allowMyPublic}
             onSaveHandler={onSaveHandler}
             isDirty={isDirty}
+            itemsCount={itemsCount}
             filters={filters}
             pickedFilters={pickedFilters}
             onSaveFiltersHandler={onSaveFiltersHanlder}

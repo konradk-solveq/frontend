@@ -12,6 +12,12 @@ import {
 import {NestedTotalMapsType} from '@src/type/maps';
 import {mergeFeaturedMapsListData} from './utils/maps';
 
+export interface FiltersState {
+    public?: number;
+    private?: number;
+    planned?: number;
+}
+
 export interface MapsState {
     maps: MapType[];
     totalMaps: number | null;
@@ -31,6 +37,7 @@ export interface MapsState {
     loading: boolean;
     statusCode: number;
     refresh: boolean;
+    filters: FiltersState;
 }
 
 const initialStateList: MapsState = {
@@ -52,6 +59,7 @@ const initialStateList: MapsState = {
     loading: false,
     statusCode: 200,
     refresh: false,
+    filters: {},
 };
 
 const mapsReducer = (state = initialStateList, action: any) => {
@@ -98,6 +106,39 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 totalMaps: action.totalMaps,
                 statusCode: 200,
                 refresh: action.refresh,
+            };
+        }
+        case actionTypes.SET_MAPS_COUNT: {
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    public: action.total,
+                },
+            };
+        }
+        case actionTypes.SET_PRIVATE_MAPS_COUNT: {
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    private: action.total,
+                },
+            };
+        }
+        case actionTypes.SET_PLANNED_MAPS_COUNT: {
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    planned: action.total,
+                },
+            };
+        }
+        case actionTypes.RESET_MAPS_COUNT: {
+            return {
+                ...state,
+                filters: {},
             };
         }
         case actionTypes.SET_PRIVATE_MAPS_DATA: {

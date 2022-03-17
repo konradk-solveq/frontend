@@ -430,6 +430,10 @@ export interface MapsData {
     total: number;
 }
 
+export interface MapsCountData {
+    total: number;
+}
+
 export type FeaturedMapType = {
     section: {
         id: string;

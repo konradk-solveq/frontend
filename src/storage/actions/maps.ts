@@ -26,6 +26,11 @@ import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {checkMapExists} from '@utils/checkMapExists';
 import {loggErrorMessage, loggErrorWithScope} from '@sentryLogger/sentryLogger';
 import {AppDispatch} from '@hooks/redux';
+import {
+    getMapsListCount,
+    getPrivateMapsListCount,
+    getPlannedMapsListCount,
+} from '@services/mapsService';
 
 export const setMapsData = (
     maps: MapType[],
@@ -38,6 +43,23 @@ export const setMapsData = (
     paginationCoursor: paginationCoursor,
     totalMaps: total,
     refresh: refresh,
+});
+
+export const setMapsCount = (total: number) => ({
+    type: actionTypes.SET_MAPS_COUNT,
+    total,
+});
+export const setPrivateMapsCount = (total: number) => ({
+    type: actionTypes.SET_PRIVATE_MAPS_COUNT,
+    total,
+});
+export const setPlannedMapsCount = (total: number) => ({
+    type: actionTypes.SET_PLANNED_MAPS_COUNT,
+    total,
+});
+
+export const resetMapsCount = () => ({
+    type: actionTypes.RESET_MAPS_COUNT,
 });
 
 export const setPrivateMapsData = (
@@ -202,6 +224,100 @@ export const fetchMapsList = (
 
         const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
+    }
+};
+
+export const fetchMapsCount = (
+    filters?: PickedFilters,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    try {
+        const {
+            location,
+            isOffline,
+            internetConnectionInfo,
+        }: AppState = getState().app;
+        if (!location?.latitude || !location.longitude) {
+            return;
+        }
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            return;
+        }
+
+        const response = await getMapsListCount(location, filters);
+
+        if (response.error || !response.data || !response.data.total) {
+            return;
+        }
+
+        dispatch(setMapsCount(response.data.total));
+    } catch (error) {
+        console.log(`[fetchMapsCount] - ${error}`);
+        const err = convertToApiError(error);
+
+        loggErrorWithScope(err, 'fetchMapsList');
+    }
+};
+export const fetchPrivateMapsCount = (
+    filters?: PickedFilters,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    try {
+        const {
+            location,
+            isOffline,
+            internetConnectionInfo,
+        }: AppState = getState().app;
+        if (!location?.latitude || !location.longitude) {
+            return;
+        }
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            return;
+        }
+
+        const response = await getPrivateMapsListCount(location, filters);
+
+        if (response.error || !response.data || !response.data.total) {
+            return;
+        }
+
+        dispatch(setPrivateMapsCount(response.data.total));
+    } catch (error) {
+        console.log(`[fetchPrivateMapsCount] - ${error}`);
+        const err = convertToApiError(error);
+
+        loggErrorWithScope(err, 'fetchMapsList');
+    }
+};
+export const fetchPlannedMapsCount = (
+    filters?: PickedFilters,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    try {
+        const {
+            location,
+            isOffline,
+            internetConnectionInfo,
+        }: AppState = getState().app;
+        if (!location?.latitude || !location.longitude) {
+            return;
+        }
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            return;
+        }
+
+        const response = await getPlannedMapsListCount(location, filters);
+
+        if (response.error || !response.data || !response.data.total) {
+            return;
+        }
+
+        dispatch(setPlannedMapsCount(response.data.total));
+    } catch (error) {
+        console.log(`[fetchPlannedMapsCount] - ${error}`);
+        const err = convertToApiError(error);
+
+        loggErrorWithScope(err, 'fetchMapsList');
     }
 };
 

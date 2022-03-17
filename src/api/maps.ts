@@ -39,6 +39,41 @@ export const getMaps = async (
         paginationUrl ? undefined : params,
     );
 };
+export const getMapsCount = async (
+    location: Coords,
+    filters?: MapFitlerType,
+) => {
+    let url = `${BASE_URL}/find/location/count`;
+
+    const params =
+        filters && Object.keys(filters)?.length > 0 ? {params: filters} : {};
+
+    return await axiosGet(url, params);
+};
+
+export const getPrivateMapsCount = async (
+    location: Coords,
+    filters?: MapFitlerType,
+) => {
+    let url = `${BASE_URL}/find/my/count`;
+
+    const params =
+        filters && Object.keys(filters)?.length > 0 ? {params: filters} : {};
+
+    return await axiosGet(url, params);
+};
+
+export const getPlannedMapsCount = async (
+    location: Coords,
+    filters?: MapFitlerType,
+) => {
+    let url = `${BASE_URL}/favorites/count`;
+
+    const params =
+        filters && Object.keys(filters)?.length > 0 ? {params: filters} : {};
+
+    return await axiosGet(url, params);
+};
 
 export const getRoute = async (
     id: string,

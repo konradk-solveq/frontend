@@ -1,4 +1,4 @@
-import React, {Ref} from 'react';
+import React, {Ref, useMemo} from 'react';
 import {
     View,
     Pressable,
@@ -41,6 +41,7 @@ interface IProps {
     allowMyPublic: boolean;
     onSaveHandler: () => void;
     isDirty: boolean;
+    itemsCount?: number;
     filters: FiltersI;
     allowedFilters?: string[];
     pickedFilters: PickedFilters;
@@ -66,12 +67,22 @@ const FiltersContainer: React.FC<IProps> = ({
     onSaveHandler,
     isDirty,
     filters,
+    itemsCount,
     allowedFilters,
     pickedFilters,
     onSaveFiltersHandler,
 }) => {
     const {t} = useMergedTranslation('MainWorld.maps');
     const {top} = useSafeAreaInsets();
+    const itemsCountText = useMemo(
+        () =>
+            itemsCount !== undefined
+                ? ` (${itemsCount} ${t('filtersItemCount', {
+                      count: itemsCount,
+                  })})`
+                : '',
+        [t, itemsCount],
+    );
     return (
         <>
             <BackdropModal
@@ -166,7 +177,7 @@ const FiltersContainer: React.FC<IProps> = ({
                     ]}>
                     {isDirty ? (
                         <PrimaryButton
-                            text={t('filtersSaveBtn')}
+                            text={`${t('filtersSaveBtn')}` + itemsCountText}
                             onPress={onSaveHandler}
                             testID={'filters-container-save-button'}
                         />

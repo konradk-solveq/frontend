@@ -21,6 +21,7 @@ import {
     MapMarkerType,
     MapsData,
     FeaturedMapType,
+    MapsCountData,
 } from '@models/map.model';
 import {ImagesMetadataType} from '@interfaces/api';
 import {MapFormDataResult, PickedFilters} from '@interfaces/form';
@@ -35,6 +36,11 @@ import {
 import {getFiltersParam} from '@utils/apiDataTransform/filters';
 import {loggErrorMessage} from '@sentryLogger/sentryLogger';
 import {getImgErrorMessage} from '@services/utils/getErrorMessage';
+import {
+    getMapsCount,
+    getPrivateMapsCount,
+    getPlannedMapsCount,
+} from '@api/maps';
 
 export type CreatedPlannedMap = {
     id: string;
@@ -42,6 +48,11 @@ export type CreatedPlannedMap = {
 
 export interface MapsResponse {
     data: MapsData;
+    status: number;
+    error: string;
+}
+export interface MapsCountResponse {
+    data: MapsCountData;
     status: number;
     error: string;
 }
@@ -107,6 +118,93 @@ export const getMapsList = async (
             links: response.data.links,
             total: response.data.total,
         },
+        status: response.data?.statusCode || response.status,
+        error: '',
+    };
+};
+
+export const getMapsListCount = async (
+    location: Coords,
+    filters?: PickedFilters,
+): Promise<MapsCountResponse> => {
+    const f = getFiltersParam(filters);
+    const response = await getMapsCount(location, f);
+    if (
+        !response?.data ||
+        response.status >= 400 ||
+        response.data?.statusCode >= 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: {total: 0},
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: response.data,
+        status: response.data?.statusCode || response.status,
+        error: '',
+    };
+};
+
+export const getPrivateMapsListCount = async (
+    location: Coords,
+    filters?: PickedFilters,
+): Promise<MapsCountResponse> => {
+    const f = getFiltersParam(filters);
+    const response = await getPrivateMapsCount(location, f);
+    if (
+        !response?.data ||
+        response.status >= 400 ||
+        response.data?.statusCode >= 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: {total: 0},
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: response.data,
+        status: response.data?.statusCode || response.status,
+        error: '',
+    };
+};
+
+export const getPlannedMapsListCount = async (
+    location: Coords,
+    filters?: PickedFilters,
+): Promise<MapsCountResponse> => {
+    const f = getFiltersParam(filters);
+    const response = await getPlannedMapsCount(location, f);
+    if (
+        !response?.data ||
+        response.status >= 400 ||
+        response.data?.statusCode >= 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: {total: 0},
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: response.data,
         status: response.data?.statusCode || response.status,
         error: '',
     };
