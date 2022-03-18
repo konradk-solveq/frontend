@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 
 import {
     userNameSelector,
@@ -41,6 +41,7 @@ import {FiltersButton} from '@pages/main/world/components/buttons';
 import {plannedRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
 import {resetMapsCount} from '@storage/actions/maps';
+import {Header2} from '@components/texts/texts';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -280,10 +281,10 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                                     }}
                                 />
                             </View>
-                            <Text style={styles.header}>
+                            <Header2 style={styles.header}>
                                 {userName || t('defaultUserName')}
                                 {t('title')}
-                            </Text>
+                            </Header2>
                         </>
                     }
                     data={!showListLoader ? favouriteMaps : []}
