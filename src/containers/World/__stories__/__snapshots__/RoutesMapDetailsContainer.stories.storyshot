@@ -583,6 +583,146 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           }
           testID="header3-test-id"
         >
+          RoutesDetails.details.imagesTitle
+        </Text>
+        <RCTScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={
+            Array [
+              Object {
+                "height": 150,
+              },
+              Object {
+                "height": 126.44549763033176,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+              >
+                <Image
+                  resizeMode="cover"
+                  source={
+                    Object {
+                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_square_480.jpg",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#ededed",
+                        "borderRadius": 16,
+                        "height": 125,
+                        "marginRight": 15,
+                        "width": 125,
+                      },
+                      Object {
+                        "borderRadius": 15.384615384615385,
+                        "height": 126.44549763033176,
+                        "width": 211.53846153846155,
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+              >
+                <Image
+                  resizeMode="cover"
+                  source={
+                    Object {
+                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/KMW8QTXTGMuxJUVOF92p_maw4Hd6Yzep/map-public_1024.png",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#ededed",
+                        "borderRadius": 16,
+                        "height": 125,
+                        "marginRight": 15,
+                        "width": 125,
+                      },
+                      Object {
+                        "borderRadius": 15.384615384615385,
+                        "height": 126.44549763033176,
+                        "width": 211.53846153846155,
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingBottom": 37.93364928909953,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "paddingBottom": 25.28909952606635,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        >
           RoutesDetails.details.tagsTitle
         </Text>
         <View
@@ -729,6 +869,278 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           18.02.2022, 15:52:02
         </Text>
       </View>
+      <Modal
+        animationType="slide"
+        hardwareAccelerated={false}
+        onRequestClose={[Function]}
+        statusBarTranslucent={true}
+        visible={false}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#313131",
+                "flex": 1,
+                "paddingBottom": 94.83412322274881,
+              },
+              Object {
+                "paddingTop": 105.89810426540285,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "position": "absolute",
+                  "right": 38.46153846153846,
+                  "zIndex": 10,
+                },
+                Object {
+                  "top": 105.89810426540285,
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={36.231884057971016}
+                bbWidth={36.231884057971016}
+                focusable={false}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Array [
+                      Object {
+                        "height": 36.231884057971016,
+                        "margin": 36.231884057971016,
+                        "width": 36.231884057971016,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "flex": 0,
+                      "height": 36,
+                      "width": 36,
+                    },
+                  ]
+                }
+                vbHeight={20}
+                vbWidth={20}
+              >
+                <RNSVGGroup>
+                  <RNSVGPath
+                    d="M1.043 1.043a1 1 0 011.414 0L10 8.585l7.543-7.542a1 1 0 011.497 1.32l-.083.094L11.415 10l7.542 7.543.083.094a1 1 0 01-1.497 1.32L10 11.415l-7.543 7.542a1 1 0 01-1.497-1.32l.083-.094L8.585 10 1.043 2.457.96 2.363a1 1 0 01.083-1.32z"
+                    fill={4294967295}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  />
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "flex": 1,
+                    "position": "relative",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <RCTScrollView
+                activeDot={
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderColor": "#d8232a",
+                        "borderRadius": 50,
+                        "borderWidth": 1,
+                        "height": 13,
+                        "marginHorizontal": 3,
+                        "width": 13,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#d8232a",
+                          "borderRadius": 4,
+                          "height": 5,
+                          "marginBottom": 3,
+                          "marginLeft": 3,
+                          "marginRight": 3,
+                          "marginTop": 3,
+                          "width": 5,
+                        }
+                      }
+                    />
+                  </View>
+                }
+                activeDotColor="#d8232a"
+                automaticallyAdjustContentInsets={false}
+                autoplay={false}
+                autoplayDirection={true}
+                autoplayTimeout={2.5}
+                bounces={false}
+                contentContainerStyle={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
+                    undefined,
+                  ]
+                }
+                contentOffset={
+                  Object {
+                    "x": 0,
+                  }
+                }
+                disableNextButton={false}
+                disablePrevButton={false}
+                dotColor="#f0f0f0"
+                dotStyle={
+                  Object {
+                    "borderRadius": 50,
+                    "height": 13,
+                    "marginHorizontal": 20,
+                    "opacity": 0.8,
+                    "width": 13,
+                  }
+                }
+                horizontal={true}
+                index={0}
+                loadMinimal={false}
+                loadMinimalSize={1}
+                loop={false}
+                onIndexChanged={[Function]}
+                onMomentumScrollEnd={[Function]}
+                onScrollBeginDrag={[Function]}
+                onScrollEndDrag={[Function]}
+                pagingEnabled={true}
+                removeClippedSubviews={true}
+                scrollEnabled={true}
+                scrollsToTop={false}
+                showsButtons={false}
+                showsHorizontalScrollIndicator={false}
+                showsPagination={true}
+                showsVerticalScrollIndicator={false}
+              >
+                <View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "height": 1334,
+                          "width": 750,
+                        },
+                        Object {
+                          "backgroundColor": "transparent",
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": "100%",
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "margin": 0,
+                              "width": "100%",
+                            },
+                            Object {
+                              "maxHeight": "80%",
+                            },
+                          ]
+                        }
+                      >
+                        <Image
+                          resizeMode="contain"
+                          source={
+                            Object {
+                              "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_vertical_1600.jpg",
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "height": "100%",
+                                "width": "100%",
+                              },
+                              undefined,
+                            ]
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </RCTScrollView>
+            </View>
+            <Text
+              style={
+                Object {
+                  "bottom": 158.0568720379147,
+                  "color": "#ffffff",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 15,
+                  "left": 76.92307692307692,
+                  "letterSpacing": 0.42,
+                  "position": "absolute",
+                }
+              }
+            >
+              RoutesDetails.details.author
+              : 
+              Rowerzysta
+            </Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   </View>
 </View>
@@ -1314,6 +1726,146 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           }
           testID="header3-test-id"
         >
+          RoutesDetails.details.imagesTitle
+        </Text>
+        <RCTScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={
+            Array [
+              Object {
+                "height": 150,
+              },
+              Object {
+                "height": 126.44549763033176,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+              >
+                <Image
+                  resizeMode="cover"
+                  source={
+                    Object {
+                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_square_480.jpg",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#ededed",
+                        "borderRadius": 16,
+                        "height": 125,
+                        "marginRight": 15,
+                        "width": 125,
+                      },
+                      Object {
+                        "borderRadius": 15.384615384615385,
+                        "height": 126.44549763033176,
+                        "width": 211.53846153846155,
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+              >
+                <Image
+                  resizeMode="cover"
+                  source={
+                    Object {
+                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/KMW8QTXTGMuxJUVOF92p_maw4Hd6Yzep/map-public_1024.png",
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "#ededed",
+                        "borderRadius": 16,
+                        "height": 125,
+                        "marginRight": 15,
+                        "width": 125,
+                      },
+                      Object {
+                        "borderRadius": 15.384615384615385,
+                        "height": 126.44549763033176,
+                        "width": 211.53846153846155,
+                      },
+                    ]
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingBottom": 37.93364928909953,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "paddingBottom": 25.28909952606635,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        >
           RoutesDetails.details.tagsTitle
         </Text>
         <View
@@ -1460,6 +2012,278 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           18.02.2022, 15:52:02
         </Text>
       </View>
+      <Modal
+        animationType="slide"
+        hardwareAccelerated={false}
+        onRequestClose={[Function]}
+        statusBarTranslucent={true}
+        visible={false}
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#313131",
+                "flex": 1,
+                "paddingBottom": 94.83412322274881,
+              },
+              Object {
+                "paddingTop": 105.89810426540285,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "position": "absolute",
+                  "right": 38.46153846153846,
+                  "zIndex": 10,
+                },
+                Object {
+                  "top": 105.89810426540285,
+                },
+              ]
+            }
+          >
+            <View
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={36.231884057971016}
+                bbWidth={36.231884057971016}
+                focusable={false}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Array [
+                      Object {
+                        "height": 36.231884057971016,
+                        "margin": 36.231884057971016,
+                        "width": 36.231884057971016,
+                      },
+                      undefined,
+                    ],
+                    Object {
+                      "flex": 0,
+                      "height": 36,
+                      "width": 36,
+                    },
+                  ]
+                }
+                vbHeight={20}
+                vbWidth={20}
+              >
+                <RNSVGGroup>
+                  <RNSVGPath
+                    d="M1.043 1.043a1 1 0 011.414 0L10 8.585l7.543-7.542a1 1 0 011.497 1.32l-.083.094L11.415 10l7.542 7.543.083.094a1 1 0 01-1.497 1.32L10 11.415l-7.543 7.542a1 1 0 01-1.497-1.32l.083-.094L8.585 10 1.043 2.457.96 2.363a1 1 0 01.083-1.32z"
+                    fill={4294967295}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  />
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "flex": 1,
+                    "position": "relative",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <RCTScrollView
+                activeDot={
+                  <View
+                    style={
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderColor": "#d8232a",
+                        "borderRadius": 50,
+                        "borderWidth": 1,
+                        "height": 13,
+                        "marginHorizontal": 3,
+                        "width": 13,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "backgroundColor": "#d8232a",
+                          "borderRadius": 4,
+                          "height": 5,
+                          "marginBottom": 3,
+                          "marginLeft": 3,
+                          "marginRight": 3,
+                          "marginTop": 3,
+                          "width": 5,
+                        }
+                      }
+                    />
+                  </View>
+                }
+                activeDotColor="#d8232a"
+                automaticallyAdjustContentInsets={false}
+                autoplay={false}
+                autoplayDirection={true}
+                autoplayTimeout={2.5}
+                bounces={false}
+                contentContainerStyle={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
+                    undefined,
+                  ]
+                }
+                contentOffset={
+                  Object {
+                    "x": 0,
+                  }
+                }
+                disableNextButton={false}
+                disablePrevButton={false}
+                dotColor="#f0f0f0"
+                dotStyle={
+                  Object {
+                    "borderRadius": 50,
+                    "height": 13,
+                    "marginHorizontal": 20,
+                    "opacity": 0.8,
+                    "width": 13,
+                  }
+                }
+                horizontal={true}
+                index={0}
+                loadMinimal={false}
+                loadMinimalSize={1}
+                loop={false}
+                onIndexChanged={[Function]}
+                onMomentumScrollEnd={[Function]}
+                onScrollBeginDrag={[Function]}
+                onScrollEndDrag={[Function]}
+                pagingEnabled={true}
+                removeClippedSubviews={true}
+                scrollEnabled={true}
+                scrollsToTop={false}
+                showsButtons={false}
+                showsHorizontalScrollIndicator={false}
+                showsPagination={true}
+                showsVerticalScrollIndicator={false}
+              >
+                <View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "height": 1334,
+                          "width": 750,
+                        },
+                        Object {
+                          "backgroundColor": "transparent",
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "height": "100%",
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "margin": 0,
+                              "width": "100%",
+                            },
+                            Object {
+                              "maxHeight": "80%",
+                            },
+                          ]
+                        }
+                      >
+                        <Image
+                          resizeMode="contain"
+                          source={
+                            Object {
+                              "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_vertical_1600.jpg",
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "height": "100%",
+                                "width": "100%",
+                              },
+                              undefined,
+                            ]
+                          }
+                        />
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </RCTScrollView>
+            </View>
+            <Text
+              style={
+                Object {
+                  "bottom": 158.0568720379147,
+                  "color": "#ffffff",
+                  "fontFamily": "DIN2014Narrow-Regular",
+                  "fontSize": 15,
+                  "left": 76.92307692307692,
+                  "letterSpacing": 0.42,
+                  "position": "absolute",
+                }
+              }
+            >
+              RoutesDetails.details.author
+              : 
+              Rowerzysta
+            </Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   </View>
 </View>
