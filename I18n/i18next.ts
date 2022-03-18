@@ -3,7 +3,6 @@ import ChainedBackend from 'i18next-chained-backend';
 import HttpBackend from 'i18next-http-backend';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import {initReactI18next} from 'react-i18next';
-
 import {LOAD_STORYBOOK} from '@env';
 
 const local = {
@@ -38,6 +37,7 @@ i18next
             lng: 'pl',
             fallbackLng: 'pl',
             defaultNS: 'backend',
+            compatibilityJSON: 'v3',
             ns: ['local'],
             fallbackNS: 'local',
             backend: {

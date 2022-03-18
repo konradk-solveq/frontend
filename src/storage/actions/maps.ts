@@ -249,8 +249,11 @@ export const fetchMapsCount = (
         if (response.error || !response.data || !response.data.total) {
             return;
         }
-
-        dispatch(setMapsCount(response.data.total));
+        const total = parseInt(response.data.total, 10);
+        if (isNaN(total)) {
+            return;
+        }
+        dispatch(setMapsCount(total));
     } catch (error) {
         console.log(`[fetchMapsCount] - ${error}`);
         const err = convertToApiError(error);
@@ -280,8 +283,12 @@ export const fetchPrivateMapsCount = (
         if (response.error || !response.data || !response.data.total) {
             return;
         }
+        const total = parseInt(response.data.total, 10);
+        if (isNaN(total)) {
+            return;
+        }
 
-        dispatch(setPrivateMapsCount(response.data.total));
+        dispatch(setPrivateMapsCount(total));
     } catch (error) {
         console.log(`[fetchPrivateMapsCount] - ${error}`);
         const err = convertToApiError(error);
@@ -311,8 +318,12 @@ export const fetchPlannedMapsCount = (
         if (response.error || !response.data || !response.data.total) {
             return;
         }
+        const total = parseInt(response.data.total, 10);
+        if (isNaN(total)) {
+            return;
+        }
 
-        dispatch(setPlannedMapsCount(response.data.total));
+        dispatch(setPlannedMapsCount(total));
     } catch (error) {
         console.log(`[fetchPlannedMapsCount] - ${error}`);
         const err = convertToApiError(error);
