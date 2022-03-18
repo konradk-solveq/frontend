@@ -81,6 +81,11 @@ export interface Images {
     type: string;
     variants: ImagesVariants;
 }
+export interface Thumbnails {
+    width: number;
+    height: number;
+    url: string;
+}
 
 /**
  * Deprecated - legacy code, used before v1.5.0
@@ -195,6 +200,9 @@ export class Map {
     public images?: Images[];
 
     @IsOptional()
+    public thumbnails?: Thumbnails[];
+
+    @IsOptional()
     @IsArray()
     public difficulty?: string[];
 
@@ -221,6 +229,10 @@ export class Map {
     @IsOptional()
     @IsBoolean()
     public isPublic?: boolean;
+
+    @IsOptional()
+    @IsBoolean()
+    public isUserFavorite?: boolean;
 
     @IsNumber()
     @IsOptional()
@@ -404,7 +416,7 @@ export class Map {
         if (!this.images) {
             return;
         }
-        return getImagesThumbs(this.images);
+        return getImagesThumbs(this.images, this.thumbnails);
     }
 
     public get mapImageUrl() {

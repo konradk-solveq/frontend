@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, Image, Pressable} from 'react-native';
 import {
+    BodySecondary,
     Demi14h48,
     Demi16h36,
     Demi18h28,
@@ -11,6 +12,7 @@ import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceh
 import {styles} from './style';
 import {TextIcon} from '../icons';
 import {MykrossIconFont} from '@src/theme/enums/iconFonts';
+import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
 interface PropsI {
     tilePressOn: () => void;
     fullDate: string;
@@ -19,6 +21,8 @@ interface PropsI {
     distanceAndTime: string;
     distanceToStart: string;
     difficultyAndSurface: string;
+    checkPublic?: boolean;
+    checkUserFavorite?: boolean;
     checkLike: boolean;
     numberOfLikes: number;
     likePressOn: (state: boolean) => void;
@@ -37,6 +41,8 @@ const ListTileView: React.FC<PropsI> = ({
     distanceAndTime,
     distanceToStart,
     difficultyAndSurface,
+    checkPublic,
+    checkUserFavorite,
     checkLike,
     numberOfLikes,
     likePressOn,
@@ -46,10 +52,9 @@ const ListTileView: React.FC<PropsI> = ({
     mode,
     testID,
 }) => {
+    const {t} = useMergedTranslation('MainWorld.Tile');
     const [likeChecked, setLikeChecked] = useState(checkLike);
-
-    // TODO savbe check from backend data
-    const [saveChecked, setSaveChecked] = useState(false);
+    const [saveChecked, setSaveChecked] = useState(checkUserFavorite);
 
     const handleLikeOnPress = () => {
         const state = !likeChecked;
@@ -71,8 +76,8 @@ const ListTileView: React.FC<PropsI> = ({
         <Pressable onPress={tilePressOn} testID={testID || 'list-tile'}>
             <View
                 style={mode === 'featured' ? styles.wrapFeatured : styles.wrap}>
-                <Demi14h48>{fullDate}</Demi14h48>
-                <View style={styles.area}>
+                {mode === 'my' && <Demi14h48>{fullDate}</Demi14h48>}
+                <View style={mode === 'my' ? styles.areaMy : styles.area}>
                     <View style={styles.tile}>
                         <View style={styles.imageWrapper}>
                             {imagesToDisplay ? (
@@ -86,6 +91,13 @@ const ListTileView: React.FC<PropsI> = ({
                             ) : (
                                 <View style={[styles.image, styles.noImage]}>
                                     <RouteImagePlaceholder />
+                                </View>
+                            )}
+                            {mode === 'my' && checkPublic && (
+                                <View style={styles.publicWrap}>
+                                    <BodySecondary style={styles.public}>
+                                        {t('public')}
+                                    </BodySecondary>
                                 </View>
                             )}
                         </View>

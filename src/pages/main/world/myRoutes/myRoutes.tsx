@@ -164,7 +164,10 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         ({item, index}: RenderItem) => {
             const lastItemStyle =
                 index === privateMaps?.length - 1 ? styles.lastTile : undefined;
-            const images = getImagesThumbs(item?.images || []);
+            const images = getImagesThumbs(
+                item?.images || [],
+                item?.thumbnails,
+            );
 
             return (
                 <View key={item.id} style={lastItemStyle}>

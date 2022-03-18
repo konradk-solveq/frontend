@@ -16,7 +16,7 @@ import colors from '@theme/colors';
 import RouteMapDetailsContainer from '@containers/World/RouteMapDetailsContainer';
 
 const routeData = mapToClass(mapData.elements[2], appConfig);
-const images = getImagesThumbs(routeData?.images || []);
+const images = getImagesThumbs(routeData?.images || [], routeData?.thumbnails);
 
 storiesOf('containers/World/RoutesMapDetailsContainer', module)
     .addDecorator(getStory => (

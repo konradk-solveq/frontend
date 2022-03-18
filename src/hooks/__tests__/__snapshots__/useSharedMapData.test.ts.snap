@@ -830,6 +830,7 @@ Map {
     },
   ],
   "isPublic": true,
+  "isUserFavorite": undefined,
   "location": undefined,
   "name": "Test route",
   "nearestPoint": undefined,
@@ -859,6 +860,7 @@ Map {
     "historic-trail",
     "professional",
   ],
+  "thumbnails": undefined,
   "time": 9,
   "totalTime": undefined,
 }

@@ -446,8 +446,9 @@
             "separator": " - ",
             "hours": "h",
             "minutes": "m",
-            "distanceToStart": "km od Ciebie"
-        },
+            "distanceToStart": "km od Ciebie",
+            "public": "publiczna"
+        }
     },
     "MainRoutesMap": {
         "header": "Świat KROSS",

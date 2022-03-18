@@ -85,7 +85,10 @@ const RoutesMap: React.FC = () => {
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(routeInfo.id, routeInfo.mapType),
     );
-    const mapImages = getImagesThumbs(mapData?.images || []);
+    const mapImages = getImagesThumbs(
+        mapData?.images || [],
+        mapData?.thumbnails,
+    );
     /* Route has been published */
     const isPublished = useMemo(() => mapData?.isPublic || false, [
         mapData?.isPublic,
