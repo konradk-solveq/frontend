@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState, useMemo} from 'react';
-import {View, Text, FlatList, Platform} from 'react-native';
+import {View, FlatList, Platform} from 'react-native';
 
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -41,6 +41,7 @@ import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/
 import {publicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
 import {fetchMapsCount} from '@storage/actions';
 import {resetMapsCount} from '@storage/actions/maps';
+import {Header2} from '@components/texts/texts';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -279,9 +280,9 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                                 />
                             </View>
                             <FeaturedRoutes key={mapsData?.length} />
-                            <Text style={styles.header}>
+                            <Header2 style={styles.header}>
                                 {t('BikeMap.title')}
-                            </Text>
+                            </Header2>
                         </>
                     }
                     keyExtractor={item => item.id}
