@@ -78,7 +78,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
      */
     const [showListLoader, setShowListLoader] = useState(false);
     const listBodyLoaderStyle = useMemo(
-        () => (containsFeaturedMaps > 0 ? '25%' : '50%'),
+        () => (containsFeaturedMaps > 0 ? '25%' : '75%'),
         [containsFeaturedMaps],
     );
     const onRefresh = useCallback(
@@ -230,77 +230,73 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     );
 
     return (
-        <>
+        <View style={styles.background}>
+            <ShowMoreModal
+                showModal={showModal}
+                mapID={activeMapID}
+                onPressCancel={() => onPressHandler(false)}
+                backdropStyle={styles.backdrop}
+                isPublished
+                mapType={selectorMapTypeEnum.regular}
+            />
+            <FiltersModal
+                onClose={onFiltersModalCloseHandler}
+                definedFilters={savedMapFilters}
+                onSave={onFiltersSaveHandler}
+                showModal={showFiltersModal}
+                onGetFiltersCount={onGetFiltersCount}
+                onResetFiltersCount={onResetFiltersCount}
+                itemsCount={publicMapsCount}
+            />
+            <View style={styles.topButtonsContainer}>
+                <Dropdown
+                    openOnStart={showDropdown}
+                    list={publicRoutesDropdownList}
+                    onPress={toggleDropdown}
+                    onPressItem={onSortByHandler}
+                    buttonText={t('btnSort')}
+                    buttonContainerStyle={styles.dropdownButtonContainerStyle}
+                    boxStyle={styles.dropdownBox}
+                    hideButton
+                />
+            </View>
             {mapsData?.length ? (
-                <View style={styles.background}>
-                    <ShowMoreModal
-                        showModal={showModal}
-                        mapID={activeMapID}
-                        onPressCancel={() => onPressHandler(false)}
-                        backdropStyle={styles.backdrop}
-                        isPublished
-                        mapType={selectorMapTypeEnum.regular}
-                    />
-                    <FiltersModal
-                        onClose={onFiltersModalCloseHandler}
-                        definedFilters={savedMapFilters}
-                        onSave={onFiltersSaveHandler}
-                        showModal={showFiltersModal}
-                        onGetFiltersCount={onGetFiltersCount}
-                        onResetFiltersCount={onResetFiltersCount}
-                        itemsCount={publicMapsCount}
-                    />
-                    <View style={styles.topButtonsContainer}>
-                        <Dropdown
-                            openOnStart={showDropdown}
-                            list={publicRoutesDropdownList}
-                            onPress={toggleDropdown}
-                            onPressItem={onSortByHandler}
-                            buttonText={t('btnSort')}
-                            buttonContainerStyle={
-                                styles.dropdownButtonContainerStyle
-                            }
-                            boxStyle={styles.dropdownBox}
-                            hideButton
-                        />
-                    </View>
-                    <FlatList
-                        ListHeaderComponent={
-                            <>
-                                <View style={styles.topButtonsContainer}>
-                                    <SortButton
-                                        title={sortButtonName}
-                                        onPress={() => setShowDropdown(true)}
-                                        style={styles.topButton}
-                                    />
-                                    <FiltersButton
-                                        onPress={onFiltersModalOpenHandler}
-                                        style={{
-                                            ...styles.topButton,
-                                            ...styles.topButtonRight,
-                                        }}
-                                    />
-                                </View>
-                                <FeaturedRoutes key={mapsData?.length} />
-                                <Text style={styles.header}>
-                                    {t('BikeMap.title')}
-                                </Text>
-                            </>
-                        }
-                        keyExtractor={item => item.id}
-                        data={!showListLoader ? mapsData : []}
-                        renderItem={renderItem}
-                        showsVerticalScrollIndicator={false}
-                        getItemLayout={getItemLayout}
-                        initialNumToRender={mapsData?.length || 10}
-                        removeClippedSubviews={!isIOS}
-                        onEndReached={onEndReachedHandler}
-                        onEndReachedThreshold={0.2}
-                        ListFooterComponent={renderListLoader}
-                        refreshing={isLoading && isRefreshing}
-                        onRefresh={onRefreshHandler}
-                    />
-                </View>
+                <FlatList
+                    ListHeaderComponent={
+                        <>
+                            <View style={styles.topButtonsContainer}>
+                                <SortButton
+                                    title={sortButtonName}
+                                    onPress={() => setShowDropdown(true)}
+                                    style={styles.topButton}
+                                />
+                                <FiltersButton
+                                    onPress={onFiltersModalOpenHandler}
+                                    style={{
+                                        ...styles.topButton,
+                                        ...styles.topButtonRight,
+                                    }}
+                                />
+                            </View>
+                            <FeaturedRoutes key={mapsData?.length} />
+                            <Text style={styles.header}>
+                                {t('BikeMap.title')}
+                            </Text>
+                        </>
+                    }
+                    keyExtractor={item => item.id}
+                    data={!showListLoader ? mapsData : []}
+                    renderItem={renderItem}
+                    showsVerticalScrollIndicator={false}
+                    getItemLayout={getItemLayout}
+                    initialNumToRender={mapsData?.length || 10}
+                    removeClippedSubviews={!isIOS}
+                    onEndReached={onEndReachedHandler}
+                    onEndReachedThreshold={0.2}
+                    ListFooterComponent={renderListLoader}
+                    refreshing={isLoading && isRefreshing}
+                    onRefresh={onRefreshHandler}
+                />
             ) : null}
 
             <Backdrop
@@ -312,7 +308,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                 onPress={() => navigation.navigate('RoutesMap')}
                 style={styles.mapBtn}
             />
-        </>
+        </View>
     );
 };
 

@@ -14,6 +14,7 @@ const {width} = Dimensions.get('screen');
 const styles = StyleSheet.create({
     background: {
         backgroundColor: colors.whiteGrey,
+        height: '100%',
     },
     header: {
         fontFamily: 'DIN2014Narrow-Light',
