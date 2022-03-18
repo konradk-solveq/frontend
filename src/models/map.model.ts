@@ -198,6 +198,7 @@ export class Map {
 
     public pictures: {
         images: Images[];
+        // photos: Photos[] TODO add photos when photos will be enable
         thumbnails: Thumbnails[];
     } = {
         images: [],

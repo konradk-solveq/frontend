@@ -441,6 +441,7 @@ export const getImagesThumbs = (
         | {
               images: Images[];
               thumbnails: Thumbnails[];
+              // photos: Photos[] TODO add photos when photos will be enable
           }
         | undefined,
 ): ImagesUrlsToDisplay => {
@@ -459,7 +460,7 @@ export const getImagesThumbs = (
         };
     }
 
-    const {images, thumbnails} = pictures;
+    const {images, thumbnails} = pictures; // TODO add photos when photos will be enable
 
     if (images.length === 0 && thumbnails.length === 0) {
         return {
@@ -506,6 +507,8 @@ export const getImagesThumbs = (
             }
         }
     }
+
+    // TODO iterate by photos like by thumbnails, when photos will be enable
 
     return {
         images: imgsUrls,
