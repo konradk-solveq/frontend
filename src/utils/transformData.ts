@@ -1,15 +1,14 @@
 import {AppConfigI} from '@models/config.model';
-import {getFHorizontalPx} from '@src/helpers/appLayoutDimensions';
 import {ShortCoordsType} from '@type/coords';
-import {Dimensions, PixelRatio, Platform} from 'react-native';
-import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
-import {LocationDataI} from '../interfaces/geolocation';
+import {Dimensions, PixelRatio} from 'react-native';
+import {levelFilter, pavementFilter, tagsFilter} from '@enums/mapsFilters';
+import {LocationDataI} from '@interfaces/geolocation';
 import {
     BikeBaseData,
     BikeDescription,
     Complaint,
     Parameters,
-} from '../models/bike.model';
+} from '@models/bike.model';
 import {
     Images,
     Map,
@@ -18,8 +17,8 @@ import {
     Thumbnails,
 } from '../models/map.model';
 import {isIOS} from '@utils/platform';
-import {UserBike} from '../models/userBike.model';
-import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
+import {UserBike} from '@models/userBike.model';
+import {FormData} from '@pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {
     getLocations,
@@ -323,10 +322,10 @@ export const transformToMapsType = (
         newData.rating = rating;
     }
     if (images) {
-        newData.images = images;
+        newData.pictures.images = images;
     }
     if (thumbnails) {
-        newData.thumbnails = thumbnails;
+        newData.pictures.thumbnails = thumbnails;
     }
     if (tags) {
         newData.tags = tags;
@@ -438,8 +437,12 @@ export type ImagesUrlsToDisplay = {
 };
 
 export const getImagesThumbs = (
-    images: Images[],
-    thumbnails: Thumbnails[] = [],
+    pictures:
+        | {
+              images: Images[];
+              thumbnails: Thumbnails[];
+          }
+        | undefined,
 ): ImagesUrlsToDisplay => {
     const imgsUrls: string[] = [];
     const fullSizeImgsUrls: string[] = [];
@@ -449,7 +452,16 @@ export const getImagesThumbs = (
     let shareMapImgUrl = '';
     let sliverImgUrl = '';
 
-    if (!images?.length) {
+    if (!pictures) {
+        return {
+            images: imgsUrls,
+            mapImg: mapImgUrl,
+        };
+    }
+
+    const {images, thumbnails} = pictures;
+
+    if (images.length === 0 && thumbnails.length === 0) {
         return {
             images: imgsUrls,
             mapImg: mapImgUrl,
@@ -479,6 +491,7 @@ export const getImagesThumbs = (
             }
         }
     });
+
     if (thumbnails.length > 0) {
         const ratio = PixelRatio.get();
         const originWidth = width * ratio;

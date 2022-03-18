@@ -196,11 +196,13 @@ export class Map {
     @IsOptional()
     public tags?: string[];
 
-    @IsOptional()
-    public images?: Images[];
-
-    @IsOptional()
-    public thumbnails?: Thumbnails[];
+    public pictures: {
+        images: Images[];
+        thumbnails: Thumbnails[];
+    } = {
+        images: [],
+        thumbnails: [],
+    };
 
     @IsOptional()
     @IsArray()
@@ -413,10 +415,11 @@ export class Map {
     }
 
     public get imageThumbsUrls() {
-        if (!this.images) {
+        if (!this.images && !this.thumbnails) {
             return;
         }
-        return getImagesThumbs(this.images, this.thumbnails);
+
+        return getImagesThumbs(this.pictures);
     }
 
     public get mapImageUrl() {

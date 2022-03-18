@@ -9,7 +9,10 @@ import {getImagesThumbs, mapToClass} from '@utils/transformData';
 import RouteMapDetailsContainer from '@containers/World/RouteMapDetailsContainer';
 
 const routeData = mapToClass(mapData.elements[0], appConfig);
-const images = getImagesThumbs(routeData?.images || [], routeData?.thumbnails);
+const images = getImagesThumbs({
+    images: routeData?.images || [],
+    thumbnails: [],
+});
 
 const ROUTE_MAP_CONTAINER_TEST_ID = 'route-map-details-container';
 const COMMON_ACTION_BUTTONS_TEST_ID = `${ROUTE_MAP_CONTAINER_TEST_ID}-common-action-buttons`;

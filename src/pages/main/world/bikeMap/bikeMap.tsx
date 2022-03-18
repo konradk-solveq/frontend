@@ -162,10 +162,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         ({item, index}: RenderItem) => {
             const lastItemStyle =
                 index === mapsData?.length - 1 ? styles.lastTile : undefined;
-            const images = getImagesThumbs(
-                item?.images || [],
-                item?.thumbnails,
-            );
+            const images = getImagesThumbs(item?.pictures);
             return (
                 <View key={item.id} style={lastItemStyle}>
                     <ListTile

@@ -11,8 +11,8 @@ import {
 import RouteImagePlaceholder from '@sharedComponents/images/routeListImagePlaceholder';
 import {styles} from './style';
 import {TextIcon} from '../icons';
-import {MykrossIconFont} from '@src/theme/enums/iconFonts';
-import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
+import {MykrossIconFont} from '@theme/enums/iconFonts';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 interface PropsI {
     tilePressOn: () => void;
     fullDate: string;
