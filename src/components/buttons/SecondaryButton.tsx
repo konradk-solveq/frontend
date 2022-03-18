@@ -13,6 +13,7 @@ interface IProps {
     icon?: MykrossIconFont /* Font symbol from 'mykross' font */;
     disabled?: boolean;
     withLoader?: boolean;
+    withoutShadow?: boolean;
     style?: ViewStyle;
     testID?: string;
 }
@@ -24,6 +25,7 @@ const SecondaryButton: React.FC<IProps> = ({
     icon,
     disabled = false,
     withLoader = false,
+    withoutShadow = false,
     style,
     testID = 'secondary-btn-test-id',
 }: IProps) => {
@@ -37,6 +39,7 @@ const SecondaryButton: React.FC<IProps> = ({
             withLoader={withLoader}
             testID={testID}
             textColor={textColor}
+            withoutShadow={withoutShadow}
             disabledTextColor={colors.lightRed}
             loaderColor={colors.red}
             style={[styles.button, style || {}]}
