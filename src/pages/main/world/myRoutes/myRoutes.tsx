@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 
 import {
     userNameSelector,
@@ -41,6 +41,7 @@ import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {privateRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
 import {resetMapsCount} from '@storage/actions/maps';
+import {Header2} from '@components/texts/texts';
 
 const length = getVerticalPx(175);
 const getItemLayout = (_: any, index: number) => ({
@@ -315,12 +316,12 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                                     }}
                                 />
                             </View>
-                            <Text style={styles.header}>
+                            <Header2 style={styles.header}>
                                 {totalNumberOfPrivateMaps &&
                                 totalNumberOfPrivateMaps > 0
                                     ? secondTitle
                                     : basicTitle}
-                            </Text>
+                            </Header2>
                         </>
                     }
                     data={!showListLoader ? privateMaps : []}

@@ -139,7 +139,7 @@ export const getMapsListCount = async (
             errorMessage = response.data.message || response.data.error;
         }
         return {
-            data: {total: 0},
+            data: {total: '0'},
             status: response.data?.statusCode || response.status,
             error: errorMessage,
         };
@@ -168,7 +168,7 @@ export const getPrivateMapsListCount = async (
             errorMessage = response.data.message || response.data.error;
         }
         return {
-            data: {total: 0},
+            data: {total: '0'},
             status: response.data?.statusCode || response.status,
             error: errorMessage,
         };
@@ -197,7 +197,7 @@ export const getPlannedMapsListCount = async (
             errorMessage = response.data.message || response.data.error;
         }
         return {
-            data: {total: 0},
+            data: {total: '0'},
             status: response.data?.statusCode || response.status,
             error: errorMessage,
         };

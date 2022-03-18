@@ -447,7 +447,7 @@ export interface MapsData {
 }
 
 export interface MapsCountData {
-    total: number;
+    total: string;
 }
 
 export type FeaturedMapType = {

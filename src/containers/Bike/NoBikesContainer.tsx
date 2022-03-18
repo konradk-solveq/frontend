@@ -58,11 +58,13 @@ const NoBikesContainer: React.FC<IProps> = ({
                         <PrimaryButton
                             text={t('addBikeTile.primaryButton')}
                             onPress={onPressPrimary}
+                            withoutShadow
                             style={styles.primaryButton}
                         />
                         <SecondaryButton
                             text={t('addBikeTile.secondaryButton')}
                             onPress={onPressSecondary}
+                            withoutShadow
                         />
                     </View>
                 </View>
