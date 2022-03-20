@@ -65,7 +65,7 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
 
         const middleTiles =
             index !== 2 ? horizontalStyles.middleTile : undefined;
-        const images = getImagesThumbs(item?.images || []);
+        const images = getImagesThumbs(item?.pictures);
 
         return (
             <View key={item.id} style={[styles.tileWrapper, middleTiles]}>

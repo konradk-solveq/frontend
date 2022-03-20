@@ -14,6 +14,11 @@ export const styles = StyleSheet.create({
     area: {
         height: getFHorizontalPx(311),
         marginBottom: getFHorizontalPx(8),
+        marginTop: getFHorizontalPx(8),
+    },
+    areaMy: {
+        height: getFHorizontalPx(311),
+        marginBottom: getFHorizontalPx(8),
     },
     tile: {
         width: '100%',
@@ -33,6 +38,18 @@ export const styles = StyleSheet.create({
     },
     noImage: {
         marginTop: getFHorizontalPx(-106),
+    },
+    publicWrap: {
+        position: 'absolute',
+        top: getFHorizontalPx(8),
+        right: getFHorizontalPx(8),
+        backgroundColor: colors.blackTransparent,
+        paddingHorizontal: getFHorizontalPx(8),
+        paddingVertical: getFHorizontalPx(4),
+        borderRadius: getFHorizontalPx(6),
+    },
+    public: {
+        color: colors.white,
     },
     description: {
         left: getFHorizontalPx(16),

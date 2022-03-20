@@ -159,7 +159,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const renderItem = ({item, index}: RenderItem) => {
         const lastItemStyle =
             index === favouriteMaps?.length - 1 ? styles.lastTile : undefined;
-        const images = getImagesThumbs(item?.images || []);
+        const images = getImagesThumbs(item?.pictures);
         return (
             <View key={item.id} style={lastItemStyle}>
                 <ListTile

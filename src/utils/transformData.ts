@@ -1,17 +1,24 @@
 import {AppConfigI} from '@models/config.model';
 import {ShortCoordsType} from '@type/coords';
-import {Platform} from 'react-native';
-import {levelFilter, pavementFilter, tagsFilter} from '../enums/mapsFilters';
-import {LocationDataI} from '../interfaces/geolocation';
+import {Dimensions, PixelRatio} from 'react-native';
+import {levelFilter, pavementFilter, tagsFilter} from '@enums/mapsFilters';
+import {LocationDataI} from '@interfaces/geolocation';
 import {
     BikeBaseData,
     BikeDescription,
     Complaint,
     Parameters,
-} from '../models/bike.model';
-import {Images, Map, MapType, OptionsEnumsT} from '../models/map.model';
-import {UserBike} from '../models/userBike.model';
-import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
+} from '@models/bike.model';
+import {
+    Images,
+    Map,
+    MapType,
+    OptionsEnumsT,
+    Thumbnails,
+} from '../models/map.model';
+import {isIOS} from '@utils/platform';
+import {UserBike} from '@models/userBike.model';
+import {FormData} from '@pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {
     getLocations,
@@ -24,7 +31,7 @@ import {
     removeLessAccuratePoints,
 } from './locationData';
 
-const isIOS = Platform.OS === 'ios';
+const {width} = Dimensions.get('window');
 
 export const getTimeInUTCMilliseconds = (
     date: string | number,
@@ -261,6 +268,7 @@ export const transformToMapsType = (
         location,
         path,
         images,
+        thumbnails,
         date,
         createdAt,
         publishedAt,
@@ -270,6 +278,7 @@ export const transformToMapsType = (
         time,
         rating,
         isPublic,
+        isUserFavorite,
         downloads,
         reaction,
         reactions,
@@ -313,13 +322,19 @@ export const transformToMapsType = (
         newData.rating = rating;
     }
     if (images) {
-        newData.images = images;
+        newData.pictures.images = images;
+    }
+    if (thumbnails) {
+        newData.pictures.thumbnails = thumbnails;
     }
     if (tags) {
         newData.tags = tags;
     }
     if (isPublic) {
         newData.isPublic = isPublic;
+    }
+    if (isUserFavorite) {
+        newData.isUserFavorite = isUserFavorite;
     }
     if (elementExists(downloads)) {
         newData.downloads = downloads;
@@ -421,7 +436,15 @@ export type ImagesUrlsToDisplay = {
     sliverImg?: string;
 };
 
-export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
+export const getImagesThumbs = (
+    pictures:
+        | {
+              images: Images[];
+              thumbnails: Thumbnails[];
+              // photos: Photos[] TODO add photos when photos will be enable
+          }
+        | undefined,
+): ImagesUrlsToDisplay => {
     const imgsUrls: string[] = [];
     const fullSizeImgsUrls: string[] = [];
     let mapImgUrl = '';
@@ -430,7 +453,16 @@ export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
     let shareMapImgUrl = '';
     let sliverImgUrl = '';
 
-    if (!images?.length) {
+    if (!pictures) {
+        return {
+            images: imgsUrls,
+            mapImg: mapImgUrl,
+        };
+    }
+
+    const {images, thumbnails} = pictures; // TODO add photos when photos will be enable
+
+    if (images.length === 0 && thumbnails.length === 0) {
         return {
             images: imgsUrls,
             mapImg: mapImgUrl,
@@ -459,35 +491,24 @@ export const getImagesThumbs = (images: Images[]): ImagesUrlsToDisplay => {
                 fullSizeImgsUrls.push(fullSizeImage);
             }
         }
-        if (i.type === 'map') {
-            const url =
-                i.variants?.square?.[1]?.url || i.variants?.square?.[0]?.url;
-            if (url) {
-                mapImgUrl = url;
+    });
+
+    if (thumbnails.length > 0) {
+        const ratio = PixelRatio.get();
+        const originWidth = width * ratio;
+        for (let i = 0; i < thumbnails.length; i++) {
+            const thumbnail = thumbnails[i];
+            if (thumbnail.width > originWidth) {
+                imgsUrls.push(thumbnail.url);
+                break;
             }
-            const verticalUrl =
-                i.variants?.vertical?.[2]?.url ||
-                i.variants?.vertical?.[1]?.url ||
-                i.variants?.vertical?.[0]?.url;
-            if (verticalUrl) {
-                verticalMapImgUrl = verticalUrl;
-            }
-            const horizontalUrl =
-                i.variants?.horizontal?.[2]?.url ||
-                i.variants?.horizontal?.[1]?.url ||
-                i.variants?.horizontal?.[0]?.url;
-            if (horizontalUrl) {
-                horizontalMapImgUrl = horizontalUrl;
-            }
-            const shareUrl =
-                i.variants?.share?.[2]?.url ||
-                i.variants?.share?.[1]?.url ||
-                i.variants?.share?.[0]?.url;
-            if (shareUrl) {
-                shareMapImgUrl = shareUrl;
+            if (i === thumbnails.length - 1) {
+                imgsUrls.push(thumbnail.url);
             }
         }
-    });
+    }
+
+    // TODO iterate by photos like by thumbnails, when photos will be enable
 
     return {
         images: imgsUrls,
@@ -676,7 +697,7 @@ export const getFilterDistance = (val: string) => {
         return;
     }
     return parsedValue;
-}
+};
 
 export const getRouteLengthFuelEquivalent = (
     ratio: number,

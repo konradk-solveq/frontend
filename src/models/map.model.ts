@@ -81,6 +81,11 @@ export interface Images {
     type: string;
     variants: ImagesVariants;
 }
+export interface Thumbnails {
+    width: number;
+    height: number;
+    url: string;
+}
 
 /**
  * Deprecated - legacy code, used before v1.5.0
@@ -191,8 +196,14 @@ export class Map {
     @IsOptional()
     public tags?: string[];
 
-    @IsOptional()
-    public images?: Images[];
+    public pictures: {
+        images: Images[];
+        // photos: Photos[] TODO add photos when photos will be enable
+        thumbnails: Thumbnails[];
+    } = {
+        images: [],
+        thumbnails: [],
+    };
 
     @IsOptional()
     @IsArray()
@@ -221,6 +232,10 @@ export class Map {
     @IsOptional()
     @IsBoolean()
     public isPublic?: boolean;
+
+    @IsOptional()
+    @IsBoolean()
+    public isUserFavorite?: boolean;
 
     @IsNumber()
     @IsOptional()
@@ -401,10 +416,11 @@ export class Map {
     }
 
     public get imageThumbsUrls() {
-        if (!this.images) {
+        if (!this.images && !this.thumbnails) {
             return;
         }
-        return getImagesThumbs(this.images);
+
+        return getImagesThumbs(this.pictures);
     }
 
     public get mapImageUrl() {

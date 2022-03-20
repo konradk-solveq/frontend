@@ -93,6 +93,26 @@ export default {
                     type: 'map',
                 },
             ],
+            thumbnails: [
+                {
+                    height: 120,
+                    url:
+                        'https://public.pre.mykross.kross.pl/cycling-map/jeJRV8pBmUe7a8yIU7Zbx53aEjoTF3-6/map-public_256.png',
+                    width: 256,
+                },
+                {
+                    height: 240,
+                    url:
+                        'https://public.pre.mykross.kross.pl/cycling-map/jeJRV8pBmUe7a8yIU7Zbx53aEjoTF3-6/map-public_512.png',
+                    width: 512,
+                },
+                {
+                    height: 480,
+                    url:
+                        'https://public.pre.mykross.kross.pl/cycling-map/jeJRV8pBmUe7a8yIU7Zbx53aEjoTF3-6/map-public_1024.png',
+                    width: 1024,
+                },
+            ],
             path: [
                 [50.6645628, 17.8857159],
                 [50.6645589, 17.8856264],
@@ -214,6 +234,26 @@ export default {
                     },
                     id: 'map',
                     type: 'map',
+                },
+            ],
+            thumbnails: [
+                {
+                    height: 120,
+                    url:
+                        'https://public.pre.mykross.kross.pl/cycling-map/jeJRV8pBmUe7a8yIU7Zbx53aEjoTF3-6/map-public_256.png',
+                    width: 256,
+                },
+                {
+                    height: 240,
+                    url:
+                        'https://public.pre.mykross.kross.pl/cycling-map/jeJRV8pBmUe7a8yIU7Zbx53aEjoTF3-6/map-public_512.png',
+                    width: 512,
+                },
+                {
+                    height: 480,
+                    url:
+                        'https://public.pre.mykross.kross.pl/cycling-map/jeJRV8pBmUe7a8yIU7Zbx53aEjoTF3-6/map-public_1024.png',
+                    width: 1024,
                 },
             ],
             path: [
@@ -438,6 +478,26 @@ export default {
                     },
                     id: 'map',
                     type: 'map',
+                },
+            ],
+            thumbnails: [
+                {
+                    height: 120,
+                    url:
+                        'https://public.pre.mykross.kross.pl/cycling-map/KMW8QTXTGMuxJUVOF92p_maw4Hd6Yzep/map-public_256.png',
+                    width: 256,
+                },
+                {
+                    height: 240,
+                    url:
+                        'https://public.pre.mykross.kross.pl/cycling-map/KMW8QTXTGMuxJUVOF92p_maw4Hd6Yzep/map-public_512.png',
+                    width: 512,
+                },
+                {
+                    height: 480,
+                    url:
+                        'https://public.pre.mykross.kross.pl/cycling-map/KMW8QTXTGMuxJUVOF92p_maw4Hd6Yzep/map-public_1024.png',
+                    width: 1024,
                 },
             ],
             path: [

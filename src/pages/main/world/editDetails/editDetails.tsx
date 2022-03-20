@@ -50,7 +50,7 @@ const EditDetails = () => {
     const error = useAppSelector(mapsErrorSelector);
     const isLoading = useAppSelector(loadingMapsSelector);
 
-    const images = getImagesThumbs(mapData?.images || []);
+    const images = getImagesThumbs(mapData?.pictures);
     const [submit, setSubmit] = useState(false);
     const [scrollToTop, setScrollToTop] = useState(false);
 

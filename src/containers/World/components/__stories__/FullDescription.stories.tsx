@@ -12,7 +12,7 @@ import {getImagesThumbs, mapToClass} from '@utils/transformData';
 import FullDescription from '@containers/World/components/FullDescription';
 
 const routeData = mapToClass(mapData.elements[2], appConfig);
-const images = getImagesThumbs(routeData?.images || []);
+const images = getImagesThumbs(routeData?.pictures);
 
 storiesOf('containers/World/components/FullDescription', module)
     .addDecorator(getStory => (

@@ -84,9 +84,12 @@ const RouteDetails = () => {
         ?.name;
 
     const userID = useAppSelector(userIdSelector);
-    const images = getImagesThumbs(
-        (shareID && !mapData ? sharedMapData?.images : mapData?.images) || [],
-    );
+    const images = getImagesThumbs({
+        images:
+            (shareID && !mapData ? sharedMapData?.images : mapData?.images) ||
+            [],
+        thumbnails: [],
+    });
 
     const [showBottomModal, setShowBottomModal] = useState(false);
 

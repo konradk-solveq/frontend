@@ -37,28 +37,12 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Demi",
-              "fontSize": 14,
-              "lineHeight": 48,
-              "textAlign": "left",
-            },
-            undefined,
-          ]
-        }
-        testID="demi-14-h48-test-id"
-      >
-        01.01.2022
-      </Text>
       <View
         style={
           Object {
             "height": 598.0769230769231,
             "marginBottom": 15.384615384615385,
+            "marginTop": 15.384615384615385,
           }
         }
       >
@@ -747,28 +731,12 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Demi",
-              "fontSize": 14,
-              "lineHeight": 48,
-              "textAlign": "left",
-            },
-            undefined,
-          ]
-        }
-        testID="demi-14-h48-test-id"
-      >
-        01.01.2022
-      </Text>
       <View
         style={
           Object {
             "height": 598.0769230769231,
             "marginBottom": 15.384615384615385,
+            "marginTop": 15.384615384615385,
           }
         }
       >
@@ -1161,28 +1129,12 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
         }
       }
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Demi",
-              "fontSize": 14,
-              "lineHeight": 48,
-              "textAlign": "left",
-            },
-            undefined,
-          ]
-        }
-        testID="demi-14-h48-test-id"
-      >
-        01.01.2022
-      </Text>
       <View
         style={
           Object {
             "height": 598.0769230769231,
             "marginBottom": 15.384615384615385,
+            "marginTop": 15.384615384615385,
           }
         }
       >
