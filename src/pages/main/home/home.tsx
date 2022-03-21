@@ -76,7 +76,7 @@ const Home: React.FC = () => {
         navigation.navigate({
             name: nfc
                 ? RegularStackRoute.ADD_BIKE_SCREEN
-                : BothStackRoute.ADDING_BY_NUMBER_SCREEN,
+                : RegularStackRoute.ADDING_BY_NUMBER_SCREEN,
             params: {emptyFrame: true},
         });
     };

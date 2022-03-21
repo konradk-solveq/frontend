@@ -48,7 +48,7 @@ interface Props {
     navigation: any;
     route: any;
 }
-
+/* TODO: tp reomve after Onboarding redesign - in new version there is no adding bike flow */
 const AddingByNumber: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
     const frame: string = useAppSelector(frameNumberSelector);

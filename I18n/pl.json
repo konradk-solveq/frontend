@@ -52,6 +52,19 @@
             "findByNumberButton": "Wprowadź ręcznie nr ramy"
         }
     },
+    "AddBikeByNumberScreen": {
+        "headerTitle": "Nr ramy",
+        "form": {
+            "errorMessage": "Numer ramy składa się z 12 cyfr"
+        },
+        "content": {
+            "header": "Wprowadź ręcznie nr ramy",
+            "linkButton": "Gdzie znajdę nr ramy?",
+            "inputName": "Nr ramy",
+            "inputHint": "Składa się z 12 cyfr",
+            "submitButton": "Dalej"
+        }
+    },
     "TutorialNFCmodal": {
         "title": "Gotowy do skanowania",
         "text": "Zbliż telefon do naklejki NFC",
