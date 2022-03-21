@@ -34,7 +34,7 @@ const AddBikeScreen: React.FC = () => {
     }, [heandleScanByNfc]);
 
     const onPressScanByNumberHandler = useCallback(() => {
-        navigation.navigate('AddingByNumber', {emptyFrame: true});
+        navigation.navigate('AddBikeByNumber', {emptyFrame: true});
     }, [navigation]);
 
     useEffect(() => {

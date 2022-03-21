@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/input/TextInput Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      testID="text-input-test-id"
+    >
+      <View
+        style={
+          Object {
+            "marginBottom": 6.322274881516588,
+          }
+        }
+        testID="text-input-test-id-input-name"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          Name
+        </Text>
+      </View>
+      <TextInput
+        autoCapitalize="characters"
+        keyboardType="default"
+        maxLength={100}
+        multiline={false}
+        numberOfLines={1}
+        onChangeText={[Function]}
+        placeholder="Placeholder"
+        selectionColor="#717171"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 30.76923076923077,
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "height": 75.86729857819905,
+              "paddingHorizontal": 30.76923076923077,
+              "paddingVertical": 0,
+            },
+            Object {},
+          ]
+        }
+        testID="text-input-test-id-input-value"
+        value=""
+      />
+      <View
+        style={
+          Object {
+            "marginTop": 12.644549763033176,
+          }
+        }
+        testID="text-input-test-id-input-hint"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          Enter characters
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/input/TextInput Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      testID="text-input-test-id"
+    >
+      <View
+        style={
+          Object {
+            "marginBottom": 6.322274881516588,
+          }
+        }
+        testID="text-input-test-id-input-name"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          Name
+        </Text>
+      </View>
+      <TextInput
+        autoCapitalize="characters"
+        keyboardType="default"
+        maxLength={100}
+        multiline={false}
+        numberOfLines={1}
+        onChangeText={[Function]}
+        placeholder=""
+        selectionColor="#717171"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 30.76923076923077,
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 16,
+              "height": 75.86729857819905,
+              "paddingHorizontal": 30.76923076923077,
+              "paddingVertical": 0,
+            },
+            Object {},
+          ]
+        }
+        testID="text-input-test-id-input-value"
+        value="Sample"
+      />
+      <View
+        style={
+          Object {
+            "marginTop": 12.644549763033176,
+          }
+        }
+        testID="text-input-test-id-input-hint"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          Enter characters
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

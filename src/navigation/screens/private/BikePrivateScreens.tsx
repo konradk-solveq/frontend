@@ -6,8 +6,7 @@ import {verticalAnim} from '@helpers/positioningVerical';
 
 import BikeCommonScreens from '@navigation/screens/common/BikeCommonScreens';
 import AddingInfo from '@pages/onboarding/bikeAdding/info/info';
-import AddBikeScreen from '@pages/main/addBikeScreen/AddBikeScreen';
-import AddingByNumber from '@pages/onboarding/bikeAdding/addingByNumber/addingByNumber';
+import {AddBikeScreen, AddBikeByNumberScreen} from '@src/pages/main/addBike';
 import BikeSummary from '@pages/onboarding/bikeSummary/bikeSummary';
 import BikeParams from '@pages/main/bike/bikeParams/bikeParams';
 import WarrantyDetails from '@pages/main/bike/warrantyDetails/warrantyDetails';
@@ -25,7 +24,10 @@ const BikePrivateScreens = () => {
                     ...verticalAnim,
                 }}
             />
-            <Stack.Screen name="AddingByNumber" component={AddingByNumber} />
+            <Stack.Screen
+                name="AddBikeByNumber"
+                component={AddBikeByNumberScreen}
+            />
             <Stack.Screen name="BikeSummary" component={BikeSummary} />
             <Stack.Screen name="BikeParams" component={BikeParams} />
             <Stack.Screen name="WarrantyDetails" component={WarrantyDetails} />

@@ -60,7 +60,7 @@ export const RegularStackRoute = {
     BIKE_PARAMS_SCREEN: 'BikeParams',
     WARRANTY_DETAILS_SCREEN: 'WarrantyDetails',
     ADD_BIKE_SCREEN: 'AddBike',
-    ADDING_BY_NUMBER_SCREEN: 'AddingByNumber',
+    ADDING_BY_NUMBER_SCREEN: 'AddBikeByNumber',
     BIKE_DATA_SCREEN: 'BikeData',
     BIKE_SUMMARY_SCREEN: 'BikeSummary',
     ADDING_INFO_SCREEN: 'AddingInfo',

@@ -19,8 +19,8 @@ const containsRule = (rule: string, k: string) => {
     return rule === k;
 };
 
-export const validateData = (rules: any[], value: any) => {
-    if (!Array.isArray(rules)) {
+export const validateData = (rules: any[] | undefined, value: any) => {
+    if (!Array.isArray(rules) || !rules) {
         return false;
     }
 

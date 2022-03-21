@@ -145,7 +145,7 @@ export type BikeParamsListT = {
     WarrantyDetails: undefined;
     ReviewsDetails: undefined;
     AddingInfo: undefined;
-    AddingByNumber: {
+    AddBikeByNumber: {
         emptyFrame?: boolean;
     };
     AddBike: {
@@ -178,13 +178,16 @@ export type AddingInfoNavigationPropT = MainNavigationCompositePropT<
     BikeParamsListT,
     'AddingInfo'
 >;
-export type AddingByNumberRouteT = RouteProp<BikeParamsListT, 'AddingByNumber'>;
-export type AddingByNumberNavigationPropT = MainNavigationCompositePropT<
+export type AddBikeByNumberRouteT = RouteProp<
     BikeParamsListT,
-    'AddingByNumber'
+    'AddBikeByNumber'
 >;
-export type TutorialNFCRouteT = RouteProp<BikeParamsListT, 'AddBike'>;
-export type TutorialNFCNavigationPropT = MainNavigationCompositePropT<
+export type AddBikeByNumberNavigationPropT = MainNavigationCompositePropT<
+    BikeParamsListT,
+    'AddBikeByNumber'
+>;
+export type AddbikeRouteT = RouteProp<BikeParamsListT, 'AddBike'>;
+export type AddBikeNavigationPropT = MainNavigationCompositePropT<
     BikeParamsListT,
     'AddBike'
 >;
