@@ -14,6 +14,8 @@ interface IProps {
     style?: ViewStyle | ViewStyle[];
     options: string[];
     onValueChange: (low: string, high: string) => void;
+    initLow?: string;
+    initHigh?: string;
     ref?: Ref<RangePickerRef | undefined>;
 }
 
@@ -46,10 +48,13 @@ const renderLabelItem = (
 );
 
 const RangePicker: React.FC<IProps> = React.forwardRef(
-    ({options, onValueChange, style}, ref) => {
+    ({options, onValueChange, style, initLow, initHigh}, ref) => {
+        console.log(initLow, initHigh);
         const [{low, high}, setRangeValues] = useMergedState({
-            low: 0,
-            high: options.length - 1,
+            low: initLow ? options.findIndex(val => val === initLow) : 0,
+            high: initHigh
+                ? options.findIndex(val => val === initHigh)
+                : options.length - 1,
         });
         const handleValueChange = useCallback(
             (lowInput: number, highInput: number) => {
