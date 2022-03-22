@@ -1,7 +1,9 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {Image} from 'react-native';
 
-import {setBikesListByFrameNumber} from '@storage/actions';
-import {useAppDispatch} from '@hooks/redux';
+import {removeBikeByNumber, setBikesListByFrameNumber} from '@storage/actions';
+import {bikeByFrameNumberSelector} from '@storage/selectors';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {isAndroid} from '@utils/platform';
@@ -10,6 +12,11 @@ import useNFCReader from '@hooks/useNFCReader';
 import ScanModal from '@pages/onboarding/bikeAdding/turtorialNFC/scanModal.android';
 import GenericScreen from '@pages/template/GenericScreen';
 import {AddBikeContainer} from '@containers/AddBike';
+import {AddBikeSummaryModal} from '@pages/main/addBike/components';
+
+import DefaultImage from '@assets/images/bike_placeholder.png';
+
+const IMAGE_URL = Image.resolveAssetSource(DefaultImage).uri;
 
 const AddBikeScreen: React.FC = () => {
     const navigation = useAppNavigation();
@@ -17,6 +24,21 @@ const AddBikeScreen: React.FC = () => {
     const {t} = useMergedTranslation('AddBikeScreen');
 
     const [isFetching, setIsFetching] = useState(false);
+    const [frameNumber, setFrameNumber] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
+    const bikeData = useAppSelector(bikeByFrameNumberSelector(frameNumber));
+    /**
+     * Only first url retruns image
+     */
+    const bd = useMemo(
+        () => ({
+            bikeName: bikeData?.description.name || '',
+            imageUrl: bikeData?.images?.[0] || IMAGE_URL,
+            frameNumber: frameNumber,
+        }),
+        [bikeData?.description, bikeData?.images, frameNumber],
+    );
 
     const {
         heandleScanByNfc,
@@ -42,12 +64,34 @@ const AddBikeScreen: React.FC = () => {
             const navigateToSummary = async () => {
                 setIsFetching(true);
                 await dispatch(setBikesListByFrameNumber(nfcTagResult));
+                setFrameNumber(nfcTagResult);
                 setIsFetching(false);
-                navigation.navigate('BikeSummary', {frameNumber: nfcTagResult});
+                setShowModal(true);
             };
             navigateToSummary();
         }
     }, [dispatch, navigation, startScanNFC, nfcTagResult]);
+
+    /**
+     * Close modal and remove bike data from storage
+     */
+    const onCloseModal = useCallback(() => {
+        setShowModal(false);
+        /**
+         * Wait with removing data to avoid glitches
+         */
+        setTimeout(() => {
+            dispatch(removeBikeByNumber(frameNumber));
+        }, 1000);
+    }, [dispatch, frameNumber]);
+
+    /**
+     * Ends whole process
+     * and returns to start screen (BikeTab o HomeTab)
+     */
+    const onAddBike = () => {
+        navigation.pop(2);
+    };
 
     return (
         <GenericScreen screenTitle={t('headerTitle')} showCross>
@@ -65,6 +109,12 @@ const AddBikeScreen: React.FC = () => {
                     onPressCancel={cancelScanByNfcHandler}
                 />
             )}
+            <AddBikeSummaryModal
+                showModal={showModal && !startScanNFC}
+                bikeData={bd}
+                onAddBike={onAddBike}
+                onClose={onCloseModal}
+            />
         </GenericScreen>
     );
 };

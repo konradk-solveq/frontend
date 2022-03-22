@@ -1,16 +1,18 @@
+import {createSelector} from 'reselect';
 import {RootState} from '../storage';
 import {BikeDescription} from '../../models/bike.model';
 import {UserBike} from '../../models/userBike.model';
 import {getBike, getDescription} from '../../helpers/transformUserBikeData';
 import {bikesListToClass} from '../../utils/transformData';
+import {BikesState} from '@storage/reducers/bikes';
+
+export const bikeSelector = (state: RootState): BikesState => state.bikes;
 
 export const bikesListSelector = (state: RootState): UserBike[] =>
     bikesListToClass(state.bikes.list);
 
-export const bikeByFrameNumberSelector = (
-    state: RootState,
-    frameNr: string,
-): UserBike | null => getBike(state.bikes.list, frameNr);
+export const bikeByFrameNumberSelector = (frameNr: string) =>
+    createSelector(bikesListSelector, bs => getBike(bs, frameNr));
 
 export const loadingBikesSelector = (state: RootState): boolean =>
     state.bikes.loading;

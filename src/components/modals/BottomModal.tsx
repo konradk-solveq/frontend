@@ -1,12 +1,17 @@
 import React, {ReactNode, useEffect, useMemo, useState} from 'react';
-import {View, StyleSheet, Dimensions, ScrollView} from 'react-native';
+import {
+    View,
+    StyleSheet,
+    Dimensions,
+    ScrollView,
+    ViewStyle,
+} from 'react-native';
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withTiming,
 } from 'react-native-reanimated';
 
-import Swipe from '@sharedComponents/navi/swipe/swipe';
 import {
     getFHorizontalPx,
     getFVerticalPx,
@@ -14,23 +19,29 @@ import {
 import colors from '@theme/colors';
 import useStatusBarHeight from '@hooks/statusBarHeight';
 
-import {HorizontalSpacer} from '@components/divider';
-
 const {height} = Dimensions.get('window');
 const containerHeight = getFVerticalPx(270);
 
 interface IProps {
     show?: boolean;
+    openModal?: boolean;
     openModalHeight?: number;
     openModalFullHeight?: number;
     children?: ReactNode;
+    header?: ReactNode;
+    style?: ViewStyle;
+    testID?: string;
 }
 
 const BottomModal: React.FC<IProps> = ({
     show,
+    openModal = false,
     openModalHeight = containerHeight,
     openModalFullHeight = height,
     children,
+    header,
+    style,
+    testID = 'bottom-modal-test-id',
 }: IProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -62,25 +73,22 @@ const BottomModal: React.FC<IProps> = ({
         }
     }, [isOpen, isVisible, openModalH, modalHeight, openModalHeight]);
 
-    const onSwipeFlatButton = () => {
-        setIsOpen(prev => !prev);
-    };
+    /**
+     * Set full height of modal
+     */
+    useEffect(() => {
+        setIsOpen(openModal);
+    }, [openModal]);
 
     return (
-        <Animated.View style={[styles.container, modalAnimation]}>
+        <Animated.View
+            style={[styles.container, modalAnimation, style]}
+            testID={testID}>
             <View style={styles.innerContainer}>
-                <Swipe
-                    direction={!isOpen ? 4 : 8}
-                    onSwipeAction={onSwipeFlatButton}>
-                    <View style={styles.flatButtonContainer}>
-                        <View style={styles.flatButton} />
-                    </View>
-                </Swipe>
-                <HorizontalSpacer />
+                {header}
                 <ScrollView
                     scrollEnabled={isOpen}
                     showsVerticalScrollIndicator={false}>
-                    <HorizontalSpacer />
                     {children}
                 </ScrollView>
             </View>
@@ -103,23 +111,6 @@ const styles = StyleSheet.create({
     },
     innerContainer: {
         width: '100%',
-    },
-    flatButtonContainer: {
-        position: 'absolute',
-        top: getFVerticalPx(0),
-        left: 0,
-        right: 0,
-        height: getFVerticalPx(44),
-        alignItems: 'center',
-        zIndex: 10,
-    },
-    flatButton: {
-        marginTop: getFVerticalPx(16),
-        height: getFVerticalPx(4),
-        width: getFHorizontalPx(33),
-        borderRadius: getFHorizontalPx(4),
-        backgroundColor: colors.greyish,
-        zIndex: 10,
     },
 });
 

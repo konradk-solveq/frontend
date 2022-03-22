@@ -19,7 +19,7 @@ import {addPlannedMap, fetchMapIfNotExistsLocally} from '@storage/actions/maps';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
 import {BasicCoordsType} from '@type/coords';
 import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
-import BottomModal from '@components/modals/BottomModal';
+import BottomModal from '@pages/main/world/routesMap/bottomModal/BottomModal';
 
 const RoutesMap: React.FC = () => {
     const navigation = useAppNavigation();

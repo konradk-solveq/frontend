@@ -15,7 +15,9 @@ storiesOf('components/modals/BottomModal', module)
     .add('Customized', () => (
         <BottomModal
             show={boolean('Show modal', true)}
+            openModal={boolean('Open modal', true)}
             openModalHeight={number('Modal height after show', 278)}
+            openModalFullHeight={number('Modal height after open', 624)}
         />
     ));
 

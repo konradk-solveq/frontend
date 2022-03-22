@@ -65,6 +65,11 @@
             "submitButton": "Dalej"
         }
     },
+    "AddBikeSummary": {
+        "header": "Nowy rower",
+        "summaryPrefix": "od kross nr ramy",
+        "addBikeButton": "Dodaj rower"
+    },
     "TutorialNFCmodal": {
         "title": "Gotowy do skanowania",
         "text": "Zbliż telefon do naklejki NFC",
