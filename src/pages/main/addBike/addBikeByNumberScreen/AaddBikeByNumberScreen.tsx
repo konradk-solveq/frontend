@@ -1,15 +1,20 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
+import {Alert, Image} from 'react-native';
 
-import {useAppDispatch} from '@hooks/redux';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {bikeByFrameNumberSelector} from '@storage/selectors';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
-import {setBikesListByFrameNumber} from '@storage/actions';
+import {removeBikeByNumber, setBikesListByFrameNumber} from '@storage/actions';
 import {validateData} from '@utils/validation/validation';
 import validationRules from '@utils/validation/validationRules';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import GenericScreen from '@pages/template/GenericScreen';
 import {AddBikeByNumberContainer} from '@containers/AddBike';
-import {Alert} from 'react-native';
+import {AddBikeSummaryModal} from '@pages/main/addBike/components';
+import DefaultImage from '@assets/images/bike_placeholder.png';
+
+const IMAGE_URL = Image.resolveAssetSource(DefaultImage).uri;
 
 const rules: Record<string, any[] | undefined> = {
     bikeNumber: [
@@ -25,6 +30,21 @@ const AddBikeByNumberScreen: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const [isFetching, setIsFetching] = useState(false);
+    const [frameNumber, setFrameNumber] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
+    const bikeData = useAppSelector(bikeByFrameNumberSelector(frameNumber));
+    /**
+     * Only first url retruns image
+     */
+    const bd = useMemo(
+        () => ({
+            bikeName: bikeData?.description.name || '',
+            imageUrl: bikeData?.images?.[0] || IMAGE_URL,
+            frameNumber: frameNumber,
+        }),
+        [bikeData?.description, bikeData?.images, frameNumber],
+    );
 
     const checkIsValid = useCallback(
         (fieldName: string, value?: string) => {
@@ -42,9 +62,8 @@ const AddBikeByNumberScreen: React.FC = () => {
                 setIsFetching(true);
                 try {
                     await dispatch(setBikesListByFrameNumber(bikeNumber));
-                    navigation.navigate('BikeSummary', {
-                        frameNumber: bikeNumber,
-                    });
+                    setFrameNumber(bikeNumber);
+                    setShowModal(true);
                 } catch (error) {
                     /* TODO: to reafactor after error screen will be redesigned */
                     if (error.notFound) {
@@ -68,6 +87,27 @@ const AddBikeByNumberScreen: React.FC = () => {
         navigation.navigate('AddingInfo');
     }, [navigation]);
 
+    /**
+     * Close modal and remove bike data from storage
+     */
+    const onCloseModal = useCallback(() => {
+        setShowModal(false);
+        /**
+         * Wait with removing data to avoid glitches
+         */
+        setTimeout(() => {
+            dispatch(removeBikeByNumber(frameNumber));
+        }, 1000);
+    }, [dispatch, frameNumber]);
+
+    /**
+     * Ends whole process
+     * and returns to start screen (BikeTab o HomeTab)
+     */
+    const onAddBike = () => {
+        navigation.pop(2);
+    };
+
     return (
         <GenericScreen screenTitle={t('headerTitle')} contentBelowHeader>
             <AddBikeByNumberContainer
@@ -75,6 +115,12 @@ const AddBikeByNumberScreen: React.FC = () => {
                 onValidate={checkIsValid}
                 onPressLink={onPressFindHandler}
                 isLoading={isFetching}
+            />
+            <AddBikeSummaryModal
+                showModal={showModal}
+                bikeData={bd}
+                onAddBike={onAddBike}
+                onClose={onCloseModal}
             />
         </GenericScreen>
     );

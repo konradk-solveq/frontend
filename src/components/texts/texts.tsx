@@ -130,6 +130,34 @@ export const Subtitle: FunctionComponent<PropsT> = ({
     );
 };
 
+export const Header1: FunctionComponent<PropsT> = ({
+    algin,
+    color,
+    adjustsFontSizeToFit = false,
+    children,
+    style,
+    testID = 'header1-test-id',
+}: PropsT) => {
+    const styles = StyleSheet.create({
+        text: {
+            fontFamily: 'DIN2014-Demi',
+            fontWeight: '600',
+            fontSize: getFFontSize(24),
+            lineHeight: getFFontSize(32),
+            textAlign: algin ? algin : 'left',
+            color: color ? color : colors.black,
+        },
+    });
+    return (
+        <Text
+            testID={testID}
+            style={[styles.text, style]}
+            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            {children}
+        </Text>
+    );
+};
+
 export const Header2: FunctionComponent<PropsT> = ({
     algin,
     color,
