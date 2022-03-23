@@ -1,5 +1,6 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {View, FlatList} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {
     userNameSelector,
@@ -26,6 +27,7 @@ import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import styles from './style';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import {
     nextPlannedPaginationCoursor,
     mapsCountSelector,
@@ -66,6 +68,15 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const {planned: plannedMapsCount} = useAppSelector(mapsCountSelector);
+
+    const {bottom} = useSafeAreaInsets();
+    /**
+     * Navigate to map button bottom position modifier
+     */
+    const bottomPosition = useMemo(
+        () => ({bottom: getFVerticalPx(129) - bottom}),
+        [bottom],
+    );
 
     const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
@@ -307,7 +318,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             />
             <RoutesMapButton
                 onPress={() => navigation.navigate('RoutesMap')}
-                style={styles.mapBtn}
+                style={{...styles.mapBtn, ...bottomPosition}}
             />
         </View>
     );

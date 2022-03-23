@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useState, useMemo} from 'react';
 import {View, FlatList, Platform} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -28,6 +29,7 @@ import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import styles from './style';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import ListTile from '@pages/main/world/components/listTile';
 import {fetchMapsList} from '@storage/actions';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
@@ -67,6 +69,15 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const containsFeaturedMaps = useAppSelector(featuredMapsLengthSelector);
+
+    const {bottom} = useSafeAreaInsets();
+    /**
+     * Navigate to map button bottom position modifier
+     */
+    const bottomPosition = useMemo(
+        () => ({bottom: getFVerticalPx(129) - bottom}),
+        [bottom],
+    );
 
     const [showModal, setShowModal] = useState(false);
     const [showFiltersModal, setShowFiltersModal] = useState(false);
@@ -307,7 +318,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
 
             <RoutesMapButton
                 onPress={() => navigation.navigate('RoutesMap')}
-                style={styles.mapBtn}
+                style={{...styles.mapBtn, ...bottomPosition}}
             />
         </View>
     );
