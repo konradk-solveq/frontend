@@ -1,198 +1,119 @@
-import React from 'react';
-import {StyleSheet, SafeAreaView, View, Text} from 'react-native';
+import React, {useMemo} from 'react';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {useRoute} from '@react-navigation/native';
+import {BikeParamsRouteT} from '@type/rootStack';
+import GenericScreen from '@pages/template/GenericScreen';
+import {Header3, BodyPrimary} from '@components/texts/texts';
+import {Parameter} from '@models/bike.model';
+import {HorizontalDivider} from '@components/divider';
+import {getFVerticalPx, getFHorizontalPx} from '@helpers/appLayoutDimensions';
+import colors from '@theme/colors';
 
-import {ScrollView} from 'react-native-gesture-handler';
+interface Props {}
 
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
-import {ColorLabel} from '@sharedComponents/labels';
-
-import {
-    setObjSize,
-    getCenterLeftPx,
-    getHorizontalPx,
-    getVerticalPx,
-    getWidthPx,
-} from '@helpers/layoutFoo';
-import {RegularStackRoute} from '@navigation/route';
-import {commonStyle as comStyle} from '@helpers/commonStyle';
-
-interface Props {
-    navigation: any;
-    route: any;
+interface CategoryPropsI {
+    name: string;
+    list: Parameter[];
 }
 
-const BikeParams: React.FC<Props> = (props: Props) => {
-    const {t} = useMergedTranslation('MainBikeParams');
+interface ListItemI {
+    item: Parameter;
+}
 
-    const description = props.route.params.description;
-    const params = props.route.params.params;
+const ListItem = ({item}: ListItemI) => (
+    <View style={styles.listItem}>
+        <View style={styles.itemContent}>
+            <BodyPrimary style={styles.itemName}>{item.name}</BodyPrimary>
+        </View>
+        <View style={styles.itemContent}>
+            <BodyPrimary style={styles.itemValue}>{item.value}</BodyPrimary>
+        </View>
+    </View>
+);
 
-    setObjSize(334, 50);
-    const styles = StyleSheet.create({
-        bikeName: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(40),
-            width: '100%',
-            color: '#313131',
-            textAlign: 'center',
-        },
-        bikeDetails: {
-            marginTop: getVerticalPx(5),
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'center',
-            fontSize: getHorizontalPx(15),
-            color: '#555555',
-        },
-        color: {
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            marginTop: getVerticalPx(39),
-        },
-        size: {
-            marginTop: getVerticalPx(20),
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'column',
-            height: getHorizontalPx(29),
-            borderRadius: getHorizontalPx(15),
-            borderColor: '#33555555',
-            borderWidth: 1,
-            alignSelf: 'flex-start',
-        },
-        sizeText: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(18),
-            color: '#555555',
-            paddingLeft: getHorizontalPx(15),
-            paddingRight: getHorizontalPx(15),
-        },
-        lists: {
-            marginTop: getVerticalPx(12),
-            left: getCenterLeftPx(),
-            width: getWidthPx(),
-        },
-        list: {
-            marginTop: getVerticalPx(30),
-        },
-        name: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getHorizontalPx(26),
-            color: '#313131',
-            textAlign: 'left',
-            marginBottom: getVerticalPx(11),
-        },
-        valLine: {
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-        },
-        value: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getHorizontalPx(16),
-            lineHeight: getHorizontalPx(26),
-            color: '#313131',
-        },
-        longerValue: {
-            flex: 1,
-            flexWrap: 'wrap',
-            textAlign: 'right',
-            paddingLeft: 10,
-        },
-        lastOne: {
-            marginBottom: getHorizontalPx(65),
-        },
-        btn: {
-            width: getWidthPx(),
-            height: getHorizontalPx(50),
-            left: getCenterLeftPx(),
-            marginTop: getVerticalPx(31),
-            marginBottom: getVerticalPx(80),
-        },
-    });
-
+const Category = ({name, list}: CategoryPropsI) => {
     return (
-        <SafeAreaView style={comStyle.container}>
-            <View style={comStyle.scroll}>
-                <ScrollView>
-                    <View style={styles.lists}>
-                        <Text style={styles.bikeName}>{description.name}</Text>
-                        <Text style={styles.bikeDetails}>
-                            {t('details', {
-                                name: description.producer,
-                                number: description.serial_number,
-                            })}
-                        </Text>
+        <View style={styles.category}>
+            <Header3 style={styles.title}>{name}</Header3>
+            {list.length &&
+                list.map((item, idx) => (
+                    <>
+                        <ListItem item={item} />
+                        {idx !== list.length - 1 && <HorizontalDivider />}
+                    </>
+                ))}
+        </View>
+    );
+};
 
-                        {description?.color && (
-                            <ColorLabel
-                                text={description.color}
-                                colors={description?.colorCodes}
-                                containerStyle={styles.color}
-                            />
+const BikeParams: React.FC<Props> = () => {
+    const {t} = useMergedTranslation('MainBikeParams');
+    const {params: routeParams} = useRoute<BikeParamsRouteT>();
+    const {description, params} = routeParams;
+    console.log({description, params});
+    const descriptionList = useMemo<Parameter[]>(
+        () => [
+            {
+                name: t('color'),
+                value: description?.color || t('noData'),
+            },
+            {
+                name: t('size'),
+                value: description?.size || t('noData'),
+            },
+        ],
+        [description?.color, description?.size, t],
+    );
+    return (
+        <GenericScreen screenTitle={t('header')} contentBelowHeader>
+            <View style={styles.container}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <Category name={t('description')} list={descriptionList} />
+                    {params?.length &&
+                        params.map(
+                            param =>
+                                param.list?.length && (
+                                    <Category
+                                        name={param.name}
+                                        list={param.list}
+                                    />
+                                ),
                         )}
-
-                        <View style={styles.size}>
-                            <Text style={styles.sizeText}>
-                                {description.size}
-                            </Text>
-                        </View>
-
-                        {params?.map(
-                            (
-                                e: {
-                                    name: string;
-                                    list: {name: string; value: string}[];
-                                },
-                                i: number,
-                            ) => (
-                                <View
-                                    style={[
-                                        styles.list,
-                                        i === params.length - 1 &&
-                                            styles.lastOne,
-                                    ]}
-                                    key={'list_' + i}>
-                                    <Text style={styles.name}>{e.name}</Text>
-
-                                    {e.list.map(
-                                        (
-                                            ee: {name: string; value: string},
-                                            ii: number,
-                                        ) => (
-                                            <View
-                                                style={styles.valLine}
-                                                key={'val_' + i + '_' + ii}>
-                                                <Text style={styles.value}>
-                                                    {ee.name}
-                                                </Text>
-                                                <Text
-                                                    style={[
-                                                        styles.value,
-                                                        styles.longerValue,
-                                                    ]}>
-                                                    {ee.value}
-                                                </Text>
-                                            </View>
-                                        ),
-                                    )}
-                                </View>
-                            ),
-                        )}
-                    </View>
                 </ScrollView>
             </View>
-
-            <StackHeader
-                onpress={() =>
-                    props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
-                }
-                inner={t('header')}
-            />
-        </SafeAreaView>
+        </GenericScreen>
     );
 };
 
 export default BikeParams;
+
+const styles = StyleSheet.create({
+    container: {
+        width: '100%',
+    },
+    category: {
+        paddingBottom: getFVerticalPx(16),
+        width: '100%',
+    },
+    title: {
+        marginBottom: getFVerticalPx(8),
+        marginLeft: getFHorizontalPx(16),
+    },
+    listItem: {
+        paddingVertical: getFVerticalPx(16),
+        paddingHorizontal: getFHorizontalPx(16),
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flex: 1,
+    },
+    itemName: {
+        color: colors.darkGrey,
+    },
+    itemValue: {
+        textAlign: 'right',
+    },
+    itemContent: {
+        flex: 1,
+    },
+});

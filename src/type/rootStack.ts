@@ -6,6 +6,7 @@ import {RouteMapType} from '@models/places.model';
 import {MapType} from '@models/map.model';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {selectorMapTypeEnum} from '@src/storage/selectors/map';
+import {BikeDescription, Parameters} from '@models/bike.model';
 
 /* TODO: Complete missing lists params (if needed) */
 
@@ -134,7 +135,8 @@ export type RecordParamsListT = {};
 /* BIKE */
 export type BikeParamsListT = {
     BikeParams: {
-        description?: string;
+        description?: BikeDescription;
+        params?: Parameters[];
     };
     BikeSummary: {
         frameNumber: string;
