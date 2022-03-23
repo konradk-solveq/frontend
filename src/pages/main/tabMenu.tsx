@@ -2,6 +2,7 @@ import React from 'react';
 import {BottomTabBarOptions} from '@react-navigation/bottom-tabs';
 
 import {Tab} from '@navigation/stack';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
 import Home from './home/home';
 import World from './world/world';
@@ -16,8 +17,6 @@ import {
     BikeIcon,
     ProfileIcon,
 } from '@components/icons/tabMenu';
-import {getFHorizontalPx} from '@helpers/appLayoutDimensions';
-import {verticalAnim} from '@src/helpers/positioningVerical';
 
 interface Props {
     navigation: any;
@@ -36,7 +35,7 @@ const TabMenu: React.FC<Props> = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            height: getFHorizontalPx(83),
+            height: getFVerticalPx(83),
             elevation: 0,
             margin: 0,
             padding: 0,
