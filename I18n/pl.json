@@ -622,8 +622,11 @@
         }
     },
     "MainBikeParams": {
-        "header": " Rower",
-        "details": "od {{name}} / nr ramy {{number}}"
+        "header": "Specyfikacje",
+        "description": "Opis",
+        "color": "Kolor",
+        "size": "Rozmiar",
+        "noData": "Brak danych"
     },
     "MainCounter": {
         "headerStart": "Rozpocznij nagrywanie",
