@@ -122,6 +122,8 @@ const FiltersContainer: React.FC<IProps> = ({
                             options={lengthOptions}
                             onValueChange={handleRangeChange}
                             ref={rangePickerRef}
+                            initLow={minLength}
+                            initHigh={maxLength}
                         />
                         <View style={[styles.spacedRow, styles.loop]}>
                             <Demi18h28>{t('loop')}</Demi18h28>
