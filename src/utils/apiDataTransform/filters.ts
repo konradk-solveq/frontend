@@ -1,6 +1,11 @@
 import {PickedFilters} from '../../interfaces/form';
 import {DropdownItemT} from '@components/types/dropdown';
 
+/**
+ * Filters that contain a single value that cannot be sent as an array
+ */
+const filtersToExtract = ['loop', 'onlyPublic', 'distanceTo', 'distanceFrom'];
+
 export const checkIfContainsFitlers = (filters?: PickedFilters): boolean => {
     if (!filters) {
         return false;
@@ -34,7 +39,12 @@ export const getFiltersParam = (filters?: PickedFilters) => {
             const cKeyT = f === 'tags' ? 'tag' : '';
             const key = cKeyD || cKeyS || cKeyT || f;
             /* array values */
-            if (f !== 'created' && f !== 'distance') {
+            if (filtersToExtract.includes(f)) {
+                newFilters = {
+                    ...newFilters,
+                    [key]: filters[f][0],
+                };
+            } else if (f !== 'created' && f !== 'distance') {
                 newFilters = {
                     ...newFilters,
                     [key]: filters[f],
