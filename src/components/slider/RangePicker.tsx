@@ -49,7 +49,6 @@ const renderLabelItem = (
 
 const RangePicker: React.FC<IProps> = React.forwardRef(
     ({options, onValueChange, style, initLow, initHigh}, ref) => {
-        console.log(initLow, initHigh);
         const [{low, high}, setRangeValues] = useMergedState({
             low: initLow ? options.findIndex(val => val === initLow) : 0,
             high: initHigh
