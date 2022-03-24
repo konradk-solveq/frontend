@@ -106,7 +106,7 @@ const AnimatedMarker: React.FC<IProps> = ({
                             latitudeDelta: latitudeDelta,
                             longitudeDelta: longitudeDelta,
                             duration: 1200 * ratio,
-                            useNativeDriver: true,
+                            useNativeDriver: false,
                         })
                         .start(({finished}) => {
                             if (finished) {

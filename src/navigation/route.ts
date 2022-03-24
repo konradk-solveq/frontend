@@ -35,7 +35,7 @@ export const RegularStackRoute = {
     TAB_MENU_SCREEN: 'TabMenu',
 
     SPLASH_SCREEN: 'SplashScreen',
-    NEW_REGULATIONS_SCREEN: 'newRegulations',
+    NEW_REGULATIONS_SCREEN: 'NewRegulations',
     NEW_APP_VERSION_SCREEN: 'NewAppVersion',
 
     // Home

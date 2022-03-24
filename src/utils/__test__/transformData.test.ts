@@ -18,7 +18,6 @@ describe('transformData -- utils', () => {
             expect(getFilterDistance('TEST')).toEqual(undefined);
         });
     });
-
     describe('[getRouteLengthFuelEquivalent]', () => {
         it('Should return the proper value', async () => {
             expect(getRouteLengthFuelEquivalent(5, '1,00')).toBe('0,1');
