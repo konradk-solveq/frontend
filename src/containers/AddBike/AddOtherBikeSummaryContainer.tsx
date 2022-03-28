@@ -1,39 +1,35 @@
-import {PrimaryButton} from '@src/components/buttons';
-import {Header1, Subtitle} from '@src/components/texts/texts';
+import React from 'react';
+import {StyleSheet, View, GestureResponderEvent} from 'react-native';
+
 import {
     getFHorizontalPx,
     getFVerticalPx,
-} from '@src/theme/utils/appLayoutDimensions';
-import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
-import React from 'react';
-import {Image, StyleSheet, View, GestureResponderEvent} from 'react-native';
+} from '@theme/utils/appLayoutDimensions';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+
+import {PrimaryButton} from '@components/buttons';
+import {BlueBikeSvg} from '@components/svg';
+import {Header1, Subtitle} from '@components/texts/texts';
 
 interface IProps {
     bikeName: string;
-    frameNumber: string;
-    imageUrl: string;
     onAddBike: (e: GestureResponderEvent) => void;
+    producer?: string;
     testID?: string;
 }
 
-const AddBikeSummaryContainer: React.FC<IProps> = ({
+const AddOtherBikeSummaryContainer: React.FC<IProps> = ({
     bikeName,
-    frameNumber,
-    imageUrl,
     onAddBike,
-    testID = 'add-bike-summary-container-test-id',
+    producer = '',
+    testID = 'add-other-bike-summary-container-test-id',
 }: IProps) => {
     const {t} = useMergedTranslation('AddBikeSummary');
 
     return (
         <View style={styles.container} testID={testID}>
             <View style={styles.imageContainer}>
-                <Image
-                    resizeMode="contain"
-                    source={{uri: imageUrl}}
-                    style={styles.image}
-                    testID={`${testID}-image`}
-                />
+                <BlueBikeSvg />
             </View>
             <View style={styles.summary}>
                 <Header1
@@ -42,9 +38,9 @@ const AddBikeSummaryContainer: React.FC<IProps> = ({
                     testID={`${testID}-header`}>
                     {bikeName}
                 </Header1>
-                <Subtitle algin="center" testID={`${testID}-subtitle`}>{`${t(
-                    'summaryPrefix',
-                )} ${frameNumber}`}</Subtitle>
+                <Subtitle algin="center" testID={`${testID}-subtitle`}>
+                    Producent: {producer || 'brak'}
+                </Subtitle>
             </View>
 
             <PrimaryButton
@@ -65,6 +61,8 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         marginBottom: getFVerticalPx(24),
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     image: {
         width: getFHorizontalPx(325),
@@ -81,4 +79,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddBikeSummaryContainer;
+export default AddOtherBikeSummaryContainer;

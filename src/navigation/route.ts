@@ -61,7 +61,7 @@ export const RegularStackRoute = {
     WARRANTY_DETAILS_SCREEN: 'WarrantyDetails',
     ADD_BIKE_SCREEN: 'AddBike',
     ADDING_BY_NUMBER_SCREEN: 'AddBikeByNumber',
-    BIKE_DATA_SCREEN: 'BikeData',
+    BIKE_DATA_SCREEN: 'AddOtherBike',
     BIKE_SUMMARY_SCREEN: 'BikeSummary',
     ADDING_INFO_SCREEN: 'AddingInfo',
     INPUT_PAGE_SCREEN: 'InputPage',
@@ -95,7 +95,7 @@ export const BothStackRoute = {
     // Bike + Onboarding
     TURTORIAL_NFC_SCREEN: 'TutorialNFC',
     ADDING_BY_NUMBER_SCREEN: 'AddingByNumber',
-    BIKE_DATA_SCREEN: 'BikeData',
+    BIKE_DATA_SCREEN: 'AddOtherBike',
     BIKE_SUMMARY_SCREEN: 'BikeSummary',
     ADDING_INFO_SCREEN: 'AddingInfo',
     INPUT_PAGE_SCREEN: 'InputPage',

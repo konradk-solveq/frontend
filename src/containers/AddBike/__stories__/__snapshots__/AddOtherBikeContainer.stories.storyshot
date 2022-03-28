@@ -1,0 +1,2489 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ffffff",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "paddingHorizontal": 28.985507246376812,
+        "width": "100%",
+      }
+    }
+    testID="add-other-bike-container-id"
+  >
+    <View
+      style={
+        Object {
+          "marginBottom": 50.5781990521327,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          pointerEvents="none"
+        >
+          <View
+            testID="add-other-bike-container-id-button-input"
+          >
+            <View
+              style={
+                Object {
+                  "marginBottom": 6.322274881516588,
+                }
+              }
+              testID="add-other-bike-container-id-button-input-input-name"
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#717171",
+                      "fontFamily": "DIN2014-Regular",
+                      "fontSize": 14,
+                      "lineHeight": 16,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="subtitle-test-id"
+              >
+                
+              </Text>
+            </View>
+            <TextInput
+              autoCapitalize="characters"
+              editable={false}
+              keyboardType="default"
+              multiline={false}
+              numberOfLines={1}
+              onChangeText={[Function]}
+              placeholder="AddOtherBikeScreen.form.defaultBikeType"
+              placeholderTextColor="#717171"
+              selectionColor="#717171"
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#FAFAFA",
+                    "borderRadius": 30.76923076923077,
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "height": 75.86729857819905,
+                    "paddingHorizontal": 30.76923076923077,
+                    "paddingVertical": 0,
+                  },
+                  Object {},
+                ]
+              }
+              testID="add-other-bike-container-id-button-input-input-value"
+              value=""
+            />
+            <View
+              style={
+                Object {
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": 30.76923076923077,
+                  "top": 9.483412322274882,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                C
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginHorizontal": 30.76923076923077,
+                  "marginTop": 12.644549763033176,
+                }
+              }
+              testID="add-other-bike-container-id-button-input-input-hint"
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        testID="add-other-bike-container-id-manufacturer-text-input"
+      >
+        <View
+          style={
+            Object {
+              "marginBottom": 6.322274881516588,
+            }
+          }
+          testID="add-other-bike-container-id-manufacturer-text-input-input-name"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            
+          </Text>
+        </View>
+        <TextInput
+          editable={true}
+          keyboardType="default"
+          maxLength={200}
+          multiline={false}
+          numberOfLines={1}
+          onChangeText={[Function]}
+          placeholder="AddOtherBikeScreen.form.manufacturer.placeholder"
+          placeholderTextColor="#717171"
+          selectionColor="#717171"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#FAFAFA",
+                "borderRadius": 30.76923076923077,
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "height": 75.86729857819905,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 0,
+              },
+              Object {},
+            ]
+          }
+          testID="add-other-bike-container-id-manufacturer-text-input-input-value"
+          value=""
+        />
+        <View
+          style={
+            Object {
+              "marginHorizontal": 30.76923076923077,
+              "marginTop": 12.644549763033176,
+            }
+          }
+          testID="add-other-bike-container-id-manufacturer-text-input-input-hint"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            AddOtherBikeScreen.form.manufacturer.hint
+          </Text>
+        </View>
+      </View>
+      <View
+        testID="add-other-bike-container-id-bikeName-text-input"
+      >
+        <View
+          style={
+            Object {
+              "marginBottom": 6.322274881516588,
+            }
+          }
+          testID="add-other-bike-container-id-bikeName-text-input-input-name"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            
+          </Text>
+        </View>
+        <TextInput
+          editable={true}
+          keyboardType="default"
+          maxLength={200}
+          multiline={false}
+          numberOfLines={1}
+          onChangeText={[Function]}
+          placeholder="AddOtherBikeScreen.form.bikeName.placeholder"
+          placeholderTextColor="#717171"
+          selectionColor="#717171"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#FAFAFA",
+                "borderRadius": 30.76923076923077,
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "height": 75.86729857819905,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 0,
+              },
+              Object {},
+            ]
+          }
+          testID="add-other-bike-container-id-bikeName-text-input-input-value"
+          value=""
+        />
+        <View
+          style={
+            Object {
+              "marginHorizontal": 30.76923076923077,
+              "marginTop": 12.644549763033176,
+            }
+          }
+          testID="add-other-bike-container-id-bikeName-text-input-input-hint"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            AddOtherBikeScreen.form.bikeName.hint
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {},
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {
+              "height": 75.86729857819905,
+              "width": 565.3846153846154,
+            },
+          ],
+        ]
+      }
+      testID="add-other-bike-container-id-submit-button"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "#C63733",
+            },
+            undefined,
+          ]
+        }
+        testID="add-other-bike-container-id-submit-button-container"
+      >
+        <Text
+          adjustsFontSizeToFit={true}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#FFFFFF",
+              },
+            ]
+          }
+          testID="add-other-bike-container-id-submit-button-text"
+        >
+          AddOtherBikeScreen.form.submitButton
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#FAFAFA",
+          "borderTopEndRadius": 30.76923076923077,
+          "borderTopStartRadius": 30.76923076923077,
+          "bottom": 0,
+          "flex": 1,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "zIndex": 10,
+        },
+        [Function],
+        undefined,
+      ]
+    }
+    testID="bottom-modal-test-id"
+  >
+    <View
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "height": 31.61137440758294,
+              "paddingHorizontal": 76.92307692307692,
+              "width": "100%",
+            },
+            Object {
+              "height": 25.28909952606635,
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "red",
+            "justifyContent": "center",
+            "marginBottom": 37.93364928909953,
+            "width": "100%",
+          }
+        }
+        testID="modal-header-test-id"
+      >
+        <View
+          style={
+            Object {
+              "left": 0,
+              "position": "absolute",
+              "top": 0,
+            }
+          }
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="icon-btn-test-id"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 30.76923076923077,
+                    "height": 84.61538461538461,
+                    "justifyContent": "center",
+                    "width": 84.61538461538461,
+                  },
+                  Object {
+                    "height": 20,
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="icon-btn-test-id-icon"
+              >
+                X
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <RCTScrollView
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <View
+            testID="add-other-bike-container-id-radio-list-item"
+          >
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-mountain"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-mountain-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Górski
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &gt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-gravel"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-gravel-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Gravel
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-road"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-road-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Szosowy
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-touristic"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-touristic-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Turystyczny
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-city"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-city-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Miejski
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-kids"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-kids-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Dziecięcy
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-other"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-other-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Inny
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+  <View
+    pointerEvents="box-none"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#717171",
+          "bottom": 0,
+          "height": "100%",
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": 750,
+          "zIndex": 1,
+        },
+        undefined,
+        [Function],
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ffffff",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "paddingHorizontal": 28.985507246376812,
+        "width": "100%",
+      }
+    }
+    testID="add-other-bike-container-id"
+  >
+    <View
+      style={
+        Object {
+          "marginBottom": 50.5781990521327,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <View
+          pointerEvents="none"
+        >
+          <View
+            testID="add-other-bike-container-id-button-input"
+          >
+            <View
+              style={
+                Object {
+                  "marginBottom": 6.322274881516588,
+                }
+              }
+              testID="add-other-bike-container-id-button-input-input-name"
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#717171",
+                      "fontFamily": "DIN2014-Regular",
+                      "fontSize": 14,
+                      "lineHeight": 16,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="subtitle-test-id"
+              >
+                
+              </Text>
+            </View>
+            <TextInput
+              autoCapitalize="characters"
+              editable={false}
+              keyboardType="default"
+              multiline={false}
+              numberOfLines={1}
+              onChangeText={[Function]}
+              placeholder="AddOtherBikeScreen.form.defaultBikeType"
+              placeholderTextColor="#717171"
+              selectionColor="#717171"
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "#FAFAFA",
+                    "borderRadius": 30.76923076923077,
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "height": 75.86729857819905,
+                    "paddingHorizontal": 30.76923076923077,
+                    "paddingVertical": 0,
+                  },
+                  Object {},
+                ]
+              }
+              testID="add-other-bike-container-id-button-input-input-value"
+              value=""
+            />
+            <View
+              style={
+                Object {
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "position": "absolute",
+                  "right": 30.76923076923077,
+                  "top": 9.483412322274882,
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                C
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "marginHorizontal": 30.76923076923077,
+                  "marginTop": 12.644549763033176,
+                }
+              }
+              testID="add-other-bike-container-id-button-input-input-hint"
+            />
+          </View>
+        </View>
+      </View>
+      <View
+        testID="add-other-bike-container-id-manufacturer-text-input"
+      >
+        <View
+          style={
+            Object {
+              "marginBottom": 6.322274881516588,
+            }
+          }
+          testID="add-other-bike-container-id-manufacturer-text-input-input-name"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            
+          </Text>
+        </View>
+        <TextInput
+          editable={true}
+          keyboardType="default"
+          maxLength={200}
+          multiline={false}
+          numberOfLines={1}
+          onChangeText={[Function]}
+          placeholder="AddOtherBikeScreen.form.manufacturer.placeholder"
+          placeholderTextColor="#717171"
+          selectionColor="#717171"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#FAFAFA",
+                "borderRadius": 30.76923076923077,
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "height": 75.86729857819905,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 0,
+              },
+              Object {},
+            ]
+          }
+          testID="add-other-bike-container-id-manufacturer-text-input-input-value"
+          value=""
+        />
+        <View
+          style={
+            Object {
+              "marginHorizontal": 30.76923076923077,
+              "marginTop": 12.644549763033176,
+            }
+          }
+          testID="add-other-bike-container-id-manufacturer-text-input-input-hint"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            AddOtherBikeScreen.form.manufacturer.hint
+          </Text>
+        </View>
+      </View>
+      <View
+        testID="add-other-bike-container-id-bikeName-text-input"
+      >
+        <View
+          style={
+            Object {
+              "marginBottom": 6.322274881516588,
+            }
+          }
+          testID="add-other-bike-container-id-bikeName-text-input-input-name"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            
+          </Text>
+        </View>
+        <TextInput
+          editable={true}
+          keyboardType="default"
+          maxLength={200}
+          multiline={false}
+          numberOfLines={1}
+          onChangeText={[Function]}
+          placeholder="AddOtherBikeScreen.form.bikeName.placeholder"
+          placeholderTextColor="#717171"
+          selectionColor="#717171"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#FAFAFA",
+                "borderRadius": 30.76923076923077,
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "height": 75.86729857819905,
+                "paddingHorizontal": 30.76923076923077,
+                "paddingVertical": 0,
+              },
+              Object {},
+            ]
+          }
+          testID="add-other-bike-container-id-bikeName-text-input-input-value"
+          value=""
+        />
+        <View
+          style={
+            Object {
+              "marginHorizontal": 30.76923076923077,
+              "marginTop": 12.644549763033176,
+            }
+          }
+          testID="add-other-bike-container-id-bikeName-text-input-input-hint"
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="subtitle-test-id"
+          >
+            AddOtherBikeScreen.form.bikeName.hint
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {},
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {
+              "height": 75.86729857819905,
+              "width": 565.3846153846154,
+            },
+          ],
+        ]
+      }
+      testID="add-other-bike-container-id-submit-button"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "#C63733",
+            },
+            undefined,
+          ]
+        }
+        testID="add-other-bike-container-id-submit-button-container"
+      >
+        <Text
+          adjustsFontSizeToFit={true}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#FFFFFF",
+              },
+            ]
+          }
+          testID="add-other-bike-container-id-submit-button-text"
+        >
+          AddOtherBikeScreen.form.submitButton
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#FAFAFA",
+          "borderTopEndRadius": 30.76923076923077,
+          "borderTopStartRadius": 30.76923076923077,
+          "bottom": 0,
+          "flex": 1,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "zIndex": 10,
+        },
+        [Function],
+        undefined,
+      ]
+    }
+    testID="bottom-modal-test-id"
+  >
+    <View
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "height": 31.61137440758294,
+              "paddingHorizontal": 76.92307692307692,
+              "width": "100%",
+            },
+            Object {
+              "height": 25.28909952606635,
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "red",
+            "justifyContent": "center",
+            "marginBottom": 37.93364928909953,
+            "width": "100%",
+          }
+        }
+        testID="modal-header-test-id"
+      >
+        <View
+          style={
+            Object {
+              "left": 0,
+              "position": "absolute",
+              "top": 0,
+            }
+          }
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="icon-btn-test-id"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignContent": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 30.76923076923077,
+                    "height": 84.61538461538461,
+                    "justifyContent": "center",
+                    "width": 84.61538461538461,
+                  },
+                  Object {
+                    "height": 20,
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="icon-btn-test-id-icon"
+              >
+                X
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <RCTScrollView
+        scrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+      >
+        <View>
+          <View
+            testID="add-other-bike-container-id-radio-list-item"
+          >
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-mountain"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-mountain-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Górski
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &gt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-gravel"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-gravel-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Gravel
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-road"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-road-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Szosowy
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-touristic"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-touristic-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Turystyczny
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-city"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-city-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Miejski
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-kids"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-kids-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Dziecięcy
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                Object {
+                  "paddingHorizontal": 28.985507246376812,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "height": 75.86729857819905,
+                      "justifyContent": "center",
+                      "width": "100%",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-other-bike-container-id-radio-list-item-radio-button-other"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  testID="add-other-bike-container-id-radio-list-item-radio-button-other-press"
+                >
+                  <View
+                    style={
+                      Object {
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
+                      }
+                    }
+                  >
+                    <Text
+                      adjustsFontSizeToFit={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333333",
+                            "fontFamily": "DIN2014-Demi",
+                            "fontSize": 16,
+                            "lineHeight": 24,
+                            "textAlign": "left",
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="body-primary-test-id"
+                    >
+                      Inny
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 20,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      &lt;
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+  <View
+    pointerEvents="box-none"
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#717171",
+          "bottom": 0,
+          "height": "100%",
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": 750,
+          "zIndex": 1,
+        },
+        undefined,
+        [Function],
+      ]
+    }
+  />
+</View>
+`;

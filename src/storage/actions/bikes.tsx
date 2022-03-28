@@ -1,7 +1,7 @@
 import i18next from '@translations/i18next';
 import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
-import {UserBikeI} from '@models/userBike.model';
+import {GenericBikeI, UserBikeI} from '@models/userBike.model';
 import {Bike} from '@models/bike.model';
 import {
     getBikeByFrameNr,
@@ -27,7 +27,7 @@ export const setBikeData = (data: Bike) => {
     };
 };
 
-export const setGenericBikeData = (data: UserBikeI) => {
+export const setGenericBikeData = (data: GenericBikeI) => {
     return {
         type: actionTypes.SET_GENERIC_BIKE_DATA,
         genericBikeData: data,
@@ -102,7 +102,7 @@ export const fetchGenericBikeData = (): AppThunk<
             dispatch(setError(response.error));
             return;
         }
-        const newData: UserBikeI = response.data;
+        const newData: GenericBikeI = response.data;
 
         dispatch(setGenericBikeData(newData));
     } catch (error) {

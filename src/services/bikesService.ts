@@ -1,4 +1,6 @@
+import {BikeType} from '@src/type/bike';
 import {getBike, getGenericBikeData, getBikesList} from '../api';
+import {bikeTypes} from './mock/genericBIke';
 
 export interface serviceResponse {
     data: any | null;
@@ -33,7 +35,14 @@ export const getGenericDataforBike = async () => {
         return {data: null, status: response.status, error: errorMessage};
     }
 
-    return {data: response.data, status: response.status, error: ''};
+    /* TODO: remove mocked data after changes on API */
+    const t = {bikeTypes: bikeTypes};
+
+    return {
+        data: {...response.data, ...t},
+        status: response.status,
+        error: '',
+    };
 };
 
 export const getBikesListByFrameNrs = async (frameNrs: string[]) => {

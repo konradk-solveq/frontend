@@ -65,6 +65,23 @@
             "submitButton": "Dalej"
         }
     },
+    "AddOtherBikeScreen": {
+        "headerTitle": "Nr ramy",
+        "form": {
+            "manufacturer": {
+                "placeholder": "Producent",
+                "hint": "Pole wymagane",
+                "errorMessage": "Wprowadź minimum 3 znaki"
+            },
+            "bikeName": {
+                "placeholder": "Nazwa/Model",
+                "hint": "Pole wymagane",
+                "errorMessage": "Wprowadź minimum 3 znaki"
+            },
+            "defaultBikeType": "Typ roweru",
+            "submitButton": "Dalej"
+        },
+    },
     "AddBikeSummary": {
         "header": "Nowy rower",
         "summaryPrefix": "od kross nr ramy",

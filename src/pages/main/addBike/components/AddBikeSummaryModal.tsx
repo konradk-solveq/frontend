@@ -11,15 +11,25 @@ import {Backdrop} from '@components/backdrop';
 import {IconButton} from '@components/buttons';
 import {BottomModal} from '@components/modals';
 import {Header2} from '@components/texts/texts';
-import {AddBikeSummaryContainer} from '@containers/AddBike';
+import {
+    AddBikeSummaryContainer,
+    AddOtherBikeSummaryContainer,
+} from '@containers/AddBike';
 import {HorizontalSpacer} from '@components/divider';
 
 interface IProps {
-    bikeData: {bikeName: string; frameNumber: string; imageUrl: string};
+    bikeData: {
+        bikeName: string;
+        frameNumber: string;
+        imageUrl: string;
+        producer?: string;
+    };
     onAddBike: () => void;
     onClose: () => void;
     header?: string;
     showModal?: boolean;
+    height?: number;
+    otherBike?: boolean;
     testID?: string;
 }
 
@@ -29,6 +39,8 @@ const AddBikeSummaryModal: React.FC<IProps> = ({
     onClose,
     header = '',
     showModal = false,
+    height = 528,
+    otherBike = false,
     testID = 'add-bike-summary-modal',
 }: IProps) => {
     const {t} = useMergedTranslation('AddBikeSummary');
@@ -37,7 +49,7 @@ const AddBikeSummaryModal: React.FC<IProps> = ({
         <>
             <BottomModal
                 show={showModal}
-                openModalHeight={528}
+                openModalHeight={getFVerticalPx(height)}
                 header={
                     <ModalHeader
                         header={header || t('header')}
@@ -47,11 +59,19 @@ const AddBikeSummaryModal: React.FC<IProps> = ({
                 }
                 style={{backgroundColor: colors.white}}
                 testID={testID}>
-                <AddBikeSummaryContainer
-                    onAddBike={onAddBike}
-                    {...bikeData}
-                    testID={`${testID}-summary`}
-                />
+                {!otherBike ? (
+                    <AddBikeSummaryContainer
+                        onAddBike={onAddBike}
+                        {...bikeData}
+                        testID={`${testID}-summary`}
+                    />
+                ) : (
+                    <AddOtherBikeSummaryContainer
+                        onAddBike={onAddBike}
+                        {...bikeData}
+                        testID={`${testID}-other-summary`}
+                    />
+                )}
             </BottomModal>
             <Backdrop isVisible={showModal} />
         </>

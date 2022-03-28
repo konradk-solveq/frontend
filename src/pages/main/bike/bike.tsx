@@ -8,9 +8,11 @@ import {RegularStackRoute} from '@navigation/route';
 import {removeBikeByNumber} from '@storage/actions';
 import {bikesListSelector} from '@storage/selectors';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {NoBikesContainer} from '@src/containers/Bike';
+import {genericBikeSelector} from '@storage/selectors/bikes';
+
+import {NoBikesContainer} from '@containers/Bike';
 import GenericScreen from '@src/pages/template/GenericScreen';
-import {useAppNavigation} from '@src/navigation/hooks/useAppNavigation';
+import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {nfcIsSupported} from '@helpers/nfc';
 import BikeDetailsContainer from '@containers/Bike/BikeDetailsContainer';
 import {Overview} from '@models/bike.model';
@@ -27,9 +29,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     const dispatch = useAppDispatch();
     const bikes = useAppSelector(bikesListSelector);
     const hasAnyBikesAdded = useMemo(() => bikes.length, [bikes]);
-    const genericBikeData = useAppSelector<UserBike>(
-        state => state.bikes.genericBike,
-    );
+    const genericBikeData = useAppSelector(genericBikeSelector);
 
     const [nfc, setNfc] = useState(false);
 
@@ -90,7 +90,13 @@ const Bike: React.FC<Props> = (props: Props) => {
         });
     };
 
-    const warrantyData = bike?.warranty || genericBikeData.warranty;
+    const onAddOtherBike = useCallback(() => {
+        navigation.navigate('AddOtherBike', {
+            frameNumber: '',
+        });
+    }, [navigation]);
+
+    const warrantyData = bike?.warranty || genericBikeData?.warranty;
     return (
         <GenericScreen hideBackArrow>
             {hasAnyBikesAdded ? (
@@ -105,10 +111,8 @@ const Bike: React.FC<Props> = (props: Props) => {
                 />
             ) : (
                 <NoBikesContainer
-                    onPressPrimary={
-                        onAddKrossBike
-                    } /* TODO: nacigate to proper screen after redesign */
-                    onPressSecondary={() => {}} /* TODO: add after screen will be available */
+                    onPressPrimary={onAddKrossBike}
+                    onPressSecondary={onAddOtherBike}
                     onPressTile={handleServicesMap}
                 />
             )}

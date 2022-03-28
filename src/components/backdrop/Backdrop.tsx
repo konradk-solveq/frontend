@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo} from 'react';
-import {StyleSheet, ViewStyle} from 'react-native';
+import {Dimensions, StyleSheet, ViewStyle} from 'react-native';
 
 import Animated, {
     useAnimatedStyle,
@@ -8,6 +8,8 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import colors from '@theme/colors';
+
+const {width} = Dimensions.get('window');
 
 interface IProps {
     isVisible?: boolean;
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        width: '100%',
+        width: width,
         height: '100%',
         backgroundColor: colors.darkGrey,
     },

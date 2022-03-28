@@ -17,7 +17,7 @@ import {
     Thumbnails,
 } from '../models/map.model';
 import {isIOS} from '@utils/platform';
-import {UserBike} from '@models/userBike.model';
+import {GenericBike, GenericBikeI, UserBike} from '@models/userBike.model';
 import {FormData} from '@pages/main/world/editDetails/form/inputs/types';
 import {transformTimestampToDate} from './dateTime';
 import {
@@ -171,19 +171,19 @@ export const transfromToBikeDescription = (
 
 /* TODO: try catch */
 export const transformToUserBikeType = (data: any): UserBike => {
-    const {description, images, warranty, params, complaintsRepairs} = data;
-
-    const desc = transfromToBikeDescription(description);
-
+    const desc = transfromToBikeDescription(data.description);
     const newData = new UserBike(desc);
-    if (images) {
+
+    const {images, warranty, params, complaintsRepairs} = data;
+
+    if (images && Array.isArray(params) && images?.length) {
         newData.images = images;
     }
 
     if (warranty) {
         newData.warranty = warranty;
     }
-    if (params && Array.isArray(params)) {
+    if (params && Array.isArray(params) && params.length) {
         newData.params = params.map((el: Parameters) => {
             return new Parameters(el.name, el.customizable, el?.list);
         });
@@ -211,6 +211,46 @@ export const bikesListToClass = (bikes: []): UserBike[] => {
     });
 
     return result;
+};
+
+export const genericBikeToClass = (
+    data?: GenericBikeI,
+): GenericBike | undefined => {
+    if (!data) {
+        return;
+    }
+
+    const desc = transfromToBikeDescription(data.description);
+    const newData = new GenericBike(desc, data.bikeTypes);
+
+    const {images, warranty, params, complaintsRepairs} = data;
+
+    if (images && Array.isArray(params) && images?.length) {
+        newData.images = images;
+    }
+
+    if (warranty) {
+        newData.warranty = warranty;
+    }
+    if (params && Array.isArray(params) && params.length) {
+        newData.params = params.map((el: Parameters) => {
+            return new Parameters(el.name, el.customizable, el?.list);
+        });
+    }
+
+    if (complaintsRepairs && Array.isArray(complaintsRepairs)) {
+        newData.complaintsRepairs = complaintsRepairs.map((el: Complaint) => {
+            return new Complaint(
+                el.id,
+                el.name,
+                el.date,
+                el.description,
+                el.state,
+            );
+        });
+    }
+
+    return newData;
 };
 
 export const getBikesBaseData = (
