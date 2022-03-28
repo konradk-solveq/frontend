@@ -1,9 +1,6 @@
 import React from 'react';
-import {View, StyleSheet, Pressable, GestureResponderEvent} from 'react-native';
-
+import {View, StyleSheet, GestureResponderEvent} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-
-import {IconFont} from '@theme/enums/iconFonts';
 import colors from '@theme/colors';
 import {
     getFHorizontalPx,
@@ -12,14 +9,9 @@ import {
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
 
 import {PrimaryButton, SecondaryButton} from '@components/buttons';
-import {TextIcon} from '@components/icons';
 import {BikeSvg} from '@components/svg';
-import {
-    BodyPrimary,
-    Header2,
-    Header3,
-    Paragraph,
-} from '@components/texts/texts';
+import {Header2, Header3} from '@components/texts/texts';
+import ServicePointsTile from '@pages/main/bike/components/tiles/ServicePointsTile';
 
 interface IProps {
     onPressPrimary: (e: GestureResponderEvent) => void;
@@ -69,38 +61,7 @@ const NoBikesContainer: React.FC<IProps> = ({
                     </View>
                 </View>
             </View>
-            <View style={styles.tileContainer}>
-                <Pressable onPress={onPressTile}>
-                    <View style={[styles.tile, styles.bottomTile]}>
-                        <View style={styles.serviceImageContainer}>
-                            <TextIcon
-                                icon={IconFont.FONT_ICON_MAP_SERVICES}
-                                iconColor={colors.white}
-                            />
-                        </View>
-                        <View
-                            style={[
-                                styles.upperTextWrapper,
-                                styles.bottomPadding,
-                            ]}>
-                            <Header2 algin="center">
-                                {t('servicesTile.header')}
-                            </Header2>
-                            <Paragraph
-                                algin="center"
-                                color={colors.darkGrey}
-                                style={{
-                                    paddingBottom: getFVerticalPx(24),
-                                }}>
-                                {t('servicesTile.body')}
-                            </Paragraph>
-                            <BodyPrimary color={colors.red} algin="center">
-                                {t('servicesTile.button')}
-                            </BodyPrimary>
-                        </View>
-                    </View>
-                </Pressable>
-            </View>
+            <ServicePointsTile onPressTile={onPressTile} />
         </View>
     );
 };

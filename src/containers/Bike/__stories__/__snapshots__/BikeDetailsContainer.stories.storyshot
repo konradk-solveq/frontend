@@ -1,0 +1,2095 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#FAFAFA",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    collapsable={false}
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 189.66824644549763,
+      }
+    }
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    showsVerticalScrollIndicator={false}
+  >
+    <View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#C63733",
+                "paddingBottom": 20.54739336492891,
+                "paddingRight": 17.307692307692307,
+                "paddingTop": 50.5781990521327,
+                "textAlign": "right",
+                "width": "100%",
+              },
+            ]
+          }
+          testID="body-primary-test-id"
+        >
+          MainBike.addBike
+        </Text>
+      </View>
+      <RCTScrollView
+        activeAnimationOptions={null}
+        activeAnimationType="timing"
+        activeSlideAlignment="center"
+        activeSlideOffset={20}
+        apparitionDelay={0}
+        automaticallyAdjustContentInsets={false}
+        autoplay={false}
+        autoplayDelay={1000}
+        autoplayInterval={3000}
+        callbackOffsetMargin={5}
+        containerCustomStyle={
+          Object {
+            "height": 395.14218009478674,
+          }
+        }
+        contentContainerCustomStyle={Object {}}
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            },
+            Object {},
+          ]
+        }
+        data={
+          Array [
+            "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
+          ]
+        }
+        decelerationRate="fast"
+        directionalLockEnabled={true}
+        enableMomentum={false}
+        enableSnap={true}
+        firstItem={0}
+        forwardedRef={[Function]}
+        getItem={[Function]}
+        getItemCount={[Function]}
+        hasParallaxImages={false}
+        horizontal={true}
+        inactiveSlideOpacity={0.7}
+        inactiveSlideScale={0.9}
+        inactiveSlideShift={0}
+        initialNumToRender={6}
+        invertStickyHeaders={false}
+        inverted={false}
+        itemWidth={750}
+        keyExtractor={[Function]}
+        layout="default"
+        lockScrollTimeoutDuration={1000}
+        lockScrollWhileSnapping={false}
+        loop={true}
+        loopClonesPerSide={3}
+        maxToRenderPerBatch={13}
+        onContentSizeChange={[Function]}
+        onLayout={[Function]}
+        onMomentumScrollBegin={[Function]}
+        onMomentumScrollEnd={[Function]}
+        onResponderRelease={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onScrollEndDrag={[Function]}
+        onSnapToItem={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        overScrollMode="never"
+        pinchGestureEnabled={false}
+        removeClippedSubviews={true}
+        renderItem={[Function]}
+        scrollEnabled={true}
+        scrollEventThrottle={1}
+        scrollsToTop={false}
+        shouldOptimizeUpdates={true}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        slideStyle={Object {}}
+        sliderWidth={750}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "flexDirection": "row",
+            "height": 395.14218009478674,
+            "opacity": 0,
+            "width": 750,
+          }
+        }
+        swipeThreshold={20}
+        useScrollView={false}
+        vertical={false}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={13}
+      >
+        <View>
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                },
+                null,
+              ]
+            }
+          >
+            <View
+              collapsable={false}
+              nativeID="animatedComponent"
+              pointerEvents="box-none"
+              style={
+                Object {
+                  "opacity": 1,
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                  "width": 750,
+                }
+              }
+            >
+              <Image
+                resizeMode="contain"
+                source={
+                  Object {
+                    "uri": "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": "100%",
+                    "width": "100%",
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#333333",
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+        testID="header1-test-id"
+      >
+        LEVEL 6.0 2018
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 14,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            Object {
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+        testID="subtitle-test-id"
+      >
+        MainBike.details
+      </Text>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#C63733",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
+          }
+          testID="body-primary-test-id"
+        >
+          MainBike.bikeDetails
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "marginTop": 37.93364928909953,
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginHorizontal": 30.76923076923077,
+                "marginVertical": 25.28909952606635,
+              }
+            }
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#717171",
+                    "textAlign": "left",
+                    "width": "50%",
+                  },
+                ]
+              }
+              testID="body-primary-test-id"
+            />
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#333333",
+                    "textAlign": "right",
+                    "width": "50%",
+                  },
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              brak informacji
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "borderBottomColor": "#BDBDBD",
+                  "borderBottomWidth": 0.5,
+                  "borderRadius": 1,
+                },
+                Object {
+                  "borderBottomWidth": 1.580568720379147,
+                  "color": "#d3d3d3",
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginHorizontal": 30.76923076923077,
+                "marginVertical": 25.28909952606635,
+              }
+            }
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#717171",
+                    "textAlign": "left",
+                    "width": "50%",
+                  },
+                ]
+              }
+              testID="body-primary-test-id"
+            />
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#333333",
+                    "textAlign": "right",
+                    "width": "50%",
+                  },
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              8 undefined
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "marginBottom": 37.93364928909953,
+            "marginTop": 63.22274881516588,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "left": 30.76923076923077,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        />
+        <RCTScrollView
+          collapsable={false}
+          horizontal={true}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                  "left": 0,
+                  "paddingTop": 15.80568720379147,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "marginLeft": 28.846153846153847,
+                    },
+                    Object {
+                      "marginLeft": 30.76923076923077,
+                    },
+                    false,
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 30.76923076923077,
+                      "height": 151.7345971563981,
+                      "width": 244.23076923076923,
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 20,
+                          "fontWeight": "600",
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                          "marginTop": 18.966824644549764,
+                        },
+                      ]
+                    }
+                    testID="header2-test-id"
+                  >
+                    01.04
+                  </Text>
+                  <View
+                    style={
+                      Object {
+                        "position": "absolute",
+                        "right": 30.76923076923077,
+                        "top": 18.966824644549764,
+                      }
+                    }
+                  >
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight="24"
+                      bbWidth="24"
+                      fill="none"
+                      focusable={false}
+                      height="24"
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          Object {
+                            "flex": 0,
+                            "height": 24,
+                            "width": 24,
+                          },
+                        ]
+                      }
+                      vbHeight={32}
+                      vbWidth={32}
+                      width="24"
+                    >
+                      <RNSVGGroup
+                        fill={null}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      >
+                        <RNSVGCircle
+                          cx="16"
+                          cy="16"
+                          fill={4293908696}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                          r="12"
+                        />
+                        <RNSVGPath
+                          d="M16.0484 17.952C16.5308 17.952 16.8985 17.8138 17.1515 17.5372C17.4104 17.2607 17.5486 16.8695 17.5663 16.3635L17.7428 10.1445C17.7487 10.068 17.7516 9.99154 17.7516 9.91506C17.7516 9.83857 17.7516 9.76797 17.7516 9.70325C17.7516 9.16786 17.6016 8.75014 17.3015 8.45008C17.0015 8.15003 16.5838 8 16.0484 8C15.5188 8 15.0982 8.15003 14.7864 8.45008C14.4804 8.75014 14.3275 9.16786 14.3275 9.70325C14.3275 9.76797 14.3275 9.83857 14.3275 9.91506C14.3275 9.99154 14.3304 10.068 14.3363 10.1445L14.5216 16.3635C14.5334 16.8695 14.6658 17.2607 14.9187 17.5372C15.1717 17.8138 15.5483 17.952 16.0484 17.952ZM16.0395 23C16.3867 23 16.7044 22.9176 16.9926 22.7529C17.2809 22.594 17.5104 22.3764 17.681 22.0998C17.8516 21.8292 17.9369 21.5262 17.9369 21.1908C17.9369 20.8555 17.8516 20.5525 17.681 20.2819C17.5104 20.0053 17.2809 19.7876 16.9926 19.6288C16.7044 19.4641 16.3867 19.3817 16.0395 19.3817C15.6865 19.3817 15.3659 19.4641 15.0776 19.6288C14.7893 19.7876 14.5598 20.0053 14.3892 20.2819C14.2186 20.5525 14.1333 20.8555 14.1333 21.1908C14.1333 21.5262 14.2186 21.8292 14.3892 22.0998C14.5598 22.3764 14.7893 22.594 15.0776 22.7529C15.3659 22.9176 15.6865 23 16.0395 23Z"
+                          fill={4291180339}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGSvgView>
+                  </View>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#717171",
+                          "fontFamily": "DIN2014-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 16,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                        },
+                      ]
+                    }
+                    testID="body-secondary-test-id"
+                  >
+                    2022
+                  </Text>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#717171",
+                          "fontFamily": "DIN2014-Regular",
+                          "fontSize": 14,
+                          "lineHeight": 16,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                          "marginTop": 18.966824644549764,
+                        },
+                      ]
+                    }
+                    testID="subtitle-test-id"
+                  >
+                    przed sezonem
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "marginLeft": 28.846153846153847,
+                    },
+                    false,
+                    Object {
+                      "marginRight": 30.76923076923077,
+                    },
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 30.76923076923077,
+                      "height": 151.7345971563981,
+                      "width": 244.23076923076923,
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 20,
+                          "fontWeight": "600",
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                          "marginTop": 18.966824644549764,
+                        },
+                      ]
+                    }
+                    testID="header2-test-id"
+                  >
+                    31.10
+                  </Text>
+                  <View
+                    style={
+                      Object {
+                        "position": "absolute",
+                        "right": 30.76923076923077,
+                        "top": 18.966824644549764,
+                      }
+                    }
+                  >
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight="24"
+                      bbWidth="24"
+                      fill="none"
+                      focusable={false}
+                      height="24"
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          Object {
+                            "flex": 0,
+                            "height": 24,
+                            "width": 24,
+                          },
+                        ]
+                      }
+                      vbHeight={32}
+                      vbWidth={32}
+                      width="24"
+                    >
+                      <RNSVGGroup
+                        fill={null}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      >
+                        <RNSVGCircle
+                          cx="16"
+                          cy="16"
+                          fill={4293908696}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                          r="12"
+                        />
+                        <RNSVGPath
+                          d="M16.0484 17.952C16.5308 17.952 16.8985 17.8138 17.1515 17.5372C17.4104 17.2607 17.5486 16.8695 17.5663 16.3635L17.7428 10.1445C17.7487 10.068 17.7516 9.99154 17.7516 9.91506C17.7516 9.83857 17.7516 9.76797 17.7516 9.70325C17.7516 9.16786 17.6016 8.75014 17.3015 8.45008C17.0015 8.15003 16.5838 8 16.0484 8C15.5188 8 15.0982 8.15003 14.7864 8.45008C14.4804 8.75014 14.3275 9.16786 14.3275 9.70325C14.3275 9.76797 14.3275 9.83857 14.3275 9.91506C14.3275 9.99154 14.3304 10.068 14.3363 10.1445L14.5216 16.3635C14.5334 16.8695 14.6658 17.2607 14.9187 17.5372C15.1717 17.8138 15.5483 17.952 16.0484 17.952ZM16.0395 23C16.3867 23 16.7044 22.9176 16.9926 22.7529C17.2809 22.594 17.5104 22.3764 17.681 22.0998C17.8516 21.8292 17.9369 21.5262 17.9369 21.1908C17.9369 20.8555 17.8516 20.5525 17.681 20.2819C17.5104 20.0053 17.2809 19.7876 16.9926 19.6288C16.7044 19.4641 16.3867 19.3817 16.0395 19.3817C15.6865 19.3817 15.3659 19.4641 15.0776 19.6288C14.7893 19.7876 14.5598 20.0053 14.3892 20.2819C14.2186 20.5525 14.1333 20.8555 14.1333 21.1908C14.1333 21.5262 14.2186 21.8292 14.3892 22.0998C14.5598 22.3764 14.7893 22.594 15.0776 22.7529C15.3659 22.9176 15.6865 23 16.0395 23Z"
+                          fill={4291180339}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGSvgView>
+                  </View>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#717171",
+                          "fontFamily": "DIN2014-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 16,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                        },
+                      ]
+                    }
+                    testID="body-secondary-test-id"
+                  >
+                    2022
+                  </Text>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#717171",
+                          "fontFamily": "DIN2014-Regular",
+                          "fontSize": 14,
+                          "lineHeight": 16,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                          "marginTop": 18.966824644549764,
+                        },
+                      ]
+                    }
+                    testID="subtitle-test-id"
+                  >
+                    po sezonie
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 30.76923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "justifyContent": "flex-start",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 18.966824644549764,
+                  "height": 379.33649289099526,
+                  "marginBottom": 25.28909952606635,
+                  "paddingVertical": 37.93364928909953,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "black",
+                    "borderRadius": 50,
+                    "height": 107.6923076923077,
+                    "justifyContent": "center",
+                    "marginBottom": 25.28909952606635,
+                    "width": 107.6923076923077,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 20,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="text-icon-test-id"
+                >
+                  0
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "marginHorizontal": 23.076923076923077,
+                    },
+                    Object {
+                      "paddingBottom": 37.93364928909953,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  adjustsFontSizeToFit={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#333333",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 20,
+                        "fontWeight": "600",
+                        "lineHeight": 24,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="header2-test-id"
+                >
+                  MainBike.noBikes.servicesTile.header
+                </Text>
+                <Text
+                  adjustsFontSizeToFit={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Regular",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "paddingBottom": 37.93364928909953,
+                      },
+                    ]
+                  }
+                  testID="paragraph-test-id"
+                >
+                  MainBike.noBikes.servicesTile.body
+                </Text>
+                <Text
+                  adjustsFontSizeToFit={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#C63733",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="body-primary-test-id"
+                >
+                  MainBike.noBikes.servicesTile.button
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "elevation": 5,
+              "shadowColor": "#333333",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 7.6923076923076925,
+              },
+              "shadowOpacity": 0.07,
+              "shadowRadius": 15.384615384615385,
+            },
+            Array [
+              Object {
+                "height": 92.3076923076923,
+                "width": 565.3846153846154,
+              },
+              Object {
+                "marginHorizontal": 92.3076923076923,
+              },
+            ],
+          ]
+        }
+        testID="secondary-btn-test-id"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              undefined,
+            ]
+          }
+          testID="secondary-btn-test-id-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#C63733",
+                },
+              ]
+            }
+            testID="secondary-btn-test-id-text"
+          >
+            MainBike.btn
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#FAFAFA",
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView
+    collapsable={false}
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 189.66824644549763,
+      }
+    }
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    showsVerticalScrollIndicator={false}
+  >
+    <View>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#C63733",
+                "paddingBottom": 20.54739336492891,
+                "paddingRight": 17.307692307692307,
+                "paddingTop": 50.5781990521327,
+                "textAlign": "right",
+                "width": "100%",
+              },
+            ]
+          }
+          testID="body-primary-test-id"
+        >
+          MainBike.addBike
+        </Text>
+      </View>
+      <RCTScrollView
+        activeAnimationOptions={null}
+        activeAnimationType="timing"
+        activeSlideAlignment="center"
+        activeSlideOffset={20}
+        apparitionDelay={0}
+        automaticallyAdjustContentInsets={false}
+        autoplay={false}
+        autoplayDelay={1000}
+        autoplayInterval={3000}
+        callbackOffsetMargin={5}
+        containerCustomStyle={
+          Object {
+            "height": 395.14218009478674,
+          }
+        }
+        contentContainerCustomStyle={Object {}}
+        contentContainerStyle={
+          Array [
+            Object {
+              "paddingLeft": 0,
+              "paddingRight": 0,
+            },
+            Object {},
+          ]
+        }
+        data={
+          Array [
+            "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
+          ]
+        }
+        decelerationRate="fast"
+        directionalLockEnabled={true}
+        enableMomentum={false}
+        enableSnap={true}
+        firstItem={0}
+        forwardedRef={[Function]}
+        getItem={[Function]}
+        getItemCount={[Function]}
+        hasParallaxImages={false}
+        horizontal={true}
+        inactiveSlideOpacity={0.7}
+        inactiveSlideScale={0.9}
+        inactiveSlideShift={0}
+        initialNumToRender={6}
+        invertStickyHeaders={false}
+        inverted={false}
+        itemWidth={750}
+        keyExtractor={[Function]}
+        layout="default"
+        lockScrollTimeoutDuration={1000}
+        lockScrollWhileSnapping={false}
+        loop={true}
+        loopClonesPerSide={3}
+        maxToRenderPerBatch={13}
+        onContentSizeChange={[Function]}
+        onLayout={[Function]}
+        onMomentumScrollBegin={[Function]}
+        onMomentumScrollEnd={[Function]}
+        onResponderRelease={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onScrollEndDrag={[Function]}
+        onSnapToItem={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        overScrollMode="never"
+        pinchGestureEnabled={false}
+        removeClippedSubviews={true}
+        renderItem={[Function]}
+        scrollEnabled={true}
+        scrollEventThrottle={1}
+        scrollsToTop={false}
+        shouldOptimizeUpdates={true}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        slideStyle={Object {}}
+        sliderWidth={750}
+        stickyHeaderIndices={Array []}
+        style={
+          Object {
+            "flexDirection": "row",
+            "height": 395.14218009478674,
+            "opacity": 0,
+            "width": 750,
+          }
+        }
+        swipeThreshold={20}
+        useScrollView={false}
+        vertical={false}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={13}
+      >
+        <View>
+          <View
+            onLayout={[Function]}
+            style={
+              Array [
+                Object {
+                  "flexDirection": "row",
+                },
+                null,
+              ]
+            }
+          >
+            <View
+              collapsable={false}
+              nativeID="animatedComponent"
+              pointerEvents="box-none"
+              style={
+                Object {
+                  "opacity": 1,
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                  "width": 750,
+                }
+              }
+            >
+              <Image
+                resizeMode="contain"
+                source={
+                  Object {
+                    "uri": "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
+                  }
+                }
+                style={
+                  Object {
+                    "height": "100%",
+                    "width": "100%",
+                  }
+                }
+              />
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#333333",
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+        testID="header1-test-id"
+      >
+        LEVEL 6.0 2018
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#717171",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 14,
+              "lineHeight": 16,
+              "textAlign": "left",
+            },
+            Object {
+              "textAlign": "center",
+              "width": "100%",
+            },
+          ]
+        }
+        testID="subtitle-test-id"
+      >
+        MainBike.details
+      </Text>
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#C63733",
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
+          }
+          testID="body-primary-test-id"
+        >
+          MainBike.bikeDetails
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "marginTop": 37.93364928909953,
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginHorizontal": 30.76923076923077,
+                "marginVertical": 25.28909952606635,
+              }
+            }
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#717171",
+                    "textAlign": "left",
+                    "width": "50%",
+                  },
+                ]
+              }
+              testID="body-primary-test-id"
+            />
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#333333",
+                    "textAlign": "right",
+                    "width": "50%",
+                  },
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              brak informacji
+            </Text>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "borderBottomColor": "#BDBDBD",
+                  "borderBottomWidth": 0.5,
+                  "borderRadius": 1,
+                },
+                Object {
+                  "borderBottomWidth": 1.580568720379147,
+                  "color": "#d3d3d3",
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "row",
+                "justifyContent": "flex-start",
+                "marginHorizontal": 30.76923076923077,
+                "marginVertical": 25.28909952606635,
+              }
+            }
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#717171",
+                    "textAlign": "left",
+                    "width": "50%",
+                  },
+                ]
+              }
+              testID="body-primary-test-id"
+            />
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#333333",
+                    "textAlign": "right",
+                    "width": "50%",
+                  },
+                ]
+              }
+              testID="body-primary-test-id"
+            >
+              8 undefined
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "marginBottom": 37.93364928909953,
+            "marginTop": 63.22274881516588,
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "left": 30.76923076923077,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        />
+        <RCTScrollView
+          collapsable={false}
+          horizontal={true}
+          onGestureHandlerEvent={[Function]}
+          onGestureHandlerStateChange={[Function]}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          style={
+            Object {
+              "width": "100%",
+            }
+          }
+        >
+          <View>
+            <View
+              style={
+                Object {
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-start",
+                  "left": 0,
+                  "paddingTop": 15.80568720379147,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "marginLeft": 28.846153846153847,
+                    },
+                    Object {
+                      "marginLeft": 30.76923076923077,
+                    },
+                    false,
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 30.76923076923077,
+                      "height": 151.7345971563981,
+                      "width": 244.23076923076923,
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 20,
+                          "fontWeight": "600",
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                          "marginTop": 18.966824644549764,
+                        },
+                      ]
+                    }
+                    testID="header2-test-id"
+                  >
+                    01.04
+                  </Text>
+                  <View
+                    style={
+                      Object {
+                        "position": "absolute",
+                        "right": 30.76923076923077,
+                        "top": 18.966824644549764,
+                      }
+                    }
+                  >
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight="24"
+                      bbWidth="24"
+                      fill="none"
+                      focusable={false}
+                      height="24"
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          Object {
+                            "flex": 0,
+                            "height": 24,
+                            "width": 24,
+                          },
+                        ]
+                      }
+                      vbHeight={32}
+                      vbWidth={32}
+                      width="24"
+                    >
+                      <RNSVGGroup
+                        fill={null}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      >
+                        <RNSVGCircle
+                          cx="16"
+                          cy="16"
+                          fill={4293908696}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                          r="12"
+                        />
+                        <RNSVGPath
+                          d="M16.0484 17.952C16.5308 17.952 16.8985 17.8138 17.1515 17.5372C17.4104 17.2607 17.5486 16.8695 17.5663 16.3635L17.7428 10.1445C17.7487 10.068 17.7516 9.99154 17.7516 9.91506C17.7516 9.83857 17.7516 9.76797 17.7516 9.70325C17.7516 9.16786 17.6016 8.75014 17.3015 8.45008C17.0015 8.15003 16.5838 8 16.0484 8C15.5188 8 15.0982 8.15003 14.7864 8.45008C14.4804 8.75014 14.3275 9.16786 14.3275 9.70325C14.3275 9.76797 14.3275 9.83857 14.3275 9.91506C14.3275 9.99154 14.3304 10.068 14.3363 10.1445L14.5216 16.3635C14.5334 16.8695 14.6658 17.2607 14.9187 17.5372C15.1717 17.8138 15.5483 17.952 16.0484 17.952ZM16.0395 23C16.3867 23 16.7044 22.9176 16.9926 22.7529C17.2809 22.594 17.5104 22.3764 17.681 22.0998C17.8516 21.8292 17.9369 21.5262 17.9369 21.1908C17.9369 20.8555 17.8516 20.5525 17.681 20.2819C17.5104 20.0053 17.2809 19.7876 16.9926 19.6288C16.7044 19.4641 16.3867 19.3817 16.0395 19.3817C15.6865 19.3817 15.3659 19.4641 15.0776 19.6288C14.7893 19.7876 14.5598 20.0053 14.3892 20.2819C14.2186 20.5525 14.1333 20.8555 14.1333 21.1908C14.1333 21.5262 14.2186 21.8292 14.3892 22.0998C14.5598 22.3764 14.7893 22.594 15.0776 22.7529C15.3659 22.9176 15.6865 23 16.0395 23Z"
+                          fill={4291180339}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGSvgView>
+                  </View>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#717171",
+                          "fontFamily": "DIN2014-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 16,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                        },
+                      ]
+                    }
+                    testID="body-secondary-test-id"
+                  >
+                    2022
+                  </Text>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#717171",
+                          "fontFamily": "DIN2014-Regular",
+                          "fontSize": 14,
+                          "lineHeight": 16,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                          "marginTop": 18.966824644549764,
+                        },
+                      ]
+                    }
+                    testID="subtitle-test-id"
+                  >
+                    przed sezonem
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "marginLeft": 28.846153846153847,
+                    },
+                    false,
+                    Object {
+                      "marginRight": 30.76923076923077,
+                    },
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 30.76923076923077,
+                      "height": 151.7345971563981,
+                      "width": 244.23076923076923,
+                    }
+                  }
+                >
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 20,
+                          "fontWeight": "600",
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                          "marginTop": 18.966824644549764,
+                        },
+                      ]
+                    }
+                    testID="header2-test-id"
+                  >
+                    31.10
+                  </Text>
+                  <View
+                    style={
+                      Object {
+                        "position": "absolute",
+                        "right": 30.76923076923077,
+                        "top": 18.966824644549764,
+                      }
+                    }
+                  >
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight="24"
+                      bbWidth="24"
+                      fill="none"
+                      focusable={false}
+                      height="24"
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          Object {
+                            "flex": 0,
+                            "height": 24,
+                            "width": 24,
+                          },
+                        ]
+                      }
+                      vbHeight={32}
+                      vbWidth={32}
+                      width="24"
+                    >
+                      <RNSVGGroup
+                        fill={null}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      >
+                        <RNSVGCircle
+                          cx="16"
+                          cy="16"
+                          fill={4293908696}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                          r="12"
+                        />
+                        <RNSVGPath
+                          d="M16.0484 17.952C16.5308 17.952 16.8985 17.8138 17.1515 17.5372C17.4104 17.2607 17.5486 16.8695 17.5663 16.3635L17.7428 10.1445C17.7487 10.068 17.7516 9.99154 17.7516 9.91506C17.7516 9.83857 17.7516 9.76797 17.7516 9.70325C17.7516 9.16786 17.6016 8.75014 17.3015 8.45008C17.0015 8.15003 16.5838 8 16.0484 8C15.5188 8 15.0982 8.15003 14.7864 8.45008C14.4804 8.75014 14.3275 9.16786 14.3275 9.70325C14.3275 9.76797 14.3275 9.83857 14.3275 9.91506C14.3275 9.99154 14.3304 10.068 14.3363 10.1445L14.5216 16.3635C14.5334 16.8695 14.6658 17.2607 14.9187 17.5372C15.1717 17.8138 15.5483 17.952 16.0484 17.952ZM16.0395 23C16.3867 23 16.7044 22.9176 16.9926 22.7529C17.2809 22.594 17.5104 22.3764 17.681 22.0998C17.8516 21.8292 17.9369 21.5262 17.9369 21.1908C17.9369 20.8555 17.8516 20.5525 17.681 20.2819C17.5104 20.0053 17.2809 19.7876 16.9926 19.6288C16.7044 19.4641 16.3867 19.3817 16.0395 19.3817C15.6865 19.3817 15.3659 19.4641 15.0776 19.6288C14.7893 19.7876 14.5598 20.0053 14.3892 20.2819C14.2186 20.5525 14.1333 20.8555 14.1333 21.1908C14.1333 21.5262 14.2186 21.8292 14.3892 22.0998C14.5598 22.3764 14.7893 22.594 15.0776 22.7529C15.3659 22.9176 15.6865 23 16.0395 23Z"
+                          fill={4291180339}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                        />
+                      </RNSVGGroup>
+                    </RNSVGSvgView>
+                  </View>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#717171",
+                          "fontFamily": "DIN2014-Regular",
+                          "fontSize": 16,
+                          "lineHeight": 16,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                        },
+                      ]
+                    }
+                    testID="body-secondary-test-id"
+                  >
+                    2022
+                  </Text>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#717171",
+                          "fontFamily": "DIN2014-Regular",
+                          "fontSize": 14,
+                          "lineHeight": 16,
+                          "textAlign": "left",
+                        },
+                        Object {
+                          "marginLeft": 30.76923076923077,
+                          "marginTop": 18.966824644549764,
+                        },
+                      ]
+                    }
+                    testID="subtitle-test-id"
+                  >
+                    po sezonie
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 30.76923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "justifyContent": "flex-start",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 18.966824644549764,
+                  "height": 379.33649289099526,
+                  "marginBottom": 25.28909952606635,
+                  "paddingVertical": 37.93364928909953,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "black",
+                    "borderRadius": 50,
+                    "height": 107.6923076923077,
+                    "justifyContent": "center",
+                    "marginBottom": 25.28909952606635,
+                    "width": 107.6923076923077,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#FFFFFF",
+                        "fontSize": 20,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="text-icon-test-id"
+                >
+                  0
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "marginHorizontal": 23.076923076923077,
+                    },
+                    Object {
+                      "paddingBottom": 37.93364928909953,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  adjustsFontSizeToFit={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#333333",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 20,
+                        "fontWeight": "600",
+                        "lineHeight": 24,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="header2-test-id"
+                >
+                  MainBike.noBikes.servicesTile.header
+                </Text>
+                <Text
+                  adjustsFontSizeToFit={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Regular",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "paddingBottom": 37.93364928909953,
+                      },
+                    ]
+                  }
+                  testID="paragraph-test-id"
+                >
+                  MainBike.noBikes.servicesTile.body
+                </Text>
+                <Text
+                  adjustsFontSizeToFit={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#C63733",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                        "textAlign": "center",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="body-primary-test-id"
+                >
+                  MainBike.noBikes.servicesTile.button
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "elevation": 5,
+              "shadowColor": "#333333",
+              "shadowOffset": Object {
+                "height": 0,
+                "width": 7.6923076923076925,
+              },
+              "shadowOpacity": 0.07,
+              "shadowRadius": 15.384615384615385,
+            },
+            Array [
+              Object {
+                "height": 92.3076923076923,
+                "width": 565.3846153846154,
+              },
+              Object {
+                "marginHorizontal": 92.3076923076923,
+              },
+            ],
+          ]
+        }
+        testID="secondary-btn-test-id"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
+              undefined,
+            ]
+          }
+          testID="secondary-btn-test-id-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#C63733",
+                },
+              ]
+            }
+            testID="secondary-btn-test-id-text"
+          >
+            MainBike.btn
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

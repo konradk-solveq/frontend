@@ -4,7 +4,6 @@ import {
     MinLength,
     MaxLength,
     IsOptional,
-    Matches,
 } from 'class-validator';
 import validationRules from '../utils/validation/validationRules';
 
@@ -25,17 +24,19 @@ export const userBikeValidationRules = {
 
 type OverviewStyleT = 'color' | 'dashed' | 'checkmark';
 
+export interface Overview {
+    type: string;
+    date: Date;
+    info: string;
+    operations: string[];
+    style?: Record<OverviewStyleT, string | boolean>;
+}
+
 export interface Warranty {
     id?: string;
     type: string;
     end?: Date;
-    overviews: {
-        type: string;
-        date: Date;
-        info: string;
-        operations: string[];
-        style?: Record<OverviewStyleT, string | boolean>;
-    }[];
+    overviews: Overview[];
     info: string;
     warning?: string;
 }

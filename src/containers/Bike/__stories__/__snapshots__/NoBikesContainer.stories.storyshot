@@ -456,10 +456,13 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
     </View>
     <View
       style={
-        Object {
-          "justifyContent": "flex-start",
-          "width": "100%",
-        }
+        Array [
+          Object {
+            "justifyContent": "flex-start",
+            "width": "100%",
+          },
+          undefined,
+        ]
       }
     >
       <View
@@ -478,19 +481,14 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
       >
         <View
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 18.966824644549764,
-                "height": 595.8744075829384,
-                "marginBottom": 25.28909952606635,
-                "paddingVertical": 37.93364928909953,
-              },
-              Object {
-                "height": 379.33649289099526,
-              },
-            ]
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 18.966824644549764,
+              "height": 379.33649289099526,
+              "marginBottom": 25.28909952606635,
+              "paddingVertical": 37.93364928909953,
+            }
           }
         >
           <View
