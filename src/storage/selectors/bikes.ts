@@ -3,7 +3,7 @@ import {RootState} from '../storage';
 import {BikeDescription} from '../../models/bike.model';
 import {UserBike} from '../../models/userBike.model';
 import {getBike, getDescription} from '../../helpers/transformUserBikeData';
-import {bikesListToClass} from '../../utils/transformData';
+import {bikesListToClass, genericBikeToClass} from '@utils/transformData';
 import {BikesState} from '@storage/reducers/bikes';
 
 export const bikeSelector = (state: RootState): BikesState => state.bikes;
@@ -27,3 +27,7 @@ export const bikeDescriptionByFrameNumberSelector = (
 
 export const hasAnyBikeSelector = (state: RootState): boolean =>
     !!state.bikes.list.length;
+
+export const genericBikeSelector = createSelector(bikeSelector, bs =>
+    genericBikeToClass(bs.genericBike),
+);

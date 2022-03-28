@@ -2,19 +2,19 @@ import {persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '../actions/actionTypes';
-import {UserBike} from '../../models/userBike.model';
+import {GenericBikeI, UserBike} from '../../models/userBike.model';
 import {addNewBikeDataOrReplaceIfExists, updateBikesList} from './utils/bikes';
 
 export interface BikesState {
     list: UserBike[];
-    genericBike: UserBike | {};
+    genericBike: GenericBikeI | undefined;
     error: string;
     loading: boolean;
 }
 
 const initialStateList: BikesState = {
     list: [],
-    genericBike: {},
+    genericBike: undefined,
     error: '',
     loading: false,
 };

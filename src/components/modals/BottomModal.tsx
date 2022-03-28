@@ -25,6 +25,7 @@ const containerHeight = getFVerticalPx(270);
 interface IProps {
     show?: boolean;
     openModal?: boolean;
+    enableScroll?: boolean;
     openModalHeight?: number;
     openModalFullHeight?: number;
     children?: ReactNode;
@@ -36,6 +37,7 @@ interface IProps {
 const BottomModal: React.FC<IProps> = ({
     show,
     openModal = false,
+    enableScroll = false,
     openModalHeight = containerHeight,
     openModalFullHeight = height,
     children,
@@ -87,7 +89,7 @@ const BottomModal: React.FC<IProps> = ({
             <View style={styles.innerContainer}>
                 {header}
                 <ScrollView
-                    scrollEnabled={isOpen}
+                    scrollEnabled={isOpen || enableScroll}
                     showsVerticalScrollIndicator={false}>
                     {children}
                 </ScrollView>

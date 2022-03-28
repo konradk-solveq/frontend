@@ -52,6 +52,7 @@ interface Props {
     route: any;
 }
 
+/* TODO: to remove after removing from onboarding */
 const BikeData: React.FC<Props> = ({navigation, route}: Props) => {
     const dispatch = useAppDispatch();
     const {t} = useMergedTranslation('BikeData');

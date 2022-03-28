@@ -5,7 +5,8 @@ import {
     MaxLength,
     IsOptional,
 } from 'class-validator';
-import validationRules from '../utils/validation/validationRules';
+
+import validationRules from '@utils/validation/validationRules';
 
 export const userBikeValidationRules = {
     id: [],
@@ -165,6 +166,10 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
     @MinLength(3)
     @MaxLength(20)
     serial_number: string;
+
+    @IsNotEmpty()
+    @IsString()
+    bikeType?: string;
 
     @IsOptional()
     colorCodes?: string[];

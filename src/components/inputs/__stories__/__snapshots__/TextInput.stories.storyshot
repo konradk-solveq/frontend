@@ -55,12 +55,14 @@ exports[`Storyshots components/input/TextInput Customized 1`] = `
       </View>
       <TextInput
         autoCapitalize="characters"
+        editable={true}
         keyboardType="default"
         maxLength={100}
         multiline={false}
         numberOfLines={1}
         onChangeText={[Function]}
         placeholder="Placeholder"
+        placeholderTextColor="#717171"
         selectionColor="#717171"
         style={
           Array [
@@ -83,6 +85,7 @@ exports[`Storyshots components/input/TextInput Customized 1`] = `
       <View
         style={
           Object {
+            "marginHorizontal": 30.76923076923077,
             "marginTop": 12.644549763033176,
           }
         }
@@ -167,12 +170,14 @@ exports[`Storyshots components/input/TextInput Default 1`] = `
       </View>
       <TextInput
         autoCapitalize="characters"
+        editable={true}
         keyboardType="default"
         maxLength={100}
         multiline={false}
         numberOfLines={1}
         onChangeText={[Function]}
         placeholder=""
+        placeholderTextColor="#717171"
         selectionColor="#717171"
         style={
           Array [
@@ -195,6 +200,7 @@ exports[`Storyshots components/input/TextInput Default 1`] = `
       <View
         style={
           Object {
+            "marginHorizontal": 30.76923076923077,
             "marginTop": 12.644549763033176,
           }
         }

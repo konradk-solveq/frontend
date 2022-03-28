@@ -1,0 +1,1417 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/AddBike/components/RadioListItem Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "paddingHorizontal": 16,
+        "width": 750,
+      }
+    }
+  >
+    <View
+      testID="radio-list-item-test-id"
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-mountain"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-mountain-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                górski
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &gt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-gravel"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-gravel-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                gravel
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-road"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-road-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                szosowy
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-touristic"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-touristic-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                turystyczny
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-city"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-city-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                miejski
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-kids"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-kids-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                dziecięcy
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-other"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-other-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                inny
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots containers/AddBike/components/RadioListItem Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "paddingHorizontal": 16,
+        "width": 750,
+      }
+    }
+  >
+    <View
+      testID="radio-list-item-test-id"
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-mountain"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-mountain-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                górski
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &gt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-gravel"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-gravel-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                gravel
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-road"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-road-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                szosowy
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-touristic"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-touristic-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                turystyczny
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-city"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-city-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                miejski
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-kids"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-kids-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                dziecięcy
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#BDBDBD",
+              "borderBottomWidth": 0.5,
+              "borderRadius": 1,
+            },
+            Object {
+              "borderBottomWidth": 0.5,
+              "color": "#BDBDBD",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 28.985507246376812,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 75.86729857819905,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+          testID="radio-list-item-test-id-radio-button-other"
+        >
+          <View
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            testID="radio-list-item-test-id-radio-button-other-press"
+          >
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                inny
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#333333",
+                      "fontSize": 20,
+                    },
+                    undefined,
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                &lt;
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

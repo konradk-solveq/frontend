@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/buttons/RadioButton Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "height": 75.86729857819905,
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        Object {
+          "backgroundColor": "#BDBDBD",
+        },
+      ]
+    }
+    testID="radio-button-test-id"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="radio-button-test-id-press"
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#C63733",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="body-primary-test-id"
+        >
+          Radio button
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "mykross",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#C63733",
+                "fontSize": 20,
+              },
+              undefined,
+            ]
+          }
+          testID="text-icon-test-id"
+        >
+          &lt;
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/buttons/RadioButton Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "height": 75.86729857819905,
+          "justifyContent": "center",
+          "width": "100%",
+        },
+        undefined,
+      ]
+    }
+    testID="radio-button-test-id"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      testID="radio-button-test-id-press"
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="body-primary-test-id"
+        >
+          Radio button
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontFamily": "mykross",
+                "textAlign": "center",
+              },
+              Object {
+                "color": "#333333",
+                "fontSize": 20,
+              },
+              undefined,
+            ]
+          }
+          testID="text-icon-test-id"
+        >
+          &lt;
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

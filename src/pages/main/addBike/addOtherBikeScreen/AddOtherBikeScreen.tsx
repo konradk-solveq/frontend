@@ -1,54 +1,50 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {Alert, Image} from 'react-native';
+import {Dimensions} from 'react-native';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {bikeByFrameNumberSelector} from '@storage/selectors';
+import {genericBikeSelector} from '@storage/selectors/bikes';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
-import {removeBikeByNumber, setBikesListByFrameNumber} from '@storage/actions';
+import {removeBikeByNumber, setBikeData} from '@storage/actions';
 import {validateData} from '@utils/validation/validation';
-import validationRules from '@utils/validation/validationRules';
+import {genericBikerules} from '@utils/validation/validationRules';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {useAppRoute} from '@navigation/hooks/useAppRoute';
 
 import GenericScreen from '@pages/template/GenericScreen';
-import {AddBikeByNumberContainer} from '@containers/AddBike';
+import {AddOtherBikeContainer} from '@containers/AddBike';
 import {AddBikeSummaryModal} from '@pages/main/addBike/components';
-import DefaultImage from '@assets/images/bike_placeholder.png';
+import {OtherBikeDataT} from '@containers/AddBike/type/bike';
 
-const IMAGE_URL = Image.resolveAssetSource(DefaultImage).uri;
+const {height} = Dimensions.get('screen');
+const modalHeight = height <= 670 ? 480 : 443;
 
-const rules: Record<string, any[] | undefined> = {
-    bikeNumber: [
-        validationRules.required,
-        validationRules.string,
-        {[validationRules.min]: 3},
-    ],
-};
-
-const AddBikeByNumberScreen: React.FC = () => {
-    const {t} = useMergedTranslation('AddBikeByNumberScreen');
+const AddOtherBikeScreen: React.FC = () => {
+    const {t} = useMergedTranslation('AddOtherBikeScreen');
     const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
+    const fNumber = useAppRoute<'AddOtherBike'>()?.params?.frameNumber;
 
     const [isFetching, setIsFetching] = useState(false);
     const [frameNumber, setFrameNumber] = useState('');
     const [showModal, setShowModal] = useState(false);
 
+    const genericBike = useAppSelector(genericBikeSelector);
     const bikeData = useAppSelector(bikeByFrameNumberSelector(frameNumber));
-    /**
-     * Only first url retruns image
-     */
+
     const bd = useMemo(
         () => ({
             bikeName: bikeData?.description.name || '',
-            imageUrl: bikeData?.images?.[0] || IMAGE_URL,
+            imageUrl: '' /* Modal with data summary do not need this */,
+            producer: bikeData?.description?.producer || '',
             frameNumber: frameNumber,
         }),
-        [bikeData?.description, bikeData?.images, frameNumber],
+        [bikeData?.description, frameNumber],
     );
 
     const checkIsValid = useCallback(
         (fieldName: string, value?: string) => {
-            const rule = rules?.[fieldName];
+            const rule = genericBikerules?.[fieldName];
             const isValid = validateData(rule, value);
             return {isValid, errorMessage: t('form.errorMessage')};
         },
@@ -56,36 +52,32 @@ const AddBikeByNumberScreen: React.FC = () => {
     );
 
     const onSubmit = useCallback(
-        (bikeNumber: string) => {
-            /* TODO: show bike details as modal */
+        (data: OtherBikeDataT) => {
+            setIsFetching(true);
             const navigateToSummary = async () => {
-                setIsFetching(true);
-                try {
-                    await dispatch(setBikesListByFrameNumber(bikeNumber));
-                    setFrameNumber(bikeNumber);
+                const serial_number = Date.now().toLocaleString();
+                setFrameNumber(serial_number);
+                dispatch(
+                    setBikeData({
+                        description: {
+                            name: data.bikeName,
+                            id: null,
+                            sku: '',
+                            producer: data.manufacturer,
+                            serial_number: serial_number,
+                            bikeType: data.bikeType,
+                        },
+                    }),
+                );
+                setTimeout(() => {
                     setShowModal(true);
-                } catch (error) {
-                    /* TODO: to reafactor after error screen will be redesigned */
-                    if (error.notFound) {
-                        navigation.navigate('AddOtherBike', {
-                            frameNumber: bikeNumber,
-                        });
-                        return;
-                    }
-                    const errorMessage = error?.errorMessage || 'Error';
-                    Alert.alert('Error', errorMessage);
-                } finally {
                     setIsFetching(false);
-                }
+                }, 1000);
             };
             navigateToSummary();
         },
-        [navigation, dispatch],
+        [dispatch],
     );
-
-    const onPressFindHandler = useCallback(() => {
-        navigation.navigate('AddingInfo');
-    }, [navigation]);
 
     /**
      * Close modal and remove bike data from storage
@@ -103,27 +95,39 @@ const AddBikeByNumberScreen: React.FC = () => {
     /**
      * Ends whole process
      * and returns to start screen (BikeTab o HomeTab)
+     *
+     * When returns after adding with NFC it needs
+     * to pop 3 screens instead of 2
      */
-    const onAddBike = () => {
-        navigation.pop(2);
-    };
+    const onAddBike = useCallback(() => {
+        if (!bikeData) {
+            return;
+        }
+
+        navigation.pop(fNumber ? 3 : 2);
+    }, [navigation, fNumber, bikeData]);
 
     return (
-        <GenericScreen screenTitle={t('headerTitle')} contentBelowHeader>
-            <AddBikeByNumberContainer
+        <GenericScreen
+            screenTitle={t('headerTitle')}
+            contentBelowHeader
+            showCross={!fNumber}>
+            <AddOtherBikeContainer
                 onSubmit={onSubmit}
                 onValidate={checkIsValid}
-                onPressLink={onPressFindHandler}
                 isLoading={isFetching}
+                genericBikeData={genericBike}
             />
             <AddBikeSummaryModal
                 showModal={showModal}
                 bikeData={bd}
                 onAddBike={onAddBike}
                 onClose={onCloseModal}
+                otherBike
+                height={modalHeight}
             />
         </GenericScreen>
     );
 };
 
-export default AddBikeByNumberScreen;
+export default AddOtherBikeScreen;

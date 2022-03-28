@@ -141,7 +141,7 @@ export type BikeParamsListT = {
     BikeSummary: {
         frameNumber: string;
     };
-    BikeData: {
+    AddOtherBike: {
         frameNumber: string;
     };
     WarrantyDetails: undefined;
@@ -167,10 +167,10 @@ export type BikeSumamryNavigationPropT = MainNavigationCompositePropT<
     BikeParamsListT,
     'BikeSummary'
 >;
-export type BikeDataRouteT = RouteProp<BikeParamsListT, 'BikeData'>;
-export type BikeDataNavigationPropT = MainNavigationCompositePropT<
+export type AddOtherBikeRouteT = RouteProp<BikeParamsListT, 'AddOtherBike'>;
+export type AddOtherBikeNavigationPropT = MainNavigationCompositePropT<
     BikeParamsListT,
-    'BikeData'
+    'AddOtherBike'
 >;
 export type WarantyRouteT = RouteProp<BikeParamsListT, 'WarrantyDetails'>;
 export type WarantyNavigationPropT = MainNavigationCompositePropT<

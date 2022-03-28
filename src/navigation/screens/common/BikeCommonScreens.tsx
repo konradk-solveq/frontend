@@ -1,13 +1,20 @@
 import React from 'react';
 
 import {Stack} from '@navigation/stack';
+import {verticalAnim} from '@helpers/positioningVerical';
 
-import BikeData from '@pages/onboarding/bikeData/bikeData';
 import ServicesMap from '@pages/main/bike/servicesMap/servicesMap';
+import {AddOtherBikeScreen} from '@pages/main/addBike';
 
 const BikeCommonScreens = () => (
     <>
-        <Stack.Screen name="BikeData" component={BikeData} />
+        <Stack.Screen
+            name="AddOtherBike"
+            component={AddOtherBikeScreen}
+            options={{
+                ...verticalAnim,
+            }}
+        />
         <Stack.Screen
             name="ServicesMap"
             component={ServicesMap}

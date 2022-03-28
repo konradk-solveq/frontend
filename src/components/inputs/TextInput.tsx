@@ -12,14 +12,18 @@ import {
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
 import colors from '@theme/colors';
+import {MykrossIconFont} from '@theme/enums/iconFonts';
 
 import {AutoCapitalizeT, TextContentT} from '@components/types/textInput';
 import {Subtitle} from '@components/texts/texts';
+import {TextIcon} from '../icons';
 
 interface IProps {
     multiline?: boolean;
+    editable?: boolean;
     numberOfLines?: number;
     placeholder?: string;
+    placeholderColor?: string;
     inputName?: string;
     hint?: string;
     value?: string;
@@ -29,13 +33,16 @@ interface IProps {
     onChangeValue: (value?: string) => void;
     autoCapitalize?: AutoCapitalizeT;
     isValid?: boolean;
+    icon?: MykrossIconFont;
     testID?: string;
 }
 
 const TextInput: React.FC<IProps> = ({
     multiline = false,
+    editable = true,
     numberOfLines = 1,
     placeholder = '',
+    placeholderColor = colors.darkGrey,
     inputName = '',
     hint = '',
     value = '',
@@ -45,6 +52,7 @@ const TextInput: React.FC<IProps> = ({
     onChangeValue,
     autoCapitalize,
     isValid = true,
+    icon,
     testID = 'text-input-test-id',
 }: IProps) => {
     const validationStyle = useMemo(() => (!isValid ? styles.invalid : {}), [
@@ -59,11 +67,13 @@ const TextInput: React.FC<IProps> = ({
                 <Subtitle>{inputName}</Subtitle>
             </View>
             <TI
+                editable={editable}
                 onChangeText={onChangeValue}
                 value={value}
                 multiline={multiline}
                 numberOfLines={numberOfLines}
                 placeholder={placeholder}
+                placeholderTextColor={placeholderColor}
                 {...(maxLength && {
                     maxLength: maxLength,
                 })}
@@ -74,8 +84,13 @@ const TextInput: React.FC<IProps> = ({
                 selectionColor={colors.darkGrey}
                 testID={`${testID}-input-value`}
             />
+            {!!icon && (
+                <View style={styles.iconContainer}>
+                    <TextIcon icon={icon} iconColor={colors.black} />
+                </View>
+            )}
             <View style={styles.inputHint} testID={`${testID}-input-hint`}>
-                <Subtitle color={colors.darkGrey}>{hint}</Subtitle>
+                {!!hint && <Subtitle color={colors.darkGrey}>{hint}</Subtitle>}
             </View>
         </View>
     );
@@ -87,6 +102,7 @@ const styles = StyleSheet.create({
     },
     inputHint: {
         marginTop: getFVerticalPx(8),
+        marginHorizontal: getFHorizontalPx(16),
     },
     input: {
         fontFamily: 'DIN2014-Demi',
@@ -101,6 +117,13 @@ const styles = StyleSheet.create({
     invalid: {
         borderColor: colors.red,
         borderWidth: 0.1,
+    },
+    iconContainer: {
+        position: 'absolute',
+        height: '100%',
+        right: getFHorizontalPx(16),
+        justifyContent: 'center',
+        top: getFVerticalPx(6),
     },
 });
 
