@@ -1,4 +1,4 @@
-import React, {useEffect, useCallback, useState} from 'react';
+import React, {useEffect, useCallback, useState, useMemo} from 'react';
 import {Map, ReactionsType} from '@models/map.model';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {mapReactionsConfigSelector} from '@storage/selectors/app';
@@ -12,6 +12,7 @@ import {getFullDate} from '@src/helpers/overviews';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {addPlannedMap} from '@storage/actions/maps';
 import ListTileView from '@components/tiles/listTileView';
+import {getMapType} from '../utils/routes';
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
     mapData: Map;
@@ -47,6 +48,7 @@ const ListTile: React.FC<PropsI> = ({
 
     const [numberOfLikes, setNumberOfLikes] = useState(0);
     const notificationContext = useNotificationContext();
+    const mapType = useMemo(() => getMapType(mode), [mode]);
 
     useEffect(() => {
         setNumberOfLikes(likesNumber);
@@ -151,6 +153,13 @@ const ListTile: React.FC<PropsI> = ({
         });
     };
 
+    const onPressShare = useCallback(() => {
+        navigation.navigate({
+            name: RegularStackRoute.SHARE_ROUTE_SCREEN,
+            params: {mapID: mapData.id, mapType: mapType},
+        });
+    }, [navigation, mapData.id, mapType]);
+
     return (
         <ListTileView
             tilePressOn={onTilePressedHandler}
@@ -168,6 +177,7 @@ const ListTile: React.FC<PropsI> = ({
             addToFavoritesPressOn={handleAddToFavoritesPressOn}
             editPressOn={handleEditPressOn}
             detailsPressOn={handleDetailsPressOn}
+            onPressShare={onPressShare}
             mode={mode}
             testID={testID}
         />

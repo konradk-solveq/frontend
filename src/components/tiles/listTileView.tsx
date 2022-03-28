@@ -29,6 +29,7 @@ interface PropsI {
     addToFavoritesPressOn: () => void;
     editPressOn: () => void;
     detailsPressOn: () => void;
+    onPressShare?: () => void;
     mode: 'public' | 'my' | 'saved' | 'featured';
     testID?: string;
 }
@@ -49,6 +50,7 @@ const ListTileView: React.FC<PropsI> = ({
     addToFavoritesPressOn,
     editPressOn,
     detailsPressOn,
+    onPressShare,
     mode,
     testID,
 }) => {
@@ -70,6 +72,12 @@ const ListTileView: React.FC<PropsI> = ({
             addToFavoritesPressOn();
         }
         setSaveChecked(state);
+    };
+
+    const onPressShareHandler = () => {
+        if (onPressShare) {
+            onPressShare();
+        }
     };
 
     return (
@@ -144,7 +152,7 @@ const ListTileView: React.FC<PropsI> = ({
                                 )}
 
                                 {mode !== 'my' && (
-                                    <Pressable onPress={() => {}}>
+                                    <Pressable onPress={onPressShareHandler}>
                                         <TextIcon
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_ALT_SHARE
