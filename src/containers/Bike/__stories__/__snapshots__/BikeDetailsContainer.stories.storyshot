@@ -411,7 +411,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               }
               testID="body-primary-test-id"
             >
-              8 undefined
+              4 undefined
             </Text>
           </View>
         </View>
@@ -1458,7 +1458,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               }
               testID="body-primary-test-id"
             >
-              8 undefined
+              4 undefined
             </Text>
           </View>
         </View>
