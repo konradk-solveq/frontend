@@ -577,13 +577,13 @@
     },
     "MainBike": {
         "header": "Rower",
-        "details": "od {{name}} / nr ramy {{number}}",
+        "details": "od {{name}} nr ramy {{number}}",
         "add": "Dodaj",
         "warranty": {
             "lifetime": "dożywotnio",
             "noInfo": "brak informacji",
-            "state": "status gwarancji",
-            "toEnd": "do końca gwarancji",
+            "state": "Status gwarancji",
+            "nextOverview": "Następny przegląd za",
             "days": "dni",
             "reviews": {
                 "name": "Przeglądy",
@@ -603,7 +603,9 @@
             }
         },
         "servisMap": "Najbliższy serwis",
-        "btn": "USUŃ ROWER",
+        "btn": "Usuń rower",
+        "addBike": "Dodaj rower",
+        "bikeDetails": "Specyfikacja",
         "removeAlert": "Czy chcesz usunąć rower z aplikacji?",
         "removveAction": "Usuń",
         "cancelAction": "Anuluj",

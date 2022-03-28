@@ -1,5 +1,12 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, ScrollView, SafeAreaView} from 'react-native';
+import React, {useState, useCallback, useEffect} from 'react';
+import {
+    StyleSheet,
+    View,
+    Text,
+    ScrollView,
+    SafeAreaView,
+    Alert,
+} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {
@@ -17,18 +24,80 @@ import {getCountedDaysText} from '@helpers/reviews';
 import ServiceMapBtn from '@sharedComponents/buttons/serviceMap';
 import {RegularStackRoute} from '@navigation/route';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
+import geoBox from '@helpers/geoBox';
+import {fetchPlacesData} from '@storage/actions';
+import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
+import {useAppDispatch} from '@hooks/redux';
 
 interface Props {
     navigation: any;
     route: any;
 }
 
+const defaultRegion = {
+    latitude: 53.008773556173104,
+    latitudeDelta: 0.07588885599553308,
+    longitude: 20.89136063395526,
+    longitudeDelta: 0.4499640028797671,
+};
+
 const ReviewsDetails: React.FC<Props> = (props: Props) => {
     const {t} = useMergedTranslation('ReviewsDetails');
     const details = props.route.params.details;
-    const box = props.route.params.box;
-    const region = props.route.params.region;
-    const location = props.route.params.location;
+    const loc = useLocationProvider()?.location;
+    const [box, serBox] = useState({
+        bottom: 53.46894730287977,
+        left: 20.86694125763505,
+        right: 20.89377214236495,
+        top: 52.569019297120235,
+    });
+    const [region, serRegion] = useState(defaultRegion);
+    const [location, serLocation] = useState({
+        longitude: loc?.latitude || 20.89136063395526,
+        latitude: loc?.longitude || 53.008773556173104,
+    });
+    const dispatch = useAppDispatch();
+
+    const getCurrentLocationPositionHandler = useCallback(async () => {
+        let newBox;
+
+        if (loc) {
+            serLocation(loc);
+            newBox = geoBox(
+                {
+                    lon: loc.longitude,
+                    lat: loc.latitude,
+                },
+                35,
+            );
+            serBox(newBox);
+            serRegion({
+                latitude: loc.latitude,
+                longitude: loc.longitude,
+                latitudeDelta: Math.abs((newBox.left - newBox.right) / 2),
+                longitudeDelta: Math.abs((newBox.top - newBox.bottom) / 2),
+            });
+            try {
+                await dispatch(
+                    fetchPlacesData({
+                        bbox: [
+                            {lat: newBox.left, lng: newBox.top},
+                            {lat: newBox.right, lng: newBox.bottom},
+                        ],
+                        width: 2000,
+                    }),
+                );
+            } catch (error: any) {
+                console.error('[getCurrentLocationPositionHandler]', error);
+                const errorMessage = error?.errorMessage || error;
+                Alert.alert('Error', errorMessage);
+            }
+        }
+    }, [dispatch, loc]);
+
+    useEffect(() => {
+        getCurrentLocationPositionHandler();
+    }, [getCurrentLocationPositionHandler]);
 
     const [source, setSource] = useState(
         '<svg xmlns="http://www.w3.org/2000/svg"/>',
@@ -161,10 +230,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
             <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.area}>
-                        <AnimSvg
-                            source={source}
-                            style={[styles.animSvg, animSvgStyle]}
-                        />
+                        <AnimSvg source={source} style={animSvgStyle} />
                         <View
                             style={styles.titleBox}
                             onLayout={({nativeEvent}) =>
@@ -213,7 +279,7 @@ const ReviewsDetails: React.FC<Props> = (props: Props) => {
                         <Text style={styles.warningText}>{t('warning')}</Text>
                     </View>
 
-                    <View style={styles.spaceOnEnd} />
+                    <View />
                 </ScrollView>
             </View>
 

@@ -6,7 +6,7 @@ import {RouteMapType} from '@models/places.model';
 import {MapType} from '@models/map.model';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {selectorMapTypeEnum} from '@src/storage/selectors/map';
-import {BikeDescription, Parameters} from '@models/bike.model';
+import {BikeDescription, Parameters, Overview} from '@models/bike.model';
 
 /* TODO: Complete missing lists params (if needed) */
 
@@ -145,7 +145,9 @@ export type BikeParamsListT = {
         frameNumber: string;
     };
     WarrantyDetails: undefined;
-    ReviewsDetails: undefined;
+    ReviewsDetails: {
+        details: Overview;
+    };
     AddingInfo: undefined;
     AddBikeByNumber: {
         emptyFrame?: boolean;
