@@ -25,17 +25,20 @@ interface IProps {
     onPressClose: () => void;
     onMapLoadEnd?: () => void;
     location?: BasicCoordsType;
+    centerMapAtLocation?: BasicCoordsType /* We use this location to omit interaction with user marker */;
     routesMarkers?: MapMarkerType[];
     mapPath?: CoordsType[];
     pathType?: string;
     animateButtonsPosition?: boolean;
 }
 
+/* TODO: try to exclude logic from useEffects to custom one to avoid race conditions */
 const RoutesMapContainer: React.FC<IProps> = ({
     onWebViewMessage,
     onPressClose,
     onMapLoadEnd,
     location,
+    centerMapAtLocation,
     routesMarkers,
     mapPath,
     pathType,
@@ -106,6 +109,24 @@ const RoutesMapContainer: React.FC<IProps> = ({
             }
         }
     }, [location, mapLoaded]);
+
+    /**
+     * Set only center of map without changing
+     * user marker position
+     */
+    useEffect(() => {
+        if (centerMapAtLocation && mapLoaded) {
+            const pos = {
+                latitude: centerMapAtLocation.latitude,
+                longitude: centerMapAtLocation.longitude,
+            };
+            const p = jsonStringify(pos);
+            if (p) {
+                setJsWV(`setPosOnMap(${p});true;`);
+                posRef.current = true;
+            }
+        }
+    }, [centerMapAtLocation, mapLoaded]);
 
     /**
      * Set markers on the map
