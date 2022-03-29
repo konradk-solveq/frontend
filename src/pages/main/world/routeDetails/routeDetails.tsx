@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useMemo} from 'react';
 import {Platform, SafeAreaView, Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
@@ -86,10 +86,25 @@ const RouteDetails = () => {
     const userID = useAppSelector(userIdSelector);
     const images = getImagesThumbs({
         images:
-            (shareID && !mapData ? sharedMapData?.images : mapData?.images) ||
-            [],
+            (shareID && !mapData
+                ? sharedMapData?.pictures.images
+                : mapData?.pictures.images) || [],
         thumbnails: [],
     });
+    /**
+     * We use the last image from an array because it contains images that have progressively better quality
+     */
+    const thumbnail = useMemo(
+        () =>
+            shareID && !mapData
+                ? sharedMapData?.pictures.thumbnails?.[
+                      sharedMapData?.pictures.thumbnails.length - 1
+                  ]
+                : mapData?.pictures.thumbnails?.[
+                      mapData?.pictures.thumbnails.length - 1
+                  ] || [],
+        [mapData, shareID, sharedMapData?.pictures.thumbnails],
+    );
 
     const [showBottomModal, setShowBottomModal] = useState(false);
 
@@ -253,6 +268,7 @@ const RouteDetails = () => {
                                             : mapData
                                     }
                                     images={images}
+                                    thumbnail={thumbnail}
                                     isPrivateView={privateMap}
                                     isFavView={favouriteMap}
                                     isFeaturedView={featuredMap}

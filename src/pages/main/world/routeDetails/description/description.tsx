@@ -5,7 +5,7 @@ import {View, Text} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
 import {useAppSelector} from '@hooks/redux';
-import {Map} from '@models/map.model';
+import {Map, Thumbnails} from '@models/map.model';
 import {RegularStackRoute} from '@navigation/route';
 import {ImageBtn} from '@sharedComponents/buttons';
 
@@ -20,6 +20,7 @@ import styles from './styles';
 interface IProps {
     mapData: Map | undefined;
     images: {images: string[]; mapImg: string; fullSizeImages: string[]};
+    thumbnail?: Thumbnails;
     isPrivateView?: boolean;
     isFavView?: boolean;
     isFeaturedView?: boolean;
@@ -31,6 +32,7 @@ const Description: React.FC<IProps> = ({
     isPrivateView,
     isFavView,
     isFeaturedView,
+    thumbnail,
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details');
     const navigation = useNavigation();
@@ -153,9 +155,9 @@ const Description: React.FC<IProps> = ({
                     {t('mapTitle')}
                 </Text>
                 <View style={styles.mapImage}>
-                    {images?.mapImg ? (
+                    {thumbnail?.url ? (
                         <ImageBtn
-                            imgUrl={images.mapImg}
+                            imgUrl={thumbnail?.url}
                             onPress={onNavigateToMapPreview}
                         />
                     ) : (
