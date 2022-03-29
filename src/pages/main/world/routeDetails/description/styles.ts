@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         justifyContent: 'center',
         alignItems: 'center',
-        height: getHorizontalPx(285),
+        height: getHorizontalPx(160),
     },
     mImg: {
         width: '100%',
