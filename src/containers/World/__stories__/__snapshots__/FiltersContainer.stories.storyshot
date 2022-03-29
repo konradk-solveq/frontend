@@ -16,7 +16,7 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "#333333BE",
+            "backgroundColor": "#3333337F",
             "height": "100%",
             "position": "absolute",
             "width": "100%",

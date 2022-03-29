@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useMemo, useCallback} from 'react';
 import {
     GestureResponderEvent,
     Pressable,
@@ -24,13 +24,16 @@ export interface IProps {
     textColor?: string;
     disabledTextColor?: string;
     icon?: MykrossIconFont /* Font symbol from 'mykross' font */;
+    iconRight?: boolean /* Font symbol from 'mykross' font */;
     iconSize?: number;
+    iconColor?: string;
     disabled?: boolean;
     withLoader?: boolean;
     loaderColor?: string;
     withoutShadow?: boolean;
     style?: ViewStyle | ViewStyle[];
     containerStyle?: ViewStyle | ViewStyle[];
+    iconStyle?: ViewStyle | ViewStyle[];
     testID?: string;
 }
 
@@ -42,9 +45,11 @@ const Button: React.FC<IProps> = ({
     color = colors.white,
     disabledColor = colors.white,
     textColor = colors.black,
+    iconColor,
     disabledTextColor = colors.grey,
     icon,
     iconSize = 20,
+    iconRight = false,
     disabled = false,
     loaderColor,
     withLoader,
@@ -63,9 +68,27 @@ const Button: React.FC<IProps> = ({
         textColor,
         disabledTextColor,
     ]);
+    const iColor = useMemo(() => (iconColor ? iconColor : tColor), [
+        iconColor,
+        tColor,
+    ]);
     const shadowStyle = useMemo(() => (!withoutShadow ? styles.shadow : {}), [
         withoutShadow,
     ]);
+
+    const Icon = useCallback(
+        ({iconStyle}) =>
+            icon ? (
+                <TextIcon
+                    icon={icon}
+                    iconColor={iColor}
+                    iconSize={iconSize}
+                    style={iconStyle}
+                    testID={`${testID}-icon`}
+                />
+            ) : null,
+        [iColor, icon, iconSize, testID],
+    );
 
     return (
         <Pressable
@@ -82,21 +105,14 @@ const Button: React.FC<IProps> = ({
                 ]}>
                 {!withLoader ? (
                     <>
-                        {icon && (
-                            <TextIcon
-                                icon={icon}
-                                iconColor={tColor}
-                                iconSize={iconSize}
-                                style={styles.icon}
-                                testID={`${testID}-icon`}
-                            />
-                        )}
+                        {!iconRight && <Icon iconStyle={styles.leftIcon} />}
                         <Demi18h28
                             testID={`${testID}-text`}
                             style={{color: tColor}}
                             adjustsFontSizeToFit={adjustsTextSizeToFit}>
                             {text}
                         </Demi18h28>
+                        {iconRight && <Icon iconStyle={styles.rightIcon} />}
                     </>
                 ) : (
                     <Loader testID={`${testID}-loader`} color={loaderColor} />
@@ -126,8 +142,11 @@ const styles = StyleSheet.create({
         fontSize: getFFontSize(18),
         lineHeight: getFFontSize(24),
     },
-    icon: {
+    leftIcon: {
         marginRight: getFHorizontalPx(8),
+    },
+    rightIcon: {
+        marginLeft: getFHorizontalPx(8),
     },
     shadow: {
         shadowColor: colors.black,

@@ -1,4 +1,4 @@
-import React, {ReactNode, useEffect} from 'react';
+import React, {ReactNode, useEffect, useMemo} from 'react';
 import {
     Modal,
     StyleSheet,
@@ -26,6 +26,7 @@ interface IProps extends ModalBaseProps {
     containerStyle?: ViewStyle | ViewStyle[];
     testID?: string;
     children?: ReactNode;
+    height?: number;
 }
 
 const BackdropModal: React.FC<IProps> = ({
@@ -35,18 +36,25 @@ const BackdropModal: React.FC<IProps> = ({
     visible,
     testID,
     children,
+    height,
     ...props
 }: IProps) => {
     const {top} = useSafeAreaInsets();
-    const modalHeight = useSharedValue(top);
+    const marginTop = useMemo(
+        () => (height ? screenHeight - height : top + getFVerticalPx(8)),
+        [height, top],
+    );
+    const modalHeight = useSharedValue(
+        height ? screenHeight - height : top + getFVerticalPx(8),
+    );
 
     useEffect(() => {
         if (visible) {
-            modalHeight.value = top + getFVerticalPx(8);
+            modalHeight.value = marginTop;
         } else {
             modalHeight.value = screenHeight;
         }
-    }, [modalHeight, visible, top]);
+    }, [modalHeight, visible, marginTop]);
     const modalAnimation = useAnimatedStyle(() => ({
         paddingTop: withTiming(modalHeight.value, {duration: 750}),
     }));
@@ -80,7 +88,7 @@ export default BackdropModal;
 
 const styles = StyleSheet.create({
     backdrop: {
-        backgroundColor: `${colors.black}BE`,
+        backgroundColor: `${colors.black}7F`,
         position: 'absolute',
         height: '100%',
         width: '100%',

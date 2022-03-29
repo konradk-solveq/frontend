@@ -26,7 +26,7 @@ exports[`Storyshots components/modals/BackdropModal Customized 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "#333333BE",
+            "backgroundColor": "#3333337F",
             "height": "100%",
             "position": "absolute",
             "width": "100%",
@@ -80,7 +80,7 @@ exports[`Storyshots components/modals/BackdropModal Default 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "#333333BE",
+            "backgroundColor": "#3333337F",
             "height": "100%",
             "position": "absolute",
             "width": "100%",

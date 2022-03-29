@@ -10,7 +10,7 @@ interface IProps {
     icon: MykrossIconFont | IconFont /* Font symbol from 'mykross' font */;
     iconColor?: string;
     iconSize?: number;
-    style?: ViewStyle;
+    style?: ViewStyle | ViewStyle[];
     testID?: string;
 }
 
