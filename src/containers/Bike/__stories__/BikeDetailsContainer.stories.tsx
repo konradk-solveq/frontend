@@ -7,7 +7,7 @@ import {I18nextProvider} from 'react-i18next';
 import i18next from '@translations/i18next';
 import BikeDetailsContainer from '@containers/Bike/BikeDetailsContainer';
 import {bike} from '@containers/Bike/__mocks__/bikeDetailsContainerMocks';
-import {object} from '@storybook/addon-knobs';
+import {object, boolean} from '@storybook/addon-knobs';
 
 storiesOf('containers/Bike/BikeDetailsContainer', module)
     .addDecorator(getStory => (
@@ -16,18 +16,22 @@ storiesOf('containers/Bike/BikeDetailsContainer', module)
     .add('Default', () => (
         <BikeDetailsContainer
             bike={bike}
-            onAddKrossBike={() => {}}
-            handleParams={() => {}}
             warrantyData={bike.warranty}
-            handleServicesMap={() => {}}
-            onRemoveBikeHandler={() => {}}
-            onReviewPress={() => {}}
+            showBikeChangeButton={false}
+            onChangeBikeHandler={action('onChangeBikeHandler')}
+            onAddKrossBike={action('onAddKrossBike')}
+            handleParams={action('handleParams')}
+            handleServicesMap={action('handleServicesMap')}
+            onRemoveBikeHandler={action('onRemoveBikeHandler')}
+            onReviewPress={action('onReviewPress')}
         />
     ))
     .add('Customized', () => (
         <BikeDetailsContainer
             bike={object('Bike', bike)}
             warrantyData={object('Warranty', bike.warranty)}
+            showBikeChangeButton={boolean('Show change bike button', false)}
+            onChangeBikeHandler={action('onChangeBikeHandler')}
             onAddKrossBike={action('onAddKrossBike')}
             handleParams={action('handleParams')}
             handleServicesMap={action('handleServicesMap')}

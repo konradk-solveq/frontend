@@ -53,6 +53,7 @@ storiesOf('components/buttons/Button', module)
             iconSize={number('Icon size', 24)}
             disabled={boolean('Disable button', false)}
             withLoader={boolean('Display loader', false)}
+            iconRight={boolean('Icon right', false)}
             withoutShadow={boolean('Disable shadow', false)}
             adjustsTextSizeToFit={boolean('Adjust text size to fit', false)}
             style={object('Icon style', styles.button)}

@@ -14,6 +14,7 @@ import {getFHorizontalPx, getFVerticalPx} from '@helpers/appLayoutDimensions';
 import {UserBike} from '@models/userBike.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {Warranty as WarrantyI, Overview} from '@models/bike.model';
+import BikeChangeButton from '@pages/main/bike/components/buttons/BikeChangeButton';
 
 interface IProps {
     bike: UserBike | null;
@@ -22,6 +23,8 @@ interface IProps {
     warrantyData: WarrantyI | undefined;
     handleServicesMap: () => void;
     onRemoveBikeHandler: () => void;
+    onChangeBikeHandler: () => void;
+    showBikeChangeButton: boolean;
     onReviewPress: (e: Overview) => void;
 }
 
@@ -32,6 +35,8 @@ const BikeDetailsContainer = ({
     warrantyData,
     handleServicesMap,
     onRemoveBikeHandler,
+    onChangeBikeHandler,
+    showBikeChangeButton,
     onReviewPress,
 }: IProps) => {
     const {t} = useMergedTranslation('MainBike');
@@ -48,6 +53,14 @@ const BikeDetailsContainer = ({
         [],
     );
 
+    /**
+     * Only the first url returns a valid image
+     */
+    const imageData = useMemo(
+        () => (bike?.images?.length ? [bike?.images?.[0]] : [defaultBike]),
+        [bike?.images],
+    );
+
     const carouselWidth = useMemo(() => getFHorizontalPx(390), []);
     const handleCarouselScroll = useCallback(index => {
         setPaginationIndex(index);
@@ -57,14 +70,23 @@ const BikeDetailsContainer = ({
             <ScrollView
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={false}>
-                <Pressable onPress={onAddKrossBike}>
-                    <BodyPrimary style={styles.headerButton}>
-                        {t('addBike')}
-                    </BodyPrimary>
-                </Pressable>
+                {showBikeChangeButton ? (
+                    <View style={styles.headerButtonContainer}>
+                        <BikeChangeButton
+                            text={bike?.description?.name || ''}
+                            onPress={onChangeBikeHandler}
+                        />
+                    </View>
+                ) : (
+                    <Pressable onPress={onAddKrossBike}>
+                        <BodyPrimary style={styles.headerButton}>
+                            {t('addBike')}
+                        </BodyPrimary>
+                    </Pressable>
+                )}
                 <Carousel
                     ref={carouselRef}
-                    data={bike?.images?.length ? bike?.images : [defaultBike]}
+                    data={imageData}
                     renderItem={renderCarouselImage}
                     sliderWidth={carouselWidth}
                     itemWidth={carouselWidth}
@@ -73,7 +95,7 @@ const BikeDetailsContainer = ({
                     loop={true}
                 />
                 <Pagination
-                    dotsLength={bike?.images?.length || 0}
+                    dotsLength={imageData.length}
                     activeDotIndex={paginationIndex}
                     dotStyle={styles.carouselDot}
                     inactiveDotStyle={styles.inactiveCarouselDot}
@@ -109,9 +131,9 @@ const BikeDetailsContainer = ({
                                     bike?.warranty
                                         ? warrantyData?.overviews[0]?.date
                                             ? countDaysToEnd(
-                                                  warrantyData.overviews[0]
-                                                      .date,
-                                              )
+                                                warrantyData.overviews[0]
+                                                    .date,
+                                            )
                                             : null
                                         : undefined
                                 }
@@ -170,6 +192,12 @@ const styles = StyleSheet.create({
         width: '100%',
         textAlign: 'right',
         color: colors.red,
+    },
+    headerButtonContainer: {
+        marginBottom: getFVerticalPx(32),
+        marginTop: getFVerticalPx(16),
+        width: '100%',
+        alignItems: 'center',
     },
     carousel: {
         height: getFVerticalPx(250),

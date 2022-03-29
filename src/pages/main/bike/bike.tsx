@@ -16,6 +16,7 @@ import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {nfcIsSupported} from '@helpers/nfc';
 import BikeDetailsContainer from '@containers/Bike/BikeDetailsContainer';
 import {Overview} from '@models/bike.model';
+import ChangeBikeModal from '@pages/main/bike/components/modal/ChangeBikeModal';
 
 interface Props {
     navigation: any;
@@ -32,6 +33,12 @@ const Bike: React.FC<Props> = (props: Props) => {
     const genericBikeData = useAppSelector(genericBikeSelector);
 
     const [nfc, setNfc] = useState(false);
+    const [showBottomModal, setShowBottomModal] = useState(false);
+
+    const handleBikeChange = (bike: UserBike) => {
+        setBike(bike);
+        setShowBottomModal(false);
+    };
 
     nfcIsSupported().then(r => {
         setNfc(r);
@@ -82,12 +89,21 @@ const Bike: React.FC<Props> = (props: Props) => {
         navigation.navigate(nfc ? 'AddBike' : 'AddBikeByNumber', {
             emptyFrame: true,
         });
+        setShowBottomModal(false);
     }, [navigation, nfc]);
 
     const onReviewPress = (e: Overview) => {
         props.navigation.navigate(RegularStackRoute.REVIEWS_DETAILS_SCREEN, {
             details: e,
         });
+    };
+
+    const onChangeBikeHandler = () => {
+        setShowBottomModal(prev => !prev);
+    };
+
+    const onCloseBottomModal = () => {
+        setShowBottomModal(false);
     };
 
     const onAddOtherBike = useCallback(() => {
@@ -98,17 +114,29 @@ const Bike: React.FC<Props> = (props: Props) => {
 
     const warrantyData = bike?.warranty || genericBikeData?.warranty;
     return (
-        <GenericScreen hideBackArrow>
+        <GenericScreen hideBackArrow noHeader>
             {hasAnyBikesAdded ? (
-                <BikeDetailsContainer
-                    bike={bike}
-                    onAddKrossBike={onAddKrossBike}
-                    handleParams={handleParams}
-                    warrantyData={warrantyData}
-                    handleServicesMap={handleServicesMap}
-                    onRemoveBikeHandler={onRemoveBikeHandler}
-                    onReviewPress={onReviewPress}
-                />
+                <>
+                    <BikeDetailsContainer
+                        bike={bike}
+                        showBikeChangeButton={bikes.length > 1}
+                        onAddKrossBike={onAddKrossBike}
+                        handleParams={handleParams}
+                        warrantyData={warrantyData}
+                        handleServicesMap={handleServicesMap}
+                        onRemoveBikeHandler={onRemoveBikeHandler}
+                        onChangeBikeHandler={onChangeBikeHandler}
+                        onReviewPress={onReviewPress}
+                    />
+                    <ChangeBikeModal
+                        visible={showBottomModal}
+                        onCloseBottomModal={onCloseBottomModal}
+                        bikes={bikes}
+                        onBikeSelect={handleBikeChange}
+                        selectedBike={bike}
+                        onAddKrossBike={onAddKrossBike}
+                    />
+                </>
             ) : (
                 <NoBikesContainer
                     onPressPrimary={onAddKrossBike}
