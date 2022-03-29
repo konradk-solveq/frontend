@@ -35,6 +35,7 @@ storiesOf('containers/World/RoutesMapContainer', module)
     .add('Default', () => (
         <RoutesMapContainer
             location={object('User Location', location)}
+            centerMapAtLocation={object('Map center Location', location)}
             onPressClose={action('onPressClose')}
             onMapLoadEnd={action('onMapLoadEnd')}
             onWebViewMessage={action('onWebViewMessage')}

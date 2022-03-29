@@ -29,6 +29,9 @@ const RoutesMap: React.FC = () => {
 
     const {location} = useLocationProvider();
     const [loc, setLoc] = useState<BasicCoordsType | undefined>(globalLcation);
+    const [centerMapAtLocation, setCenterMapAtLocation] = useState<
+        BasicCoordsType | undefined
+    >();
     const [routeInfo, setRouteInfo] = useState({
         id: '',
         mapType: selectorMapTypeEnum.regular,
@@ -133,7 +136,7 @@ const RoutesMap: React.FC = () => {
                      * Clear param after new location has been set.
                      */
                     navigation.setParams({nearestPoint: undefined});
-                    setLoc(locationToSet);
+                    setCenterMapAtLocation(locationToSet);
                 }
             }
         }
@@ -240,6 +243,7 @@ const RoutesMap: React.FC = () => {
                 mapPath={mapData?.path}
                 pathType={routeInfo.mapType}
                 animateButtonsPosition={bottomSheetWithDetails}
+                centerMapAtLocation={centerMapAtLocation}
             />
             <BottomModal show={bottomSheetWithDetails}>
                 <RouteMapDetailsContainer
