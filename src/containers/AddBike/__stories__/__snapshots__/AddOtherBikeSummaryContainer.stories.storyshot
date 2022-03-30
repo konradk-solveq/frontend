@@ -40,7 +40,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Customized 1
         focusable={false}
         height={288.46153846153845}
         meetOrSlice={0}
-        minX={-5}
+        minX={0}
         minY={0}
         style={
           Array [
@@ -377,7 +377,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Default 1`] 
         focusable={false}
         height={288.46153846153845}
         meetOrSlice={0}
-        minX={-5}
+        minX={0}
         minY={0}
         style={
           Array [
