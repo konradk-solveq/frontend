@@ -12,7 +12,11 @@ import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {globalLocationSelector} from '@storage/selectors/app';
 
 import GenericScreen from '@pages/template/GenericScreen';
-import {RouteMapDetailsContainer, RoutesMapContainer} from '@containers/World';
+import {
+    RouteMapDetailsContainer,
+    RoutesMapContainer,
+    RoutesMapDetailsPlaceholderContainer,
+} from '@containers/World';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {selectorMapTypeEnum} from '@storage/selectors';
 import {addPlannedMap, fetchMapIfNotExistsLocally} from '@storage/actions/maps';
@@ -93,6 +97,7 @@ const RoutesMap: React.FC = () => {
     const isPublished = useMemo(() => mapData?.isPublic || false, [
         mapData?.isPublic,
     ]);
+    const canOpenModal = useMemo(() => !!mapData, [mapData]);
 
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
     const routeMapMarkers = useMemo(
@@ -189,13 +194,14 @@ const RoutesMap: React.FC = () => {
     );
 
     /**
-     * Show route details component only when data exists
+     * Show route data summary whenever mapID exists.
+     * When no data exists placeholder will be shown.
      */
     useEffect(() => {
         InteractionManager.runAfterInteractions(() => {
-            setBottomSheetWithDetails(mapData ? true : false);
+            setBottomSheetWithDetails(routeInfo.id || mapID ? true : false);
         });
-    }, [mapData]);
+    }, [routeInfo.id, mapID]);
 
     const onRotueDetailsActionHandler = useCallback(
         (actionType: RouteDetailsActionT) => {
@@ -245,14 +251,18 @@ const RoutesMap: React.FC = () => {
                 animateButtonsPosition={bottomSheetWithDetails}
                 centerMapAtLocation={centerMapAtLocation}
             />
-            <BottomModal show={bottomSheetWithDetails}>
-                <RouteMapDetailsContainer
-                    mapData={mapData}
-                    mapImages={mapImages}
-                    onPressAction={onRotueDetailsActionHandler}
-                    isPrivate={isCreatedByUser}
-                    isPublished={isPublished}
-                />
+            <BottomModal show={bottomSheetWithDetails} canOpen={canOpenModal}>
+                {mapData ? (
+                    <RouteMapDetailsContainer
+                        mapData={mapData}
+                        mapImages={mapImages}
+                        onPressAction={onRotueDetailsActionHandler}
+                        isPrivate={isCreatedByUser}
+                        isPublished={isPublished}
+                    />
+                ) : (
+                    <RoutesMapDetailsPlaceholderContainer />
+                )}
             </BottomModal>
         </GenericScreen>
     );

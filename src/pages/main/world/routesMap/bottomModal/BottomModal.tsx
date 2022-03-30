@@ -14,14 +14,22 @@ import {BottomModal as BM} from '@components/modals';
 interface IProps {
     show?: boolean;
     children?: ReactNode;
+    canOpen?: boolean;
 }
 
-const BottomModal: React.FC<IProps> = ({show = false, children}: IProps) => {
+const BottomModal: React.FC<IProps> = ({
+    show = false,
+    children,
+    canOpen = true,
+}: IProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const onSwipeFlatButton = useCallback(() => {
+        if (!canOpen) {
+            return false;
+        }
         setIsOpen(prev => !prev);
-    }, []);
+    }, [canOpen]);
 
     return (
         <BM

@@ -7,6 +7,7 @@ import '@components/slider/__stories__';
 import '@components/modals/__stories__';
 import '@components/divider/__stories__';
 import '@components/inputs/__stories__';
+import '@components/placeholders/__stories__';
 
 import '@containers/World/__stories__';
 import '@containers/World/components/__stories__';
