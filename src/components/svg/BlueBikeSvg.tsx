@@ -22,7 +22,7 @@ const BikeSvg: React.FC<IProps> = ({
         <Svg
             width={size}
             height={size}
-            viewBox={`-5 0 ${box} ${box}`}
+            viewBox={`0 0 ${box} ${box}`}
             fill="none">
             <Circle cx="75" cy="76" r="75" fill="#FAFAFA" />
             <Path

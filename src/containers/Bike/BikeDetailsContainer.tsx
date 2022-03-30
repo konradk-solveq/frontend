@@ -2,7 +2,6 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {Pressable, View, StyleSheet, Image} from 'react-native';
 import {BodyPrimary, Header1, Subtitle} from '@components/texts/texts';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
-import defaultBike from '@pages/main/bike/components/images/default.png';
 import Warranty from '@pages/main/bike/components/warranty';
 import {countDaysToEnd} from '@helpers/warranty';
 import Reviews from '@pages/main/bike/components/reviews';
@@ -15,6 +14,7 @@ import {UserBike} from '@models/userBike.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {Warranty as WarrantyI, Overview} from '@models/bike.model';
 import BikeChangeButton from '@pages/main/bike/components/buttons/BikeChangeButton';
+import BlueBikeSvg from '@components/svg/BlueBikeSvg';
 
 interface IProps {
     bike: UserBike | null;
@@ -57,7 +57,7 @@ const BikeDetailsContainer = ({
      * Only the first url returns a valid image
      */
     const imageData = useMemo(
-        () => (bike?.images?.length ? [bike?.images?.[0]] : [defaultBike]),
+        () => (bike?.images?.length ? [bike?.images?.[0]] : []),
         [bike?.images],
     );
 
@@ -84,24 +84,32 @@ const BikeDetailsContainer = ({
                         </BodyPrimary>
                     </Pressable>
                 )}
-                <Carousel
-                    ref={carouselRef}
-                    data={imageData}
-                    renderItem={renderCarouselImage}
-                    sliderWidth={carouselWidth}
-                    itemWidth={carouselWidth}
-                    containerCustomStyle={styles.carousel}
-                    onSnapToItem={handleCarouselScroll}
-                    loop={true}
-                />
-                <Pagination
-                    dotsLength={imageData.length}
-                    activeDotIndex={paginationIndex}
-                    dotStyle={styles.carouselDot}
-                    inactiveDotStyle={styles.inactiveCarouselDot}
-                    inactiveDotOpacity={1}
-                    inactiveDotScale={1}
-                />
+                {imageData?.length ? (
+                    <>
+                        <Carousel
+                            ref={carouselRef}
+                            data={imageData}
+                            renderItem={renderCarouselImage}
+                            sliderWidth={carouselWidth}
+                            itemWidth={carouselWidth}
+                            containerCustomStyle={styles.carousel}
+                            onSnapToItem={handleCarouselScroll}
+                            loop={true}
+                        />
+                        <Pagination
+                            dotsLength={imageData.length}
+                            activeDotIndex={paginationIndex}
+                            dotStyle={styles.carouselDot}
+                            inactiveDotStyle={styles.inactiveCarouselDot}
+                            inactiveDotOpacity={1}
+                            inactiveDotScale={1}
+                        />
+                    </>
+                ) : (
+                    <View style={styles.bikeImage}>
+                        <BlueBikeSvg imageSize={250} />
+                    </View>
+                )}
                 {bike?.description && (
                     <>
                         <Header1 style={styles.bikeName}>
@@ -239,6 +247,10 @@ const styles = StyleSheet.create({
     bikeDetails: {
         width: '100%',
         textAlign: 'center',
+    },
+    bikeImage: {
+        width: '100%',
+        alignItems: 'center',
     },
     warranty: {
         marginTop: getFVerticalPx(24),
