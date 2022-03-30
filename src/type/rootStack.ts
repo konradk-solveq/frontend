@@ -85,7 +85,7 @@ export type KrossWorldParamsListT = {
         sectionName: string;
         featuredMapData?: MapType[];
     };
-    ShareRouteScreen: {mapID: string; mapType: selectorMapTypeEnum};
+    ShareRouteScreen: {mapID: string; mapType?: selectorMapTypeEnum};
 };
 export type RoutesMapRouteT = RouteProp<KrossWorldParamsListT, 'RoutesMap'>;
 export type RoutesMapNavigationPropT = MainNavigationCompositePropT<
