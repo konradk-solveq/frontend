@@ -1,0 +1,1042 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/World/RoutesMapDetailsPlaceholderContainer Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "paddingTop": "60%",
+      },
+    ]
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "height": "100%",
+          "paddingHorizontal": 28.985507246376812,
+          "width": "100%",
+        }
+      }
+    >
+      <View>
+        <RNCMaskedView
+          style={
+            Array [
+              Object {
+                "height": 30.03080568720379,
+                "width": 530.7692307692308,
+              },
+              undefined,
+            ]
+          }
+          testID="animated-placeholder"
+        >
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "backgroundColor": "#000000",
+                    "borderRadius": 11.538461538461538,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "height": 30.03080568720379,
+                    "width": 530.7692307692308,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexGrow": 1,
+                },
+                Object {
+                  "backgroundColor": "#eaeaea",
+                },
+              ]
+            }
+            testID="animated-placeholder-background-color"
+          />
+          <View
+            collapsable={false}
+            nativeID="animatedComponent"
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "transform": Array [
+                  Object {
+                    "translateX": -750,
+                  },
+                ],
+              }
+            }
+          >
+            <RNCMaskedView
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                pointerEvents="none"
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <BVLinearGradient
+                  colors={
+                    Array [
+                      0,
+                      4278190080,
+                      0,
+                    ]
+                  }
+                  endPoint={
+                    Object {
+                      "x": 1,
+                      "y": 0,
+                    }
+                  }
+                  locations={null}
+                  startPoint={
+                    Object {
+                      "x": 0,
+                      "y": 0,
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    ]
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {
+                      "backgroundColor": "#BDBDBD",
+                    },
+                  ]
+                }
+                testID="animated-placeholder-highlight-color"
+              />
+            </RNCMaskedView>
+          </View>
+        </RNCMaskedView>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "height": 31.61137440758294,
+              "paddingHorizontal": 76.92307692307692,
+              "width": "100%",
+            },
+            Object {
+              "height": 18.966824644549764,
+            },
+            undefined,
+          ]
+        }
+      />
+      <View>
+        <RNCMaskedView
+          style={
+            Array [
+              Object {
+                "height": 30.03080568720379,
+                "width": 223.0769230769231,
+              },
+              undefined,
+            ]
+          }
+          testID="animated-placeholder"
+        >
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "backgroundColor": "#000000",
+                    "borderRadius": 11.538461538461538,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "height": 30.03080568720379,
+                    "width": 223.0769230769231,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexGrow": 1,
+                },
+                Object {
+                  "backgroundColor": "#eaeaea",
+                },
+              ]
+            }
+            testID="animated-placeholder-background-color"
+          />
+          <View
+            collapsable={false}
+            nativeID="animatedComponent"
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "transform": Array [
+                  Object {
+                    "translateX": -750,
+                  },
+                ],
+              }
+            }
+          >
+            <RNCMaskedView
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                pointerEvents="none"
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <BVLinearGradient
+                  colors={
+                    Array [
+                      0,
+                      4278190080,
+                      0,
+                    ]
+                  }
+                  endPoint={
+                    Object {
+                      "x": 1,
+                      "y": 0,
+                    }
+                  }
+                  locations={null}
+                  startPoint={
+                    Object {
+                      "x": 0,
+                      "y": 0,
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    ]
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {
+                      "backgroundColor": "#BDBDBD",
+                    },
+                  ]
+                }
+                testID="animated-placeholder-highlight-color"
+              />
+            </RNCMaskedView>
+          </View>
+        </RNCMaskedView>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "height": 31.61137440758294,
+              "paddingHorizontal": 76.92307692307692,
+              "width": "100%",
+            },
+            Object {
+              "height": 30.03080568720379,
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <View>
+          <RNCMaskedView
+            style={
+              Array [
+                Object {
+                  "height": 30.03080568720379,
+                  "width": 207.6923076923077,
+                },
+                undefined,
+              ]
+            }
+            testID="animated-placeholder"
+          >
+            <View
+              pointerEvents="none"
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
+                    Object {
+                      "backgroundColor": "#000000",
+                      "borderRadius": 11.538461538461538,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 30.03080568720379,
+                      "width": 103.84615384615385,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexGrow": 1,
+                  },
+                  Object {
+                    "backgroundColor": "#eaeaea",
+                  },
+                ]
+              }
+              testID="animated-placeholder-background-color"
+            />
+            <View
+              collapsable={false}
+              nativeID="animatedComponent"
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "transform": Array [
+                    Object {
+                      "translateX": -750,
+                    },
+                  ],
+                }
+              }
+            >
+              <RNCMaskedView
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <View
+                  pointerEvents="none"
+                  style={
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <BVLinearGradient
+                    colors={
+                      Array [
+                        0,
+                        4278190080,
+                        0,
+                      ]
+                    }
+                    endPoint={
+                      Object {
+                        "x": 1,
+                        "y": 0,
+                      }
+                    }
+                    locations={null}
+                    startPoint={
+                      Object {
+                        "x": 0,
+                        "y": 0,
+                      }
+                    }
+                    style={
+                      Array [
+                        Object {
+                          "bottom": 0,
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        },
+                      ]
+                    }
+                  />
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "backgroundColor": "#BDBDBD",
+                      },
+                    ]
+                  }
+                  testID="animated-placeholder-highlight-color"
+                />
+              </RNCMaskedView>
+            </View>
+          </RNCMaskedView>
+        </View>
+        <View>
+          <RNCMaskedView
+            style={
+              Array [
+                Object {
+                  "height": 30.03080568720379,
+                  "width": 180.76923076923077,
+                },
+                undefined,
+              ]
+            }
+            testID="animated-placeholder"
+          >
+            <View
+              pointerEvents="none"
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                    },
+                    Object {
+                      "backgroundColor": "#000000",
+                      "borderRadius": 11.538461538461538,
+                    },
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "height": 30.03080568720379,
+                      "width": 180.76923076923077,
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexGrow": 1,
+                  },
+                  Object {
+                    "backgroundColor": "#eaeaea",
+                  },
+                ]
+              }
+              testID="animated-placeholder-background-color"
+            />
+            <View
+              collapsable={false}
+              nativeID="animatedComponent"
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "transform": Array [
+                    Object {
+                      "translateX": -750,
+                    },
+                  ],
+                }
+              }
+            >
+              <RNCMaskedView
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <View
+                  pointerEvents="none"
+                  style={
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    }
+                  }
+                >
+                  <BVLinearGradient
+                    colors={
+                      Array [
+                        0,
+                        4278190080,
+                        0,
+                      ]
+                    }
+                    endPoint={
+                      Object {
+                        "x": 1,
+                        "y": 0,
+                      }
+                    }
+                    locations={null}
+                    startPoint={
+                      Object {
+                        "x": 0,
+                        "y": 0,
+                      }
+                    }
+                    style={
+                      Array [
+                        Object {
+                          "bottom": 0,
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        },
+                      ]
+                    }
+                  />
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                      Object {
+                        "backgroundColor": "#BDBDBD",
+                      },
+                    ]
+                  }
+                  testID="animated-placeholder-highlight-color"
+                />
+              </RNCMaskedView>
+            </View>
+          </RNCMaskedView>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "height": 31.61137440758294,
+              "paddingHorizontal": 76.92307692307692,
+              "width": "100%",
+            },
+            Object {
+              "height": 22.127962085308056,
+            },
+            undefined,
+          ]
+        }
+      />
+      <View>
+        <RNCMaskedView
+          style={
+            Array [
+              Object {
+                "height": 44.25592417061611,
+                "width": 221.27962085308056,
+              },
+              undefined,
+            ]
+          }
+          testID="animated-placeholder"
+        >
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "backgroundColor": "#000000",
+                    "borderRadius": 50,
+                    "height": 44.25592417061611,
+                    "width": 44.25592417061611,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexGrow": 1,
+                },
+                Object {
+                  "backgroundColor": "#eaeaea",
+                },
+              ]
+            }
+            testID="animated-placeholder-background-color"
+          />
+          <View
+            collapsable={false}
+            nativeID="animatedComponent"
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "transform": Array [
+                  Object {
+                    "translateX": -750,
+                  },
+                ],
+              }
+            }
+          >
+            <RNCMaskedView
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                pointerEvents="none"
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <BVLinearGradient
+                  colors={
+                    Array [
+                      0,
+                      4278190080,
+                      0,
+                    ]
+                  }
+                  endPoint={
+                    Object {
+                      "x": 1,
+                      "y": 0,
+                    }
+                  }
+                  locations={null}
+                  startPoint={
+                    Object {
+                      "x": 0,
+                      "y": 0,
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    ]
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {
+                      "backgroundColor": "#BDBDBD",
+                    },
+                  ]
+                }
+                testID="animated-placeholder-highlight-color"
+              />
+            </RNCMaskedView>
+          </View>
+        </RNCMaskedView>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "height": 31.61137440758294,
+              "paddingHorizontal": 76.92307692307692,
+              "width": "100%",
+            },
+            Object {
+              "height": 28.450236966824647,
+            },
+            undefined,
+          ]
+        }
+      />
+      <View>
+        <RNCMaskedView
+          style={
+            Array [
+              Object {
+                "height": 67.96445497630332,
+                "width": 688.4615384615385,
+              },
+              undefined,
+            ]
+          }
+          testID="animated-placeholder"
+        >
+          <View
+            pointerEvents="none"
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "backgroundColor": "#000000",
+                    "borderRadius": 11.538461538461538,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "height": 67.96445497630332,
+                    "width": 688.4615384615385,
+                  }
+                }
+              />
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexGrow": 1,
+                },
+                Object {
+                  "backgroundColor": "#eaeaea",
+                },
+              ]
+            }
+            testID="animated-placeholder-background-color"
+          />
+          <View
+            collapsable={false}
+            nativeID="animatedComponent"
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+                "transform": Array [
+                  Object {
+                    "translateX": -750,
+                  },
+                ],
+              }
+            }
+          >
+            <RNCMaskedView
+              style={
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            >
+              <View
+                pointerEvents="none"
+                style={
+                  Object {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              >
+                <BVLinearGradient
+                  colors={
+                    Array [
+                      0,
+                      4278190080,
+                      0,
+                    ]
+                  }
+                  endPoint={
+                    Object {
+                      "x": 1,
+                      "y": 0,
+                    }
+                  }
+                  locations={null}
+                  startPoint={
+                    Object {
+                      "x": 0,
+                      "y": 0,
+                    }
+                  }
+                  style={
+                    Array [
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      },
+                    ]
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "bottom": 0,
+                      "left": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                    },
+                    Object {
+                      "backgroundColor": "#BDBDBD",
+                    },
+                  ]
+                }
+                testID="animated-placeholder-highlight-color"
+              />
+            </RNCMaskedView>
+          </View>
+        </RNCMaskedView>
+      </View>
+    </View>
+  </View>
+</View>
+`;

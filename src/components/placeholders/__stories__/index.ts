@@ -1,0 +1,1 @@
+import './AnimatedPlaceholder.stories';
