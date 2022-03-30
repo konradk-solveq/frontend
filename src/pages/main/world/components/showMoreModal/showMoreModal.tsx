@@ -1,18 +1,17 @@
 import React, {useState} from 'react';
 import {View, Text, Modal, Pressable, ViewStyle} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useAppDispatch} from '@hooks/redux';
 import {selectorMapTypeEnum} from '@storage/selectors/index';
 import {addPlannedMap, removePlannedMap} from '@storage/actions/maps';
-import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import AnimSvg from '@helpers/animSvg';
 
 import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 
 import styles from './style';
+import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 const backGround = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 332">
 <filter id="filter" x="-1" width="3" y="-1" height="3">
@@ -48,7 +47,7 @@ const ShowMoreModal: React.FC<IProps> = ({
 }: IProps) => {
     const {t} = useMergedTranslation('MainWorld.BikeMap');
     const dispatch = useAppDispatch();
-    const navigation = useNavigation();
+    const navigation = useAppNavigation();
     const notificationContext = useNotificationContext();
 
     const isPrivate = mapType === selectorMapTypeEnum.private;
@@ -59,27 +58,21 @@ const ShowMoreModal: React.FC<IProps> = ({
 
     const onDetailsButtonPressedHandler = () => {
         onPressCancel();
-        navigation.navigate({
-            name: RegularStackRoute.ROUTE_DETAILS_SCREEN,
-            params: {
-                mapID: mapID,
-                private: isPrivate,
-                isFeatured: isFeatured,
-                shareID: null,
-            },
+        navigation.navigate('RouteDetails', {
+            mapID: mapID,
+            private: isPrivate,
+            favourite: isFavourite,
+            featured: isFeatured,
         });
     };
 
     const onMapDetailsButtonPressedHandler = () => {
         onPressCancel();
-        navigation.navigate({
-            name: RegularStackRoute.MAP_PREVIEW_SCREEN,
-            params: {
-                mapId: mapID,
-                private: isPrivate,
-                favourite: isFavourite,
-                featured: isFeatured,
-            },
+        navigation.navigate('MapPreview', {
+            mapId: mapID,
+            private: isPrivate,
+            favourite: isFavourite,
+            featured: isFeatured,
         });
     };
 
@@ -102,24 +95,22 @@ const ShowMoreModal: React.FC<IProps> = ({
 
     const onStartRouteHandler = () => {
         onPressCancel();
-        navigation.navigate({
-            name: RegularStackRoute.COUNTER_SCREEN,
-            params: {mapID: mapID, private: isPrivate},
+        navigation.navigate('Counter', {
+            mapID: mapID,
         });
     };
 
     const onPublishRouteHandler = () => {
         onPressCancel();
-        navigation.navigate({
-            name: RegularStackRoute.EDIT_DETAILS_SCREEN,
-            params: {mapID: mapID, private: isPrivate},
+        navigation.navigate('EditDetails', {
+            mapID: mapID,
+            private: isPrivate,
         });
     };
 
     const onAddActionHandler = () => {
-        navigation.navigate({
-            name: RegularStackRoute.ADD_BIKE_SCREEN,
-            params: {emptyFrame: true},
+        navigation.navigate('AddBike', {
+            emptyFrame: true,
         });
     };
 
@@ -135,9 +126,9 @@ const ShowMoreModal: React.FC<IProps> = ({
     const onShareRouteHandler = async () => {
         onPressCancel();
 
-        navigation.navigate({
-            name: RegularStackRoute.SHARE_ROUTE_SCREEN,
-            params: {mapID: mapID, mapType: mapType},
+        navigation.navigate('ShareRouteScreen', {
+            mapID: mapID,
+            mapType: mapType,
         });
     };
 
