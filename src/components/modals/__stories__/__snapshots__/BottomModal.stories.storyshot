@@ -44,6 +44,9 @@ exports[`Storyshots components/modals/BottomModal Customized 1`] = `
         }
       }
     >
+      <View
+        style={[Function]}
+      />
       <RCTScrollView
         scrollEnabled={false}
         showsVerticalScrollIndicator={false}
@@ -99,6 +102,9 @@ exports[`Storyshots components/modals/BottomModal Default 1`] = `
         }
       }
     >
+      <View
+        style={[Function]}
+      />
       <RCTScrollView
         scrollEnabled={false}
         showsVerticalScrollIndicator={false}
