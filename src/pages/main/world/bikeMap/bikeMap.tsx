@@ -84,6 +84,10 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
     const [activeMapID, setActiveMapID] = useState<string>('');
     const {onLoadMoreHandler} = useInfiniteScrollLoadMore(mapsData?.length);
+    /**
+     * Render FlatList after other components have been renderedl
+     */
+    const [renderIsFinished, setRenderIsFinished] = useState(false);
 
     /**
      * Shows list loader when filters changed.
@@ -242,7 +246,9 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     );
 
     return (
-        <View style={styles.background}>
+        <View
+            style={styles.background}
+            onLayout={() => setRenderIsFinished(true)}>
             <ShowMoreModal
                 showModal={showModal}
                 mapID={activeMapID}
@@ -272,7 +278,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                     hideButton
                 />
             </View>
-            {mapsData?.length ? (
+            {mapsData?.length && renderIsFinished ? (
                 <FlatList
                     ListHeaderComponent={
                         <>
