@@ -152,8 +152,8 @@ android {
         applicationId "pl.kross.mykross"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 158
-        versionName "2.23.0"
+        versionCode 160
+        versionName "2.23.1"
     }
     splits {
         abi {
@@ -260,6 +260,15 @@ dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "com.facebook.soloader:soloader:0.9.0+"
+
+    /* TODO: remove after update to RN 0.68.x. It is a temporary solution
+        https://github.com/facebook/react-native/issues/31572#issuecomment-912017067
+    */
+    implementation ("androidx.appcompat:appcompat:1.3.1") {
+        version {
+            strictly '1.3.1'
+        }
+    }
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 

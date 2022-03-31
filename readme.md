@@ -168,3 +168,9 @@ control the storybook from the web browser run:
 - `npm run dev:android`
 
 It will make the website available at `http://localhost:7007/`.
+
+## Compilation
+
+### Android
+
+To compile Android version we use JDK v11
