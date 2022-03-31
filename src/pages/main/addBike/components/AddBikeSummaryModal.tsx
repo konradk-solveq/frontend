@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
@@ -16,6 +16,9 @@ import {
     AddOtherBikeSummaryContainer,
 } from '@containers/AddBike';
 import {HorizontalSpacer} from '@components/divider';
+
+const {height: screenHeight} = Dimensions.get('screen');
+const modalHeight = screenHeight <= 670 ? 598 : 528;
 
 interface IProps {
     bikeData: {
@@ -39,7 +42,7 @@ const AddBikeSummaryModal: React.FC<IProps> = ({
     onClose,
     header = '',
     showModal = false,
-    height = 528,
+    height = modalHeight,
     otherBike = false,
     testID = 'add-bike-summary-modal',
 }: IProps) => {
