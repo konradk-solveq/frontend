@@ -66,7 +66,7 @@
         }
     },
     "AddOtherBikeScreen": {
-        "headerTitle": "Nr ramy",
+        "headerTitle": "Dodaj rower",
         "form": {
             "manufacturer": {
                 "placeholder": "Producent",

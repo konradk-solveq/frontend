@@ -441,91 +441,95 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
       }
     >
       <View
-        style={
-          Array [
-            Object {
-              "height": 31.61137440758294,
-              "paddingHorizontal": 76.92307692307692,
-              "width": "100%",
-            },
-            Object {
-              "height": 25.28909952606635,
-            },
-            undefined,
-          ]
-        }
-      />
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "red",
-            "justifyContent": "center",
-            "marginBottom": 37.93364928909953,
-            "width": "100%",
-          }
-        }
-        testID="modal-header-test-id"
+        style={[Function]}
       >
         <View
           style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 25.28909952606635,
+              },
+              undefined,
+            ]
+          }
+        />
+        <View
+          style={
             Object {
-              "left": 0,
-              "position": "absolute",
-              "top": 0,
+              "alignItems": "center",
+              "backgroundColor": "red",
+              "justifyContent": "center",
+              "marginBottom": 37.93364928909953,
+              "width": "100%",
             }
           }
+          testID="modal-header-test-id"
         >
           <View
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="icon-btn-test-id"
+            style={
+              Object {
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+              }
+            }
           >
             <View
-              style={
-                Array [
-                  Object {
-                    "alignContent": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 30.76923076923077,
-                    "height": 84.61538461538461,
-                    "justifyContent": "center",
-                    "width": 84.61538461538461,
-                  },
-                  Object {
-                    "height": 20,
-                  },
-                ]
-              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              testID="icon-btn-test-id"
             >
-              <Text
+              <View
                 style={
                   Array [
                     Object {
-                      "fontFamily": "mykross",
-                      "textAlign": "center",
+                      "alignContent": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 30.76923076923077,
+                      "height": 84.61538461538461,
+                      "justifyContent": "center",
+                      "width": 84.61538461538461,
                     },
                     Object {
-                      "color": "#333333",
-                      "fontSize": 20,
+                      "height": 20,
                     },
-                    undefined,
                   ]
                 }
-                testID="icon-btn-test-id-icon"
               >
-                X
-              </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#333333",
+                        "fontSize": 20,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="icon-btn-test-id-icon"
+                >
+                  X
+                </Text>
+              </View>
             </View>
           </View>
         </View>
@@ -1685,91 +1689,95 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
       }
     >
       <View
-        style={
-          Array [
-            Object {
-              "height": 31.61137440758294,
-              "paddingHorizontal": 76.92307692307692,
-              "width": "100%",
-            },
-            Object {
-              "height": 25.28909952606635,
-            },
-            undefined,
-          ]
-        }
-      />
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "red",
-            "justifyContent": "center",
-            "marginBottom": 37.93364928909953,
-            "width": "100%",
-          }
-        }
-        testID="modal-header-test-id"
+        style={[Function]}
       >
         <View
           style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 25.28909952606635,
+              },
+              undefined,
+            ]
+          }
+        />
+        <View
+          style={
             Object {
-              "left": 0,
-              "position": "absolute",
-              "top": 0,
+              "alignItems": "center",
+              "backgroundColor": "red",
+              "justifyContent": "center",
+              "marginBottom": 37.93364928909953,
+              "width": "100%",
             }
           }
+          testID="modal-header-test-id"
         >
           <View
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            testID="icon-btn-test-id"
+            style={
+              Object {
+                "left": 0,
+                "position": "absolute",
+                "top": 0,
+              }
+            }
           >
             <View
-              style={
-                Array [
-                  Object {
-                    "alignContent": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 30.76923076923077,
-                    "height": 84.61538461538461,
-                    "justifyContent": "center",
-                    "width": 84.61538461538461,
-                  },
-                  Object {
-                    "height": 20,
-                  },
-                ]
-              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              testID="icon-btn-test-id"
             >
-              <Text
+              <View
                 style={
                   Array [
                     Object {
-                      "fontFamily": "mykross",
-                      "textAlign": "center",
+                      "alignContent": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 30.76923076923077,
+                      "height": 84.61538461538461,
+                      "justifyContent": "center",
+                      "width": 84.61538461538461,
                     },
                     Object {
-                      "color": "#333333",
-                      "fontSize": 20,
+                      "height": 20,
                     },
-                    undefined,
                   ]
                 }
-                testID="icon-btn-test-id-icon"
               >
-                X
-              </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#333333",
+                        "fontSize": 20,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="icon-btn-test-id-icon"
+                >
+                  X
+                </Text>
+              </View>
             </View>
           </View>
         </View>

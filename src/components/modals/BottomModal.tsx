@@ -54,20 +54,31 @@ const BottomModal: React.FC<IProps> = ({
     ]);
 
     const modalHeight = useSharedValue(0);
+    const modalHeaderOpacity = useSharedValue(0);
 
     const modalAnimation = useAnimatedStyle(() => ({
         height: withTiming(modalHeight.value, {duration: 750}),
+    }));
+    /**
+     * Animate header
+     */
+    const modalHeaderAnimation = useAnimatedStyle(() => ({
+        opacity: withTiming(modalHeaderOpacity.value, {
+            duration: modalHeaderOpacity.value ? 250 : 1000,
+        }),
     }));
 
     useEffect(() => {
         if (show && !isVisible) {
             modalHeight.value = openModalHeight;
+            modalHeaderOpacity.value = 1;
             setIsVisible(true);
         } else if (!show && isVisible) {
             modalHeight.value = 0;
+            modalHeaderOpacity.value = 0;
             setIsVisible(false);
         }
-    }, [show, isVisible, modalHeight, openModalHeight]);
+    }, [show, isVisible, modalHeight, openModalHeight, modalHeaderOpacity]);
 
     useEffect(() => {
         if (isVisible) {
@@ -87,7 +98,9 @@ const BottomModal: React.FC<IProps> = ({
             style={[styles.container, modalAnimation, style]}
             testID={testID}>
             <View style={styles.innerContainer}>
-                {header}
+                <Animated.View style={modalHeaderAnimation}>
+                    {header}
+                </Animated.View>
                 <ScrollView
                     scrollEnabled={isOpen || enableScroll}
                     showsVerticalScrollIndicator={false}>

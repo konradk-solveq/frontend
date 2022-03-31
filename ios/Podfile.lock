@@ -434,7 +434,7 @@ PODS:
     - React-Core
   - react-native-netinfo (7.1.7):
     - React-Core
-  - react-native-nfc-manager (3.10.0):
+  - react-native-nfc-manager (3.13.2):
     - React
   - react-native-restart (0.0.22):
     - React-Core
@@ -930,7 +930,7 @@ SPEC CHECKSUMS:
   react-native-keep-awake: e2941ac96fbddf3b407d0f316eba0b24ed067f56
   react-native-maps: d752b0dd0e1951d815b1336332835aab6b4a836f
   react-native-netinfo: 1792d13894f12e8050c6cd7207192c74025e90d1
-  react-native-nfc-manager: e0889542676e1587791ca7b15cf41a7d1ba228e5
+  react-native-nfc-manager: aafea4ae3f3558757190f38cb4ddfc48bcba2ce1
   react-native-restart: d4ea7637e193da7558d229b3704d500ec0d75f9c
   react-native-safe-area-context: e471852c5ed67eea4b10c5d9d43c1cebae3b231d
   react-native-webview: 77ee909f73e1fcab76380f7dcc3344771fe61bd8
