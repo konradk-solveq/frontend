@@ -38,10 +38,10 @@ const Category = ({name, list}: CategoryPropsI) => {
             <Header3 style={styles.title}>{name}</Header3>
             {list.length &&
                 list.map((item, idx) => (
-                    <>
+                    <React.Fragment key={item.name}>
                         <ListItem item={item} />
                         {idx !== list.length - 1 && <HorizontalDivider />}
-                    </>
+                    </React.Fragment>
                 ))}
         </View>
     );
@@ -51,7 +51,7 @@ const BikeParams: React.FC<Props> = () => {
     const {t} = useMergedTranslation('MainBikeParams');
     const {params: routeParams} = useRoute<BikeParamsRouteT>();
     const {description, params} = routeParams;
-    console.log({description, params});
+
     const descriptionList = useMemo<Parameter[]>(
         () => [
             {
@@ -77,6 +77,7 @@ const BikeParams: React.FC<Props> = () => {
                                     <Category
                                         name={param.name}
                                         list={param.list}
+                                        key={param.name}
                                     />
                                 ),
                         )}

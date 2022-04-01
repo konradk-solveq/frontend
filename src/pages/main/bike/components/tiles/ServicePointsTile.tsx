@@ -8,7 +8,7 @@ import {
 import {TextIcon} from '@components/icons';
 import {IconFont} from '@theme/enums/iconFonts';
 import colors from '@theme/colors';
-import {Header2, Paragraph, BodyPrimary} from '@components/texts/texts';
+import {Header2, BodyPrimary, Header3} from '@components/texts/texts';
 import {
     getFVerticalPx,
     getFHorizontalPx,
@@ -38,14 +38,14 @@ export default ({onPressTile, style}: IProps) => {
                         <Header2 algin="center">
                             {t('servicesTile.header')}
                         </Header2>
-                        <Paragraph
+                        <Header3
                             algin="center"
                             color={colors.darkGrey}
                             style={{
                                 paddingBottom: getFVerticalPx(24),
                             }}>
                             {t('servicesTile.body')}
-                        </Paragraph>
+                        </Header3>
                         <BodyPrimary color={colors.red} algin="center">
                             {t('servicesTile.button')}
                         </BodyPrimary>

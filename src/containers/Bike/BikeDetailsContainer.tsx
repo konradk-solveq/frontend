@@ -178,6 +178,7 @@ const BikeDetailsContainer = ({
                             onPress={onRemoveBikeHandler}
                             text={t('btn')}
                             style={styles.deleteButton}
+                            withoutShadow
                         />
                     </>
                 )}
