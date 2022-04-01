@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {Alert} from 'react-native';
+import {Alert, View, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -17,6 +17,8 @@ import {nfcIsSupported} from '@helpers/nfc';
 import BikeDetailsContainer from '@containers/Bike/BikeDetailsContainer';
 import {Overview} from '@models/bike.model';
 import ChangeBikeModal from '@pages/main/bike/components/modal/ChangeBikeModal';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import colors from '@theme/colors';
 
 interface Props {
     navigation: any;
@@ -113,39 +115,48 @@ const Bike: React.FC<Props> = (props: Props) => {
     }, [navigation]);
 
     const warrantyData = bike?.warranty || genericBikeData?.warranty;
+    const {top} = useSafeAreaInsets();
     return (
-        <GenericScreen hideBackArrow noHeader>
-            {hasAnyBikesAdded ? (
-                <>
-                    <BikeDetailsContainer
-                        bike={bike}
-                        showBikeChangeButton={bikes.length > 1}
-                        onAddKrossBike={onAddKrossBike}
-                        handleParams={handleParams}
-                        warrantyData={warrantyData}
-                        handleServicesMap={handleServicesMap}
-                        onRemoveBikeHandler={onRemoveBikeHandler}
-                        onChangeBikeHandler={onChangeBikeHandler}
-                        onReviewPress={onReviewPress}
+        <GenericScreen hideBackArrow noHeader transculentStatusBar>
+            <View style={[styles.container, {paddingTop: top}]}>
+                {hasAnyBikesAdded ? (
+                    <>
+                        <BikeDetailsContainer
+                            bike={bike}
+                            showBikeChangeButton={bikes.length > 1}
+                            onAddKrossBike={onAddKrossBike}
+                            handleParams={handleParams}
+                            warrantyData={warrantyData}
+                            handleServicesMap={handleServicesMap}
+                            onRemoveBikeHandler={onRemoveBikeHandler}
+                            onChangeBikeHandler={onChangeBikeHandler}
+                            onReviewPress={onReviewPress}
+                        />
+                        <ChangeBikeModal
+                            visible={showBottomModal}
+                            onCloseBottomModal={onCloseBottomModal}
+                            bikes={bikes}
+                            onBikeSelect={handleBikeChange}
+                            selectedBike={bike}
+                            onAddKrossBike={onAddKrossBike}
+                        />
+                    </>
+                ) : (
+                    <NoBikesContainer
+                        onPressPrimary={onAddKrossBike}
+                        onPressSecondary={onAddOtherBike}
+                        onPressTile={handleServicesMap}
                     />
-                    <ChangeBikeModal
-                        visible={showBottomModal}
-                        onCloseBottomModal={onCloseBottomModal}
-                        bikes={bikes}
-                        onBikeSelect={handleBikeChange}
-                        selectedBike={bike}
-                        onAddKrossBike={onAddKrossBike}
-                    />
-                </>
-            ) : (
-                <NoBikesContainer
-                    onPressPrimary={onAddKrossBike}
-                    onPressSecondary={onAddOtherBike}
-                    onPressTile={handleServicesMap}
-                />
-            )}
+                )}
+            </View>
         </GenericScreen>
     );
 };
 
 export default Bike;
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: colors.whiteGrey,
+    },
+});

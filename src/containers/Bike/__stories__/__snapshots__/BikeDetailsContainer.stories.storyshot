@@ -913,8 +913,9 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                     Array [
                       Object {
                         "color": "#717171",
-                        "fontFamily": "DIN2014-Regular",
-                        "fontSize": 16,
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 18,
+                        "fontWeight": "600",
                         "lineHeight": 24,
                         "textAlign": "center",
                       },
@@ -923,7 +924,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                       },
                     ]
                   }
-                  testID="paragraph-test-id"
+                  testID="header3-test-id"
                 >
                   MainBike.noBikes.servicesTile.body
                 </Text>
@@ -978,16 +979,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               "justifyContent": "center",
               "width": "100%",
             },
-            Object {
-              "elevation": 5,
-              "shadowColor": "#333333",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 7.6923076923076925,
-              },
-              "shadowOpacity": 0.07,
-              "shadowRadius": 15.384615384615385,
-            },
+            Object {},
             Array [
               Object {
                 "height": 92.3076923076923,
@@ -1960,8 +1952,9 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                     Array [
                       Object {
                         "color": "#717171",
-                        "fontFamily": "DIN2014-Regular",
-                        "fontSize": 16,
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 18,
+                        "fontWeight": "600",
                         "lineHeight": 24,
                         "textAlign": "center",
                       },
@@ -1970,7 +1963,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                       },
                     ]
                   }
-                  testID="paragraph-test-id"
+                  testID="header3-test-id"
                 >
                   MainBike.noBikes.servicesTile.body
                 </Text>
@@ -2025,16 +2018,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               "justifyContent": "center",
               "width": "100%",
             },
-            Object {
-              "elevation": 5,
-              "shadowColor": "#333333",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 7.6923076923076925,
-              },
-              "shadowOpacity": 0.07,
-              "shadowRadius": 15.384615384615385,
-            },
+            Object {},
             Array [
               Object {
                 "height": 92.3076923076923,

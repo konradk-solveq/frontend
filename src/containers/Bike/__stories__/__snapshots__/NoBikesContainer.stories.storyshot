@@ -560,8 +560,9 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                 Array [
                   Object {
                     "color": "#717171",
-                    "fontFamily": "DIN2014-Regular",
-                    "fontSize": 16,
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "fontWeight": "600",
                     "lineHeight": 24,
                     "textAlign": "center",
                   },
@@ -570,7 +571,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                   },
                 ]
               }
-              testID="paragraph-test-id"
+              testID="header3-test-id"
             >
               MainBike.noBikes.servicesTile.body
             </Text>
