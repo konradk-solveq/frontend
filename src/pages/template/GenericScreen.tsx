@@ -22,6 +22,7 @@ interface IProps {
     transculentBottom?: boolean /* Renders screen under statusb bur */;
     noHeader?: boolean /* doesn't render the header */;
     showCross?: boolean /* Shows cross instead of back arrow */;
+    statusBarBackgroundColor?: string;
 }
 
 const GenericScreen: React.FC<IProps> = ({
@@ -34,6 +35,7 @@ const GenericScreen: React.FC<IProps> = ({
     transculentBottom,
     noHeader = false,
     showCross = false,
+    statusBarBackgroundColor = 'transparent',
 }: IProps) => {
     const statusBarHeigh = getAppLayoutConfig.statusBarH();
     const {top} = useSafeAreaInsets();
@@ -70,12 +72,14 @@ const GenericScreen: React.FC<IProps> = ({
                 {...(transculentStatusBar && {
                     edges: edges,
                 })}>
-                {transculentStatusBar && (
+                {transculentStatusBar ? (
                     <StatusBar
-                        backgroundColor="transparent"
+                        backgroundColor={statusBarBackgroundColor}
                         barStyle="dark-content"
                         translucent={true}
                     />
+                ) : (
+                    <StatusBar backgroundColor={statusBarBackgroundColor} />
                 )}
                 <View style={[styles.container, paddingTop]}>
                     {!noHeader && (

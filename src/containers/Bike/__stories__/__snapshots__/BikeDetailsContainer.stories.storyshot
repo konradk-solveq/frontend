@@ -24,6 +24,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
     collapsable={false}
     contentContainerStyle={
       Object {
+        "backgroundColor": "#FAFAFA",
         "paddingBottom": 189.66824644549763,
       }
     }
@@ -1087,6 +1088,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
     collapsable={false}
     contentContainerStyle={
       Object {
+        "backgroundColor": "#FAFAFA",
         "paddingBottom": 189.66824644549763,
       }
     }
