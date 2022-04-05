@@ -1,5 +1,3 @@
-import {BikeType} from '@src/type/bike';
-import {firstLetterToUpperCase} from '@src/utils/strings';
 import {IsNotEmpty, IsOptional, IsArray, IsUrl} from 'class-validator';
 
 import {
@@ -37,19 +35,8 @@ export class UserBike implements Bike {
 export interface UserBikeI extends UserBike {}
 
 export class GenericBike extends UserBike {
-    @IsArray()
-    public bikeTypes: BikeType[];
-
-    constructor(description: BikeDescription, bikeTypes: BikeType[]) {
+    constructor(description: BikeDescription) {
         super(description);
-        this.bikeTypes = bikeTypes;
-    }
-
-    get bikeTypesList() {
-        return this.bikeTypes.map(bt => ({
-            enumValue: bt.enumValue,
-            i18nValue: firstLetterToUpperCase(bt.i18nValue),
-        }));
     }
 }
 

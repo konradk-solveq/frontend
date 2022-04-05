@@ -1,6 +1,9 @@
-import {BikeType} from '@src/type/bike';
-import {getBike, getGenericBikeData, getBikesList} from '../api';
-import {bikeTypes} from './mock/genericBIke';
+import {
+    getBike,
+    getGenericBikeData,
+    getBikesList,
+    getBikesConfig,
+} from '@api/index';
 
 export interface serviceResponse {
     data: any | null;
@@ -35,11 +38,8 @@ export const getGenericDataforBike = async () => {
         return {data: null, status: response.status, error: errorMessage};
     }
 
-    /* TODO: remove mocked data after changes on API */
-    const t = {bikeTypes: bikeTypes};
-
     return {
-        data: {...response.data, ...t},
+        data: response.data,
         status: response.status,
         error: '',
     };
@@ -58,4 +58,22 @@ export const getBikesListByFrameNrs = async (frameNrs: string[]) => {
     }
 
     return {data: response.data, status: response.status, error: ''};
+};
+
+export const getBikesConfigService = async () => {
+    const response = await getBikesConfig();
+
+    if (!response?.data || response.status >= 400) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {data: null, status: response.status, error: errorMessage};
+    }
+
+    return {
+        data: response.data,
+        status: response.status,
+        error: '',
+    };
 };

@@ -5,8 +5,8 @@ import {SubmitErrorHandler, SubmitHandler, useForm} from 'react-hook-form';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import {GenericBike} from '@models/userBike.model';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
+import {BikeType} from '@type/bike';
 import {
     getFFontSize,
     getFHorizontalPx,
@@ -40,7 +40,7 @@ interface IProps {
         fieldName: string,
         value?: string,
     ) => {isValid: boolean; errorMessage: string};
-    genericBikeData?: GenericBike;
+    bikeTypesList?: BikeType[];
     isLoading?: boolean;
     testID?: string;
 }
@@ -48,14 +48,11 @@ interface IProps {
 const AddOtherBikeContainer: React.FC<IProps> = ({
     onSubmit,
     onValidate,
-    genericBikeData,
+    bikeTypesList = [],
     isLoading = false,
     testID = 'add-other-bike-container-id',
 }: IProps) => {
     const {t} = useMergedTranslation('AddOtherBikeScreen.form');
-    const bikeTypesList = useMemo(() => genericBikeData?.bikeTypesList || [], [
-        genericBikeData?.bikeTypesList,
-    ]);
     const initBikeType = useMemo(() => bikeTypesList?.[0]?.enumValue, [
         bikeTypesList,
     ]);

@@ -4,7 +4,7 @@ import {act} from 'react-test-renderer';
 import asyncEvent from '@jestUtils/asyncEvent';
 import renderComponent from '@jestUtils/render';
 
-import {bikeTypes} from '@services/mock/genericBIke';
+import {bikesConfig, bikeTypes} from '@services/mock/genericBIke';
 import {AddOtherBikeScreen} from '@pages/main/addBike';
 
 const mockedNavigate = jest.fn();
@@ -43,7 +43,6 @@ const bikeData = {
     images: undefined,
     warranty: undefined,
     compaintRepairs: undefined,
-    bikeTypes: bikeTypes,
 };
 
 const initStore = {
@@ -56,6 +55,7 @@ const initStore = {
     bikes: {
         list: [],
         genericBike: bikeData,
+        config: bikesConfig,
     },
 };
 
@@ -82,7 +82,7 @@ describe('<AddOtherBikeScreen /> - pages/addBike', () => {
              * Choose option
              */
             const radioOption = getByTestId(
-                `${ADD_OTHER_BIKE_RADIO_LIST_ITEM_CONTAINER_TEST_ID}-radio-button-${bikeTypes[0].enumValue}-press`,
+                `${ADD_OTHER_BIKE_RADIO_LIST_ITEM_CONTAINER_TEST_ID}-radio-button-${bikesConfig.bikeTypes.options[0].enumValue}-press`,
             );
             fireEvent.press(radioOption);
             /**

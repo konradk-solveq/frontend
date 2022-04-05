@@ -1,5 +1,3 @@
-import {AppConfigI} from '@models/config.model';
-import {ShortCoordsType} from '@type/coords';
 import {Dimensions, PixelRatio} from 'react-native';
 import {levelFilter, pavementFilter, tagsFilter} from '@enums/mapsFilters';
 import {LocationDataI} from '@interfaces/geolocation';
@@ -8,7 +6,11 @@ import {
     BikeDescription,
     Complaint,
     Parameters,
+    BikesConfig,
+    BikesConfigI,
 } from '@models/bike.model';
+import {AppConfigI} from '@models/config.model';
+import {ShortCoordsType} from '@type/coords';
 import {
     Images,
     Map,
@@ -221,7 +223,7 @@ export const genericBikeToClass = (
     }
 
     const desc = transfromToBikeDescription(data.description);
-    const newData = new GenericBike(desc, data.bikeTypes);
+    const newData = new GenericBike(desc);
 
     const {images, warranty, params, complaintsRepairs} = data;
 
@@ -763,4 +765,18 @@ export const getRouteLengthFuelEquivalent = (
      */
 
     return Number(res.toFixed(1)).toString().replace('.', ',');
+};
+
+export const bikesConfigToClass = (
+    data?: BikesConfigI,
+): BikesConfig | undefined => {
+    if (!data) {
+        return;
+    }
+
+    try {
+        return new BikesConfig(data);
+    } catch (e) {
+        return;
+    }
 };

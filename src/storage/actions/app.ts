@@ -40,6 +40,7 @@ import {batch} from 'react-redux';
 import {AuthState} from '../reducers/auth';
 import {fetchUiTranslation, fetchLanguagesList} from './uiTranslation';
 import {getControlSumService} from '@src/services/uiTranslation';
+import {fetchBikesConfig} from '@storage/actions';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -317,6 +318,7 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
             }
 
             if (onboardingFinished && !isRecordingActive) {
+                dispatch(fetchBikesConfig());
                 dispatch(fetchGenericBikeData());
                 dispatch(setBikesListByFrameNumbers());
             }

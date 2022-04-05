@@ -3,7 +3,7 @@ import {Dimensions} from 'react-native';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {bikeByFrameNumberSelector} from '@storage/selectors';
-import {genericBikeSelector} from '@storage/selectors/bikes';
+import {bikeTypesSelector} from '@storage/selectors/bikes';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {removeBikeByNumber, setBikeData} from '@storage/actions';
 import {validateData} from '@utils/validation/validation';
@@ -30,7 +30,7 @@ const AddOtherBikeScreen: React.FC = () => {
     const [frameNumber, setFrameNumber] = useState('');
     const [showModal, setShowModal] = useState(false);
 
-    const genericBike = useAppSelector(genericBikeSelector);
+    const bikeTypes = useAppSelector(bikeTypesSelector);
     const bikeData = useAppSelector(bikeByFrameNumberSelector(frameNumber));
 
     const bd = useMemo(
@@ -117,7 +117,7 @@ const AddOtherBikeScreen: React.FC = () => {
                 onSubmit={onSubmit}
                 onValidate={checkIsValid}
                 isLoading={isFetching}
-                genericBikeData={genericBike}
+                bikeTypesList={bikeTypes}
             />
             <AddBikeSummaryModal
                 showModal={showModal}

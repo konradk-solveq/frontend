@@ -1,6 +1,7 @@
+import {BikesConfigI} from '@src/models/bike.model';
 import {BikeType} from '@type/bike';
 
-export const bikeTypes: BikeType[] = [
+export const bikeTypesOptions: BikeType[] = [
     {
         enumValue: 'mountain',
         i18nValue: 'górski',
@@ -30,3 +31,17 @@ export const bikeTypes: BikeType[] = [
         i18nValue: 'inny',
     },
 ];
+
+const bikeTypesValues = [
+    'górski',
+    'gravel',
+    'szosowy',
+    'turystyczny',
+    'miejski',
+    'dziecięcy',
+    'inny',
+];
+
+export const bikesConfig: BikesConfigI = {
+    bikeTypes: {options: bikeTypesOptions, values: bikeTypesValues},
+};

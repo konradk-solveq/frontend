@@ -13,6 +13,7 @@ export {
     setBikesListByFrameNumbers,
     removeBikeByNumber,
     fetchGenericBikeData,
+    fetchBikesConfig,
 } from './bikes';
 
 export {

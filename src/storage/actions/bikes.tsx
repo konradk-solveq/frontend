@@ -3,11 +3,13 @@ import * as actionTypes from './actionTypes';
 import {AppThunk} from '../thunk';
 import {GenericBikeI, UserBikeI} from '@models/userBike.model';
 import {Bike} from '@models/bike.model';
+import {BikesConfig} from '@type/bike';
 import {
     getBikeByFrameNr,
     getGenericDataforBike,
     getBikesListByFrameNrs,
-} from '@services';
+    getBikesConfigService,
+} from '@services/index';
 import {setFrameNumber} from './index';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
@@ -51,6 +53,13 @@ export const setError = (error: string) => ({
     type: actionTypes.SET_BIKES_ERROR,
     error: error,
 });
+
+export const setBikesConfig = (config: BikesConfig) => {
+    return {
+        type: actionTypes.SET_BIKES_CONFIG,
+        bikesConfig: config,
+    };
+};
 
 export const removeBikeByNumber = (frameNr: string) => ({
     type: actionTypes.REMOVE_BIKE_BY_NUMBER,
@@ -110,6 +119,30 @@ export const fetchGenericBikeData = (): AppThunk<
         const err = convertToApiError(error);
 
         loggErrorWithScope(err, 'fetchGenericBikeData');
+
+        const errorMessage = i18next.t('dataAction.apiError');
+        dispatch(setError(errorMessage));
+    }
+};
+
+export const fetchBikesConfig = (): AppThunk<
+    Promise<void>
+> => async dispatch => {
+    dispatch(setLoadingState(true));
+    try {
+        const response = await getBikesConfigService();
+
+        if (response?.error || !response?.data) {
+            dispatch(setError(response.error));
+            return;
+        }
+
+        dispatch(setBikesConfig(response.data));
+    } catch (error) {
+        console.error(`[fetchBikesConfig] - ${error}`);
+        const err = convertToApiError(error);
+
+        loggErrorWithScope(err, 'fetchBikesConfig');
 
         const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage));

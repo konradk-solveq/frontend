@@ -2,6 +2,7 @@ export {
     getBikeByFrameNr,
     getGenericDataforBike,
     getBikesListByFrameNrs,
+    getBikesConfigService,
 } from './bikesService';
 export {getPlacesList} from './placesService';
 export {

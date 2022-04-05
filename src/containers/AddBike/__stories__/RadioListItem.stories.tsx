@@ -9,8 +9,10 @@ import LayoutCenter from '@sb/utils/LayoutCenter';
 
 import i18next from '@translations/i18next';
 
-import {bikeTypes} from '@services/mock/genericBIke';
+import {bikesConfig} from '@services/mock/genericBIke';
 import {RadioListItem} from '@containers/AddBike/components';
+
+const bikeTypesList = bikesConfig.bikeTypes.options;
 
 const {width} = Dimensions.get('screen');
 
@@ -24,18 +26,18 @@ storiesOf('containers/AddBike/components/RadioListItem', module)
     ))
     .add('Default', () => (
         <RadioListItem
-            bikeTypes={bikeTypes}
-            bikeType={bikeTypes[0].enumValue}
+            bikeTypes={bikeTypesList}
+            bikeType={bikeTypesList[0].enumValue}
             onPress={action('on-press-radio-list-item-action')}
         />
     ))
     .add('Customized', () => (
         <RadioListItem
-            bikeTypes={object('Bike types', bikeTypes)}
+            bikeTypes={object('Bike types', bikeTypesList)}
             bikeType={select(
                 'Selected bike type',
-                bikeTypes.map(bt => bt.enumValue),
-                bikeTypes[0].enumValue,
+                bikeTypesList.map(bt => bt.enumValue),
+                bikeTypesList[0].enumValue,
             )}
             onPress={action('on-press-radio-list-item-action')}
         />
