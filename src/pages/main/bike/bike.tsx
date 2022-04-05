@@ -18,6 +18,7 @@ import BikeDetailsContainer from '@containers/Bike/BikeDetailsContainer';
 import {Overview} from '@models/bike.model';
 import ChangeBikeModal from '@pages/main/bike/components/modal/ChangeBikeModal';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import colors from '@theme/colors';
 
 interface Props {
     navigation: any;
@@ -116,7 +117,10 @@ const Bike: React.FC<Props> = (props: Props) => {
     const warrantyData = bike?.warranty || genericBikeData?.warranty;
     const {top} = useSafeAreaInsets();
     return (
-        <GenericScreen hideBackArrow noHeader transculentStatusBar>
+        <GenericScreen
+            hideBackArrow
+            noHeader
+            statusBarBackgroundColor={colors.white}>
             <View style={{paddingTop: top}}>
                 {hasAnyBikesAdded ? (
                     <>
