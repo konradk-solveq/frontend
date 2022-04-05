@@ -67,73 +67,77 @@ const BikeDetailsContainer = ({
     }, []);
     return (
         <View style={styles.container}>
+            <View style={styles.scrollBounceBackground} />
             <ScrollView
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={false}>
-                {showBikeChangeButton ? (
-                    <View style={styles.headerButtonContainer}>
-                        <BikeChangeButton
-                            text={bike?.description?.name || ''}
-                            onPress={onChangeBikeHandler}
-                        />
-                    </View>
-                ) : (
-                    <Pressable onPress={onAddKrossBike}>
-                        <BodyPrimary style={styles.headerButton}>
-                            {t('addBike')}
-                        </BodyPrimary>
-                    </Pressable>
-                )}
-                {imageData?.length ? (
-                    <>
-                        <Carousel
-                            ref={carouselRef}
-                            data={imageData}
-                            renderItem={renderCarouselImage}
-                            sliderWidth={carouselWidth}
-                            itemWidth={carouselWidth}
-                            containerCustomStyle={styles.carousel}
-                            onSnapToItem={handleCarouselScroll}
-                            loop={true}
-                        />
-                        <Pagination
-                            dotsLength={imageData.length}
-                            activeDotIndex={paginationIndex}
-                            dotStyle={styles.carouselDot}
-                            inactiveDotStyle={styles.inactiveCarouselDot}
-                            inactiveDotOpacity={1}
-                            inactiveDotScale={1}
-                        />
-                    </>
-                ) : (
-                    <View style={styles.bikeImage}>
-                        <BlueBikeSvg imageSize={250} />
-                    </View>
-                )}
+                <View style={styles.imageContainer}>
+                    {showBikeChangeButton ? (
+                        <View style={styles.headerButtonContainer}>
+                            <BikeChangeButton
+                                text={bike?.description?.name || ''}
+                                onPress={onChangeBikeHandler}
+                            />
+                        </View>
+                    ) : (
+                        <Pressable onPress={onAddKrossBike}>
+                            <BodyPrimary style={styles.headerButton}>
+                                {t('addBike')}
+                            </BodyPrimary>
+                        </Pressable>
+                    )}
+                    {imageData?.length ? (
+                        <>
+                            <Carousel
+                                ref={carouselRef}
+                                data={imageData}
+                                renderItem={renderCarouselImage}
+                                sliderWidth={carouselWidth}
+                                itemWidth={carouselWidth}
+                                containerCustomStyle={styles.carousel}
+                                onSnapToItem={handleCarouselScroll}
+                                loop={true}
+                            />
+                            <Pagination
+                                dotsLength={imageData.length}
+                                activeDotIndex={paginationIndex}
+                                dotStyle={styles.carouselDot}
+                                inactiveDotStyle={styles.inactiveCarouselDot}
+                                inactiveDotOpacity={1}
+                                inactiveDotScale={1}
+                            />
+                        </>
+                    ) : (
+                        <View style={styles.bikeImage}>
+                            <BlueBikeSvg imageSize={250} />
+                        </View>
+                    )}
+                </View>
                 {bike?.description && (
                     <>
-                        <Header1 style={styles.bikeName}>
-                            {bike?.description.name}
-                        </Header1>
+                        <View style={styles.description}>
+                            <Header1 style={styles.bikeName}>
+                                {bike?.description.name}
+                            </Header1>
 
-                        <Subtitle style={styles.bikeDetails}>
-                            {t('details', {
-                                name: bike?.description.producer,
-                                number: bike?.description.serial_number,
-                            })}
-                        </Subtitle>
+                            <Subtitle style={styles.bikeDetails}>
+                                {t('details', {
+                                    name: bike?.description.producer,
+                                    number: bike?.description.serial_number,
+                                })}
+                            </Subtitle>
 
-                        {!!bike?.params && (
-                            <Pressable onPress={handleParams}>
-                                <BodyPrimary style={styles.detailsText}>
-                                    {t('bikeDetails')}
-                                </BodyPrimary>
-                            </Pressable>
-                        )}
+                            {!!bike?.params && (
+                                <Pressable onPress={handleParams}>
+                                    <BodyPrimary style={styles.detailsText}>
+                                        {t('bikeDetails')}
+                                    </BodyPrimary>
+                                </Pressable>
+                            )}
+                        </View>
 
                         {bike?.warranty && (
                             <Warranty
-                                style={styles.warranty}
                                 type={warrantyData?.info || ''}
                                 nextOverview={
                                     bike?.warranty
@@ -194,6 +198,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.whiteGrey,
     },
+    imageContainer: {
+        backgroundColor: colors.white,
+    },
     headerButton: {
         paddingTop: getFVerticalPx(32),
         paddingRight: getFHorizontalPx(9),
@@ -225,19 +232,23 @@ const styles = StyleSheet.create({
     inactiveCarouselDot: {
         backgroundColor: colors.grey,
     },
-    scroll: {
-        backgroundColor: '#ffffff',
-    },
     scrollContent: {
         paddingBottom: getFVerticalPx(120),
+        backgroundColor: colors.whiteGrey,
     },
     detailsText: {
         width: '100%',
         textAlign: 'center',
         color: colors.red,
     },
+    description: {
+        backgroundColor: colors.white,
+        paddingBottom: getFVerticalPx(24),
+        borderBottomLeftRadius: getFVerticalPx(12),
+        borderBottomRightRadius: getFVerticalPx(12),
+    },
     header: {
-        backgroundColor: '#ffffff',
+        backgroundColor: colors.white,
         zIndex: 5,
     },
     bikeName: {
@@ -252,9 +263,6 @@ const styles = StyleSheet.create({
     bikeImage: {
         width: '100%',
         alignItems: 'center',
-    },
-    warranty: {
-        marginTop: getFVerticalPx(24),
     },
     reviews: {
         marginTop: getFVerticalPx(40),
@@ -271,5 +279,12 @@ const styles = StyleSheet.create({
     },
     deleteButton: {
         marginHorizontal: getFHorizontalPx(48),
+    },
+    scrollBounceBackground: {
+        position: 'absolute',
+        height: getFVerticalPx(350),
+        width: '100%',
+        backgroundColor: colors.white,
+        top: 0,
     },
 });

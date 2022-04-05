@@ -9,6 +9,17 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
     }
   }
 >
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "height": 553.1990521327015,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  />
   <RCTScrollView
     collapsable={false}
     contentContainerStyle={
@@ -22,242 +33,202 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
   >
     <View>
       <View
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-      >
-        <Text
-          adjustsFontSizeToFit={false}
-          style={
-            Array [
-              Object {
-                "color": "#333333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#C63733",
-                "paddingBottom": 20.54739336492891,
-                "paddingRight": 17.307692307692307,
-                "paddingTop": 50.5781990521327,
-                "textAlign": "right",
-                "width": "100%",
-              },
-            ]
-          }
-          testID="body-primary-test-id"
-        >
-          MainBike.addBike
-        </Text>
-      </View>
-      <RCTScrollView
-        activeAnimationOptions={null}
-        activeAnimationType="timing"
-        activeSlideAlignment="center"
-        activeSlideOffset={20}
-        apparitionDelay={0}
-        automaticallyAdjustContentInsets={false}
-        autoplay={false}
-        autoplayDelay={1000}
-        autoplayInterval={3000}
-        callbackOffsetMargin={5}
-        containerCustomStyle={
-          Object {
-            "height": 395.14218009478674,
-          }
-        }
-        contentContainerCustomStyle={Object {}}
-        contentContainerStyle={
-          Array [
-            Object {
-              "paddingLeft": 0,
-              "paddingRight": 0,
-            },
-            Object {},
-          ]
-        }
-        data={
-          Array [
-            "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
-          ]
-        }
-        decelerationRate="fast"
-        directionalLockEnabled={true}
-        enableMomentum={false}
-        enableSnap={true}
-        firstItem={0}
-        forwardedRef={[Function]}
-        getItem={[Function]}
-        getItemCount={[Function]}
-        hasParallaxImages={false}
-        horizontal={true}
-        inactiveSlideOpacity={0.7}
-        inactiveSlideScale={0.9}
-        inactiveSlideShift={0}
-        initialNumToRender={6}
-        invertStickyHeaders={false}
-        inverted={false}
-        itemWidth={750}
-        keyExtractor={[Function]}
-        layout="default"
-        lockScrollTimeoutDuration={1000}
-        lockScrollWhileSnapping={false}
-        loop={true}
-        loopClonesPerSide={3}
-        maxToRenderPerBatch={13}
-        onContentSizeChange={[Function]}
-        onLayout={[Function]}
-        onMomentumScrollBegin={[Function]}
-        onMomentumScrollEnd={[Function]}
-        onResponderRelease={[Function]}
-        onScroll={[Function]}
-        onScrollBeginDrag={[Function]}
-        onScrollEndDrag={[Function]}
-        onSnapToItem={[Function]}
-        onStartShouldSetResponderCapture={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        overScrollMode="never"
-        pinchGestureEnabled={false}
-        removeClippedSubviews={true}
-        renderItem={[Function]}
-        scrollEnabled={true}
-        scrollEventThrottle={1}
-        scrollsToTop={false}
-        shouldOptimizeUpdates={true}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        slideStyle={Object {}}
-        sliderWidth={750}
-        stickyHeaderIndices={Array []}
         style={
           Object {
-            "flexDirection": "row",
-            "height": 395.14218009478674,
-            "opacity": 0,
-            "width": 750,
+            "backgroundColor": "#FFFFFF",
           }
         }
-        swipeThreshold={20}
-        useScrollView={false}
-        vertical={false}
-        viewabilityConfigCallbackPairs={Array []}
-        windowSize={13}
       >
-        <View>
-          <View
-            onLayout={[Function]}
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Text
+            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "flexDirection": "row",
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
                 },
-                null,
+                Object {
+                  "color": "#C63733",
+                  "paddingBottom": 20.54739336492891,
+                  "paddingRight": 17.307692307692307,
+                  "paddingTop": 50.5781990521327,
+                  "textAlign": "right",
+                  "width": "100%",
+                },
               ]
             }
+            testID="body-primary-test-id"
           >
+            MainBike.addBike
+          </Text>
+        </View>
+        <RCTScrollView
+          activeAnimationOptions={null}
+          activeAnimationType="timing"
+          activeSlideAlignment="center"
+          activeSlideOffset={20}
+          apparitionDelay={0}
+          automaticallyAdjustContentInsets={false}
+          autoplay={false}
+          autoplayDelay={1000}
+          autoplayInterval={3000}
+          callbackOffsetMargin={5}
+          containerCustomStyle={
+            Object {
+              "height": 395.14218009478674,
+            }
+          }
+          contentContainerCustomStyle={Object {}}
+          contentContainerStyle={
+            Array [
+              Object {
+                "paddingLeft": 0,
+                "paddingRight": 0,
+              },
+              Object {},
+            ]
+          }
+          data={
+            Array [
+              "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
+            ]
+          }
+          decelerationRate="fast"
+          directionalLockEnabled={true}
+          enableMomentum={false}
+          enableSnap={true}
+          firstItem={0}
+          forwardedRef={[Function]}
+          getItem={[Function]}
+          getItemCount={[Function]}
+          hasParallaxImages={false}
+          horizontal={true}
+          inactiveSlideOpacity={0.7}
+          inactiveSlideScale={0.9}
+          inactiveSlideShift={0}
+          initialNumToRender={6}
+          invertStickyHeaders={false}
+          inverted={false}
+          itemWidth={750}
+          keyExtractor={[Function]}
+          layout="default"
+          lockScrollTimeoutDuration={1000}
+          lockScrollWhileSnapping={false}
+          loop={true}
+          loopClonesPerSide={3}
+          maxToRenderPerBatch={13}
+          onContentSizeChange={[Function]}
+          onLayout={[Function]}
+          onMomentumScrollBegin={[Function]}
+          onMomentumScrollEnd={[Function]}
+          onResponderRelease={[Function]}
+          onScroll={[Function]}
+          onScrollBeginDrag={[Function]}
+          onScrollEndDrag={[Function]}
+          onSnapToItem={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          overScrollMode="never"
+          pinchGestureEnabled={false}
+          removeClippedSubviews={true}
+          renderItem={[Function]}
+          scrollEnabled={true}
+          scrollEventThrottle={1}
+          scrollsToTop={false}
+          shouldOptimizeUpdates={true}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          slideStyle={Object {}}
+          sliderWidth={750}
+          stickyHeaderIndices={Array []}
+          style={
+            Object {
+              "flexDirection": "row",
+              "height": 395.14218009478674,
+              "opacity": 0,
+              "width": 750,
+            }
+          }
+          swipeThreshold={20}
+          useScrollView={false}
+          vertical={false}
+          viewabilityConfigCallbackPairs={Array []}
+          windowSize={13}
+        >
+          <View>
             <View
-              collapsable={false}
-              nativeID="animatedComponent"
-              pointerEvents="box-none"
+              onLayout={[Function]}
               style={
-                Object {
-                  "opacity": 1,
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                  "width": 750,
-                }
+                Array [
+                  Object {
+                    "flexDirection": "row",
+                  },
+                  null,
+                ]
               }
             >
-              <Image
-                resizeMode="contain"
-                source={
-                  Object {
-                    "uri": "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
-                  }
-                }
+              <View
+                collapsable={false}
+                nativeID="animatedComponent"
+                pointerEvents="box-none"
                 style={
                   Object {
-                    "height": "100%",
-                    "width": "100%",
+                    "opacity": 1,
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                    "width": 750,
                   }
                 }
-              />
+              >
+                <Image
+                  resizeMode="contain"
+                  source={
+                    Object {
+                      "uri": "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": "100%",
+                      "width": "100%",
+                    }
+                  }
+                />
+              </View>
             </View>
           </View>
-        </View>
-      </RCTScrollView>
-      <Text
-        adjustsFontSizeToFit={false}
-        style={
-          Array [
-            Object {
-              "color": "#333333",
-              "fontFamily": "DIN2014-Demi",
-              "fontSize": 24,
-              "fontWeight": "600",
-              "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
-              "color": "#333333",
-              "textAlign": "center",
-              "width": "100%",
-            },
-          ]
-        }
-        testID="header1-test-id"
-      >
-        LEVEL 6.0 2018
-      </Text>
-      <Text
-        adjustsFontSizeToFit={false}
-        style={
-          Array [
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "fontSize": 14,
-              "lineHeight": 16,
-              "textAlign": "left",
-            },
-            Object {
-              "textAlign": "center",
-              "width": "100%",
-            },
-          ]
-        }
-        testID="subtitle-test-id"
-      >
-        MainBike.details
-      </Text>
+        </RCTScrollView>
+      </View>
       <View
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomLeftRadius": 18.966824644549764,
+            "borderBottomRightRadius": 18.966824644549764,
+            "paddingBottom": 37.93364928909953,
+          }
+        }
       >
         <Text
           adjustsFontSizeToFit={false}
@@ -266,29 +237,82 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               Object {
                 "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
-                "fontSize": 16,
-                "lineHeight": 24,
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
                 "textAlign": "left",
               },
               Object {
-                "color": "#C63733",
+                "color": "#333333",
                 "textAlign": "center",
                 "width": "100%",
               },
             ]
           }
-          testID="body-primary-test-id"
+          testID="header1-test-id"
         >
-          MainBike.bikeDetails
+          LEVEL 6.0 2018
         </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "marginTop": 37.93364928909953,
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              Object {
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
-        }
-      >
+          testID="subtitle-test-id"
+        >
+          MainBike.details
+        </Text>
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#C63733",
+                  "textAlign": "center",
+                  "width": "100%",
+                },
+              ]
+            }
+            testID="body-primary-test-id"
+          >
+            MainBike.bikeDetails
+          </Text>
+        </View>
+      </View>
+      <View>
         <View>
           <View
             style={
@@ -1048,6 +1072,17 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
     }
   }
 >
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "height": 553.1990521327015,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+      }
+    }
+  />
   <RCTScrollView
     collapsable={false}
     contentContainerStyle={
@@ -1061,242 +1096,202 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
   >
     <View>
       <View
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-      >
-        <Text
-          adjustsFontSizeToFit={false}
-          style={
-            Array [
-              Object {
-                "color": "#333333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#C63733",
-                "paddingBottom": 20.54739336492891,
-                "paddingRight": 17.307692307692307,
-                "paddingTop": 50.5781990521327,
-                "textAlign": "right",
-                "width": "100%",
-              },
-            ]
-          }
-          testID="body-primary-test-id"
-        >
-          MainBike.addBike
-        </Text>
-      </View>
-      <RCTScrollView
-        activeAnimationOptions={null}
-        activeAnimationType="timing"
-        activeSlideAlignment="center"
-        activeSlideOffset={20}
-        apparitionDelay={0}
-        automaticallyAdjustContentInsets={false}
-        autoplay={false}
-        autoplayDelay={1000}
-        autoplayInterval={3000}
-        callbackOffsetMargin={5}
-        containerCustomStyle={
-          Object {
-            "height": 395.14218009478674,
-          }
-        }
-        contentContainerCustomStyle={Object {}}
-        contentContainerStyle={
-          Array [
-            Object {
-              "paddingLeft": 0,
-              "paddingRight": 0,
-            },
-            Object {},
-          ]
-        }
-        data={
-          Array [
-            "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
-          ]
-        }
-        decelerationRate="fast"
-        directionalLockEnabled={true}
-        enableMomentum={false}
-        enableSnap={true}
-        firstItem={0}
-        forwardedRef={[Function]}
-        getItem={[Function]}
-        getItemCount={[Function]}
-        hasParallaxImages={false}
-        horizontal={true}
-        inactiveSlideOpacity={0.7}
-        inactiveSlideScale={0.9}
-        inactiveSlideShift={0}
-        initialNumToRender={6}
-        invertStickyHeaders={false}
-        inverted={false}
-        itemWidth={750}
-        keyExtractor={[Function]}
-        layout="default"
-        lockScrollTimeoutDuration={1000}
-        lockScrollWhileSnapping={false}
-        loop={true}
-        loopClonesPerSide={3}
-        maxToRenderPerBatch={13}
-        onContentSizeChange={[Function]}
-        onLayout={[Function]}
-        onMomentumScrollBegin={[Function]}
-        onMomentumScrollEnd={[Function]}
-        onResponderRelease={[Function]}
-        onScroll={[Function]}
-        onScrollBeginDrag={[Function]}
-        onScrollEndDrag={[Function]}
-        onSnapToItem={[Function]}
-        onStartShouldSetResponderCapture={[Function]}
-        onTouchEnd={[Function]}
-        onTouchStart={[Function]}
-        overScrollMode="never"
-        pinchGestureEnabled={false}
-        removeClippedSubviews={true}
-        renderItem={[Function]}
-        scrollEnabled={true}
-        scrollEventThrottle={1}
-        scrollsToTop={false}
-        shouldOptimizeUpdates={true}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        slideStyle={Object {}}
-        sliderWidth={750}
-        stickyHeaderIndices={Array []}
         style={
           Object {
-            "flexDirection": "row",
-            "height": 395.14218009478674,
-            "opacity": 0,
-            "width": 750,
+            "backgroundColor": "#FFFFFF",
           }
         }
-        swipeThreshold={20}
-        useScrollView={false}
-        vertical={false}
-        viewabilityConfigCallbackPairs={Array []}
-        windowSize={13}
       >
-        <View>
-          <View
-            onLayout={[Function]}
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Text
+            adjustsFontSizeToFit={false}
             style={
               Array [
                 Object {
-                  "flexDirection": "row",
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
                 },
-                null,
+                Object {
+                  "color": "#C63733",
+                  "paddingBottom": 20.54739336492891,
+                  "paddingRight": 17.307692307692307,
+                  "paddingTop": 50.5781990521327,
+                  "textAlign": "right",
+                  "width": "100%",
+                },
               ]
             }
+            testID="body-primary-test-id"
           >
+            MainBike.addBike
+          </Text>
+        </View>
+        <RCTScrollView
+          activeAnimationOptions={null}
+          activeAnimationType="timing"
+          activeSlideAlignment="center"
+          activeSlideOffset={20}
+          apparitionDelay={0}
+          automaticallyAdjustContentInsets={false}
+          autoplay={false}
+          autoplayDelay={1000}
+          autoplayInterval={3000}
+          callbackOffsetMargin={5}
+          containerCustomStyle={
+            Object {
+              "height": 395.14218009478674,
+            }
+          }
+          contentContainerCustomStyle={Object {}}
+          contentContainerStyle={
+            Array [
+              Object {
+                "paddingLeft": 0,
+                "paddingRight": 0,
+              },
+              Object {},
+            ]
+          }
+          data={
+            Array [
+              "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
+            ]
+          }
+          decelerationRate="fast"
+          directionalLockEnabled={true}
+          enableMomentum={false}
+          enableSnap={true}
+          firstItem={0}
+          forwardedRef={[Function]}
+          getItem={[Function]}
+          getItemCount={[Function]}
+          hasParallaxImages={false}
+          horizontal={true}
+          inactiveSlideOpacity={0.7}
+          inactiveSlideScale={0.9}
+          inactiveSlideShift={0}
+          initialNumToRender={6}
+          invertStickyHeaders={false}
+          inverted={false}
+          itemWidth={750}
+          keyExtractor={[Function]}
+          layout="default"
+          lockScrollTimeoutDuration={1000}
+          lockScrollWhileSnapping={false}
+          loop={true}
+          loopClonesPerSide={3}
+          maxToRenderPerBatch={13}
+          onContentSizeChange={[Function]}
+          onLayout={[Function]}
+          onMomentumScrollBegin={[Function]}
+          onMomentumScrollEnd={[Function]}
+          onResponderRelease={[Function]}
+          onScroll={[Function]}
+          onScrollBeginDrag={[Function]}
+          onScrollEndDrag={[Function]}
+          onSnapToItem={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          overScrollMode="never"
+          pinchGestureEnabled={false}
+          removeClippedSubviews={true}
+          renderItem={[Function]}
+          scrollEnabled={true}
+          scrollEventThrottle={1}
+          scrollsToTop={false}
+          shouldOptimizeUpdates={true}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          slideStyle={Object {}}
+          sliderWidth={750}
+          stickyHeaderIndices={Array []}
+          style={
+            Object {
+              "flexDirection": "row",
+              "height": 395.14218009478674,
+              "opacity": 0,
+              "width": 750,
+            }
+          }
+          swipeThreshold={20}
+          useScrollView={false}
+          vertical={false}
+          viewabilityConfigCallbackPairs={Array []}
+          windowSize={13}
+        >
+          <View>
             <View
-              collapsable={false}
-              nativeID="animatedComponent"
-              pointerEvents="box-none"
+              onLayout={[Function]}
               style={
-                Object {
-                  "opacity": 1,
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                  "width": 750,
-                }
+                Array [
+                  Object {
+                    "flexDirection": "row",
+                  },
+                  null,
+                ]
               }
             >
-              <Image
-                resizeMode="contain"
-                source={
-                  Object {
-                    "uri": "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
-                  }
-                }
+              <View
+                collapsable={false}
+                nativeID="animatedComponent"
+                pointerEvents="box-none"
                 style={
                   Object {
-                    "height": "100%",
-                    "width": "100%",
+                    "opacity": 1,
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                    "width": 750,
                   }
                 }
-              />
+              >
+                <Image
+                  resizeMode="contain"
+                  source={
+                    Object {
+                      "uri": "https://kross.eu/media/cache/gallery/images/31/31551/level_6_0_black_white_red_matte.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": "100%",
+                      "width": "100%",
+                    }
+                  }
+                />
+              </View>
             </View>
           </View>
-        </View>
-      </RCTScrollView>
-      <Text
-        adjustsFontSizeToFit={false}
-        style={
-          Array [
-            Object {
-              "color": "#333333",
-              "fontFamily": "DIN2014-Demi",
-              "fontSize": 24,
-              "fontWeight": "600",
-              "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
-              "color": "#333333",
-              "textAlign": "center",
-              "width": "100%",
-            },
-          ]
-        }
-        testID="header1-test-id"
-      >
-        LEVEL 6.0 2018
-      </Text>
-      <Text
-        adjustsFontSizeToFit={false}
-        style={
-          Array [
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Regular",
-              "fontSize": 14,
-              "lineHeight": 16,
-              "textAlign": "left",
-            },
-            Object {
-              "textAlign": "center",
-              "width": "100%",
-            },
-          ]
-        }
-        testID="subtitle-test-id"
-      >
-        MainBike.details
-      </Text>
+        </RCTScrollView>
+      </View>
       <View
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderBottomLeftRadius": 18.966824644549764,
+            "borderBottomRightRadius": 18.966824644549764,
+            "paddingBottom": 37.93364928909953,
+          }
+        }
       >
         <Text
           adjustsFontSizeToFit={false}
@@ -1305,29 +1300,82 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               Object {
                 "color": "#333333",
                 "fontFamily": "DIN2014-Demi",
-                "fontSize": 16,
-                "lineHeight": 24,
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
                 "textAlign": "left",
               },
               Object {
-                "color": "#C63733",
+                "color": "#333333",
                 "textAlign": "center",
                 "width": "100%",
               },
             ]
           }
-          testID="body-primary-test-id"
+          testID="header1-test-id"
         >
-          MainBike.bikeDetails
+          LEVEL 6.0 2018
         </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "marginTop": 37.93364928909953,
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              Object {
+                "textAlign": "center",
+                "width": "100%",
+              },
+            ]
           }
-        }
-      >
+          testID="subtitle-test-id"
+        >
+          MainBike.details
+        </Text>
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#C63733",
+                  "textAlign": "center",
+                  "width": "100%",
+                },
+              ]
+            }
+            testID="body-primary-test-id"
+          >
+            MainBike.bikeDetails
+          </Text>
+        </View>
+      </View>
+      <View>
         <View>
           <View
             style={
