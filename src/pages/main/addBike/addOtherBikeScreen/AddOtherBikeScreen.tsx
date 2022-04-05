@@ -10,6 +10,7 @@ import {validateData} from '@utils/validation/validation';
 import {genericBikerules} from '@utils/validation/validationRules';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
+import {addBikeEvent} from '@analytics/utils/bikes';
 
 import GenericScreen from '@pages/template/GenericScreen';
 import {AddOtherBikeContainer} from '@containers/AddBike';
@@ -103,7 +104,7 @@ const AddOtherBikeScreen: React.FC = () => {
         if (!bikeData) {
             return;
         }
-
+        addBikeEvent();
         navigation.pop(fNumber ? 3 : 2);
     }, [navigation, fNumber, bikeData]);
 

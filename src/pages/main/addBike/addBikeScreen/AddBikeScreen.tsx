@@ -8,6 +8,7 @@ import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {isAndroid} from '@utils/platform';
 import useNFCReader from '@hooks/useNFCReader';
+import {addBikeEvent} from '@analytics/utils/bikes';
 
 import ScanModal from '@pages/onboarding/bikeAdding/turtorialNFC/scanModal.android';
 import GenericScreen from '@pages/template/GenericScreen';
@@ -90,6 +91,7 @@ const AddBikeScreen: React.FC = () => {
      * and returns to start screen (BikeTab o HomeTab)
      */
     const onAddBike = () => {
+        addBikeEvent(true, true);
         navigation.pop(2);
     };
 

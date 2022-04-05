@@ -8,6 +8,7 @@ import {removeBikeByNumber, setBikesListByFrameNumber} from '@storage/actions';
 import {validateData} from '@utils/validation/validation';
 import validationRules from '@utils/validation/validationRules';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {addBikeEvent} from '@analytics/utils/bikes';
 
 import GenericScreen from '@pages/template/GenericScreen';
 import {AddBikeByNumberContainer} from '@containers/AddBike';
@@ -105,6 +106,7 @@ const AddBikeByNumberScreen: React.FC = () => {
      * and returns to start screen (BikeTab o HomeTab)
      */
     const onAddBike = () => {
+        addBikeEvent(true);
         navigation.pop(2);
     };
 
