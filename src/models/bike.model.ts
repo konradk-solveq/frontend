@@ -7,6 +7,8 @@ import {
 } from 'class-validator';
 
 import validationRules from '@utils/validation/validationRules';
+import {firstLetterToUpperCase} from '@utils/strings';
+import {BikeTypesT} from '@type/bike';
 
 export const userBikeValidationRules = {
     id: [],
@@ -225,3 +227,24 @@ export class BikeDescription implements BikeBaseData, BikeDescriptionDetails {
 }
 
 export interface BikeDescriptionI extends BikeDescription {}
+
+export interface BikesConfigI {
+    bikeTypes: BikeTypesT;
+}
+export class BikesConfig implements BikesConfigI {
+    bikeTypes: BikeTypesT;
+
+    constructor(data: BikesConfigI) {
+        this.bikeTypes = data.bikeTypes;
+    }
+
+    get bikeTypesOptions() {
+        return this.bikeTypes?.options.map(
+            bt => ({
+                enumValue: bt.enumValue,
+                i18nValue: firstLetterToUpperCase(bt.i18nValue),
+            }),
+            [],
+        );
+    }
+}

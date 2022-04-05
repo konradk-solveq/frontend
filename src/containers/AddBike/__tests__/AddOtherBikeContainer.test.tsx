@@ -3,8 +3,8 @@ import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 import {act} from 'react-test-renderer';
 
-import {genericBikeToClass} from '@utils/transformData';
-import {bikeTypes} from '@services/mock/genericBIke';
+import {bikesConfigToClass} from '@utils/transformData';
+import {bikesConfig} from '@services/mock/genericBIke';
 import {validateData} from '@utils/validation/validation';
 import {genericBikerules} from '@utils/validation/validationRules';
 
@@ -18,24 +18,13 @@ const ADD_OTHER_BIKE_CONTAINER_MANUFACTURER_TEXT_INPUT_TEST_ID = `${ADD_OTHER_BI
 const BIKE_NAME = 'Super bike';
 const BIKE_MANUFATURER = 'Universe';
 
-const gb = {
-    description: {
-        id: '',
-        name: '',
-        producer: '',
-        serial_number: '',
-        sku: '',
-    },
-    bikeTypes: bikeTypes,
-};
+const bikeTypesList = bikesConfigToClass(bikesConfig)?.bikeTypesOptions || [];
 
 const validateFormData = (fieldName: string, value?: string) => {
     const rule = genericBikerules?.[fieldName];
     const isValid = validateData(rule, value);
     return {isValid, errorMessage: 'Error message'};
 };
-
-const genericBike = genericBikeToClass(gb);
 
 describe('<AddOtherBikeContainer /> - containers/AddBike/containers/AddOtherBikeContainer', () => {
     const onPressSubmit = jest.fn();
@@ -46,7 +35,7 @@ describe('<AddOtherBikeContainer /> - containers/AddBike/containers/AddOtherBike
             <AddOtherBikeContainer
                 onSubmit={onPressSubmit}
                 onValidate={onValidate}
-                genericBikeData={genericBike}
+                bikeTypesList={bikeTypesList}
             />,
         );
 
@@ -91,7 +80,7 @@ describe('<AddOtherBikeContainer /> - containers/AddBike/containers/AddOtherBike
             <AddOtherBikeContainer
                 onSubmit={onPressSubmit}
                 onValidate={onValidate}
-                genericBikeData={genericBike}
+                bikeTypesList={bikeTypesList}
             />,
         );
 
@@ -133,7 +122,7 @@ describe('<AddOtherBikeContainer /> - containers/AddBike/containers/AddOtherBike
             <AddOtherBikeContainer
                 onSubmit={onPressSubmit}
                 onValidate={onValidate}
-                genericBikeData={genericBike}
+                bikeTypesList={bikeTypesList}
             />,
         );
 
@@ -175,7 +164,7 @@ describe('<AddOtherBikeContainer /> - containers/AddBike/containers/AddOtherBike
             <AddOtherBikeContainer
                 onSubmit={onPressSubmit}
                 onValidate={onValidate}
-                genericBikeData={genericBike}
+                bikeTypesList={bikeTypesList}
             />,
         );
 

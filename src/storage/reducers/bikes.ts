@@ -4,10 +4,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as actionTypes from '../actions/actionTypes';
 import {GenericBikeI, UserBike} from '../../models/userBike.model';
 import {addNewBikeDataOrReplaceIfExists, updateBikesList} from './utils/bikes';
+import {BikesConfigI} from '@models/bike.model';
 
 export interface BikesState {
     list: UserBike[];
     genericBike: GenericBikeI | undefined;
+    config: BikesConfigI;
     error: string;
     loading: boolean;
 }
@@ -15,6 +17,7 @@ export interface BikesState {
 const initialStateList: BikesState = {
     list: [],
     genericBike: undefined,
+    config: {bikeTypes: []},
     error: '',
     loading: false,
 };
@@ -53,6 +56,12 @@ const bikesReducer = (state = initialStateList, action: any) => {
                 genericBike: action.genericBikeData,
                 loading: false,
                 error: '',
+            };
+        }
+        case actionTypes.SET_BIKES_CONFIG: {
+            return {
+                ...state,
+                config: action.bikesConfig,
             };
         }
         case actionTypes.SET_BIKES_DATA: {

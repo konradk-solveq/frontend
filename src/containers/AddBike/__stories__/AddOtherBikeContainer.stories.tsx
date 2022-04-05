@@ -12,21 +12,10 @@ import {genericBikerules} from '@utils/validation/validationRules';
 import {validateData} from '@utils/validation/validation';
 import AddOtherBikeContainer from '../AddOtherBikeContainer';
 import {StyleSheet} from 'react-native';
-import {bikeTypes} from '@src/services/mock/genericBIke';
-import {genericBikeToClass} from '@src/utils/transformData';
+import {bikesConfig} from '@src/services/mock/genericBIke';
+import {bikesConfigToClass} from '@utils/transformData';
 
-const gb = {
-    description: {
-        id: '',
-        name: '',
-        producer: '',
-        serial_number: '',
-        sku: '',
-    },
-    bikeTypes: bikeTypes,
-};
-
-const genericBike = genericBikeToClass(gb);
+const bikeTypesList = bikesConfigToClass(bikesConfig)?.bikeTypesOptions || [];
 
 /**
  * Validates data with the same rule as in screen
@@ -56,7 +45,7 @@ storiesOf('containers/AddBike/AddOtherBikeContainer', module)
     .add('Default', () => (
         <AddOtherBikeContainer
             onSubmit={action('on-submit-action')}
-            genericBikeData={genericBike}
+            bikeTypesList={bikeTypesList}
             onValidate={actionWithReturnValue('on-validate-data-action')}
             isLoading={false}
         />
@@ -64,7 +53,7 @@ storiesOf('containers/AddBike/AddOtherBikeContainer', module)
     .add('Customized', () => (
         <AddOtherBikeContainer
             onSubmit={action('on-submit-action')}
-            genericBikeData={object('Generic Bike data', genericBike)}
+            bikeTypesList={object('Generic Bike data', bikeTypesList)}
             onValidate={actionWithReturnValue(
                 'on-validate-data-action',
                 object('Object to return after validation', {
