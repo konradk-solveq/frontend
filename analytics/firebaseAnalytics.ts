@@ -23,3 +23,7 @@ export const disableAnalytics = async () => {
 export const enableAnalytics = async () => {
     await analytics().setAnalyticsCollectionEnabled(true);
 };
+
+export const logEvent = async (name: string, payload: {[key: string]: any}) => {
+    await analytics().logEvent(name, payload);
+};
