@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
-import {Alert, View, StyleSheet} from 'react-native';
+import {Alert, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -18,7 +18,6 @@ import BikeDetailsContainer from '@containers/Bike/BikeDetailsContainer';
 import {Overview} from '@models/bike.model';
 import ChangeBikeModal from '@pages/main/bike/components/modal/ChangeBikeModal';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import colors from '@theme/colors';
 
 interface Props {
     navigation: any;
@@ -118,7 +117,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     const {top} = useSafeAreaInsets();
     return (
         <GenericScreen hideBackArrow noHeader transculentStatusBar>
-            <View style={[styles.container, {paddingTop: top}]}>
+            <View style={{paddingTop: top}}>
                 {hasAnyBikesAdded ? (
                     <>
                         <BikeDetailsContainer
@@ -154,9 +153,3 @@ const Bike: React.FC<Props> = (props: Props) => {
 };
 
 export default Bike;
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: colors.whiteGrey,
-    },
-});
