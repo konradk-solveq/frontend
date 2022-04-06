@@ -13,7 +13,7 @@ export const codesListSelector = (state: RootState): LangsType[] =>
 
 export const translationsControlSumsSelector = (
     state: RootState,
-): ControlSumsType[] => state.app.config?.uiTranslations?.controlSums;
+): ControlSumsType[] => state.app.config?.uiTranslations?.controlSums || [];
 
 export const translationsCodesSelector = (state: RootState): string[] =>
     state.app.config?.uiTranslations?.codes;
