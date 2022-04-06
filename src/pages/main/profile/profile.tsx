@@ -3,7 +3,6 @@ import {
     StyleSheet,
     SafeAreaView,
     View,
-    Text,
     TouchableOpacity,
     ScrollView,
 } from 'react-native';
@@ -133,49 +132,25 @@ const Profile: React.FC<Props> = (props: Props) => {
                                     RegularStackRoute.NAME_CHANGE_SCREEN,
                                 )
                             }>
-                            <View style={styles.nameWrap}>
-                                <Text style={styles.name}>{userName}</Text>
-                                <Text style={styles.name}>...</Text>
-                            </View>
                         </TouchableOpacity>
-                        {isAuthenticated && (
-                            <View style={styles.menuSection}>
-                                <Text style={styles.title}>
-                                    {t('settings')}
-                                </Text>
-                                <BlueButton
-                                    onpress={() =>
-                                        props.navigation.navigate(
-                                            RegularStackRoute.CONSENTS_SCREEN,
-                                        )
-                                    }
-                                    title={t('myConsents')}
-                                />
-                            </View>
-                        )}
                         <View style={styles.menuSection}>
-                            {langs && langs.length > 1 && (
-                                <View>
-                                    <Text style={styles.title}>
-                                        {t('settings')}
-                                    </Text>
-                                    <BlueButton
-                                        onpress={() => {
-                                            props.navigation.navigate(
-                                                RegularStackRoute.LANGUAGE_CHANGE_SCREEN,
-                                            );
-                                        }}
-                                        title={t('languages')}
-                                    />
-                                    <Text
-                                        style={[
-                                            styles.title,
-                                            styles.separator,
-                                        ]}>
-                                        {t('title')}
-                                    </Text>
-                                </View>
-                            )}
+                            <BlueButton
+                                onpress={() =>
+                                    props.navigation.navigate(
+                                        RegularStackRoute.NAME_CHANGE_SCREEN,
+                                    )
+                                }
+                                title={t('accountEdit')}
+                            />
+                            
+                            <BlueButton
+                                onpress={() => {
+                                    props.navigation.navigate(
+                                        RegularStackRoute.LANGUAGE_CHANGE_SCREEN,
+                                    );
+                                }}
+                                title={t('languages')}
+                            />
 
                             <BlueButton
                                 onpress={() =>
