@@ -23,6 +23,15 @@ import {
     getFontSize,
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
+import ContactSvg from './contactSvg';
+import { appContainerHorizontalMargin } from '@src/theme/commonStyle';
+import { Header2, Header3, Paragraph, TextLink } from '@src/components/texts/texts';
+import colors from '@src/theme/colors';
+import { MykrossIconFont } from '@src/theme/enums/iconFonts';
 
 interface Props {
     navigation: any;
@@ -45,11 +54,19 @@ const Contact: React.FC<Props> = (props: Props) => {
         },
         wrap: {
             position: 'absolute',
-            width: getWidthPx(),
-            height: getVerticalPx(896 - 100),
-            left: getCenterLeftPx(),
+            height: '100%',
+            width: '100%',
             marginBottom: getVerticalPx(65),
             marginTop: getVerticalPx(100),
+            paddingHorizontal: appContainerHorizontalMargin,
+        },
+        imageContainer: {
+            marginTop: getFVerticalPx(33),
+            marginBottom: getFVerticalPx(24),
+            alignItems: 'center'
+        },
+        captionText: {
+            textAlign: 'center',
         },
         title: {
             fontFamily: 'DIN2014Narrow-Light',
@@ -59,16 +76,44 @@ const Contact: React.FC<Props> = (props: Props) => {
             position: 'absolute',
             top: getVerticalPx(138 - 100),
         },
-        poneEmail: {
-            position: 'absolute',
-            top: getVerticalPx(347 - 100),
+        subtitle: {
+          marginBottom: getFVerticalPx(32),  
         },
-        phone: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getFontSize(40),
-            color: '#313131',
-            textAlign: 'left',
-            marginBottom: getVerticalPx(16),
+        subtitleContainer: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginBottom: getFVerticalPx(24),
+        },
+        paragraphMargin: {
+            marginBottom: getFVerticalPx(8),
+        },
+        contactTile: {
+            backgroundColor: colors.whiteGrey,
+            borderRadius: 8,
+            paddingRight: getFVerticalPx(16),
+            paddingLeft: getFVerticalPx(16),
+            paddingTop: getFHorizontalPx(20),
+            paddingBottom: getFHorizontalPx(20),
+            marginBottom: getFVerticalPx(16),
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+        },
+        icon: {
+            fontFamily: 'mykross',
+            fontSize: getFHorizontalPx(30),
+            width: getFHorizontalPx(30),
+            height: getFHorizontalPx(30),
+            textAlign: 'center',
+            color: '#333',
+            marginRight: getFVerticalPx(18),
+        },
+        tileGroup: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        },
+        phoneLink: {
+            textDecorationLine: 'none',
         },
         email: {
             fontFamily: 'DIN2014Narrow-Regular',
@@ -87,8 +132,11 @@ const Contact: React.FC<Props> = (props: Props) => {
         },
         btn: {
             position: 'absolute',
-            bottom: getVerticalPx(65),
-            height: mainButtonsHeight(50),
+            alignSelf: 'center',
+            backgroundColor: colors.red,
+            borderRadius: 16,
+            bottom: getFVerticalPx(34),
+            height: getFVerticalPx(48),
             width: '100%',
         },
     });
@@ -104,21 +152,49 @@ const Contact: React.FC<Props> = (props: Props) => {
     return (
         <SafeAreaView style={comStyle.container}>
             <View style={styles.wrap}>
-                <Text style={styles.title}>{t('title', {name: userName})}</Text>
-                <View style={styles.poneEmail}>
-                    <TouchableWithoutFeedback
-                        onPress={() => Linking.openURL(heandlePhone())}>
-                        <Text style={styles.phone}>{t('phone')}</Text>
-                    </TouchableWithoutFeedback>
-
-                    <TouchableWithoutFeedback
-                        onPress={() =>
-                            Linking.openURL('mailto:kross@kross.pl')
-                        }>
-                        <Text style={styles.email}>{t('email')}</Text>
-                    </TouchableWithoutFeedback>
+                <View style={styles.imageContainer}>
+                    <ContactSvg />
                 </View>
-                <Text style={styles.adress}>{t('adress')}</Text>
+                <Header2 algin="center" style={styles.subtitle}>
+                    {t('contactCaption')}
+                </Header2>
+
+                <Header3 style={styles.paragraphMargin}>{t('officeTitle')}</Header3>
+                
+                <View style={styles.subtitleContainer}>
+                    <Paragraph>{t('officeSubtitle')}</Paragraph>
+                    <Paragraph>{t('officeHours')}</Paragraph>
+                </View>
+
+                <View style={styles.contactTile}>
+                    <View style={styles.tileGroup}>
+                        <Text style={styles.icon}>
+                            {MykrossIconFont.MYKROSS_ICON_HOME}
+                        </Text>
+                        <Text>{t('phoneTitle')}</Text>
+                    </View>
+
+                    <View style={styles.tileGroup}>
+                        <TouchableWithoutFeedback onPress={() => Linking.openURL(heandlePhone())}>
+                            <TextLink style={styles.phoneLink} color={colors.red}>{t('phone')}</TextLink>
+                        </TouchableWithoutFeedback>
+                    </View>
+                </View>
+                
+                <View style={styles.contactTile}>
+                    <View style={styles.tileGroup}>
+                        <Text style={styles.icon}>
+                            {MykrossIconFont.MYKROSS_ICON_HOME}
+                        </Text>
+                        <Text>{t('emailTitle')}</Text>
+                    </View>
+
+                    <View style={styles.tileGroup}>
+                        <TouchableWithoutFeedback onPress={() => Linking.openURL(`mailto:${t('email')}`)}>
+                            <TextLink style={styles.phoneLink} color={colors.red}>{t('email')}</TextLink>
+                        </TouchableWithoutFeedback>
+                    </View>
+                </View>
 
                 <BigRedBtn
                     style={styles.btn}
