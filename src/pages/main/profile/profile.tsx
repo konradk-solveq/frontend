@@ -7,7 +7,7 @@ import {
     ScrollView,
 } from 'react-native';
 
-import BlueButton from './blueButton';
+import ProfileButton from './profileButton';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import {
     authErrorSelector,
@@ -134,7 +134,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                             }>
                         </TouchableOpacity>
                         <View style={styles.menuSection}>
-                            <BlueButton
+                            <ProfileButton
                                 onpress={() =>
                                     props.navigation.navigate(
                                         RegularStackRoute.NAME_CHANGE_SCREEN,
@@ -143,7 +143,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 title={t('accountEdit')}
                             />
                             
-                            <BlueButton
+                            <ProfileButton
                                 onpress={() => {
                                     props.navigation.navigate(
                                         RegularStackRoute.LANGUAGE_CHANGE_SCREEN,
@@ -152,7 +152,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 title={t('languages')}
                             />
 
-                            <BlueButton
+                            <ProfileButton
                                 onpress={() =>
                                     props.navigation.navigate(
                                         RegularStackRoute.ABOUT_APP_SCREEN,
@@ -160,7 +160,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 }
                                 title={t('app')}
                             />
-                            <BlueButton
+                            <ProfileButton
                                 onpress={() =>
                                     props.navigation.navigate(
                                         BothStackRoute.REGULATIONS_SCREEN,
@@ -168,7 +168,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 }
                                 title={t('regulations')}
                             />
-                            <BlueButton
+                            <ProfileButton
                                 onpress={() =>
                                     props.navigation.navigate(
                                         BothStackRoute.PRIVACY_POLICY_SCREEN,
@@ -176,7 +176,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 }
                                 title={t('privacyPolicy')}
                             />
-                            <BlueButton
+                            <ProfileButton
                                 onpress={() =>
                                     props.navigation.navigate(
                                         RegularStackRoute.HELP_SCREEN,
@@ -184,13 +184,14 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 }
                                 title={t('help')}
                             />
-                            <BlueButton
+                            <ProfileButton
                                 onpress={() =>
                                     props.navigation.navigate(
                                         RegularStackRoute.CONTACT_SCREEN,
                                     )
                                 }
                                 title={t('contact')}
+                                hiddenBottomBorder={true}
                             />
                         </View>
                         {isAuthenticated && (
