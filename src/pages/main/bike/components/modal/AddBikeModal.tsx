@@ -11,9 +11,10 @@ import {BottomModal, ModalHeader} from '@components/modals';
 import {HorizontalSpacer} from '@components/divider';
 import {AddBikeTile} from '@components/tiles';
 import {SignpostSvg} from '@components/svg';
-import {screenHeight} from '@theme/commonStyle';
+import {screenHeight, SMALL_SCREEN_HEIGHT} from '@theme/commonStyle';
 
-const modalHeight = screenHeight <= 670 ? 548 : 458;
+const modalHeight = screenHeight <= SMALL_SCREEN_HEIGHT ? 588 : 458;
+const imageContinaerHeight = screenHeight <= SMALL_SCREEN_HEIGHT ? 186 : 136;
 
 interface IProps {
     onAddBike: () => void;
@@ -88,7 +89,11 @@ const styles = StyleSheet.create({
         marginBottom: 0,
     },
     imageContainer: {
-        marginBottom: getFVerticalPx(26),
+        marginTop: -getFVerticalPx(20),
+        marginBottom: getFVerticalPx(16),
+        height: getFVerticalPx(imageContinaerHeight),
+        width: '100%',
+        alignItems: 'center',
     },
 });
 

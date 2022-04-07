@@ -11,6 +11,7 @@ export const appContainerHorizontalMargin = getHorizontalPx(16);
 export const appBottomMargin = getVerticalPx(40);
 export const screenWidth = width;
 export const screenHeight = height;
+export const SMALL_SCREEN_HEIGHT = 670;
 
 export const commonStyle = StyleSheet.create({
     container: {
