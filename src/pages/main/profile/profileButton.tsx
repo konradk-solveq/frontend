@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import colors from '@theme/colors';
 import Svg, {Path} from 'react-native-svg';
+import {appContainerHorizontalMargin} from '@theme/commonStyle';
 
 import {
     setObjSize,
@@ -27,6 +28,7 @@ const ProfileButton: React.FC<Props> = (props: Props) => {
             width: '100%',
             borderBottomWidth: props.hiddenBottomBorder ? 0 : 1,
             borderBottomColor: colors.greyish,
+            paddingHorizontal: appContainerHorizontalMargin,
         },
         buttonText: {
             fontFamily: 'DIN2014Narrow-Regular',

@@ -3,37 +3,26 @@ import {
     StyleSheet,
     SafeAreaView,
     View,
-    TouchableOpacity,
     ScrollView,
 } from 'react-native';
 
 import ProfileButton from './profileButton';
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
-import {
-    authErrorSelector,
-    authUserAuthenticatedStateSelector,
-} from '@storage/selectors';
+import {authErrorSelector} from '@storage/selectors';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
-import {
-    setObjSize,
-    getCenterLeftPx,
-    getVerticalPx,
-    getWidthPx,
-    getFontSize,
-} from '@helpers/layoutFoo';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+
 import {RegularStackRoute, BothStackRoute} from '@navigation/route';
 
-import {clearAuthError, logOut} from '@storage/actions';
-import {BigRedBtn} from '@sharedComponents/buttons';
+import {clearAuthError} from '@storage/actions';
 import FailedResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
 
 import {commonStyle as comStyle} from '@helpers/commonStyle';
-import AmatoryBiker from './amatoryBiker';
+import ProfileSvg from './profileSvg';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {translationsCodesSelector} from '@storage/selectors/uiTranslation';
 
 interface Props {
     navigation: any;
@@ -45,19 +34,9 @@ const Profile: React.FC<Props> = (props: Props) => {
     const {t: tpa} = useMergedTranslation('Profile.auth');
     const dispatch = useAppDispatch();
 
-    const userName =
-        useAppSelector<string>(state => state.user.userName) ||
-        t('defaultName');
-    const isAuthenticated = useAppSelector(authUserAuthenticatedStateSelector);
     const authError = useAppSelector(authErrorSelector);
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
-
-    const langs: string[] = useAppSelector(translationsCodesSelector);
-
-    const onLogoutPressedHandler = () => {
-        dispatch(logOut());
-    };
 
     useEffect(() => {
         if (authError.statusCode >= 400) {
@@ -70,52 +49,18 @@ const Profile: React.FC<Props> = (props: Props) => {
         setShowErrorMessage(false);
     };
 
-    setObjSize(334, 50);
     const styles = StyleSheet.create({
         wrap: {
-            width: getWidthPx(),
-            left: getCenterLeftPx(),
-            marginBottom: getVerticalPx(145),
-            marginTop: getVerticalPx(60),
+            marginTop: getFVerticalPx(33),
+            marginBottom: getFVerticalPx(64),
         },
-        title: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getFontSize(18),
-            color: '#555555',
-            textAlign: 'left',
-            position: 'relative',
-            marginBottom: getVerticalPx(4.5),
-        },
-        separator: {
-            marginTop: getVerticalPx(36),
-        },
-        nameWrap: {
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+        imageContainer: {
             width: '100%',
-        },
-        name: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getFontSize(23),
-            color: '#313131',
-            textAlign: 'left',
-            position: 'relative',
-            marginTop: getVerticalPx(20),
-            marginBottom: getVerticalPx(51),
-        },
-        logoutButton: {
-            marginTop: getVerticalPx(30),
-            height: getVerticalPx(50),
-        },
-        logoutText: {
-            fontSize: getFontSize(19),
-            paddingHorizontal: 20,
-            letterSpacing: getFontSize(0.54),
+            alignItems: 'center',
+            marginBottom: getFVerticalPx(24),
         },
         menuSection: {
-            marginBottom: getVerticalPx(20),
+            marginBottom: getFVerticalPx(64),
         },
     });
 
@@ -124,15 +69,10 @@ const Profile: React.FC<Props> = (props: Props) => {
             <View style={comStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
-                        <AmatoryBiker />
-
-                        <TouchableOpacity
-                            onPress={() =>
-                                props.navigation.navigate(
-                                    RegularStackRoute.NAME_CHANGE_SCREEN,
-                                )
-                            }>
-                        </TouchableOpacity>
+                        <View style={styles.imageContainer}>
+                            <ProfileSvg />
+                        </View>
+                        
                         <View style={styles.menuSection}>
                             <ProfileButton
                                 onpress={() =>
@@ -142,7 +82,6 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 }
                                 title={t('accountEdit')}
                             />
-                            
                             <ProfileButton
                                 onpress={() => {
                                     props.navigation.navigate(
@@ -151,7 +90,6 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 }}
                                 title={t('languages')}
                             />
-
                             <ProfileButton
                                 onpress={() =>
                                     props.navigation.navigate(
@@ -194,15 +132,6 @@ const Profile: React.FC<Props> = (props: Props) => {
                                 hiddenBottomBorder={true}
                             />
                         </View>
-                        {isAuthenticated && (
-                            <BigRedBtn
-                                testID="logout-btn"
-                                onpress={onLogoutPressedHandler}
-                                title={tpa('logoutBtn')}
-                                style={styles.logoutButton}
-                                textStyle={styles.logoutText}
-                            />
-                        )}
                     </View>
                 </ScrollView>
 
