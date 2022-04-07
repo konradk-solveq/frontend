@@ -3,13 +3,11 @@ import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import colors from '@theme/colors';
 import Svg, {Path} from 'react-native-svg';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
-
 import {
-    setObjSize,
-    getHorizontalPx,
-    getVerticalPx,
-    getFontSize,
-} from '@helpers/layoutFoo';
+    getFHorizontalPx,
+    getFVerticalPx,
+    getFFontSize,
+} from '@theme/utils/appLayoutDimensions';
 
 interface Props {
     title: string;
@@ -18,7 +16,7 @@ interface Props {
 }
 
 const ProfileButton: React.FC<Props> = (props: Props) => {
-    setObjSize(334, 50);
+
     const styles = StyleSheet.create({
         container: {
             display: 'flex',
@@ -31,18 +29,18 @@ const ProfileButton: React.FC<Props> = (props: Props) => {
             paddingHorizontal: appContainerHorizontalMargin,
         },
         buttonText: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getFontSize(18),
+            fontFamily: 'DIN2014-Demi',
+            fontSize: getFFontSize(16),
             color: colors.black,
             textAlign: 'left',
             position: 'relative',
-            marginTop: getVerticalPx(33 / 2),
-            marginBottom: getVerticalPx(33 / 2),
+            marginTop: getFVerticalPx(16),
+            marginBottom: getFVerticalPx(16),
         },
         arrow: {
-            width: getHorizontalPx(9),
-            height: getHorizontalPx(15),
-            marginRight: getHorizontalPx(7),
+            width: getFHorizontalPx(8),
+            height: getFHorizontalPx(14),
+            marginRight: getFHorizontalPx(7),
         },
     });
 
