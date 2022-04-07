@@ -1,12 +1,16 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
 import {getVerticalPx, getHorizontalPx} from '@helpers/layoutFoo';
 import {isIOS} from '@utils/platform';
 
+const {width, height} = Dimensions.get('screen');
+
 export const navBarHeight = getVerticalPx(100);
 export const appContainerHorizontalMargin = getHorizontalPx(16);
 export const appBottomMargin = getVerticalPx(40);
+export const screenWidth = width;
+export const screenHeight = height;
 
 export const commonStyle = StyleSheet.create({
     container: {

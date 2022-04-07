@@ -52,15 +52,19 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
             },
           ]
         }
+        testID="add-bike-tile"
       >
         <View
           style={
-            Object {
-              "height": 201.92307692307693,
-              "justifyContent": "center",
-              "paddingBottom": 12.644549763033176,
-              "width": 201.92307692307693,
-            }
+            Array [
+              Object {
+                "height": 201.92307692307693,
+                "justifyContent": "center",
+                "marginBottom": 12.644549763033176,
+                "width": 201.92307692307693,
+              },
+              undefined,
+            ]
           }
         >
           <RNSVGSvgView
@@ -253,7 +257,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
             }
             testID="header2-test-id"
           >
-            MainBike.noBikes.addBikeTile.header
+            MainBike.AddBikeTile.header
           </Text>
           <Text
             adjustsFontSizeToFit={false}
@@ -272,7 +276,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
             }
             testID="header3-test-id"
           >
-            MainBike.noBikes.addBikeTile.body
+            MainBike.AddBikeTile.body
           </Text>
         </View>
         <View
@@ -327,7 +331,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                 ],
               ]
             }
-            testID="secondary-btn-test-id"
+            testID="add-bike-tile-primary-button"
           >
             <View
               style={
@@ -346,7 +350,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                   undefined,
                 ]
               }
-              testID="secondary-btn-test-id-container"
+              testID="add-bike-tile-primary-button-container"
             >
               <Text
                 adjustsFontSizeToFit={true}
@@ -364,9 +368,9 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                     },
                   ]
                 }
-                testID="secondary-btn-test-id-text"
+                testID="add-bike-tile-primary-button-text"
               >
-                MainBike.noBikes.addBikeTile.primaryButton
+                MainBike.AddBikeTile.primaryButton
               </Text>
             </View>
           </View>
@@ -408,7 +412,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                 ],
               ]
             }
-            testID="secondary-btn-test-id"
+            testID="add-bike-tile-secondary-button"
           >
             <View
               style={
@@ -427,7 +431,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                   undefined,
                 ]
               }
-              testID="secondary-btn-test-id-container"
+              testID="add-bike-tile-secondary-button-container"
             >
               <Text
                 adjustsFontSizeToFit={true}
@@ -445,9 +449,9 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                     },
                   ]
                 }
-                testID="secondary-btn-test-id-text"
+                testID="add-bike-tile-secondary-button-text"
               >
-                MainBike.noBikes.addBikeTile.secondaryButton
+                MainBike.AddBikeTile.secondaryButton
               </Text>
             </View>
           </View>
