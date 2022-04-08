@@ -1,13 +1,10 @@
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import colors from '@theme/colors';
 import Svg, {Path} from 'react-native-svg';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
-import {
-    getFHorizontalPx,
-    getFVerticalPx,
-    getFFontSize,
-} from '@theme/utils/appLayoutDimensions';
+import {getFHorizontalPx, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import {TextLink} from '@src/components/texts/texts';
 
 interface Props {
     title: string;
@@ -28,14 +25,12 @@ const ProfileButton: React.FC<Props> = (props: Props) => {
             borderBottomColor: colors.greyish,
             paddingHorizontal: appContainerHorizontalMargin,
         },
+        textLinkContainer: {
+            height: getFVerticalPx(48)
+        },
         buttonText: {
-            fontFamily: 'DIN2014-Demi',
-            fontSize: getFFontSize(16),
-            color: colors.black,
-            textAlign: 'left',
-            position: 'relative',
-            marginTop: getFVerticalPx(16),
-            marginBottom: getFVerticalPx(16),
+            marginVertical: getFVerticalPx(16),
+            textDecorationLine: 'none',
         },
         arrow: {
             width: getFHorizontalPx(8),
@@ -47,7 +42,11 @@ const ProfileButton: React.FC<Props> = (props: Props) => {
     return (
         <TouchableOpacity onPress={props.onpress}>
             <View style={styles.container}>
-                <Text style={styles.buttonText}>{props.title}</Text>
+                <View style={styles.textLinkContainer}>
+                    <TextLink style={styles.buttonText}>
+                        {props.title}
+                    </TextLink>
+                </View>
                 <Svg style={styles.arrow} viewBox="0 0 9 15">
                     <Path
                         fill={colors.black}

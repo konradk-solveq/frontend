@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {
     StyleSheet,
-    SafeAreaView,
     View,
     ScrollView,
 } from 'react-native';
 
-import ProfileButton from './profileButton';
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import ProfileButton from './components/profileButton';
 import {authErrorSelector} from '@storage/selectors';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -19,10 +17,11 @@ import {RegularStackRoute, BothStackRoute} from '@navigation/route';
 import {clearAuthError} from '@storage/actions';
 import FailedResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
 
-import {commonStyle as comStyle} from '@helpers/commonStyle';
-import ProfileSvg from './profileSvg';
+import {commonStyle} from '@theme/commonStyle';
+import ProfileSvg from '../../../components/svg/ProfileSvg';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import GenericScreen from '@src/pages/template/GenericScreen';
 
 interface Props {
     navigation: any;
@@ -51,7 +50,6 @@ const Profile: React.FC<Props> = (props: Props) => {
 
     const styles = StyleSheet.create({
         wrap: {
-            marginTop: getFVerticalPx(33),
             marginBottom: getFVerticalPx(64),
         },
         imageContainer: {
@@ -65,8 +63,8 @@ const Profile: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={comStyle.container}>
-            <View style={comStyle.scroll}>
+        <GenericScreen screenTitle={t('header')} hideBackArrow>
+            <View style={commonStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         <View style={styles.imageContainer}>
@@ -143,8 +141,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                 />
             </View>
 
-            <StackHeader hideBackArrow inner={t('header')} />
-        </SafeAreaView>
+        </GenericScreen>
     );
 };
 
