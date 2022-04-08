@@ -1,8 +1,8 @@
 import React from 'react';
 import Svg, {Path} from 'react-native-svg';
 import {getFHorizontalPx, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
-import { StyleProp, ViewStyle } from 'react-native';
-import { View } from 'react-native';
+import {StyleProp, ViewStyle} from 'react-native';
+import {View} from 'react-native';
 
 interface IconProps {
     type: "email" | "phone",
@@ -29,14 +29,12 @@ const getEmailIcon = () => (
     </Svg>
 )
 
-
-const ContactIcon = ({ type, style }: IconProps) => {
+const ContactTypeSvg = ({ type, style }: IconProps) => {
     return (
         <View style={style}>
             { type === "email" ? getEmailIcon() : getPhoneIcon() }
         </View>
-    )
-    
+    ) 
 };
 
-export default ContactIcon;
+export default ContactTypeSvg;

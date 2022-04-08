@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     StyleSheet,
-    SafeAreaView,
     View,
     Text,
     TouchableWithoutFeedback,
@@ -9,27 +8,18 @@ import {
     Platform,
 } from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {commonStyle as comStyle} from '@helpers/commonStyle';
 
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 
-import {
-    getFHorizontalPx,
-    getFVerticalPx,
-} from '@theme/utils/appLayoutDimensions';
-import ContactSvg from './contactSvg';
+import {getFHorizontalPx, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import { appContainerHorizontalMargin } from '@src/theme/commonStyle';
 import { Header2, Header3, Paragraph, TextLink } from '@src/components/texts/texts';
 import colors from '@src/theme/colors';
-import ContactIcon from './contactIcon';
+import ContactSvg from '../../../../components/svg/ContactSvg';
+import ContactTypeSvg from '../../../../components/svg/ContactTypeSvg';
+import GenericScreen from '@src/pages/template/GenericScreen';
 
-interface Props {
-    navigation: any;
-    route: any;
-}
-
-const Contact: React.FC<Props> = (props: Props) => {
+const Contact: React.FC = () => {
     const {t} = useMergedTranslation('Contact');
 
     const styles = StyleSheet.create({
@@ -45,9 +35,6 @@ const Contact: React.FC<Props> = (props: Props) => {
             marginTop: getFVerticalPx(33),
             marginBottom: getFVerticalPx(24),
             alignItems: 'center'
-        },
-        captionText: {
-            textAlign: 'center',
         },
         subtitle: {
           marginBottom: getFVerticalPx(32),
@@ -102,7 +89,7 @@ const Contact: React.FC<Props> = (props: Props) => {
     };
 
     return (
-        <SafeAreaView style={comStyle.container}>
+        <GenericScreen screenTitle={t('header')}>
             <View style={styles.wrap}>
                 <View style={styles.imageContainer}>
                     <ContactSvg />
@@ -120,7 +107,7 @@ const Contact: React.FC<Props> = (props: Props) => {
 
                 <View style={styles.contactTile}>
                     <View style={styles.tileGroup}>
-                        <ContactIcon style={styles.icon} type={"phone"} />
+                        <ContactTypeSvg style={styles.icon} type={"phone"} />
                         <Text>{t('phoneTitle')}</Text>
                     </View>
 
@@ -135,7 +122,7 @@ const Contact: React.FC<Props> = (props: Props) => {
                 
                 <View style={styles.contactTile}>
                     <View style={styles.tileGroup}>
-                        <ContactIcon type={"email"} style={styles.icon} />
+                        <ContactTypeSvg style={styles.icon} type={"email"} />
                         <Text>{t('emailTitle')}</Text>
                     </View>
 
@@ -154,12 +141,7 @@ const Contact: React.FC<Props> = (props: Props) => {
                     onpress={() => Linking.openURL('http://kross.eu')}
                 />
             </View>
-
-            <StackHeader
-                onpress={() => props.navigation.goBack()}
-                inner={t('header')}
-            />
-        </SafeAreaView>
+        </GenericScreen>
     );
 };
 
