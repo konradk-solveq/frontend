@@ -428,7 +428,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           "zIndex": 10,
         },
         [Function],
-        undefined,
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
       ]
     }
     testID="bottom-modal-test-id"
@@ -1676,7 +1678,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           "zIndex": 10,
         },
         [Function],
-        undefined,
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
       ]
     }
     testID="bottom-modal-test-id"
