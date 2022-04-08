@@ -13,7 +13,7 @@ import {AddBikeTile} from '@components/tiles';
 import {SignpostSvg} from '@components/svg';
 import {screenHeight, SMALL_SCREEN_HEIGHT} from '@theme/commonStyle';
 
-const modalHeight = screenHeight <= SMALL_SCREEN_HEIGHT ? 588 : 458;
+const modalHeight = screenHeight <= SMALL_SCREEN_HEIGHT ? 568 : 458;
 const imageContinaerHeight = screenHeight <= SMALL_SCREEN_HEIGHT ? 186 : 136;
 
 interface IProps {
@@ -62,7 +62,6 @@ const AddBikeModal: React.FC<IProps> = ({
                         <HorizontalSpacer height={16} />
                         <ModalHeader
                             onPress={onClose}
-                            style={styles.modalHeader}
                             testID={`${testID}-bike-modal-header`}
                         />
                     </>
@@ -85,9 +84,6 @@ const AddBikeModal: React.FC<IProps> = ({
 };
 
 const styles = StyleSheet.create({
-    modalHeader: {
-        marginBottom: 0,
-    },
     imageContainer: {
         marginTop: -getFVerticalPx(20),
         marginBottom: getFVerticalPx(16),

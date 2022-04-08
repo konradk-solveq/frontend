@@ -20,6 +20,7 @@ import ChangeBikeModal from '@pages/main/bike/components/modal/ChangeBikeModal';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import colors from '@theme/colors';
 import {AddBikeModal} from '@pages/main/bike/components/modal';
+import {isIOS} from '@src/utils/platform';
 
 interface Props {
     navigation: any;
@@ -119,6 +120,24 @@ const Bike: React.FC<Props> = (props: Props) => {
     /* Show bottom sheet with actions for adding bikes */
     const showOtherBike = useCallback(() => {
         setShowAddBikeModal(true);
+        /* On IOS cannot show mutliple modals at the same time */
+        if (isIOS) {
+            setShowBottomModal(false);
+        }
+    }, []);
+
+    /* Hide bottom sheet with actions for adding bikes */
+    const hideOtherBike = useCallback(() => {
+        setShowAddBikeModal(false);
+        /**
+         * On IOS cannot show mutliple modals at the same time,
+         * so we need to wait until other modal will hide.
+         */
+        if (isIOS) {
+            setTimeout(() => {
+                setShowBottomModal(true);
+            }, 870);
+        }
     }, []);
 
     const onAddOtherBike = useCallback(() => {
@@ -161,7 +180,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                             onAddBike={onAddKrossBike}
                             onAddOtherBike={onAddOtherBike}
                             showModal={showAddBikeModal}
-                            onClose={() => setShowAddBikeModal(false)}
+                            onClose={hideOtherBike}
                         />
                     </>
                 ) : (
