@@ -19,7 +19,11 @@ import {
 } from '@containers/World';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {selectorMapTypeEnum} from '@storage/selectors';
-import {addPlannedMap, fetchMapIfNotExistsLocally} from '@storage/actions/maps';
+import {
+    addPlannedMap,
+    fetchMapIfNotExistsLocally,
+    removePlannedMap,
+} from '@storage/actions/maps';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
 import {BasicCoordsType} from '@type/coords';
 import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
@@ -98,6 +102,15 @@ const RoutesMap: React.FC = () => {
         mapData?.isPublic,
     ]);
     const canOpenModal = useMemo(() => !!mapData, [mapData]);
+    /* Route has been added to favourites */
+    const isFavourited = useMemo(
+        () =>
+            !!mapData?.isUserFavorite ||
+            routeInfo.mapType === selectorMapTypeEnum.favourite,
+        [mapData?.isUserFavorite, routeInfo.mapType],
+    );
+    /* When adding to favrourites show loader on 'Save' button */
+    const [isAddingToFavourites, setIsAddingToFavourites] = useState(false);
 
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
     const routeMapMarkers = useMemo(
@@ -204,7 +217,7 @@ const RoutesMap: React.FC = () => {
     }, [routeInfo.id, mapID]);
 
     const onRotueDetailsActionHandler = useCallback(
-        (actionType: RouteDetailsActionT) => {
+        async (actionType: RouteDetailsActionT) => {
             const mapId = mapData?.id;
             if (!mapId) {
                 return;
@@ -215,7 +228,19 @@ const RoutesMap: React.FC = () => {
                     navigation.navigate('Counter', {mapID: mapId});
                     break;
                 case 'add_to_planned':
-                    dispatch(addPlannedMap(mapId));
+                    setIsAddingToFavourites(true);
+                    await dispatch(addPlannedMap(mapId));
+                    setIsAddingToFavourites(false);
+                    break;
+                case 'remove_from_planned':
+                    setIsAddingToFavourites(true);
+                    await dispatch(removePlannedMap(mapId));
+                    setRouteInfo(prev => ({
+                        ...prev,
+                        mapType: selectorMapTypeEnum.regular,
+                        routeMapType: RouteMapType.BIKE_MAP,
+                    }));
+                    setIsAddingToFavourites(false);
                     break;
                 case 'share':
                     navigation.navigate('ShareRouteScreen', {
@@ -259,6 +284,8 @@ const RoutesMap: React.FC = () => {
                         onPressAction={onRotueDetailsActionHandler}
                         isPrivate={isCreatedByUser}
                         isPublished={isPublished}
+                        isFavourited={isFavourited}
+                        isFetching={isAddingToFavourites}
                     />
                 ) : (
                     <RoutesMapDetailsPlaceholderContainer />

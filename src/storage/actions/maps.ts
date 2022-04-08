@@ -32,6 +32,8 @@ import {
     getPlannedMapsListCount,
 } from '@services/mapsService';
 
+const TEST_ENV = process.env.JEST_WORKER_ID;
+
 export const setMapsData = (
     maps: MapType[],
     paginationCoursor: MapPagination,
@@ -149,6 +151,15 @@ export const modifyMapReactions = (
 export const removeMapFromPrivates = (mapID: string) => ({
     type: actionTypes.REMOVE_MAP_FROM_PRIVATES,
     mapID: mapID,
+});
+
+export const setMapIsFavouriteState = (
+    mapID: string,
+    isFavourite: boolean,
+) => ({
+    type: actionTypes.SET_MAP_IS_FAVOURITED_STATE,
+    mapIdToModify: mapID,
+    isFavourite: isFavourite,
 });
 
 const setLoadState = (
@@ -544,12 +555,27 @@ export const addPlannedMap = (
             return;
         }
 
-        batch(async () => {
-            await dispatch(fetchPlannedMapsList());
+        /**
+         * TODO: have issue with batching nested async dispatch action
+         * jest environment
+         */
+        if (TEST_ENV) {
+            dispatch(setMapIsFavouriteState(id, true));
+            await dispatch(fetchPlannedMapsList(undefined, undefined, true));
             dispatch(clearError());
 
             dispatch(setLoadingState(false));
-        });
+        } else {
+            batch(async () => {
+                dispatch(setMapIsFavouriteState(id, true));
+                await dispatch(
+                    fetchPlannedMapsList(undefined, undefined, true),
+                );
+                dispatch(clearError());
+
+                dispatch(setLoadingState(false));
+            });
+        }
     } catch (error) {
         console.log(`[addPlannedMap] - ${error}`);
         const err = convertToApiError(error);
@@ -573,13 +599,27 @@ export const removePlannedMap = (
             return;
         }
 
-        batch(async () => {
+        /**
+         * TODO: have issue with batching nested async dispatch action
+         * jest environment
+         */
+        if (TEST_ENV) {
+            dispatch(setMapIsFavouriteState(id, false));
             dispatch(removeMapFromFavourite(id));
-            await dispatch(fetchPlannedMapsList());
+            await dispatch(fetchPlannedMapsList(undefined, undefined, true));
             dispatch(clearError());
 
             dispatch(setLoadingState(false));
-        });
+        } else {
+            batch(async () => {
+                dispatch(setMapIsFavouriteState(id, false));
+                dispatch(removeMapFromFavourite(id));
+                await dispatch(fetchPlannedMapsList());
+                dispatch(clearError());
+
+                dispatch(setLoadingState(false));
+            });
+        }
     } catch (error) {
         console.log(`[removePlannedMap] - ${error}`);
         const err = convertToApiError(error);

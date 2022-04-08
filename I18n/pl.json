@@ -535,6 +535,7 @@
                     "plannedPrimaryAction": "Udostępnij",
                     "plannedPrimaryAlternativeAction": "Upubllicznij",
                     "secondaryAction": "Zapisz",
+                    "secondaryActionActive": "Zapisane",
                     "plannedSecondaryAction": "Edytuj"
                 }
             }
