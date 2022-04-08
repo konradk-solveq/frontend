@@ -9,20 +9,11 @@ import {
     Platform,
 } from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {useAppSelector} from '@hooks/redux';
 import {commonStyle as comStyle} from '@helpers/commonStyle';
 
 import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 
-import {
-    setObjSize,
-    getCenterLeftPx,
-    getVerticalPx,
-    getWidthPx,
-    getFontSize,
-    mainButtonsHeight,
-} from '@helpers/layoutFoo';
 import {
     getFHorizontalPx,
     getFVerticalPx,
@@ -31,7 +22,7 @@ import ContactSvg from './contactSvg';
 import { appContainerHorizontalMargin } from '@src/theme/commonStyle';
 import { Header2, Header3, Paragraph, TextLink } from '@src/components/texts/texts';
 import colors from '@src/theme/colors';
-import { MykrossIconFont } from '@src/theme/enums/iconFonts';
+import ContactIcon from './contactIcon';
 
 interface Props {
     navigation: any;
@@ -40,24 +31,14 @@ interface Props {
 
 const Contact: React.FC<Props> = (props: Props) => {
     const {t} = useMergedTranslation('Contact');
-    const userName =
-        useAppSelector<string>(state => state.user.userName) || t('anonim');
 
-    // const [headHeight, setheadHeight] = useState(0);
-
-    setObjSize(334, 50);
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#fff',
-        },
         wrap: {
-            position: 'absolute',
+            display: 'flex',
+            flex: 1,
             height: '100%',
             width: '100%',
-            marginBottom: getVerticalPx(65),
-            marginTop: getVerticalPx(100),
+            marginTop: getFVerticalPx(66),
             paddingHorizontal: appContainerHorizontalMargin,
         },
         imageContainer: {
@@ -68,16 +49,8 @@ const Contact: React.FC<Props> = (props: Props) => {
         captionText: {
             textAlign: 'center',
         },
-        title: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getFontSize(30),
-            color: '#555555',
-            textAlign: 'left',
-            position: 'absolute',
-            top: getVerticalPx(138 - 100),
-        },
         subtitle: {
-          marginBottom: getFVerticalPx(32),  
+          marginBottom: getFVerticalPx(32),
         },
         subtitleContainer: {
             flexDirection: 'row',
@@ -98,15 +71,6 @@ const Contact: React.FC<Props> = (props: Props) => {
             flexDirection: 'row',
             justifyContent: 'space-between'
         },
-        icon: {
-            fontFamily: 'mykross',
-            fontSize: getFHorizontalPx(30),
-            width: getFHorizontalPx(30),
-            height: getFHorizontalPx(30),
-            textAlign: 'center',
-            color: '#333',
-            marginRight: getFVerticalPx(18),
-        },
         tileGroup: {
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -115,33 +79,21 @@ const Contact: React.FC<Props> = (props: Props) => {
         phoneLink: {
             textDecorationLine: 'none',
         },
-        email: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getFontSize(40),
-            color: '#3587ea',
-            textAlign: 'left',
-        },
-        adress: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getFontSize(24),
-            lineHeight: getFontSize(30),
-            color: '#313131',
-            textAlign: 'left',
-            position: 'absolute',
-            top: getVerticalPx(568 - 100),
+        icon: {
+            marginRight: getFVerticalPx(18),
         },
         btn: {
             position: 'absolute',
+            bottom: getFVerticalPx(34),
             alignSelf: 'center',
             backgroundColor: colors.red,
             borderRadius: 16,
-            bottom: getFVerticalPx(34),
             height: getFVerticalPx(48),
-            width: '100%',
+            width: getFHorizontalPx(294),
         },
     });
 
-    const heandlePhone = () => {
+    const handlePhone = () => {
         if (Platform.OS !== 'android') {
             return `telprompt:${t('phone')}`;
         } else {
@@ -160,7 +112,7 @@ const Contact: React.FC<Props> = (props: Props) => {
                 </Header2>
 
                 <Header3 style={styles.paragraphMargin}>{t('officeTitle')}</Header3>
-                
+
                 <View style={styles.subtitleContainer}>
                     <Paragraph>{t('officeSubtitle')}</Paragraph>
                     <Paragraph>{t('officeHours')}</Paragraph>
@@ -168,30 +120,30 @@ const Contact: React.FC<Props> = (props: Props) => {
 
                 <View style={styles.contactTile}>
                     <View style={styles.tileGroup}>
-                        <Text style={styles.icon}>
-                            {MykrossIconFont.MYKROSS_ICON_HOME}
-                        </Text>
+                        <ContactIcon style={styles.icon} type={"phone"} />
                         <Text>{t('phoneTitle')}</Text>
                     </View>
 
                     <View style={styles.tileGroup}>
-                        <TouchableWithoutFeedback onPress={() => Linking.openURL(heandlePhone())}>
-                            <TextLink style={styles.phoneLink} color={colors.red}>{t('phone')}</TextLink>
+                        <TouchableWithoutFeedback onPress={() => Linking.openURL(handlePhone())}>
+                            <View>
+                                <TextLink style={styles.phoneLink} color={colors.red}>{t('phone')}</TextLink>
+                            </View>
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
                 
                 <View style={styles.contactTile}>
                     <View style={styles.tileGroup}>
-                        <Text style={styles.icon}>
-                            {MykrossIconFont.MYKROSS_ICON_HOME}
-                        </Text>
+                        <ContactIcon type={"email"} style={styles.icon} />
                         <Text>{t('emailTitle')}</Text>
                     </View>
 
                     <View style={styles.tileGroup}>
                         <TouchableWithoutFeedback onPress={() => Linking.openURL(`mailto:${t('email')}`)}>
-                            <TextLink style={styles.phoneLink} color={colors.red}>{t('email')}</TextLink>
+                            <View>
+                                <TextLink style={styles.phoneLink} color={colors.red}>{t('email')}</TextLink>
+                            </View>
                         </TouchableWithoutFeedback>
                     </View>
                 </View>
@@ -206,7 +158,6 @@ const Contact: React.FC<Props> = (props: Props) => {
             <StackHeader
                 onpress={() => props.navigation.goBack()}
                 inner={t('header')}
-                // getHeight={setheadHeight}
             />
         </SafeAreaView>
     );
