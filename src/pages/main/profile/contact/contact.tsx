@@ -15,8 +15,8 @@ import {getFHorizontalPx, getFVerticalPx} from '@theme/utils/appLayoutDimensions
 import { appContainerHorizontalMargin } from '@src/theme/commonStyle';
 import { Header2, Header3, Paragraph, TextLink } from '@src/components/texts/texts';
 import colors from '@src/theme/colors';
-import ContactSvg from '../../../../components/svg/ContactSvg';
-import ContactTypeSvg from '../../../../components/svg/ContactTypeSvg';
+import {ContactSvg, ContactTypeSvg} from '@components/svg';
+
 import GenericScreen from '@src/pages/template/GenericScreen';
 
 const Contact: React.FC = () => {
