@@ -14,7 +14,10 @@ const colors = {
     deepBlack: '#000000',
     transparentGrey: 'rgba(120, 120, 128, 0.2)',
     green: '#6FDA5D',
+    lightGreen: '#EFF7D1',
+    altGreen: '#78BA35',
     dark: '#313131',
+    lightBlue: '#E7F0FA'
 };
 
 export default colors;
