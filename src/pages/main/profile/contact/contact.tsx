@@ -3,19 +3,17 @@ import {
     StyleSheet,
     View,
     Text,
-    TouchableWithoutFeedback,
     Linking,
     Platform,
 } from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-
-import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 
 import {getFHorizontalPx, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import { appContainerHorizontalMargin } from '@src/theme/commonStyle';
 import { Header2, Header3, Paragraph, TextLink } from '@src/components/texts/texts';
 import colors from '@src/theme/colors';
 import {ContactSvg, ContactTypeSvg} from '@components/svg';
+import {LinkButton, PrimaryButton} from '@components/buttons';
 
 import GenericScreen from '@src/pages/template/GenericScreen';
 
@@ -63,7 +61,7 @@ const Contact: React.FC = () => {
             justifyContent: 'space-between',
             alignItems: 'center'
         },
-        phoneLink: {
+        contactLink: {
             textDecorationLine: 'none',
         },
         icon: {
@@ -73,9 +71,6 @@ const Contact: React.FC = () => {
             position: 'absolute',
             bottom: getFVerticalPx(34),
             alignSelf: 'center',
-            backgroundColor: colors.red,
-            borderRadius: 16,
-            height: getFVerticalPx(48),
             width: getFHorizontalPx(294),
         },
     });
@@ -112,11 +107,7 @@ const Contact: React.FC = () => {
                     </View>
 
                     <View style={styles.tileGroup}>
-                        <TouchableWithoutFeedback onPress={() => Linking.openURL(handlePhone())}>
-                            <View>
-                                <TextLink style={styles.phoneLink} color={colors.red}>{t('phone')}</TextLink>
-                            </View>
-                        </TouchableWithoutFeedback>
+                        <LinkButton style={styles.contactLink} text={t('phone')} onPress={() => Linking.openURL(handlePhone())} />
                     </View>
                 </View>
                 
@@ -127,18 +118,14 @@ const Contact: React.FC = () => {
                     </View>
 
                     <View style={styles.tileGroup}>
-                        <TouchableWithoutFeedback onPress={() => Linking.openURL(`mailto:${t('email')}`)}>
-                            <View>
-                                <TextLink style={styles.phoneLink} color={colors.red}>{t('email')}</TextLink>
-                            </View>
-                        </TouchableWithoutFeedback>
+                        <LinkButton style={styles.contactLink} text={t('email')} onPress={() => Linking.openURL(`mailto:${t('email')}`)} />
                     </View>
                 </View>
 
-                <BigRedBtn
+                <PrimaryButton 
+                    text={t('btn')}
+                    onPress={() => Linking.openURL('http://kross.eu')}
                     style={styles.btn}
-                    title={t('btn')}
-                    onpress={() => Linking.openURL('http://kross.eu')}
                 />
             </View>
         </GenericScreen>
