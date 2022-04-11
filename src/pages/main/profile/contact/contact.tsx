@@ -1,99 +1,81 @@
 import React from 'react';
 import {
     StyleSheet,
-    SafeAreaView,
     View,
     Text,
-    TouchableWithoutFeedback,
     Linking,
     Platform,
 } from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {useAppSelector} from '@hooks/redux';
-import {commonStyle as comStyle} from '@helpers/commonStyle';
 
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
-import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
+import {getFHorizontalPx, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import { appContainerHorizontalMargin } from '@src/theme/commonStyle';
+import { Header2, Header3, Paragraph, TextLink } from '@src/components/texts/texts';
+import colors from '@src/theme/colors';
+import {ContactSvg, ContactTypeSvg} from '@components/svg';
+import {LinkButton, PrimaryButton} from '@components/buttons';
 
-import {
-    setObjSize,
-    getCenterLeftPx,
-    getVerticalPx,
-    getWidthPx,
-    getFontSize,
-    mainButtonsHeight,
-} from '@helpers/layoutFoo';
+import GenericScreen from '@src/pages/template/GenericScreen';
 
-interface Props {
-    navigation: any;
-    route: any;
-}
-
-const Contact: React.FC<Props> = (props: Props) => {
+const Contact: React.FC = () => {
     const {t} = useMergedTranslation('Contact');
-    const userName =
-        useAppSelector<string>(state => state.user.userName) || t('anonim');
 
-    // const [headHeight, setheadHeight] = useState(0);
-
-    setObjSize(334, 50);
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#fff',
-        },
         wrap: {
-            position: 'absolute',
-            width: getWidthPx(),
-            height: getVerticalPx(896 - 100),
-            left: getCenterLeftPx(),
-            marginBottom: getVerticalPx(65),
-            marginTop: getVerticalPx(100),
+            display: 'flex',
+            flex: 1,
+            height: '100%',
+            width: '100%',
+            marginTop: getFVerticalPx(66),
+            paddingHorizontal: appContainerHorizontalMargin,
         },
-        title: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getFontSize(30),
-            color: '#555555',
-            textAlign: 'left',
-            position: 'absolute',
-            top: getVerticalPx(138 - 100),
+        imageContainer: {
+            marginTop: getFVerticalPx(33),
+            marginBottom: getFVerticalPx(24),
+            alignItems: 'center'
         },
-        poneEmail: {
-            position: 'absolute',
-            top: getVerticalPx(347 - 100),
+        subtitle: {
+          marginBottom: getFVerticalPx(32),
         },
-        phone: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getFontSize(40),
-            color: '#313131',
-            textAlign: 'left',
-            marginBottom: getVerticalPx(16),
+        subtitleContainer: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginBottom: getFVerticalPx(24),
         },
-        email: {
-            fontFamily: 'DIN2014Narrow-Regular',
-            fontSize: getFontSize(40),
-            color: '#3587ea',
-            textAlign: 'left',
+        paragraphMargin: {
+            marginBottom: getFVerticalPx(8),
         },
-        adress: {
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getFontSize(24),
-            lineHeight: getFontSize(30),
-            color: '#313131',
-            textAlign: 'left',
-            position: 'absolute',
-            top: getVerticalPx(568 - 100),
+        contactTile: {
+            backgroundColor: colors.whiteGrey,
+            borderRadius: 8,
+            paddingRight: getFVerticalPx(16),
+            paddingLeft: getFVerticalPx(16),
+            paddingTop: getFHorizontalPx(20),
+            paddingBottom: getFHorizontalPx(20),
+            marginBottom: getFVerticalPx(16),
+            flexDirection: 'row',
+            justifyContent: 'space-between'
+        },
+        tileGroup: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        },
+        contactLink: {
+            textDecorationLine: 'none',
+        },
+        icon: {
+            marginRight: getFVerticalPx(18),
         },
         btn: {
             position: 'absolute',
-            bottom: getVerticalPx(65),
-            height: mainButtonsHeight(50),
-            width: '100%',
+            bottom: getFVerticalPx(34),
+            alignSelf: 'center',
+            width: getFHorizontalPx(294),
         },
     });
 
-    const heandlePhone = () => {
+    const handlePhone = () => {
         if (Platform.OS !== 'android') {
             return `telprompt:${t('phone')}`;
         } else {
@@ -102,37 +84,51 @@ const Contact: React.FC<Props> = (props: Props) => {
     };
 
     return (
-        <SafeAreaView style={comStyle.container}>
+        <GenericScreen screenTitle={t('header')}>
             <View style={styles.wrap}>
-                <Text style={styles.title}>{t('title', {name: userName})}</Text>
-                <View style={styles.poneEmail}>
-                    <TouchableWithoutFeedback
-                        onPress={() => Linking.openURL(heandlePhone())}>
-                        <Text style={styles.phone}>{t('phone')}</Text>
-                    </TouchableWithoutFeedback>
-
-                    <TouchableWithoutFeedback
-                        onPress={() =>
-                            Linking.openURL('mailto:kross@kross.pl')
-                        }>
-                        <Text style={styles.email}>{t('email')}</Text>
-                    </TouchableWithoutFeedback>
+                <View style={styles.imageContainer}>
+                    <ContactSvg />
                 </View>
-                <Text style={styles.adress}>{t('adress')}</Text>
+                <Header2 algin="center" style={styles.subtitle}>
+                    {t('contactCaption')}
+                </Header2>
 
-                <BigRedBtn
+                <Header3 style={styles.paragraphMargin}>{t('officeTitle')}</Header3>
+
+                <View style={styles.subtitleContainer}>
+                    <Paragraph>{t('officeSubtitle')}</Paragraph>
+                    <Paragraph>{t('officeHours')}</Paragraph>
+                </View>
+
+                <View style={styles.contactTile}>
+                    <View style={styles.tileGroup}>
+                        <ContactTypeSvg style={styles.icon} type={"phone"} />
+                        <Text>{t('phoneTitle')}</Text>
+                    </View>
+
+                    <View style={styles.tileGroup}>
+                        <LinkButton style={styles.contactLink} text={t('phone')} onPress={() => Linking.openURL(handlePhone())} />
+                    </View>
+                </View>
+                
+                <View style={styles.contactTile}>
+                    <View style={styles.tileGroup}>
+                        <ContactTypeSvg style={styles.icon} type={"email"} />
+                        <Text>{t('emailTitle')}</Text>
+                    </View>
+
+                    <View style={styles.tileGroup}>
+                        <LinkButton style={styles.contactLink} text={t('email')} onPress={() => Linking.openURL(`mailto:${t('email')}`)} />
+                    </View>
+                </View>
+
+                <PrimaryButton 
+                    text={t('btn')}
+                    onPress={() => Linking.openURL('http://kross.eu')}
                     style={styles.btn}
-                    title={t('btn')}
-                    onpress={() => Linking.openURL('http://kross.eu')}
                 />
             </View>
-
-            <StackHeader
-                onpress={() => props.navigation.goBack()}
-                inner={t('header')}
-                // getHeight={setheadHeight}
-            />
-        </SafeAreaView>
+        </GenericScreen>
     );
 };
 

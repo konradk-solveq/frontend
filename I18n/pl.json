@@ -740,12 +740,15 @@
     },
     "Contact": {
         "header": "Kontakt",
-        "anonim": "Rowerzysto",
-        "title": "{{name}}, bądźmy w\u00a0kontakcie",
+        "phoneTitle": "Telefon",
+        "emailTitle": "Email",
         "phone": "(29) 752 11 00",
         "email": "kross@kross.pl",
-        "adress": "Biuro Obsługi Klienta\nCzynne w godzinach:\npn. -\u00a0pt.: 9:00 -\u00a016:00",
-        "btn": "PRZEJDŹ DO KROSS.EU"
+        "btn": "Przejdź do kross.eu",
+        "contactCaption": "Poniżej znajdziesz dane \nkontaktowe.",
+        "officeTitle": "Biuro Obsługi Klienta",
+        "officeSubtitle": "Czynne w godzinach",
+        "officeHours": "pn. - pt.: 9:00 - 16:00"
     },
     "NameChange": {
         "header": "Moje dane",
