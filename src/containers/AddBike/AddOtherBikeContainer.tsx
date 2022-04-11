@@ -188,7 +188,7 @@ const AddOtherBikeContainer: React.FC<IProps> = ({
                     (bikeTypesList.length + 1) * ROW_HEIGHT +
                         BOTTOM_PADDING_HEIGHT,
                 )} /* single radio button heigh multiplied by elements number */
-            >
+                style={styles.modalBeckground}>
                 <ControlledInput
                     fieldName={INPUT_FIELDS.bikeType}
                     control={control}
@@ -275,6 +275,9 @@ const styles = StyleSheet.create({
     },
     modalHeaderButton: {
         height: getFFontSize(20),
+    },
+    modalBeckground: {
+        backgroundColor: colors.white,
     },
 });
 
