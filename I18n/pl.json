@@ -698,7 +698,7 @@
         "title": "Znajdź sklep lub serwis"
     },
     "MainProfile": {
-        "header": " Konto",
+        "header": "Twoje Konto",
         "settings": "Ustawienia",
         "languages": "Język aplikacji",
         "myConsents": "Moje zgody",
@@ -708,7 +708,8 @@
         "regulations": "Regulamin",
         "privacyPolicy": "Polityka prywatności",
         "help": "Pomoc",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "accountEdit": "Edycja konta"
     },
     "Help": {
         "header": "Pomoc"
