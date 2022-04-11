@@ -80,7 +80,7 @@
             },
             "defaultBikeType": "Typ roweru",
             "submitButton": "Dalej"
-        },
+        }
     },
     "AddBikeSummary": {
         "header": "Nowy rower",
@@ -632,7 +632,7 @@
             "addBikeTile": {
                 "header": "Dodaj swój rower",
                 "body": "Podaj numer ramy i poznaj wszystkie \n szczegóły swojego roweru.",
-                "primaryButton": "Dodaj rower kross",
+                "primaryButton": "Dodaj rower KROSS",
                 "secondaryButton": "Dodaj rower innej marki"
             },
             "servicesTile": {
@@ -640,6 +640,13 @@
                 "body": "Chcesz naprawiać swój rower? \n Czas przeglądu się zbliża?",
                 "button": "Sprawdź"
             }
+        },
+        "AddBikeTile": {
+            "header": "Dodaj swój rower",
+            "header2": "Dodaj kolejny rower",
+            "body": "Podaj numer ramy i poznaj wszystkie \n szczegóły swojego roweru.",
+            "primaryButton": "Dodaj rower KROSS",
+            "secondaryButton": "Dodaj rower innej marki"
         }
     },
     "MainBikeParams": {

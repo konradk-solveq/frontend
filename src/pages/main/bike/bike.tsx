@@ -19,6 +19,8 @@ import {Overview} from '@models/bike.model';
 import ChangeBikeModal from '@pages/main/bike/components/modal/ChangeBikeModal';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import colors from '@theme/colors';
+import {AddBikeModal} from '@pages/main/bike/components/modal';
+import {isIOS} from '@src/utils/platform';
 
 interface Props {
     navigation: any;
@@ -36,6 +38,8 @@ const Bike: React.FC<Props> = (props: Props) => {
 
     const [nfc, setNfc] = useState(false);
     const [showBottomModal, setShowBottomModal] = useState(false);
+    /* Show modal with adding bike actions */
+    const [showAddBikeModal, setShowAddBikeModal] = useState(false);
 
     const handleBikeChange = (bike: UserBike) => {
         setBike(bike);
@@ -88,10 +92,10 @@ const Bike: React.FC<Props> = (props: Props) => {
     };
 
     const onAddKrossBike = useCallback(() => {
+        hideModals();
         navigation.navigate(nfc ? 'AddBike' : 'AddBikeByNumber', {
             emptyFrame: true,
         });
-        setShowBottomModal(false);
     }, [navigation, nfc]);
 
     const onReviewPress = (e: Overview) => {
@@ -108,7 +112,36 @@ const Bike: React.FC<Props> = (props: Props) => {
         setShowBottomModal(false);
     };
 
+    const hideModals = () => {
+        setShowBottomModal(false);
+        setShowAddBikeModal(false);
+    };
+
+    /* Show bottom sheet with actions for adding bikes */
+    const showOtherBike = useCallback(() => {
+        setShowAddBikeModal(true);
+        /* On IOS cannot show mutliple modals at the same time */
+        if (isIOS) {
+            setShowBottomModal(false);
+        }
+    }, []);
+
+    /* Hide bottom sheet with actions for adding bikes */
+    const hideOtherBike = useCallback(() => {
+        setShowAddBikeModal(false);
+        /**
+         * On IOS cannot show mutliple modals at the same time,
+         * so we need to wait until other modal will hide.
+         */
+        if (isIOS) {
+            setTimeout(() => {
+                setShowBottomModal(true);
+            }, 870);
+        }
+    }, []);
+
     const onAddOtherBike = useCallback(() => {
+        hideModals();
         navigation.navigate('AddOtherBike', {
             frameNumber: '',
         });
@@ -127,7 +160,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                         <BikeDetailsContainer
                             bike={bike}
                             showBikeChangeButton={bikes.length > 1}
-                            onAddKrossBike={onAddKrossBike}
+                            onAddKrossBike={showOtherBike}
                             handleParams={handleParams}
                             warrantyData={warrantyData}
                             handleServicesMap={handleServicesMap}
@@ -141,7 +174,13 @@ const Bike: React.FC<Props> = (props: Props) => {
                             bikes={bikes}
                             onBikeSelect={handleBikeChange}
                             selectedBike={bike}
-                            onAddKrossBike={onAddKrossBike}
+                            onAddKrossBike={showOtherBike}
+                        />
+                        <AddBikeModal
+                            onAddBike={onAddKrossBike}
+                            onAddOtherBike={onAddOtherBike}
+                            showModal={showAddBikeModal}
+                            onClose={hideOtherBike}
                         />
                     </>
                 ) : (
