@@ -7,7 +7,7 @@ import {getFHorizontalPx, getFVerticalPx} from '@src/helpers/appLayoutDimensions
 import {simplyTimer} from '@src/helpers/stringFoo';
 import colors from '@src/theme/colors';
 import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
-import { CounterParamsLsitT } from '@src/type/rootStack';
+import {CounterParamsLsitT} from '@src/type/rootStack';
 import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
 import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
@@ -20,10 +20,12 @@ interface IProps {
     savingsValues: {
         fuel: string,
         resource: string,
-    }
+    };
+    onPublishAction: () => void;
+    onSaveAction: () => void;
 }
 
-const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, savingsValues }) => {
+const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, savingsValues, onSaveAction, onPublishAction }) => {
     const {t} = useMergedTranslation('ThankYouPage');
 
     return (
@@ -63,13 +65,13 @@ const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, saving
                     style={styles.button}
                     text={t('saveRoute')}
                     testID={'thank-you-cancel-btn'}
-                    onPress={() => console.log('save')}
+                    onPress={onSaveAction}
                 />
                 <PrimaryButton
                     style={styles.button}
                     text={t('publishRoute')}
                     testID={'thank-you-btn-submit-btn'}
-                    onPress={() =>  console.log('publish')}
+                    onPress={onPublishAction}
                 />
             </View>
         </View>

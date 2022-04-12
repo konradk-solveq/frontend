@@ -1,18 +1,11 @@
 import React from 'react';
-import Svg, {Path, G, Defs} from 'react-native-svg';
+import Svg, {Path, G, Defs, Stop, LinearGradient} from 'react-native-svg';
 
 import {getFHorizontalPx, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
-interface IProps {
-    imageSize?: number;
-    viewBox?: number;
-}
-
-const ThankYouSvg: React.FC<IProps> = ({
-
-}: IProps) => {
+const ThankYouSvg: React.FC = () => {
     return (
-        <Svg fill="none" viewBox="0 0 268 116" height={getFVerticalPx(116)} width={getFHorizontalPx(266)}>
+        <Svg fill="none" viewBox="0 0 268 116" height={getFVerticalPx(202)} width={getFHorizontalPx(389)}>
         <Path d="M163.875 61.5938h-2.057c-3.208 0-5.818-2.6096-5.818-5.8179 0-2.5467 1.148-4.9104 3.15-6.4831l9.707-7.6262c3.507-2.7558 5.518-6.8933 5.518-11.3524v-4.158c0-4.3425-3.532-7.875-7.875-7.875s-7.875 3.5325-7.875 7.875v2.625c0 .7255-.587 1.3126-1.313 1.3126-.725 0-1.312-.5871-1.312-1.3126v-2.625c0-5.7896 4.71-10.5 10.5-10.5s10.5 4.7104 10.5 10.5v4.158c0 5.2692-2.376 10.1604-6.52 13.4159l-9.707 7.6263c-1.365 1.0728-2.148 2.6828-2.148 4.4195 0 1.7611 1.432 3.1929 3.193 3.1929h2.057c.725 0 1.313.587 1.313 1.3124 0 .7255-.588 1.3126-1.313 1.3126Z" fill="#FFD064"/>
         <Path d="M108.182 61.5938h-2.057c-.725 0-1.313-.5871-1.313-1.3126 0-.7254.588-1.3124 1.313-1.3124h2.057c1.761 0 3.193-1.4318 3.193-3.1929 0-1.7367-.783-3.3465-2.148-4.4195l-9.7068-7.6263C95.3763 40.4745 93 35.5834 93 30.3142v-4.158c0-5.7896 4.7104-10.5 10.5-10.5 5.79 0 10.5 4.7104 10.5 10.5v2.625c0 .7255-.587 1.3126-1.312 1.3126-.726 0-1.313-.5871-1.313-1.3126v-2.625c0-4.3425-3.532-7.875-7.875-7.875-4.3426 0-7.875 3.5325-7.875 7.875v4.158c0 4.4593 2.0111 8.5966 5.518 11.3524l9.707 7.6262c2.002 1.5727 3.15 3.9364 3.15 6.4831 0 3.2083-2.61 5.8179-5.818 5.8179Z" fill="#FFC250"/>
         <Path d="M141.562 89.1562h-11.867l2.625-22.3124 7.081 3.9374 2.161 18.375Z" fill="#FFD064"/>
@@ -37,27 +30,27 @@ const ThankYouSvg: React.FC<IProps> = ({
         <Path d="m29.0809 72.9894 1.5996 2.5977 2.9649-.7186-1.9762 2.3241 1.5997 2.5977-2.8211-1.1613-1.9763 2.3241.2328-3.0419-2.8211-1.1613 2.9649-.7186.2328-3.0419ZM194.441 45.5891l7.803 3.89 6.11-6.2187-1.288 8.6228 7.802 3.8899-8.598 1.4392-1.289 8.6228-4.026-7.7332-8.599 1.4392 6.111-6.2187-4.026-7.7333Z" fill="#FFC250"/>
         <Path d="m259.277 25.0361 1.364 6.0232 6.149.5648-5.307 3.1578 1.363 6.0233-4.643-4.0716-5.307 3.1578 2.437-5.6742-4.643-4.0716 6.15.5647 2.437-5.6742Z" fill="#FFD064"/>
         <Path fill-rule="evenodd" clip-rule="evenodd" d="M154 98h-37v6H91v12h88v-12h-25v-6Z" fill="url(#d)"/>
-        {/* <Defs>
-            <filter id="a" x="164.163" y="68.5889" width="19.2607" height="18.9814" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <Defs>
+            {/* <filter in="SourceGraphic" id="a" x="164.163" y="68.5889" width="19.2607" height="18.9814" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood in="SourceGraphic" flood-opacity="0" result="BackgroundImageFix"/>
             <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-            <feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_3494_12109"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="effect1_foregroundBlur_3494_12109"/>
             </filter>
-            <filter id="b" x="224.767" y="13.1553" width="13.9646" height="13.7969" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <filter in="SourceGraphic" id="b" x="224.767" y="13.1553" width="13.9646" height="13.7969" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood in="SourceGraphic" flood-opacity="0" result="BackgroundImageFix"/>
             <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-            <feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_3494_12109"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="effect1_foregroundBlur_3494_12109"/>
             </filter>
-            <filter id="c" x=".899658" y="35.1553" width="13.9645" height="13.7969" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <filter in="SourceGraphic" id="c" x=".899658" y="35.1553" width="13.9645" height="13.7969" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood in="SourceGraphic" flood-opacity="0" result="BackgroundImageFix"/>
             <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-            <feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_3494_12109"/>
-            </filter>
-            <linearGradient id="d" x1="135" y1="98" x2="135" y2="116" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#ECEAEC"/>
-            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-            </linearGradient>
-        </Defs> */}
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="effect1_foregroundBlur_3494_12109"/>
+            </filter> */}
+            <LinearGradient id="d" x1="135" y1="98" x2="135" y2="116" gradientUnits="userSpaceOnUse">
+                <Stop stop-color="#ECEAEC"/>
+                <Stop offset="1" stop-color="#fff" stop-opacity="0"/>
+            </LinearGradient>
+        </Defs>
         </Svg>
     );
 };

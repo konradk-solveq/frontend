@@ -6,7 +6,6 @@ import {verticalAnim} from '@helpers/positioningVerical';
 import Counter from '@pages/main/recording/counter/counter';
 import CounterThankYouPage from '@pages/main/recording/counterThankYouPage/counterThankYouPage';
 import ShortRouteScreen from '@pages/main/recording/shortRouteScreen/ShortRouteScreen';
-import ThankYouPage from '@src/pages/main/recording/counterThankYouPage/thankYouPage';
 
 const RecordRouteCommonScreens = () => {
     return (
@@ -14,7 +13,7 @@ const RecordRouteCommonScreens = () => {
             <Stack.Screen name="Counter" component={Counter} />
             <Stack.Screen
                 name="CounterThankYouPage"
-                component={ThankYouPage}
+                component={CounterThankYouPage}
                 options={{gestureEnabled: false}}
             />
             <Stack.Screen
