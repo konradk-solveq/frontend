@@ -20,9 +20,7 @@ import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import EmptyList from './emptyList';
-import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
-import SortButton from '../components/buttons/SortButton';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
@@ -39,11 +37,12 @@ import {
 } from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
-import {FiltersButton} from '@pages/main/world/components/buttons';
 import {plannedRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
 import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
+import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
+import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -201,7 +200,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             setSortButtonName(buttoName);
         }
     }, []);
-
+    const {onScroll, shouldHide} = useHideOnScrollDirection();
     const onSortByHandler = useCallback(
         (sortTypeId?: string) => {
             const firstEl = plannedRoutesDropdownList[0];
@@ -242,6 +241,16 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
 
     return (
         <View style={styles.background}>
+            <FiltersHeader
+                shouldHide={shouldHide}
+                sortButtonName={sortButtonName}
+                setShowDropdown={setShowDropdown}
+                onFiltersModalOpenHandler={onFiltersModalOpenHandler}
+                showDropdown={showDropdown}
+                toggleDropdown={toggleDropdown}
+                onSortByHandler={onSortByHandler}
+                dropdownList={plannedRoutesDropdownList}
+            />
             <ShowMoreModal
                 showModal={showModal}
                 removeFav
@@ -260,43 +269,15 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 onResetFiltersCount={onResetFiltersCount}
                 itemsCount={plannedMapsCount}
             />
-            <View style={styles.topButtonsContainer}>
-                <Dropdown
-                    openOnStart={showDropdown}
-                    list={plannedRoutesDropdownList}
-                    onPress={toggleDropdown}
-                    onPressItem={onSortByHandler}
-                    buttonText={mwt('btnSort')}
-                    buttonContainerStyle={styles.dropdownButtonContainerStyle}
-                    boxStyle={styles.dropdownBox}
-                    resetButtonText={mwt('resetFilters')}
-                    hideButton
-                />
-            </View>
             <View>
                 <FlatList
                     keyExtractor={item => item.id}
+                    onScroll={onScroll}
                     ListHeaderComponent={
-                        <>
-                            <View style={styles.topButtonsContainer}>
-                                <SortButton
-                                    title={sortButtonName}
-                                    onPress={() => setShowDropdown(true)}
-                                    style={styles.topButton}
-                                />
-                                <FiltersButton
-                                    onPress={onFiltersModalOpenHandler}
-                                    style={{
-                                        ...styles.topButton,
-                                        ...styles.topButtonRight,
-                                    }}
-                                />
-                            </View>
-                            <Header2 style={styles.header}>
-                                {userName || t('defaultUserName')}
-                                {t('title')}
-                            </Header2>
-                        </>
+                        <Header2 style={styles.header}>
+                            {userName || t('defaultUserName')}
+                            {t('title')}
+                        </Header2>
                     }
                     data={!showListLoader ? favouriteMaps : []}
                     renderItem={renderItem}
