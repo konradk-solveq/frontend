@@ -791,6 +791,8 @@
         "thankYouSlogan": "Wybierając rower dbasz o środowisko i swój portfel",
         "saveRoute": "Zapisz",
         "publishRoute": "Opublikuj",
+        "savedResource": "zaoszczędzonych gramów CO2",
+        "savedFuel": "Zaoszczędziłeś {{quota}} zł na paliwie",
         "defaultName": "Rowerzysto",
         "titleSuffix": ", brawo!",
         "publishBtn": "Upublicznij",
@@ -799,7 +801,7 @@
         "distanceSuffix": "km",
         "tripTime": "Czas jazdy",
         "tripTimeSuffix": "h",
-        "pausePrefix": "czas przerw",
+        "pauseTime": "Czas przerw",
         "pauseSuffix": "h"
     },
     "PublishPoorConnectionPage": {

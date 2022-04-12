@@ -1,30 +1,34 @@
-import { useRoute } from '@react-navigation/native';
-import { PrimaryButton, SecondaryButton } from '@src/components/buttons';
+import {PrimaryButton, SecondaryButton} from '@src/components/buttons';
 import LeafSvg from '@src/components/svg/LeafSvg';
+import MoneySvg from '@src/components/svg/MoneySvg';
 import ThankYouSvg from '@src/components/svg/ThankYouSvg';
-import { Header1, Header2 } from '@src/components/texts/texts';
-import { getFHorizontalPx, getFVerticalPx } from '@src/helpers/appLayoutDimensions';
+import {Header1, Header2} from '@src/components/texts/texts';
+import {getFHorizontalPx, getFVerticalPx} from '@src/helpers/appLayoutDimensions';
+import {simplyTimer} from '@src/helpers/stringFoo';
 import colors from '@src/theme/colors';
 import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
 import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
 import React from 'react';
-import {SafeAreaView, View, Text, ScrollView, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import SavingPanel from './components/SavingPanel';
 import StatisticElement from './components/StatisticElement';
 
 interface IProps {
-    userName: string
+    userName: string;
+    routeParams: {
+        distance: string,
+        pause: number,
+        time: number
+    };
+    savedValues: {
+        fuel: string,
+        resource: string,
+    }
 }
 
-const ThankYouPageContainer: React.FC<IProps> = ({ userName }) => {
+const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, savedValues }) => {
     const {t} = useMergedTranslation('ThankYouPage');
-    // const route = useRoute<CounterThankYouPageRouteT>();
-
-    // const onSaveRouteHandler = (forward: string) => {
-    //     setGoForward(forward);
-    //     dispatch(syncCurrentRouteData());
-    // };
-    
+    console.log('Route details: ', routeParams)
     return (
         <View style={styles.container}>
             <View style={styles.imgContainer}>
@@ -34,21 +38,29 @@ const ThankYouPageContainer: React.FC<IProps> = ({ userName }) => {
                 {t('goodJobTitle')} {userName ? userName : ''}
             </Header1>
             <View style={styles.statsContainer}>
-                <StatisticElement text={'Title1'} value={'Value1'} />
-                <StatisticElement text={'Title2'} value={'Value2'} />
-                <StatisticElement text={'Title3'} value={'Value3'} />
+                <StatisticElement text={t('distance')} value={`${routeParams.distance} ${t('distanceSuffix')}`} />
+                <StatisticElement text={t('tripTime')} value={`${simplyTimer(routeParams.time - routeParams.pause)} ${t('pauseSuffix')}`} />
+                <StatisticElement text={t('pauseTime')} value={`${simplyTimer(routeParams.pause)} ${t('tripTimeSuffix')}`} />
             </View>
             <View style={styles.sloganContainer}>
                 <Header2>
                     {t('thankYouSlogan')}
                 </Header2>
             </View>
-            <SavingPanel 
-                style={styles.savingPanel}
-                text={'100 zaoszczędzonych gramów CO2'}
-                background={colors.lightGreen}
-            />
-            <SavingPanel style={styles.savingPanel} text={'100 zaoszczędzonych gramów CO2'} background={colors.lightBlue} />
+            <ScrollView>
+                <SavingPanel 
+                    style={styles.savingPanel}
+                    text={`${savedValues.resource} ${t('savedResource')}`}
+                    background={colors.lightGreen}
+                    icon={<LeafSvg/>}
+                />
+                <SavingPanel
+                    style={styles.savingPanel}
+                    text={t('savedFuel', {quota: savedValues.fuel})}
+                    background={colors.lightBlue}
+                    icon={<MoneySvg/>}
+                />
+            </ScrollView>
             <View style={styles.buttonsContainer}>
                 <SecondaryButton
                     style={styles.button}
@@ -74,15 +86,24 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         paddingHorizontal: appContainerHorizontalMargin,
-        borderWidth: 1,
-        borderColor: 'red',
     },
     imgContainer: {
         marginTop: getFVerticalPx(23)
     },
+    mapContainer: {
+        height: getFVerticalPx(163),
+        borderWidth: 1,
+        borderColor: 'peru',
+        width: '100%',
+        borderRadius: 8,
+        marginVertical: getFVerticalPx(16),
+    },
+    mapImage: {
+        width: '100%',
+        height: '100%',
+    },
     statsContainer: {
         width: '100%',
-        marginHorizontal: appContainerHorizontalMargin,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

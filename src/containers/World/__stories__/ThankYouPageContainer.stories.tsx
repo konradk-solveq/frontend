@@ -1,8 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {storiesOf} from '@storybook/react-native';
-import {action} from '@storybook/addon-actions';
-import {boolean, object, select} from '@storybook/addon-knobs';
 import {I18nextProvider} from 'react-i18next';
 
 import LayoutCenter from '@sb/utils/LayoutCenter';
@@ -18,7 +16,18 @@ storiesOf('containers/World/ThankYouPageContainer', module)
         </I18nextProvider>
     ))
     .add('Default', () => (
-        <ThankYouPageContainer userName={'Andrew'} />
+        <ThankYouPageContainer
+            userName={'Andrew'}
+            routeParams={{distance: '24.45', time: 872651, pause: 445566}}
+            savedValues={{fuel: '10', resource: '99'}}
+        />
+    ))
+    .add('Customized', () => (
+        <ThankYouPageContainer
+            userName={''}
+            routeParams={{ distance: '11.22', time: 32123176, pause: 892761 }}
+            savedValues={{fuel: '10', resource: '99'}}
+        />
     ));
 
 const styles = StyleSheet.create({

@@ -1,8 +1,6 @@
 import { Header3, Subtitle } from '@src/components/texts/texts';
-import { getFVerticalPx } from '@src/helpers/appLayoutDimensions';
-import colors from '@src/theme/colors';
 import React from 'react';
-import {StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {View} from 'react-native';
 
 interface IStatisticElementProps {
     text: string;
@@ -11,8 +9,8 @@ interface IStatisticElementProps {
 
 const StatisticElement: React.FC<IStatisticElementProps> = ({text, value}) => {
     return (
-        <View style={styles.columnWrapper}>
-            <View style={styles.statRow}>
+        <View>
+            <View>
                 <Subtitle>
                     {text}
                 </Subtitle>
@@ -23,18 +21,5 @@ const StatisticElement: React.FC<IStatisticElementProps> = ({text, value}) => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    columnWrapper: {
-
-    },
-    statRow: {
-
-    },
-    statTitle: {
-        color: colors.darkGrey,
-        marginBottom: getFVerticalPx(8),
-    }
-});
 
 export default StatisticElement;

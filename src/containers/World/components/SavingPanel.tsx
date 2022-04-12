@@ -1,13 +1,12 @@
-import { LeafSvg } from '@src/components/svg';
 import {Header3} from '@src/components/texts/texts';
-import { getFHorizontalPx, getFVerticalPx } from '@src/helpers/appLayoutDimensions';
+import {getFHorizontalPx, getFVerticalPx} from '@src/helpers/appLayoutDimensions';
 import colors from '@src/theme/colors';
 import React from 'react';
-import {StyleSheet, Text, View, ViewStyle} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 
 interface ISavingPanelProps {
     text: string,
-    icon?: any,
+    icon?: SVGElement,
     style?: ViewStyle,
     background: string,
 }
@@ -44,7 +43,7 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({text, icon, style, background
         <View style={[styles.panelWrapper, style]}>
             <View style={styles.icon}>
                 <View style={styles.iconWrapper}>
-                    <LeafSvg />
+                    {icon}
                 </View>
             </View>
             <View style={styles.text}>
