@@ -792,7 +792,7 @@
         "saveRoute": "Zapisz",
         "publishRoute": "Opublikuj",
         "savedResource": "zaoszczędzonych gramów CO2",
-        "savedFuel": "Zaoszczędziłeś {{quota}} zł na paliwie",
+        "savedFuel": "Zaoszczędzonych {{quota}} litrów paliwa",
         "defaultName": "Rowerzysto",
         "titleSuffix": ", brawo!",
         "publishBtn": "Upublicznij",

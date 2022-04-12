@@ -767,6 +767,15 @@ export const getRouteLengthFuelEquivalent = (
     return Number(res.toFixed(1)).toString().replace('.', ',');
 };
 
+export const getRouteLengthCarbonEquivalent = (
+    fuelRatio: number,
+    carbonRatio: number,
+    distance: string,
+): string => {
+    const savedFuel = getRouteLengthFuelEquivalent(fuelRatio, distance);
+    return (carbonRatio * Number(savedFuel)).toString();
+}
+
 export const bikesConfigToClass = (
     data?: BikesConfigI,
 ): BikesConfig | undefined => {

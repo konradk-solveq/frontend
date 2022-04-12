@@ -7,6 +7,7 @@ import {getFHorizontalPx, getFVerticalPx} from '@src/helpers/appLayoutDimensions
 import {simplyTimer} from '@src/helpers/stringFoo';
 import colors from '@src/theme/colors';
 import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
+import { CounterParamsLsitT } from '@src/type/rootStack';
 import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
 import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
@@ -15,20 +16,16 @@ import StatisticElement from './components/StatisticElement';
 
 interface IProps {
     userName: string;
-    routeParams: {
-        distance: string,
-        pause: number,
-        time: number
-    };
-    savedValues: {
+    routeParams: Required<CounterParamsLsitT["CounterThankYouPage"]>
+    savingsValues: {
         fuel: string,
         resource: string,
     }
 }
 
-const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, savedValues }) => {
+const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, savingsValues }) => {
     const {t} = useMergedTranslation('ThankYouPage');
-    console.log('Route details: ', routeParams)
+
     return (
         <View style={styles.container}>
             <View style={styles.imgContainer}>
@@ -47,16 +44,16 @@ const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, savedV
                     {t('thankYouSlogan')}
                 </Header2>
             </View>
-            <ScrollView>
+            <ScrollView horizontal={true}>
                 <SavingPanel 
                     style={styles.savingPanel}
-                    text={`${savedValues.resource} ${t('savedResource')}`}
+                    text={`${savingsValues.resource} ${t('savedResource')}`}
                     background={colors.lightGreen}
                     icon={<LeafSvg/>}
                 />
                 <SavingPanel
                     style={styles.savingPanel}
-                    text={t('savedFuel', {quota: savedValues.fuel})}
+                    text={t('savedFuel', {quota: savingsValues.fuel})}
                     background={colors.lightBlue}
                     icon={<MoneySvg/>}
                 />
@@ -98,10 +95,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginVertical: getFVerticalPx(16),
     },
-    mapImage: {
-        width: '100%',
-        height: '100%',
-    },
     statsContainer: {
         width: '100%',
         flexDirection: 'row',
@@ -110,6 +103,7 @@ const styles = StyleSheet.create({
         padding: getFVerticalPx(16),
         backgroundColor: colors.whiteGrey,
         borderRadius: getFHorizontalPx(8),
+        marginTop: getFVerticalPx(24),
     },
     sloganContainer: {
         width: '100%',

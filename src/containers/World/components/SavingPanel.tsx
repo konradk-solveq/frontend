@@ -1,6 +1,6 @@
 import {Header3} from '@src/components/texts/texts';
-import {getFHorizontalPx, getFVerticalPx} from '@src/helpers/appLayoutDimensions';
 import colors from '@src/theme/colors';
+import {getFHorizontalPx, getFVerticalPx} from '@helpers/appLayoutDimensions';
 import React from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 
@@ -16,15 +16,12 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({text, icon, style, background
     const styles = StyleSheet.create({
         panelWrapper: {
             backgroundColor: background,
-            width: '100%',
+            width: getFHorizontalPx(216),
             borderRadius: getFHorizontalPx(8),
-            height: getFHorizontalPx(80),
-            flexDirection: 'row',
-            alignItems: 'center',
+            height: getFHorizontalPx(136),
+            alignItems: 'flex-start',
             padding: getFVerticalPx(16),
-        },
-        icon: {
-
+            marginRight: getFHorizontalPx(16)
         },
         iconWrapper: {
             borderRadius: getFHorizontalPx(48) / 2,
@@ -35,16 +32,14 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({text, icon, style, background
             justifyContent: 'center'
         },
         text: {
-            marginLeft: getFHorizontalPx(16),
+            marginTop: getFVerticalPx(8),
         }
     });
 
     return (
         <View style={[styles.panelWrapper, style]}>
-            <View style={styles.icon}>
-                <View style={styles.iconWrapper}>
-                    {icon}
-                </View>
+            <View style={styles.iconWrapper}>
+                {icon}
             </View>
             <View style={styles.text}>
                 <Header3>
