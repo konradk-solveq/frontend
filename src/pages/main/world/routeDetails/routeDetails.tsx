@@ -35,7 +35,7 @@ import Description from './description/description';
 
 import styles from './style';
 import {useSharedMapData} from '@hooks/useSharedMapData';
-import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import Loader from '@components/svg/loader/loader';
 import GenericError from '@components/error/GenericError';
 import {StackActions} from '@react-navigation/native';
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';

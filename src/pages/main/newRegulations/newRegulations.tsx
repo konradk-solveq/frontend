@@ -22,7 +22,7 @@ import {
     getFontSize,
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
-import Loader from '../../onboarding/bikeAdding/loader/loader';
+import Loader from '@components/svg/loader/loader';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {TermsAndConditionsType} from '@models/regulations.model';
 import {setAppShowedRegulationsNumber} from '@storage/actions';

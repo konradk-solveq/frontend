@@ -1,0 +1,564 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/modals/ChangeLanguageModal Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    transparent={true}
+    visible={true}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#3333337F",
+            "height": "100%",
+            "position": "absolute",
+            "width": "100%",
+          },
+          [Function],
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderTopLeftRadius": 30.76923076923077,
+              "borderTopRightRadius": 30.76923076923077,
+              "flex": 1,
+              "position": "relative",
+            },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "paddingVertical": 25.28909952606635,
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 20,
+                  "fontWeight": "600",
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="header2-test-id"
+          >
+            Onboarding.chooseLanguage
+          </Text>
+          <View
+            style={
+              Object {
+                "left": 0,
+                "paddingTop": 7.902843601895735,
+                "position": "absolute",
+                "top": 0,
+              }
+            }
+          >
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              testID="icon-btn-test-id"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignContent": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 30.76923076923077,
+                      "height": 84.61538461538461,
+                      "justifyContent": "center",
+                      "width": 84.61538461538461,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#333333",
+                        "fontSize": 24,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="icon-btn-test-id-icon"
+                >
+                  X
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <RCTScrollView>
+          <View>
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+            >
+              <View
+                style={
+                  Object {
+                    "alignContent": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "paddingLeft": 30.76923076923077,
+                    "paddingRight": 38.46153846153846,
+                    "paddingVertical": 25.28909952606635,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={25.28909952606635}
+                    bbWidth={25.28909952606635}
+                    focusable={false}
+                    height={25.28909952606635}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "marginRight": 19.23076923076923,
+                          "marginTop": 6.322274881516588,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 25,
+                          "width": 25,
+                        },
+                      ]
+                    }
+                    vbHeight={32}
+                    vbWidth={32}
+                    width={25.28909952606635}
+                    xml="<svg viewBox=\\"0 0 32 32\\"><circle cx=\\"16\\" cy=\\"16\\" fill=\\"#f6f6f6\\" r=\\"16\\"/><path d=\\"M.008 15.77A16 16 0 0 0 0 16a16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-.004-.23z\\" fill=\\"red\\"/></svg>"
+                  >
+                    <RNSVGGroup>
+                      <RNSVGCircle
+                        cx={16}
+                        cy={16}
+                        fill={4294375158}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                        r={16}
+                      />
+                      <RNSVGPath
+                        d="M.008 15.77A16 16 0 0 0 0 16a16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-.004-.23z"
+                        fill={4294901760}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        },
+                        undefined,
+                      ]
+                    }
+                    testID="body-primary-test-id"
+                  >
+                    Polski
+                  </Text>
+                </View>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#C63733",
+                        "fontSize": 20,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="text-icon-test-id"
+                >
+                  =
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+            >
+              <View
+                style={
+                  Object {
+                    "alignContent": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "paddingLeft": 30.76923076923077,
+                    "paddingRight": 38.46153846153846,
+                    "paddingVertical": 25.28909952606635,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={25.28909952606635}
+                    bbWidth={25.28909952606635}
+                    focusable={false}
+                    height={25.28909952606635}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "marginRight": 19.23076923076923,
+                          "marginTop": 6.322274881516588,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 25,
+                          "width": 25,
+                        },
+                      ]
+                    }
+                    vbHeight={32}
+                    vbWidth={32}
+                    width={25.28909952606635}
+                    xml="<svg viewBox=\\"0 0 32 32\\"><circle cx=\\"16\\" cy=\\"16\\" fill=\\"#283477\\" r=\\"16\\"/><path d=\\"M16 0a16 16 0 0 0-3.717.443V10.9L3.528 5.98a16 16 0 0 0-2.263 3.81l5.512 3.096H.317A16 16 0 0 0 0 16a16 16 0 0 0 .695 4.656h4.33L1.46 22.658a16 16 0 0 0 2.391 3.738l8.431-4.736v9.897A16 16 0 0 0 16 32a16 16 0 0 0 3.666-.43v-8.92l7.872 4.423a16 16 0 0 0 2.606-3.617l-4.984-2.8h6.145A16 16 0 0 0 32 16a16 16 0 0 0-.307-3.113h-4.767l4.123-2.316a16 16 0 0 0-2.066-3.92l-9.317 5.234V.425A16 16 0 0 0 16 0z\\" fill=\\"#fff\\"/><path d=\\"M16 0a16 16 0 0 0-2.148.152v14.485H.064A16 16 0 0 0 0 16a16 16 0 0 0 .273 2.881h13.58v12.967A16 16 0 0 0 16 32a16 16 0 0 0 2.096-.146V18.88h13.631A16 16 0 0 0 32 16a16 16 0 0 0-.06-1.363H18.097V.138A16 16 0 0 0 16 0zm13.47 7.368l-9.804 5.508v.011h3.737l6.97-3.915a16 16 0 0 0-.902-1.604zm-26.939.015a16 16 0 0 0-.908 1.601l6.949 3.903h3.711v-.026zM8.51 20.656L2.251 24.17a16 16 0 0 0 1.037 1.53l8.98-5.045zm11.157 0v.006l9.024 5.07a16 16 0 0 0 1.038-1.528l-6.316-3.548z\\" fill=\\"#da1f2b\\"/></svg>"
+                  >
+                    <RNSVGGroup>
+                      <RNSVGCircle
+                        cx={16}
+                        cy={16}
+                        fill={4280824951}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                        r={16}
+                      />
+                      <RNSVGPath
+                        d="M16 0a16 16 0 0 0-3.717.443V10.9L3.528 5.98a16 16 0 0 0-2.263 3.81l5.512 3.096H.317A16 16 0 0 0 0 16a16 16 0 0 0 .695 4.656h4.33L1.46 22.658a16 16 0 0 0 2.391 3.738l8.431-4.736v9.897A16 16 0 0 0 16 32a16 16 0 0 0 3.666-.43v-8.92l7.872 4.423a16 16 0 0 0 2.606-3.617l-4.984-2.8h6.145A16 16 0 0 0 32 16a16 16 0 0 0-.307-3.113h-4.767l4.123-2.316a16 16 0 0 0-2.066-3.92l-9.317 5.234V.425A16 16 0 0 0 16 0z"
+                        fill={4294967295}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                      <RNSVGPath
+                        d="M16 0a16 16 0 0 0-2.148.152v14.485H.064A16 16 0 0 0 0 16a16 16 0 0 0 .273 2.881h13.58v12.967A16 16 0 0 0 16 32a16 16 0 0 0 2.096-.146V18.88h13.631A16 16 0 0 0 32 16a16 16 0 0 0-.06-1.363H18.097V.138A16 16 0 0 0 16 0zm13.47 7.368l-9.804 5.508v.011h3.737l6.97-3.915a16 16 0 0 0-.902-1.604zm-26.939.015a16 16 0 0 0-.908 1.601l6.949 3.903h3.711v-.026zM8.51 20.656L2.251 24.17a16 16 0 0 0 1.037 1.53l8.98-5.045zm11.157 0v.006l9.024 5.07a16 16 0 0 0 1.038-1.528l-6.316-3.548z"
+                        fill={4292484907}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        },
+                        undefined,
+                      ]
+                    }
+                    testID="body-primary-test-id"
+                  >
+                    English
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+            >
+              <View
+                style={
+                  Object {
+                    "alignContent": "center",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "paddingLeft": 30.76923076923077,
+                    "paddingRight": 38.46153846153846,
+                    "paddingVertical": 25.28909952606635,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignContent": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={25.28909952606635}
+                    bbWidth={25.28909952606635}
+                    focusable={false}
+                    height={25.28909952606635}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "marginRight": 19.23076923076923,
+                          "marginTop": 6.322274881516588,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 25,
+                          "width": 25,
+                        },
+                      ]
+                    }
+                    vbHeight={32}
+                    vbWidth={32}
+                    width={25.28909952606635}
+                    xml="<svg viewBox=\\"0 0 32 32\\"><circle cx=\\"16\\" cy=\\"16\\" fill=\\"#f6f6f6\\" r=\\"16\\"/><path d=\\"M.008 15.77A16 16 0 0 0 0 16a16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-.004-.23z\\" fill=\\"red\\"/><path d=\\"M5.164 4.232A16 16 0 0 0 0 16a16 16 0 0 0 4.92 11.531L16.69 15.76z\\" fill=\\"#0052b4\\"/></svg>"
+                  >
+                    <RNSVGGroup>
+                      <RNSVGCircle
+                        cx={16}
+                        cy={16}
+                        fill={4294375158}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                        r={16}
+                      />
+                      <RNSVGPath
+                        d="M.008 15.77A16 16 0 0 0 0 16a16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-.004-.23z"
+                        fill={4294901760}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                      <RNSVGPath
+                        d="M5.164 4.232A16 16 0 0 0 0 16a16 16 0 0 0 4.92 11.531L16.69 15.76z"
+                        fill={4278211252}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      />
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                  <Text
+                    adjustsFontSizeToFit={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#333333",
+                          "fontFamily": "DIN2014-Demi",
+                          "fontSize": 16,
+                          "lineHeight": 24,
+                          "textAlign": "left",
+                        },
+                        undefined,
+                      ]
+                    }
+                    testID="body-primary-test-id"
+                  >
+                    Česky (již brzy)
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "borderBottomColor": "#BDBDBD",
+                    "borderBottomWidth": 0.5,
+                    "borderRadius": 1,
+                  },
+                  Object {
+                    "borderBottomWidth": 0.5,
+                    "color": "#BDBDBD",
+                  },
+                  undefined,
+                ]
+              }
+            />
+          </View>
+        </RCTScrollView>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;
