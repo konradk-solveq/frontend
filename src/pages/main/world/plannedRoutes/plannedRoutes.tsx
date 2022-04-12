@@ -16,7 +16,7 @@ import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
-import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import Loader from '@components/svg/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import EmptyList from './emptyList';

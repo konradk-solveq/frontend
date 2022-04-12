@@ -34,3 +34,11 @@ export const genericBikerules: Record<string, any[] | undefined> = {
         {[validationRules.min]: 3},
     ],
 };
+
+export const userRules: Record<string, any[] | undefined> = {
+    name: [
+        validationRules.required,
+        validationRules.string,
+        {[validationRules.min]: 3},
+    ],
+};

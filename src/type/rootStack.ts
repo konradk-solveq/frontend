@@ -138,9 +138,6 @@ export type BikeParamsListT = {
         description?: BikeDescription;
         params?: Parameters[];
     };
-    BikeSummary: {
-        frameNumber: string;
-    };
     AddOtherBike: {
         frameNumber: string;
     };
@@ -161,11 +158,6 @@ export type BikeParamsRouteT = RouteProp<BikeParamsListT, 'BikeParams'>;
 export type BikeParamsNavigationPropT = MainNavigationCompositePropT<
     BikeParamsListT,
     'BikeParams'
->;
-export type BikeSumamryRouteT = RouteProp<BikeParamsListT, 'BikeSummary'>;
-export type BikeSumamryNavigationPropT = MainNavigationCompositePropT<
-    BikeParamsListT,
-    'BikeSummary'
 >;
 export type AddOtherBikeRouteT = RouteProp<BikeParamsListT, 'AddOtherBike'>;
 export type AddOtherBikeNavigationPropT = MainNavigationCompositePropT<

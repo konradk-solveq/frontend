@@ -5,6 +5,7 @@ export const AuthStackRoute = {
 };
 
 export const OnboardingStackRoute = {
+    SPLASH_ONBOARDING_SCREEN: 'SplashScreenOnboarding',
     NEW_BEGINNING_SCREEN: 'Tutorial',
     PERMITS_SCREEN: 'Permits',
     GET_TO_KNOW_EACH_OTHER_SCREEN: 'GetToKnowEachOther',
@@ -62,7 +63,6 @@ export const RegularStackRoute = {
     ADD_BIKE_SCREEN: 'AddBike',
     ADDING_BY_NUMBER_SCREEN: 'AddBikeByNumber',
     BIKE_DATA_SCREEN: 'AddOtherBike',
-    BIKE_SUMMARY_SCREEN: 'BikeSummary',
     ADDING_INFO_SCREEN: 'AddingInfo',
     INPUT_PAGE_SCREEN: 'InputPage',
     LIST_PAGE_INPUT_SCREEN: 'ListPageInput',
@@ -96,7 +96,6 @@ export const BothStackRoute = {
     TURTORIAL_NFC_SCREEN: 'TutorialNFC',
     ADDING_BY_NUMBER_SCREEN: 'AddingByNumber',
     BIKE_DATA_SCREEN: 'AddOtherBike',
-    BIKE_SUMMARY_SCREEN: 'BikeSummary',
     ADDING_INFO_SCREEN: 'AddingInfo',
     INPUT_PAGE_SCREEN: 'InputPage',
     LIST_PAGE_INPUT_SCREEN: 'ListPageInput',

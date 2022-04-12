@@ -25,9 +25,9 @@ import Tile from './tile';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {nfcIsSupported} from '@helpers/nfc';
-import {BothStackRoute, RegularStackRoute} from '@navigation/route';
+import {RegularStackRoute} from '@navigation/route';
 
-import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import Loader from '@components/svg/loader/loader';
 import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
 import {getVerticalPx} from '@src/helpers/layoutFoo';
 import {isIOS} from '@utils/platform';

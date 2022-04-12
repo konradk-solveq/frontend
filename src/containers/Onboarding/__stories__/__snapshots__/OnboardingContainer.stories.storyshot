@@ -1,0 +1,1385 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "paddingVertical": 31.61137440758294,
+      }
+    }
+  >
+    <View
+      collapsable={false}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginBottom": 25.28909952606635,
+          },
+          Object {
+            "width": 2630.769230769231,
+          },
+          [Function],
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 23.076923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 15.80568720379147,
+              "height": 918.3104265402844,
+              "paddingHorizontal": 38.46153846153846,
+              "paddingVertical": 37.93364928909953,
+              "width": 611.5384615384615,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            Record routes
+          </Text>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "maxHeight": 801.9230769230769,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/pages/onboarding/tutorial/images/recordRoutes.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "auto",
+                }
+              }
+            />
+          </View>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#717171",
+                  "marginHorizontal": 26.923076923076923,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            A quick and easy way to start recording your bike routes
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 23.076923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 15.80568720379147,
+              "height": 918.3104265402844,
+              "paddingHorizontal": 38.46153846153846,
+              "paddingVertical": 37.93364928909953,
+              "width": 611.5384615384615,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            Public Routes
+          </Text>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "maxHeight": 801.9230769230769,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/pages/onboarding/tutorial/images/publicRoutes.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "auto",
+                }
+              }
+            />
+          </View>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#717171",
+                  "marginHorizontal": 26.923076923076923,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            Take example from others and upload your routes to public map
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 23.076923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 15.80568720379147,
+              "height": 918.3104265402844,
+              "paddingHorizontal": 38.46153846153846,
+              "paddingVertical": 37.93364928909953,
+              "width": 611.5384615384615,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            Bike
+          </Text>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "maxHeight": 801.9230769230769,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/pages/onboarding/tutorial/images/bikes.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "auto",
+                }
+              }
+            />
+          </View>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#717171",
+                  "marginHorizontal": 26.923076923076923,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            Add it to your app and you&#39;ll get more details
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 23.076923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 15.80568720379147,
+              "height": 918.3104265402844,
+              "paddingHorizontal": 38.46153846153846,
+              "paddingVertical": 37.93364928909953,
+              "width": 611.5384615384615,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            Services and stores
+          </Text>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "maxHeight": 801.9230769230769,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/pages/onboarding/tutorial/images/services.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "auto",
+                }
+              }
+            />
+          </View>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#717171",
+                  "marginHorizontal": 26.923076923076923,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            Find a KROSS recommended bike specialist
+          </Text>
+        </View>
+      </View>
+      <View />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 7.6923076923076925,
+              "height": 15.384615384615385,
+              "width": 15.384615384615385,
+            },
+            [Function],
+            Object {
+              "marginLeft": 0,
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 7.6923076923076925,
+              "height": 15.384615384615385,
+              "width": 15.384615384615385,
+            },
+            [Function],
+            Object {
+              "marginLeft": 15.384615384615385,
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 7.6923076923076925,
+              "height": 15.384615384615385,
+              "width": 15.384615384615385,
+            },
+            [Function],
+            Object {
+              "marginLeft": 15.384615384615385,
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 7.6923076923076925,
+              "height": 15.384615384615385,
+              "width": 15.384615384615385,
+            },
+            [Function],
+            Object {
+              "marginLeft": 15.384615384615385,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "padding": 37.93364928909953,
+        }
+      }
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header3-test-id"
+      >
+        Onboarding.language
+        :
+      </Text>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={25.28909952606635}
+        bbWidth="32mm"
+        focusable={false}
+        height={25.28909952606635}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "flex": 0,
+              "height": 25,
+              "width": 32,
+            },
+          ]
+        }
+        vbHeight={32}
+        vbWidth={32}
+        width="32mm"
+        xml="<svg width=\\"32mm\\" height=\\"32mm\\" viewBox=\\"0 0 32 32\\"><circle cx=\\"16\\" cy=\\"16\\" fill=\\"#f6f6f6\\" r=\\"16\\"/><path d=\\"M.008 15.77A16 16 0 0 0 0 16a16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-.004-.23z\\" fill=\\"red\\"/></svg>"
+      >
+        <RNSVGGroup>
+          <RNSVGCircle
+            cx={16}
+            cy={16}
+            fill={4294375158}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+            r={16}
+          />
+          <RNSVGPath
+            d="M.008 15.77A16 16 0 0 0 0 16a16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-.004-.23z"
+            fill={4294901760}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header3-test-id"
+      >
+        Polski
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#717171",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+        testID="text-icon-test-id"
+      >
+        C
+      </Text>
+    </View>
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "elevation": 5,
+            "shadowColor": "#333333",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 7.6923076923076925,
+            },
+            "shadowOpacity": 0.07,
+            "shadowRadius": 15.384615384615385,
+          },
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {},
+          ],
+        ]
+      }
+      testID="secondary-btn-test-id"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "#C63733",
+            },
+            undefined,
+          ]
+        }
+        testID="secondary-btn-test-id-container"
+      >
+        <Text
+          adjustsFontSizeToFit={true}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#FFFFFF",
+              },
+            ]
+          }
+          testID="secondary-btn-test-id-text"
+        >
+          Onboarding.start
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "paddingVertical": 31.61137440758294,
+      }
+    }
+  >
+    <View
+      collapsable={false}
+      onGestureHandlerEvent={[Function]}
+      onGestureHandlerStateChange={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginBottom": 25.28909952606635,
+          },
+          Object {
+            "width": 2630.769230769231,
+          },
+          [Function],
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 23.076923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 15.80568720379147,
+              "height": 918.3104265402844,
+              "paddingHorizontal": 38.46153846153846,
+              "paddingVertical": 37.93364928909953,
+              "width": 611.5384615384615,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            Record routes
+          </Text>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "maxHeight": 801.9230769230769,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/pages/onboarding/tutorial/images/recordRoutes.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "auto",
+                }
+              }
+            />
+          </View>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#717171",
+                  "marginHorizontal": 26.923076923076923,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            A quick and easy way to start recording your bike routes
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 23.076923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 15.80568720379147,
+              "height": 918.3104265402844,
+              "paddingHorizontal": 38.46153846153846,
+              "paddingVertical": 37.93364928909953,
+              "width": 611.5384615384615,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            Public Routes
+          </Text>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "maxHeight": 801.9230769230769,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/pages/onboarding/tutorial/images/publicRoutes.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "auto",
+                }
+              }
+            />
+          </View>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#717171",
+                  "marginHorizontal": 26.923076923076923,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            Take example from others and upload your routes to public map
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 23.076923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 15.80568720379147,
+              "height": 918.3104265402844,
+              "paddingHorizontal": 38.46153846153846,
+              "paddingVertical": 37.93364928909953,
+              "width": 611.5384615384615,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            Bike
+          </Text>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "maxHeight": 801.9230769230769,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/pages/onboarding/tutorial/images/bikes.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "auto",
+                }
+              }
+            />
+          </View>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#717171",
+                  "marginHorizontal": 26.923076923076923,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            Add it to your app and you'll get more details
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 23.076923076923077,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 15.80568720379147,
+              "height": 918.3104265402844,
+              "paddingHorizontal": 38.46153846153846,
+              "paddingVertical": 37.93364928909953,
+              "width": 611.5384615384615,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#000000",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            Services and stores
+          </Text>
+          <View
+            style={
+              Object {
+                "flex": 1,
+                "maxHeight": 801.9230769230769,
+                "overflow": "hidden",
+              }
+            }
+          >
+            <Image
+              resizeMode="contain"
+              source={
+                Object {
+                  "testUri": "../../../src/pages/onboarding/tutorial/images/services.png",
+                }
+              }
+              style={
+                Object {
+                  "height": "100%",
+                  "width": "auto",
+                }
+              }
+            />
+          </View>
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 16,
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#717171",
+                  "marginHorizontal": 26.923076923076923,
+                  "textAlign": "center",
+                },
+              ]
+            }
+            testID="paragraph-test-id"
+          >
+            Find a KROSS recommended bike specialist
+          </Text>
+        </View>
+      </View>
+      <View />
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexDirection": "row",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 7.6923076923076925,
+              "height": 15.384615384615385,
+              "width": 15.384615384615385,
+            },
+            [Function],
+            Object {
+              "marginLeft": 0,
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 7.6923076923076925,
+              "height": 15.384615384615385,
+              "width": 15.384615384615385,
+            },
+            [Function],
+            Object {
+              "marginLeft": 15.384615384615385,
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 7.6923076923076925,
+              "height": 15.384615384615385,
+              "width": 15.384615384615385,
+            },
+            [Function],
+            Object {
+              "marginLeft": 15.384615384615385,
+            },
+          ]
+        }
+      />
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 7.6923076923076925,
+              "height": 15.384615384615385,
+              "width": 15.384615384615385,
+            },
+            [Function],
+            Object {
+              "marginLeft": 15.384615384615385,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "center",
+          "padding": 37.93364928909953,
+        }
+      }
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header3-test-id"
+      >
+        Onboarding.language
+        :
+      </Text>
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={25.28909952606635}
+        bbWidth="32mm"
+        focusable={false}
+        height={25.28909952606635}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "flex": 0,
+              "height": 25,
+              "width": 32,
+            },
+          ]
+        }
+        vbHeight={32}
+        vbWidth={32}
+        width="32mm"
+        xml="<svg width=\\"32mm\\" height=\\"32mm\\" viewBox=\\"0 0 32 32\\"><circle cx=\\"16\\" cy=\\"16\\" fill=\\"#f6f6f6\\" r=\\"16\\"/><path d=\\"M.008 15.77A16 16 0 0 0 0 16a16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-.004-.23z\\" fill=\\"red\\"/></svg>"
+      >
+        <RNSVGGroup>
+          <RNSVGCircle
+            cx={16}
+            cy={16}
+            fill={4294375158}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+            r={16}
+          />
+          <RNSVGPath
+            d="M.008 15.77A16 16 0 0 0 0 16a16 16 0 0 0 16 16 16 16 0 0 0 16-16 16 16 0 0 0-.004-.23z"
+            fill={4294901760}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header3-test-id"
+      >
+        Polski
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#717171",
+              "fontSize": 20,
+            },
+            undefined,
+          ]
+        }
+        testID="text-icon-test-id"
+      >
+        C
+      </Text>
+    </View>
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "elevation": 5,
+            "shadowColor": "#333333",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 7.6923076923076925,
+            },
+            "shadowOpacity": 0.07,
+            "shadowRadius": 15.384615384615385,
+          },
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {},
+          ],
+        ]
+      }
+      testID="secondary-btn-test-id"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "#C63733",
+            },
+            undefined,
+          ]
+        }
+        testID="secondary-btn-test-id-container"
+      >
+        <Text
+          adjustsFontSizeToFit={true}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#FFFFFF",
+              },
+            ]
+          }
+          testID="secondary-btn-test-id-text"
+        >
+          Onboarding.start
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

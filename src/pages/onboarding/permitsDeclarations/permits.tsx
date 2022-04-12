@@ -1,29 +1,13 @@
 import React, {useCallback, useState} from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    ScrollView,
-    SafeAreaView,
-    StatusBar,
-} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import Hyperlink from 'react-native-hyperlink';
-
-import {
-    setObjSize,
-    getWidthPx,
-    getHorizontalPx,
-    getVerticalPx,
-    getFontSize,
-    mainButtonsHeight,
-} from '@helpers/layoutFoo';
-
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import OnePermit from './onePermit';
-import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import {OnboardingStackRoute} from '@navigation/route';
-import {commonStyle as comStyle} from '@helpers/commonStyle';
+import {Header2, Header3, Paragraph} from '@components/texts/texts';
+import GenericScreen from '@pages/template/GenericScreen';
+import {getFHorizontalPx, getFVerticalPx} from '@helpers/appLayoutDimensions';
+import {PrimaryButton} from '@components/buttons';
 
 interface Props {
     navigation: any;
@@ -63,62 +47,15 @@ const Permits: React.FC<Props> = (props: Props) => {
         [props.navigation, t],
     );
 
-    setObjSize(334, 50);
-    const styles = StyleSheet.create({
-        wrap: {
-            width: getWidthPx(),
-            left: getHorizontalPx(40),
-        },
-        title: {
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'left',
-            marginTop: getVerticalPx(50),
-            fontSize: getFontSize(30),
-            color: '#313131',
-        },
-
-        text: {
-            marginTop: getVerticalPx(14),
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'left',
-            fontSize: getFontSize(18),
-            color: '#555555',
-        },
-        clauseTitle: {
-            marginTop: getVerticalPx(50),
-            fontFamily: 'DIN2014Narrow-Regular',
-            textAlign: 'left',
-            fontSize: getFontSize(18),
-            color: '#313131',
-        },
-        clause: {
-            marginTop: getVerticalPx(30),
-            marginBottom: getVerticalPx(40),
-            fontFamily: 'DIN2014Narrow-Light',
-            textAlign: 'left',
-            fontSize: getFontSize(18),
-            lineHeight: getFontSize(24),
-            color: '#555555',
-        },
-        btn: {
-            width: getWidthPx(),
-            height: mainButtonsHeight(50),
-            top: getVerticalPx(11),
-            marginBottom: getVerticalPx(69),
-        },
-    });
-
     return (
         <>
-            <StatusBar hidden={false} />
-            <SafeAreaView style={comStyle.container}>
-                <View style={comStyle.scroll}>
+            <GenericScreen screenTitle={t('header')} contentBelowHeader>
+                <View>
                     <ScrollView>
                         <View style={styles.wrap}>
-                            <Text style={styles.title}>{t('title')}</Text>
-
-                            <Text style={styles.text}>{t('text')}</Text>
-
+                            <Header2 style={styles.header}>
+                                {t('title')}
+                            </Header2>
                             <OnePermit
                                 checked={checked}
                                 wrong={
@@ -130,13 +67,12 @@ const Permits: React.FC<Props> = (props: Props) => {
                                 }
                                 getCheck={() => setChecked(!checked)}
                                 text={t('permit.text')}
-                                marginTop={getVerticalPx(66)}
                                 onPress={navigateToDetailsHandler}
                             />
 
-                            <Text style={styles.clauseTitle}>
+                            <Header3 style={styles.clauseTitle}>
                                 {t('clauseTitle')}
-                            </Text>
+                            </Header3>
 
                             <Hyperlink
                                 linkStyle={{color: '#3587ea'}}
@@ -150,30 +86,42 @@ const Permits: React.FC<Props> = (props: Props) => {
                                     return url;
                                 }}
                                 onPress={navigateToDetailsHandler}>
-                                <Text style={styles.clause}>{t('clause')}</Text>
+                                <Paragraph style={styles.clause}>
+                                    {t('clause')}
+                                </Paragraph>
                             </Hyperlink>
-
-                            <BigRedBtn
-                                style={styles.btn}
-                                title={t('btn')}
-                                onpress={() => handlerGoForward()}
-                            />
                         </View>
                     </ScrollView>
+                    <View style={styles.btnContainer}>
+                        <PrimaryButton
+                            text={t('btn')}
+                            onPress={handlerGoForward}
+                            disabled={!checked}
+                        />
+                    </View>
                 </View>
-
-                <StackHeader
-                    onpress={() =>
-                        props.navigation.navigate(
-                            OnboardingStackRoute.NEW_BEGINNING_SCREEN,
-                        )
-                    }
-                    inner={t('header')}
-                    style={{backgroundColor: '#fff'}}
-                />
-            </SafeAreaView>
+            </GenericScreen>
         </>
     );
 };
 
 export default Permits;
+
+const styles = StyleSheet.create({
+    wrap: {
+        paddingHorizontal: getFHorizontalPx(16),
+    },
+    header: {
+        marginBottom: getFVerticalPx(24),
+    },
+    clauseTitle: {
+        marginTop: getFVerticalPx(26),
+    },
+    clause: {
+        marginTop: getFVerticalPx(8),
+    },
+    btnContainer: {
+        alignItems: 'center',
+        paddingVertical: getFVerticalPx(8),
+    },
+});
