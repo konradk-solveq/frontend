@@ -174,14 +174,18 @@ const ListTileView: React.FC<PropsI> = ({
                                 )}
                             </View>
 
-                            <View style={styles.edit}>
-                                <Pressable onPress={detailsPressOn}>
-                                    <TextIcon
-                                        icon={MykrossIconFont.MYKROSS_ICON_MORE}
-                                        style={styles.icon}
-                                    />
-                                </Pressable>
-                            </View>
+                            {mode !== 'public' && (
+                                <View style={styles.edit}>
+                                    <Pressable onPress={detailsPressOn}>
+                                        <TextIcon
+                                            icon={
+                                                MykrossIconFont.MYKROSS_ICON_MORE
+                                            }
+                                            style={styles.icon}
+                                        />
+                                    </Pressable>
+                                </View>
+                            )}
                         </View>
                     </View>
                 </View>

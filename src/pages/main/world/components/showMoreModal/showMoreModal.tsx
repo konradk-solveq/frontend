@@ -35,6 +35,7 @@ interface IProps {
     hideShowOnMapButton?: boolean;
 }
 
+/* TODO: to delete after this component will be replaced */
 const ShowMoreModal: React.FC<IProps> = ({
     onPressCancel,
     mapID,

@@ -1246,7 +1246,30 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
         [Function],
       ]
     }
-  />
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "width": "100%",
+          },
+          Object {},
+        ]
+      }
+    />
+  </View>
 </View>
 `;
 
@@ -2496,6 +2519,29 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
         [Function],
       ]
     }
-  />
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "width": "100%",
+          },
+          Object {},
+        ]
+      }
+    />
+  </View>
 </View>
 `;

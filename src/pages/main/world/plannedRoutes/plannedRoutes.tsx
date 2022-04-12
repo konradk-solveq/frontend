@@ -7,7 +7,6 @@ import {
     favouritesMapsSelector,
     loadingMapsSelector,
     refreshMapsSelector,
-    selectorMapTypeEnum,
 } from '@storage/selectors';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
@@ -18,13 +17,13 @@ import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import Loader from '@pages/onboarding/bikeAdding/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
-import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import EmptyList from './emptyList';
 import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
 import SortButton from '../components/buttons/SortButton';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
+import {RouteDetailsActionT} from '@type/screens/routesMap';
 
 import styles from './style';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
@@ -42,8 +41,9 @@ import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import {plannedRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
-import {resetMapsCount} from '@storage/actions/maps';
+import {removePlannedMap, resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
+import {MoreActionsModal} from '../components/modals';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -78,7 +78,6 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         [bottom],
     );
 
-    const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
 
     const {onLoadMoreHandler} = useInfiniteScrollLoadMore(
@@ -136,7 +135,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     const onPressHandler = (state: boolean, mapID?: string) => {
-        setShowModal(state);
+        setBottomSheetWithMoreActions(true);
         if (mapID) {
             setActiveMapID(mapID);
         }
@@ -216,6 +215,37 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         [changeSortButtonName, mwt],
     );
 
+    /**
+     * Shows modal with more action buttons
+     */
+    const [
+        bottomSheetWithMoreActions,
+        setBottomSheetWithMoreActions,
+    ] = useState(false);
+
+    const onPressMoreHandler = useCallback(
+        (actionType: RouteDetailsActionT) => {
+            const mapId = activeMapID;
+            if (!mapId) {
+                setBottomSheetWithMoreActions(false);
+                return;
+            }
+
+            switch (actionType) {
+                case 'record':
+                    setBottomSheetWithMoreActions(false);
+                    navigation.navigate('Counter', {mapID: mapId});
+                    break;
+                case 'remove':
+                    dispatch(removePlannedMap(mapId));
+                    break;
+                default:
+                    break;
+            }
+        },
+        [dispatch, navigation, activeMapID],
+    );
+
     if (!favouriteMaps?.length) {
         return <EmptyList onPress={emptyListButtonHandler} />;
     }
@@ -242,15 +272,6 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
 
     return (
         <View style={styles.background}>
-            <ShowMoreModal
-                showModal={showModal}
-                removeFav
-                mapID={activeMapID}
-                onPressCancel={() => onPressHandler(false)}
-                backdropStyle={styles.backdrop}
-                isPublished /* Planned maps can be picked from [published only (by default) */
-                mapType={selectorMapTypeEnum.favourite}
-            />
             <FiltersModal
                 onClose={onFiltersModalCloseHandler}
                 definedFilters={savedMapFilters}
@@ -319,6 +340,13 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             <RoutesMapButton
                 onPress={() => navigation.navigate('RoutesMap')}
                 style={{...styles.mapBtn, ...bottomPosition}}
+            />
+
+            <MoreActionsModal
+                show={bottomSheetWithMoreActions}
+                onPressAction={onPressMoreHandler}
+                onClose={() => setBottomSheetWithMoreActions(false)}
+                mapType="favourite"
             />
         </View>
     );

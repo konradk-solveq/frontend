@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo} from 'react';
-import {Dimensions, StyleSheet, ViewStyle} from 'react-native';
+import {Dimensions, Pressable, StyleSheet, ViewStyle} from 'react-native';
 
 import Animated, {
     useAnimatedStyle,
@@ -13,14 +13,19 @@ const {width} = Dimensions.get('window');
 
 interface IProps {
     isVisible?: boolean;
+    onPress?: () => void;
     style?: ViewStyle;
 }
 
-const Backdrop: React.FC<IProps> = ({isVisible, style}: IProps) => {
+const Backdrop: React.FC<IProps> = ({isVisible, onPress, style}: IProps) => {
     const backdropOpacity = useSharedValue(0);
     const isClickable = useMemo(() => (!isVisible ? 'box-none' : 'auto'), [
         isVisible,
     ]);
+    const clickableAreaHeight = useMemo(
+        () => (!isVisible ? {} : {height: '100%'}),
+        [isVisible],
+    );
 
     const backdropAnimation = useAnimatedStyle(() => ({
         opacity: withTiming(backdropOpacity.value, {
@@ -35,8 +40,12 @@ const Backdrop: React.FC<IProps> = ({isVisible, style}: IProps) => {
     return (
         <Animated.View
             pointerEvents={isClickable}
-            style={[styles.container, style, backdropAnimation]}
-        />
+            style={[styles.container, style, backdropAnimation]}>
+            <Pressable
+                onPress={onPress}
+                style={[styles.pressableContainer, clickableAreaHeight]}
+            />
+        </Animated.View>
     );
 };
 
@@ -52,6 +61,9 @@ const styles = StyleSheet.create({
         width: width,
         height: '100%',
         backgroundColor: colors.darkGrey,
+    },
+    pressableContainer: {
+        width: '100%',
     },
 });
 
