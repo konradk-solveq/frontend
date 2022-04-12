@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {GestureResponderEvent} from 'react-native';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -15,6 +15,8 @@ interface IProps {
     onPressPrimary: (e: GestureResponderEvent) => void;
     onPressSecondary: (e: GestureResponderEvent) => void;
     onPressIcon: (e: GestureResponderEvent) => void;
+    isSecondaryButtonActive?: boolean;
+    secondaryButtonWithLoader?: boolean;
     testID?: string;
 }
 
@@ -22,9 +24,25 @@ const CommonActionButtons: React.FC<IProps> = ({
     onPressPrimary,
     onPressSecondary,
     onPressIcon,
+    isSecondaryButtonActive = false,
+    secondaryButtonWithLoader = false,
     testID = 'common-action-buttons',
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details.actionButtons');
+    const icon = useMemo(
+        () =>
+            !isSecondaryButtonActive
+                ? MykrossIconFont.MYKROSS_ICON_SAVE_OFF
+                : MykrossIconFont.MYKROSS_ICON_SAVE_ON,
+        [isSecondaryButtonActive],
+    );
+    const buttonText = useMemo(
+        () =>
+            !isSecondaryButtonActive
+                ? t('published.secondaryAction')
+                : t('published.secondaryActionActive'),
+        [isSecondaryButtonActive, t],
+    );
 
     return (
         <ButtonsGroup testID={testID}>
@@ -40,12 +58,13 @@ const CommonActionButtons: React.FC<IProps> = ({
             />
             <SecondaryButton
                 onPress={onPressSecondary}
-                text={t('published.secondaryAction')}
-                icon={MykrossIconFont.MYKROSS_ICON_SAVE_OFF}
+                text={buttonText}
+                icon={icon}
                 style={{
                     width: getFHorizontalPx(143),
                     height: getFVerticalPx(48),
                 }}
+                withLoader={secondaryButtonWithLoader}
                 testID={`${testID}-secondary-button`}
             />
             <IconButton

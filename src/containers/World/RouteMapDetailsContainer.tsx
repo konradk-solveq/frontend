@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 
 import {MapType} from '@models/map.model';
@@ -20,6 +20,8 @@ interface IProps {
     mapData?: MapType;
     isPrivate?: boolean;
     isPublished?: boolean;
+    isFavourited?: boolean;
+    isFetching?: boolean;
     mapImages?: ImagesUrlsToDisplay;
     style?: ViewStyle;
     testID?: string;
@@ -30,10 +32,16 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
     mapData,
     isPrivate = false,
     isPublished = false,
+    isFavourited = false,
+    isFetching = false,
     mapImages,
     style,
     testID = 'route-map-details-container',
 }: IProps) => {
+    const omPressSecondaryButton = useCallback(() => {
+        onPressAction(isFavourited ? 'remove_from_planned' : 'add_to_planned');
+    }, [isFavourited, onPressAction]);
+
     return (
         <View style={[styles.container, style]} testID={testID}>
             <>
@@ -49,9 +57,11 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
                 {!isPrivate ? (
                     <CommonActionButtons
                         onPressPrimary={() => onPressAction('record')}
-                        onPressSecondary={() => onPressAction('add_to_planned')}
+                        onPressSecondary={omPressSecondaryButton}
                         onPressIcon={() => onPressAction('share')}
                         testID={`${testID}-common-action-buttons`}
+                        isSecondaryButtonActive={isFavourited}
+                        secondaryButtonWithLoader={isFetching}
                     />
                 ) : (
                     <PrivateActionButtons
@@ -79,4 +89,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default RouteMapDetailsContainer;
+export default React.memo(RouteMapDetailsContainer);
