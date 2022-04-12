@@ -110,3 +110,30 @@ export const updateReactionsInFeatueedMap = (
         return maps;
     }
 };
+
+export const updateIsUserFavouriteInMap = (
+    maps: MapType[],
+    mapIdToModify: string,
+    isFavourite: boolean,
+) => {
+    try {
+        if (!maps.find(m => m.id === mapIdToModify)) {
+            return maps;
+        }
+
+        return [...maps].map(m => {
+            if (!!m?.id && m?.id === mapIdToModify) {
+                if (isFavourite !== m.isUserFavorite) {
+                    return {
+                        ...m,
+                        isUserFavorite: isFavourite,
+                    };
+                }
+            }
+
+            return m;
+        });
+    } catch (_) {
+        return maps;
+    }
+};

@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/tiles/OnboardingTile Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FAFAFA",
+        "borderRadius": 15.80568720379147,
+        "height": 918.3104265402844,
+        "paddingHorizontal": 38.46153846153846,
+        "paddingVertical": 37.93364928909953,
+        "width": 611.5384615384615,
+      }
+    }
+  >
+    <Text
+      adjustsFontSizeToFit={false}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "DIN2014-Demi",
+            "fontSize": 24,
+            "fontWeight": "600",
+            "lineHeight": 32,
+            "textAlign": "left",
+          },
+          Object {
+            "textAlign": "center",
+          },
+        ]
+      }
+      testID="header1-test-id"
+    >
+      Record routes
+    </Text>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "maxHeight": 801.9230769230769,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "testUri": "../../../src/pages/onboarding/tutorial/images/recordRoutes.png",
+          }
+        }
+        style={
+          Object {
+            "height": "100%",
+            "width": "auto",
+          }
+        }
+      />
+    </View>
+    <Text
+      adjustsFontSizeToFit={false}
+      style={
+        Array [
+          Object {
+            "color": "#333333",
+            "fontFamily": "DIN2014-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "textAlign": "left",
+          },
+          Object {
+            "color": "#717171",
+            "marginHorizontal": 26.923076923076923,
+            "textAlign": "center",
+          },
+        ]
+      }
+      testID="paragraph-test-id"
+    >
+      Quickly and easily start recording your cycling routes
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/tiles/OnboardingTile Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#FAFAFA",
+        "borderRadius": 15.80568720379147,
+        "height": 918.3104265402844,
+        "paddingHorizontal": 38.46153846153846,
+        "paddingVertical": 37.93364928909953,
+        "width": 611.5384615384615,
+      }
+    }
+  >
+    <Text
+      adjustsFontSizeToFit={false}
+      style={
+        Array [
+          Object {
+            "color": "#000000",
+            "fontFamily": "DIN2014-Demi",
+            "fontSize": 24,
+            "fontWeight": "600",
+            "lineHeight": 32,
+            "textAlign": "left",
+          },
+          Object {
+            "textAlign": "center",
+          },
+        ]
+      }
+      testID="header1-test-id"
+    >
+      Record routes
+    </Text>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "maxHeight": 801.9230769230769,
+          "overflow": "hidden",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "testUri": "../../../src/pages/onboarding/tutorial/images/recordRoutes.png",
+          }
+        }
+        style={
+          Object {
+            "height": "100%",
+            "width": "auto",
+          }
+        }
+      />
+    </View>
+    <Text
+      adjustsFontSizeToFit={false}
+      style={
+        Array [
+          Object {
+            "color": "#333333",
+            "fontFamily": "DIN2014-Regular",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "textAlign": "left",
+          },
+          Object {
+            "color": "#717171",
+            "marginHorizontal": 26.923076923076923,
+            "textAlign": "center",
+          },
+        ]
+      }
+      testID="paragraph-test-id"
+    >
+      Quickly and easily start recording your cycling routes
+    </Text>
+  </View>
+</View>
+`;

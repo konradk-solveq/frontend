@@ -23,7 +23,7 @@ import {MapType} from '@models/map.model';
 import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
 import EditForm from './form/editForm';
-import Loader from '../../../onboarding/bikeAdding/loader/loader';
+import Loader from '@components/svg/loader/loader';
 import PublishRouteThankYouPageModal from '../../../../sharedComponents/modals/publishRouteThankYouPageModal/publishRouteThankYouPageModal';
 import WrongResponseModal from '../../../../sharedComponents/modals/fail/failedResponseModal';
 

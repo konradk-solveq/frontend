@@ -6,6 +6,7 @@ import {FeaturedMapType, MapType} from '../../models/map.model';
 import {MapPagination, NestedPaginationType} from '../../interfaces/api';
 import {RouteMapType} from '../../models/places.model';
 import {
+    updateIsUserFavouriteInMap,
     updateReactionsInFeatueedMap,
     updateReactionsInMap,
 } from '@utils/mapsData';
@@ -296,6 +297,18 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 maps: modifiedMaps,
                 featuredMaps: modifiedFeaturedMaps,
                 statusCode: 200,
+            };
+        }
+        case actionTypes.SET_MAP_IS_FAVOURITED_STATE: {
+            const modifiedMaps = updateIsUserFavouriteInMap(
+                state.maps,
+                action.mapIdToModify,
+                action.isFavourite,
+            );
+
+            return {
+                ...state,
+                maps: modifiedMaps,
             };
         }
         case actionTypes.LOGOUT_USER: {

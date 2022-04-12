@@ -44,3 +44,17 @@ export const putApiCallMock = async <T>(response?: GeneralResponse<T>) => {
         });
     });
 };
+
+export const apiCallMock = async <T>(
+    response?: GeneralResponse<T>,
+    method?: HttpMethodT,
+    isRejected?: boolean,
+) => {
+    return jest.spyOn(instance, method || 'post').mockImplementation(() => {
+        return new Promise((resolve, reject) => {
+            return isRejected
+                ? reject(response || defaultErrorResponse)
+                : resolve(response || defaultResponse);
+        });
+    });
+};

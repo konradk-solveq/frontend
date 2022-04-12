@@ -22,9 +22,7 @@ import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
-import SortButton from '../components/buttons/SortButton';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
@@ -38,12 +36,13 @@ import {
     checkIfContainsFitlers,
     getSorByFilters,
 } from '@utils/apiDataTransform/filters';
-import {FiltersButton} from '@pages/main/world/components/buttons';
 import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
 import {publicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
 import {fetchMapsCount} from '@storage/actions';
 import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
+import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
+import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -93,6 +92,10 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
      * Shows list loader when filters changed.
      */
     const [showListLoader, setShowListLoader] = useState(false);
+    const {onScroll, shouldHide} = useHideOnScrollDirection();
+
+    const [showBackdrop, setShowBackdrop] = useState(false);
+
     const listBodyLoaderStyle = useMemo(
         () => (containsFeaturedMaps > 0 ? '25%' : '75%'),
         [containsFeaturedMaps],
@@ -215,7 +218,6 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         return null;
     }, [isLoading, mapsData?.length, showListLoader, listBodyLoaderStyle]);
 
-    const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [sortButtonName, setSortButtonName] = useState<string>(t('btnSort'));
 
@@ -244,11 +246,20 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         },
         [changeSortButtonName, t],
     );
-
     return (
         <View
             style={styles.background}
             onLayout={() => setRenderIsFinished(true)}>
+            <FiltersHeader
+                shouldHide={shouldHide}
+                sortButtonName={sortButtonName}
+                setShowDropdown={setShowDropdown}
+                onFiltersModalOpenHandler={onFiltersModalOpenHandler}
+                showDropdown={showDropdown}
+                toggleDropdown={toggleDropdown}
+                onSortByHandler={onSortByHandler}
+                dropdownList={publicRoutesDropdownList}
+            />
             <ShowMoreModal
                 showModal={showModal}
                 mapID={activeMapID}
@@ -266,41 +277,16 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                 onResetFiltersCount={onResetFiltersCount}
                 itemsCount={publicMapsCount}
             />
-            <View style={styles.topButtonsContainer}>
-                <Dropdown
-                    openOnStart={showDropdown}
-                    list={publicRoutesDropdownList}
-                    onPress={toggleDropdown}
-                    onPressItem={onSortByHandler}
-                    buttonText={t('btnSort')}
-                    buttonContainerStyle={styles.dropdownButtonContainerStyle}
-                    boxStyle={styles.dropdownBox}
-                    hideButton
-                />
-            </View>
             {mapsData?.length && renderIsFinished ? (
                 <FlatList
+                    onScroll={onScroll}
                     ListHeaderComponent={
-                        <>
-                            <View style={styles.topButtonsContainer}>
-                                <SortButton
-                                    title={sortButtonName}
-                                    onPress={() => setShowDropdown(true)}
-                                    style={styles.topButton}
-                                />
-                                <FiltersButton
-                                    onPress={onFiltersModalOpenHandler}
-                                    style={{
-                                        ...styles.topButton,
-                                        ...styles.topButtonRight,
-                                    }}
-                                />
-                            </View>
+                        <View style={styles.listHeader}>
                             <FeaturedRoutes key={mapsData?.length} />
                             <Header2 style={styles.header}>
                                 {t('BikeMap.title')}
                             </Header2>
-                        </>
+                        </View>
                     }
                     keyExtractor={item => item.id}
                     data={!showListLoader ? mapsData : []}

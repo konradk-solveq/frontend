@@ -1,12 +1,9 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
     getFVerticalPx,
     getFHorizontalPx,
 } from '@theme/utils/appLayoutDimensions';
-import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import colors from '@theme/colors';
-
-const {width} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
     background: {
@@ -34,34 +31,11 @@ const styles = StyleSheet.create({
     backdrop: {
         marginTop: -getFVerticalPx(250),
     },
-    topButtonsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: appContainerHorizontalMargin,
-        zIndex: 10,
-    },
-    topButton: {
-        height: getFVerticalPx(48),
-        zIndex: 10,
-    },
-    topButtonLeft: {},
-    topButtonRight: {
-        position: 'absolute',
-        right: 0,
-        width: getFHorizontalPx(70),
+    listHeader: {
+        paddingTop: getFVerticalPx(24),
     },
     fullscreenBackdrop: {
-        top: getFVerticalPx(42),
-    },
-    dropdownBox: {
-        width: width,
-        marginHorizontal: 0,
-        position: 'absolute',
-        top: getFVerticalPx(42),
-        left: -appContainerHorizontalMargin,
-    },
-    dropdownButtonContainerStyle: {
-        justifyContent: 'flex-start',
+        top: getFVerticalPx(52),
     },
     mapBtn: {
         position: 'absolute',

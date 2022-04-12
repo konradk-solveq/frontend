@@ -2,18 +2,20 @@ import React from 'react';
 import {StyleSheet, ViewStyle} from 'react-native';
 import {TransparentButton} from '@components/buttons';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
-import {
-    getFHorizontalPx,
-    getFVerticalPx,
-} from '@src/theme/utils/appLayoutDimensions';
 
 interface SortBtnI {
     onPress: () => void;
     title: string;
     style?: ViewStyle;
+    testID?: string;
 }
 
-const SortButton = ({onPress, style, title}: SortBtnI) => {
+const SortButton = ({
+    onPress,
+    style,
+    title,
+    testID = 'header-sort-btn',
+}: SortBtnI) => {
     return (
         <TransparentButton
             text={title}
@@ -21,6 +23,7 @@ const SortButton = ({onPress, style, title}: SortBtnI) => {
             icon={MykrossIconFont.MYKROSS_ICON_CHEVRON_DOWN}
             style={style}
             containerStyle={styles.buttonContainer}
+            testID={testID}
         />
     );
 };
