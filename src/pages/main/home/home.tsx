@@ -1,58 +1,36 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {
-    Dimensions,
-    Platform,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    View,
-} from 'react-native';
+import {StyleSheet, View, Linking} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 import useNavigateOnDeepLink from '@navigation/hooks/useNavigateOnDeepLink';
-import KroosLogo from '@sharedComponents/svg/krossLogo';
 import {trackerActiveSelector} from '@storage/selectors/routes';
-import {hasRecordedRoutesSelector} from '@storage/selectors/map';
-import {showedLocationInfoSelector} from '@storage/selectors/app';
-import {
-    onRecordTripActionHandler,
-    showLocationInfo,
-} from '@utils/showAndroidLlocationInfo';
 
-import {syncAppSelector} from '@storage/selectors';
-import Tile from './tile';
+import {syncAppSelector, userNameSelector} from '@storage/selectors';
 
-import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {useAppSelector} from '@hooks/redux';
 import {nfcIsSupported} from '@helpers/nfc';
 import {RegularStackRoute} from '@navigation/route';
 
 import Loader from '@components/svg/loader/loader';
-import NoBikeAddedModal from '@sharedComponents/modals/noBikeAddedModal/noBikeAddedModal';
-import {getVerticalPx} from '@src/helpers/layoutFoo';
-import {isIOS} from '@utils/platform';
-import {getAppLayoutConfig} from '@theme/appLayoutConfig';
-import {commonStyle as comStyle} from '@helpers/commonStyle';
-
-const {width} = Dimensions.get('window');
+import GenericScreen from '@pages/template/GenericScreen';
+import {HomeContainer} from '@containers/Home';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import colors from '@theme/colors';
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
-    const dispatch = useAppDispatch();
-    const {t} = useMergedTranslation('MainHome');
     const mountedRef = useRef(false);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
-    const hasRecordedRoutes = useAppSelector(hasRecordedRoutesSelector);
     const syncStatus = useAppSelector(syncAppSelector);
-    const isLocationInfoShowed = useAppSelector(showedLocationInfoSelector);
-
-    const [showModal, setShowModal] = useState(false);
-
+    const [nfc, setNfc] = useState(false);
+    const {top} = useSafeAreaInsets();
     useEffect(() => {
         return () => {
             mountedRef.current = false;
         };
     }, []);
+
+    const userName = useAppSelector(userNameSelector);
 
     /* TODO: move initialization to splashs screen or add loader */
     const redirectToCoutnerScreen = useCallback(() => {
@@ -64,116 +42,53 @@ const Home: React.FC = () => {
 
     useFocusEffect(redirectToCoutnerScreen);
 
-    const [nfc, setNfc] = useState();
+    useNavigateOnDeepLink(true);
 
     nfcIsSupported().then(r => {
         setNfc(r);
     });
 
-    useNavigateOnDeepLink(true);
-
-    const onAddActionHandler = () => {
-        navigation.navigate({
-            name: nfc
-                ? RegularStackRoute.ADD_BIKE_SCREEN
-                : RegularStackRoute.ADDING_BY_NUMBER_SCREEN,
-            params: {emptyFrame: true},
+    const onAddKrossBike = useCallback(() => {
+        navigation.navigate(nfc ? 'AddBike' : 'AddBikeByNumber', {
+            emptyFrame: true,
         });
-    };
+    }, [navigation, nfc]);
 
-    const doAction = () => {
-        Platform.OS === 'ios' || isLocationInfoShowed
-            ? onRecordTripActionHandler(navigation, isIOS)
-            : showLocationInfo(navigation, dispatch);
-    };
+    const onAddOtherBike = useCallback(() => {
+        navigation.navigate('AddOtherBike', {
+            frameNumber: '',
+        });
+    }, [navigation]);
 
-    const onContinueHandler = () => {
-        setShowModal(false);
-        onAddActionHandler();
-    };
-
-    const onCancelHandler = () => {
-        setShowModal(false);
+    //TODO: Replace with an url fetched from api
+    const handleStoreTilePress = () => {
+        Linking.openURL(
+            'https://kross.eu/pl/akcesoria2?utm_source=aplikacja&utm_medium=banner&utm_campaign=202204_czesci_i_akcesoria',
+        );
     };
 
     if (syncStatus) {
         return <Loader />;
     }
 
-    const styles = StyleSheet.create({
-        container: {
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#fff',
-        },
-        header: {
-            position: 'absolute',
-            width: width,
-            height: getVerticalPx(20),
-            top:
-                getVerticalPx(70) -
-                (isIOS ? 0 : getAppLayoutConfig.statusBarH()),
-            zIndex: 1,
-            alignItems: 'center',
-        },
-        tileWrapper: {
-            top: getVerticalPx(38),
-            paddingBottom: getVerticalPx(260),
-        },
-        tileSpace: {
-            marginBottom: 25,
-        },
-    });
-
     return (
-        <SafeAreaView style={comStyle.container}>
-            <View style={comStyle.scroll}>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    <View style={styles.container}>
-                        <View style={styles.tileWrapper}>
-                            {!hasRecordedRoutes ? (
-                                <Tile
-                                    title={t('thirdTitle')}
-                                    description={t('thirdText')}
-                                    btnText={t('thirdBtn')}
-                                    style={styles.tileSpace}
-                                    onPress={doAction}
-                                />
-                            ) : (
-                                <Tile
-                                    title={t('fourthTitle')}
-                                    description={t('fourthText')}
-                                    btnText={t('fourthBtn')}
-                                    style={styles.tileSpace}
-                                    onPress={doAction}
-                                />
-                            )}
-                            <Tile
-                                title={t('secondTitle')}
-                                description={t('secondText')}
-                                btnText={t('secondBtn')}
-                                style={styles.tileSpace}
-                                onPress={onAddActionHandler}
-                            />
-                        </View>
-                    </View>
-                </ScrollView>
-            </View>
-            <View style={styles.header}>
-                <KroosLogo />
-            </View>
-
-            {!isTrackerActive && (
-                <NoBikeAddedModal
-                    showModal={showModal}
-                    onContinue={onContinueHandler}
-                    onClose={onCancelHandler}
+        <GenericScreen transculentStatusBar>
+            <View style={[styles.container, {paddingTop: top}]}>
+                <HomeContainer
+                    userName={userName}
+                    onAddBikePressPrimary={onAddKrossBike}
+                    onAddBikePressSecondary={onAddOtherBike}
+                    onStoreTilePress={handleStoreTilePress}
                 />
-            )}
-        </SafeAreaView>
+            </View>
+        </GenericScreen>
     );
 };
 
 export default Home;
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: colors.whiteGrey,
+    },
+});
