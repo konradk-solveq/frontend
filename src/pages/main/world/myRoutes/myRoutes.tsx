@@ -23,9 +23,7 @@ import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import EmptyList from './emptyList';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
-import SortButton from '../components/buttons/SortButton';
 import styles from './style';
 import {
     nextPrivatePaginationCoursor,
@@ -38,12 +36,13 @@ import {
 } from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
-import {FiltersButton} from '@pages/main/world/components/buttons';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {privateRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
 import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
+import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
+import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
 
 const length = getVerticalPx(175);
 const getItemLayout = (_: any, index: number) => ({
@@ -231,7 +230,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         },
         [changeSortButtonName, mwt],
     );
-
+    const {onScroll, shouldHide} = useHideOnScrollDirection();
     if (!privateMaps?.length) {
         return <EmptyList onPress={emptyListButtonHandler} />;
     }
@@ -286,6 +285,16 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     return (
         <View style={styles.background}>
             {rednerModal()}
+            <FiltersHeader
+                shouldHide={shouldHide}
+                sortButtonName={sortButtonName}
+                setShowDropdown={setShowDropdown}
+                onFiltersModalOpenHandler={onFiltersModalOpenHandler}
+                showDropdown={showDropdown}
+                toggleDropdown={toggleDropdown}
+                onSortByHandler={onSortByHandler}
+                dropdownList={privateRoutesDropdownList}
+            />
             <FiltersModal
                 onClose={onFiltersModalCloseHandler}
                 definedFilters={savedMapFilters}
@@ -296,45 +305,18 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 itemsCount={privateMapsCount}
                 allowMyPublic
             />
-            <View style={styles.topButtonsContainer}>
-                <Dropdown
-                    openOnStart={showDropdown}
-                    list={privateRoutesDropdownList}
-                    onPress={toggleDropdown}
-                    onPressItem={onSortByHandler}
-                    buttonText={mwt('btnSort')}
-                    buttonContainerStyle={styles.dropdownButtonContainerStyle}
-                    boxStyle={styles.dropdownBox}
-                    hideButton
-                />
-            </View>
 
-            <View style={styles.horizontalSpace}>
+            <View>
                 <FlatList
                     keyExtractor={item => item.id}
+                    onScroll={onScroll}
                     ListHeaderComponent={
-                        <>
-                            <View style={styles.topButtonsContainer}>
-                                <SortButton
-                                    title={sortButtonName}
-                                    onPress={() => setShowDropdown(true)}
-                                    style={styles.topButton}
-                                />
-                                <FiltersButton
-                                    onPress={onFiltersModalOpenHandler}
-                                    style={{
-                                        ...styles.topButton,
-                                        ...styles.topButtonRight,
-                                    }}
-                                />
-                            </View>
-                            <Header2 style={styles.header}>
-                                {totalNumberOfPrivateMaps &&
-                                totalNumberOfPrivateMaps > 0
-                                    ? secondTitle
-                                    : basicTitle}
-                            </Header2>
-                        </>
+                        <Header2 style={styles.header}>
+                            {totalNumberOfPrivateMaps &&
+                            totalNumberOfPrivateMaps > 0
+                                ? secondTitle
+                                : basicTitle}
+                        </Header2>
                     }
                     data={!showListLoader ? privateMaps : []}
                     renderItem={renderItem}

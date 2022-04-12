@@ -1,14 +1,11 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 import {
     getFHorizontalPx,
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
-import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import colors from '@theme/colors';
-
-const {width} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
     background: {
@@ -17,6 +14,7 @@ const styles = StyleSheet.create({
     },
     header: {
         marginHorizontal: getHorizontalPx(16),
+        marginTop: getFVerticalPx(60),
     },
     tileWrapper: {
         marginTop: getVerticalPx(30),
@@ -37,33 +35,8 @@ const styles = StyleSheet.create({
     backdrop: {
         marginTop: -getVerticalPx(250),
     },
-    topButtonsContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: appContainerHorizontalMargin,
-        zIndex: 10,
-    },
-    topButton: {
-        height: getVerticalPx(48),
-        zIndex: 10,
-    },
-    topButtonRight: {
-        position: 'absolute',
-        right: 0,
-        width: getFHorizontalPx(70),
-    },
     fullscreenBackdrop: {
         top: getFVerticalPx(42),
-    },
-    dropdownBox: {
-        width: width,
-        marginHorizontal: 0,
-        position: 'absolute',
-        top: getFVerticalPx(42),
-        left: -appContainerHorizontalMargin,
-    },
-    dropdownButtonContainerStyle: {
-        justifyContent: 'flex-start',
     },
     mapBtn: {
         position: 'absolute',
