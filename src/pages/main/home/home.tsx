@@ -16,12 +16,14 @@ import GenericScreen from '@pages/template/GenericScreen';
 import {HomeContainer} from '@containers/Home';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import colors from '@theme/colors';
+import {appConfigSelector} from '@storage/selectors/app';
 
 const Home: React.FC = () => {
     const navigation = useNavigation();
     const mountedRef = useRef(false);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const syncStatus = useAppSelector(syncAppSelector);
+    const {ads} = useAppSelector(appConfigSelector);
     const [nfc, setNfc] = useState(false);
     const {top} = useSafeAreaInsets();
     useEffect(() => {
@@ -60,11 +62,8 @@ const Home: React.FC = () => {
         });
     }, [navigation]);
 
-    //TODO: Replace with an url fetched from api
     const handleStoreTilePress = () => {
-        Linking.openURL(
-            'https://kross.eu/pl/akcesoria2?utm_source=aplikacja&utm_medium=banner&utm_campaign=202204_czesci_i_akcesoria',
-        );
+        ads.url && Linking.openURL(ads.url);
     };
 
     if (syncStatus) {
