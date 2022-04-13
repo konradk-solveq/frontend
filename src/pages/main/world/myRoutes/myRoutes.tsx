@@ -21,7 +21,6 @@ import {Loader as NativeLoader} from '@components/loader';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
-import EmptyList from './emptyList';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import {Backdrop} from '@components/backdrop';
 import styles from './style';
@@ -43,6 +42,8 @@ import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
 import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
+import EmptyStateContainer from '@containers/World/EmptyStateContainer';
+import {FinishLine} from '@components/svg';
 
 const length = getVerticalPx(175);
 const getItemLayout = (_: any, index: number) => ({
@@ -136,7 +137,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     const emptyListButtonHandler = () => {
-        navigation.navigate('WorldBikeMap');
+        navigation.navigate('Counter', {});
     };
 
     const onPressHandler = (state: boolean, mapID?: string) => {
@@ -230,10 +231,8 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         },
         [changeSortButtonName, mwt],
     );
+
     const {onScroll, shouldHide} = useHideOnScrollDirection();
-    if (!privateMaps?.length) {
-        return <EmptyList onPress={emptyListButtonHandler} />;
-    }
 
     const renderListLoader = () => {
         if (!showListLoader && isLoading && privateMaps.length > 3) {
@@ -306,41 +305,53 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 allowMyPublic
             />
 
-            <View>
-                <FlatList
-                    keyExtractor={item => item.id}
-                    onScroll={onScroll}
-                    ListHeaderComponent={
-                        <Header2 style={styles.header}>
-                            {totalNumberOfPrivateMaps &&
-                            totalNumberOfPrivateMaps > 0
-                                ? secondTitle
-                                : basicTitle}
-                        </Header2>
-                    }
-                    data={!showListLoader ? privateMaps : []}
-                    renderItem={renderItem}
-                    showsVerticalScrollIndicator={false}
-                    getItemLayout={getItemLayout}
-                    initialNumToRender={10}
-                    removeClippedSubviews
-                    onEndReached={onEndReachedHandler}
-                    onEndReachedThreshold={0.5}
-                    ListFooterComponent={renderListLoader}
-                    refreshing={isLoading && isRefreshing}
-                    onRefresh={onRefresh}
+            {!privateMaps?.length ? (
+                <EmptyStateContainer
+                    onPress={emptyListButtonHandler}
+                    buttonText={t('emptyState.action')}
+                    title={t('emptyState.header')}
+                    description={t('emptyState.info')}
+                    image={<FinishLine />}
                 />
-            </View>
+            ) : (
+                <View>
+                    <FlatList
+                        keyExtractor={item => item.id}
+                        onScroll={onScroll}
+                        ListHeaderComponent={
+                            <Header2 style={styles.header}>
+                                {totalNumberOfPrivateMaps &&
+                                totalNumberOfPrivateMaps > 0
+                                    ? secondTitle
+                                    : basicTitle}
+                            </Header2>
+                        }
+                        data={!showListLoader ? privateMaps : []}
+                        renderItem={renderItem}
+                        showsVerticalScrollIndicator={false}
+                        getItemLayout={getItemLayout}
+                        initialNumToRender={10}
+                        removeClippedSubviews
+                        onEndReached={onEndReachedHandler}
+                        onEndReachedThreshold={0.5}
+                        ListFooterComponent={renderListLoader}
+                        refreshing={isLoading && isRefreshing}
+                        onRefresh={onRefresh}
+                    />
+                </View>
+            )}
 
             <Backdrop
                 isVisible={showBackdrop}
                 style={styles.fullscreenBackdrop}
             />
 
-            <RoutesMapButton
-                onPress={() => navigation.navigate('RoutesMap')}
-                style={{...styles.mapBtn, ...bottomPosition}}
-            />
+            {!!privateMaps?.length && (
+                <RoutesMapButton
+                    onPress={() => navigation.navigate('RoutesMap')}
+                    style={{...styles.mapBtn, ...bottomPosition}}
+                />
+            )}
         </View>
     );
 };

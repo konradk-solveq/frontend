@@ -1,0 +1,292 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/World/EmptyStateContainer Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FAFAFA",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={227.60189573459718}
+      bbWidth={276.9230769230769}
+      fill="none"
+      focusable={false}
+      height={227.60189573459718}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "flex": 0,
+            "height": 227,
+            "width": 276,
+          },
+        ]
+      }
+      vbHeight={144}
+      vbWidth={144}
+      width={276.9230769230769}
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          Array [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGGroup
+          clipPath="a"
+        >
+          <RNSVGPath
+            d="m143.459 125.493-42.395-82.557-29.063-4.844-26.97 4.844-42.394 82.557c-1.655 3.224 1.753 5.989 5.377 5.989h132.204l3.782-3.776a4.818 4.818 0 0 0-.541-2.213Z"
+            fill={4294941343}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M24.676 127.706c-9.059 0-14.91-9.583-10.772-17.642l34.98-68.12-5.948.992L.541 125.494c-1.655 3.223.686 7.056 4.31 7.056h64.727l2.328-2.331 2.516 2.331h64.727c2.81 0 4.848-2.306 4.851-4.844H24.676Z"
+            fill={4294934662}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M120.441 40.219h-96.88l5.55-18.14 6.56-3.363h12.11l5.938 5.33 6.172-5.33H72l6.468 4.487 5.642-4.487h12.11l5.874 4.206 6.236-4.206h12.11v21.503Z"
+            fill={4294637020}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M30.827 33.248V18.716H23.56v24.22h12.11l5.956-2.717 6.155 2.717h12.11l5.641-2.155 6.469 2.155h12.11l5.608-2.014 6.502 2.014h12.11l12.11-4.844h-84.77a4.844 4.844 0 0 1-4.844-4.844Z"
+            fill={4294306765}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M72 105.908a2.42 2.42 0 0 0-2.422 2.422v19.376l2.281 1.88 2.563-1.88V108.33A2.42 2.42 0 0 0 72 105.908ZM72 96.22a2.42 2.42 0 0 1-2.422-2.422v-12.11A2.42 2.42 0 0 1 72 79.266a2.42 2.42 0 0 1 2.422 2.422v12.11A2.42 2.42 0 0 1 72 96.22ZM72 72a2.42 2.42 0 0 1-2.422-2.422v-4.844A2.42 2.42 0 0 1 72 62.312a2.42 2.42 0 0 1 2.422 2.422v4.844A2.42 2.42 0 0 1 72 72ZM72 57.468a2.42 2.42 0 0 1-2.422-2.422v-2.422A2.42 2.42 0 0 1 72 50.2a2.42 2.42 0 0 1 2.422 2.422v2.423A2.42 2.42 0 0 1 72 57.468Z"
+            fill={4294637020}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M35.67 30.826h-4.843l-2.823-7.405 2.823-4.705h4.844v12.11ZM47.781 18.716h12.11v12.11h-12.11v-12.11ZM47.78 38.092l-7.42 2.97-4.69-2.97v-7.266h12.11v7.266ZM72.001 38.092l-4.782 3.252-7.328-3.252v-7.266H72v7.266ZM72 18.716h12.11v12.11H72v-12.11ZM96.221 38.092l-4.673 2.83-7.437-2.83v-7.266h12.11v7.266ZM96.22 18.716h12.111v12.11h-12.11v-12.11ZM120.442 42.936l-12.11-4.844v-7.266h12.11v12.11Z"
+            fill={4284306272}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M69.578 127.706h4.844v4.844h-4.844v-4.844Z"
+            fill={4294306765}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M23.56 18.716h7.267v12.11H23.56v-12.11ZM35.67 38.092h12.11v4.844H35.67v-4.844ZM59.89 38.092H72v4.844H59.89v-4.844ZM84.11 38.092h12.11v4.844H84.11v-4.844ZM108.33 38.092h12.11v4.844h-12.11v-4.844Z"
+            fill={4283121486}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M25.981 75.952v-62.08a2.42 2.42 0 0 0-2.422-2.422 2.42 2.42 0 0 0-2.422 2.422v71.513l4.844-9.433ZM118.018 75.952v-62.08a2.421 2.421 0 1 1 4.844 0v71.513l-4.844-9.433Z"
+            fill={4284306272}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+        </RNSVGGroup>
+        <RNSVGDefs>
+          <RNSVGClipPath
+            name="a"
+          >
+            <RNSVGPath
+              d="M0 0h144v144H0z"
+              fill={4294967295}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            />
+          </RNSVGClipPath>
+        </RNSVGDefs>
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <Text
+      adjustsFontSizeToFit={false}
+      style={
+        Array [
+          Object {
+            "color": "#333333",
+            "fontFamily": "DIN2014-Demi",
+            "fontSize": 24,
+            "fontWeight": "600",
+            "lineHeight": 32,
+            "textAlign": "left",
+          },
+          Object {
+            "marginTop": 37.93364928909953,
+            "textAlign": "center",
+          },
+        ]
+      }
+      testID="header1-test-id"
+    >
+      It's still empty here
+    </Text>
+    <Text
+      adjustsFontSizeToFit={false}
+      style={
+        Array [
+          Object {
+            "color": "#333333",
+            "fontFamily": "DIN2014-Demi",
+            "fontSize": 16,
+            "lineHeight": 24,
+            "textAlign": "left",
+          },
+          Object {
+            "marginTop": 12.644549763033176,
+            "textAlign": "center",
+          },
+        ]
+      }
+      testID="body-primary-test-id"
+    >
+      Get on your bike and hit the road
+    </Text>
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {},
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {
+              "marginTop": 37.93364928909953,
+            },
+          ],
+        ]
+      }
+      testID="empty-state-button"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
+            undefined,
+          ]
+        }
+        testID="empty-state-button-container"
+      >
+        <Text
+          adjustsFontSizeToFit={true}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#C63733",
+              },
+            ]
+          }
+          testID="empty-state-button-text"
+        >
+          Record your first tour
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

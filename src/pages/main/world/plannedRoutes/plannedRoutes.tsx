@@ -19,7 +19,6 @@ import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 import Loader from '@components/svg/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-import EmptyList from './emptyList';
 import {Backdrop} from '@components/backdrop';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
@@ -43,6 +42,8 @@ import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
 import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
 import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
+import EmptyStateContainer from '@containers/World/EmptyStateContainer';
+import {BikePin} from '@components/svg';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -215,10 +216,6 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         [changeSortButtonName, mwt],
     );
 
-    if (!favouriteMaps?.length) {
-        return <EmptyList onPress={emptyListButtonHandler} />;
-    }
-
     const renderListLoader = () => {
         if (!showListLoader && isLoading && favouriteMaps.length > 3) {
             return (
@@ -269,38 +266,50 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 onResetFiltersCount={onResetFiltersCount}
                 itemsCount={plannedMapsCount}
             />
-            <View>
-                <FlatList
-                    keyExtractor={item => item.id}
-                    onScroll={onScroll}
-                    ListHeaderComponent={
-                        <Header2 style={styles.header}>
-                            {userName || t('defaultUserName')}
-                            {t('title')}
-                        </Header2>
-                    }
-                    data={!showListLoader ? favouriteMaps : []}
-                    renderItem={renderItem}
-                    showsVerticalScrollIndicator={false}
-                    getItemLayout={getItemLayout}
-                    initialNumToRender={10}
-                    removeClippedSubviews
-                    onEndReached={onEndReachedHandler}
-                    onEndReachedThreshold={0.5}
-                    ListFooterComponent={renderListLoader}
-                    refreshing={isLoading && isRefreshing}
-                    onRefresh={onRefresh}
+            {!favouriteMaps?.length ? (
+                <EmptyStateContainer
+                    onPress={emptyListButtonHandler}
+                    buttonText={t('emptyState.action')}
+                    title={t('emptyState.header')}
+                    description={t('emptyState.info')}
+                    image={<BikePin />}
                 />
-            </View>
+            ) : (
+                <View>
+                    <FlatList
+                        keyExtractor={item => item.id}
+                        onScroll={onScroll}
+                        ListHeaderComponent={
+                            <Header2 style={styles.header}>
+                                {userName || t('defaultUserName')}
+                                {t('title')}
+                            </Header2>
+                        }
+                        data={!showListLoader ? favouriteMaps : []}
+                        renderItem={renderItem}
+                        showsVerticalScrollIndicator={false}
+                        getItemLayout={getItemLayout}
+                        initialNumToRender={10}
+                        removeClippedSubviews
+                        onEndReached={onEndReachedHandler}
+                        onEndReachedThreshold={0.5}
+                        ListFooterComponent={renderListLoader}
+                        refreshing={isLoading && isRefreshing}
+                        onRefresh={onRefresh}
+                    />
+                </View>
+            )}
 
             <Backdrop
                 isVisible={showBackdrop}
                 style={styles.fullscreenBackdrop}
             />
-            <RoutesMapButton
-                onPress={() => navigation.navigate('RoutesMap')}
-                style={{...styles.mapBtn, ...bottomPosition}}
-            />
+            {!!favouriteMaps?.length && (
+                <RoutesMapButton
+                    onPress={() => navigation.navigate('RoutesMap')}
+                    style={{...styles.mapBtn, ...bottomPosition}}
+                />
+            )}
         </View>
     );
 };
