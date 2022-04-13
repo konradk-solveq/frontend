@@ -437,6 +437,11 @@
             }
         },
         "PlannedRoutes": {
+            "emptyState": {
+                "header": "Brak zapisanych tras",
+                "info": "Zapoznaj się z trasami innych rowerzystów\n i zapisz je do swojej listy ",
+                "action": "Przejdź do tras publicznych"
+            },
             "title": ", odkryj ciekawe trasy z KROSS",
             "emptyStateTitle": "Dobry plan to podstawa",
             "emptyStateContent": "Zaplanuj wycieczkę na podstawie tras rekomendowanych przez KROSS.",
@@ -450,6 +455,11 @@
             }
         },
         "MyRoutes": {
+            "emptyState": {
+                "header": "Tu jeszcze jest pusto",
+                "info": "Wsiadaj na rower i ruszaj w drogę",
+                "action": "Nagraj swoją pierwszą trasę"
+            },
             "title": ", odkryj ciekawe trasy z KROSS",
             "emptyStateTitle": "Nie masz nagranych tras",
             "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
