@@ -8,30 +8,23 @@ import {
 import ProfileButton from './components/profileButton';
 import {authErrorSelector} from '@storage/selectors';
 
-import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {useAppSelector} from '@hooks/redux';
 
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
 import {RegularStackRoute, BothStackRoute} from '@navigation/route';
-
-import {clearAuthError} from '@storage/actions';
-import FailedResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
 
 import {commonStyle} from '@theme/commonStyle';
 import ProfileSvg from '../../../components/svg/ProfileSvg';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import GenericScreen from '@src/pages/template/GenericScreen';
+import { useAppNavigation } from '@src/navigation/hooks/useAppNavigation';
 
-interface Props {
-    navigation: any;
-    route: any;
-}
-
-const Profile: React.FC<Props> = (props: Props) => {
+const Profile: React.FC = () => {
     const {t} = useMergedTranslation('MainProfile');
     const {t: tpa} = useMergedTranslation('Profile.auth');
-    const dispatch = useAppDispatch();
+    const navigation = useAppNavigation();
 
     const authError = useAppSelector(authErrorSelector);
 
@@ -42,11 +35,6 @@ const Profile: React.FC<Props> = (props: Props) => {
             setShowErrorMessage(true);
         }
     }, [authError.statusCode]);
-
-    const onCloseErrorMessageModal = () => {
-        dispatch(clearAuthError());
-        setShowErrorMessage(false);
-    };
 
     const styles = StyleSheet.create({
         wrap: {
@@ -74,7 +62,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                         <View style={styles.menuSection}>
                             <ProfileButton
                                 onpress={() =>
-                                    props.navigation.navigate(
+                                    navigation.navigate(
                                         RegularStackRoute.NAME_CHANGE_SCREEN,
                                     )
                                 }
@@ -82,7 +70,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                             />
                             <ProfileButton
                                 onpress={() => {
-                                    props.navigation.navigate(
+                                    navigation.navigate(
                                         RegularStackRoute.LANGUAGE_CHANGE_SCREEN,
                                     );
                                 }}
@@ -90,15 +78,13 @@ const Profile: React.FC<Props> = (props: Props) => {
                             />
                             <ProfileButton
                                 onpress={() =>
-                                    props.navigation.navigate(
-                                        RegularStackRoute.ABOUT_APP_SCREEN,
-                                    )
+                                    navigation.navigate(RegularStackRoute.ABOUT_APP_SCREEN)
                                 }
                                 title={t('app')}
                             />
                             <ProfileButton
                                 onpress={() =>
-                                    props.navigation.navigate(
+                                    navigation.navigate(
                                         BothStackRoute.REGULATIONS_SCREEN,
                                     )
                                 }
@@ -106,7 +92,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                             />
                             <ProfileButton
                                 onpress={() =>
-                                    props.navigation.navigate(
+                                    navigation.navigate(
                                         BothStackRoute.PRIVACY_POLICY_SCREEN,
                                     )
                                 }
@@ -114,7 +100,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                             />
                             <ProfileButton
                                 onpress={() =>
-                                    props.navigation.navigate(
+                                    navigation.navigate(
                                         RegularStackRoute.HELP_SCREEN,
                                     )
                                 }
@@ -122,7 +108,7 @@ const Profile: React.FC<Props> = (props: Props) => {
                             />
                             <ProfileButton
                                 onpress={() =>
-                                    props.navigation.navigate(
+                                    navigation.navigate(
                                         RegularStackRoute.CONTACT_SCREEN,
                                     )
                                 }
@@ -132,13 +118,6 @@ const Profile: React.FC<Props> = (props: Props) => {
                         </View>
                     </View>
                 </ScrollView>
-
-                <FailedResponseModal
-                    testID="logout-error-message"
-                    showModal={showErrorMessage}
-                    errorMessage={authError.message}
-                    onClose={onCloseErrorMessageModal}
-                />
             </View>
 
         </GenericScreen>
