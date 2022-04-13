@@ -5,12 +5,13 @@ import {View} from 'react-native';
 interface IStatisticElementProps {
     text: string;
     value: string;
+    testID: string;
 }
 
-const StatisticElement: React.FC<IStatisticElementProps> = ({text, value}) => {
+const StatisticElement: React.FC<IStatisticElementProps> = ({text, value, testID}) => {
     return (
         <View>
-            <View>
+            <View testID={testID}>
                 <Subtitle>
                     {text}
                 </Subtitle>

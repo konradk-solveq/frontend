@@ -8,6 +8,7 @@ import {getFHorizontalPx} from '@theme/utils/appLayoutDimensions';
 
 import i18next from '@translations/i18next';
 import ThankYouPageContainer from '../ThankYouPageContainer';
+import {action} from '@storybook/addon-actions';
 
 storiesOf('containers/World/ThankYouPageContainer', module)
     .addDecorator(getStory => (
@@ -19,14 +20,18 @@ storiesOf('containers/World/ThankYouPageContainer', module)
         <ThankYouPageContainer
             userName={'Andrew'}
             routeParams={{distance: '24.45', time: 872651, pause: 445566}}
-            savedValues={{fuel: '10', resource: '99'}}
+            savingsValues={{fuel: '10', resource: '99'}}
+            onPublishAction={action('onPublishAction')}
+            onSaveAction={action('onSaveAction')}
         />
     ))
     .add('Customized', () => (
         <ThankYouPageContainer
             userName={''}
             routeParams={{ distance: '11.22', time: 32123176, pause: 892761 }}
-            savedValues={{fuel: '10', resource: '99'}}
+            savingsValues={{fuel: '10', resource: '99'}}
+            onPublishAction={action('onPublishAction')}
+            onSaveAction={action('onSaveAction')}
         />
     ));
 

@@ -37,9 +37,9 @@ const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, saving
                 {t('goodJobTitle')} {userName ? userName : ''}
             </Header1>
             <View style={styles.statsContainer}>
-                <StatisticElement text={t('distance')} value={`${routeParams.distance} ${t('distanceSuffix')}`} />
-                <StatisticElement text={t('tripTime')} value={`${simplyTimer(routeParams.time - routeParams.pause)} ${t('pauseSuffix')}`} />
-                <StatisticElement text={t('pauseTime')} value={`${simplyTimer(routeParams.pause)} ${t('tripTimeSuffix')}`} />
+                <StatisticElement testID="thank-you-page-container-distance" text={t('distance')} value={`${routeParams.distance} ${t('distanceSuffix')}`} />
+                <StatisticElement testID="thank-you-page-container-time" text={t('tripTime')} value={`${simplyTimer(routeParams.time - routeParams.pause)} ${t('pauseSuffix')}`} />
+                <StatisticElement testID="thank-you-page-container-pause-time" text={t('pauseTime')} value={`${simplyTimer(routeParams.pause)} ${t('tripTimeSuffix')}`} />
             </View>
             <View style={styles.sloganContainer}>
                 <Header2>
@@ -64,13 +64,13 @@ const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, saving
                 <SecondaryButton
                     style={styles.button}
                     text={t('saveRoute')}
-                    testID={'thank-you-cancel-btn'}
+                    testID={'thank-you-page-container-save-button'}
                     onPress={onSaveAction}
                 />
                 <PrimaryButton
                     style={styles.button}
                     text={t('publishRoute')}
-                    testID={'thank-you-btn-submit-btn'}
+                    testID={'thank-you-page-container-publish-button'}
                     onPress={onPublishAction}
                 />
             </View>
