@@ -486,6 +486,20 @@
             "minutes": "m",
             "distanceToStart": "km od Ciebie",
             "public": "publiczna"
+        },
+        "moreActionsModal": {
+            "actions": {
+                "startRecording": "Rozpocznij",
+                "remove": "Usuń"
+            },
+            "alert": {
+                "content": {
+                    "favourite": "Czy chcesz usunąć zapisaną \n trasę?",
+                    "private": "Czy chcesz usunąć nagraną \n trasę?"
+                },
+                "positive": "Tak, usuń",
+                "negative": "Anuluj"
+            }
         }
     },
     "MainRoutesMap": {
@@ -939,5 +953,9 @@
             "leftButton": "Anuluj",
             "rightButton": "Usuń"
         }
+    },
+    "Alert": {
+        "positive": "Potwierdź",
+        "negative": "Anuluj"
     }
 }

@@ -5,4 +5,7 @@ export type RouteDetailsActionT =
     | 'share'
     | 'edit'
     | 'publish'
-    | 'do_more';
+    | 'do_more'
+    | 'remove';
+
+export type MapsTypesT = 'regular' | 'private' | 'favourite' | 'featured';

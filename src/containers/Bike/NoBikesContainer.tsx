@@ -3,7 +3,7 @@ import {View, StyleSheet, GestureResponderEvent} from 'react-native';
 
 import colors from '@theme/colors';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
-import {appContainerHorizontalMargin} from '@theme/commonStyle';
+import {appContainerHorizontalMargin, screenWidth} from '@theme/commonStyle';
 
 import ServicePointsTile from '@pages/main/bike/components/tiles/ServicePointsTile';
 import {AddBikeTile} from '@components/tiles';
@@ -35,7 +35,7 @@ const NoBikesContainer: React.FC<IProps> = ({
 const styles = StyleSheet.create({
     container: {
         height: '100%',
-        width: '100%',
+        width: screenWidth,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',

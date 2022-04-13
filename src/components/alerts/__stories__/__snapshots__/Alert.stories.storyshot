@@ -1,0 +1,1255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/alerts/alert Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    testID="alert-id"
+    transparent={true}
+    visible={true}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": "100%",
+          "justifyContent": "center",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 21,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 15.384615384615385,
+            "height": 546.1538461538462,
+            "paddingHorizontal": 61.53846153846154,
+            "width": 534.6153846153846,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 46.62677725118483,
+              },
+              undefined,
+            ]
+          }
+        />
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={84.61538461538461}
+          bbWidth={84.61538461538461}
+          fill="none"
+          focusable={false}
+          height={84.61538461538461}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "flex": 0,
+                "height": 84,
+                "width": 84,
+              },
+            ]
+          }
+          vbHeight={46.15384615384615}
+          vbWidth={46.15384615384615}
+          width={84.61538461538461}
+        >
+          <RNSVGGroup
+            fill={null}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGCircle
+              cx="12"
+              cy="12"
+              fill={4293908696}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+              r="9"
+            />
+            <RNSVGPath
+              d="M12.036 14.214c.362 0 .638-.104.828-.311.194-.208.297-.5.31-.88l.133-5.415a2.25 2.25 0 0 0 .007-.172v-.159c0-.401-.113-.714-.338-.94-.225-.224-.538-.337-.94-.337-.397 0-.712.113-.946.338-.23.225-.344.538-.344.94v.158c0 .058.002.115.006.172l.14 5.415c.008.38.107.672.297.88.19.207.472.311.847.311ZM12.03 18c.26 0 .498-.062.715-.185.216-.12.388-.283.516-.49.128-.203.192-.43.192-.682 0-.251-.064-.479-.192-.682-.128-.207-.3-.37-.516-.49a1.415 1.415 0 0 0-.715-.185c-.265 0-.506.062-.722.186-.216.119-.388.282-.516.49-.128.202-.192.43-.192.681 0 .252.064.479.192.682.128.207.3.37.516.49.216.123.457.185.722.185Z"
+              fill={4291180339}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 21.337677725118485,
+              },
+              undefined,
+            ]
+          }
+        />
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+          testID="alert-id-content"
+        >
+          Do you want to execute this action?
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 37.93364928909953,
+              },
+              undefined,
+            ]
+          }
+        />
+        <View>
+          <View
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {},
+                Array [
+                  Object {
+                    "height": 92.3076923076923,
+                    "width": 565.3846153846154,
+                  },
+                  Object {
+                    "width": "100%",
+                  },
+                ],
+              ]
+            }
+            testID="alert-id-positive-button"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 30.76923076923077,
+                    "flexDirection": "row",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  },
+                  Object {
+                    "backgroundColor": "#C63733",
+                  },
+                  undefined,
+                ]
+              }
+              testID="alert-id-positive-button-container"
+            >
+              <Text
+                adjustsFontSizeToFit={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#FFFFFF",
+                    },
+                  ]
+                }
+                testID="alert-id-positive-button-text"
+              >
+                Ok
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "height": 31.61137440758294,
+                  "paddingHorizontal": 76.92307692307692,
+                  "width": "100%",
+                },
+                Object {
+                  "height": 25.28909952606635,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {},
+                Array [
+                  Object {
+                    "height": 92.3076923076923,
+                    "width": 565.3846153846154,
+                  },
+                  Object {
+                    "width": "100%",
+                  },
+                ],
+              ]
+            }
+            testID="alert-id-negative-button"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 30.76923076923077,
+                    "flexDirection": "row",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  },
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                  undefined,
+                ]
+              }
+              testID="alert-id-negative-button-container"
+            >
+              <Text
+                adjustsFontSizeToFit={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#C63733",
+                    },
+                  ]
+                }
+                testID="alert-id-negative-button-text"
+              >
+                Cancel
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 37.93364928909953,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+    </View>
+    <View
+      pointerEvents="auto"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#717171",
+            "bottom": 0,
+            "height": "100%",
+            "left": 0,
+            "opacity": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 750,
+            "zIndex": 1,
+          },
+          Object {
+            "zIndex": 20,
+          },
+          [Function],
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "width": "100%",
+            },
+            Object {
+              "height": "100%",
+            },
+          ]
+        }
+      />
+    </View>
+  </Modal>
+</View>
+`;
+
+exports[`Storyshots components/alerts/alert Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    testID="alert-id"
+    transparent={true}
+    visible={true}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": "100%",
+          "justifyContent": "center",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 21,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 15.384615384615385,
+            "height": 546.1538461538462,
+            "paddingHorizontal": 61.53846153846154,
+            "width": 534.6153846153846,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 46.62677725118483,
+              },
+              undefined,
+            ]
+          }
+        />
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={84.61538461538461}
+          bbWidth={84.61538461538461}
+          fill="none"
+          focusable={false}
+          height={84.61538461538461}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "flex": 0,
+                "height": 84,
+                "width": 84,
+              },
+            ]
+          }
+          vbHeight={46.15384615384615}
+          vbWidth={46.15384615384615}
+          width={84.61538461538461}
+        >
+          <RNSVGGroup
+            fill={null}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGCircle
+              cx="12"
+              cy="12"
+              fill={4293908696}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+              r="9"
+            />
+            <RNSVGPath
+              d="M12.036 14.214c.362 0 .638-.104.828-.311.194-.208.297-.5.31-.88l.133-5.415a2.25 2.25 0 0 0 .007-.172v-.159c0-.401-.113-.714-.338-.94-.225-.224-.538-.337-.94-.337-.397 0-.712.113-.946.338-.23.225-.344.538-.344.94v.158c0 .058.002.115.006.172l.14 5.415c.008.38.107.672.297.88.19.207.472.311.847.311ZM12.03 18c.26 0 .498-.062.715-.185.216-.12.388-.283.516-.49.128-.203.192-.43.192-.682 0-.251-.064-.479-.192-.682-.128-.207-.3-.37-.516-.49a1.415 1.415 0 0 0-.715-.185c-.265 0-.506.062-.722.186-.216.119-.388.282-.516.49-.128.202-.192.43-.192.681 0 .252.064.479.192.682.128.207.3.37.516.49.216.123.457.185.722.185Z"
+              fill={4291180339}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 21.337677725118485,
+              },
+              undefined,
+            ]
+          }
+        />
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+          testID="alert-id-content"
+        >
+          
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 37.93364928909953,
+              },
+              undefined,
+            ]
+          }
+        />
+        <View>
+          <View
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {},
+                Array [
+                  Object {
+                    "height": 92.3076923076923,
+                    "width": 565.3846153846154,
+                  },
+                  Object {
+                    "width": "100%",
+                  },
+                ],
+              ]
+            }
+            testID="alert-id-positive-button"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 30.76923076923077,
+                    "flexDirection": "row",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  },
+                  Object {
+                    "backgroundColor": "#C63733",
+                  },
+                  undefined,
+                ]
+              }
+              testID="alert-id-positive-button-container"
+            >
+              <Text
+                adjustsFontSizeToFit={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#FFFFFF",
+                    },
+                  ]
+                }
+                testID="alert-id-positive-button-text"
+              >
+                Alert.positive
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "height": 31.61137440758294,
+                  "paddingHorizontal": 76.92307692307692,
+                  "width": "100%",
+                },
+                Object {
+                  "height": 25.28909952606635,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {},
+                Array [
+                  Object {
+                    "height": 92.3076923076923,
+                    "width": 565.3846153846154,
+                  },
+                  Object {
+                    "width": "100%",
+                  },
+                ],
+              ]
+            }
+            testID="alert-id-negative-button"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 30.76923076923077,
+                    "flexDirection": "row",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  },
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                  undefined,
+                ]
+              }
+              testID="alert-id-negative-button-container"
+            >
+              <Text
+                adjustsFontSizeToFit={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#C63733",
+                    },
+                  ]
+                }
+                testID="alert-id-negative-button-text"
+              >
+                Alert.negative
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 37.93364928909953,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+    </View>
+    <View
+      pointerEvents="auto"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#717171",
+            "bottom": 0,
+            "height": "100%",
+            "left": 0,
+            "opacity": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 750,
+            "zIndex": 1,
+          },
+          Object {
+            "zIndex": 20,
+          },
+          [Function],
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "width": "100%",
+            },
+            Object {
+              "height": "100%",
+            },
+          ]
+        }
+      />
+    </View>
+  </Modal>
+</View>
+`;
+
+exports[`Storyshots components/alerts/alert With content 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    testID="alert-id"
+    transparent={true}
+    visible={true}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "height": "100%",
+          "justifyContent": "center",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 21,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 15.384615384615385,
+            "height": 546.1538461538462,
+            "paddingHorizontal": 61.53846153846154,
+            "width": 534.6153846153846,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 46.62677725118483,
+              },
+              undefined,
+            ]
+          }
+        />
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={84.61538461538461}
+          bbWidth={84.61538461538461}
+          fill="none"
+          focusable={false}
+          height={84.61538461538461}
+          meetOrSlice={0}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "flex": 0,
+                "height": 84,
+                "width": 84,
+              },
+            ]
+          }
+          vbHeight={46.15384615384615}
+          vbWidth={46.15384615384615}
+          width={84.61538461538461}
+        >
+          <RNSVGGroup
+            fill={null}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGCircle
+              cx="12"
+              cy="12"
+              fill={4293908696}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+              r="9"
+            />
+            <RNSVGPath
+              d="M12.036 14.214c.362 0 .638-.104.828-.311.194-.208.297-.5.31-.88l.133-5.415a2.25 2.25 0 0 0 .007-.172v-.159c0-.401-.113-.714-.338-.94-.225-.224-.538-.337-.94-.337-.397 0-.712.113-.946.338-.23.225-.344.538-.344.94v.158c0 .058.002.115.006.172l.14 5.415c.008.38.107.672.297.88.19.207.472.311.847.311ZM12.03 18c.26 0 .498-.062.715-.185.216-.12.388-.283.516-.49.128-.203.192-.43.192-.682 0-.251-.064-.479-.192-.682-.128-.207-.3-.37-.516-.49a1.415 1.415 0 0 0-.715-.185c-.265 0-.506.062-.722.186-.216.119-.388.282-.516.49-.128.202-.192.43-.192.681 0 .252.064.479.192.682.128.207.3.37.516.49.216.123.457.185.722.185Z"
+              fill={4291180339}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 21.337677725118485,
+              },
+              undefined,
+            ]
+          }
+        />
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "center",
+              },
+              undefined,
+            ]
+          }
+          testID="alert-id-content"
+        >
+          Do you want to execute this action?
+        </Text>
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 37.93364928909953,
+              },
+              undefined,
+            ]
+          }
+        />
+        <View>
+          <View
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {},
+                Array [
+                  Object {
+                    "height": 92.3076923076923,
+                    "width": 565.3846153846154,
+                  },
+                  Object {
+                    "width": "100%",
+                  },
+                ],
+              ]
+            }
+            testID="alert-id-positive-button"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 30.76923076923077,
+                    "flexDirection": "row",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  },
+                  Object {
+                    "backgroundColor": "#C63733",
+                  },
+                  undefined,
+                ]
+              }
+              testID="alert-id-positive-button-container"
+            >
+              <Text
+                adjustsFontSizeToFit={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#FFFFFF",
+                    },
+                  ]
+                }
+                testID="alert-id-positive-button-text"
+              >
+                Alert.positive
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "height": 31.61137440758294,
+                  "paddingHorizontal": 76.92307692307692,
+                  "width": "100%",
+                },
+                Object {
+                  "height": 25.28909952606635,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "borderRadius": 30.76923076923077,
+                  "flexDirection": "row",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                },
+                Object {},
+                Array [
+                  Object {
+                    "height": 92.3076923076923,
+                    "width": 565.3846153846154,
+                  },
+                  Object {
+                    "width": "100%",
+                  },
+                ],
+              ]
+            }
+            testID="alert-id-negative-button"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "borderRadius": 30.76923076923077,
+                    "flexDirection": "row",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  },
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  },
+                  undefined,
+                ]
+              }
+              testID="alert-id-negative-button-container"
+            >
+              <Text
+                adjustsFontSizeToFit={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#C63733",
+                    },
+                  ]
+                }
+                testID="alert-id-negative-button-text"
+              >
+                Alert.negative
+              </Text>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "height": 31.61137440758294,
+                "paddingHorizontal": 76.92307692307692,
+                "width": "100%",
+              },
+              Object {
+                "height": 37.93364928909953,
+              },
+              undefined,
+            ]
+          }
+        />
+      </View>
+    </View>
+    <View
+      pointerEvents="auto"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#717171",
+            "bottom": 0,
+            "height": "100%",
+            "left": 0,
+            "opacity": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 750,
+            "zIndex": 1,
+          },
+          Object {
+            "zIndex": 20,
+          },
+          [Function],
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "width": "100%",
+            },
+            Object {
+              "height": "100%",
+            },
+          ]
+        }
+      />
+    </View>
+  </Modal>
+</View>
+`;
