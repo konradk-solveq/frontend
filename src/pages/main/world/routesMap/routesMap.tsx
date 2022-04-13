@@ -22,12 +22,20 @@ import {selectorMapTypeEnum} from '@storage/selectors';
 import {
     addPlannedMap,
     fetchMapIfNotExistsLocally,
+    removePrivateMapMetaData,
     removePlannedMap,
 } from '@storage/actions/maps';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
 import {BasicCoordsType} from '@type/coords';
 import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
 import BottomModal from '@pages/main/world/routesMap/bottomModal/BottomModal';
+import {MoreActionsModal} from '@pages/main/world/components/modals';
+
+const initRouteInfo = {
+    id: '',
+    mapType: selectorMapTypeEnum.regular,
+    routeMapType: RouteMapType.BIKE_MAP,
+};
 
 const RoutesMap: React.FC = () => {
     const navigation = useAppNavigation();
@@ -40,17 +48,17 @@ const RoutesMap: React.FC = () => {
     const [centerMapAtLocation, setCenterMapAtLocation] = useState<
         BasicCoordsType | undefined
     >();
-    const [routeInfo, setRouteInfo] = useState({
-        id: '',
-        mapType: selectorMapTypeEnum.regular,
-        routeMapType: RouteMapType.BIKE_MAP,
-    });
+    const [routeInfo, setRouteInfo] = useState(initRouteInfo);
     const isCreatedByUser = useMemo(
         () => routeInfo?.mapType === selectorMapTypeEnum.private,
         [routeInfo?.mapType],
     );
 
     const [bottomSheetWithDetails, setBottomSheetWithDetails] = useState(false);
+    const [
+        bottomSheetWithMoreActions,
+        setBottomSheetWithMoreActions,
+    ] = useState(false);
 
     const handleMarkerClick = (id: string, types: string[]) => {
         const isPlanned = types.includes('FAVORITE');
@@ -216,15 +224,17 @@ const RoutesMap: React.FC = () => {
         });
     }, [routeInfo.id, mapID]);
 
-    const onRotueDetailsActionHandler = useCallback(
+    const onPressHandler = useCallback(
         async (actionType: RouteDetailsActionT) => {
             const mapId = mapData?.id;
             if (!mapId) {
+                setBottomSheetWithMoreActions(false);
                 return;
             }
 
             switch (actionType) {
                 case 'record':
+                    setBottomSheetWithMoreActions(false);
                     navigation.navigate('Counter', {mapID: mapId});
                     break;
                 case 'add_to_planned':
@@ -255,7 +265,14 @@ const RoutesMap: React.FC = () => {
                     });
                     break;
                 case 'do_more':
-                    /* TODO: waiting for tasks */
+                    /**
+                     * Shows bottom sheet with addtitional action buttons
+                     */
+                    setBottomSheetWithMoreActions(true);
+                    break;
+                case 'remove':
+                    setRouteInfo(initRouteInfo);
+                    dispatch(removePrivateMapMetaData(mapId));
                     break;
                 default:
                     break;
@@ -281,7 +298,7 @@ const RoutesMap: React.FC = () => {
                     <RouteMapDetailsContainer
                         mapData={mapData}
                         mapImages={mapImages}
-                        onPressAction={onRotueDetailsActionHandler}
+                        onPressAction={onPressHandler}
                         isPrivate={isCreatedByUser}
                         isPublished={isPublished}
                         isFavourited={isFavourited}
@@ -291,6 +308,12 @@ const RoutesMap: React.FC = () => {
                     <RoutesMapDetailsPlaceholderContainer />
                 )}
             </BottomModal>
+
+            <MoreActionsModal
+                show={bottomSheetWithMoreActions}
+                onPressAction={onPressHandler}
+                onClose={() => setBottomSheetWithMoreActions(false)}
+            />
         </GenericScreen>
     );
 };

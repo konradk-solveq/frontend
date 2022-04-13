@@ -8,7 +8,6 @@ import {
     privateMapsListSelector,
     privateTotalMapsNumberSelector,
     refreshMapsSelector,
-    selectorMapTypeEnum,
 } from '@storage/selectors';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
@@ -19,9 +18,9 @@ import {getImagesThumbs} from '@utils/transformData';
 import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
+import {RouteDetailsActionT} from '@type/screens/routesMap';
 
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
-import ShowMoreModal from '../components/showMoreModal/showMoreModal';
 import {Backdrop} from '@components/backdrop';
 import styles from './style';
 import {
@@ -38,8 +37,9 @@ import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {privateRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
-import {resetMapsCount} from '@storage/actions/maps';
+import {removePrivateMapMetaData, resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
+import {MoreActionsModal} from '@pages/main/world/components/modals';
 import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
 import EmptyStateContainer from '@containers/World/EmptyStateContainer';
@@ -141,10 +141,10 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     const onPressHandler = (state: boolean, mapID?: string) => {
-        setShowModal(state);
         if (mapID) {
             setActiveMapID(mapID);
         }
+        setBottomSheetWithMoreActions(true);
     };
 
     const onPressTileHandler = useCallback(
@@ -232,6 +232,37 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         [changeSortButtonName, mwt],
     );
 
+    /**
+     * Shows modal with more action butons
+     */
+    const [
+        bottomSheetWithMoreActions,
+        setBottomSheetWithMoreActions,
+    ] = useState(false);
+
+    const onPressMoreHandler = useCallback(
+        (actionType: RouteDetailsActionT) => {
+            const mapId = activeMapID;
+            if (!mapId) {
+                setBottomSheetWithMoreActions(false);
+                return;
+            }
+
+            switch (actionType) {
+                case 'record':
+                    setBottomSheetWithMoreActions(false);
+                    navigation.navigate('Counter', {mapID: mapId});
+                    break;
+                case 'remove':
+                    dispatch(removePrivateMapMetaData(mapId));
+                    break;
+                default:
+                    break;
+            }
+        },
+        [dispatch, navigation, activeMapID],
+    );
+
     const {onScroll, shouldHide} = useHideOnScrollDirection();
 
     const renderListLoader = () => {
@@ -257,33 +288,8 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const basicTitle = `${userName || t('defaultUserName')} ${t('title')}`;
     const secondTitle = `${t('routesNumberTitle')} ${totalNumberOfPrivateMaps}`;
 
-    const rednerModal = () => {
-        const itemIsPublic = privateMaps.find(e => {
-            if (e.id === activeMapID) {
-                return e.isPublic;
-            }
-        });
-        let isPublic = false;
-        if (itemIsPublic) {
-            isPublic = !!itemIsPublic.isPublic;
-        }
-
-        return (
-            <ShowMoreModal
-                showModal={showModal}
-                removeFav
-                mapID={activeMapID}
-                onPressCancel={() => onPressHandler(false)}
-                backdropStyle={styles.backdrop}
-                isPublished={isPublic}
-                mapType={selectorMapTypeEnum.private}
-            />
-        );
-    };
-
     return (
         <View style={styles.background}>
-            {rednerModal()}
             <FiltersHeader
                 shouldHide={shouldHide}
                 sortButtonName={sortButtonName}
@@ -352,6 +358,12 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                     style={{...styles.mapBtn, ...bottomPosition}}
                 />
             )}
+
+            <MoreActionsModal
+                show={bottomSheetWithMoreActions}
+                onPressAction={onPressMoreHandler}
+                onClose={() => setBottomSheetWithMoreActions(false)}
+            />
         </View>
     );
 };

@@ -1035,55 +1035,6 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 </Text>
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "right": 0,
-                }
-              }
-            >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "color": "#C63733",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#333333",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      },
-                    ]
-                  }
-                  testID="text-icon-test-id"
-                >
-                  Y
-                </Text>
-              </View>
-            </View>
           </View>
         </View>
       </View>
