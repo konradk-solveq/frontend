@@ -334,6 +334,7 @@
         }
     },
     "MainHome": {
+        "welcomeHeader": "Cześć",
         "firstTitle": "Czas ruszyć w drogę",
         "firstText": "Sezon rozpoczęty, ale czy Twój rower o tym wie? Zadbaj o niego i sprawdź czy jest gotowy do jazdy.",
         "firstBtn": "SPRAWDŹ",

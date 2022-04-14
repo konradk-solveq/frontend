@@ -79,6 +79,7 @@ const initialState: AppState = {
         difficulties: [],
         reactions: [],
         uiTranslations: {controlSums: [], codes: []},
+        ads: {url: ''},
     },
     terms: [],
     currentTerms: {

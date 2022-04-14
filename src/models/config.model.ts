@@ -22,6 +22,10 @@ export type LangsType = {
     displayName: string;
 };
 
+export type AdsType = {
+    url: string;
+};
+
 export class AppConfig implements SelectEnumOptionsType {
     constructor(
         public name: string,
@@ -32,6 +36,7 @@ export class AppConfig implements SelectEnumOptionsType {
         public difficulties: SelectOptionType[],
         public reactions: SelectOptionType[],
         public uiTranslations: UiTranslationType,
+        public ads: AdsType,
     ) {
         this.name = name;
         this.lang = lang;
@@ -41,6 +46,7 @@ export class AppConfig implements SelectEnumOptionsType {
         this.difficulties = difficulties;
         this.reactions = reactions;
         this.uiTranslations = uiTranslations;
+        this.ads = ads;
     }
 }
 
