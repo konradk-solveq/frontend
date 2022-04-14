@@ -1,4 +1,4 @@
-import { Header3, Subtitle } from '@src/components/texts/texts';
+import {Header3, Subtitle} from '@src/components/texts/texts';
 import React from 'react';
 import {View} from 'react-native';
 
@@ -8,13 +8,17 @@ interface IStatisticElementProps {
     testID: string;
 }
 
-const StatisticElement: React.FC<IStatisticElementProps> = ({text, value, testID}) => {
+const StatisticElement: React.FC<IStatisticElementProps> = ({
+    text,
+    value,
+    testID,
+}) => {
     return (
         <View testID={testID}>
             <Subtitle>{text}</Subtitle>
             <Header3>{value}</Header3>
         </View>
-    )
-}
+    );
+};
 
 export default StatisticElement;

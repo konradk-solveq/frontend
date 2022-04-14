@@ -28,7 +28,7 @@ storiesOf('containers/World/ThankYouPageContainer', module)
     .add('Customized', () => (
         <ThankYouPageContainer
             userName={''}
-            routeParams={{ distance: '11.22', time: 32123176, pause: 892761 }}
+            routeParams={{distance: '11.22', time: 32123176, pause: 892761}}
             savingsValues={{fuel: '10', resource: '99'}}
             onPublishAction={action('onPublishAction')}
             onSaveAction={action('onSaveAction')}

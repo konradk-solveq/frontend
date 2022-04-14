@@ -3,7 +3,10 @@ import LeafSvg from '@src/components/svg/LeafSvg';
 import MoneySvg from '@src/components/svg/MoneySvg';
 import ThankYouSvg from '@src/components/svg/ThankYouSvg';
 import {Header1, Header2} from '@src/components/texts/texts';
-import {getFHorizontalPx, getFVerticalPx} from '@src/helpers/appLayoutDimensions';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@src/helpers/appLayoutDimensions';
 import {simplyTimer} from '@src/helpers/stringFoo';
 import colors from '@src/theme/colors';
 import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
@@ -16,16 +19,22 @@ import StatisticElement from './components/StatisticElement';
 
 interface IProps {
     userName: string;
-    routeParams: Required<CounterParamsLsitT["CounterThankYouPage"]>
+    routeParams: Required<CounterParamsLsitT['CounterThankYouPage']>;
     savingsValues: {
-        fuel: string,
-        resource: string,
+        fuel: string;
+        resource: string;
     };
     onPublishAction: () => void;
     onSaveAction: () => void;
 }
 
-const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, savingsValues, onSaveAction, onPublishAction }) => {
+const ThankYouPageContainer: React.FC<IProps> = ({
+    userName,
+    routeParams,
+    savingsValues,
+    onSaveAction,
+    onPublishAction,
+}) => {
     const {t} = useMergedTranslation('ThankYouPage');
 
     return (
@@ -37,27 +46,41 @@ const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, saving
                 {t('goodJobTitle')} {userName ? userName : ''}
             </Header1>
             <View style={styles.statsContainer}>
-                <StatisticElement testID="thank-you-page-container-route-distance" text={t('distance')} value={`${routeParams.distance} ${t('distanceSuffix')}`} />
-                <StatisticElement testID="thank-you-page-container-route-time" text={t('tripTime')} value={`${simplyTimer(routeParams.time - routeParams.pause)} ${t('pauseSuffix')}`} />
-                <StatisticElement testID="thank-you-page-container-route-pause-time" text={t('pauseTime')} value={`${simplyTimer(routeParams.pause)} ${t('tripTimeSuffix')}`} />
+                <StatisticElement
+                    testID="thank-you-page-container-route-distance"
+                    text={t('distance')}
+                    value={`${routeParams.distance} ${t('distanceSuffix')}`}
+                />
+                <StatisticElement
+                    testID="thank-you-page-container-route-time"
+                    text={t('tripTime')}
+                    value={`${simplyTimer(
+                        routeParams.time - routeParams.pause,
+                    )} ${t('pauseSuffix')}`}
+                />
+                <StatisticElement
+                    testID="thank-you-page-container-route-pause-time"
+                    text={t('pauseTime')}
+                    value={`${simplyTimer(routeParams.pause)} ${t(
+                        'tripTimeSuffix',
+                    )}`}
+                />
             </View>
             <View style={styles.sloganContainer}>
-                <Header2>
-                    {t('thankYouSlogan')}
-                </Header2>
+                <Header2>{t('thankYouSlogan')}</Header2>
             </View>
             <ScrollView horizontal={true}>
-                <SavingPanel 
+                <SavingPanel
                     style={styles.savingPanel}
                     text={`${savingsValues.resource} ${t('savedResource')}`}
                     background={colors.lightGreen}
-                    icon={<LeafSvg/>}
+                    icon={<LeafSvg />}
                 />
                 <SavingPanel
                     style={styles.savingPanel}
                     text={t('savedFuel', {quota: savingsValues.fuel})}
                     background={colors.lightBlue}
-                    icon={<MoneySvg/>}
+                    icon={<MoneySvg />}
                 />
             </ScrollView>
             <View style={styles.buttonsContainer}>
@@ -87,7 +110,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: appContainerHorizontalMargin,
     },
     imgContainer: {
-        marginTop: getFVerticalPx(23)
+        marginTop: getFVerticalPx(23),
     },
     mapContainer: {
         height: getFVerticalPx(163),
@@ -126,7 +149,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width: getFHorizontalPx(171),
-    }
+    },
 });
 
 export default ThankYouPageContainer;

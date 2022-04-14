@@ -20,7 +20,10 @@ import Loader from '@components/svg/loader/loader';
 import PoorConnectionModal from '@sharedComponents/modals/poorConnectionModal/poorConnectionModal';
 
 import {CounterParamsLsitT, CounterThankYouPageRouteT} from '@type/rootStack';
-import {getRouteLengthCarbonEquivalent, getRouteLengthFuelEquivalent} from '@utils/transformData';
+import {
+    getRouteLengthCarbonEquivalent,
+    getRouteLengthFuelEquivalent,
+} from '@utils/transformData';
 import GenericScreen from '@src/pages/template/GenericScreen';
 import {ThankYouPageContainer} from '@src/containers/World';
 import ShortRouteModal from '@src/sharedComponents/modals/shortRouteModal/ShortRouteModal';
@@ -35,7 +38,8 @@ const CounterThankYouPage: React.FC = () => {
     const scrollRef = useRef<null | ScrollView>(null);
     const canGoForwardRef = useRef(true);
     const route = useRoute<CounterThankYouPageRouteT>();
-    const params: Required<CounterParamsLsitT["CounterThankYouPage"]> = route.params;
+    const params: Required<CounterParamsLsitT['CounterThankYouPage']> =
+        route.params;
 
     const isSyncData = useAppSelector(trackerLoadingSelector);
     const error = useAppSelector(trackerErrorSelector);
@@ -129,7 +133,11 @@ const CounterThankYouPage: React.FC = () => {
                 routeParams={params}
                 savingsValues={{
                     fuel: getRouteLengthFuelEquivalent(8, params.distance),
-                    resource: getRouteLengthCarbonEquivalent(8, 2350, params.distance) 
+                    resource: getRouteLengthCarbonEquivalent(
+                        8,
+                        2350,
+                        params.distance,
+                    ),
                 }}
                 onSaveAction={() => handleRouteAction(Action.prev)}
                 onPublishAction={() => handleRouteAction(Action.next)}

@@ -12,12 +12,7 @@ import ThankYouPageContainer from '../ThankYouPageContainer';
 const routeDataMock = {distance: '30,00', time: 872651, pause: 445566};
 const savingsDataMock = {fuel: '10', resource: '99'};
 
-const TEST_TIME = 1800000; // 30 min
-const TEST_PAUSE = 300000; // 5 min
-const TEST_DISTANCE = '30,00';
 const TEST_NAME = 'Test';
-const TEST_PARSED_TIME = '0:25';
-const TEST_PARSED_PAUSE = '0:05';
 
 const mockedNavigate = jest.fn();
 const mockedCanGoBack = jest.fn();
@@ -79,9 +74,6 @@ const initStore = {
 const THANK_YOU_PAGE_CONTAINER = 'thank-you-page-container';
 const THANK_YOU_PAGE_SAVE_BUTTON = `${THANK_YOU_PAGE_CONTAINER}-save-button`;
 const THANK_YOU_PAGE_PUBLISH_BUTTON = `${THANK_YOU_PAGE_CONTAINER}-publish-button`;
-const THANK_YOU_PAGE_ROUTE_TIME = `${THANK_YOU_PAGE_CONTAINER}-route-time`;
-const THANK_YOU_PAGE_ROUTE_PAUSE_TIME = `${THANK_YOU_PAGE_CONTAINER}-route-pause-time`;
-const THANK_YOU_PAGE_ROUTE_DISTANCE = `${THANK_YOU_PAGE_CONTAINER}-route-distance`;
 
 describe('ThankYouPageContainer', () => {
     const onPressFn = jest.fn();
@@ -105,13 +97,16 @@ describe('ThankYouPageContainer', () => {
         it('Should match snapshot', async () => {
             const component = await asyncEvent(
                 renderComponent(
-                <ThankYouPageContainer
-                    userName={'Andrew'}
-                    routeParams={routeDataMock}
-                    savingsValues={savingsDataMock}
-                    onPublishAction={onPressFn}
-                    onSaveAction={onPressFn}
-                />, undefined, initStore),
+                    <ThankYouPageContainer
+                        userName={'Andrew'}
+                        routeParams={routeDataMock}
+                        savingsValues={savingsDataMock}
+                        onPublishAction={onPressFn}
+                        onSaveAction={onPressFn}
+                    />,
+                    undefined,
+                    initStore,
+                ),
             );
 
             expect(component).toMatchSnapshot();
@@ -126,12 +121,13 @@ describe('ThankYouPageContainer', () => {
                         savingsValues={savingsDataMock}
                         onPublishAction={onPressFn}
                         onSaveAction={onPressFn}
-                    />, undefined, initStore),
+                    />,
+                    undefined,
+                    initStore,
+                ),
             );
 
-            const saveButton = getByTestId(
-                THANK_YOU_PAGE_SAVE_BUTTON,
-            );
+            const saveButton = getByTestId(THANK_YOU_PAGE_SAVE_BUTTON);
             fireEvent.press(saveButton);
         });
 
@@ -144,12 +140,13 @@ describe('ThankYouPageContainer', () => {
                         savingsValues={savingsDataMock}
                         onPublishAction={onPressFn}
                         onSaveAction={onPressFn}
-                    />, undefined, initStore),
+                    />,
+                    undefined,
+                    initStore,
+                ),
             );
 
-            const publishButton = getByTestId(
-                THANK_YOU_PAGE_PUBLISH_BUTTON,
-            );
+            const publishButton = getByTestId(THANK_YOU_PAGE_PUBLISH_BUTTON);
             fireEvent.press(publishButton);
         });
 
@@ -162,7 +159,10 @@ describe('ThankYouPageContainer', () => {
                         savingsValues={savingsDataMock}
                         onPublishAction={mockedNavigate}
                         onSaveAction={mockedNavigate}
-                    />, undefined, initStore),
+                    />,
+                    undefined,
+                    initStore,
+                ),
             );
 
             expect(component).toMatchSnapshot();
@@ -187,7 +187,10 @@ describe('ThankYouPageContainer', () => {
                         savingsValues={savingsDataMock}
                         onPublishAction={mockedNavigate}
                         onSaveAction={mockedNavigate}
-                    />, undefined, initStore),
+                    />,
+                    undefined,
+                    initStore,
+                ),
             );
 
             expect(component).toMatchSnapshot();
