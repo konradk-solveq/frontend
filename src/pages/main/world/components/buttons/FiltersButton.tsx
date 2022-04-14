@@ -7,9 +7,14 @@ import {MykrossIconFont} from '@theme/enums/iconFonts';
 interface FilterBtnI {
     onPress: () => void;
     style?: ViewStyle;
+    testID?: string;
 }
 
-const FiltersButton = ({onPress, style}: FilterBtnI) => {
+const FiltersButton = ({
+    onPress,
+    style,
+    testID = 'header-filter-btn',
+}: FilterBtnI) => {
     const {t} = useMergedTranslation('MainWorld');
     return (
         <TransparentButton
@@ -17,6 +22,7 @@ const FiltersButton = ({onPress, style}: FilterBtnI) => {
             onPress={onPress}
             icon={MykrossIconFont.MYKROSS_ICON_FILTR}
             style={style}
+            testID={testID}
         />
     );
 };

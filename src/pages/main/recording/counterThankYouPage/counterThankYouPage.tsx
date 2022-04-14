@@ -16,7 +16,7 @@ import {
     syncCurrentRouteData,
 } from '@storage/actions/routes';
 
-import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import Loader from '@components/svg/loader/loader';
 import PoorConnectionModal from '@sharedComponents/modals/poorConnectionModal/poorConnectionModal';
 
 import {CounterParamsLsitT, CounterThankYouPageRouteT} from '@type/rootStack';

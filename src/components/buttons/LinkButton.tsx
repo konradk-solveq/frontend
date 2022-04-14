@@ -1,5 +1,5 @@
 import React from 'react';
-import {GestureResponderEvent, Pressable} from 'react-native';
+import {GestureResponderEvent, Pressable, TextStyle} from 'react-native';
 
 import colors from '@theme/colors';
 import {TextLink} from '@components/texts/texts';
@@ -11,6 +11,7 @@ interface IProps {
     disabled?: boolean;
     disabledColor?: string;
     testID?: string;
+    style?: TextStyle
 }
 
 const LinkButton: React.FC<IProps> = ({
@@ -20,10 +21,11 @@ const LinkButton: React.FC<IProps> = ({
     disabled = false,
     disabledColor = colors.lightRed,
     testID = 'link-button-test-id',
+    style,
 }: IProps) => {
     return (
         <Pressable onPress={onPress} testID={testID} disabled={disabled}>
-            <TextLink color={!disabled ? textColor : disabledColor}>
+            <TextLink style={style} color={!disabled ? textColor : disabledColor}>
                 {text}
             </TextLink>
         </Pressable>

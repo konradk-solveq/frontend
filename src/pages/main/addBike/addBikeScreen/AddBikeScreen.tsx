@@ -10,7 +10,7 @@ import {isAndroid} from '@utils/platform';
 import useNFCReader from '@hooks/useNFCReader';
 import {addBikeEvent} from '@analytics/utils/bikes';
 
-import ScanModal from '@pages/onboarding/bikeAdding/turtorialNFC/scanModal.android';
+import ScanModal from '@components/modals/ScanModal.android';
 import GenericScreen from '@pages/template/GenericScreen';
 import {AddBikeContainer} from '@containers/AddBike';
 import {AddBikeSummaryModal} from '@pages/main/addBike/components';

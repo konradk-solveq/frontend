@@ -1,0 +1,264 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/input/Checkbox Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          Object {
+            "borderRadius": 3.161137440758294,
+            "borderWidth": 3.161137440758294,
+            "height": 28.450236966824647,
+            "width": 28.450236966824647,
+          },
+          Object {},
+          Object {
+            "backgroundColor": "#333333",
+          },
+          Object {
+            "borderColor": "#333333",
+          },
+        ]
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={15.80568720379147}
+        bbWidth={20.54739336492891}
+        fill="none"
+        focusable={false}
+        height={15.80568720379147}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "flex": 0,
+              "height": 15,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={10}
+        vbWidth={13}
+        width={20.54739336492891}
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGPath
+            d="M1.27172 5.41553L4.58449 8.7283L11.3054 2.00735"
+            propList={
+              Array [
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={4294967295}
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth="2.5"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/input/Checkbox Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          Object {
+            "borderRadius": 3.161137440758294,
+            "borderWidth": 3.161137440758294,
+            "height": 28.450236966824647,
+            "width": 28.450236966824647,
+          },
+          undefined,
+          Object {
+            "backgroundColor": "#333333",
+          },
+          Object {
+            "borderColor": "#333333",
+          },
+        ]
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={15.80568720379147}
+        bbWidth={20.54739336492891}
+        fill="none"
+        focusable={false}
+        height={15.80568720379147}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "flex": 0,
+              "height": 15,
+              "width": 20,
+            },
+          ]
+        }
+        vbHeight={10}
+        vbWidth={13}
+        width={20.54739336492891}
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGPath
+            d="M1.27172 5.41553L4.58449 8.7283L11.3054 2.00735"
+            propList={
+              Array [
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={4294967295}
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth="2.5"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "height": 15.80568720379147,
+      }
+    }
+  />
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          },
+          Object {
+            "borderRadius": 3.161137440758294,
+            "borderWidth": 3.161137440758294,
+            "height": 28.450236966824647,
+            "width": 28.450236966824647,
+          },
+          undefined,
+          false,
+          Object {
+            "borderColor": "#333333",
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;

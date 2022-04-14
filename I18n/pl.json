@@ -1,30 +1,31 @@
 {
     "Onboarding": {
-        "skip": "pomiń",
-        "title_1": "Poznaj swój rower!",
-        "text_1": "Podaj numer ramy roweru. Jeśli jest to\u00a0rower KROSS, otrzymasz szczegółowe informacje o\u00a0rowerze, np.\u00a0kolor, rozmiar czy dokładną specyfikację. Dla rowerów innych producentów zakres informacji będzie mniejszy.",
-        "btn_1": "ODKRYWAJ MIEJSCA",
-        "title_2": "Sprawdź najbliższy przegląd",
-        "text_2": "Od dziś nie zapomnisz o\u00a0przeglądach gwarancyjnych i\u00a0okresowych. Podpowiemy Ci,\u00a0kiedy udać się do\u00a0serwisu oraz jaki zakres czynności powinien zostać wykonywany w\u00a0ramach każdego z\u00a0przeglądów.",
-        "btn_2": "ZNAJDŹ SERWIS",
-        "title_3": "Znajdź najbliższy punkt serwisowy",
-        "text_3": "Jeśli Twój rower nie jest w\u00a0pełni sprawny lub wymaga okresowego przeglądu, nie\u00a0zwlekaj tylko znajdź rekomendowanego przez KROSS specjalistę od\u00a0rowerów.",
-        "btn_3": "POZNAJ ROWER",
-        "title_4": "Nagrywaj trasy !",
-        "text_4": "Jeździsz amatorsko lub wyczynowo na\u00a0rowerze, dołącz do\u00a0drużyny KROSS. Nagrywaj przejechane kilometry w\u00a0aplikacji, a\u00a0najciekawsze trasy publikuj na\u00a0Mapie Rowerowej.",
-        "btn_4": "WYKONAJ PRZEGLĄD",
-        "title_5": "Odkrywaj ciekawe miejsca",
-        "text_5": "Nie masz pomysłu na\u00a0wycieczkę rowerową -\u00a0sprawdź trasy rekomendowane przez KROSS. Wyszukaj trasy na\u00a0Mapie Rowerowej i\u00a0pobierz te, z\u00a0którymi chcesz się zmierzyć.",
-        "btn_5": "ROZPOCZNIJ"
+        "start": "Rozpoczynam",
+        "language": "Język",
+        "chooseLanguage": "Wybierz język",
+        "title_1": "Nagrywaj trasy",
+        "text_1": "W szybki i łatwy sposób zacznij nagryawć swoje trasy rowerowe",
+        "title_2": "Trasy publiczne",
+        "text_2": "Bierz przykład z innych i wrzucaj swoje trasy na mapę publiczną",
+        "title_3": "Rower",
+        "text_3": "Dodaj go do aplikacji, a poznasz więcej szczegółów",
+        "title_4": "Serwisy i sklepy",
+        "text_4": "Znajdź rekomendowanego przez KROSS specjalistę od rowerów"
     },
     "GetToKnowEachOther": {
         "title": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
-        "placeholder": "Podaj imię lub pseudonim",
-        "skip": "POMIŃ",
-        "goFoward": "DALEJ",
+        "skip": "Pomiń",
+        "goForward": "Dalej",
         "emptyValue": "Uzupełnij pole",
         "toShortValue": "Podane imię lub pseudonim jest zbyt krótkie",
-        "toLongValue": "Podane imię lub pseudonim jest zbyt długie"
+        "toLongValue": "Podane imię lub pseudonim jest zbyt długie",
+        "form": {
+            "name": {
+                "placeholder": "Podaj imię lub pseudonim",
+                "hint": "Pole wymagane",
+                "errorMessage": "Wprowadź minimum 3 znaki"
+            }
+        }
     },
     "OneLineText-error-null": "Wartość nie może być null-em",
     "TutorialNFC": {
@@ -80,7 +81,7 @@
             },
             "defaultBikeType": "Typ roweru",
             "submitButton": "Dalej"
-        },
+        }
     },
     "AddBikeSummary": {
         "header": "Nowy rower",
@@ -127,8 +128,8 @@
         },
         "clauseTitle": "Klauzula informacyjna",
         "clause": "Administratorem danych jest KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046. Dane osobowe będą przetwarzane dla celów utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim, w\u00a0celu realizacji obsługi gwarancyjnej, w\u00a0celach analiz statystycznych oraz w\u00a0celu ustalania, dochodzenia i\u00a0egzekucji ewentualnych roszczeń. Na\u00a0zasadach określonych w\u00a0RODO przysługuje Pani\\Panu prawo dostępu do danych, prawo żądania ich sprostowania, usunięcia lub ograniczenia ich przetwarzania, wniesienia sprzeciwu wobec ich przetwarzania, prawo żądania ich przenoszenia, a\u00a0także prawo wniesienia skargi do\u00a0Prezesa UODO. Podanie danych osobowych jest dobrowolne, jednak odmowa ich podania uniemożliwia korzystanie z\u00a0Aplikacji Mobilnej. Więcej informacji na\u00a0temat przetwarzania danych osobowych znajduje się w\u00a0https://www.kross.pl.polityka.",
-        "wrong": "Zgoda jest wymagana",
-        "btn": "DALEJ"
+        "wrong": "Zgoda obowiązkowa",
+        "btn": "Dalej"
     },
     "Urls": [{
             "url": "http://kross.eu",
@@ -246,14 +247,6 @@
         "wrong": "Musisz wybrać",
         "btnWrong": "Pole wymagane",
         "btn": "DALEJ"
-    },
-    "BikeSummary": {
-        "header": "Twój rower",
-        "title": "{{name}}, jest moc!",
-        "anonim": "Rowerzysto",
-        "details": "od {{producer}} / nr ramy {{serial_number}}",
-        "goForward": "DALEJ",
-        "btnChange": "ZMIEŃ"
     },
     "Profile": {
         "settings": {
@@ -444,6 +437,11 @@
             }
         },
         "PlannedRoutes": {
+            "emptyState": {
+                "header": "Brak zapisanych tras",
+                "info": "Zapoznaj się z trasami innych rowerzystów\n i zapisz je do swojej listy ",
+                "action": "Przejdź do tras publicznych"
+            },
             "title": ", odkryj ciekawe trasy z KROSS",
             "emptyStateTitle": "Dobry plan to podstawa",
             "emptyStateContent": "Zaplanuj wycieczkę na podstawie tras rekomendowanych przez KROSS.",
@@ -457,6 +455,11 @@
             }
         },
         "MyRoutes": {
+            "emptyState": {
+                "header": "Tu jeszcze jest pusto",
+                "info": "Wsiadaj na rower i ruszaj w drogę",
+                "action": "Nagraj swoją pierwszą trasę"
+            },
             "title": ", odkryj ciekawe trasy z KROSS",
             "emptyStateTitle": "Nie masz nagranych tras",
             "emptyStateContent": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
@@ -483,6 +486,20 @@
             "minutes": "m",
             "distanceToStart": "km od Ciebie",
             "public": "publiczna"
+        },
+        "moreActionsModal": {
+            "actions": {
+                "startRecording": "Rozpocznij",
+                "remove": "Usuń"
+            },
+            "alert": {
+                "content": {
+                    "favourite": "Czy chcesz usunąć zapisaną \n trasę?",
+                    "private": "Czy chcesz usunąć nagraną \n trasę?"
+                },
+                "positive": "Tak, usuń",
+                "negative": "Anuluj"
+            }
         }
     },
     "MainRoutesMap": {
@@ -535,6 +552,7 @@
                     "plannedPrimaryAction": "Udostępnij",
                     "plannedPrimaryAlternativeAction": "Upubllicznij",
                     "secondaryAction": "Zapisz",
+                    "secondaryActionActive": "Zapisano",
                     "plannedSecondaryAction": "Edytuj"
                 }
             }
@@ -632,7 +650,7 @@
             "addBikeTile": {
                 "header": "Dodaj swój rower",
                 "body": "Podaj numer ramy i poznaj wszystkie \n szczegóły swojego roweru.",
-                "primaryButton": "Dodaj rower kross",
+                "primaryButton": "Dodaj rower KROSS",
                 "secondaryButton": "Dodaj rower innej marki"
             },
             "servicesTile": {
@@ -640,6 +658,13 @@
                 "body": "Chcesz naprawiać swój rower? \n Czas przeglądu się zbliża?",
                 "button": "Sprawdź"
             }
+        },
+        "AddBikeTile": {
+            "header": "Dodaj swój rower",
+            "header2": "Dodaj kolejny rower",
+            "body": "Podaj numer ramy i poznaj wszystkie \n szczegóły swojego roweru.",
+            "primaryButton": "Dodaj rower KROSS",
+            "secondaryButton": "Dodaj rower innej marki"
         }
     },
     "MainBikeParams": {
@@ -698,7 +723,7 @@
         "title": "Znajdź sklep lub serwis"
     },
     "MainProfile": {
-        "header": " Konto",
+        "header": "Twoje Konto",
         "settings": "Ustawienia",
         "languages": "Język aplikacji",
         "myConsents": "Moje zgody",
@@ -708,7 +733,8 @@
         "regulations": "Regulamin",
         "privacyPolicy": "Polityka prywatności",
         "help": "Pomoc",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "accountEdit": "Edycja konta"
     },
     "Help": {
         "header": "Pomoc"
@@ -732,12 +758,15 @@
     },
     "Contact": {
         "header": "Kontakt",
-        "anonim": "Rowerzysto",
-        "title": "{{name}}, bądźmy w\u00a0kontakcie",
+        "phoneTitle": "Telefon",
+        "emailTitle": "Email",
         "phone": "(29) 752 11 00",
         "email": "kross@kross.pl",
-        "adress": "Biuro Obsługi Klienta\nCzynne w godzinach:\npn. -\u00a0pt.: 9:00 -\u00a016:00",
-        "btn": "PRZEJDŹ DO KROSS.EU"
+        "btn": "Przejdź do kross.eu",
+        "contactCaption": "Poniżej znajdziesz dane \nkontaktowe.",
+        "officeTitle": "Biuro Obsługi Klienta",
+        "officeSubtitle": "Czynne w godzinach",
+        "officeHours": "pn. - pt.: 9:00 - 16:00"
     },
     "NameChange": {
         "header": "Moje dane",
@@ -930,5 +959,9 @@
             "leftButton": "Anuluj",
             "rightButton": "Usuń"
         }
+    },
+    "Alert": {
+        "positive": "Potwierdź",
+        "negative": "Anuluj"
     }
 }

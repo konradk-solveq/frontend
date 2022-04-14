@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/headers/CollapsibleStickyHeader Customizable 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "overflow": "hidden",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        [Function],
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "height": "100%",
+            "position": "absolute",
+            "width": "100%",
+          },
+          [Function],
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#FAFAFA",
+            "justifyContent": "center",
+          },
+        ]
+      }
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header1-test-id"
+      >
+        TEST
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/headers/CollapsibleStickyHeader Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "overflow": "hidden",
+          "position": "absolute",
+          "width": "100%",
+          "zIndex": 10,
+        },
+        [Function],
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "height": "100%",
+            "position": "absolute",
+            "width": "100%",
+          },
+          [Function],
+          undefined,
+        ]
+      }
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "lineHeight": 32,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header1-test-id"
+      >
+        TEST
+      </Text>
+    </View>
+  </View>
+</View>
+`;

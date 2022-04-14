@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/pagination/PaginationDot Custom 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+        },
+        Object {},
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 4,
+            "height": 8,
+            "width": 8,
+          },
+          [Function],
+          Object {
+            "marginLeft": 0,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 4,
+            "height": 8,
+            "width": 8,
+          },
+          [Function],
+          Object {
+            "marginLeft": 8,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 4,
+            "height": 8,
+            "width": 8,
+          },
+          [Function],
+          Object {
+            "marginLeft": 8,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 4,
+            "height": 8,
+            "width": 8,
+          },
+          [Function],
+          Object {
+            "marginLeft": 8,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 4,
+            "height": 8,
+            "width": 8,
+          },
+          [Function],
+          Object {
+            "marginLeft": 8,
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/pagination/PaginationDot Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 7.6923076923076925,
+            "height": 15.384615384615385,
+            "width": 15.384615384615385,
+          },
+          [Function],
+          Object {
+            "marginLeft": 0,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 7.6923076923076925,
+            "height": 15.384615384615385,
+            "width": 15.384615384615385,
+          },
+          [Function],
+          Object {
+            "marginLeft": 15.384615384615385,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 7.6923076923076925,
+            "height": 15.384615384615385,
+            "width": 15.384615384615385,
+          },
+          [Function],
+          Object {
+            "marginLeft": 15.384615384615385,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 7.6923076923076925,
+            "height": 15.384615384615385,
+            "width": 15.384615384615385,
+          },
+          [Function],
+          Object {
+            "marginLeft": 15.384615384615385,
+          },
+        ]
+      }
+    />
+    <View
+      style={
+        Array [
+          Object {
+            "borderRadius": 7.6923076923076925,
+            "height": 15.384615384615385,
+            "width": 15.384615384615385,
+          },
+          [Function],
+          Object {
+            "marginLeft": 15.384615384615385,
+          },
+        ]
+      }
+    />
+  </View>
+</View>
+`;

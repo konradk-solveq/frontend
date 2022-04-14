@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/Onboarding/UserIntroduction Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      undefined,
+    ]
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "alignItems": "center",
+        "paddingHorizontal": 30.76923076923077,
+      }
+    }
+    keyboardShouldPersistTaps="always"
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header2-test-id"
+      >
+        GetToKnowEachOther.title
+      </Text>
+      <View
+        style={
+          Object {
+            "marginBottom": 50.5781990521327,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          testID="user-introduction-container-id-name-text-input"
+        >
+          <View
+            style={
+              Object {
+                "marginBottom": 6.322274881516588,
+              }
+            }
+            testID="user-introduction-container-id-name-text-input-input-name"
+          >
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#717171",
+                    "fontFamily": "DIN2014-Regular",
+                    "fontSize": 14,
+                    "lineHeight": 16,
+                    "textAlign": "left",
+                  },
+                  undefined,
+                ]
+              }
+              testID="subtitle-test-id"
+            >
+              
+            </Text>
+          </View>
+          <TextInput
+            editable={true}
+            keyboardType="default"
+            maxLength={200}
+            multiline={false}
+            numberOfLines={1}
+            onChangeText={[Function]}
+            placeholder="GetToKnowEachOther.form.name.placeholder"
+            placeholderTextColor="#717171"
+            selectionColor="#717171"
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#FAFAFA",
+                  "borderRadius": 30.76923076923077,
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 16,
+                  "height": 75.86729857819905,
+                  "paddingHorizontal": 30.76923076923077,
+                  "paddingVertical": 0,
+                },
+                Object {},
+              ]
+            }
+            testID="user-introduction-container-id-name-text-input-input-value"
+            value=""
+          />
+          <View
+            style={
+              Object {
+                "marginHorizontal": 30.76923076923077,
+                "marginTop": 12.644549763033176,
+              }
+            }
+            testID="user-introduction-container-id-name-text-input-input-hint"
+          />
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          Object {
+            "disabled": false,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {},
+            Array [
+              Object {
+                "height": 92.3076923076923,
+                "width": 565.3846153846154,
+              },
+              Object {},
+            ],
+          ]
+        }
+        testID="user-introduction-container-id-submit-button"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 30.76923076923077,
+                "flexDirection": "row",
+                "height": "100%",
+                "justifyContent": "center",
+                "width": "100%",
+              },
+              Object {
+                "backgroundColor": "#C63733",
+              },
+              undefined,
+            ]
+          }
+          testID="user-introduction-container-id-submit-button-container"
+        >
+          <Text
+            adjustsFontSizeToFit={true}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "lineHeight": 28,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#FFFFFF",
+                },
+              ]
+            }
+            testID="user-introduction-container-id-submit-button-text"
+          >
+            GetToKnowEachOther.goForward
+          </Text>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

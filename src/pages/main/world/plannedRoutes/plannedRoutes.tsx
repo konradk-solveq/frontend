@@ -7,7 +7,6 @@ import {
     favouritesMapsSelector,
     loadingMapsSelector,
     refreshMapsSelector,
-    selectorMapTypeEnum,
 } from '@storage/selectors';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
@@ -16,15 +15,12 @@ import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
-import Loader from '@pages/onboarding/bikeAdding/loader/loader';
+import Loader from '@components/svg/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
-import ShowMoreModal from '../components/showMoreModal/showMoreModal';
-import EmptyList from './emptyList';
-import {Dropdown} from '@components/dropdown';
 import {Backdrop} from '@components/backdrop';
-import SortButton from '../components/buttons/SortButton';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
+import {RouteDetailsActionT} from '@type/screens/routesMap';
 
 import styles from './style';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
@@ -39,11 +35,15 @@ import {
 } from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
-import {FiltersButton} from '@pages/main/world/components/buttons';
 import {plannedRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
-import {resetMapsCount} from '@storage/actions/maps';
+import {removePlannedMap, resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
+import {MoreActionsModal} from '@pages/main/world/components/modals';
+import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
+import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
+import EmptyStateContainer from '@containers/World/EmptyStateContainer';
+import {BikePin} from '@components/svg';
 
 const getItemLayout = (_: any, index: number) => ({
     length: getVerticalPx(175),
@@ -78,7 +78,6 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         [bottom],
     );
 
-    const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
 
     const {onLoadMoreHandler} = useInfiniteScrollLoadMore(
@@ -136,7 +135,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     const onPressHandler = (state: boolean, mapID?: string) => {
-        setShowModal(state);
+        setBottomSheetWithMoreActions(true);
         if (mapID) {
             setActiveMapID(mapID);
         }
@@ -201,7 +200,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             setSortButtonName(buttoName);
         }
     }, []);
-
+    const {onScroll, shouldHide} = useHideOnScrollDirection();
     const onSortByHandler = useCallback(
         (sortTypeId?: string) => {
             const firstEl = plannedRoutesDropdownList[0];
@@ -216,9 +215,36 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         [changeSortButtonName, mwt],
     );
 
-    if (!favouriteMaps?.length) {
-        return <EmptyList onPress={emptyListButtonHandler} />;
-    }
+    /**
+     * Shows modal with more action buttons
+     */
+    const [
+        bottomSheetWithMoreActions,
+        setBottomSheetWithMoreActions,
+    ] = useState(false);
+
+    const onPressMoreHandler = useCallback(
+        (actionType: RouteDetailsActionT) => {
+            const mapId = activeMapID;
+            if (!mapId) {
+                setBottomSheetWithMoreActions(false);
+                return;
+            }
+
+            switch (actionType) {
+                case 'record':
+                    setBottomSheetWithMoreActions(false);
+                    navigation.navigate('Counter', {mapID: mapId});
+                    break;
+                case 'remove':
+                    dispatch(removePlannedMap(mapId));
+                    break;
+                default:
+                    break;
+            }
+        },
+        [dispatch, navigation, activeMapID],
+    );
 
     const renderListLoader = () => {
         if (!showListLoader && isLoading && favouriteMaps.length > 3) {
@@ -242,14 +268,15 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
 
     return (
         <View style={styles.background}>
-            <ShowMoreModal
-                showModal={showModal}
-                removeFav
-                mapID={activeMapID}
-                onPressCancel={() => onPressHandler(false)}
-                backdropStyle={styles.backdrop}
-                isPublished /* Planned maps can be picked from [published only (by default) */
-                mapType={selectorMapTypeEnum.favourite}
+            <FiltersHeader
+                shouldHide={shouldHide}
+                sortButtonName={sortButtonName}
+                setShowDropdown={setShowDropdown}
+                onFiltersModalOpenHandler={onFiltersModalOpenHandler}
+                showDropdown={showDropdown}
+                toggleDropdown={toggleDropdown}
+                onSortByHandler={onSortByHandler}
+                dropdownList={plannedRoutesDropdownList}
             />
             <FiltersModal
                 onClose={onFiltersModalCloseHandler}
@@ -260,65 +287,57 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 onResetFiltersCount={onResetFiltersCount}
                 itemsCount={plannedMapsCount}
             />
-            <View style={styles.topButtonsContainer}>
-                <Dropdown
-                    openOnStart={showDropdown}
-                    list={plannedRoutesDropdownList}
-                    onPress={toggleDropdown}
-                    onPressItem={onSortByHandler}
-                    buttonText={mwt('btnSort')}
-                    buttonContainerStyle={styles.dropdownButtonContainerStyle}
-                    boxStyle={styles.dropdownBox}
-                    resetButtonText={mwt('resetFilters')}
-                    hideButton
+            {!favouriteMaps?.length ? (
+                <EmptyStateContainer
+                    onPress={emptyListButtonHandler}
+                    buttonText={t('emptyState.action')}
+                    title={t('emptyState.header')}
+                    description={t('emptyState.info')}
+                    image={<BikePin />}
                 />
-            </View>
-            <View>
-                <FlatList
-                    keyExtractor={item => item.id}
-                    ListHeaderComponent={
-                        <>
-                            <View style={styles.topButtonsContainer}>
-                                <SortButton
-                                    title={sortButtonName}
-                                    onPress={() => setShowDropdown(true)}
-                                    style={styles.topButton}
-                                />
-                                <FiltersButton
-                                    onPress={onFiltersModalOpenHandler}
-                                    style={{
-                                        ...styles.topButton,
-                                        ...styles.topButtonRight,
-                                    }}
-                                />
-                            </View>
+            ) : (
+                <View>
+                    <FlatList
+                        keyExtractor={item => item.id}
+                        onScroll={onScroll}
+                        ListHeaderComponent={
                             <Header2 style={styles.header}>
                                 {userName || t('defaultUserName')}
                                 {t('title')}
                             </Header2>
-                        </>
-                    }
-                    data={!showListLoader ? favouriteMaps : []}
-                    renderItem={renderItem}
-                    showsVerticalScrollIndicator={false}
-                    getItemLayout={getItemLayout}
-                    initialNumToRender={10}
-                    removeClippedSubviews
-                    onEndReached={onEndReachedHandler}
-                    onEndReachedThreshold={0.5}
-                    ListFooterComponent={renderListLoader}
-                    refreshing={isLoading && isRefreshing}
-                    onRefresh={onRefresh}
-                />
-            </View>
+                        }
+                        data={!showListLoader ? favouriteMaps : []}
+                        renderItem={renderItem}
+                        showsVerticalScrollIndicator={false}
+                        getItemLayout={getItemLayout}
+                        initialNumToRender={10}
+                        removeClippedSubviews
+                        onEndReached={onEndReachedHandler}
+                        onEndReachedThreshold={0.5}
+                        ListFooterComponent={renderListLoader}
+                        refreshing={isLoading && isRefreshing}
+                        onRefresh={onRefresh}
+                    />
+                </View>
+            )}
 
             <Backdrop
                 isVisible={showBackdrop}
                 style={styles.fullscreenBackdrop}
             />
-            <RoutesMapButton
-                onPress={() => navigation.navigate('RoutesMap')}
-                style={{...styles.mapBtn, ...bottomPosition}}
+
+            {!!favouriteMaps?.length && (
+                <RoutesMapButton
+                    onPress={() => navigation.navigate('RoutesMap')}
+                    style={{...styles.mapBtn, ...bottomPosition}}
+                />
+            )}
+
+            <MoreActionsModal
+                show={bottomSheetWithMoreActions}
+                onPressAction={onPressMoreHandler}
+                onClose={() => setBottomSheetWithMoreActions(false)}
+                mapType="favourite"
             />
         </View>
     );

@@ -19,11 +19,23 @@ import {
 } from '@containers/World';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {selectorMapTypeEnum} from '@storage/selectors';
-import {addPlannedMap, fetchMapIfNotExistsLocally} from '@storage/actions/maps';
+import {
+    addPlannedMap,
+    fetchMapIfNotExistsLocally,
+    removePrivateMapMetaData,
+    removePlannedMap,
+} from '@storage/actions/maps';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
 import {BasicCoordsType} from '@type/coords';
 import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
 import BottomModal from '@pages/main/world/routesMap/bottomModal/BottomModal';
+import {MoreActionsModal} from '@pages/main/world/components/modals';
+
+const initRouteInfo = {
+    id: '',
+    mapType: selectorMapTypeEnum.regular,
+    routeMapType: RouteMapType.BIKE_MAP,
+};
 
 const RoutesMap: React.FC = () => {
     const navigation = useAppNavigation();
@@ -36,17 +48,17 @@ const RoutesMap: React.FC = () => {
     const [centerMapAtLocation, setCenterMapAtLocation] = useState<
         BasicCoordsType | undefined
     >();
-    const [routeInfo, setRouteInfo] = useState({
-        id: '',
-        mapType: selectorMapTypeEnum.regular,
-        routeMapType: RouteMapType.BIKE_MAP,
-    });
+    const [routeInfo, setRouteInfo] = useState(initRouteInfo);
     const isCreatedByUser = useMemo(
         () => routeInfo?.mapType === selectorMapTypeEnum.private,
         [routeInfo?.mapType],
     );
 
     const [bottomSheetWithDetails, setBottomSheetWithDetails] = useState(false);
+    const [
+        bottomSheetWithMoreActions,
+        setBottomSheetWithMoreActions,
+    ] = useState(false);
 
     const handleMarkerClick = (id: string, types: string[]) => {
         const isPlanned = types.includes('FAVORITE');
@@ -98,6 +110,15 @@ const RoutesMap: React.FC = () => {
         mapData?.isPublic,
     ]);
     const canOpenModal = useMemo(() => !!mapData, [mapData]);
+    /* Route has been added to favourites */
+    const isFavourited = useMemo(
+        () =>
+            !!mapData?.isUserFavorite ||
+            routeInfo.mapType === selectorMapTypeEnum.favourite,
+        [mapData?.isUserFavorite, routeInfo.mapType],
+    );
+    /* When adding to favrourites show loader on 'Save' button */
+    const [isAddingToFavourites, setIsAddingToFavourites] = useState(false);
 
     const {fetchRoutesMarkers, routeMarkres} = useGetRouteMapMarkers();
     const routeMapMarkers = useMemo(
@@ -203,19 +224,33 @@ const RoutesMap: React.FC = () => {
         });
     }, [routeInfo.id, mapID]);
 
-    const onRotueDetailsActionHandler = useCallback(
-        (actionType: RouteDetailsActionT) => {
+    const onPressHandler = useCallback(
+        async (actionType: RouteDetailsActionT) => {
             const mapId = mapData?.id;
             if (!mapId) {
+                setBottomSheetWithMoreActions(false);
                 return;
             }
 
             switch (actionType) {
                 case 'record':
+                    setBottomSheetWithMoreActions(false);
                     navigation.navigate('Counter', {mapID: mapId});
                     break;
                 case 'add_to_planned':
-                    dispatch(addPlannedMap(mapId));
+                    setIsAddingToFavourites(true);
+                    await dispatch(addPlannedMap(mapId));
+                    setIsAddingToFavourites(false);
+                    break;
+                case 'remove_from_planned':
+                    setIsAddingToFavourites(true);
+                    await dispatch(removePlannedMap(mapId));
+                    setRouteInfo(prev => ({
+                        ...prev,
+                        mapType: selectorMapTypeEnum.regular,
+                        routeMapType: RouteMapType.BIKE_MAP,
+                    }));
+                    setIsAddingToFavourites(false);
                     break;
                 case 'share':
                     navigation.navigate('ShareRouteScreen', {
@@ -230,7 +265,14 @@ const RoutesMap: React.FC = () => {
                     });
                     break;
                 case 'do_more':
-                    /* TODO: waiting for tasks */
+                    /**
+                     * Shows bottom sheet with addtitional action buttons
+                     */
+                    setBottomSheetWithMoreActions(true);
+                    break;
+                case 'remove':
+                    setRouteInfo(initRouteInfo);
+                    dispatch(removePrivateMapMetaData(mapId));
                     break;
                 default:
                     break;
@@ -256,14 +298,22 @@ const RoutesMap: React.FC = () => {
                     <RouteMapDetailsContainer
                         mapData={mapData}
                         mapImages={mapImages}
-                        onPressAction={onRotueDetailsActionHandler}
+                        onPressAction={onPressHandler}
                         isPrivate={isCreatedByUser}
                         isPublished={isPublished}
+                        isFavourited={isFavourited}
+                        isFetching={isAddingToFavourites}
                     />
                 ) : (
                     <RoutesMapDetailsPlaceholderContainer />
                 )}
             </BottomModal>
+
+            <MoreActionsModal
+                show={bottomSheetWithMoreActions}
+                onPressAction={onPressHandler}
+                onClose={() => setBottomSheetWithMoreActions(false)}
+            />
         </GenericScreen>
     );
 };
