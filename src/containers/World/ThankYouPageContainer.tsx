@@ -44,6 +44,7 @@ const ThankYouPageContainer: React.FC<IProps> = ({
             </View>
             <Header1 color={colors.altGreen}>
                 {t('goodJobTitle')} {userName ? userName : ''}
+                {'!'}
             </Header1>
             <View style={styles.statsContainer}>
                 <StatisticElement
