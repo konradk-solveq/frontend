@@ -22,7 +22,7 @@ const getFVerticalPx = (px: number) => {
     return (height / FIGMA_HEIGHT) * px;
 };
 
-const FONT_RATIO = width > FIGMA_WIDTH ? 1 : width / FIGMA_WIDTH;
+const FONT_RATIO = height > FIGMA_HEIGHT ? 1 : height / FIGMA_HEIGHT;
 const getFFontSize = (h: number) => h * FONT_RATIO;
 const mainFButtonsHeight = (h: number) => h * FONT_RATIO;
 
