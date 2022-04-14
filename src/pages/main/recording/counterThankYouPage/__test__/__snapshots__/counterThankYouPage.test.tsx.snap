@@ -385,6 +385,7 @@ Array [
           ThankYouPage.goodJobTitle
            
           Test
+          !
         </Text>
         <View
           style={
@@ -556,6 +557,7 @@ Array [
         </View>
         <RCTScrollView
           horizontal={true}
+          showsHorizontalScrollIndicator={false}
         >
           <View>
             <View

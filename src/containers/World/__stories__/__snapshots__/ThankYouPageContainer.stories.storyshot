@@ -323,6 +323,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Customized 1`] = `
       ThankYouPage.goodJobTitle
        
       
+      !
     </Text>
     <View
       style={
@@ -494,6 +495,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Customized 1`] = `
     </View>
     <RCTScrollView
       horizontal={true}
+      showsHorizontalScrollIndicator={false}
     >
       <View>
         <View
@@ -1232,6 +1234,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
       ThankYouPage.goodJobTitle
        
       Andrew
+      !
     </Text>
     <View
       style={
@@ -1403,6 +1406,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
     </View>
     <RCTScrollView
       horizontal={true}
+      showsHorizontalScrollIndicator={false}
     >
       <View>
         <View

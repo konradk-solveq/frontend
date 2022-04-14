@@ -70,7 +70,9 @@ const ThankYouPageContainer: React.FC<IProps> = ({
             <View style={styles.sloganContainer}>
                 <Header2>{t('thankYouSlogan')}</Header2>
             </View>
-            <ScrollView horizontal={true}>
+            <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}>
                 <SavingPanel
                     style={styles.savingPanel}
                     text={`${savingsValues.resource} ${t('savedResource')}`}
