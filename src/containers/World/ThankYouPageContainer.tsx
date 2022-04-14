@@ -37,9 +37,9 @@ const ThankYouPageContainer: React.FC<IProps> = ({ userName, routeParams, saving
                 {t('goodJobTitle')} {userName ? userName : ''}
             </Header1>
             <View style={styles.statsContainer}>
-                <StatisticElement testID="thank-you-page-container-distance" text={t('distance')} value={`${routeParams.distance} ${t('distanceSuffix')}`} />
-                <StatisticElement testID="thank-you-page-container-time" text={t('tripTime')} value={`${simplyTimer(routeParams.time - routeParams.pause)} ${t('pauseSuffix')}`} />
-                <StatisticElement testID="thank-you-page-container-pause-time" text={t('pauseTime')} value={`${simplyTimer(routeParams.pause)} ${t('tripTimeSuffix')}`} />
+                <StatisticElement testID="thank-you-page-container-route-distance" text={t('distance')} value={`${routeParams.distance} ${t('distanceSuffix')}`} />
+                <StatisticElement testID="thank-you-page-container-route-time" text={t('tripTime')} value={`${simplyTimer(routeParams.time - routeParams.pause)} ${t('pauseSuffix')}`} />
+                <StatisticElement testID="thank-you-page-container-route-pause-time" text={t('pauseTime')} value={`${simplyTimer(routeParams.pause)} ${t('tripTimeSuffix')}`} />
             </View>
             <View style={styles.sloganContainer}>
                 <Header2>

@@ -338,134 +338,128 @@ exports[`Storyshots containers/World/ThankYouPageContainer Customized 1`] = `
         }
       }
     >
-      <View>
-        <View
-          testID="thank-you-page-container-distance"
+      <View
+        testID="thank-you-page-container-route-distance"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#717171",
-                  "fontFamily": "DIN2014-Regular",
-                  "fontSize": 14,
-                  "lineHeight": 16,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="subtitle-test-id"
-          >
-            ThankYouPage.distance
-          </Text>
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 18,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header3-test-id"
-          >
-            11.22 ThankYouPage.distanceSuffix
-          </Text>
-        </View>
+          ThankYouPage.distance
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header3-test-id"
+        >
+          11.22 ThankYouPage.distanceSuffix
+        </Text>
       </View>
-      <View>
-        <View
-          testID="thank-you-page-container-time"
+      <View
+        testID="thank-you-page-container-route-time"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#717171",
-                  "fontFamily": "DIN2014-Regular",
-                  "fontSize": 14,
-                  "lineHeight": 16,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="subtitle-test-id"
-          >
-            ThankYouPage.tripTime
-          </Text>
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 18,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header3-test-id"
-          >
-            8:40 ThankYouPage.pauseSuffix
-          </Text>
-        </View>
+          ThankYouPage.tripTime
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header3-test-id"
+        >
+          8:40 ThankYouPage.pauseSuffix
+        </Text>
       </View>
-      <View>
-        <View
-          testID="thank-you-page-container-pause-time"
+      <View
+        testID="thank-you-page-container-route-pause-time"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#717171",
-                  "fontFamily": "DIN2014-Regular",
-                  "fontSize": 14,
-                  "lineHeight": 16,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="subtitle-test-id"
-          >
-            ThankYouPage.pauseTime
-          </Text>
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 18,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header3-test-id"
-          >
-            0:14 ThankYouPage.tripTimeSuffix
-          </Text>
-        </View>
+          ThankYouPage.pauseTime
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header3-test-id"
+        >
+          0:14 ThankYouPage.tripTimeSuffix
+        </Text>
       </View>
     </View>
     <View
@@ -1253,134 +1247,128 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
         }
       }
     >
-      <View>
-        <View
-          testID="thank-you-page-container-distance"
+      <View
+        testID="thank-you-page-container-route-distance"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#717171",
-                  "fontFamily": "DIN2014-Regular",
-                  "fontSize": 14,
-                  "lineHeight": 16,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="subtitle-test-id"
-          >
-            ThankYouPage.distance
-          </Text>
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 18,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header3-test-id"
-          >
-            24.45 ThankYouPage.distanceSuffix
-          </Text>
-        </View>
+          ThankYouPage.distance
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header3-test-id"
+        >
+          24.45 ThankYouPage.distanceSuffix
+        </Text>
       </View>
-      <View>
-        <View
-          testID="thank-you-page-container-time"
+      <View
+        testID="thank-you-page-container-route-time"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#717171",
-                  "fontFamily": "DIN2014-Regular",
-                  "fontSize": 14,
-                  "lineHeight": 16,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="subtitle-test-id"
-          >
-            ThankYouPage.tripTime
-          </Text>
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 18,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header3-test-id"
-          >
-            0:07 ThankYouPage.pauseSuffix
-          </Text>
-        </View>
+          ThankYouPage.tripTime
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header3-test-id"
+        >
+          0:07 ThankYouPage.pauseSuffix
+        </Text>
       </View>
-      <View>
-        <View
-          testID="thank-you-page-container-pause-time"
+      <View
+        testID="thank-you-page-container-route-pause-time"
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#717171",
-                  "fontFamily": "DIN2014-Regular",
-                  "fontSize": 14,
-                  "lineHeight": 16,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="subtitle-test-id"
-          >
-            ThankYouPage.pauseTime
-          </Text>
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 18,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header3-test-id"
-          >
-            0:07 ThankYouPage.tripTimeSuffix
-          </Text>
-        </View>
+          ThankYouPage.pauseTime
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header3-test-id"
+        >
+          0:07 ThankYouPage.tripTimeSuffix
+        </Text>
       </View>
     </View>
     <View

@@ -9,12 +9,12 @@ import {postApiCallMock} from '@utils/testUtils/apiCalls';
 import {mockedRouteData} from '@pages/main/recording/counterThankYouPage/__test__/mocks/mockedRouteData';
 import ThankYouPageContainer from '../ThankYouPageContainer';
 
-const routeDataMock = {distance: '24.45', time: 872651, pause: 445566};
+const routeDataMock = {distance: '30,00', time: 872651, pause: 445566};
 const savingsDataMock = {fuel: '10', resource: '99'};
 
 const TEST_TIME = 1800000; // 30 min
 const TEST_PAUSE = 300000; // 5 min
-const TEST_DISTANCE = '10,00';
+const TEST_DISTANCE = '30,00';
 const TEST_NAME = 'Test';
 const TEST_PARSED_TIME = '0:25';
 const TEST_PARSED_PAUSE = '0:05';
@@ -79,6 +79,9 @@ const initStore = {
 const THANK_YOU_PAGE_CONTAINER = 'thank-you-page-container';
 const THANK_YOU_PAGE_SAVE_BUTTON = `${THANK_YOU_PAGE_CONTAINER}-save-button`;
 const THANK_YOU_PAGE_PUBLISH_BUTTON = `${THANK_YOU_PAGE_CONTAINER}-publish-button`;
+const THANK_YOU_PAGE_ROUTE_TIME = `${THANK_YOU_PAGE_CONTAINER}-route-time`;
+const THANK_YOU_PAGE_ROUTE_PAUSE_TIME = `${THANK_YOU_PAGE_CONTAINER}-route-pause-time`;
+const THANK_YOU_PAGE_ROUTE_DISTANCE = `${THANK_YOU_PAGE_CONTAINER}-route-distance`;
 
 describe('ThankYouPageContainer', () => {
     const onPressFn = jest.fn();
@@ -149,23 +152,6 @@ describe('ThankYouPageContainer', () => {
             );
             fireEvent.press(publishButton);
         });
-
-        // it('Should render passed route data', async () => {
-        //     const component = await asyncEvent(
-        //         renderComponent(<CounterThankYouPage />, undefined, initStore),
-        //     );
-
-        //     // getting the values by text doesn't work, but they are rendered and present in the snapshot
-        //     const time = component.getByTestId(COUNTER_TIME_ID);
-        //     const pause = component.getByTestId(COUNTER_PAUSE_ID);
-        //     const distance = component.getByTestId(COUNTER_DISTANCE_ID);
-
-        //     expect(time.children[0]).toBe(TEST_PARSED_TIME);
-        //     expect(pause.children[0]).toBe(TEST_PARSED_PAUSE);
-        //     expect(distance.children[0]).toBe(TEST_DISTANCE);
-
-        //     expect(component).toMatchSnapshot();
-        // });
 
         it('Should navigate after pressing publish button', async () => {
             const component = await asyncEvent(
