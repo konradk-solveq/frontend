@@ -71,7 +71,7 @@ const Home: React.FC = () => {
     }
 
     return (
-        <GenericScreen transculentStatusBar>
+        <GenericScreen transculentStatusBar hideBackArrow>
             <View style={[styles.container, {paddingTop: top}]}>
                 <HomeContainer
                     userName={userName}

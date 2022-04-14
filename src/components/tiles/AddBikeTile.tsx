@@ -28,15 +28,12 @@ const AddBikeTile: React.FC<IProps> = ({
     onPressSecondary,
     header,
     image = <BikeSvg />,
-    height = getFVerticalPx(377),
     imageContainer,
     testID = 'add-bike-tile',
 }: IProps) => {
     const {t} = useMergedTranslation('MainBike.AddBikeTile');
-    const th = {height: height};
-
     return (
-        <View style={[styles.tile, th]} testID={testID}>
+        <View style={styles.tile} testID={testID}>
             <View style={[styles.imageContainer, imageContainer]}>{image}</View>
             <View style={[styles.textWrapper, styles.bottomPadding]}>
                 <Header2 algin="center" style={styles.upperHeader}>
@@ -46,11 +43,7 @@ const AddBikeTile: React.FC<IProps> = ({
                     {t('body')}
                 </Header3>
             </View>
-            <View
-                style={[
-                    styles.bottomPadding,
-                    {paddingHorizontal: getFHorizontalPx(32)},
-                ]}>
+            <View style={[{paddingHorizontal: getFHorizontalPx(32)}]}>
                 <PrimaryButton
                     text={t('primaryButton')}
                     onPress={onPressPrimary}
@@ -88,15 +81,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: colors.white,
         paddingVertical: getFVerticalPx(24),
-        height: getFVerticalPx(377),
         borderRadius: getFVerticalPx(12),
         marginBottom: getFVerticalPx(16),
     },
     imageContainer: {
         marginBottom: getFVerticalPx(8),
-        width: getFHorizontalPx(105),
+        width: getFVerticalPx(105),
+        alignItems: 'center',
         justifyContent: 'center',
-        height: getFHorizontalPx(105),
+        height: getFVerticalPx(105),
     },
     textWrapper: {
         marginHorizontal: getFHorizontalPx(12),
