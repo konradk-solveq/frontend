@@ -153,7 +153,8 @@ const Bike: React.FC<Props> = (props: Props) => {
         <GenericScreen
             hideBackArrow
             noHeader
-            statusBarBackgroundColor={colors.white}>
+            statusBarBackgroundColor={colors.white}
+            transculentStatusBar>
             <View style={{paddingTop: top}}>
                 {hasAnyBikesAdded ? (
                     <>
