@@ -20,6 +20,7 @@ interface IProps {
     image?: Element;
     height?: number | string;
     imageContainer?: ViewStyle;
+    style?: ViewStyle;
     testID?: string;
 }
 
@@ -29,11 +30,12 @@ const AddBikeTile: React.FC<IProps> = ({
     header,
     image = <BikeSvg />,
     imageContainer,
+    style,
     testID = 'add-bike-tile',
 }: IProps) => {
     const {t} = useMergedTranslation('MainBike.AddBikeTile');
     return (
-        <View style={styles.tile} testID={testID}>
+        <View style={[styles.tile, style]} testID={testID}>
             <View style={[styles.imageContainer, imageContainer]}>{image}</View>
             <View style={[styles.textWrapper, styles.bottomPadding]}>
                 <Header2 algin="center" style={styles.upperHeader}>

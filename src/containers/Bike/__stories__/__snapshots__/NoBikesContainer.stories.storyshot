@@ -38,13 +38,18 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
     >
       <View
         style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 18.966824644549764,
-            "marginBottom": 25.28909952606635,
-            "paddingVertical": 37.93364928909953,
-          }
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 18.966824644549764,
+              "marginBottom": 25.28909952606635,
+              "paddingVertical": 37.93364928909953,
+            },
+            Object {
+              "height": 595.8744075829384,
+            },
+          ]
         }
         testID="add-bike-tile"
       >
@@ -493,10 +498,10 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                 "alignItems": "center",
                 "backgroundColor": "black",
                 "borderRadius": 50,
-                "height": 107.6923076923077,
+                "height": 88.51184834123222,
                 "justifyContent": "center",
                 "marginBottom": 25.28909952606635,
-                "width": 107.6923076923077,
+                "width": 88.51184834123222,
               }
             }
           >
