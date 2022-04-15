@@ -690,7 +690,7 @@ Array [
               }
               testID="header3-test-id"
             >
-              ThankYouPage.savedFuel
+              ThankYouPage.savedFuelCount
             </Text>
           </View>
         </View>
@@ -1637,7 +1637,7 @@ Array [
               }
               testID="header3-test-id"
             >
-              ThankYouPage.savedFuel
+              ThankYouPage.savedFuelCount
             </Text>
           </View>
         </View>
@@ -2584,7 +2584,7 @@ Array [
               }
               testID="header3-test-id"
             >
-              ThankYouPage.savedFuel
+              ThankYouPage.savedFuelCount
             </Text>
           </View>
         </View>
