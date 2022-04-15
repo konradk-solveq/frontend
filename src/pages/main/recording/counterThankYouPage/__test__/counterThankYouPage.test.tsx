@@ -5,24 +5,13 @@ import asyncEvent from '@jestUtils/asyncEvent';
 import {initAppSize} from '@helpers/layoutFoo';
 
 import CounterThankYouPage from '@pages/main/recording/counterThankYouPage/counterThankYouPage';
-import {fireEvent} from '@testing-library/react-native';
-import {RegularStackRoute} from '@navigation/route';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
 import {mockedRouteData} from '@pages/main/recording/counterThankYouPage/__test__/mocks/mockedRouteData';
-
-const submitNavigationData = {
-    name: RegularStackRoute.EDIT_DETAILS_SCREEN,
-    params: {redirectTo: RegularStackRoute.KROSS_WORLD_SCREEN},
-};
-
-const cancelNavigationData = RegularStackRoute.HOME_SCREEN;
 
 const TEST_TIME = 1800000; // 30 min
 const TEST_PAUSE = 300000; // 5 min
 const TEST_DISTANCE = '10,00';
 const TEST_NAME = 'Test';
-const TEST_PARSED_TIME = '0:25';
-const TEST_PARSED_PAUSE = '0:05';
 
 const mockedNavigate = jest.fn();
 const mockedCanGoBack = jest.fn();
@@ -95,13 +84,7 @@ const initStore = {
     },
 };
 
-const COUNTER_DISTANCE_ID = 'counter-distance';
-const COUNTER_TIME_ID = 'counter-time';
-const COUNTER_PAUSE_ID = 'counter-pause';
-const SUBMIT_BTN_ID = 'counter-submit-btn';
-const CANCEL_BTN_ID = 'counter-cancel-btn';
-
-describe('Profile Screen', () => {
+describe('CounterThankYouPage Screen', () => {
     beforeAll(() => {
         initAppSize();
     });
@@ -124,59 +107,6 @@ describe('Profile Screen', () => {
             );
 
             expect(component).toMatchSnapshot();
-        });
-
-        it('Should render passed route data', async () => {
-            const component = await asyncEvent(
-                renderComponent(<CounterThankYouPage />, undefined, initStore),
-            );
-
-            // getting the values by text doesn't work, but they are rendered and present in the snapshot
-            const time = component.getByTestId(COUNTER_TIME_ID);
-            const pause = component.getByTestId(COUNTER_PAUSE_ID);
-            const distance = component.getByTestId(COUNTER_DISTANCE_ID);
-
-            expect(time.children[0]).toBe(TEST_PARSED_TIME);
-            expect(pause.children[0]).toBe(TEST_PARSED_PAUSE);
-            expect(distance.children[0]).toBe(TEST_DISTANCE);
-
-            expect(component).toMatchSnapshot();
-        });
-
-        it('Should navigate after pressing the submit button', async () => {
-            const component = await asyncEvent(
-                renderComponent(<CounterThankYouPage />, undefined, initStore),
-            );
-
-            expect(component).toMatchSnapshot();
-
-            const submitButtonComponent = component.queryByTestId(
-                SUBMIT_BTN_ID,
-            );
-            expect(submitButtonComponent).not.toBeNull();
-
-            if (submitButtonComponent) {
-                await asyncEvent(fireEvent.press(submitButtonComponent));
-                expect(mockedNavigate).toBeCalledWith(submitNavigationData);
-            }
-        });
-
-        it('Should navigate after pressing the cancel buttons', async () => {
-            const component = await asyncEvent(
-                renderComponent(<CounterThankYouPage />, undefined, initStore),
-            );
-
-            expect(component).toMatchSnapshot();
-
-            const cancelButtonComponent = component.queryByTestId(
-                CANCEL_BTN_ID,
-            );
-            expect(cancelButtonComponent).not.toBeNull();
-
-            if (cancelButtonComponent) {
-                await asyncEvent(fireEvent.press(cancelButtonComponent));
-                expect(mockedNavigate).toBeCalledWith(cancelNavigationData);
-            }
         });
 
         afterEach(() => {

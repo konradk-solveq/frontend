@@ -817,6 +817,15 @@
         "pastDate": "termin minął"
     },
     "ThankYouPage": {
+        "goodJobTitle": "Dobra robota",
+        "thankYouSlogan": "Wybierając rower dbasz o środowisko i swój portfel",
+        "saveRoute": "Zapisz",
+        "publishRoute": "Opublikuj",
+        "savedResource": "zaoszczędzonych gramów CO2",
+        "savedFuelCount": "Zaoszczędziłeś {{qouta}} litrów paliwa",
+        "savedFuelCount_0": "Zaoszczędziłeś {{qouta}} litr paliwa",
+        "savedFuelCount_1": "Zaoszczędziłeś {{qouta}} litry paliwa",
+        "savedFuelCount_2": "Zaoszczędziłeś {{qouta}} litrów paliwa",
         "defaultName": "Rowerzysto",
         "titleSuffix": ", brawo!",
         "publishBtn": "Upublicznij",
@@ -825,7 +834,7 @@
         "distanceSuffix": "km",
         "tripTime": "Czas jazdy",
         "tripTimeSuffix": "h",
-        "pausePrefix": "czas przerw",
+        "pauseTime": "Czas przerw",
         "pauseSuffix": "h"
     },
     "PublishPoorConnectionPage": {
