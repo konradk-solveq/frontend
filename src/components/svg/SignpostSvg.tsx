@@ -1,10 +1,7 @@
 import React from 'react';
 import Svg, {Path, G} from 'react-native-svg';
 
-import {getFHorizontalPx} from '@theme/utils/appLayoutDimensions';
-import {screenHeight, SMALL_SCREEN_HEIGHT} from '@theme/commonStyle';
-
-const VIEW_BOX = screenHeight <= SMALL_SCREEN_HEIGHT ? 146 : 136;
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
 interface IProps {
     imageSize?: number;
@@ -13,15 +10,15 @@ interface IProps {
 
 const SignpostSvg: React.FC<IProps> = ({
     imageSize = 136,
-    viewBox = VIEW_BOX,
+    viewBox = 136,
 }: IProps) => {
-    const size = getFHorizontalPx(imageSize);
-    const box = getFHorizontalPx(viewBox);
+    const size = getFVerticalPx(imageSize);
+
     return (
         <Svg
             width={size}
             height={size}
-            viewBox={`0 0 ${box} ${box}`}
+            viewBox={`0 0 ${viewBox} ${viewBox}`}
             fill="none">
             <G>
                 <Path

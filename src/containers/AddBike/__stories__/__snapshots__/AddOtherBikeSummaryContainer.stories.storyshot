@@ -34,11 +34,11 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Customized 1
     >
       <RNSVGSvgView
         align="xMidYMid"
-        bbHeight={288.46153846153845}
-        bbWidth={288.46153846153845}
+        bbHeight={237.08530805687204}
+        bbWidth={237.08530805687204}
         fill="none"
         focusable={false}
-        height={288.46153846153845}
+        height={237.08530805687204}
         meetOrSlice={0}
         minX={0}
         minY={0}
@@ -50,14 +50,14 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Customized 1
             },
             Object {
               "flex": 0,
-              "height": 288,
-              "width": 288,
+              "height": 237,
+              "width": 237,
             },
           ]
         }
-        vbHeight={288.46153846153845}
-        vbWidth={288.46153846153845}
-        width={288.46153846153845}
+        vbHeight={150}
+        vbWidth={150}
+        width={237.08530805687204}
       >
         <RNSVGGroup
           fill={null}
@@ -69,7 +69,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Customized 1
         >
           <RNSVGCircle
             cx="75"
-            cy="76"
+            cy="75"
             fill={4294638330}
             propList={
               Array [
@@ -188,14 +188,14 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Customized 1
           />
           <RNSVGRect
             fill={4284306272}
-            height={9.736538461538462}
+            height={8.002419431279622}
             propList={
               Array [
                 "fill",
               ]
             }
             rx="2.531"
-            width={17.848076923076924}
+            width={14.669258293838864}
             x="107.344"
             y="35.156"
           />
@@ -371,11 +371,11 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Default 1`] 
     >
       <RNSVGSvgView
         align="xMidYMid"
-        bbHeight={288.46153846153845}
-        bbWidth={288.46153846153845}
+        bbHeight={237.08530805687204}
+        bbWidth={237.08530805687204}
         fill="none"
         focusable={false}
-        height={288.46153846153845}
+        height={237.08530805687204}
         meetOrSlice={0}
         minX={0}
         minY={0}
@@ -387,14 +387,14 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Default 1`] 
             },
             Object {
               "flex": 0,
-              "height": 288,
-              "width": 288,
+              "height": 237,
+              "width": 237,
             },
           ]
         }
-        vbHeight={288.46153846153845}
-        vbWidth={288.46153846153845}
-        width={288.46153846153845}
+        vbHeight={150}
+        vbWidth={150}
+        width={237.08530805687204}
       >
         <RNSVGGroup
           fill={null}
@@ -406,7 +406,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Default 1`] 
         >
           <RNSVGCircle
             cx="75"
-            cy="76"
+            cy="75"
             fill={4294638330}
             propList={
               Array [
@@ -525,14 +525,14 @@ exports[`Storyshots containers/AddBike/AddOtherBikeSummaryContainer Default 1`] 
           />
           <RNSVGRect
             fill={4284306272}
-            height={9.736538461538462}
+            height={8.002419431279622}
             propList={
               Array [
                 "fill",
               ]
             }
             rx="2.531"
-            width={17.848076923076924}
+            width={14.669258293838864}
             x="107.344"
             y="35.156"
           />

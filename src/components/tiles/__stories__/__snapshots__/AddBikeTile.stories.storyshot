@@ -44,11 +44,11 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
     >
       <RNSVGSvgView
         align="xMidYMid"
-        bbHeight={261.53846153846155}
-        bbWidth={261.53846153846155}
+        bbHeight={214.957345971564}
+        bbWidth={214.957345971564}
         fill="none"
         focusable={false}
-        height={261.53846153846155}
+        height={214.957345971564}
         meetOrSlice={0}
         minX={0}
         minY={0}
@@ -60,14 +60,14 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
             },
             Object {
               "flex": 0,
-              "height": 261,
-              "width": 261,
+              "height": 214,
+              "width": 214,
             },
           ]
         }
-        vbHeight={261.53846153846155}
-        vbWidth={261.53846153846155}
-        width={261.53846153846155}
+        vbHeight={136}
+        vbWidth={136}
+        width={214.957345971564}
       >
         <RNSVGGroup
           fill={null}
