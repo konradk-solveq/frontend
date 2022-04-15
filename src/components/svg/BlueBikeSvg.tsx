@@ -1,11 +1,7 @@
 import React from 'react';
-import {Dimensions} from 'react-native';
 import Svg, {Path, Rect, Circle} from 'react-native-svg';
 
-import {getFHorizontalPx} from '@theme/utils/appLayoutDimensions';
-
-const {width} = Dimensions.get('screen');
-const baseViewBox = width <= 375 ? 170 : 150;
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
 interface IProps {
     imageSize?: number;
@@ -14,17 +10,16 @@ interface IProps {
 
 const BikeSvg: React.FC<IProps> = ({
     imageSize = 150,
-    viewBox = baseViewBox,
+    viewBox = 150,
 }: IProps) => {
-    const size = getFHorizontalPx(imageSize);
-    const box = getFHorizontalPx(viewBox);
+    const size = getFVerticalPx(imageSize);
     return (
         <Svg
             width={size}
             height={size}
-            viewBox={`0 0 ${box} ${box}`}
+            viewBox={`0 0 ${viewBox} ${viewBox}`}
             fill="none">
-            <Circle cx="75" cy="76" r="75" fill="#FAFAFA" />
+            <Circle cx="75" cy="75" r="75" fill="#FAFAFA" />
             <Path
                 d="M30.871 93.458a6.968 6.968 0 1 0 0-13.935 6.968 6.968 0 0 0 0 13.935Z"
                 fill="#DAD8DB"
@@ -76,8 +71,8 @@ const BikeSvg: React.FC<IProps> = ({
             <Rect
                 x="107.344"
                 y="35.156"
-                width={getFHorizontalPx(9.281)}
-                height={getFHorizontalPx(5.063)}
+                width={getFVerticalPx(9.281)}
+                height={getFVerticalPx(5.063)}
                 rx="2.531"
                 fill="#5D5360"
             />

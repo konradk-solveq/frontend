@@ -809,29 +809,37 @@ Array [
                       }
                     }
                   >
-                    <Text
-                      adjustsFontSizeToFit={false}
+                    <View
                       style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                            "lineHeight": 16,
-                            "textAlign": "left",
-                            "textDecorationLine": "underline",
-                          },
-                          Object {
-                            "marginVertical": 25.28909952606635,
-                            "textDecorationLine": "none",
-                          },
-                        ]
+                        Object {
+                          "height": 75.86729857819905,
+                        }
                       }
-                      testID="text-link-test-id"
                     >
-                      MainProfile.accountEdit
-                    </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "lineHeight": 16,
+                              "textAlign": "left",
+                              "textDecorationLine": "underline",
+                            },
+                            Object {
+                              "marginVertical": 25.28909952606635,
+                              "textDecorationLine": "none",
+                            },
+                          ]
+                        }
+                        testID="text-link-test-id"
+                      >
+                        MainProfile.accountEdit
+                      </Text>
+                    </View>
                     <RNSVGSvgView
                       align="xMidYMid"
                       bbHeight={26.923076923076923}
@@ -907,29 +915,37 @@ Array [
                       }
                     }
                   >
-                    <Text
-                      adjustsFontSizeToFit={false}
+                    <View
                       style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                            "lineHeight": 16,
-                            "textAlign": "left",
-                            "textDecorationLine": "underline",
-                          },
-                          Object {
-                            "marginVertical": 25.28909952606635,
-                            "textDecorationLine": "none",
-                          },
-                        ]
+                        Object {
+                          "height": 75.86729857819905,
+                        }
                       }
-                      testID="text-link-test-id"
                     >
-                      MainProfile.languages
-                    </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "lineHeight": 16,
+                              "textAlign": "left",
+                              "textDecorationLine": "underline",
+                            },
+                            Object {
+                              "marginVertical": 25.28909952606635,
+                              "textDecorationLine": "none",
+                            },
+                          ]
+                        }
+                        testID="text-link-test-id"
+                      >
+                        MainProfile.languages
+                      </Text>
+                    </View>
                     <RNSVGSvgView
                       align="xMidYMid"
                       bbHeight={26.923076923076923}
@@ -1005,29 +1021,37 @@ Array [
                       }
                     }
                   >
-                    <Text
-                      adjustsFontSizeToFit={false}
+                    <View
                       style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                            "lineHeight": 16,
-                            "textAlign": "left",
-                            "textDecorationLine": "underline",
-                          },
-                          Object {
-                            "marginVertical": 25.28909952606635,
-                            "textDecorationLine": "none",
-                          },
-                        ]
+                        Object {
+                          "height": 75.86729857819905,
+                        }
                       }
-                      testID="text-link-test-id"
                     >
-                      MainProfile.app
-                    </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "lineHeight": 16,
+                              "textAlign": "left",
+                              "textDecorationLine": "underline",
+                            },
+                            Object {
+                              "marginVertical": 25.28909952606635,
+                              "textDecorationLine": "none",
+                            },
+                          ]
+                        }
+                        testID="text-link-test-id"
+                      >
+                        MainProfile.app
+                      </Text>
+                    </View>
                     <RNSVGSvgView
                       align="xMidYMid"
                       bbHeight={26.923076923076923}
@@ -1103,29 +1127,37 @@ Array [
                       }
                     }
                   >
-                    <Text
-                      adjustsFontSizeToFit={false}
+                    <View
                       style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                            "lineHeight": 16,
-                            "textAlign": "left",
-                            "textDecorationLine": "underline",
-                          },
-                          Object {
-                            "marginVertical": 25.28909952606635,
-                            "textDecorationLine": "none",
-                          },
-                        ]
+                        Object {
+                          "height": 75.86729857819905,
+                        }
                       }
-                      testID="text-link-test-id"
                     >
-                      MainProfile.regulations
-                    </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "lineHeight": 16,
+                              "textAlign": "left",
+                              "textDecorationLine": "underline",
+                            },
+                            Object {
+                              "marginVertical": 25.28909952606635,
+                              "textDecorationLine": "none",
+                            },
+                          ]
+                        }
+                        testID="text-link-test-id"
+                      >
+                        MainProfile.regulations
+                      </Text>
+                    </View>
                     <RNSVGSvgView
                       align="xMidYMid"
                       bbHeight={26.923076923076923}
@@ -1201,29 +1233,37 @@ Array [
                       }
                     }
                   >
-                    <Text
-                      adjustsFontSizeToFit={false}
+                    <View
                       style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                            "lineHeight": 16,
-                            "textAlign": "left",
-                            "textDecorationLine": "underline",
-                          },
-                          Object {
-                            "marginVertical": 25.28909952606635,
-                            "textDecorationLine": "none",
-                          },
-                        ]
+                        Object {
+                          "height": 75.86729857819905,
+                        }
                       }
-                      testID="text-link-test-id"
                     >
-                      MainProfile.privacyPolicy
-                    </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "lineHeight": 16,
+                              "textAlign": "left",
+                              "textDecorationLine": "underline",
+                            },
+                            Object {
+                              "marginVertical": 25.28909952606635,
+                              "textDecorationLine": "none",
+                            },
+                          ]
+                        }
+                        testID="text-link-test-id"
+                      >
+                        MainProfile.privacyPolicy
+                      </Text>
+                    </View>
                     <RNSVGSvgView
                       align="xMidYMid"
                       bbHeight={26.923076923076923}
@@ -1299,29 +1339,37 @@ Array [
                       }
                     }
                   >
-                    <Text
-                      adjustsFontSizeToFit={false}
+                    <View
                       style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                            "lineHeight": 16,
-                            "textAlign": "left",
-                            "textDecorationLine": "underline",
-                          },
-                          Object {
-                            "marginVertical": 25.28909952606635,
-                            "textDecorationLine": "none",
-                          },
-                        ]
+                        Object {
+                          "height": 75.86729857819905,
+                        }
                       }
-                      testID="text-link-test-id"
                     >
-                      MainProfile.help
-                    </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "lineHeight": 16,
+                              "textAlign": "left",
+                              "textDecorationLine": "underline",
+                            },
+                            Object {
+                              "marginVertical": 25.28909952606635,
+                              "textDecorationLine": "none",
+                            },
+                          ]
+                        }
+                        testID="text-link-test-id"
+                      >
+                        MainProfile.help
+                      </Text>
+                    </View>
                     <RNSVGSvgView
                       align="xMidYMid"
                       bbHeight={26.923076923076923}
@@ -1397,29 +1445,37 @@ Array [
                       }
                     }
                   >
-                    <Text
-                      adjustsFontSizeToFit={false}
+                    <View
                       style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 16,
-                            "fontWeight": "600",
-                            "lineHeight": 16,
-                            "textAlign": "left",
-                            "textDecorationLine": "underline",
-                          },
-                          Object {
-                            "marginVertical": 25.28909952606635,
-                            "textDecorationLine": "none",
-                          },
-                        ]
+                        Object {
+                          "height": 75.86729857819905,
+                        }
                       }
-                      testID="text-link-test-id"
                     >
-                      MainProfile.contact
-                    </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "lineHeight": 16,
+                              "textAlign": "left",
+                              "textDecorationLine": "underline",
+                            },
+                            Object {
+                              "marginVertical": 25.28909952606635,
+                              "textDecorationLine": "none",
+                            },
+                          ]
+                        }
+                        testID="text-link-test-id"
+                      >
+                        MainProfile.contact
+                      </Text>
+                    </View>
                     <RNSVGSvgView
                       align="xMidYMid"
                       bbHeight={26.923076923076923}

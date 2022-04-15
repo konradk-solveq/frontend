@@ -83,8 +83,8 @@ exports[`Storyshots components/alerts/alert Customized 1`] = `
               },
             ]
           }
-          vbHeight={46.15384615384615}
-          vbWidth={46.15384615384615}
+          vbHeight={24}
+          vbWidth={24}
           width={84.61538461538461}
         >
           <RNSVGGroup
@@ -501,8 +501,8 @@ exports[`Storyshots components/alerts/alert Default 1`] = `
               },
             ]
           }
-          vbHeight={46.15384615384615}
-          vbWidth={46.15384615384615}
+          vbHeight={24}
+          vbWidth={24}
           width={84.61538461538461}
         >
           <RNSVGGroup
@@ -919,8 +919,8 @@ exports[`Storyshots components/alerts/alert With content 1`] = `
               },
             ]
           }
-          vbHeight={46.15384615384615}
-          vbWidth={46.15384615384615}
+          vbHeight={24}
+          vbWidth={24}
           width={84.61538461538461}
         >
           <RNSVGGroup
