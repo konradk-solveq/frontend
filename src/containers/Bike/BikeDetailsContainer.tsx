@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     headerButton: {
-        paddingTop: getFVerticalPx(32),
+        paddingTop: getFVerticalPx(26),
         paddingRight: getFHorizontalPx(9),
         paddingBottom: getFVerticalPx(13),
         width: '100%',
