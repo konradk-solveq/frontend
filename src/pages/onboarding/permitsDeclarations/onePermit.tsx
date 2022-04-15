@@ -23,7 +23,11 @@ const OnePermit: React.FC<Props> = (props: Props) => {
     return (
         <View style={styles.container}>
             <View style={styles.checkbox}>
-                <Checkbox checked={props.checked} onPress={props.getCheck} />
+                <Checkbox
+                    checked={props.checked}
+                    onPress={props.getCheck}
+                    hitSlop={getFHorizontalPx(40)}
+                />
             </View>
 
             <View style={styles.hyper}>

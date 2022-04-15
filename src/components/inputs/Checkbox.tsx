@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {View, Pressable, ViewStyle, StyleSheet} from 'react-native';
+import {View, Pressable, ViewStyle, StyleSheet, Insets} from 'react-native';
 import {getFVerticalPx} from '@helpers/appLayoutDimensions';
 import colors from '@theme/colors';
 import Svg, {Path} from 'react-native-svg';
@@ -11,6 +11,7 @@ interface IProps {
     backgroundColor?: string;
     iconColor?: string;
     style?: ViewStyle;
+    hitSlop?: number | Insets | null;
 }
 
 interface IIconProps {
@@ -41,6 +42,7 @@ const Checkbox = ({
     size = 18,
     onPress,
     style,
+    hitSlop,
 }: IProps) => {
     const dimensionStyles = useMemo(
         () => ({
@@ -52,7 +54,7 @@ const Checkbox = ({
         [size],
     );
     return (
-        <Pressable onPress={onPress}>
+        <Pressable onPress={onPress} hitSlop={hitSlop}>
             <View
                 style={[
                     styles.container,

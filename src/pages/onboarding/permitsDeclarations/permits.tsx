@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     },
     btnContainer: {
         alignItems: 'center',
-        paddingVertical: getFVerticalPx(8),
+        paddingBottom: getFVerticalPx(24),
+        paddingTop: getFVerticalPx(16),
     },
 });

@@ -28,6 +28,7 @@ storiesOf('components/input/Checkbox', module)
                 backgroundColor={color('Background color', colors.black)}
                 iconColor={color('Icon color', colors.white)}
                 style={object<ViewStyle>('Style', {})}
+                hitSlop={number('Hit slop', 0)}
             />
         </>
     ));
