@@ -1,5 +1,6 @@
-import React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import React, {useMemo} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
@@ -16,9 +17,6 @@ import {
     AddOtherBikeSummaryContainer,
 } from '@containers/AddBike';
 import {HorizontalSpacer} from '@components/divider';
-
-const {height: screenHeight} = Dimensions.get('screen');
-const modalHeight = screenHeight <= 670 ? 598 : 528;
 
 interface IProps {
     bikeData: {
@@ -42,17 +40,22 @@ const AddBikeSummaryModal: React.FC<IProps> = ({
     onClose,
     header = '',
     showModal = false,
-    height = modalHeight,
+    height = 528,
     otherBike = false,
     testID = 'add-bike-summary-modal',
 }: IProps) => {
     const {t} = useMergedTranslation('AddBikeSummary');
+    const {bottom} = useSafeAreaInsets();
+    const modalHeight = useMemo(() => getFVerticalPx(height) - bottom, [
+        height,
+        bottom,
+    ]);
 
     return (
         <>
             <BottomModal
                 show={showModal}
-                openModalHeight={getFVerticalPx(height)}
+                openModalHeight={modalHeight}
                 header={
                     <ModalHeader
                         header={header || t('header')}
@@ -97,7 +100,7 @@ const ModalHeader: React.FC<IModalProps> = React.memo(
                         <IconButton
                             icon={MykrossIconFont.MYKROSS_ICON_EXIT}
                             iconColor={colors.black}
-                            iconSize={14}
+                            iconSize={24}
                             onPress={onPress}
                             style={styles.modalHeaderButton}
                         />

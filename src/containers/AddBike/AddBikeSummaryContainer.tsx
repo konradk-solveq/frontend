@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     image: {
         width: getFHorizontalPx(325),
-        height: getFHorizontalPx(250),
+        height: getFVerticalPx(250),
     },
     summary: {
         marginBottom: getFVerticalPx(36),

@@ -1,10 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, GestureResponderEvent} from 'react-native';
 
-import {
-    getFHorizontalPx,
-    getFVerticalPx,
-} from '@theme/utils/appLayoutDimensions';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {PrimaryButton} from '@components/buttons';
@@ -63,10 +60,6 @@ const styles = StyleSheet.create({
         marginBottom: getFVerticalPx(24),
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    image: {
-        width: getFHorizontalPx(325),
-        height: getFHorizontalPx(250),
     },
     summary: {
         marginBottom: getFVerticalPx(36),

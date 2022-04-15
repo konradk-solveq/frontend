@@ -1,5 +1,4 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {Dimensions} from 'react-native';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {bikeByFrameNumberSelector} from '@storage/selectors';
@@ -17,8 +16,7 @@ import {AddOtherBikeContainer} from '@containers/AddBike';
 import {AddBikeSummaryModal} from '@pages/main/addBike/components';
 import {OtherBikeDataT} from '@containers/AddBike/type/bike';
 
-const {height} = Dimensions.get('screen');
-const modalHeight = height <= 670 ? 480 : 443;
+const modalHeight = 443;
 
 const AddOtherBikeScreen: React.FC = () => {
     const {t} = useMergedTranslation('AddOtherBikeScreen');
