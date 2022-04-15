@@ -1,3 +1,4 @@
+import React, {useMemo} from 'react';
 import {PrimaryButton, SecondaryButton} from '@src/components/buttons';
 import LeafSvg from '@src/components/svg/LeafSvg';
 import MoneySvg from '@src/components/svg/MoneySvg';
@@ -12,7 +13,6 @@ import colors from '@src/theme/colors';
 import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
 import {CounterParamsLsitT} from '@src/type/rootStack';
 import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
-import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
 import SavingPanel from './components/SavingPanel';
 import StatisticElement from './components/StatisticElement';
@@ -36,6 +36,16 @@ const ThankYouPageContainer: React.FC<IProps> = ({
     onPublishAction,
 }) => {
     const {t} = useMergedTranslation('ThankYouPage');
+    const quantityCountText = useMemo(
+        () =>
+            savingsValues.fuel !== undefined
+                ? `${t('savedFuelCount', {
+                    count: parseFloat(savingsValues.fuel),
+                    qouta: savingsValues.fuel,
+                  })}`
+                : '',
+        [t, savingsValues.fuel],
+    );
 
     return (
         <View style={styles.container}>
@@ -81,7 +91,7 @@ const ThankYouPageContainer: React.FC<IProps> = ({
                 />
                 <SavingPanel
                     style={styles.savingPanel}
-                    text={t('savedFuel', {quota: savingsValues.fuel})}
+                    text={quantityCountText}
                     background={colors.lightBlue}
                     icon={<MoneySvg />}
                 />
