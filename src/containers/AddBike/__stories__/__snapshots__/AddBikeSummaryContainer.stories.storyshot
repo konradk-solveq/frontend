@@ -39,7 +39,7 @@ exports[`Storyshots containers/AddBike/AddBikeSummaryContainer Customized 1`] = 
         }
         style={
           Object {
-            "height": 480.7692307692308,
+            "height": 395.14218009478674,
             "width": 625,
           }
         }
@@ -219,7 +219,7 @@ exports[`Storyshots containers/AddBike/AddBikeSummaryContainer Default 1`] = `
         }
         style={
           Object {
-            "height": 480.7692307692308,
+            "height": 395.14218009478674,
             "width": 625,
           }
         }
