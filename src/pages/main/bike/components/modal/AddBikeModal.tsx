@@ -13,8 +13,8 @@ import {AddBikeTile} from '@components/tiles';
 import {SignpostSvg} from '@components/svg';
 import {screenHeight, SMALL_SCREEN_HEIGHT} from '@theme/commonStyle';
 
-const modalHeight = screenHeight <= SMALL_SCREEN_HEIGHT ? 568 : 458;
-const imageContinaerHeight = screenHeight <= SMALL_SCREEN_HEIGHT ? 186 : 136;
+const modalHeight = screenHeight <= SMALL_SCREEN_HEIGHT ? 498 : 458;
+const imageContinaerHeight = 136;
 
 interface IProps {
     onAddBike: () => void;

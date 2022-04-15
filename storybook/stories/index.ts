@@ -15,7 +15,8 @@ import '@components/tiles/__stories__';
 
 import '@containers/AddBike/__stories__';
 import '@containers/Bike/__stories__';
-import '@containers/World/__stories__';
-import '@containers/World/components/__stories__';
+import '@containers/Home/__stories__';
 import '@containers/Onboarding/__stories__';
 import '@containers/Splash/__stories__';
+import '@containers/World/__stories__';
+import '@containers/World/components/__stories__';

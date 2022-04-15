@@ -16,19 +16,13 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#FFFFFF",
-          "borderRadius": 18.966824644549764,
-          "height": 595.8744075829384,
-          "marginBottom": 25.28909952606635,
-          "paddingVertical": 37.93364928909953,
-        },
-        Object {
-          "height": 377,
-        },
-      ]
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": 18.966824644549764,
+        "marginBottom": 25.28909952606635,
+        "paddingVertical": 37.93364928909953,
+      }
     }
     testID="add-bike-tile"
   >
@@ -36,10 +30,11 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
       style={
         Array [
           Object {
-            "height": 201.92307692307693,
+            "alignItems": "center",
+            "height": 165.95971563981044,
             "justifyContent": "center",
             "marginBottom": 12.644549763033176,
-            "width": 201.92307692307693,
+            "width": 165.95971563981044,
           },
           Object {
             "marginBottom": 41.09478672985782,
@@ -49,11 +44,11 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
     >
       <RNSVGSvgView
         align="xMidYMid"
-        bbHeight={261.53846153846155}
-        bbWidth={261.53846153846155}
+        bbHeight={214.957345971564}
+        bbWidth={214.957345971564}
         fill="none"
         focusable={false}
-        height={261.53846153846155}
+        height={214.957345971564}
         meetOrSlice={0}
         minX={0}
         minY={0}
@@ -65,14 +60,14 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
             },
             Object {
               "flex": 0,
-              "height": 261,
-              "width": 261,
+              "height": 214,
+              "width": 214,
             },
           ]
         }
-        vbHeight={261.53846153846155}
-        vbWidth={261.53846153846155}
-        width={261.53846153846155}
+        vbHeight={136}
+        vbWidth={136}
+        width={214.957345971564}
       >
         <RNSVGGroup
           fill={null}
@@ -233,9 +228,6 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
     <View
       style={
         Array [
-          Object {
-            "paddingBottom": 37.93364928909953,
-          },
           Object {
             "paddingHorizontal": 61.53846153846154,
           },
@@ -427,19 +419,13 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#FFFFFF",
-          "borderRadius": 18.966824644549764,
-          "height": 595.8744075829384,
-          "marginBottom": 25.28909952606635,
-          "paddingVertical": 37.93364928909953,
-        },
-        Object {
-          "height": 595.8744075829384,
-        },
-      ]
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFFFFF",
+        "borderRadius": 18.966824644549764,
+        "marginBottom": 25.28909952606635,
+        "paddingVertical": 37.93364928909953,
+      }
     }
     testID="add-bike-tile"
   >
@@ -447,10 +433,11 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
       style={
         Array [
           Object {
-            "height": 201.92307692307693,
+            "alignItems": "center",
+            "height": 165.95971563981044,
             "justifyContent": "center",
             "marginBottom": 12.644549763033176,
-            "width": 201.92307692307693,
+            "width": 165.95971563981044,
           },
           undefined,
         ]
@@ -458,11 +445,11 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
     >
       <RNSVGSvgView
         align="xMidYMid"
-        bbHeight={201.92307692307693}
-        bbWidth={201.92307692307693}
+        bbHeight={165.95971563981044}
+        bbWidth={165.95971563981044}
         fill="none"
         focusable={false}
-        height={201.92307692307693}
+        height={165.95971563981044}
         meetOrSlice={0}
         minX={0}
         minY={0}
@@ -474,14 +461,14 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
             },
             Object {
               "flex": 0,
-              "height": 201,
-              "width": 201,
+              "height": 165,
+              "width": 165,
             },
           ]
         }
-        vbHeight={984.6153846153846}
-        vbWidth={984.6153846153846}
-        width={201.92307692307693}
+        vbHeight={512}
+        vbWidth={512}
+        width={165.95971563981044}
       >
         <RNSVGGroup
           fill={null}
@@ -601,14 +588,14 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
           />
           <RNSVGRect
             fill={4284306272}
-            height={34.61538461538461}
+            height={28.450236966824647}
             propList={
               Array [
                 "fill",
               ]
             }
             rx="9"
-            width={63.46153846153846}
+            width={52.15876777251185}
             x="351"
             y="119"
           />
@@ -671,9 +658,6 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
     <View
       style={
         Array [
-          Object {
-            "paddingBottom": 37.93364928909953,
-          },
           Object {
             "paddingHorizontal": 61.53846153846154,
           },

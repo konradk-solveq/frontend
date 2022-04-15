@@ -14,12 +14,11 @@ const WarningSvg: React.FC<IProps> = ({
     viewBox = 24,
 }: IProps) => {
     const size = getFHorizontalPx(imageSize);
-    const box = getFHorizontalPx(viewBox);
     return (
         <Svg
             width={size}
             height={size}
-            viewBox={`0 0 ${box} ${box}`}
+            viewBox={`0 0 ${viewBox} ${viewBox}`}
             fill="none">
             <Circle cx="12" cy="12" r="9" fill={colors.lightRed} />
             <Path
