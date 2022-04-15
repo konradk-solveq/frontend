@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
     serviceImageContainer: {
         borderRadius: 50,
         backgroundColor: 'black',
-        width: getFHorizontalPx(56),
-        height: getFHorizontalPx(56),
+        width: getFVerticalPx(56),
+        height: getFVerticalPx(56),
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: getFVerticalPx(16),

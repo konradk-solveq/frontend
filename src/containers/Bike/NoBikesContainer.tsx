@@ -25,6 +25,7 @@ const NoBikesContainer: React.FC<IProps> = ({
                 <AddBikeTile
                     onPressPrimary={onPressPrimary}
                     onPressSecondary={onPressSecondary}
+                    style={styles.tile}
                 />
             </View>
             <ServicePointsTile onPressTile={onPressTile} />
@@ -46,6 +47,9 @@ const styles = StyleSheet.create({
     tileContainer: {
         width: '100%',
         justifyContent: 'flex-start',
+    },
+    tile: {
+        height: getFVerticalPx(377),
     },
 });
 
