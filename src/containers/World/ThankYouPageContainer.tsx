@@ -13,7 +13,7 @@ import colors from '@src/theme/colors';
 import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
 import {CounterParamsLsitT} from '@src/type/rootStack';
 import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import SavingPanel from './components/SavingPanel';
 import StatisticElement from './components/StatisticElement';
 
@@ -39,9 +39,8 @@ const ThankYouPageContainer: React.FC<IProps> = ({
     const quantityCountText = useMemo(
         () =>
             savingsValues.fuel !== undefined
-                ? `${t('savedFuelCount', {
+                ? `${savingsValues.fuel} ${t('savedFuelCount', {
                     count: parseFloat(savingsValues.fuel),
-                    qouta: savingsValues.fuel,
                   })}`
                 : '',
         [t, savingsValues.fuel],
@@ -80,9 +79,7 @@ const ThankYouPageContainer: React.FC<IProps> = ({
             <View style={styles.sloganContainer}>
                 <Header2>{t('thankYouSlogan')}</Header2>
             </View>
-            <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}>
+            <View style={styles.calculationsContainer}>
                 <SavingPanel
                     style={styles.savingPanel}
                     text={`${savingsValues.resource} ${t('savedResource')}`}
@@ -95,7 +92,7 @@ const ThankYouPageContainer: React.FC<IProps> = ({
                     background={colors.lightBlue}
                     icon={<MoneySvg />}
                 />
-            </ScrollView>
+            </View>
             <View style={styles.buttonsContainer}>
                 <SecondaryButton
                     style={styles.button}
@@ -132,6 +129,9 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 8,
         marginVertical: getFVerticalPx(16),
+    },
+    calculationsContainer: {
+        width: '100%',
     },
     statsContainer: {
         width: '100%',
