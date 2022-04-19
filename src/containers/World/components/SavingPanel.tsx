@@ -19,12 +19,15 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({
 }) => {
     const styles = StyleSheet.create({
         panelWrapper: {
+            display: 'flex',
+            flexDirection: 'row',
             backgroundColor: background,
-            width: getFHorizontalPx(216),
+            width: '100%',
             borderRadius: getFHorizontalPx(8),
-            height: getFHorizontalPx(136),
+            height: getFHorizontalPx(80),
             alignItems: 'flex-start',
-            padding: getFVerticalPx(16),
+            paddingVertical: getFVerticalPx(16),
+            paddingHorizontal: getFHorizontalPx(16),
             marginRight: getFHorizontalPx(16),
         },
         iconWrapper: {
@@ -34,9 +37,12 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({
             backgroundColor: colors.white,
             alignItems: 'center',
             justifyContent: 'center',
+            marginRight: getFHorizontalPx(16),
         },
         text: {
-            marginTop: getFVerticalPx(8),
+            flexWrap: 'wrap',
+            flexDirection: 'row',
+            width: '70%',
         },
     });
 
