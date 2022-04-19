@@ -24,7 +24,9 @@
     "prod:android-cmd": "copy .env.production .env && npx react-native run-android --variant=prodDebug",
     "rnsemup": "rnsemup",
     "storybook": "start-storybook -p 7007",
-    "i18ng": "node I18n/i18nextGenerator/index"
+    "i18ng": "node I18n/i18nextGenerator/index",
+    "prepare": "husky install",
+    "postinstall": "npm run prepare"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.14.1",
@@ -123,6 +125,7 @@
     "babel-plugin-root-import": "^6.6.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "eslint": "7.14.0",
+    "husky": "^7.0.4",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.66.2",
     "react-native-semver-update": "^1.1.2",
