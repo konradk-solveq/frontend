@@ -25,8 +25,8 @@ storiesOf('components/tiles/ListTileView', module)
         <ListTileView
             tilePressOn={() => {}}
             fullDate={text('full date', '01.01.2022')}
-            imagesToDisplay={text(
-                'URL images to display',
+            imageToDisplay={text(
+                'URL image to display',
                 'https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg',
             )}
             name={text('route name', 'nazwa trasy')}
@@ -49,8 +49,8 @@ storiesOf('components/tiles/ListTileView', module)
         <ListTileView
             tilePressOn={() => {}}
             fullDate={text('full date', '01.01.2022')}
-            imagesToDisplay={text(
-                'URL images to display',
+            imageToDisplay={text(
+                'URL image to display',
                 'https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg',
             )}
             name={text('route name', 'nazwa trasy')}
@@ -73,8 +73,8 @@ storiesOf('components/tiles/ListTileView', module)
         <ListTileView
             tilePressOn={() => {}}
             fullDate={text('full date', '01.01.2022')}
-            imagesToDisplay={text(
-                'URL images to display',
+            imageToDisplay={text(
+                'URL image to display',
                 'https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg',
             )}
             name={text(
@@ -100,8 +100,8 @@ storiesOf('components/tiles/ListTileView', module)
         <ListTileView
             tilePressOn={() => {}}
             fullDate={text('full date', '01.01.2022')}
-            imagesToDisplay={text(
-                'URL images to display',
+            imageToDisplay={text(
+                'URL image to display',
                 'https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg',
             )}
             name={text(

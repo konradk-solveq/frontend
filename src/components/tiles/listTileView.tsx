@@ -17,7 +17,7 @@ import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 interface PropsI {
     tilePressOn: () => void;
     fullDate: string;
-    imagesToDisplay: string;
+    imageToDisplay?: string;
     name: string;
     distanceAndTime: string;
     distanceToStart: string;
@@ -38,7 +38,7 @@ interface PropsI {
 const ListTileView: React.FC<PropsI> = ({
     tilePressOn,
     fullDate,
-    imagesToDisplay,
+    imageToDisplay,
     name,
     distanceAndTime,
     distanceToStart,
@@ -91,10 +91,10 @@ const ListTileView: React.FC<PropsI> = ({
                 <View style={mode === 'my' ? styles.areaMy : styles.area}>
                     <View style={styles.tile}>
                         <View style={styles.imageWrapper}>
-                            {imagesToDisplay ? (
+                            {imageToDisplay ? (
                                 <Image
                                     source={{
-                                        uri: imagesToDisplay,
+                                        uri: imageToDisplay,
                                     }}
                                     style={styles.image}
                                     resizeMode="cover"

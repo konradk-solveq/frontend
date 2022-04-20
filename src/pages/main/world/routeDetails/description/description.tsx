@@ -19,7 +19,7 @@ import styles from './styles';
 
 interface IProps {
     mapData: Map | undefined;
-    images: {images: string[]; mapImg: string; fullSizeImages: string[]};
+    images: {images: string[]; fullSizeImages?: string[]};
     thumbnail?: Thumbnails;
     isPrivateView?: boolean;
     isFavView?: boolean;

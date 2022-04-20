@@ -3,7 +3,7 @@ import {Map, ReactionsType} from '@models/map.model';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {mapReactionsConfigSelector} from '@storage/selectors/app';
 import {modifyReaction} from '@storage/actions/maps';
-import {getImageToDisplay} from '@utils/transformData';
+import {getMapImageToDisplay} from '@utils/transformData';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useNavigation} from '@react-navigation/core';
 import {RegularStackRoute} from '@navigation/route';
@@ -16,7 +16,6 @@ import {getMapType} from '../utils/routes';
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
     mapData: Map;
-    images: {images: string[]; mapImg: string};
     onPressTile?: (mapID: string) => void;
     tilePressable?: boolean;
     mode: 'public' | 'my' | 'saved' | 'featured';
@@ -27,7 +26,6 @@ interface PropsI {
 const ListTile: React.FC<PropsI> = ({
     onPress,
     mapData,
-    images,
     onPressTile,
     tilePressable,
     mode,
@@ -160,11 +158,16 @@ const ListTile: React.FC<PropsI> = ({
         });
     }, [navigation, mapData.id, mapType]);
 
+    const imageUrl = useMemo(
+        () => getMapImageToDisplay(mapData.mapsImages)?.url,
+        [mapData.mapsImages],
+    );
+
     return (
         <ListTileView
             tilePressOn={onTilePressedHandler}
             fullDate={getFullDate(mapData?.createdAt)}
-            imagesToDisplay={getImageToDisplay(images)}
+            imageToDisplay={imageUrl}
             name={mapData?.name || t('noTitle')}
             distanceAndTime={handleDistanceAndTime()}
             distanceToStart={handleDistanceToStart()}

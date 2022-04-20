@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots components/pagination/PaginationDot Custom 1`] = `
+exports[`Storyshots components/pagination/Pagination Custom 1`] = `
 <View
   style={
     Array [
@@ -103,7 +103,7 @@ exports[`Storyshots components/pagination/PaginationDot Custom 1`] = `
 </View>
 `;
 
-exports[`Storyshots components/pagination/PaginationDot Default 1`] = `
+exports[`Storyshots components/pagination/Pagination Default 1`] = `
 <View
   style={
     Array [

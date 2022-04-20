@@ -647,53 +647,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 />
               </View>
             </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <Image
-                  resizeMode="cover"
-                  source={
-                    Object {
-                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/KMW8QTXTGMuxJUVOF92p_maw4Hd6Yzep/map-public_1024.png",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#ededed",
-                        "borderRadius": 16,
-                        "height": 125,
-                        "marginRight": 15,
-                        "width": 125,
-                      },
-                      Object {
-                        "borderRadius": 15.384615384615385,
-                        "height": 126.44549763033176,
-                        "width": 211.53846153846155,
-                      },
-                    ]
-                  }
-                />
-              </View>
-            </View>
           </View>
         </RCTScrollView>
       </View>
@@ -1769,53 +1722,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   source={
                     Object {
                       "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_square_480.jpg",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#ededed",
-                        "borderRadius": 16,
-                        "height": 125,
-                        "marginRight": 15,
-                        "width": 125,
-                      },
-                      Object {
-                        "borderRadius": 15.384615384615385,
-                        "height": 126.44549763033176,
-                        "width": 211.53846153846155,
-                      },
-                    ]
-                  }
-                />
-              </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <Image
-                  resizeMode="cover"
-                  source={
-                    Object {
-                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/KMW8QTXTGMuxJUVOF92p_maw4Hd6Yzep/map-public_1024.png",
                     }
                   }
                   style={
