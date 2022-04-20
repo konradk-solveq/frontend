@@ -13,6 +13,7 @@ import {styles} from './style';
 import {TextIcon} from '../icons';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 interface PropsI {
     tilePressOn: () => void;
     fullDate: string;
@@ -81,7 +82,9 @@ const ListTileView: React.FC<PropsI> = ({
     };
 
     return (
-        <Pressable onPress={tilePressOn} testID={testID || 'list-tile'}>
+        <TouchableWithoutFeedback
+            onPress={tilePressOn}
+            testID={testID || 'list-tile'}>
             <View
                 style={mode === 'featured' ? styles.wrapFeatured : styles.wrap}>
                 {mode === 'my' && <Demi14h48>{fullDate}</Demi14h48>}
@@ -190,7 +193,7 @@ const ListTileView: React.FC<PropsI> = ({
                     </View>
                 </View>
             </View>
-        </Pressable>
+        </TouchableWithoutFeedback>
     );
 };
 
