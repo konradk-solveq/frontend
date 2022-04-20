@@ -504,7 +504,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
         style={
           Array [
             Object {
-              "alignItems": "center",
+              "alignItems": "flex-start",
               "backgroundColor": "#EFF7D1",
               "borderRadius": 15.384615384615385,
               "display": "flex",
@@ -530,7 +530,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
               "height": 75.86729857819905,
               "justifyContent": "center",
               "marginRight": 30.76923076923077,
-              "width": 75.86729857819905,
+              "width": 92.3076923076923,
             }
           }
         >
@@ -586,7 +586,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
             Object {
               "flexDirection": "row",
               "flexWrap": "wrap",
-              "width": "60%",
+              "width": "70%",
             }
           }
         >
@@ -615,7 +615,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
         style={
           Array [
             Object {
-              "alignItems": "center",
+              "alignItems": "flex-start",
               "backgroundColor": "#E7F0FA",
               "borderRadius": 15.384615384615385,
               "display": "flex",
@@ -641,7 +641,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
               "height": 75.86729857819905,
               "justifyContent": "center",
               "marginRight": 30.76923076923077,
-              "width": 75.86729857819905,
+              "width": 92.3076923076923,
             }
           }
         >
@@ -697,7 +697,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
             Object {
               "flexDirection": "row",
               "flexWrap": "wrap",
-              "width": "60%",
+              "width": "70%",
             }
           }
         >
