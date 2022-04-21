@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState, useMemo} from 'react';
-import {View, FlatList, Platform} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Map} from '@models/map.model';
@@ -42,8 +42,7 @@ import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
 import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
 import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
-
-const isIOS = Platform.OS === 'ios';
+import {isIOS} from '@utils/platform';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
