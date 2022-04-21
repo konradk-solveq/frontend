@@ -14,6 +14,7 @@ import {TextIcon} from '../icons';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
+import {isIOS} from '@src/utils/platform';
 interface PropsI {
     tilePressOn: () => void;
     fullDate: string;
@@ -81,8 +82,10 @@ const ListTileView: React.FC<PropsI> = ({
         }
     };
 
+    const PressableComponent = isIOS ? TouchableWithoutFeedback : Pressable;
+
     return (
-        <TouchableWithoutFeedback
+        <PressableComponent
             onPress={tilePressOn}
             testID={testID || 'list-tile'}>
             <View
@@ -122,7 +125,7 @@ const ListTileView: React.FC<PropsI> = ({
 
                             <View style={styles.reactions}>
                                 {mode !== 'my' && (
-                                    <Pressable onPress={handleLikeOnPress}>
+                                    <PressableComponent onPress={handleLikeOnPress}>
                                         <View style={styles.iconWrap}>
                                             <TextIcon
                                                 icon={
@@ -136,12 +139,12 @@ const ListTileView: React.FC<PropsI> = ({
                                                 {numberOfLikes}
                                             </Header2>
                                         </View>
-                                    </Pressable>
+                                    </PressableComponent>
                                 )}
 
                                 {(mode === 'public' || mode === 'featured') && (
                                     <View style={styles.reactionWrap}>
-                                        <Pressable onPress={handleSaveOnPress}>
+                                        <PressableComponent onPress={handleSaveOnPress}>
                                             <TextIcon
                                                 icon={
                                                     saveChecked
@@ -150,50 +153,50 @@ const ListTileView: React.FC<PropsI> = ({
                                                 }
                                                 style={styles.icon}
                                             />
-                                        </Pressable>
+                                        </PressableComponent>
                                     </View>
                                 )}
 
                                 {mode !== 'my' && (
-                                    <Pressable onPress={onPressShareHandler}>
+                                    <PressableComponent onPress={onPressShareHandler}>
                                         <TextIcon
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_ALT_SHARE
                                             }
                                             style={styles.icon}
                                         />
-                                    </Pressable>
+                                    </PressableComponent>
                                 )}
 
                                 {mode === 'my' && (
-                                    <Pressable onPress={editPressOn}>
+                                    <PressableComponent onPress={editPressOn}>
                                         <TextIcon
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_EDIT
                                             }
                                             style={styles.icon}
                                         />
-                                    </Pressable>
+                                    </PressableComponent>
                                 )}
                             </View>
 
                             {mode !== 'public' && (
                                 <View style={styles.edit}>
-                                    <Pressable onPress={detailsPressOn}>
+                                    <PressableComponent onPress={detailsPressOn}>
                                         <TextIcon
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_MORE
                                             }
                                             style={styles.icon}
                                         />
-                                    </Pressable>
+                                    </PressableComponent>
                                 </View>
                             )}
                         </View>
                     </View>
                 </View>
             </View>
-        </TouchableWithoutFeedback>
+        </PressableComponent>
     );
 };
 
