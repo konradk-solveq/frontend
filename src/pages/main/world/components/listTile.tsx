@@ -2,7 +2,7 @@ import React, {useEffect, useCallback, useState, useMemo} from 'react';
 import {Map, ReactionsType} from '@models/map.model';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {mapReactionsConfigSelector} from '@storage/selectors/app';
-import {modifyReaction} from '@storage/actions/maps';
+import {modifyReaction, removePlannedMap} from '@storage/actions/maps';
 import {getMapImageToDisplay} from '@utils/transformData';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {useNavigation} from '@react-navigation/core';
@@ -136,12 +136,14 @@ const ListTile: React.FC<PropsI> = ({
         return '';
     };
 
-    const handleAddToFavoritesPressOn = () => {
+    const handleAddToFavoritesPressOn = (state: boolean) => {
         const addRouteToPlanned = tbm('addRouteToPlanned', {
             name: '',
         });
         notificationContext.setNotificationVisibility(addRouteToPlanned);
-        dispatch(addPlannedMap(mapData.id));
+        state
+            ? dispatch(addPlannedMap(mapData.id))
+            : dispatch(removePlannedMap(mapData.id));
     };
 
     const handleEditPressOn = () => {
