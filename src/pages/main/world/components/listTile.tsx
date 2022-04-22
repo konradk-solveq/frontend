@@ -136,7 +136,7 @@ const ListTile: React.FC<PropsI> = ({
         return '';
     };
 
-    const handleAddToFavoritesPressOn = (state: boolean) => {
+    const handleToggleFavoritePressOn = (state: boolean) => {
         const addRouteToPlanned = tbm('addRouteToPlanned', {
             name: '',
         });
@@ -179,7 +179,7 @@ const ListTile: React.FC<PropsI> = ({
             checkPublic={mapData?.isPublic}
             checkUserFavorite={mapData?.isUserFavorite}
             likePressOn={handleLikePressOn}
-            addToFavoritesPressOn={handleAddToFavoritesPressOn}
+            addToFavoritesPressOn={handleToggleFavoritePressOn}
             editPressOn={handleEditPressOn}
             detailsPressOn={handleDetailsPressOn}
             onPressShare={onPressShare}
