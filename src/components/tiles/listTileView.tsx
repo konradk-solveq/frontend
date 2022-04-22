@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image, Pressable} from 'react-native';
 import {
     BodySecondary,
@@ -67,6 +67,10 @@ const ListTileView: React.FC<PropsI> = ({
         }
         setLikeChecked(state);
     };
+
+    useEffect(() => {
+        setSaveChecked(checkUserFavorite);
+    }, [checkUserFavorite]);
 
     const handleSaveOnPress = () => {
         const state = !saveChecked;
