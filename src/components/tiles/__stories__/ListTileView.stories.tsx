@@ -39,7 +39,7 @@ storiesOf('components/tiles/ListTileView', module)
             checkLike={boolean('check like', false)}
             numberOfLikes={number('number of likes', 123)}
             likePressOn={() => {}}
-            addToFavoritesPressOn={() => {}}
+            toggleFavoritePressOn={() => {}}
             editPressOn={() => {}}
             detailsPressOn={() => {}}
             mode={radios('tile mode', modeEnum, modeEnum.public)}
@@ -63,7 +63,7 @@ storiesOf('components/tiles/ListTileView', module)
             checkLike={boolean('check like', false)}
             numberOfLikes={number('number of likes', 123)}
             likePressOn={() => {}}
-            addToFavoritesPressOn={() => {}}
+            toggleFavoritePressOn={() => {}}
             editPressOn={() => {}}
             detailsPressOn={() => {}}
             mode={radios('tile mode', modeEnum, modeEnum.my)}
@@ -90,7 +90,7 @@ storiesOf('components/tiles/ListTileView', module)
             checkLike={boolean('check like', false)}
             numberOfLikes={number('number of likes', 123)}
             likePressOn={() => {}}
-            addToFavoritesPressOn={() => {}}
+            toggleFavoritePressOn={() => {}}
             editPressOn={() => {}}
             detailsPressOn={() => {}}
             mode={radios('tile mode', modeEnum, modeEnum.saved)}
@@ -117,7 +117,7 @@ storiesOf('components/tiles/ListTileView', module)
             checkLike={boolean('check like', false)}
             numberOfLikes={number('number of likes', 123)}
             likePressOn={() => {}}
-            addToFavoritesPressOn={() => {}}
+            toggleFavoritePressOn={() => {}}
             editPressOn={() => {}}
             detailsPressOn={() => {}}
             mode={radios('tile mode', modeEnum, modeEnum.featured)}

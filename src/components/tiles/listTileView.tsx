@@ -28,7 +28,7 @@ interface PropsI {
     checkLike: boolean;
     numberOfLikes: number;
     likePressOn: (state: boolean) => void;
-    addToFavoritesPressOn: (state: boolean) => void;
+    toggleFavoritePressOn: (state: boolean) => void;
     editPressOn: () => void;
     detailsPressOn: () => void;
     onPressShare?: () => void;
@@ -49,7 +49,7 @@ const ListTileView: React.FC<PropsI> = ({
     checkLike,
     numberOfLikes,
     likePressOn,
-    addToFavoritesPressOn,
+    toggleFavoritePressOn,
     editPressOn,
     detailsPressOn,
     onPressShare,
@@ -74,8 +74,8 @@ const ListTileView: React.FC<PropsI> = ({
 
     const handleSaveOnPress = () => {
         const state = !saveChecked;
-        if (addToFavoritesPressOn) {
-            addToFavoritesPressOn(state);
+        if (toggleFavoritePressOn) {
+            toggleFavoritePressOn(state);
         }
         setSaveChecked(state);
     };
