@@ -183,77 +183,78 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   }
                 }
               >
-                <View
-                  accessible={true}
+                <RNGestureHandlerButton
                   collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
                 >
                   <View
-                    style={
-                      Object {
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginRight": 30.76923076923077,
-                      }
-                    }
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
-                    <Text
+                    <View
                       style={
-                        Array [
-                          Object {
-                            "fontFamily": "mykross",
-                            "textAlign": "center",
-                          },
-                          Object {
-                            "color": "#C63733",
-                            "fontSize": 20,
-                          },
-                          Object {
-                            "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
-                          },
-                        ]
+                        Object {
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "marginRight": 30.76923076923077,
+                        }
                       }
-                      testID="text-icon-test-id"
                     >
-                      I
-                    </Text>
-                    <Text
-                      adjustsFontSizeToFit={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 20,
-                            "fontWeight": "600",
-                            "lineHeight": 24,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "marginLeft": 7.6923076923076925,
-                            "top": 3.8461538461538463,
-                          },
-                        ]
-                      }
-                      testID="header2-test-id"
-                    >
-                      123
-                    </Text>
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        I
+                      </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 20,
+                              "fontWeight": "600",
+                              "lineHeight": 24,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "marginLeft": 7.6923076923076925,
+                              "top": 3.8461538461538463,
+                            },
+                          ]
+                        }
+                        testID="header2-test-id"
+                      >
+                        123
+                      </Text>
+                    </View>
                   </View>
-                </View>
+                </RNGestureHandlerButton>
                 <View
                   style={
                     Object {
@@ -261,19 +262,60 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                     }
                   }
                 >
+                  <RNGestureHandlerButton
+                    collapsable={false}
+                    onGestureEvent={[Function]}
+                    onGestureHandlerEvent={[Function]}
+                    onGestureHandlerStateChange={[Function]}
+                    onHandlerStateChange={[Function]}
+                    rippleColor={0}
+                  >
+                    <View
+                      accessible={true}
+                      collapsable={false}
+                      nativeID="animatedComponent"
+                      style={Object {}}
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        S
+                      </Text>
+                    </View>
+                  </RNGestureHandlerButton>
+                </View>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
                   <View
                     accessible={true}
                     collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
                     <Text
                       style={
@@ -297,49 +339,10 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                       }
                       testID="text-icon-test-id"
                     >
-                      S
+                      W
                     </Text>
                   </View>
-                </View>
-                <View
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
-                  >
-                    W
-                  </Text>
-                </View>
+                </RNGestureHandlerButton>
               </View>
               <View
                 style={
@@ -350,45 +353,46 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   }
                 }
               >
-                <View
-                  accessible={true}
+                <RNGestureHandlerButton
                   collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
                 >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
-                    Y
-                  </Text>
-                </View>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      Y
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
               </View>
             </View>
           </View>
@@ -598,45 +602,46 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                   }
                 }
               >
-                <View
-                  accessible={true}
+                <RNGestureHandlerButton
                   collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
                 >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
-                    E
-                  </Text>
-                </View>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      E
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
               </View>
               <View
                 style={
@@ -647,45 +652,46 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                   }
                 }
               >
-                <View
-                  accessible={true}
+                <RNGestureHandlerButton
                   collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
                 >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
-                    Y
-                  </Text>
-                </View>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      Y
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
               </View>
             </View>
           </View>
@@ -879,77 +885,78 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   }
                 }
               >
-                <View
-                  accessible={true}
+                <RNGestureHandlerButton
                   collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
                 >
                   <View
-                    style={
-                      Object {
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginRight": 30.76923076923077,
-                      }
-                    }
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
-                    <Text
+                    <View
                       style={
-                        Array [
-                          Object {
-                            "fontFamily": "mykross",
-                            "textAlign": "center",
-                          },
-                          Object {
-                            "color": "#C63733",
-                            "fontSize": 20,
-                          },
-                          Object {
-                            "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
-                          },
-                        ]
+                        Object {
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "marginRight": 30.76923076923077,
+                        }
                       }
-                      testID="text-icon-test-id"
                     >
-                      I
-                    </Text>
-                    <Text
-                      adjustsFontSizeToFit={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 20,
-                            "fontWeight": "600",
-                            "lineHeight": 24,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "marginLeft": 7.6923076923076925,
-                            "top": 3.8461538461538463,
-                          },
-                        ]
-                      }
-                      testID="header2-test-id"
-                    >
-                      123
-                    </Text>
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        I
+                      </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 20,
+                              "fontWeight": "600",
+                              "lineHeight": 24,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "marginLeft": 7.6923076923076925,
+                              "top": 3.8461538461538463,
+                            },
+                          ]
+                        }
+                        testID="header2-test-id"
+                      >
+                        123
+                      </Text>
+                    </View>
                   </View>
-                </View>
+                </RNGestureHandlerButton>
                 <View
                   style={
                     Object {
@@ -957,19 +964,60 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                     }
                   }
                 >
+                  <RNGestureHandlerButton
+                    collapsable={false}
+                    onGestureEvent={[Function]}
+                    onGestureHandlerEvent={[Function]}
+                    onGestureHandlerStateChange={[Function]}
+                    onHandlerStateChange={[Function]}
+                    rippleColor={0}
+                  >
+                    <View
+                      accessible={true}
+                      collapsable={false}
+                      nativeID="animatedComponent"
+                      style={Object {}}
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        S
+                      </Text>
+                    </View>
+                  </RNGestureHandlerButton>
+                </View>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
                   <View
                     accessible={true}
                     collapsable={false}
-                    focusable={true}
-                    onBlur={[Function]}
-                    onClick={[Function]}
-                    onFocus={[Function]}
-                    onResponderGrant={[Function]}
-                    onResponderMove={[Function]}
-                    onResponderRelease={[Function]}
-                    onResponderTerminate={[Function]}
-                    onResponderTerminationRequest={[Function]}
-                    onStartShouldSetResponder={[Function]}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
                     <Text
                       style={
@@ -993,49 +1041,10 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                       }
                       testID="text-icon-test-id"
                     >
-                      S
+                      W
                     </Text>
                   </View>
-                </View>
-                <View
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
-                  >
-                    W
-                  </Text>
-                </View>
+                </RNGestureHandlerButton>
               </View>
             </View>
           </View>
@@ -1229,28 +1238,91 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   }
                 }
               >
-                <View
-                  accessible={true}
+                <RNGestureHandlerButton
                   collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
                 >
                   <View
-                    style={
-                      Object {
-                        "display": "flex",
-                        "flexDirection": "row",
-                        "marginRight": 30.76923076923077,
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <View
+                      style={
+                        Object {
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "marginRight": 30.76923076923077,
+                        }
                       }
-                    }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        I
+                      </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 20,
+                              "fontWeight": "600",
+                              "lineHeight": 24,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "marginLeft": 7.6923076923076925,
+                              "top": 3.8461538461538463,
+                            },
+                          ]
+                        }
+                        testID="header2-test-id"
+                      >
+                        123
+                      </Text>
+                    </View>
+                  </View>
+                </RNGestureHandlerButton>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
                     <Text
                       style={
@@ -1274,71 +1346,10 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                       }
                       testID="text-icon-test-id"
                     >
-                      I
-                    </Text>
-                    <Text
-                      adjustsFontSizeToFit={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#333333",
-                            "fontFamily": "DIN2014-Demi",
-                            "fontSize": 20,
-                            "fontWeight": "600",
-                            "lineHeight": 24,
-                            "textAlign": "left",
-                          },
-                          Object {
-                            "marginLeft": 7.6923076923076925,
-                            "top": 3.8461538461538463,
-                          },
-                        ]
-                      }
-                      testID="header2-test-id"
-                    >
-                      123
+                      W
                     </Text>
                   </View>
-                </View>
-                <View
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
-                  >
-                    W
-                  </Text>
-                </View>
+                </RNGestureHandlerButton>
               </View>
               <View
                 style={
@@ -1349,45 +1360,46 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   }
                 }
               >
-                <View
-                  accessible={true}
+                <RNGestureHandlerButton
                   collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
                 >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
-                    Y
-                  </Text>
-                </View>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      Y
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
               </View>
             </View>
           </View>
