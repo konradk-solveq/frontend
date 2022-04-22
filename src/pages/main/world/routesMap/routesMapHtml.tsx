@@ -42,6 +42,9 @@ export default `
 <script src="https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js"></script>
 
 <script>
+//NOTION!: All null-safty operators (optional chaining) has been removed,
+//because it didn't work on some devices with Android 9
+
 const customJsonStringify = (value, fallback) => {
     if (!value) {
         return value;
@@ -70,9 +73,9 @@ const getSVGMarker = () => {
 
 const rotateUserLocationMarker = (heading) => {
     if(heading !== undefined && heading !== null) {
-        let updatedMarker = my_location?.icon;
+        let updatedMarker = my_location && my_location.icon;
 
-        if(!updatedMarker.icon){
+        if(!updatedMarker || !updatedMarker.icon){
             updatedMarker = getSVGMarker();
         }
 
@@ -508,13 +511,18 @@ let endMark
 
 const setMarks = places => {
     for (let p of places) {
+        if(!p){
+            continue;
+        }
+
         let id = p.details.id;
         if (marks.some(e => e.id == id)) continue;
         if (privateMarks.some(e => e.id == id)) continue;
         if (plannedMarks.some(e => e.id == id)) continue;
         
-        const isPlanned = p.markerTypes?.includes('FAVORITE');
-        const isPrivate = p.markerTypes?.includes('PRIVATE') ||  p.markerTypes?.includes('OWN');
+        const marekrTypesExists = p.markerTypes &&  p.markerTypes.length;
+        const isPlanned = marekrTypesExists && p.markerTypes.includes('FAVORITE');
+        const isPrivate = marekrTypesExists && (p.markerTypes.includes('PRIVATE') ||  p.markerTypes.includes('OWN'));
         const privateImage = isPrivate && 'pinroute_private.png';
         const plannedImage = isPlanned && 'pinroute_planned.png';
         const publicImage = 'pinroute_published.png';
@@ -539,9 +547,14 @@ const setMarks = places => {
         }else{
             marks.push(mark);
         }
-        window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+customJsonStringify(mark?.markerTypes, ''));
+        if(!mark || !mark.markerTypes){
+            continue;
+        }
+        window.ReactNativeWebView.postMessage("clickMarkerToAdd#$#"+customJsonStringify(mark.markerTypes, ''));
         google.maps.event.addDomListener(mark, 'click', function() {
-            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify({...mark?.details, markerTypes: mark?.markerTypes}, ''));
+            if(mark.details){
+                window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify({...mark.details, markerTypes: mark.markerTypes}, ''));
+            }
         });
     }
 
@@ -591,7 +604,7 @@ const setMarks = places => {
 
 const setPath = (path, mapType) => {
     const coords = path.map(([lat, lng]) => ({lat, lng}));
-    if (coords?.length<2) {
+    if (!coords || !coords.length || coords.length<2) {
         return;
     }
 
