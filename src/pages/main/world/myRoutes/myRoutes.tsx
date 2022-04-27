@@ -13,14 +13,13 @@ import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
-import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {RouteDetailsActionT} from '@type/screens/routesMap';
 
-import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import {getFVerticalPx, getFFontSize} from '@theme/utils/appLayoutDimensions';
 import {Backdrop} from '@components/backdrop';
 import styles from './style';
 import {
@@ -35,7 +34,7 @@ import {
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
-import {privateRoutesDropdownList} from '../utils/dropdownLists';
+import {getPrivateRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
 import {removePrivateMapMetaData, resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
@@ -45,7 +44,11 @@ import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
 import EmptyStateContainer from '@containers/World/EmptyStateContainer';
 import {FinishLine} from '@components/svg';
 
-const length = getVerticalPx(175);
+/**
+ * My route tiles have additional text with date above the tile
+ */
+
+const length = getFVerticalPx(311) + getFFontSize(48);
 const getItemLayout = (_: any, index: number) => ({
     length: length,
     offset: length * index,
@@ -69,6 +72,10 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const totalNumberOfPrivateMaps = useAppSelector(
         privateTotalMapsNumberSelector,
     );
+    const privateRoutesDropdownList = useMemo(
+        () => getPrivateRoutesDropdownList(t),
+        [t],
+    );
 
     const {bottom} = useSafeAreaInsets();
     /**
@@ -82,7 +89,6 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const {private: privateMapsCount} = useAppSelector(mapsCountSelector);
-    const [showModal, setShowModal] = useState(false);
     const [activeMapID, setActiveMapID] = useState<string>('');
     const [showFiltersModal, setShowFiltersModal] = useState(false);
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
@@ -203,9 +209,11 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
 
     const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
-    const [sortButtonName, setSortButtonName] = useState<string>(
-        mwt('btnSort'),
-    );
+    const [sortButtonName, setSortButtonName] = useState<string>();
+    const sButtonName = useMemo(() => sortButtonName || mwt('btnSort'), [
+        sortButtonName,
+        mwt,
+    ]);
 
     const toggleDropdown = useCallback((state: boolean) => {
         setShowBackdrop(state);
@@ -224,12 +232,13 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
             const sortBy =
                 privateRoutesDropdownList.find(el => el.id === sortTypeId) ||
                 firstEl;
-            changeSortButtonName(sortTypeId ? sortBy?.text : mwt('btnSort'));
+
+            changeSortButtonName(sortTypeId ? sortBy?.text : '');
             setShowListLoader(true);
 
             setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
         },
-        [changeSortButtonName, mwt],
+        [changeSortButtonName, privateRoutesDropdownList],
     );
 
     /**
@@ -292,7 +301,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         <View style={styles.background}>
             <FiltersHeader
                 shouldHide={shouldHide}
-                sortButtonName={sortButtonName}
+                sortButtonName={sButtonName}
                 setShowDropdown={setShowDropdown}
                 onFiltersModalOpenHandler={onFiltersModalOpenHandler}
                 showDropdown={showDropdown}

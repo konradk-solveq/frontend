@@ -265,10 +265,10 @@ export const fetchAppFaq = (
     }
 };
 
-export const appSyncData = (): AppThunk<Promise<void>> => async (
-    dispatch,
-    getState,
-) => {
+export const appSyncData = (
+    skipFetchinRoutesData?: boolean,
+    forceSyncDataWhenOnboardingIsNotFinished?: boolean,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setSyncStatus(true));
     try {
         const {
@@ -287,7 +287,8 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
         const {sessionData}: AuthState = getState().authData;
         const {onboardingFinished} = getState().user;
         setUserAgentHeader();
-        if (!onboardingFinished) {
+
+        if (!onboardingFinished && !forceSyncDataWhenOnboardingIsNotFinished) {
             dispatch(setSyncStatus(false));
             return;
         }
@@ -300,7 +301,11 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
 
             /* Omit synch map data if recording is active */
             const isRecordingActive = currentRoute?.isActive;
-            if (onboardingFinished && !isRecordingActive) {
+            if (
+                onboardingFinished &&
+                !isRecordingActive &&
+                !skipFetchinRoutesData
+            ) {
                 if (location) {
                     dispatch(setInitMapsDataSynchedState(true));
                     await dispatch(fetchMapsList(undefined, undefined, true));
@@ -308,7 +313,11 @@ export const appSyncData = (): AppThunk<Promise<void>> => async (
                 }
             }
 
-            if (sessionData?.access_token && !isRecordingActive) {
+            if (
+                sessionData?.access_token &&
+                !isRecordingActive &&
+                !skipFetchinRoutesData
+            ) {
                 if (location) {
                     await dispatch(
                         fetchPrivateMapsList(undefined, undefined, true),

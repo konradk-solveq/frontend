@@ -16,6 +16,8 @@ export const useHideOnScrollDirection = (initialState = false) => {
             if (currentOffset > 0) {
                 const newShouldHide = currentOffset > offset;
                 setState({offset: currentOffset, shouldHide: newShouldHide});
+            } else {
+                setState({offset: currentOffset, shouldHide: false});
             }
         },
         [offset, setState],

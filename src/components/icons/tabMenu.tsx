@@ -1,16 +1,14 @@
 import React, {FunctionComponent} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-import {getFHorizontalPx} from '@helpers/appLayoutDimensions';
+import {getFHorizontalPx, getFFontSize} from '@helpers/appLayoutDimensions';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import colors from '@src/theme/colors';
 
 const styles = StyleSheet.create({
     text: {
         fontFamily: 'mykross',
-        fontSize: getFHorizontalPx(30),
-        width: getFHorizontalPx(30),
-        height: getFHorizontalPx(30),
+        fontSize: getFFontSize(30),
         textAlign: 'center',
         color: '#333',
     },
@@ -33,8 +31,7 @@ export const HomeIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
         home: {
             left: 0,
             width: getFHorizontalPx(87.5),
-            paddingRight: getFHorizontalPx(23.5),
-            paddingLeft: getFHorizontalPx(34),
+            paddingLeft: getFHorizontalPx(10),
         },
         activeText: {
             color: isFocused ? colors.red : colors.black,
@@ -54,8 +51,7 @@ export const ExploreIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
         explore: {
             left: getFHorizontalPx(9.5),
             width: getFHorizontalPx(107.5),
-            paddingLeft: getFHorizontalPx(23.5),
-            paddingRight: getFHorizontalPx(54),
+            paddingRight: getFHorizontalPx(30),
         },
         activeText: {
             color: isFocused ? colors.red : colors.black,
@@ -125,8 +121,7 @@ export const BikeIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
         bike: {
             left: getFHorizontalPx(-39),
             width: getFHorizontalPx(107.5),
-            paddingLeft: getFHorizontalPx(54),
-            paddingRight: getFHorizontalPx(23.5),
+            paddingLeft: getFHorizontalPx(30),
         },
         activeText: {
             color: isFocused ? colors.red : colors.black,
@@ -144,10 +139,8 @@ export const BikeIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
 export const ProfileIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
     const style = StyleSheet.create({
         profile: {
-            left: getFHorizontalPx(-9.5),
             width: getFHorizontalPx(87.5),
-            paddingRight: getFHorizontalPx(34),
-            paddingLeft: getFHorizontalPx(23.5),
+            paddingRight: getFHorizontalPx(20),
         },
         activeText: {
             color: isFocused ? colors.red : colors.black,

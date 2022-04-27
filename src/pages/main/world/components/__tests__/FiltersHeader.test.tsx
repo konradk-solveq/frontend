@@ -4,9 +4,32 @@ import {render, fireEvent} from '@testing-library/react-native';
 import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import {initAppSize} from '@helpers/layoutFoo';
 import asyncEvent from '@jestUtils/asyncEvent';
-import {publicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
 
-const mockedDropdownList = publicRoutesDropdownList;
+import i18next from '@translations/i18next';
+import {DropdownItemT} from '@components/types/dropdown';
+
+export const mockedDropdownList: DropdownItemT[] = [
+    {
+        id: '1',
+        sortBy: 'distance',
+        order: 'asc',
+        text: i18next.t('BikeMap.sortBy.nearest'),
+        isDefault: true,
+        defaultItemSuffix: i18next.t('BikeMap.sortBy.default'),
+    },
+    {
+        id: '2',
+        sortBy: 'created',
+        order: 'desc',
+        text: i18next.t('BikeMap.sortBy.newest'),
+    },
+    {
+        id: '3',
+        sortBy: 'created',
+        order: 'asc',
+        text: i18next.t('BikeMap.sortBy.oldest'),
+    },
+];
 
 const TEST_SORT_BTN_NAME = 'Test sort button name';
 const TEST_SORT_BTN_ID = 'header-sort-btn';

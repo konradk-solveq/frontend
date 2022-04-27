@@ -164,6 +164,9 @@ export const transfromToBikeDescription = (
         if (description?.size) {
             desc.size = description.size;
         }
+        if (description?.bikeType) {
+            desc.bikeType = description.bikeType;
+        }
 
         return desc;
     } catch (error) {

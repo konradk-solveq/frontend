@@ -274,6 +274,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
           testID="subtitle-test-id"
         >
           MainBike.details
+           
         </Text>
         <View
           accessible={true}
@@ -1338,6 +1339,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
           testID="subtitle-test-id"
         >
           MainBike.details
+           
         </Text>
         <View
           accessible={true}

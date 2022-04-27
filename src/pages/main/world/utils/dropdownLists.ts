@@ -1,72 +1,76 @@
-import i18next from '@translations/i18next';
-
 import {DropdownItemT} from '@components/types/dropdown';
 
-export const publicRoutesDropdownList: DropdownItemT[] = [
+export const getPublicRoutesDropdownList = (
+    t: (trans: string) => string,
+): DropdownItemT[] => [
     {
         id: '1',
         sortBy: 'distance',
         order: 'asc',
-        text: i18next.t('MainWorld.BikeMap.sortBy.nearest'),
+        text: t('BikeMap.sortBy.nearest'),
         isDefault: true,
-        defaultItemSuffix: i18next.t('MainWorld.BikeMap.sortBy.default'),
+        defaultItemSuffix: t('BikeMap.sortBy.default'),
     },
     {
         id: '2',
         sortBy: 'created',
         order: 'desc',
-        text: i18next.t('MainWorld.BikeMap.sortBy.newest'),
+        text: t('BikeMap.sortBy.newest'),
     },
     {
         id: '3',
         sortBy: 'created',
         order: 'asc',
-        text: i18next.t('MainWorld.BikeMap.sortBy.oldest'),
+        text: t('BikeMap.sortBy.oldest'),
     },
 ];
 
-export const privateRoutesDropdownList: DropdownItemT[] = [
+export const getPrivateRoutesDropdownList = (
+    t: (trans: string) => string,
+): DropdownItemT[] => [
     {
         id: '1',
         sortBy: 'created',
         order: 'desc',
-        text: i18next.t('MainWorld.MyRoutes.sortBy.newest'),
+        text: t('sortBy.newest'),
         isDefault: true,
-        defaultItemSuffix: i18next.t('MainWorld.MyRoutes.sortBy.default'),
+        defaultItemSuffix: t('sortBy.default'),
     },
     {
         id: '2',
         sortBy: 'distance',
         order: 'asc',
-        text: i18next.t('MainWorld.MyRoutes.sortBy.nearest'),
+        text: t('sortBy.nearest'),
     },
     {
         id: '3',
         sortBy: 'created',
         order: 'desc',
-        text: i18next.t('MainWorld.MyRoutes.sortBy.oldest'),
+        text: t('sortBy.oldest'),
     },
 ];
 
-export const plannedRoutesDropdownList: DropdownItemT[] = [
+export const getPlannedRoutesDropdownList = (
+    t: (trans: string) => string,
+): DropdownItemT[] => [
     {
         id: '1',
         sortBy: 'distance',
         order: 'asc',
-        text: i18next.t('MainWorld.PlannedRoutes.sortBy.nearest'),
+        text: t('sortBy.nearest'),
         isDefault: true,
-        defaultItemSuffix: i18next.t('MainWorld.PlannedRoutes.sortBy.default'),
+        defaultItemSuffix: t('sortBy.default'),
     },
     {
         id: '2',
         sortBy: 'created',
         order: 'desc',
-        text: i18next.t('MainWorld.PlannedRoutes.sortBy.newest'),
+        text: t('sortBy.newest'),
     },
     {
         id: '3',
         sortBy: 'created',
         order: 'asc',
-        text: i18next.t('MainWorld.PlannedRoutes.sortBy.oldest'),
+        text: t('sortBy.oldest'),
     },
 ];

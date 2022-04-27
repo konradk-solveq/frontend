@@ -1,6 +1,6 @@
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {fetchUiTranslation, setLanguage} from '@storage/actions';
+import {appSyncData, fetchUiTranslation, setLanguage} from '@storage/actions';
 import i18next from '@translations/i18next';
 
 import {changeLanguage} from '@utils/translations/useMergedTranslation';
@@ -17,6 +17,7 @@ import {ControlSumsType, LangsType} from '@models/config.model';
 
 const useLanguageReloader = () => {
     const dispatch = useAppDispatch();
+    const previousLanguage = useRef('');
     const language: string = useAppSelector(state => state.user.language);
     const translations: translationsT = useAppSelector(translationsSelector);
     const languageList: languagesListT = useAppSelector(languagesListSelector);
@@ -24,6 +25,11 @@ const useLanguageReloader = () => {
     const controlSumsList: ControlSumsType[] = useAppSelector(
         translationsControlSumsSelector,
     );
+
+    useEffect(() => {
+        previousLanguage.current = language;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (controlSumsList.length === 0) {
@@ -80,6 +86,17 @@ const useLanguageReloader = () => {
         languageList,
         translations,
     ]);
+
+    /**
+     * Synchronize translations from the API
+     */
+    useEffect(() => {
+        if (previousLanguage.current !== language) {
+            previousLanguage.current = language;
+
+            dispatch(appSyncData(true, true));
+        }
+    }, [language, dispatch]);
 };
 
 export default useLanguageReloader;
