@@ -26,13 +26,12 @@ const CollapsibleStickyHeader = ({
         headerHeight.value = shouldHide ? -height : 0;
     }, [shouldHide, headerHeight, height]);
     const headerAnimation = useAnimatedStyle(() => ({
-        top: withTiming(headerHeight.value, {duration: duration}),
-    }));
-    const wrapperAnimation = useAnimatedStyle(() => ({
-        height: withTiming(height + headerHeight.value, {duration: duration}),
+        transform: [
+            {translateY: withTiming(headerHeight.value, {duration: duration})},
+        ],
     }));
     return (
-        <Animated.View style={[styles.wrapper, wrapperAnimation]}>
+        <Animated.View style={[styles.wrapper, {height: height}]}>
             <Animated.View style={[styles.container, headerAnimation, style]}>
                 {children}
             </Animated.View>

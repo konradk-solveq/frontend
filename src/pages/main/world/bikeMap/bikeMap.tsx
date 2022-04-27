@@ -4,7 +4,6 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {
@@ -37,7 +36,7 @@ import {
     getSorByFilters,
 } from '@utils/apiDataTransform/filters';
 import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
-import {publicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
+import {getPublicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
 import {fetchMapsCount} from '@storage/actions';
 import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
@@ -46,9 +45,10 @@ import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 
 const isIOS = Platform.OS === 'ios';
 
+const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
-    length: getVerticalPx(175),
-    offset: getVerticalPx(175) * index,
+    length: length,
+    offset: length * index,
     index,
 });
 
@@ -68,6 +68,10 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const containsFeaturedMaps = useAppSelector(featuredMapsLengthSelector);
+    const publicRoutesDropdownList = useMemo(
+        () => getPublicRoutesDropdownList(t),
+        [t],
+    );
 
     const {bottom} = useSafeAreaInsets();
     /**
@@ -219,7 +223,11 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     }, [isLoading, mapsData?.length, showListLoader, listBodyLoaderStyle]);
 
     const [showDropdown, setShowDropdown] = useState(false);
-    const [sortButtonName, setSortButtonName] = useState<string>(t('btnSort'));
+    const [sortButtonName, setSortButtonName] = useState<string>('');
+    const sButtonName = useMemo(() => sortButtonName || t('btnSort'), [
+        sortButtonName,
+        t,
+    ]);
 
     const toggleDropdown = useCallback((state: boolean) => {
         setShowBackdrop(state);
@@ -239,12 +247,12 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                 publicRoutesDropdownList.find(el => el.id === sortTypeId) ||
                 firstEl;
 
-            changeSortButtonName(sortTypeId ? sortBy?.text : t('btnSort'));
+            changeSortButtonName(sortTypeId ? sortBy?.text : '');
             setShowListLoader(true);
 
             setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
         },
-        [changeSortButtonName, t],
+        [changeSortButtonName, publicRoutesDropdownList],
     );
     return (
         <View
@@ -252,7 +260,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
             onLayout={() => setRenderIsFinished(true)}>
             <FiltersHeader
                 shouldHide={shouldHide}
-                sortButtonName={sortButtonName}
+                sortButtonName={sButtonName}
                 setShowDropdown={setShowDropdown}
                 onFiltersModalOpenHandler={onFiltersModalOpenHandler}
                 showDropdown={showDropdown}

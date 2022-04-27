@@ -174,3 +174,14 @@ It will make the website available at `http://localhost:7007/`.
 ### Android
 
 To compile Android version we use JDK v11
+
+### Pre-push hook
+
+We use hook which is initialized before `git push`. Hook is running `npm test` command, and if any test is failing, changes won't be pushed to repository.
+You may encounter following warning on pushing changes:
+```
+hint: The '.husky/pre-push' hook was ignored because it's not set as executable.
+hint: You can disable this warning with `git config advice.ignoredHook false`.
+```
+In this case you have to set the file as executable.
+Navigate to directory with the hook (`.husky/pre-push.sh`) and run command `chmod +x pre-push`.

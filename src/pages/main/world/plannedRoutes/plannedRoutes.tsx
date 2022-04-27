@@ -11,7 +11,6 @@ import {
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {getVerticalPx} from '@helpers/layoutFoo';
 import {getImagesThumbs} from '@utils/transformData';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
@@ -35,7 +34,7 @@ import {
 } from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
-import {plannedRoutesDropdownList} from '../utils/dropdownLists';
+import {getPlannedRoutesDropdownList} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
 import {removePlannedMap, resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
@@ -44,13 +43,14 @@ import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
 import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import EmptyStateContainer from '@containers/World/EmptyStateContainer';
 import {BikePin} from '@components/svg';
+import {isIOS} from '@utils/platform';
 
+const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
-    length: getVerticalPx(175),
-    offset: getVerticalPx(175) * index,
+    length: length,
+    offset: length * index,
     index,
 });
-
 interface RenderItem {
     item: Map;
     index: number;
@@ -68,6 +68,10 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const {planned: plannedMapsCount} = useAppSelector(mapsCountSelector);
+    const plannedRoutesDropdownList = useMemo(
+        () => getPlannedRoutesDropdownList(t),
+        [t],
+    );
 
     const {bottom} = useSafeAreaInsets();
     /**
@@ -186,9 +190,11 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
 
     const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
-    const [sortButtonName, setSortButtonName] = useState<string>(
-        mwt('btnSort'),
-    );
+    const [sortButtonName, setSortButtonName] = useState<string>('');
+    const sButtonName = useMemo(() => sortButtonName || mwt('btnSort'), [
+        sortButtonName,
+        mwt,
+    ]);
 
     const toggleDropdown = useCallback((state: boolean) => {
         setShowBackdrop(state);
@@ -207,12 +213,13 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             const sortBy =
                 plannedRoutesDropdownList.find(el => el.id === sortTypeId) ||
                 firstEl;
-            changeSortButtonName(sortTypeId ? sortBy?.text : mwt('btnSort'));
+
+            changeSortButtonName(sortTypeId ? sortBy?.text : '');
             setShowListLoader(true);
 
             setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
         },
-        [changeSortButtonName, mwt],
+        [changeSortButtonName, plannedRoutesDropdownList],
     );
 
     /**
@@ -270,7 +277,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         <View style={styles.background}>
             <FiltersHeader
                 shouldHide={shouldHide}
-                sortButtonName={sortButtonName}
+                sortButtonName={sButtonName}
                 setShowDropdown={setShowDropdown}
                 onFiltersModalOpenHandler={onFiltersModalOpenHandler}
                 showDropdown={showDropdown}
@@ -296,29 +303,27 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     image={<BikePin />}
                 />
             ) : (
-                <View>
-                    <FlatList
-                        keyExtractor={item => item.id}
-                        onScroll={onScroll}
-                        ListHeaderComponent={
-                            <Header2 style={styles.header}>
-                                {userName || t('defaultUserName')}
-                                {t('title')}
-                            </Header2>
-                        }
-                        data={!showListLoader ? favouriteMaps : []}
-                        renderItem={renderItem}
-                        showsVerticalScrollIndicator={false}
-                        getItemLayout={getItemLayout}
-                        initialNumToRender={10}
-                        removeClippedSubviews
-                        onEndReached={onEndReachedHandler}
-                        onEndReachedThreshold={0.5}
-                        ListFooterComponent={renderListLoader}
-                        refreshing={isLoading && isRefreshing}
-                        onRefresh={onRefresh}
-                    />
-                </View>
+                <FlatList
+                    keyExtractor={item => item.id}
+                    onScroll={onScroll}
+                    ListHeaderComponent={
+                        <Header2 style={styles.header}>
+                            {userName || t('defaultUserName')}
+                            {t('title')}
+                        </Header2>
+                    }
+                    data={!showListLoader ? favouriteMaps : []}
+                    renderItem={renderItem}
+                    showsVerticalScrollIndicator={false}
+                    getItemLayout={getItemLayout}
+                    initialNumToRender={10}
+                    removeClippedSubviews={!isIOS}
+                    onEndReached={onEndReachedHandler}
+                    onEndReachedThreshold={0.5}
+                    ListFooterComponent={renderListLoader}
+                    refreshing={isLoading && isRefreshing}
+                    onRefresh={onRefresh}
+                />
             )}
 
             <Backdrop

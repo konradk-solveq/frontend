@@ -614,6 +614,8 @@
     "MainBike": {
         "header": "Rower",
         "details": "od {{name}} nr ramy {{number}}",
+        "detailsProducer": "Producent",
+        "detailsType": "Typ",
         "add": "Dodaj",
         "warranty": {
             "lifetime": "dożywotnio",

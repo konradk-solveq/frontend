@@ -8,7 +8,7 @@ import {RegularStackRoute} from '@navigation/route';
 import {removeBikeByNumber} from '@storage/actions';
 import {bikesListSelector} from '@storage/selectors';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {genericBikeSelector} from '@storage/selectors/bikes';
+import {genericBikeSelector, bikeTypesSelector} from '@storage/selectors/bikes';
 
 import {NoBikesContainer} from '@containers/Bike';
 import GenericScreen from '@src/pages/template/GenericScreen';
@@ -21,6 +21,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import colors from '@theme/colors';
 import {AddBikeModal} from '@pages/main/bike/components/modal';
 import {isIOS} from '@src/utils/platform';
+import {getEnumValueTranslation} from '@utils/translations/getEnumValueTranslation';
 
 interface Props {
     navigation: any;
@@ -147,6 +148,16 @@ const Bike: React.FC<Props> = (props: Props) => {
         });
     }, [navigation]);
 
+    const bikeTypes = useAppSelector(bikeTypesSelector);
+
+    const bikeType = useMemo(
+        () =>
+            bikeTypes &&
+            bike?.description.bikeType &&
+            getEnumValueTranslation(bikeTypes, bike?.description.bikeType),
+        [bike?.description.bikeType, bikeTypes],
+    );
+
     const warrantyData = bike?.warranty || genericBikeData?.warranty;
     const {top} = useSafeAreaInsets();
     return (
@@ -168,6 +179,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                             onRemoveBikeHandler={onRemoveBikeHandler}
                             onChangeBikeHandler={onChangeBikeHandler}
                             onReviewPress={onReviewPress}
+                            bikeType={bikeType}
                         />
                         <ChangeBikeModal
                             visible={showBottomModal}

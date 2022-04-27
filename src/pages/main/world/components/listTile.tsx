@@ -184,4 +184,4 @@ const ListTile: React.FC<PropsI> = ({
     );
 };
 
-export default ListTile;
+export default React.memo(ListTile);

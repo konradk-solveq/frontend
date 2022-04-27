@@ -26,6 +26,7 @@ interface IProps {
     onChangeBikeHandler: () => void;
     showBikeChangeButton: boolean;
     onReviewPress: (e: Overview) => void;
+    bikeType?: string;
 }
 
 const BikeDetailsContainer = ({
@@ -38,6 +39,7 @@ const BikeDetailsContainer = ({
     onChangeBikeHandler,
     showBikeChangeButton,
     onReviewPress,
+    bikeType,
 }: IProps) => {
     const {t} = useMergedTranslation('MainBike');
     const carouselRef = useRef<Carousel<string>>(null);
@@ -59,6 +61,10 @@ const BikeDetailsContainer = ({
     const imageData = useMemo(
         () => (bike?.images?.length ? [bike?.images?.[0]] : []),
         [bike?.images],
+    );
+    const isKross = useMemo(
+        () => bike && bike.description.producer === 'Kross',
+        [bike],
     );
 
     const carouselWidth = useMemo(() => getFHorizontalPx(390), []);
@@ -119,13 +125,33 @@ const BikeDetailsContainer = ({
                             <Header1 style={styles.bikeName}>
                                 {bike?.description.name}
                             </Header1>
-
-                            <Subtitle style={styles.bikeDetails}>
-                                {t('details', {
-                                    name: bike?.description.producer,
-                                    number: bike?.description.serial_number,
-                                })}
-                            </Subtitle>
+                            {isKross ? (
+                                <Subtitle style={styles.bikeDetails}>
+                                    {t('details', {
+                                        name: bike?.description.producer,
+                                        number: bike?.description.serial_number,
+                                    })}{' '}
+                                </Subtitle>
+                            ) : (
+                                <>
+                                    <Subtitle
+                                        style={[
+                                            styles.bikeDetails,
+                                            styles.bottomMargin,
+                                        ]}>
+                                        {t('detailsProducer')}
+                                        {': '}
+                                        {bike?.description.producer}
+                                    </Subtitle>
+                                    {!!bikeType && (
+                                        <Subtitle style={styles.bikeDetails}>
+                                            {t('detailsType')}
+                                            {': '}
+                                            {bikeType}
+                                        </Subtitle>
+                                    )}
+                                </>
+                            )}
 
                             {!!bike?.params && (
                                 <Pressable onPress={handleParams}>
@@ -259,6 +285,9 @@ const styles = StyleSheet.create({
     bikeDetails: {
         width: '100%',
         textAlign: 'center',
+    },
+    bottomMargin: {
+        marginBottom: getFVerticalPx(8),
     },
     bikeImage: {
         width: '100%',

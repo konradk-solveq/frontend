@@ -23,7 +23,9 @@ exports[`Storyshots components/headers/CollapsibleStickyHeader Customizable 1`] 
           "width": "100%",
           "zIndex": 10,
         },
-        [Function],
+        Object {
+          "height": 75.86729857819905,
+        },
       ]
     }
   >
@@ -91,7 +93,9 @@ exports[`Storyshots components/headers/CollapsibleStickyHeader Default 1`] = `
           "width": "100%",
           "zIndex": 10,
         },
-        [Function],
+        Object {
+          "height": 75.86729857819905,
+        },
       ]
     }
   >

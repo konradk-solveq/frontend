@@ -194,4 +194,4 @@ const ListTileView: React.FC<PropsI> = ({
     );
 };
 
-export default ListTileView;
+export default React.memo(ListTileView);
