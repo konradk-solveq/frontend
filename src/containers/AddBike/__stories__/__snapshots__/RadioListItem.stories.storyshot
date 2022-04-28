@@ -83,7 +83,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Customized 1`] =
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-mountain-body"
               >
                 górski
               </Text>
@@ -182,7 +182,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Customized 1`] =
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-gravel-body"
               >
                 gravel
               </Text>
@@ -281,7 +281,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Customized 1`] =
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-road-body"
               >
                 szosowy
               </Text>
@@ -380,7 +380,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Customized 1`] =
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-touristic-body"
               >
                 turystyczny
               </Text>
@@ -479,7 +479,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Customized 1`] =
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-city-body"
               >
                 miejski
               </Text>
@@ -578,7 +578,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Customized 1`] =
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-kids-body"
               >
                 dziecięcy
               </Text>
@@ -677,7 +677,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Customized 1`] =
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-other-body"
               >
                 inny
               </Text>
@@ -791,7 +791,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Default 1`] = `
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-mountain-body"
               >
                 górski
               </Text>
@@ -890,7 +890,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Default 1`] = `
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-gravel-body"
               >
                 gravel
               </Text>
@@ -989,7 +989,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Default 1`] = `
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-road-body"
               >
                 szosowy
               </Text>
@@ -1088,7 +1088,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Default 1`] = `
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-touristic-body"
               >
                 turystyczny
               </Text>
@@ -1187,7 +1187,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Default 1`] = `
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-city-body"
               >
                 miejski
               </Text>
@@ -1286,7 +1286,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Default 1`] = `
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-kids-body"
               >
                 dziecięcy
               </Text>
@@ -1385,7 +1385,7 @@ exports[`Storyshots containers/AddBike/components/RadioListItem Default 1`] = `
                     undefined,
                   ]
                 }
-                testID="body-primary-test-id"
+                testID="radio-list-item-test-id-radio-button-other-body"
               >
                 inny
               </Text>

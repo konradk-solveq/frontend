@@ -35,7 +35,9 @@ const RadioButton: React.FC<IProps> = ({
         <View style={[styles.container, style]} testID={testID}>
             <Pressable onPress={onPress} testID={`${testID}-press`}>
                 <View style={styles.row}>
-                    <BodyPrimary color={textColor}>{text}</BodyPrimary>
+                    <BodyPrimary color={textColor} testID={`${testID}-body`}>
+                        {text}
+                    </BodyPrimary>
                     <TextIcon icon={icon} iconColor={textColor} />
                 </View>
             </Pressable>

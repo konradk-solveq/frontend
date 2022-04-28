@@ -85,7 +85,9 @@ const TextInput: React.FC<IProps> = ({
                 testID={`${testID}-input-value`}
             />
             {!!icon && (
-                <View style={styles.iconContainer}>
+                <View
+                    style={styles.iconContainer}
+                    testID={`${testID}-input-icon`}>
                     <TextIcon icon={icon} iconColor={colors.black} />
                 </View>
             )}

@@ -68,7 +68,7 @@ exports[`Storyshots components/buttons/RadioButton Customized 1`] = `
               undefined,
             ]
           }
-          testID="body-primary-test-id"
+          testID="radio-button-test-id-body"
         >
           Radio button
         </Text>
@@ -162,7 +162,7 @@ exports[`Storyshots components/buttons/RadioButton Default 1`] = `
               undefined,
             ]
           }
-          testID="body-primary-test-id"
+          testID="radio-button-test-id-body"
         >
           Radio button
         </Text>

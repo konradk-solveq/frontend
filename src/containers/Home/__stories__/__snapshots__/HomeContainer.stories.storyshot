@@ -487,6 +487,7 @@ exports[`Storyshots containers/Home/HomeContainer Custiomized 1`] = `
           onResponderTerminate={[Function]}
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
+          testID="home-container-banner-link"
         >
           <Image
             resizeMode="contain"
@@ -995,6 +996,7 @@ exports[`Storyshots containers/Home/HomeContainer Default 1`] = `
           onResponderTerminate={[Function]}
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
+          testID="home-container-banner-link"
         >
           <Image
             resizeMode="contain"

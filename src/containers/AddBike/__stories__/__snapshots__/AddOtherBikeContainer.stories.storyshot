@@ -120,6 +120,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                   "top": 9.483412322274882,
                 }
               }
+              testID="add-other-bike-container-id-button-input-input-icon"
             >
               <Text
                 style={
@@ -601,7 +602,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-mountain-body"
                     >
                       Górski
                     </Text>
@@ -700,7 +701,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-gravel-body"
                     >
                       Gravel
                     </Text>
@@ -799,7 +800,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-road-body"
                     >
                       Szosowy
                     </Text>
@@ -898,7 +899,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-touristic-body"
                     >
                       Turystyczny
                     </Text>
@@ -997,7 +998,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-city-body"
                     >
                       Miejski
                     </Text>
@@ -1096,7 +1097,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-kids-body"
                     >
                       Dziecięcy
                     </Text>
@@ -1195,7 +1196,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-other-body"
                     >
                       Inny
                     </Text>
@@ -1393,6 +1394,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                   "top": 9.483412322274882,
                 }
               }
+              testID="add-other-bike-container-id-button-input-input-icon"
             >
               <Text
                 style={
@@ -1874,7 +1876,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-mountain-body"
                     >
                       Górski
                     </Text>
@@ -1973,7 +1975,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-gravel-body"
                     >
                       Gravel
                     </Text>
@@ -2072,7 +2074,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-road-body"
                     >
                       Szosowy
                     </Text>
@@ -2171,7 +2173,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-touristic-body"
                     >
                       Turystyczny
                     </Text>
@@ -2270,7 +2272,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-city-body"
                     >
                       Miejski
                     </Text>
@@ -2369,7 +2371,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-kids-body"
                     >
                       Dziecięcy
                     </Text>
@@ -2468,7 +2470,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                           undefined,
                         ]
                       }
-                      testID="body-primary-test-id"
+                      testID="add-other-bike-container-id-radio-list-item-radio-button-other-body"
                     >
                       Inny
                     </Text>

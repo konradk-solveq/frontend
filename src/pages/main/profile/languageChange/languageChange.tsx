@@ -42,7 +42,6 @@ const LanguageChange: React.FC<Props> = ({navigation}: Props) => {
     const language: string = useAppSelector(state => state.user.language);
     const [inputLanguage, setInputLanguage] = useState<string>('');
     const languageList: languagesListT = useAppSelector(languagesListSelector);
-
     const translations: translationsT = useAppSelector(translationsSelector);
     const [fetchingTranslation, setFetchingTranslation] = useState<boolean>(
         false,

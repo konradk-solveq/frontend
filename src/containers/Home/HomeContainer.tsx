@@ -43,7 +43,9 @@ const HomeContainer = ({
                     onPressPrimary={onAddBikePressPrimary}
                     onPressSecondary={onAddBikePressSecondary}
                 />
-                <Pressable onPress={onStoreTilePress}>
+                <Pressable
+                    onPress={onStoreTilePress}
+                    testID={'home-container-banner-link'}>
                     <Image
                         source={require('@assets/images/homeStore/storeTile.png')}
                         resizeMode={'contain'}

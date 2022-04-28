@@ -55,7 +55,10 @@ const LanguageButton: React.FC<IProps> = ({
             <View style={styles.container}>
                 <View style={styles.checkbox}>
                     {active ? (
-                        <Svg width="26" height="26">
+                        <Svg
+                            width="26"
+                            height="26"
+                            testID={'language-button-test-active-icon'}>
                             <G fill="none" fill-rule="evenodd">
                                 <Rect
                                     stroke="#D8232A"
@@ -88,10 +91,16 @@ const LanguageButton: React.FC<IProps> = ({
                     )}
                 </View>
 
-                <Text style={styles.blueText}>{title}</Text>
+                <Text
+                    style={styles.blueText}
+                    testID={'language-button-test-country-text'}>
+                    {title}
+                </Text>
 
                 {svg && (
-                    <View style={styles.symbol}>
+                    <View
+                        style={styles.symbol}
+                        testID={'language-button-test-country-icon'}>
                         <SvgXml xml={svg} />
                     </View>
                 )}
