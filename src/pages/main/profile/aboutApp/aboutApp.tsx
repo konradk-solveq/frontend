@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
+import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import DeviceInfo from 'react-native-device-info';
 
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import Bike_0 from './bike_0';
 import Bike_1 from '@components/svg/bikes/bike_4';
 import Bike_2 from '@components/svg/bikes/bike_5';
@@ -19,11 +18,8 @@ import {
 import {version} from '../../../../../package.json';
 import {API_URL, ENVIRONMENT_TYPE} from '@env';
 import {RouteDebugBtn} from '@sharedComponents/buttons';
-import {commonStyle as comStyle} from '@helpers/commonStyle';
-interface Props {
-    navigation: any;
-    route: any;
-}
+import {commonStyle} from '@theme/commonStyle';
+import GenericScreen from '@src/pages/template/GenericScreen';
 
 const getAppVersion = () => {
     const appBuildNumber = DeviceInfo.getBuildNumber();
@@ -33,18 +29,13 @@ const getAppVersion = () => {
     return `${version} (${appBuildNumber}) ${buildType} ${serverVersion}`;
 };
 
-const AboutApp: React.FC<Props> = (props: Props) => {
+const AboutApp: React.FC = () => {
     const {t} = useMergedTranslation('AboutApp');
 
     const [headHeight, setHeadHeight] = useState(0);
 
     setObjSize(334, 50);
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#fff',
-        },
         scroll: {
             width: '100%',
             height: '100%',
@@ -113,8 +104,8 @@ const AboutApp: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={comStyle.container}>
-            <View style={comStyle.scroll}>
+        <GenericScreen screenTitle={t('header')} transculentStatusBar>
+            <View style={commonStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         <Text style={styles.title}>{t('title')}</Text>
@@ -151,14 +142,7 @@ const AboutApp: React.FC<Props> = (props: Props) => {
                     </View>
                 </ScrollView>
             </View>
-
-            <StackHeader
-                onpress={() => props.navigation.goBack()}
-                inner={t('header')}
-                getHeight={setHeadHeight}
-                style={{backgroundColor: '#fff'}}
-            />
-        </SafeAreaView>
+        </GenericScreen>
     );
 };
 

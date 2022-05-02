@@ -1,6 +1,5 @@
 import React, {useMemo} from 'react';
-import {StyleSheet, View, Text, ScrollView, SafeAreaView} from 'react-native';
-
+import {StyleSheet, View, Text, ScrollView} from 'react-native';
 import {
     setObjSize,
     getWidthPx,
@@ -8,18 +7,13 @@ import {
     getHorizontalPx,
 } from '@helpers/layoutFoo';
 import {useAppSelector} from '@hooks/redux';
-import {commonStyle as comStyle} from '@helpers/commonStyle';
-
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {commonStyle} from '@theme/commonStyle';
 import Paragraph from './paragraph';
 import {onboardingFinishedSelector} from '@src/storage/selectors';
 import {OnboardingStackRoute, RegularStackRoute} from '@src/navigation/route';
+import GenericScreen from '@src/pages/template/GenericScreen';
 
-interface Props {
-    navigation: any;
-}
-
-const PrivacyPolicy: React.FC<Props> = (props: Props) => {
+const PrivacyPolicy: React.FC = () => {
     const data = useAppSelector(state => state.app.policy);
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const privacyPolicyRouteName = useMemo(
@@ -47,8 +41,8 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={comStyle.container}>
-            <View style={comStyle.scroll}>
+        <GenericScreen screenTitle={data?.header} transculentStatusBar>
+            <View style={commonStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         {data.title && (
@@ -71,15 +65,7 @@ const PrivacyPolicy: React.FC<Props> = (props: Props) => {
                     </View>
                 </ScrollView>
             </View>
-
-            {data.header && (
-                <StackHeader
-                    onpress={() => props.navigation.goBack()}
-                    inner={data.header}
-                    titleStyle={styles.header}
-                />
-            )}
-        </SafeAreaView>
+        </GenericScreen>
     );
 };
 

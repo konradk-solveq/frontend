@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-    StyleSheet,
-    Dimensions,
-    View,
-    ScrollView,
-    SafeAreaView,
-} from 'react-native';
+import {StyleSheet, Dimensions, View, ScrollView} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {
@@ -16,19 +10,14 @@ import {
     getFontSize,
 } from '@helpers/layoutFoo';
 import {useAppSelector} from '@hooks/redux';
-import {commonStyle as comStyle} from '@helpers/commonStyle';
-
+import {commonStyle} from '@theme/commonStyle';
 import Question from './faq/question';
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
 import {faqDataSelector} from '@storage/selectors/app';
-
-interface Props {
-    navigation: any;
-}
+import GenericScreen from '@src/pages/template/GenericScreen';
 
 const wh = Dimensions.get('window').height;
 
-const Help: React.FC<Props> = (props: Props) => {
+const Help: React.FC = () => {
     const {t} = useMergedTranslation('Help');
 
     const faqData = useAppSelector(faqDataSelector);
@@ -73,8 +62,8 @@ const Help: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <SafeAreaView style={comStyle.container}>
-            <View style={comStyle.scroll}>
+        <GenericScreen screenTitle={t('header')} transculentStatusBar>
+            <View style={commonStyle.scroll}>
                 <ScrollView>
                     <View style={styles.wrap}>
                         {faqData?.faq?.map((e, i) => (
@@ -83,14 +72,7 @@ const Help: React.FC<Props> = (props: Props) => {
                     </View>
                 </ScrollView>
             </View>
-
-            <StackHeader
-                onpress={() => props.navigation.goBack()}
-                inner={t('header')}
-                getHeight={setheadHeight}
-                style={{backgroundColor: '#fff'}}
-            />
-        </SafeAreaView>
+        </GenericScreen>
     );
 };
 

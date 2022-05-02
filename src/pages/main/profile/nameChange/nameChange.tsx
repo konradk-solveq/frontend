@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
     StyleSheet,
-    SafeAreaView,
     View,
     Text,
     ScrollView,
@@ -29,7 +28,7 @@ import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 
 import OneLineTekst from '@sharedComponents/inputs/oneLineTekst';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import GenericScreen from '@src/pages/template/GenericScreen';
 
 const isIOS = Platform.OS === 'ios';
 
@@ -139,7 +138,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
     });
 
     return (
-        <SafeAreaView style={styles.container}>
+        <GenericScreen screenTitle={t('header')} transculentStatusBar>
             <KeyboardAvoidingView
                 behavior={isIOS ? 'padding' : 'height'}
                 keyboardVerticalOffset={iosOffset}
@@ -175,11 +174,7 @@ const NameChange: React.FC<Props> = ({navigation}: Props) => {
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-            <StackHeader
-                onpress={() => navigation.goBack()}
-                inner={t('header')}
-            />
-        </SafeAreaView>
+        </GenericScreen>
     );
 };
 

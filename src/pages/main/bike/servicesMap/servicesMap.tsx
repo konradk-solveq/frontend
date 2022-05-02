@@ -1,13 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {WebView} from 'react-native-webview';
 
-import {
-    StyleSheet,
-    Dimensions,
-    SafeAreaView,
-    View,
-    Platform,
-} from 'react-native';
+import {StyleSheet, Dimensions, View, Platform} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -22,20 +16,14 @@ import {jsonParse, jsonStringify} from '@utils/transformJson';
 
 import AnimSvg from '@helpers/animSvg';
 import {FindMeButton, TypicalRedBtn} from '@sharedComponents/buttons';
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
-
 import gradient from './gradientSvg';
 import AddressBox from './addressBox/addressBox';
 import mapSource from './servicesMapHtml';
-
-interface Props {
-    navigation: any;
-    route: any;
-}
+import GenericScreen from '@src/pages/template/GenericScreen';
 
 const {width, height} = Dimensions.get('window');
 
-const ServicesMap: React.FC<Props> = (props: Props) => {
+const ServicesMap: React.FC = () => {
     const dispatch = useAppDispatch();
     const {t} = useMergedTranslation('ServicesMap');
 
@@ -247,7 +235,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
     const withHours = adress?.openHours ? 414 * 0.57 + 16 : 414 * 0.49 + 16;
 
     return (
-        <SafeAreaView style={styles.container}>
+        <GenericScreen screenTitle={t('title')}>
             <View style={styles.fullView}>
                 <WebView
                     style={styles.fullView}
@@ -305,12 +293,7 @@ const ServicesMap: React.FC<Props> = (props: Props) => {
                 ]}
                 onpress={hendleFindMyLocation}
             />
-
-            <StackHeader
-                onpress={() => props.navigation.goBack()}
-                inner={t('title')}
-            />
-        </SafeAreaView>
+        </GenericScreen>
     );
 };
 
