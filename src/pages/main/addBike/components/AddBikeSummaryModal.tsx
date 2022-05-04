@@ -18,11 +18,13 @@ import {
 } from '@containers/AddBike';
 import {HorizontalSpacer} from '@components/divider';
 
+const HEIGHT_WITH_PLACEHOLDER = 443;
+
 interface IProps {
     bikeData: {
         bikeName: string;
         frameNumber: string;
-        imageUrl: string;
+        imageUrl?: string;
         producer?: string;
     };
     onAddBike: () => void;
@@ -46,8 +48,12 @@ const AddBikeSummaryModal: React.FC<IProps> = ({
 }: IProps) => {
     const {t} = useMergedTranslation('AddBikeSummary');
     const {bottom} = useSafeAreaInsets();
-    const modalHeight = useMemo(() => getFVerticalPx(height) - bottom, [
-        height,
+    const modalH = useMemo(
+        () => (bikeData?.imageUrl ? height : HEIGHT_WITH_PLACEHOLDER),
+        [bikeData?.imageUrl, height],
+    );
+    const modalHeight = useMemo(() => getFVerticalPx(modalH) - bottom, [
+        modalH,
         bottom,
     ]);
 

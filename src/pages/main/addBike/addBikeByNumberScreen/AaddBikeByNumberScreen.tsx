@@ -1,5 +1,5 @@
 import React, {useCallback, useMemo, useState} from 'react';
-import {Alert, Image} from 'react-native';
+import {Alert} from 'react-native';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {bikeByFrameNumberSelector} from '@storage/selectors';
@@ -13,9 +13,6 @@ import {addBikeEvent} from '@analytics/utils/bikes';
 import GenericScreen from '@pages/template/GenericScreen';
 import {AddBikeByNumberContainer} from '@containers/AddBike';
 import {AddBikeSummaryModal} from '@pages/main/addBike/components';
-import DefaultImage from '@assets/images/bike_placeholder.png';
-
-const IMAGE_URL = Image.resolveAssetSource(DefaultImage).uri;
 
 const rules: Record<string, any[] | undefined> = {
     bikeNumber: [
@@ -41,7 +38,7 @@ const AddBikeByNumberScreen: React.FC = () => {
     const bd = useMemo(
         () => ({
             bikeName: bikeData?.description.name || '',
-            imageUrl: bikeData?.images?.[0] || IMAGE_URL,
+            imageUrl: bikeData?.images?.[0],
             frameNumber: frameNumber,
         }),
         [bikeData?.description, bikeData?.images, frameNumber],
