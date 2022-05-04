@@ -1,0 +1,360 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/AddBike/AddBikeFrameInfo Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 28.985507246376812,
+      },
+      Object {
+        "backgroundColor": "#ededed",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "height": "100%",
+          "paddingBottom": 79.02843601895735,
+          "paddingHorizontal": 28.985507246376812,
+          "paddingTop": 63.22274881516588,
+          "width": "100%",
+        },
+        Object {},
+      ]
+    }
+    testID="add-bike-frame-info-container-id"
+  >
+    <Text
+      adjustsFontSizeToFit={false}
+      style={
+        Array [
+          Object {
+            "color": "#333333",
+            "fontFamily": "DIN2014-Demi",
+            "fontSize": 20,
+            "fontWeight": "600",
+            "lineHeight": 24,
+            "textAlign": "center",
+          },
+          undefined,
+        ]
+      }
+      testID="add-bike-frame-info-container-id-header"
+    >
+      AddBikeFrameInfo.content.text
+    </Text>
+    <Image
+      source={
+        Object {
+          "testUri": "../../../src/assets/images/bike/bike_frame.png",
+        }
+      }
+      style={
+        Object {
+          "height": 442.5592417061612,
+          "marginTop": 7.902843601895735,
+          "width": 700,
+        }
+      }
+      testID="add-bike-frame-info-container-id-bike-frame-image"
+    />
+    <View
+      style={
+        Object {
+          "height": 194.40995260663507,
+          "width": 489.42307692307696,
+        }
+      }
+      testID="add-bike-frame-info-container-id-frame-sticker"
+    >
+      <View
+        style={
+          Object {
+            "height": 38.565876777251184,
+            "width": 489.42307692307696,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "flex-start",
+              "backgroundColor": "#C63733",
+              "borderRadius": 13.461538461538462,
+              "height": 31.61137440758294,
+              "justifyContent": "center",
+              "marginLeft": 128.84615384615384,
+              "paddingHorizontal": 9.615384615384615,
+              "zIndex": 1,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#FFFFFF",
+                },
+              ]
+            }
+            testID="add-bike-frame-info-container-id-frame-sticker-title"
+          >
+            AddBikeFrameInfo.content.frameSticker.title
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "borderRadius": 19.23076923076923,
+            "height": 155.84407582938388,
+            "width": 480.7692307692308,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/assets/images/layout/rectangle_with_shadow.png",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 19.23076923076923,
+              "bottom": 0,
+              "height": 218.1184834123223,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 489.42307692307696,
+              "zIndex": 0,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 19.23076923076923,
+              "flexDirection": "row",
+              "height": 155.84407582938388,
+              "width": 489.42307692307696,
+              "zIndex": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#717171",
+                "height": 45.83649289099526,
+                "marginLeft": 25,
+                "marginRight": 19.23076923076923,
+                "marginTop": 15.80568720379147,
+                "width": 45.83649289099526,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#C63733",
+                  "height": 24.972985781990523,
+                  "marginLeft": 92.3076923076923,
+                  "position": "absolute",
+                  "top": -11.854265402843602,
+                  "width": 2.8450236966824645,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignSelf": "flex-start",
+                  "borderColor": "#C63733",
+                  "borderRadius": 17.307692307692307,
+                  "borderWidth": 2.8450236966824645,
+                  "height": 42.35924170616114,
+                  "justifyContent": "center",
+                  "marginTop": 13.43483412322275,
+                  "paddingHorizontal": 9.615384615384615,
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="add-bike-frame-info-container-id-frame-sticker-frame-number"
+              >
+                AddBikeFrameInfo.content.frameSticker.frameNumber
+              </Text>
+            </View>
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#BDBDBD",
+                    "fontFamily": "DIN2014-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "marginLeft": 9.615384615384615,
+                    "marginTop": 12.170379146919432,
+                  },
+                ]
+              }
+              testID="add-bike-frame-info-container-id-frame-sticker-frame-description"
+            >
+              AddBikeFrameInfo.content.frameSticker.frameDescription
+            </Text>
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "marginLeft": 9.615384615384615,
+                  },
+                ]
+              }
+              testID="add-bike-frame-info-container-id-frame-sticker-additional-info"
+            >
+              AddBikeFrameInfo.content.frameSticker.additionalInfo
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {},
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {
+              "marginTop": 104.3175355450237,
+            },
+          ],
+        ]
+      }
+      testID="add-bike-frame-info-container-id-button"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "#C63733",
+            },
+            undefined,
+          ]
+        }
+        testID="add-bike-frame-info-container-id-button-container"
+      >
+        <Text
+          adjustsFontSizeToFit={true}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#FFFFFF",
+              },
+            ]
+          }
+          testID="add-bike-frame-info-container-id-button-text"
+        >
+          AddBikeFrameInfo.buttonText
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

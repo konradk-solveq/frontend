@@ -107,12 +107,18 @@
         "btnSkip": "POMIŃ",
         "btn": "DALEJ"
     },
-    "AddingInfo": {
-        "head": "Gdzie jest numer ramy?",
-        "btnKross": "KROSS",
-        "btnOther": "Inny producent",
-        "textKross": "Numer ramy (numer seryjny) znajduje się na\u00a0małej naklejce w\u00a0okolicach suportu - dużego koła zębatego.\n\nNumer ramy można znaleźć również na\u00a0e-gwarancji pod datą sprzedaży.",
-        "textOther": "Numer ramy (numer seryjny) u\u00a0innych producentów znajdziesz:\n- w okolicach korby,\n- na dolnej rurze ramy,\n- na dolnej rurze trójkąta tylnego,\n- na wsporniku kierownicy."
+    "AddBikeFrameInfo": {
+        "headerTitle": "Numer ramy",
+        "content": {
+            "text": "Numer ramy znajdziesz na naklejce \n umieszczonej w dolnej części ramy, \n najczęściej od spodu. \n\n Znajdziesz ją też na e-gwarancji pod \n datą sprzedaży",
+            "frameSticker": {
+                "title": "NR RAMY",
+                "frameNumber": "123456789101",
+                "frameDescription": "RAMA 29x1AI0980000213",
+                "additionalInfo": "M L 21 22 02"
+            }
+        },
+        "buttonText": "Cofnij"
     },
     "Permits": {
         "header": "Zgody",
