@@ -8,7 +8,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -22,7 +22,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         Object {
           "backgroundColor": "#FAFAFA",
           "height": "100%",
-          "paddingHorizontal": 28.985507246376812,
+          "paddingHorizontal": 30.76923076923077,
           "width": "100%",
         },
         Object {
@@ -1107,7 +1107,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -1121,7 +1121,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         Object {
           "backgroundColor": "#FAFAFA",
           "height": "100%",
-          "paddingHorizontal": 28.985507246376812,
+          "paddingHorizontal": 30.76923076923077,
           "width": "100%",
         },
         undefined,

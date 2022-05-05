@@ -8,7 +8,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
@@ -411,7 +411,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
@@ -710,7 +710,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
@@ -1063,7 +1063,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]

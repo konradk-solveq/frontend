@@ -8,7 +8,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ffffff",
@@ -21,7 +21,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
       Object {
         "alignItems": "center",
         "flex": 1,
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
         "width": "100%",
       }
     }
@@ -548,7 +548,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -647,7 +647,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -746,7 +746,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -845,7 +845,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -944,7 +944,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -1043,7 +1043,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -1142,7 +1142,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -1282,7 +1282,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ffffff",
@@ -1295,7 +1295,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
       Object {
         "alignItems": "center",
         "flex": 1,
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
         "width": "100%",
       }
     }
@@ -1822,7 +1822,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -1921,7 +1921,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -2020,7 +2020,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -2119,7 +2119,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -2218,7 +2218,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -2317,7 +2317,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >
@@ -2416,7 +2416,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
             <View
               style={
                 Object {
-                  "paddingHorizontal": 28.985507246376812,
+                  "paddingHorizontal": 30.76923076923077,
                 }
               }
             >

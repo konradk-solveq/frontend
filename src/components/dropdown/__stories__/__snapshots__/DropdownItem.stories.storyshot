@@ -8,7 +8,7 @@ exports[`Storyshots components/dropdown/DropdownItem Customized 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -116,7 +116,7 @@ exports[`Storyshots components/dropdown/DropdownItem Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -224,7 +224,7 @@ exports[`Storyshots components/dropdown/DropdownItem Selected 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -334,7 +334,7 @@ exports[`Storyshots components/dropdown/DropdownItem With Icon 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",

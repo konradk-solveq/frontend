@@ -8,7 +8,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
@@ -23,7 +23,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
         "height": "100%",
         "justifyContent": "center",
         "paddingBottom": 63.22274881516588,
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
         "width": 750,
       }
     }

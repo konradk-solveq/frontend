@@ -8,7 +8,7 @@ exports[`Storyshots components/pagination/Pagination Custom 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
@@ -111,7 +111,7 @@ exports[`Storyshots components/pagination/Pagination Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]

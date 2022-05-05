@@ -8,7 +8,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "paddingHorizontal": 0,
@@ -22,7 +22,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "height": "100%",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
         "width": "100%",
       }
     }

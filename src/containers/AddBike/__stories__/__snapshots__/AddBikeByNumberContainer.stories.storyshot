@@ -8,7 +8,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Customized 1`] =
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
@@ -295,7 +295,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
