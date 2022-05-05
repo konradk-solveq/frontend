@@ -15,7 +15,7 @@ import {TextIcon} from '@components/icons';
 import {BodyPrimary} from '@components/texts/texts';
 
 interface IProps {
-    icon: MykrossIconFont;
+    icon: MykrossIconFont | Element;
     onPress: (e: GestureResponderEvent) => void;
     text?: string;
     textColor?: string;
