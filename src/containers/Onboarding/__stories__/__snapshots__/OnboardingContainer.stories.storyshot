@@ -403,7 +403,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
           Object {
             "flexDirection": "row",
           },
-          undefined,
+          false,
         ]
       }
     >
@@ -1095,7 +1095,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
           Object {
             "flexDirection": "row",
           },
-          undefined,
+          false,
         ]
       }
     >

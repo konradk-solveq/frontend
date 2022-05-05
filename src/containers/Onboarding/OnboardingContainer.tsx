@@ -97,7 +97,13 @@ const OnboardingContainer = ({
                     <View />
                 </Animated.View>
             </BidirectionalSwipe>
-            <Pagination maxIndex={tiles.length} activeIndex={image} />
+            <Pagination
+                maxIndex={tiles.length}
+                activeIndex={image}
+                style={
+                    !(language && showLanguageButton) && styles.paginationMargin
+                }
+            />
             {language && showLanguageButton && (
                 <Pressable onPress={onLanguageChange} style={styles.lngButton}>
                     <Header3>{t('language')}:</Header3>
@@ -146,6 +152,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
+        marginBottom: getFVerticalPx(16),
+    },
+    paginationMargin: {
         marginBottom: getFVerticalPx(16),
     },
 });
