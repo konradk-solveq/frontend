@@ -16,11 +16,13 @@ exports[`<BikeSelectorList /> Rendering Should hide backArrowBtn 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#fff",
           "flex": 1,
           "justifyContent": "center",
         },
         undefined,
+        Object {
+          "backgroundColor": "#fff",
+        },
       ]
     }
   >
@@ -100,11 +102,13 @@ exports[`<BikeSelectorList /> Rendering Should match snapshot 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#fff",
           "flex": 1,
           "justifyContent": "center",
         },
         undefined,
+        Object {
+          "backgroundColor": "#fff",
+        },
       ]
     }
   >
@@ -269,11 +273,13 @@ exports[`<BikeSelectorList /> Rendering Should navigate after press on backArrow
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#fff",
           "flex": 1,
           "justifyContent": "center",
         },
         undefined,
+        Object {
+          "backgroundColor": "#fff",
+        },
       ]
     }
   >
@@ -438,11 +444,13 @@ exports[`<BikeSelectorList /> Rendering Should render child component 1`] = `
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#fff",
           "flex": 1,
           "justifyContent": "center",
         },
         undefined,
+        Object {
+          "backgroundColor": "#fff",
+        },
       ]
     }
   >
@@ -609,11 +617,13 @@ exports[`<BikeSelectorList /> Rendering Should render header right action elemen
       Array [
         Object {
           "alignItems": "center",
-          "backgroundColor": "#fff",
           "flex": 1,
           "justifyContent": "center",
         },
         undefined,
+        Object {
+          "backgroundColor": "#fff",
+        },
       ]
     }
   >

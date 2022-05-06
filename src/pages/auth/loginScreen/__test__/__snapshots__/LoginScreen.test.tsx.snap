@@ -17,11 +17,13 @@ Array [
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#fff",
             "flex": 1,
             "justifyContent": "center",
           },
           undefined,
+          Object {
+            "backgroundColor": "#fff",
+          },
         ]
       }
     >
@@ -1160,11 +1162,13 @@ Array [
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#fff",
             "flex": 1,
             "justifyContent": "center",
           },
           undefined,
+          Object {
+            "backgroundColor": "#fff",
+          },
         ]
       }
     >
@@ -2317,11 +2321,13 @@ Array [
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#fff",
             "flex": 1,
             "justifyContent": "center",
           },
           undefined,
+          Object {
+            "backgroundColor": "#fff",
+          },
         ]
       }
     >
@@ -3474,11 +3480,13 @@ Array [
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#fff",
             "flex": 1,
             "justifyContent": "center",
           },
           undefined,
+          Object {
+            "backgroundColor": "#fff",
+          },
         ]
       }
     >
@@ -4631,11 +4639,13 @@ Array [
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#fff",
             "flex": 1,
             "justifyContent": "center",
           },
           undefined,
+          Object {
+            "backgroundColor": "#fff",
+          },
         ]
       }
     >
@@ -5774,11 +5784,13 @@ Array [
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#fff",
             "flex": 1,
             "justifyContent": "center",
           },
           undefined,
+          Object {
+            "backgroundColor": "#fff",
+          },
         ]
       }
     >
