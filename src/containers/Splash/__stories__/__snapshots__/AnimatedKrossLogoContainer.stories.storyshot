@@ -27,6 +27,7 @@ exports[`Storyshots containers/Splash/AnimatedKrossLogoContainer Default 1`] = `
     <View
       style={
         Object {
+          "alignItems": "center",
           "height": 316.1137440758294,
           "marginTop": 442.5592417061612,
           "width": 346.1538461538462,
