@@ -28,6 +28,7 @@ Array [
       }
     >
       <View
+        onLayout={[Function]}
         style={
           Array [
             Object {
@@ -39,45 +40,85 @@ Array [
               "zIndex": 1,
             },
             Object {
-              "height": 148.88392857142858,
+              "height": 139.09004739336493,
+              "width": 750,
             },
             Object {
               "height": 139.09004739336493,
             },
           ]
         }
+        testID="navigation-header-test-id"
       >
         <View
           style={
             Object {
-              "alignItems": "center",
+              "alignItems": "flex-end",
               "bottom": 0,
-              "justifyContent": "center",
+              "flexDirection": "row",
+              "height": 75.86729857819905,
+              "justifyContent": "space-between",
               "left": 0,
+              "marginBottom": 14.225118483412324,
+              "paddingHorizontal": 30.76923076923077,
               "position": "absolute",
               "right": 0,
             }
           }
         >
-          <Text
-            adjustsFontSizeToFit={false}
+          <View
             style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
+              }
             }
-            testID="header2-test-id"
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 44.25592417061611,
+                "justifyContent": "center",
+                "width": 496.1538461538462,
+              }
+            }
           >
-            
-          </Text>
+            <Text
+              adjustsFontSizeToFit={true}
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "lineHeight": 24,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                ]
+              }
+              testID="navigation-header-test-id-title"
+            >
+              
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
+              }
+            }
+          />
         </View>
       </View>
       <View
@@ -539,6 +580,7 @@ Array [
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {

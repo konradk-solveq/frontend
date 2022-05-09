@@ -6,11 +6,14 @@ import {
     getFHorizontalPx,
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
+import {LAYOUT_HORIZONTAL_MARGIN} from '@theme/layout';
 
 const {width, height} = Dimensions.get('screen');
 
 export const navBarHeight = getFVerticalPx(88);
-export const appContainerHorizontalMargin = getFHorizontalPx(16);
+export const appContainerHorizontalMargin = getFHorizontalPx(
+    LAYOUT_HORIZONTAL_MARGIN,
+);
 export const appBottomMargin = getFVerticalPx(40);
 export const screenWidth = width;
 export const screenHeight = height;

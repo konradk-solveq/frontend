@@ -528,6 +528,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                 >
                   <Text
                     adjustsFontSizeToFit={false}
+                    numberOfLines={0}
                     style={
                       Array [
                         Object {
@@ -692,6 +693,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                 >
                   <Text
                     adjustsFontSizeToFit={false}
+                    numberOfLines={0}
                     style={
                       Array [
                         Object {
@@ -919,6 +921,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               >
                 <Text
                   adjustsFontSizeToFit={false}
+                  numberOfLines={0}
                   style={
                     Array [
                       Object {
@@ -1596,6 +1599,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                 >
                   <Text
                     adjustsFontSizeToFit={false}
+                    numberOfLines={0}
                     style={
                       Array [
                         Object {
@@ -1760,6 +1764,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                 >
                   <Text
                     adjustsFontSizeToFit={false}
+                    numberOfLines={0}
                     style={
                       Array [
                         Object {
@@ -1987,6 +1992,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               >
                 <Text
                   adjustsFontSizeToFit={false}
+                  numberOfLines={0}
                   style={
                     Array [
                       Object {

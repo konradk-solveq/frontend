@@ -240,6 +240,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -541,6 +542,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
           >
             <Text
               adjustsFontSizeToFit={false}
+              numberOfLines={0}
               style={
                 Array [
                   Object {

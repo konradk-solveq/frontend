@@ -11,11 +11,10 @@ import {
     mainButtonsHeight,
 } from '@helpers/layoutFoo';
 
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import AnimSvg from '@helpers/animSvg';
 import {countDaysToEnd} from '@helpers/warranty';
-import {RegularStackRoute} from '@navigation/route';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 interface Props {
@@ -226,12 +225,9 @@ const WarrantyDetails: React.FC<Props> = (props: Props) => {
                 </ScrollView>
             </View>
 
-            <StackHeader
-                onpress={() =>
-                    props.navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN)
-                }
-                inner={t('header')}
-                getHeight={setHeadHeightt}
+            <NavigationHeader
+                title={t('header')}
+                getHeaderHeight={setHeadHeightt}
             />
         </SafeAreaView>
     );

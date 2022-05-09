@@ -232,6 +232,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                       </Text>
                       <Text
                         adjustsFontSizeToFit={false}
+                        numberOfLines={0}
                         style={
                           Array [
                             Object {
@@ -934,6 +935,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                       </Text>
                       <Text
                         adjustsFontSizeToFit={false}
+                        numberOfLines={0}
                         style={
                           Array [
                             Object {
@@ -1287,6 +1289,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                       </Text>
                       <Text
                         adjustsFontSizeToFit={false}
+                        numberOfLines={0}
                         style={
                           Array [
                             Object {

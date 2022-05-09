@@ -260,6 +260,7 @@ exports[`Storyshots containers/Home/HomeContainer Custiomized 1`] = `
           >
             <Text
               adjustsFontSizeToFit={false}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -769,6 +770,7 @@ exports[`Storyshots containers/Home/HomeContainer Default 1`] = `
           >
             <Text
               adjustsFontSizeToFit={false}
+              numberOfLines={0}
               style={
                 Array [
                   Object {

@@ -28,7 +28,7 @@ import {
     EditBtn,
     ShareBtn,
 } from '@sharedComponents/buttons';
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 import SliverTopBar from '@sharedComponents/sliverTopBar/sliverTopBar';
 import BottomModal from '@sharedComponents/modals/bottomModal/bottomModal';
 import Description from './description/description';
@@ -214,11 +214,10 @@ const RouteDetails = () => {
                     safeAreaBackgroundStyle,
                 ]}>
                 <View style={[styles.container, containerStyle]}>
-                    <StackHeader
+                    <NavigationHeader
                         forceBackArrow={cameFromSharedLink}
-                        onpress={onBackHandler}
-                        inner=""
-                        style={styles.header}
+                        onPress={onBackHandler}
+                        title=""
                         rightActions={
                             <View style={styles.actionButtonsContainer}>
                                 {userID ===

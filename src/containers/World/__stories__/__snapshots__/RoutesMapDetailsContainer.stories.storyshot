@@ -43,6 +43,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -62,6 +63,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
       </Text>
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -1139,6 +1141,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -1158,6 +1161,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
       </Text>
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {

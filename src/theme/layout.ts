@@ -8,3 +8,4 @@ export const BASE_STACK_HEADER_HEIGHT = 100;
  */
 export const FIGMA_HEIGHT = 844;
 export const FIGMA_WIDTH = 390;
+export const LAYOUT_HORIZONTAL_MARGIN = 16;

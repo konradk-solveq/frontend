@@ -18,6 +18,7 @@ type PropsT = {
     algin?: 'left' | 'auto' | 'right' | 'center' | 'justify';
     color?: string;
     adjustsFontSizeToFit?: boolean;
+    numberOfLines?: number;
     style?: StyleProp<TextStyle> | undefined;
     testID?: string;
 };
@@ -162,6 +163,7 @@ export const Header2: FunctionComponent<PropsT> = ({
     algin,
     color,
     adjustsFontSizeToFit = false,
+    numberOfLines = 0,
     children,
     style,
     testID = 'header2-test-id',
@@ -179,6 +181,7 @@ export const Header2: FunctionComponent<PropsT> = ({
     return (
         <Text
             testID={testID}
+            numberOfLines={numberOfLines}
             style={[styles.text, style]}
             adjustsFontSizeToFit={adjustsFontSizeToFit}>
             {children}

@@ -33,6 +33,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Customized 1`] =
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -320,6 +321,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Default 1`] = `
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {

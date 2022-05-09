@@ -32,6 +32,7 @@ Array [
       }
     >
       <View
+        onLayout={[Function]}
         style={
           Array [
             Object {
@@ -43,63 +44,93 @@ Array [
               "zIndex": 1,
             },
             Object {
-              "height": 148.88392857142858,
+              "height": 139.09004739336493,
+              "width": 750,
             },
-            Object {
-              "zIndex": 3,
-            },
+            undefined,
           ]
         }
+        testID="navigation-header-test-id"
       >
         <View
           style={
             Object {
-              "alignItems": "center",
+              "alignItems": "flex-end",
               "bottom": 0,
-              "justifyContent": "center",
+              "flexDirection": "row",
+              "height": 75.86729857819905,
+              "justifyContent": "space-between",
               "left": 0,
+              "marginBottom": 14.225118483412324,
+              "paddingHorizontal": 30.76923076923077,
               "position": "absolute",
               "right": 0,
             }
           }
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header2-test-id"
-          >
-            
-          </Text>
           <View
             style={
               Object {
-                "bottom": 0,
-                "position": "absolute",
-                "right": 0,
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 44.25592417061611,
+                "justifyContent": "center",
+                "width": 496.1538461538462,
+              }
+            }
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "lineHeight": 24,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                ]
+              }
+              testID="navigation-header-test-id-title"
+            >
+              
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
               }
             }
           >
             <View
               style={
                 Object {
-                  "alignItems": "flex-end",
+                  "alignItems": "center",
                   "flexDirection": "row",
-                  "justifyContent": "center",
-                  "marginRight": 72.46376811594203,
+                  "justifyContent": "flex-end",
+                  "width": "100%",
                 }
               }
+              testID="navigation-header-test-id-actions-container"
             >
               <View
                 style={
@@ -1964,6 +1995,7 @@ Array [
       }
     >
       <View
+        onLayout={[Function]}
         style={
           Array [
             Object {
@@ -1975,63 +2007,93 @@ Array [
               "zIndex": 1,
             },
             Object {
-              "height": 148.88392857142858,
+              "height": 139.09004739336493,
+              "width": 750,
             },
-            Object {
-              "zIndex": 3,
-            },
+            undefined,
           ]
         }
+        testID="navigation-header-test-id"
       >
         <View
           style={
             Object {
-              "alignItems": "center",
+              "alignItems": "flex-end",
               "bottom": 0,
-              "justifyContent": "center",
+              "flexDirection": "row",
+              "height": 75.86729857819905,
+              "justifyContent": "space-between",
               "left": 0,
+              "marginBottom": 14.225118483412324,
+              "paddingHorizontal": 30.76923076923077,
               "position": "absolute",
               "right": 0,
             }
           }
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header2-test-id"
-          >
-            
-          </Text>
           <View
             style={
               Object {
-                "bottom": 0,
-                "position": "absolute",
-                "right": 0,
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 44.25592417061611,
+                "justifyContent": "center",
+                "width": 496.1538461538462,
+              }
+            }
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "lineHeight": 24,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                ]
+              }
+              testID="navigation-header-test-id-title"
+            >
+              
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
               }
             }
           >
             <View
               style={
                 Object {
-                  "alignItems": "flex-end",
+                  "alignItems": "center",
                   "flexDirection": "row",
-                  "justifyContent": "center",
-                  "marginRight": 72.46376811594203,
+                  "justifyContent": "flex-end",
+                  "width": "100%",
                 }
               }
+              testID="navigation-header-test-id-actions-container"
             >
               <View
                 style={
@@ -3935,6 +3997,7 @@ Array [
       }
     >
       <View
+        onLayout={[Function]}
         style={
           Array [
             Object {
@@ -3946,63 +4009,93 @@ Array [
               "zIndex": 1,
             },
             Object {
-              "height": 148.88392857142858,
+              "height": 139.09004739336493,
+              "width": 750,
             },
-            Object {
-              "zIndex": 3,
-            },
+            undefined,
           ]
         }
+        testID="navigation-header-test-id"
       >
         <View
           style={
             Object {
-              "alignItems": "center",
+              "alignItems": "flex-end",
               "bottom": 0,
-              "justifyContent": "center",
+              "flexDirection": "row",
+              "height": 75.86729857819905,
+              "justifyContent": "space-between",
               "left": 0,
+              "marginBottom": 14.225118483412324,
+              "paddingHorizontal": 30.76923076923077,
               "position": "absolute",
               "right": 0,
             }
           }
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header2-test-id"
-          >
-            
-          </Text>
           <View
             style={
               Object {
-                "bottom": 0,
-                "position": "absolute",
-                "right": 0,
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 44.25592417061611,
+                "justifyContent": "center",
+                "width": 496.1538461538462,
+              }
+            }
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "lineHeight": 24,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                ]
+              }
+              testID="navigation-header-test-id-title"
+            >
+              
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
               }
             }
           >
             <View
               style={
                 Object {
-                  "alignItems": "flex-end",
+                  "alignItems": "center",
                   "flexDirection": "row",
-                  "justifyContent": "center",
-                  "marginRight": 72.46376811594203,
+                  "justifyContent": "flex-end",
+                  "width": "100%",
                 }
               }
+              testID="navigation-header-test-id-actions-container"
             >
               <View
                 style={
@@ -4061,7 +4154,7 @@ Array [
                                 "margin": 0,
                               },
                               Object {
-                                "marginRight": 36.231884057971016,
+                                "marginRight": 18.115942028985508,
                               },
                             ],
                           ],
@@ -5945,6 +6038,7 @@ Array [
       }
     >
       <View
+        onLayout={[Function]}
         style={
           Array [
             Object {
@@ -5956,63 +6050,93 @@ Array [
               "zIndex": 1,
             },
             Object {
-              "height": 148.88392857142858,
+              "height": 139.09004739336493,
+              "width": 750,
             },
-            Object {
-              "zIndex": 3,
-            },
+            undefined,
           ]
         }
+        testID="navigation-header-test-id"
       >
         <View
           style={
             Object {
-              "alignItems": "center",
+              "alignItems": "flex-end",
               "bottom": 0,
-              "justifyContent": "center",
+              "flexDirection": "row",
+              "height": 75.86729857819905,
+              "justifyContent": "space-between",
               "left": 0,
+              "marginBottom": 14.225118483412324,
+              "paddingHorizontal": 30.76923076923077,
               "position": "absolute",
               "right": 0,
             }
           }
         >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header2-test-id"
-          >
-            
-          </Text>
           <View
             style={
               Object {
-                "bottom": 0,
-                "position": "absolute",
-                "right": 0,
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 44.25592417061611,
+                "justifyContent": "center",
+                "width": 496.1538461538462,
+              }
+            }
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "lineHeight": 24,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                ]
+              }
+              testID="navigation-header-test-id-title"
+            >
+              
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
               }
             }
           >
             <View
               style={
                 Object {
-                  "alignItems": "flex-end",
+                  "alignItems": "center",
                   "flexDirection": "row",
-                  "justifyContent": "center",
-                  "marginRight": 72.46376811594203,
+                  "justifyContent": "flex-end",
+                  "width": "100%",
                 }
               }
+              testID="navigation-header-test-id-actions-container"
             >
               <View
                 style={
@@ -7877,6 +8001,7 @@ Array [
       }
     >
       <View
+        onLayout={[Function]}
         style={
           Array [
             Object {
@@ -7888,148 +8013,149 @@ Array [
               "zIndex": 1,
             },
             Object {
-              "height": 148.88392857142858,
+              "height": 139.09004739336493,
+              "width": 750,
             },
-            Object {
-              "zIndex": 3,
-            },
+            undefined,
           ]
         }
+        testID="navigation-header-test-id"
       >
         <View
           style={
             Object {
-              "alignItems": "center",
+              "alignItems": "flex-end",
               "bottom": 0,
-              "justifyContent": "center",
+              "flexDirection": "row",
+              "height": 75.86729857819905,
+              "justifyContent": "space-between",
               "left": 0,
+              "marginBottom": 14.225118483412324,
+              "paddingHorizontal": 30.76923076923077,
               "position": "absolute",
               "right": 0,
             }
           }
         >
           <View
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            hitSlop={
-              Object {
-                "bottom": 10,
-                "left": 20,
-                "right": 20,
-                "top": 10,
-              }
-            }
-            nativeID="animatedComponent"
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
             style={
               Object {
                 "alignItems": "center",
-                "display": "flex",
-                "height": 61.594202898550726,
-                "justifyContent": "center",
-                "left": 54.34782608695652,
-                "opacity": 1,
-                "padding": 16.304347826086957,
-                "position": "absolute",
-                "width": 72.46376811594203,
-                "zIndex": 20,
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
               }
             }
-            testID="TopBackBtn"
           >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight="100%"
-              bbWidth="100%"
-              focusable={false}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": "100%",
-                    "width": "100%",
-                  },
-                ]
-              }
-              vbHeight={16}
-              vbWidth={20}
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              testID="navigation-header-test-id-back-button"
             >
-              <RNSVGGroup>
-                <RNSVGPath
-                  d="M7.293 1.147c.36.342.388.881.083 1.254l-.083.09-3.879 3.684H19l.117.006c.497.055.883.457.883.944 0 .525-.448.95-1 .95H3.414l3.879 3.685.083.09c.305.372.277.91-.083 1.253-.39.371-1.024.371-1.414 0L.293 7.797l-.083-.09c-.305-.372-.278-.911.083-1.254l5.586-5.306c.39-.371 1.023-.371 1.414 0z"
-                  fill={4281413937}
-                  fillRule={1}
-                  matrix={
+              <View
+                style={
+                  Array [
+                    Object {
+                      "alignContent": "center",
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 30.76923076923077,
+                      "height": 84.61538461538461,
+                      "justifyContent": "center",
+                      "width": 84.61538461538461,
+                    },
+                    Object {
+                      "backgroundColor": "transparent",
+                      "height": 46.15384615384615,
+                      "paddingLeft": 3.8461538461538463,
+                      "width": 46.15384615384615,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={
                     Array [
-                      1,
-                      0,
-                      0,
-                      1,
-                      0,
-                      0.8499999999999943,
+                      Object {
+                        "fontFamily": "mykross",
+                        "textAlign": "center",
+                      },
+                      Object {
+                        "color": "#333333",
+                        "fontSize": 24,
+                      },
+                      undefined,
                     ]
                   }
-                  propList={
-                    Array [
-                      "fill",
-                      "fillRule",
-                    ]
-                  }
-                />
-              </RNSVGGroup>
-            </RNSVGSvgView>
+                  testID="navigation-header-test-id-back-button-icon"
+                >
+                  /
+                </Text>
+              </View>
+            </View>
           </View>
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 20,
-                  "fontWeight": "600",
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="header2-test-id"
-          >
-            
-          </Text>
           <View
             style={
               Object {
-                "bottom": 0,
-                "position": "absolute",
-                "right": 0,
+                "alignItems": "center",
+                "height": 44.25592417061611,
+                "justifyContent": "center",
+                "width": 496.1538461538462,
+              }
+            }
+          >
+            <Text
+              adjustsFontSizeToFit={true}
+              numberOfLines={1}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "lineHeight": 24,
+                    "textAlign": "center",
+                  },
+                  undefined,
+                ]
+              }
+              testID="navigation-header-test-id-title"
+            >
+              
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": 44.25592417061611,
+                "paddingRight": 3.8461538461538463,
+                "width": 96.15384615384616,
               }
             }
           >
             <View
               style={
                 Object {
-                  "alignItems": "flex-end",
+                  "alignItems": "center",
                   "flexDirection": "row",
-                  "justifyContent": "center",
-                  "marginRight": 72.46376811594203,
+                  "justifyContent": "flex-end",
+                  "width": "100%",
                 }
               }
+              testID="navigation-header-test-id-actions-container"
             >
               <View
                 style={

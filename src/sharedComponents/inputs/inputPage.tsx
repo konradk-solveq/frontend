@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView, View, Text, ScrollView} from 'react-native';
 
-import StackHeader from '../../sharedComponents/navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 import OneLineTekst from '../../sharedComponents/inputs/oneLineTekst';
 import BigRedBtn from '../../sharedComponents/buttons/bigRedBtn';
 
@@ -142,10 +142,9 @@ const InputPage: React.FC<Props> = (props: Props) => {
                 </View>
             </ScrollView>
 
-            <StackHeader
-                onpress={() => props.navigation.goBack()}
-                getHeight={setHeadHeight}
-                inner={param.header}
+            <NavigationHeader
+                getHeaderHeight={setHeadHeight}
+                title={param.header}
             />
         </SafeAreaView>
     );

@@ -248,6 +248,7 @@ Array [
           >
             <Text
               adjustsFontSizeToFit={false}
+              numberOfLines={0}
               style={
                 Array [
                   Object {

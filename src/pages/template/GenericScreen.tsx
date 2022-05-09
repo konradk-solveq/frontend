@@ -6,7 +6,7 @@ import {
     useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 import {navBarHeight} from '@theme/commonStyle';
 import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 
@@ -48,6 +48,7 @@ const GenericScreen: React.FC<IProps> = ({
     );
     /**
      * Other screens which use header have no SaveAreView used
+     * TODO: after we migrate all screens to use GenericScreen we can remove this modifier probably
      */
     const headerHeightModifier = useMemo(
         () => navBarHeight - statusBarHeigh + paddingTopWihtoutStatusBar,
@@ -91,8 +92,8 @@ const GenericScreen: React.FC<IProps> = ({
                         {backgroundColor: backgroundColor},
                     ]}>
                     {!noHeader && (
-                        <StackHeader
-                            inner={title}
+                        <NavigationHeader
+                            title={title}
                             style={{height: headerHeightModifier}}
                             rightActions={actionElement}
                             hideBackArrow={hideBackArrow}

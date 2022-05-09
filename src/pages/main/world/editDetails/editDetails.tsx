@@ -17,10 +17,10 @@ import useStatusBarHeight from '../../../../hooks/statusBarHeight';
 import {getImagesThumbs} from '../../../../utils/transformData';
 import {ImageType, MapFormDataResult} from '../../../../interfaces/form';
 import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
-import {EditDetailsRouteType} from '@type/rootStack';
+import {EditDetailsRouteT} from '@type/rootStack';
 import {MapType} from '@models/map.model';
 
-import StackHeader from '../../../../sharedComponents/navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
 import EditForm from './form/editForm';
 import Loader from '@components/svg/loader/loader';
@@ -36,7 +36,7 @@ const EditDetails = () => {
 
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
-    const route = useRoute<EditDetailsRouteType>();
+    const route = useRoute<EditDetailsRouteT>();
     const mapID = route?.params?.mapID;
     const privateMap = route?.params?.private;
     const redirectToScreen = route?.params?.redirectTo;
@@ -142,9 +142,9 @@ const EditDetails = () => {
                         styles.innerContainer,
                         {paddingTop: headerBackgroundHeight},
                     ]}>
-                    <StackHeader
-                        onpress={onBackHandler}
-                        inner=""
+                    <NavigationHeader
+                        onPress={onBackHandler}
+                        title=""
                         style={styles.header}
                     />
                     <SliverTopBar
