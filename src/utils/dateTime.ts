@@ -135,3 +135,7 @@ export const transformTimestampToDate = (tmestamp: number) => {
         return;
     }
 };
+
+export const isInPast = (date: Date | string) => {
+    return new Date(date).getTime() < Date.now();
+};

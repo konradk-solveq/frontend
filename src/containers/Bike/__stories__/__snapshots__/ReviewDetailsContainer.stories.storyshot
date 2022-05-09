@@ -1,0 +1,967 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/Bike/ReviewDetailsContainer Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 92.3076923076923,
+      }
+    }
+    showsVerticalScrollIndicator={false}
+    style={
+      Object {
+        "width": 688.4615384615385,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 23.076923076923077,
+            "height": 177.02369668246445,
+            "justifyContent": "center",
+            "marginBottom": 25.28909952606635,
+            "marginTop": 39.514218009478675,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 12.644549763033176,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="header1-test-id"
+          >
+            31.10.2022
+          </Text>
+        </View>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#717171",
+              },
+            ]
+          }
+          testID="header3-test-id"
+        >
+          Warranty
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "width": 688.4615384615385,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "marginHorizontal": 15.384615384615385,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          •
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "flexShrink": 1,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          washing your bike. The most effective way is to use a specialised cleaner
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "width": 688.4615384615385,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "marginHorizontal": 15.384615384615385,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          •
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "flexShrink": 1,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          checking the drivetrain, chain and maintenance of the complete system
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "width": 688.4615384615385,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "marginHorizontal": 15.384615384615385,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          •
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "flexShrink": 1,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          checking the tyres, general condition of the wheels and proper wheel pressure
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "width": 688.4615384615385,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "marginHorizontal": 15.384615384615385,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          •
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "flexShrink": 1,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          general inspection of the condition of the bicycle, cracks or other damage to components or the bicycle frame
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "justifyContent": "flex-start",
+              "width": "100%",
+            },
+            Object {
+              "marginBottom": 37.93364928909953,
+              "marginTop": 50.5781990521327,
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="services-tile-test-id"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 18.966824644549764,
+                  "marginBottom": 25.28909952606635,
+                  "paddingTop": 37.93364928909953,
+                },
+                Object {
+                  "paddingTop": 12.644549763033176,
+                },
+              ]
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/assets/images/services/serviceMap.png",
+                }
+              }
+              style={
+                Object {
+                  "marginBottom": 25.28909952606635,
+                }
+              }
+            />
+            <View
+              style={
+                Array [
+                  Object {
+                    "marginHorizontal": 23.076923076923077,
+                  },
+                  Object {
+                    "paddingBottom": 37.93364928909953,
+                  },
+                ]
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 20,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="header2-test-id"
+              >
+                MainBike.noBikes.servicesTile.header
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#717171",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "paddingBottom": 37.93364928909953,
+                    },
+                  ]
+                }
+                testID="header3-test-id"
+              >
+                MainBike.noBikes.servicesTile.body
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#C63733",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                MainBike.noBikes.servicesTile.button
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#C63733",
+              "textAlign": "center",
+            },
+          ]
+        }
+        testID="paragraph-test-id"
+      >
+        The validity of the Guarantee is conditional on having a proof of purchase and a Guarantee Statement or a guarantee account on the kross.eu/en platform, established in accordance with the terms and conditions of that platform
+      </Text>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`Storyshots containers/Bike/ReviewDetailsContainer Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 92.3076923076923,
+      }
+    }
+    showsVerticalScrollIndicator={false}
+    style={
+      Object {
+        "width": 688.4615384615385,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 23.076923076923077,
+            "height": 177.02369668246445,
+            "justifyContent": "center",
+            "marginBottom": 25.28909952606635,
+            "marginTop": 39.514218009478675,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "marginBottom": 12.644549763033176,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                undefined,
+              ]
+            }
+            testID="header1-test-id"
+          >
+            31.10.2022
+          </Text>
+        </View>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#717171",
+              },
+            ]
+          }
+          testID="header3-test-id"
+        >
+          Warranty
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "width": 688.4615384615385,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "marginHorizontal": 15.384615384615385,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          •
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "flexShrink": 1,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          washing your bike. The most effective way is to use a specialised cleaner
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "width": 688.4615384615385,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "marginHorizontal": 15.384615384615385,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          •
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "flexShrink": 1,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          checking the drivetrain, chain and maintenance of the complete system
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "width": 688.4615384615385,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "marginHorizontal": 15.384615384615385,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          •
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "flexShrink": 1,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          checking the tyres, general condition of the wheels and proper wheel pressure
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+              "width": 688.4615384615385,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "marginHorizontal": 15.384615384615385,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          •
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Array [
+                Object {
+                  "flexShrink": 1,
+                },
+                undefined,
+              ],
+            ]
+          }
+          testID="paragraph-test-id"
+        >
+          general inspection of the condition of the bicycle, cracks or other damage to components or the bicycle frame
+        </Text>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "justifyContent": "flex-start",
+              "width": "100%",
+            },
+            Object {
+              "marginBottom": 37.93364928909953,
+              "marginTop": 50.5781990521327,
+              "width": "100%",
+            },
+          ]
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="services-tile-test-id"
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 18.966824644549764,
+                  "marginBottom": 25.28909952606635,
+                  "paddingTop": 37.93364928909953,
+                },
+                Object {
+                  "paddingTop": 12.644549763033176,
+                },
+              ]
+            }
+          >
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/assets/images/services/serviceMap.png",
+                }
+              }
+              style={
+                Object {
+                  "marginBottom": 25.28909952606635,
+                }
+              }
+            />
+            <View
+              style={
+                Array [
+                  Object {
+                    "marginHorizontal": 23.076923076923077,
+                  },
+                  Object {
+                    "paddingBottom": 37.93364928909953,
+                  },
+                ]
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 20,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="header2-test-id"
+              >
+                MainBike.noBikes.servicesTile.header
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#717171",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "paddingBottom": 37.93364928909953,
+                    },
+                  ]
+                }
+                testID="header3-test-id"
+              >
+                MainBike.noBikes.servicesTile.body
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#C63733",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "center",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                MainBike.noBikes.servicesTile.button
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            Object {
+              "color": "#C63733",
+              "textAlign": "center",
+            },
+          ]
+        }
+        testID="paragraph-test-id"
+      >
+        The validity of the Guarantee is conditional on having a proof of purchase and a Guarantee Statement or a guarantee account on the kross.eu/en platform, established in accordance with the terms and conditions of that platform
+      </Text>
+    </View>
+  </RCTScrollView>
+</View>
+`;

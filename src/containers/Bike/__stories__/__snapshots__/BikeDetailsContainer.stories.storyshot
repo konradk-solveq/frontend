@@ -857,17 +857,20 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
+            testID="services-tile-test-id"
           >
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 18.966824644549764,
-                  "height": 379.33649289099526,
-                  "marginBottom": 25.28909952606635,
-                  "paddingVertical": 37.93364928909953,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 18.966824644549764,
+                    "marginBottom": 25.28909952606635,
+                    "paddingTop": 37.93364928909953,
+                  },
+                  undefined,
+                ]
               }
             >
               <View
@@ -1922,17 +1925,20 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
+            testID="services-tile-test-id"
           >
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 18.966824644549764,
-                  "height": 379.33649289099526,
-                  "marginBottom": 25.28909952606635,
-                  "paddingVertical": 37.93364928909953,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 18.966824644549764,
+                    "marginBottom": 25.28909952606635,
+                    "paddingTop": 37.93364928909953,
+                  },
+                  undefined,
+                ]
               }
             >
               <View
