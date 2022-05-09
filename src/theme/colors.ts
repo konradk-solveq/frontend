@@ -18,6 +18,7 @@ const colors = {
     altGreen: '#78BA35',
     dark: '#313131',
     lightBlue: '#E7F0FA',
+    transparent: 'transparent',
 };
 
 export default colors;
