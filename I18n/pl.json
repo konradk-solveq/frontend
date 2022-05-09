@@ -754,14 +754,13 @@
         "selectAll": "Zaznacz wsystkie"
     },
     "AboutApp": {
-        "header": "O aplikacji",
+        "header": "O Aplikacji",
         "title": "myKROSS to\u00a0aplikacja dla wszystkich pasjonatów jazdy rowerem.",
-        "text_1": "Aplikacja myKROSS powstała z\u00a0myślą o\u00a0rowerzystach przemierzających kilkanaście, kilkadziesiąt, a\u00a0nawet kilkaset kilometrów miesięcznie. Osób, które poszukują rzetelnej informacji o\u00a0swoim rowerze, o\u00a0tym jak zadbać o\u00a0jego stan, a\u00a0przede wszystkim chcących stać się inspiracją dla innych poprzez współudział w\u00a0tworzeniu Mapy Rowerowej.",
-        "text_1b": "Dzięki naklejce NFC umieszczonej na\u00a0ramie roweru KROSS aplikacja w\u00a0szybki sposób doda go do\u00a0listy rowerów. Natomiast każdy Użytkownik, także posiadający rower innego producenta, ma\u00a0możliwość dodania go\u00a0ręcznie w\u00a0aplikacji. W\u00a0przypadku posiadania większej liczby rowerów, każdy kolejny można dodać do\u00a0listy w\u00a0taki sam sposób.",
-        "text_2": "Jedną z\u00a0podstawowych funkcji aplikacji myKROSS jest nagrywanie tras. Licznik rejestrujący parametry jazdy na\u00a0bieżąco informuje Rowerzystę o\u00a0pokonanym dystansie, prędkości oraz czasie. Dodatkowo w\u00a0trakcie jazdy można obserwować ślad swojej trasy na\u00a0mapie, a\u00a0po jej zakończeniu, ślad trasy wraz ze\u00a0wszystkimi zarejestrowanymi parametrami zostaje zapisany na\u00a0liście „Moje trasy”.",
-        "text_3": "Dla tych, którzy zdecydują się podzielić swoimi trasami z\u00a0innymi powstała Mapa Rowerowa. To\u00a0katalog wszystkich opublikowanych przez Rowerzystów tras. Zawierają one ciekawostki i\u00a0zdjęcia z wycieczki lub treningu. Dzięki prostym a\u00a0zarazem funkcjonalnym filtrom można w\u00a0łatwy sposób wyszukać interesujące trasy, a\u00a0następnie pobrać je\u00a0do\u00a0swoich „Planowanych” tras i\u00a0przejechać na\u00a0własnym rowerze.",
-        "text_4": "W\u00a0zależności od\u00a0producenta roweru aplikacja myKROSS umożliwia także dostęp do\u00a0informacji o\u00a0najbliższych przeglądach gwarancyjnych, okresowych czy sezonowych. Co\u00a0więcej, każdy typ przeglądu zawiera szczegółowy wykaz czynności jakie powinny zostać wykonane. Dodatkowo właściciele rowerów KROSS mogą zapoznać się ze\u00a0szczegółowymi informacjami o\u00a0ramie i\u00a0widelcu, elementach napędu, kołach, hamulcach,\u00a0itp.",
-        "text_4b": "myKROSS pomaga również w zlokalizowaniu najbliższego punktu serwisowego lub sklepu rowerowego rekomendowanego przez KROSS, gdzie można wykonać wymagane przeglądy lub przygotować rower do\u00a0sezonu rowerowego.",
+        "text_1": "Aplikacja myKROSS powstała z\u00a0myślą o\u00a0rowerzystach przemierzających kilkanaście, kilkadziesiąt, a\u00a0nawet kilkaset kilometrów miesięcznie, poszukujących rzetelnej informacji o\u00a0swoim rowerze oraz informacji jak zadbać o\u00a0jego stan.",
+        "text_2": "W\u00a0myKROSS wystarczy podać numer ramy roweru, a\u00a0aplikacja sprawdzi czy jest to\u00a0rower marki KROSS czy też innego producenta i\u00a0umożliwi dodanie jego do\u00a0listy rowerów.",
+        "text_2b": "W\u00a0aplikacji mamy pełny wgląd w\u00a0podstawowe dane roweru np. informacje o\u00a0numerze ramy, modelu, producencie. Dodatkowo dla rowerów KROSS można podejrzeć pełną specyfikację roweru a\u00a0więc takie dane jak kolor, rozmiar, szczegółowe informacje o\u00a0ramie i\u00a0widelcu, elementach napędu, kołach, hamulcach itp.",
+        "text_3": "W\u00a0zależności od\u00a0producenta roweru aplikacja umożliwia też dostęp do\u00a0informacji o\u00a0najbliższych przeglądach gwarancyjnych, okresowych czy sezonowych. Co\u00a0więcej, każdy typ przeglądu zawiera szczegółowy wykaz czynności jakie powinny zostać podczas niego wykonane.",
+        "text_3b": "myKROSS pomaga również w\u00a0zlokalizowaniu najbliższego punktu serwisowego lub sklepu rowerowego rekomendowanego przez KROSS, gdzie można wykonać wymagane przeglądy lub przygotować rower do\u00a0sezonu rowerowego",
         "signature_1": "Życzymy udanej jazdy!",
         "signature_2": "Zespół KROSS"
     },
