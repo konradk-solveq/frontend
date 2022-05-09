@@ -92,7 +92,13 @@ const TextInput: React.FC<IProps> = ({
                 </View>
             )}
             <View style={styles.inputHint} testID={`${testID}-input-hint`}>
-                {!!hint && <Subtitle color={colors.darkGrey}>{hint}</Subtitle>}
+                {!!hint && (
+                    <Subtitle
+                        testID={`${testID}-input-hint-text`}
+                        color={colors.darkGrey}>
+                        {hint}
+                    </Subtitle>
+                )}
             </View>
         </View>
     );

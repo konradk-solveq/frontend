@@ -183,7 +183,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Customized 1`] =
                 undefined,
               ]
             }
-            testID="subtitle-test-id"
+            testID="add-bike-by-number-container-id-text-input-input-hint-text"
           >
             AddBikeByNumberScreen.content.inputHint
           </Text>
@@ -470,7 +470,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Default 1`] = `
                 undefined,
               ]
             }
-            testID="subtitle-test-id"
+            testID="add-bike-by-number-container-id-text-input-input-hint-text"
           >
             AddBikeByNumberScreen.content.inputHint
           </Text>

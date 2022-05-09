@@ -234,7 +234,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                 undefined,
               ]
             }
-            testID="subtitle-test-id"
+            testID="add-other-bike-container-id-manufacturer-text-input-input-hint-text"
           >
             AddOtherBikeScreen.form.manufacturer.hint
           </Text>
@@ -321,7 +321,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                 undefined,
               ]
             }
-            testID="subtitle-test-id"
+            testID="add-other-bike-container-id-bikeName-text-input-input-hint-text"
           >
             AddOtherBikeScreen.form.bikeName.hint
           </Text>
@@ -1508,7 +1508,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                 undefined,
               ]
             }
-            testID="subtitle-test-id"
+            testID="add-other-bike-container-id-manufacturer-text-input-input-hint-text"
           >
             AddOtherBikeScreen.form.manufacturer.hint
           </Text>
@@ -1595,7 +1595,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                 undefined,
               ]
             }
-            testID="subtitle-test-id"
+            testID="add-other-bike-container-id-bikeName-text-input-input-hint-text"
           >
             AddOtherBikeScreen.form.bikeName.hint
           </Text>

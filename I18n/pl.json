@@ -780,10 +780,11 @@
     "NameChange": {
         "header": "Moje dane",
         "defaultName": "Rowerzysto",
-        "title": ", sprawdź czy Twoje dane są aktualne",
+        "title": "sprawdź czy Twoje dane są aktualne",
         "placeholder": "Podaj imię lub pseudonim",
-        "btn": "ZAPISZ",
-        "invalidNameLengthError": "Nazwa ma niepoprawną długość"
+        "btn": "Zapisz",
+        "invalidNameLengthError": "Nazwa ma niepoprawną długość",
+        "nameInputHint": "Wprowadź minimum 3 znaki"
     },
     "LanguageChange": {
         "header": "Język aplikacji",

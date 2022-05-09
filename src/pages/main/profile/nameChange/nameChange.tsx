@@ -1,179 +1,108 @@
 import React, {useEffect, useState} from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    ScrollView,
-    KeyboardAvoidingView,
-    Platform,
-} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {setUserName} from '@storage/actions';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
-import {
-    setObjSize,
-    getWidthPx,
-    getHorizontalPx,
-    getVerticalPx,
-    getVertical,
-    getCenterLeftPx,
-    getPosWithMinHeight,
-    getFontSize,
-    mainButtonsHeight,
-} from '@helpers/layoutFoo';
-import {validateData} from '@utils/validation/validation';
-import {userUserValidationRules} from '@models/user.model';
-import {getAppLayoutConfig} from '@theme/appLayoutConfig';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
-import OneLineTekst from '@sharedComponents/inputs/oneLineTekst';
-import BigRedBtn from '@sharedComponents/buttons/bigRedBtn';
 import GenericScreen from '@src/pages/template/GenericScreen';
+import {TextInput} from '@src/components/inputs';
+import {Header2} from '@src/components/texts/texts';
+import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
+import {PrimaryButton} from '@src/components/buttons';
+import {firstLetterToUpperCase} from '@src/utils/strings';
+import {validateData} from '@src/utils/validation/validation';
+import validationRules from '@utils/validation/validationRules';
+import {setUserName} from '@src/storage/actions';
+import {useAppNavigation} from '@src/navigation/hooks/useAppNavigation';
 
-const isIOS = Platform.OS === 'ios';
-
-interface Props {
-    navigation: any;
-}
-
-const NameChange: React.FC<Props> = ({navigation}: Props) => {
+const NameChange: React.FC = () => {
     const dispatch = useAppDispatch();
+    const navigation = useAppNavigation();
     const {t} = useMergedTranslation('NameChange');
-
     const name: string = useAppSelector(state => state.user.userName);
 
-    const [inputName, setInputName] = useState('');
-    const [validationStatus, setValidationStatus] = useState(false);
-    const [forceMessageWrong, setForceMessageWrong] = useState('');
-    const iosOffset = isIOS ? -(getAppLayoutConfig.statusBarH() || 40) : 0;
+    const [userName, setUserNameValue] = useState('');
+    const [isValid, setIsValid] = useState(true);
+    const [inputHint, setInputHint] = useState('');
+
+    const onValidate = () => {
+        const rule = [validationRules.string, {[validationRules.min]: 3}];
+        const isValid = validateData(rule, userName);
+        return {isValid, errorMessage: t('nameInputHint')};
+    };
 
     useEffect(() => {
-        setInputName(name);
+        setUserNameValue(name);
     }, [name]);
 
-    const handleSetInputName = (value: string) => {
-        setForceMessageWrong('');
-        setInputName(value);
-    };
+    const handleSetUserName = () => {
+        const inputValidation = onValidate();
 
-    const handleValidationOk = (value: string) => {
-        return validateData(userUserValidationRules.userName, value);
-    };
-
-    const hadleOnpressWithName = (inputValue: string) => {
-        if (inputValue.length === 0) {
-            dispatch(setUserName(inputValue));
-            navigation.goBack();
+        if (userName !== '' && !inputValidation.isValid) {
+            setInputHint(inputValidation.errorMessage);
+            setIsValid(false);
             return;
         }
 
-        if (!validateData(userUserValidationRules.userName, inputName)) {
-            setForceMessageWrong(t('invalidNameLengthError'));
-            setValidationStatus(false);
-        }
-
-        if (!validationStatus) {
-            return;
-        }
-        dispatch(setUserName(inputName));
+        dispatch(setUserName(userName));
         navigation.goBack();
     };
 
-    setObjSize(334, 50);
-
     const styles = StyleSheet.create({
-        container: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-        },
-        scroll: {
-            top: getVerticalPx(100),
-        },
-        outerArea: {
+        wrap: {
             flex: 1,
-        },
-        area: {
-            justifyContent: 'space-between',
+            paddingHorizontal: appContainerHorizontalMargin,
             width: '100%',
+            alignItems: 'center',
+        },
+        header: {
+            marginTop: getFVerticalPx(40),
+            marginBottom: getFVerticalPx(32),
+        },
+        contentArea: {
             height: '100%',
-            minHeight: getVertical(414),
         },
-        title: {
-            width: getWidthPx(),
-            left: getCenterLeftPx(),
-            top: getVertical(138 - 100),
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getFontSize(30),
-            lineHeight: getFontSize(38),
-            color: '#313131',
+        nameInput: {
+            width: '100%',
         },
-        logo: {
-            position: 'absolute',
-            left: getHorizontalPx(152),
-            top: getVerticalPx(66),
-            width: getHorizontalPx(110),
-            height: getHorizontalPx(20),
-        },
-        inputAndPlaceholder: getPosWithMinHeight(334, 90, 380 - 100, 90),
-        input: {
-            height: 50,
-            marginTop: getHorizontalPx(6),
-        },
-        btn: {
-            position: 'absolute',
-            width: getWidthPx(),
-            height: mainButtonsHeight(50),
-            left: getCenterLeftPx(),
-            bottom: getVerticalPx(65 + 100), // 100 - przesunięcie dla scroll o headera
-        },
-        keyboardContainer: {
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            top: 0,
-            paddingVertical: isIOS ? getVertical(80) : 0,
+        saveButton: {
+            marginTop: getFVerticalPx(32),
         },
     });
 
     return (
-        <GenericScreen screenTitle={t('header')} transculentStatusBar>
-            <KeyboardAvoidingView
-                behavior={isIOS ? 'padding' : 'height'}
-                keyboardVerticalOffset={iosOffset}
-                style={styles.keyboardContainer}>
-                <ScrollView
-                    keyboardShouldPersistTaps="handled"
-                    contentContainerStyle={styles.outerArea}
-                    style={styles.scroll}>
-                    <View style={styles.area}>
-                        <Text style={styles.title}>
-                            {(name || t('defaultName')) + t('title')}
-                        </Text>
+        <GenericScreen
+            screenTitle={t('header')}
+            transculentStatusBar
+            contentBelowHeader>
+            <View style={styles.wrap}>
+                <Header2 style={styles.header}>
+                    {name
+                        ? `${name}, ${t('title')}`
+                        : firstLetterToUpperCase(t('title'))}
+                </Header2>
 
-                        <View
-                            style={[styles.inputAndPlaceholder, styles.input]}>
-                            <OneLineTekst
-                                placeholder={t('placeholder')}
-                                onChangeText={handleSetInputName}
-                                validationOk={handleValidationOk}
-                                value={inputName}
-                                maxLength={20}
-                                validationStatus={setValidationStatus}
-                                messageWrong={t('invalidNameLengthError')}
-                                forceMessageWrong={forceMessageWrong}
-                            />
-                        </View>
+                <View style={styles.nameInput}>
+                    <TextInput
+                        onChangeValue={setUserNameValue}
+                        inputName={t('placeholder')}
+                        value={userName}
+                        maxLength={20}
+                        isValid={isValid}
+                        hint={inputHint}
+                        testID={'name-change'}
+                    />
+                </View>
 
-                        <BigRedBtn
-                            style={styles.btn}
-                            title={t('btn')}
-                            onpress={() => hadleOnpressWithName(inputName)}
-                        />
-                    </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
+                <PrimaryButton
+                    style={styles.saveButton}
+                    text={t('btn')}
+                    onPress={handleSetUserName}
+                    withoutShadow
+                    testID={'name-change-submit-button'}
+                />
+            </View>
         </GenericScreen>
     );
 };

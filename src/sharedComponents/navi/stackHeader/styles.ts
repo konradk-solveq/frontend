@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import {getFontSize, getHorizontalPx} from '@helpers/layoutFoo';
+import {getHorizontalPx} from '@helpers/layoutFoo';
 import {navBarHeight} from '@theme/commonStyle';
 
 const styles = StyleSheet.create({
