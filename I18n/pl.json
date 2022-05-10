@@ -624,11 +624,13 @@
         "detailsType": "Typ",
         "add": "Dodaj",
         "warranty": {
-            "lifetime": "dożywotnio",
-            "noInfo": "brak informacji",
             "state": "Status gwarancji",
-            "nextOverview": "Następny przegląd za",
-            "days": "dni",
+            "toEnd": "Do końca gwarancji",
+            "lifetime": "dożywotnia ochrona ramy",
+            "expired": "wygasła",
+            "days_0": "dzień",
+            "days_1": "dni",
+            "days_2": "dni",
             "reviews": {
                 "name": "Przeglądy",
                 "type": {

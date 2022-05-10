@@ -14,9 +14,11 @@ import Approved from '@components/icons/Approved';
 import Warning from '@components/icons/Warning';
 import BulletRow from '@containers/Bike/components/BulletRow';
 import ServicePointsTile from '@pages/main/bike/components/tiles/ServicePointsTile';
-const SEASON_KEYWORD = 'season';
-const WARRANTY_KEYWORD = 'warranty';
-const PERDIODIC_KEYWORD = 'periodic';
+import {
+    checkSeasonal,
+    checkPeriodic,
+    checkWarranty,
+} from '@utils/bike/warranty';
 
 interface IProps {
     date: string | Date;
@@ -40,9 +42,9 @@ const ReviewDetailsContainer = ({
     warning,
 }: IProps) => {
     const displayDate = useMemo(() => getDateString(new Date(date)), [date]);
-    const isSeasonal = useMemo(() => type.includes(SEASON_KEYWORD), [type]);
-    const isPeriodic = useMemo(() => type.includes(PERDIODIC_KEYWORD), [type]);
-    const isWarranty = useMemo(() => type.includes(WARRANTY_KEYWORD), [type]);
+    const isSeasonal = useMemo(() => checkSeasonal(type), [type]);
+    const isPeriodic = useMemo(() => checkPeriodic(type), [type]);
+    const isWarranty = useMemo(() => checkWarranty(type), [type]);
     const icon = useMemo(() => {
         if (!isInPast(date) || !(isWarranty || isPeriodic)) {
             return null;
