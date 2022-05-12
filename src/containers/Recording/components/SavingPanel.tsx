@@ -9,6 +9,7 @@ interface ISavingPanelProps {
     icon?: SVGElement;
     style?: ViewStyle;
     background: string;
+    testID?: string;
 }
 
 const SavingPanel: React.FC<ISavingPanelProps> = ({
@@ -16,6 +17,7 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({
     icon,
     style,
     background,
+    testID = 'saving-panel',
 }) => {
     const styles = StyleSheet.create({
         panelWrapper: {
@@ -25,7 +27,7 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({
             width: '100%',
             borderRadius: getFHorizontalPx(8),
             height: getFHorizontalPx(80),
-            alignItems: 'flex-start',
+            alignItems: 'center',
             paddingVertical: getFVerticalPx(16),
             paddingHorizontal: getFHorizontalPx(16),
             marginRight: getFHorizontalPx(16),
@@ -33,7 +35,7 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({
         iconWrapper: {
             borderRadius: getFHorizontalPx(48) / 2,
             width: getFHorizontalPx(48),
-            height: getFVerticalPx(48),
+            height: getFHorizontalPx(48),
             backgroundColor: colors.white,
             alignItems: 'center',
             justifyContent: 'center',
@@ -47,8 +49,10 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({
     });
 
     return (
-        <View style={[styles.panelWrapper, style]}>
-            <View style={styles.iconWrapper}>{icon}</View>
+        <View style={[styles.panelWrapper, style]} testID={`${testID}-wrapper`}>
+            <View style={styles.iconWrapper} testID={`${testID}-icon`}>
+                {icon}
+            </View>
             <View style={styles.text}>
                 <Header3>{text}</Header3>
             </View>

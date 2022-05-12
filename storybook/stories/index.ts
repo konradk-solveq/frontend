@@ -21,3 +21,5 @@ import '@containers/Onboarding/__stories__';
 import '@containers/Splash/__stories__';
 import '@containers/World/__stories__';
 import '@containers/World/components/__stories__';
+import '@containers/Recording/__stories__';
+import '@containers/Recording/components/__stories__';

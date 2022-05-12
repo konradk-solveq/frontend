@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
+exports[`Storyshots containers/Recording/ThankYouPageContainer Default 1`] = `
 <View
   style={
     Array [

@@ -18,7 +18,7 @@ const ROUTE_PAUSE_TIME = 8796;
 const SAVINGS_FUEL = '22';
 const SAVINGS_RESOURCE = '22671';
 
-storiesOf('containers/World/ThankYouPageContainer', module)
+storiesOf('containers/Recording/ThankYouPageContainer', module)
     .addDecorator(getStory => (
         <I18nextProvider i18n={i18next}>
             <LayoutCenter style={styles.container}>{getStory()}</LayoutCenter>

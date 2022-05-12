@@ -2,13 +2,11 @@ import 'react-native';
 import React from 'react';
 import renderComponent from '@jestUtils/render';
 import asyncEvent from '@jestUtils/asyncEvent';
-import {initAppSize} from '@helpers/layoutFoo';
 
 import {fireEvent} from '@testing-library/react-native';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
 import {mockedRouteData} from '@pages/main/recording/counterThankYouPage/__test__/mocks/mockedRouteData';
 import ThankYouPageContainer from '../ThankYouPageContainer';
-
 const routeDataMock = {distance: '30,00', time: 872651, pause: 445566};
 const savingsDataMock = {fuel: '10', resource: '99'};
 
@@ -78,10 +76,6 @@ const THANK_YOU_PAGE_PUBLISH_BUTTON = `${THANK_YOU_PAGE_CONTAINER}-publish-butto
 describe('ThankYouPageContainer', () => {
     const onPressFn = jest.fn();
 
-    beforeAll(() => {
-        initAppSize();
-    });
-
     beforeEach(async () => {
         await postApiCallMock({data: {id: 1}, status: 200});
         await postApiCallMock(
@@ -94,24 +88,6 @@ describe('ThankYouPageContainer', () => {
     });
 
     describe('Rendering', () => {
-        it('Should match snapshot', async () => {
-            const component = await asyncEvent(
-                renderComponent(
-                    <ThankYouPageContainer
-                        userName={'Andrew'}
-                        routeParams={routeDataMock}
-                        savingsValues={savingsDataMock}
-                        onPublishAction={onPressFn}
-                        onSaveAction={onPressFn}
-                    />,
-                    undefined,
-                    initStore,
-                ),
-            );
-
-            expect(component).toMatchSnapshot();
-        });
-
         it('Should access save button', async () => {
             const {getByTestId} = await asyncEvent(
                 renderComponent(
@@ -208,9 +184,6 @@ describe('ThankYouPageContainer', () => {
 
         afterEach(() => {
             jest.restoreAllMocks();
-        });
-
-        afterEach(() => {
             jest.clearAllMocks();
         });
     });
