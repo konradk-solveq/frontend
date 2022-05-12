@@ -4,15 +4,11 @@ import {
     TouchableOpacity,
     View,
     StyleSheet,
-    InteractionManager,
     Animated,
     LayoutChangeEvent,
 } from 'react-native';
 
-import {
-    getFHorizontalPx,
-    getFVerticalPx,
-} from '@theme/utils/appLayoutDimensions';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import {HorizontalDivider} from '@src/components/divider';
 import colors from '@theme/colors';
@@ -23,12 +19,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         overflow: 'hidden',
         paddingHorizontal: appContainerHorizontalMargin,
-    },
-    icons: {
-        width: getFHorizontalPx(20),
-        height: getFHorizontalPx(20),
-        position: 'absolute',
-        right: getFHorizontalPx(16),
     },
     content: {
         flex: 1,
@@ -44,6 +34,11 @@ const styles = StyleSheet.create({
         height: 1,
         position: 'absolute',
         top: 0,
+    },
+    dropDownImage: {
+        position: 'absolute',
+        top: '50%',
+        right: 0,
     },
 });
 
@@ -90,6 +85,7 @@ const DropDownItem: React.FC<IProps> = ({
         Animated.spring(animatedItemValue, {
             toValue: finalValue,
             useNativeDriver: false,
+            bounciness: 2,
         }).start();
     };
 
@@ -102,12 +98,6 @@ const DropDownItem: React.FC<IProps> = ({
             setHeaderHeight(newHeaderHeight);
 
             return;
-        } else if (isMounted) {
-            InteractionManager.runAfterInteractions(() => {
-                setAnimatedItemValue(
-                    new Animated.Value(newHeaderHeight + contentHeight),
-                );
-            });
         }
 
         setIsMounted(true);
@@ -119,9 +109,7 @@ const DropDownItem: React.FC<IProps> = ({
         setContentHeight(newContentHeight);
     };
 
-    const onPress = () => {
-        runAnimation();
-    };
+    const onPress = () => runAnimation();
 
     return (
         <>
@@ -137,8 +125,10 @@ const DropDownItem: React.FC<IProps> = ({
                     <View
                         onLayout={onAnimLayout}
                         style={{backgroundColor: titleBackground}}>
-                        {header}
-                        {isContentVisible ? visibleImage : invisibleImage}
+                        <View>{header}</View>
+                        <View style={styles.dropDownImage}>
+                            {isContentVisible ? visibleImage : invisibleImage}
+                        </View>
                     </View>
                 </TouchableOpacity>
 

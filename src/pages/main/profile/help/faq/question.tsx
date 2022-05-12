@@ -30,9 +30,6 @@ const Question: React.FC<IProps> = ({data}: IProps) => {
             paddingBottom: getFVerticalPx(16),
         },
         arrow: {
-            position: 'absolute',
-            right: getFVerticalPx(5),
-            top: getFHorizontalPx(11),
             width: getFHorizontalPx(15),
             height: getFHorizontalPx(9),
         },
