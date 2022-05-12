@@ -79,7 +79,7 @@ const NameChange: React.FC = () => {
             <View style={styles.wrap}>
                 <Header2 style={styles.header}>
                     {name
-                        ? `${name}, ${t('title')}`
+                        ? `${name} ${t('title')}`
                         : firstLetterToUpperCase(t('title'))}
                 </Header2>
 
