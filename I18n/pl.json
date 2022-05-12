@@ -905,6 +905,7 @@
     "dataAction": {
         "validationError": "Sprawdź błędy w\u00a0formularzu",
         "apiError": "Wystąpił błąd podczas łączenia z serwerem, spróbuj ponownie",
+        "translationError": "Nie odnaleziono tłumaczenia, spróbuj ponownie",
         "generalError": "Wystąpił błąd, spróbuj ponownie",
         "dataSyncError": "Wystąpił błąd podczas synchronizacji danych z serwerem",
         "noInternetConnection": "Brak połączenia z internetem lub jest ono niestabilne.",

@@ -1,6 +1,10 @@
 import {AppThunk} from '@storage/thunk';
 import * as actionTypes from '@storage/actions/actionTypes';
 
+import {AppState} from '@storage/reducers/app';
+import {UiTranslationState} from '@storage/reducers/uiTranslation';
+import {checkIfControlSumChanged} from '@storage/actions/utils/app';
+import {UserStateI} from '@storage/reducers/user';
 import {
     getUiTranslationService,
     getLanguagesListService,
@@ -20,6 +24,15 @@ export const setUiTranslation = (translations: translationsT) => {
     };
 };
 
+export const setControlSum = (controlSum: string) => ({
+    type: actionTypes.SET_TRANSLATION_CONTROL_SUM,
+    translationControlSum: controlSum,
+});
+
+export const clearControlSum = () => ({
+    type: actionTypes.CLEAR_TRANSLATION_CONTROL_SUM,
+});
+
 export const fetchUiTranslation = (
     noLoader?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
@@ -27,6 +40,24 @@ export const fetchUiTranslation = (
         dispatch(setSyncStatus(true));
     }
     try {
+        const {config}: AppState = getState().app;
+        const {controlSum}: UiTranslationState = getState().uiTranslation;
+        const {language}: UserStateI = getState().user;
+
+        const controlSumChanged = checkIfControlSumChanged(
+            config.uiTranslations.controlSums,
+            language ||
+                config.lang /* In the first place take language from 'user' reducer wich is set from local data */,
+            controlSum,
+        );
+
+        if (!controlSumChanged) {
+            if (!noLoader) {
+                dispatch(setSyncStatus(false));
+            }
+            return;
+        }
+
         const response = await getUiTranslationService();
 
         if (response.error || response.status >= 400 || !response.data) {
@@ -35,14 +66,19 @@ export const fetchUiTranslation = (
         }
 
         const code: string = response?.data?.code;
-        const oldTranslations = getState().uiTranslation.translations;
+        const {translations}: UiTranslationState = getState().uiTranslation;
 
         const newTranslations = convertTranslations(
             code,
             response.data,
-            oldTranslations,
+            translations,
         );
 
+        /**
+         * Set translation controSUm which will be used
+         * to check if translation should be updated.
+         */
+        dispatch(setControlSum(response.data.controlSum));
         dispatch(setUiTranslation(newTranslations));
 
         if (!noLoader) {
@@ -59,12 +95,10 @@ export const fetchUiTranslation = (
     }
 };
 
-const getLanguagesList = (languagesList: languagesListT) => {
-    return {
-        type: actionTypes.GET_LANGUAGES_LIST,
-        languagesList,
-    };
-};
+const setLanguagesList = (languagesList: languagesListT) => ({
+    type: actionTypes.SET_TRANSLATION_LANGUAGES_LIST,
+    languagesList,
+});
 
 export const fetchLanguagesList = (
     noLoader?: boolean,
@@ -80,7 +114,7 @@ export const fetchLanguagesList = (
             return;
         }
 
-        dispatch(getLanguagesList(response.data));
+        dispatch(setLanguagesList(response.data));
 
         if (!noLoader) {
             dispatch(setSyncStatus(false));

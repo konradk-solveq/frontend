@@ -8,17 +8,15 @@ export const convertTranslations = (
     data: translationsResponseT,
     oldTranslations: translationsT,
 ) => {
-    const newTranslations: any = {};
+    const newTranslations: translationsT = {};
     if (code) {
         newTranslations[code] = {
             translation: data?.translation,
             version: data?.version,
             controlSum: data?.controlSum,
         };
-    }
 
-    for (const key in newTranslations) {
-        oldTranslations[key] = newTranslations[key];
+        return newTranslations;
     }
 
     return oldTranslations;

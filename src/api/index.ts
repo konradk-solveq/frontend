@@ -1,4 +1,11 @@
-export {default as instance, isCancel, source, setUserAgentHeader} from './api';
+export {
+    default as instance,
+    isCancel,
+    source,
+    setUserAgentHeader,
+    setLanguageHeader,
+    setAutorizationHeader,
+} from './api';
 export {
     getBike,
     getGenericBikeData,

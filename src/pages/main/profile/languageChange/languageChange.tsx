@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, SafeAreaView, ScrollView} from 'react-native';
-import {fetchUiTranslation, setLanguage} from '@storage/actions';
+import {setLanguage} from '@storage/actions';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {
@@ -23,6 +23,7 @@ import {
     getFVerticalPx,
 } from '@src/theme/utils/appLayoutDimensions';
 import {useAppNavigation} from '@src/navigation/hooks/useAppNavigation';
+import {clearControlSum} from '@storage/actions/uiTranslation';
 
 const ReloadItem = () => {
     useLanguageReloader();
@@ -52,24 +53,30 @@ const LanguageChange: React.FC = () => {
         setInputLanguage(value);
     };
 
-    const startFetchingTranslation = (d: any) =>
-        new Promise(resolve => {
-            d(fetchUiTranslation(true));
-            resolve(true);
-        });
-
     const handleSaveLanguage = () => {
+        /**
+         * Clear current translation control sum to fetch new.
+         */
+        dispatch(clearControlSum());
+        /**
+         * It will trigger action in 'useLanguageReloader'
+         * to download translation for chosen language.
+         */
+        dispatch(setLanguage(inputLanguage));
+
         if (typeof translations[inputLanguage] === 'undefined') {
             setFetchingTranslation(true);
-            startFetchingTranslation(dispatch).then(() => {
-                setReload(true);
-                setTimeout(() => {
-                    setFetchingTranslation(false);
-                }, 300);
-            });
+
+            setReload(true);
+            /* TODO: should be replaced with real state listener */
+            setTimeout(() => {
+                setFetchingTranslation(false);
+            }, 500);
         }
 
-        dispatch(setLanguage(inputLanguage));
+        /**
+         * Change language for the translation library.
+         */
         changeLanguage(inputLanguage, languageList);
         setGoBack(true);
     };
