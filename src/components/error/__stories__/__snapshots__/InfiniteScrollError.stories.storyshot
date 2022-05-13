@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/error/InfiniteScrollError Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    adjustsFontSizeToFit={false}
+    style={
+      Array [
+        Object {
+          "color": "#C63733",
+          "fontFamily": "DIN2014-Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "textAlign": "left",
+        },
+        Array [
+          Object {
+            "textAlign": "center",
+          },
+          Object {},
+        ],
+      ]
+    }
+    testID="paragraph-test-id"
+  >
+    MainWorld.maps.infiniteScrollError
+  </Text>
+</View>
+`;
+
+exports[`Storyshots components/error/InfiniteScrollError Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    adjustsFontSizeToFit={false}
+    style={
+      Array [
+        Object {
+          "color": "#C63733",
+          "fontFamily": "DIN2014-Regular",
+          "fontSize": 16,
+          "lineHeight": 24,
+          "textAlign": "left",
+        },
+        Array [
+          Object {
+            "textAlign": "center",
+          },
+          undefined,
+        ],
+      ]
+    }
+    testID="paragraph-test-id"
+  >
+    MainWorld.maps.infiniteScrollError
+  </Text>
+</View>
+`;

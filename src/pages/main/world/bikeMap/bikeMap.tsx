@@ -1,5 +1,10 @@
 import React, {useCallback, useEffect, useState, useMemo} from 'react';
-import {View, FlatList} from 'react-native';
+import {
+    View,
+    FlatList,
+    NativeSyntheticEvent,
+    NativeScrollEvent,
+} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {Map} from '@models/map.model';
@@ -14,10 +19,10 @@ import {
     refreshMapsSelector,
     selectorMapTypeEnum,
     mapsCountSelector,
+    publicMapsListErrorSelector,
 } from '@storage/selectors/map';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
-import Loader from '@sharedComponents/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
@@ -42,6 +47,8 @@ import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
 import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
 import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
+import InfiniteScrollError from '@components/error/InfiniteScrollError';
+
 import {isIOS} from '@utils/platform';
 
 const length = getFVerticalPx(311);
@@ -71,6 +78,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         () => getPublicRoutesDropdownList(t),
         [t],
     );
+    const listError = useAppSelector(publicMapsListErrorSelector)?.error;
 
     const {bottom} = useSafeAreaInsets();
     /**
@@ -118,6 +126,20 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
         dispatch,
     ]);
+
+    const onErrorScrollHandler = useCallback(
+        (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+            if (
+                listError &&
+                !isLoading &&
+                event.nativeEvent.contentOffset.y >
+                    getItemLayout(undefined, mapsData.length - 1).offset
+            ) {
+                onLoadMore();
+            }
+        },
+        [mapsData.length, isLoading, listError, onLoadMore],
+    );
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
@@ -169,10 +191,10 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     );
 
     const onEndReachedHandler = useCallback(() => {
-        if (!isLoading && !isRefreshing) {
+        if (!isLoading && !isRefreshing && nextCoursor) {
             onLoadMoreHandler(onLoadMore);
         }
-    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
+    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore, nextCoursor]);
 
     const onRefreshHandler = useCallback(() => {
         if (!isLoading && !isRefreshing && mapsData?.length > 1) {
@@ -201,13 +223,22 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         [mapsData?.length, onPressTileHandler],
     );
 
-    const renderListLoader = useCallback(() => {
-        if (!showListLoader && isLoading && mapsData.length > 3) {
-            return (
-                <View style={styles.loaderContainer}>
-                    <Loader />
-                </View>
-            );
+    const renderListFooter = useCallback(() => {
+        if (!showListLoader && mapsData.length > 3) {
+            if (isLoading) {
+                return (
+                    <View style={styles.loaderContainer}>
+                        <NativeLoader />
+                    </View>
+                );
+            }
+            if (listError) {
+                return (
+                    <View style={styles.loaderContainer}>
+                        <InfiniteScrollError />
+                    </View>
+                );
+            }
         }
 
         if (isLoading && showListLoader) {
@@ -219,7 +250,13 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         }
 
         return null;
-    }, [isLoading, mapsData?.length, showListLoader, listBodyLoaderStyle]);
+    }, [
+        showListLoader,
+        mapsData.length,
+        isLoading,
+        listError,
+        listBodyLoaderStyle,
+    ]);
 
     const [showDropdown, setShowDropdown] = useState(false);
     const [sortButtonName, setSortButtonName] = useState<string>('');
@@ -287,9 +324,10 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
             {mapsData?.length && renderIsFinished ? (
                 <FlatList
                     onScroll={onScroll}
+                    onMomentumScrollEnd={onErrorScrollHandler}
                     ListHeaderComponent={
                         <View style={styles.listHeader}>
-                            <FeaturedRoutes key={mapsData?.length} />
+                            <FeaturedRoutes />
                             <Header2 style={styles.header}>
                                 {t('BikeMap.title')}
                             </Header2>
@@ -304,7 +342,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                     removeClippedSubviews={!isIOS}
                     onEndReached={onEndReachedHandler}
                     onEndReachedThreshold={0.2}
-                    ListFooterComponent={renderListLoader}
+                    ListFooterComponent={renderListFooter}
                     refreshing={isLoading && isRefreshing}
                     onRefresh={onRefreshHandler}
                 />

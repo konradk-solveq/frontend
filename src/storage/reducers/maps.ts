@@ -2,13 +2,14 @@ import {persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '../actions/actionTypes';
-import {FeaturedMapType, MapType} from '../../models/map.model';
+import {FeaturedMapType, MapType, MapsListError} from '../../models/map.model';
 import {MapPagination, NestedPaginationType} from '../../interfaces/api';
 import {RouteMapType} from '../../models/places.model';
 import {
     updateIsUserFavouriteInMap,
     updateReactionsInFeatueedMap,
     updateReactionsInMap,
+    updateListErrorState,
 } from '@utils/mapsData';
 import {NestedTotalMapsType} from '@src/type/maps';
 import {mergeFeaturedMapsListData} from './utils/maps';
@@ -17,6 +18,11 @@ export interface FiltersState {
     public?: number;
     private?: number;
     planned?: number;
+}
+export interface IMapsListError {
+    public?: MapsListError;
+    private?: MapsListError;
+    planned?: MapsListError;
 }
 
 export interface MapsState {
@@ -39,6 +45,7 @@ export interface MapsState {
     statusCode: number;
     refresh: boolean;
     filters: FiltersState;
+    mapsListError: IMapsListError;
 }
 
 const initialStateList: MapsState = {
@@ -61,6 +68,7 @@ const initialStateList: MapsState = {
     statusCode: 200,
     refresh: false,
     filters: {},
+    mapsListError: {},
 };
 
 const mapsReducer = (state = initialStateList, action: any) => {
@@ -313,6 +321,39 @@ const mapsReducer = (state = initialStateList, action: any) => {
         }
         case actionTypes.LOGOUT_USER: {
             return {...initialStateList};
+        }
+        case actionTypes.SET_MAPS_LIST_ERROR: {
+            return updateListErrorState(
+                state,
+                action.error,
+                action.statusCode,
+                'public',
+            );
+        }
+        case actionTypes.SET_PLANNED_MAPS_LIST_ERROR: {
+            return updateListErrorState(
+                state,
+                action.error,
+                action.statusCode,
+                'planned',
+            );
+        }
+        case actionTypes.SET_PRIVATE_MAPS_LIST_ERROR: {
+            return updateListErrorState(
+                state,
+                action.error,
+                action.statusCode,
+                'private',
+            );
+        }
+        case actionTypes.CLEAR_MAPS_LIST_ERROR: {
+            return updateListErrorState(state, '', 200, 'public');
+        }
+        case actionTypes.CLEAR_PRIVATE_MAPS_LIST_ERROR: {
+            return updateListErrorState(state, '', 200, 'private');
+        }
+        case actionTypes.CLEAR_PLANNED_MAPS_LIST_ERROR: {
+            return updateListErrorState(state, '', 200, 'planned');
         }
     }
 

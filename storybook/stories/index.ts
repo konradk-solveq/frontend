@@ -4,6 +4,7 @@ import '@components/backdrop/__stories__';
 import '@components/buttons/__stories__';
 import '@components/divider/__stories__';
 import '@components/dropdown/__stories__';
+import '@components/error/__stories__';
 import '@components/headers/__stories__';
 import '@components/icons/__stories__';
 import '@components/inputs/__stories__';

@@ -1,5 +1,10 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {View, FlatList} from 'react-native';
+import {
+    View,
+    FlatList,
+    NativeSyntheticEvent,
+    NativeScrollEvent,
+} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {
@@ -8,13 +13,14 @@ import {
     privateMapsListSelector,
     privateTotalMapsNumberSelector,
     refreshMapsSelector,
+    privateMapsListErrorSelector,
 } from '@storage/selectors';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 import {getImagesThumbs} from '@utils/transformData';
-import Loader from '@sharedComponents/loader/loader';
+
 import {Loader as NativeLoader} from '@components/loader';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {RouteDetailsActionT} from '@type/screens/routesMap';
@@ -43,6 +49,7 @@ import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
 import EmptyStateContainer from '@containers/World/EmptyStateContainer';
 import {FinishLine} from '@components/svg';
+import InfiniteScrollError from '@components/error/InfiniteScrollError';
 
 /**
  * My route tiles have additional text with date above the tile
@@ -76,7 +83,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         () => getPrivateRoutesDropdownList(t),
         [t],
     );
-
+    const listError = useAppSelector(privateMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();
     /**
      * Navigate to map button bottom position modifier
@@ -202,10 +209,10 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     );
 
     const onEndReachedHandler = useCallback(() => {
-        if (!isLoading && !isRefreshing) {
+        if (!isLoading && !isRefreshing && nextCoursor) {
             onLoadMoreHandler(onLoadMore);
         }
-    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
+    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore, nextCoursor]);
 
     const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -274,13 +281,36 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
 
     const {onScroll, shouldHide} = useHideOnScrollDirection();
 
-    const renderListLoader = () => {
-        if (!showListLoader && isLoading && privateMaps.length > 3) {
-            return (
-                <View style={styles.loaderContainer}>
-                    <Loader />
-                </View>
-            );
+    const onErrorScrollHandler = useCallback(
+        (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+            if (
+                listError &&
+                !isLoading &&
+                event.nativeEvent.contentOffset.y >
+                    getItemLayout(undefined, privateMaps.length - 1).offset
+            ) {
+                onLoadMore();
+            }
+        },
+        [privateMaps.length, isLoading, listError, onLoadMore],
+    );
+
+    const renderListFooter = useCallback(() => {
+        if (!showListLoader && privateMaps.length > 3) {
+            if (isLoading) {
+                return (
+                    <View style={styles.loaderContainer}>
+                        <NativeLoader />
+                    </View>
+                );
+            }
+            if (listError) {
+                return (
+                    <View style={styles.loaderContainer}>
+                        <InfiniteScrollError />
+                    </View>
+                );
+            }
         }
 
         if (isLoading && showListLoader) {
@@ -292,7 +322,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         }
 
         return null;
-    };
+    }, [privateMaps.length, isLoading, listError, showListLoader]);
 
     const basicTitle = `${userName || t('defaultUserName')} ${t('title')}`;
     const secondTitle = `${t('routesNumberTitle')} ${totalNumberOfPrivateMaps}`;
@@ -333,6 +363,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                     <FlatList
                         keyExtractor={item => item.id}
                         onScroll={onScroll}
+                        onMomentumScrollEnd={onErrorScrollHandler}
                         ListHeaderComponent={
                             <Header2 style={styles.header}>
                                 {totalNumberOfPrivateMaps &&
@@ -349,7 +380,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         removeClippedSubviews
                         onEndReached={onEndReachedHandler}
                         onEndReachedThreshold={0.5}
-                        ListFooterComponent={renderListLoader}
+                        ListFooterComponent={renderListFooter}
                         refreshing={isLoading && isRefreshing}
                         onRefresh={onRefresh}
                     />

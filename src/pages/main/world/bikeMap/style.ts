@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         height: getFHorizontalPx(50),
         width: '100%',
         marginTop: -getFVerticalPx(120),
-        marginBottom: getFVerticalPx(150),
+        marginBottom: getFVerticalPx(200),
     },
     backdrop: {
         marginTop: -getFVerticalPx(250),

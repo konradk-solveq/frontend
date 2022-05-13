@@ -451,6 +451,11 @@ export interface MapsCountData {
     total: string;
 }
 
+export interface MapsListError {
+    error: string;
+    statusCode: number;
+}
+
 export type FeaturedMapType = {
     section: {
         id: string;

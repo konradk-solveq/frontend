@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {getFontSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
 const fontLight = 'DIN2014Narrow-Light';
 const darkText = '#313131';
@@ -22,10 +23,10 @@ const styles = StyleSheet.create({
     },
     horizontalSpace: {},
     loaderContainer: {
-        height: 50,
+        height: getFVerticalPx(50),
         width: '100%',
-        marginTop: -getVerticalPx(120),
-        marginBottom: getVerticalPx(150),
+        marginTop: -getFVerticalPx(120),
+        marginBottom: getFVerticalPx(200),
     },
     backdrop: {
         marginTop: -getVerticalPx(250),

@@ -385,6 +385,7 @@
             "filtersItemCount_2": "tras",
             "filtersShowAllBtn": "Pokaż wszystkie wyniki",
             "filtersBackBtn": "Przywróć",
+            "infiniteScrollError": "Nie udało się załadować tras.\nSpróbuj ponownie.",
             "length": "Długość",
             "loop": "Pętla",
             "myPublic": "Moje publiczne",

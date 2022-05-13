@@ -51,6 +51,14 @@ export const setMapsCount = (total: number) => ({
     type: actionTypes.SET_MAPS_COUNT,
     total,
 });
+export const setMapsListError = (error: string, statusCode: number) => ({
+    type: actionTypes.SET_MAPS_LIST_ERROR,
+    error,
+    statusCode,
+});
+export const clearMapsListError = () => ({
+    type: actionTypes.CLEAR_MAPS_LIST_ERROR,
+});
 export const setPrivateMapsCount = (total: number) => ({
     type: actionTypes.SET_PRIVATE_MAPS_COUNT,
     total,
@@ -77,6 +85,16 @@ export const setPrivateMapsData = (
     refresh: refresh,
 });
 
+export const setPrivateMapsListError = (error: string, statusCode: number) => ({
+    type: actionTypes.SET_PRIVATE_MAPS_LIST_ERROR,
+    error,
+    statusCode,
+});
+
+export const clearPrivateMapsListError = () => ({
+    type: actionTypes.CLEAR_PRIVATE_MAPS_LIST_ERROR,
+});
+
 export const setPlannedMapsData = (
     plannedMaps: MapType[],
     paginationCoursor: MapPagination,
@@ -86,6 +104,16 @@ export const setPlannedMapsData = (
     plannedMaps: plannedMaps,
     paginationCoursor: paginationCoursor,
     refresh: refresh,
+});
+
+export const setPlannedMapsListError = (error: string, statusCode: number) => ({
+    type: actionTypes.SET_PLANNED_MAPS_LIST_ERROR,
+    error,
+    statusCode,
+});
+
+export const clearPlannedMapsListError = () => ({
+    type: actionTypes.CLEAR_PLANNED_MAPS_LIST_ERROR,
 });
 
 export const setFeaturedMapsData = (
@@ -194,21 +222,21 @@ export const fetchMapsList = (
             const message = i18next.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
-            dispatch(setError(message, 400));
+            dispatch(setMapsListError(message, 400));
             return;
         }
-
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
-                setError(i18next.t('dataAction.noInternetConnection'), 500),
+                setMapsListError(
+                    i18next.t('dataAction.noInternetConnection'),
+                    500,
+                ),
             );
-            setLoadState(dispatch, true, skipLoadingState);
             return;
         }
-
         const response = await getMapsList(location, page, filters);
         if (response.error || !response.data || !response.data.elements) {
-            dispatch(setError(response.error, response.status));
+            dispatch(setMapsListError(response.error, response.status));
             return;
         }
 
@@ -224,6 +252,7 @@ export const fetchMapsList = (
                 ),
             );
             dispatch(clearError());
+            dispatch(clearMapsListError());
         });
 
         setLoadState(dispatch, false, skipLoadingState);
@@ -234,7 +263,7 @@ export const fetchMapsList = (
         loggErrorWithScope(err, 'fetchMapsList');
 
         const errorMessage = i18next.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
+        dispatch(setMapsListError(errorMessage, 500));
     }
 };
 
@@ -359,13 +388,16 @@ export const fetchPrivateMapsList = (
             const message = i18next.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
-            dispatch(setError(message, 400));
+            dispatch(setPrivateMapsListError(message, 400));
             return;
         }
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
-                setError(i18next.t('dataAction.noInternetConnection'), 500),
+                setPrivateMapsListError(
+                    i18next.t('dataAction.noInternetConnection'),
+                    500,
+                ),
             );
             return;
         }
@@ -377,7 +409,7 @@ export const fetchPrivateMapsList = (
         );
 
         if (response?.error || !response?.data || !response?.data?.elements) {
-            dispatch(setError(response.error, response.status));
+            dispatch(setPrivateMapsListError(response.error, response.status));
             return;
         }
 
@@ -392,6 +424,7 @@ export const fetchPrivateMapsList = (
                 ),
             );
             dispatch(clearError());
+            dispatch(clearPrivateMapsListError());
         });
 
         setLoadState(dispatch, false, skipLoadingState);
@@ -402,7 +435,7 @@ export const fetchPrivateMapsList = (
         loggErrorWithScope(err, 'fetchPrivateMapsList');
 
         const errorMessage = i18next.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
+        dispatch(setPrivateMapsListError(errorMessage, 500));
     }
 };
 
@@ -498,13 +531,24 @@ export const fetchPlannedMapsList = (
     skipLoadingState?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     setLoadState(dispatch, true, skipLoadingState);
+    const {isOffline, internetConnectionInfo}: AppState = getState().app;
     try {
         const {location}: AppState = getState().app;
         if (!location?.latitude || !location.longitude) {
             const message = i18next.t(
                 'dataAction.locationData.readSQLDataFailure',
             );
-            dispatch(setError(message, 400));
+            dispatch(setPlannedMapsListError(message, 400));
+            return;
+        }
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(
+                setPlannedMapsListError(
+                    i18next.t('dataAction.noInternetConnection'),
+                    500,
+                ),
+            );
             return;
         }
 
@@ -515,10 +559,9 @@ export const fetchPlannedMapsList = (
         );
 
         if (response.error || !response.data || !response.data?.elements) {
-            dispatch(setError(response.error, response.status));
+            dispatch(setPlannedMapsListError(response.error, response.status));
             return;
         }
-
         const refresh = !page;
         batch(() => {
             dispatch(
@@ -529,6 +572,7 @@ export const fetchPlannedMapsList = (
                 ),
             );
             dispatch(clearError());
+            dispatch(clearPlannedMapsListError());
         });
 
         setLoadState(dispatch, false, skipLoadingState);
@@ -539,7 +583,7 @@ export const fetchPlannedMapsList = (
         loggErrorWithScope(err, 'fetchPlannedMapsList');
 
         const errorMessage = i18next.t('dataAction.apiError');
-        dispatch(setError(errorMessage, 500));
+        dispatch(setPlannedMapsListError(errorMessage, 500));
     }
 };
 
