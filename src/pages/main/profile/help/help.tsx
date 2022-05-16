@@ -27,7 +27,6 @@ const Help: React.FC = () => {
         },
         scrollContainer: {
             marginTop: getFVerticalPx(25),
-            marginBottom: getFVerticalPx(60),
         },
     });
 
