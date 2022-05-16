@@ -492,42 +492,24 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
                 "marginBottom": 25.28909952606635,
                 "paddingTop": 37.93364928909953,
               },
-              undefined,
+              Object {
+                "paddingTop": 12.644549763033176,
+              },
             ]
           }
         >
-          <View
-            style={
+          <Image
+            source={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "black",
-                "borderRadius": 50,
-                "height": 88.51184834123222,
-                "justifyContent": "center",
-                "marginBottom": 25.28909952606635,
-                "width": 88.51184834123222,
+                "testUri": "../../../src/assets/images/services/serviceMap.png",
               }
             }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "fontFamily": "mykross",
-                    "textAlign": "center",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
-                    "fontSize": 20,
-                  },
-                  undefined,
-                ]
+            style={
+              Object {
+                "marginBottom": 25.28909952606635,
               }
-              testID="text-icon-test-id"
-            >
-              0
-            </Text>
-          </View>
+            }
+          />
           <View
             style={
               Array [
