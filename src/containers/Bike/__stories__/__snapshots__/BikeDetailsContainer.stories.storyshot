@@ -765,18 +765,30 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                 ]
               }
             >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/assets/images/services/serviceMap.png",
-                  }
-                }
+              <View
                 style={
                   Object {
-                    "marginBottom": 25.28909952606635,
+                    "alignItems": "center",
+                    "paddingHorizontal": 15.384615384615385,
+                    "width": "100%",
                   }
                 }
-              />
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/assets/images/services/serviceMap.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "borderRadius": 12.644549763033176,
+                      "marginBottom": 25.28909952606635,
+                      "width": "100%",
+                    }
+                  }
+                />
+              </View>
               <View
                 style={
                   Array [
@@ -1706,18 +1718,30 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                 ]
               }
             >
-              <Image
-                source={
-                  Object {
-                    "testUri": "../../../src/assets/images/services/serviceMap.png",
-                  }
-                }
+              <View
                 style={
                   Object {
-                    "marginBottom": 25.28909952606635,
+                    "alignItems": "center",
+                    "paddingHorizontal": 15.384615384615385,
+                    "width": "100%",
                   }
                 }
-              />
+              >
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/assets/images/services/serviceMap.png",
+                    }
+                  }
+                  style={
+                    Object {
+                      "borderRadius": 12.644549763033176,
+                      "marginBottom": 25.28909952606635,
+                      "width": "100%",
+                    }
+                  }
+                />
+              </View>
               <View
                 style={
                   Array [

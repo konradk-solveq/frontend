@@ -40,10 +40,12 @@ export default ({
                         showImage && {paddingTop: getFVerticalPx(8)},
                     ]}>
                     {showImage ? (
-                        <Image
-                            source={require('@assets/images/services/serviceMap.png')}
-                            style={styles.image}
-                        />
+                        <View style={styles.imageContainer}>
+                            <Image
+                                source={require('@assets/images/services/serviceMap.png')}
+                                style={styles.image}
+                            />
+                        </View>
                     ) : (
                         <View style={styles.serviceImageContainer}>
                             <TextIcon
@@ -102,7 +104,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: getFVerticalPx(16),
     },
+    imageContainer: {
+        paddingHorizontal: getFHorizontalPx(8),
+        width: '100%',
+        alignItems: 'center',
+    },
     image: {
         marginBottom: getFVerticalPx(16),
+        borderRadius: getFVerticalPx(8),
+        width: '100%',
     },
 });
